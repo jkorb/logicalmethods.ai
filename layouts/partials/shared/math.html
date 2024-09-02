@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="{{ (resources.Get "katex/katex.min.css").Permalink}}">
+<script defer src="{{ (resources.Get "katex/katex.min.js").Permalink}}"></script>
+<script defer src="{{ (resources.Get "katex/contrib/auto-render.min.js").Permalink}}"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\[', right: '\\]', display: true},   // block
+        {left: '$$', right: '$$', display: true},     // block
+        {left: '\\(', right: '\\)', display: false},  // inline
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+

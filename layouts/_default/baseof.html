@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <title>logicalmethods.ai {{ with .Params.title }}&ndash; {{ . }} {{ end }}</title>
+    <link rel="icon" type="image/x-icon" href="{{ (resources.Get "favicon.ico").Permalink}}"></link>
+    <link href="{{ (resources.Get "bootstrap/dist/css/bootstrap.min.css").Permalink}}" rel="stylesheet"></link>
+    <link rel="stylesheet" href="{{ (resources.Get "icons/font/bootstrap-icons.min.css").Permalink}}"></link>
+    <link rel="stylesheet" href="{{ (resources.Get "css/layout.css").Permalink }}"></link>
+    {{ block "head" . }}
+    {{ end }}
+    <style>
+      {{ block "style" . }}
+      {{ end }}
+    </style>
+    {{ if .Param "math" }}
+      {{ partialCached "shared/math.html" . }}
+    {{ end }}
+  </head>
+  <body class="bg-black d-flex flex-column m-0 p-0">
+    {{ partial "baseof/offcanvas-nav" . }}
+    <header class="align-self-center d-flex flex-column m-0 mb-md-1 p-0" data-bs-theme="dark">
+      {{ partial "baseof/navbar" .}}
+      {{ block "header" . }}
+      {{ end }}
+    </header>
+    {{ with .Param "alerts"}}
+      {{ range . }}
+        {{ partial "baseof/alarm" . }}
+      {{ end }}
+    {{ end }}
+    <main class="align-self-center d-flex flex-column flex-fill bg-light m-md-1 p-0" data-bs-theme="light">
+      {{ block "main" . }}
+      {{ end }}
+    </main>
+    <footer class="align-self-center d-flex flex-column mt-md-1 p-0" data-bs-theme="dark">
+      {{ partial "baseof/footer" . }} 
+      <script src="{{ (resources.Get "js/helpers.js").Permalink}}"></script>
+      <script src="{{ (resources.Get "bootstrap/dist/js/bootstrap.bundle.min.js").Permalink}}"></script>
+      {{ block "footer" . }}
+      {{ end }}
+    </footer>
+  </body>
+</html>

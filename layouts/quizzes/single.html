@@ -1,0 +1,27 @@
+{{ define "head"}}
+<link rel="stylesheet" href="{{ (resources.Get "css/quizzes.css").Permalink}}">
+{{ end }}
+
+{{- define "main" -}}
+{{ partial "single/nav-top" . }}
+{{ partial "single/title" . }}
+{{ partial "shared/info" . }}
+<hr>
+{{ $content := .Content }}
+{{ $content := replaceRE "<ul>" "<ul class=\"quiz\">" $content }}
+{{ $content := replaceRE "checked=\"\"" "class=\"correct\"" $content }}
+{{ $content := replaceRE "disabled=\"\"" "" $content }}
+
+<div class="container">
+  <div class="container quizzes">
+    {{ $content | safeHTML }}
+  </div>
+</div>
+
+{{ partial "single/nav-bot" . }}
+
+{{- end -}}
+
+{{- define "footer" -}}
+<script src="{{ (resources.Get "js/quizzes.js").Permalink}}"></script>
+{{- end -}}

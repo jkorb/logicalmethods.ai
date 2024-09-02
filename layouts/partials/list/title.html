@@ -1,0 +1,37 @@
+<div class="container p-3 text-center">
+  <h1 class="display-1">
+    <strong>{{ partial "baseof/logo" .}}</strong> 
+  </h1>
+  <h1 class="text-body-emphasis">Logical methods for AI</h1>
+  <p class="lead">
+    {{ with .Param "md-title" }}
+    {{ . | markdownify}}
+    {{ end }}
+  </p>
+  <h1 class="text-body-emphasis">
+    {{ with .Param "icon"}}
+    {{ . | safeHTML}}
+    {{ end }}
+  </h1>
+  {{ if .Param "show-author" }}
+  <p>
+    <ul class="list-group">
+      {{ range .Param "authors"}}
+      <li class="list-group-item border-0 p-0 bg-light">
+        <em>{{ . | markdownify }}</em>
+      </li>
+      {{ end }}
+    </ul>
+  </p>
+  {{ with .Param "contributors" }}
+  <p>
+    Contributors:
+    <ul class="list-group">
+      {{ range . }}
+      <li class="list-group-item border-0 p-0 bg-light"><em>{{ . | markdownify }}</em></li>
+      {{ end }}
+    </ul>
+  </p>
+  {{ end }}
+  {{ end }}
+</div>

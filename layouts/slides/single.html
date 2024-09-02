@@ -1,0 +1,31 @@
+{{ define "head" }}
+<link rel="stylesheet" href="{{ (resources.Get "reveal.js/dist/reveal.css").Permalink}}">
+<link rel="stylesheet" href="{{ (resources.Get "css/slides.css").Permalink }}">
+{{ end }}
+
+{{ define "main" }}
+{{ partial "single/nav-top" . }}
+{{ partial "single/title" . }}
+{{ partial "shared/info" . }}
+<hr>
+
+{{ partial "slides/render" . }}
+
+<hr>
+{{ partial "slides/highlights" . }}
+{{ partial "slides/reveal-logo" . }}
+{{ partial "single/nav-bot" . }}
+{{ end }}
+{{ define "footer" }}
+<script src="{{ (resources.Get "reveal.js/dist/reveal.js").Permalink}}"></script>
+<script src="{{ (resources.Get "reveal.js/plugin/math/math.js").Permalink}}"></script>
+<script>
+Reveal.initialize({
+  embedded: true, 
+  // display:'block',
+  plugins: [ RevealMath.KaTeX ],
+  hash: true
+  // reveal.js plugins
+});
+</script>
+{{ end }}

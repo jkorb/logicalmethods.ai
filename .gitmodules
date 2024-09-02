@@ -1,0 +1,9 @@
+[submodule "assets/bootstrap"]
+	path = assets/bootstrap
+	url = https://github.com/twbs/bootstrap.git
+[submodule "assets/icons"]
+	path = assets/icons
+	url = https://github.com/twbs/icons.git
+[submodule "assets/reveal.js"]
+	path = assets/reveal.js
+	url = https://github.com/hakimel/reveal.js.git

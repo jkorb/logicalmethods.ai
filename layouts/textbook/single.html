@@ -1,0 +1,19 @@
+{{- define "head" -}}
+<link href="{{ (resources.Get "css/textbook.css").Permalink}}" rel="stylesheet"></link>
+{{- end -}}
+
+{{ define "style"}}
+    :root {
+      --chapter: "{{ .Weight}}";
+    }
+{{end}}
+
+{{- define "main" -}}
+{{- partial "single/nav-top" . -}}
+
+<div class="container chapter">
+{{- .Content -}}
+</div>
+
+{{ partial "single/nav-bot" . }}
+{{- end -}}

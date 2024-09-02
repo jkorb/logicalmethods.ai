@@ -1,0 +1,21 @@
+</div>
+<div class="container-fluid border border-1 border-dark rounded shadow my-5 {{ with index .Attributes "class"}}{{.}}{{end}}" {{with index .Attributes "id"}}id="{{ . }}"{{end}}>
+  <div class="d-flex flex-row">
+    <h5 class="my-2 flex-fill" >
+      {{- .Text | safeHTML -}}   
+    </h5>
+    <div class="d-flex justify-content-end mt-2 mb-3">
+      <button 
+        type="button" 
+        onclick="resetQuestion('{{with index .Attributes "id"}}{{ . }}{{end}}')"
+        class="btn btn-sm btn-secondary me-2 shadow">
+        <i class="bi bi-arrow-clockwise"></i>
+      </button>
+      <button 
+        type="button" 
+        onclick="checkQuestion('{{with index .Attributes "id"}}{{ . }}{{end}}')"
+        class="btn btn-sm btn-primary me-2 shadow">
+        <i class="bi bi-check-circle"></i>
+      </button>
+    </div>
+  </div>

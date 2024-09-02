@@ -1,0 +1,14 @@
+{{ $curPage := .Page }}
+<div class="container mb-4">
+  {{ with .Param "toc-title"}}
+  <h5>{{ . | markdownify}}</h5>
+  {{ end }}
+  <ul class="list-group shadow">
+    {{ range $curPage.Pages }}
+    <li class="list-group-item list-group-item-action">
+      <a class="link-dark link-underline-light d-none d-sm-block" href="{{.RelPermalink}}">{{$curPage.Param "section-icon" | safeHTML }} {{ $curPage.Param "section-names"}} {{ .Weight }}. {{ .Title }} </a>
+      <a class="link-dark link-underline-light d-block d-sm-none" href="{{.RelPermalink}}">{{$curPage.Param "section-icon" | safeHTML }} {{ $curPage.Weight }}. {{ .Title }} </a>
+    </li>
+    {{end}}
+  </ul>
+</div>

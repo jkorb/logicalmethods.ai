@@ -1,0 +1,12 @@
+<div class="container {{ with .Get "class"}}{{ .}}{{ end }}" {{ with .Get "id"}}id="{{.}}"{{end}}>
+  <figure>
+    <blockquote class="blockquote fs-6">
+      <p>
+      {{.Inner | markdownify}}
+      </p>
+    </blockquote>
+    <figcaption class="blockquote-footer text-end">
+      {{with .Get "author"}}{{ . }}{{ end }}
+    </figcaption>
+  </figure>
+</div>

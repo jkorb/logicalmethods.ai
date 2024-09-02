@@ -1,0 +1,122 @@
+<div class="bibtex_template">
+  <span class="if BIBTEXTYPEKEY==ARTICLE">
+    <span class="author" conjunction=" & "><span class="if von"></span><span class="last"></span>, <span class="first"></span></span>.
+    <span class="year"></span>.
+    <span class="if url">
+      <i class="bi bi-box-arrow-up-right"></i><a class="bibtexVar link-dark" target="_blank" href="+URL+" extra="url">
+        <span class="title"></span>
+      </a>
+    </span>
+    <span class="if !url">
+      <span class="if doi">
+        <i class="bi bi-box-arrow-up-right"></i><a class="bibtexVar link-dark" target="_blank" href="http://dx.doi.org/+DOI+" extra="doi">
+          <span class="title"></span>
+        </a>.
+      </span>
+    </span>
+    <span class="if journal">In: <em><span class="journal"></span></em></span>
+    <span class="if volume"><span class="volume"></span></span>
+    <span class="if issue">(<span class="issue"></span>)</span><span class="if pages">: <span class="pages"></span></span>.
+    <a 
+      class="bibtexVar link-dark"
+      href="#bibtex+BIBTEXKEY+"
+      data-bs-toggle="collapse"
+      data-bs-target="#bibtex-+BIBTEXKEY+"
+      aria-expanded="false"
+      aria-controls="bibtex-+BIBTEXKEY+" extra="BIBTEXKEY">
+	    [BibTeX]
+    </a>
+    <div class="bibtexVar collapse bg-black rounded m-2 p-2" id="bibtex-+BIBTEXKEY+" extra="BIBTEXKEY" style="position: relative;" >
+      <button class="bibtexVar btn btn-primary shadow" style="position:absolute; top:10px;right:10px" onclick="copyContent('+BIBTEXKEY+')" extra="BIBTEXKEY"><i class="bi bi-clipboard"></i> Copy!</button>
+	    <pre><code class="bibtexVar" id="copy-+BIBTEXKEY+" extra="BIBTEXKEY"><span class="bibtexraw text-white"></span></code></pre>
+    </div>
+    <div class="if abstract">
+      <a 
+        class="bibtexVar link-dark link-underline-opacity-0 mt-1 p-0" 
+        data-bs-toggle="collapse"
+        data-bs-target="#collapse-+BIBTEXKEY+"
+        aria-expanded="false"
+        aria-controls="collapse-+BIBTEXKEY+" extra="BIBTEXKEY">
+        <div class="container-fluid my-2 p-0 ">
+          Abstract
+          <i class="bi bi-chevron-down toggle-icon"></i>
+        </div>
+      </a>
+      <div class="bibtexVar collapse" id="collapse-+BIBTEXKEY+" extra="BIBTEXKEY">
+        <em><span class="abstract"></span></em>
+      </div>
+      <hr>
+    </div>
+  </span>
+  <span class="if BIBTEXTYPEKEY==INPROCEEDINGS || BIBTEXTYPEKEY==INCOLLECTION">
+    <span class="author" conjunction=" & "><span class="if von"></span><span class="last"></span>, <span class="first"></span></span>.
+    <span class="year"></span>.
+    <span class="if url">
+      <i class="bi bi-box-arrow-up-right"></i><a class="bibtexVar link-dark" target="_blank" href="+URL+" extra="url">
+        <span class="title"></span>
+      </a>
+    </span>
+    <span class="if !url">
+      <span class="if doi">
+        <i class="bi bi-box-arrow-up-right"></i><a class="bibtexVar link-dark" target="_blank" href="http://dx.doi.org/+DOI+" extra="doi">
+          <span class="title"></span>
+        </a>.
+      </span>
+    </span>
+    <span class="if booktitle"> In: <em><span class="booktitle"></span></em></span>
+    <span class="if editor">, edited by
+      <span class="editor" conjunction=", ">
+        <span class="first"></span>
+        <span class="if von"><span class="von"></span></span>
+        <span class="last"></span>
+        <span class="if junior">, <span class="junior"></span></span>
+      </span>
+    </span>
+    <span class="if pages">, <span class="pages"></span></span>.
+    <span class="if publisher"><span class="publisher"></span></span>
+    <a 
+      class="bibtexVar link-dark"
+      href="#bibtex+BIBTEXKEY+"
+      data-bs-toggle="collapse"
+      data-bs-target="#bibtex-+BIBTEXKEY+"
+      aria-expanded="false"
+      aria-controls="bibtex-+BIBTEXKEY+" extra="BIBTEXKEY">
+	    [BibTeX]
+    </a>
+    <div class="bibtexVar collapse bg-black rounded m-2 p-2" id="bibtex-+BIBTEXKEY+" extra="BIBTEXKEY" style="position: relative;" >
+      <button class="bibtexVar btn btn-primary shadow" style="position:absolute; top:10px;right:10px" onclick="copyContent('+BIBTEXKEY+')" extra="BIBTEXKEY"><i class="bi bi-clipboard"></i> Copy!</button>
+	    <pre><code class="bibtexVar" id="copy-+BIBTEXKEY+" extra="BIBTEXKEY"><span class="bibtexraw text-white"></span></code></pre>
+    </div>
+    <div class="if abstract">
+      <a 
+        class="bibtexVar link-dark link-underline-opacity-0 mt-1 p-0" 
+        data-bs-toggle="collapse"
+        data-bs-target="#collapse-+BIBTEXKEY+"
+        aria-expanded="false"
+        aria-controls="collapse-+BIBTEXKEY+" extra="BIBTEXKEY">
+        <div class="container-fluid my-2 p-0 ">
+          Abstract
+          <i class="bi bi-chevron-down toggle-icon"></i>
+        </div>
+      </a>
+      <div class="bibtexVar collapse" id="collapse-+BIBTEXKEY+" extra="BIBTEXKEY">
+        <em><span class="abstract"></span></em>
+      </div>
+      <hr>
+    </div>
+  </span>
+  <span class="if BIBTEXTYPEKEY==THESIS">
+    <span class="author" conjunction=", ">
+      <span class="if von"><span class="von"></span></span>
+      <span class="last"></span>
+      <span class="if junior">, <span class="junior"></span></span>
+      <span class="first"></span>
+    </span>.
+    <span class="year"></span>. 
+    <em><span class="title"></span></em>
+    <span class="publisher"></span>.
+    <a class="url link-dark" target="_blank">
+      Link
+    </a>
+  </span>
+</div>

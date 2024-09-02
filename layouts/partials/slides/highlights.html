@@ -1,0 +1,10 @@
+{{ with .Param "highlights"}}
+<div class="container">
+  <h5>Highlights</h5>
+  <ul class="list-group">
+    {{ range . }}
+    <a href="#/{{ .id }}" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>{{ .keyword }}</strong></a> 
+    {{ end }}
+  </ul>
+</div>
+{{ end }}

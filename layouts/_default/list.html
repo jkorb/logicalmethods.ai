@@ -1,0 +1,10 @@
+{{ define "main" }}
+  {{ partial "list/title" . }}
+  {{ partial "shared/info" . }}
+  {{ partial "shared/license" . }}
+  <hr>
+  {{ with .Content }}
+    {{ . }}
+  {{ end }}
+  {{ partial "list/toc.html" . }}
+{{ end }}

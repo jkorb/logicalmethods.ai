@@ -1,0 +1,31 @@
+{{ $info := "" }}
+{{ if .Resources.Get "info.md" }}
+  {{ $info = .Resources.Get "info.md" }} 
+{{ else }}
+  {{ $resources := .CurrentSection.GetPage "./resources" }}
+  {{ $info = $resources.Resources.Get "info.md" }} 
+{{ end }}
+
+{{ with $info }}
+<div class="modal fade" id="info" tabindex="-1" aria-labelledby="InfoLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="infolabel">Info</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-start">
+          {{ .Content }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Got it!</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container p-2 text-center">
+  <button type="button" class="btn btn-primary shadow" data-bs-toggle="modal" data-bs-target="#info">
+    <i class="bi bi-info-circle"></i>
+  </button>
+</div>
+{{ end }}

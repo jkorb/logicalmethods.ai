@@ -1,0 +1,9 @@
+<h{{ .Level }} id="{{ .Anchor }}">
+  {{- .Text | safeHTML -}}   <button class="btn btn-back-to-top">
+    {{ if gt .Level 1 }}
+    <i class="bi bi-chevron-double-up"></i>
+    {{ end }}
+  </button>
+</h{{ .Level }}>
+<hr>
+

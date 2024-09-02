@@ -1,0 +1,7 @@
+</section>
+<section>
+  <h{{ .Level }} {{with index .Attributes "id"}}id="{{ . }}"{{end}} {{ with index .Attributes "class"}}class="{{.}}"{{end}}>
+  {{- .Text | safeHTML -}}   
+  </h{{ .Level }}>
+
+
