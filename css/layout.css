@@ -1,0 +1,26 @@
+body {
+  min-height: 100vh; 
+}
+
+header, footer, main, .alert, .element {
+  width:100vw;
+  max-width:720px;
+}
+
+main, .element {
+  box-shadow: 0 0.2rem 0.5rem rgba(255, 255, 255, 0.4)
+}
+
+.btn .toggle-icon, .toggle-icon-right {
+  transition: transform .35s ease;
+  display: inline-block;
+}
+
+.btn[aria-expanded="true"] .toggle-icon {
+  transform: rotate(-90deg);
+}
+.btn[aria-expanded="true"] .toggle-icon-right {
+  transform: rotate(90deg);
+}
+
+

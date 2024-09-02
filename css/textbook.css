@@ -1,0 +1,57 @@
+.chapter {
+  max-width:720px;
+}
+
+.chapter {
+  counter-reset : h2;
+}
+
+h2 {
+  counter-reset : h3;
+}
+
+h3 {
+  counter-reset : h4;
+}
+
+h4 {
+  counter-reset : h5;
+}
+
+h5 {
+  counter-reset : h6;
+}
+
+h1:before {
+  content: "Chapter " var(--chapter) ". "
+}
+
+h2:before {
+  content : var(--chapter) "." counter(h2,decimal) ". ";
+  counter-increment : h2;
+}
+
+h3:before {
+  content : var(--chapter) "." counter(h2,decimal) "." counter(h3,decimal) ". ";
+  counter-increment : h3;
+}
+
+h4:before {
+  content : var(--chapter) "." counter(h2,decimal) "." counter(h3,decimal) "." counter(h4,decimal) ". ";
+  counter-increment : h4;
+}
+
+h5:before {
+  content : var(--chapter) "." counter(h2,decimal) "." counter(h3,decimal) "." counter(h4,decimal) "." counter(h5,decimal) ". ";
+  counter-increment : h5;
+}
+
+h6:before {
+  content : var(--chapter) "." counter(h2,decimal) "." counter(h3,decimal) "." counter(h4,decimal) "." counter(h5,decimal) "." counter(h6,decimal) ". ";
+  counter-increment : h6;
+}
+
+h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.nocount:before {
+  content : "";
+  counter-increment : none;
+}

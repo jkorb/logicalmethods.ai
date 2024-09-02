@@ -1,0 +1,11 @@
+.quizzes {
+  counter-reset : h5;
+}
+h5::before {
+  content: "Question " counter(h5,decimal) ". ";
+  counter-increment: h5;
+}
+.quiz {
+  list-style-type: none; 
+  padding-left: 0;
+}

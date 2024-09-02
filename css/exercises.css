@@ -1,0 +1,8 @@
+.exercises {
+  counter-reset : h5;
+}
+h5::before {
+  content: "Exercise " counter(h5,decimal) ". ";
+  counter-increment: h5;
+}
+
