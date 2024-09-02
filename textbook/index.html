@@ -1,41 +1,382 @@
-<!doctype html><html lang=en data-bs-theme=light><head><meta charset=utf-8></meta><meta name=viewport content="width=device-width,initial-scale=1"></meta><title>logicalmethods.ai &ndash; Textbook</title><link rel=icon type=image/x-icon href=https://logicalmethods.ai/favicon.ico></link>
-<link href=https://logicalmethods.ai/bootstrap/dist/css/bootstrap.min.css rel=stylesheet></link>
-<link rel=stylesheet href=https://logicalmethods.ai/icons/font/bootstrap-icons.min.css></link>
-<link rel=stylesheet href=https://logicalmethods.ai/css/layout.css></link><style></style></head><body class="bg-black d-flex flex-column m-0 p-0"><div class="offcanvas offcanvas-start" tabindex=-1 id=offcanvas-nav aria-labelledby=offcanvas-navLabel data-bs-theme=dark><div class=offcanvas-header><div class="h5 offcanvas-title" id=offcanvas-navLabel>Browse course</div><button type=button class=btn-close data-bs-dismiss=offcanvas aria-label=Close></button></div><div class=offcanvas-body><ul class=navbar-nav><li class=nav-item><div class="d-flex flex-row"><div class=container><a class="nav-link fw-bold active" href=/textbook/>&nbsp;&nbsp; Textbook</a></div><button class="btn btn-sm btn-dark" href=/textbook/ id=navbarSection data-bs-toggle=collapse data-bs-target=#collapse aria-expanded=true aria-controls=collapse>
-<i class="bi bi-caret-left-fill toggle-icon"></i></button></div><div class="collapse show" id=collapse><ul class="list-unstyled ms-3"><li><a class=dropdown-item href=/textbook/logic-and-ai/>1. Logic and AI</a></li><li><a class=dropdown-item href=/textbook/resources/>0. Resources</a></li></ul></div></li><hr><li class=nav-item><div class="d-flex flex-row"><div class=container><a class=nav-link href=/slides/>&nbsp;&nbsp; Slides</a></div><button class="btn btn-sm btn-dark" href=/slides/ id=navbarSection data-bs-toggle=collapse data-bs-target=#collapse aria-expanded="aria-expanded=false" aria-controls=collapse>
-<i class="bi bi-caret-left-fill toggle-icon"></i></button></div><div class=collapse id=collapse><ul class="list-unstyled ms-3"><li><a class=dropdown-item href=/slides/logic-and-ai/>1. Logic and AI</a></li><li><a class=dropdown-item href=/slides/resources/>0. Resources</a></li><li><a class=dropdown-item href=/slides/teaser/>0. Teaser</a></li></ul></div></li><hr><li class=nav-item><div class="d-flex flex-row"><div class=container><a class=nav-link href=/exercises/>&nbsp;&nbsp; Exercises</a></div><button class="btn btn-sm btn-dark" href=/exercises/ id=navbarSection data-bs-toggle=collapse data-bs-target=#collapse aria-expanded="aria-expanded=false" aria-controls=collapse>
-<i class="bi bi-caret-left-fill toggle-icon"></i></button></div><div class=collapse id=collapse><ul class="list-unstyled ms-3"><li><a class=dropdown-item href=/exercises/logic-and-ai/>1. Logic and AI</a></li><li><a class=dropdown-item href=/exercises/resources/>0. Resources</a></li></ul></div></li><hr><li class=nav-item><div class="d-flex flex-row"><div class=container><a class=nav-link href=/quizzes/>&nbsp;&nbsp; Quizzes</a></div><button class="btn btn-sm btn-dark" href=/quizzes/ id=navbarSection data-bs-toggle=collapse data-bs-target=#collapse aria-expanded="aria-expanded=false" aria-controls=collapse>
-<i class="bi bi-caret-left-fill toggle-icon"></i></button></div><div class=collapse id=collapse><ul class="list-unstyled ms-3"><li><a class=dropdown-item href=/quizzes/logic-and-ai/>1. Logic and AI</a></li><li><a class=dropdown-item href=/quizzes/resources/>0. Resources</a></li></ul></div></li><hr><li class=nav-item><div class="d-flex flex-row"><div class=container><a class=nav-link href=/about/>&nbsp;&nbsp; About</a></div></li><hr></ul></div></div><header class="align-self-center d-flex flex-column m-0 mb-md-1 p-0" data-bs-theme=dark><nav class="navbar bg-dark shadow" data-bs-theme=dark aria-label=header-navbar><div class="container-sm align-self-center px-3"><a class="navbar-brand fs-6" href=https://logicalmethods.ai/><span style="margin-right:-4px;vertical-align:middle;transform-origin:50% 49%;transform:rotate(180deg);display:inline-block">IA</span>
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <title>logicalmethods.ai &ndash; Textbook </title>
+    <link rel="icon" type="image/x-icon" href="https://logicalmethods.ai/favicon.ico"></link>
+    <link href="https://logicalmethods.ai/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"></link>
+    <link rel="stylesheet" href="https://logicalmethods.ai/icons/font/bootstrap-icons.min.css"></link>
+    <link rel="stylesheet" href="https://logicalmethods.ai/css/layout.css"></link>
+    
+    
+    <style>
+      
+      
+    </style>
+    
+  </head>
+  <body class="bg-black d-flex flex-column m-0 p-0">
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas-nav" aria-labelledby="offcanvas-navLabel" data-bs-theme="dark">
+  <div class="offcanvas-header">
+    <div class="h5 offcanvas-title" id="offcanvas-navLabel">
+      Browse course
+    </div>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  
+  <div class="offcanvas-body">
+    <ul class="navbar-nav"><li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link fw-bold active" href="/textbook/"> &nbsp;&nbsp; Textbook</a>
+          </div>
+          <button 
+            class="btn btn-sm btn-dark" 
+            href="/textbook/"
+            id="navbarSection" data-bs-toggle="collapse"
+            data-bs-target="#collapse"  
+            aria-expanded="true"
+            aria-controls="collapse">
+            <i class="bi bi-caret-left-fill toggle-icon"></i>
+          </button>
+        </div>
+        <div class="collapse show" id="collapse">
+          <ul class="list-unstyled ms-3">
+            <li>
+              <a class="dropdown-item " href="/textbook/logic-and-ai/">1. Logic and AI</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/textbook/resources/">0. Resources</a>
+            </li>
+            </ul>
+        </div>
+        
+      </li>
+      <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/slides/"> &nbsp;&nbsp; Slides</a>
+          </div>
+          <button 
+            class="btn btn-sm btn-dark" 
+            href="/slides/"
+            id="navbarSection" data-bs-toggle="collapse"
+            data-bs-target="#collapse"  
+            aria-expanded="aria-expanded=false"
+            aria-controls="collapse">
+            <i class="bi bi-caret-left-fill toggle-icon"></i>
+          </button>
+        </div>
+        <div class="collapse " id="collapse">
+          <ul class="list-unstyled ms-3">
+            <li>
+              <a class="dropdown-item " href="/slides/logic-and-ai/">1. Logic and AI</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/slides/resources/">0. Resources</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/slides/teaser/">0. Teaser</a>
+            </li>
+            </ul>
+        </div>
+        
+      </li>
+      <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/exercises/"> &nbsp;&nbsp; Exercises</a>
+          </div>
+          <button 
+            class="btn btn-sm btn-dark" 
+            href="/exercises/"
+            id="navbarSection" data-bs-toggle="collapse"
+            data-bs-target="#collapse"  
+            aria-expanded="aria-expanded=false"
+            aria-controls="collapse">
+            <i class="bi bi-caret-left-fill toggle-icon"></i>
+          </button>
+        </div>
+        <div class="collapse " id="collapse">
+          <ul class="list-unstyled ms-3">
+            <li>
+              <a class="dropdown-item " href="/exercises/logic-and-ai/">1. Logic and AI</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/exercises/resources/">0. Resources</a>
+            </li>
+            </ul>
+        </div>
+        
+      </li>
+      <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/quizzes/"> &nbsp;&nbsp; Quizzes</a>
+          </div>
+          <button 
+            class="btn btn-sm btn-dark" 
+            href="/quizzes/"
+            id="navbarSection" data-bs-toggle="collapse"
+            data-bs-target="#collapse"  
+            aria-expanded="aria-expanded=false"
+            aria-controls="collapse">
+            <i class="bi bi-caret-left-fill toggle-icon"></i>
+          </button>
+        </div>
+        <div class="collapse " id="collapse">
+          <ul class="list-unstyled ms-3">
+            <li>
+              <a class="dropdown-item " href="/quizzes/logic-and-ai/">1. Logic and AI</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/quizzes/resources/">0. Resources</a>
+            </li>
+            </ul>
+        </div>
+        
+      </li>
+      <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/about/"> &nbsp;&nbsp; About</a>
+          </div>
+      </li>
+      <hr>
+      
+    </ul>
+  </div>
+</div>
+
+    <header class="align-self-center d-flex flex-column m-0 mb-md-1 p-0" data-bs-theme="dark">
+      <nav class="navbar bg-dark shadow" data-bs-theme="dark" aria-label="header-navbar">
+  <div class="container-sm align-self-center px-3">
+    <a class="navbar-brand fs-6" href="https://logicalmethods.ai/"><span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
 <i class="bi bi-caret-right-fill"></i>logicalmethods.ai</a>
-<button class="navbar-toggler border-0" type=button data-bs-toggle=offcanvas data-bs-target=#offcanvas-nav aria-controls=offcanvas-nav>
-<span class=navbar-toggler-icon></span></button></div></nav></header><main class="align-self-center d-flex flex-column flex-fill bg-light m-md-1 p-0" data-bs-theme=light><div class="container p-3 text-center"><h1 class=display-1><strong><span style="margin-right:-4px;vertical-align:middle;transform-origin:50% 49%;transform:rotate(180deg);display:inline-block">IA</span></strong></h1><h1 class=text-body-emphasis>Logical methods for AI</h1><p class=lead></p><h1 class=text-body-emphasis></h1><p><ul class=list-group><li class="list-group-item border-0 p-0 bg-light"><em>Johannes Korbmacher</em></li></ul></p><p>Contributors:<ul class=list-group><li class="list-group-item border-0 p-0 bg-light"><em>Colin Caret</em></li><li class="list-group-item border-0 p-0 bg-light"><em>Tomas Klos</em></li><li class="list-group-item border-0 p-0 bg-light"><em>Rick Nouwen</em></li></ul></p></div><div class="modal fade" id=info tabindex=-1 aria-labelledby=InfoLabel aria-hidden=true><div class=modal-dialog><div class=modal-content><div class=modal-header><h1 class="modal-title fs-5" id=infolabel>Info</h1><button type=button class=btn-close data-bs-dismiss=modal aria-label=Close></button></div><div class="modal-body text-start"><p>This is the course&rsquo;s textbook, where each chapter roughly corresponds to a
-lecture.</p><p>I expect students to have read the chapter before the lecture.</p><p>It is also a good idea to review the chapter again <em>after</em> the lecture.</p><p><strong>Reminder!</strong></p><p>Keep in mind that your education is in your own hands: what you get out of the
-course is commensurate to what you put in. Put in the work!</p><p>Here are some suggestions:</p><ul><li><p>Read as many times as necessary, don&rsquo;t just skim the text once.</p></li><li><p>If you don&rsquo;t understand, use additional resources. Google, Wikipedia, other
-textbooks, &mldr;</p></li><li><p>If you still don&rsquo;t understand something, ask! In the lecture, in the work groups,
-your fellow students, &mldr; We&rsquo;re in this together.</p></li></ul></div><div class=modal-footer><button type=button class="btn btn-primary" data-bs-dismiss=modal>Got it!</button></div></div></div></div><div class="container p-2 text-center"><button type=button class="btn btn-primary shadow" data-bs-toggle=modal data-bs-target=#info>
-<i class="bi bi-info-circle"></i></button></div><div class="container text-center"><p class=copyright xmlns:cc=http://creativecommons.org/ns#>This work is licensed under
-CC BY 4.0
-<i class="bi bi-cc-circle"></i> <i class="bi bi-universal-access-circle"></i></p></div><hr><a href=#preface class="btn btn-sm btn-link link-dark link-underline-opacity-0" data-bs-toggle=collapse aria-controls=preface><h5>Preface <i class="bi bi-chevron-left toggle-icon"></i></h5></a><div class="container container collapse m-2" id=preface><figure><blockquote class="blockquote fs-6"><p><p>Dear reader,</p><p>Welcome to <em>Logical methods for AI</em>, a new kind of logic textbook, specifically
-geared at AI undergrads.</p><p>This is <em>not</em> your standard logic textbook for AI, which covers the mathematics of
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-nav" aria-controls="offcanvas-nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+
+      
+      
+    </header>
+    
+    <main class="align-self-center d-flex flex-column flex-fill bg-light m-md-1 p-0" data-bs-theme="light">
+      
+  <div class="container p-3 text-center">
+  <h1 class="display-1">
+    <strong><span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+</strong> 
+  </h1>
+  <h1 class="text-body-emphasis">Logical methods for AI</h1>
+  <p class="lead">
+    
+  </p>
+  <h1 class="text-body-emphasis">
+    
+  </h1>
+  
+  <p>
+    <ul class="list-group">
+      
+      <li class="list-group-item border-0 p-0 bg-light">
+        <em>Johannes Korbmacher</em>
+      </li>
+      
+    </ul>
+  </p>
+  
+  <p>
+    Contributors:
+    <ul class="list-group">
+      
+      <li class="list-group-item border-0 p-0 bg-light"><em>Colin Caret</em></li>
+      
+      <li class="list-group-item border-0 p-0 bg-light"><em>Tomas Klos</em></li>
+      
+      <li class="list-group-item border-0 p-0 bg-light"><em>Rick Nouwen</em></li>
+      
+    </ul>
+  </p>
+  
+  
+</div>
+
+  
+
+  
+   
+
+
+
+<div class="modal fade" id="info" tabindex="-1" aria-labelledby="InfoLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="infolabel">Info</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-start">
+          <p>This is the course&rsquo;s textbook, where each chapter roughly corresponds to a
+lecture.</p>
+<p>I expect students to have read the chapter before the lecture.</p>
+<p>It is also a good idea to review the chapter again <em>after</em> the lecture.</p>
+<p><strong>Reminder!</strong></p>
+<p>Keep in mind that your education is in your own hands: what you get out of the
+course is commensurate to what you put in. Put in the work!</p>
+<p>Here are some suggestions:</p>
+<ul>
+<li>
+<p>Read as many times as necessary, don&rsquo;t just skim the text once.</p>
+</li>
+<li>
+<p>If you don&rsquo;t understand, use additional resources. Google, Wikipedia, other
+textbooks, &hellip;</p>
+</li>
+<li>
+<p>If you still don&rsquo;t understand something, ask! In the lecture, in the work groups,
+your fellow students, &hellip; We&rsquo;re in this together.</p>
+</li>
+</ul>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Got it!</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container p-2 text-center">
+  <button type="button" class="btn btn-primary shadow" data-bs-toggle="modal" data-bs-target="#info">
+    <i class="bi bi-info-circle"></i>
+  </button>
+</div>
+
+
+  
+<div class="container text-center">
+  <p class="copyright" xmlns:cc="http://creativecommons.org/ns#" >
+    This work is licensed under 
+    CC BY 4.0
+    <i class="bi bi-cc-circle"></i> <i class="bi bi-universal-access-circle"></i>
+  </p> 
+</div>
+
+
+  <hr>
+  
+    <a href="#preface"
+   class="btn btn-sm btn-link link-dark link-underline-opacity-0"
+   
+   
+   data-bs-toggle="collapse"
+   
+   aria-controls="preface">
+  
+<h5>Preface <i class="bi bi-chevron-left toggle-icon"></i></h5>
+
+</a>
+
+<div class="container container collapse m-2" id="preface">
+  <figure>
+    <blockquote class="blockquote fs-6">
+      <p>
+      <p>Dear reader,</p>
+<p>Welcome to <em>Logical methods for AI</em>, a new kind of logic textbook, specifically
+geared at AI undergrads.</p>
+<p>This is <em>not</em> your standard logic textbook for AI, which covers the mathematics of
 syntax, semantics, and proof theory, perhaps with an eye towards applying them
-in AI.</p><p>It is also <em>not</em> a general introduction to AI, not even an introduction to
+in AI.</p>
+<p>It is also <em>not</em> a general introduction to AI, not even an introduction to
 logic-based AI. While we often discuss ideas and topics from AI
 research and development, we don&rsquo;t provide an extensive, textbook level
-discussion of them.</p><p>What this book <em>is</em> is a first introduction to logical concepts, methods, and
+discussion of them.</p>
+<p>What this book <em>is</em> is a first introduction to logical concepts, methods, and
 results that teaches logic <em>via</em> AI applications. That is, we introduce the
 ideas of syntax, semantics, and proof theory by looking at how they are used in
-AI research and development.</p><p>The course is intended to be taught as a first-year course of an undergrad AI
-program.</p><p>While the book is self-contained, it is meant to be used by autonomous
-individuals:</p><ul><li>If you don&rsquo;t know something, look it up!</li><li>If you don&rsquo;t understand something, ask!</li></ul><p>Your education is in your own hands! Your teachers are here to help!</p><p>This is a university level course, which assumes that you&rsquo;re here on your own
+AI research and development.</p>
+<p>The course is intended to be taught as a first-year course of an undergrad AI
+program.</p>
+<p>While the book is self-contained, it is meant to be used by autonomous
+individuals:</p>
+<ul>
+<li>If you don&rsquo;t know something, look it up!</li>
+<li>If you don&rsquo;t understand something, ask!</li>
+</ul>
+<p>Your education is in your own hands! Your teachers are here to help!</p>
+<p>This is a university level course, which assumes that you&rsquo;re here on your own
 volition, and that you&rsquo;re able and motivated to study. There&rsquo;s no
 one-size-fits-all formula for how to learn, do it your own way! If you need
-help, just ask.</p><p>This being a university level course also means that we often cover research
+help, just ask.</p>
+<p>This being a university level course also means that we often cover research
 level topics. Even though this is a first-year course, at Uni, we&rsquo;re beyond
 rehearsing established knowledge&mdash;you know how to do that now. The aim is to
 push the boundaries of what&rsquo;s known, to form new thoughts and ideas, to change
-the world.</p><p>And remember: &ldquo;[At university], the teacher does not exist for the sake of the
+the world.</p>
+<p>And remember: &ldquo;[At university], the teacher does not exist for the sake of the
 student; both teacher and student have their justification in the common pursuit
-of knowledge.&rdquo; -Wilhem von Humboldt</p><p>That said, I hope you enjoy this course!</p></p></blockquote><figcaption class="blockquote-footer text-end">Johannes Korbmacher</figcaption></figure></div><hr><div class="container mb-4"><ul class="list-group shadow"><li class="list-group-item list-group-item-action"><a class="link-dark link-underline-light d-none d-sm-block" href=/textbook/logic-and-ai/>1. Logic and AI</a>
-<a class="link-dark link-underline-light d-block d-sm-none" href=/textbook/logic-and-ai/>1. Logic and AI</a></li><li class="list-group-item list-group-item-action"><a class="link-dark link-underline-light d-none d-sm-block" href=/textbook/resources/>0. Resources</a>
-<a class="link-dark link-underline-light d-block d-sm-none" href=/textbook/resources/>1. Resources</a></li></ul></div></main><footer class="align-self-center d-flex flex-column mt-md-1 p-0" data-bs-theme=dark><nav class="navbar bg-dark shadow" data-bs-theme=dark aria-label=footer-navbar><div class="container-sm align-self-center px-3"><a class="navbar-brand fs-6" href=/about aria-label=copyright-link>&copy; 2024 jkorbmacher et al.</a><ul class=navbar-nav><li class=nav-item><a class="nav-link fs-6" href=https://github.com/jkorb/logicalmethods.ai target=_blank><i class="bi bi-github"></i></a></li></ul></div></nav><script src=https://logicalmethods.ai/js/helpers.js></script>
-<script src=https://logicalmethods.ai/bootstrap/dist/js/bootstrap.bundle.min.js></script></footer></body></html>
+of knowledge.&rdquo; -Wilhem von Humboldt</p>
+<p>That said, I hope you enjoy this course!</p>
+
+      </p>
+    </blockquote>
+    <figcaption class="blockquote-footer text-end">
+      Johannes Korbmacher
+    </figcaption>
+  </figure>
+</div>
+
+<hr>
+
+  
+  
+<div class="container mb-4">
+  
+  <ul class="list-group shadow">
+    
+    <li class="list-group-item list-group-item-action">
+      <a class="link-dark link-underline-light d-none d-sm-block" href="/textbook/logic-and-ai/">  1. Logic and AI </a>
+      <a class="link-dark link-underline-light d-block d-sm-none" href="/textbook/logic-and-ai/"> 1. Logic and AI </a>
+    </li>
+    
+    <li class="list-group-item list-group-item-action">
+      <a class="link-dark link-underline-light d-none d-sm-block" href="/textbook/resources/">  0. Resources </a>
+      <a class="link-dark link-underline-light d-block d-sm-none" href="/textbook/resources/"> 1. Resources </a>
+    </li>
+    
+  </ul>
+</div>
+
+
+    </main>
+    <footer class="align-self-center d-flex flex-column mt-md-1 p-0" data-bs-theme="dark">
+      <nav class="navbar bg-dark shadow" data-bs-theme="dark" aria-label="footer-navbar">
+  <div class="container-sm align-self-center px-3">
+    <a class="navbar-brand fs-6" href="/about" aria-label="copyright-link">&copy; 2024 jkorbmacher et al. </a>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link fs-6" href="https://github.com/jkorb/logicalmethods.ai" target="_blank"><i class="bi bi-github"></i></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+ 
+      <script src="https://logicalmethods.ai/js/helpers.js"></script>
+      <script src="https://logicalmethods.ai/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+      
+      
+    </footer>
+  </body>
+</html>

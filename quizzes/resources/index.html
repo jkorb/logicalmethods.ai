@@ -1,17 +1,294 @@
-<!doctype html><html lang=en data-bs-theme=light><head><meta charset=utf-8></meta><meta name=viewport content="width=device-width,initial-scale=1"></meta><title>logicalmethods.ai &ndash; Resources</title><link rel=icon type=image/x-icon href=https://logicalmethods.ai/favicon.ico></link>
-<link href=https://logicalmethods.ai/bootstrap/dist/css/bootstrap.min.css rel=stylesheet></link>
-<link rel=stylesheet href=https://logicalmethods.ai/icons/font/bootstrap-icons.min.css></link>
-<link rel=stylesheet href=https://logicalmethods.ai/css/layout.css></link>
-<link rel=stylesheet href=https://logicalmethods.ai/css/quizzes.css><style></style></head><body class="bg-black d-flex flex-column m-0 p-0"><div class="offcanvas offcanvas-start" tabindex=-1 id=offcanvas-nav aria-labelledby=offcanvas-navLabel data-bs-theme=dark><div class=offcanvas-header><div class="h5 offcanvas-title" id=offcanvas-navLabel>Browse course</div><button type=button class=btn-close data-bs-dismiss=offcanvas aria-label=Close></button></div><div class=offcanvas-body><ul class=navbar-nav><li class=nav-item><div class="d-flex flex-row"><div class=container><a class=nav-link href=/textbook/>&nbsp;&nbsp; Textbook</a></div><button class="btn btn-sm btn-dark" href=/textbook/ id=navbarSection data-bs-toggle=collapse data-bs-target=#collapse aria-expanded="aria-expanded=false" aria-controls=collapse>
-<i class="bi bi-caret-left-fill toggle-icon"></i></button></div><div class=collapse id=collapse><ul class="list-unstyled ms-3"><li><a class=dropdown-item href=/textbook/logic-and-ai/>1. Logic and AI</a></li><li><a class=dropdown-item href=/textbook/resources/>0. Resources</a></li></ul></div></li><hr><li class=nav-item><div class="d-flex flex-row"><div class=container><a class=nav-link href=/slides/>&nbsp;&nbsp; Slides</a></div><button class="btn btn-sm btn-dark" href=/slides/ id=navbarSection data-bs-toggle=collapse data-bs-target=#collapse aria-expanded="aria-expanded=false" aria-controls=collapse>
-<i class="bi bi-caret-left-fill toggle-icon"></i></button></div><div class=collapse id=collapse><ul class="list-unstyled ms-3"><li><a class=dropdown-item href=/slides/logic-and-ai/>1. Logic and AI</a></li><li><a class=dropdown-item href=/slides/resources/>0. Resources</a></li><li><a class=dropdown-item href=/slides/teaser/>0. Teaser</a></li></ul></div></li><hr><li class=nav-item><div class="d-flex flex-row"><div class=container><a class=nav-link href=/exercises/>&nbsp;&nbsp; Exercises</a></div><button class="btn btn-sm btn-dark" href=/exercises/ id=navbarSection data-bs-toggle=collapse data-bs-target=#collapse aria-expanded="aria-expanded=false" aria-controls=collapse>
-<i class="bi bi-caret-left-fill toggle-icon"></i></button></div><div class=collapse id=collapse><ul class="list-unstyled ms-3"><li><a class=dropdown-item href=/exercises/logic-and-ai/>1. Logic and AI</a></li><li><a class=dropdown-item href=/exercises/resources/>0. Resources</a></li></ul></div></li><hr><li class=nav-item><div class="d-flex flex-row"><div class=container><a class="nav-link fw-bold active" href=/quizzes/>&nbsp;&nbsp; Quizzes</a></div><button class="btn btn-sm btn-dark" href=/quizzes/ id=navbarSection data-bs-toggle=collapse data-bs-target=#collapse aria-expanded=true aria-controls=collapse>
-<i class="bi bi-caret-left-fill toggle-icon"></i></button></div><div class="collapse show" id=collapse><ul class="list-unstyled ms-3"><li><a class=dropdown-item href=/quizzes/logic-and-ai/>1. Logic and AI</a></li><li><a class="dropdown-item fw-bold active" href=/quizzes/resources/>0. Resources</a></li></ul></div></li><hr><li class=nav-item><div class="d-flex flex-row"><div class=container><a class=nav-link href=/about/>&nbsp;&nbsp; About</a></div></li><hr></ul></div></div><header class="align-self-center d-flex flex-column m-0 mb-md-1 p-0" data-bs-theme=dark><nav class="navbar bg-dark shadow" data-bs-theme=dark aria-label=header-navbar><div class="container-sm align-self-center px-3"><a class="navbar-brand fs-6" href=https://logicalmethods.ai/><span style="margin-right:-4px;vertical-align:middle;transform-origin:50% 49%;transform:rotate(180deg);display:inline-block">IA</span>
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <title>logicalmethods.ai &ndash; Resources </title>
+    <link rel="icon" type="image/x-icon" href="https://logicalmethods.ai/favicon.ico"></link>
+    <link href="https://logicalmethods.ai/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"></link>
+    <link rel="stylesheet" href="https://logicalmethods.ai/icons/font/bootstrap-icons.min.css"></link>
+    <link rel="stylesheet" href="https://logicalmethods.ai/css/layout.css"></link>
+    
+<link rel="stylesheet" href="https://logicalmethods.ai/css/quizzes.css">
+
+    <style>
+      
+      
+    </style>
+    
+  </head>
+  <body class="bg-black d-flex flex-column m-0 p-0">
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas-nav" aria-labelledby="offcanvas-navLabel" data-bs-theme="dark">
+  <div class="offcanvas-header">
+    <div class="h5 offcanvas-title" id="offcanvas-navLabel">
+      Browse course
+    </div>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  
+  <div class="offcanvas-body">
+    <ul class="navbar-nav"><li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/textbook/"> &nbsp;&nbsp; Textbook</a>
+          </div>
+          <button 
+            class="btn btn-sm btn-dark" 
+            href="/textbook/"
+            id="navbarSection" data-bs-toggle="collapse"
+            data-bs-target="#collapse"  
+            aria-expanded="aria-expanded=false"
+            aria-controls="collapse">
+            <i class="bi bi-caret-left-fill toggle-icon"></i>
+          </button>
+        </div>
+        <div class="collapse " id="collapse">
+          <ul class="list-unstyled ms-3">
+            <li>
+              <a class="dropdown-item " href="/textbook/logic-and-ai/">1. Logic and AI</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/textbook/resources/">0. Resources</a>
+            </li>
+            </ul>
+        </div>
+        
+      </li>
+      <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/slides/"> &nbsp;&nbsp; Slides</a>
+          </div>
+          <button 
+            class="btn btn-sm btn-dark" 
+            href="/slides/"
+            id="navbarSection" data-bs-toggle="collapse"
+            data-bs-target="#collapse"  
+            aria-expanded="aria-expanded=false"
+            aria-controls="collapse">
+            <i class="bi bi-caret-left-fill toggle-icon"></i>
+          </button>
+        </div>
+        <div class="collapse " id="collapse">
+          <ul class="list-unstyled ms-3">
+            <li>
+              <a class="dropdown-item " href="/slides/logic-and-ai/">1. Logic and AI</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/slides/resources/">0. Resources</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/slides/teaser/">0. Teaser</a>
+            </li>
+            </ul>
+        </div>
+        
+      </li>
+      <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/exercises/"> &nbsp;&nbsp; Exercises</a>
+          </div>
+          <button 
+            class="btn btn-sm btn-dark" 
+            href="/exercises/"
+            id="navbarSection" data-bs-toggle="collapse"
+            data-bs-target="#collapse"  
+            aria-expanded="aria-expanded=false"
+            aria-controls="collapse">
+            <i class="bi bi-caret-left-fill toggle-icon"></i>
+          </button>
+        </div>
+        <div class="collapse " id="collapse">
+          <ul class="list-unstyled ms-3">
+            <li>
+              <a class="dropdown-item " href="/exercises/logic-and-ai/">1. Logic and AI</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/exercises/resources/">0. Resources</a>
+            </li>
+            </ul>
+        </div>
+        
+      </li>
+      <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link fw-bold active" href="/quizzes/"> &nbsp;&nbsp; Quizzes</a>
+          </div>
+          <button 
+            class="btn btn-sm btn-dark" 
+            href="/quizzes/"
+            id="navbarSection" data-bs-toggle="collapse"
+            data-bs-target="#collapse"  
+            aria-expanded="true"
+            aria-controls="collapse">
+            <i class="bi bi-caret-left-fill toggle-icon"></i>
+          </button>
+        </div>
+        <div class="collapse show" id="collapse">
+          <ul class="list-unstyled ms-3">
+            <li>
+              <a class="dropdown-item " href="/quizzes/logic-and-ai/">1. Logic and AI</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item fw-bold active" href="/quizzes/resources/">0. Resources</a>
+            </li>
+            </ul>
+        </div>
+        
+      </li>
+      <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/about/"> &nbsp;&nbsp; About</a>
+          </div>
+      </li>
+      <hr>
+      
+    </ul>
+  </div>
+</div>
+
+    <header class="align-self-center d-flex flex-column m-0 mb-md-1 p-0" data-bs-theme="dark">
+      <nav class="navbar bg-dark shadow" data-bs-theme="dark" aria-label="header-navbar">
+  <div class="container-sm align-self-center px-3">
+    <a class="navbar-brand fs-6" href="https://logicalmethods.ai/"><span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
 <i class="bi bi-caret-right-fill"></i>logicalmethods.ai</a>
-<button class="navbar-toggler border-0" type=button data-bs-toggle=offcanvas data-bs-target=#offcanvas-nav aria-controls=offcanvas-nav>
-<span class=navbar-toggler-icon></span></button></div></nav></header><main class="align-self-center d-flex flex-column flex-fill bg-light m-md-1 p-0" data-bs-theme=light><ul class="navbar-nav flex-row justify-content-between mt-2"><li class=nav-item><a href=/quizzes/logic-and-ai/ class=btn tabindex=-1 role=button aria-disabled=true><i class="bi bi-chevron-left"></i></a></li><li class=nav-item><a href=/quizzes/ class=btn tabindex=-1 role=button aria-disabled=true><i class="bi bi-house-up"></i></a></li><li class=nav-item><a href class="btn disabled border-0 btn-outline-secondary" tabindex=-1 role=button aria-disabled=true><i class="bi bi-chevron-right"></i></a></li></ul><div class="container text-center"><h3>0. Resources</h3><em></em></div><div class="modal fade" id=info tabindex=-1 aria-labelledby=InfoLabel aria-hidden=true><div class=modal-dialog><div class=modal-content><div class=modal-header><h1 class="modal-title fs-5" id=infolabel>Info</h1><button type=button class=btn-close data-bs-dismiss=modal aria-label=Close></button></div><div class="modal-body text-start"><p>These are self-study quizzes which you can use to check whether you
-understood the basics.</p><p>Each quiz corresponds to one chapter in the textbook.</p><p>They are not graded and you can take them as many times as you&rsquo;d like.</p><p>For questions and explanations, refer to your TA.</p></div><div class=modal-footer><button type=button class="btn btn-primary" data-bs-dismiss=modal>Got it!</button></div></div></div></div><div class="container p-2 text-center"><button type=button class="btn btn-primary shadow" data-bs-toggle=modal data-bs-target=#info>
-<i class="bi bi-info-circle"></i></button></div><hr><div class=container><div class="container quizzes"></div></div><ul class="navbar-nav flex-row justify-content-between mt-auto"><li class=nav-item><a href=/quizzes/logic-and-ai/ class=btn tabindex=-1 role=button aria-disabled=true><i class="bi bi-chevron-left"></i></a></li><li class=nav-item><button class="btn btn-back-to-top">
-<i class="bi bi-chevron-double-up"></i></button></li><li class=nav-item><a href class="btn disabled border-0 btn-outline-secondary" tabindex=-1 role=button aria-disabled=true><i class="bi bi-chevron-right"></i></a></li></ul></main><footer class="align-self-center d-flex flex-column mt-md-1 p-0" data-bs-theme=dark><nav class="navbar bg-dark shadow" data-bs-theme=dark aria-label=footer-navbar><div class="container-sm align-self-center px-3"><a class="navbar-brand fs-6" href=/about aria-label=copyright-link>&copy; 2024 jkorbmacher et al.</a><ul class=navbar-nav><li class=nav-item><a class="nav-link fs-6" href=https://github.com/jkorb/logicalmethods.ai target=_blank><i class="bi bi-github"></i></a></li></ul></div></nav><script src=https://logicalmethods.ai/js/helpers.js></script>
-<script src=https://logicalmethods.ai/bootstrap/dist/js/bootstrap.bundle.min.js></script>
-<script src=https://logicalmethods.ai/js/quizzes.js></script></footer></body></html>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-nav" aria-controls="offcanvas-nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+
+      
+      
+    </header>
+    
+    <main class="align-self-center d-flex flex-column flex-fill bg-light m-md-1 p-0" data-bs-theme="light">
+      <ul class="navbar-nav flex-row justify-content-between mt-2">
+  
+  <li class="nav-item">
+    <a href="/quizzes/logic-and-ai/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-chevron-left"></i>
+    </a>
+    
+  </li>
+  <li class="nav-item">
+    <a href="/quizzes/" class="btn " tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-house-up"></i>
+    </a>
+  </li>
+  <li class="nav-item">
+    
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-chevron-right"></i>
+    </a>
+    
+  </li>
+</ul>
+
+<div class="container text-center">
+  <h3>
+     0. Resources
+  </h3>
+  <em></em>
+</div>
+
+
+
+   
+
+
+
+<div class="modal fade" id="info" tabindex="-1" aria-labelledby="InfoLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="infolabel">Info</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-start">
+          <p>These are self-study quizzes which you can use to check whether you
+understood the basics.</p>
+<p>Each quiz corresponds to one chapter in the textbook.</p>
+<p>They are not graded and you can take them as many times as you&rsquo;d like.</p>
+<p>For questions and explanations, refer to your TA.</p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Got it!</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container p-2 text-center">
+  <button type="button" class="btn btn-primary shadow" data-bs-toggle="modal" data-bs-target="#info">
+    <i class="bi bi-info-circle"></i>
+  </button>
+</div>
+
+
+<hr>
+
+
+
+
+
+<div class="container">
+  <div class="container quizzes">
+    
+  </div>
+</div>
+
+
+<ul class="navbar-nav flex-row justify-content-between mt-auto">
+  
+  <li class="nav-item">
+    <a href="/quizzes/logic-and-ai/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-chevron-left"></i>
+    </a>
+    
+  </li>
+  <li class="nav-item">
+    <button class="btn btn-back-to-top">
+    <i class="bi bi-chevron-double-up"></i>
+  </button>
+  </li>
+  <li class="nav-item">
+    
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-chevron-right"></i>
+    </a>
+    
+  </li>
+</ul>
+
+    </main>
+    <footer class="align-self-center d-flex flex-column mt-md-1 p-0" data-bs-theme="dark">
+      <nav class="navbar bg-dark shadow" data-bs-theme="dark" aria-label="footer-navbar">
+  <div class="container-sm align-self-center px-3">
+    <a class="navbar-brand fs-6" href="/about" aria-label="copyright-link">&copy; 2024 jkorbmacher et al. </a>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link fs-6" href="https://github.com/jkorb/logicalmethods.ai" target="_blank"><i class="bi bi-github"></i></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+ 
+      <script src="https://logicalmethods.ai/js/helpers.js"></script>
+      <script src="https://logicalmethods.ai/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="https://logicalmethods.ai/js/quizzes.js"></script>
+    </footer>
+  </body>
+</html>

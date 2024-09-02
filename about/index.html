@@ -1,23 +1,360 @@
-<!doctype html><html lang=en data-bs-theme=light><head><meta charset=utf-8></meta><meta name=viewport content="width=device-width,initial-scale=1"></meta><title>logicalmethods.ai &ndash; About</title><link rel=icon type=image/x-icon href=https://logicalmethods.ai/favicon.ico></link>
-<link href=https://logicalmethods.ai/bootstrap/dist/css/bootstrap.min.css rel=stylesheet></link>
-<link rel=stylesheet href=https://logicalmethods.ai/icons/font/bootstrap-icons.min.css></link>
-<link rel=stylesheet href=https://logicalmethods.ai/css/layout.css></link><style></style></head><body class="bg-black d-flex flex-column m-0 p-0"><div class="offcanvas offcanvas-start" tabindex=-1 id=offcanvas-nav aria-labelledby=offcanvas-navLabel data-bs-theme=dark><div class=offcanvas-header><div class="h5 offcanvas-title" id=offcanvas-navLabel>Browse course</div><button type=button class=btn-close data-bs-dismiss=offcanvas aria-label=Close></button></div><div class=offcanvas-body><ul class=navbar-nav><li class=nav-item><div class="d-flex flex-row"><div class=container><a class=nav-link href=/textbook/>&nbsp;&nbsp; Textbook</a></div><button class="btn btn-sm btn-dark" href=/textbook/ id=navbarSection data-bs-toggle=collapse data-bs-target=#collapse aria-expanded="aria-expanded=false" aria-controls=collapse>
-<i class="bi bi-caret-left-fill toggle-icon"></i></button></div><div class=collapse id=collapse><ul class="list-unstyled ms-3"><li><a class=dropdown-item href=/textbook/logic-and-ai/>1. Logic and AI</a></li><li><a class=dropdown-item href=/textbook/resources/>0. Resources</a></li></ul></div></li><hr><li class=nav-item><div class="d-flex flex-row"><div class=container><a class=nav-link href=/slides/>&nbsp;&nbsp; Slides</a></div><button class="btn btn-sm btn-dark" href=/slides/ id=navbarSection data-bs-toggle=collapse data-bs-target=#collapse aria-expanded="aria-expanded=false" aria-controls=collapse>
-<i class="bi bi-caret-left-fill toggle-icon"></i></button></div><div class=collapse id=collapse><ul class="list-unstyled ms-3"><li><a class=dropdown-item href=/slides/logic-and-ai/>1. Logic and AI</a></li><li><a class=dropdown-item href=/slides/resources/>0. Resources</a></li><li><a class=dropdown-item href=/slides/teaser/>0. Teaser</a></li></ul></div></li><hr><li class=nav-item><div class="d-flex flex-row"><div class=container><a class=nav-link href=/exercises/>&nbsp;&nbsp; Exercises</a></div><button class="btn btn-sm btn-dark" href=/exercises/ id=navbarSection data-bs-toggle=collapse data-bs-target=#collapse aria-expanded="aria-expanded=false" aria-controls=collapse>
-<i class="bi bi-caret-left-fill toggle-icon"></i></button></div><div class=collapse id=collapse><ul class="list-unstyled ms-3"><li><a class=dropdown-item href=/exercises/logic-and-ai/>1. Logic and AI</a></li><li><a class=dropdown-item href=/exercises/resources/>0. Resources</a></li></ul></div></li><hr><li class=nav-item><div class="d-flex flex-row"><div class=container><a class=nav-link href=/quizzes/>&nbsp;&nbsp; Quizzes</a></div><button class="btn btn-sm btn-dark" href=/quizzes/ id=navbarSection data-bs-toggle=collapse data-bs-target=#collapse aria-expanded="aria-expanded=false" aria-controls=collapse>
-<i class="bi bi-caret-left-fill toggle-icon"></i></button></div><div class=collapse id=collapse><ul class="list-unstyled ms-3"><li><a class=dropdown-item href=/quizzes/logic-and-ai/>1. Logic and AI</a></li><li><a class=dropdown-item href=/quizzes/resources/>0. Resources</a></li></ul></div></li><hr><li class=nav-item><div class="d-flex flex-row"><div class=container><a class="nav-link fw-bold active" href=/about/>&nbsp;&nbsp; About</a></div></li><hr></ul></div></div><header class="align-self-center d-flex flex-column m-0 mb-md-1 p-0" data-bs-theme=dark><nav class="navbar bg-dark shadow" data-bs-theme=dark aria-label=header-navbar><div class="container-sm align-self-center px-3"><a class="navbar-brand fs-6" href=https://logicalmethods.ai/><span style="margin-right:-4px;vertical-align:middle;transform-origin:50% 49%;transform:rotate(180deg);display:inline-block">IA</span>
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <title>logicalmethods.ai &ndash; About </title>
+    <link rel="icon" type="image/x-icon" href="https://logicalmethods.ai/favicon.ico"></link>
+    <link href="https://logicalmethods.ai/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"></link>
+    <link rel="stylesheet" href="https://logicalmethods.ai/icons/font/bootstrap-icons.min.css"></link>
+    <link rel="stylesheet" href="https://logicalmethods.ai/css/layout.css"></link>
+    
+    
+    <style>
+      
+      
+    </style>
+    
+  </head>
+  <body class="bg-black d-flex flex-column m-0 p-0">
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas-nav" aria-labelledby="offcanvas-navLabel" data-bs-theme="dark">
+  <div class="offcanvas-header">
+    <div class="h5 offcanvas-title" id="offcanvas-navLabel">
+      Browse course
+    </div>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  
+  <div class="offcanvas-body">
+    <ul class="navbar-nav"><li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/textbook/"> &nbsp;&nbsp; Textbook</a>
+          </div>
+          <button 
+            class="btn btn-sm btn-dark" 
+            href="/textbook/"
+            id="navbarSection" data-bs-toggle="collapse"
+            data-bs-target="#collapse"  
+            aria-expanded="aria-expanded=false"
+            aria-controls="collapse">
+            <i class="bi bi-caret-left-fill toggle-icon"></i>
+          </button>
+        </div>
+        <div class="collapse " id="collapse">
+          <ul class="list-unstyled ms-3">
+            <li>
+              <a class="dropdown-item " href="/textbook/logic-and-ai/">1. Logic and AI</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/textbook/resources/">0. Resources</a>
+            </li>
+            </ul>
+        </div>
+        
+      </li>
+      <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/slides/"> &nbsp;&nbsp; Slides</a>
+          </div>
+          <button 
+            class="btn btn-sm btn-dark" 
+            href="/slides/"
+            id="navbarSection" data-bs-toggle="collapse"
+            data-bs-target="#collapse"  
+            aria-expanded="aria-expanded=false"
+            aria-controls="collapse">
+            <i class="bi bi-caret-left-fill toggle-icon"></i>
+          </button>
+        </div>
+        <div class="collapse " id="collapse">
+          <ul class="list-unstyled ms-3">
+            <li>
+              <a class="dropdown-item " href="/slides/logic-and-ai/">1. Logic and AI</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/slides/resources/">0. Resources</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/slides/teaser/">0. Teaser</a>
+            </li>
+            </ul>
+        </div>
+        
+      </li>
+      <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/exercises/"> &nbsp;&nbsp; Exercises</a>
+          </div>
+          <button 
+            class="btn btn-sm btn-dark" 
+            href="/exercises/"
+            id="navbarSection" data-bs-toggle="collapse"
+            data-bs-target="#collapse"  
+            aria-expanded="aria-expanded=false"
+            aria-controls="collapse">
+            <i class="bi bi-caret-left-fill toggle-icon"></i>
+          </button>
+        </div>
+        <div class="collapse " id="collapse">
+          <ul class="list-unstyled ms-3">
+            <li>
+              <a class="dropdown-item " href="/exercises/logic-and-ai/">1. Logic and AI</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/exercises/resources/">0. Resources</a>
+            </li>
+            </ul>
+        </div>
+        
+      </li>
+      <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/quizzes/"> &nbsp;&nbsp; Quizzes</a>
+          </div>
+          <button 
+            class="btn btn-sm btn-dark" 
+            href="/quizzes/"
+            id="navbarSection" data-bs-toggle="collapse"
+            data-bs-target="#collapse"  
+            aria-expanded="aria-expanded=false"
+            aria-controls="collapse">
+            <i class="bi bi-caret-left-fill toggle-icon"></i>
+          </button>
+        </div>
+        <div class="collapse " id="collapse">
+          <ul class="list-unstyled ms-3">
+            <li>
+              <a class="dropdown-item " href="/quizzes/logic-and-ai/">1. Logic and AI</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/quizzes/resources/">0. Resources</a>
+            </li>
+            </ul>
+        </div>
+        
+      </li>
+      <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link fw-bold active" href="/about/"> &nbsp;&nbsp; About</a>
+          </div>
+      </li>
+      <hr>
+      
+    </ul>
+  </div>
+</div>
+
+    <header class="align-self-center d-flex flex-column m-0 mb-md-1 p-0" data-bs-theme="dark">
+      <nav class="navbar bg-dark shadow" data-bs-theme="dark" aria-label="header-navbar">
+  <div class="container-sm align-self-center px-3">
+    <a class="navbar-brand fs-6" href="https://logicalmethods.ai/"><span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
 <i class="bi bi-caret-right-fill"></i>logicalmethods.ai</a>
-<button class="navbar-toggler border-0" type=button data-bs-toggle=offcanvas data-bs-target=#offcanvas-nav aria-controls=offcanvas-nav>
-<span class=navbar-toggler-icon></span></button></div></nav></header><main class="align-self-center d-flex flex-column flex-fill bg-light m-md-1 p-0" data-bs-theme=light><div class="container p-3 text-center"><h1 class=display-1><strong><span style="margin-right:-4px;vertical-align:middle;transform-origin:50% 49%;transform:rotate(180deg);display:inline-block">IA</span></strong></h1><h1 class=text-body-emphasis>Logical methods for AI</h1><p class=lead></p><h1 class=text-body-emphasis></h1></div><div class="container text-center"><p class=copyright xmlns:cc=http://creativecommons.org/ns#>This work is licensed under
-CC BY 4.0
-<i class="bi bi-cc-circle"></i> <i class="bi bi-universal-access-circle"></i></p></div><hr><div class=container><p class=lead>This website contains the course material for the course &#x00BBLogical
-methods for AI&#x00AB as I teach it at Utrecht University.</p><p>Even though the I use the website in my course and it has been partially
-funded by university programs, the website has no official ties to Utrecht
-University and is neither reviewed, approved, or the like by the
-university.</p><p>Anybody is free to use the material in whatever way they please. If you'd
-like to give feedback or are even interested in contributing, just get in
-touch&mdash;ideally via GitHub.</p></div><div class="d-flex flex-column flex-md-row p-4 gap-4 mt-2 mb-4 align-items-center justify-content-center"><div class="list-group shadow"><a href=https://jkorbmacher.org class="list-group-item list-group-item-action d-flex gap-3 py-3" target=_blank><i class="bi bi-person-circle"></i><div class="d-flex gap-2 w-100 justify-content-between"><div><h6 class=mb-0>Maintainer</h6><p class="mb-0 opacity-75">The website is developed and maintained by Johannes Korbmacher.</p></div></div></a><a href=https://logicalmethods.ai class="list-group-item list-group-item-action d-flex gap-3 py-3" target=_blank><i class="bi bi-person-hearts"></i><div class="d-flex gap-2 w-100 justify-content-between"><div><h6 class=mb-0>Contributors</h6><p class="mb-0 opacity-75">This project has a growing list of contributors.</p></div></div></a><a href=https://gohugo.io/ class="list-group-item list-group-item-action d-flex gap-3 py-3" target=_blank><i class="bi bi-hexagon"></i><div class="d-flex gap-2 w-100 justify-content-between"><div><h6 class=mb-0>Hosting</h6><p class="mb-0 opacity-75">The website is build with Hugo.</p></div></div></a><a href=https://github.com/jkorb/logicalmethods.ai class="list-group-item list-group-item-action d-flex gap-3 py-3" target=_blank><i class="bi bi-github"></i><div class="d-flex gap-2 w-100 justify-content-between"><div><h6 class=mb-0>Hosting</h6><p class="mb-0 opacity-75">The website is hosted on GitHub pages.</p></div></div></a><a href=https://creativecommons.org/licenses/by/4.0/deed.en class="list-group-item list-group-item-action d-flex gap-3 py-3" target=_blank><i class="bi bi-universal-access-circle"></i><div class="d-flex gap-2 w-100 justify-content-between"><div><h6 class=mb-0>Content license</h6><p class="mb-0 opacity-75">The content of the website (the "course") is licensed under CC BY 4.0.</p></div></div></a><a href=https://opensource.org/license/mit class="list-group-item list-group-item-action d-flex gap-3 py-3" target=_blank><i class="bi bi-code-slash"></i><div class="d-flex gap-2 w-100 justify-content-between"><div><h6 class=mb-0>Software license</h6><p class="mb-0 opacity-75">The code of the website is licensed under the MIT license.</p></div></div></a><a href=https://gdpr.eu/what-is-gdpr/ class="list-group-item list-group-item-action d-flex gap-3 py-3" target=_blank><i class="bi bi-activity"></i><div class="d-flex gap-2 w-100 justify-content-between"><div><h6 class=mb-0>GDPR</h6><p class="mb-0 opacity-75">I neither collect nor store your data.
-Period.</p></div></div></a></div></div><div class="container text-center mb-2"><h6>Sponsors</h6><p>This page and course has been made possible by the support of:</p><p>Utrecht University's
-<a href=https://www.uu.nl/en/education/interdisciplinary-education target=_blank>Interdisciplinary Education Programe</a></p><img class="img-fluid mb-2" src=./img/IDO.png style=width:500px alt="Interdisciplinary Education Programe"><p>Utrecht University's focus area
-<a href=https://www.uu.nl/en/research/human-centered-artificial-intelligence target=_blank>Human-centered Artificial Intelligence</a></p></div><div class="container mb-4"><ul class="list-group shadow"></ul></div></main><footer class="align-self-center d-flex flex-column mt-md-1 p-0" data-bs-theme=dark><nav class="navbar bg-dark shadow" data-bs-theme=dark aria-label=footer-navbar><div class="container-sm align-self-center px-3"><a class="navbar-brand fs-6" href=/about aria-label=copyright-link>&copy; 2024 jkorbmacher et al.</a><ul class=navbar-nav><li class=nav-item><a class="nav-link fs-6" href=https://github.com/jkorb/logicalmethods.ai target=_blank><i class="bi bi-github"></i></a></li></ul></div></nav><script src=https://logicalmethods.ai/js/helpers.js></script>
-<script src=https://logicalmethods.ai/bootstrap/dist/js/bootstrap.bundle.min.js></script></footer></body></html>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-nav" aria-controls="offcanvas-nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+
+      
+      
+    </header>
+    
+    <main class="align-self-center d-flex flex-column flex-fill bg-light m-md-1 p-0" data-bs-theme="light">
+      
+  <div class="container p-3 text-center">
+  <h1 class="display-1">
+    <strong><span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+</strong> 
+  </h1>
+  <h1 class="text-body-emphasis">Logical methods for AI</h1>
+  <p class="lead">
+    
+  </p>
+  <h1 class="text-body-emphasis">
+    
+  </h1>
+  
+</div>
+
+  
+
+  
+   
+
+
+
+
+  
+<div class="container text-center">
+  <p class="copyright" xmlns:cc="http://creativecommons.org/ns#" >
+    This work is licensed under 
+    CC BY 4.0
+    <i class="bi bi-cc-circle"></i> <i class="bi bi-universal-access-circle"></i>
+  </p> 
+</div>
+
+
+  <hr>
+  
+    
+<div class="container">
+  <p class="lead">
+    This website contains the course material for the course &#x00BBLogical
+    methods for AI&#x00AB as I teach it at Utrecht University.
+  </p>
+  <p>
+    Even though the I use the website in my course and it has been partially
+    funded by university programs, the website has no official ties to Utrecht
+    University and is neither reviewed, approved, or the like by the
+    university. 
+  </p>
+  <p>
+    Anybody is free to use the material in whatever way they please. If you'd
+    like to give feedback or are even interested in contributing, just get in
+    touch&mdash;ideally via GitHub.
+  </p>
+</div>
+
+<div class="d-flex flex-column flex-md-row p-4 gap-4 mt-2 mb-4 align-items-center justify-content-center">
+  <div class="list-group shadow">
+    <a href="https://jkorbmacher.org" class="list-group-item list-group-item-action d-flex gap-3 py-3" target="_blank">
+      <i class="bi bi-person-circle"></i>
+      <div class="d-flex gap-2 w-100 justify-content-between">
+        <div>
+          <h6 class="mb-0">Maintainer</h6>
+          <p class="mb-0 opacity-75">
+            The website is developed and maintained by Johannes Korbmacher.
+          </p>
+        </div>
+      </div>
+    </a>
+
+    <a href="https://logicalmethods.ai" class="list-group-item list-group-item-action d-flex gap-3 py-3" target="_blank">
+      <i class="bi bi-person-hearts"></i>
+      <div class="d-flex gap-2 w-100 justify-content-between">
+        <div>
+          <h6 class="mb-0">Contributors</h6>
+          <p class="mb-0 opacity-75">
+            This project has a growing list of contributors. 
+          </p>
+        </div>
+      </div>
+    </a>
+
+
+    <a href="https://gohugo.io/" class="list-group-item list-group-item-action d-flex gap-3 py-3" target="_blank">
+      <i class="bi bi-hexagon"></i>
+      <div class="d-flex gap-2 w-100 justify-content-between">
+        <div>
+          <h6 class="mb-0">Hosting</h6>
+          <p class="mb-0 opacity-75">The website is build with Hugo.</p>
+        </div>
+      </div>
+    </a>
+
+    <a href="https://github.com/jkorb/logicalmethods.ai" class="list-group-item list-group-item-action d-flex gap-3 py-3" target="_blank">
+      <i class="bi bi-github"></i>
+      <div class="d-flex gap-2 w-100 justify-content-between">
+        <div>
+          <h6 class="mb-0">Hosting</h6>
+          <p class="mb-0 opacity-75">The website is hosted on GitHub pages.</p>
+        </div>
+      </div>
+    </a>
+
+    <a href="https://creativecommons.org/licenses/by/4.0/deed.en" class="list-group-item list-group-item-action d-flex gap-3 py-3" target="_blank">
+      <i class="bi bi-universal-access-circle"></i>
+      <div class="d-flex gap-2 w-100 justify-content-between">
+        <div>
+          <h6 class="mb-0">Content license</h6>
+          <p class="mb-0 opacity-75"> The content of the website (the "course") is licensed under CC BY 4.0.</p>
+        </div>
+      </div>
+    </a>
+    <a href="https://opensource.org/license/mit" class="list-group-item list-group-item-action d-flex gap-3 py-3" target="_blank">
+      <i class="bi bi-code-slash"></i>
+      <div class="d-flex gap-2 w-100 justify-content-between">
+        <div>
+          <h6 class="mb-0">Software license</h6>
+          <p class="mb-0 opacity-75"> The code of the website is licensed under the MIT license.</p>
+        </div>
+      </div>
+    </a>
+    <a href="https://gdpr.eu/what-is-gdpr/" class="list-group-item list-group-item-action d-flex gap-3 py-3" target="_blank">
+      <i class="bi bi-activity"></i>
+      <div class="d-flex gap-2 w-100 justify-content-between">
+        <div>
+          <h6 class="mb-0">GDPR</h6>
+          <p class="mb-0 opacity-75">I neither collect nor store your data.
+            Period.</p>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<div class="container text-center mb-2">
+<h6>Sponsors</h6>
+  <p >
+    This page and course has been made possible by the support of:
+  </p>
+  <p>
+    Utrecht University's 
+      <a href="https://www.uu.nl/en/education/interdisciplinary-education" target="_blank">
+      Interdisciplinary Education Programe 
+      </a>
+  </p>
+  <img class="img-fluid mb-2" src="./img/IDO.png" style="width:500px;" alt="Interdisciplinary Education Programe">
+  <p>
+    Utrecht University's focus area
+      <a href="https://www.uu.nl/en/research/human-centered-artificial-intelligence" target="_blank">
+      Human-centered Artificial Intelligence
+      </a>
+  </p>
+
+</div>
+
+  
+  
+<div class="container mb-4">
+  
+  <ul class="list-group shadow">
+    
+  </ul>
+</div>
+
+
+    </main>
+    <footer class="align-self-center d-flex flex-column mt-md-1 p-0" data-bs-theme="dark">
+      <nav class="navbar bg-dark shadow" data-bs-theme="dark" aria-label="footer-navbar">
+  <div class="container-sm align-self-center px-3">
+    <a class="navbar-brand fs-6" href="/about" aria-label="copyright-link">&copy; 2024 jkorbmacher et al. </a>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link fs-6" href="https://github.com/jkorb/logicalmethods.ai" target="_blank"><i class="bi bi-github"></i></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+ 
+      <script src="https://logicalmethods.ai/js/helpers.js"></script>
+      <script src="https://logicalmethods.ai/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+      
+      
+    </footer>
+  </body>
+</html>
