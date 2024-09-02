@@ -4,104 +4,37 @@
     <title>Home on logicalmethods.ai</title>
     <link>https://logicalmethods.ai/</link>
     <description>Recent content in Home on logicalmethods.ai</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 02 Jun 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://logicalmethods.ai/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 01 Jan 0001 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://logicalmethods.ai/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Logic and AI</title>
       <link>https://logicalmethods.ai/exercises/logic-and-ai/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://logicalmethods.ai/exercises/logic-and-ai/</guid>
-      <description>Definitions a.) InferenceGive a definition of inference in the logical sense. Include some examples of inferences, as well as non-examples, explaining why the definition applies to the examples.
-b.) ValidityGive a definition of deductive and inductive validity. For both, include some examples of valid and invalid inferences, again explaining why the definition applies.
-Hint: A definition needs to fully explain the meaning of a concept. This is typically done by saying under which precise conditions the concept applies.</description>
+      <description>Definitions a.) InferenceGive a definition of inference in the logical sense. Include some examples of inferences, as well as non-examples, explaining why the definition applies to the examples.&#xA;b.) ValidityGive a definition of deductive and inductive validity. For both, include some examples of valid and invalid inferences, again explaining why the definition applies.&#xA;Hint: A definition needs to fully explain the meaning of a concept. This is typically done by saying under which precise conditions the concept applies.</description>
     </item>
-    
     <item>
       <title>Logic and AI</title>
       <link>https://logicalmethods.ai/quizzes/logic-and-ai/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://logicalmethods.ai/quizzes/logic-and-ai/</guid>
-      <description>Inferences Which of the following is an inference?
-If you do that, my head will explode. I mean it&amp;rsquo;s logical to think that AI will want to exterminate humans. We&amp;rsquo;ve tried for years to build a working AGI and despite all the compute and efforts, we haven&amp;rsquo;t managed. So, we won&amp;rsquo;t build an AGI anytime soon. To be continued</description>
+      <description>Inferences Which of the following is an inference?&#xA;If you do that, my head will explode. I mean it&amp;rsquo;s logical to think that AI will want to exterminate humans. We&amp;rsquo;ve tried for years to build a working AGI and despite all the compute and efforts, we haven&amp;rsquo;t managed. So, we won&amp;rsquo;t build an AGI anytime soon. To be continued</description>
     </item>
-    
     <item>
       <title>Logic and AI</title>
       <link>https://logicalmethods.ai/slides/logic-and-ai/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://logicalmethods.ai/slides/logic-and-ai/</guid>
       <description> Under construction </description>
     </item>
-    
     <item>
       <title>Logic and AI</title>
       <link>https://logicalmethods.ai/textbook/logic-and-ai/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://logicalmethods.ai/textbook/logic-and-ai/</guid>
-      <description>Logic and AI In this chapter, you&amp;rsquo;ll learn about what logic is and what it has to do with AI.
-First, you&amp;rsquo;ll make acquaintance with some basic concepts of logical theory:
-inference validity, and logical systems. Then, you&amp;rsquo;ll learn about three ways in which logic is relevant for AI:
-foundationally, methodologically, and instrumentally. What is logic? On the most general level, logic is the study of valid inference. To understand this definition better, let&amp;rsquo;s discuss inferences and validity in turn.</description>
+      <description>Logic and AI In this chapter, you&amp;rsquo;ll learn about what logic is and what it has to do with AI.&#xA;First, you&amp;rsquo;ll make acquaintance with some basic concepts of logical theory:&#xA;inference validity, and logical systems. Then, you&amp;rsquo;ll learn about three ways in which logic is relevant for AI:&#xA;foundationally, methodologically, and instrumentally. What is logic? On the most general level, logic is the study of valid inference. To understand this definition better, let&amp;rsquo;s discuss inferences and validity in turn.</description>
     </item>
-    
-    <item>
-      <title>Resources</title>
-      <link>https://logicalmethods.ai/exercises/resources/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://logicalmethods.ai/exercises/resources/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Resources</title>
-      <link>https://logicalmethods.ai/quizzes/resources/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://logicalmethods.ai/quizzes/resources/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Resources</title>
-      <link>https://logicalmethods.ai/resources/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://logicalmethods.ai/resources/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Resources</title>
-      <link>https://logicalmethods.ai/slides/resources/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://logicalmethods.ai/slides/resources/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Resources</title>
-      <link>https://logicalmethods.ai/textbook/resources/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://logicalmethods.ai/textbook/resources/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Teaser</title>
-      <link>https://logicalmethods.ai/slides/teaser/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://logicalmethods.ai/slides/teaser/</guid>
-      <description>dr. Johannes Korbmacher &amp;nbsp; Course coordinator Mathematical philosopher jkorbmacher.org logicalmethods.ai logische.methoden@uu.nl Logic?! app.wooclap.com/LMFAI0 Rationale: Logic is about reasoning. Reasoning is intelligent behavior. Some puzzles app.wooclap.com/LMFAI0 Cards If 3 is blue or red, the rule doesn&#39;t fail. If 8 is not blue, the rule fails. If red is even, the rule fails. If blue is even or od, the rule doesn&#39;t fail. Marriage Two cases: 1. Ada is married, 2. Ada is unmarried.</description>
-    </item>
-    
   </channel>
 </rss>

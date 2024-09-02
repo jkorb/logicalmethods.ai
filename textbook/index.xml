@@ -4,29 +4,16 @@
     <title>Textbook on logicalmethods.ai</title>
     <link>https://logicalmethods.ai/textbook/</link>
     <description>Recent content in Textbook on logicalmethods.ai</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 02 Jun 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://logicalmethods.ai/textbook/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 01 Jan 0001 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://logicalmethods.ai/textbook/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Logic and AI</title>
       <link>https://logicalmethods.ai/textbook/logic-and-ai/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://logicalmethods.ai/textbook/logic-and-ai/</guid>
-      <description>Logic and AI In this chapter, you&amp;rsquo;ll learn about what logic is and what it has to do with AI.
-First, you&amp;rsquo;ll make acquaintance with some basic concepts of logical theory:
-inference validity, and logical systems. Then, you&amp;rsquo;ll learn about three ways in which logic is relevant for AI:
-foundationally, methodologically, and instrumentally. What is logic? On the most general level, logic is the study of valid inference. To understand this definition better, let&amp;rsquo;s discuss inferences and validity in turn.</description>
+      <description>Logic and AI In this chapter, you&amp;rsquo;ll learn about what logic is and what it has to do with AI.&#xA;First, you&amp;rsquo;ll make acquaintance with some basic concepts of logical theory:&#xA;inference validity, and logical systems. Then, you&amp;rsquo;ll learn about three ways in which logic is relevant for AI:&#xA;foundationally, methodologically, and instrumentally. What is logic? On the most general level, logic is the study of valid inference. To understand this definition better, let&amp;rsquo;s discuss inferences and validity in turn.</description>
     </item>
-    
-    <item>
-      <title>Resources</title>
-      <link>https://logicalmethods.ai/textbook/resources/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://logicalmethods.ai/textbook/resources/</guid>
-      <description></description>
-    </item>
-    
   </channel>
 </rss>

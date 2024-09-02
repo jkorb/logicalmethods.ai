@@ -4,35 +4,16 @@
     <title>Slides on logicalmethods.ai</title>
     <link>https://logicalmethods.ai/slides/</link>
     <description>Recent content in Slides on logicalmethods.ai</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 02 Jun 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://logicalmethods.ai/slides/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 01 Jan 0001 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://logicalmethods.ai/slides/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Logic and AI</title>
       <link>https://logicalmethods.ai/slides/logic-and-ai/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://logicalmethods.ai/slides/logic-and-ai/</guid>
       <description> Under construction </description>
     </item>
-    
-    <item>
-      <title>Resources</title>
-      <link>https://logicalmethods.ai/slides/resources/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://logicalmethods.ai/slides/resources/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Teaser</title>
-      <link>https://logicalmethods.ai/slides/teaser/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://logicalmethods.ai/slides/teaser/</guid>
-      <description>dr. Johannes Korbmacher &amp;nbsp; Course coordinator Mathematical philosopher jkorbmacher.org logicalmethods.ai logische.methoden@uu.nl Logic?! app.wooclap.com/LMFAI0 Rationale: Logic is about reasoning. Reasoning is intelligent behavior. Some puzzles app.wooclap.com/LMFAI0 Cards If 3 is blue or red, the rule doesn&#39;t fail. If 8 is not blue, the rule fails. If red is even, the rule fails. If blue is even or od, the rule doesn&#39;t fail. Marriage Two cases: 1. Ada is married, 2. Ada is unmarried.</description>
-    </item>
-    
   </channel>
 </rss>
