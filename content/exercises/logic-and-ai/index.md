@@ -9,25 +9,23 @@ params:
 
 # Definitions
 
-## a.) Inference 
+_Note_: A definition needs to fully explain the meaning of a concept. This is
+typically done by saying under which precise conditions the concept applies.
+That is, the answer should have the form like "A valid inference is an inference
+such that..." or "An inference is valid just in case ...".
 
-Give a definition of inference in the logical sense. Include some examples
-of inferences, as well as non-examples, explaining why the definition applies
-to the examples.
+## a.) Inference
+
+Give a definition of inference. Include examples (where your definition applies)
+and non-examples (where it does not). Make sure to explain why your definition
+applies or not.
 
 ## b.) Validity {.homework}
 
-Give a definition of deductive and inductive validity. For both, include some
-examples of valid and invalid inferences, again explaining why the
-definition applies.
+Give a definition of deductive andFor example, MYCIN, an early expert system, helped identify bacterial infections and recommend antibiotics. Financial Services: In finance, expert systems are used for credit scoring, fraud detection, and investment advice. They analyze financial data and patterns to make informed decisions.26 Aug 2024 inductive inference. Include examples 
+and non-examples with explanations. 
 
-_Hint_: A definition needs to fully explain the meaning of a concept. This is
-typically done by saying under which precise conditions the concept applies.
-That is, the answer should have the form like "A valid inference is an
-inference such that..." or
-"An inference is valid just in case ...".
-
-# Indicators {.self-study .solved}
+# Indicators { .solved }
 
 Give at least 5 additional examples of:
 
@@ -41,18 +39,18 @@ inference indicators.
 
 ## Solution {#indicatorsSolution .solution}
 
-a.) since, because, since, for, whereas, as 
+a.) Since, because, since, for, whereas, as.
 
-b.) it follows that, thus, hence, consequently, we know that
+b.) It follows that, thus, hence, consequently, we know that.
 
 # Validity { .solved }
 
-Which of the following inferences is valid?
+Which of the following inferences is valid? Specify whether the inference is
+deductively or inductively valid.
 
 ## a.) 
 
-Every AI is logic-based. This an AI. So, this is a logic-based
-system.
+Every attempt so far has failed. So the next attempt will also fail.
 
 ## b.) 
 
@@ -60,31 +58,44 @@ Well, I didn’t not cause the bug. So, I caused the bug.
 
 ## c.) 
 
-C'mon, if _you_ build an AGI (artificial general intelligence), pigs can fly. So,
-you didn't build an AGI.
+If you did _that_, pigs can fly. So, you didn't do it.
 
 ## d.)
 
-Every successful AGI is logic-based. So there _is_ at least one  successful AGI.
+All software has bugs. So, this software has bugs, too.
+
+## e.)
+
+A thinking computer is not a computer anymore. So it's impossible to teach a
+computer how to think.
 
 ## Solution {#validitySolution .solution}
 
-# Thinking fast and slow
+# Deductive and inductive inference
 
-Give at least 3 new examples of:
+Provide an argument that every deductively valid inference is also
+inductively valid. Does the converse also hold?
+
+# Expert systems
+
+
+
+# Thinking, Fast and Slow 
+
+Give at least 3 new examples of: 
 
 ## a.)
 
-system-1 thinking,
+System 1
 
 ## b.)
 
-system-2 thinking.
+System 2
 
 # Research { .research }
 
-_Note_: These questions _require_ you to research the answer yourself using
-reliable academic sources. You need to reference your sources!
+_Note_: These questions require you to do your own research, using reliable
+academic sources. You need to reference your sources!
 
 ## Decidability 
 
@@ -97,9 +108,9 @@ still in use today. Explain why the first one failed.
 
 # Discussion {.discussion}
 
-_Note_: These questions require a (short) _argumentative discussion_ as an
-answer. That is you must provide _reasons_ in support for your answer and show
-why they do support your answer.
+_Note_: The following questions require argumentative writing, i.e. you're asked
+to take an informed view on the question, clearly state your position, and the
+reasons for it.
 
 ## a.) Logic and system 2
 
