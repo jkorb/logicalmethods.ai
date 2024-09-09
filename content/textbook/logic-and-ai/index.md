@@ -1,6 +1,8 @@
 ---
 title: Logic and AI
 author: Johannes Korbmacher
+date: 31/08/2024
+last_edited: 01/09/2024
 weight: 1
 resources:
   - src: img/inferences.png
@@ -572,7 +574,7 @@ associative, and the like. Examples:
 
   + recognizing a face,
   + telling if one object is taller than another,
-  + performing simple calculations, like \\(5+7\\),
+  + performing simple calculations, like $5+7$,
   + ...
 
 + **System 2 thinking**, which is slow, deliberate, conscious, logical,
@@ -580,7 +582,7 @@ calculating, and the like. Examples:
 
   + counting the number of A's in a text,
   + solving a logic puzzle,
-  + performing complex calculations, like \\(432\times 441\\),
+  + performing complex calculations, like $432\times 441$,
   + ...
 
 The diagnosis of the problem with LLMS shared promoted, e.g., by [Andrej

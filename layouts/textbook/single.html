@@ -12,7 +12,9 @@
 {{- partial "single/nav-top" . -}}
 
 <div class="container chapter">
-{{- .Content -}}
+  {{ with .Params.author }}<p>By: <em>{{.}}</em></p>{{end}}
+  {{- .Content -}}
+  {{ with .Params.last_edited }} <p><em>Last edited: </em>{{.}}</p>{{ end }}
 </div>
 
 {{ partial "single/nav-bot" . }}

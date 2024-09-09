@@ -5,8 +5,10 @@
       {{.Inner | markdownify}}
       </p>
     </blockquote>
+    {{with .Get "author"}}
     <figcaption class="blockquote-footer text-end">
-      {{with .Get "author"}}{{ . }}{{ end }}
+      {{ . }}
     </figcaption>
+    {{ end }}
   </figure>
 </div>
