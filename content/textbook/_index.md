@@ -18,6 +18,9 @@ params:
   toc-title: 'Table of contents'
   teaser: 'Read before class!'
   md-title: 'Logic **textbook** for AI undergrads'
+  alerts: 
+  - level: "warning"
+    body: "New chapter added: Chapter 2. Valid inference!! Read now 🤓"
 ---
 
 {{< a 
