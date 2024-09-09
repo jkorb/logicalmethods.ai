@@ -692,6 +692,11 @@ Early work on AI implementations of inductive reasoning:
 + [J. McCarthy. "Circumscription: A form of non-monotonic reasoning”, _Artificial
 Intelligence_, 13: 27–39.](https://doi.org/10.1016/0004-3702(80)90011-9)
 
+The idea of using probability theory to model inductive validity is heavily
+influenced by the work of Rudolf Carnap:
+
++ [R. Carnap. "On inductive logic", _Philosophy of Science_ 12(2): 72-97.](https://doi.org/10.1086/286851 )
+
 Influential mathematical treatment of inductive validity:
 
 + [S. Kraus, D. Lehmann, & M. Magidor. "Nonmonotonic Reasoning, Preferential
