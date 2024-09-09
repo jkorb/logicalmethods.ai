@@ -177,7 +177,7 @@ say that the inference from premises $P_1, P_2, \mathellipsis$ to conclusion $C$
 is inductively valid. To say that an inference is inductively _strong_, we write
 a $!$ on top, like so: $$\stackrel{!}{\mid\approx}$$. 
 So if we have a inductively strong inference going from premises $P_1, P_2,
-\dots\mid\approx C$ to conclusion $C$ we can abbreviate this with symbols:
+\dots$ to conclusion $C$ we can abbreviate this with symbols:
 $$P_1, P_2, \dots\stackrel{!}{\mid\approx} C.$$
 
 ## Formalization
@@ -644,19 +644,27 @@ to infer a conclusion from certain premises, but invalid to infer the exact same
 conclusion after "adding new information" to those premises. New information
 changes the conclusion we can inductively infer.
 
-_Sketch of an Explanation_: We give a diagram below that models reasoning about
-Tweety, as mentioned above. 
+_Sketch of an Explanation_: Suppose you live in a town with a few vegans. You
+know that all those people ride bicycles, they do not own cars.
+ 
+In the diagram below, $Pr(A)$ is the probability of being a cyclist, $Pr(B)$ is
+the probability of eating meat, and $Pr(C)$ is the probability of being vegan:
 
 {{< img src="img/probabilities.jpg" class="img-thumbnail" >}}
 
-As you can see, the
-fraction of models where Tweety flies among the models where Tweety is a bird is
-higher than the fraction of models where Tweety flies among _all_ models:
-$$Pr(C|A)>Pr(C)$$
-But among the models where Tweety is bird who is a penguin ($A\land B$) there is
-_no_ model where Tweety flies: $$Pr(C|A\land B)=0.$$ Since $Pr(C)$ _is_
-positive (there are situations where Tweety flies), we know that $$Pr(C|A\land
-B)\ngeq Pr(C).$$
+For a randomly chosen person, $Pr(C)$ is not very high since the proportion of
+vegans, $C$, among the general population is low.
+ 
+At the same time, $Pr(C|A)$ is relatively high, _of the cyclists_, $A$, a much
+larger proportion is vegan than in the general population. This means that
+$Pr(C|A) > P(C)$, and so $A\mid\approx C$. Or, in words, a randomly chosen
+person being a cyclist is inductive evidence for that person being vegan.
+
+But if we look at the proportion of bikers that are cyclist and meat eaters,
+obviously, _none_ of them is a vegan--they're meat eaters, after all. This means
+that $Pr(C| A\land B)=0$. But since $Pr(C)$ is positive---there are _some_
+vegans, this means that $Pr(C| A\land B)\ngeq Pr(C)$ and so $A,B\mid\approx C$
+fails.
 
 The **non-monotonicity** of induction is very important. Perhaps a certain
 element of your beliefs implies a conclusion at this moment, but if you acquire
