@@ -12,7 +12,7 @@
       <link>https://logicalmethods.ai/exercises/logic-and-ai/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://logicalmethods.ai/exercises/logic-and-ai/</guid>
-      <description>&lt;/div&gt;&#xA;&lt;div id=&#34;definitions&#34; &gt;&lt;h5 class=&#34;&#34;&gt;&#xA;    &lt;div class=&#34;d-inline-flex flex-row m-0  p-0 &#34;&gt;Definitions&#xA;    &lt;/div&gt;&#xA;&lt;/h5&gt;&#xA;&lt;/div&gt;&#xA;&lt;div id=&#34;a-inference&#34; &gt;&lt;h6 class=&#34;&#34;&gt;a.) Inference&lt;/h6&gt;&lt;p&gt;Give a definition of inference in the logical sense. Include some examples&#xA;of inferences, as well as non-examples, explaining why the definition applies&#xA;to the examples.&lt;/p&gt;&#xA;&#xA;&lt;/div&gt;&#xA;&lt;div id=&#34;b-validity&#34; class=&#34; homework&#34;&gt;&lt;h6 class=&#34; homework&#34;&gt;b.) Validity&lt;/h6&gt;&lt;p&gt;Give a definition of deductive and inductive validity. For both, include some&#xA;examples of valid and invalid inferences, again explaining why the&#xA;definition applies.&lt;/p&gt;</description>
+      <description>&lt;/div&gt;&#xA;&lt;div id=&#34;definitions&#34; &gt;&lt;h5 class=&#34;&#34;&gt;&#xA;    &lt;div class=&#34;d-inline-flex flex-row m-0  p-0 &#34;&gt;Definitions&#xA;    &lt;/div&gt;&#xA;&lt;/h5&gt;&lt;p&gt;&lt;em&gt;Note&lt;/em&gt;: A definition needs to fully explain the meaning of a concept. This is&#xA;typically done by saying under which precise conditions the concept applies.&#xA;That is, the answer should have the form like &amp;ldquo;A valid inference is an inference&#xA;such that&amp;hellip;&amp;rdquo; or &amp;ldquo;An inference is valid just in case &amp;hellip;&amp;rdquo;.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

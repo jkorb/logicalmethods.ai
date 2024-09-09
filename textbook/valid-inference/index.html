@@ -25,8 +25,8 @@
     renderMathInElement(document.body, {
       delimiters: [
         {left: '$$', right: '$$', display: true},     
-        {left: '\\[', right: '\\]', display: true},   
         {left: '$', right: '$', display: false},     
+        {left: '\\[', right: '\\]', display: true},   
         {left: '\\(', right: '\\)', display: false},  
       ],
       throwOnError : false
@@ -408,7 +408,7 @@ say that the inference from premises $P_1, P_2, \mathellipsis$ to conclusion $C$
 is inductively valid. To say that an inference is inductively <em>strong</em>, we write
 a $!$ on top, like so: $$\stackrel{!}{\mid\approx}$$.
 So if we have a inductively strong inference going from premises $P_1, P_2,
-\dots\mid\approx C$ to conclusion $C$ we can abbreviate this with symbols:
+\dots$ to conclusion $C$ we can abbreviate this with symbols:
 $$P_1, P_2, \dots\stackrel{!}{\mid\approx} C.$$</p>
 <h2 id="formalization">Formalization<button class="btn btn-back-to-top">
     
@@ -910,21 +910,26 @@ $Q,P_1,P_2,\dots\mid\approx C$.</li>
 to infer a conclusion from certain premises, but invalid to infer the exact same
 conclusion after &ldquo;adding new information&rdquo; to those premises. New information
 changes the conclusion we can inductively infer.</p>
-<p><em>Sketch of an Explanation</em>: We give a diagram below that models reasoning about
-Tweety, as mentioned above.</p>
+<p><em>Sketch of an Explanation</em>: Suppose you live in a town with a few vegans. You
+know that all those people ride bicycles, they do not own cars.</p>
+<p>In the diagram below, $Pr(A)$ is the probability of being a cyclist, $Pr(B)$ is
+the probability of eating meat, and $Pr(C)$ is the probability of being vegan:</p>
 
 
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/probabilities.jpg" class="img-thumbnail" alt="" >
 
 
-<p>As you can see, the
-fraction of models where Tweety flies among the models where Tweety is a bird is
-higher than the fraction of models where Tweety flies among <em>all</em> models:
-$$Pr(C|A)&gt;Pr(C)$$
-But among the models where Tweety is bird who is a penguin ($A\land B$) there is
-<em>no</em> model where Tweety flies: $$Pr(C|A\land B)=0.$$ Since $Pr(C)$ <em>is</em>
-positive (there are situations where Tweety flies), we know that $$Pr(C|A\land
-B)\ngeq Pr(C).$$</p>
+<p>For a randomly chosen person, $Pr(C)$ is not very high since the proportion of
+vegans, $C$, among the general population is low.</p>
+<p>At the same time, $Pr(C|A)$ is relatively high, <em>of the cyclists</em>, $A$, a much
+larger proportion is vegan than in the general population. This means that
+$Pr(C|A) &gt; P(C)$, and so $A\mid\approx C$. Or, in words, a randomly chosen
+person being a cyclist is inductive evidence for that person being vegan.</p>
+<p>But if we look at the proportion of bikers that are cyclist and meat eaters,
+obviously, <em>none</em> of them is a vegan&ndash;they&rsquo;re meat eaters, after all. This means
+that $Pr(C| A\land B)=0$. But since $Pr(C)$ is positive&mdash;there are <em>some</em>
+vegans, this means that $Pr(C| A\land B)\ngeq Pr(C)$ and so $A,B\mid\approx C$
+fails.</p>
 <p>The <strong>non-monotonicity</strong> of induction is very important. Perhaps a certain
 element of your beliefs implies a conclusion at this moment, but if you acquire
 new information then your <em>updated</em> beliefs might not imply the same conclusion
