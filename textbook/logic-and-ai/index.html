@@ -24,8 +24,9 @@
   document.addEventListener("DOMContentLoaded", function() {
     renderMathInElement(document.body, {
       delimiters: [
-        {left: '\\[', right: '\\]', display: true},   
         {left: '$$', right: '$$', display: true},     
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '$', right: '$', display: false},     
         {left: '\\(', right: '\\)', display: false},  
       ],
       throwOnError : false
@@ -65,6 +66,10 @@
           <ul class="list-unstyled ms-3">
             <li>
               <a class="dropdown-item fw-bold active" href="/textbook/logic-and-ai/">1. Logic and AI</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/textbook/valid-inference/">2. Valid Inference</a>
             </li>
             </ul>
         </div>
@@ -188,13 +193,14 @@
   </li>
   <li class="nav-item">
     
-    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
+    <a href="/textbook/valid-inference/" class="btn" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-right"></i>
     </a>
     
   </li>
 </ul>
-<div class="container chapter"><h1 id="logic-and-ai">Logic and AI<button class="btn btn-back-to-top">
+<div class="container chapter">
+  <p>By: <em>Johannes Korbmacher</em></p><h1 id="logic-and-ai">Logic and AI<button class="btn btn-back-to-top">
     
   </button>
 </h1>
@@ -827,7 +833,7 @@ associative, and the like. Examples:</p>
 <ul>
 <li>recognizing a face,</li>
 <li>telling if one object is taller than another,</li>
-<li>performing simple calculations, like \(5+7\),</li>
+<li>performing simple calculations, like $5+7$,</li>
 <li>&hellip;</li>
 </ul>
 </li>
@@ -837,7 +843,7 @@ calculating, and the like. Examples:</p>
 <ul>
 <li>counting the number of A&rsquo;s in a text,</li>
 <li>solving a logic puzzle,</li>
-<li>performing complex calculations, like \(432\times 441\),</li>
+<li>performing complex calculations, like $432\times 441$,</li>
 <li>&hellip;</li>
 </ul>
 </li>
@@ -940,6 +946,7 @@ shown.&#160;<a href="#fnref:9" class="footnote-backref" role="doc-backlink">&#x2
 </li>
 </ol>
 </div>
+ <p><em>Last edited: </em>01/09/2024</p>
 </div>
 
 
@@ -957,7 +964,7 @@ shown.&#160;<a href="#fnref:9" class="footnote-backref" role="doc-backlink">&#x2
   </li>
   <li class="nav-item">
     
-    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
+    <a href="/textbook/valid-inference/" class="btn" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-right"></i>
     </a>
     

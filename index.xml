@@ -36,5 +36,12 @@
       <guid>https://logicalmethods.ai/textbook/logic-and-ai/</guid>
       <description>&lt;h1 id=&#34;logic-and-ai&#34;&gt;Logic and AI&lt;button class=&#34;btn btn-back-to-top&#34;&gt;&#xA;    &#xA;  &lt;/button&gt;&#xA;&lt;/h1&gt;&#xA;&lt;hr&gt;&#xA;&#xA;&lt;p&gt;In this chapter, you&amp;rsquo;ll learn about what logic is and what it has to do with AI.&lt;/p&gt;&#xA;&lt;p&gt;First, you&amp;rsquo;ll make acquaintance with some basic concepts of logical theory:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#inference&#34;&gt;inference&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#validity&#34;&gt;validity&lt;/a&gt;, and&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#logical-systems&#34;&gt;logical systems&lt;/a&gt;.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Then, you&amp;rsquo;ll learn about three ways in which logic is relevant for AI:&lt;/p&gt;</description>
     </item>
+    <item>
+      <title>Valid Inference</title>
+      <link>https://logicalmethods.ai/textbook/valid-inference/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://logicalmethods.ai/textbook/valid-inference/</guid>
+      <description>&lt;h1 id=&#34;valid-inference&#34;&gt;Valid inference&lt;button class=&#34;btn btn-back-to-top&#34;&gt;&#xA;    &#xA;  &lt;/button&gt;&#xA;&lt;/h1&gt;&#xA;&lt;hr&gt;&#xA;&#xA;&lt;p&gt;Remember from &#xA;&#xA;&#xA;&lt;a href=&#34;https://logicalmethods.ai/textbook/logic-and-ai/&#34;&#xA;   &#xA;   &#xA;   &#xA;   &#xA;   &#xA;   &gt;&#xA;Chapter 1. Logic and AI&lt;/a&gt;&#xA;&#xA;&#xA;that logic is the study of &lt;strong&gt;valid inference&lt;/strong&gt;. In this&#xA;chapter, you&amp;rsquo;ll learn more about the &lt;em&gt;concept&lt;/em&gt; of validity.&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>
