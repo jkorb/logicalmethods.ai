@@ -3,17 +3,37 @@
   <head>
     <meta charset="utf-8"></meta>
     <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-    <title>logicalmethods.ai &ndash; Exercises </title>
+    <title>logicalmethods.ai &ndash; Valid inference </title>
     <link rel="icon" type="image/x-icon" href="https://logicalmethods.ai/favicon.ico"></link>
     <link href="https://logicalmethods.ai/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"></link>
     <link rel="stylesheet" href="https://logicalmethods.ai/icons/font/bootstrap-icons.min.css"></link>
     <link rel="stylesheet" href="https://logicalmethods.ai/css/layout.css"></link>
     
-    
+<link rel="stylesheet" href="https://logicalmethods.ai/css/exercises.css"></link>
+
     <style>
       
       
     </style>
+    
+      <link rel="stylesheet" href="https://logicalmethods.ai/katex/katex.min.css">
+<script defer src="https://logicalmethods.ai/katex/katex.min.js"></script>
+<script defer src="https://logicalmethods.ai/katex/contrib/auto-render.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},     
+        {left: '$', right: '$', display: false},     
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '\\(', right: '\\)', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
     
   </head>
   <body class="bg-black d-flex flex-column m-0 p-0">
@@ -106,7 +126,7 @@
             </li>
             
             <li>
-              <a class="dropdown-item " href="/exercises/valid-inference/">2. Valid inference</a>
+              <a class="dropdown-item fw-bold active" href="/exercises/valid-inference/">2. Valid inference</a>
             </li>
             </ul>
         </div>
@@ -167,26 +187,54 @@
     
     <main class="align-self-center d-flex flex-column flex-fill bg-light m-md-1 p-0" data-bs-theme="light">
       
-  <div class="container p-3 text-center">
-  <h1 class="display-1">
-    <strong><span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
-</strong> 
-  </h1>
-  <h1 class="text-body-emphasis">Logical methods for AI</h1>
-  <p class="lead">
-    
-    Tutorial <strong>excercises</strong> for tutorials
-    
-  </p>
-  <h1 class="text-body-emphasis">
-    
-    <i class="bi-gear-fill"></i>
-    
-  </h1>
-  
+  <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="passwordModalLabel">Enter Password</h6>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="password" id="passwordInput" class="form-control" placeholder="Password">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="passwordSubmitButton">Submit</button>
+      </div>
+    </div>
+  </div>
 </div>
 
+  <ul class="navbar-nav flex-row justify-content-between mt-2">
   
+  <li class="nav-item">
+    <a href="/exercises/logic-and-ai/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-chevron-left"></i>
+    </a>
+    
+  </li>
+  <li class="nav-item">
+    <a href="/exercises/" class="btn " tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-house-up"></i>
+    </a>
+  </li>
+  <li class="nav-item">
+    
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-chevron-right"></i>
+    </a>
+    
+  </li>
+</ul>
+
+  <div class="container text-center">
+  <h3>
+    Tutorial 2. Valid inference
+  </h3>
+  <em>Exercise sheet</em>
+</div>
+
+
+
 
   
    
@@ -236,37 +284,157 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
 </div>
 
 
-  
-<div class="container text-center">
-  <p class="copyright" xmlns:cc="http://creativecommons.org/ns#" >
-    This work is licensed under 
-    CC BY 4.0
-    <i class="bi bi-cc-circle"></i> <i class="bi bi-universal-access-circle"></i>
-  </p> 
+
+
+
+
+<hr>
+<div class="container exercises" style="max-width: 720px">
+  <div class="container-fluid m-0 p-0">
+    
+    
+      
+</div>
+<div id="deduction-and-induction" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Deduction and Induction
+    </div>
+</h5><p>Give an example of one for each of the following:</p>
+
+</div>
+<div id="a" class=" homework"><h6 class=" homework">a)</h6><p>A deductively valid inference</p>
+
+</div>
+<div id="b" ><h6 class="">b)</h6><p>A deductively invalid inference</p>
+
+</div>
+<div id="c" ><h6 class="">c)</h6><p>An inductively valid inference</p>
+
+</div>
+<div id="d" class=" homework"><h6 class=" homework">d)</h6><p>An inductively invalid inference</p>
+
+</div>
+<div id="monotonicity" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Monotonicity
+    </div>
+</h5>
+</div>
+<div id="a-deduction" ><h6 class="">a) Deduction</h6><p>Give an argument that if an inference is deductively valid, then adding
+additional premises doesn’t cancel the validity of the inference.</p>
+
+</div>
+<div id="b-induction" class=" homework"><h6 class=" homework">b) Induction</h6><p>Why does this argument fail for inductive logic?</p>
+
+</div>
+<div id="validity" class=" homework"><h5 class="homework">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Validity
+    </div>
+</h5><p>For every invalid inference, it’s possible to add one or more premises to make it
+valid. Why?</p>
+
+</div>
+<div id="truth-preservation" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Truth-Preservation
+    </div>
+</h5><p>Which of the following is possible? Make your answer clear and precise, by
+showing how the definition of deductive validity and the definition of inductive
+validity/strength relate to these questions.</p>
+
+</div>
+<div id="a-1" ><h6 class="">a)</h6><p>Can an inference be deductively valid and have a false premise?</p>
+
+</div>
+<div id="b-1" ><h6 class="">b)</h6><p>Can an inference be deductively valid and have a false conclusion?</p>
+
+</div>
+<div id="c-1" ><h6 class="">c)</h6><p>Can an inference be deductively valid, have true premises, and have a false conclusion?</p>
+
+</div>
+<div id="d-1" ><h6 class="">d)</h6><p>Can an inference be deductively valid but inductively invalid?</p>
+
+</div>
+<div id="e" ><h6 class="">e)</h6><p>Can an inference be inductively valid and have a false premise?</p>
+
+</div>
+<div id="f" ><h6 class="">f)</h6><p>Can an inference be inductively valid and have a false conclusion?</p>
+
+</div>
+<div id="g" ><h6 class="">g)</h6><p>Can an inference be inductively valid, have true premises, and have a false conclusion?</p>
+
+</div>
+<div id="h" ><h6 class="">h)</h6><p>Can an inference be inductively valid but deductively invalid?</p>
+
+</div>
+<div id="semantic-tools" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Semantic tools
+    </div>
+</h5><p>Explain the following facts:</p>
+
+</div>
+<div id="a-2" ><h6 class="">a)</h6><p>The subset relation, defined in 
+
+
+<a href="https://logicalmethods.ai/textbook/valid-inference//#semantic-methods-for-deduction"
+   
+   
+   
+   
+   
+   >
+2.3.1 </a>
+
+, has the following property:</p>
+<ul>
+<li>If $X\subseteq Y$ and $Y\subseteq Z$, then $X\subseteq Z$.</li>
+</ul>
+<p><em>Note</em>: This property is called &ldquo;transitivity&rdquo;.</p>
+
+</div>
+<div id="b-2" class=" homework"><h6 class=" homework">b)</h6><p>Remember that the intersection $X\cap Y$ of two sets $X,Y$ is the overlapping
+part of those two sets. We have that $X\cap Y\subseteq X$ and $X\cap Y\subseteq
+Y$.</p>
+
+</div>
+<div id="research" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Research
+    </div>
+</h5><p>Note: These questions <em>require</em> you to research the answer yourself using reliable academic sources. You need to reference your sources!</p>
+<p><strong>Reasoning</strong></p>
+<p>Are all forms of &ldquo;good&rdquo; reasoning either deductive or inductive?</p>
+
+</div>
+<div id="discussion" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Discussion
+    </div>
+</h5><p>Inductive logic in general is non-monotonic because new (premise) information can turn a valid inference into an invalid inference. But what if we know something about <em>how</em> a new piece of information <em>relates</em> to our old premises? Some versions of inductive logic support &rsquo;limited&rsquo; versions of monotonicity based on situations where new information (the &lsquo;$B$&rsquo; premises in these examples) comes from the right place. Do you think these limited forms of monotonicity are correct? Explain your answer.</p>
+<p>a) Cautious Monotonicity: If $A \mid\approx B$ and $A \mid\approx C$, then $ A\land B \mid\approx C $</p>
+<p>b) Rational Monotonicity: If $A \mid\approx B$ and not $A \mid\approx \neg C$, then $ A\land B \mid\approx C $</p>
+
+  </div>
 </div>
 
 
-  <hr>
+<ul class="navbar-nav flex-row justify-content-between mt-auto">
   
-  
-<div class="container mb-4">
-  
-  <h5>Tutorials</h5>
-  
-  <ul class="list-group shadow">
+  <li class="nav-item">
+    <a href="/exercises/logic-and-ai/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-chevron-left"></i>
+    </a>
     
-    <li class="list-group-item list-group-item-action">
-      <a class="link-dark link-underline-light d-none d-sm-block" href="/exercises/logic-and-ai/"><i class="bi bi-people-fill"></i> Tutorial 1. Logic and AI </a>
-      <a class="link-dark link-underline-light d-block d-sm-none" href="/exercises/logic-and-ai/"><i class="bi bi-people-fill"></i> 3. Logic and AI </a>
-    </li>
+  </li>
+  <li class="nav-item">
+    <button class="btn btn-back-to-top">
+    <i class="bi bi-chevron-double-up"></i>
+  </button>
+  </li>
+  <li class="nav-item">
     
-    <li class="list-group-item list-group-item-action">
-      <a class="link-dark link-underline-light d-none d-sm-block" href="/exercises/valid-inference/"><i class="bi bi-people-fill"></i> Tutorial 2. Valid inference </a>
-      <a class="link-dark link-underline-light d-block d-sm-none" href="/exercises/valid-inference/"><i class="bi bi-people-fill"></i> 3. Valid inference </a>
-    </li>
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-chevron-right"></i>
+    </a>
     
-  </ul>
-</div>
+  </li>
+</ul>
+
 
 
     </main>
@@ -285,7 +453,8 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
       <script src="https://logicalmethods.ai/js/helpers.js"></script>
       <script src="https://logicalmethods.ai/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
       
-      
+<script src="https://logicalmethods.ai/js/exercises.js"></script>
+
     </footer>
   </body>
 </html>
