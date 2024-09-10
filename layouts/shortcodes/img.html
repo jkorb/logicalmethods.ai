@@ -1,6 +1,6 @@
 {{ $img := .Page.Resources.GetMatch (.Get "src") }}
 {{ if $img }}
-<img src="{{ $img.Permalink }}" class="{{ with .Get "class" }}{{ . }}{{ end }}" alt="{{ .Get "alt" }}" >
+<img src="{{ $img.Permalink }}" {{ with .Get "class" }}class="{{ . }}"{{ end }} {{ with .Get "width" }}width="{{ . }}"{{ end }} alt="{{ .Get "alt" }}" >
 {{ else }}
 <p>Image not found: {{ .Get "src" }}</p>
 {{ end }}
