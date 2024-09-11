@@ -30,7 +30,7 @@ We'll begin by discussing:
 + the [ideas](#ideas) of formal languages, and
 
 + the official [definition](#languages) via [alphabets](#alphabets) and
-[grammars](#grammars).
+[grammars](#grammar).
 
 Once this definition is sufficiently clear, we'll move to:
 
