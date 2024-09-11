@@ -112,6 +112,6 @@ Are all forms of "good" reasoning either deductive or inductive?
 
 Inductive logic in general is non-monotonic because new (premise) information can turn a valid inference into an invalid inference. But what if we know something about _how_ a new piece of information _relates_ to our old premises? Some versions of inductive logic support 'limited' versions of monotonicity based on situations where new information (the '$B$' premises in these examples) comes from the right place. Do you think these limited forms of monotonicity are correct? Explain your answer.
 
-a) Cautious Monotonicity: If $A \mid\approx B$ and $A \mid\approx C$, then $ A\land B \mid\approx C $
+a) Cautious Monotonicity: If $A \mid\approx C$ and $A \mid\approx B$, then $ A\land B \mid\approx C $
 
-b) Rational Monotonicity: If $A \mid\approx B$ and not $A \mid\approx \neg C$, then $ A\land B \mid\approx C $
+b) Rational Monotonicity: If $A \mid\approx C$ and not $A \mid\approx \neg B$, then $ A\land B \mid\approx C $
