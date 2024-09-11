@@ -301,7 +301,7 @@ their premises to their conclusion.</p>
 </h3>
 <hr>
 
-<p>To test whether an infernece is valid, we ask if the conclusion is true <em>when</em>
+<p>To test whether an inference is valid, we ask if the conclusion is true <em>when</em>
 the premises are true. This is a <strong>hypothetical</strong> question. Answering this
 question does not require us to know that the premises really <em>are</em> true. In
 fact, we can make a stronger point: it is possible to have an inference that is
@@ -412,16 +412,13 @@ relevance. Therefore, the next generation of GPT models will further improve in
 this respect.</p>
 </li>
 </ol>
-<p>In inductive logic, we use the symbol
-\[\mid\approx\]
-to stand for an
-inductively valid inference, writing $$P_1, P_2, \dots\mid\approx C$$ to
-say that the inference from premises $P_1, P_2, \mathellipsis$ to conclusion $C$
-is inductively valid. To say that an inference is inductively <em>strong</em>, we write
-a $!$ on top, like so: $$\stackrel{!}{\mid\approx}$$.
-So if we have a inductively strong inference going from premises $P_1, P_2,
-\dots$ to conclusion $C$ we can abbreviate this with symbols:
-$$P_1, P_2, \dots\stackrel{!}{\mid\approx} C.$$</p>
+<p>In inductive logic, we use the symbol $$\mid\approx$$ to stand for an
+inductively valid inference, writing $$P_1, P_2, \dots\mid\approx C$$ to say
+that the inference from premises $P_1, P_2, \mathellipsis$ to conclusion $C$ is
+inductively valid. To say that an inference is inductively <em>strong</em>, we write a
+$!$ on top, like so: $$\stackrel{!}{\mid\approx}$$. So if we have a inductively
+strong inference going from premises $P_1, P_2, \dots$ to conclusion $C$ we can
+abbreviate this with symbols: $$P_1, P_2, \dots\stackrel{!}{\mid\approx} C.$$</p>
 <h2 id="formalization">Formalization<button class="btn btn-back-to-top">
     
     <i class="bi bi-chevron-double-up"></i>
@@ -853,11 +850,11 @@ sentence $A$, the notation $[A]$ denotes the set of all the possible reasoning
 scenarios where $A$ is true. Similarly, we have the same definition of logical
 conjunction $$[A\land B] = [A]\cap[B]$$ within this background set of all
 models.</p>
-<p>In this setting, we introduce the probabilities as numeric measures of how likely it is
-that a given sentence is actually true.<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> For a sentence $A$, we
-write $$Pr(A)$$ to denote this measure. You can think of $Pr(A)$ as a
-measure of how likely it is that the way things actually are is among the
-possibilities $[A]$ according to which $A$ is true.</p>
+<p>In this setting, we introduce the probabilities as numeric measures of how
+likely it is that a given sentence is actually true.<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> For a
+sentence $A$, we write $$Pr(A)$$ to denote this measure. You can think of
+$Pr(A)$ as a measure of how likely it is that the way things actually are is
+among the possibilities $[A]$ according to which $A$ is true.</p>
 <p>There are a number of laws that probabilities satisfy. For example, the value of
 $Pr(A)$ must always be between $0$ and $1$ (inclusive): $$0\leq Pr(A)\leq
 1.$$ We&rsquo;ll study these laws later in the book, when we return to probabilities
@@ -868,7 +865,7 @@ scenarios that are $A$-scenarios. So, if $A$ is the sentence &ldquo;Robots can f
 $Pr(A)$ measures how many scenarios of all scenarios are ones where robots can
 fly. Assuming that all scenarios are equally likely, then if robots can fly in
 half of all scenarios, then $Pr(A)=0.5$. And if robots can fly in
-$\frac{2}{3}$ of all possible scenarios, then $Pr(A)=0.75$. And so on.</p>
+$\frac{3}{4}$ of all possible scenarios, then $Pr(A)=0.75$. And so on.</p>
 <p>Now that we have gotten some idea of probabilities in this way, we can talk
 about <strong>conditional probabilities</strong>: how likely it is that something&rsquo;s true
 <em>assuming that</em> something else is true. Remember from <a href="#hypothetically">above</a>
@@ -980,7 +977,8 @@ Intelligence</em>, 13: 27–39.</a></li>
 influenced by the work of Rudolf Carnap:</p>
 <ul>
 <li><a href="https://doi.org/10.1086/286851"
-  target="_blank">R. Carnap. &ldquo;On inductive logic&rdquo;, <em>Philosophy of Science</em> 12(2): 72-97.</a></li>
+  target="_blank">R. Carnap. &ldquo;On inductive logic&rdquo;, <em>Philosophy of Science</em> 12(2):
+72-97.</a></li>
 </ul>
 <p>Influential mathematical treatment of inductive validity:</p>
 <ul>
@@ -1007,9 +1005,9 @@ a single premise sentence. It is not a full definition.&#160;<a href="#fnref:2" 
 <li id="fn:3">
 <p>In probability theory, there are many different ways of
 thinking about what probabilities &ldquo;really are&rdquo;: subjective estimates, objective
-chances, frequencies, or something else altogether. Here we avoid this question and treat
-probabilities intuitively. We return to the &ldquo;nature&rdquo; of probabilities later in
-the book.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+chances, frequencies, or something else altogether. Here we avoid this question
+and treat probabilities intuitively. We return to the &ldquo;nature&rdquo; of probabilities
+later in the book.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </div>
