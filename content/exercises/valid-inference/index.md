@@ -15,11 +15,11 @@ Give an example of one for each of the following:
 
 A deductively valid inference
 
-## b) 
+## b)
 
 A deductively invalid inference
 
-## c) 
+## c)
 
 An inductively valid inference
 
@@ -49,35 +49,35 @@ Which of the following is possible? Make your answer clear and precise, by
 showing how the definition of deductive validity and the definition of inductive
 validity/strength relate to these questions.
 
-## a) 
+## a)
 
 Can an inference be deductively valid and have a false premise?
 
-## b) 
+## b)
 
 Can an inference be deductively valid and have a false conclusion?
 
-## c) 
+## c)
 
 Can an inference be deductively valid, have true premises, and have a false conclusion?
 
-## d) 
+## d)
 
 Can an inference be deductively valid but inductively invalid?
 
-## e) 
+## e)
 
 Can an inference be inductively valid and have a false premise?
 
-## f) 
+## f)
 
 Can an inference be inductively valid and have a false conclusion?
 
-## g) 
+## g)
 
 Can an inference be inductively valid, have true premises, and have a false conclusion?
 
-## h) 
+## h)
 
 Can an inference be inductively valid but deductively invalid?
 
@@ -85,7 +85,7 @@ Can an inference be inductively valid but deductively invalid?
 
 Explain the following facts:
 
-## a) 
+## a)
 
 The subset relation, defined in {{< chapter_ref chapter="valid-inference" id="semantic-methods-for-deduction" >}}
 2.3.1 {{< /chapter_ref >}}, has the following property:
@@ -110,8 +110,16 @@ Are all forms of "good" reasoning either deductive or inductive?
 
 # Discussion
 
-Inductive logic in general is non-monotonic because new (premise) information can turn a valid inference into an invalid inference. But what if we know something about _how_ a new piece of information _relates_ to our old premises? Some versions of inductive logic support 'limited' versions of monotonicity based on situations where new information (the '$B$' premises in these examples) comes from the right place. Do you think these limited forms of monotonicity are correct? Explain your answer.
+Inductive logic in general is non-monotonic because new (premise) information
+can turn a valid inference into an invalid inference. But what if we know
+something about _how_ a new piece of information _relates_ to our old premises?
+Some versions of inductive logic support 'limited' versions of monotonicity
+based on situations where new information (the '$B$' premises in these examples)
+comes from the right place. Do you think these limited forms of monotonicity are
+correct? Explain your answer.
 
-a) Cautious Monotonicity: If $A \mid\approx C$ and $A \mid\approx B$, then $ A\land B \mid\approx C $
+a) Cautious Monotonicity: If $A \mid\approx C$ and $A \mid\approx B$, then $
+A\land B \mid\approx C $
 
-b) Rational Monotonicity: If $A \mid\approx C$ and not $A \mid\approx \neg B$, then $ A\land B \mid\approx C $
+b) Rational Monotonicity: If $A \mid\approx C$ and not $A \mid\approx \neg B$,
+then $ A\land B \mid\approx C $
