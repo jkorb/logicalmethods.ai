@@ -2,7 +2,7 @@
 title: Formal languages
 author: Johannes Korbmacher
 date: 09/09/2024
-last_edited: 09/09/2024
+last_edited: 11/09/2024
 weight: 3
 resources:
   - src: img/inferences.png
@@ -30,7 +30,7 @@ We'll begin by discussing:
 + the [ideas](#ideas) of formal languages, and
 
 + the official [definition](#languages) via [alphabets](#alphabets) and
-[grammars](#grammars).
+[grammars](#grammar).
 
 Once this definition is sufficiently clear, we'll move to:
 
@@ -504,17 +504,30 @@ to say that Data has a friend.
 
 Here are some more suggestions on how to formalize:
 
-  ----------------------------------- ------------ -------------------------------
-  Not everybody handsome is smart      $\leadsto$  $\neg\forall x(H(x)\to S(x))$
+  ------------------------------------------- ----------- -------------------------------
+  Not everybody handsome is smart             $\leadsto$  $\neg\forall x(H(x)\to S(x))$
 
-  Everybody who's smart is handsome    $\leadsto$  $\forall x(S(x)\to H(x))$
+  Everybody who's smart is handsome           $\leadsto$  $\forall x(S(x)\to H(x))$
 
-  A person who's smart is handsome     $\leadsto$  $\forall x(S(x)\to H(x))$
+  A person who's smart is handsome            $\leadsto$  $\forall x(S(x)\to H(x))$
 
-  Someone who's smart is handsome      $\leadsto$  $\forall x(S(x)\to H(x))$
+  Someone who's smart is handsome             $\leadsto$  $\forall x(S(x)\to H(x))$
 
-  Everybody's smart and handsome       $\leadsto$  $\forall x(S(x)\land H(x))$
-  ----------------------------------- ------------ -------------------------------
+  Everybody's smart and handsome              $\leadsto$  $\forall x(S(x)\land H(x))$
+
+  Somebody who's smart exists                 $\leadsto$  $\exists x S(x)$
+
+  There's somebody who's not smart            $\leadsto$  $\exists x\neg S(x)$
+
+  Somebody's smart and somebody's handsome    $\leadsto$  $\exists xS(x)\land \exists xH(x)$
+
+  Somebody's smart and handsome               $\leadsto$  $\exists x(S(x)\land H(x))$
+
+  Nobody's both smart and handsome            $\leadsto$  $\neg\exists x(S(x)\land H(x))$
+
+  Somebody, who's smart, is handsome          $\leadsto$  $\exists x(S(x)\land H(x))$
+
+  ------------------------------------------- ----------- -------------------------------
 
 Indeterminate terms, like pronouns, indexicals, etc., are formalized using variables. Only when clearly the same thing is meant, use the same variable, if different things could be meant, use different variables:
 
