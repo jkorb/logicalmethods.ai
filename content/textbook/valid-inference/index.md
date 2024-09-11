@@ -71,7 +71,7 @@ their premises to their conclusion.
 
 ### Hypothetically
 
-To test whether an infernece is valid, we ask if the conclusion is true _when_
+To test whether an inference is valid, we ask if the conclusion is true _when_
 the premises are true. This is a **hypothetical** question. Answering this
 question does not require us to know that the premises really _are_ true. In
 fact, we can make a stronger point: it is possible to have an inference that is
