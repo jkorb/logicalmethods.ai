@@ -256,7 +256,7 @@ formal languages in AI and beyond.</p>
 </li>
 <li>
 <p>the official <a href="#languages">definition</a> via <a href="#alphabets">alphabets</a> and
-<a href="#grammars">grammars</a>.</p>
+<a href="#grammar">grammars</a>.</p>
 </li>
 </ul>
 <p>Once this definition is sufficiently clear, we&rsquo;ll move to:</p>
@@ -823,11 +823,17 @@ for data in our language, we can write:</p>
 <p>to say that Data has a friend.</p>
 <p>Here are some more suggestions on how to formalize:</p>
 <hr>
-<p>Not everybody handsome is smart      $\leadsto$  $\neg\forall x(H(x)\to S(x))$</p>
-<p>Everybody who&rsquo;s smart is handsome    $\leadsto$  $\forall x(S(x)\to H(x))$</p>
-<p>A person who&rsquo;s smart is handsome     $\leadsto$  $\forall x(S(x)\to H(x))$</p>
-<p>Someone who&rsquo;s smart is handsome      $\leadsto$  $\forall x(S(x)\to H(x))$</p>
-<p>Everybody&rsquo;s smart and handsome       $\leadsto$  $\forall x(S(x)\land H(x))$</p>
+<p>Not everybody handsome is smart             $\leadsto$  $\neg\forall x(H(x)\to S(x))$</p>
+<p>Everybody who&rsquo;s smart is handsome           $\leadsto$  $\forall x(S(x)\to H(x))$</p>
+<p>A person who&rsquo;s smart is handsome            $\leadsto$  $\forall x(S(x)\to H(x))$</p>
+<p>Someone who&rsquo;s smart is handsome             $\leadsto$  $\forall x(S(x)\to H(x))$</p>
+<p>Everybody&rsquo;s smart and handsome              $\leadsto$  $\forall x(S(x)\land H(x))$</p>
+<p>Somebody who&rsquo;s smart exists                 $\leadsto$  $\exists x S(x)$</p>
+<p>There&rsquo;s somebody who&rsquo;s not smart            $\leadsto$  $\exists x\neg S(x)$</p>
+<p>Somebody&rsquo;s smart and somebody&rsquo;s handsome    $\leadsto$  $\exists xS(x)\land \exists xH(x)$</p>
+<p>Somebody&rsquo;s smart and handsome               $\leadsto$  $\exists x(S(x)\land H(x))$</p>
+<p>Nobody&rsquo;s both smart and handsome            $\leadsto$  $\neg\exists x(S(x)\land H(x))$</p>
+<p>Somebody, who&rsquo;s smart, is handsome          $\leadsto$  $\exists x(S(x)\land H(x))$</p>
 <hr>
 <p>Indeterminate terms, like pronouns, indexicals, etc., are formalized using variables. Only when clearly the same thing is meant, use the same variable, if different things could be meant, use different variables:</p>
 <hr>
@@ -1084,7 +1090,7 @@ language.</a></li>
 </li>
 </ol>
 </div>
- <p><em>Last edited: </em>09/09/2024</p>
+ <p><em>Last edited: </em>11/09/2024</p>
 </div>
 
 

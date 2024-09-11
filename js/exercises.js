@@ -93,5 +93,6 @@ function checkPassword(solutionId,tutorialId) {
 
 const passwords = {
   "exc-laa": "logicROCKS!",
+  "exc-val": "AIdoestoo!",
   // Add more solutionId: password pairs here
 };

@@ -317,8 +317,19 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
 <div id="d" class=" homework"><h6 class=" homework">d)</h6><p>An inductively invalid inference</p>
 
 </div>
-<div id="monotonicity" ><h5 class="">
+<div id="monotonicity" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Monotonicity
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="monotonicitySolution"
+        onclick="showPasswordModal('monotonicitySolution', 'exc-val')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5>
 </div>
@@ -329,15 +340,52 @@ additional premises doesn’t cancel the validity of the inference.</p>
 <div id="b-induction" class=" homework"><h6 class=" homework">b) Induction</h6><p>Why does this argument fail for inductive logic?</p>
 
 </div>
-<div id="validity" class=" homework"><h5 class="homework">
+<div id="monotonicitySolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong></p>
+<p>Deductive validity is necessary. Suppose $A\vDash C$. Necessarily, if $A$ is
+true, $C$ is true. If we consider any possibility where $A\land B$ is true, it
+also makes $A$ true, which means that is has to make $C$ true (based on what we
+just observed). So $A\land B\vDash C$.</p>
+<p><strong>b)</strong></p>
+<p>Inductive validity isn&rsquo;t necessary. $A\mid!\approx C$ only tells us that when
+$A$ is true, <em>it is likely</em> that $C$ is true. This does not guarantee that when
+$A\land B$ is true, <em>it is equally likely</em> that $C$ is true. Sometimes new
+information $B$ lowers or cancels out the probability of $C$.</p>
+
+</div>
+<div id="validity" class=" homework solved"><h5 class="homework solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Validity
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="validitySolution"
+        onclick="showPasswordModal('validitySolution', 'exc-val')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>For every invalid inference, it’s possible to add one or more premises to make it
 valid. Why?</p>
 
 </div>
-<div id="truth-preservation" ><h5 class="">
+<div id="validitySolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>If you have an invalid inference $P_1,\ldots, P_n\nvDash C$ you can just add $C$ on the premise side and you get a valid inference $C,P_1,\ldots, P_n\vDash C$.</p>
+
+</div>
+<div id="truth-preservation" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Truth-Preservation
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="truth-preservationSolution"
+        onclick="showPasswordModal('truth-preservationSolution', 'exc-val')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>Which of the following is possible? Make your answer clear and precise, by
 showing how the definition of deductive validity and the definition of inductive
@@ -368,8 +416,41 @@ validity/strength relate to these questions.</p>
 <div id="h" ><h6 class="">h)</h6><p>Can an inference be inductively valid but deductively invalid?</p>
 
 </div>
-<div id="semantic-tools" ><h5 class="">
+<div id="truth-preservationSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong></p>
+<p>Yes. Just fill in any valid logical form with a false premise. Maddy the pig
+example.</p>
+<p><strong>b)</strong></p>
+<p>Yes. Just fill in any valid logical form with a false conclusion.</p>
+<p><strong>c)</strong></p>
+<p>No. That contradicts the definition of validity.</p>
+<p><strong>d)</strong></p>
+<p>Yes. For example, any strong, statistical reasoning.</p>
+<p><strong>e)</strong> z Yes. Take any strong conditional probability with a false condition.
+The moon is made of cheese, so its probably delicious.</p>
+<p><strong>f)</strong></p>
+<p>Yes. Take any strong conditional probability with a false outcome.</p>
+<p><strong>g)</strong></p>
+<p>Yes. Because inductive validity is not necessary.</p>
+<p><strong>h)</strong></p>
+<p>No. If an inference preserves truth always, then it preserves truth most of the
+time. You can illustrate with standard &lsquo;definitional&rsquo; rules for the logical
+connectives, which are easily seen to be inductively valid. $A\land B\vDash A$
+and $A\vDash A\lor B$ etc.</p>
+
+</div>
+<div id="semantic-tools" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Semantic tools
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="semantic-toolsSolution"
+        onclick="showPasswordModal('semantic-toolsSolution', 'exc-val')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>Explain the following facts:</p>
 
@@ -398,20 +479,87 @@ part of those two sets. We have that $X\cap Y\subseteq X$ and $X\cap Y\subseteq
 Y$.</p>
 
 </div>
-<div id="research" ><h5 class="">
+<div id="semantic-toolsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong></p>
+<p>$X\subseteq Y$ means all elements of set $X$ are elements of set $Y$.
+$Y\subseteq Z$ means all elements of set $Y$ are elements of set $Z$. Then it
+must be true that all elements of set $X$ are elements of set $Z$.</p>
+<p><strong>b)</strong></p>
+<p>The intersection $X\cap Y$ is the overlapping part of $X$ and $Y$. So the
+elements of $X\cap Y$ have to be elements of $X$. That means $X\cap Y\subseteq
+X$. And the elements of $X\cap Y$ have to be elements of $Y$. That means $X\cap
+Y\subseteq Y$.</p>
+
+</div>
+<div id="research" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Research
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="researchSolution"
+        onclick="showPasswordModal('researchSolution', 'exc-val')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>Note: These questions <em>require</em> you to research the answer yourself using reliable academic sources. You need to reference your sources!</p>
 <p><strong>Reasoning</strong></p>
 <p>Are all forms of &ldquo;good&rdquo; reasoning either deductive or inductive?</p>
 
 </div>
-<div id="discussion" ><h5 class="">
+<div id="researchSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>Try to give positive feedback on any interesting answer that shows some work.
+Here is one possible answer.</p>
+<p>We defined induction by probablistic support. That is pretty much the broadest
+notion of truth-preservation we can define. If truth is all that matters then
+all good reasoning would have to be deductive or inductive. But there are
+theories of reasoning that say that some reasoning methods are good for other
+reasons apart from tracking truth. For example, some people think that
+<em>inference to the best explanation</em> is a good reasoning strategy, but the notion
+of &ldquo;best&rdquo; explanation depends on contingent scientific values of a community.</p>
+
+</div>
+<div id="discussion" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Discussion
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="discussionSolution"
+        onclick="showPasswordModal('discussionSolution', 'exc-val')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
-</h5><p>Inductive logic in general is non-monotonic because new (premise) information can turn a valid inference into an invalid inference. But what if we know something about <em>how</em> a new piece of information <em>relates</em> to our old premises? Some versions of inductive logic support &rsquo;limited&rsquo; versions of monotonicity based on situations where new information (the &lsquo;$B$&rsquo; premises in these examples) comes from the right place. Do you think these limited forms of monotonicity are correct? Explain your answer.</p>
-<p>a) Cautious Monotonicity: If $A \mid\approx C$ and $A \mid\approx B$, then $ A\land B \mid\approx C $</p>
-<p>b) Rational Monotonicity: If $A \mid\approx C$ and not $A \mid\approx \neg B$, then $ A\land B \mid\approx C $</p>
+</h5><p>Inductive logic in general is non-monotonic because new (premise) information
+can turn a valid inference into an invalid inference. But what if we know
+something about <em>how</em> a new piece of information <em>relates</em> to our old premises?
+Some versions of inductive logic support &rsquo;limited&rsquo; versions of monotonicity
+based on situations where new information (the &lsquo;$B$&rsquo; premises in these examples)
+comes from the right place. Do you think these limited forms of monotonicity are
+correct? Explain your answer.</p>
+<p>a) Cautious Monotonicity: If $A \mid\approx C$ and $A \mid\approx B$, then $
+A\land B \mid\approx C $</p>
+<p>b) Rational Monotonicity: If $A \mid\approx C$ and not $A \mid\approx \neg B$,
+then $ A\land B \mid\approx C $</p>
+
+</div>
+<div id="discussionSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>There are theoretical assumptions behind the concept of inductive support. So
+the student can try to explain some assumptions that <em>verify</em> these rules. They
+can also try to explain why the rules <em>fail</em> for standard conditional
+probabilities.</p>
+<p>Here an example for <strong>Cautious Monotonicity</strong>. You have a population of toys in
+different shapes: monsters, aliens, dinosaurs. Every toy is red, blue, green,
+purple, or yellow. Almost all toys are yellow. The few green toys are all
+dinosaurs, and the few red toys are all dinosaurs. There are a lot of yellow
+dinosaurs too. With $A=$ dinosaur, $B=$ red, $C=$ green, we could have
+probabilities like this.</p>
+<p>$P(B|A)=0.2$ greater than $P(B)=0.1$</p>
+<p>$P(C|A)=0.2$ greater than $P(C)=0.1$</p>
+<p>$P(C|A\land B)=0$ becuase no green toy is a red dinosaur toy.</p>
 
   </div>
 </div>
