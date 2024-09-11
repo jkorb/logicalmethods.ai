@@ -114,4 +114,4 @@ Inductive logic in general is non-monotonic because new (premise) information ca
 
 a) Cautious Monotonicity: If $A \mid\approx B$ and $A \mid\approx C$, then $ A\land B \mid\approx C $
 
-b) Rational Monotonicity: If $A \mid\approx B$ and not $A \mid\approx \neg C$, then $ A\land B \mid\approx C $
+b) Rational Monotonicity: If $A \mid\approx C$ and not $A \mid\approx \neg B$, then $ A\land B \mid\approx C $
