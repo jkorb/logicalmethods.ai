@@ -1,0 +1,1132 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <title>logicalmethods.ai &ndash; Formal languages </title>
+    <link rel="icon" type="image/x-icon" href="https://logicalmethods.ai/favicon.ico"></link>
+    <link href="https://logicalmethods.ai/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"></link>
+    <link rel="stylesheet" href="https://logicalmethods.ai/icons/font/bootstrap-icons.min.css"></link>
+    <link rel="stylesheet" href="https://logicalmethods.ai/css/layout.css"></link>
+    <link href="https://logicalmethods.ai/css/textbook.css" rel="stylesheet"></link>
+    <style>
+      
+    :root {
+      --chapter: "3";
+    }
+
+    </style>
+    
+      <link rel="stylesheet" href="https://logicalmethods.ai/katex/katex.min.css">
+<script defer src="https://logicalmethods.ai/katex/katex.min.js"></script>
+<script defer src="https://logicalmethods.ai/katex/contrib/auto-render.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},     
+        {left: '$', right: '$', display: false},     
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '\\(', right: '\\)', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
+    
+  </head>
+  <body class="bg-black d-flex flex-column m-0 p-0">
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas-nav" aria-labelledby="offcanvas-navLabel" data-bs-theme="dark">
+  <div class="offcanvas-header">
+    <div class="h5 offcanvas-title" id="offcanvas-navLabel">
+      Browse course
+    </div>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  
+  <div class="offcanvas-body">
+    <ul class="navbar-nav"><li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link fw-bold active" href="/textbook/"><i class="bi bi-book"></i> &nbsp;&nbsp; Textbook</a>
+          </div>
+          <button 
+            class="btn btn-sm btn-dark" 
+            href="/textbook/"
+            id="navbarSectiontxt-home" data-bs-toggle="collapse"
+            data-bs-target="#collapsetxt-home"  
+            aria-expanded="true"
+            aria-controls="collapsetxt-home">
+            <i class="bi bi-caret-left-fill toggle-icon"></i>
+          </button>
+        </div>
+        <div class="collapse show" id="collapsetxt-home">
+          <ul class="list-unstyled ms-3">
+            <li>
+              <a class="dropdown-item " href="/textbook/logic-and-ai/">1. Logic and AI</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/textbook/valid-inference/">2. Valid Inference</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item fw-bold active" href="/textbook/formal-languages/">3. Formal languages</a>
+            </li>
+            </ul>
+        </div>
+        
+      </li>
+      <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/slides/"><i class="bi bi-rocket-takeoff-fill"></i> &nbsp;&nbsp; Slides</a>
+          </div>
+          <button 
+            class="btn btn-sm btn-dark" 
+            href="/slides/"
+            id="navbarSectionsli-home" data-bs-toggle="collapse"
+            data-bs-target="#collapsesli-home"  
+            aria-expanded="aria-expanded=false"
+            aria-controls="collapsesli-home">
+            <i class="bi bi-caret-left-fill toggle-icon"></i>
+          </button>
+        </div>
+        <div class="collapse " id="collapsesli-home">
+          <ul class="list-unstyled ms-3">
+            <li>
+              <a class="dropdown-item " href="/slides/logic-and-ai/">1. Logic and AI</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/slides/valid-inference/">2. Valid inference</a>
+            </li>
+            </ul>
+        </div>
+        
+      </li>
+      <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/exercises/"><i class="bi-gear-fill"></i> &nbsp;&nbsp; Exercises</a>
+          </div>
+          <button 
+            class="btn btn-sm btn-dark" 
+            href="/exercises/"
+            id="navbarSectionexe-home" data-bs-toggle="collapse"
+            data-bs-target="#collapseexe-home"  
+            aria-expanded="aria-expanded=false"
+            aria-controls="collapseexe-home">
+            <i class="bi bi-caret-left-fill toggle-icon"></i>
+          </button>
+        </div>
+        <div class="collapse " id="collapseexe-home">
+          <ul class="list-unstyled ms-3">
+            <li>
+              <a class="dropdown-item " href="/exercises/logic-and-ai/">1. Logic and AI</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/exercises/valid-inference/">2. Valid inference</a>
+            </li>
+            </ul>
+        </div>
+        
+      </li>
+      <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/quizzes/"><i class="bi bi-ui-checks-grid"></i> &nbsp;&nbsp; Quizzes</a>
+          </div>
+          <button 
+            class="btn btn-sm btn-dark" 
+            href="/quizzes/"
+            id="navbarSectionqui-home" data-bs-toggle="collapse"
+            data-bs-target="#collapsequi-home"  
+            aria-expanded="aria-expanded=false"
+            aria-controls="collapsequi-home">
+            <i class="bi bi-caret-left-fill toggle-icon"></i>
+          </button>
+        </div>
+        <div class="collapse " id="collapsequi-home">
+          <ul class="list-unstyled ms-3">
+            <li>
+              <a class="dropdown-item " href="/quizzes/logic-and-ai/">1. Logic and AI</a>
+            </li>
+            </ul>
+        </div>
+        
+      </li>
+      <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/about/"><i class="bi-file-person-fill"></i> &nbsp;&nbsp; About</a>
+          </div>
+      </li>
+      <hr>
+      
+    </ul>
+  </div>
+</div>
+
+    <header class="align-self-center d-flex flex-column m-0 mb-md-1 p-0" data-bs-theme="dark">
+      <nav class="navbar bg-dark shadow" data-bs-theme="dark" aria-label="header-navbar">
+  <div class="container-sm align-self-center px-3">
+    <a class="navbar-brand fs-6" href="https://logicalmethods.ai/"><span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+<i class="bi bi-caret-right-fill"></i>logicalmethods.ai</a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-nav" aria-controls="offcanvas-nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+
+      
+      
+    </header>
+    
+    <main class="align-self-center d-flex flex-column flex-fill bg-light m-md-1 p-0" data-bs-theme="light">
+      <ul class="navbar-nav flex-row justify-content-between mt-2">
+  
+  <li class="nav-item">
+    <a href="/textbook/valid-inference/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-chevron-left"></i>
+    </a>
+    
+  </li>
+  <li class="nav-item">
+    <a href="/textbook/" class="btn " tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-house-up"></i>
+    </a>
+  </li>
+  <li class="nav-item">
+    
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-chevron-right"></i>
+    </a>
+    
+  </li>
+</ul>
+<div class="container chapter">
+  <p>By: <em>Johannes Korbmacher</em></p><h1 id="formal-languages">Formal languages<button class="btn btn-back-to-top">
+    
+  </button>
+</h1>
+<hr>
+
+<p>In 
+
+
+<a href="https://logicalmethods.ai/textbook/logic-and-ai//#logical-systems"
+   
+   
+   
+   
+   
+   >
+Chapter 1. Logic and AI</a>
+
+, we introduced formal languages as a
+<strong>mathematical model of language</strong>. In 
+
+
+<a href="https://logicalmethods.ai/textbook/valid-inference//#formalization"
+   
+   
+   
+   
+   
+   >
+Chapter 2. Valid inference</a>
+
+, we further developed the idea of
+formal languages as a model of <strong>logical form</strong>.</p>
+<p>In this chapter, you&rsquo;ll learn the nitty-gritty of how formal languages are
+defined mathematically, and we&rsquo;ll look at some of the <em>many</em> applications of
+formal languages in AI and beyond.</p>
+<p>We&rsquo;ll begin by discussing:</p>
+<ul>
+<li>
+<p>the <a href="#ideas">ideas</a> of formal languages, and</p>
+</li>
+<li>
+<p>the official <a href="#languages">definition</a> via <a href="#alphabets">alphabets</a> and
+<a href="#grammars">grammars</a>.</p>
+</li>
+</ul>
+<p>Once this definition is sufficiently clear, we&rsquo;ll move to:</p>
+<ul>
+<li>some <a href="#examples">examples</a></li>
+<li>and the idea reading or <a href="#parsing">parsing</a> a formal language.</li>
+</ul>
+<p>We conclude with some <a href="#applications">applications</a>.</p>
+<h2 id="ideas">Ideas<button class="btn btn-back-to-top">
+    
+    <i class="bi bi-chevron-double-up"></i>
+    
+  </button>
+</h2>
+<hr>
+
+<p>Like much of logic, formal languages have a <em>long</em> history.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> The use of
+abstract sentence letters as in $$A\text{ and }B$$ to express logical form can
+already be found in <a href="https://en.wikipedia.org/wiki/Organon"
+  target="_blank">Aristotle&rsquo;s
+<em>Organon</em></a>. Leibniz&rsquo;s <a href="https://en.wikipedia.org/wiki/Characteristica_universalis"
+  target="_blank">characteristica
+universalis</a> is
+perhaps the first attempt at defining a formal language in the modern sense. In
+mathematics, the rise of formal languages is associated with rise of logical
+rigor in the foundations of mathematics, culminating in
+<a href="https://en.wikipedia.org/wiki/Logicism"
+  target="_blank">logicist</a> projects, such as Gottlob
+Frege&rsquo;s <a href="https://en.wikipedia.org/wiki/Begriffsschrift"
+  target="_blank">Begriffsschrift</a>.</p>
+<p>In logical theory, the main role of formal languages is to provide a model of
+<strong>logical form</strong>. Remember from 
+
+
+<a href="https://logicalmethods.ai/textbook/valid-inference//#formalization"
+   
+   
+   
+   
+   
+   >
+Chapter 2. Valid inference</a>
+
+ that validity doesn&rsquo;t depend on
+the concrete words or sentences involved. <em>All</em> of the below inferences are
+valid:</p>
+<ol>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/BERT_%28language_model%29"
+  target="_blank">BERT</a> is either my
+favorite dog or an LLM, and BERT not an LLM. So, BART is my favorite dog.</p>
+</li>
+<li>
+<p>Given that Ada is either on the Philosopher’s Walk or in the study, and she’s
+not in the study, she therefore must be on the Philosopher’s Walk.</p>
+</li>
+<li>
+<p>Either Johannes or <a href="https://en.wikipedia.org/wiki/Data_%28Star_Trek%29"
+  target="_blank">Data</a> is
+teaching this class and Data is not teaching it. So, Johannes is teaching the
+class.</p>
+</li>
+</ol>
+<p>It&rsquo;s easy to recognize the pattern and generate more examples of valid
+inferences like this. If we let $A$ and $B$ be arbitrary sentences, then the
+pattern is $$A\text{ or }B, \text{ not B}\vDash A.$$
+This is the logical form of inferences 1.-3., which, by the way, is known as
+<a href="https://en.wikipedia.org/wiki/Disjunctive_syllogism"
+  target="_blank">disjunctive syllogism</a>.</p>
+<p>From this perspective, formal languages are the result of introducing
+<em>placeholders</em> for the logically irrelevant parts of language and special
+symbols, so-called <strong>logical constants</strong> for the logically relevant parts of
+language.</p>
+<p>In the case of disjunctive syllogism, for example, the relevant formal language
+will use so-called <strong>sentence letters</strong> ($p,q,r,\dots$) to stand for arbitrary
+sentences, and <strong>propositional connectives</strong> for the logically relevant
+<a href="https://en.wikipedia.org/wiki/Conjunction_%28grammar%29"
+  target="_blank">grammatical conjunctions</a>
+($\neg$ for &ldquo;not&rdquo;, $\land$ for &ldquo;and&rdquo;, $\lor$ for &ldquo;or&rdquo;, $\to$ for &ldquo;if &hellip;, then
+&hellip;&rdquo;, &hellip;). We get something like this $$p\lor q,\neg p\vDash q$$ as the model
+for the shared logical form of inferences 1.-3. The resulting <a href="/textbook/logic-and-ai/#logical-systems">logical
+system</a>, known as <strong>propositional
+logic</strong>, then, investigates the validity of these <em>formal</em> inferences.</p>
+<p>Note that what&rsquo;s happening here is very much in line with the picture from 
+
+
+<a href="https://logicalmethods.ai/textbook/logic-and-ai//#logical-systems"
+   
+   
+   
+   
+   
+   >
+Chapter 1. Logic and AI</a>
+
+, where we described logical systems
+as <em>mathematical models</em> of valid inference. Mathematical models, remember, are
+characterized by abstraction, idealization, and assumptions. Here it is easy to
+see, for example, where the abstraction lies: we&rsquo;re abstracting away from
+logically irrelevant features of language, such as which concrete sentence is
+involved. A good example of idealization is that we&rsquo;re writing a single logical
+constant, e.g. $\land$, for the many different ways to express conjunction in
+natural language: &ldquo;and&rdquo;, &ldquo;as well as&rdquo;, &ldquo;together with&rdquo;, &hellip;</p>
+<p>From the perspective of logical theory, the main advantage of developing
+mathematical models of language and, more concretely, logical form is that it
+allows us to investigate valid inference with <a href="https://en.wikipedia.org/wiki/Rigour#Mathematics"
+  target="_blank"><strong>mathematical
+rigor</strong></a>, permitting us to
+establish (meta-)logical facts <em>beyond any reasonable doubt</em>. But in this
+course, we take a slightly more pragmatic perspective at formal languages as a
+<strong>logical tool</strong>.</p>
+<p>For us, formal languages <strong>solve a fundamental problem</strong> for AI: <em>How can we
+store knowledge in such a way that we can communicate it to computational models
+of intelligent behavior (computers)?</em> Formal languages solve this problem
+because given their deterministic, mathematical nature, it is relatively easy to
+teach them to computers. In fact, a fundamental insight from computer science is
+that <a href="https://en.wikipedia.org/wiki/Programming_language"
+  target="_blank">programming
+langauges</a> are, for all
+intents and purposes, formal languages.</p>
+<p>Moreover, for us as students of AI, it is important to note that <a href="https://en.wikipedia.org/wiki/Database#Database_languages"
+  target="_blank">database
+languages</a>, which are
+used to create and search databases, <a href="https://en.wikipedia.org/wiki/Ontology_language"
+  target="_blank">ontology
+languages</a>, which are used to
+create representations of factual knowledge of the world, and so on <em>all are</em>
+formal languages. In short, in knowledge representation, logical methods reign
+supreme.</p>
+<h2 id="languages">Languages<button class="btn btn-back-to-top">
+    
+    <i class="bi bi-chevron-double-up"></i>
+    
+  </button>
+</h2>
+<hr>
+
+<p>Before we can go ahead and give the mathematical definition of what a formal
+language is, we need to talk a bit more about <em>sets</em>. Formal languages <em>are</em>
+sets. so we need to know whats are set is before we can talk about formal
+languages.</p>
+<p>In 
+
+
+<a href="https://logicalmethods.ai/textbook/valid-inference//#semantic-methods-for-deduction"
+   
+   
+   
+   
+   
+   >
+2.3.1 </a>
+
+, you first encountered sets. We now delve a bit
+more into <strong>elementary set theory</strong>, the basic theory of sets.</p>
+<p>A <em>set</em> is a collection of objects, called its <strong>elements</strong> or <strong>members</strong>. The
+elements of a set are also said to <em>belong to</em> the set or to <em>be contained in</em>
+the set. A set may contain any kind of objects whatsoever: numbers, symbols,
+people, or even other sets. For $X$ a set and $x$ an object, we write $$x\in X$$
+to say that $x$ is an element of $X$ and we write $$x \notin X$$ to say that $x$
+is <em>not</em> an element of $X$. If we have many objects $x_1, \mathellipsis, x_n$,
+then we also write $x_1, \mathellipsis, x_n\in X$ to say that $x_1\in X$, and
+&hellip;, and $x_n\in X$.</p>
+<p>If the elements of a set are precisely $a_1, \mathellipsis, a_n$, then we can
+denote the set by $$\Set{a_1, \mathellipsis, a_n}.$$ This is called an
+<strong>extensional definition</strong> of the set. So, the set $\Set{1,a,
+\Set{\text{Robbie},0}}$, for example, contains precisely the number 1, the
+symbol $a$, and the set $\Set{\text{Robbie},0}$, which in turn contains Robbie and
+the number 0 as elements.</p>
+<p>If the elements of a set are precisely the objects satisfying condition $\Phi$,
+then we can denote the set by $$\Set{x:\Phi(x)}.$$ This is called a definition
+by <strong>set abstraction</strong>. For example, $\Set{x:x\text{ is a prime number}}$ is the
+set that contains all and only the prime numbers. So we have that $$3\in
+\Set{x:x\text{ is a prime number}}$$ but $$4\notin \Set{x:x\text{ is a prime
+number}}.$$</p>
+<p>Formal languages are sets of elements, which are called <strong>formulas</strong>. We usually
+denote formulas by uppercase letters $A,B,C,\dots$ or lowercase Greek letters
+$\phi,\psi,\theta,\dots$. In general, a formal language $\mathcal{L}$ is defined
+by two things: an <strong>alphabet</strong>, which contains the symbols the
+$\mathcal{L}$-formulas are built up from, and a <strong>grammar</strong>, which says <em>how</em>
+the formulas are to be constructed. Let&rsquo;s discuss the two in turn.</p>
+<h3 id="alphabets">Alphabets<button class="btn btn-back-to-top">
+    
+    <i class="bi bi-chevron-double-up"></i>
+    
+  </button>
+</h3>
+<hr>
+
+<p>Formulas are sequences of symbols, which are recruited from an alphabet. We
+usually write $\Sigma$ to denote the alphabet of a language.</p>
+<p>It&rsquo;s important to note that the alphabet can be <em>any</em> set. So, e.g.,</p>
+<p>$$\Sigma=\Set{0,1,2,3,4,5,6,7,8,9}$$</p>
+<p>is a perfectly fine alphabet. You can use it to define the language for all the
+numbers.</p>
+<p>There is not so much more to be said about the alphabet but it&rsquo;s useful to
+remark that in logical contexts, there are some special kinds of symbols that
+are usually used in the alphabets, which have special meanings.</p>
+<p>Here is a (non-exhaustive) list. Typically, we distinguish between:</p>
+<p><strong>Non-logical symbols</strong></p>
+<p>These symbols are typically the result of logical abstraction. But in knowledge
+representation contexts, they can also be the result of representing
+extra-logical information.</p>
+<ol>
+<li>
+<p><strong>Propositional variables</strong> also known as <strong>sentence letters</strong>.</p>
+<p>These stand for sentences, like &ldquo;it is raining&rdquo; or &ldquo;logic is awesome&rdquo;. When
+it doesn&rsquo;t matter which sentences we&rsquo;re talking about, they are often
+$p,q,r,\dots$. In knowledge representation (KR) contexts, they can also be
+mnemonic, like $RAIN$ or $AWESOME$.</p>
+</li>
+<li>
+<p><strong>Constants</strong>.</p>
+<p>These stand for proper names, like &ldquo;Alan&rdquo; or &ldquo;Ada&rdquo;. In logic, they are often
+$a,b,c,\dots$, but in KR-contexts, they can also be mnemonic, like $alan$ or
+$ada$. Sometimes, they are just ordinary numerals, like $0,1,2,\dots$ or
+$\pi$.</p>
+</li>
+<li>
+<p><strong>Function symbols</strong>.</p>
+<p>These stand for <a href="https://en.wikipedia.org/wiki/Function_%28mathematics%29"
+  target="_blank">functional
+expressions</a>, like &ldquo;+&rdquo;
+or &ldquo;the father of&rdquo;. In logic, often $f,g,h,\dots$ and in KR often mnemonic,
+like $FatherOf$. In mathematical logic, function symbols like $+,-,\cdot,
+\dots$ are common, too.</p>
+</li>
+<li>
+<p><strong>Predicates</strong>.</p>
+<p>They stand for &hellip;
+<a href="https://en.wikipedia.org/wiki/Predicate_%28grammar%29https://en.wikipedia.org/wiki/Predicate_%28grammar%29"
+  target="_blank">predicates</a>,
+which are expressions that define properties or relationships, like &ldquo;being
+blue&rdquo; or &ldquo;being greater than&rdquo;. In logic, usually $P,Q,R,\dots$ and in KR,
+also mnemonics, like $BLUE$ or $GREATER$.</p>
+<p>A special case is the identity symbol $=$, which some logicians treat as
+logical and some as non-logical. Otherwise, it works just like predicate.</p>
+</li>
+</ol>
+<p><strong>NB</strong>: Function symbols and predicates come with an <em>arity</em>, which is how many
+arguments they take. In syntax specifications, we often write this as a
+superscript. So, for example, the fact that $BLUE$ applies to one thing (it&rsquo;s
+<em>unary</em>) would be written $BLUE^1$.</p>
+<p><strong>Logical symbols</strong></p>
+<p>These are the result of idealization. Which logical symbols are available
+depends on the logical system. There symbols for <em>many</em> logically relevant
+concepts.</p>
+<ol start="6">
+<li>
+<p><strong>Variables</strong>.</p>
+<p>These stand for arbitrary but concrete individuals or properties. They have
+a mainly logical function in the context of quantification, which we&rsquo;ll
+cover more extensively later in the book.</p>
+<p>They are typically $x,y,z,\dots$ but sometimes $\alpha,\beta,\delta$, when
+we&rsquo;re talking about individuals. And they are typically $X,Y,Z,\dots$ when
+we&rsquo;re talking about variables for properties.</p>
+</li>
+<li>
+<p><strong>Sentential operators</strong>.</p>
+<p>These connect one or more sentences or phrases to form a new one. Typical
+examples are the <strong>classical propositional connectives</strong>:</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left"><strong>Symbol</strong></th>
+          <th style="text-align: left"> </th>
+          <th style="text-align: left"><strong>Meaning</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">$\neg,\sim$</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">not</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">$\land,\&amp;$</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">and</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">$\lor$</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">or</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">$\to,\Rightarrow,\supset$</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">if &hellip;, then &hellip;</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">$\leftrightarrow,\Leftrightarrow,\equiv$</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">iff</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">$\vdots$</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">$\vdots$</td>
+      </tr>
+  </tbody>
+</table>
+<p>But many other operators are known and/or can be introduced:</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left"><strong>Symbol</strong></th>
+          <th style="text-align: left">  </th>
+          <th style="text-align: left"><strong>Meaning</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">$\square,\lozenge$</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">necessity, possibility</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">$K,B$</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">knowledge, belief</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">$G,F,H,P$</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">past, future</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">$P,O$</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">permission, obligation</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">$!$</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">announcement</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">$?$</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">questions</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">$\vdots$</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">$\vdots$</td>
+      </tr>
+  </tbody>
+</table>
+<p>Unfortunately, we won&rsquo;t be able to cover most of these more advanced
+operators in detail.</p>
+<p>The operators listed above are standard <em>logical</em> operators. But note that
+in programming languages, for example, we often have mnemonic conditionals,
+like in the following <a href="https://en.wikipedia.org/wiki/Pseudocode"
+  target="_blank">pseudocode</a>, for example:</p>
+<pre tabindex="0"><code>  IF ... THEN
+      ...
+  ELSE
+      ...
+  END IF
+</code></pre><p>Similarly, programming languages often have idiosyncratic notation for the
+classical propositional connectives (which are, of course, easier to type on
+ordinary keyboards), such as $||$ for disjunction, $\&amp;\&amp;$ for conjunction
+in <a href="https://en.wikipedia.org/wiki/C_%28programming_language%29"
+  target="_blank">C</a>, or simply
+$\mathsf{and}$, $\mathsf{or}$, $\mathsf{not}$ in
+<a href="https://en.wikipedia.org/wiki/Python_%28programming_language%29"
+  target="_blank">Pyton</a>.</p>
+</li>
+<li>
+<p><strong>Quantifiers</strong>.</p>
+<p>These allow us to express claims about all ($\forall$) or some ($\exists$)
+things. More generally, quantifiers allow us to make <em>generalizations</em>.
+There are also specialized quantifiers, such as numeric quantifiers, like
+$\exists_3$ which says &ldquo;there are exactly 3&rdquo;.</p>
+</li>
+</ol>
+<p><strong>Auxiliaries</strong>.</p>
+<ol start="8">
+<li>
+<p><strong>Parsing</strong></p>
+<p>These are symbols that help the notation of the language. They are things
+like commas &ldquo;,&rdquo; or parentheses &ldquo;(&rdquo; and &ldquo;)&rdquo;. They don&rsquo;t have a meaning
+themselves, but they help us to disambiguate formulas. They are important
+for parsing (see below).</p>
+</li>
+</ol>
+<p>These are, in any case, only examples of some common symbols in the alphabets of
+formal languages. Ultimately, the sky is the limit.</p>
+<p>The formulas, then, are sequences of symbols from the alphabet. But not every
+sequence of symbols is a formula, formulas are constructed from the symbols
+according to <em>rules</em>.</p>
+<h3 id="grammar">Grammar<button class="btn btn-back-to-top">
+    
+    <i class="bi bi-chevron-double-up"></i>
+    
+  </button>
+</h3>
+<hr>
+
+<p>The grammar of a language determines which strings of symbols from $\Sigma$ are
+valid expressions of the language.</p>
+<p>In the case of most formal languages in logic, grammars use a technique known as
+<strong>inductive definition</strong>, which works as follows:</p>
+<p>Our aim is to define the set $\mathcal{L}$ of <strong>(well-formed) formulas</strong>. We do
+this by specifying in a first step a set of <strong>atomic formulas</strong>, which are not
+themselves constructed. And then, in a second step, giving a set of
+<strong>construction rules</strong>, which tell us how to construct new formulas from old
+ones.</p>
+<p>Here&rsquo;s how this works for a standard language in propositional logic, where $\Sigma$ contains:</p>
+<ul>
+<li>
+<p>$p_1,\dots, p_n$ ($n$ propositional variables)</p>
+</li>
+<li>
+<p>$\neg,\land,\lor,\to,\leftrightarrow$ (the propositional operators), and</p>
+</li>
+<li>
+<p>$(,)$ (the auxiliaries).</p>
+</li>
+</ul>
+<p>We then say that:</p>
+<ul>
+<li>
+<p>$p,\dots, p_n \in \mathcal{L}$ and</p>
+</li>
+<li>
+<p>if $A\in\mathcal{L}$, then $\neg A\in \mathcal{L}$ as well as</p>
+</li>
+<li>
+<p>if $A,B\in\mathcal{L}$, then $(A\land B),(A\lor B),(A\to B),(A\leftrightarrow
+B)\in \mathcal{L}$</p>
+</li>
+</ul>
+<p>The crux of the definition is the implicit assumption that <em>nothing else is a
+formula</em>. This &ldquo;closure condition&rdquo; guarantees that $\mathcal{L}$ is a
+well-defined set, where for each sequence of symbols from $\Sigma$, we can
+determine whether it&rsquo;s in $\mathcal{L}$ or not.</p>
+<p>For example, we can easily see that $$(A\lor (B\leftrightarrow \neg A))$$ is a
+member of $\mathcal{L}$. To see this, we simply perform the construction:</p>
+<ul>
+<li>We know that $A$ is a formula.</li>
+<li>So we know that $\neg A$ is a formula.</li>
+<li>We also know that $B$ is a formula.</li>
+<li>So we know that $(B\leftrightarrow \neg A)$ is a formula.</li>
+<li>So, finally, we know that $(A\lor (B\leftrightarrow \neg A))$ is a formula.</li>
+</ul>
+<p>But we can also see that $\neg A\neg$ is not a formula, since no rule every
+allows for $\neg$ to occur in a formula without being followed by formula.</p>
+<p>In computer science and AI, there is a wide-spread notation that significantly
+simplifies the above rules: the so-called <strong>Backus-Naur Form (BNF)</strong>. In BNF,
+instead of all of the above, we can simply write:</p>
+<p>$$A::= p_i\mid\neg A\mid (A\land A)\mid (A\lor A)\mid (A\to A)\mid (A\leftrightarrow A)$$</p>
+<p>Here, we read the &ldquo;$\mid$&rdquo; as an &ldquo;or&rdquo;. And so this reads: a formula is either a
+propositional variable, or the negation of a formula, or the conjunction of two
+formulas, or &hellip;.</p>
+<p>You should know that BNFs sometimes take different forms. Here is an equivalent
+way of giving the BNF for the same language:</p>
+<p>$$\langle prop\rangle\mapsto p_1\mid \dots\mid p_n$$</p>
+<p>$$\langle fml\rangle\mapsto\langle prop\rangle\mid\neg\langle fml\rangle\mid
+(\langle fml\rangle\land \langle fml\rangle)\mid (\langle fml\rangle\lor
+\langle fml\rangle)\mid $$
+$$(\langle fml\rangle\to \langle fml\rangle)\mid (\langle
+fml\rangle\leftrightarrow \langle fml\rangle)$$</p>
+<p>but these are just
+notational differences.</p>
+<p><a href="https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form"
+  target="_blank">BNFs</a> are a <strong>powerful
+method for defining formal languages</strong>. They are frequently used in logic,
+computer science, and AI. For example, the syntax of most programming languages
+is defined in BNF, see, e.g.,
+<a href="https://docs.python.org/3/reference/grammar.html"
+  target="_blank">Python</a>. Even if you want to
+know what a valid email really is, you need to look up <a href="https://datatracker.ietf.org/doc/html/rfc5322"
+  target="_blank">its
+BNF</a>.</p>
+<p>The formal languages we use in logic and KR are usually rather simple in that
+they allow for uncomplicated grammars. The complex grammatical phenomena we
+often encounter in natural languages, for example, which are required for to
+capture all linguistic nuances (which are often <em>logically</em> irrelevant), we need
+more sophisticated grammas, like <a href="https://en.wikipedia.org/wiki/Context-sensitive_grammar"
+  target="_blank">context-sensitive
+grammars</a>.</p>
+<h2 id="examples">Examples<button class="btn btn-back-to-top">
+    
+    <i class="bi bi-chevron-double-up"></i>
+    
+  </button>
+</h2>
+<hr>
+
+<p>Here are some standard logical languages, which will frequently occur in the
+book:</p>
+<p><strong>Propositional logic</strong></p>
+<p>We&rsquo;ve already seen the simple BNF for this:</p>
+<p>$$A::= p_i\mid\neg A\mid (A\land A)\mid (A\lor A)\mid (A\to A)\mid (A\leftrightarrow A)$$</p>
+<p>This works with
+$\Sigma=\Set{p_1,\dots,p_n,\neg,\land,\lor,\to,\leftrightarrow,(,)}$</p>
+<p>Some remarks:</p>
+<ul>
+<li>
+<p>Depending on the choice of propositional variables, there are many <em>different</em>
+propositional languages. It&rsquo;s always important to exactly specify what your
+propositional variables are.</p>
+</li>
+<li>
+<p>Sometimes, we only use a subset of the operators. E.g. the language:</p>
+<p>$$A::= p_i\mid\neg A\mid (A\land A)$$</p>
+<p>It turns out that this language is equally <strong>expressive</strong> as the language
+above: everything that can be said using propositional variables and
+$\neg,\land,\lor,\to,\leftrightarrow$ can also be said using just
+$\neg,\land$. Seeing why is a topic for later in the course.</p>
+</li>
+<li>
+<p>Translating natural language expressions into a formal language expression is
+a process known as <strong>formalization</strong>. It&rsquo;s not always easy, but here are some
+examples for formalization with propositional languages:</p>
+<hr>
+<p>The letter isn&rsquo;t in the left drawer                                         $\leadsto$            $\neg p$</p>
+<p>It&rsquo;s not the case that the letter is in the left drawer                     $\leadsto$            $\neg p$</p>
+<p>The letter is in the left and in the right drawer                           $\leadsto$            $(p\land q)$</p>
+<p>The letter is not in the left drawer, but it&rsquo;s also not in the right one    $\leadsto$     $(\neg p\land \neg q)$</p>
+<p>The letter is in the left or in the right drawer                            $\leadsto$           $(p\lor q)$</p>
+<p>The letter is neither in the left nor in the right drawer                   $\leadsto$     $(\neg p\land \neg q)$</p>
+<p>If the letter is in the left drawer, then it&rsquo;s not in the right drawer      $\leadsto$         $(p\to \neg q)$</p>
+<p>The letter is in the left drawer, if it&rsquo;s not in the right one              $\leadsto$         $(\neg q\to p)$</p>
+<p>The letter is only in the left drawer, if it&rsquo;s not in the right one         $\leadsto$         $(p\to \neg q)$</p>
+<p>The letter is in the left drawer just in case it&rsquo;s not in the right one     $\leadsto$   $(p\leftrightarrow \neg q)$</p>
+<hr>
+</li>
+</ul>
+<p><strong>First-order logic</strong></p>
+<p><strong>First-order logic (FOL)</strong> is extremely important in logical theory and in AI
+applications. In part, this is because FOL has a lot of <strong>expressive power</strong>: a
+lot of
+claims—<a href="https://en.wikipedia.org/wiki/John_McCarthy_%28computer_scientist%29"
+  target="_blank">some</a>
+would say <em>everything</em>—can be formalized in it.</p>
+<p>In general, the alphabet looks something like this:</p>
+<p>$$\Set{a,b,c,\dots,
+x,y,z,\dots,f,g,h,\dots,P,Q,R,\dots,\neg,\land,\lor,\to,\leftrightarrow,\forall,\exists,(,),,}$$</p>
+<p><strong>NB</strong>: There&rsquo;s no typo at the end here 😃 The last symbol is a literal comma.</p>
+<p>For a concrete language, we&rsquo;d need to pick some suitable constants
+$a,b,c,\dots$, function symbols $f,g,h,\dots$, and predicates $P,Q,R,\dots$.
+Usually, in KR-contexts, these will be mnemonic, of course.</p>
+<p>The full syntax of FOL, then, is:</p>
+<p>$$\langle const\rangle ::= a \mid b\mid \dots $$
+$$\langle var\rangle ::= x \mid y\mid \dots $$
+$$\langle unop\rangle ::= \neg$$
+$$\langle binop\rangle ::= \land\mid\lor\mid\to\mid\leftrightarrow$$
+$$\langle quant\rangle ::= \forall\mid\exists$$
+$$\langle term\rangle::= \langle const\rangle\mid\langle variable\rangle\mid
+f^n(\langle term\rangle_1,\dots,\langle term\rangle_n)$$
+$$\langle pred\rangle ::= P \mid Q\mid \dots $$
+$$\langle atom\rangle::= P^n(\langle term\rangle_1,\dots\langle term\rangle_n)$$
+$$\langle fml\rangle::=\langle atom\rangle\mid\langle unop\rangle\langle fml\rangle\mid
+(\langle fml\rangle\langle binop\rangle \langle fml\rangle)\mid \langle quant\rangle \langle
+var\rangle\langle fml\rangle$$</p>
+<p>As you can see, the syntax of FOL is significantly more complex than the syntax
+of propositional logic. But syntactically, nothing too complicated is going on.
+Assuming, for example, that $FRIEND$ is a binary predicate and $data$ a constant
+for data in our language, we can write:</p>
+<p>$$\exists xFRIEND(data,x)$$</p>
+<p>to say that Data has a friend.</p>
+<p>Here are some more suggestions on how to formalize:</p>
+<hr>
+<p>Not everybody handsome is smart      $\leadsto$  $\neg\forall x(H(x)\to S(x))$</p>
+<p>Everybody who&rsquo;s smart is handsome    $\leadsto$  $\forall x(S(x)\to H(x))$</p>
+<p>A person who&rsquo;s smart is handsome     $\leadsto$  $\forall x(S(x)\to H(x))$</p>
+<p>Someone who&rsquo;s smart is handsome      $\leadsto$  $\forall x(S(x)\to H(x))$</p>
+<p>Everybody&rsquo;s smart and handsome       $\leadsto$  $\forall x(S(x)\land H(x))$</p>
+<hr>
+<p>Indeterminate terms, like pronouns, indexicals, etc., are formalized using variables. Only when clearly the same thing is meant, use the same variable, if different things could be meant, use different variables:</p>
+<hr>
+<p>He&rsquo;s handsome                         $\leadsto$  $H(x)$</p>
+<p>She&rsquo;s handsome and smart              $\leadsto$  $H(x)\land S(x)$</p>
+<p>He&rsquo;s handsome and <em>he</em>&rsquo;s smart        $\leadsto$  $H(x)\land S(y)$</p>
+<p>He&rsquo;s handsome and she&rsquo;s smart         $\leadsto$  $H(x)\land S(y)$</p>
+<p>That&rsquo;s a smart and handsome person    $\leadsto$  $H(x)\land S(x)$</p>
+<hr>
+<p>Most languages used for KR are <strong>fragments</strong> of FOL, since FOL has certain
+theoretical limitations, which we&rsquo;ll discuss later in the course.</p>
+<p><strong>More examples</strong></p>
+<p>At this point, you know enough about how logical grammars and BNFs work that you
+can check out your own examples. Here are some suggestions for grammars to check
+out:</p>
+<ul>
+<li>
+<p>Pick your favorite programming language (if you have one):
+<a href="https://docs.python.org/3/reference/grammar.html"
+  target="_blank">Python</a> we mentioned above,
+<a href="https://cs.wmich.edu/~gupta/teaching/cs4850/sumII06/The%20syntax%20of%20C%20in%20Backus-Naur%20form.htm"
+  target="_blank">C</a>
+is a popular low-level language,
+<a href="http://tau-prolog.org/files/doc/grammar-specification.pdf"
+  target="_blank">Prolog</a> is a
+logic-based language.</p>
+</li>
+<li>
+<p>A more complex AI example is <a href="https://en.wikipedia.org/wiki/Description_logic"
+  target="_blank">description
+logic</a>, which is a powerful KR
+language for designing knowledge bases.</p>
+</li>
+<li>
+<p>The <a href="https://datatracker.ietf.org/doc/html/rfc5322"
+  target="_blank">RFC</a> for emails contains
+the BNF for valid email addresses. Check it out 🤓</p>
+</li>
+</ul>
+<h2 id="parsing">Parsing<button class="btn btn-back-to-top">
+    
+    <i class="bi bi-chevron-double-up"></i>
+    
+  </button>
+</h2>
+<hr>
+
+<p>So far, we&rsquo;ve looked at how to define formulas by looking at how they are
+constructed from simpler formulas. Now, we&rsquo;ll invert the perspective and
+<em>desconstruct</em> or <strong>parse</strong> formulas.</p>
+<p><em>Why?</em> you ask? Well, the reason we need to look into this is because that&rsquo;s
+essentially what computers do to <strong>understand formulas</strong>. The idea of parsing is
+to split a formula according to the rules of the grammar to recover how it was
+constructed.</p>
+<p>An example shows this more clearly than words. This is the result of parsing the
+propositional formula $((p\land(p\to q))\to\neg q)$:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/formal-languages/img/tree.png" class="img-thumbnail"  alt="parsing tree" >
+
+
+<p>The result is what&rsquo;s known as a <strong>parsing tree</strong>, it is a useful representation
+of the syntactic structure of a formula.</p>
+<p>Here is an example from first-order logic:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/formal-languages/img/fo-tree.png" class="img-thumbnail"  alt="parsing tree" >
+
+
+<p>The parsing tree of a formula essentially tells you, which rules have been
+applied in which order to obtain the formula in question.</p>
+<p>A fundamental insight of logical theory is that when a grammar is properly
+defined, we get what&rsquo;s known as <strong>unique readability</strong>. Unique readability is of
+the utmost importance since if it fails, this means that formulas are
+<strong>ambiguous</strong>: they have two (or more) possible readings.</p>
+<p>To understand the problem, consider the &ldquo;formula&rdquo; $p\land q\lor r$. Note that
+this is not really a formula because of the missing parentheses (check the
+rules). You could encounter this formula, for example, in a KR context, where
+you represent breakfast options to a computer: $p$ stands for having granola,
+$q$ stands for having tea, and $r$ stands for having coffee context. Now the way
+the &ldquo;formula&rdquo; is written, there are two ways of parsing it:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/formal-languages/img/ambiguity.png" class="img-thumbnail"  alt="ambiguous" >
+
+
+<p>These correspond to two readings:</p>
+<ol>
+<li>You can have eggs and either tea or coffee. $(p\land (q\lor r))$, the left
+tree</li>
+<li>You can have eggs and tea or just coffee. $((p\land q)\lor r))$, the right
+tree</li>
+</ol>
+<p>Obviously, these are very different things and might lead to the terrible
+consequence of not having anything to eat for breakfast.</p>
+<p>This is why we need to be careful about the <strong>auxiliaries</strong>, like $(,)$, which
+ultimately guarantee unique readability. So, we need to be careful.</p>
+<p>Parsing is an incredibly important subject in the foundations and practice of
+programming, natural language processing (NLP), and elsewhere. We don&rsquo;t have
+time to go into the details, but think of programming for a second. A
+<a href="https://en.wikipedia.org/wiki/Programming_language"
+  target="_blank">programming language</a> is
+essentially a tool to write down instructions for a computer in a human-readable
+way. What happens &ldquo;under the hood&rdquo; is that the computer translates the program
+you write into machine instructions (the proverbial 1&rsquo;s and 0&rsquo;s).</p>
+<p>To ensure that the machine instructions really correspond to what you had in
+mind when you wrote the program, the computer needs to understand <em>what you
+meant</em>. Since a computer is deterministic and not <em>particularly</em> intelligent,
+the only way it can do this is according to clear instructions about what means
+what.</p>
+<p>But clearly, we can&rsquo;t just write for each program what it means in machine
+instructions-otherwise, what&rsquo;s the point of having the language in the first
+place? Instead, we specify what the individual expressions of the language mean
+and how combining them according to the grammar affects that meaning. In this
+way, we guarantee that for each program we could possibly write, we can
+translate it into machine instructions.</p>
+<p>But to do so, we need to know which expressions occur in which order in the
+program. To determine this is the role of the
+<a href="https://en.wikipedia.org/wiki/Parsing#Parser"
+  target="_blank">parser</a>. This shows the
+fundamental importance of parsing in programming and human-computer interaction.</p>
+<h2 id="applications">Applications<button class="btn btn-back-to-top">
+    
+    <i class="bi bi-chevron-double-up"></i>
+    
+  </button>
+</h2>
+<hr>
+
+<p>Let&rsquo;s talk for a moment about the role of formal languages in AI. We&rsquo;ve already
+talked about the fact that programming languages are essentially just formal
+languages. So we can use the theory of formal languages to understand this
+aspect of human-machine interaction, which is crucial also in AI. Here are some
+other applications:</p>
+<h3 id="natural-language-processing">Natural language processing<button class="btn btn-back-to-top">
+    
+    <i class="bi bi-chevron-double-up"></i>
+    
+  </button>
+</h3>
+<hr>
+
+<p>One application of formula languages, parsing, and related techniques is in
+<a href="https://en.wikipedia.org/wiki/Natural_language_processing"
+  target="_blank"><strong>natural language processing
+(NLP)</strong></a>. For a long
+time (until roughly the 1990s), formal languages played a key role in NLP in
+what in analogy to symbolic AI is known as <a href="https://en.wikipedia.org/wiki/Natural_language_processing#Symbolic_NLP_%281950s_%E2%80%93_early_1990s%29"
+  target="_blank">symbolic
+NLP</a>.</p>
+<p>As suggested by Wikipedia, we can use a famous thought experiment known as the
+<em>Chinese room</em> to illustrate the idea:</p>
+<p><div class="container " >
+  <figure>
+    <blockquote class="blockquote fs-6">
+      <p>
+      Imagine a native English speaker who knows no Chinese locked in a room full of boxes of Chinese symbols (a data base) together with a book of instructions for manipulating the symbols (the program). Imagine that people outside the room send in other Chinese symbols which, unknown to the person in the room, are questions in Chinese (the input). And imagine that by following the instructions in the program the man in the room is able to pass out Chinese symbols which are correct answers to the questions (the output). The program enables the person in the room to pass the Turing Test for understanding Chinese but he does not understand a word of Chinese.
+      </p>
+    </blockquote>
+    
+    <figcaption class="blockquote-footer text-end">
+      Jon Searle. 1999. &#39;The Chinese Room&#39;
+    </figcaption>
+    
+  </figure>
+</div>
+
+Essentially, the computer is the person in the room. The rules are parsing rules
+and formal grammars, which enable the room to &ldquo;speak Chinese&rdquo;.</p>
+<p>The idea was to build NLP technologies in a similar way and for a while this was
+moderately successful. But much for the same reasons why symbolic AI in general
+&ldquo;failedd&rdquo;, symbolic NLP is no longer a strong paradigm in NLP.  While symbolic
+methods are still around, in NLP, statistical methods, which are at the core of
+<a href="https://en.wikipedia.org/wiki/Large_language_model"
+  target="_blank">LLMs</a>, for example, rule
+the waves.</p>
+<h3 id="knowledge-representation">Knowledge representation<button class="btn btn-back-to-top">
+    
+    <i class="bi bi-chevron-double-up"></i>
+    
+  </button>
+</h3>
+<hr>
+
+<p>Things are more interesting when it comes to KR. To this day, formal languages
+and knowledge bases (KBs) are <strong>powerful tools</strong> when it comes to storing and
+making accessible known facts to computational systems, such as computers or
+AI-systems. Mathematically speaking, a knowledge bases is just a set of
+formulas. In a slogan: $$\mathbf{KB}\subseteq \mathcal{L}$$</p>
+<p>The main strengths of KBs is their <strong>reliability</strong> and <strong>precision</strong>. Mistakes
+in KBs are essentially only due to human error. Interestingly, though, there is
+<a href="https://arxiv.org/abs/2407.13578"
+  target="_blank">ongoing research</a> on using LLMs, for example,
+to store factual information, even though they can&rsquo;t compete with knowledge
+bases yet.</p>
+<p>What we should note, though, is that the formal languages that are used for KR
+are usually <strong>less expressive</strong> than FOL. This is due to some theoretical
+results about FOL, which provide fundamental roadblocks to using its full
+expressive power in computational contexts. We&rsquo;ve already briefly touched upon
+one such reason in 
+
+
+<a href="https://logicalmethods.ai/textbook/logic-and-ai//#as-a-foundation"
+   
+   
+   
+   
+   
+   > Chapter 1. Logic and AI</a>
+
+, when we
+spoke about Turing&rsquo;s <a href="https://en.wikipedia.org/wiki/Decidability_%28logic%29"
+  target="_blank">undecidability
+theorem</a>, which states
+that validity checking in FOL, specifically, cannot be fully automated.
+<a href="https://en.wikipedia.org/wiki/Description_logic"
+  target="_blank">Description logic</a> is an
+interesting example of an approach to KR that uses what&rsquo;s effectively a fragment
+of FOL KR-purposes.</p>
+<p>An active area of research is the so-called <a href="https://en.wikipedia.org/wiki/Semantic_Web"
+  target="_blank">semantic
+web</a>, which uses languages like
+<a href="https://en.wikipedia.org/wiki/Web_Ontology_Language"
+  target="_blank">OWL</a> to make data on the
+internet machine readable.</p>
+<h2 id="further-readings">Further readings<button class="btn btn-back-to-top">
+    
+    <i class="bi bi-chevron-double-up"></i>
+    
+  </button>
+</h2>
+<hr>
+
+<p>An incredibly rich and extensive discussion of formal languages and their role
+in logic is:</p>
+<ul>
+<li><a href="https://doi.org/10.1017/CBO9781139108010"
+  target="_blank">Duthil Novaes, Catarina. 2012. Formal languages in logic. Cambridge
+University Press</a></li>
+</ul>
+<p>From a linguistic perspective, a highly influential idea is Montague&rsquo;s idea to
+understand &ldquo;English as a formal language&rdquo;:</p>
+<ul>
+<li><a href="https://doi.org/10.1515/9783111546216-007"
+  target="_blank">Montague, Richard. 1968.English as a formal
+language.</a></li>
+</ul>
+<p><strong>Notes:</strong></p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>See the book by Duthil Novaes, for example.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+ <p><em>Last edited: </em>09/09/2024</p>
+</div>
+
+
+<ul class="navbar-nav flex-row justify-content-between mt-auto">
+  
+  <li class="nav-item">
+    <a href="/textbook/valid-inference/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-chevron-left"></i>
+    </a>
+    
+  </li>
+  <li class="nav-item">
+    <button class="btn btn-back-to-top">
+    <i class="bi bi-chevron-double-up"></i>
+  </button>
+  </li>
+  <li class="nav-item">
+    
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-chevron-right"></i>
+    </a>
+    
+  </li>
+</ul>
+
+    </main>
+    <footer class="align-self-center d-flex flex-column mt-md-1 p-0" data-bs-theme="dark">
+      <nav class="navbar bg-dark shadow" data-bs-theme="dark" aria-label="footer-navbar">
+  <div class="container-sm align-self-center px-3">
+    <a class="navbar-brand fs-6" href="/about" aria-label="copyright-link">&copy; 2024 jkorbmacher et al. </a>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link fs-6" href="https://github.com/jkorb/logicalmethods.ai" target="_blank"><i class="bi bi-github"></i></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+ 
+      <script src="https://logicalmethods.ai/js/helpers.js"></script>
+      <script src="https://logicalmethods.ai/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+      
+      
+    </footer>
+  </body>
+</html>
