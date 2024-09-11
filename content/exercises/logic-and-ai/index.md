@@ -22,7 +22,7 @@ applies or not.
 
 ## b.) Validity {.homework}
 
-Give a definition of deductive andFor example, MYCIN, an early expert system, helped identify bacterial infections and recommend antibiotics. Financial Services: In finance, expert systems are used for credit scoring, fraud detection, and investment advice. They analyze financial data and patterns to make informed decisions.26 Aug 2024 inductive inference. Include examples 
+Give a definition of deductive and inductive inference. Include examples 
 and non-examples with explanations. 
 
 # Indicators { .solved }
