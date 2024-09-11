@@ -578,7 +578,7 @@ scenarios that are $A$-scenarios. So, if $A$ is the sentence "Robots can fly",
 $Pr(A)$ measures how many scenarios of all scenarios are ones where robots can
 fly. Assuming that all scenarios are equally likely, then if robots can fly in
 half of all scenarios, then $Pr(A)=0.5$. And if robots can fly in
-$\frac{2}{3}$ of all possible scenarios, then $Pr(A)=0.75$. And so on.
+$\frac{3}{4}$ of all possible scenarios, then $Pr(A)=0.75$. And so on.
 
 Now that we have gotten some idea of probabilities in this way, we can talk
 about **conditional probabilities**: how likely it is that something's true
