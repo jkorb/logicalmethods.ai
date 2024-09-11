@@ -126,11 +126,11 @@ rained last night.
 6. All dogs are friendly. Some dogs are chubby. So, some chubby animals are
 friendly.
 
-In deductive logic, we use the symbol 
+In deductive logic, we use the symbol
 $$\vDash$$
 to stand for a deductively valid inference. So if we have a deductively valid
 inference going from premise $P_1,P_2,\dots$ to conclusion $C$, we can
-abbreviate this with symbols: 
+abbreviate this with symbols:
 
 $$P_1,P2,\mathellipsis \vDash C$$
 
@@ -169,16 +169,13 @@ around 80%.
 relevance. Therefore, the next generation of GPT models will further improve in
 this respect.
 
-In inductive logic, we use the symbol 
-\\[\mid\approx\\]
-to stand for an
-inductively valid inference, writing $$P_1, P_2, \dots\mid\approx C$$ to
-say that the inference from premises $P_1, P_2, \mathellipsis$ to conclusion $C$
-is inductively valid. To say that an inference is inductively _strong_, we write
-a $!$ on top, like so: $$\stackrel{!}{\mid\approx}$$. 
-So if we have a inductively strong inference going from premises $P_1, P_2,
-\dots$ to conclusion $C$ we can abbreviate this with symbols:
-$$P_1, P_2, \dots\stackrel{!}{\mid\approx} C.$$
+In inductive logic, we use the symbol $$\mid\approx$$ to stand for an
+inductively valid inference, writing $$P_1, P_2, \dots\mid\approx C$$ to say
+that the inference from premises $P_1, P_2, \mathellipsis$ to conclusion $C$ is
+inductively valid. To say that an inference is inductively _strong_, we write a
+$!$ on top, like so: $$\stackrel{!}{\mid\approx}$$. So if we have a inductively
+strong inference going from premises $P_1, P_2, \dots$ to conclusion $C$ we can
+abbreviate this with symbols: $$P_1, P_2, \dots\stackrel{!}{\mid\approx} C.$$
 
 ## Formalization
 
@@ -193,7 +190,7 @@ One powerful idea in logic is that different inferences have the same **logical
 form**. This allows us to identify many valid inferences all at once, just by
 studying their shared form. Reasoning that can be captured in a finite set of
 symbols and rules can also be programmed into a computer. This was essentially
-the idea that sparked the first wave of AI research in the 1950s. 
+the idea that sparked the first wave of AI research in the 1950s.
 
 The next chapter will delve into more details of formal syntax and how to
 interpret the logical forms of sentences. We will mention just a few examples of
@@ -240,14 +237,14 @@ examples:
     13. If ZFC is consistent, it cannot settle the value of BB(8000). ZFC cannot
     [settle the value of BB(8000)](https://scottaaronson.blog/?p=2725). So, ZFC is
     consistent.
-    
+
     14. If Strong AI is possible, then there is a flaw in the [Chinese Room thought
     experiment](https://plato.stanford.edu/entries/chinese-room/). There is a flaw
     in the Chinese Room thought experiment. Therefore, Strong AI is possible.
-    
+
     15. If Topsy was an elephant, then Topsy had a trunk. Topsy had a trunk. So,
     [Topsy was an elephant](https://en.wikipedia.org/wiki/Topsy_(elephant)).
-    
+
     Again, we can represent 13.-15. the same way and this common structure can
     explain why all of these inferences are invalid. This means that they use
     reasoning. It does not necessarily mean that all of these inferences have
@@ -267,7 +264,7 @@ to be the pinnacle of reasoning.
 [Euclid](https://en.wikipedia.org/wiki/Euclidean_geometry) used deductive
 reasoning to prove things about basic geometry. He also introduced the
 **axiomatic method**. This method has two parts: axioms and rules. An axiom is
-just a definition. 
+just a definition.
 
 The first Euclidan axiom says "between any two points there is a line", which
 partly defines the abstract concepts of _point_ and _line_ by telling us how
@@ -376,7 +373,7 @@ refer to the set of models where that sentence is true. With this notation we
 can talk about relations between sets of models $[A]$ and $[B]$ for any
 two sentences $A$ and $B$. When the elements of one set are also
 contained in another set, we say that there is a **subset** relation between
-them. 
+them.
 
 For example, the set of triangle is a subset of the set of figures. The set of
 cats is a subset of the set of animals. All of the things in the first set are
@@ -428,7 +425,7 @@ Maybe these are sets of people or sets of numbers. It doesn't really matter. We
 just want to see what the intersection of two sets refers to. The intersection
 $X\cap Y$ is the overlapping part of those two sets. The elements of
 $X\cap Y$ are all of the things that are shared in common between $X$
-and $Y$. 
+and $Y$.
 
 For example, if $F$ was the set of all fruits and $O$ was the set of all
 orange things, then $F\cap O$ would be the set of orange fruits. This
@@ -454,7 +451,7 @@ or proofs of these facts.
 
 + $A\land B \vDash A$
 
-Why is this form of inference valid? 
+Why is this form of inference valid?
 
 _Sketch of an Explanation_: $[A\land
 B]=[A]\cap[B]$ and since the intersection of two sets has to be part of each
@@ -464,7 +461,7 @@ set, we know that $[A]\cap[B]\subseteq[A]$.
 
 This says that if there are two valid inferences using the same premises, you
 can also use those premises to validly infer a conjunction of the previous
-conclusions. 
+conclusions.
 
 _Sketch of an Explanation_: Assuming that $A \vDash B$ and $A
 \vDash C$ hold we have $[A]\subseteq[B]$ and $[A]\subseteq[C]$. So if
@@ -475,7 +472,7 @@ also has to be in $[B]\cap[C]$. We have $[A]\subseteq[B]\cap[C]$.
 
 This principle says that if it is valid to infer a conclusion from some
 premises, then it is valid to infer the exact same conclusion after 'adding new
-information' to those premises. 
+information' to those premises.
 
 _Sketch of an Explanation_: We showed that $A\land B \vDash A$. So if we
 asume $A \vDash B$ then we have both $[A\land B]\subseteq[A]$ and
@@ -495,7 +492,7 @@ famously optimistic about the power of logical methods. He even thought we could
 use them to capture the kind of _commonsense reasoning_ that most adults are
 capable of doing. This led to the field of **knowledge representation** where
 engineers try to formalise vast amounts of information. These are like axioms of
-a massively complicated theory, but the method has its limitations. 
+a massively complicated theory, but the method has its limitations.
 
 ## Induction
 
@@ -515,7 +512,7 @@ inductive rule can be better in some environments, worse in others.
 
 The early work on logic-based AI quickly shifted from deductive logic to
 inductive logic. The main reason is that induction is immensely important to a
-complete description of commonsense reasoning. 
+complete description of commonsense reasoning.
 
 Suppose that you agreed to meet Karl for lunch in a few minutes. Karl eats lunch
 every day in the canteen and he always gets there early. You infer that Karl is
@@ -523,7 +520,7 @@ in the canteen now. This is inductively valid. However, as you are walking to
 the canteen you see that the building is on fire and the occupants are standing
 on the pavement watching the fire fighters put out the blaze. You _take back_
 the inference and the conclusion you previously drew. Now, you infer that Karl
-is not in the canteen (at least, you hope not). 
+is not in the canteen (at least, you hope not).
 
 The optimal way of using induction is to take a set of existing beliefs (or
 knowledge) and then tentatively entertain the beliefs (or knowledge) that are
@@ -554,7 +551,7 @@ idea is that if we can talk about the probabilities of the premises and
 conclusion in our semantics, we can directly translate the idea of the premises
 making the conclusion (more) likely into our model. We will illustrate these
 ideas by focusing on a stripped-down formal language that only represents the
-logical form of "and" sentences. 
+logical form of "and" sentences.
 
 Assume that we have access to absolutely all possible models of our formal
 language, just like before with deductive logic. Remember from section [2.3.1
@@ -564,17 +561,17 @@ scenarios where $A$ is true. Similarly, we have the same definition of logical
 conjunction $$[A\land B] = [A]\cap[B]$$ within this background set of all
 models.
 
-In this setting, we introduce the probabilities as numeric measures of how likely it is
-that a given sentence is actually true.[^probabilities] For a sentence $A$, we
-write $$Pr(A)$$ to denote this measure. You can think of $Pr(A)$ as a
-measure of how likely it is that the way things actually are is among the
-possibilities $[A]$ according to which $A$ is true.
+In this setting, we introduce the probabilities as numeric measures of how
+likely it is that a given sentence is actually true.[^probabilities] For a
+sentence $A$, we write $$Pr(A)$$ to denote this measure. You can think of
+$Pr(A)$ as a measure of how likely it is that the way things actually are is
+among the possibilities $[A]$ according to which $A$ is true.
 
 There are a number of laws that probabilities satisfy. For example, the value of
 $Pr(A)$ must always be between $0$ and $1$ (inclusive): $$0\leq Pr(A)\leq
 1.$$ We'll study these laws later in the book, when we return to probabilities
 and inductive reasoning. For now, a simplified interpretation of the numbers
-$Pr(A)$ works just fine. 
+$Pr(A)$ works just fine.
 
 For now, you can think of $Pr(A)$ as measuring the proportion of all possible
 scenarios that are $A$-scenarios. So, if $A$ is the sentence "Robots can fly",
@@ -587,7 +584,7 @@ Now that we have gotten some idea of probabilities in this way, we can talk
 about **conditional probabilities**: how likely it is that something's true
 _assuming that_ something else is true. Remember from [above](#hypothetically)
 that validity if a hypothetical concept. So to properly capture inductive
-validity, we need a notion of _hypothetical probability_. 
+validity, we need a notion of _hypothetical probability_.
 
 Mathematically, we write $Pr(B|A)$ for the conditional probability of $B$ given
 $A$. Intuitively,  $Pr(B|A)$ is a measure of how likely it is that $B$ is true
@@ -608,7 +605,7 @@ Pr(C|P_1\land P_2\land \dots)\geq Pr(C)$$ In words, the inference from $P_1,P_2,
 \dots$ to $C$ is inductively valid just in case the conditional probability of
 $C$ given $P_1,P_2, \dots$ is higher than the probability of $C$ not assuming
 the premises. [Rudolf Carnap](https://en.wikipedia.org/wiki/Rudolf_Carnap)
-coined the term "increase of firmness" for this relation. 
+coined the term "increase of firmness" for this relation.
 
 In fact, in this model we can also measure _how much_ the premises raise the
 probability the conclusion. This is simply $Pr(C|P_1\land P_2\land
@@ -623,14 +620,14 @@ some useful facts about inductive inferences. As before, we will only sketch the
 explanations or proofs of these facts. We start off with some commonalities
 between inductive and deductive logic.
 
-For example, we can easily show that: 
+For example, we can easily show that:
 
 + $A\land B \mid\approx A$
 
 _Sketch of an Explanation_: This is inductively valid because the proportion of
 $A\land B$-scenarios which are $A$-scenarios is $1$: _all_ $A\land B$-scenarios
 are $A$-scenarios. That is $Pr(A|A\land B)=1$. Since $0\leq Pr(A)\leq 1$, we
-know that $Pr(A|A\land B)\geq Pr(A)$. 
+know that $Pr(A|A\land B)\geq Pr(A)$.
 
 _Question_: is the inference always inductively _strong_?
 
@@ -654,7 +651,7 @@ the probability of eating meat, and $Pr(C)$ is the probability of being vegan:
 
 For a randomly chosen person, $Pr(C)$ is not very high since the proportion of
 vegans, $C$, among the general population is low.
- 
+
 At the same time, $Pr(C|A)$ is relatively high, _of the cyclists_, $A$, a much
 larger proportion is vegan than in the general population. This means that
 $Pr(C|A) > P(C)$, and so $A\mid\approx C$. Or, in words, a randomly chosen
@@ -695,7 +692,8 @@ Intelligence_, 13: 27–39.](https://doi.org/10.1016/0004-3702(80)90011-9)
 The idea of using probability theory to model inductive validity is heavily
 influenced by the work of Rudolf Carnap:
 
-+ [R. Carnap. "On inductive logic", _Philosophy of Science_ 12(2): 72-97.](https://doi.org/10.1086/286851 )
++ [R. Carnap. "On inductive logic", _Philosophy of Science_ 12(2):
+72-97.](https://doi.org/10.1086/286851 )
 
 Influential mathematical treatment of inductive validity:
 
@@ -716,6 +714,6 @@ a single premise sentence. It is not a full definition.
 
 [^probabilities]: In probability theory, there are many different ways of
 thinking about what probabilities "really are": subjective estimates, objective
-chances, frequencies, or something else altogether. Here we avoid this question and treat
-probabilities intuitively. We return to the "nature" of probabilities later in
-the book.
+chances, frequencies, or something else altogether. Here we avoid this question
+and treat probabilities intuitively. We return to the "nature" of probabilities
+later in the book.
