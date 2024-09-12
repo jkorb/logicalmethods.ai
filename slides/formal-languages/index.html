@@ -1,0 +1,767 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <title>logicalmethods.ai &ndash; Formal languages </title>
+    <link rel="icon" type="image/x-icon" href="https://logicalmethods.ai/favicon.ico"></link>
+    <link href="https://logicalmethods.ai/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"></link>
+    <link rel="stylesheet" href="https://logicalmethods.ai/icons/font/bootstrap-icons.min.css"></link>
+    <link rel="stylesheet" href="https://logicalmethods.ai/css/layout.css"></link>
+    
+<link rel="stylesheet" href="https://logicalmethods.ai/reveal.js/dist/reveal.css">
+<link rel="stylesheet" href="https://logicalmethods.ai/css/slides.css">
+
+    <style>
+      
+      
+    </style>
+    
+  </head>
+  <body class="bg-black d-flex flex-column m-0 p-0">
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas-nav" aria-labelledby="offcanvas-navLabel" data-bs-theme="dark">
+  <div class="offcanvas-header">
+    <div class="h5 offcanvas-title" id="offcanvas-navLabel">
+      Browse course
+    </div>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  
+  <div class="offcanvas-body">
+    <ul class="navbar-nav"><li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/textbook/"><i class="bi bi-book"></i> &nbsp;&nbsp; Textbook</a>
+          </div>
+          <button 
+            class="btn btn-sm btn-dark" 
+            href="/textbook/"
+            id="navbarSectiontxt-home" data-bs-toggle="collapse"
+            data-bs-target="#collapsetxt-home"  
+            aria-expanded="aria-expanded=false"
+            aria-controls="collapsetxt-home">
+            <i class="bi bi-caret-left-fill toggle-icon"></i>
+          </button>
+        </div>
+        <div class="collapse " id="collapsetxt-home">
+          <ul class="list-unstyled ms-3">
+            <li>
+              <a class="dropdown-item " href="/textbook/logic-and-ai/">1. Logic and AI</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/textbook/valid-inference/">2. Valid Inference</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/textbook/formal-languages/">3. Formal languages</a>
+            </li>
+            </ul>
+        </div>
+        
+      </li>
+      <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link fw-bold active" href="/slides/"><i class="bi bi-rocket-takeoff-fill"></i> &nbsp;&nbsp; Slides</a>
+          </div>
+          <button 
+            class="btn btn-sm btn-dark" 
+            href="/slides/"
+            id="navbarSectionsli-home" data-bs-toggle="collapse"
+            data-bs-target="#collapsesli-home"  
+            aria-expanded="true"
+            aria-controls="collapsesli-home">
+            <i class="bi bi-caret-left-fill toggle-icon"></i>
+          </button>
+        </div>
+        <div class="collapse show" id="collapsesli-home">
+          <ul class="list-unstyled ms-3">
+            <li>
+              <a class="dropdown-item " href="/slides/logic-and-ai/">1. Logic and AI</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/slides/valid-inference/">2. Valid inference</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item fw-bold active" href="/slides/formal-languages/">3. Formal languages</a>
+            </li>
+            </ul>
+        </div>
+        
+      </li>
+      <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/exercises/"><i class="bi-gear-fill"></i> &nbsp;&nbsp; Exercises</a>
+          </div>
+          <button 
+            class="btn btn-sm btn-dark" 
+            href="/exercises/"
+            id="navbarSectionexe-home" data-bs-toggle="collapse"
+            data-bs-target="#collapseexe-home"  
+            aria-expanded="aria-expanded=false"
+            aria-controls="collapseexe-home">
+            <i class="bi bi-caret-left-fill toggle-icon"></i>
+          </button>
+        </div>
+        <div class="collapse " id="collapseexe-home">
+          <ul class="list-unstyled ms-3">
+            <li>
+              <a class="dropdown-item " href="/exercises/logic-and-ai/">1. Logic and AI</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/exercises/valid-inference/">2. Valid inference</a>
+            </li>
+            </ul>
+        </div>
+        
+      </li>
+      <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/quizzes/"><i class="bi bi-ui-checks-grid"></i> &nbsp;&nbsp; Quizzes</a>
+          </div>
+          <button 
+            class="btn btn-sm btn-dark" 
+            href="/quizzes/"
+            id="navbarSectionqui-home" data-bs-toggle="collapse"
+            data-bs-target="#collapsequi-home"  
+            aria-expanded="aria-expanded=false"
+            aria-controls="collapsequi-home">
+            <i class="bi bi-caret-left-fill toggle-icon"></i>
+          </button>
+        </div>
+        <div class="collapse " id="collapsequi-home">
+          <ul class="list-unstyled ms-3">
+            <li>
+              <a class="dropdown-item " href="/quizzes/logic-and-ai/">1. Logic and AI</a>
+            </li>
+            </ul>
+        </div>
+        
+      </li>
+      <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/about/"><i class="bi-file-person-fill"></i> &nbsp;&nbsp; About</a>
+          </div>
+      </li>
+      <hr>
+      
+    </ul>
+  </div>
+</div>
+
+    <header class="align-self-center d-flex flex-column m-0 mb-md-1 p-0" data-bs-theme="dark">
+      <nav class="navbar bg-dark shadow" data-bs-theme="dark" aria-label="header-navbar">
+  <div class="container-sm align-self-center px-3">
+    <a class="navbar-brand fs-6" href="https://logicalmethods.ai/"><span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+<i class="bi bi-caret-right-fill"></i>logicalmethods.ai</a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-nav" aria-controls="offcanvas-nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+
+      
+      
+    </header>
+    
+    <main class="align-self-center d-flex flex-column flex-fill bg-light m-md-1 p-0" data-bs-theme="light">
+      
+<ul class="navbar-nav flex-row justify-content-between mt-2">
+  
+  <li class="nav-item">
+    <a href="/slides/valid-inference/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-chevron-left"></i>
+    </a>
+    
+  </li>
+  <li class="nav-item">
+    <a href="/slides/" class="btn " tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-house-up"></i>
+    </a>
+  </li>
+  <li class="nav-item">
+    
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-chevron-right"></i>
+    </a>
+    
+  </li>
+</ul>
+
+<div class="container text-center">
+  <h3>
+    Lecture 3. Formal languages
+  </h3>
+  <em>Slides</em>
+</div>
+
+
+
+  
+   
+
+
+
+<div class="modal fade" id="info" tabindex="-1" aria-labelledby="InfoLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="infolabel">Info</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-start">
+          <p>Here you can find the lecture slides.</p>
+<p>You can use them to follow along during the lecture and to go through the
+material again after.</p>
+<p>Feel free to ask questions during the lecture!!</p>
+<p><strong>Technical info</strong></p>
+<p>You can use the arrow keys to navigate through the slides, or
+alternatively, click the little arrows on the slides themselves.</p>
+<p>Pressing the F-key while the slides are selected, puts them in
+fullscreen. You can quit fullscreen by pressing ESC.</p>
+<p>There are more the slides can do, find out under
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://revealjs.com/" class="link-dark" rel="external" target="_blank">https://revealjs.com/</a>
+.</p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Got it!</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container p-2 text-center">
+  <button type="button" class="btn btn-primary shadow" data-bs-toggle="modal" data-bs-target="#info">
+    <i class="bi bi-info-circle"></i>
+  </button>
+</div>
+
+
+<hr>
+
+<div class="d-flex flex-column">
+  <div class="align-self-center reveal border border-1 border-secondary border-opacity-50" style="aspect-ratio: 16 / 9; max-width: 710px">
+		<div class="slides" id="slides">
+			<section>
+				<h1>&forall;I</h1>
+        <p>Logical <strong>methods</strong> for AI</p>
+        <p>Lecture 3</p>
+        <p class="text-danger"><em>Formal languages</em></p>
+        
+<div class="container text-center">
+  <p class="copyright" xmlns:cc="http://creativecommons.org/ns#" >
+    This work is licensed under 
+    CC BY 4.0
+    <i class="bi bi-cc-circle"></i> <i class="bi bi-universal-access-circle"></i>
+  </p> 
+</div>
+
+
+        
+</section>
+<section>
+    
+    
+    <img src="https://logicalmethods.ai/slides/formal-languages/img/qr-code.png" class="img-thumbnail"  alt="" >
+    
+
+    <p><a href="https://forms.gle/JiXXM9eysAZaJMja9" target="_blank" style="font-size:1.5em">https://forms.gle/JiXXM9eysAZaJMja9</a></p>
+  </section>
+<section>
+  <section id="languages">
+    <dl class="row" >
+      <dd class="col">
+        <i class="bi bi-translate text-primary" style="font-size:100px;"></i> 
+        <h1>Formal <span class="text-danger">languages</span></h1>
+      </dd>
+      <dt class="col"></dt>
+    </dl>
+  </section>
+  <section id="ideas">
+    <h1>Ideas</h1>
+    <ul>
+      <li class="fragment fade-right">Formal language = mathematical model of language</li>
+      <li class="fragment fade-right">Logic: model of <em>logical form</em></li>
+      <ul>
+        <li class="fragment fade-right">mathematical <em>rigor</em></li>
+      </ul>
+
+      <li class="fragment fade-right">AI (KR): talk to computer</li>
+      <ul>
+        <li class="fragment fade-right">programming languages</li>
+        <li class="fragment fade-right">knowledge bases (KBs) and ontologies</li>
+      </ul>
+      <li class="fragment fade-right">low level (code) vs high level (NLP)</li>
+    </ul>
+  </section>
+</section>
+<section>
+  <section id="sets">
+    <dl class="row" >
+      <dd class="col">
+        <i class="bi bi-collection-fill text-success" style="font-size:100px;"></i> 
+        <h1><span class="text-danger">Set</span> theory</h1>
+      </dd>
+      <dt class="col"></dt>
+    </dl>
+  </section>
+  <section id="notation">
+    <h1>Notation</h1>
+    <ul>
+      <li class="fragment fade-right">Set = abstract collection of <em>elements</em></li>
+      <ul>
+        <li class="fragment fade-right">$x\in X$</li>
+        <li class="fragment fade-right">$x\notin X$</li>
+        <li class="fragment fade-right">$X=\Set{a_1,\dots,a_n}$</li>
+        <li class="fragment fade-right">$X=\Set{x:x\text{ is \dots}}$</li>
+      </ul>
+      <li class="fragment fade-right">$\mathcal{L}$ is a set</li>
+    </ul>
+  </section>
+</section>
+<section>
+  <section id="alphabets">
+    <dl class="row" >
+      <dd class="col">
+        <i class="bi bi-alphabet text-primary" style="font-size:100px;"></i> 
+        <h1><span class="text-danger">Alpha</span>bets</h1>
+      </dd>
+      <dt class="col"></dt>
+    </dl>
+  </section>
+  <section id="strings">
+    <h1>Strings</h1>
+    <ul>
+      <li class="fragment fade-right">Members of $\mathcal{L}$ are <em>strings</em> of symbols</li>
+      <li class="fragment fade-right">Constructed from alphabet $\Sigma$</li>
+      <ul>
+        <li class="fragment fade-right">$\Sigma=\Set{0,1,2,3,4,5,6,7,8,9}$</li>
+        <li class="fragment fade-right">Numerals: $0, \dots, 9,10, \dots, 19, 20, \dots$</li>
+        <li class="fragment fade-right">Strings are "meaningless"</li>
+      </ul>
+    </ul>
+  </section>
+  <section id="non-logical">
+    <h1>Non-logical</h1>
+    <ul>
+      <li class="fragment fade-right"><strong>Propositional variables</strong>: <p>$p,q,r,\dots,RAINY,SUNNY,\dots$</p></li>
+      <li class="fragment fade-right"><strong>Constants</strong>: 
+        <p>$a,b,c,\dots,Jim, Jane, \dots$</p></li>
+    </ul>
+  </section>
+  <section>
+    <h1>Non-logical</h1>
+    <ul>
+      <li class="fragment fade-right"><strong>Functions</strong>: <p>$f,g,h,\dots,FatherOf, \dots$</p></li>
+      <li class="fragment fade-right"><strong>Predicates</strong>: <p>$P,Q,R,\dots,BLUE, GREATER,\dots$</p></li>
+    </ul>
+  </section>
+  <section id="logical">
+    <h1>Logical</h1>
+    <ul>
+      <li class="fragment fade-right"><strong>Propositional connectives</strong>:</li>
+    </ul>
+    <table class="fragment fade-right">
+      <tbody>
+        <tr>
+          <td style="text-align: left">$\neg,\sim$</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">not</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">$\land,\&amp;$</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">and</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">$\lor$</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">or</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">$\to,\Rightarrow,\supset$</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">if &hellip;, then &hellip;</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">$\leftrightarrow,\Leftrightarrow,\equiv$</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">iff</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  <section>
+    <h2>Logical</h2>
+    <ul>
+      <li><strong>More propositional connectives</strong>:</li>
+    </ul>
+    <table class="fragment fade-right">
+      <tbody>
+        <tr>
+          <td style="text-align: left">$\square,\lozenge$</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">necessity, possibility</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">$K,B$</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">knowledge, belief</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">$G,F,H,P$</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">past, future</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">$P,O$</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">permission, obligation</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">$!$</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">announcements</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">$?$</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">questions</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  <section>
+    <h1>Logical</h1>
+    <ul>
+      <li><strong>Quantifiers</strong>:</li>
+    </ul>
+    <table class="fragment fade-right">
+      <tbody>
+        <tr>
+          <td style="text-align: left">$\forall$</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">(for) all</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">$\exists$</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">(for) some, there exists</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">$(\forall:P)$</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">(for) all $P$'s</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">$\exists_3$</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">there are 3</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  <section>
+    <h1>Auxilliaries</h1>
+    <ul>
+      <li class="fragment fade-right">Commas, parentheses, ...</li>
+    </ul>
+  </section>
+</section>
+<section>
+  <section id="grammar">
+    <dl class="row" >
+      <dd class="col">
+        <i class="bi bi-spellcheck text-success" style="font-size:100px;"></i> 
+        <h1><span class="text-danger">Grammar</span></h1>
+      </dd>
+      <dt class="col"></dt>
+    </dl>
+  </section>
+  <section id="strings">
+    <h1>Induction</h1>
+    <ul>
+      <li class="fragment fade-right">Propositional language:
+        $$\Sigma=\Set{p_1,\dots,p_n,\neg,\land,\lor,\to,\leftrightarrow,(,)}$$
+      </li>
+      <li class="fragment fade-right">Stepwise definition of $\mathcal{L}$-formulas</li>
+      <ul>
+        <li class="fragment fade-right">$p_1,\dots,p_n\in \mathcal{L}$</li>
+        <li class="fragment fade-right">$A,B\in \mathcal{L}\Rightarrow \neg A,(A\land B),(A\lor B),(A\to B),(A\leftrightarrow B)\in \mathcal{L}$</li>
+        <li class="fragment fade-right">Nothing else is in $\mathcal{L}$</li>
+      </ul>
+    </ul>
+  </section>
+  <section  id="BNF">
+    <h1>BNF</h1>
+    <div class="fs-1">
+    $$A::= p_i\mid\neg A\mid (A\land A)\mid (A\lor A)\mid (A\to A)\mid (A\leftrightarrow A)$$
+    $$\langle prop\rangle ::= p_1 \mid \dots\mid p_n $$
+    $$\langle unop\rangle ::= \neg$$
+    $$\langle binop\rangle ::= \land\mid\lor\mid\to\mid\leftrightarrow$$
+    $$\langle fml\rangle::=\langle atom\rangle\mid\langle unop\rangle\langle fml\rangle\mid
+    (\langle fml\rangle\langle binop\rangle \langle fml\rangle)$$
+    </div>
+  </section>
+</section>
+<section>
+  <section id="examples">
+    <dl class="row" >
+      <dd class="col">
+        <i class="bi bi-lightbulb-fill text-warning" style="font-size:100px;"></i> 
+        <h1><span class="text-danger">Examples</span></h1>
+      </dd>
+      <dt class="col"></dt>
+    </dl>
+  </section>
+  <section id="strings">
+    <h2>Formalization</h2>
+    <div class="fs-2 fragment fade-right">
+    <p>The letter isn&rsquo;t in the left drawer                                         $\leadsto$            $\neg p$</p>
+    <p>The letter is in the left and in the right drawer                           $\leadsto$            $(p\land q)$</p>
+    <p>The letter isn't in the left drawer, but also not in the right     $\leadsto$     $(\neg p\land \neg q)$</p>
+    <p>The letter is in the left or in the right drawer                            $\leadsto$           $(p\lor q)$</p>
+    <p>The letter is neither in the left nor in the right drawer                   $\leadsto$     $(\neg p\land \neg q)$</p>
+    <p>If the letter is in the left drawer, it&rsquo;s not in the right      $\leadsto$         $(p\to \neg q)$</p>
+    <p>The letter is in the left drawer, if it&rsquo;s not in the right one              $\leadsto$         $(\neg q\to p)$</p>
+    <p>The letter's only in the left drawer, if it&rsquo;s not in the right         $\leadsto$         $(p\to \neg q)$</p>
+    <p>The letter is in the left drawer just in case it&rsquo;s not in the right one     $\leadsto$   $(p\leftrightarrow \neg q)$</p>
+    </div>
+  </section>
+  <section id="fol">
+    <h2>FOL</h2>
+    <div class="fs-2">
+      <p>
+      $\langle const\rangle ::= a \mid b\mid \dots \qquad$  $\qquad\langle var\rangle ::= x \mid y\mid \dots $
+      </p>
+      <p>
+      $\langle unop\rangle ::= \neg\qquad $ $\qquad\langle binop\rangle ::= \land\mid\lor\mid\to\mid\leftrightarrow$
+      </p>
+      $$\langle quant\rangle ::= \forall\mid\exists$$
+      $$\langle term\rangle::= \langle const\rangle\mid\langle variable\rangle\mid
+      f^n(\langle term\rangle_1,\dots,\langle term\rangle_n)$$
+      $$\langle pred\rangle ::= P \mid Q\mid \dots $$
+      $$\langle atom\rangle::= P^n(\langle term\rangle_1,\dots\langle term\rangle_n)$$
+      $$\langle fml\rangle::=\langle atom\rangle\mid\langle unop\rangle\langle fml\rangle\mid
+      (\langle fml\rangle\langle binop\rangle \langle fml\rangle)\mid \langle quant\rangle \langle
+      var\rangle\langle fml\rangle$$
+    </div>
+  </section>
+  <section>
+    <h2>Examples</h2>
+    <div class="fs-1 fragment fade-right">
+      <p>Not everybody handsome is smart      $\leadsto$  $\neg\forall x(H(x)\to S(x))$</p>
+      <p>Everybody who&rsquo;s smart is handsome    $\leadsto$  $\forall x(S(x)\to H(x))$</p>
+      <p>A person who&rsquo;s smart is handsome     $\leadsto$  $\forall x(S(x)\to H(x))$</p>
+      <p>Someone who&rsquo;s smart is handsome      $\leadsto$  $\forall x(S(x)\to H(x))$</p>
+      <p>Everybody&rsquo;s smart and handsome       $\leadsto$  $\forall x(S(x)\land H(x))$</p>
+    </div>
+  </section>
+  <section>
+    <h2>Examples</h2>
+    <div class="fs-1 fragment fade-right">
+      <p>Somebody who&rsquo;s smart exists                 $\leadsto$  $\exists x S(x)$</p>
+      <p>There&rsquo;s somebody who&rsquo;s not smart            $\leadsto$  $\exists x\neg S(x)$</p>
+      <p>Somebody&rsquo;s smart and somebody&rsquo;s handsome    $\leadsto$  $\exists xS(x)\land \exists xH(x)$</p>
+      <p>Somebody&rsquo;s smart and handsome               $\leadsto$  $\exists x(S(x)\land H(x))$</p>
+      <p>Nobody&rsquo;s both smart and handsome            $\leadsto$  $\neg\exists x(S(x)\land H(x))$</p>
+      <p>Somebody, who&rsquo;s smart, is handsome          $\leadsto$  $\exists x(S(x)\land H(x))$</p>
+    </div>
+  </section>
+  <section>
+    <h2>Examples</h2>
+    <div class="fs-1 fragment fade-right">
+      <p>He&rsquo;s handsome                         $\leadsto$  $H(x)$</p>
+      <p>She&rsquo;s handsome and smart              $\leadsto$  $H(x)\land S(x)$</p>
+      <p>He&rsquo;s handsome and <em>he</em>&rsquo;s smart        $\leadsto$  $H(x)\land S(y)$</p>
+      <p>He&rsquo;s handsome and she&rsquo;s smart         $\leadsto$  $H(x)\land S(y)$</p>
+      <p>That&rsquo;s a smart and handsome person    $\leadsto$  $H(x)\land S(x)$</p>
+    </div>
+  </section>
+</section>
+<section>
+  <section id="parsing">
+    <dl class="row" >
+      <dd class="col">
+        <i class="bi bi-bezier text-primary" style="font-size:100px;"></i> 
+        <h1><span class="text-danger">Parsing</span></h1>
+      </dd>
+      <dt class="col"></dt>
+    </dl>
+  </section>
+  <section>
+    <h1>Idea</h1>
+    <ul>
+      <li class="fragment fade-right">Parsing = splitting formulas</li>
+      <li class="fragment fade-right">Basically: <em>reading</em> formulas</li>
+    </ul>
+  </section>
+  <section>
+    <h1>Parsing tree</h1>
+    
+    
+    <img src="https://logicalmethods.ai/slides/formal-languages/img/tree.png" class="img-thumbnail"  alt="parsing tree" >
+    
+
+  </section>
+  <section>
+    
+    
+    <img src="https://logicalmethods.ai/slides/formal-languages/img/fo-tree.png" class="img-thumbnail"  alt="parsing tree" >
+    
+
+  </section>
+  <section>
+    <h1>Unique readability</h1>
+    
+    
+    <img src="https://logicalmethods.ai/slides/formal-languages/img/ambiguity.png" class="img-thumbnail"  alt="parsing tree" >
+    
+
+  </section>
+</section>
+<section>
+  <section id="languages">
+    <dl class="row" >
+      <dd class="col">
+        <i class="bi bi-gear text-primary" style="font-size:100px;"></i> 
+        <h1><span class="text-danger">Applications</span></h1>
+      </dd>
+      <dt class="col"></dt>
+    </dl>
+  </section>
+
+  <section>
+    <ul>
+      <li class="fragment fade-right">Natural language processing (NLP):</li>
+      <ul>
+        <li class="fragment fade-right">Symbolic NLP</li>
+        <li class="fragment fade-right">Chinese room</li>
+      </ul>
+      <li class="fragment fade-right">Knowledge representation (KR):</li>
+      <ul>
+        <li class="fragment fade-right">Precision and reliability</li>
+        <li class="fragment fade-right">Restrictions of FOL</li>
+      </ul>
+    </ul>
+  </section>
+</section>
+<section>
+  <h1>Thanks<span class="text-danger">!</span></h1>
+</section>
+
+ 
+			</section>
+		</div>
+	</div>
+</div>
+
+
+<hr>
+
+<div class="container">
+  <h5>Highlights</h5>
+  <ul class="list-group">
+    
+    <a href="#/languages" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Formal languages</strong></a> 
+    
+    <a href="#/ideas" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Background ideas</strong></a> 
+    
+    <a href="#/sets" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Set theory</strong></a> 
+    
+    <a href="#/alphabets" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Alphabets</strong></a> 
+    
+    <a href="#/strings" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Strings</strong></a> 
+    
+    <a href="#/non-logical" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Non-logical symbols</strong></a> 
+    
+    <a href="#/logical" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Logical symbols</strong></a> 
+    
+    <a href="#/grammar" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Grammar</strong></a> 
+    
+    <a href="#/bnf" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>BNF</strong></a> 
+    
+    <a href="#/examples" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Examples</strong></a> 
+    
+    <a href="#/fol" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>First Order Logic</strong></a> 
+    
+    <a href="#/applications" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Applications</strong></a> 
+    
+  </ul>
+</div>
+
+
+<div class="d-flex align-items-center justify-content-end me-1 mt-auto">
+  Powered by &nbsp;
+  <a class="icon-link" href="https://revealjs.com/" target="_blank">
+    <img src="https://logicalmethods.ai/img/revealjs-logo.png" style="max-width:150px" class="img-thumbnail" alt="reveail.js">
+  </a>
+</div>
+
+
+<ul class="navbar-nav flex-row justify-content-between mt-auto">
+  
+  <li class="nav-item">
+    <a href="/slides/valid-inference/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-chevron-left"></i>
+    </a>
+    
+  </li>
+  <li class="nav-item">
+    <button class="btn btn-back-to-top">
+    <i class="bi bi-chevron-double-up"></i>
+  </button>
+  </li>
+  <li class="nav-item">
+    
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-chevron-right"></i>
+    </a>
+    
+  </li>
+</ul>
+
+
+    </main>
+    <footer class="align-self-center d-flex flex-column mt-md-1 p-0" data-bs-theme="dark">
+      <nav class="navbar bg-dark shadow" data-bs-theme="dark" aria-label="footer-navbar">
+  <div class="container-sm align-self-center px-3">
+    <a class="navbar-brand fs-6" href="/about" aria-label="copyright-link">&copy; 2024 jkorbmacher et al. </a>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link fs-6" href="https://github.com/jkorb/logicalmethods.ai" target="_blank"><i class="bi bi-github"></i></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+ 
+      <script src="https://logicalmethods.ai/js/helpers.js"></script>
+      <script src="https://logicalmethods.ai/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+      
+<script src="https://logicalmethods.ai/reveal.js/dist/reveal.js"></script>
+<script src="https://logicalmethods.ai/reveal.js/plugin/math/math.js"></script>
+<script>
+Reveal.initialize({
+  embedded: true, 
+  
+  plugins: [ RevealMath.KaTeX ],
+  hash: true
+  
+});
+</script>
+
+    </footer>
+  </body>
+</html>
