@@ -28,6 +28,8 @@ params:
        id: "examples"
      - keyword: "First Order Logic"
        id: "fol"
+     - keyword: "Applications"
+       id: "applications"
 ---
 
 </section>
@@ -298,9 +300,13 @@ params:
   </section>
   <section id="fol">
     <h2>FOL</h2>
-    <div class="fs-1">
+    <div class="fs-2">
+      <p>
       $\langle const\rangle ::= a \mid b\mid \dots \qquad$  $\qquad\langle var\rangle ::= x \mid y\mid \dots $
+      </p>
+      <p>
       $\langle unop\rangle ::= \neg\qquad $ $\qquad\langle binop\rangle ::= \land\mid\lor\mid\to\mid\leftrightarrow$
+      </p>
       $$\langle quant\rangle ::= \forall\mid\exists$$
       $$\langle term\rangle::= \langle const\rangle\mid\langle variable\rangle\mid
       f^n(\langle term\rangle_1,\dots,\langle term\rangle_n)$$
@@ -321,6 +327,83 @@ params:
       <p>Everybody&rsquo;s smart and handsome       $\leadsto$  $\forall x(S(x)\land H(x))$</p>
     </div>
   </section>
+  <section>
+    <h2>Examples</h2>
+    <div class="fs-1 fragment fade-right">
+      <p>Somebody who&rsquo;s smart exists                 $\leadsto$  $\exists x S(x)$</p>
+      <p>There&rsquo;s somebody who&rsquo;s not smart            $\leadsto$  $\exists x\neg S(x)$</p>
+      <p>Somebody&rsquo;s smart and somebody&rsquo;s handsome    $\leadsto$  $\exists xS(x)\land \exists xH(x)$</p>
+      <p>Somebody&rsquo;s smart and handsome               $\leadsto$  $\exists x(S(x)\land H(x))$</p>
+      <p>Nobody&rsquo;s both smart and handsome            $\leadsto$  $\neg\exists x(S(x)\land H(x))$</p>
+      <p>Somebody, who&rsquo;s smart, is handsome          $\leadsto$  $\exists x(S(x)\land H(x))$</p>
+    </div>
+  </section>
+  <section>
+    <h2>Examples</h2>
+    <div class="fs-1 fragment fade-right">
+      <p>He&rsquo;s handsome                         $\leadsto$  $H(x)$</p>
+      <p>She&rsquo;s handsome and smart              $\leadsto$  $H(x)\land S(x)$</p>
+      <p>He&rsquo;s handsome and <em>he</em>&rsquo;s smart        $\leadsto$  $H(x)\land S(y)$</p>
+      <p>He&rsquo;s handsome and she&rsquo;s smart         $\leadsto$  $H(x)\land S(y)$</p>
+      <p>That&rsquo;s a smart and handsome person    $\leadsto$  $H(x)\land S(x)$</p>
+    </div>
+  </section>
+</section>
+<section>
+  <section id="parsing">
+    <dl class="row" >
+      <dd class="col">
+        <i class="bi bi-bezier text-primary" style="font-size:100px;"></i> 
+        <h1><span class="text-danger">Parsing</span></h1>
+      </dd>
+      <dt class="col"></dt>
+    </dl>
+  </section>
+  <section>
+    <h1>Idea</h1>
+    <ul>
+      <li class="fragment fade-right">Parsing = splitting formulas</li>
+      <li class="fragment fade-right">Basically: <em>reading</em> formulas</li>
+    </ul>
+  </section>
+  <section>
+    <h1>Parsing tree</h1>
+    {{< img src="img/tree.png" alt="parsing tree" class="img-thumbnail" >}}
+  </section>
+  <section>
+    {{< img src="img/fo-tree.png" alt="parsing tree" class="img-thumbnail" >}}
+  </section>
+  <section>
+    <h1>Unique readability</h1>
+    {{< img src="img/ambiguity.png" alt="parsing tree" class="img-thumbnail" >}}
+  </section>
+</section>
+<section>
+  <section id="languages">
+    <dl class="row" >
+      <dd class="col">
+        <i class="bi bi-gear text-primary" style="font-size:100px;"></i> 
+        <h1><span class="text-danger">Applications</span></h1>
+      </dd>
+      <dt class="col"></dt>
+    </dl>
+  </section>
+
+  <section>
+    <ul>
+      <li class="fragment fade-right">Natural language processing (NLP):</li>
+      <ul>
+        <li class="fragment fade-right">Symbolic NLP</li>
+        <li class="fragment fade-right">Chinese room</li>
+      </ul>
+      <li class="fragment fade-right">Knowledge representation (KR):</li>
+      <ul>
+        <li class="fragment fade-right">Precision and reliability</li>
+        <li class="fragment fade-right">Restrictions of FOL</li>
+      </ul>
+    </ul>
+  </section>
+</section>
 <section>
   <h1>Thanks<span class="text-danger">!</span></h1>
 </section>
