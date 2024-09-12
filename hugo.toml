@@ -5,6 +5,9 @@ contentDir = "content"
 
 [module]
   [[module.mounts]]
+    source = "assets/katex/fonts"
+    target = "static/katex/fonts"
+  [[module.mounts]]
     source = "assets/icons/font/fonts"
     target = "static/icons/font/fonts"
   [[module.mounts]]
