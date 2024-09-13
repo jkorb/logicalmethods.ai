@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8"></meta>
     <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-    <title>logicalmethods.ai &ndash; Logic and AI </title>
+    <title>logicalmethods.ai &ndash; Formal languages </title>
     <link rel="icon" type="image/x-icon" href="https://logicalmethods.ai/favicon.ico"></link>
     <link href="https://logicalmethods.ai/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"></link>
     <link rel="stylesheet" href="https://logicalmethods.ai/icons/font/bootstrap-icons.min.css"></link>
@@ -15,6 +15,25 @@
       
       
     </style>
+    
+      <link rel="stylesheet" href="https://logicalmethods.ai/katex/katex.min.css">
+<script defer src="https://logicalmethods.ai/katex/katex.min.js"></script>
+<script defer src="https://logicalmethods.ai/katex/contrib/auto-render.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},     
+        {left: '$', right: '$', display: false},     
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '\\(', right: '\\)', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
     
   </head>
   <body class="bg-black d-flex flex-column m-0 p-0">
@@ -111,7 +130,7 @@
         <div class="collapse show" id="collapseexe-home">
           <ul class="list-unstyled ms-3">
             <li>
-              <a class="dropdown-item fw-bold active" href="/exercises/logic-and-ai/">1. Logic and AI</a>
+              <a class="dropdown-item " href="/exercises/logic-and-ai/">1. Logic and AI</a>
             </li>
             
             <li>
@@ -119,7 +138,7 @@
             </li>
             
             <li>
-              <a class="dropdown-item " href="/exercises/formal-logic/">3. Formal languages</a>
+              <a class="dropdown-item fw-bold active" href="/exercises/formal-logic/">3. Formal languages</a>
             </li>
             </ul>
         </div>
@@ -199,7 +218,8 @@
 
   <ul class="navbar-nav flex-row justify-content-between mt-2">
   
-    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
+  <li class="nav-item">
+    <a href="/exercises/valid-inference/" class="btn" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-left"></i>
     </a>
     
@@ -211,7 +231,7 @@
   </li>
   <li class="nav-item">
     
-    <a href="/exercises/valid-inference/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-right"></i>
     </a>
     
@@ -220,7 +240,7 @@
 
   <div class="container text-center">
   <h3>
-    Tutorial 1. Logic and AI
+    Tutorial 3. Formal languages
   </h3>
   <em>Exercise sheet</em>
 </div>
@@ -228,6 +248,7 @@
 
 
 
+  
    
 
 
@@ -240,7 +261,16 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body text-start">
-          <p>The exercises marked with
+          <p>On this page, you can find the exercise sheets for the work groups.</p>
+<p>Each section has a set of exercises that you&rsquo;ll go through with your TA in the
+session.</p>
+<p>Some exercises are marked as homework, they are due at the beginning of the
+next session.</p>
+<p>You&rsquo;ll receive constructive feedback from your TA on your work.</p>
+<p>You can also ask your TA for suggestions and advice.</p>
+<p>You <strong>must</strong> show your work in order to get tips, meaning that if you just
+say &ldquo;i don&rsquo;t know&rdquo;. Try by yourself first and explain <em>what</em> you don&rsquo;t get.</p>
+<p>The exercises marked with
 <i class="bi bi-house-gear-fill text-danger">
 </i>
 
@@ -249,9 +279,8 @@ are homework questions.</p>
 <i class="bi bi-lightbulb-fill">
 </i>
 
-have solutions available online.</p>
-<p>The solutions are password protected and you&rsquo;ll receive the password in the work
-groups.</p>
+have solutions available online. The solutions are
+password protected and you&rsquo;ll receive the password in the work groups.</p>
 
       </div>
       <div class="modal-footer">
@@ -278,137 +307,238 @@ groups.</p>
     
       
 </div>
-<div id="definitions" ><h5 class="">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Definitions
-    </div>
-</h5><p><em>Note</em>: A definition needs to fully explain the meaning of a concept. This is
-typically done by saying under which precise conditions the concept applies.
-That is, the answer should have the form like &ldquo;A valid inference is an inference
-such that&hellip;&rdquo; or &ldquo;An inference is valid just in case &hellip;&rdquo;.</p>
-
-</div>
-<div id="a-inference" ><h6 class="">a.) Inference</h6><p>Give a definition of inference. Include examples (where your definition applies)
-and non-examples (where it does not). Make sure to explain why your definition
-applies or not.</p>
-
-</div>
-<div id="b-validity" class=" homework"><h6 class=" homework">b.) Validity</h6><p>Give a definition of deductive and inductive inference. Include examples
-and non-examples with explanations.</p>
-
-</div>
-<div id="indicators" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Indicators
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="indicatorsSolution"
-        onclick="showPasswordModal('indicatorsSolution', 'exc-laa')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
-    </div>
-</h5><p>Give at least 5 additional examples of:</p>
-
-</div>
-<div id="a" ><h6 class="">a.)</h6><p>premise indicators,</p>
-
-</div>
-<div id="b" ><h6 class="">b.)</h6><p>inference indicators.</p>
-
-</div>
-<div id="indicatorsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>a.) Since, because, since, for, whereas, as.</p>
-<p>b.) It follows that, thus, hence, consequently, we know that.</p>
-
-</div>
-<div id="validity" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Validity
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="validitySolution"
-        onclick="showPasswordModal('validitySolution', 'exc-laa')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
-    </div>
-</h5><p>Which of the following inferences is valid? Specify whether the inference is
-deductively or inductively valid.</p>
-
-</div>
-<div id="a-1" ><h6 class="">a.)</h6><p>Every attempt so far has failed. So the next attempt will also fail.</p>
-
-</div>
-<div id="b-1" ><h6 class="">b.)</h6><p>Well, I didn’t not cause the bug. So, I caused the bug.</p>
-
-</div>
-<div id="c" ><h6 class="">c.)</h6><p>If you did <em>that</em>, pigs can fly. So, you didn&rsquo;t do it.</p>
-
-</div>
-<div id="d" ><h6 class="">d.)</h6><p>All software has bugs. So, this software has bugs, too.</p>
-
-</div>
-<div id="e" ><h6 class="">e.)</h6><p>A thinking computer is not a computer anymore. So it&rsquo;s impossible to teach a
-computer how to think.</p>
-
-</div>
-<div id="validitySolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6>
-</div>
-<div id="deductive-and-inductive-inference" ><h5 class="">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Deductive and inductive inference
-    </div>
-</h5><p>Provide an argument that every deductively valid inference is also
-inductively valid. Does the converse also hold?</p>
-
-</div>
-<div id="expert-systems" ><h5 class="">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Expert systems
+<div id="bnfs" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0  p-0 ">BNFs
     </div>
 </h5>
 </div>
-<div id="thinking-fast-and-slow" ><h5 class="">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Thinking, Fast and Slow
+<div id="a" class=" homework"><h6 class=" homework">a)</h6><p>Consider the following propositional language, described informally:</p>
+<div class="container " >
+  <figure>
+    <blockquote class="blockquote fs-6">
+      <p>
+      We have three propositional variables $BLUE$, $GREEN$, and $RED$. Further, we
+have the propositional connectives $\neg,\land, \lor$, which work as usual, i.e.
+$\neg$ can be written in front of a formula to negate it, $\land$ can be written
+between two formulas flanked by parentheses to conjoin them, and similarly for
+$\lor$. Additionally, we have two unary modal operators $\square,\lozenge$, which can be
+written in front of a formula to form a new formula.
+      </p>
+    </blockquote>
+    
+  </figure>
+</div>
+
+<p>Determine the BNF of this language.</p>
+
+</div>
+<div id="b" ><h6 class="">b)</h6><p>Consider the following BNF for FOL. Describe the grammar of this language using
+induction, i.e. using clauses like in 
+
+
+<a href="https://logicalmethods.ai/textbook/formal-languages//#grammar"
+   
+   
+   
+   
+   
+   > Section 3.2.2</a>
+
+:</p>
+<p>$$\langle const\rangle ::= a_1 \mid \dots \mid a_n$$</p>
+<p>$$\qquad\langle var\rangle ::= x_1 \mid \dots \mid x_n$$</p>
+<p>$$\langle unop\rangle ::= \neg$$</p>
+<p>$$\qquad\langle binop\rangle ::=\land\mid\lor\mid\to\mid\leftrightarrow$$</p>
+<p>$$\langle quant\rangle ::= \forall\mid\exists$$</p>
+<p>$$\langle func\rangle^n ::= f_1^n\mid \dots \mid f_{k_n}^n$$</p>
+<p>$$\langle pred\rangle^n ::= P_1^n \mid \dots \mid P_{l_n}^n $$</p>
+<p>for $n=1,2,\dots$. This means that for each number $n=1,2,\dots$ there is a
+certain number $k_n$ of $n$-ary function symbols and another number $l_n$ of
+$n$-ary predicates. So, e.g., if $n=2$, then there are $k_2$-many functions that
+take $2$ arguments.</p>
+<p>$$\langle term\rangle::= \langle const\rangle\mid\langle variable\rangle\mid
+\langle func\rangle^n(\langle term\rangle_1,\dots,\langle term\rangle_n)$$</p>
+<p>$$\langle atom\rangle::= \langle pred\rangle^n(\langle term\rangle_1,\dots\langle term\rangle_n)$$</p>
+<p>$$\langle fml\rangle::=\langle atom\rangle\mid\langle unop\rangle\langle fml\rangle\mid
+(\langle fml\rangle\langle binop\rangle \langle fml\rangle)\mid \langle quant\rangle \langle
+var\rangle\langle fml\rangle$$</p>
+<p><em>Hint</em>: You need to define more than just the set $\mathcal{L}$ by induction.
+You also need to define the <em>auxiliary</em> sets of terms.</p>
+
+</div>
+<div id="c" ><h6 class="">c)</h6><p>Consider the following formulas:</p>
+<p>$$p, q,(\neg p), (p\supseteq q), (p\mid\mid r), ((p\supseteq r)\&amp;\&amp;(\neg q))$$</p>
+<p>Determine a BNF, such that these are well-formed formulas according to the
+corresponding grammar.</p>
+<p><em>Note</em>: There are, of course, many different possible answers. Try to find the
+most &ldquo;natural&rdquo; one.</p>
+
+</div>
+<div id="d" class=" homework"><h6 class=" homework">d)</h6><p>Determine the BNF for the fragment of FOL, subject to the following constraints:</p>
+<ul>
+<li>
+<p>We only have two unary predicates $RED,ROUND$ and one binary predicate
+$BIGGER$.</p>
+</li>
+<li>
+<p>There are no function symbols or constants.</p>
+</li>
+<li>
+<p>A quantifier ($\forall, \exists)$ can only occur when it&rsquo;s followed by a
+variable $\alpha=x,y,z,\dots$ and then a formula of the form $(P(\alpha)\to B)$,
+where $P$ is a unary predicate.</p>
+</li>
+</ul>
+
+</div>
+<div id="formalization" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Formalization
     </div>
-</h5><p>Give at least 3 new examples of:</p>
+</h5>
+</div>
+<div id="a-1" ><h6 class="">a)</h6><p>You arrive at an uninhabited planet and find an old space rover that some
+ancient civilization that still used expert systems for AI used to explore the
+planet. You inspect its knowledge base and find the following code:</p>
+<ul>
+<li>
+<p>$(RAIN\to SEEK\_COVER)$</p>
+</li>
+<li>
+<p>$(SUN\to CHARGE\_BATTERIES)$</p>
+</li>
+<li>
+<p>$((\neg CHARGE\_BATTERIES\land SUN)\to REQUEST\_REPAIR)$</p>
+</li>
+<li>
+<p>$(\neg(SUN\lor RAIN)\to INSPECT\_SENSORS)$</p>
+</li>
+<li>
+<p>$(SHUT\_DOWN\leftrightarrow ((REQUEST\_REPAIR\land\neg REPAIR)\lor
+(INSPECT\_SENSORS\land FAULTY))$</p>
+</li>
+</ul>
+<p>Explain these rules in natural language.</p>
 
 </div>
-<div id="a-2" ><h6 class="">a.)</h6><p>System 1</p>
+<div id="b-1" ><h6 class="">b)</h6><p>Consider the following natural language claims. Translate them into a suitable
+propositional or FOL language:</p>
+<ul>
+<li>
+<p>Alan Turing built the first computer but Ada Lovelace invented the first
+computer algorithm.</p>
+</li>
+<li>
+<p>Only if Alan Turing built the first computer, it&rsquo;s Monday today.</p>
+</li>
+<li>
+<p>Either Alan Turing or Ada Lovelace is your favorite computer scientist.</p>
+</li>
+<li>
+<p>Today is Monday if and only if both yesterday was Tuesday and tomorrow is
+Saturday.</p>
+</li>
+</ul>
+<ul>
+<li>
+<p>A number that is greater than every even number is odd.</p>
+</li>
+<li>
+<p>Every number is greater than at least one number.</p>
+</li>
+<li>
+<p>There is an even number that is smaller than an odd number that is greater
+than another odd number.</p>
+</li>
+<li>
+<p>There is no number that is greater than every number.</p>
+</li>
+<li>
+<p>No number is greater than itself.</p>
+</li>
+<li>
+<p>Every odd number is greater than 0.</p>
+</li>
+<li>
+<p>Every odd number is greater than an even number.</p>
+</li>
+</ul>
 
 </div>
-<div id="b-2" ><h6 class="">b.)</h6><p>System 2</p>
+<div id="c-1" class=" homework"><h6 class=" homework">c)</h6><p>We&rsquo;re thinking of a scenario where there&rsquo;s a factory that makes balls. We want
+to create a robot that ultimately sorts balls by color and material. But we&rsquo;re not
+there yet, for now we need to represent the following knowledge claims about the
+factory to the robot:</p>
+<div class="container " >
+  <figure>
+    <blockquote class="blockquote fs-6">
+      <p>
+      The balls we make have one of three colors, blue, red, and green. The blue balls
+are all made from rubber, but the red and green balls can be made of leather or
+rubber. Rubber balls are cheaper, but the leather balls are more durable than
+the rubber balls.
+      </p>
+    </blockquote>
+    
+  </figure>
+</div>
+
+<p>Devise a suitable FOL-language and represent the knowledge claims in the above
+paragraph into a knowledge base $\mathbf{KB}$.</p>
 
 </div>
-<div id="research" class=" research"><h5 class="research">
+<div id="parsing" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Parsing
+    </div>
+</h5>
+</div>
+<div id="a-2" class=" homework"><h6 class=" homework">a)</h6><p>Parse the following formulas according to the BNF for propositional logic:</p>
+<ul>
+<li>
+<p>$(\neg p\to \neg p)$</p>
+</li>
+<li>
+<p>$(p\leftrightarrow (\neg r\land q))$</p>
+</li>
+<li>
+<p>$((q\land s)\to (p\lor r))$</p>
+</li>
+<li>
+<p>$(((p\land q)\lor (r\land s))\land \neg ((p\land q\land r\land s)))$</p>
+</li>
+</ul>
+
+</div>
+<div id="b-2" ><h6 class="">b)</h6><p>Parse the following formulas according to the BNF for FOL:</p>
+<ul>
+<li>
+<p>$ \exists  x S(x,p)$</p>
+</li>
+<li>
+<p>$\forall x (  \exists y G(x,y) \rightarrow   \exists  y S(x,y))$</p>
+</li>
+<li>
+<p>$\lnot  \exists x G(p,x) \wedge   \lnot  \exists  y S(y,p)$</p>
+</li>
+<li>
+<p>$\forall x  (B(x) \rightarrow   \exists y G(y,x))$</p>
+</li>
+</ul>
+
+</div>
+<div id="research" class=" homework"><h5 class="homework">
     <div class="d-inline-flex flex-row m-0  p-0 ">Research
     </div>
-</h5><p><em>Note</em>: These questions require you to do your own research, using reliable
-academic sources. You need to reference your sources!</p>
+</h5><p>Can the grammar of <em>every</em> formal language be given by a BNF? If so, explain
+why, if not give a counterexample and explain why it is, indeed, a
+counterexample.</p>
 
 </div>
-<div id="decidability" ><h6 class="">Decidability</h6><p>Are <em>all</em> logical systems undecidable?</p>
-
-</div>
-<div id="symbolic-ai" class=" homework"><h6 class=" homework">Symbolic AI</h6><p>Give 2 examples of existing expert systems, one that &ldquo;failed&rdquo; and one that&rsquo;s
-still in use today. Explain why the first one failed.</p>
-
-</div>
-<div id="discussion" class=" discussion"><h5 class="discussion">
+<div id="discussion" ><h5 class="">
     <div class="d-inline-flex flex-row m-0  p-0 ">Discussion
     </div>
-</h5><p><em>Note</em>: The following questions require argumentative writing, i.e. you&rsquo;re asked
-to take an informed view on the question, clearly state your position, and the
-reasons for it.</p>
-
-</div>
-<div id="a-logic-and-system-2" ><h6 class="">a.) Logic and system 2</h6><p>Is all logical thinking system 2 thinking?</p>
-
-</div>
-<div id="b-minds-and-machines" class=" homework"><h6 class=" homework">b.) Minds and machines</h6><p>Does Gödel&rsquo;s theorem show that we cannot build a logic-based AGI?</p>
+</h5><p>Some AI researchers thought that everything that can be said can be said in FOL.
+Doing some necessary research, do you agree? Support your answer with arguments
+and/or examples.</p>
 
   </div>
 </div>
@@ -416,7 +546,8 @@ reasons for it.</p>
 
 <ul class="navbar-nav flex-row justify-content-between mt-auto">
   
-    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
+  <li class="nav-item">
+    <a href="/exercises/valid-inference/" class="btn" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-left"></i>
     </a>
     
@@ -428,7 +559,7 @@ reasons for it.</p>
   </li>
   <li class="nav-item">
     
-    <a href="/exercises/valid-inference/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-right"></i>
     </a>
     
