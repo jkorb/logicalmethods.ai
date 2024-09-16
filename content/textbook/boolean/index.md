@@ -124,7 +124,7 @@ The fact that we can use functions to model situations crucially depends on
 another **modelling assumption**, viz. that _every_ sentence has a unique
 truth-value. A valuation $\nu:\langle prop\rangle \to \Set{0,1}$ will always
 assign a value to each of $\mathsf{RAIN},\mathsf{SUN},\mathsf{BIKE}$. E.g.
-$$\nu(\mathsf{RAIN})=1$$ $$\nu(\mathsf{SUN})=0$$ $$\nu(\mathsf{RAIN})=1$$ is a
+$$\nu(\mathsf{RAIN})=1$$ $$\nu(\mathsf{SUN})=0$$ $$\nu(\mathsf{BIKE})=1$$ is a
 situation where it rains, it's not sunny, but I'm biking. 
 
 This means that our models assume both that every sentences is either true or
