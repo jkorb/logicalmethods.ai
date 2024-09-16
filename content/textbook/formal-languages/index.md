@@ -60,7 +60,7 @@ the concrete words or sentences involved. _All_ of the below inferences are
 valid:
 
 1. [BERT](https://en.wikipedia.org/wiki/BERT_(language_model)) is either my
-favorite dog or an LLM, and BERT not an LLM. So, BART is my favorite dog.
+favorite dog or an LLM, and BERT not an LLM. So, BERT is my favorite dog.
 
 2. Given that Ada is either on the Philosopher’s Walk or in the study, and she’s
 not in the study, she therefore must be on the Philosopher’s Walk.
