@@ -78,5 +78,12 @@
       <guid>https://logicalmethods.ai/textbook/formal-languages/</guid>
       <description>&lt;h1 id=&#34;formal-languages&#34;&gt;Formal languages&lt;button class=&#34;btn btn-back-to-top&#34;&gt;&#xA;    &#xA;  &lt;/button&gt;&#xA;&lt;/h1&gt;&#xA;&lt;hr&gt;&#xA;&#xA;&lt;p&gt;In &#xA;&#xA;&#xA;&lt;a href=&#34;https://logicalmethods.ai/textbook/logic-and-ai//#logical-systems&#34;&#xA;   &#xA;   &#xA;   &#xA;   &#xA;   &#xA;   &gt;&#xA;Chapter 1. Logic and AI&lt;/a&gt;&#xA;&#xA;, we introduced formal languages as a&#xA;&lt;strong&gt;mathematical model of language&lt;/strong&gt;. In &#xA;&#xA;&#xA;&lt;a href=&#34;https://logicalmethods.ai/textbook/valid-inference//#formalization&#34;&#xA;   &#xA;   &#xA;   &#xA;   &#xA;   &#xA;   &gt;&#xA;Chapter 2. Valid inference&lt;/a&gt;&#xA;&#xA;, we further developed the idea of&#xA;formal languages as a model of &lt;strong&gt;logical form&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;p&gt;In this chapter, you&amp;rsquo;ll learn the nitty-gritty of how formal languages are&#xA;defined mathematically, and we&amp;rsquo;ll look at some of the &lt;em&gt;many&lt;/em&gt; applications of&#xA;formal languages in AI and beyond.&lt;/p&gt;</description>
     </item>
+    <item>
+      <title>Boolean algebra</title>
+      <link>https://logicalmethods.ai/textbook/boolean/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://logicalmethods.ai/textbook/boolean/</guid>
+      <description>&lt;h1 id=&#34;boolean-algebra&#34;&gt;Boolean algebra&lt;button class=&#34;btn btn-back-to-top&#34;&gt;&#xA;    &#xA;  &lt;/button&gt;&#xA;&lt;/h1&gt;&#xA;&lt;hr&gt;&#xA;&#xA;&lt;p&gt;In this chapter, you&amp;rsquo;ll learn about some of the most fundamental laws of&#xA;reasoning and computation: the laws of &lt;strong&gt;Boolean algebra&lt;/strong&gt;. These laws find&#xA;applications ranging from building computer circuits to web searches.&lt;/p&gt;&#xA;&lt;p&gt;From the perspective of logical theory, Boolean algebra provides a &lt;strong&gt;semantics&lt;/strong&gt;&#xA;for classical propositional logic. This works by focusing on truth and falsity&#xA;as the only logically relevant aspect of meaning when it comes to valid&#xA;inference.&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>
