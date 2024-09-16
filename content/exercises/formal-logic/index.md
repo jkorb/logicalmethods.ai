@@ -105,7 +105,7 @@ planet. You inspect its knowledge base and find the following code:
 + $(\neg(SUN\lor RAIN)\to INSPECT\\_SENSORS)$
 
 + $(SHUT\\_DOWN\leftrightarrow ((REQUEST\\_REPAIR\land\neg REPAIR)\lor
-(INSPECT\\_SENSORS\land FAULTY))$
+(INSPECT\\_SENSORS\land FAULTY)))$
 
 Explain these rules in natural language.
 
