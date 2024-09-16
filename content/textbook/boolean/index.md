@@ -167,7 +167,7 @@ $-\nu(\mathsf{SUNNY})$.
 Suppose, for example, that
 $\nu(\mathsf{RAIN})=1$ and $\nu(\mathsf{SUNNY})=0$ (it's raining and not sunny),
 we get that $$\nu(\mathsf{RAIN}\lor
-\neg\mathsf{SUNNY})=\nu(\mathsf{RAIN})+-\nu(\mathsf{SUNNY})=1+1=1.$$
+\neg\mathsf{SUNNY})=\nu(\mathsf{RAIN})+-\nu(\mathsf{SUNNY})=1+0=1.$$
 
 The crux of recursion is that, because all propositional variables have a value
 and because all formulas are built up from propositional variables using the
