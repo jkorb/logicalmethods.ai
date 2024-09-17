@@ -293,7 +293,7 @@ for $x,y,z\in\Set{0,1}$:
  | --------------------------- | -                  | -------------------------------------------- |
  | Complementation 1           |                    | $x\times -x=0$                               |
  | Complementation 2           |                    | $x+ -x=1$                                    |
- | Involution                  |                    | $--x=x$                                      |
+ | Involution                  |                    | $\-\-x=x$                                      |
  | De Morgan 1                 |                    | $-(x+y)=-x\times -y$                         |
  | De Morgan 2                 |                    | $-(x\times y)=-x+-y$                         |
 
