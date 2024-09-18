@@ -1,0 +1,17 @@
+{{ $class := ""}}
+{{ with .Get "class" }}
+  {{ $class = . }}
+{{ end }}
+
+{{ $content := .Inner }}
+{{ $id := sha256 $content }}
+
+<hr>
+<a class="btn btn-sm btn-link link-dark link-underline-opacity-0" href="#{{$id}}" type="button" data-bs-toggle="collapse" data-bs-target="#{{ $id }}" aria-expanded="false" aria-controls="{{$id}}" >
+$\LaTeX$ answer template <i class="bi bi-chevron-left toggle-icon"></i>
+</a>
+<div id="{{ $id }}" class="collapse bg-black rounded m-2 p-2 {{$class}}" style="position:relative;">
+  <button class="btn btn-primary shadow" style="position:absolute; top:10px;right:10px" onclick="copyContent('{{$id}}-inner')"><i class="bi bi-clipboard"></i> Copy!</button>
+  <pre><code class="text-white" id="{{$id}}-inner">{{ .Inner }}</code></pre>
+</div>
+<hr>
