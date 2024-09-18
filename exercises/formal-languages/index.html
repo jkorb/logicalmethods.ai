@@ -142,7 +142,7 @@
             </li>
             
             <li>
-              <a class="dropdown-item fw-bold active" href="/exercises/formal-logic/">3. Formal languages</a>
+              <a class="dropdown-item fw-bold active" href="/exercises/formal-languages/">3. Formal languages</a>
             </li>
             </ul>
         </div>
@@ -311,8 +311,19 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
     
       
 </div>
-<div id="bnfs" ><h5 class="">
+<div id="bnfs" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">BNFs
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="bnfsSolution"
+        onclick="showPasswordModal('bnfsSolution', 'exc-for')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5>
 </div>
@@ -395,8 +406,47 @@ where $P$ is a unary predicate.</p>
 </ul>
 
 </div>
-<div id="formalization" ><h5 class="">
+<div id="bnfsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong></p>
+<p>$$ A::= BLUE, GREEN, RED \mid \neg A \mid \Box A \mid \Diamond A \mid (A\land A) \mid (A\lor A) $$</p>
+<p><strong>b)</strong></p>
+<ul>
+<li>If $a_i$ is a constant, then $a_i\in\mathcal{T}$</li>
+<li>If $x_i$ is a variable, then $x_i\in\mathcal{T}$</li>
+<li>If $f^n_i$ is an $n$-place function sign and $t_1,\ldots,t_n\in\mathcal{T}$, then $f^n_i(t_1,\ldots,t_n)\in\mathcal{T}$</li>
+<li>If $P^n_i$ is an $n$-place predicate and $t_1,\ldots,t_n\in\mathcal{T}$, then $P^n_i(t_1,\ldots,t_n)\in\mathcal{L}$</li>
+<li>If $A\in\mathcal{L}$, then $\neg A\in\mathcal{L}$</li>
+<li>If $A,B\in\mathcal{L}$, then $(A\land B), (A\lor B), (A\rightarrow B), (A\leftrightarrow B)\in\mathcal{L}$</li>
+<li>If $A\in\mathcal{L}$ and $x_i$ is a variable, then $\forall x_i A, \exists x_i A\in\mathcal{L}$</li>
+</ul>
+<p><strong>c)</strong></p>
+<p>$$ A::= p,q,r \mid \neg A \mid (A\supseteq A) \mid (A||A) \mid (A\&amp;\&amp;A) $$</p>
+<p><strong>d)</strong></p>
+<p>$$ \langle{var}\rangle ::= x_1 \mid \ldots \mid x_n $$</p>
+<p>$$ \langle{unop}\rangle ::= \neg $$</p>
+<p>$$ \langle{binop}\rangle ::= \land \mid \lor \mid \rightarrow \mid \leftrightarrow $$</p>
+<p>$$ \langle{quant}\rangle ::= \forall \mid \exists $$</p>
+<p>$$ \langle{pred}\rangle^1 ::= RED \mid ROUND $$</p>
+<p>$$ \langle{pred}\rangle^2 ::= BIGGER $$</p>
+<p>$$ \langle{atom}\rangle ::= \langle{pred}\rangle^n(\langle{var}\rangle_1,\ldots,\langle{var}\rangle_n) $$</p>
+<p>$$ \langle{fml}\rangle ::= \langle{atom}\rangle \mid
+\langle{unop}\rangle\langle{fml}\rangle \mid
+(\langle{fml}\rangle\langle{binop}\rangle\langle{fml}\rangle)$$
+$$\mid \langle{quant}\rangle\langle{var}\rangle(\langle{pred}\rangle^1(\langle{var}\rangle)\rightarrow\langle{fml}\rangle) $$</p>
+
+</div>
+<div id="formalization" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Formalization
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="formalizationSolution"
+        onclick="showPasswordModal('formalizationSolution', 'exc-for')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5>
 </div>
@@ -488,6 +538,60 @@ the rubber balls.
 
 <p>Devise a suitable FOL-language and represent the knowledge claims in the above
 paragraph into a knowledge base $\mathbf{KB}$.</p>
+
+</div>
+<div id="formalizationSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solutions</h6><p><strong>a)</strong></p>
+<ul>
+<li>If it is rainy, then seek cover.</li>
+<li>If it is sunny, then charge batteries.</li>
+<li>If batteries do not charge and it is sunny, then request repair.</li>
+<li>If it is neither rainy nor sunny, then inspect the sensors.</li>
+<li>Shut down if, and only if, you request repair and don&rsquo;t get it or you inspect the sensors and they are faulty.</li>
+</ul>
+<p><strong>b)</strong></p>
+<ul>
+<li>$BUILT(alan) \land INVENTED(ada)$</li>
+<li>$MON(today) \rightarrow BUILT(alan)$</li>
+<li>$FAVORITE(alan) \lor FAVORITE(ada)$</li>
+<li>$MON(today) \leftrightarrow (TUES(yesterday)\land SAT(tomorrow))$</li>
+<li>$\forall x((NUM(x)\land\forall y(EVEN(y)\rightarrow GREAT(x,y)))\rightarrow ODD(x))$</li>
+<li>$\forall x(NUM(x)\rightarrow\exists yGREATER(x,y))$</li>
+<li>$\exists x((NUM(x) \land EVEN(x)) \land \exists y(SMALL(x,y) \land((NUM(y) \land ODD(y)) \land \exists z(y\neq z \land NUM(z)\land ODD(z) \land GREAT(y,z)))))$</li>
+<li>$\neg\exists x(NUM(x) \land \forall y(NUM(y)\rightarrow GREAT(x,y)))$</li>
+<li>$\neg\exists x(NUM(x) \land GREAT(x,x))$</li>
+<li>$\forall x((NUM(x) \land ODD(x))\rightarrow GREAT(x,0))$</li>
+<li>$\forall x((NUM(x) \land ODD(x))\rightarrow \exists y(NUM(y)\land EVEN(y)\land GREAT(x,y)))$</li>
+</ul>
+<p><strong>c)</strong></p>
+<p>$$ \langle{var}\rangle ::= x \mid y $$</p>
+<p>$$ \langle{unop}\rangle ::= \neg $$</p>
+<p>$$ \langle{binop}\rangle ::= \land \mid \lor \mid \rightarrow \mid \leftrightarrow $$</p>
+<p>$$ \langle{quant}\rangle ::= \forall \mid \exists $$</p>
+<p>$$ \langle{pred}\rangle^1 ::= BLUE \mid RED \mid GREEN $$</p>
+<p>$$ \langle{pred}\rangle^2 ::= CHEAPER \mid DURABLE $$</p>
+<p>$$ \langle{atom}\rangle ::= \langle{pred}\rangle^n(\langle{var}\rangle_1,\ldots,\langle{var}\rangle_n) $$</p>
+<p>$$ \langle{fml}\rangle ::= \langle{atom}\rangle \mid \langle{unop}\rangle\langle{fml}\rangle \mid (\langle{fml}\rangle\langle{binop}\rangle\langle{fml}\rangle) \mid \langle{quant}\rangle\langle{var}\rangle\langle{fml}\rangle $$</p>
+<p>KB entries:</p>
+<ul>
+<li>
+<p>$\forall x(BLUE(x) \lor RED(x) \lor GREEN(x))$</p>
+</li>
+<li>
+<p>$\forall x (BLUE(x) \rightarrow RUBBER(x))$</p>
+</li>
+<li>
+<p>$\forall x (RED(x) \rightarrow (LEATHER(x) \lor RUBBER(x)))$</p>
+</li>
+<li>
+<p>$\forall x (GREEN(x) \rightarrow (LEATHER(x) \lor RUBBER(x)))$</p>
+</li>
+<li>
+<p>$\forall x \forall y ((RUBBER(x) \land LEATHER(y)) \rightarrow CHEAPER(x,y))$</p>
+</li>
+<li>
+<p>$\forall x \forall y ((LEATHER(x) \land RUBBER(y)) \rightarrow DURABLE(x,y))$</p>
+</li>
+</ul>
 
 </div>
 <div id="parsing" ><h5 class="">
