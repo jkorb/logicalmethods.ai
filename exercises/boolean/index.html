@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8"></meta>
     <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-    <title>logicalmethods.ai &ndash; Logic and AI </title>
+    <title>logicalmethods.ai &ndash; Boolean algebra </title>
     <link rel="icon" type="image/x-icon" href="https://logicalmethods.ai/favicon.ico"></link>
     <link href="https://logicalmethods.ai/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"></link>
     <link rel="stylesheet" href="https://logicalmethods.ai/icons/font/bootstrap-icons.min.css"></link>
@@ -15,6 +15,25 @@
       
       
     </style>
+    
+      <link rel="stylesheet" href="https://logicalmethods.ai/katex/katex.min.css">
+<script defer src="https://logicalmethods.ai/katex/katex.min.js"></script>
+<script defer src="https://logicalmethods.ai/katex/contrib/auto-render.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},     
+        {left: '$', right: '$', display: false},     
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '\\(', right: '\\)', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
     
   </head>
   <body class="bg-black d-flex flex-column m-0 p-0">
@@ -115,7 +134,7 @@
         <div class="collapse show" id="collapseexe-home">
           <ul class="list-unstyled ms-3">
             <li>
-              <a class="dropdown-item fw-bold active" href="/exercises/logic-and-ai/">1. Logic and AI</a>
+              <a class="dropdown-item " href="/exercises/logic-and-ai/">1. Logic and AI</a>
             </li>
             
             <li>
@@ -127,7 +146,7 @@
             </li>
             
             <li>
-              <a class="dropdown-item " href="/exercises/boolean/">4. Boolean algebra</a>
+              <a class="dropdown-item fw-bold active" href="/exercises/boolean/">4. Boolean algebra</a>
             </li>
             </ul>
         </div>
@@ -207,7 +226,8 @@
 
   <ul class="navbar-nav flex-row justify-content-between mt-2">
   
-    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
+  <li class="nav-item">
+    <a href="/exercises/formal-languages/" class="btn" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-left"></i>
     </a>
     
@@ -219,7 +239,7 @@
   </li>
   <li class="nav-item">
     
-    <a href="/exercises/valid-inference/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-right"></i>
     </a>
     
@@ -228,7 +248,7 @@
 
   <div class="container text-center">
   <h3>
-    Tutorial 1. Logic and AI
+    Tutorial 4. Boolean algebra
   </h3>
   <em>Exercise sheet</em>
 </div>
@@ -236,6 +256,7 @@
 
 
 
+  
    
 
 
@@ -248,7 +269,16 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body text-start">
-          <p>The exercises marked with
+          <p>On this page, you can find the exercise sheets for the work groups.</p>
+<p>Each section has a set of exercises that you&rsquo;ll go through with your TA in the
+session.</p>
+<p>Some exercises are marked as homework, they are due at the beginning of the
+next session.</p>
+<p>You&rsquo;ll receive constructive feedback from your TA on your work.</p>
+<p>You can also ask your TA for suggestions and advice.</p>
+<p>You <strong>must</strong> show your work in order to get tips, meaning that if you just
+say &ldquo;i don&rsquo;t know&rdquo;. Try by yourself first and explain <em>what</em> you don&rsquo;t get.</p>
+<p>The exercises marked with
 <i class="bi bi-house-gear-fill text-danger">
 </i>
 
@@ -257,9 +287,8 @@ are homework questions.</p>
 <i class="bi bi-lightbulb-fill">
 </i>
 
-have solutions available online.</p>
-<p>The solutions are password protected and you&rsquo;ll receive the password in the work
-groups.</p>
+have solutions available online. The solutions are
+password protected and you&rsquo;ll receive the password in the work groups.</p>
 
       </div>
       <div class="modal-footer">
@@ -284,139 +313,169 @@ groups.</p>
   <div class="container-fluid m-0 p-0">
     
     
-      
+      <p>$\LaTeX$: The solutions for exercises marked with this symbol need to be typed
+up using the latex typesetting system. If the exercise is homework, you need to
+digitally submit the solution as a PDF. Ask your TA to find out how.</p>
+<p>If you don&rsquo;t know what $\LaTeX$ is and how it works, you can learn it in 30
+minutes by following this
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes" class="link-dark" rel="external" target="_blank">link</a>
+.</p>
+<p>For convenience, there are copy-paste-able $\LaTeX$-snippets included at the end
+of each question (click to expand).</p>
+
 </div>
-<div id="definitions" ><h5 class="">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Definitions
+<div id="recursion" class=" latex"><h5 class="latex">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Recursion
     </div>
-</h5><p><em>Note</em>: A definition needs to fully explain the meaning of a concept. This is
-typically done by saying under which precise conditions the concept applies.
-That is, the answer should have the form like &ldquo;A valid inference is an inference
-such that&hellip;&rdquo; or &ldquo;An inference is valid just in case &hellip;&rdquo;.</p>
+</h5><p>For this exercise, use a propositional language with the following variables:</p>
+<ul>
+<li>$MARS$, which stands for &ldquo;Mars is red&rdquo;,</li>
+<li>$VENUS$, which stands for &ldquo;Venus is green&rdquo;,</li>
+<li>$PLUTO$, which stands for &ldquo;Pluto is black&rdquo;.</li>
+</ul>
+<p>Take a model where:</p>
+<ul>
+<li>$\nu(MARS)=1$,</li>
+<li>$\nu(VENUS)=1$,</li>
+<li>$\nu(PLUTO)=0$.</li>
+</ul>
+<p>Show the recursive calculation in this model for the truth-value of each formula below.</p>
+<ol>
+<li>$\nu(\neg PLUTO)=$ ?</li>
+<li>$\nu(MARS\land VENUS)=$ ?</li>
+<li>$\nu(PLUTO\lor\neg MARS)=$ ?</li>
+<li>$\nu(MARS\land\neg PLUTO)=$ ?</li>
+<li>$\nu(\neg(VENUS\land\neg\neg (PLUTO\lor MARS)))=$ ?</li>
+</ol>
+
+
+
+
+
+
+<hr>
+<a class="btn btn-sm btn-link link-dark link-underline-opacity-0" href="#95536a4e72d6e2890b4f5f2618fffc530cf9dc5788069857841cc5b9e70169e9" type="button" data-bs-toggle="collapse" data-bs-target="#95536a4e72d6e2890b4f5f2618fffc530cf9dc5788069857841cc5b9e70169e9" aria-expanded="false" aria-controls="95536a4e72d6e2890b4f5f2618fffc530cf9dc5788069857841cc5b9e70169e9" >
+$\LaTeX$ answer template <i class="bi bi-chevron-left toggle-icon"></i>
+</a>
+<div id="95536a4e72d6e2890b4f5f2618fffc530cf9dc5788069857841cc5b9e70169e9" class="collapse bg-black rounded m-2 p-2 " style="position:relative;">
+  <button class="btn btn-primary shadow" style="position:absolute; top:10px;right:10px" onclick="copyContent('95536a4e72d6e2890b4f5f2618fffc530cf9dc5788069857841cc5b9e70169e9-inner')"><i class="bi bi-clipboard"></i> Copy!</button>
+  <pre><code class="text-white" id="95536a4e72d6e2890b4f5f2618fffc530cf9dc5788069857841cc5b9e70169e9-inner">
+\begin{enumerate}
+  \item  $\nu(\neg PLUTO)=$ 
+  \item  $\nu(MARS\land VENUS)=$ 
+  \item  $\nu(PLUTO\lor\neg MARS)=$ 
+  \item  $\nu(MARS\land\neg PLUTO)=$ 
+  \item  $\nu(\neg(VENUS\land\neg\neg (PLUTO\lor MARS)))=$ 
+\end{enumerate}
+</code></pre>
+</div>
+<hr>
+
 
 </div>
-<div id="a-inference" ><h6 class="">a.) Inference</h6><p>Give a definition of inference. Include examples (where your definition applies)
-and non-examples (where it does not). Make sure to explain why your definition
-applies or not.</p>
-
-</div>
-<div id="b-validity" class=" homework"><h6 class=" homework">b.) Validity</h6><p>Give a definition of deductive and inductive inference. Include examples
-and non-examples with explanations.</p>
-
-</div>
-<div id="indicators" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Indicators
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="indicatorsSolution"
-        onclick="showPasswordModal('indicatorsSolution', 'exc-laa')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="boolean-laws" class=" latex"><h5 class="latex">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Boolean laws
     </div>
-</h5><p>Give at least 5 additional examples of:</p>
+</h5><p>Use the Boolean laws in section 4.6 to explain why these equations are correct.</p>
 
 </div>
-<div id="a" ><h6 class="">a.)</h6><p>premise indicators,</p>
+<div id="a" ><h6 class="">a)</h6><p>$x\times (x+y) =  x+(x\times y)$</p>
 
 </div>
-<div id="b" ><h6 class="">b.)</h6><p>inference indicators.</p>
+<div id="b" ><h6 class="">b)</h6><p>$y\times z = y\times (z\times y)$</p>
 
 </div>
-<div id="indicatorsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>a.) Since, because, since, for, whereas, as.</p>
-<p>b.) It follows that, thus, hence, consequently, we know that.</p>
+<div id="c" ><h6 class="">c)</h6><p>$(x + (y\times z))+x=(x+y)\times(x+z)$</p>
+
+
+
+
+
+
+<hr>
+<a class="btn btn-sm btn-link link-dark link-underline-opacity-0" href="#66b6eb50f1d38159914e1dbe41091836e0c4c3d8876fb54b477b0da0aa41c556" type="button" data-bs-toggle="collapse" data-bs-target="#66b6eb50f1d38159914e1dbe41091836e0c4c3d8876fb54b477b0da0aa41c556" aria-expanded="false" aria-controls="66b6eb50f1d38159914e1dbe41091836e0c4c3d8876fb54b477b0da0aa41c556" >
+$\LaTeX$ answer template <i class="bi bi-chevron-left toggle-icon"></i>
+</a>
+<div id="66b6eb50f1d38159914e1dbe41091836e0c4c3d8876fb54b477b0da0aa41c556" class="collapse bg-black rounded m-2 p-2 " style="position:relative;">
+  <button class="btn btn-primary shadow" style="position:absolute; top:10px;right:10px" onclick="copyContent('66b6eb50f1d38159914e1dbe41091836e0c4c3d8876fb54b477b0da0aa41c556-inner')"><i class="bi bi-clipboard"></i> Copy!</button>
+  <pre><code class="text-white" id="66b6eb50f1d38159914e1dbe41091836e0c4c3d8876fb54b477b0da0aa41c556-inner">
+
+% For reference: the laws
+
+\begin{tabular}{ c c }
+  Conjunction laws          &                                          \\[2ex]
+  
+  Idempotence of $\times$   & $x\times x=x$                            \\
+  Commutativity of $\times$ & $x\times y=y\times x$                    \\
+  Associativity of $\times$ & $x\times(y\times z)=(x\times y)\times z$ \\
+  Identity for $\times$     & $x\times 1=x$                            \\
+  Annihilation for $\times$ & $x\times 0=0$                            \\[2ex]
+  
+  Disjunction laws          &                                          \\[2ex]
+  
+  Idempotence of $+$        & $x+x=x$                                  \\
+  Commutativity of $+$      & $x+y=y+x$                                \\
+  Associativity of $+$      & $x+(y+z)=(x+y)+z$                        \\
+  Identity for $+$          & $x+0=x$                                  \\
+  Annihilation for $+$      & $x+ 1=1$                                 \\[2ex]
+  
+  Interaction laws          &                                          \\[2ex]
+  
+  Distributivity $\times$/$+$ & $x\times(y+z)=(x\times y)+(x\times z)$ \\
+  Distributivity $+$/$\times$ & $x+(y\times z)=(x+y)\times(x+ z)$      \\
+  Absorption 1                & $x+(x\times y)=x$                      \\
+  Absorption 2                & $x\times(x+ y)=x$                      \\[2ex]
+  
+  Negation laws               &                                        \\[2ex]
+  
+  Complementation 1           & $x\times -x=0$                         \\
+  Complementation 2           & $x+ -x=1$                              \\
+  Involution                  & $\-\-x=x$                              \\
+  De Morgan 1                 & $-(x+y)=-x\times -y$                   \\
+  De Morgan 2                 & $-(x\times y)=-x+-y$                   \\
+\end{tabular}
+
+% An item for each identity
+
+\begin{itemize}
+  \item  $x\times (x+y) =  x+(x\times y)$
+  \item  $y\times z = y\times (z\times y)$
+  \item  $(x+(y\times z))+x = (x+y)\times(x+z)$
+\end{itemize}
+
+</code></pre>
+</div>
+<hr>
+
 
 </div>
-<div id="validity" class=" solved"><h5 class="solved">
+<div id="validity" class=" latex"><h5 class="latex">
     <div class="d-inline-flex flex-row m-0  p-0 ">Validity
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="validitySolution"
-        onclick="showPasswordModal('validitySolution', 'exc-laa')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
     </div>
-</h5><p>Which of the following inferences is valid? Specify whether the inference is
-deductively or inductively valid.</p>
+</h5><p>a) Use the definition of a Boolean model to show that $[A\lor A]=[A]$ for any formula $A$.</p>
+<p>b) Use the previous fact to explain why $A\lor A\vDash A$ and $A\vDash A\lor A$</p>
 
-</div>
-<div id="a-1" ><h6 class="">a.)</h6><p>Every attempt so far has failed. So the next attempt will also fail.</p>
 
-</div>
-<div id="b-1" ><h6 class="">b.)</h6><p>Well, I didn’t not cause the bug. So, I caused the bug.</p>
 
-</div>
-<div id="c" ><h6 class="">c.)</h6><p>If you did <em>that</em>, pigs can fly. So, you didn&rsquo;t do it.</p>
 
-</div>
-<div id="d" ><h6 class="">d.)</h6><p>All software has bugs. So, this software has bugs, too.</p>
 
-</div>
-<div id="e" ><h6 class="">e.)</h6><p>A thinking computer is not a computer anymore. So it&rsquo;s impossible to teach a
-computer how to think.</p>
 
+<hr>
+<a class="btn btn-sm btn-link link-dark link-underline-opacity-0" href="#1cdf1be8cba17837963f08f4ed45bdc6b6d029717afd091f711dfe9a9ff1cfa2" type="button" data-bs-toggle="collapse" data-bs-target="#1cdf1be8cba17837963f08f4ed45bdc6b6d029717afd091f711dfe9a9ff1cfa2" aria-expanded="false" aria-controls="1cdf1be8cba17837963f08f4ed45bdc6b6d029717afd091f711dfe9a9ff1cfa2" >
+$\LaTeX$ answer template <i class="bi bi-chevron-left toggle-icon"></i>
+</a>
+<div id="1cdf1be8cba17837963f08f4ed45bdc6b6d029717afd091f711dfe9a9ff1cfa2" class="collapse bg-black rounded m-2 p-2 " style="position:relative;">
+  <button class="btn btn-primary shadow" style="position:absolute; top:10px;right:10px" onclick="copyContent('1cdf1be8cba17837963f08f4ed45bdc6b6d029717afd091f711dfe9a9ff1cfa2-inner')"><i class="bi bi-clipboard"></i> Copy!</button>
+  <pre><code class="text-white" id="1cdf1be8cba17837963f08f4ed45bdc6b6d029717afd091f711dfe9a9ff1cfa2-inner">
+\begin{itemize}
+  \item Use the definition of a Boolean model to show that $[A\lor A]=[A]$ for any formula $A$. 
+  \item Use the previous fact to explain why $A\lor A\vDash A$ and $A\vDash A\lor A$
+\end{itemize}
+</code></pre>
 </div>
-<div id="validitySolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6>
-</div>
-<div id="deductive-and-inductive-inference" ><h5 class="">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Deductive and inductive inference
-    </div>
-</h5><p>Provide an argument that every deductively valid inference is also
-inductively valid. Does the converse also hold?</p>
+<hr>
 
-</div>
-<div id="expert-systems" ><h5 class="">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Expert systems
-    </div>
-</h5>
-</div>
-<div id="thinking-fast-and-slow" ><h5 class="">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Thinking, Fast and Slow
-    </div>
-</h5><p>Give at least 3 new examples of:</p>
-
-</div>
-<div id="a-2" ><h6 class="">a.)</h6><p>System 1</p>
-
-</div>
-<div id="b-2" ><h6 class="">b.)</h6><p>System 2</p>
-
-</div>
-<div id="research" class=" research"><h5 class="research">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Research
-    </div>
-</h5><p><em>Note</em>: These questions require you to do your own research, using reliable
-academic sources. You need to reference your sources!</p>
-
-</div>
-<div id="decidability" ><h6 class="">Decidability</h6><p>Are <em>all</em> logical systems undecidable?</p>
-
-</div>
-<div id="symbolic-ai" class=" homework"><h6 class=" homework">Symbolic AI</h6><p>Give 2 examples of existing expert systems, one that &ldquo;failed&rdquo; and one that&rsquo;s
-still in use today. Explain why the first one failed.</p>
-
-</div>
-<div id="discussion" class=" discussion"><h5 class="discussion">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Discussion
-    </div>
-</h5><p><em>Note</em>: The following questions require argumentative writing, i.e. you&rsquo;re asked
-to take an informed view on the question, clearly state your position, and the
-reasons for it.</p>
-
-</div>
-<div id="a-logic-and-system-2" ><h6 class="">a.) Logic and system 2</h6><p>Is all logical thinking system 2 thinking?</p>
-
-</div>
-<div id="b-minds-and-machines" class=" homework"><h6 class=" homework">b.) Minds and machines</h6><p>Does Gödel&rsquo;s theorem show that we cannot build a logic-based AGI?</p>
 
   </div>
 </div>
@@ -424,7 +483,8 @@ reasons for it.</p>
 
 <ul class="navbar-nav flex-row justify-content-between mt-auto">
   
-    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
+  <li class="nav-item">
+    <a href="/exercises/formal-languages/" class="btn" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-left"></i>
     </a>
     
@@ -436,7 +496,7 @@ reasons for it.</p>
   </li>
   <li class="nav-item">
     
-    <a href="/exercises/valid-inference/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-right"></i>
     </a>
     

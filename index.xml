@@ -80,6 +80,13 @@
     </item>
     <item>
       <title>Boolean algebra</title>
+      <link>https://logicalmethods.ai/exercises/boolean/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://logicalmethods.ai/exercises/boolean/</guid>
+      <description>&lt;p&gt;$\LaTeX$: The solutions for exercises marked with this symbol need to be typed&#xA;up using the latex typesetting system. If the exercise is homework, you need to&#xA;digitally submit the solution as a PDF. Ask your TA to find out how.&lt;/p&gt;&#xA;&lt;p&gt;If you don&amp;rsquo;t know what $\LaTeX$ is and how it works, you can learn it in 30&#xA;minutes by following this&#xA;&lt;i class=&#34;bi bi-box-arrow-up-right h-6&#34;&gt;&lt;/i&gt;&#xA;&lt;a href=&#34;https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes&#34; class=&#34;link-dark&#34; rel=&#34;external&#34; target=&#34;_blank&#34;&gt;link&lt;/a&gt;&#xA;.&lt;/p&gt;&#xA;&lt;p&gt;For convenience, there are copy-paste-able $\LaTeX$-snippets included at the end&#xA;of each question (click to expand).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Boolean algebra</title>
       <link>https://logicalmethods.ai/textbook/boolean/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://logicalmethods.ai/textbook/boolean/</guid>

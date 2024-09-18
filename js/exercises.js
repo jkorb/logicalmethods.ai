@@ -5,6 +5,11 @@ document.addEventListener('DOMContentLoaded', function () {
       iconClass: 'bi bi-house-gear-fill',
       colorClass: 'text-danger'
     },
+    {
+      className: 'latex',
+      latexString: '\\LaTeX',
+      colorClass: 'text-success'
+    },
     // {
     //   className: 'discussion',
     //   iconClass: 'bi bi-chat-dots-fill',
@@ -27,10 +32,18 @@ document.addEventListener('DOMContentLoaded', function () {
     const headers = document.querySelectorAll(`h5.${rule.className}`);
     headers.forEach(header => {
       const space = document.createTextNode('\u00A0'); // Non-breaking space
-      const icon = document.createElement('i');
-      icon.className = `${rule.iconClass} ${rule.colorClass}`;
-      header.appendChild(space); // Insert a non-breaking space
-      header.appendChild(icon);  // Insert the icon after the space
+
+      if (rule.iconClass && rule.colorClass) {
+        const icon = document.createElement('i');
+        icon.className = `${rule.iconClass} ${rule.colorClass}`;
+        header.appendChild(space); // Insert a non-breaking space
+        header.appendChild(icon);  // Insert the icon after the space
+      } else if (rule.latexString) {
+        const latexSpan = document.createElement('span');
+        latexSpan.className = `${rule.colorClass}`; // Set color to red
+        header.appendChild(latexSpan);
+        katex.render(rule.latexString, latexSpan);
+      }
     });
   });
 
@@ -91,9 +104,21 @@ function checkPassword(solutionId,tutorialId) {
   }
 }
 
+function copyContent(idSuffix) {
+  const spanId = idSuffix;
+  const spanElement = document.getElementById(spanId);
+  if (spanElement) {
+    const textToCopy = spanElement.textContent || spanElement.innerText;
+    navigator.clipboard.writeText(textToCopy).then(function() {
+    }, function(err) {
+      });
+  }
+}
+
 const passwords = {
   "exc-laa": "logicROCKS!",
   "exc-val": "AIdoestoo!",
   "exc-for": "Formal?",
+  "exc-bool": "Formal?",
   // Add more solutionId: password pairs here
 };
