@@ -435,7 +435,7 @@ of an expert system are completely transparent, human-readable, and, in this
 sense, _symbolic_. Importantly, one can tell why an expert system makes a
 certain prediction by looking at how the inference engine arrived at the
 conclusion, which inference patterns it used and which pieces of expert
-information it relied one. This is of utmost importance for what's known today
+information it relied on. This is of utmost importance for what's known today
 as [**explainable
 AI**](https://en.wikipedia.org/wiki/Explainable_artificial_intelligence) or
 **XAI** for short.
@@ -526,7 +526,7 @@ it down.
 
 The connection between databases and logic is very deep: [Codd's
 theorem](https://en.wikipedia.org/wiki/Codd%27s_theorem) shows that **querying**
-a database is, in many cases, essentially just a special way of evaluation the
+a database is, in many cases, essentially just a special way of evaluating the
 formulas of the logical system of predicate logic. KRR is just one example of
 where a logical tool is useful outside the scope of expert systems, and symbolic
 AI in the narrow sense of using logic as the sole foundation for AI. In the
