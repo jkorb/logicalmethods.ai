@@ -359,7 +359,7 @@ deductive logic. The basic tool we will use is called a **semantic model**. A
 semantic model is like a picture of a possible reasoning scenario. If we look at
 a model, we can ask whether a specific sentence $A$ is true or false in that
 model. Every model gives an answer. It assigns a definite truth-value to each
-snetence.
+sentence.
 
 A formal language $\mathcal{L}$ has more than one model. Different models
 assign different values to the same sentences. In one model perhaps $A$ is
@@ -391,7 +391,7 @@ $A$ and $B$. Suppose that $[A]\subseteq[B]$ holds. That means for
 _absolutely any_ model $\mathcal{M}$ of our language, if $\mathcal{M}$
 makes $A$ true, then $\mathcal{M}$ also makes $B$ true. That means
 that an inference from premise $A$ to conclusion $B$ would preserve
-truth in every possible scenario. It would _always_ preserves truth. It is
+truth in every possible scenario. It would _always_ preserve truth. It is
 _necessarily_ truth-preserving. And that is exactly the concept of **deductive
 validity** $\vDash$.
 
@@ -608,7 +608,7 @@ the premises. [Rudolf Carnap](https://en.wikipedia.org/wiki/Rudolf_Carnap)
 coined the term "increase of firmness" for this relation.
 
 In fact, in this model we can also measure _how much_ the premises raise the
-probability the conclusion. This is simply $Pr(C|P_1\land P_2\land
+probability of the conclusion. This is simply $Pr(C|P_1\land P_2\land
 \dots)-Pr(C)$. Using this idea, we can define a **strong inductive inference**
 as one where the conditional probability of the conclusion given the premises is
 _much_ larger ($\gg$) than that of the conclusion:
