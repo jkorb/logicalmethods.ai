@@ -7,7 +7,7 @@ params:
   math: true
 ---
 
-# BNFs
+# BNFs {.solved}
 
 ## a) {.homework}
 
@@ -88,7 +88,48 @@ $BIGGER$.
 variable $\alpha=x,y,z,\dots$ and then a formula of the form $(P(\alpha)\to B)$,
 where $P$ is a unary predicate.
 
-# Formalization
+## Solution {.solution #bnfsSolution}
+
+**a)**
+
+$$ A::= BLUE, GREEN, RED \mid \neg A \mid \Box A \mid \Diamond A \mid (A\land A) \mid (A\lor A) $$
+
+**b)** 
+
++ If $a_i$ is a constant, then $a_i\in\mathcal{T}$
++ If $x_i$ is a variable, then $x_i\in\mathcal{T}$
++ If $f^n_i$ is an $n$-place function sign and $t_1,\ldots,t_n\in\mathcal{T}$, then $f^n_i(t_1,\ldots,t_n)\in\mathcal{T}$
++ If $P^n_i$ is an $n$-place predicate and $t_1,\ldots,t_n\in\mathcal{T}$, then $P^n_i(t_1,\ldots,t_n)\in\mathcal{L}$
++ If $A\in\mathcal{L}$, then $\neg A\in\mathcal{L}$
++ If $A,B\in\mathcal{L}$, then $(A\land B), (A\lor B), (A\rightarrow B), (A\leftrightarrow B)\in\mathcal{L}$
++ If $A\in\mathcal{L}$ and $x_i$ is a variable, then $\forall x_i A, \exists x_i A\in\mathcal{L}$
+
+**c)**
+
+$$ A::= p,q,r \mid \neg A \mid (A\supseteq A) \mid (A||A) \mid (A\\&\\&A) $$
+
+**d)**
+
+$$ \langle{var}\rangle ::= x_1 \mid \ldots \mid x_n $$
+
+$$ \langle{unop}\rangle ::= \neg $$
+
+$$ \langle{binop}\rangle ::= \land \mid \lor \mid \rightarrow \mid \leftrightarrow $$
+
+$$ \langle{quant}\rangle ::= \forall \mid \exists $$
+
+$$ \langle{pred}\rangle^1 ::= RED \mid ROUND $$
+
+$$ \langle{pred}\rangle^2 ::= BIGGER $$
+
+$$ \langle{atom}\rangle ::= \langle{pred}\rangle^n(\langle{var}\rangle_1,\ldots,\langle{var}\rangle_n) $$
+
+$$ \langle{fml}\rangle ::= \langle{atom}\rangle \mid
+\langle{unop}\rangle\langle{fml}\rangle \mid
+(\langle{fml}\rangle\langle{binop}\rangle\langle{fml}\rangle)$$
+$$\mid \langle{quant}\rangle\langle{var}\rangle(\langle{pred}\rangle^1(\langle{var}\rangle)\rightarrow\langle{fml}\rangle) $$
+
+# Formalization {.solved}
 
 ## a) 
 
@@ -157,6 +198,62 @@ the rubber balls.
 
 Devise a suitable FOL-language and represent the knowledge claims in the above
 paragraph into a knowledge base $\mathbf{KB}$.
+
+## Solutions {.solution #formalizationSolution}
+
+**a)**
+
++ If it is rainy, then seek cover.
++ If it is sunny, then charge batteries.
++ If batteries do not charge and it is sunny, then request repair.
++ If it is neither rainy nor sunny, then inspect the sensors.
++ Shut down if, and only if, you request repair and don't get it or you inspect the sensors and they are faulty.
+
+**b)**
+
++ $BUILT(alan) \land INVENTED(ada)$
++ $MON(today) \rightarrow BUILT(alan)$
++ $FAVORITE(alan) \lor FAVORITE(ada)$
++ $MON(today) \leftrightarrow (TUES(yesterday)\land SAT(tomorrow))$
++ $\forall x((NUM(x)\land\forall y(EVEN(y)\rightarrow GREAT(x,y)))\rightarrow ODD(x))$
++ $\forall x(NUM(x)\rightarrow\exists yGREATER(x,y))$
++ $\exists x((NUM(x) \land EVEN(x)) \land \exists y(SMALL(x,y) \land((NUM(y) \land ODD(y)) \land \exists z(y\neq z \land NUM(z)\land ODD(z) \land GREAT(y,z)))))$
++ $\neg\exists x(NUM(x) \land \forall y(NUM(y)\rightarrow GREAT(x,y)))$
++ $\neg\exists x(NUM(x) \land GREAT(x,x))$
++ $\forall x((NUM(x) \land ODD(x))\rightarrow GREAT(x,0))$
++ $\forall x((NUM(x) \land ODD(x))\rightarrow \exists y(NUM(y)\land EVEN(y)\land GREAT(x,y)))$
+
+**c)**
+
+$$ \langle{var}\rangle ::= x \mid y $$
+
+$$ \langle{unop}\rangle ::= \neg $$
+
+$$ \langle{binop}\rangle ::= \land \mid \lor \mid \rightarrow \mid \leftrightarrow $$
+
+$$ \langle{quant}\rangle ::= \forall \mid \exists $$
+
+$$ \langle{pred}\rangle^1 ::= BLUE \mid RED \mid GREEN $$
+
+$$ \langle{pred}\rangle^2 ::= CHEAPER \mid DURABLE $$
+
+$$ \langle{atom}\rangle ::= \langle{pred}\rangle^n(\langle{var}\rangle_1,\ldots,\langle{var}\rangle_n) $$
+
+$$ \langle{fml}\rangle ::= \langle{atom}\rangle \mid \langle{unop}\rangle\langle{fml}\rangle \mid (\langle{fml}\rangle\langle{binop}\rangle\langle{fml}\rangle) \mid \langle{quant}\rangle\langle{var}\rangle\langle{fml}\rangle $$
+
+KB entries:
+
++ $\forall x(BLUE(x) \lor RED(x) \lor GREEN(x))$
+
++ $\forall x (BLUE(x) \rightarrow RUBBER(x))$
+
++ $\forall x (RED(x) \rightarrow (LEATHER(x) \lor RUBBER(x)))$
+
++ $\forall x (GREEN(x) \rightarrow (LEATHER(x) \lor RUBBER(x)))$
+
++ $\forall x \forall y ((RUBBER(x) \land LEATHER(y)) \rightarrow CHEAPER(x,y))$
+
++ $\forall x \forall y ((LEATHER(x) \land RUBBER(y)) \rightarrow DURABLE(x,y))$
 
 # Parsing
 
