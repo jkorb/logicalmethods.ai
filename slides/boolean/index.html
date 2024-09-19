@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8"></meta>
     <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-    <title>logicalmethods.ai &ndash; Valid inference </title>
+    <title>logicalmethods.ai &ndash; Boolean algebra </title>
     <link rel="icon" type="image/x-icon" href="https://logicalmethods.ai/favicon.ico"></link>
     <link href="https://logicalmethods.ai/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"></link>
     <link rel="stylesheet" href="https://logicalmethods.ai/icons/font/bootstrap-icons.min.css"></link>
@@ -87,7 +87,7 @@
             </li>
             
             <li>
-              <a class="dropdown-item fw-bold active" href="/slides/valid-inference/">2. Valid inference</a>
+              <a class="dropdown-item " href="/slides/valid-inference/">2. Valid inference</a>
             </li>
             
             <li>
@@ -95,7 +95,7 @@
             </li>
             
             <li>
-              <a class="dropdown-item " href="/slides/boolean/">4. Boolean algebra</a>
+              <a class="dropdown-item fw-bold active" href="/slides/boolean/">4. Boolean algebra</a>
             </li>
             </ul>
         </div>
@@ -196,7 +196,7 @@
 <ul class="navbar-nav flex-row justify-content-between mt-2">
   
   <li class="nav-item">
-    <a href="/slides/logic-and-ai/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="/slides/formal-languages/" class="btn" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-left"></i>
     </a>
     
@@ -208,7 +208,7 @@
   </li>
   <li class="nav-item">
     
-    <a href="/slides/formal-languages/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-right"></i>
     </a>
     
@@ -217,7 +217,7 @@
 
 <div class="container text-center">
   <h3>
-    Lecture 2. Valid inference
+    Lecture 4. Boolean algebra
   </h3>
   <em>Slides</em>
 </div>
@@ -273,8 +273,8 @@ fullscreen. You can quit fullscreen by pressing ESC.</p>
 			<section>
 				<h1>&forall;I</h1>
         <p>Logical <strong>methods</strong> for AI</p>
-        <p>Lecture 2</p>
-        <p class="text-danger"><em>Valid inference</em></p>
+        <p>Lecture 4</p>
+        <p class="text-danger"><em>Boolean algebra</em></p>
         
 <div class="container text-center">
   <p class="copyright" xmlns:cc="http://creativecommons.org/ns#" >
@@ -290,251 +290,344 @@ fullscreen. You can quit fullscreen by pressing ESC.</p>
 <section>
     
     
-    <img src="https://logicalmethods.ai/slides/valid-inference/img/qr-code.png" class="img-thumbnail"  alt="" >
+    <img src="https://logicalmethods.ai/slides/boolean/img/qr-code.png" class="img-thumbnail"  alt="" >
     
 
     <p><a href="https://forms.gle/JiXXM9eysAZaJMja9" target="_blank" style="font-size:1.5em">https://forms.gle/JiXXM9eysAZaJMja9</a></p>
   </section>
 <section>
-  <section id="inference">
+  <section id="truth-values">
     <dl class="row" >
       <dd class="col">
-        <i class="bi bi-motherboard text-primary" style="font-size:100px;"></i> 
-        <h1>Valid <span class="text-danger">inference</span></h1>
+        <i class="bi bi-file-binary text-primary" style="font-size:100px;"></i> 
+        <h1><span class="text-danger">Truth</span> values</h1>
       </dd>
       <dt class="col"></dt>
     </dl>
   </section>
-  <section>
-    <h1> <i class="bi bi- text-danger"></i> Correctness</h1>
+  <section id="ideas">
+    <h1>Ideas</h1>
     <ul>
-      <li class="fragment fade-right">Valid inference = "good" inference</li>
-      <li class="fragment fade-right"><em>Not</em>: simple, clear, precise, ... $\Rightarrow$ <strong>rhetoric</strong></li>
-      <li class="fragment fade-right">Validity vs fallacies:</li>
+      <li class="fragment fade-right">Binary logic: true vs false</li>
+      <li class="fragment fade-right">True = 1 and False = 0 $$\mathbf{2}=\Set{0,1}$$</li>
+      <li class="fragment fade-right">Truth is <em>relative</em>:</li>
       <ul>
-        <li class="fragment fade-right">If it is sunny, Jan is cycling. Jan is cycling. Therefore, it is sunny.</li>
-        <li class="fragment fade-right">If it is sunny, Jan is cycling. It is sunny. Therefore, Jan is cycling.</li>
+        <li class="fragment fade-right">it's raining in $s$ $\Rightarrow$ $RAIN$ is true</li>
+        <li class="fragment fade-right">it's not raining in $s$ $\Rightarrow$ $RAIN$ is false</li>
       </ul>
-      <li class="fragment fade-right">What's the difference?</li>
     </ul>
   </section>
-  <section id="preservation">
-    <h1>Hypothetically</h1>
+  <section id="functions">
+    <h1>Functions</h1>
     <ul>
-      <li class="fragment fade-right">All pigs fly. Maddy is a pig. So, Maddy flies.</li>
-      <li class="fragment fade-right"><em>If</em> the premises are true, <em>then</em> the conclusion is true.</li>
-      <li class="fragment fade-right">Possibility: Premises are false!</li>
-    </ul>
-    <dl class="row fragment fade-right" >
-      <dt class="col">
-        <i class="bi bi-exclamation-diamond-fill text-danger"></i> 
-        <strong>Definition</strong>:
-      </dt>
-      <dd class="col">An inference is valid iff the conclusion is true <em>if (hypothetically)</em> the premises are true</dd>
-    </dl>
-  </section>
-  <section id="deduction">
-    <h1>Always</h1>
-    <ul>
-      <li class="fragment fade-right">Deduction = premises <em>guarantee</em> conclusion</li>
-      <li class="fragment fade-right">$P_1, P_2, \dots\vDash C$</li>
-      <li class="fragment fade-right">Either it rained last night or the car is dry, the car is not dry $\vDash$ It rained last night</li>
+      <li class="fragment fade-right">Function = assignment $f:X\to Y$
+
+      
+      
+      <img src="https://logicalmethods.ai/slides/boolean/img/function.png" class="img-thumbnail"  alt="" >
+      
+</li>
+
+      <li class="fragment fade-right">$f(a,b,c,\dots)=x$</li>
     </ul>
   </section>
-  <section id="induction">
-    <h1>Mostly</h1>
+  <section id="functions">
+    <h1><em>Non</em>-Functions</h1>
     <ul>
-      <li class="fragment fade-right">Induction = premises <em>make likely</em> conclusion</li>
-      <li class="fragment fade-right">$P_1, P_2, P_1, P_2, \dots\stackrel{!}{\mid\approx} C$</li>
-      <li class="fragment fade-right">80% of 20k voters support strict laws $\stackrel{!}{\mid\approx}$ 80% of <em>all</em> support strict laws</li>
+      <li class="fragment fade-right">Function = assignment $f:X\to Y$
+      
+      
+      <img src="https://logicalmethods.ai/slides/boolean/img/non-function.png" class="img-thumbnail"  alt="" >
+      
+</li>
     </ul>
   </section>
 </section>
 <section>
-  <section id="formalization">
+  <section id="boolean">
     <dl class="row" >
       <dd class="col">
-        <i class="bi bi-calculator text-warning" style="font-size:100px;"></i> 
-        <h1><span class="text-danger">Formal</span>ization</h1>
+        <i class="bi bi-plus-slash-minus text-success" style="font-size:100px;"></i> 
+        <h1>Boolean <span class="text-danger">algebra</span></h1>
       </dd>
       <dt class="col"></dt>
     </dl>
   </section>
-  <section>
-    <h1>Logical form</h1>
+  <section id="boolean">
+    <h1>Boolean algebra</h1>
     <ul>
-      <li class="fragment fade-right">If it rains, the street is wet, it rains $\vDash$ The street is wet</li>
-      <li class="fragment fade-right">If it's sunny, the street is wet, it's sunny $\vDash$ The street is wet</li>
-      <li class="fragment fade-right">If pigs fly, Santa brings presents, pigs fly $\vDash$ Santa brings presents</li>
+      <li class="fragment fade-right">Truth-functions: $f:\Set{0,1}^n\to\Set{0,1}$</li>
+      <li class="fragment fade-right">Idea: Truth-functions = logical operators</li>
     </ul>
-      <p class="fragment fade-right">(<strong>MP</strong>) If $A$, then $B$; $A$ $\vDash$ $B$ </p>
+  </section>
+  <section id="negation">
+    <h1>Boolean <em>NOT</em></h1>
+    
+    
+    <img src="https://logicalmethods.ai/slides/boolean/img/negation.png" class="img-thumbnail"  alt="" >
+    
+</li>
+  </section>
+  <section id="conjunction">
+    <h1>Boolean <em>AND</em></h1>
+    
+    
+    <img src="https://logicalmethods.ai/slides/boolean/img/conjunction.png" class="img-thumbnail"  alt="" >
+    
+</li>
+  </section>
+  <section id="disjunction">
+    <h1>Boolean <em>OR</em></h1>
+    
+    
+    <img src="https://logicalmethods.ai/slides/boolean/img/disjunction.png" class="img-thumbnail"  alt="" >
+    
+</li>
+  </section>
+  <section id="disjunction">
+    <h1>Boolean <em>XOR</em></h1>
+    
+    
+    <img src="https://logicalmethods.ai/slides/boolean/img/oplus.png" class="img-thumbnail"  alt="" >
+    
+</li>
+  </section>
+  <section id="laws">
+    <table  style="font-size:0.8em">
+      <thead>
+        <tr>
+          <th style="text-align: left">Negation laws</th>
+          <th style="text-align: left">   </th>
+          <th style="text-align: left"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: left">Complementation 1</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">$x\times -x=0$</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">Complementation 2</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">$x+ -x=1$</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">Involution</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">$--x=x$</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">De Morgan 1</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">$-(x+y)=-x\times -y$</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">De Morgan 2</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">$-(x\times y)=-x+-y$</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <table  style="font-size:0.8em">
+      <thead>
+        <tr>
+          <th style="text-align: left">Conjunction laws</th>
+          <th style="text-align: left">   </th>
+          <th style="text-align: left"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: left"><em>Idempotence $\times$</em></td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">$x\times x=x$</td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><em>Commutativity $\times$</em></td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">$x\times y=y\times x$</td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><em>Associativity $\times$</em></td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">$x\times(y\times z)=(x\times y)\times z$</td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><em>Identity $\times$</em></td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">$x\times 1=x$</td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><em>Annihilation $\times$</em></td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">$x\times 0=0$</td>
+        </tr>
+      </tbody>
+    </table>
   </section>
   <section>
-    <h1>Propositional</h1>
-    <ul>
-      <li class="fragment fade-right">Sentences $\leadsto A, B, C, \dots$</li>
-      <li class="fragment fade-right">Not $\leadsto \neg$</li>
-      <li class="fragment fade-right">And $\leadsto \land$</li>
-      <li class="fragment fade-right">Or $\leadsto \lor$</li>
-      <li class="fragment fade-right">If ..., then ... $\leadsto~\to$</li>
-    </ul>
-      <p class="fragment fade-right">(<strong>MP</strong>) $A\to B, A\vDash B$ </p>
+    <table  style="font-size:0.8em">
+      <thead>
+        <tr>
+          <th style="text-align: left">Disjunction laws</th>
+          <th style="text-align: left">   </th>
+          <th style="text-align: left"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: left">Idempotence $+$</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">$x+x=x$</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">Commutativity $+$</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">$x+y=y+x$</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">Associativity $+$</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">$x+(y+z)=(x+y)+z$</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">Identity $+$</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">$x+0=x$</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">Annihilation $+$</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">$x+ 1=1$</td>
+        </tr>
+      </tbody>
+    </table>
   </section>
   <section>
-    <h1>Quantified</h1>
-    <ul>
-      <li class="fragment fade-right">Predicates $\leadsto P(x), Q(x), R(x,y), \dots$</li>
-      <li class="fragment fade-right">Names $\leadsto a,b,c, \dots$</li>
-      <li class="fragment fade-right">All $\leadsto \forall$</li>
-      <li class="fragment fade-right">Some $\leadsto \exists$</li>
-    </ul>
-      <p class="fragment fade-right">(<strong>UI</strong>) $\forall xP(x)\vDash P(a)$ </p>
-      <p class="fragment fade-right">(<strong>EG</strong>) $R(a,b)\vDash \exists xR(a,x)$ </p>
+    <table  style="font-size:0.8em">
+      <thead>
+        <tr>
+          <th style="text-align: left">Interaction laws</th>
+          <th style="text-align: left">   </th>
+          <th style="text-align: left"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: left">Distributivity 1</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">$x\times(y+ z)=(x\times y)+(x\times z)$</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">Distributivity 2</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">$x+(y\times z)=(x+ y)\times(x+ z)$</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">Absorption 1</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">$x+(x\times y)=x$</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">Absorption 2</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">$x\times(x+ y)=x$</td>
+        </tr>
+      </tbody>
+    </table>
   </section>
 </section>
 <section>
-  <section id="deductive_logic">
+  <section id="models">
     <dl class="row" >
       <dd class="col">
-        <i class="bi bi-plus-slash-minus text-primary" style="font-size:100px;"></i> 
-        <h1><span class="text-danger">Deductive</span> logic</h1>
+        <i class="bi bi-app-indicator text-warning" style="font-size:100px;"></i> 
+        <h1>Boolean <span class="text-danger">models</span></h1>
       </dd>
       <dt class="col"></dt>
     </dl>
   </section>
-  <section>
-    <h1>Features</h1>
+  <section id="model-ideas">
+    <h1>Idea</h1>
     <ul>
-      <li class="fragment fade-right">indefeasible</li>
-      <li class="fragment fade-right">general</li>
-      <li class="fragment fade-right">certain</li>
+      <li class="fragment fade-right"><i class="bi bi-lightbulb-fill text-warning"></i> Boolean algebra = model of situations</li>
+      <li class="fragment fade-right">Bivalence = modelling assumption</li>
     </ul>
   </section>
-  <section>
-    <h1>Methods</h1>
-    <ul>
-      <li class="fragment fade-right">Model = possible reasoning scenario</li>
-      <li class="fragment fade-right">$A$ is true in a model</li>
-      <li class="fragment fade-right">$[A]$ <em>set</em>(!) of all models</li>
-      <li class="fragment fade-right">$[A]\cap [B]$ = interesection</li>
-      <li class="fragment fade-right">$[A]\subseteq [B]$ = subset</li>
-    </ul>
-    <dl class="row fragment fade-right" >
-      <dt class="col">
-        <i class="bi bi-exclamation-diamond-fill text-danger"></i> 
-        <strong>Definition</strong>:
-      </dt>
-      <dd class="col">$P_1,P_2,\dots\vDash C$ iff $[P_1]\cap [P_2]\cap\dots\subseteq [C]$</dd>
-    </dl>
+  <section id="language">
+    <h1>Language</h1>
+    $$A::=p_i\mid \neg A\mid (A\land A)\mid(A\lor A)$$
   </section>
-  <section>
-    
-    
-    <img src="https://logicalmethods.ai/slides/valid-inference/img/intersection.jpeg" class="img-thumbnail"  alt="" >
-    
-
+  <section id="valuations">
+    <h1>Valuations</h1>
+      $$\nu:\Set{p_i}\to\Set{0,1}$$
   </section>
-  <section>
-    <h1>Example</h1>
-    <dl class="row fragment fade-right" >
-      <dt class="col">
-        <i class="bi bi-exclamation-diamond-fill text-danger"></i> 
-        <strong>Definition</strong>:
-      </dt>
-      <dd class="col">$P_1,P_2,\dots\vDash C$ iff $[P_1]\cap [P_2]\cap\dots\subseteq [C]$</dd>
-    </dl>
-    <ul>
-      <li class="fragment fade-right">$A\land B\vDash A$</li>
-      <li class="fragment fade-right">$[A\land B]=[A]\cap [B]$</li>
-      <li class="fragment fade-right">$[A\land B]\subseteq [A]$</li>
-    </ul>
-  </section>
-  <section>
-    <h1>Example</h1>
-    <dl class="row fragment fade-right" >
-      <dt class="col">
-        <i class="bi bi-exclamation-diamond-fill text-danger"></i> 
-        <strong>Definition</strong>:
-      </dt>
-      <dd class="col">$P_1,P_2,\dots\vDash C$ iff $[P_1]\cap [P_2]\cap\dots\subseteq [C]$</dd>
-    </dl>
-    <ul>
-      <li class="fragment fade-right">$A\lor B,A\nvDash \neg B$</li>
-      <li class="fragment fade-right">$A$ true, $B$ true</li>
-      <li class="fragment fade-right"><em>countermodel</em></li>
-    </ul>
+  <section id="recursion">
+    <h1>Recursion</h1>
+      $$\nu(\neg A):=-\nu(A)$$
+      $$\nu((A\land B)):=\nu(A)\times \nu(B)$$
+      $$\nu((A\lor B)):=\nu(A)+ \nu(B)$$
   </section>
 </section>
 <section>
-  <section id="inductive_logic">
+  <section id="Applications">
     <dl class="row" >
       <dd class="col">
-        <i class="bi bi-percent text-warning" style="font-size:100px;"></i> 
-        <h1><span class="text-danger">Inductive</span> logic</h1>
+        <i class="bi bi-database-gear text-primary" style="font-size:100px;"></i> 
+        <h1>Applicat<span class="text-danger">10</span>ns</h1>
       </dd>
       <dt class="col"></dt>
     </dl>
   </section>
-  <section>
-    <h1>Features</h1>
+  <section id="inference">
+    <h1>Boolean inference</h1>
     <ul>
-      <li class="fragment fade-right">defeasible</li>
-      <li class="fragment fade-right">particular</li>
-      <li class="fragment fade-right">likely</li>
+      <li class="fragment fade-right"><i class="bi bi-lightbulb-fill text-warning"></i> Valuations = situations</li>
+      <li class="fragment fade-right">$[A]=\Set{\nu:\nu(A)=1}$</li>
+      <li class="fragment fade-right">Valid inference:
+        $$P_1,P_2,\dots\vDash C\Leftrightarrow [P_1]\cap [P_2]\cap \dots\subseteq [C]$$
+      </li>
     </ul>
   </section>
-  <section>
-    <h1>Methods</h1>
-    <ul>
-      <li class="fragment fade-right">Probability = likelihood of truth $(0,\dots,1)$</li>
-      <li class="fragment fade-right">$Pr(A)\approx$ in how many situations is $A$ true</li>
-      <li class="fragment fade-right">$Pr(A|B)\approx$ in how many situations <em>where $B$ is true</em> is $A$ true</li>
-      <li class="fragment fade-right">$Pr(A|B)=\frac{Pr(A\land B)}{Pr(B)}$
-    </ul>
-    <dl class="row fragment fade-right" >
-      <dt class="col">
-        <i class="bi bi-exclamation-diamond-fill text-danger"></i> 
-        <strong>Definition</strong>:
-      </dt>
-      <dd class="col fs-1">$P_1,P_2,\dots\mid\approx C$ iff $Pr(C|P_1\land P_2\land \dots)>Pr(C)$</dd>
-    </dl>
+  <section id="inference">
+    <h1>Logical laws</h1>
+      $$x+(x\times y)=x\Rightarrow [A\lor(A\land B)]=[A]$$
+      $$\Rightarrow A\lor (A\land B)\vDash A\qquad A\vDash A\lor (A\land B)$$
   </section>
-  <section>
-    
-    
-    <img src="https://logicalmethods.ai/slides/valid-inference/img/intersection.jpeg" class="img-thumbnail"  alt="" >
-    
-
+  <section id="inference">
+    <h1>Logical laws</h1>
+      $$x\leq x+y \Rightarrow [A]\subseteq [A\lor B]$$
+      $$\Rightarrow A\vDash A\lor B$$
   </section>
-  <section>
-    <h1>Example</h1>
-    <dl class="row fragment fade-right" >
-      <dt class="col">
-        <i class="bi bi-exclamation-diamond-fill text-danger"></i> 
-        <strong>Definition</strong>:
-      </dt>
-      <dd class="col fs-1">$P_1,P_2,\dots\mid\approx C$ iff $Pr(C|P_1\land P_2\land \dots)>Pr(C)$</dd>
-    </dl>
+  <section id="arithmetic" style="font-size:0.9em">
+    <h1>Binary arithmetic</h1>
     <ul>
-      <li class="fragment fade-right">$A\land B\mid\approx A$</li>
-      <li class="fragment fade-right">$Pr(A|A\land B)=1$</li>
-      <li class="fragment fade-right">$Pr(A|A\land B)\geq Pr(A)$</li>
+      <li class="fragment fade-right">Binary numbers:
+        $$101=1\times 2^2+0\times 2^1+1\times 2^0=5$$
+      </li>
+      <li class="fragment fade-right">Binary addition:
+        $$\phantom{+\ }010$$
+        $$\underline{+\ 011}$$
+        $$=\ 101$$
+      </li>
     </ul>
   </section>
-  <section>
-    <h1>Monotonicity</h1>
+  <section id="arithmetic" style="font-size:0.9em">
+    <h1>Boolean arithmetic</h1>
     <ul>
-      <li class="fragment fade-right">$P_1,P_2,\dots\vDash C\Rightarrow Q,P_1,P_2,\dots\vDash C$</li>
-      <li class="fragment fade-right">$P_1,P_2,\dots\mid\approx C\nRightarrow Q,P_1,P_2,\dots\mid\approx C$</li>
-      <li class="fragment fade-right">defeasible vs indefeasible</li>
+      <li class="fragment fade-right">$z=x+y$
+        $$x=\dots x_3x_2x_1$$
+        $$y=\dots y_3y_2y_1$$
+        $$z=\dots z_3z_2z_1$$
+      </li>
+      <li class="fragment fade-right">Binary addition:
+        $$z_i=(x_i\oplus y_i)\oplus (x_{i-1}\times y_{i-1})$$
+      </li>
     </ul>
-  </section>
-  <section>
-    
-    
-    <img src="https://logicalmethods.ai/slides/valid-inference/img/probabilities.jpg" class="img-thumbnail" width="700" alt="" >
-    
-
   </section>
 </section>
 <section>
@@ -554,19 +647,31 @@ fullscreen. You can quit fullscreen by pressing ESC.</p>
   <h5>Highlights</h5>
   <ul class="list-group">
     
-    <a href="#/inference" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Inference</strong></a> 
+    <a href="#/truth-values" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Truth values</strong></a> 
     
-    <a href="#/preservation" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Truth-preservation</strong></a> 
+    <a href="#/functions" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Functions</strong></a> 
     
-    <a href="#/deduction" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Deduction</strong></a> 
+    <a href="#/boolean" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Boolean algebra</strong></a> 
     
-    <a href="#/induction" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Induction</strong></a> 
+    <a href="#/negation" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Boolean negation</strong></a> 
     
-    <a href="#/formalization" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Formalization</strong></a> 
+    <a href="#/conjunction" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Boolean conjunction</strong></a> 
     
-    <a href="#/deductive_logic" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Deductive logic</strong></a> 
+    <a href="#/disjunction" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Boolean disjunction</strong></a> 
     
-    <a href="#/inductive_logic" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Inductive logic</strong></a> 
+    <a href="#/laws" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Boolean laws</strong></a> 
+    
+    <a href="#/models" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Boolean models</strong></a> 
+    
+    <a href="#/valuation" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Boolean valuations</strong></a> 
+    
+    <a href="#/recursion" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Boolean recursion</strong></a> 
+    
+    <a href="#/applications" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Applications</strong></a> 
+    
+    <a href="#/inference" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Boolean inference</strong></a> 
+    
+    <a href="#/arithmetic" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Binary arithmetic</strong></a> 
     
   </ul>
 </div>
@@ -583,7 +688,7 @@ fullscreen. You can quit fullscreen by pressing ESC.</p>
 <ul class="navbar-nav flex-row justify-content-between mt-auto">
   
   <li class="nav-item">
-    <a href="/slides/logic-and-ai/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="/slides/formal-languages/" class="btn" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-left"></i>
     </a>
     
@@ -595,7 +700,7 @@ fullscreen. You can quit fullscreen by pressing ESC.</p>
   </li>
   <li class="nav-item">
     
-    <a href="/slides/formal-languages/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-right"></i>
     </a>
     
