@@ -256,6 +256,93 @@ We need a more efficient method.
 
 ## Normal forms
 
+The method we'll be working with uses [normal
+forms](https://en.wikipedia.org/wiki/Canonical_normal_form). Generally speaking,
+a **normal form** is a special way of writing formulas such that every formula
+can be re-written in this way. This is much better illustrated concretely, so
+let's talk about **Conjunctive Normal Forms (CNF)**, which are what we're
+ultimately interested in.
+
+A formula $A$ is in CNF just in case it is a conjunction ($\land$) of
+disjunction ($\lor$) of propositional variables ($p,q,r,\dots$) or their
+negations ($\neg p,\neg q, \neg r,\dots$). This is
+still quite abstract, but we can work with that using some examples.
+
+The following formulas _are_ in CNF:
+
++ $\mathsf{RAIN}$
++ $\mathsf{RAIN}\land\neg\mathsf{BIKE}$
++ $\mathsf{RAIN}\lor\neg\mathsf{BIKE}$
++ $(\mathsf{RAIN}\lor\neg\mathsf{BIKE})\land
+(\mathsf{SUN}\lor\mathsf{BIKE})$
+
+The following formulas are _not_ in CNF:
+
++ $\neg\neg\mathsf{RAIN}$
++ $\mathsf{RAIN}\lor \neg(\mathsf{SUN}\land \neg \mathsf{BIKE})$
++ $\neg(\mathsf{RAIN}\land\neg\mathsf{BIKE})$
++ $\neg(\mathsf{RAIN}\lor\neg\mathsf{BIKE})$
++ $(\mathsf{RAIN}\land\neg\mathsf{BIKE})\lor
+\mathsf{SUN}$
+
+So, some formulas are and some formulas aren't in CNF. The crucial thing about
+CNFs, though, which is what make them a normal form, is that _every_ formula can
+equivalently be re-written in CNF. What we mean by that is that for each formula
+$A$, there exists a formula $A_{CNF}$ such that for each valuation:
+$$\nu(A)=\nu(A_{CNF}).$$ A formula that's equivalent in this way is equivalent
+for all (logical and AI) intents and purposes.
+
+Here are the equivalent formulas for the non-CNF formulas:
+
++ $\neg\neg\mathsf{RAIN}\leadsto\mathsf{RAIN}$
++ $\mathsf{RAIN}\lor \neg(\mathsf{SUN}\lor \neg \mathsf{BIKE})\leadsto
+\mathsf{RAIN}\lor (\neg \mathsf{SUN}\lor \neg \mathsf{BIKE})$
++ $\neg(\mathsf{RAIN}\land\neg\mathsf{BIKE})\leadsto \neg \mathsf{RAIN}\lor
+\mathsf{BIKE}$
++ $\neg(\mathsf{RAIN}\lor\neg\mathsf{BIKE})\leadsto
+\neg\mathsf{RAIN}\land\mathsf{BIKE}$
++ $(\mathsf{RAIN}\land\neg\mathsf{BIKE})\lor \mathsf{SUN}\leadsto
+(\mathsf{SUN}\lor\mathsf{RAIN})\land (\mathsf{SUN}\lor\neg\mathsf{BIKE})$
+
+These are easily verified using a truth-table for the two formulas and checking
+that they always have the same values. 
+
+Here's one case:
+
++ $(\mathsf{RAIN}\land\neg\mathsf{BIKE})\lor \mathsf{SUN}$
+
+{{< img src="img/tt-3.png" class="img-thumbnail" >}}
+
++ $(\mathsf{SUN}\lor\mathsf{RAIN})\land (\mathsf{SUN}\lor\neg\mathsf{BIKE})$
+
+{{< img src="img/tt-4.png" class="img-thumbnail" >}}
+
+As you can see in these two truth-tables: under each possible valuation, the two
+formulas have exactly the same truth-table.
+
+The fact that each formula can be re-written in CNF is known as the **CNF
+theorem**. You'll not learn the details of the proof, but you'll learn _how_ to
+transform formulas into CNFs. 
+
+Basically, all you need to do is to apply the following rules as many times as
+needed until your formula is in CNF:
+
++ $\neg\neg A\leadsto A$
++ $\neg (A\lor B)\leadsto \neg A\land \neg B$
++ $\neg (A\land B)\leadsto \neg A\lor \neg B$
++ $A\lor(B\land C)\leadsto (A\lor B)\land (A\lor C)$
++ $(A\land B)\lor C\leadsto (A\lor C)\land (B\lor C)$
+
+The way to read these rules is that if you come across any of the left formulas
+within a non-CNF formula, replace the occurrence with the right formula. 
+
+Here's how the procedure looks like in practice:
+
+$$\mathsf{RAIN}\lor \neg(\mathsf{SUN}\lor \neg \mathsf{BIKE})$$
+$$\leadsto\mathsf{RAIN}\lor (\neg\mathsf{SUN}\land \neg\neg \mathsf{BIKE})$$
+$$\leadsto(\mathsf{RAIN}\lor \neg\mathsf{SUN})\land (\mathsf{RAIN}\lor \neg\neg \mathsf{BIKE})$$
+$$\leadsto(\mathsf{RAIN}\lor \neg\mathsf{SUN})\land (\mathsf{RAIN}\lor \mathsf{BIKE})$$
+
 ## DPLL
 
 ## Further readings
