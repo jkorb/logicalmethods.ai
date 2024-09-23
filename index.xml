@@ -99,5 +99,12 @@
       <guid>https://logicalmethods.ai/textbook/boolean/</guid>
       <description>&lt;h1 id=&#34;boolean-algebra&#34;&gt;Boolean algebra&lt;button class=&#34;btn btn-back-to-top&#34;&gt;&#xA;    &#xA;  &lt;/button&gt;&#xA;&lt;/h1&gt;&#xA;&lt;hr&gt;&#xA;&#xA;&lt;p&gt;In this chapter, you&amp;rsquo;ll learn about some of the most fundamental laws of&#xA;reasoning and computation: the laws of &lt;strong&gt;Boolean algebra&lt;/strong&gt;. These laws find&#xA;applications ranging from building computer circuits to web searches.&lt;/p&gt;&#xA;&lt;p&gt;From the perspective of logical theory, Boolean algebra provides a &lt;strong&gt;semantics&lt;/strong&gt;&#xA;for classical propositional logic. This works by focusing on truth and falsity&#xA;as the only logically relevant aspect of meaning when it comes to valid&#xA;inference.&lt;/p&gt;</description>
     </item>
+    <item>
+      <title>Boolean satisfiability</title>
+      <link>https://logicalmethods.ai/textbook/sat/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://logicalmethods.ai/textbook/sat/</guid>
+      <description>&lt;h1 id=&#34;boolean-satisfiability&#34;&gt;Boolean satisfiability&lt;button class=&#34;btn btn-back-to-top&#34;&gt;&#xA;    &#xA;  &lt;/button&gt;&#xA;&lt;/h1&gt;&#xA;&lt;hr&gt;&#xA;&#xA;&lt;p&gt;In the last chapter, you learned about &#xA;&#xA;&#xA;&lt;a href=&#34;https://logicalmethods.ai/textbook/boolean/&#34;&#xA;   &#xA;   &#xA;   &#xA;   &#xA;   &#xA;   &gt;&#xA;Boolean algebra&lt;/a&gt;&#xA;&#xA; and its role as fundamental laws of&#xA;reasoning and computation. In this chapter, we&amp;rsquo;ll further explore the&#xA;applications of Boolean algebra in AI.&lt;/p&gt;&#xA;&lt;p&gt;In particular, you&amp;rsquo;ll learn about how to efficiently test for valid inference in&#xA;Boolean algebra. First, we&amp;rsquo;ll discuss the &amp;ldquo;naive&amp;rdquo; &lt;a href=&#34;#truth-tables&#34;&gt;truth-table&#xA;method&lt;/a&gt;, which suffers from the problem of &lt;a href=&#34;https://en.wikipedia.org/wiki/Combinatorial_explosion&#34;&#xA;  target=&#34;_blank&#34;&gt;combinatorial&#xA;explosion&lt;/a&gt;. Then you&amp;rsquo;ll&#xA;learn about a more efficient method for validity checking, which is known as the&#xA;&lt;a href=&#34;#dpll&#34;&gt;Davis–Putnam–Logemann–Loveland (DPLL)&lt;/a&gt; algorithm. This methods requires&#xA;you to know about &lt;a href=&#34;#normal-forms&#34;&gt;normal forms&lt;/a&gt;, so we&amp;rsquo;ll cover those, too.&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>
