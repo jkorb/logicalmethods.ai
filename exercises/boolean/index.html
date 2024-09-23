@@ -333,8 +333,19 @@ minutes by following this
 of each question (click to expand).</p>
 
 </div>
-<div id="recursion" class=" latex"><h5 class="latex">
+<div id="recursion" class=" latex solved"><h5 class="latex solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Recursion
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="recursionSolution"
+        onclick="showPasswordModal('recursionSolution', 'exc-bool')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>For this exercise, use a propositional language with the following variables:</p>
 <ul>
@@ -382,8 +393,77 @@ $\LaTeX$ answer template <i class="bi bi-chevron-left toggle-icon"></i>
 
 
 </div>
-<div id="boolean-laws" class=" latex"><h5 class="latex">
+<div id="recursionSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><ol>
+<li>Answer:</li>
+</ol>
+<ul>
+<li>$\nu(\neg PLUTO)$</li>
+<li>$=-\nu(PLUTO)$</li>
+<li>$=-0$</li>
+<li>$=1$</li>
+</ul>
+<ol start="2">
+<li>Answer:</li>
+</ol>
+<ul>
+<li>$\nu(MARS\land VENUS)$</li>
+<li>$=\nu(MARS)\times\nu(VENUS)$</li>
+<li>$=1\times 1$</li>
+<li>$=1$</li>
+</ul>
+<ol start="3">
+<li>Answer:</li>
+</ol>
+<ul>
+<li>$\nu(PLUTO\lor\neg MARS)$</li>
+<li>$=\nu(PLUTO)+\nu(\neg MARS)$</li>
+<li>$=\nu(PLUTO)+(-\nu(MARS))$</li>
+<li>$=0+(-1)$</li>
+<li>$=0+0$</li>
+<li>$=0$</li>
+</ul>
+<ol start="4">
+<li>Answer:</li>
+</ol>
+<ul>
+<li>$\nu(MARS\land\neg PLUTO)$</li>
+<li>$=\nu(MARS)\times\nu(\neg PLUTO)$</li>
+<li>$=\nu(MARS)\times(-\nu(PLUTO))$</li>
+<li>$=1\times(-0)$</li>
+<li>$=1\times 1$</li>
+<li>$=1$</li>
+</ul>
+<ol start="5">
+<li>Answer:</li>
+</ol>
+<ul>
+<li>$\nu(\neg(VENUS\land\neg\neg (PLUTO\lor MARS)))$</li>
+<li>$=-\nu(VENUS\land\neg\neg (PLUTO\lor MARS))$</li>
+<li>$=-(\nu(VENUS)\times\nu(\neg\neg (PLUTO\lor MARS)))$</li>
+<li>$=-(\nu(VENUS)\times &ndash;\nu(PLUTO\lor MARS))$</li>
+<li>$=-(\nu(VENUS)\times&ndash;(\nu(PLUTO)+\nu(MARS)))$</li>
+<li>$=-(1\times&ndash;(0+1))$</li>
+<li>$=-(1\times&ndash;1)$</li>
+<li>$=-(1\times-0)$</li>
+<li>$=-(1\times 1)$</li>
+<li>$=- 1$</li>
+<li>$= 0$</li>
+</ul>
+
+</div>
+<div id="boolean-laws" class=" latex solved"><h5 class="latex solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Boolean laws
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="boolean-lawsSolution"
+        onclick="showPasswordModal('boolean-lawsSolution', 'exc-bool')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>Use the Boolean laws in section 4.6 to explain why these equations are correct.</p>
 
@@ -458,8 +538,45 @@ $\LaTeX$ answer template <i class="bi bi-chevron-left toggle-icon"></i>
 
 
 </div>
-<div id="validity" class=" latex"><h5 class="latex">
+<div id="boolean-lawsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong></p>
+<ol>
+<li>$x\times (x+y) ,=,  x \qquad$ <strong>[absorption]</strong></li>
+<li>$x ,=,  x + (x\times y)\qquad$ <strong>[absorption]</strong></li>
+<li>$x\times (x+y) ,=,  x\times (x+y) \qquad$ <strong>[1,2]</strong></li>
+</ol>
+<p><strong>b)</strong></p>
+<ol>
+<li>$y ,=, y\times y \qquad$ <strong>[idempotence]</strong></li>
+<li>$y\times z ,=, (y\times y)\times z \qquad$ <strong>[1]</strong></li>
+<li>$(y\times y)\times z ,=, y\times(y\times z) \qquad$ <strong>[associativity]</strong></li>
+<li>$y\times z ,=, z\times y \qquad$ <strong>[commutativity]</strong></li>
+<li>$y\times(y\times z),=, y\times(z\times y) \qquad$ <strong>[4]</strong></li>
+<li>$y\times z ,=, y\times (z\times y) \qquad$ <strong>[2,3,5]</strong></li>
+</ol>
+<p><strong>c)</strong></p>
+<ol>
+<li>$(x + (y\times z)) + x ,=, x+(x + (y\times z)) \qquad$ <strong>[commutativity]</strong></li>
+<li>$x+(x + (y\times z)) ,=, (x+x) + (y\times z) \qquad$ <strong>[associativity]</strong></li>
+<li>$x+x ,=, x \qquad$ <strong>[idempotence]</strong></li>
+<li>$(x+x) + (y\times z) ,=, x+(y\times z) \qquad$ <strong>[3]</strong></li>
+<li>$x+(y\times z) ,=, (x+y)\times(x+z) \qquad$ <strong>[idempotence]</strong></li>
+<li>$(x + (y\times z)) + x ,=, (x+y)\times(x+z) \qquad$ <strong>[1,2,4,5]</strong></li>
+</ol>
+
+</div>
+<div id="validity" class=" latex solved"><h5 class="latex solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Validity
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="validitySolution"
+        onclick="showPasswordModal('validitySolution', 'exc-bool')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>a) Use the definition of a Boolean model to show that $[A\lor A]=[A]$ for any formula $A$.</p>
 <p>b) Use the previous fact to explain why $A\lor A\vDash A$ and $A\vDash A\lor A$</p>
@@ -484,6 +601,42 @@ $\LaTeX$ answer template <i class="bi bi-chevron-left toggle-icon"></i>
 </div>
 <hr>
 
+
+</div>
+<div id="validitySolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong></p>
+<p>The set of models $[A\lor A]={ \nu : \nu(A\lor A)=1}$. Since $\nu(A\lor A)=\nu(A)+\nu(A)$ we know by idempotence that we always have the equivlance $\nu(A\lor A)=\nu(A)$. This shows that $[A\lor A]=[A]$.</p>
+<p><strong>b)</strong></p>
+<p>It follows from above that $[A\lor A]\subseteq[A]$ which is the definition of $A\lor A\vDash A$. It also follows that $[A]\subseteq[A\lor A]$ which is the definition of $A\vDash A\lor A$.</p>
+
+</div>
+<div id="research" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Research
+    </div>
+</h5><p><em>This one went up late, but if you have the time, it&rsquo;s a good exercise</em></p>
+<p><i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/Logic_gate" class="link-dark" rel="external" target="_blank">Logic gates</a>
+ are a different way
+of thinking about Boolean truth-function. Familiarize yourself with what
+they are and</p>
+
+</div>
+<div id="a-1" ><h6 class="">a)</h6><p>Write the following Boolean truth-functions using the logic gates
+for $NOT,AND,OR$</p>
+<ul>
+<li>
+<p>$(x+y)\times -(x\times y)$</p>
+</li>
+<li>
+<p>$-(x+y)$</p>
+</li>
+<li>
+<p>$-((x\times y)+z)$</p>
+</li>
+</ul>
+
+</div>
+<div id="b-1" ><h6 class="">b)</h6><p>It&rsquo;s a mathematical fact that all logic gates can be implemented using
+$NOR$ gates. Find the $NOR$-only gates for the functions above.</p>
 
   </div>
 </div>
