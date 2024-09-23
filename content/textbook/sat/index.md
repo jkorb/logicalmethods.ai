@@ -206,7 +206,7 @@ The **truth-table method** for validity checking is to use the truth-table for
 the formula: $$(((P_1\land P_2)\land \dots )\land \neg C)$$ 
 
 + If there is a row  with value $1$, the inference is invalid.
-+ If all rows have value $0$, the inference is invalid.
++ If all rows have value $0$, the inference is valid.
 
 For our example inference, we get:
 
