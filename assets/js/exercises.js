@@ -119,6 +119,6 @@ const passwords = {
   "exc-laa": "logicROCKS!",
   "exc-val": "AIdoestoo!",
   "exc-for": "Formal?",
-  "exc-bool": "Formal?",
+  "exc-bool": "TrueOrFalse",
   // Add more solutionId: password pairs here
 };
