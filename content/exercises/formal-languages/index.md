@@ -233,7 +233,8 @@ $$ \langle{binop}\rangle ::= \land \mid \lor \mid \rightarrow \mid \leftrightarr
 
 $$ \langle{quant}\rangle ::= \forall \mid \exists $$
 
-$$ \langle{pred}\rangle^1 ::= BLUE \mid RED \mid GREEN $$
+$$ \langle{pred}\rangle^1 ::= BLUE \mid RED \mid GREEN \mid LEATHER\mid
+RUBBER$$
 
 $$ \langle{pred}\rangle^2 ::= CHEAPER \mid DURABLE $$
 
