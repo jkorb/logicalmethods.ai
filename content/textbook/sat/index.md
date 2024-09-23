@@ -383,7 +383,7 @@ Using the notation from before, we assume that our formula looks as follows:
 $$\Set{\Set{l_1^1,\dots,l_{n_1}^1},\dots \Set{l_1^k,\dots,l_{n_k}^k}}$$
 
 The crucial thing to understand is that in order to make the corresponding
-formula true, it's sufficient to make one literal form each clause true. 
+formula true, it's sufficient to make one literal from each clause true. 
 
 Let's start with the "criminally abstract" way of saying what that means: we
 simply need to find a sequence:
@@ -420,7 +420,7 @@ abstract examples:
   But here both $\neg\mathsf{SUN}$ has a similar property as $\mathsf{RAIN}$
   before: it only "negatively" (there's never $\mathsf{SUN}$).
 
-  So, we can just set $\nu(\mathsf{SUN})=0$ to get $\nu(\mathsf{SUN})=1$ as
+  So, we can just set $\nu(\mathsf{SUN})=0$ to get $\nu(\neg \mathsf{SUN})=1$ as
   desired, and we satisfy both  $\Set{\neg \mathsf{SUN},\mathsf{BIKE}}$ and
   $\Set{\neg\mathsf{SUN},\neg\mathsf{BIKE}}$ at the same time.
 
