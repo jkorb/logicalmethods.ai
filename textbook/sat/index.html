@@ -705,7 +705,7 @@ i.e. whether there&rsquo;s a Boolean valuation that makes the entire formula tru
 <p>Using the notation from before, we assume that our formula looks as follows:
 $$\Set{\Set{l_1^1,\dots,l_{n_1}^1},\dots \Set{l_1^k,\dots,l_{n_k}^k}}$$</p>
 <p>The crucial thing to understand is that in order to make the corresponding
-formula true, it&rsquo;s sufficient to make one literal form each clause true.</p>
+formula true, it&rsquo;s sufficient to make one literal from each clause true.</p>
 <p>Let&rsquo;s start with the &ldquo;criminally abstract&rdquo; way of saying what that means: we
 simply need to find a sequence:
 $$l_{i_1}^1\in \Set{l_1^1m\dots, l_{n_1}^1}$$
@@ -735,7 +735,7 @@ just disjunctions).</p>
 $$\Set{\Set{\neg \mathsf{SUN},\mathsf{BIKE}},\Set{\neg\mathsf{SUN},\neg\mathsf{BIKE}}}$$</p>
 <p>But here both $\neg\mathsf{SUN}$ has a similar property as $\mathsf{RAIN}$
 before: it only &ldquo;negatively&rdquo; (there&rsquo;s never $\mathsf{SUN}$).</p>
-<p>So, we can just set $\nu(\mathsf{SUN})=0$ to get $\nu(\mathsf{SUN})=1$ as
+<p>So, we can just set $\nu(\mathsf{SUN})=0$ to get $\nu(\neg \mathsf{SUN})=1$ as
 desired, and we satisfy both  $\Set{\neg \mathsf{SUN},\mathsf{BIKE}}$ and
 $\Set{\neg\mathsf{SUN},\neg\mathsf{BIKE}}$ at the same time.</p>
 <p>At this stage, what remains after eliminating all the clauses we&rsquo;ve satisfied
