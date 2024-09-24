@@ -1,11 +1,7 @@
 ---
 title: Boolean satisfiability
 author: Johannes Korbmacher
-<<<<<<< HEAD
 date: 24/09/2024
-=======
-date: 20/09/2024
->>>>>>> sat
 last_edited: 24/09/2024
 weight: 5
 params: 
