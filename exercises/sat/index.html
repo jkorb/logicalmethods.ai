@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8"></meta>
     <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-    <title>logicalmethods.ai &ndash; Valid inference </title>
+    <title>logicalmethods.ai &ndash; Boolean satisfiability </title>
     <link rel="icon" type="image/x-icon" href="https://logicalmethods.ai/favicon.ico"></link>
     <link href="https://logicalmethods.ai/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"></link>
     <link rel="stylesheet" href="https://logicalmethods.ai/icons/font/bootstrap-icons.min.css"></link>
@@ -150,7 +150,7 @@
             </li>
             
             <li>
-              <a class="dropdown-item fw-bold active" href="/exercises/valid-inference/">2. Valid inference</a>
+              <a class="dropdown-item " href="/exercises/valid-inference/">2. Valid inference</a>
             </li>
             
             <li>
@@ -162,7 +162,7 @@
             </li>
             
             <li>
-              <a class="dropdown-item " href="/exercises/sat/">5. Boolean satisfiability</a>
+              <a class="dropdown-item fw-bold active" href="/exercises/sat/">5. Boolean satisfiability</a>
             </li>
             </ul>
         </div>
@@ -218,7 +218,7 @@
   <ul class="navbar-nav flex-row justify-content-between mt-2">
   
   <li class="nav-item">
-    <a href="/exercises/logic-and-ai/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="/exercises/boolean/" class="btn" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-left"></i>
     </a>
     
@@ -230,7 +230,7 @@
   </li>
   <li class="nav-item">
     
-    <a href="/exercises/formal-languages/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-right"></i>
     </a>
     
@@ -239,7 +239,7 @@
 
   <div class="container text-center">
   <h3>
-    Tutorial 2. Valid inference
+    Tutorial 5. Boolean satisfiability
   </h3>
   <em>Exercise sheet</em>
 </div>
@@ -306,267 +306,262 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
     
       
 </div>
-<div id="deduction-and-induction" ><h5 class="">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Deduction and Induction
+<div id="truth-tables" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Truth tables
     </div>
-</h5><p>Give an example of one for each of the following:</p>
+</h5><p>Use the truth-table method to determine the validity of the following
+inferences:</p>
 
 </div>
-<div id="a" class=" homework"><h6 class=" homework">a)</h6><p>A deductively valid inference</p>
+<div id="a" class=" homework"><h6 class=" homework">a)</h6><p>$\neg\mathsf{RAIN}\lor\mathsf{BIKE}, \mathsf{BIKE}\vDash\neg\mathsf{RAIN}$</p>
 
 </div>
-<div id="b" ><h6 class="">b)</h6><p>A deductively invalid inference</p>
+<div id="b" ><h6 class="">b)</h6><ol start="2">
+<li>$\neg\mathsf{RAIN}\lor\mathsf{BIKE}, \mathsf{RAIN}\vDash\mathsf{RAIN}$</li>
+</ol>
 
 </div>
-<div id="c" ><h6 class="">c)</h6><p>An inductively valid inference</p>
+<div id="c" ><h6 class="">c)</h6><ol start="3">
+<li>$\neg\mathsf{RAIN}\vDash\mathsf{RAIN}\lor (\neg\mathsf{RAIN}\land
+\mathsf{BIKE})$</li>
+</ol>
 
 </div>
-<div id="d" class=" homework"><h6 class=" homework">d)</h6><p>An inductively invalid inference</p>
+<div id="d" class=" homework"><h6 class=" homework">d)</h6><ol start="4">
+<li>$\mathsf{RAIN}\lor (\mathsf{BIKE}\land \mathsf{SUN})\vDash
+\mathsf{RAIN}\lor\mathsf{BIKE}$</li>
+</ol>
 
 </div>
-<div id="monotonicity" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Monotonicity
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="monotonicitySolution"
-        onclick="showPasswordModal('monotonicitySolution', 'exc-val')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="cnfs" class=" latex"><h5 class="latex">
+    <div class="d-inline-flex flex-row m-0  p-0 ">CNFs
+    </div>
+</h5><p>Transform the following formulas into CNF.</p>
+
+</div>
+<div id="a-1" ><h6 class="">a)</h6><p>$$\neg(\mathsf{RAIN}\lor \mathsf{SUN})\land
+\neg\neg(\mathsf{SUN}\lor\neg\mathsf{RAIN})$$</p>
+
+</div>
+<div id="b-1" ><h6 class="">b)</h6><p>$$(\mathsf{RAIN})\land (\mathsf{SUN}\lor\neg\mathsf{BIKE})$$</p>
+
+</div>
+<div id="c-1" class=" homework"><h6 class=" homework">c)</h6><p>$$(\mathsf{RAIN}\land \mathsf{SUN}\land \neg\mathsf{SUN})\lor
+(\neg\mathsf{RAIN}\land \neg\mathsf{SUN}\land \mathsf{SUN})$$</p>
+
+</div>
+<div id="d-1" ><h6 class="">d)</h6><p>$$\neg(\mathsf{RAIN}\lor (\mathsf{SUN}\lor \neg\mathsf{SUN})\land
+\neg((\neg\mathsf{RAIN}\lor \neg\mathsf{SUN})\lor \mathsf{SUN})$$</p>
+
+
+
+
+
+
+<hr>
+<a class="btn btn-sm btn-link link-dark link-underline-opacity-0" href="#7310986d7df42b66bc4db0e62eda9c02621016d47a0cf5e45e4342558271d2b8" type="button" data-bs-toggle="collapse" data-bs-target="#7310986d7df42b66bc4db0e62eda9c02621016d47a0cf5e45e4342558271d2b8" aria-expanded="false" aria-controls="7310986d7df42b66bc4db0e62eda9c02621016d47a0cf5e45e4342558271d2b8" >
+$\LaTeX$ answer template <i class="bi bi-chevron-left toggle-icon"></i>
+</a>
+<div id="7310986d7df42b66bc4db0e62eda9c02621016d47a0cf5e45e4342558271d2b8" class="collapse bg-black rounded m-2 p-2 " style="position:relative;">
+  <button class="btn btn-primary shadow" style="position:absolute; top:10px;right:10px" onclick="copyContent('7310986d7df42b66bc4db0e62eda9c02621016d47a0cf5e45e4342558271d2b8-inner')"><i class="bi bi-clipboard"></i> Copy!</button>
+  <pre><code class="text-white" id="7310986d7df42b66bc4db0e62eda9c02621016d47a0cf5e45e4342558271d2b8-inner">
+
+\begin{itemize}
+  \item  $\neg(\mathsf{RAIN}\lor \mathsf{SUN})\land
+\neg\neg(\mathsf{SUN}\lor\neg\mathsf{RAIN})\leadsto$
+  \item $(\mathsf{RAIN})\land (\mathsf{SUN}\lor\neg\mathsf{BIKE})$
+  \item $(\mathsf{RAIN}\land \mathsf{SUN}\land \neg\mathsf{SUN})\lor
+(\neg\mathsf{RAIN}\land \neg\mathsf{SUN}\land \mathsf{SUN})$
+  \item $\neg(\mathsf{RAIN}\lor (\mathsf{SUN}\lor \neg\mathsf{SUN})\land
+\neg((\neg\mathsf{RAIN}\lor \neg\mathsf{SUN})\lor \mathsf{SUN})$
+\end{itemize}
+
+</code></pre>
+</div>
+<hr>
+
+
+</div>
+<div id="dpll" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0  p-0 ">DPLL
     </div>
 </h5>
 </div>
-<div id="a-deduction" ><h6 class="">a) Deduction</h6><p>Give an argument that if an inference is deductively valid, then adding
-additional premises doesn’t cancel the validity of the inference.</p>
+<div id="a-2" ><h6 class="">a)</h6><p>Redo exercise 1 using the DPLL algorithm instead of truth-tables.</p>
 
 </div>
-<div id="b-induction" class=" homework"><h6 class=" homework">b) Induction</h6><p>Why does this argument fail for inductive logic?</p>
+<div id="b-2" ><h6 class="">b)</h6><p>Use the DPLL algorithm to determine whether the following formulas are
+satisfiable. If necessary, first bring the formula into CNF.</p>
+<ol>
+<li>
+<p>$(p\lor q\lor \neg r)\land (p\lor\neg q\lor \neg r)$</p>
+</li>
+<li>
+<p>$\neg(p\land q)\lor (r\land \neg r)$</p>
+</li>
+<li>
+<p>$(p\lor q)\land (p\lor \neg q)\land (\neg p\lor q)\land (\neg p\lor \neg q)$</p>
+</li>
+<li>
+<p>$(p\land (p\lor q))\land (q\land (q\lor p))$</p>
+</li>
+</ol>
 
 </div>
-<div id="monotonicitySolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong></p>
-<p>Deductive validity is necessary. Suppose $A\vDash C$. Necessarily, if $A$ is
-true, $C$ is true. If we consider any possibility where $A\land B$ is true, it
-also makes $A$ true, which means that is has to make $C$ true (based on what we
-just observed). So $A\land B\vDash C$.</p>
-<p><strong>b)</strong></p>
-<p>Inductive validity isn&rsquo;t necessary. $A\mid!\approx C$ only tells us that when
-$A$ is true, <em>it is likely</em> that $C$ is true. This does not guarantee that when
-$A\land B$ is true, <em>it is equally likely</em> that $C$ is true. Sometimes new
-information $B$ lowers or cancels out the probability of $C$.</p>
-
-</div>
-<div id="validity" class=" homework solved"><h5 class="homework solved">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Validity
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="validitySolution"
-        onclick="showPasswordModal('validitySolution', 'exc-val')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="planning" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Planning
     </div>
-</h5><p>For every invalid inference, it’s possible to add one or more premises to make it
-valid. Why?</p>
-
-</div>
-<div id="validitySolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>If you have an invalid inference $P_1,\ldots, P_n\nvDash C$ you can just add $C$ on the premise side and you get a valid inference $C,P_1,\ldots, P_n\vDash C$.</p>
-
-</div>
-<div id="truth-preservation" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Truth-Preservation
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="truth-preservationSolution"
-        onclick="showPasswordModal('truth-preservationSolution', 'exc-val')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
-    </div>
-</h5><p>Which of the following is possible? Make your answer clear and precise, by
-showing how the definition of deductive validity and the definition of inductive
-validity/strength relate to these questions.</p>
-
-</div>
-<div id="a-1" ><h6 class="">a)</h6><p>Can an inference be deductively valid and have a false premise?</p>
-
-</div>
-<div id="b-1" ><h6 class="">b)</h6><p>Can an inference be deductively valid and have a false conclusion?</p>
-
-</div>
-<div id="c-1" ><h6 class="">c)</h6><p>Can an inference be deductively valid, have true premises, and have a false conclusion?</p>
-
-</div>
-<div id="d-1" ><h6 class="">d)</h6><p>Can an inference be deductively valid but inductively invalid?</p>
-
-</div>
-<div id="e" ><h6 class="">e)</h6><p>Can an inference be inductively valid and have a false premise?</p>
-
-</div>
-<div id="f" ><h6 class="">f)</h6><p>Can an inference be inductively valid and have a false conclusion?</p>
-
-</div>
-<div id="g" ><h6 class="">g)</h6><p>Can an inference be inductively valid, have true premises, and have a false conclusion?</p>
-
-</div>
-<div id="h" ><h6 class="">h)</h6><p>Can an inference be inductively valid but deductively invalid?</p>
-
-</div>
-<div id="truth-preservationSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong></p>
-<p>Yes. Just fill in any valid logical form with a false premise. Maddy the pig
-example.</p>
-<p><strong>b)</strong></p>
-<p>Yes. Just fill in any valid logical form with a false conclusion.</p>
-<p><strong>c)</strong></p>
-<p>No. That contradicts the definition of validity.</p>
-<p><strong>d)</strong></p>
-<p>Yes. For example, any strong, statistical reasoning.</p>
-<p><strong>e)</strong> z Yes. Take any strong conditional probability with a false condition.
-The moon is made of cheese, so its probably delicious.</p>
-<p><strong>f)</strong></p>
-<p>Yes. Take any strong conditional probability with a false outcome.</p>
-<p><strong>g)</strong></p>
-<p>Yes. Because inductive validity is not necessary.</p>
-<p><strong>h)</strong></p>
-<p>No. If an inference preserves truth always, then it preserves truth most of the
-time. You can illustrate with standard &lsquo;definitional&rsquo; rules for the logical
-connectives, which are easily seen to be inductively valid. $A\land B\vDash A$
-and $A\vDash A\lor B$ etc.</p>
-
-</div>
-<div id="semantic-tools" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Semantic tools
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="semantic-toolsSolution"
-        onclick="showPasswordModal('semantic-toolsSolution', 'exc-val')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
-    </div>
-</h5><p>Explain the following facts:</p>
-
-</div>
-<div id="a-2" ><h6 class="">a)</h6><p>The subset relation, defined in 
-
-
-<a href="https://logicalmethods.ai/textbook/valid-inference//#semantic-methods-for-deduction"
-   
-   
-   
-   
-   
-   >
-2.3.1 </a>
-
-, has the following property:</p>
+</h5><p>One of the main applications of SAT-solving (via truth-tables, DPLL, or
+otherwise) is <em>automated planning</em>. This exercise goes through a simplified example to
+show how this works.</p>
+<p><strong>Setup</strong>: We&rsquo;ve got a robot that sits in front of two switches, one on the left
+and one on the right. Each switch controls a lamp, the left switch controls the
+left lamp and the right switch the right lamp. The switches work as follows:</p>
 <ul>
-<li>If $X\subseteq Y$ and $Y\subseteq Z$, then $X\subseteq Z$.</li>
+<li>If a lamp is on and you operate the switch, the lamp turns off.</li>
+<li>If a lamp is off and you operate the switch, the lamp turns on.</li>
 </ul>
-<p><em>Note</em>: This property is called &ldquo;transitivity&rdquo;.</p>
+<p>The left lamp is currently on and the right one is off. The robot can operate
+the switches and has the following goal:</p>
+<ul>
+<li>Turn the left lamp off and the right one on.</li>
+</ul>
+<p>It needs to devise a simple <strong>plan</strong> to achieve that.</p>
+<p>The <strong>idea</strong> is to use SAT solving to devise such a plan. For that, we need to
+first translate the problem into propositional logic.</p>
 
 </div>
-<div id="b-2" class=" homework"><h6 class=" homework">b)</h6><p>Remember that the intersection $X\cap Y$ of two sets $X,Y$ is the overlapping
-part of those two sets. We have that $X\cap Y\subseteq X$ and $X\cap Y\subseteq
-Y$.</p>
+<div id="a-translation" ><h6 class="">a) Translation</h6><p>Our first step is to devise an appropriate language. Here&rsquo;s the idea:</p>
+<ul>
+<li>
+<p>We think of the situation as made up of
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/Discrete" class="link-dark" rel="external" target="_blank">discrete</a>
+ time points, $1,2,\dots,n$.
+For simplicity, we only assume times $1$ and $2$.</p>
+</li>
+<li>
+<p>For each state that our setup can be in at a given time, we devise a
+propositional variable that describes the state. For example, we could have
+$L\_Lamp\_1$ to say that the left lamp is on at time $1$, and $\neg
+L\_Lamp\_2$
+to say that the lamp at $2$ is off.</p>
+</li>
+<li>
+<p>For each action the robot can perform, we also have a propositional variable.
+For example, we have $L\_SWITCH\_1$ to say that the robot switches the left
+switch at time $1$, etc.</p>
+</li>
+<li>
+<p>We have the usual Boolean connectives $\neg,\land,\lor$.</p>
+</li>
+</ul>
+<p><strong>Task</strong>: Determine the BNF of the language.</p>
 
 </div>
-<div id="semantic-toolsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong></p>
-<p>$X\subseteq Y$ means all elements of set $X$ are elements of set $Y$.
-$Y\subseteq Z$ means all elements of set $Y$ are elements of set $Z$. Then it
-must be true that all elements of set $X$ are elements of set $Z$.</p>
-<p><strong>b)</strong></p>
-<p>The intersection $X\cap Y$ is the overlapping part of $X$ and $Y$. So the
-elements of $X\cap Y$ have to be elements of $X$. That means $X\cap Y\subseteq
-X$. And the elements of $X\cap Y$ have to be elements of $Y$. That means $X\cap
-Y\subseteq Y$.</p>
+<div id="b-formalize" ><h6 class="">b) Formalize</h6><p>Once we have a suitable language, we need to translate the setup into formulas:</p>
+<ul>
+<li>
+<p>We need to describe the set-up:</p>
+<ul>
+<li>the left lamp is on at time $1$</li>
+<li>the right lamp is off at time $1$.</li>
+</ul>
+</li>
+<li>
+<p>We need to formalize the system rules:</p>
+<ul>
+<li>If a lamp is on at a given time and the corresponding switch is flipped, the
+lamp is on at the next time.$^\dagger$</li>
+</ul>
+</li>
+<li>
+<p>We need to formalize the goals:</p>
+<ul>
+<li>the left lamp is off at time $2$</li>
+<li>the right lamp is on at time $2$.</li>
+</ul>
+</li>
+<li>
+<p>We need to formalize <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/Frame_problem" class="link-dark" rel="external" target="_blank">frame
+conditions</a>
+ to avoid &ldquo;weird&rdquo;
+behavior like lamps switching on/off by themselves:</p>
+<ul>
+<li>
+<p>If a lamp is on at a given time and the corresponding switch is <em>not</em>
+flipped, the light is still on at the ext time.</p>
+</li>
+<li>
+<p>If a lamp is off at a given time and the corresponding switch is <em>not</em>
+flipped, the light is still off at the next time.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>$\dagger$: We don&rsquo;t have $A\to B$ in our language, because we haven&rsquo;t dealt with
+conditionals yet. Instead of $(A\land B)\to C$ you can, equivalently, write
+$\neg (A\land B)\lor C$. This we&rsquo;ll discuss in more detail in the next chapter.</p>
+<p><strong>Task</strong>: Formalize the setup.</p>
 
 </div>
-<div id="research" class=" solved"><h5 class="solved">
+<div id="c-planning" ><h6 class="">c) Planning</h6><p>The planning problem reduces to the question whether the set containing:</p>
+<ul>
+<li>the setup</li>
+<li>the rules and frame conditions</li>
+<li>the goals</li>
+</ul>
+<p>is satisfiable. A valuation that makes all of these true will tell the robot
+which actions to carry out. If there&rsquo;s more than one, it can chose.</p>
+<p><strong>Task</strong>: Use the DPLL algorithm to find a course of action for the robot.</p>
+
+</div>
+<div id="research" class=" homework"><h5 class="homework">
     <div class="d-inline-flex flex-row m-0  p-0 ">Research
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="researchSolution"
-        onclick="showPasswordModal('researchSolution', 'exc-val')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
     </div>
-</h5><p>Note: These questions <em>require</em> you to research the answer yourself using reliable academic sources. You need to reference your sources!</p>
-<p><strong>Reasoning</strong></p>
-<p>Are all forms of &ldquo;good&rdquo; reasoning either deductive or inductive?</p>
+</h5><p>Find out about <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/Disjunctive_normal_form" class="link-dark" rel="external" target="_blank">Disjunctive Normal
+Forms (DNFs)</a>
+.</p>
 
 </div>
-<div id="researchSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>Try to give positive feedback on any interesting answer that shows some work.
-Here is one possible answer.</p>
-<p>We defined induction by probablistic support. That is pretty much the broadest
-notion of truth-preservation we can define. If truth is all that matters then
-all good reasoning would have to be deductive or inductive. But there are
-theories of reasoning that say that some reasoning methods are good for other
-reasons apart from tracking truth. For example, some people think that
-<em>inference to the best explanation</em> is a good reasoning strategy, but the notion
-of &ldquo;best&rdquo; explanation depends on contingent scientific values of a community.</p>
+<div id="a-3" ><h6 class="">a)</h6><p>Determine the algorithm for rewriting formulas equivalently in DNF.</p>
+<p><em>Hint</em>: The algorithm is <em>very</em> similar to the rewriting into CNF, there&rsquo;s just
+two minor differences.</p>
 
 </div>
-<div id="discussion" class=" solved"><h5 class="solved">
+<div id="b-3" ><h6 class="">b)</h6><p>Does the DPLL algorithm work to solve the SAT problem for formulas in DNF?</p>
+
+</div>
+<div id="discussion" class=" latex"><h5 class="latex">
     <div class="d-inline-flex flex-row m-0  p-0 ">Discussion
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="discussionSolution"
-        onclick="showPasswordModal('discussionSolution', 'exc-val')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
     </div>
-</h5><p>Inductive logic in general is non-monotonic because new (premise) information
-can turn a valid inference into an invalid inference. But what if we know
-something about <em>how</em> a new piece of information <em>relates</em> to our old premises?
-Some versions of inductive logic support &rsquo;limited&rsquo; versions of monotonicity
-based on situations where new information (the &lsquo;$B$&rsquo; premises in these examples)
-comes from the right place. Do you think these limited forms of monotonicity are
-correct? Explain your answer.</p>
-<p>a) Cautious Monotonicity: If $A \mid\approx C$ and $A \mid\approx B$, then $
-A\land B \mid\approx C $</p>
-<p>b) Rational Monotonicity: If $A \mid\approx C$ and not $A \mid\approx \neg B$,
-then $ A\land B \mid\approx C $</p>
+</h5><p>As a motivation for discussing DPLL, we&rsquo;ve mentioned combinatorial explosion.
+Doesn&rsquo;t DPLL suffer from the same problem? Transforming a formula into CNF can
+be very resource intensive. Also: what if I cannot apply unit propagation and
+pure literal elimination efficiently?</p>
 
+
+
+
+
+
+<hr>
+<a class="btn btn-sm btn-link link-dark link-underline-opacity-0" href="#bec3ecb2510dc6fda71571aab01f35673eb33f37cbf674f2118bb96bc75fcd42" type="button" data-bs-toggle="collapse" data-bs-target="#bec3ecb2510dc6fda71571aab01f35673eb33f37cbf674f2118bb96bc75fcd42" aria-expanded="false" aria-controls="bec3ecb2510dc6fda71571aab01f35673eb33f37cbf674f2118bb96bc75fcd42" >
+$\LaTeX$ answer template <i class="bi bi-chevron-left toggle-icon"></i>
+</a>
+<div id="bec3ecb2510dc6fda71571aab01f35673eb33f37cbf674f2118bb96bc75fcd42" class="collapse bg-black rounded m-2 p-2 " style="position:relative;">
+  <button class="btn btn-primary shadow" style="position:absolute; top:10px;right:10px" onclick="copyContent('bec3ecb2510dc6fda71571aab01f35673eb33f37cbf674f2118bb96bc75fcd42-inner')"><i class="bi bi-clipboard"></i> Copy!</button>
+  <pre><code class="text-white" id="bec3ecb2510dc6fda71571aab01f35673eb33f37cbf674f2118bb96bc75fcd42-inner">
+
+% Just write your answer text in \LaTeX. It's a good exercise to write even
+normal, non-formal text here.
+
+</code></pre>
 </div>
-<div id="discussionSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>There are theoretical assumptions behind the concept of inductive support. So
-the student can try to explain some assumptions that <em>verify</em> these rules. They
-can also try to explain why the rules <em>fail</em> for standard conditional
-probabilities.</p>
-<p>Here an example for <strong>Cautious Monotonicity</strong>. You have a population of toys in
-different shapes: monsters, aliens, dinosaurs. Every toy is red, blue, green,
-purple, or yellow. Almost all toys are yellow. The few green toys are all
-dinosaurs, and the few red toys are all dinosaurs. There are a lot of yellow
-dinosaurs too. With $A=$ dinosaur, $B=$ red, $C=$ green, we could have
-probabilities like this.</p>
-<p>$P(B|A)=0.2$ greater than $P(B)=0.1$</p>
-<p>$P(C|A)=0.2$ greater than $P(C)=0.1$</p>
-<p>$P(C|A\land B)=0$ becuase no green toy is a red dinosaur toy.</p>
+<hr>
+
 
   </div>
 </div>
@@ -575,7 +570,7 @@ probabilities like this.</p>
 <ul class="navbar-nav flex-row justify-content-between mt-auto">
   
   <li class="nav-item">
-    <a href="/exercises/logic-and-ai/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="/exercises/boolean/" class="btn" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-left"></i>
     </a>
     
@@ -587,7 +582,7 @@ probabilities like this.</p>
   </li>
   <li class="nav-item">
     
-    <a href="/exercises/formal-languages/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-right"></i>
     </a>
     

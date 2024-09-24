@@ -10,8 +10,6 @@
   </url><url>
     <loc>https://logicalmethods.ai/exercises/logic-and-ai/</loc>
   </url><url>
-    <loc>https://logicalmethods.ai/quizzes/logic-and-ai/</loc>
-  </url><url>
     <loc>https://logicalmethods.ai/slides/logic-and-ai/</loc>
   </url><url>
     <loc>https://logicalmethods.ai/textbook/logic-and-ai/</loc>
@@ -33,9 +31,6 @@
   </url><url>
     <loc>https://logicalmethods.ai/textbook/formal-languages/</loc>
   </url><url>
-    <loc>https://logicalmethods.ai/quizzes/</loc>
-    <lastmod>2024-06-02T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://logicalmethods.ai/exercises/boolean/</loc>
   </url><url>
     <loc>https://logicalmethods.ai/slides/boolean/</loc>
@@ -43,6 +38,10 @@
     <loc>https://logicalmethods.ai/textbook/boolean/</loc>
   </url><url>
     <loc>https://logicalmethods.ai/about/</loc>
+  </url><url>
+    <loc>https://logicalmethods.ai/exercises/sat/</loc>
+  </url><url>
+    <loc>https://logicalmethods.ai/slides/sat/</loc>
   </url><url>
     <loc>https://logicalmethods.ai/textbook/sat/</loc>
   </url><url>
