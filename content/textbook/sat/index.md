@@ -99,10 +99,10 @@ that's impossible, meaning that the set is unsatisfiable.
 The reason why we're talking about satisfiability is that there's a test for
 valid inference in terms of satisfiability, which looks as follows:
 
-$$P_1,P_2,\dots\vDash C\Leftrightarrow \Set{P_1,P_2,\dots \neg C}\text{ is
+$$P_1,P_2,\dots\vDash C\Leftrightarrow \Set{P_1,P_2,\dots, \neg C}\text{ is
 \emph{un}satisfiable}$$
 
-The idea is simply that $\Set{P_1,P_2,\dots \neg C}$ is
+The idea is simply that $\Set{P_1,P_2,\dots, \neg C}$ is
 satisfiable just in case its possible to make all the premises $P_1,P_2,\dots$
 true and _at the same time_ the conclusion $C$ false (since $\nu(\neg
 C)=-\nu(C)=1$ just in case $\nu(C)=0$). To say that this is _not_ possible is to
