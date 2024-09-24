@@ -2,7 +2,7 @@
 title: Boolean satisfiability
 author: Johannes Korbmacher
 date: 20/09/2024
-last_edited: 20/09/2024
+last_edited: 24/09/2024
 weight: 5
 params: 
   id: txt-sat
@@ -161,7 +161,7 @@ Now, using the recursion rules from {{< chapter_ref chapter="boolean"
 id="truth-functions">}} Chapter 4.4 {{< /chapter_ref >}}, we can simply
 calculate the truth-values of all formulas in our set. We get:
 
-+ $\nu_1(\neg\mathsf{RAIN})=0,\nu_1(\neg\mathsf{BIKE})=0,$ and $\nu_1(\mathsf{RAIN}\lor\mathsf{BIKE})=0$
++ $\nu_1(\neg\mathsf{RAIN})=0,\nu_1(\neg\mathsf{BIKE})=0,$ and $\nu_1(\mathsf{RAIN}\lor\mathsf{BIKE})=1$
 + $\nu_2(\neg\mathsf{RAIN})=0,\nu_2(\neg\mathsf{BIKE})=1,$ and $\nu_2(\mathsf{RAIN}\lor\mathsf{BIKE})=1$
 + $\nu_3(\neg\mathsf{RAIN})=1,\nu_3(\neg\mathsf{BIKE})=0,$ and $\nu_3(\mathsf{RAIN}\lor\mathsf{BIKE})=1$
 + $\nu_4(\neg\mathsf{RAIN})=1,\nu_4(\neg\mathsf{BIKE})=1,$ and $\nu_4(\mathsf{RAIN}\lor\mathsf{BIKE})=0$
@@ -295,7 +295,7 @@ for all (logical and AI) intents and purposes.
 Here are the equivalent formulas for the non-CNF formulas:
 
 + $\neg\neg\mathsf{RAIN}\leadsto\mathsf{RAIN}$
-+ $\mathsf{RAIN}\lor \neg(\mathsf{SUN}\lor \neg \mathsf{BIKE})\leadsto
++ $\mathsf{RAIN}\lor \neg(\mathsf{SUN}\land \neg \mathsf{BIKE})\leadsto
 \mathsf{RAIN}\lor (\neg \mathsf{SUN}\lor \neg \mathsf{BIKE})$
 + $\neg(\mathsf{RAIN}\land\neg\mathsf{BIKE})\leadsto \neg \mathsf{RAIN}\lor
 \mathsf{BIKE}$
@@ -482,7 +482,7 @@ $\Set{\mathsf{BIKE}}$ from the search.
   $p$) from any other clause.
 
   An important thing to note here is that applying unit propagation, we can end
-  up with an **empty claus**. For example, applying unit propagation to:
+  up with an **empty clause**. For example, applying unit propagation to:
   $$\Set{\Set{\mathsf{RAIN}},\Set{\neg\mathsf{RAIN}}}$$
   gives us $$\Set{\Set{}}.$$ If this happens, it tells us that the CNF is
   **unsatisfiable**. This is because we still need to find a way of making the
