@@ -1,8 +1,8 @@
 ---
 title: Boolean satisfiability
 author: Johannes Korbmacher
-date: 20/09/2024
-last_edited: 20/09/2024
+date: 24/09/2024
+last_edited: 24/09/2024
 weight: 5
 params: 
   id: txt-sat
@@ -161,7 +161,7 @@ Now, using the recursion rules from {{< chapter_ref chapter="boolean"
 id="truth-functions">}} Chapter 4.4 {{< /chapter_ref >}}, we can simply
 calculate the truth-values of all formulas in our set. We get:
 
-+ $\nu_1(\neg\mathsf{RAIN})=0,\nu_1(\neg\mathsf{BIKE})=0,$ and $\nu_1(\mathsf{RAIN}\lor\mathsf{BIKE})=0$
++ $\nu_1(\neg\mathsf{RAIN})=0,\nu_1(\neg\mathsf{BIKE})=0,$ and $\nu_1(\mathsf{RAIN}\lor\mathsf{BIKE})=1$
 + $\nu_2(\neg\mathsf{RAIN})=0,\nu_2(\neg\mathsf{BIKE})=1,$ and $\nu_2(\mathsf{RAIN}\lor\mathsf{BIKE})=1$
 + $\nu_3(\neg\mathsf{RAIN})=1,\nu_3(\neg\mathsf{BIKE})=0,$ and $\nu_3(\mathsf{RAIN}\lor\mathsf{BIKE})=1$
 + $\nu_4(\neg\mathsf{RAIN})=1,\nu_4(\neg\mathsf{BIKE})=1,$ and $\nu_4(\mathsf{RAIN}\lor\mathsf{BIKE})=0$
@@ -295,8 +295,8 @@ for all (logical and AI) intents and purposes.
 Here are the equivalent formulas for the non-CNF formulas:
 
 + $\neg\neg\mathsf{RAIN}\leadsto\mathsf{RAIN}$
-+ $\mathsf{RAIN}\lor \neg(\mathsf{SUN}\lor \neg \mathsf{BIKE})\leadsto
-\mathsf{RAIN}\lor (\neg \mathsf{SUN}\land \neg \mathsf{BIKE})$
++ $\mathsf{RAIN}\lor \neg(\mathsf{SUN}\land \neg \mathsf{BIKE})\leadsto
+\mathsf{RAIN}\lor (\neg \mathsf{SUN}\lor \neg \mathsf{BIKE})$
 + $\neg(\mathsf{RAIN}\land\neg\mathsf{BIKE})\leadsto \neg \mathsf{RAIN}\lor
 \mathsf{BIKE}$
 + $\neg(\mathsf{RAIN}\lor\neg\mathsf{BIKE})\leadsto
@@ -383,7 +383,7 @@ Using the notation from before, we assume that our formula looks as follows:
 $$\Set{\Set{l_1^1,\dots,l_{n_1}^1},\dots \Set{l_1^k,\dots,l_{n_k}^k}}$$
 
 The crucial thing to understand is that in order to make the corresponding
-formula true, it's sufficient to make one literal form each clause true. 
+formula true, it's sufficient to make one literal from each clause true. 
 
 Let's start with the "criminally abstract" way of saying what that means: we
 simply need to find a sequence:
@@ -420,7 +420,7 @@ abstract examples:
   But here both $\neg\mathsf{SUN}$ has a similar property as $\mathsf{RAIN}$
   before: it only "negatively" (there's never $\mathsf{SUN}$).
 
-  So, we can just set $\nu(\mathsf{SUN})=0$ to get $\nu(\mathsf{SUN})=1$ as
+  So, we can just set $\nu(\mathsf{SUN})=0$ to get $\nu(\neg \mathsf{SUN})=1$ as
   desired, and we satisfy both  $\Set{\neg \mathsf{SUN},\mathsf{BIKE}}$ and
   $\Set{\neg\mathsf{SUN},\neg\mathsf{BIKE}}$ at the same time.
 
@@ -482,7 +482,7 @@ $\Set{\mathsf{BIKE}}$ from the search.
   $p$) from any other clause.
 
   An important thing to note here is that applying unit propagation, we can end
-  up with an **empty claus**. For example, applying unit propagation to:
+  up with an **empty clause**. For example, applying unit propagation to:
   $$\Set{\Set{\mathsf{RAIN}},\Set{\neg\mathsf{RAIN}}}$$
   gives us $$\Set{\Set{}}.$$ If this happens, it tells us that the CNF is
   **unsatisfiable**. This is because we still need to find a way of making the
