@@ -14,21 +14,21 @@ inferences:
 
 ## a) {.homework}
 
-$\neg\mathsf{RAIN}\lor\mathsf{BIKE}, \mathsf{BIKE}\vDash\neg\mathsf{RAIN}$
+$$\neg\mathsf{RAIN}\lor\mathsf{BIKE}, \mathsf{BIKE}\vDash\neg\mathsf{RAIN}$$
 
 ## b) 
 
-2. $\neg\mathsf{RAIN}\lor\mathsf{BIKE}, \mathsf{RAIN}\vDash\mathsf{RAIN}$
+$$\neg\mathsf{RAIN}\lor\mathsf{BIKE}, \mathsf{RAIN}\vDash\mathsf{RAIN}$$
 
 ## c)
 
-3. $\neg\mathsf{RAIN}\vDash\mathsf{RAIN}\lor (\neg\mathsf{RAIN}\land
-\mathsf{BIKE})$
+$$\neg\mathsf{RAIN}\vDash\mathsf{RAIN}\lor (\neg\mathsf{RAIN}\land
+\mathsf{BIKE})$$
 
 ## d) {.homework}
 
-4. $\mathsf{RAIN}\lor (\mathsf{BIKE}\land \mathsf{SUN})\vDash
-\mathsf{RAIN}\lor\mathsf{BIKE}$
+$$\mathsf{RAIN}\lor (\mathsf{BIKE}\land \mathsf{SUN})\vDash
+\mathsf{RAIN}\lor\mathsf{BIKE}$$
 
 # CNFs {.latex}
 
