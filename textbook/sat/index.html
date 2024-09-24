@@ -429,7 +429,7 @@ valuations.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-note
 , we can simply
 calculate the truth-values of all formulas in our set. We get:</p>
 <ul>
-<li>$\nu_1(\neg\mathsf{RAIN})=0,\nu_1(\neg\mathsf{BIKE})=0,$ and $\nu_1(\mathsf{RAIN}\lor\mathsf{BIKE})=0$</li>
+<li>$\nu_1(\neg\mathsf{RAIN})=0,\nu_1(\neg\mathsf{BIKE})=0,$ and $\nu_1(\mathsf{RAIN}\lor\mathsf{BIKE})=1$</li>
 <li>$\nu_2(\neg\mathsf{RAIN})=0,\nu_2(\neg\mathsf{BIKE})=1,$ and $\nu_2(\mathsf{RAIN}\lor\mathsf{BIKE})=1$</li>
 <li>$\nu_3(\neg\mathsf{RAIN})=1,\nu_3(\neg\mathsf{BIKE})=0,$ and $\nu_3(\mathsf{RAIN}\lor\mathsf{BIKE})=1$</li>
 <li>$\nu_4(\neg\mathsf{RAIN})=1,\nu_4(\neg\mathsf{BIKE})=1,$ and $\nu_4(\mathsf{RAIN}\lor\mathsf{BIKE})=0$</li>
@@ -617,8 +617,8 @@ for all (logical and AI) intents and purposes.</p>
 <p>Here are the equivalent formulas for the non-CNF formulas:</p>
 <ul>
 <li>$\neg\neg\mathsf{RAIN}\leadsto\mathsf{RAIN}$</li>
-<li>$\mathsf{RAIN}\lor \neg(\mathsf{SUN}\lor \neg \mathsf{BIKE})\leadsto
-\mathsf{RAIN}\lor (\neg \mathsf{SUN}\land \neg \mathsf{BIKE})$</li>
+<li>$\mathsf{RAIN}\lor \neg(\mathsf{SUN}\land \neg \mathsf{BIKE})\leadsto
+\mathsf{RAIN}\lor (\neg \mathsf{SUN}\lor \neg \mathsf{BIKE})$</li>
 <li>$\neg(\mathsf{RAIN}\land\neg\mathsf{BIKE})\leadsto \neg \mathsf{RAIN}\lor
 \mathsf{BIKE}$</li>
 <li>$\neg(\mathsf{RAIN}\lor\neg\mathsf{BIKE})\leadsto
@@ -784,7 +784,7 @@ ignore that clause in further search, <em>and</em> we need to eliminate any
 &ldquo;complement&rdquo; clause of $l$ (i.e. $\neg p$ if $l$ is $p$, and $p$ if $l$ is
 $p$) from any other clause.</p>
 <p>An important thing to note here is that applying unit propagation, we can end
-up with an <strong>empty claus</strong>. For example, applying unit propagation to:
+up with an <strong>empty clause</strong>. For example, applying unit propagation to:
 $$\Set{\Set{\mathsf{RAIN}},\Set{\neg\mathsf{RAIN}}}$$
 gives us $$\Set{\Set{}}.$$ If this happens, it tells us that the CNF is
 <strong>unsatisfiable</strong>. This is because we still need to find a way of making the
@@ -941,7 +941,7 @@ $2^n$ possible Boolean valuations.&#160;<a href="#fnref:1" class="footnote-backr
 </li>
 </ol>
 </div>
- <p><em>Last edited: </em>20/09/2024</p>
+ <p><em>Last edited: </em>24/09/2024</p>
 </div>
 
 
