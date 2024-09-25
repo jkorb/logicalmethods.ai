@@ -296,7 +296,7 @@ Here are the equivalent formulas for the non-CNF formulas:
 
 + $\neg\neg\mathsf{RAIN}\leadsto\mathsf{RAIN}$
 + $\mathsf{RAIN}\lor \neg(\mathsf{SUN}\land \neg \mathsf{BIKE})\leadsto
-\mathsf{RAIN}\lor (\neg \mathsf{SUN}\lor \neg \mathsf{BIKE})$
+\mathsf{RAIN}\lor (\neg \mathsf{SUN}\lor \mathsf{BIKE})$
 + $\neg(\mathsf{RAIN}\land\neg\mathsf{BIKE})\leadsto \neg \mathsf{RAIN}\lor
 \mathsf{BIKE}$
 + $\neg(\mathsf{RAIN}\lor\neg\mathsf{BIKE})\leadsto
