@@ -140,10 +140,13 @@ Once we have a suitable language, we need to translate the setup into formulas:
   + the left lamp is on at time $1$
   + the right lamp is off at time $1$. 
 
-+ We need to formalize the system rules:
++ We need to formalize the system rules:$^\dagger$
 
   + If a lamp is on at a given time and the corresponding switch is flipped, the
-  lamp is on at the next time.$^\dagger$
+  lamp is off at the next time.
+  + If a lamp is off at a given time and the corresponding switch is flipped, the
+  lamp is on at the next time.
+
 
 + We need to formalize the goals: 
 
