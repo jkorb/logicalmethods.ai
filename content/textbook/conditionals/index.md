@@ -91,9 +91,9 @@ The idea is that in order to test whether $P_1,P_2, \dots\vDash C$ we can also
 just test whether the formula $(P_1\land P_2\land \dots)\to C$ gets value 1
 under each valuation. Take our example from the {{< chapter_ref chapter="sat" id="validity-and-satisfiability" >}}
 previous chapter{{< /chapter_ref >}} again:
-$$(\mathsf{RAIN}\lor \mathsf{BIKE}),\mathsf{SUN}\vDash\mathsf{BIKE}$$
+$$(\mathsf{RAIN}\lor \mathsf{BIKE}),\neg\mathsf{RAIN}\vDash\mathsf{BIKE}$$
 We can test this inference by doing the truth-table for the following formula:
-$$(\mathsf{RAIN}\lor \mathsf{BIKE})\land\mathsf{SUN}\to\mathsf{BIKE}$$
+$$(\mathsf{RAIN}\lor \mathsf{BIKE})\land\neg\mathsf{RAIN}\to\mathsf{BIKE}$$
 
 {{< img src="img/tt-2.png" class="img-thumbnail" >}}
 
@@ -302,7 +302,7 @@ program prints "Buzz", and if all else fails, it prints the number.
 
 This results in a sequence that begins like this:
 
-$$12,Fizz,3,4,Buzz,Fizz,7,8,Fizz,FizzBuzz,\dots$$
+$$1,2,Fizz,4,Buzz,Fizz,7,8,Fizz,Buzz,\dots$$
 
 The material conditional can help us understand what's going on here. Each of
 the conditions is a Boolean condition: it evaluates either to true false. The
