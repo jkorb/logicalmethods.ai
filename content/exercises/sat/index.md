@@ -7,7 +7,7 @@ params:
   math: true
 ---
 
-# Truth tables 
+# Truth tables {.solved}
 
 Use the truth-table method to determine the validity of the following
 inferences:
@@ -30,7 +30,14 @@ $$\neg\mathsf{RAIN}\vDash\mathsf{RAIN}\lor (\neg\mathsf{RAIN}\land
 $$\mathsf{RAIN}\lor (\mathsf{BIKE}\land \mathsf{SUN})\vDash
 \mathsf{RAIN}\lor\mathsf{BIKE}$$
 
-# CNFs {.latex}
+## Solution {.solution #truth-tablesSolution}
+
+{{< img src="img/1a.png" class="img-thumbnail" >}}
+{{< img src="img/1b.png" class="img-thumbnail" >}}
+{{< img src="img/1c.png" class="img-thumbnail" >}}
+{{< img src="img/1d.png" class="img-thumbnail" >}}
+
+# CNFs {.latex .solved}
 
 Transform the following formulas into CNF.
 
@@ -67,7 +74,54 @@ $$\neg(\mathsf{RAIN}\lor (\mathsf{SUN}\lor \neg\mathsf{SUN})\land
 
 {{< /latex >}}
 
-# DPLL 
+## Solution {.solution #cnfsSolution}
+
+
+**a)**
+
+Conversion steps:
+
+$$\neg(\mathsf{RAIN}\lor\mathsf{SUN})\land\neg\neg(\mathsf{SUN}\lor\neg\mathsf{RAIN})$$
+
+$$\leadsto(\neg\mathsf{RAIN}\land\neg\mathsf{SUN})\land(\mathsf{SUN}\lor\neg\mathsf{RAIN})$$
+
+
+**b)**
+
+This is already in CNF, we don't have to convert anything.
+
+$$\mathsf{RAIN}\land(\mathsf{SUN}\lor\neg\mathsf{BIKE})$$
+
+**c)**
+
+Conversion steps:
+
+$$(\mathsf{RAIN}\land\mathsf{SUN}\land\neg\mathsf{SUN})\lor(\neg\mathsf{RAIN}\land
+\neg\mathsf{SUN}\land\mathsf{SUN})$$
+
+$$\leadsto((\mathsf{RAIN}\land\mathsf{SUN}\land\neg\mathsf{SUN})\lor
+\neg\mathsf{RAIN})\land((\mathsf{RAIN}\land\mathsf{SUN}\land\neg\mathsf{SUN})\lor
+\neg\mathsf{SUN})$$
+$$\qquad \land(\mathsf{RAIN}\land\mathsf{SUN}\land\neg\mathsf{SUN})\lor\mathsf{SUN})$$
+
+$$\leadsto(\mathsf{RAIN}\lor\neg\mathsf{RAIN})\land(\mathsf{SUN}\lor\neg\mathsf{RAIN})\land(\neg\mathsf{SUN}\lor\neg\mathsf{RAIN})\land(\mathsf{RAIN}\lor\neg\mathsf{SUN})$$
+
+$$\qquad\land(\mathsf{SUN}\lor\neg\mathsf{SUN})\land(\neg\mathsf{SUN}\lor\neg\mathsf{SUN})\land(\mathsf{RAIN}\lor\mathsf{SUN})$$
+$$\qquad\land(\mathsf{SUN}\lor\mathsf{SUN})\land(\neg\mathsf{SUN}\lor\mathsf{SUN})$$
+
+**d)**
+
+Conversion steps:
+
+$$\neg(\mathsf{RAIN}\lor(\mathsf{SUN}\lor\neg\mathsf{SUN}))\land\neg((\neg\mathsf{RAIN}\lor\neg\mathsf{SUN})\lor\mathsf{SUN})$$
+
+$$\leadsto(\neg\mathsf{RAIN}\land\neg(\mathsf{SUN}\lor\neg\mathsf{SUN}))\land(\neg(\neg\mathsf{RAIN}\lor\neg\mathsf{SUN})\land\neg\mathsf{SUN})$$
+
+$$\leadsto(\neg\mathsf{RAIN}\land\neg\mathsf{SUN}\land\neg\neg\mathsf{SUN})\land(\neg\neg\mathsf{RAIN}\land\neg\neg\mathsf{SUN}\land\neg\mathsf{SUN})$$
+
+$$\leadsto(\neg\mathsf{RAIN}\land\neg\mathsf{SUN}\land\mathsf{SUN})\land(\mathsf{RAIN}\land\mathsf{SUN}\land\neg\mathsf{SUN})$$
+
+# DPLL {.solved}
 
 ## a)
 
@@ -86,7 +140,41 @@ satisfiable. If necessary, first bring the formula into CNF.
 
 4. $(p\land (p\lor q))\land (q\land (q\lor p))$
 
-# Planning
+## Solution {.solution #dpllSolution}
+
+**Exercise 1(a)**
+
++ CNF formula: $(\neg\mathsf{RAIN}\lor\mathsf{BIKE})\land(\mathsf{BIKE}\land\mathsf{RAIN})$
++ CNF set: $\{\{\neg\mathsf{RAIN},\mathsf{BIKE}\},\{\mathsf{BIKE}\},\{\mathsf{RAIN}\}\}$
++ By pure literal elimination on $\mathsf{BIKE}$ we get $\{\{\mathsf{RAIN}\}\}$ and $\nu(\mathsf{BIKE})=1$.
++ By unit propogation on $\mathsf{RAIN}$ we get $\{\}$ and $\nu(\mathsf{BIKE})=1$ and $\nu(\mathsf{RAIN})=1$.
++ This valuation does satisfy the CNF formula.
+
+**Exercise 1(b)**
+
++ CNF formula: $(\neg\mathsf{RAIN}\lor\mathsf{BIKE})\land(\mathsf{RAIN}\land\neg\mathsf{RAIN})$
++ CNF set: $\{\{\neg\mathsf{RAIN},\mathsf{BIKE}\},\{\mathsf{RAIN}\},\{\neg\mathsf{RAIN}\}\}$
++ By pure literal elimination on $\mathsf{BIKE}$ we get $\{\{\mathsf{RAIN}\},\{\neg\mathsf{RAIN}\}\}$ and $\nu(\mathsf{BIKE})=1$.
++ By unit propogation on $\mathsf{RAIN}$ we get $\{\{\}\}$, which shows that the set is unsatisfiable.
+
+**Exercise 1(c)**
+
++ CNF formula: $(\neg\text{RAIN}\land\neg\text{RAIN})\land(\text{RAIN}\lor\neg\text{BIKE})$
++ CNF set: $\{\{\neg\text{RAIN}\},\{\text{RAIN},\neg\text{BIKE}\}\}$
++ By pure literal elimination on $\neg\mathsf{BIKE}$ we get $\{\{\neg\text{RAIN}\}\}$ and $\nu(\mathsf{BIKE})=0$.
++ By pure literal elimination on $\neg\mathsf{RAIN}$ we get $\{\}$ and $\nu(\mathsf{BIKE})=0$ and $\nu(\mathsf{RAIN})=0$.
++ This valuation does satisfy the CNF formula.
+
+
+**Exercise 1(d)**
+
++ CNF formula: $((\text{RAIN}\lor\text{BIKE})\land(\text{RAIN}\lor\text{SUN}))\land(\neg\text{RAIN}\land\neg\text{BIKE})$ 
++ CNF set: $\{\{\text{RAIN},\text{BIKE}\},\{\text{RAIN},\text{SUN}\},\{\neg\text{RAIN}\},\{\neg\text{BIKE}\}\}$ 
++ By pure literal elimination on $\mathsf{SUN}$ we get $\{\{\text{RAIN},\text{BIKE}\},\{\neg\text{RAIN}\},\{\neg\text{BIKE}\}\}$  and $\nu(\mathsf{SUN})=1$.
++ By unit propogation on $\neg\mathsf{BIKE}$ we get $\{\{\text{RAIN}\},\{\neg\text{RAIN}\}\}$ and $\nu(\mathsf{BIKE})=0$ and $\nu(\mathsf{SUN})=1$.
++ By unit propogation on $\mathsf{RAIN}$ we get $\{\{\}\}$, which shows that the set is unsatisfiable.
+
+# Planning {.solved}
 
 One of the main applications of SAT-solving (via truth-tables, DPLL, or
 otherwise) is _automated planning_. This exercise goes through a simplified example to
@@ -182,6 +270,98 @@ which actions to carry out. If there's more than one, it can chose.
 
 **Task**: Use the DPLL algorithm to find a course of action for the robot. 
 
+## Solution {.solution #planningSolution}
+
+**Task:** BNF, using "LL" to say the left lamp is on, "LS" to describe moving the left switch, etc.
+
+$$ \langle{var}\rangle ::= LL1 \mid LL2 \mid LS1 \mid RL1 \mid RL2 \mid RS1 $$
+
+$$ \langle{unop}\rangle ::= \neg $$
+
+$$ \langle{binop}\rangle ::= \land \mid \lor $$
+
+$$ \langle{fml}\rangle ::= \langle{unop}\rangle\langle{fml}\rangle \mid (\langle{fml}\rangle\langle{binop}\rangle\langle{fml}\rangle) $$
+
+<br/>
+
+**Task:** Formalization
+
+Setup
+
++ $LL1$
++ $\neg RL1$
+
+Goals
+
++ $\neg LL2$
++ $RL2$
+
+Rules
+
++ $\neg(LL1\land LS1)\lor\neg LL2$
++ $\neg(\neg LL1\land LS1)\lor LL2$
++ $\neg(RL1\land RS1)\lor\neg RL2$
++ $\neg(\neg RL1\land RS1)\lor RL2$
+
+Frames
+
++ $\neg(LL1\land\neg LS1)\lor LL2$
++ $\neg(\neg LL1\land\neg LS1)\lor\neg LL2$
++ $\neg(RL1\land\neg RS1)\lor RL2$
++ $\neg(\neg RL1\land\neg RS1)\lor\neg RL2$
+
+<br/>
+
+**Task:** DPLL
+
+Convert the rules into CNF.
+
++ $\neg LL1\lor\neg LS1\lor\neg LL2$
++ $LL1\lor\neg LS1\lor LL2$
++ $\neg RL1\lor\neg RS1\lor\neg RL2$
++ $RL1\lor\neg RS1\lor RL2$
+
+Convert the frames into CNF.
+
++ $\neg LL1\lor LS1\lor LL2$
++ $LL1\lor LS1\lor\neg LL2$
++ $\neg RL1\lor RS1\lor RL2$
++ $RL1\lor RS1\lor\neg RL2$
+
+<br/>
+
+Combine with the setup and goal formulas to get the following set of conditions.
+
+$$\Set{ LL1 } , \Set{ \neg RL1 } , \Set{ \neg LL2 } , \Set{ RL2 } ,$$
+
+$$\Set{ \neg LL1 , \neg LS1 , \neg LL2 } , \Set{ LL1 , \neg LS1 , LL2 } , \Set{
+\neg RL1 , \neg RS1 , \neg RL2 } ,$$
+$$\Set{ RL1 , \neg RS1 , RL2 } ,$$
+
+$$\Set{ \neg LL1 , LS1 , LL2 } , \Set{ LL1 , LS1 , \neg LL2 } , \Set{ \neg RL1 ,
+RS1 , RL2 }, $$
+$$\Set{ RL1 , RS1 , \neg RL2 }$$
+
+<br/>
+
+By unit propogation, first on $LL1$ and then on $RL2$, we get:
+
+$$\Set{ \neg RL1 } , \Set{ \neg LL2 } , \Set{ \neg LS1 , \neg LL2 } , \Set{ \neg
+RL1 , \neg RS1 } ,$$
+$$\Set{ LS1 , LL2 } , \Set{ RL1 , RS1 }$$
+
+<br/>
+
+By unit propogation, next on $\neg RL1$ and then on $\neg LL2$, we get:
+
+$$\Set{ LS1 } , \Set{ RS1 }$$
+
+<br/>
+
+By unit propogation on $LS1$ and $RS1$ we get a solution.
+
+$\nu(LL1)=1, \nu(LL2)=0, \nu(RL1)=0,\nu(RL2)=1, \nu(LS1)=1, \nu(RS1)=1$
+
 # Research {.homework}
 
 Find out about [Disjunctive Normal
@@ -211,4 +391,3 @@ pure literal elimination efficiently?
 normal, non-formal text here.
 
 {{< /latex >}}
-
