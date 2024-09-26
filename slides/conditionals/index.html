@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8"></meta>
     <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-    <title>logicalmethods.ai &ndash; Valid inference </title>
+    <title>logicalmethods.ai &ndash; Logical conditionals </title>
     <link rel="icon" type="image/x-icon" href="https://logicalmethods.ai/favicon.ico"></link>
     <link href="https://logicalmethods.ai/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"></link>
     <link rel="stylesheet" href="https://logicalmethods.ai/icons/font/bootstrap-icons.min.css"></link>
@@ -95,7 +95,7 @@
             </li>
             
             <li>
-              <a class="dropdown-item fw-bold active" href="/slides/valid-inference/">2. Valid inference</a>
+              <a class="dropdown-item " href="/slides/valid-inference/">2. Valid inference</a>
             </li>
             
             <li>
@@ -111,7 +111,7 @@
             </li>
             
             <li>
-              <a class="dropdown-item " href="/slides/conditionals/">6. Logical conditionals</a>
+              <a class="dropdown-item fw-bold active" href="/slides/conditionals/">6. Logical conditionals</a>
             </li>
             </ul>
         </div>
@@ -191,7 +191,7 @@
 <ul class="navbar-nav flex-row justify-content-between mt-2">
   
   <li class="nav-item">
-    <a href="/slides/logic-and-ai/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="/slides/sat/" class="btn" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-left"></i>
     </a>
     
@@ -203,7 +203,7 @@
   </li>
   <li class="nav-item">
     
-    <a href="/slides/formal-languages/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-right"></i>
     </a>
     
@@ -212,7 +212,7 @@
 
 <div class="container text-center">
   <h3>
-    Lecture 2. Valid inference
+    Lecture 6. Logical conditionals
   </h3>
   <em>Slides</em>
 </div>
@@ -268,8 +268,8 @@ fullscreen. You can quit fullscreen by pressing ESC.</p>
 			<section>
 				<h1>&forall;I</h1>
         <p>Logical <strong>methods</strong> for AI</p>
-        <p>Lecture 2</p>
-        <p class="text-danger"><em>Valid inference</em></p>
+        <p>Lecture 6</p>
+        <p class="text-danger"><em>Logical conditionals</em></p>
         
 <div class="container text-center">
   <p class="copyright" xmlns:cc="http://creativecommons.org/ns#" >
@@ -285,257 +285,321 @@ fullscreen. You can quit fullscreen by pressing ESC.</p>
 <section>
     
     
-    <img src="https://logicalmethods.ai/slides/valid-inference/img/qr-code.png" class="img-thumbnail"  alt="" >
+    <img src="https://logicalmethods.ai/slides/conditionals/img/qr-code.png" class="img-thumbnail"  alt="" >
     
 
     <p><a href="https://forms.gle/JiXXM9eysAZaJMja9" target="_blank" style="font-size:1.5em">https://forms.gle/JiXXM9eysAZaJMja9</a></p>
   </section>
 <section>
-  <section id="inference">
+  <section id="if">
     <dl class="row" >
       <dd class="col">
-        <i class="bi bi-motherboard text-primary" style="font-size:100px;"></i> 
-        <h1>Valid <span class="text-danger">inference</span></h1>
+        <i class="bi bi-arrow-right-square text-primary" style="font-size:100px;"></i> 
+        <h1>Logical <span class="text-danger">conditionals</span></h1>
+      </dd>
+      <dt class="col"></dt>
+    </dl>
+  </section>
+  <section id="ideas">
+    <h1>Question</h1>
+    <span class="fragment fade-right text-danger">
+    $$\nu(A\to B)=???$$
+    </span>
+  </section>
+  <section id="ideas">
+    <h1>Clear cases</h1>
+    <ul>
+      <li class="fragment fade-right">If $\nu(A)=1$ and $\nu(B)=0$, then $\nu(A\to B)=0$</li>
+      <li class="fragment fade-right">If $\nu(A)=1$ and $\nu(B)=1$, then $\nu(A\to B)=1$</li>
+    </ul>
+  </section>
+  <section>
+    
+    
+    <img src="https://logicalmethods.ai/slides/conditionals/img/tt-partial.png" class="img-thumbnail"  alt="" >
+    
+
+  </section>
+  <section id="tautologies">
+    <h1>Tautologies</h1>
+    <ul>
+      <li class="fragment fade-right"><strong>Definition</strong>. $\vDash A$ iff for all $\nu$, $\nu(A)=1$</li>
+      <li class="fragment fade-right"><strong>Deduction theorem</strong>: $$P_1,P_2,\dots\vDash C\Leftrightarrow\ \vDash (P_1\land P_2\land \dots)\to C$$</li>
+    </ul>
+  </section>
+  <section>
+    
+    
+    <img src="https://logicalmethods.ai/slides/conditionals/img/tt.png" class="img-thumbnail"  alt="" >
+    
+
+  </section>
+  <section>
+    <h1>Example</h1>
+    $$(\mathsf{RAIN}\lor \mathsf{BIKE}),\mathsf{SUN}\vDash\mathsf{BIKE}$$
+
+    
+    
+    <img src="https://logicalmethods.ai/slides/conditionals/img/tt-2.png" class="img-thumbnail"  alt="" >
+    
+
+  </section>
+</section>
+<section>
+  <section id="forward-chaining">
+    <dl class="row" >
+      <dd class="col">
+        <i class="bi bi-link text-primary" style="font-size:100px;"></i> 
+        <h1>Forward <span class="text-danger">chaining</span></h1>
       </dd>
       <dt class="col"></dt>
     </dl>
   </section>
   <section>
-    <h1> <i class="bi bi- text-danger"></i> Correctness</h1>
+    <h1>Ideas</h1>
     <ul>
-      <li class="fragment fade-right">Valid inference = "good" inference</li>
-      <li class="fragment fade-right"><em>Not</em>: simple, clear, precise, ... $\Rightarrow$ <strong>rhetoric</strong></li>
-      <li class="fragment fade-right">Validity vs fallacies:</li>
+      <li class="fragment fade-right"><strong>Modus Ponens (MP)</strong>: $$A,A\to B\vDash B$$</li>
+    </ul>
+  </section>
+  <section>
+    
+    
+    <img src="https://logicalmethods.ai/slides/conditionals/img/tt-3.png" class="img-thumbnail"  alt="" >
+    
+
+  </section>
+  <section>
+    <h1>Forward chaining</h1>
+    <ul>
+      <li class="fragment fade-right">Inference method for automated reasoning</li>
+      <li class="fragment fade-right">Repeated MPs</li>
+    </ul>
+  </section>
+  <section>
+    <h1>Example</h1>
+    <ul>
+      <li class="fragment fade-right">Knowledge base:
+        <ol class="fragment fade-right">
+          <li>$\mathsf{SUN}\to \mathsf{BIKE}$</li>
+          <li>$\mathsf{RAIN}\to \mathsf{CAR}$</li>
+          <li>$\mathsf{WARM}\to \mathsf{SHIRT}$</li>
+          <li>$\mathsf{COLD}\to \mathsf{COAT}$</li>
+          <li>$\mathsf{BIKE}\to \mathsf{HELMET}$</li>
+          <li>$\mathsf{CAR}\to \mathsf{KEYS}$</li>
+        </ol>
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h1>Example</h1>
+    <ul>
+      <li class="fragment fade-right">Known facts:
+        <ol class="fragment fade-right">
+          <li>$\mathsf{RAIN}$</li>
+          <li>$\mathsf{COLD}$</li>
+        </ol>
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h1>Example</h1>
+    <ul>
+      <li class="fragment fade-right">Derivations:
+        <ol class="fragment fade-right">
+          <li>$\mathsf{RAIN},\mathsf{RAIN}\to\mathsf{CAR}\vDash \mathsf{CAR}$</li>
+          <li>$\mathsf{COLD},\mathsf{COLD}\to\mathsf{COAT}\vDash \mathsf{COAT}$</li>
+          <li>$\mathsf{CAR},\mathsf{CAR}\to\mathsf{KEYS}\vDash \mathsf{KEYS}$</li>
+        </ol>
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h1>Example</h1>
+    <ul>
+      <li class="fragment fade-right">Outcome:
+        <ol class="fragment fade-right">
+          <li>$\mathsf{RAIN}$</li>
+          <li>$\mathsf{CAR}$</li>
+          <li>$\mathsf{COLD}$</li>
+          <li>$\mathsf{COLD}$</li>
+          <li>$\mathsf{KEYS}$</li>
+        </ol>
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h1>Method</h1>
+    <ul>
+      <li class="fragment fade-right">Check known facts agains KB.</li>
+      <li class="fragment fade-right">If fact is in antecedent, apply MP.</li>
+      <li class="fragment fade-right">Add conclusion to known facts.</li>
+      <li class="fragment fade-right"><em>Lather, rinse, repeat</em> until done.</li>
+      <li class="fragment fade-right"><strong>Data driven!</strong></li>
+    </ul>
+  </section>
+</section>
+<section>
+  <section id="backward-chaining">
+    <dl class="row" >
+      <dd class="col">
+        <i class="bi bi-link-45deg text-primary" style="font-size:100px;"></i> 
+        <h1>Backward <span class="text-danger">chaining</span></h1>
+      </dd>
+      <dt class="col"></dt>
+    </dl>
+  </section>
+  <section>
+    <h1>Ideas</h1>
+    <ul>
+      <li class="fragment fade-right">Backwards <strong>MP</strong>:
+        <ul>
+          <li class="fragment fade-right">Want to know whether $B$.</li>
+          <li class="fragment fade-right">Recursively check if we have $A$ and $A\to B$.</li>
+          <li class="fragment fade-right">If so, then $B$.</li>
+          <li class="fragment fade-right">If not, then $\neg B$.</li>
+        </ul>
+    </ul>
+  </section>
+  <section style="font-size: 0.8em">
+    <h1>Example</h1>
+    <ul>
+      <li class="fragment fade-right">Knowledge base:
+        <ol class="fragment fade-right">
+          <li>$\mathsf{SUN}\to \mathsf{BIKE}$</li>
+          <li>$\mathsf{RAIN}\to \mathsf{CAR}$</li>
+          <li>$\mathsf{WARM}\to \mathsf{SHIRT}$</li>
+          <li>$\mathsf{COLD}\to \mathsf{COAT}$</li>
+          <li>$\mathsf{BIKE}\to \mathsf{HELMET}$</li>
+          <li>$\mathsf{CAR}\to \mathsf{KEYS}$</li>
+        </ol>
+      </li>
+      <li class="fragment fade-right">Known facts:
+        <ol class="fragment fade-right">
+          <li>$\mathsf{RAIN}$</li>
+          <li>$\mathsf{COLD}$</li>
+        </ol>
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h1>Example</h1>
+    <ul>
+      <li class="fragment fade-right">Question: $$?\mathsf{HELMET}$$</li>
+    </ul>
+  </section>
+  <section>
+    <h1>Example</h1>
+    <ul>
+      <li class="fragment fade-right">Reasoning:
+        <ul>
+          <li class="fragment fade-right">Have: $\mathsf{BIKE}\to\mathsf{HELMET}$</li>
+          <li class="fragment fade-right">Need: $\mathsf{BIKE}$</li>
+          <li class="fragment fade-right">Have: $\mathsf{SUN}\to\mathsf{BIKE}$</li>
+          <li class="fragment fade-right">Need: $\mathsf{SUN}$</li>
+          <li class="fragment fade-right">Don't!</li>
+          <li class="fragment fade-right">So: $\neg\mathsf{HELMET}$</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+  <section id="cwa">
+    <h1>Closed world assumption</h1>
+    <ul>
+      <li class="fragment fade-right">If $A$ according to KB, then we can infer $A$ from KB.</li>
+      <li class="fragment fade-right">If we can't infer $A$ from KB, then $\neg A$ according to KB.</li>
+    </ul>
+  </section>
+  <section>
+    <h1>Method</h1>
+    <ul>
+      <li class="fragment fade-right">Check goal agains KB.</li>
+      <li class="fragment fade-right">If goal is in conclusion, add antecedent to goals.</li>
+      <li class="fragment fade-right"><em>Lather, rinse, repeat</em> until done.</li>
+      <li class="fragment fade-right">If known fact in goals, success (via MP).</li>
+      <li class="fragment fade-right">If no known fact in goals, failure.</li>
+      <li class="fragment fade-right"><strong>Goal directed!</strong></li>
+    </ul>
+  </section>
+</section>
+<section>
+  <section id="programming">
+    <dl class="row" >
+      <dd class="col">
+        <i class="bi bi-link-45deg text-primary" style="font-size:100px;"></i> 
+        <h1>Programming <span class="text-danger">conditionals</span></h1>
+      </dd>
+      <dt class="col"></dt>
+    </dl>
+  </section>
+  <section>
+  $$1,2,Fizz,3,4,Buzz,Fizz,7,8,Fizz,Fizz,Buzz,\dots$$
+  </section>
+  <section>
+    <h1>FizzBuzz</h1>
+    <pre tabindex="0"><code class="text-warning">
+      for n in range(1,101):
+        if n is divisible by 3 and n is divisible by 5:
+          print(&#34;FizzBuzz&#34;)
+        elif n is divisible by 3:
+          print(&#34;Fizz&#34;)
+        elif n is divisble by 5:
+         print(&#34;Buzz&#34;)
+        else:
+         print(n)
+    </code></pre>
+  </section>
+  <section style="font-size:0.7em">
+    <h1>Analysis</h1>
+    <ul>
+      <li class="fragment fade-right">Knowledge base:</li>
       <ul>
-        <li class="fragment fade-right">If it is sunny, Jan is cycling. Jan is cycling. Therefore, it is sunny.</li>
-        <li class="fragment fade-right">If it is sunny, Jan is cycling. It is sunny. Therefore, Jan is cycling.</li>
+        <li class="fragment fade-right">$\mathsf{DIV\_3}\land \mathsf{DIV\_5}\to \mathsf{PRINT\_FIZZBUZZ}$</li>
+        <li class="fragment fade-right">$\mathsf{DIV\_3}\land \neg\mathsf{DIV\_5}\to \mathsf{PRINT\_FIZZ}$</li>
+        <li class="fragment fade-right">$\neg\mathsf{DIV\_3}\land \mathsf{DIV\_5}\to \mathsf{PRINT\_BUZZ}$</li>
+        <li class="fragment fade-right">$\neg\mathsf{DIV\_3}\land \neg\mathsf{DIV\_5}\to \mathsf{PRINT\_NUMBER}$</li>
       </ul>
-      <li class="fragment fade-right">What's the difference?</li>
-    </ul>
-  </section>
-  <section id="preservation">
-    <h1>Hypothetically</h1>
-    <ul>
-      <li class="fragment fade-right">All pigs fly. Maddy is a pig. So, Maddy flies.</li>
-      <li class="fragment fade-right"><em>If</em> the premises are true, <em>then</em> the conclusion is true.</li>
-      <li class="fragment fade-right">Possibility: Premises are false!</li>
-    </ul>
-    <dl class="row fragment fade-right" >
-      <dt class="col">
-        <i class="bi bi-exclamation-diamond-fill text-danger"></i> 
-        <strong>Definition</strong>:
-      </dt>
-      <dd class="col">An inference is valid iff the conclusion is true <em>if (hypothetically)</em> the premises are true</dd>
-    </dl>
-  </section>
-  <section id="deduction">
-    <h1>Always</h1>
-    <ul>
-      <li class="fragment fade-right">Deduction = premises <em>guarantee</em> conclusion</li>
-      <li class="fragment fade-right">$P_1, P_2, \dots\vDash C$</li>
-      <li class="fragment fade-right">Either it rained last night or the car is dry, the car is not dry $\vDash$ It rained last night</li>
-    </ul>
-  </section>
-  <section id="induction">
-    <h1>Mostly</h1>
-    <ul>
-      <li class="fragment fade-right">Induction = premises <em>make likely</em> conclusion</li>
-      <li class="fragment fade-right">$P_1, P_2, P_1, P_2, \dots\stackrel{!}{\mid\approx} C$</li>
-      <li class="fragment fade-right">80% of 20k voters support strict laws $\stackrel{!}{\mid\approx}$ 80% of <em>all</em> support strict laws</li>
+      <li class="fragment fade-right">(Changing) facts: 
+        <ol>
+          <li class="fragment fade-right">$\neg\mathsf{DIV\_3}\land\neg\mathsf{DIV\_5}\leadsto \mathsf{PRINT\_NUMBER}$</li>
+        <li class="fragment fade-right">$\neg\mathsf{DIV\_3}\land\neg\mathsf{DIV\_5}\leadsto \mathsf{PRINT\_NUMBER}$</li>
+        <li class="fragment fade-right">$\mathsf{DIV\_3}\land\neg\mathsf{DIV\_5}\leadsto \mathsf{PRINT\_FIZZ}$</li>
+        <li class="fragment fade-right">...</li>
+        </ol>
+      </li>
     </ul>
   </section>
 </section>
 <section>
-  <section id="formalization">
+  <section id="non-material">
     <dl class="row" >
       <dd class="col">
-        <i class="bi bi-calculator text-warning" style="font-size:100px;"></i> 
-        <h1><span class="text-danger">Formal</span>ization</h1>
+        <i class="bi bi-box-arrow-up-right text-primary" style="font-size:100px;"></i> 
+        <h1>Non-logical <span class="text-danger">conditionals</span></h1>
       </dd>
       <dt class="col"></dt>
     </dl>
   </section>
   <section>
-    <h1>Logical form</h1>
+    <h1>False antecedents</h1>
     <ul>
-      <li class="fragment fade-right">If it rains, the street is wet, it rains $\vDash$ The street is wet</li>
-      <li class="fragment fade-right">If it's sunny, the street is wet, it's sunny $\vDash$ The street is wet</li>
-      <li class="fragment fade-right">If pigs fly, Santa brings presents, pigs fly $\vDash$ Santa brings presents</li>
+      <li class="fragment fade-right">If the moon is made of cheese, then pigs can fly</li>
+      <ul>
+        <li class="fragment fade-right">If-then=$\to$ $\Rightarrow$ True</li>
+        <li class="fragment fade-right">Most people = False</li>
+      </ul>
+      <li class="fragment fade-right">Non-material conditionals:</li>
+      <li class="fragment fade-right">Defeasibility</li>
+      <ul>
+        <li class="fragment fade-right">Counterfactuals</li>
+        <li class="fragment fade-right">Evidentials</li>
+        <li class="fragment fade-right">Indicatives</li>
+      </ul>
     </ul>
-      <p class="fragment fade-right">(<strong>MP</strong>) If $A$, then $B$; $A$ $\vDash$ $B$ </p>
-  </section>
-  <section>
-    <h1>Propositional</h1>
-    <ul>
-      <li class="fragment fade-right">Sentences $\leadsto A, B, C, \dots$</li>
-      <li class="fragment fade-right">Not $\leadsto \neg$</li>
-      <li class="fragment fade-right">And $\leadsto \land$</li>
-      <li class="fragment fade-right">Or $\leadsto \lor$</li>
-      <li class="fragment fade-right">If ..., then ... $\leadsto~\to$</li>
-    </ul>
-      <p class="fragment fade-right">(<strong>MP</strong>) $A\to B, A\vDash B$ </p>
-  </section>
-  <section>
-    <h1>Quantified</h1>
-    <ul>
-      <li class="fragment fade-right">Predicates $\leadsto P(x), Q(x), R(x,y), \dots$</li>
-      <li class="fragment fade-right">Names $\leadsto a,b,c, \dots$</li>
-      <li class="fragment fade-right">All $\leadsto \forall$</li>
-      <li class="fragment fade-right">Some $\leadsto \exists$</li>
-    </ul>
-      <p class="fragment fade-right">(<strong>UI</strong>) $\forall xP(x)\vDash P(a)$ </p>
-      <p class="fragment fade-right">(<strong>EG</strong>) $R(a,b)\vDash \exists xR(a,x)$ </p>
-  </section>
-</section>
-<section>
-  <section id="deductive_logic">
-    <dl class="row" >
-      <dd class="col">
-        <i class="bi bi-plus-slash-minus text-primary" style="font-size:100px;"></i> 
-        <h1><span class="text-danger">Deductive</span> logic</h1>
-      </dd>
-      <dt class="col"></dt>
-    </dl>
-  </section>
-  <section>
-    <h1>Features</h1>
-    <ul>
-      <li class="fragment fade-right">indefeasible</li>
-      <li class="fragment fade-right">general</li>
-      <li class="fragment fade-right">certain</li>
-    </ul>
-  </section>
-  <section>
-    <h1>Methods</h1>
-    <ul>
-      <li class="fragment fade-right">Model = possible reasoning scenario</li>
-      <li class="fragment fade-right">$A$ is true in a model</li>
-      <li class="fragment fade-right">$[A]$ <em>set</em>(!) of all models</li>
-      <li class="fragment fade-right">$[A]\cap [B]$ = interesection</li>
-      <li class="fragment fade-right">$[A]\subseteq [B]$ = subset</li>
-    </ul>
-    <dl class="row fragment fade-right" >
-      <dt class="col">
-        <i class="bi bi-exclamation-diamond-fill text-danger"></i> 
-        <strong>Definition</strong>:
-      </dt>
-      <dd class="col">$P_1,P_2,\dots\vDash C$ iff $[P_1]\cap [P_2]\cap\dots\subseteq [C]$</dd>
-    </dl>
-  </section>
-  <section>
-    
-    
-    <img src="https://logicalmethods.ai/slides/valid-inference/img/intersection.jpeg" class="img-thumbnail"  alt="" >
-    
-
-  </section>
-  <section>
-    <h1>Example</h1>
-    <dl class="row fragment fade-right" >
-      <dt class="col">
-        <i class="bi bi-exclamation-diamond-fill text-danger"></i> 
-        <strong>Definition</strong>:
-      </dt>
-      <dd class="col">$P_1,P_2,\dots\vDash C$ iff $[P_1]\cap [P_2]\cap\dots\subseteq [C]$</dd>
-    </dl>
-    <ul>
-      <li class="fragment fade-right">$A\land B\vDash A$</li>
-      <li class="fragment fade-right">$[A\land B]=[A]\cap [B]$</li>
-      <li class="fragment fade-right">$[A\land B]\subseteq [A]$</li>
-    </ul>
-  </section>
-  <section>
-    <h1>Example</h1>
-    <dl class="row fragment fade-right" >
-      <dt class="col">
-        <i class="bi bi-exclamation-diamond-fill text-danger"></i> 
-        <strong>Definition</strong>:
-      </dt>
-      <dd class="col">$P_1,P_2,\dots\vDash C$ iff $[P_1]\cap [P_2]\cap\dots\subseteq [C]$</dd>
-    </dl>
-    <ul>
-      <li class="fragment fade-right">$A\lor B,A\nvDash \neg B$</li>
-      <li class="fragment fade-right">$A$ true, $B$ true</li>
-      <li class="fragment fade-right"><em>countermodel</em></li>
-    </ul>
-  </section>
-</section>
-<section>
-  <section id="inductive_logic">
-    <dl class="row" >
-      <dd class="col">
-        <i class="bi bi-percent text-warning" style="font-size:100px;"></i> 
-        <h1><span class="text-danger">Inductive</span> logic</h1>
-      </dd>
-      <dt class="col"></dt>
-    </dl>
-  </section>
-  <section>
-    <h1>Features</h1>
-    <ul>
-      <li class="fragment fade-right">defeasible</li>
-      <li class="fragment fade-right">particular</li>
-      <li class="fragment fade-right">likely</li>
-    </ul>
-  </section>
-  <section>
-    <h1>Methods</h1>
-    <ul>
-      <li class="fragment fade-right">Probability = likelihood of truth $(0,\dots,1)$</li>
-      <li class="fragment fade-right">$Pr(A)\approx$ in how many situations is $A$ true</li>
-      <li class="fragment fade-right">$Pr(A|B)\approx$ in how many situations <em>where $B$ is true</em> is $A$ true</li>
-      <li class="fragment fade-right">$Pr(A|B)=\frac{Pr(A\land B)}{Pr(B)}$
-    </ul>
-    <dl class="row fragment fade-right" >
-      <dt class="col">
-        <i class="bi bi-exclamation-diamond-fill text-danger"></i> 
-        <strong>Definition</strong>:
-      </dt>
-      <dd class="col fs-1">$P_1,P_2,\dots\mid\approx C$ iff $Pr(C|P_1\land P_2\land \dots)>Pr(C)$</dd>
-    </dl>
-  </section>
-  <section>
-    
-    
-    <img src="https://logicalmethods.ai/slides/valid-inference/img/intersection.jpeg" class="img-thumbnail"  alt="" >
-    
-
-  </section>
-  <section>
-    <h1>Example</h1>
-    <dl class="row fragment fade-right" >
-      <dt class="col">
-        <i class="bi bi-exclamation-diamond-fill text-danger"></i> 
-        <strong>Definition</strong>:
-      </dt>
-      <dd class="col fs-1">$P_1,P_2,\dots\mid\approx C$ iff $Pr(C|P_1\land P_2\land \dots)>Pr(C)$</dd>
-    </dl>
-    <ul>
-      <li class="fragment fade-right">$A\land B\mid\approx A$</li>
-      <li class="fragment fade-right">$Pr(A|A\land B)=1$</li>
-      <li class="fragment fade-right">$Pr(A|A\land B)\geq Pr(A)$</li>
-    </ul>
-  </section>
-  <section>
-    <h1>Monotonicity</h1>
-    <ul>
-      <li class="fragment fade-right">$P_1,P_2,\dots\vDash C\Rightarrow Q,P_1,P_2,\dots\vDash C$</li>
-      <li class="fragment fade-right">$P_1,P_2,\dots\mid\approx C\nRightarrow Q,P_1,P_2,\dots\mid\approx C$</li>
-      <li class="fragment fade-right">defeasible vs indefeasible</li>
-    </ul>
-  </section>
-  <section>
-    
-    
-    <img src="https://logicalmethods.ai/slides/valid-inference/img/probabilities.jpg" class="img-thumbnail" width="700" alt="" >
-    
-
   </section>
 </section>
 <section>
   <h1>Thanks<span class="text-danger">!</span></h1>
 </section>
-
  
 			</section>
 		</div>
@@ -549,19 +613,19 @@ fullscreen. You can quit fullscreen by pressing ESC.</p>
   <h5>Highlights</h5>
   <ul class="list-group">
     
-    <a href="#/inference" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Inference</strong></a> 
+    <a href="#/if" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Logical conditionals</strong></a> 
     
-    <a href="#/preservation" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Truth-preservation</strong></a> 
+    <a href="#/tautologies" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Tautologies</strong></a> 
     
-    <a href="#/deduction" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Deduction</strong></a> 
+    <a href="#/forward-chaining" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Forward chaining</strong></a> 
     
-    <a href="#/induction" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Induction</strong></a> 
+    <a href="#/backward-chaining" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Backward chaining</strong></a> 
     
-    <a href="#/formalization" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Formalization</strong></a> 
+    <a href="#/cwa" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Closed-world assumption</strong></a> 
     
-    <a href="#/deductive_logic" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Deductive logic</strong></a> 
+    <a href="#/programming" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Conditionals in programming</strong></a> 
     
-    <a href="#/inductive_logic" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Inductive logic</strong></a> 
+    <a href="#/non-material" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Non-logical conditionals</strong></a> 
     
   </ul>
 </div>
@@ -578,7 +642,7 @@ fullscreen. You can quit fullscreen by pressing ESC.</p>
 <ul class="navbar-nav flex-row justify-content-between mt-auto">
   
   <li class="nav-item">
-    <a href="/slides/logic-and-ai/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="/slides/sat/" class="btn" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-left"></i>
     </a>
     
@@ -590,7 +654,7 @@ fullscreen. You can quit fullscreen by pressing ESC.</p>
   </li>
   <li class="nav-item">
     
-    <a href="/slides/formal-languages/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-right"></i>
     </a>
     
