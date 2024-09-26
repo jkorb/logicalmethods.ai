@@ -314,8 +314,19 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
     
       
 </div>
-<div id="truth-tables" ><h5 class="">
+<div id="truth-tables" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Truth tables
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="truth-tablesSolution"
+        onclick="showPasswordModal('truth-tablesSolution', 'exc-sat')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>Use the truth-table method to determine the validity of the following
 inferences:</p>
@@ -335,8 +346,41 @@ inferences:</p>
 \mathsf{RAIN}\lor\mathsf{BIKE}$$</p>
 
 </div>
-<div id="cnfs" class=" latex"><h5 class="latex">
+<div id="truth-tablesSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>
+
+<img src="https://logicalmethods.ai/exercises/sat/img/1a.png" class="img-thumbnail"  alt="" >
+
+
+
+
+<img src="https://logicalmethods.ai/exercises/sat/img/1b.png" class="img-thumbnail"  alt="" >
+
+
+
+
+<img src="https://logicalmethods.ai/exercises/sat/img/1c.png" class="img-thumbnail"  alt="" >
+
+
+
+
+<img src="https://logicalmethods.ai/exercises/sat/img/1d.png" class="img-thumbnail"  alt="" >
+
+</p>
+
+</div>
+<div id="cnfs" class=" latex solved"><h5 class="latex solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">CNFs
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="cnfsSolution"
+        onclick="showPasswordModal('cnfsSolution', 'exc-sat')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>Transform the following formulas into CNF.</p>
 
@@ -384,8 +428,45 @@ $\LaTeX$ answer template <i class="bi bi-chevron-left toggle-icon"></i>
 
 
 </div>
-<div id="dpll" ><h5 class="">
+<div id="cnfsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong></p>
+<p>Conversion steps:</p>
+<p>$$\neg(\mathsf{RAIN}\lor\mathsf{SUN})\land\neg\neg(\mathsf{SUN}\lor\neg\mathsf{RAIN})$$</p>
+<p>$$\leadsto(\neg\mathsf{RAIN}\land\neg\mathsf{SUN})\land(\mathsf{SUN}\lor\neg\mathsf{RAIN})$$</p>
+<p><strong>b)</strong></p>
+<p>This is already in CNF, we don&rsquo;t have to convert anything.</p>
+<p>$$\mathsf{RAIN}\land(\mathsf{SUN}\lor\neg\mathsf{BIKE})$$</p>
+<p><strong>c)</strong></p>
+<p>Conversion steps:</p>
+<p>$$(\mathsf{RAIN}\land\mathsf{SUN}\land\neg\mathsf{SUN})\lor(\neg\mathsf{RAIN}\land
+\neg\mathsf{SUN}\land\mathsf{SUN})$$</p>
+<p>$$\leadsto((\mathsf{RAIN}\land\mathsf{SUN}\land\neg\mathsf{SUN})\lor
+\neg\mathsf{RAIN})\land((\mathsf{RAIN}\land\mathsf{SUN}\land\neg\mathsf{SUN})\lor
+\neg\mathsf{SUN})$$
+$$\qquad \land(\mathsf{RAIN}\land\mathsf{SUN}\land\neg\mathsf{SUN})\lor\mathsf{SUN})$$</p>
+<p>$$\leadsto(\mathsf{RAIN}\lor\neg\mathsf{RAIN})\land(\mathsf{SUN}\lor\neg\mathsf{RAIN})\land(\neg\mathsf{SUN}\lor\neg\mathsf{RAIN})\land(\mathsf{RAIN}\lor\neg\mathsf{SUN})$$</p>
+<p>$$\qquad\land(\mathsf{SUN}\lor\neg\mathsf{SUN})\land(\neg\mathsf{SUN}\lor\neg\mathsf{SUN})\land(\mathsf{RAIN}\lor\mathsf{SUN})$$
+$$\qquad\land(\mathsf{SUN}\lor\mathsf{SUN})\land(\neg\mathsf{SUN}\lor\mathsf{SUN})$$</p>
+<p><strong>d)</strong></p>
+<p>Conversion steps:</p>
+<p>$$\neg(\mathsf{RAIN}\lor(\mathsf{SUN}\lor\neg\mathsf{SUN}))\land\neg((\neg\mathsf{RAIN}\lor\neg\mathsf{SUN})\lor\mathsf{SUN})$$</p>
+<p>$$\leadsto(\neg\mathsf{RAIN}\land\neg(\mathsf{SUN}\lor\neg\mathsf{SUN}))\land(\neg(\neg\mathsf{RAIN}\lor\neg\mathsf{SUN})\land\neg\mathsf{SUN})$$</p>
+<p>$$\leadsto(\neg\mathsf{RAIN}\land\neg\mathsf{SUN}\land\neg\neg\mathsf{SUN})\land(\neg\neg\mathsf{RAIN}\land\neg\neg\mathsf{SUN}\land\neg\mathsf{SUN})$$</p>
+<p>$$\leadsto(\neg\mathsf{RAIN}\land\neg\mathsf{SUN}\land\mathsf{SUN})\land(\mathsf{RAIN}\land\mathsf{SUN}\land\neg\mathsf{SUN})$$</p>
+
+</div>
+<div id="dpll" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">DPLL
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="dpllSolution"
+        onclick="showPasswordModal('dpllSolution', 'exc-sat')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5>
 </div>
@@ -410,8 +491,52 @@ satisfiable. If necessary, first bring the formula into CNF.</p>
 </ol>
 
 </div>
-<div id="planning" ><h5 class="">
+<div id="dpllSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>Exercise 1(a)</strong></p>
+<ul>
+<li>CNF formula: $(\neg\mathsf{RAIN}\lor\mathsf{BIKE})\land(\mathsf{BIKE}\land\mathsf{RAIN})$</li>
+<li>CNF set: ${{\neg\mathsf{RAIN},\mathsf{BIKE}},{\mathsf{BIKE}},{\mathsf{RAIN}}}$</li>
+<li>By pure literal elimination on $\mathsf{BIKE}$ we get ${{\mathsf{RAIN}}}$ and $\nu(\mathsf{BIKE})=1$.</li>
+<li>By unit propogation on $\mathsf{RAIN}$ we get ${}$ and $\nu(\mathsf{BIKE})=1$ and $\nu(\mathsf{RAIN})=1$.</li>
+<li>This valuation does satisfy the CNF formula.</li>
+</ul>
+<p><strong>Exercise 1(b)</strong></p>
+<ul>
+<li>CNF formula: $(\neg\mathsf{RAIN}\lor\mathsf{BIKE})\land(\mathsf{RAIN}\land\neg\mathsf{RAIN})$</li>
+<li>CNF set: ${{\neg\mathsf{RAIN},\mathsf{BIKE}},{\mathsf{RAIN}},{\neg\mathsf{RAIN}}}$</li>
+<li>By pure literal elimination on $\mathsf{BIKE}$ we get ${{\mathsf{RAIN}},{\neg\mathsf{RAIN}}}$ and $\nu(\mathsf{BIKE})=1$.</li>
+<li>By unit propogation on $\mathsf{RAIN}$ we get ${{}}$, which shows that the set is unsatisfiable.</li>
+</ul>
+<p><strong>Exercise 1(c)</strong></p>
+<ul>
+<li>CNF formula: $(\neg\text{RAIN}\land\neg\text{RAIN})\land(\text{RAIN}\lor\neg\text{BIKE})$</li>
+<li>CNF set: ${{\neg\text{RAIN}},{\text{RAIN},\neg\text{BIKE}}}$</li>
+<li>By pure literal elimination on $\neg\mathsf{BIKE}$ we get ${{\neg\text{RAIN}}}$ and $\nu(\mathsf{BIKE})=0$.</li>
+<li>By pure literal elimination on $\neg\mathsf{RAIN}$ we get ${}$ and $\nu(\mathsf{BIKE})=0$ and $\nu(\mathsf{RAIN})=0$.</li>
+<li>This valuation does satisfy the CNF formula.</li>
+</ul>
+<p><strong>Exercise 1(d)</strong></p>
+<ul>
+<li>CNF formula: $((\text{RAIN}\lor\text{BIKE})\land(\text{RAIN}\lor\text{SUN}))\land(\neg\text{RAIN}\land\neg\text{BIKE})$</li>
+<li>CNF set: ${{\text{RAIN},\text{BIKE}},{\text{RAIN},\text{SUN}},{\neg\text{RAIN}},{\neg\text{BIKE}}}$</li>
+<li>By pure literal elimination on $\mathsf{SUN}$ we get ${{\text{RAIN},\text{BIKE}},{\neg\text{RAIN}},{\neg\text{BIKE}}}$  and $\nu(\mathsf{SUN})=1$.</li>
+<li>By unit propogation on $\neg\mathsf{BIKE}$ we get ${{\text{RAIN}},{\neg\text{RAIN}}}$ and $\nu(\mathsf{BIKE})=0$ and $\nu(\mathsf{SUN})=1$.</li>
+<li>By unit propogation on $\mathsf{RAIN}$ we get ${{}}$, which shows that the set is unsatisfiable.</li>
+</ul>
+
+</div>
+<div id="planning" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Planning
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="planningSolution"
+        onclick="showPasswordModal('planningSolution', 'exc-sat')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>One of the main applications of SAT-solving (via truth-tables, DPLL, or
 otherwise) is <em>automated planning</em>. This exercise goes through a simplified example to
@@ -519,6 +644,75 @@ $\neg (A\land B)\lor C$. This we&rsquo;ll discuss in more detail in the next cha
 <p>is satisfiable. A valuation that makes all of these true will tell the robot
 which actions to carry out. If there&rsquo;s more than one, it can chose.</p>
 <p><strong>Task</strong>: Use the DPLL algorithm to find a course of action for the robot.</p>
+
+</div>
+<div id="planningSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>Task:</strong> BNF, using &ldquo;LL&rdquo; to say the left lamp is on, &ldquo;LS&rdquo; to describe moving the left switch, etc.</p>
+<p>$$ \langle{var}\rangle ::= LL1 \mid LL2 \mid LS1 \mid RL1 \mid RL2 \mid RS1 $$</p>
+<p>$$ \langle{unop}\rangle ::= \neg $$</p>
+<p>$$ \langle{binop}\rangle ::= \land \mid \lor $$</p>
+<p>$$ \langle{fml}\rangle ::= \langle{unop}\rangle\langle{fml}\rangle \mid (\langle{fml}\rangle\langle{binop}\rangle\langle{fml}\rangle) $$</p>
+<!-- raw HTML omitted -->
+<p><strong>Task:</strong> Formalization</p>
+<p>Setup</p>
+<ul>
+<li>$LL1$</li>
+<li>$\neg RL1$</li>
+</ul>
+<p>Goals</p>
+<ul>
+<li>$\neg LL2$</li>
+<li>$RL2$</li>
+</ul>
+<p>Rules</p>
+<ul>
+<li>$\neg(LL1\land LS1)\lor\neg LL2$</li>
+<li>$\neg(\neg LL1\land LS1)\lor LL2$</li>
+<li>$\neg(RL1\land RS1)\lor\neg RL2$</li>
+<li>$\neg(\neg RL1\land RS1)\lor RL2$</li>
+</ul>
+<p>Frames</p>
+<ul>
+<li>$\neg(LL1\land\neg LS1)\lor LL2$</li>
+<li>$\neg(\neg LL1\land\neg LS1)\lor\neg LL2$</li>
+<li>$\neg(RL1\land\neg RS1)\lor RL2$</li>
+<li>$\neg(\neg RL1\land\neg RS1)\lor\neg RL2$</li>
+</ul>
+<!-- raw HTML omitted -->
+<p><strong>Task:</strong> DPLL</p>
+<p>Convert the rules into CNF.</p>
+<ul>
+<li>$\neg LL1\lor\neg LS1\lor\neg LL2$</li>
+<li>$LL1\lor\neg LS1\lor LL2$</li>
+<li>$\neg RL1\lor\neg RS1\lor\neg RL2$</li>
+<li>$RL1\lor\neg RS1\lor RL2$</li>
+</ul>
+<p>Convert the frames into CNF.</p>
+<ul>
+<li>$\neg LL1\lor LS1\lor LL2$</li>
+<li>$LL1\lor LS1\lor\neg LL2$</li>
+<li>$\neg RL1\lor RS1\lor RL2$</li>
+<li>$RL1\lor RS1\lor\neg RL2$</li>
+</ul>
+<!-- raw HTML omitted -->
+<p>Combine with the setup and goal formulas to get the following set of conditions.</p>
+<p>$$\Set{ LL1 } , \Set{ \neg RL1 } , \Set{ \neg LL2 } , \Set{ RL2 } ,$$</p>
+<p>$$\Set{ \neg LL1 , \neg LS1 , \neg LL2 } , \Set{ LL1 , \neg LS1 , LL2 } , \Set{
+\neg RL1 , \neg RS1 , \neg RL2 } ,$$
+$$\Set{ RL1 , \neg RS1 , RL2 } ,$$</p>
+<p>$$\Set{ \neg LL1 , LS1 , LL2 } , \Set{ LL1 , LS1 , \neg LL2 } , \Set{ \neg RL1 ,
+RS1 , RL2 }, $$
+$$\Set{ RL1 , RS1 , \neg RL2 }$$</p>
+<!-- raw HTML omitted -->
+<p>By unit propogation, first on $LL1$ and then on $RL2$, we get:</p>
+<p>$$\Set{ \neg RL1 } , \Set{ \neg LL2 } , \Set{ \neg LS1 , \neg LL2 } , \Set{ \neg
+RL1 , \neg RS1 } ,$$
+$$\Set{ LS1 , LL2 } , \Set{ RL1 , RS1 }$$</p>
+<!-- raw HTML omitted -->
+<p>By unit propogation, next on $\neg RL1$ and then on $\neg LL2$, we get:</p>
+<p>$$\Set{ LS1 } , \Set{ RS1 }$$</p>
+<!-- raw HTML omitted -->
+<p>By unit propogation on $LS1$ and $RS1$ we get a solution.</p>
+<p>$\nu(LL1)=1, \nu(LL2)=0, \nu(RL1)=0,\nu(RL2)=1, \nu(LS1)=1, \nu(RS1)=1$</p>
 
 </div>
 <div id="research" class=" homework"><h5 class="homework">
