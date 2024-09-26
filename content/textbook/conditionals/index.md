@@ -157,7 +157,7 @@ follows:
 + We have a _knowledge base_ that contains a series of conditional rules:
   1. $\mathsf{SUN}\to \mathsf{BIKE}$
   2. $\mathsf{RAIN}\to \mathsf{CAR}$
-  3. $\mathsf{WARM}\to \neg\mathsf{COAT}$
+  3. $\mathsf{WARM}\to \mathsf{SHIRT}$
   4. $\mathsf{COLD}\to \mathsf{COAT}$
   5. $\mathsf{BIKE}\to \mathsf{HELMET}$
   6. $\mathsf{CAR}\to \mathsf{KEYS}$
@@ -213,7 +213,7 @@ We can explain how backward chaining works using our same example as above:
 + Our _knowledge base_ contains:
   1. $\mathsf{SUN}\to \mathsf{BIKE}$
   2. $\mathsf{RAIN}\to \mathsf{CAR}$
-  3. $\mathsf{WARM}\to \neg\mathsf{COAT}$
+  3. $\mathsf{WARM}\to \mathsf{SHIRT}$
   4. $\mathsf{COLD}\to \mathsf{COAT}$
   5. $\mathsf{BIKE}\to \mathsf{HELMET}$
   6. $\mathsf{CAR}\to \mathsf{KEYS}$
