@@ -187,7 +187,7 @@ Again, using MP-style reasoning, we proceed:
 $$\mathsf{CAR},\mathsf{CAR}\to \mathsf{KEYS}\vDash\mathsf{KEYS}$$
 
 We thus add $\mathsf{KEYS}$ to our known facts. In a similar fashion, we add
-$\mathsf{COAT}$ and $\neg\mathsf{HELMET}$ to our known facts arriving at the
+$\mathsf{COAT}$ to our known facts arriving at the
 final known facts:
   + $\mathsf{RAIN}$
   + $\mathsf{COLD}$
