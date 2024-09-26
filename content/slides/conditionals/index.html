@@ -1,0 +1,323 @@
+---
+title: Logical conditionals
+author: Johannes Korbmacher
+weight: 6
+params: 
+  id: sli-if
+  license: 'CC-BY-4.0'
+  highlights:
+     - id: "if"
+       keyword: "Logical conditionals"
+     - id: "tautologies"
+       keyword: "Tautologies"
+     - id: "forward-chaining"
+       keyword: "Forward chaining"
+     - id: "backward-chaining"
+       keyword: "Backward chaining"
+     - id: "cwa"
+       keyword: "Closed-world assumption"
+     - id: "programming"
+       keyword: "Conditionals in programming"
+     - id: "non-material"
+       keyword: "Non-logical conditionals"
+---
+
+</section>
+<section>
+    {{< img src="img/qr-code.png" class="img-thumbnail" >}}
+    <p><a href="https://forms.gle/JiXXM9eysAZaJMja9" target="_blank" style="font-size:1.5em">https://forms.gle/JiXXM9eysAZaJMja9</a></p>
+  </section>
+<section>
+  <section id="if">
+    <dl class="row" >
+      <dd class="col">
+        <i class="bi bi-arrow-right-square text-primary" style="font-size:100px;"></i> 
+        <h1>Logical <span class="text-danger">conditionals</span></h1>
+      </dd>
+      <dt class="col"></dt>
+    </dl>
+  </section>
+  <section id="ideas">
+    <h1>Question</h1>
+    <span class="fragment fade-right text-danger">
+    $$\nu(A\to B)=???$$
+    </span>
+  </section>
+  <section id="ideas">
+    <h1>Clear cases</h1>
+    <ul>
+      <li class="fragment fade-right">If $\nu(A)=1$ and $\nu(B)=0$, then $\nu(A\to B)=0$</li>
+      <li class="fragment fade-right">If $\nu(A)=1$ and $\nu(B)=1$, then $\nu(A\to B)=1$</li>
+    </ul>
+  </section>
+  <section>
+    {{< img src="img/tt-partial.png" class="img-thumbnail" >}}
+  </section>
+  <section id="tautologies">
+    <h1>Tautologies</h1>
+    <ul>
+      <li class="fragment fade-right"><strong>Definition</strong>. $\vDash A$ iff for all $\nu$, $\nu(A)=1$</li>
+      <li class="fragment fade-right"><strong>Deduction theorem</strong>: $$P_1,P_2,\dots\vDash C\Leftrightarrow\ \vDash (P_1\land P_2\land \dots)\to C$$</li>
+    </ul>
+  </section>
+  <section>
+    {{< img src="img/tt.png" class="img-thumbnail" >}}
+  </section>
+  <section>
+    <h1>Example</h1>
+    $$(\mathsf{RAIN}\lor \mathsf{BIKE}),\mathsf{SUN}\vDash\mathsf{BIKE}$$
+
+    {{< img src="img/tt-2.png" class="img-thumbnail" >}}
+  </section>
+</section>
+<section>
+  <section id="forward-chaining">
+    <dl class="row" >
+      <dd class="col">
+        <i class="bi bi-link text-primary" style="font-size:100px;"></i> 
+        <h1>Forward <span class="text-danger">chaining</span></h1>
+      </dd>
+      <dt class="col"></dt>
+    </dl>
+  </section>
+  <section>
+    <h1>Ideas</h1>
+    <ul>
+      <li class="fragment fade-right"><strong>Modus Ponens (MP)</strong>: $$A,A\to B\vDash B$$</li>
+    </ul>
+  </section>
+  <section>
+    {{< img src="img/tt-3.png" class="img-thumbnail" >}}
+  </section>
+  <section>
+    <h1>Forward chaining</h1>
+    <ul>
+      <li class="fragment fade-right">Inference method for automated reasoning</li>
+      <li class="fragment fade-right">Repeated MPs</li>
+    </ul>
+  </section>
+  <section>
+    <h1>Example</h1>
+    <ul>
+      <li class="fragment fade-right">Knowledge base:
+        <ol class="fragment fade-right">
+          <li>$\mathsf{SUN}\to \mathsf{BIKE}$</li>
+          <li>$\mathsf{RAIN}\to \mathsf{CAR}$</li>
+          <li>$\mathsf{WARM}\to \mathsf{SHIRT}$</li>
+          <li>$\mathsf{COLD}\to \mathsf{COAT}$</li>
+          <li>$\mathsf{BIKE}\to \mathsf{HELMET}$</li>
+          <li>$\mathsf{CAR}\to \mathsf{KEYS}$</li>
+        </ol>
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h1>Example</h1>
+    <ul>
+      <li class="fragment fade-right">Known facts:
+        <ol class="fragment fade-right">
+          <li>$\mathsf{RAIN}$</li>
+          <li>$\mathsf{COLD}$</li>
+        </ol>
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h1>Example</h1>
+    <ul>
+      <li class="fragment fade-right">Derivations:
+        <ol class="fragment fade-right">
+          <li>$\mathsf{RAIN},\mathsf{RAIN}\to\mathsf{CAR}\vDash \mathsf{CAR}$</li>
+          <li>$\mathsf{COLD},\mathsf{COLD}\to\mathsf{COAT}\vDash \mathsf{COAT}$</li>
+          <li>$\mathsf{CAR},\mathsf{CAR}\to\mathsf{KEYS}\vDash \mathsf{KEYS}$</li>
+        </ol>
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h1>Example</h1>
+    <ul>
+      <li class="fragment fade-right">Outcome:
+        <ol class="fragment fade-right">
+          <li>$\mathsf{RAIN}$</li>
+          <li>$\mathsf{CAR}$</li>
+          <li>$\mathsf{COLD}$</li>
+          <li>$\mathsf{COLD}$</li>
+          <li>$\mathsf{KEYS}$</li>
+        </ol>
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h1>Method</h1>
+    <ul>
+      <li class="fragment fade-right">Check known facts agains KB.</li>
+      <li class="fragment fade-right">If fact is in antecedent, apply MP.</li>
+      <li class="fragment fade-right">Add conclusion to known facts.</li>
+      <li class="fragment fade-right"><em>Lather, rinse, repeat</em> until done.</li>
+      <li class="fragment fade-right"><strong>Data driven!</strong></li>
+    </ul>
+  </section>
+</section>
+<section>
+  <section id="backward-chaining">
+    <dl class="row" >
+      <dd class="col">
+        <i class="bi bi-link-45deg text-primary" style="font-size:100px;"></i> 
+        <h1>Backward <span class="text-danger">chaining</span></h1>
+      </dd>
+      <dt class="col"></dt>
+    </dl>
+  </section>
+  <section>
+    <h1>Ideas</h1>
+    <ul>
+      <li class="fragment fade-right">Backwards <strong>MP</strong>:
+        <ul>
+          <li class="fragment fade-right">Want to know whether $B$.</li>
+          <li class="fragment fade-right">Recursively check if we have $A$ and $A\to B$.</li>
+          <li class="fragment fade-right">If so, then $B$.</li>
+          <li class="fragment fade-right">If not, then $\neg B$.</li>
+        </ul>
+    </ul>
+  </section>
+  <section style="font-size: 0.8em">
+    <h1>Example</h1>
+    <ul>
+      <li class="fragment fade-right">Knowledge base:
+        <ol class="fragment fade-right">
+          <li>$\mathsf{SUN}\to \mathsf{BIKE}$</li>
+          <li>$\mathsf{RAIN}\to \mathsf{CAR}$</li>
+          <li>$\mathsf{WARM}\to \mathsf{SHIRT}$</li>
+          <li>$\mathsf{COLD}\to \mathsf{COAT}$</li>
+          <li>$\mathsf{BIKE}\to \mathsf{HELMET}$</li>
+          <li>$\mathsf{CAR}\to \mathsf{KEYS}$</li>
+        </ol>
+      </li>
+      <li class="fragment fade-right">Known facts:
+        <ol class="fragment fade-right">
+          <li>$\mathsf{RAIN}$</li>
+          <li>$\mathsf{COLD}$</li>
+        </ol>
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h1>Example</h1>
+    <ul>
+      <li class="fragment fade-right">Question: $$?\mathsf{HELMET}$$</li>
+    </ul>
+  </section>
+  <section>
+    <h1>Example</h1>
+    <ul>
+      <li class="fragment fade-right">Reasoning:
+        <ul>
+          <li class="fragment fade-right">Have: $\mathsf{BIKE}\to\mathsf{HELMET}$</li>
+          <li class="fragment fade-right">Need: $\mathsf{BIKE}$</li>
+          <li class="fragment fade-right">Have: $\mathsf{SUN}\to\mathsf{BIKE}$</li>
+          <li class="fragment fade-right">Need: $\mathsf{SUN}$</li>
+          <li class="fragment fade-right">Don't!</li>
+          <li class="fragment fade-right">So: $\neg\mathsf{HELMET}$</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+  <section id="cwa">
+    <h1>Closed world assumption</h1>
+    <ul>
+      <li class="fragment fade-right">If $A$ according to KB, then we can infer $A$ from KB.</li>
+      <li class="fragment fade-right">If we can't infer $A$ from KB, then $\neg A$ according to KB.</li>
+    </ul>
+  </section>
+  <section>
+    <h1>Method</h1>
+    <ul>
+      <li class="fragment fade-right">Check goal agains KB.</li>
+      <li class="fragment fade-right">If goal is in conclusion, add antecedent to goals.</li>
+      <li class="fragment fade-right"><em>Lather, rinse, repeat</em> until done.</li>
+      <li class="fragment fade-right">If known fact in goals, success (via MP).</li>
+      <li class="fragment fade-right">If no known fact in goals, failure.</li>
+      <li class="fragment fade-right"><strong>Goal directed!</strong></li>
+    </ul>
+  </section>
+</section>
+<section>
+  <section id="programming">
+    <dl class="row" >
+      <dd class="col">
+        <i class="bi bi-link-45deg text-primary" style="font-size:100px;"></i> 
+        <h1>Programming <span class="text-danger">conditionals</span></h1>
+      </dd>
+      <dt class="col"></dt>
+    </dl>
+  </section>
+  <section>
+  $$1,2,Fizz,3,4,Buzz,Fizz,7,8,Fizz,Fizz,Buzz,\dots$$
+  </section>
+  <section>
+    <h1>FizzBuzz</h1>
+    <pre tabindex="0"><code class="text-warning">
+      for n in range(1,101):
+        if n is divisible by 3 and n is divisible by 5:
+          print(&#34;FizzBuzz&#34;)
+        elif n is divisible by 3:
+          print(&#34;Fizz&#34;)
+        elif n is divisble by 5:
+         print(&#34;Buzz&#34;)
+        else:
+         print(n)
+    </code></pre>
+  </section>
+  <section style="font-size:0.7em">
+    <h1>Analysis</h1>
+    <ul>
+      <li class="fragment fade-right">Knowledge base:</li>
+      <ul>
+        <li class="fragment fade-right">$\mathsf{DIV\_3}\land \mathsf{DIV\_5}\to \mathsf{PRINT\_FIZZBUZZ}$</li>
+        <li class="fragment fade-right">$\mathsf{DIV\_3}\land \neg\mathsf{DIV\_5}\to \mathsf{PRINT\_FIZZ}$</li>
+        <li class="fragment fade-right">$\neg\mathsf{DIV\_3}\land \mathsf{DIV\_5}\to \mathsf{PRINT\_BUZZ}$</li>
+        <li class="fragment fade-right">$\neg\mathsf{DIV\_3}\land \neg\mathsf{DIV\_5}\to \mathsf{PRINT\_NUMBER}$</li>
+      </ul>
+      <li class="fragment fade-right">(Changing) facts: 
+        <ol>
+          <li class="fragment fade-right">$\neg\mathsf{DIV\_3}\land\neg\mathsf{DIV\_5}\leadsto \mathsf{PRINT\_NUMBER}$</li>
+        <li class="fragment fade-right">$\neg\mathsf{DIV\_3}\land\neg\mathsf{DIV\_5}\leadsto \mathsf{PRINT\_NUMBER}$</li>
+        <li class="fragment fade-right">$\mathsf{DIV\_3}\land\neg\mathsf{DIV\_5}\leadsto \mathsf{PRINT\_FIZZ}$</li>
+        <li class="fragment fade-right">...</li>
+        </ol>
+      </li>
+    </ul>
+  </section>
+</section>
+<section>
+  <section id="non-material">
+    <dl class="row" >
+      <dd class="col">
+        <i class="bi bi-box-arrow-up-right text-primary" style="font-size:100px;"></i> 
+        <h1>Non-logical <span class="text-danger">conditionals</span></h1>
+      </dd>
+      <dt class="col"></dt>
+    </dl>
+  </section>
+  <section>
+    <h1>False antecedents</h1>
+    <ul>
+      <li class="fragment fade-right">If the moon is made of cheese, then pigs can fly</li>
+      <ul>
+        <li class="fragment fade-right">If-then=$\to$ $\Rightarrow$ True</li>
+        <li class="fragment fade-right">Most people = False</li>
+      </ul>
+      <li class="fragment fade-right">Non-material conditionals:</li>
+      <li class="fragment fade-right">Defeasibility</li>
+      <ul>
+        <li class="fragment fade-right">Counterfactuals</li>
+        <li class="fragment fade-right">Evidentials</li>
+        <li class="fragment fade-right">Indicatives</li>
+      </ul>
+    </ul>
+  </section>
+</section>
+<section>
+  <h1>Thanks<span class="text-danger">!</span></h1>
+</section>
