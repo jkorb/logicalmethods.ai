@@ -338,9 +338,9 @@ under each valuation. Take our example from the
 previous chapter</a>
 
  again:
-$$(\mathsf{RAIN}\lor \mathsf{BIKE}),\mathsf{SUN}\vDash\mathsf{BIKE}$$
+$$(\mathsf{RAIN}\lor \mathsf{BIKE}),\neg\mathsf{RAIN}\vDash\mathsf{BIKE}$$
 We can test this inference by doing the truth-table for the following formula:
-$$(\mathsf{RAIN}\lor \mathsf{BIKE})\land\mathsf{SUN}\to\mathsf{BIKE}$$</p>
+$$(\mathsf{RAIN}\lor \mathsf{BIKE})\land\neg\mathsf{RAIN}\to\mathsf{BIKE}$$</p>
 
 
 <img src="https://logicalmethods.ai/textbook/conditionals/img/tt-2.png" class="img-thumbnail"  alt="" >
@@ -562,7 +562,7 @@ number whether it&rsquo;s divisible by both 3 and 5, in which case it prints
 prints &ldquo;Fizz&rdquo;, if that&rsquo;s also not the case but the number is divisible by 5, the
 program prints &ldquo;Buzz&rdquo;, and if all else fails, it prints the number.</p>
 <p>This results in a sequence that begins like this:</p>
-<p>$$12,Fizz,3,4,Buzz,Fizz,7,8,Fizz,FizzBuzz,\dots$$</p>
+<p>$$1,2,Fizz,4,Buzz,Fizz,7,8,Fizz,Buzz,\dots$$</p>
 <p>The material conditional can help us understand what&rsquo;s going on here. Each of
 the conditions is a Boolean condition: it evaluates either to true false. The
 &ldquo;if-then-else&rdquo; statements can therefore be modelled by the following material
