@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8"></meta>
     <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-    <title>logicalmethods.ai &ndash; Valid inference </title>
+    <title>logicalmethods.ai &ndash; Logical conditionals </title>
     <link rel="icon" type="image/x-icon" href="https://logicalmethods.ai/favicon.ico"></link>
     <link href="https://logicalmethods.ai/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"></link>
     <link rel="stylesheet" href="https://logicalmethods.ai/icons/font/bootstrap-icons.min.css"></link>
@@ -158,7 +158,7 @@
             </li>
             
             <li>
-              <a class="dropdown-item fw-bold active" href="/exercises/valid-inference/">2. Valid inference</a>
+              <a class="dropdown-item " href="/exercises/valid-inference/">2. Valid inference</a>
             </li>
             
             <li>
@@ -174,7 +174,7 @@
             </li>
             
             <li>
-              <a class="dropdown-item " href="/exercises/conditionals/">6. Logical conditionals</a>
+              <a class="dropdown-item fw-bold active" href="/exercises/conditionals/">6. Logical conditionals</a>
             </li>
             </ul>
         </div>
@@ -230,7 +230,7 @@
   <ul class="navbar-nav flex-row justify-content-between mt-2">
   
   <li class="nav-item">
-    <a href="/exercises/logic-and-ai/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="/exercises/sat/" class="btn" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-left"></i>
     </a>
     
@@ -242,7 +242,7 @@
   </li>
   <li class="nav-item">
     
-    <a href="/exercises/formal-languages/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-right"></i>
     </a>
     
@@ -251,7 +251,7 @@
 
   <div class="container text-center">
   <h3>
-    Tutorial 2. Valid inference
+    Tutorial 6. Logical conditionals
   </h3>
   <em>Exercise sheet</em>
 </div>
@@ -318,267 +318,178 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
     
       
 </div>
-<div id="deduction-and-induction" ><h5 class="">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Deduction and Induction
+<div id="equivalences" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Equivalences
     </div>
-</h5><p>Give an example of one for each of the following:</p>
+</h5><p>For each of the following pairs of formulas, show that they are <em>equivalent</em> in
+the sense that they have the same truth-value under each valuation.</p>
 
 </div>
-<div id="a" class=" homework"><h6 class=" homework">a)</h6><p>A deductively valid inference</p>
+<div id="a" ><h6 class="">a)</h6><p>$A\to B$ and $\neg A\lor B$</p>
 
 </div>
-<div id="b" ><h6 class="">b)</h6><p>A deductively invalid inference</p>
+<div id="b" class=" homework"><h6 class=" homework">b)</h6><p>$A\to B$ and $\neg(A\land\neg B)$</p>
 
 </div>
-<div id="c" ><h6 class="">c)</h6><p>An inductively valid inference</p>
+<div id="c" ><h6 class="">c)</h6><p>$A$ and $\neg A\to A$
+(<i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/Christopher_Clavius" class="link-dark" rel="external" target="_blank">Clavius</a>
+&rsquo;s law)</p>
 
 </div>
-<div id="d" class=" homework"><h6 class=" homework">d)</h6><p>An inductively invalid inference</p>
+<div id="d" class=" homework"><h6 class=" homework">d)</h6><p>$A\to B$ and $\neg B\to \neg A$ (the law of contraposition)</p>
 
 </div>
-<div id="monotonicity" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Monotonicity
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="monotonicitySolution"
-        onclick="showPasswordModal('monotonicitySolution', 'exc-val')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="e" ><h6 class="">e)</h6><p>$A\to (B\to C)$ and $(A\land B)\to C$</p>
+
+</div>
+<div id="boolean-laws" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Boolean laws
     </div>
-</h5>
-</div>
-<div id="a-deduction" ><h6 class="">a) Deduction</h6><p>Give an argument that if an inference is deductively valid, then adding
-additional premises doesn’t cancel the validity of the inference.</p>
+</h5><p>Formulate the equivalences from Exercise 1 as Boolean laws. For example, a)
+becomes $$x\Rightarrow y=-x+y.$$</p>
 
 </div>
-<div id="b-induction" class=" homework"><h6 class=" homework">b) Induction</h6><p>Why does this argument fail for inductive logic?</p>
-
-</div>
-<div id="monotonicitySolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong></p>
-<p>Deductive validity is necessary. Suppose $A\vDash C$. Necessarily, if $A$ is
-true, $C$ is true. If we consider any possibility where $A\land B$ is true, it
-also makes $A$ true, which means that is has to make $C$ true (based on what we
-just observed). So $A\land B\vDash C$.</p>
-<p><strong>b)</strong></p>
-<p>Inductive validity isn&rsquo;t necessary. $A\mid!\approx C$ only tells us that when
-$A$ is true, <em>it is likely</em> that $C$ is true. This does not guarantee that when
-$A\land B$ is true, <em>it is equally likely</em> that $C$ is true. Sometimes new
-information $B$ lowers or cancels out the probability of $C$.</p>
-
-</div>
-<div id="validity" class=" homework solved"><h5 class="homework solved">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Validity
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="validitySolution"
-        onclick="showPasswordModal('validitySolution', 'exc-val')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="validities" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Validities
     </div>
-</h5><p>For every invalid inference, it’s possible to add one or more premises to make it
-valid. Why?</p>
+</h5><p>Check the validity of the following inferences using a suitable method
+(DPLL, truth-tables, &hellip;).</p>
 
 </div>
-<div id="validitySolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>If you have an invalid inference $P_1,\ldots, P_n\nvDash C$ you can just add $C$ on the premise side and you get a valid inference $C,P_1,\ldots, P_n\vDash C$.</p>
+<div id="a-1" ><h6 class="">a)</h6><p>$\mathsf{RAIN}\to \mathsf{CAR}\vDash (\mathsf{RAIN}\land \mathsf{WARM})\to
+\mathsf{CAR}$</p>
 
 </div>
-<div id="truth-preservation" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Truth-Preservation
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="truth-preservationSolution"
-        onclick="showPasswordModal('truth-preservationSolution', 'exc-val')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="b-1" ><h6 class="">b)</h6><p>$\mathsf{RAIN}\to \mathsf{CAR}, \mathsf{CAR}\to \mathsf{KEYS}\vDash \mathsf{RAIN}\to
+\mathsf{KEYS}$</p>
+
+</div>
+<div id="c-1" ><h6 class="">c)</h6><p>$\mathsf{RAIN}\to \mathsf{CAR},\mathsf{CAR}\vDash \mathsf{RAIN}$</p>
+
+</div>
+<div id="d-1" class=" homework"><h6 class=" homework">d)</h6><p>$\mathsf{SUN}\to \mathsf{BIKE},\neg\mathsf{SUN}\vDash \neg \mathsf{BIKE}$</p>
+
+</div>
+<div id="horn-clauses" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Horn clauses
     </div>
-</h5><p>Which of the following is possible? Make your answer clear and precise, by
-showing how the definition of deductive validity and the definition of inductive
-validity/strength relate to these questions.</p>
+</h5><p>Remember that a <em>literal</em> is a propositional variable or its negation. A <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/Horn_clause" class="link-dark" rel="external" target="_blank">Horn
+clause</a>
+ is a disjunction of literals,
+where <em>at most</em> one literal is <em>positive</em> meaning it doesn&rsquo;t contain a negation.
+This means that a Horn clause has the form: $$\neg p_1\lor \neg p_2\lor
+\dots\lor q,$$ where $p_1,p_2,\dots,q$ are propositional variables.</p>
 
 </div>
-<div id="a-1" ><h6 class="">a)</h6><p>Can an inference be deductively valid and have a false premise?</p>
+<div id="a-2" class=" homework"><h6 class=" homework">a)</h6><p>Provide an argument that every Horn clause is equivalent to (=always has the same
+truth-value as) a conditional of the
+form: $$p_1\land p_2\land\dots \to q.$$</p>
+<p><em>Hint</em>: There are different routes to this result, but you&rsquo;ll need to use
+Boolean laws/corresponding logical equivalences. Here are some candidates to use
+in your argument:</p>
+<p>$$x\Rightarrow y = -x+y$$</p>
+<p>$$x\Rightarrow (y\Rightarrow z)=(x\times y)\Rightarrow z$$</p>
+<p>$$-x+-y+\dots=-(x\times y\times \dots)$$</p>
 
 </div>
-<div id="b-1" ><h6 class="">b)</h6><p>Can an inference be deductively valid and have a false conclusion?</p>
+<div id="b-2" ><h6 class="">b)</h6><p>Can every formula equivalently be written as a Horn clause?</p>
 
 </div>
-<div id="c-1" ><h6 class="">c)</h6><p>Can an inference be deductively valid, have true premises, and have a false conclusion?</p>
-
-</div>
-<div id="d-1" ><h6 class="">d)</h6><p>Can an inference be deductively valid but inductively invalid?</p>
-
-</div>
-<div id="e" ><h6 class="">e)</h6><p>Can an inference be inductively valid and have a false premise?</p>
-
-</div>
-<div id="f" ><h6 class="">f)</h6><p>Can an inference be inductively valid and have a false conclusion?</p>
-
-</div>
-<div id="g" ><h6 class="">g)</h6><p>Can an inference be inductively valid, have true premises, and have a false conclusion?</p>
-
-</div>
-<div id="h" ><h6 class="">h)</h6><p>Can an inference be inductively valid but deductively invalid?</p>
-
-</div>
-<div id="truth-preservationSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong></p>
-<p>Yes. Just fill in any valid logical form with a false premise. Maddy the pig
-example.</p>
-<p><strong>b)</strong></p>
-<p>Yes. Just fill in any valid logical form with a false conclusion.</p>
-<p><strong>c)</strong></p>
-<p>No. That contradicts the definition of validity.</p>
-<p><strong>d)</strong></p>
-<p>Yes. For example, any strong, statistical reasoning.</p>
-<p><strong>e)</strong> z Yes. Take any strong conditional probability with a false condition.
-The moon is made of cheese, so its probably delicious.</p>
-<p><strong>f)</strong></p>
-<p>Yes. Take any strong conditional probability with a false outcome.</p>
-<p><strong>g)</strong></p>
-<p>Yes. Because inductive validity is not necessary.</p>
-<p><strong>h)</strong></p>
-<p>No. If an inference preserves truth always, then it preserves truth most of the
-time. You can illustrate with standard &lsquo;definitional&rsquo; rules for the logical
-connectives, which are easily seen to be inductively valid. $A\land B\vDash A$
-and $A\vDash A\lor B$ etc.</p>
-
-</div>
-<div id="semantic-tools" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Semantic tools
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="semantic-toolsSolution"
-        onclick="showPasswordModal('semantic-toolsSolution', 'exc-val')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="resolution" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Resolution
     </div>
-</h5><p>Explain the following facts:</p>
+</h5><p>A disjunction of literals, we call a <em>(disjunctive) clause</em>.</p>
+<p>The resolution rule says that if you have two clauses ($l_i,k_j$ are literals)</p>
+<p>$$l_1\lor l_2\lor \dots\lor p \qquad \qquad \neg p\lor k_1\lor k_2\lor\dots$$</p>
+<p>you can infer:</p>
+<p>$$l_1\lor l_2\lor \dots k_1\lor k_2\lor\dots$$</p>
+<p>So, for example, from</p>
+<p>$$\neg\mathsf{RAIN}\lor\neg\mathsf{SUN}\lor\mathsf{BIKE}\qquad
+\neg\mathsf{BIKE}\lor\mathsf{HELMET}$$
+you can infer
+$$\neg\mathsf{RAIN}\lor\neg\mathsf{SUN}\lor\mathsf{HELMET}$$</p>
 
 </div>
-<div id="a-2" ><h6 class="">a)</h6><p>The subset relation, defined in 
+<div id="a-3" class=" homework"><h6 class=" homework">a)</h6><p>Show that the example inference is valid using a suitable method (truth-tables,
+DPLL, &hellip;).</p>
+
+</div>
+<div id="b-3" ><h6 class="">b)</h6><p>Use the resolution rule to show that the following inference is valid:</p>
+<p>$$\mathsf{RAIN}\lor\mathsf{BIKE},\neg\mathsf{RAIN}\vDash \mathsf{BIKE}$$</p>
+<p>Which rule of the DPLL algorithm does this correspond to?</p>
+
+</div>
+<div id="c-2" ><h6 class="">c)</h6><p>We can use the resolution to define a general inference method:</p>
+<ul>
+<li>
+<p>To test whether $P_1,P_2,\dots\vDash C$ we bring $P_1\land P_2\land \dots\land
+\neg C$ into CNF (see 
 
 
-<a href="https://logicalmethods.ai/textbook/valid-inference//#semantic-methods-for-deduction"
+<a href="https://logicalmethods.ai/textbook/sat//#normal-forms"
    
    
    
    
    
    >
-2.3.1 </a>
+Chapter 5.3</a>
 
-, has the following property:</p>
+).</p>
+</li>
+<li>
+<p>We then recursively apply the resolution rule to all possible combinations of
+clauses (and the results of those applications, the results of the results, &hellip;).</p>
+</li>
+<li>
+<p>Outcome:</p>
 <ul>
-<li>If $X\subseteq Y$ and $Y\subseteq Z$, then $X\subseteq Z$.</li>
+<li>
+<p>If any application of the resolution rule results in an empty clause
+$\Set{}$, the inference is valid.</p>
+</li>
+<li>
+<p>If we arrive at a point where no more applications are possible and no empty
+clause has been derived, the inference is valid.</p>
+</li>
 </ul>
-<p><em>Note</em>: This property is called &ldquo;transitivity&rdquo;.</p>
+</li>
+</ul>
+<p>Use this method to show that the following inference is valid:</p>
+<p>$$\mathsf{RAIN}\vDash \mathsf{RAIN}\land (\mathsf{RAIN}\lor \mathsf{SUN})$$</p>
 
 </div>
-<div id="b-2" class=" homework"><h6 class=" homework">b)</h6><p>Remember that the intersection $X\cap Y$ of two sets $X,Y$ is the overlapping
-part of those two sets. We have that $X\cap Y\subseteq X$ and $X\cap Y\subseteq
-Y$.</p>
+<div id="d-2" class=" homework"><h6 class=" homework">d)</h6><p>The result of applying the resolution rule to two Horn clauses always results in a
+Horn clause. Why?</p>
 
 </div>
-<div id="semantic-toolsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong></p>
-<p>$X\subseteq Y$ means all elements of set $X$ are elements of set $Y$.
-$Y\subseteq Z$ means all elements of set $Y$ are elements of set $Z$. Then it
-must be true that all elements of set $X$ are elements of set $Z$.</p>
-<p><strong>b)</strong></p>
-<p>The intersection $X\cap Y$ is the overlapping part of $X$ and $Y$. So the
-elements of $X\cap Y$ have to be elements of $X$. That means $X\cap Y\subseteq
-X$. And the elements of $X\cap Y$ have to be elements of $Y$. That means $X\cap
-Y\subseteq Y$.</p>
+<div id="e-1" ><h6 class="">e)</h6><p>Use the resolution rule (together with Exercise 1 a)) to show that the following
+inference is valid:</p>
+<p>$$\mathsf{RAIN}\to \mathsf{CAR}, \mathsf{CAR}\to \mathsf{KEYS}\vDash \mathsf{RAIN}\to
+\mathsf{KEYS}$$</p>
 
 </div>
-<div id="research" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Research
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="researchSolution"
-        onclick="showPasswordModal('researchSolution', 'exc-val')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
-    </div>
-</h5><p>Note: These questions <em>require</em> you to research the answer yourself using reliable academic sources. You need to reference your sources!</p>
-<p><strong>Reasoning</strong></p>
-<p>Are all forms of &ldquo;good&rdquo; reasoning either deductive or inductive?</p>
+<div id="f" ><h6 class="">f)</h6><p>The inference pattern $$A\to B,B\to C\vDash A\to C$$ is known as &ldquo;transitivity&rdquo;
+for the logical conditional.</p>
+<p>Use the reasoning from e) together with Exercise 4 a) to show that the
+application of the resolution rule to Horn clauses is essentially just an
+application of the transitivity principle.</p>
+<p>What does this have to do with the forward and backward chaining methods?</p>
 
 </div>
-<div id="researchSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>Try to give positive feedback on any interesting answer that shows some work.
-Here is one possible answer.</p>
-<p>We defined induction by probablistic support. That is pretty much the broadest
-notion of truth-preservation we can define. If truth is all that matters then
-all good reasoning would have to be deductive or inductive. But there are
-theories of reasoning that say that some reasoning methods are good for other
-reasons apart from tracking truth. For example, some people think that
-<em>inference to the best explanation</em> is a good reasoning strategy, but the notion
-of &ldquo;best&rdquo; explanation depends on contingent scientific values of a community.</p>
-
-</div>
-<div id="discussion" class=" solved"><h5 class="solved">
+<div id="discussion" ><h5 class="">
     <div class="d-inline-flex flex-row m-0  p-0 ">Discussion
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="discussionSolution"
-        onclick="showPasswordModal('discussionSolution', 'exc-val')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
     </div>
-</h5><p>Inductive logic in general is non-monotonic because new (premise) information
-can turn a valid inference into an invalid inference. But what if we know
-something about <em>how</em> a new piece of information <em>relates</em> to our old premises?
-Some versions of inductive logic support &rsquo;limited&rsquo; versions of monotonicity
-based on situations where new information (the &lsquo;$B$&rsquo; premises in these examples)
-comes from the right place. Do you think these limited forms of monotonicity are
-correct? Explain your answer.</p>
-<p>a) Cautious Monotonicity: If $A \mid\approx C$ and $A \mid\approx B$, then $
-A\land B \mid\approx C $</p>
-<p>b) Rational Monotonicity: If $A \mid\approx C$ and not $A \mid\approx \neg B$,
-then $ A\land B \mid\approx C $</p>
-
-</div>
-<div id="discussionSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>There are theoretical assumptions behind the concept of inductive support. So
-the student can try to explain some assumptions that <em>verify</em> these rules. They
-can also try to explain why the rules <em>fail</em> for standard conditional
-probabilities.</p>
-<p>Here an example for <strong>Cautious Monotonicity</strong>. You have a population of toys in
-different shapes: monsters, aliens, dinosaurs. Every toy is red, blue, green,
-purple, or yellow. Almost all toys are yellow. The few green toys are all
-dinosaurs, and the few red toys are all dinosaurs. There are a lot of yellow
-dinosaurs too. With $A=$ dinosaur, $B=$ red, $C=$ green, we could have
-probabilities like this.</p>
-<p>$P(B|A)=0.2$ greater than $P(B)=0.1$</p>
-<p>$P(C|A)=0.2$ greater than $P(C)=0.1$</p>
-<p>$P(C|A\land B)=0$ becuase no green toy is a red dinosaur toy.</p>
+</h5><p>Remember the <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/Wason_selection_task" class="link-dark" rel="external" target="_blank">Wason selection
+task</a>
+ from the teaser
+lecture (if you&rsquo;re not a first-year AI student or missed the intro day lecture,
+check out the description on Wikipedia).</p>
+<p>Some researchers have argued that the experiment shows that people don&rsquo;t reason with
+the material/logical conditional in this case. Do you agree? Why?</p>
 
   </div>
 </div>
@@ -587,7 +498,7 @@ probabilities like this.</p>
 <ul class="navbar-nav flex-row justify-content-between mt-auto">
   
   <li class="nav-item">
-    <a href="/exercises/logic-and-ai/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="/exercises/sat/" class="btn" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-left"></i>
     </a>
     
@@ -599,7 +510,7 @@ probabilities like this.</p>
   </li>
   <li class="nav-item">
     
-    <a href="/exercises/formal-languages/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-right"></i>
     </a>
     
