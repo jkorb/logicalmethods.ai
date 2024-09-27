@@ -144,35 +144,46 @@ satisfiable. If necessary, first bring the formula into CNF.
 
 **Exercise 1(a)**
 
-+ CNF formula: $(\neg\mathsf{RAIN}\lor\mathsf{BIKE})\land(\mathsf{BIKE}\land\mathsf{RAIN})$
-+ CNF set: $\{\{\neg\mathsf{RAIN},\mathsf{BIKE}\},\{\mathsf{BIKE}\},\{\mathsf{RAIN}\}\}$
-+ By pure literal elimination on $\mathsf{BIKE}$ we get $\{\{\mathsf{RAIN}\}\}$ and $\nu(\mathsf{BIKE})=1$.
-+ By unit propogation on $\mathsf{RAIN}$ we get $\{\}$ and $\nu(\mathsf{BIKE})=1$ and $\nu(\mathsf{RAIN})=1$.
++ CNF formula:
+$(\neg\mathsf{RAIN}\lor\mathsf{BIKE})\land(\mathsf{BIKE}\land\mathsf{RAIN})$
++ CNF set:
+$\Set{\Set{\neg\mathsf{RAIN},\mathsf{BIKE}},\Set{\mathsf{BIKE}},\Set{\mathsf{RAIN}}}$
++ By pure literal elimination on $\mathsf{BIKE}$ we get
+$\Set{\Set{\mathsf{RAIN}}}$ and $\nu(\mathsf{BIKE})=1$.
++ By unit propogation on $\mathsf{RAIN}$ we get $\Set{}$ and
+$\nu(\mathsf{BIKE})=1$ and $\nu(\mathsf{RAIN})=1$.
 + This valuation does satisfy the CNF formula.
 
 **Exercise 1(b)**
 
 + CNF formula: $(\neg\mathsf{RAIN}\lor\mathsf{BIKE})\land(\mathsf{RAIN}\land\neg\mathsf{RAIN})$
-+ CNF set: $\{\{\neg\mathsf{RAIN},\mathsf{BIKE}\},\{\mathsf{RAIN}\},\{\neg\mathsf{RAIN}\}\}$
-+ By pure literal elimination on $\mathsf{BIKE}$ we get $\{\{\mathsf{RAIN}\},\{\neg\mathsf{RAIN}\}\}$ and $\nu(\mathsf{BIKE})=1$.
-+ By unit propogation on $\mathsf{RAIN}$ we get $\{\{\}\}$, which shows that the set is unsatisfiable.
++ CNF set: $\Set{\Set{\neg\mathsf{RAIN},\mathsf{BIKE}},\Set{\mathsf{RAIN}},\Set{\neg\mathsf{RAIN}}}$
++ By pure literal elimination on $\mathsf{BIKE}$ we get
+$\Set{\Set{\mathsf{RAIN}},\Set{\neg\mathsf{RAIN}}}$ and $\nu(\mathsf{BIKE})=1$.
++ By unit propogation on $\mathsf{RAIN}$ we get $\Set{\Set{}}$, which shows that
+the set is unsatisfiable.
 
 **Exercise 1(c)**
 
-+ CNF formula: $(\neg\text{RAIN}\land\neg\text{RAIN})\land(\text{RAIN}\lor\neg\text{BIKE})$
-+ CNF set: $\{\{\neg\text{RAIN}\},\{\text{RAIN},\neg\text{BIKE}\}\}$
-+ By pure literal elimination on $\neg\mathsf{BIKE}$ we get $\{\{\neg\text{RAIN}\}\}$ and $\nu(\mathsf{BIKE})=0$.
-+ By pure literal elimination on $\neg\mathsf{RAIN}$ we get $\{\}$ and $\nu(\mathsf{BIKE})=0$ and $\nu(\mathsf{RAIN})=0$.
++ CNF formula:
+$(\neg\text{RAIN}\land\neg\text{RAIN})\land(\text{RAIN}\lor\neg\text{BIKE})$
++ CNF set: $\Set{\Set{\neg\text{RAIN}},\Set{\text{RAIN},\neg\text{BIKE}}}$
++ By pure literal elimination on $\neg\mathsf{BIKE}$ we get
+$\Set{\Set{\neg\text{RAIN}}}$ and $\nu(\mathsf{BIKE})=0$.
++ By pure literal elimination on $\neg\mathsf{RAIN}$ we get $\Set{}$ and
+$\nu(\mathsf{BIKE})=0$ and $\nu(\mathsf{RAIN})=0$.
 + This valuation does satisfy the CNF formula.
-
 
 **Exercise 1(d)**
 
-+ CNF formula: $((\text{RAIN}\lor\text{BIKE})\land(\text{RAIN}\lor\text{SUN}))\land(\neg\text{RAIN}\land\neg\text{BIKE})$ 
-+ CNF set: $\{\{\text{RAIN},\text{BIKE}\},\{\text{RAIN},\text{SUN}\},\{\neg\text{RAIN}\},\{\neg\text{BIKE}\}\}$ 
-+ By pure literal elimination on $\mathsf{SUN}$ we get $\{\{\text{RAIN},\text{BIKE}\},\{\neg\text{RAIN}\},\{\neg\text{BIKE}\}\}$  and $\nu(\mathsf{SUN})=1$.
-+ By unit propogation on $\neg\mathsf{BIKE}$ we get $\{\{\text{RAIN}\},\{\neg\text{RAIN}\}\}$ and $\nu(\mathsf{BIKE})=0$ and $\nu(\mathsf{SUN})=1$.
-+ By unit propogation on $\mathsf{RAIN}$ we get $\{\{\}\}$, which shows that the set is unsatisfiable.
++ CNF formula:
+$((\text{RAIN}\lor\text{BIKE})\land(\text{RAIN}\lor\text{SUN}))\land(\neg\text{RAIN}\land\neg\text{BIKE})$ 
++ CNF set:
+$\Set{\Set{\text{RAIN},\text{BIKE}},\Set{\text{RAIN},\text{SUN}},\Set{\neg\text{RAIN}},\Set{\neg\text{BIKE}}}$ 
++ By pure literal elimination on $\mathsf{SUN}$ we get
+$\Set{\Set{\text{RAIN},\text{BIKE}},\Set{\neg\text{RAIN}},\Set{\neg\text{BIKE}}}$  and $\nu(\mathsf{SUN})=1$.
++ By unit propogation on $\neg\mathsf{BIKE}$ we get $\Set{\Set{\text{RAIN}},\Set{\neg\text{RAIN}}}$ and $\nu(\mathsf{BIKE})=0$ and $\nu(\mathsf{SUN})=1$.
++ By unit propogation on $\mathsf{RAIN}$ we get $\Set{\Set{}}$, which shows that the set is unsatisfiable.
 
 # Planning {.solved}
 
@@ -332,7 +343,7 @@ Convert the frames into CNF.
 
 Combine with the setup and goal formulas to get the following set of conditions.
 
-$$\Set{ LL1 } , \Set{ \neg RL1 } , \Set{ \neg LL2 } , \Set{ RL2 } ,$$
+$$\lbrace\Set{ LL1 } , \Set{ \neg RL1 } , \Set{ \neg LL2 } , \Set{ RL2 } ,$$
 
 $$\Set{ \neg LL1 , \neg LS1 , \neg LL2 } , \Set{ LL1 , \neg LS1 , LL2 } , \Set{
 \neg RL1 , \neg RS1 , \neg RL2 } ,$$
@@ -340,21 +351,21 @@ $$\Set{ RL1 , \neg RS1 , RL2 } ,$$
 
 $$\Set{ \neg LL1 , LS1 , LL2 } , \Set{ LL1 , LS1 , \neg LL2 } , \Set{ \neg RL1 ,
 RS1 , RL2 }, $$
-$$\Set{ RL1 , RS1 , \neg RL2 }$$
+$$\Set{ RL1 , RS1 , \neg RL2 }\rbrace$$
 
 <br/>
 
 By unit propogation, first on $LL1$ and then on $RL2$, we get:
 
-$$\Set{ \neg RL1 } , \Set{ \neg LL2 } , \Set{ \neg LS1 , \neg LL2 } , \Set{ \neg
+$$\lbrace\Set{ \neg RL1 } , \Set{ \neg LL2 } , \Set{ \neg LS1 , \neg LL2 } , \Set{ \neg
 RL1 , \neg RS1 } ,$$
-$$\Set{ LS1 , LL2 } , \Set{ RL1 , RS1 }$$
+$$\Set{ LS1 , LL2 } , \Set{ RL1 , RS1 }\rbrace$$
 
 <br/>
 
 By unit propogation, next on $\neg RL1$ and then on $\neg LL2$, we get:
 
-$$\Set{ LS1 } , \Set{ RS1 }$$
+$$\Set{\Set{ LS1 } , \Set{ RS1 }}$$
 
 <br/>
 
