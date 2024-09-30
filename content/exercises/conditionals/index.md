@@ -135,10 +135,10 @@ clauses (and the results of those applications, the results of the results, ...)
 + Outcome:
 
   + If any application of the resolution rule results in an empty clause
-  $\Set{}$, the inference is _in_valid.
+  $\Set{}$, the inference is valid.
 
   + If we arrive at a point where no more applications are possible and no empty
-  clause has been derived, the inference is valid.
+  clause has been derived, the inference is _in_valid.
 
 Use this method to show that the following inference is valid:
 
