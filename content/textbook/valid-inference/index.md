@@ -1,8 +1,6 @@
 ---
 title: Valid Inference
 author: Colin Caret
-date: 09/09/2024
-last_edited: 09/09/2024
 weight: 2
 resources:
   - src: img/probabilities.jpg
@@ -10,6 +8,8 @@ resources:
   - src: img/intersection.jpg
     name: intersection
 params:
+  date: 09/09/2024
+  last_edited: 09/09/2024
   id: txt-val
   math: true
 ---

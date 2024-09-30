@@ -1,13 +1,13 @@
 ---
 title: Formal languages
 author: Johannes Korbmacher
-date: 09/09/2024
-last_edited: 11/09/2024
 weight: 3
 resources:
   - src: img/inferences.png
     name: inferences
 params: 
+  date: 09/09/2024
+  last_edited: 11/09/2024
   id: txt-lang
   math: true
 ---

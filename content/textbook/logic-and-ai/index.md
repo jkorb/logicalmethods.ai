@@ -1,13 +1,13 @@
 ---
 title: Logic and AI
 author: Johannes Korbmacher
-date: 31/08/2024
-last_edited: 01/09/2024
 weight: 1
 resources:
   - src: img/inferences.png
     name: inferences
 params: 
+  date: 31/08/2024        
+  last_edited: 01/09/2024 
   id: txt-laa
   math: true
 ---

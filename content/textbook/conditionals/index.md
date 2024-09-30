@@ -1,10 +1,10 @@
 ---
 title: Logical conditionals
 author: Johannes Korbmacher
-date: 24/09/2024
-last_edited: 24/09/2024
 weight: 6
 params: 
+  date: 24/09/2024
+  last_edited: 24/09/2024
   id: txt-if
   math: true
 ---

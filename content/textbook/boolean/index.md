@@ -1,10 +1,10 @@
 ---
 title: Boolean algebra
 author: Johannes Korbmacher
-date: 13/09/2024
-last_edited: 13/09/2024
 weight: 4
 params: 
+  date: "13/09/2024"
+  last_edited: "13/09/2024"
   id: txt-bool
   math: true
 ---
