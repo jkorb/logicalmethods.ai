@@ -121,5 +121,6 @@ const passwords = {
   "exc-for": "Formal?",
   "exc-bool": "TrueOrFalse",
   "exc-sat": "Icantgetno",
+  "exc-if": "Password",
   // Add more solutionId: password pairs here
 };

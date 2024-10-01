@@ -318,8 +318,19 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
     
       
 </div>
-<div id="equivalences" ><h5 class="">
+<div id="equivalences" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Equivalences
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="equivalencesSolution"
+        onclick="showPasswordModal('equivalencesSolution', 'exc-if')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>For each of the following pairs of formulas, show that they are <em>equivalent</em> in
 the sense that they have the same truth-value under each valuation.</p>
@@ -343,15 +354,98 @@ the sense that they have the same truth-value under each valuation.</p>
 <div id="e" ><h6 class="">e)</h6><p>$A\to (B\to C)$ and $(A\land B)\to C$</p>
 
 </div>
-<div id="boolean-laws" ><h5 class="">
+<div id="equivalencesSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>You can solve these in various ways. Here I provide some different styles of
+solutions.</p>
+<p><strong>a)</strong></p>
+<p>We do this with a truth-table, which goes through all possible values:</p>
+
+
+<img src="https://logicalmethods.ai/exercises/conditionals/img/disjunction.png" class="img-thumbnail"  alt="" >
+
+
+<p><strong>b)</strong></p>
+<p>Also here, truth-tables is a good method:</p>
+
+
+<img src="https://logicalmethods.ai/exercises/conditionals/img/conjunction.png" class="img-thumbnail"  alt="" >
+
+
+<p><strong>c)</strong></p>
+<p>Here we can give a rather simple argument:</p>
+<p>$\nu(A)$ is either 0 or 1. If $\nu(A)=0$, then $\nu(\neg A)=1$. But then $v(\neg
+A\to A)=1\Rightarrow 0=0$. If, instead, $\nu(A)=1$, then $\nu(\neg A)=0$ and
+so $\nu(\neg A\to A)=0\Rightarrow \nu(A)=1$.</p>
+<p><strong>d)</strong></p>
+<p>We do a truth-table:</p>
+
+
+<img src="https://logicalmethods.ai/exercises/conditionals/img/contraposition.png" class="img-thumbnail"  alt="" >
+
+
+<p><strong>e)</strong></p>
+<p>Here we can give a more sophisticated argument:</p>
+<p>The only way in which we can have $\nu(A\to(B\to C))=0$ is if $\nu(A)=1$,
+$\nu(B\to C)=0$. The latter can only be if $\nu(B)=1$ and $\nu(C)=0$. But then,
+$\nu(A\land B)=1$ and $\nu(C)=0$ and so $\nu((A\land B)\to C)=\nu(A\land
+B)\Rightarrow \nu(C)=1\Rightarrow 0=0$.</p>
+<p>Similarly, the only way in which $\nu((A\land B)\to C)=0$ is if $\nu(A\land B)=1$
+and $\nu(C)=0$. But then $\nu(A)=1$ and $\nu(B)=1$, since $\nu(A\land
+B)=\nu(A)\times\nu(B)=1$. But then $\nu(B\to C)=0$ since $\nu(B\to
+C)=\nu(B)\Rightarrow\nu(C)=1\Rightarrow 0$ and so $\nu(A\to (B\to
+C)=\nu(A)\Rightarrow \nu(B\to C)=1\Rightarrow 0=0$.</p>
+<p>So the two formulas are false in the exact same cases, which means in all other
+cases they must both be true.</p>
+<p>Alternatively, you can do an 8-row truth-table:</p>
+
+
+<img src="https://logicalmethods.ai/exercises/conditionals/img/three.png" class="img-thumbnail"  alt="" >
+
+
+
+</div>
+<div id="boolean-laws" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Boolean laws
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="boolean-lawsSolution"
+        onclick="showPasswordModal('boolean-lawsSolution', 'exc-if')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>Formulate the equivalences from Exercise 1 as Boolean laws. For example, a)
 becomes $$x\Rightarrow y=-x+y.$$</p>
 
 </div>
-<div id="validities" ><h5 class="">
+<div id="boolean-lawsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong></p>
+<p>$$x\Rightarrow y=-x+y.$$</p>
+<p><strong>b)</strong></p>
+<p>$$x\Rightarrow y=-(x\times -y)$$</p>
+<p><strong>c)</strong></p>
+<p>$$x=-x\Rightarrow x$$</p>
+<p><strong>d)</strong></p>
+<p>$$x\Rightarrow y=-y\Rightarrow -x$$</p>
+<p><strong>e)</strong></p>
+<p>$$x\Rightarrow(y\Rightarrow z)=(x\times y)\Rightarrow z$$</p>
+
+</div>
+<div id="validities" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Validities
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="validitiesSolution"
+        onclick="showPasswordModal('validitiesSolution', 'exc-if')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>Check the validity of the following inferences using a suitable method
 (DPLL, truth-tables, &hellip;).</p>
@@ -371,8 +465,64 @@ becomes $$x\Rightarrow y=-x+y.$$</p>
 <div id="d-1" class=" homework"><h6 class=" homework">d)</h6><p>$\mathsf{SUN}\to \mathsf{BIKE},\neg\mathsf{SUN}\vDash \neg \mathsf{BIKE}$</p>
 
 </div>
-<div id="horn-clauses" ><h5 class="">
+<div id="validitiesSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>There are many different options, we sample to show the variety:</p>
+<p><strong>a)</strong></p>
+<p>$\mathsf{RAIN}\to \mathsf{CAR}\vDash (\mathsf{RAIN}\land \mathsf{WARM})\to
+\mathsf{CAR}$</p>
+<p>Here we use a semantic argument: Suppose that
+$\nu(\mathsf{RAIN}\to\mathsf{CAR})=1$. The only way in which
+$\nu((\mathsf{RAIN}\land \mathsf{WARM})\to \mathsf{CAR})=0$ is if
+$\nu(\mathsf{RAIN}\land \mathsf{WARM})=1$ and $\nu(\mathsf{CAR})=0$. But if
+$\nu(\mathsf{RAIN}\land \mathsf{WARM})=1$, then $\nu(\mathsf{RAIN})=1$. Since
+$\nu(\mathsf{RAIN}\to\mathsf{CAR})=1$, this means that $\mathsf{CAR}=1$ (since
+otherwise $\nu(\mathsf{RAIN}\to\mathsf{CAR})=0$). So, for
+$\nu((\mathsf{RAIN}\land \mathsf{WARM})\to \mathsf{CAR})=0$ we have to both have
+$\nu(\mathsf{CAR})=1$ and $\nu(\mathsf{CAR})=0$, which is impossible.
+Consequently, $\nu((\mathsf{RAIN}\land \mathsf{WARM})\to \mathsf{CAR})=0$
+is impossible if $\nu(\mathsf{RAIN}\to\mathsf{CAR})=1$.</p>
+<p>This means the inference is valid.</p>
+<p><strong>b)</strong></p>
+<p>Let&rsquo;s do a <em>big</em> truthtable:</p>
+
+
+<img src="https://logicalmethods.ai/exercises/conditionals/img/big-table.png" class="img-thumbnail"  alt="" >
+
+
+<p>Since the relevant conditional is a logical truth, the inference is valid.</p>
+<p><strong>c)</strong></p>
+<p>This inference is _in_valid. We can see this, for example, using a
+truth-table:</p>
+
+
+<img src="https://logicalmethods.ai/exercises/conditionals/img/fallacy-1.png" class="img-thumbnail"  alt="" >
+
+
+<p>As you can see, if you set $\nu(\mathsf{CAR})=1$ and
+$\nu(\mathsf{RAIN})=0$, we have both premises true, but the conclusion false.</p>
+<p><strong>d)</strong></p>
+<p>Also here a truth-table gives a quick answer:</p>
+
+
+<img src="https://logicalmethods.ai/exercises/conditionals/img/fallacy-2.png" class="img-thumbnail"  alt="" >
+
+
+<p>We see that if we set $\mathsf{BIKE}=0$ and $\mathsf{SUN}=0$, the premises
+are true and the conclusion false.</p>
+
+</div>
+<div id="horn-clauses" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Horn clauses
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="horn-clausesSolution"
+        onclick="showPasswordModal('horn-clausesSolution', 'exc-if')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>Remember that a <em>literal</em> is a propositional variable or its negation. A <i class="bi bi-box-arrow-up-right h-6"></i>
 <a href="https://en.wikipedia.org/wiki/Horn_clause" class="link-dark" rel="external" target="_blank">Horn
@@ -397,8 +547,43 @@ in your argument:</p>
 <div id="b-2" ><h6 class="">b)</h6><p>Can every formula equivalently be written as a Horn clause?</p>
 
 </div>
-<div id="resolution" ><h5 class="">
+<div id="horn-clausesSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong></p>
+<p>Pick an arbitrary Horn clause.</p>
+<p>$$\neg p_1\lor\ldots\lor\neg p_n\lor q$$</p>
+<p>This is the boolean algebra truth-conditions:</p>
+<p>$$- p_1 + \ldots + - p_n+q$$</p>
+<p>By DeMorgan principles this is equivalent to:</p>
+<p>$$-(p_1 \times \ldots \times p_n)+q$$</p>
+<p>By conditional laws (from exercise 2) we get:</p>
+<p>$$(p_1 \times \ldots \times p_n)\Rightarrow q$$</p>
+<p>Which is the truth-condition of the following formula:</p>
+<p>$$(p_1 \land \ldots \land p_n)\rightarrow q$$</p>
+<!-- raw HTML omitted -->
+<p><strong>b)</strong></p>
+<p>No. Example: $p\land q$ does not have an equivalent Horn form.</p>
+<p>Consider an arbitrary Horn clause $\neg r_1\lor\neg r_2\lor\ldots\lor s$. Call it $A$. Since $A$ has at most one positive part $s$ by definition, the following thing must happen in all valuations:  $\nu(A)=1$ if and only if $\nu(r_i)=0$ for one of its negative parts or $\nu(s)=1$ for its positive part. This gives us a general idea of the format of truth-conditions for any Horn clause.</p>
+<p>Now, pick a Horn clause $B$ that involves the literals $p$ and $q$ as parts. Could this be equivalent to the conjunction $p\land q$? We will show that it cannot be. There are only three possibilities for the shape of this Horn clause:</p>
+<ol>
+<li>$p$ is a positive part of $B$</li>
+<li>$q$ is a positive part of $B$</li>
+<li>neither $p$ nor $q$ is positive in $B$</li>
+</ol>
+<p>In situation 1. the literal $q$ must be a negative part of $B$, so whenever $\nu(B)=1$, then $\nu(q)=0$. Obviously that means $B$ is not equivalent to $p\land q$. In situation 2. the literal $p$ must be negative in $B$, so whenever $\nu(B)=1$, then $\nu(p)=0$. Obviously that means $B$ is not equivalent to $p\land q$. In situation 3. both $p$ and $q$ would be negative parts of $B$ so we get an even worse result.</p>
+
+</div>
+<div id="resolution" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Resolution
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="resolutionSolution"
+        onclick="showPasswordModal('resolutionSolution', 'exc-if')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>A disjunction of literals, we call a <em>(disjunctive) clause</em>.</p>
 <p>The resolution rule says that if you have two clauses ($l_i,k_j$ are literals)</p>
@@ -477,6 +662,75 @@ for the logical conditional.</p>
 application of the resolution rule to Horn clauses is essentially just an
 application of the transitivity principle.</p>
 <p>What does this have to do with the forward and backward chaining methods?</p>
+
+</div>
+<div id="resolutionSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong></p>
+<p>We want to show that this is valid:</p>
+<p>$$l_1\lor l_2\lor\ldots\lor p ,; \neg p\lor k_1\lor k_2\lor\ldots \vDash l_1\lor l_2\lor\ldots\lor k_1\lor k_2\lor\ldots $$</p>
+<p>To do this, we will think about the premises combined with the negation of the conclusion. This is what the negation of the conclusion looks like.</p>
+<p>$\neg(l_1\lor l_2\lor\ldots\lor k_1\lor k_2\lor\ldots)$</p>
+<p>Convert the negated conclusion into CNF.</p>
+<p>$\neg l_1\land\neg l_2\land\ldots\land\neg k_1\land\neg k_2\land\ldots$</p>
+<p>Together with the premises, this gives us a set of conditions.</p>
+<p>$\Set{ \Set{l_1, l_2,\ldots p },\Set{\neg p, k_1, k_2,\ldots },\Set{\neg l_1 }, \Set{\neg l_2 }, \ldots, \Set{\neg k_1 }, \Set{\neg k_2 }, \ldots, $</p>
+<p>By unit propogation on $\neg l_1$ we get:</p>
+<p>$\Set{ \Set{ l_2,\ldots p },\Set{ \neg p, k_1, k_2,\ldots },\Set{ \neg l_2 }, \ldots, \Set{ \neg k_1 }, \Set{ \neg k_2 }, \ldots, }$</p>
+<p>Continue unit propogation with each $\neg l_i$ to get:</p>
+<p>$\Set{ \Set{ p }, \Set{ \neg p, k_1, k_2,\ldots }, \Set{ \neg k_1 }, \Set{ \neg k_2 }, \ldots,  }$</p>
+<p>By unit propogation on $\neg k_1$ we get:</p>
+<p>$\Set{ \Set{ p }, \Set{ \neg p, k_2,\ldots }, \Set{ \neg k_2 }, \ldots, }$</p>
+<p>Continue unit propogation with each $\neg k_j$ to get:</p>
+<p>$\Set{ \Set{ p }, \Set{ \neg p } }$</p>
+<p>A final step of unit propogation on $p$ shows us that the set is unsatisfiable.</p>
+<p>$\Set{ \Set{ } }$</p>
+<p>This means that it is impossible to make the premises and negation of the conclusion true. Which means that the inference is valid.</p>
+<!-- raw HTML omitted -->
+<p><strong>b)</strong></p>
+<p>This inference, called the <em>Disjunctive Syllogism</em> (DS), is just an application of the Resolution Rule. We just showed in part (a) that the Resolution Rule always leads to valid reasoning. So this gives us a new way to see why DS is valid. The reasoning we use for resolution is just like the Splitting rule of the DPLL algorithm.</p>
+<!-- raw HTML omitted -->
+<p><strong>c)</strong></p>
+<p>We take the premises combined with the negation of the conclusion and convert into a single CNF formula:</p>
+<p>$\mathsf{RAIN}\land(\neg\mathsf{RAIN}\lor\neg\mathsf{RAIN})\land(\neg\mathsf{RAIN}\lor\neg\mathsf{SUN})$</p>
+<p>So we have this set of conditions.</p>
+<p>$\Set{ \Set{ \mathsf{RAIN} }, \Set{ \neg\mathsf{RAIN},\neg\mathsf{RAIN} }, \Set{ \neg\mathsf{RAIN},\neg\mathsf{SUN} } }$</p>
+<p>Equivalent to this set of conditions.</p>
+<p>$\Set{ \Set{ \mathsf{RAIN} }, \Set{ \neg\mathsf{RAIN} }, \Set{ \neg\mathsf{RAIN},\neg\mathsf{SUN} } }$</p>
+<p>By applying the Resolution Rule on the first two clauses we get:</p>
+<p>$\Set{  \Set{  }, \Set{ \neg\mathsf{RAIN},\neg\mathsf{SUN} } }$</p>
+<p>Since there is an empty set, this shows that the inference is valid.</p>
+<!-- raw HTML omitted -->
+<p><strong>d)</strong></p>
+<p>The only time we <em>can</em> apply the Resolution Rule to two Horn clauses is when the same literal occurs as a positive part in one Horn clause and a negative part in the other Horn clause. Like the literal $q$ in these two formulas:</p>
+<p>$$\neg p_1\lor\ldots\lor\neg p_n\lor q$$</p>
+<p>$$\neg q\lor\neg r_1\lor\ldots\lor\neg r_m\lor s$$</p>
+<p>When we apply the Resolution Rule we get this:</p>
+<p>$$\neg p_1\lor\ldots\lor\neg p_n\lor\neg r_1\lor\ldots\lor\neg r_m\lor s$$</p>
+<p>Since the original two formulas had only one positive part, and the positive $q$ was eliminated by Resolution, this means that the final formula also has only one positive part. Which means that it still qualifies as a Horn clause.</p>
+<!-- raw HTML omitted -->
+<p><strong>e)</strong>
+We take the premises combined with the negation of the conclusion and convert into a single CNF formula:</p>
+<p>$(\neg\mathsf{RAIN}\lor\mathsf{CAR})\land(\neg\mathsf{CAR}\lor\mathsf{KEYS})\land\mathsf{RAIN}\land\neg\mathsf{KEYS}$</p>
+<p>So we have this set of conditions.</p>
+<p>$\Set{ \Set{ \neg\mathsf{RAIN},\mathsf{CAR} }, \Set{ \neg\mathsf{CAR},\mathsf{KEYS} }, \Set{ \mathsf{RAIN} }, \Set{ \neg\mathsf{KEYS} } }$</p>
+<p>Apply the Resolution Rule on $\mathsf{RAIN}$.</p>
+<p>$\Set{ \Set{ \mathsf{CAR} }, \Set{ \neg\mathsf{CAR},\mathsf{KEYS} }, \Set{ \neg\mathsf{KEYS} } }$</p>
+<p>Apply the Resolution Rule on $\mathsf{CAR}$.</p>
+<p>$\Set{ \Set{ \mathsf{KEYS} }, \Set{ \neg\mathsf{KEYS} } }$</p>
+<p>Apply the Resolution Rule on $\mathsf{KEYS}$.</p>
+<p>$\Set{ \Set{ } }$</p>
+<p>Since there is an empty set, this shows that the inference is valid.</p>
+<!-- raw HTML omitted -->
+<p><strong>f)</strong></p>
+<p>If we have two simply Horn clauses that are eligible for Resolution, they look like this.</p>
+<p>$$\neg p_1\lor\ldots\lor\neg p_n\lor q$$</p>
+<p>$$\neg q\lor\neg r_1\lor\ldots\lor\neg r_m\lor s$$</p>
+<p>These are equivalent to:</p>
+<p>$$(p_1\land\ldots\land p_n)\rightarrow q$$</p>
+<p>$$q\rightarrow((r_1\ldots\land r_m)\rightarrow s)$$</p>
+<p>Generalizing from exercise (5e) we can see how these premises validly imply the formula below, by using the Resolution rule.</p>
+<p>$$(p_1\land\ldots\land p_n)\rightarrow((r_1\ldots\land r_m)\rightarrow s)$$</p>
+<p>Notice this is just an instance of Transitivity, but the result that it gives us is equivalent to the formula we reached in exericse (5d).</p>
+<p>$$\neg p_1\lor\ldots\lor\neg p_n\lor\neg r_1\lor\ldots\lor\neg r_m\lor s$$</p>
 
 </div>
 <div id="discussion" ><h5 class="">
