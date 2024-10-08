@@ -1,5 +1,5 @@
 ---
-title: Proofs
+title: Logical proofs
 author: Johannes Korbmacher
 weight: 7
 params: 
