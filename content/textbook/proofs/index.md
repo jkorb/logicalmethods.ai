@@ -138,7 +138,7 @@ Here's how derivations work in a Hilbert system. We show that $\vdash \mathsf{RA
 
 3. $((\mathsf{RAIN} \to (\mathsf{RAIN} \to \mathsf{RAIN})) \to (\mathsf{RAIN} \to \mathsf{RAIN}))$ 
 
-    (From 1. and 2. by M\mathsf{RAIN}.)
+    (From 1. and 2. by MP.)
 
 4. $(\mathsf{RAIN} \to (\mathsf{RAIN} \to \mathsf{RAIN}))$ 
 
