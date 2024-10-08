@@ -1,0 +1,299 @@
+---
+title: Logical proofs
+author: Johannes Korbmacher
+weight: 7
+params: 
+  id: sli-if
+  license: 'CC-BY-4.0'
+  highlights:
+     - id: "proofs"
+       keyword: "Logical proofs"
+     - id: "hilbert"
+       keyword: "Hilbert systems"
+     - id: "nd"
+       keyword: "Natural deduction"
+     - id: "resolution"
+       keyword: "Resolution-based systems"
+     - id: "metalogic"
+       keyword: "Metalogic (soundness and completeness)"
+     - id: "itp"
+       keyword: "Interactive Theorem Provers"
+     - id: "automated"
+       keyword: "Automated Theorem Prover"
+---
+
+</section>
+<section>
+    {{< img src="img/qr-code.png" class="img-thumbnail" >}}
+    <p><a href="https://forms.gle/JiXXM9eysAZaJMja9" target="_blank" style="font-size:1.5em">https://forms.gle/JiXXM9eysAZaJMja9</a></p>
+  </section>
+<section>
+  <section id="proofs">
+    <dl class="row" >
+      <dd class="col">
+        <i class="bi bi-box-fill text-primary" style="font-size:100px;"></i> 
+        <h1>Logical <span class="text-danger">proofs</span></h1>
+      </dd>
+      <dt class="col"></dt>
+    </dl>
+  </section>
+  <section id="ideas">
+    <h1>Proof systems</h1>
+    <span class="fragment fade-right">Model of step-wise inference:</span>
+    <p class="fragment fade-right">
+      <em>
+        Ada is either in the study or on the Philosopher’s Walk, and if she’s on
+        the Philosopher’s Walk, she’s thinking about mathematics. Ada is not
+        in the study, so she must be thinking about mathematics.
+      </em>
+    </p>
+  </section>
+  <section>
+    <h1>Proofs</h1>
+    <ul>
+      <li class="fragment fade-right">Sequence of formulas, where each is either:</li>
+      <ol>
+        <li class="fragment fade-right">assumption/axiom</li>
+        <li class="fragment fade-right">derived from earlier formulas via an inference rule</li>
+      </ol>
+      <li class="fragment fade-right">Final formula = conclusion.</li>
+    </ul>
+  </section>
+  <section>
+    <h1>Inference rule</h1>
+    $$\begin{array}{ccc} A_1 & \dots  & A_n \\ \hline & C \end{array}$$
+  </section>
+  <section>
+    <span class="fs-2">
+    $$\mathsf{STUDY}\lor\mathsf{WALK},\mathsf{WALK}\to\mathsf{MATH},\neg\mathsf{STUDY}\vdash\mathsf{MATH}$$
+    </span>
+    {{< img src="img/inference1.png" class="img-thumbnail mx-auto d-block my-4" >}}
+  </section>
+</section>
+<section>
+  <section id="proofs">
+    <dl class="row" >
+      <dd class="col">
+        <i class="bi bi-bounding-box-circles text-primary" style="font-size:100px;"></i> 
+        <h1>Proof <span class="text-danger">systems</span></h1>
+      </dd>
+      <dt class="col"></dt>
+    </dl>
+  </section>
+  <section id="hilbert">
+    <h1>Hilbert systems</h1>
+    <ul>
+      <li class="fragment fade-right">Axioms: Basic truths</li>
+      <li class="fragment fade-right">Inference rules: as few as possible</li>
+    </ul>
+  </section>
+  <section>
+    <ol>
+      <li class="fragment fade-right">Axioms:</li>
+      <span class="fragment fade-right fs-2">
+        $$ A\to ( B\to A)$$
+
+        $$( A\to ( B\to C))\to(( A\to B)\to ( A\to C))$$
+
+        $$(\neg  A\to \neg  B)\to ( B\to A)$$
+      </span>
+      <li class="fragment fade-right">Inference rule: 
+      <span class="fragment fade-right fs-2">
+        $$A,A\to B\vdash B$$
+      </span>
+      </li>
+    </ol>
+  </section>
+  <section>
+    <ol class="fs-3">
+      <li class="fragment fade-right"> $((\mathsf{RAIN} \to ((\mathsf{RAIN} \to \mathsf{RAIN}) \to \mathsf{RAIN})) \to ((\mathsf{RAIN} \to (\mathsf{RAIN} \to \mathsf{RAIN})) \to (\mathsf{RAIN} \to \mathsf{RAIN})))$ 
+
+        <p class="fs-2">
+          Axiom 2. with $A=\mathsf{RAIN}, B=(\mathsf{RAIN}\to \mathsf{RAIN}),$ and $C=\mathsf{RAIN}$
+        </p>
+      </li>
+      <li class="fragment fade-right"> $(\mathsf{RAIN} \to ((\mathsf{RAIN} \to \mathsf{RAIN}) \to \mathsf{RAIN}))$ 
+        <p class="fs-2">
+          Axiom 1. with $A=\mathsf{RAIN}$ and $B=(\mathsf{RAIN}\to \mathsf{RAIN})$)
+        </p>
+      </li>
+
+      <li class="fragment fade-right"> $((\mathsf{RAIN} \to (\mathsf{RAIN} \to \mathsf{RAIN})) \to (\mathsf{RAIN} \to \mathsf{RAIN}))$ 
+        <p class="fs-2">
+          From 1. and 2. by MP.
+        </p>
+      </li>
+
+      <li class="fragment fade-right"> $(\mathsf{RAIN} \to (\mathsf{RAIN} \to \mathsf{RAIN}))$ 
+        <p class="fs-2">
+        Axiom 1. with $A=\mathsf{RAIN}$ and $B=\mathsf{RAIN}$.
+        </p>
+      </li>
+
+      <li class="fragment fade-right"> $(\mathsf{RAIN} \to \mathsf{RAIN})$
+
+        <p class="fs-2">
+        From 3. and 4. by MP.
+        </p>
+      </li>
+    </ol>
+  </section>
+  <section>
+    $$( A\land B)\leadsto \neg( A\to\neg B)$$
+    $$( A\lor B)\leadsto(\neg A\to B)$$ 
+    $$( A\leftrightarrow B)\leadsto(( A\to B)\land( B\to A))$$
+  </section>
+  <section>
+    <span class="fs-1">
+    $$\mathsf{STUDY}\lor\mathsf{WALK},\mathsf{WALK}\to\mathsf{MATH},\neg\mathsf{STUDY}\vdash\mathsf{MATH}$$
+    $$\mathsf{STUDY}\lor\mathsf{WALK}\leadsto\neg\mathsf{STUDY}\lor\mathsf{WALK}$$
+    </span>
+    <span class="fs-1 fragment fade-right">
+    $$\leadsto\neg\mathsf{STUDY}\to\mathsf{WALK},\mathsf{WALK}\to\mathsf{MATH},\neg\mathsf{STUDY}\vdash\mathsf{MATH}$$
+    </span>
+    <ol>
+      <li class="fragment fade-right"> $\neg \mathsf{STUDY}\to\mathsf{WALK}$ (Assumption)</li>
+      <li class="fragment fade-right">$\neg \mathsf{STUDY}$ (Assumption)</li>
+      <li class="fragment fade-right">$\mathsf{WALK}$ (1.,2. MP)</li>
+      <li class="fragment fade-right">$\mathsf{WALK}\to\mathsf{MATH}$ (Assumption)</li>
+      <li class="fragment fade-right">$\mathsf{MATH}$ (3.,4. MP)</li>
+    </ol>
+  </section>
+</section>
+<section>
+  <section id="nd">
+    <h1>Natural deduction</h1>
+    <ul>
+      <li class="fragment fade-right">No axioms</li>
+      <li class="fragment fade-right"><em>Only</em> inference rules</li>
+      <li class="fragment fade-right">Try to model "natural" deduction</li>
+    </ul>
+  </section>
+  <section>
+    {{< img src="img/nd.png" class="img-thumbnail" >}}
+  </section>
+  <section>
+    <p>Discharging assumptions: $$\vdash \neg(\mathsf{RAIN}\land\neg\mathsf{RAIN})$$</p>
+    <span class="fragment fade-right">
+      {{< img src="img/non-contradiction.png" class="img-thumbnail" >}}
+    </span>
+  </section>
+  <section>
+    <span class="fs-1">
+    $$\mathsf{STUDY}\lor\mathsf{WALK},\mathsf{WALK}\to\mathsf{MATH},\neg\mathsf{STUDY}\vdash\mathsf{MATH}$$
+    </span>
+    {{< img src="img/inference1-nd.png" class="img-thumbnail" >}}
+  </section>
+  <section id="resolution">
+    <h1>Resolution-based systems</h1>
+    <ul>
+      <li class="fragment fade-right">No axioms</li>
+      <li class="fragment fade-right">One rule</li>
+    </ul>
+  </section>
+  <section class="fs-2">
+    <h1>Resolution rule</h1>
+    <p>$l_{i},k_{j}$ literals:</p>
+    $$\begin{array}{ccc} l_1\lor l_2\lor \dots\lor p & & \neg p\lor k_1\lor
+    k_2\lor\dots  \\ \hline & l_1\lor l_2\lor \dots k_1\lor k_2\lor\dots
+    \end{array}$$
+
+    $$\begin{array}{ccc} p & & \neg p  \\ \hline & \bot \end{array}$$
+  </section>
+  <section>
+    <span class="fs-1">
+      $$\mathsf{STUDY}\lor\mathsf{WALK},\mathsf{WALK}\to\mathsf{MATH},\neg\mathsf{STUDY}\vdash\mathsf{MATH}$$
+      $$\mathsf{WALK}\to\mathsf{MATH}\leadsto\neg\mathsf{WALK}\lor\mathsf{MATH}$$
+    </span>
+      {{< img src="img/resolution.png" class="img-thumbnail" >}}
+  </section>
+  <section>
+    <h1>Problem</h1>
+    $$\mathsf{RAIN}\vDash\mathsf{RAIN}\lor\mathsf{SNOW}?$$
+  </section>
+  <section>
+    <h1>(Re)Solution</h1>
+    $$A_1,A_2,\dots\vdash C\Leftrightarrow $$
+    $$CNF(A_1),CNF(A_2),\dots,CNF(\neg C)\vdash \bot$$
+  </section>
+  <section>
+    $$\mathsf{RAIN}\vdash \mathsf{RAIN}\lor\mathsf{SNOW}\leadsto$$ 
+    $$\mathsf{RAIN},\neg\mathsf{RAIN},\neg\mathsf{SNOW}\vdash\bot$$
+    $$\begin{array}{ccc} \mathsf{RAIN} & & \neg \mathsf{RAIN}  \\ \hline & \bot \end{array}$$
+  </section>
+</section>
+<section>
+  <section id="proofs">
+    <dl class="row" >
+      <dd class="col">
+        <i class="bi bi-database-fill-gear text-primary" style="font-size:100px;"></i> 
+        <h1>Applications</h1>
+      </dd>
+      <dt class="col"></dt>
+    </dl>
+  </section>
+  <section id="metalogic">
+    <h1>Metalogic</h1>
+    <ul>
+      <li class="fragment fade-right">Soundness: All derivable inferences are valid</li>
+      <li class="fragment fade-right">Completeness: All valid inferences are derivable</li>
+      <li class="fragment fade-right">Soundness and completeness: $$P_1,P_2,\dots\vDash C\ \Leftrightarrow \ P_1,P_2,\dots\vdash C$$</li>
+      <li class="fragment fade-right">Computationally tractable model of valid inference</li>
+    </ul>
+  </section>
+  <section id="itp">
+    <h1>Proof verification</h1>
+    <ul>
+      <li class="fragment fade-right">Interactive theorem prover (ITP): program that checks inferences in formal language</li>
+      <li class="fragment fade-right">Distribution of epistemic burden.</li>
+    </ul>
+  </section>
+  <section>
+    {{< img src="img/lean.png" class="img-thumbnail mx-auto d-block my-4" >}}
+  </section>
+  <section>
+    <h1>Example</h1>
+    <pre tabindex="0"><code class="text-warning">
+      variable {p : Prop}
+      variable {q : Prop}
+      variable {r : Prop}
+      open Classical
+      
+      theorem hilbert_1 : p → (q → p) := by
+        intro h
+        intro _
+        exact h
+      
+      theorem hilbert_2: (p → (q → r))→ ((p → q) → (p → r)) := by
+        intros h1 h2 hp
+        apply h1 hp
+        apply h2
+        assumption
+      
+      theorem hilbert_3 : (¬p → ¬q) → (q → p) := by
+        intros h hq
+        by_cases hp : p
+        · -- Case when p is true
+          exact hp
+        · -- Case when p is false (¬p)
+          have hnq := h hp
+          contradiction
+      
+      #print hilbert_1
+      #print hilbert_2
+      #print hilbert_3
+      </code></pre>
+    <a href="https://live.lean-lang.org/" target="_blank"><i class="bi bi-link-45deg"></i> Lean 4 Life</a>
+  </section>
+  <section id="automated">
+    <h1>Automated theorem proving</h1>
+    <ul>
+      <li class="fragment fade-right">Automating mathematical reasoning.</li>
+      <li class="fragment fade-right">Teach neural networks to use ITPs.</li>
+      <li class="fragment fade-right">Very active area of research.</li>
+    </ul>
+  </section>
+</section>
+<section>
+  <h1>Thanks<span class="text-danger">!</span></h1>
+</section>
