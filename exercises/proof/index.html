@@ -1,0 +1,666 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <title>logicalmethods.ai &ndash; Logical proofs </title>
+    <link rel="icon" type="image/x-icon" href="https://logicalmethods.ai/favicon.ico"></link>
+    <link href="https://logicalmethods.ai/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"></link>
+    <link rel="stylesheet" href="https://logicalmethods.ai/icons/font/bootstrap-icons.min.css"></link>
+    <link rel="stylesheet" href="https://logicalmethods.ai/css/layout.css"></link>
+    
+<link rel="stylesheet" href="https://logicalmethods.ai/css/exercises.css"></link>
+
+    <style>
+      
+      
+    </style>
+    
+      <link rel="stylesheet" href="https://logicalmethods.ai/katex/katex.min.css">
+<script defer src="https://logicalmethods.ai/katex/katex.min.js"></script>
+<script defer src="https://logicalmethods.ai/katex/contrib/auto-render.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},     
+        {left: '$', right: '$', display: false},     
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '\\(', right: '\\)', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
+    
+  </head>
+  <body class="bg-black d-flex flex-column m-0 p-0">
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas-nav" aria-labelledby="offcanvas-navLabel" data-bs-theme="dark">
+  <div class="offcanvas-header">
+    <div class="h5 offcanvas-title" id="offcanvas-navLabel">
+      Browse course
+    </div>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  
+  <div class="offcanvas-body">
+    <ul class="navbar-nav"><li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/textbook/"><i class="bi bi-book"></i> &nbsp;&nbsp; Textbook</a>
+          </div>
+          <button 
+            class="btn btn-sm btn-dark" 
+            href="/textbook/"
+            id="navbarSectiontxt-home" data-bs-toggle="collapse"
+            data-bs-target="#collapsetxt-home"  
+            aria-expanded="aria-expanded=false"
+            aria-controls="collapsetxt-home">
+            <i class="bi bi-caret-left-fill toggle-icon"></i>
+          </button>
+        </div>
+        <div class="collapse " id="collapsetxt-home">
+          <ul class="list-unstyled ms-3">
+            <li>
+              <a class="dropdown-item " href="/textbook/logic-and-ai/">1. Logic and AI</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/textbook/valid-inference/">2. Valid Inference</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/textbook/formal-languages/">3. Formal languages</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/textbook/boolean/">4. Boolean algebra</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/textbook/sat/">5. Boolean satisfiability</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/textbook/conditionals/">6. Logical conditionals</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/textbook/proofs/">7. Logical proofs</a>
+            </li>
+            </ul>
+        </div>
+        
+      </li>
+      <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/slides/"><i class="bi bi-rocket-takeoff-fill"></i> &nbsp;&nbsp; Slides</a>
+          </div>
+          <button 
+            class="btn btn-sm btn-dark" 
+            href="/slides/"
+            id="navbarSectionsli-home" data-bs-toggle="collapse"
+            data-bs-target="#collapsesli-home"  
+            aria-expanded="aria-expanded=false"
+            aria-controls="collapsesli-home">
+            <i class="bi bi-caret-left-fill toggle-icon"></i>
+          </button>
+        </div>
+        <div class="collapse " id="collapsesli-home">
+          <ul class="list-unstyled ms-3">
+            <li>
+              <a class="dropdown-item " href="/slides/logic-and-ai/">1. Logic and AI</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/slides/valid-inference/">2. Valid inference</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/slides/formal-languages/">3. Formal languages</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/slides/boolean/">4. Boolean algebra</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/slides/sat/">5. Boolean satisfiability</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/slides/conditionals/">6. Logical conditionals</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/slides/proof/">7. Logical proofs</a>
+            </li>
+            </ul>
+        </div>
+        
+      </li>
+      <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link fw-bold active" href="/exercises/"><i class="bi-gear-fill"></i> &nbsp;&nbsp; Exercises</a>
+          </div>
+          <button 
+            class="btn btn-sm btn-dark" 
+            href="/exercises/"
+            id="navbarSectionexe-home" data-bs-toggle="collapse"
+            data-bs-target="#collapseexe-home"  
+            aria-expanded="true"
+            aria-controls="collapseexe-home">
+            <i class="bi bi-caret-left-fill toggle-icon"></i>
+          </button>
+        </div>
+        <div class="collapse show" id="collapseexe-home">
+          <ul class="list-unstyled ms-3">
+            <li>
+              <a class="dropdown-item " href="/exercises/logic-and-ai/">1. Logic and AI</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/exercises/valid-inference/">2. Valid inference</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/exercises/formal-languages/">3. Formal languages</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/exercises/boolean/">4. Boolean algebra</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/exercises/sat/">5. Boolean satisfiability</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/exercises/conditionals/">6. Logical conditionals</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item fw-bold active" href="/exercises/proof/">7. Logical proofs</a>
+            </li>
+            </ul>
+        </div>
+        
+      </li>
+      <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/about/"><i class="bi-file-person-fill"></i> &nbsp;&nbsp; About</a>
+          </div>
+      </li>
+      <hr>
+      
+    </ul>
+  </div>
+</div>
+
+    <header class="align-self-center d-flex flex-column m-0 mb-md-1 p-0" data-bs-theme="dark">
+      <nav class="navbar bg-dark shadow" data-bs-theme="dark" aria-label="header-navbar">
+  <div class="container-sm align-self-center px-3">
+    <a class="navbar-brand fs-6" href="https://logicalmethods.ai/"><span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+<i class="bi bi-caret-right-fill"></i>logicalmethods.ai</a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-nav" aria-controls="offcanvas-nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+
+      
+      
+    </header>
+    
+    <main class="align-self-center d-flex flex-column flex-fill bg-light m-md-1 p-0" data-bs-theme="light">
+      
+  <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="passwordModalLabel">Enter Password</h6>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="password" id="passwordInput" class="form-control" placeholder="Password">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="passwordSubmitButton">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <ul class="navbar-nav flex-row justify-content-between mt-2">
+  
+  <li class="nav-item">
+    <a href="/exercises/conditionals/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-chevron-left"></i>
+    </a>
+    
+  </li>
+  <li class="nav-item">
+    <a href="/exercises/" class="btn " tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-house-up"></i>
+    </a>
+  </li>
+  <li class="nav-item">
+    
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-chevron-right"></i>
+    </a>
+    
+  </li>
+</ul>
+
+  <div class="container text-center">
+  <h3>
+    Tutorial 7. Logical proofs
+  </h3>
+  <em>Exercise sheet</em>
+</div>
+
+
+
+
+  
+   
+
+
+
+<div class="modal fade" id="info" tabindex="-1" aria-labelledby="InfoLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="infolabel">Info</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-start">
+          <p>On this page, you can find the exercise sheets for the work groups.</p>
+<p>Each section has a set of exercises that you&rsquo;ll go through with your TA in the
+session.</p>
+<p>Some exercises are marked as homework, they are due at the beginning of the
+next session.</p>
+<p>You&rsquo;ll receive constructive feedback from your TA on your work.</p>
+<p>You can also ask your TA for suggestions and advice.</p>
+<p>You <strong>must</strong> show your work in order to get tips, meaning that if you just
+say &ldquo;i don&rsquo;t know&rdquo;. Try by yourself first and explain <em>what</em> you don&rsquo;t get.</p>
+<p>The exercises marked with
+<i class="bi bi-house-gear-fill text-danger">
+</i>
+
+are homework questions.</p>
+<p>The questions marked with a
+<i class="bi bi-lightbulb-fill">
+</i>
+
+have solutions available online. The solutions are
+password protected and you&rsquo;ll receive the password in the work groups.</p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Got it!</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container p-2 text-center">
+  <button type="button" class="btn btn-primary shadow" data-bs-toggle="modal" data-bs-target="#info">
+    <i class="bi bi-info-circle"></i>
+  </button>
+</div>
+
+
+
+
+
+
+<hr>
+<div class="container exercises" style="max-width: 720px">
+  <div class="container-fluid m-0 p-0">
+    
+    
+      
+</div>
+<div id="hilbert-systems" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Hilbert systems
+    </div>
+</h5><p>Provide derivations in our Hilbert system for the following provability claims:</p>
+
+</div>
+<div id="a-easier" ><h6 class="">a) Easier</h6><ol>
+<li>$\neg p\to (p\to p)$</li>
+<li>$\vdash q\to (p\lor q)$</li>
+<li>$p\to q,q\to r\vdash p\to r$</li>
+</ol>
+
+</div>
+<div id="b-harder" ><h6 class="">b) Harder</h6><ol>
+<li>$\vdash \neg\neg p\to p$</li>
+<li>$\vdash p\to (p\lor q)$</li>
+<li>$\vdash (p\land q)\to p$</li>
+</ol>
+<p><em>Hint</em>: It&rsquo;s generally advisable to derive auxiliary laws along the way. You may
+always use claims proved earlier, such as $\vdash p\to p$ in a derivation.</p>
+<p><em>Advice</em>: These can be really hard, but perseverance is the key. If you can&rsquo;t
+get them all, don&rsquo;t worry. We won&rsquo;t test your expertise with the Hilbert system.</p>
+
+</div>
+<div id="natural-deduction-systems" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Natural deduction systems
+    </div>
+</h5><p>Provide derivations in our natural system for the following provability claims:</p>
+
+</div>
+<div id="a-easier-1" class=" homework"><h6 class=" homework">a) Easier</h6><p>Only 3.,5., and  6. as homework.</p>
+<ol>
+<li>$p\vdash p\lor (p\land q)$</li>
+<li>$p\lor (p\land q)\vdash p$</li>
+<li>$p\lor q\vdash q\lor p$</li>
+<li>$p\land q\vdash q\land p$</li>
+<li>$\neg p,p\lor q\vdash q$</li>
+<li>$\neg p\lor \neg q\vdash \neg(p\land q)$</li>
+</ol>
+
+</div>
+<div id="b-harder-1" ><h6 class="">b) Harder</h6><ol>
+<li>$\vdash p\lor\neg p$</li>
+<li>$p\to q\vdash \neg p\lor q$</li>
+<li>$\neg(p\land q)\vdash \neg p\lor\neg q$</li>
+</ol>
+
+</div>
+<div id="lean" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Lean
+    </div>
+</h5><p>For this exercise, you can use the live Lean 4 environment, which is available
+onlien <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://live.lean-lang.org/" class="link-dark" rel="external" target="_blank">here</a>
+.</p>
+<p>Lean is a full fledged programming language, so we can&rsquo;t reasonably learn it
+completely in just one session. What I&rsquo;d like you to do, though is to experiment
+a bit with it. If you want to learn more and have some time, you can read more
+details in <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://leanprover.github.io/theorem_proving_in_lean4/title_page.html" class="link-dark" rel="external" target="_blank">this fantastic
+book</a>
+,
+especially <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://leanprover.github.io/theorem_proving_in_lean4/propositions_and_proofs.html" class="link-dark" rel="external" target="_blank">chapter 3</a>
+ and <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://leanprover.github.io/theorem_proving_in_lean4/tactics.html" class="link-dark" rel="external" target="_blank">chapter 5</a>
+.</p>
+<p>Before we begin a bit of explanation. In the following, we&rsquo;ll provide
+copy-paste-able code that you can run directly in the environment.</p>
+<p>Here is the first snippet, which declares $p,q,r$ as variables for propositions:</p>
+
+
+
+
+
+
+<hr>
+<a class="btn btn-sm btn-link link-dark link-underline-opacity-0" href="#4e5b225308c09653a3b7caa5a6276a53539b0501a75677adc955f131e9389d46" type="button" data-bs-toggle="collapse" data-bs-target="#4e5b225308c09653a3b7caa5a6276a53539b0501a75677adc955f131e9389d46" aria-expanded="false" aria-controls="4e5b225308c09653a3b7caa5a6276a53539b0501a75677adc955f131e9389d46" >
+  $\mathsf{L}\exists\forall \mathsf{N}$  snippet (click to expand) <i class="bi bi-chevron-left toggle-icon"></i>
+</a>
+<div id="4e5b225308c09653a3b7caa5a6276a53539b0501a75677adc955f131e9389d46" class="collapse bg-black rounded m-2 p-2 " style="position:relative;">
+  <button class="btn btn-primary shadow" style="position:absolute; top:10px;right:10px" onclick="copyContent('4e5b225308c09653a3b7caa5a6276a53539b0501a75677adc955f131e9389d46-inner')"><i class="bi bi-clipboard"></i> Copy!</button>
+  <pre><code class="text-white" id="4e5b225308c09653a3b7caa5a6276a53539b0501a75677adc955f131e9389d46-inner">
+variable {p : Prop}
+variable {q : Prop}
+variable {r : Prop}
+</code></pre>
+</div>
+<hr>
+
+<p>This should be at the beginning of any piece of code you run from below.</p>
+<p>Lean has several <em>modes</em>. We will only use the so-called &ldquo;tactic&rdquo; mode. It&rsquo;s a
+simplified version of Lean that makes Lean-proofs work more like natural
+deduction proofs.</p>
+<p>This is easiest shown with an example. Consider the following natural deduction
+proof showing that</p>
+<p>$$\vdash p\to p\land (p\lor q)$$</p>
+<p>which is known as an absorption law:</p>
+
+
+<img src="https://logicalmethods.ai/exercises/proof/img/nd-absorption.png" class="img-thumbnail"  alt="" >
+
+
+<p>Effectively, we assume $p$ (twice) for $\to I$ and then we derive $p\lor q$ from
+one assumption via $\lor I$ and then from this and the second assumption that
+$p$ that $p\land (p\lor q)$ via $\land I$.</p>
+<p>Here&rsquo;s how this proof in Lean:</p>
+
+
+
+
+
+
+<hr>
+<a class="btn btn-sm btn-link link-dark link-underline-opacity-0" href="#4c2101b9c47e1de4c1ebf085dcd2ba1e76af6ecfb865bc82de9774236a93fc18" type="button" data-bs-toggle="collapse" data-bs-target="#4c2101b9c47e1de4c1ebf085dcd2ba1e76af6ecfb865bc82de9774236a93fc18" aria-expanded="false" aria-controls="4c2101b9c47e1de4c1ebf085dcd2ba1e76af6ecfb865bc82de9774236a93fc18" >
+  $\mathsf{L}\exists\forall \mathsf{N}$  snippet (click to expand) <i class="bi bi-chevron-left toggle-icon"></i>
+</a>
+<div id="4c2101b9c47e1de4c1ebf085dcd2ba1e76af6ecfb865bc82de9774236a93fc18" class="collapse bg-black rounded m-2 p-2 " style="position:relative;">
+  <button class="btn btn-primary shadow" style="position:absolute; top:10px;right:10px" onclick="copyContent('4c2101b9c47e1de4c1ebf085dcd2ba1e76af6ecfb865bc82de9774236a93fc18-inner')"><i class="bi bi-clipboard"></i> Copy!</button>
+  <pre><code class="text-white" id="4c2101b9c47e1de4c1ebf085dcd2ba1e76af6ecfb865bc82de9774236a93fc18-inner">
+theorem absorption_conj : p → (p ∧ (p ∨ q)) := by
+  intro hypothesis_p -- Hypothesis for conditional proof
+  apply And.intro -- When this completes we have proven (p ∧ (p ∨ q))
+  exact hypothesis_p -- This is (trivial proof of) p
+  apply Or.inl hypothesis_p -- Here we prove (p ∨ q)
+</code></pre>
+</div>
+<hr>
+
+<p>We first declare that we&rsquo;re proving a <code>theorem</code> and we call it
+<code>absorption_conj</code>. Then comes the statement of the theorem. To obtain
+$\to,\land,\lor$ in Lean, you can write <code>\to</code>, <code>\and</code>, <code>\or</code>,
+respectively.</p>
+<p>We then apply the tactics:</p>
+<ul>
+<li>
+<p><code>intro</code> introduces an assumption for conditional proof ($\to I$), and we
+call it <code>hypothesis_p</code>.</p>
+</li>
+<li>
+<p><code>And.intro</code> is essentially $\land I$.  <code>apply And.intro</code> applies the
+rule to the next two complete proofs.</p>
+</li>
+<li>
+<p><code>exact hypothesis_p</code> means to precisely apply the hypothesis that $p$,
+which is the first input for the <code>And.intro</code>.</p>
+</li>
+<li>
+<p><code>Or.inl</code> is the rule $p\vdash p\lor q$ and <code>Or.inr</code> the rule $q\vdash
+p\lor q$. Here we apply the rule to the assumption that $p$
+<code>hypothesis_p</code>, which gives us what we need, viz. $p\lor q$.</p>
+</li>
+</ul>
+<p>This completes our proof. The result should look something like this in your
+browser:</p>
+
+
+<img src="https://logicalmethods.ai/exercises/proof/img/lean-absorption.png" class="img-thumbnail"  alt="" >
+
+
+<p>No errors means we&rsquo;re good!</p>
+<p>One more example for an important concept:</p>
+
+
+
+
+
+
+<hr>
+<a class="btn btn-sm btn-link link-dark link-underline-opacity-0" href="#4e286f087777e7f3d7ddd1fb2328608b3e480d5c137cfc74a513d9e11a883eef" type="button" data-bs-toggle="collapse" data-bs-target="#4e286f087777e7f3d7ddd1fb2328608b3e480d5c137cfc74a513d9e11a883eef" aria-expanded="false" aria-controls="4e286f087777e7f3d7ddd1fb2328608b3e480d5c137cfc74a513d9e11a883eef" >
+  $\mathsf{L}\exists\forall \mathsf{N}$  snippet (click to expand) <i class="bi bi-chevron-left toggle-icon"></i>
+</a>
+<div id="4e286f087777e7f3d7ddd1fb2328608b3e480d5c137cfc74a513d9e11a883eef" class="collapse bg-black rounded m-2 p-2 " style="position:relative;">
+  <button class="btn btn-primary shadow" style="position:absolute; top:10px;right:10px" onclick="copyContent('4e286f087777e7f3d7ddd1fb2328608b3e480d5c137cfc74a513d9e11a883eef-inner')"><i class="bi bi-clipboard"></i> Copy!</button>
+  <pre><code class="text-white" id="4e286f087777e7f3d7ddd1fb2328608b3e480d5c137cfc74a513d9e11a883eef-inner">
+theorem commutativity_or : (p ∨ q) → (q ∨ p) := by
+  intro hypothesis_pORq
+  apply Or.elim hypothesis_pORq
+  · intro hypothesis_p
+    apply Or.inr hypothesis_p
+  · intro hypothesis_q
+    apply Or.inl hypothesis_q
+</code></pre>
+</div>
+<hr>
+
+<p>This is the following natural deduction proof:</p>
+
+
+<img src="https://logicalmethods.ai/exercises/proof/img/commutativity.png" class="img-thumbnail"  alt="" >
+
+
+<p>The $\bullet$ mark the two sub-proofs for the $\lor E$, where we derive $q\lor
+p$ from the two assumptions $p$ and $q$. Note that each proof after
+<code>Or.elim</code> is a conditional proof: we first show that $p\to q\lor p$ and then
+we show that $q\to q\lor p$. This allows us to infer $q\lor p$ from $p\lor q$.
+You can write the bullet points in Lean as <code>\.</code>.</p>
+<p>Let&rsquo;s see if this is enough. It&rsquo;s your turn:</p>
+<p>The basic tactics are:</p>
+<ul>
+<li><code>intro</code> (followed by hypothesis name)</li>
+<li><code>And.intro</code> (followed by two proofs for the conjuncts)</li>
+<li><code>And.left</code> (infers the left conjunct from the conjunction)</li>
+<li><code>And.right</code> (infers the right conjunct from the conjunction)</li>
+<li><code>Or.inl</code> (infers the disjunction from the left disjunct)</li>
+<li><code>Or.inr</code> (infers the disjunction from the right disjunct)</li>
+<li><code>Or.elim</code> (disjunction elimination is followed by two conditional proofs,
+one for each disjunct)</li>
+</ul>
+
+</div>
+<div id="a" ><h6 class="">a)</h6><p>Translate the following LEAN proof into natural deduction:</p>
+
+
+
+
+
+
+<hr>
+<a class="btn btn-sm btn-link link-dark link-underline-opacity-0" href="#37ae1a67245be1e723b8fb91150ca0709559eb7b8951b9c655e4d232791db9a7" type="button" data-bs-toggle="collapse" data-bs-target="#37ae1a67245be1e723b8fb91150ca0709559eb7b8951b9c655e4d232791db9a7" aria-expanded="false" aria-controls="37ae1a67245be1e723b8fb91150ca0709559eb7b8951b9c655e4d232791db9a7" >
+  $\mathsf{L}\exists\forall \mathsf{N}$  snippet (click to expand) <i class="bi bi-chevron-left toggle-icon"></i>
+</a>
+<div id="37ae1a67245be1e723b8fb91150ca0709559eb7b8951b9c655e4d232791db9a7" class="collapse bg-black rounded m-2 p-2 " style="position:relative;">
+  <button class="btn btn-primary shadow" style="position:absolute; top:10px;right:10px" onclick="copyContent('37ae1a67245be1e723b8fb91150ca0709559eb7b8951b9c655e4d232791db9a7-inner')"><i class="bi bi-clipboard"></i> Copy!</button>
+  <pre><code class="text-white" id="37ae1a67245be1e723b8fb91150ca0709559eb7b8951b9c655e4d232791db9a7-inner">
+theorem some_law : (p ∧ q) → (p ∨ q) := by
+  intro h
+  apply Or.inl
+  exact And.left h
+</code></pre>
+</div>
+<hr>
+
+
+</div>
+<div id="b" ><h6 class="">b)</h6><p>Which tactics should be used where I wrote <code>???</code>?</p>
+
+
+
+
+
+
+<hr>
+<a class="btn btn-sm btn-link link-dark link-underline-opacity-0" href="#63fa9c77f1d78a58e17e4b091d001e4f80ac0f6e1c784dbfb09a9d143ca9b9f2" type="button" data-bs-toggle="collapse" data-bs-target="#63fa9c77f1d78a58e17e4b091d001e4f80ac0f6e1c784dbfb09a9d143ca9b9f2" aria-expanded="false" aria-controls="63fa9c77f1d78a58e17e4b091d001e4f80ac0f6e1c784dbfb09a9d143ca9b9f2" >
+  $\mathsf{L}\exists\forall \mathsf{N}$  snippet (click to expand) <i class="bi bi-chevron-left toggle-icon"></i>
+</a>
+<div id="63fa9c77f1d78a58e17e4b091d001e4f80ac0f6e1c784dbfb09a9d143ca9b9f2" class="collapse bg-black rounded m-2 p-2 " style="position:relative;">
+  <button class="btn btn-primary shadow" style="position:absolute; top:10px;right:10px" onclick="copyContent('63fa9c77f1d78a58e17e4b091d001e4f80ac0f6e1c784dbfb09a9d143ca9b9f2-inner')"><i class="bi bi-clipboard"></i> Copy!</button>
+  <pre><code class="text-white" id="63fa9c77f1d78a58e17e4b091d001e4f80ac0f6e1c784dbfb09a9d143ca9b9f2-inner">
+example (p q r : Prop) : p ∧ (q ∨ r) → (p ∧ q) ∨ (p ∧ r) := by
+  ??? h
+  apply Or.elim (And.right h)
+  . intro hq
+    apply Or.inl
+    apply And.intro
+    . exact ??? h
+    . exact hq
+  . intro hr
+    apply Or.inr
+    apply ??? 
+    . exact And.left h
+    . exact hr
+</code></pre>
+</div>
+<hr>
+
+
+</div>
+<div id="c" ><h6 class="">c)</h6><p>Give a Lean proof for $\vdash p\lor (p\land q)\to p$ (<code>absorption_disj</code>).</p>
+
+</div>
+<div id="research" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Research
+    </div>
+</h5><p>Are the basic tactics enough to prove classical laws, like $\vdash p\lor \neg
+p$?</p>
+
+</div>
+<div id="discussion" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Discussion
+    </div>
+</h5><p>Recent LLM-technologies, like <code>ChatGTP o1-preview</code>, have impressive
+reasoning capabilities. So, these LLMs can directly produce mathematical proofs.
+Does this show that neural theorem proving using tools like Lean is unnecessary?</p>
+
+  </div>
+</div>
+
+
+<ul class="navbar-nav flex-row justify-content-between mt-auto">
+  
+  <li class="nav-item">
+    <a href="/exercises/conditionals/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-chevron-left"></i>
+    </a>
+    
+  </li>
+  <li class="nav-item">
+    <button class="btn btn-back-to-top">
+    <i class="bi bi-chevron-double-up"></i>
+  </button>
+  </li>
+  <li class="nav-item">
+    
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-chevron-right"></i>
+    </a>
+    
+  </li>
+</ul>
+
+
+
+    </main>
+    <footer class="align-self-center d-flex flex-column mt-md-1 p-0" data-bs-theme="dark">
+      <nav class="navbar bg-dark shadow" data-bs-theme="dark" aria-label="footer-navbar">
+  <div class="container-sm align-self-center px-3">
+    <a class="navbar-brand fs-6" href="/about" aria-label="copyright-link">&copy; 2024 jkorbmacher et al. </a>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link fs-6" href="https://github.com/jkorb/logicalmethods.ai" target="_blank"><i class="bi bi-github"></i></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+ 
+      <script src="https://logicalmethods.ai/js/helpers.js"></script>
+      <script src="https://logicalmethods.ai/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+      
+<script src="https://logicalmethods.ai/js/exercises.js"></script>
+
+    </footer>
+  </body>
+</html>
