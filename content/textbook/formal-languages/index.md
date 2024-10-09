@@ -485,10 +485,11 @@ $$\langle var\rangle ::= x \mid y\mid \dots $$
 $$\langle unop\rangle ::= \neg$$
 $$\langle binop\rangle ::= \land\mid\lor\mid\to\mid\leftrightarrow$$
 $$\langle quant\rangle ::= \forall\mid\exists$$
+$$\langle fu n^n\rangle ::= f^n\mid g^n\mid \dots $$
 $$\langle term\rangle::= \langle const\rangle\mid\langle variable\rangle\mid
-f^n(\langle term\rangle_1,\dots,\langle term\rangle_n)$$
-$$\langle pred\rangle ::= P \mid Q\mid \dots $$
-$$\langle atom\rangle::= P^n(\langle term\rangle_1,\dots\langle term\rangle_n)$$
+\langle fun^n\rangle(\overbrace{\langle term\rangle,\dots,\langle term\rangle}^{n\text{ times}})$$
+$$\langle pred^n\rangle ::= P^n\mid Q^n\mid \dots $$
+$$\langle atom\rangle::= \langle pred^n\rangle(\underbrace{\langle term\rangle,\dots\langle term\rangle}_{n\text{ times}})$$
 $$\langle fml\rangle::=\langle atom\rangle\mid\langle unop\rangle\langle fml\rangle\mid
 (\langle fml\rangle\langle binop\rangle \langle fml\rangle)\mid \langle quant\rangle \langle
 var\rangle\langle fml\rangle$$
