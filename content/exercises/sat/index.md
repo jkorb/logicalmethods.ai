@@ -57,7 +57,7 @@ $$(\mathsf{RAIN}\land \mathsf{SUN}\land \neg\mathsf{SUN})\lor
 
 ## d) 
 
-$$\neg(\mathsf{RAIN}\lor (\mathsf{SUN}\lor \neg\mathsf{SUN})\land
+$$\neg(\mathsf{RAIN}\lor (\mathsf{SUN}\lor \neg\mathsf{SUN}))\land
 \neg((\neg\mathsf{RAIN}\lor \neg\mathsf{SUN})\lor \mathsf{SUN})$$
 
 {{< latex >}}
