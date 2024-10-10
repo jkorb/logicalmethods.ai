@@ -468,14 +468,14 @@ _Sketch of an Explanation_: Assuming that $A \vDash B$ and $A
 any model $\mathcal{M}$ is in $[A]$, the same  model $\mathcal{M}$
 also has to be in $[B]\cap[C]$. We have $[A]\subseteq[B]\cap[C]$.
 
-+ If $A \vDash B$, then $A\land B \vDash C$
++ If $A \vDash C$, then $A\land B \vDash C$
 
 This principle says that if it is valid to infer a conclusion from some
 premises, then it is valid to infer the exact same conclusion after 'adding new
 information' to those premises.
 
 _Sketch of an Explanation_: We showed that $A\land B \vDash A$. So if we
-asume $A \vDash B$ then we have both $[A\land B]\subseteq[A]$ and
+asume $A \vDash C$ then we have both $[A\land B]\subseteq[A]$ and
 $[A]\subseteq[C]$. This implies $[A\land B]\subseteq[C]$ because the
 subset relation is **transitive**: if first set is part of second, and second
 set is part of third, the first one has to be part of the third.
