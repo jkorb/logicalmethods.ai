@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8"></meta>
     <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-    <title>logicalmethods.ai &ndash; Formal languages </title>
+    <title>logicalmethods.ai &ndash; FOL </title>
     <link rel="icon" type="image/x-icon" href="https://logicalmethods.ai/favicon.ico"></link>
     <link href="https://logicalmethods.ai/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"></link>
     <link rel="stylesheet" href="https://logicalmethods.ai/icons/font/bootstrap-icons.min.css"></link>
@@ -178,7 +178,7 @@
             </li>
             
             <li>
-              <a class="dropdown-item fw-bold active" href="/exercises/formal-languages/">3. Formal languages</a>
+              <a class="dropdown-item " href="/exercises/formal-languages/">3. Formal languages</a>
             </li>
             
             <li>
@@ -198,7 +198,7 @@
             </li>
             
             <li>
-              <a class="dropdown-item " href="/exercises/fol/">8. FOL</a>
+              <a class="dropdown-item fw-bold active" href="/exercises/fol/">8. FOL</a>
             </li>
             </ul>
         </div>
@@ -254,7 +254,7 @@
   <ul class="navbar-nav flex-row justify-content-between mt-2">
   
   <li class="nav-item">
-    <a href="/exercises/valid-inference/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="/exercises/proof/" class="btn" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-left"></i>
     </a>
     
@@ -266,7 +266,7 @@
   </li>
   <li class="nav-item">
     
-    <a href="/exercises/boolean/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-right"></i>
     </a>
     
@@ -275,7 +275,7 @@
 
   <div class="container text-center">
   <h3>
-    Tutorial 3. Formal languages
+    Tutorial 8. FOL
   </h3>
   <em>Exercise sheet</em>
 </div>
@@ -342,343 +342,162 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
     
       
 </div>
-<div id="bnfs" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0  p-0 ">BNFs
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="bnfsSolution"
-        onclick="showPasswordModal('bnfsSolution', 'exc-for')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="models" class=" homework"><h5 class="homework">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Models
     </div>
-</h5>
-</div>
-<div id="a" class=" homework"><h6 class=" homework">a)</h6><p>Consider the following propositional language, described informally:</p>
-<div class="container " >
-  <figure>
-    <blockquote class="blockquote fs-6">
-      <p>
-      We have three propositional variables $BLUE$, $GREEN$, and $RED$. Further, we
-have the propositional connectives $\neg,\land, \lor$, which work as usual, i.e.
-$\neg$ can be written in front of a formula to negate it, $\land$ can be written
-between two formulas flanked by parentheses to conjoin them, and similarly for
-$\lor$. Additionally, we have two unary modal operators $\square,\lozenge$, which can be
-written in front of a formula to form a new formula.
-      </p>
-    </blockquote>
-    
-  </figure>
-</div>
-
-<p>Determine the BNF of this language.</p>
-
-</div>
-<div id="b" ><h6 class="">b)</h6><p>Consider the following BNF for FOL. Describe the grammar of this language using
-induction, i.e. using clauses like in 
-
-
-<a href="https://logicalmethods.ai/textbook/formal-languages//#grammar"
-   
-   
-   
-   
-   
-   > Section 3.2.2</a>
-
-:</p>
-<p>$$\langle const\rangle ::= a_1 \mid \dots \mid a_n$$</p>
-<p>$$\qquad\langle var\rangle ::= x_1 \mid \dots \mid x_n$$</p>
-<p>$$\langle unop\rangle ::= \neg$$</p>
-<p>$$\qquad\langle binop\rangle ::=\land\mid\lor\mid\to\mid\leftrightarrow$$</p>
-<p>$$\langle quant\rangle ::= \forall\mid\exists$$</p>
-<p>$$\langle func\rangle^n ::= f_1^n\mid \dots \mid f_{k_n}^n$$</p>
-<p>$$\langle pred\rangle^n ::= P_1^n \mid \dots \mid P_{l_n}^n $$</p>
-<p>for $n=1,2,\dots$. This means that for each number $n=1,2,\dots$ there is a
-certain number $k_n$ of $n$-ary function symbols and another number $l_n$ of
-$n$-ary predicates. So, e.g., if $n=2$, then there are $k_2$-many functions that
-take $2$ arguments.</p>
-<p>$$\langle term\rangle::= \langle const\rangle\mid\langle variable\rangle\mid
-\langle func\rangle^n(\langle term\rangle_1,\dots,\langle term\rangle_n)$$</p>
-<p>$$\langle atom\rangle::= \langle pred\rangle^n(\langle term\rangle_1,\dots\langle term\rangle_n)$$</p>
-<p>$$\langle fml\rangle::=\langle atom\rangle\mid\langle unop\rangle\langle fml\rangle\mid
-(\langle fml\rangle\langle binop\rangle \langle fml\rangle)\mid \langle quant\rangle \langle
-var\rangle\langle fml\rangle$$</p>
-<p><em>Hint</em>: You need to define more than just the set $\mathcal{L}$ by induction.
-You also need to define the <em>auxiliary</em> sets of terms.</p>
-
-</div>
-<div id="c" ><h6 class="">c)</h6><p>Consider the following formulas:</p>
-<p>$$p, q,(\neg p), (p\supseteq q), (p\mid\mid r), ((p\supseteq r)\&amp;\&amp;(\neg q))$$</p>
-<p>Determine a BNF, such that these are well-formed formulas according to the
-corresponding grammar.</p>
-<p><em>Note</em>: There are, of course, many different possible answers. Try to find the
-most &ldquo;natural&rdquo; one.</p>
-
-</div>
-<div id="d" class=" homework"><h6 class=" homework">d)</h6><p>Determine the BNF for the fragment of FOL, subject to the following constraints:</p>
+</h5><p><em>Only 3. and 6. are homework</em></p>
+<p>Suppose we&rsquo;re dealing with a FOL language with:</p>
 <ul>
-<li>
-<p>We only have two unary predicates $RED,ROUND$ and one binary predicate
-$BIGGER$.</p>
-</li>
-<li>
-<p>There are no function symbols or constants.</p>
-</li>
-<li>
-<p>A quantifier ($\forall, \exists)$ can only occur when it&rsquo;s followed by a
-variable $\alpha=x,y,z,\dots$ and then a formula of the form $(P(\alpha)\to B)$,
-where $P$ is a unary predicate.</p>
-</li>
+<li>constants $a,b$</li>
+<li>a unary predicate $P$</li>
+<li>a binary predicate $R$</li>
 </ul>
+<p>Consider the model given by the following diagram:</p>
 
-</div>
-<div id="bnfsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong></p>
-<p>$$ A::= BLUE, GREEN, RED \mid \neg A \mid \Box A \mid \Diamond A \mid (A\land A) \mid (A\lor A) $$</p>
-<p><strong>b)</strong></p>
+
+<img src="https://logicalmethods.ai/exercises/fol/img/model.jpeg" class="img-thumbnail"  alt="" >
+
+
+<p>To be clear:</p>
 <ul>
-<li>If $a_i$ is a constant, then $a_i\in\mathcal{T}$</li>
-<li>If $x_i$ is a variable, then $x_i\in\mathcal{T}$</li>
-<li>If $f^n_i$ is an $n$-place function sign and $t_1,\ldots,t_n\in\mathcal{T}$, then $f^n_i(t_1,\ldots,t_n)\in\mathcal{T}$</li>
-<li>If $P^n_i$ is an $n$-place predicate and $t_1,\ldots,t_n\in\mathcal{T}$, then $P^n_i(t_1,\ldots,t_n)\in\mathcal{L}$</li>
-<li>If $A\in\mathcal{L}$, then $\neg A\in\mathcal{L}$</li>
-<li>If $A,B\in\mathcal{L}$, then $(A\land B), (A\lor B), (A\rightarrow B), (A\leftrightarrow B)\in\mathcal{L}$</li>
-<li>If $A\in\mathcal{L}$ and $x_i$ is a variable, then $\forall x_i A, \exists x_i A\in\mathcal{L}$</li>
+<li>the objects may be called $o_1,o_2,o_3$ (from left to right)</li>
+<li>the denotations $a^\mathcal{M}, b^\mathcal{M}$ are given by the subscripts</li>
+<li>the interpretation of $P^\mathcal{M}$ is given by the red square</li>
+<li>the interpretation of $R^\mathcal{M}$ is given by the arrows (an arrow from
+one node to another means that the first node stands in the relation to the
+other in the model).</li>
 </ul>
-<p><strong>c)</strong></p>
-<p>$$ A::= p,q,r \mid \neg A \mid (A\supseteq A) \mid (A||A) \mid (A\&amp;\&amp;A) $$</p>
-<p><strong>d)</strong></p>
-<p>$$ \langle{var}\rangle ::= x_1 \mid \ldots \mid x_n $$</p>
-<p>$$ \langle{unop}\rangle ::= \neg $$</p>
-<p>$$ \langle{binop}\rangle ::= \land \mid \lor \mid \rightarrow \mid \leftrightarrow $$</p>
-<p>$$ \langle{quant}\rangle ::= \forall \mid \exists $$</p>
-<p>$$ \langle{pred}\rangle^1 ::= RED \mid ROUND $$</p>
-<p>$$ \langle{pred}\rangle^2 ::= BIGGER $$</p>
-<p>$$ \langle{atom}\rangle ::= \langle{pred}\rangle^n(\langle{var}\rangle_1,\ldots,\langle{var}\rangle_n) $$</p>
-<p>$$ \langle{fml}\rangle ::= \langle{atom}\rangle \mid
-\langle{unop}\rangle\langle{fml}\rangle \mid
-(\langle{fml}\rangle\langle{binop}\rangle\langle{fml}\rangle)$$
-$$\mid \langle{quant}\rangle\langle{var}\rangle(\langle{pred}\rangle^1(\langle{var}\rangle)\rightarrow\langle{fml}\rangle) $$</p>
+<p>Determine the truth-value of the following formulas in the model:</p>
+<ol>
+<li>$P(a)\land P(b)$</li>
+<li>$\forall x P(x)$</li>
+<li>$\exists x P(x)\land \exists x\neg P(x)$</li>
+<li>$\forall x\exists yR(x,y)$</li>
+<li>$\forall x\forall y((P(x)\land R(x,y))\to P(y))$</li>
+<li>$\forall x\exists y(R(y,x)\land P(y))$</li>
+</ol>
+<p>Don&rsquo;t just give the truth-value but provide a justification with reference to
+the recursive clauses. Ideally but not necessarily, this would be a
+calculation.</p>
 
 </div>
-<div id="formalization" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Formalization
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="formalizationSolution"
-        onclick="showPasswordModal('formalizationSolution', 'exc-for')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="knowledge-engineering" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Knowledge engineering
     </div>
-</h5>
-</div>
-<div id="a-1" ><h6 class="">a)</h6><p>You arrive at an uninhabited planet and find an old space rover that some
-ancient civilization that still used expert systems for AI used to explore the
-planet. You inspect its knowledge base and find the following code:</p>
+</h5><p><i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://elibrary.pearson.de/book/99.150005/9781292401171" class="link-dark" rel="external" target="_blank">Russel and Norvig</a>
+
+(p. 290) define a 7-step process of <strong>knowledge engineering</strong> in FOL. We&rsquo;ll only
+focus on a part of this, viz.:</p>
 <ul>
 <li>
-<p>$(RAIN\to SEEK\_COVER)$</p>
+<p>Deciding on a suitable vocabulary (constants, function symbols, and
+predicates)</p>
 </li>
 <li>
-<p>$(SUN\to CHARGE\_BATTERIES)$</p>
-</li>
-<li>
-<p>$((\neg CHARGE\_BATTERIES\land SUN)\to REQUEST\_REPAIR)$</p>
-</li>
-<li>
-<p>$(\neg(SUN\lor RAIN)\to INSPECT\_SENSORS)$</p>
-</li>
-<li>
-<p>$(SHUT\_DOWN\leftrightarrow ((REQUEST\_REPAIR\land\neg REPAIR)\lor
-(INSPECT\_SENSORS\land FAULTY)))$</p>
+<p>Encoding general knowledge about the domain.</p>
 </li>
 </ul>
-<p>Explain these rules in natural language.</p>
+<p>We&rsquo;ll practice the idea by doing. Remember our setup from Exercise 4 for Chapter
+5 (the planning exercise):</p>
+<blockquote>
+<p><strong>Setup</strong>: We&rsquo;ve got a robot that sits in front of two switches, one on the
+left and one on the right. Each switch controls a lamp, the left switch
+controls the left lamp and the right switch the right lamp. The switches work
+as follows:</p>
+<ul>
+<li>If a lamp is on and you operate the switch, the lamp turns off.</li>
+<li>If a lamp is off and you operate the switch, the lamp turns on.</li>
+</ul>
+<p>The left lamp is currently on and the right one is off. The robot can operate
+the switches and has the following goal:</p>
+<ul>
+<li>
+<p>Turn the left lamp off and the right one on.</p>
+</li>
+<li>
+<p>We think of the situation as made up of
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/Discrete" class="link-dark" rel="external" target="_blank">discrete</a>
+ time points,
+$1,2,\dots,n$.</p>
+</li>
+</ul>
+<p>We include the  <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/Frame_problem" class="link-dark" rel="external" target="_blank">frame
+conditions</a>
+ to avoid &ldquo;weird&rdquo;
+behavior like lamps switching on/off by themselves:</p>
+<ul>
+<li>
+<p>If a lamp is on at a given time and the corresponding switch is <em>not</em>
+flipped, the light is still on at the ext time.</p>
+</li>
+<li>
+<p>If a lamp is off at a given time and the corresponding switch is <em>not</em>
+flipped, the light is still off at the next time.</p>
+</li>
+</ul>
+</blockquote>
+<p><strong>Choose an appropriate FOL vocabulary and encode our knowledge about the
+domain.</strong></p>
 
 </div>
-<div id="b-1" ><h6 class="">b)</h6><p>Consider the following natural language claims. Translate them into a suitable
-propositional or FOL language:</p>
-<ul>
-<li>
-<p>Alan Turing built the first computer but Ada Lovelace invented the first
-computer algorithm.</p>
-</li>
-<li>
-<p>Only if Alan Turing built the first computer, it&rsquo;s Monday today.</p>
-</li>
-<li>
-<p>Either Alan Turing or Ada Lovelace is your favorite computer scientist.</p>
-</li>
-<li>
-<p>Today is Monday if and only if both yesterday was Tuesday and tomorrow is
-Saturday.</p>
-</li>
-</ul>
-<ul>
-<li>
-<p>A number that is greater than every even number is odd.</p>
-</li>
-<li>
-<p>Every number is greater than at least one number.</p>
-</li>
-<li>
-<p>There is an even number that is smaller than an odd number that is greater
-than another odd number.</p>
-</li>
-<li>
-<p>There is no number that is greater than every number.</p>
-</li>
-<li>
-<p>No number is greater than itself.</p>
-</li>
-<li>
-<p>Every odd number is greater than 0.</p>
-</li>
-<li>
-<p>Every odd number is greater than an even number.</p>
-</li>
-</ul>
-
-</div>
-<div id="c-1" class=" homework"><h6 class=" homework">c)</h6><p>We&rsquo;re thinking of a scenario where there&rsquo;s a factory that makes balls. We want
-to create a robot that ultimately sorts balls by color and material. But we&rsquo;re not
-there yet, for now we need to represent the following knowledge claims about the
-factory to the robot:</p>
-<div class="container " >
-  <figure>
-    <blockquote class="blockquote fs-6">
-      <p>
-      The balls we make have one of three colors, blue, red, and green. The blue balls
-are all made from rubber, but the red and green balls can be made of leather or
-rubber. Rubber balls are cheaper, but the leather balls are more durable than
-the rubber balls.
-      </p>
-    </blockquote>
-    
-  </figure>
-</div>
-
-<p>Devise a suitable FOL-language and represent the knowledge claims in the above
-paragraph into a knowledge base $\mathbf{KB}$.</p>
-
-</div>
-<div id="formalizationSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solutions</h6><p><strong>a)</strong></p>
-<ul>
-<li>If it is rainy, then seek cover.</li>
-<li>If it is sunny, then charge batteries.</li>
-<li>If batteries do not charge and it is sunny, then request repair.</li>
-<li>If it is neither rainy nor sunny, then inspect the sensors.</li>
-<li>Shut down if, and only if, you request repair and don&rsquo;t get it or you inspect the sensors and they are faulty.</li>
-</ul>
-<p><strong>b)</strong></p>
-<ul>
-<li>$BUILT(alan) \land INVENTED(ada)$</li>
-<li>$MON(today) \rightarrow BUILT(alan)$</li>
-<li>$FAVORITE(alan) \lor FAVORITE(ada)$</li>
-<li>$MON(today) \leftrightarrow (TUES(yesterday)\land SAT(tomorrow))$</li>
-<li>$\forall x((NUM(x)\land\forall y(EVEN(y)\rightarrow GREAT(x,y)))\rightarrow ODD(x))$</li>
-<li>$\forall x(NUM(x)\rightarrow\exists yGREATER(x,y))$</li>
-<li>$\exists x((NUM(x) \land EVEN(x)) \land \exists y(SMALL(x,y) \land((NUM(y) \land ODD(y)) \land \exists z(y\neq z \land NUM(z)\land ODD(z) \land GREAT(y,z)))))$</li>
-<li>$\neg\exists x(NUM(x) \land \forall y(NUM(y)\rightarrow GREAT(x,y)))$</li>
-<li>$\neg\exists x(NUM(x) \land GREAT(x,x))$</li>
-<li>$\forall x((NUM(x) \land ODD(x))\rightarrow GREAT(x,0))$</li>
-<li>$\forall x((NUM(x) \land ODD(x))\rightarrow \exists y(NUM(y)\land EVEN(y)\land GREAT(x,y)))$</li>
-</ul>
-<p><strong>c)</strong></p>
-<p>$$ \langle{var}\rangle ::= x \mid y $$</p>
-<p>$$ \langle{unop}\rangle ::= \neg $$</p>
-<p>$$ \langle{binop}\rangle ::= \land \mid \lor \mid \rightarrow \mid \leftrightarrow $$</p>
-<p>$$ \langle{quant}\rangle ::= \forall \mid \exists $$</p>
-<p>$$ \langle{pred}\rangle^1 ::= BLUE \mid RED \mid GREEN \mid LEATHER\mid
-RUBBER$$</p>
-<p>$$ \langle{pred}\rangle^2 ::= CHEAPER \mid DURABLE $$</p>
-<p>$$ \langle{atom}\rangle ::= \langle{pred}\rangle^n(\langle{var}\rangle_1,\ldots,\langle{var}\rangle_n) $$</p>
-<p>$$ \langle{fml}\rangle ::= \langle{atom}\rangle \mid \langle{unop}\rangle\langle{fml}\rangle \mid (\langle{fml}\rangle\langle{binop}\rangle\langle{fml}\rangle) \mid \langle{quant}\rangle\langle{var}\rangle\langle{fml}\rangle $$</p>
-<p>KB entries:</p>
-<ul>
-<li>
-<p>$\forall x(BLUE(x) \lor RED(x) \lor GREEN(x))$</p>
-</li>
-<li>
-<p>$\forall x (BLUE(x) \rightarrow RUBBER(x))$</p>
-</li>
-<li>
-<p>$\forall x (RED(x) \rightarrow (LEATHER(x) \lor RUBBER(x)))$</p>
-</li>
-<li>
-<p>$\forall x (GREEN(x) \rightarrow (LEATHER(x) \lor RUBBER(x)))$</p>
-</li>
-<li>
-<p>$\forall x \forall y ((RUBBER(x) \land LEATHER(y)) \rightarrow CHEAPER(x,y))$</p>
-</li>
-<li>
-<p>$\forall x \forall y ((LEATHER(x) \land RUBBER(y)) \rightarrow DURABLE(x,y))$</p>
-</li>
-</ul>
-
-</div>
-<div id="parsing" ><h5 class="">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Parsing
+<div id="consequence" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Consequence
     </div>
-</h5>
-</div>
-<div id="a-2" class=" homework"><h6 class=" homework">a)</h6><p>Parse the following formulas according to the BNF for propositional logic:</p>
-<ul>
-<li>
-<p>$(\neg p\to \neg p)$</p>
-</li>
-<li>
-<p>$(p\leftrightarrow (\neg r\land q))$</p>
-</li>
-<li>
-<p>$((q\land s)\to (p\lor r))$</p>
-</li>
-<li>
-<p>$(((p\land q)\lor (r\land s))\land \neg ((p\land q\land r\land s)))$</p>
-</li>
-</ul>
+</h5><p>This exercise is about how logical laws follow from Boolean laws. Each of the
+following two parts contains a Boolean law and a corresponding logical law/valid
+inference that follows from it. In both cases: first, (i) provide an argument that
+the Boolean law holds and then, (ii) show that the logical law follows from
+that.</p>
 
 </div>
-<div id="b-2" ><h6 class="">b)</h6><p>Parse the following formulas according to the BNF for FOL:</p>
-<ul>
-<li>
-<p>$ \exists  x S(x,p)$</p>
-</li>
-<li>
-<p>$\forall x (  \exists y G(x,y) \rightarrow   \exists  y S(x,y))$</p>
-</li>
-<li>
-<p>$\lnot  \exists x G(p,x) \wedge   \lnot  \exists  y S(y,p)$</p>
-</li>
-<li>
-<p>$\forall x  (B(x) \rightarrow   \exists y G(y,x))$</p>
-</li>
-</ul>
+<div id="a" ><h6 class="">a)</h6><p>$$\text{Boolean law}: x+(y_1\times y_2\times \dots)=(x+y_1)\times (x+y_2)\times \dots$$</p>
+<p>$$\text{Logical law}: \mathsf{Blue}(a)\lor \forall x \mathsf{Round}(x)\vDash \forall x(\mathsf{Blue}(a) \lor\mathsf{Round}(x))$$</p>
+
+</div>
+<div id="b" class=" homework"><h6 class=" homework">b)</h6><p>$$\text{Boolean law}: x\times (y_1+ y_2+ \dots)=(x\times y_1)+ (x\times y_2)\times \dots$$</p>
+<p>$$\text{Logical law}: \mathsf{Blue}(a)\land \exists x \mathsf{Round}(x)\vDash
+\exists x(\mathsf{Blue}(a)\land \mathsf{Round}(x)) $$</p>
+
+</div>
+<div id="counter-models" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Counter-models
+    </div>
+</h5><p>The following inferences are _in_valid in FOL. For each, describe a
+<strong>counter-model</strong>, where the premises are true but the conclusion is false. You
+may use a diagram as in Exercise 1 to give your model.</p>
+
+</div>
+<div id="a-1" ><h6 class="">a)</h6><p>$$\exists x\mathsf{CanSwim}(x)\land \exists y\mathsf{CanFly}(y)\nvDash \exists x(\mathsf{CanSwim}(x)\land\mathsf{CanFly}(x))$$</p>
+
+</div>
+<div id="b-1" class=" homework"><h6 class=" homework">b)</h6><p>$$\forall x(\mathsf{CanSwim}(x)\lor \mathsf{CanFly}(x))\nvDash \forall x\mathsf{CanSwim}(x)\lor\forall y\mathsf{CanFly}(y)$$</p>
+
+</div>
+<div id="c" ><h6 class="">c)</h6><p>$$\forall x(\mathsf{Tresspasses}(x)\to \mathsf{IsProsecuted}(x))\nvDash \exists x(\mathsf{Tresspasses}(x)\land \mathsf{IsProsecuted}(x)$$</p>
+
+</div>
+<div id="d" ><h6 class="">d)</h6><p>$$\forall x\exists y\mathsf{BiggerThan}(y,x)\nvDash\exists y\forall x \mathsf{BiggerThan}(y,x)$$</p>
+<p><em>Hint</em>: A model can be <strong>infinite</strong>, which you indicate with &ldquo;&hellip;&rdquo; notation.</p>
+<p>In each case, justify your answer, by explaining why the premises are true in the model and the conclusion is false.</p>
 
 </div>
 <div id="research" class=" homework"><h5 class="homework">
     <div class="d-inline-flex flex-row m-0  p-0 ">Research
     </div>
-</h5><p>Can the grammar of <em>every</em> formal language be given by a BNF? If so, explain
-why, if not give a counterexample and explain why it is, indeed, a
-counterexample.</p>
+</h5><p>In class, we said that FOL is <em>very</em> expressive. But there are several
+limitations of FOL, which are things that you <em>can&rsquo;t</em> formalize in FOL.
+Research at least two kinds of claims that FOL can&rsquo;t formalize and explain why.</p>
 
 </div>
 <div id="discussion" ><h5 class="">
     <div class="d-inline-flex flex-row m-0  p-0 ">Discussion
     </div>
-</h5><p>Some AI researchers thought that everything that can be said can be said in FOL.
-Doing some necessary research, do you agree? Support your answer with arguments
-and/or examples.</p>
+</h5><p>When we use modern subsymbolic AIs, such as LLMs, for <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://arxiv.org/abs/2312.11562" class="link-dark" rel="external" target="_blank">reasoning</a>
+, these AIs turn out to be <em>inconsistent</em>: they sometimes say one thing and sometimes the opposite. Does this mean that the problem posed by Gödel&rsquo;s theorem for mathematical AIs doesn&rsquo;t affect subsymbolic AIs?</p>
 
   </div>
 </div>
@@ -687,7 +506,7 @@ and/or examples.</p>
 <ul class="navbar-nav flex-row justify-content-between mt-auto">
   
   <li class="nav-item">
-    <a href="/exercises/valid-inference/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="/exercises/proof/" class="btn" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-left"></i>
     </a>
     
@@ -699,7 +518,7 @@ and/or examples.</p>
   </li>
   <li class="nav-item">
     
-    <a href="/exercises/boolean/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-right"></i>
     </a>
     

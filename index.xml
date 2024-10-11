@@ -157,6 +157,13 @@
     </item>
     <item>
       <title>FOL</title>
+      <link>https://logicalmethods.ai/exercises/fol/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://logicalmethods.ai/exercises/fol/</guid>
+      <description>&lt;/div&gt;&#xA;&lt;div id=&#34;models&#34; class=&#34; homework&#34;&gt;&lt;h5 class=&#34;homework&#34;&gt;&#xA;    &lt;div class=&#34;d-inline-flex flex-row m-0  p-0 &#34;&gt;Models&#xA;    &lt;/div&gt;&#xA;&lt;/h5&gt;&lt;p&gt;&lt;em&gt;Only 3. and 6. are homework&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;Suppose we&amp;rsquo;re dealing with a FOL language with:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;constants $a,b$&lt;/li&gt;&#xA;&lt;li&gt;a unary predicate $P$&lt;/li&gt;&#xA;&lt;li&gt;a binary predicate $R$&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Consider the model given by the following diagram:&lt;/p&gt;&#xA;&#xA;&#xA;&lt;img src=&#34;https://logicalmethods.ai/exercises/fol/img/model.jpeg&#34; class=&#34;img-thumbnail&#34;  alt=&#34;&#34; &gt;&#xA;&#xA;&#xA;&lt;p&gt;To be clear:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;the objects may be called $o_1,o_2,o_3$ (from left to right)&lt;/li&gt;&#xA;&lt;li&gt;the denotations $a^\mathcal{M}, b^\mathcal{M}$ are given by the subscripts&lt;/li&gt;&#xA;&lt;li&gt;the interpretation of $P^\mathcal{M}$ is given by the red square&lt;/li&gt;&#xA;&lt;li&gt;the interpretation of $R^\mathcal{M}$ is given by the arrows (an arrow from&#xA;one node to another means that the first node stands in the relation to the&#xA;other in the model).&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Determine the truth-value of the following formulas in the model:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>FOL</title>
       <link>https://logicalmethods.ai/slides/fol/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://logicalmethods.ai/slides/fol/</guid>
