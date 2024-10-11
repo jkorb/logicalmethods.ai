@@ -338,8 +338,19 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
     
       
 </div>
-<div id="hilbert-systems" ><h5 class="">
+<div id="hilbert-systems" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Hilbert systems
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="hilbert-systemsSolution"
+        onclick="showPasswordModal('hilbert-systemsSolution', 'exc-proof')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>Provide derivations in our Hilbert system for the following provability claims:</p>
 
@@ -362,8 +373,102 @@ always use claims proved earlier, such as $\vdash p\to p$ in a derivation.</p>
 get them all, don&rsquo;t worry. We won&rsquo;t test your expertise with the Hilbert system.</p>
 
 </div>
-<div id="natural-deduction-systems" ><h5 class="">
+<div id="hilbert-systemsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong>
+Easier</p>
+<p><strong>Proof:</strong> $\vdash\neg p\to(p\to p)$</p>
+<ol>
+<li>$p\to p\quad$ <strong>(Use proof strategy for $\vdash\phi\to\phi$)</strong></li>
+<li>$(p\to p)\to(\neg p\to(p\to p))\quad$ <strong>(Axiom 1)</strong></li>
+<li>$\neg p\to(p\to p)\quad$ <strong>(MP, 5, 6)</strong></li>
+</ol>
+<!-- raw HTML omitted -->
+<p><strong>Proof:</strong> $\vdash q\to(p\lor q)$</p>
+<ol>
+<li>$q\to(\neg p\to q)\quad$ <strong>(Axiom 1)</strong></li>
+<li>$q\to(p\lor q)\quad$ <strong>(Rewriting $(\neg p\to q)$ as $(p\lor q)$)</strong></li>
+</ol>
+<!-- raw HTML omitted -->
+<p><strong>Proof:</strong> $p\to q,q\to r\vdash p\to r$</p>
+<ol>
+<li>$p\to q\quad$ <strong>(Assumption)</strong></li>
+<li>$q\to r\quad$ <strong>(Assumption)</strong></li>
+<li>$(q\to r)\to(p\to(q\to r))\quad$ <strong>(Axiom 1)</strong></li>
+<li>$p\to(q\to r)\quad$ <strong>(MP, 3, 4)</strong></li>
+<li>$(p\to(q\to r))\to((p\to q)\to(p\to r))\quad$ <strong>(Axiom 2)</strong></li>
+<li>$(p\to q)\to(p\to r)\quad$ <strong>(MP, 4, 5)</strong></li>
+<li>$p\to r\quad$ <strong>(MP, 1, 6)</strong></li>
+</ol>
+<!-- raw HTML omitted -->
+<p><strong>b)</strong>
+Harder</p>
+<p><strong>Proof:</strong> $\vdash\neg\neg p\to p$</p>
+<ol>
+<li>$\neg\neg p\to \neg\neg p\quad$ <strong>(Use proof strategy for $\vdash\phi\to\phi$)</strong></li>
+<li>$\neg\neg p\to(\neg\neg\neg\neg p\to\neg\neg p)\quad$ <strong>(Axiom 1)</strong></li>
+<li>$(\neg\neg\neg\neg p\to\neg\neg p)\to(\neg p\to\neg\neg\neg p)\quad$ <strong>(Axiom 3)</strong></li>
+<li>$\neg\neg p\to(\neg p\to\neg\neg\neg p)\quad$ <strong>(Use proof strategy for $\phi\to\psi,\psi\to\chi\vdash\phi\to\chi$ on 2,3)</strong></li>
+<li>$(\neg p\to\neg\neg\neg p)\to(\neg\neg p\to p)\quad$ <strong>(Axiom 3)</strong></li>
+<li>$\neg\neg p\to(\neg\neg p\to p)\quad$ <strong>(Use proof strategy for $\phi\to\psi,\psi\to\chi\vdash\phi\to\chi$ on 4,5)</strong></li>
+<li>$(\neg\neg p\to(\neg\neg p\to p))\to((\neg\neg p\to\neg\neg p)\to(\neg\neg p\to p))\quad$ <strong>(Axiom 2)</strong></li>
+<li>$(\neg\neg p\to\neg\neg p)\to(\neg\neg p\to p)\quad$ <strong>(MP, 6, 7)</strong></li>
+<li>$\neg\neg p\to p\quad$ <strong>(MP, 1, 8)</strong></li>
+</ol>
+<!-- raw HTML omitted -->
+<p><strong>Proof:</strong> $\vdash p\to(p\lor q)$</p>
+<ol>
+<li>$p\to(\neg q\to p)\quad$ <strong>(Axiom 1)</strong></li>
+<li>$\neg\neg\neg p\to\neg p\quad$ <strong>(Use proof strategy for $\vdash\neg\neg\phi\to\phi$)</strong></li>
+<li>$(\neg\neg\neg p\to\neg p)\to(p\to\neg\neg p)\quad$ <strong>(Axiom 3)</strong></li>
+<li>$p\to\neg\neg p\quad$ <strong>(MP, 2, 3)</strong></li>
+<li>$(p\to\neg\neg p)\to(\neg q\to(p\to\neg\neg p))\quad$ <strong>(Axiom 1)</strong></li>
+<li>$\neg q\to(p\to\neg\neg p)\quad$ <strong>(MP, 4, 5)</strong></li>
+<li>$(\neg q\to(p\to\neg\neg p))\to((\neg q\to p)\to(\neg q\to\neg\neg p))\quad$ <strong>(Axiom 2)</strong></li>
+<li>$(\neg q\to p)\to(\neg q\to\neg\neg p)\quad$  <strong>(MP, 6, 7)</strong></li>
+<li>$p\to(\neg q\to\neg\neg p)\quad$ <strong>(Use proof strategy for $\phi\to\psi,\psi\to\chi\vdash\phi\to\chi$ on 1,8)</strong></li>
+<li>$(\neg q\to\neg\neg p)\to(\neg p\to q)\quad$ <strong>(Axiom 3)</strong></li>
+<li>$p\to(\neg p\to q)\quad$  <strong>(Use proof strategy for $\phi\to\psi,\psi\to\chi\vdash\phi\to\chi$ on 9,10)</strong></li>
+<li>$p\to(p\lor q)\quad$ <strong>(Rewriting $(\neg p\to q)$ as $(p\lor q)$)</strong></li>
+</ol>
+<!-- raw HTML omitted -->
+<p><strong>Proof:</strong> $\vdash(p\land q)\to p$</p>
+<ol>
+<li>$\neg p\to(q\to\neg p)\quad$ <strong>(Axiom 1)</strong></li>
+<li>$\neg\neg q\to q\quad$ <strong>(Use proof strategy for $\vdash\neg\neg\phi\to\phi$)</strong></li>
+<li>$(\neg\neg q\to q)\to(\neg p\to(\neg\neg q\to q))\quad$ <strong>(Axiom 1)</strong></li>
+<li>$\neg p\to(\neg\neg q\to q)\quad$ <strong>(MP, 2, 3)</strong></li>
+<li>$(q\to\neg p)\to(\neg\neg q\to(q\to\neg p))\quad$  <strong>(Axiom 1)</strong></li>
+<li>$\neg p\to(\neg\neg q\to(q\to\neg p))\quad$ <strong>(Use proof strategy for $\phi\to\psi,\psi\to\chi\vdash\phi\to\chi$ on 1,5)</strong></li>
+<li>$(\neg\neg q\to(q\to\neg p))\to((\neg\neg q\to q)\to(\neg\neg q\to\neg p))\quad$ <strong>(Axiom 2)</strong></li>
+<li>$\neg p\to((\neg\neg q\to q)\to(\neg\neg q\to\neg p))\quad$ <strong>(Use proof strategy for $\phi\to\psi,\psi\to\chi\vdash\phi\to\chi$ on 6,7)</strong></li>
+<li>$(\neg p\to((\neg\neg q\to q)\to(\neg\neg q\to\neg p)))\to((\neg p\to(\neg\neg q\to q))\to(\neg p\to(\neg\neg q\to\neg p)))\quad$  <strong>(Axiom 2)</strong></li>
+<li>$(\neg p\to(\neg\neg q\to q))\to(\neg p\to(\neg\neg q\to\neg p))\quad$ <strong>(Use proof strategy for $\phi\to\psi,\psi\to\chi\vdash\phi\to\chi$ on 8,9)</strong></li>
+<li>$\neg p\to(\neg\neg q\to\neg p)\quad$ <strong>(MP, 4, 10)</strong></li>
+<li>$(\neg\neg q\to\neg p)\to(p\to\neg q)\quad$ <strong>(Axiom 3)</strong></li>
+<li>$\neg p\to(p\to\neg q)\quad$ <strong>(Use proof strategy for $\phi\to\psi,\psi\to\chi\vdash\phi\to\chi$ on 11,12)</strong></li>
+<li>$\neg\neg\neg(p\to\neg q)\to\neg(p\to\neg q)\quad$ <strong>(Use proof strategy for $\vdash\neg\neg\phi\to\phi$)</strong></li>
+<li>$(\neg\neg\neg(p\to\neg q)\to\neg(p\to\neg q))\to((p\to\neg q)\to\neg\neg(p\to\neg q))\quad$ <strong>(Axiom 3)</strong></li>
+<li>$(p\to\neg q)\to\neg\neg(p\to\neg q)\quad$ <strong>(MP, 15, 16)</strong></li>
+<li>$\neg p\to\neg\neg(p\to\neg q)\quad$ <strong>(Use proof strategy for $\phi\to\psi,\psi\to\chi\vdash\phi\to\chi$ on 13,16)</strong></li>
+<li>$(\neg p\to\neg\neg(p\to\neg q))\to(\neg(p\to\neg q)\to p)\quad$ <strong>(Axiom 2)</strong></li>
+<li>$\neg(p\to\neg q)\to p\quad$ <strong>(MP, 17, 18)</strong></li>
+<li>$(p\land q)\to p\quad$  <strong>(Rewriting $(\neg(p\to\neg q))$ as $(p\land q)$)</strong></li>
+</ol>
+<!-- raw HTML omitted -->
+
+</div>
+<div id="natural-deduction-systems" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Natural deduction systems
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="natural-deduction-systemsSolution"
+        onclick="showPasswordModal('natural-deduction-systemsSolution', 'exc-proof')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>Provide derivations in our natural system for the following provability claims:</p>
 
@@ -386,8 +491,68 @@ get them all, don&rsquo;t worry. We won&rsquo;t test your expertise with the Hil
 </ol>
 
 </div>
-<div id="lean" ><h5 class="">
+<div id="natural-deduction-systemsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong></p>
+<p>
+
+<img src="https://logicalmethods.ai/exercises/proof/img/nd-a1.png" class="img-thumbnail"  alt="" >
+
+
+
+
+<img src="https://logicalmethods.ai/exercises/proof/img/nd-a2.png" class="img-thumbnail"  alt="" >
+
+
+
+
+<img src="https://logicalmethods.ai/exercises/proof/img/nd-a3.png" class="img-thumbnail"  alt="" >
+
+
+
+
+<img src="https://logicalmethods.ai/exercises/proof/img/nd-a4.png" class="img-thumbnail"  alt="" >
+
+
+
+
+<img src="https://logicalmethods.ai/exercises/proof/img/nd-a5.png" class="img-thumbnail"  alt="" >
+
+
+
+
+<img src="https://logicalmethods.ai/exercises/proof/img/nd-a6.png" class="img-thumbnail"  alt="" >
+
+</p>
+<p><strong>b)</strong></p>
+<p>
+
+<img src="https://logicalmethods.ai/exercises/proof/img/nd-b1.png" class="img-thumbnail"  alt="" >
+
+
+
+
+<img src="https://logicalmethods.ai/exercises/proof/img/nd-b2.png" class="img-thumbnail"  alt="" >
+
+
+
+
+<img src="https://logicalmethods.ai/exercises/proof/img/nd-b3.png" class="img-thumbnail"  alt="" >
+
+</p>
+
+</div>
+<div id="lean" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Lean
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="leanSolution"
+        onclick="showPasswordModal('leanSolution', 'exc-proof')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>For this exercise, you can use the live Lean 4 environment, which is available
 onlien <i class="bi bi-box-arrow-up-right h-6"></i>
@@ -607,6 +772,89 @@ example (p q r : Prop) : p ∧ (q ∨ r) → (p ∧ q) ∨ (p ∧ r) := by
 
 </div>
 <div id="c" ><h6 class="">c)</h6><p>Give a Lean proof for $\vdash p\lor (p\land q)\to p$ (<code>absorption_disj</code>).</p>
+
+</div>
+<div id="leanSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong>
+translating into natural deduction (you get the idea)</p>
+<table class="table">
+  <thead>
+      <tr>
+          <th style="text-align: left">$p\land q$</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">$p$</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">$p\lor q$</td>
+      </tr>
+  </tbody>
+</table>
+<!-- raw HTML omitted -->
+<p><strong>b)</strong>
+finishing the proof</p>
+
+
+
+
+
+
+<hr>
+<a class="btn btn-sm btn-link link-dark link-underline-opacity-0" href="#d07a1539b20fae2faa02fe01def7eaa62135eca71f9824362091b15e81413869" type="button" data-bs-toggle="collapse" data-bs-target="#d07a1539b20fae2faa02fe01def7eaa62135eca71f9824362091b15e81413869" aria-expanded="false" aria-controls="d07a1539b20fae2faa02fe01def7eaa62135eca71f9824362091b15e81413869" >
+  $\mathsf{L}\exists\forall \mathsf{N}$  snippet (click to expand) <i class="bi bi-chevron-left toggle-icon"></i>
+</a>
+<div id="d07a1539b20fae2faa02fe01def7eaa62135eca71f9824362091b15e81413869" class="collapse bg-black rounded m-2 p-2 " style="position:relative;">
+  <button class="btn btn-primary shadow" style="position:absolute; top:10px;right:10px" onclick="copyContent('d07a1539b20fae2faa02fe01def7eaa62135eca71f9824362091b15e81413869-inner')"><i class="bi bi-clipboard"></i> Copy!</button>
+  <pre><code class="text-white" id="d07a1539b20fae2faa02fe01def7eaa62135eca71f9824362091b15e81413869-inner">
+example (p q r : Prop) : p ∧ (q ∨ r) → (p ∧ q) ∨ (p ∧ r) := by
+intro h
+apply Or.elim (And.right h)
+. intro hq
+  apply Or.inl
+  apply And.intro
+  . exact And.left h
+  . exact hq
+. intro hr
+  apply Or.inr
+  apply And.intro
+  . exact And.left h
+  . exact hr
+</code></pre>
+</div>
+<hr>
+
+<!-- raw HTML omitted -->
+<p><strong>c)</strong>
+constructing a lean proof</p>
+
+
+
+
+
+
+<hr>
+<a class="btn btn-sm btn-link link-dark link-underline-opacity-0" href="#b263c6b4b535fa036132d2db74aa29821438e1247987e3ab29df37458ba94216" type="button" data-bs-toggle="collapse" data-bs-target="#b263c6b4b535fa036132d2db74aa29821438e1247987e3ab29df37458ba94216" aria-expanded="false" aria-controls="b263c6b4b535fa036132d2db74aa29821438e1247987e3ab29df37458ba94216" >
+  $\mathsf{L}\exists\forall \mathsf{N}$  snippet (click to expand) <i class="bi bi-chevron-left toggle-icon"></i>
+</a>
+<div id="b263c6b4b535fa036132d2db74aa29821438e1247987e3ab29df37458ba94216" class="collapse bg-black rounded m-2 p-2 " style="position:relative;">
+  <button class="btn btn-primary shadow" style="position:absolute; top:10px;right:10px" onclick="copyContent('b263c6b4b535fa036132d2db74aa29821438e1247987e3ab29df37458ba94216-inner')"><i class="bi bi-clipboard"></i> Copy!</button>
+  <pre><code class="text-white" id="b263c6b4b535fa036132d2db74aa29821438e1247987e3ab29df37458ba94216-inner">
+variable {p : Prop}
+variable {q : Prop}
+variable {r : Prop}
+
+theorem absorption_disj : (p ∨ (p ∧ q)) → p := by
+  intro hyp_disj
+  apply Or.elim hyp_disj
+  · intro hyp_p
+    exact hyp_p
+  · intro hyp_pnq
+    apply And.left hyp_pnq
+</code></pre>
+</div>
+<hr>
+
 
 </div>
 <div id="research" ><h5 class="">
