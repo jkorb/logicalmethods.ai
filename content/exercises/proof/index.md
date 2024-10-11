@@ -7,7 +7,7 @@ params:
   math: true
 ---
 
-# Hilbert systems
+# Hilbert systems {.solved}
 
 Provide derivations in our Hilbert system for the following provability claims:
 
@@ -29,7 +29,101 @@ always use claims proved earlier, such as $\vdash p\to p$ in a derivation.
 _Advice_: These can be really hard, but perseverance is the key. If you can't
 get them all, don't worry. We won't test your expertise with the Hilbert system.
 
-# Natural deduction systems
+## Solution { .solution #hilbert-systemsSolution }
+
+**a)**
+Easier
+
+**Proof:** $\vdash\neg p\to(p\to p)$
+
+1. $p\to p\quad$ **(Use proof strategy for $\vdash\phi\to\phi$)**
+2. $(p\to p)\to(\neg p\to(p\to p))\quad$ **(Axiom 1)**
+3. $\neg p\to(p\to p)\quad$ **(MP, 5, 6)**
+
+<br>
+
+**Proof:** $\vdash q\to(p\lor q)$
+
+1. $q\to(\neg p\to q)\quad$ **(Axiom 1)**
+2. $q\to(p\lor q)\quad$ **(Rewriting $(\neg p\to q)$ as $(p\lor q)$)**
+
+
+<br>
+
+**Proof:** $p\to q,q\to r\vdash p\to r$
+
+1. $p\to q\quad$ **(Assumption)**
+2. $q\to r\quad$ **(Assumption)**
+3. $(q\to r)\to(p\to(q\to r))\quad$ **(Axiom 1)**
+4. $p\to(q\to r)\quad$ **(MP, 3, 4)**
+5. $(p\to(q\to r))\to((p\to q)\to(p\to r))\quad$ **(Axiom 2)**
+6. $(p\to q)\to(p\to r)\quad$ **(MP, 4, 5)**
+7. $p\to r\quad$ **(MP, 1, 6)**
+
+
+<br>
+
+**b)**
+Harder
+
+**Proof:** $\vdash\neg\neg p\to p$
+
+1. $\neg\neg p\to \neg\neg p\quad$ **(Use proof strategy for $\vdash\phi\to\phi$)**
+2. $\neg\neg p\to(\neg\neg\neg\neg p\to\neg\neg p)\quad$ **(Axiom 1)**
+3. $(\neg\neg\neg\neg p\to\neg\neg p)\to(\neg p\to\neg\neg\neg p)\quad$ **(Axiom 3)**
+4. $\neg\neg p\to(\neg p\to\neg\neg\neg p)\quad$ **(Use proof strategy for $\phi\to\psi,\psi\to\chi\vdash\phi\to\chi$ on 2,3)**
+5. $(\neg p\to\neg\neg\neg p)\to(\neg\neg p\to p)\quad$ **(Axiom 3)**
+6. $\neg\neg p\to(\neg\neg p\to p)\quad$ **(Use proof strategy for $\phi\to\psi,\psi\to\chi\vdash\phi\to\chi$ on 4,5)**
+7. $(\neg\neg p\to(\neg\neg p\to p))\to((\neg\neg p\to\neg\neg p)\to(\neg\neg p\to p))\quad$ **(Axiom 2)**
+8. $(\neg\neg p\to\neg\neg p)\to(\neg\neg p\to p)\quad$ **(MP, 6, 7)**
+9. $\neg\neg p\to p\quad$ **(MP, 1, 8)**
+
+
+<br>
+
+**Proof:** $\vdash p\to(p\lor q)$
+
+1. $p\to(\neg q\to p)\quad$ **(Axiom 1)**
+2. $\neg\neg\neg p\to\neg p\quad$ **(Use proof strategy for $\vdash\neg\neg\phi\to\phi$)**
+3. $(\neg\neg\neg p\to\neg p)\to(p\to\neg\neg p)\quad$ **(Axiom 3)**
+4. $p\to\neg\neg p\quad$ **(MP, 2, 3)**
+5. $(p\to\neg\neg p)\to(\neg q\to(p\to\neg\neg p))\quad$ **(Axiom 1)**
+6. $\neg q\to(p\to\neg\neg p)\quad$ **(MP, 4, 5)**
+7. $(\neg q\to(p\to\neg\neg p))\to((\neg q\to p)\to(\neg q\to\neg\neg p))\quad$ **(Axiom 2)**
+8. $(\neg q\to p)\to(\neg q\to\neg\neg p)\quad$  **(MP, 6, 7)**
+9. $p\to(\neg q\to\neg\neg p)\quad$ **(Use proof strategy for $\phi\to\psi,\psi\to\chi\vdash\phi\to\chi$ on 1,8)**
+10. $(\neg q\to\neg\neg p)\to(\neg p\to q)\quad$ **(Axiom 3)**
+11. $p\to(\neg p\to q)\quad$  **(Use proof strategy for $\phi\to\psi,\psi\to\chi\vdash\phi\to\chi$ on 9,10)**
+2. $p\to(p\lor q)\quad$ **(Rewriting $(\neg p\to q)$ as $(p\lor q)$)**
+
+<br>
+
+**Proof:** $\vdash(p\land q)\to p$
+
+1. $\neg p\to(q\to\neg p)\quad$ **(Axiom 1)**
+2. $\neg\neg q\to q\quad$ **(Use proof strategy for $\vdash\neg\neg\phi\to\phi$)**
+3. $(\neg\neg q\to q)\to(\neg p\to(\neg\neg q\to q))\quad$ **(Axiom 1)**
+4. $\neg p\to(\neg\neg q\to q)\quad$ **(MP, 2, 3)**
+5. $(q\to\neg p)\to(\neg\neg q\to(q\to\neg p))\quad$  **(Axiom 1)**
+6. $\neg p\to(\neg\neg q\to(q\to\neg p))\quad$ **(Use proof strategy for $\phi\to\psi,\psi\to\chi\vdash\phi\to\chi$ on 1,5)**
+7. $(\neg\neg q\to(q\to\neg p))\to((\neg\neg q\to q)\to(\neg\neg q\to\neg p))\quad$ **(Axiom 2)**
+8. $\neg p\to((\neg\neg q\to q)\to(\neg\neg q\to\neg p))\quad$ **(Use proof strategy for $\phi\to\psi,\psi\to\chi\vdash\phi\to\chi$ on 6,7)**
+9. $(\neg p\to((\neg\neg q\to q)\to(\neg\neg q\to\neg p)))\to((\neg p\to(\neg\neg q\to q))\to(\neg p\to(\neg\neg q\to\neg p)))\quad$  **(Axiom 2)**
+10. $(\neg p\to(\neg\neg q\to q))\to(\neg p\to(\neg\neg q\to\neg p))\quad$ **(Use proof strategy for $\phi\to\psi,\psi\to\chi\vdash\phi\to\chi$ on 8,9)**
+11. $\neg p\to(\neg\neg q\to\neg p)\quad$ **(MP, 4, 10)**
+12. $(\neg\neg q\to\neg p)\to(p\to\neg q)\quad$ **(Axiom 3)**
+13. $\neg p\to(p\to\neg q)\quad$ **(Use proof strategy for $\phi\to\psi,\psi\to\chi\vdash\phi\to\chi$ on 11,12)**
+14. $\neg\neg\neg(p\to\neg q)\to\neg(p\to\neg q)\quad$ **(Use proof strategy for $\vdash\neg\neg\phi\to\phi$)**
+15. $(\neg\neg\neg(p\to\neg q)\to\neg(p\to\neg q))\to((p\to\neg q)\to\neg\neg(p\to\neg q))\quad$ **(Axiom 3)**
+16. $(p\to\neg q)\to\neg\neg(p\to\neg q)\quad$ **(MP, 15, 16)**
+17. $\neg p\to\neg\neg(p\to\neg q)\quad$ **(Use proof strategy for $\phi\to\psi,\psi\to\chi\vdash\phi\to\chi$ on 13,16)**
+18. $(\neg p\to\neg\neg(p\to\neg q))\to(\neg(p\to\neg q)\to p)\quad$ **(Axiom 2)**
+19. $\neg(p\to\neg q)\to p\quad$ **(MP, 17, 18)**
+20. $(p\land q)\to p\quad$  **(Rewriting $(\neg(p\to\neg q))$ as $(p\land q)$)**
+
+<br>
+
+# Natural deduction systems {.solved}
 
 Provide derivations in our natural system for the following provability claims:
 
@@ -49,8 +143,25 @@ Only 3.,5., and  6. as homework.
 1. $\vdash p\lor\neg p$
 2. $p\to q\vdash \neg p\lor q$
 3. $\neg(p\land q)\vdash \neg p\lor\neg q$
- 
-# Lean
+
+## Solution { .solution #natural-deduction-systemsSolution}
+
+**a)**
+
+{{< img src="img/nd-a1.png" class="img-thumbnail" >}}
+{{< img src="img/nd-a2.png" class="img-thumbnail" >}}
+{{< img src="img/nd-a3.png" class="img-thumbnail" >}}
+{{< img src="img/nd-a4.png" class="img-thumbnail" >}}
+{{< img src="img/nd-a5.png" class="img-thumbnail" >}}
+{{< img src="img/nd-a6.png" class="img-thumbnail" >}}
+
+**b)**
+
+{{< img src="img/nd-b1.png" class="img-thumbnail" >}}
+{{< img src="img/nd-b2.png" class="img-thumbnail" >}}
+{{< img src="img/nd-b3.png" class="img-thumbnail" >}}
+
+# Lean {.solved}
 
 For this exercise, you can use the live Lean 4 environment, which is available
 onlien [here](https://live.lean-lang.org/).
@@ -198,6 +309,56 @@ example (p q r : Prop) : p ∧ (q ∨ r) → (p ∧ q) ∨ (p ∧ r) := by
 ## c) 
 
 Give a Lean proof for $\vdash p\lor (p\land q)\to p$ (```absorption_disj```).
+
+## Solution {.solution #leanSolution}
+
+**a)**
+translating into natural deduction (you get the idea)
+
+| $p\land q$	|
+| ---			|
+| $p$			|
+| $p\lor q$	|
+
+<br>
+
+**b)**
+finishing the proof
+
+{{< lean >}}
+example (p q r : Prop) : p ∧ (q ∨ r) → (p ∧ q) ∨ (p ∧ r) := by
+intro h
+apply Or.elim (And.right h)
+. intro hq
+  apply Or.inl
+  apply And.intro
+  . exact And.left h
+  . exact hq
+. intro hr
+  apply Or.inr
+  apply And.intro
+  . exact And.left h
+  . exact hr
+{{< /lean >}}
+
+<br>
+
+**c)**
+constructing a lean proof
+
+{{< lean >}}
+variable {p : Prop}
+variable {q : Prop}
+variable {r : Prop}
+
+theorem absorption_disj : (p ∨ (p ∧ q)) → p := by
+  intro hyp_disj
+  apply Or.elim hyp_disj
+  · intro hyp_p
+    exact hyp_p
+  · intro hyp_pnq
+    apply And.left hyp_pnq
+{{< /lean >}}
 
 # Research
 
