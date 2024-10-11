@@ -120,7 +120,10 @@ No. That contradicts the definition of validity.
 
 **d)**
 
-Yes. For example, any strong, statistical reasoning.
+No. If an inference preserves truth always, then it preserves truth most of the
+time. You can illustrate with standard 'definitional' rules for the logical
+connectives, which are easily seen to be inductively valid. $A\land B\vDash A$
+and $A\vDash A\lor B$ etc.
 
 **e)** z Yes. Take any strong conditional probability with a false condition.
 The moon is made of cheese, so its probably delicious.
@@ -135,10 +138,8 @@ Yes. Because inductive validity is not necessary.
 
 **h)**
 
-No. If an inference preserves truth always, then it preserves truth most of the
-time. You can illustrate with standard 'definitional' rules for the logical
-connectives, which are easily seen to be inductively valid. $A\land B\vDash A$
-and $A\vDash A\lor B$ etc.
+Yes. For example, any strong, statistical reasoning.
+
 
 # Semantic tools {.solved}
 

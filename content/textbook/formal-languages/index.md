@@ -129,7 +129,7 @@ supreme.
 
 Before we can go ahead and give the mathematical definition of what a formal
 language is, we need to talk a bit more about _sets_. Formal languages _are_
-sets. so we need to know whats are set is before we can talk about formal
+sets. So, we need to know what a set is before we can talk about formal
 languages.
 
 In {{< chapter_ref chapter="valid-inference" id="semantic-methods-for-deduction" >}}
@@ -341,7 +341,7 @@ Here's how this works for a standard language in propositional logic, where $\Si
 
 We then say that: 
 
-+ $p,\dots, p_n \in \mathcal{L}$ and
++ $p_1,\dots, p_n \in \mathcal{L}$ and
 
 + if $A\in\mathcal{L}$, then $\neg A\in \mathcal{L}$ as well as
 
