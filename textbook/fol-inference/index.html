@@ -1,0 +1,996 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <title>logicalmethods.ai &ndash; FOL Inference </title>
+    <link rel="icon" type="image/x-icon" href="https://logicalmethods.ai/favicon.ico"></link>
+    <link href="https://logicalmethods.ai/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"></link>
+    <link rel="stylesheet" href="https://logicalmethods.ai/icons/font/bootstrap-icons.min.css"></link>
+    <link rel="stylesheet" href="https://logicalmethods.ai/css/layout.css"></link>
+    <link href="https://logicalmethods.ai/css/textbook.css" rel="stylesheet"></link>
+    <style>
+      
+    :root {
+      --chapter: "9";
+    }
+
+    </style>
+    
+      <link rel="stylesheet" href="https://logicalmethods.ai/katex/katex.min.css">
+<script defer src="https://logicalmethods.ai/katex/katex.min.js"></script>
+<script defer src="https://logicalmethods.ai/katex/contrib/auto-render.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},     
+        {left: '$', right: '$', display: false},     
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '\\(', right: '\\)', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
+    
+  </head>
+  <body class="bg-black d-flex flex-column m-0 p-0">
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas-nav" aria-labelledby="offcanvas-navLabel" data-bs-theme="dark">
+  <div class="offcanvas-header">
+    <div class="h5 offcanvas-title" id="offcanvas-navLabel">
+      Browse course
+    </div>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  
+  <div class="offcanvas-body">
+    <ul class="navbar-nav"><li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link fw-bold active" href="/textbook/"><i class="bi bi-book"></i> &nbsp;&nbsp; Textbook</a>
+          </div>
+          <button 
+            class="btn btn-sm btn-dark" 
+            href="/textbook/"
+            id="navbarSectiontxt-home" data-bs-toggle="collapse"
+            data-bs-target="#collapsetxt-home"  
+            aria-expanded="true"
+            aria-controls="collapsetxt-home">
+            <i class="bi bi-caret-left-fill toggle-icon"></i>
+          </button>
+        </div>
+        <div class="collapse show" id="collapsetxt-home">
+          <ul class="list-unstyled ms-3">
+            <li>
+              <a class="dropdown-item " href="/textbook/logic-and-ai/">1. Logic and AI</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/textbook/valid-inference/">2. Valid Inference</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/textbook/formal-languages/">3. Formal languages</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/textbook/boolean/">4. Boolean algebra</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/textbook/sat/">5. Boolean satisfiability</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/textbook/conditionals/">6. Logical conditionals</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/textbook/proofs/">7. Logical proofs</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/textbook/fol/">8. FOL</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item fw-bold active" href="/textbook/fol-inference/">9. FOL Inference</a>
+            </li>
+            </ul>
+        </div>
+        
+      </li>
+      <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/slides/"><i class="bi bi-rocket-takeoff-fill"></i> &nbsp;&nbsp; Slides</a>
+          </div>
+          <button 
+            class="btn btn-sm btn-dark" 
+            href="/slides/"
+            id="navbarSectionsli-home" data-bs-toggle="collapse"
+            data-bs-target="#collapsesli-home"  
+            aria-expanded="aria-expanded=false"
+            aria-controls="collapsesli-home">
+            <i class="bi bi-caret-left-fill toggle-icon"></i>
+          </button>
+        </div>
+        <div class="collapse " id="collapsesli-home">
+          <ul class="list-unstyled ms-3">
+            <li>
+              <a class="dropdown-item " href="/slides/logic-and-ai/">1. Logic and AI</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/slides/valid-inference/">2. Valid inference</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/slides/formal-languages/">3. Formal languages</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/slides/boolean/">4. Boolean algebra</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/slides/sat/">5. Boolean satisfiability</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/slides/conditionals/">6. Logical conditionals</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/slides/proof/">7. Logical proofs</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/slides/fol/">8. FOL</a>
+            </li>
+            </ul>
+        </div>
+        
+      </li>
+      <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/exercises/"><i class="bi-gear-fill"></i> &nbsp;&nbsp; Exercises</a>
+          </div>
+          <button 
+            class="btn btn-sm btn-dark" 
+            href="/exercises/"
+            id="navbarSectionexe-home" data-bs-toggle="collapse"
+            data-bs-target="#collapseexe-home"  
+            aria-expanded="aria-expanded=false"
+            aria-controls="collapseexe-home">
+            <i class="bi bi-caret-left-fill toggle-icon"></i>
+          </button>
+        </div>
+        <div class="collapse " id="collapseexe-home">
+          <ul class="list-unstyled ms-3">
+            <li>
+              <a class="dropdown-item " href="/exercises/logic-and-ai/">1. Logic and AI</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/exercises/valid-inference/">2. Valid inference</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/exercises/formal-languages/">3. Formal languages</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/exercises/boolean/">4. Boolean algebra</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/exercises/sat/">5. Boolean satisfiability</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/exercises/conditionals/">6. Logical conditionals</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/exercises/proof/">7. Logical proofs</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/exercises/fol/">8. FOL</a>
+            </li>
+            </ul>
+        </div>
+        
+      </li>
+      <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/about/"><i class="bi-file-person-fill"></i> &nbsp;&nbsp; About</a>
+          </div>
+      </li>
+      <hr>
+      
+    </ul>
+  </div>
+</div>
+
+    <header class="align-self-center d-flex flex-column m-0 mb-md-1 p-0" data-bs-theme="dark">
+      <nav class="navbar bg-dark shadow" data-bs-theme="dark" aria-label="header-navbar">
+  <div class="container-sm align-self-center px-3">
+    <a class="navbar-brand fs-6" href="https://logicalmethods.ai/"><span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+<i class="bi bi-caret-right-fill"></i>logicalmethods.ai</a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-nav" aria-controls="offcanvas-nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+
+      
+      
+    </header>
+    
+    <main class="align-self-center d-flex flex-column flex-fill bg-light m-md-1 p-0" data-bs-theme="light">
+      <ul class="navbar-nav flex-row justify-content-between mt-2">
+  
+  <li class="nav-item">
+    <a href="/textbook/fol/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-chevron-left"></i>
+    </a>
+    
+  </li>
+  <li class="nav-item">
+    <a href="/textbook/" class="btn " tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-house-up"></i>
+    </a>
+  </li>
+  <li class="nav-item">
+    
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-chevron-right"></i>
+    </a>
+    
+  </li>
+</ul>
+<div class="container chapter">
+  <p>By: <em>Johannes Korbmacher</em></p><h1 id="fol-inference">FOL Inference<button class="btn btn-back-to-top">
+    
+  </button>
+</h1>
+<hr>
+
+<p>Having discussed the syntactic and semantic framework of FOL in 
+
+
+<a href="https://logicalmethods.ai/textbook/fol/"
+   
+   
+   
+   
+   
+   > Chapter 9. FOL</a>
+
+, we&rsquo;ll now turn to methods
+for step-wise <strong>inference</strong> in FOL.</p>
+<p>As you&rsquo;ll see, FOL inference packs a bit more of a punch than propositional
+inference: not only are the rules more complicated, but we have to be careful
+about how we apply them. The problem is that, because of <strong>undecidability</strong>, we
+can run into &ldquo;loops&rdquo; and &ldquo;infinite regresses&rdquo;. This problem is ultimately
+unavoidable, but there are methods and techniques to mitigate its consequences.</p>
+<p>In this chapter, we&rsquo;ll build on 
+
+
+<a href="https://logicalmethods.ai/textbook/proofs/"
+   
+   
+   
+   
+   
+   > Section 7.
+Logical proofs</a>
+
+, especially 
+
+
+<a href="https://logicalmethods.ai/textbook/proofs//#natural-deduction"
+   
+   
+   
+   
+   
+   > natural deduction </a>
+
+. So if you&rsquo;re
+not completely clear on the ideas from that chapter, go back and have another
+look.</p>
+<h2 id="natural-deduction">Natural Deduction<button class="btn btn-back-to-top">
+    
+    <i class="bi bi-chevron-double-up"></i>
+    
+  </button>
+</h2>
+<hr>
+
+<p>Remember that <strong>natural deduction</strong> aims to mimic human-style step-by-step
+reasoning. This makes it a good starting point for our exploration of FOL
+inference.</p>
+<p>The natural deduction system for FOL has four new rules in addition to the rules
+for the propositional connectives, two for each of the quantifiers
+$\forall,\exists$.</p>
+<p>Let&rsquo;s begin with the <strong>universal quantifier</strong> $\forall$. Here&rsquo;s a straight-forward
+inference:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/ex-ue.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+
+
+<p>If everybody has a parent, then Ada does.</p>
+<p>This inference is what lies behind the standard elimination rule for the
+universal quantifier:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/ue.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+
+
+<p>Here $A(t)$ stands for the result of replacing the variable $x$ with the term
+$t$ everywhere where $x$ is not &ldquo;captured by&rdquo; another quantifier:</p>
+<ul>
+<li>
+<p>Suppose $\forall xA(x)$ is $\forall x\exists y\mathsf{Parent}(x,y)$.</p>
+</li>
+<li>
+<p>Then $A(x)$ is $\exists y\mathsf{Parent}(x,y)$.</p>
+</li>
+<li>
+<p>If $t$ is $Ada$, then $A(t)$ is $\exists y\mathsf{Parent}(Ada,y)$.</p>
+</li>
+<li>
+<p><strong>NB</strong>: If $A(x)$ is</p>
+<p>$$\exists y\mathsf{Parent}(x,y)\land \forall x\mathsf{Human}(x)$$</p>
+<p>and $t$ is Ada, then $A(t)$ is</p>
+<p>$$\exists y\mathsf{Parent}(Ada,y)\land \forall x\mathsf{Human}(x)$$</p>
+<p>and <em>not</em></p>
+<p>$$\exists y\mathsf{Parent}(Ada,y)\land \forall x\mathsf{Human}(Ada)$$</p>
+</li>
+</ul>
+<p>This rule is also called <strong>universal instantiation</strong>, it formalizes the
+idea that if everything is so and so, then any thing you may pick is also so and
+so.</p>
+<p>There is a small <strong>caveat</strong>: We may not chose $t$ <em>completely</em> freely in
+$\forall E$. The thing is that $t$ may not contain a variable $x$, which would
+be &ldquo;captured&rdquo; by another quantifier after. So, we may not, for example, infer:</p>
+<p>$$\exists y\mathsf{Parent}(y,y)$$</p>
+<p>from</p>
+<p>$$\forall x\exists y \mathsf{Parent}(x,y).$$</p>
+<p>We cannot infer from everyone having a parent that there&rsquo;s somebody who&rsquo;s their
+own parent.</p>
+<p>This may seem &ldquo;obvious&rdquo;, but it&rsquo;s important to keep in mind. The term $t$ may be
+a variable, but if may not be &ldquo;captured&rdquo; by another quantifier.</p>
+<p>These kinds of side-conditions are <em>par for the course</em> in FOL.</p>
+<p>This tells us what we can infer <em>from</em> a universally quantified claim, but from
+what can we infer a universally quantified claim itself?</p>
+<p>The idea in natural deduction and much of the following is that we can use <em>free
+variables</em> for that, which are variables that are not &ldquo;captured&rdquo; by any
+quantifier. Take the statement:</p>
+<p>$$\exists y\mathsf{Parent}(x,y)$$</p>
+<p>In line with the reading of variables as pronouns, this says something like
+<a href="https://en.wikipedia.org/wiki/Singular_they"
+  target="_blank">they</a> have a parent, without
+specifying who &ldquo;they&rdquo; are. If we have established that <em>they</em> have a parent
+without having assumed anything else about who they are,  we&rsquo;ve effectively
+established for an arbitrary person that they have a parent. If we can show
+something like this, then we may infer that <em>every</em> person has a parent:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/ex-ui.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+
+
+<p>Expressed as a general inference rule, this becomes:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/ui.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+
+
+<p>Here the $\alpha$ stands for an arbitrary variable $x,y,z,\dots$ subject to the
+following <strong>extremely important</strong> side-condition $\dagger$:</p>
+<ul>
+<li>We may <em>only</em> infer $\forall xA(x)$ from $A(\alpha)$ if the variable $\alpha$
+is <em>really</em> arbitrary. We ensure this by demanding that in no assumption, which
+occurs in the derivation before $A(\alpha)$ we may have $\alpha$ occurring
+unless its &ldquo;captured&rdquo; by a quantifier.</li>
+</ul>
+<p>If we wouldn&rsquo;t have this condition, we&rsquo;d be saying that the following inference
+is valid:</p>
+<p>$$\exists y\mathsf{Friend}(x,y)\vDash \forall x\exists y\mathsf{Friend}(x,y)$$</p>
+<p>If <em>they</em> have a friend, then <em>everybody</em> has a friend. This is, of course, not
+a good inference: just because some person has friends, doesn&rsquo;t mean everybody
+does.</p>
+<p>The point is that we can only apply $\forall I$ if the variable doesn&rsquo;t depend
+on anything else, so what would be OK, would be the following inference:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/condition-ue-example.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+
+
+<p>If everybody has a friend, then everybody either has a friend or is their own
+enemy.</p>
+<p>Let&rsquo;s turn to the <strong>existential quantifier</strong> $\exists$. As in the case of the
+universal quantifier $\forall$, there is a straight-forward inference that
+motivates our first inference rule.</p>
+<p>Consider the following inference:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/ex-ei.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+
+
+<p>If Ada is on the <em>Philosopher&rsquo;s Walk</em>, then <em>somebody</em> is on the philosophers
+walk.</p>
+<p>If we abstract this to a general inference rule, we get:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/ei.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+
+
+<p>No side-conditions, not <em>ifs and buts</em>, that&rsquo;s it 😃</p>
+<p>This inference rule allows us to &ldquo;introduce&rdquo; an existential quantifier. But what
+can we infer <em>from</em> one?</p>
+<p>The idea of natural deduction is to say that what follows from the claim that
+someone has a property is that some person, we don&rsquo;t know who, has the property.
+Here&rsquo;s how this work &ldquo;in action&rdquo;:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/ex-ee.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+
+
+<p>We&rsquo;re just introducing a new constant $c$ for the person who&rsquo;s on the Walk. It&rsquo;s
+important that this constant doesn&rsquo;t appear anywhere else in our derivation (or
+background knowledge base) to avoid serious mistakes.</p>
+<p>For example, the following inference is (obviously) problematic:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/condition-ee-example.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+
+
+<p>From Ada not being on the Walk but <em>somebody</em> being on the walk, we can&rsquo;t infer
+that Ada is both on the walk and not.</p>
+<p>The general rule, then, is the following:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/ee.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+
+
+<p>Here the side-condition $\ddagger$ says that the constant $c$ must be new to the
+inference (and knowledge base or any other background facts).</p>
+<p>In a more complex reasoning setting, we would apply this rule as follows:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/full-example.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+
+
+<p>By adding the 4 rules we&rsquo;ve just discussed to the rules for propositional logic,
+we obtain a proof system for FOL:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/four-rules.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+
+
+<p>This system works™️, in the sense that it is sound and complete (with the
+definition from the 
+
+
+<a href="https://logicalmethods.ai/textbook/fol/"
+   
+   
+   
+   
+   
+   >previous chapter</a>
+
+).</p>
+<p>Like any proof system for FOL, however, the systems is subject to
+undecidability: there <em>cannot</em> be <em>any</em> algorithm that in finite time correctly
+determines for arbitrary input inferences whether they&rsquo;re valid.</p>
+<p>This means, in particular, we can&rsquo;t algorithmically search for proofs from a
+given premise set to a given conclusion and expect a yes/no answer (there is a
+proof/there isn&rsquo;t a proof) after some finite time.</p>
+<p>This is a <strong>fundamental problem for automated FOL inference</strong>, of course: any
+inference engine will need to be <em>smart</em> to be an effective reasoner, it can&rsquo;t
+just brute force the problem. And even a smart algorithm may sometimes never
+find the answer.</p>
+<p>The mathematical proof of this fundamental fact about reasoning is out of reach
+in this course, but we can illustrate <em>why</em> this happens. In fact, showing this
+is a great setup for the next <a href="#generalized-mp-and-unification">topic</a>:</p>
+<p>Suppose that our premises contain a premise of the form:</p>
+<p>$$\forall x\exists y\mathsf{BiggerThan}(x,y)$$</p>
+<p>We want to know whether some conclusion follows from this. It doesn&rsquo;t really
+matter what the potential conclusion is, since the problem already occurs if we
+automatically draw inferences from $$\forall x\exists
+y\mathsf{BiggerThan}(x,y)$$ in an unfortunate way.</p>
+<p>Suppose we already have a constant in our knowledge base, say $0$ for the number
+zero. A natural thing to do is to instantiate any universal quantifier we come
+across with all the constants we know to see if we get the result. So, we infer
+$$\exists y\mathsf{BiggerThan}(0,y)$$
+So far so good. Now, we don&rsquo;t have any other constants, so we don&rsquo;t draw any
+further inferences using $\forall E$. Since we&rsquo;ve got nothing else we can do, we
+try the rule $\exists E$ and introduce a new constant: $c_1$ (you&rsquo;ll see in a
+second why there&rsquo;s an index):</p>
+<p>$$\exists y\mathsf{BiggerThan}(0,c_1)$$</p>
+<p>But wait, we&rsquo;ve got a new constant, so we should infer:</p>
+<p>$$\exists y\mathsf{BiggerThan}(c_1,y)$$</p>
+<p>from</p>
+<p>$$\forall x\exists y\mathsf{BiggerThan}(x,y)$$</p>
+<p>Again, we&rsquo;ve instantiated the $\forall$ with all our constants, so we try
+$\exists E$ again. Since our constant must be new, we choose $c_2$. Ah, a new
+constant, so we need to use $\forall E$ for our premise again, giving us:</p>
+<p>$$\exists y\mathsf{BiggerThan}(c_1,c_2)$$</p>
+<p>Now you quickly see that we&rsquo;re caught in a <a href="https://en.wikipedia.org/wiki/Infinite_loop"
+  target="_blank">infinite
+loop</a>. Every time we instantiate
+the universal quantifier, the existential quantifier gives us a new constant to
+instantiate the universal quantifier for. This procedure gives us a bunch of
+proofs, but never the one we&rsquo;re looking for.</p>
+<p>Of course, we could avoid hitting the infinite loop &ldquo;immediately&rdquo; by first
+applying some other rules after we&rsquo;ve introduced $c_1$. This would give us some
+more inferences, which is good of course. The problem, however, is that we can
+never <em>completely</em> avoid infinite loops like this. That&rsquo;s the consequence of
+undecidability.</p>
+<p>The <em>moral</em> of the story is that we need to be &ldquo;smart&rdquo; when we&rsquo;re instantiating
+universal quantifiers: we need to instantiate them with the right terms and at
+the right time–otherwise we might get &ldquo;stuck&rdquo; in an infinite loop.</p>
+<p>Making smart choices in this context is the topic of the next section.</p>
+<h2 id="generalized-mp-and-unification">Generalized MP and Unification<button class="btn btn-back-to-top">
+    
+    <i class="bi bi-chevron-double-up"></i>
+    
+  </button>
+</h2>
+<hr>
+
+<p>A standard setup we find ourselves in when it comes to automated FOL inference
+is that we have a KB with a bunch of rules of the form:</p>
+<p>$$\forall x\forall y\dots((P_1(x,y,\dots)\land P_2(x,y,\dots))\land \dots \to
+C(x,y,\dots))$$</p>
+<p>These are simple if-then rules (which correspond to <a href="https://en.wikipedia.org/wiki/Horn_clause"
+  target="_blank">Horn
+clauses</a>).</p>
+<p>Take, for example, the FOL version of the rules for our robot planning example:
+$$\forall x\forall n((On(x, n) \land Switch(x, n)) \to Off(x, n + 1))$$
+$$\forall x\forall n((Off(x, n) \land Switch(x, n)) \to On(x, n + 1))$$</p>
+<p>A straight-forward inference strategy to extract information from these clauses
+is to instantiate them and try to use <em>modus ponens</em>, effectively applying the
+
+
+
+<a href="https://logicalmethods.ai/textbook/conditionals//#forward-chaining"
+   
+   
+   
+   
+   
+   > forward
+chaining</a>
+
+
+
+
+
+<a href="https://logicalmethods.ai/textbook/conditionals//#backward-chaining"
+   
+   
+   
+   
+   
+   > backward
+chaining</a>
+
+ techniques.</p>
+<p>Suppose, for example, that we have the following information and want to know
+what this determines:
+$$On(L,1)$$
+$$Switch(L,1)$$
+We can then reason as follows (here in natural deduction):</p>
+
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/gmp-example.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+
+
+<p>In this way, in two steps using $\land I$ and $\forall E$, we can infer that the
+left light will be off at time point $1+1=2$.</p>
+<p>Once we recognize the pattern, we might want to be able to apply it directly as
+in the following:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/gmp-example-2.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+
+
+<p>This can be achieved by adding the following <strong>generalized MP</strong> rule to our
+calculus (with the justification of being able to derive it using $\land I$ and
+$\forall E$):</p>
+
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/gmp.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+
+
+<p>Here $\vec{t}=t_1,t_2,\dots$ and $\vec{x}=x_1,x_2\dots$ are abbreviations.</p>
+<p>The generalized MP rule puts the focus a key questions for efficient FOL
+inference: choosing the right variables to instantiate universal quantifiers.</p>
+<p>The point of inference pattern is to avoid unnecessary (but valid)
+instantiations when trying to apply universal instantiation.</p>
+<p>To see whether we can apply generalized MP, we need to find an instantiation for
+the variables</p>
+<p>$$x_1,x_2,\dots$$</p>
+<p>such that applying it to</p>
+<p>$$P_1(x_1,x_2,\dots)\land P_2(x_1,x_2,\dots)\land\dots$$</p>
+<p>gives us</p>
+<p>$$P_1(t_1,t_2,\dots)\land P_2(t_1,t_2,\dots)\land\dots$$</p>
+<p>Here, it is clear what the answer is, viz:</p>
+<p>$$x_1\mapsto t_1,x_2\mapsto t_2,\dots$$</p>
+<p>But this example allows us to explain a key concept in FOL inference, which
+underlies most FOL inference algorithm. This concept is known as <strong>unification</strong>.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<p>A unification procedure takes as input two formulas and gives as output a
+substitution of terms that makes the two formulas identical.</p>
+<p>So, for example, if the input are the two formulas:</p>
+<p>$$On(L,1)\land Switch(L,1)\qquad \text{ and } \qquad On(x,y)\land Switch(x,y)$$</p>
+<p>the unification procedure would give as output:</p>
+<p>$$x\mapsto L, y\mapsto 1$$</p>
+<p>since substituting $L$ for $x$ and $1$ for $y$ everywhere, will turn the second
+input into the first.</p>
+<p>Note that unification can be applied to two formulas where both need
+substitutions. Take, for example, the following two formulas as input:</p>
+<p>$$\mathsf{YoungerThan}(x,Ada)\qquad \text{ and }\mathsf{YoungerThan}(Alan,y)$$</p>
+<p>If we replace $x$ with $Alan$ in the first input and $y$ with $Ada$ in the
+second input, we obtain the unified clause</p>
+<p>$$\mathsf{YoungerThan}(Alan,Ada)$$</p>
+<p>Note also that there can be pairs of formulas that are <strong>not unifiable</strong>. Take,
+for example, the formulas
+$$\mathsf{OlderThan}(x,Alan)\qquad\mathsf{OlderThan}(Ada,x)$$
+To unify the two formulas, we&rsquo;d need to have both $x\mapsto Ada$ and $x\mapsto
+Alan$, which is impossible.</p>
+<p>We use the notation $A[x_1\mapsto t_1,x_2\mapsto t_2,\dots]$ to denote the
+result of replacing $x_1$ with $t_1$, $x_2$ with $t_2$, and so forth everywhere
+those variables aren&rsquo;t captured by quantifiers. This procedure is known
+<strong>substitution</strong>. We call the rule $x_1\mapsto t_1,x_2\mapsto t_2,\dots$ <em>a</em>
+substitution.</p>
+<p>Using this notation, we can formulate the unification procedure as a procedure
+that gives us for two formulas $A,B$ a substitution $$[A,B]_{U}$$ such that
+$$A[A,B]_{U}=B[A,B]_{U}.$$</p>
+<p>Using unification, we can write the generalized MP rule as follows:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/gmp-u.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+
+
+<p>Using generalized MP, one can develop FOL versions of forwards and backwards
+chaining <em>directly</em>, side-stepping a search through all possible instantiations.</p>
+<h2 id="fol-resolution">FOL resolution<button class="btn btn-back-to-top">
+    
+    <i class="bi bi-chevron-double-up"></i>
+    
+  </button>
+</h2>
+<hr>
+
+<p>A main limitation of the generalized MP rule is that it works only with
+universal conditions of the form we discussed above:</p>
+<p>$$\forall x\forall y\dots((P_1(x,y,\dots)\land P_2(x,y,\dots))\land \dots \to
+C(x,y,\dots))$$</p>
+<p>While these are <em>very</em> common in KBs, we often come across situations, where
+we&rsquo;d like to apply FOL inference to <em>arbitrary</em> formulas.</p>
+<p>A very effective and widely used technique for that is the generalization of the
+<strong>resolution method for FOL</strong>.</p>
+<p>Remember that the <strong>resolution rule</strong> says that if you have two clauses</p>
+<p>$$l_1\lor l_2\lor \dots\lor p \qquad \qquad \neg p\lor k_1\lor k_2\lor\dots$$</p>
+<p>you can infer:</p>
+<p>$$l_1\lor l_2\lor \dots k_1\lor k_2\lor\dots$$</p>
+<p>In this rule $l_i,k_j$ are literals, meaning either propositional variables or
+their negations. How can we generalize this rule to the FOL case?</p>
+<p>First, note that literals correspond to basic facts in propositional logic:
+$\mathsf{RAIN}$ is the basic fact that it rains, and $\neg\mathsf{RAIN}$ is the
+basic fact that it doesn&rsquo;t. In fact, these basic facts directly correspond to
+the basic <em>modeling</em> facts $\nu(\mathsf{RAIN})=1$ and $\nu(\mathsf{RAIN})=0$.
+What are the corresponding basic facts in FOL?</p>
+<p>The straight-forward answer is that they are atomic formulas and their
+negations, like:</p>
+<p>$$\mathsf{OlderThan}(\mathsf{FatherOf}(Ada),Ada)\qquad \neg\mathsf{OlderThan}(\mathsf{FatherOf}(Ada),Ada)$$</p>
+<p>Using these, we can, for example, formulate valid, resolution-style inferences
+like the following:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/example-resolution.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+
+
+<p>If we have complex FOL formulas, which are just build up from atoms using
+$\neg,\land,\lor,\to$, we can straight-forwardly generalize the propositional
+procedure to the FOL case: simply re-write the formula in CNF (following the
+procedure laid out in  
+
+
+<a href="https://logicalmethods.ai/textbook/sat//#normal-forms"
+   
+   
+   
+   
+   
+   >
+chapter 5.3</a>
+
+), and we can apply the resolution rule.</p>
+<p>For example, the above application of the resolution rule shows the validity of
+the following FOL inference:</p>
+<p>$$\mathsf{Parent}(\mathsf{FatherOf}(Ada),Ada)\to
+\mathsf{OlderThan}(\mathsf{FatherOf}(Ada),Ada),$$
+$$\mathsf{OlderThan}(\mathsf{FatherOf}(Ada),Ada)\to$$
+$$\mathsf{Before}(\mathsf{BirthdayOf}(\mathsf{FatherOf}(Ada)),\mathsf{BirthdayOf}(Ada))\vDash$$
+$$\mathsf{Parent}(\mathsf{FatherOf}(Ada),Ada)\to$$
+$$\mathsf{Before}(\mathsf{BirthdayOf}(\mathsf{FatherOf}(Ada)),\mathsf{BirthdayOf}(Ada))$$</p>
+<p>It turns out that universal quantifiers are relatively easy to handle using a
+simple &ldquo;trick&rdquo;. We simply treat &ldquo;free&rdquo; variables, that is variables which are
+not captured by a corresponding quantifier, as <em>implicitly quantified</em>. To
+illustrate, consider the following example.</p>
+<p>We want to check the validity of the following inference:
+$$\forall x\forall y(\mathsf{Parent}(x,y)\to \mathsf{OlderThan}(x,y)),$$
+$$\forall x\forall y(\mathsf{OlderThan}(x,y)\to \mathsf{Before}(\mathsf{BirthdayOf}(x),\mathsf{BirthdayOf}(y)))\vDash$$
+$$\forall x\forall y(\mathsf{Parent}(x,y)\to \mathsf{Before}(\mathsf{BirthdayOf}(x),\mathsf{BirthdayOf}(y)))$$
+We do this with the following application of the resolution rule:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/resolution-universal.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+
+
+<p>Several things have happened here:</p>
+<ol>
+<li>We&rsquo;ve dropped all the universal quantifiers. Along the way, we made sure to
+rename all variables in such a way that every formula has unique variables.</li>
+<li>We re-wrote the resulting quantifier free formulas in using the re-writing
+rules.</li>
+<li>We applied the resolution rule using a substitution where $u\mapsto x$ and
+$v\mapsto y$.
+The first and third steps are the crucial things to focus on here: we allow a
+resolution application with atoms $$\mathsf{OlderThan}(u,v)$$ and
+$$\neg\mathsf{OlderThan}(x,y).$$ This is the way in which we treat the free
+variables $x,y,u,v$ as &ldquo;implicitly quantified&rdquo;. We think of them as being able
+to assume different values, in particular $x$ and $u$ and $y$ and $v$ <em>can</em>
+assume the same values, which makes this an ordinary case of resolution.</li>
+</ol>
+<p>But when doing so, we must respect the new assignment of variables. That is, we
+apply the substitution $u\mapsto x,v\mapsto y$ to the entire formula, giving us
+the conclusion.</p>
+<p>Note that $[u\mapsto x,v\mapsto y]$ is a unification for the formulas
+$\mathsf{OlderThan}(u,v)$ and $\neg\mathsf{OlderThan}(x,y).$ This gives us the
+most general form of the <strong>FOL resolution rule</strong>:</p>
+<p>$$l_1\lor l_2\lor \dots\lor m \qquad \qquad \neg m\lor k_1\lor k_2\lor\dots$$</p>
+<p>you can infer:</p>
+<p>$$(l_1\lor l_2\lor \dots k_1\lor k_2\lor\dots)[m,\neg m]_U$$</p>
+<p>This is the resolution rule we&rsquo;ve applied in the inference:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/resolution-universal.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+
+
+<p>To make this a general inference rule, we allow the $m,\neg m$ pair to occur
+anywhere within $l_1\lor l_2\lor \dots\lor m, \neg m\lor k_1\lor k_2\lor\dots$
+respectively (not only at the end/beginning).</p>
+<p>It turns out that we can describe a general FOL inference procedure using
+resolution. This involves FOL variant of the CNF from 
+
+
+<a href="https://logicalmethods.ai/textbook/sat//#normal-forms"
+   
+   
+   
+   
+   
+   > chapter 5.3</a>
+
+.</p>
+<p>We first describe the procedure. To transform an arbitrary formula into
+<strong>FO-CNF</strong>:</p>
+<ol>
+<li>
+<p>Re-write all conditionals using the rule: $A\to B\leadsto \neg A\lor B$</p>
+</li>
+<li>
+<p>Use the de Morgan rules to move all negations inwards, i.e. apply the rules:</p>
+<ul>
+<li>$\neg(A\land B)\leadsto \neg A\lor\neg B$</li>
+<li>$\neg(A\lor B)\leadsto \neg A\land\neg B$.</li>
+</ul>
+</li>
+<li>
+<p>Use the quantifier negation rules to move negations inwards via the following rules:</p>
+<ul>
+<li>$\neg\neg A\leadsto A$</li>
+<li>$\neg\forall xA\leadsto \exists x\neg A$</li>
+<li>$\neg\exists xA\leadsto \forall x\neg A$</li>
+</ul>
+</li>
+<li>
+<p>Re-name the variables such that each quantifier has its own variable, so
+that, e.g. $\forall xA\land \exists xB\leadsto \forall x_1A\land \forall
+x_2B$.</p>
+</li>
+<li>
+<p>For each quantifier, apply the following procedure known as <strong>Skolemization</strong>:<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
+<ul>
+<li>
+<p>Eliminate the quantifier from the formula and replace the variable it
+quantifiers over with a function symbol $f_i(x_j,x_k,\dots)$, where: $x_i$
+is the variable the universal quantifier used and $x_j,x_k,\dots$ are all
+the universally quantified variables that come before $x_i$ in the formula.</p>
+</li>
+<li>
+<p>For example, $\forall x\exists y(P(x)\to R(x,y))$ becomes $\forall
+x(P(x)\to R(x,f(x)))$.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Drop all the remaining universal quantifiers.</p>
+</li>
+<li>
+<p>Apply the distribution law:</p>
+<ul>
+<li>$A\lor (B\land C)\leadsto (A\lor B)\land (A\lor C)$</li>
+</ul>
+</li>
+</ol>
+<p>We apply all these steps recursively until we&rsquo;ve got a formula in CNF.</p>
+<p>For example, here&rsquo;s what the procedure does to the formula $$\forall x\forall
+y(\mathsf{Parent}(x,y)\to \neg \forall z (\mathsf{Parent}(z,y)\to x=z))$$</p>
+<ul>
+<li>
+<p>$\forall x\forall
+y(\neg \mathsf{Parent}(x,y)\lor \neg\forall z(\neg \mathsf{Parent}(z,y)\lor x= z))$ (Re-write conditionals)</p>
+</li>
+<li>
+<p>$\forall x\forall
+y(\neg \mathsf{Parent}(x,y)\lor \exists z\neg (\mathsf{Parent}(z,y)\land x= z))$</p>
+</li>
+<li>
+<p>$\forall x\forall
+y(\neg \mathsf{Parent}(x,y)\lor \exists z\neg (\neg\mathsf{Parent}(z,y)\lor x= z))$</p>
+</li>
+<li>
+<p>$\forall x\forall
+y(\neg \mathsf{Parent}(x,y)\lor \exists z(\neg \neg\mathsf{Parent}(z,y)\land x\neq z))$</p>
+</li>
+<li>
+<p>$\forall x\forall
+y(\neg \mathsf{Parent}(x,y)\lor \exists z(\mathsf{Parent}(z,y)\land x\neq z))$</p>
+</li>
+<li>
+<p>$\forall x\forall
+y(\neg \mathsf{Parent}(x,y)\lor (\mathsf{Parent}(f(x,y),y)\land x\neq f(x,y)))$</p>
+</li>
+<li>
+<p>$\neg \mathsf{Parent}(x,y)\lor (\mathsf{Parent}(f(x,y),y)\land x\neq f(x,y))$</p>
+</li>
+<li>
+<p>$(\neg \mathsf{Parent}(x,y)\lor \mathsf{Parent}(f(x,y),y))\land (\neg \mathsf{Parent}(x,y)\lor x\neq f(x,y)))$</p>
+</li>
+</ul>
+<p>The CNF procedure always leads to a formula that is in CNF from the perspective
+of propositional logic. Crucially, however, the formula is <strong>not necessarily
+equivalent</strong> to the original formula in FOL. It is what&rsquo;s called
+<strong>equi-satisfiable</strong>: the re-written formula is satisfiable (has a model) if and
+only if the original formula has a model.</p>
+<p>This is because of the <strong>Skolemization</strong> involved, but we won&rsquo;t go into the
+mathematical details here. The crucial thing is that the procedure gives us a
+formula, which is in CNF and doesn&rsquo;t involve quantifiers. For $A$ a formula, we
+denote the result of applying the above procedure by $CNF(A)$.</p>
+<p>Since the formula $CNF(A)$ is equi-satisfiable with the original formula $A$, we
+can apply the resolution technique to determine the transformed formula&rsquo;s
+satisfiability and infer the satisfiability status of the original formula.
+This, it turns out, gives us a sound and complete inference system.</p>
+<p>From here on out the ideas are actually just what we know from propositional
+logic (compare 
+
+
+<a href="https://logicalmethods.ai/textbook/proofs//#resolution-based-systems"
+   
+   
+   
+   
+   
+   >
+Chapter 7.2.3</a>
+
+):</p>
+<ul>
+<li>
+<p>To test an inference $$P_1,P_2,\dots\vDash C$$ for validity, we test whether the
+formula $$P_1\land P_2\land \dots\land \neg C$$ is satisfiability.</p>
+</li>
+<li>
+<p>We do this by
+applying the resolution rule as many times as possible to the clauses of
+$$CNF(P_1\land P_2\land \dots\land \neg C).$$</p>
+</li>
+<li>
+<p>If we can derive $\bot$, the inference is valid, if we cannot, the inference
+is invalid.</p>
+</li>
+</ul>
+<p>The procedure we&rsquo;ve just sketched leads to a very effective way of automated
+reasoning, which provides the basis for many ATPs.</p>
+<h2 id="further-readings">Further readings<button class="btn btn-back-to-top">
+    
+    <i class="bi bi-chevron-double-up"></i>
+    
+  </button>
+</h2>
+<hr>
+
+<p>An excellent overview of FOL inference with more concrete discussion of the
+implementations of forward and backward chaining in FOL can be found in <a href="https://elibrary.pearson.de/book/99.150005/9781292401171"
+  target="_blank">Russel and Norvig. 2021. Artificial Intelligence: A Modern Approach. 4th
+Edition. Pearson</a>,
+chapter 9.</p>
+<p><strong>Notes</strong></p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p><a href="https://en.wikipedia.org/wiki/Unification_%28computer_science%29"
+  target="_blank">Unification</a> as a
+general procedure can be used to solve equations of various kinds. Using it for
+FOL formulas is just a special case.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>This procedure is perhaps difficult to intuitively understand.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+ <p><em>Last edited: </em>15/10/2024</p>
+</div>
+
+
+<ul class="navbar-nav flex-row justify-content-between mt-auto">
+  
+  <li class="nav-item">
+    <a href="/textbook/fol/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-chevron-left"></i>
+    </a>
+    
+  </li>
+  <li class="nav-item">
+    <button class="btn btn-back-to-top">
+    <i class="bi bi-chevron-double-up"></i>
+  </button>
+  </li>
+  <li class="nav-item">
+    
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-chevron-right"></i>
+    </a>
+    
+  </li>
+</ul>
+
+    </main>
+    <footer class="align-self-center d-flex flex-column mt-md-1 p-0" data-bs-theme="dark">
+      <nav class="navbar bg-dark shadow" data-bs-theme="dark" aria-label="footer-navbar">
+  <div class="container-sm align-self-center px-3">
+    <a class="navbar-brand fs-6" href="/about" aria-label="copyright-link">&copy; 2024 jkorbmacher et al. </a>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link fs-6" href="https://github.com/jkorb/logicalmethods.ai" target="_blank"><i class="bi bi-github"></i></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+ 
+      <script src="https://logicalmethods.ai/js/helpers.js"></script>
+      <script src="https://logicalmethods.ai/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+      
+      
+    </footer>
+  </body>
+</html>

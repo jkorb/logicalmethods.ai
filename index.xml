@@ -176,5 +176,12 @@
       <guid>https://logicalmethods.ai/textbook/fol/</guid>
       <description>&lt;h1 id=&#34;fol&#34;&gt;FOL&lt;button class=&#34;btn btn-back-to-top&#34;&gt;&#xA;    &#xA;  &lt;/button&gt;&#xA;&lt;/h1&gt;&#xA;&lt;hr&gt;&#xA;&#xA;&lt;p&gt;In this chapter, you&amp;rsquo;ll learn about &lt;strong&gt;first order logic (FOL)&lt;/strong&gt;, which is the&#xA;benchmark for logical systems. FOL is one of the most expressive logic systems&#xA;in widespread use, and it finds applications from mathematics, the sciences, to&#xA;AI research.&lt;/p&gt;&#xA;&lt;p&gt;In AI research, the main application of FOL is as a benchmark background system,&#xA;in which &amp;ldquo;everything&amp;rsquo;s possible&amp;rdquo;. The impressive expressive strength of FOL&#xA;allows us to formalize almost any problem we might come across, which makes FOL&#xA;a great tool for &lt;a href=&#34;https://en.wikipedia.org/wiki/Knowledge_engineering&#34;&#xA;  target=&#34;_blank&#34;&gt;knowledge&#xA;engineering&lt;/a&gt;. At the same&#xA;time, FOL has important limitations that limits its direct use for AI applications.&lt;/p&gt;</description>
     </item>
+    <item>
+      <title>FOL Inference</title>
+      <link>https://logicalmethods.ai/textbook/fol-inference/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://logicalmethods.ai/textbook/fol-inference/</guid>
+      <description>&lt;h1 id=&#34;fol-inference&#34;&gt;FOL Inference&lt;button class=&#34;btn btn-back-to-top&#34;&gt;&#xA;    &#xA;  &lt;/button&gt;&#xA;&lt;/h1&gt;&#xA;&lt;hr&gt;&#xA;&#xA;&lt;p&gt;Having discussed the syntactic and semantic framework of FOL in &#xA;&#xA;&#xA;&lt;a href=&#34;https://logicalmethods.ai/textbook/fol/&#34;&#xA;   &#xA;   &#xA;   &#xA;   &#xA;   &#xA;   &gt; Chapter 9. FOL&lt;/a&gt;&#xA;&#xA;, we&amp;rsquo;ll now turn to methods&#xA;for step-wise &lt;strong&gt;inference&lt;/strong&gt; in FOL.&lt;/p&gt;&#xA;&lt;p&gt;As you&amp;rsquo;ll see, FOL inference packs a bit more of a punch than propositional&#xA;inference: not only are the rules more complicated, but we have to be careful&#xA;about how we apply them. The problem is that, because of &lt;strong&gt;undecidability&lt;/strong&gt;, we&#xA;can run into &amp;ldquo;loops&amp;rdquo; and &amp;ldquo;infinite regresses&amp;rdquo;. This problem is ultimately&#xA;unavoidable, but there are methods and techniques to mitigate its consequences.&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>
