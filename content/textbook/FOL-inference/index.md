@@ -502,12 +502,12 @@ We first describe the procedure. To transform an arbitrary formula into
 
 2. Use the de Morgan rules to move all negations inwards, i.e. apply the rules:
    
+   + $\neg\neg A\leadsto A$
    + $\neg(A\land B)\leadsto \neg A\lor\neg B$
    + $\neg(A\lor B)\leadsto \neg A\land\neg B$.
 
 3. Use the quantifier negation rules to move negations inwards via the following rules: 
  
-   + $\neg\neg A\leadsto A$
    + $\neg\forall xA\leadsto \exists x\neg A$
    + $\neg\exists xA\leadsto \forall x\neg A$
 
