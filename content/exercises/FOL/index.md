@@ -105,7 +105,7 @@ $$\text{Logical law}: \mathsf{Blue}(a)\lor \forall x \mathsf{Round}(x)\vDash \fo
 
 ## b) {.homework}
 
-$$\text{Boolean law}: x\times (y_1+ y_2+ \dots)=(x\times y_1)+ (x\times y_2)\times \dots$$
+$$\text{Boolean law}: x\times (y_1+ y_2+ \dots)=(x\times y_1)+ (x\times y_2)+ \dots$$
 
 $$\text{Logical law}: \mathsf{Blue}(a)\land \exists x \mathsf{Round}(x)\vDash
 \exists x(\mathsf{Blue}(a)\land \mathsf{Round}(x)) $$
