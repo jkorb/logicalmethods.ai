@@ -152,6 +152,10 @@
             <li>
               <a class="dropdown-item " href="/slides/fol/">8. FOL</a>
             </li>
+            
+            <li>
+              <a class="dropdown-item " href="/slides/fol-inference/">9. FOL inference</a>
+            </li>
             </ul>
         </div>
         
@@ -765,9 +769,9 @@ the conclusion.</p>
 <p>Note that $[u\mapsto x,v\mapsto y]$ is a unification for the formulas
 $\mathsf{OlderThan}(u,v)$ and $\neg\mathsf{OlderThan}(x,y).$ This gives us the
 most general form of the <strong>FOL resolution rule</strong>:</p>
-<p>$$l_1\lor l_2\lor \dots\lor m \qquad \qquad \neg m\lor k_1\lor k_2\lor\dots$$</p>
+<p>$$l_1\lor l_2\lor \dots\lor m \qquad \qquad \neg n\lor k_1\lor k_2\lor\dots$$</p>
 <p>you can infer:</p>
-<p>$$(l_1\lor l_2\lor \dots k_1\lor k_2\lor\dots)[m,\neg m]_U$$</p>
+<p>$$(l_1\lor l_2\lor \dots k_1\lor k_2\lor\dots)[m,\neg n]_U$$</p>
 <p>This is the resolution rule we&rsquo;ve applied in the inference:</p>
 
 
@@ -775,7 +779,7 @@ most general form of the <strong>FOL resolution rule</strong>:</p>
 
 
 <p>To make this a general inference rule, we allow the $m,\neg m$ pair to occur
-anywhere within $l_1\lor l_2\lor \dots\lor m, \neg m\lor k_1\lor k_2\lor\dots$
+anywhere within $l_1\lor l_2\lor \dots\lor m, \neg n\lor k_1\lor k_2\lor\dots$
 respectively (not only at the end/beginning).</p>
 <p>It turns out that we can describe a general FOL inference procedure using
 resolution. This involves FOL variant of the CNF from 
@@ -799,6 +803,7 @@ resolution. This involves FOL variant of the CNF from
 <li>
 <p>Use the de Morgan rules to move all negations inwards, i.e. apply the rules:</p>
 <ul>
+<li>$\neg\neg A\leadsto A$</li>
 <li>$\neg(A\land B)\leadsto \neg A\lor\neg B$</li>
 <li>$\neg(A\lor B)\leadsto \neg A\land\neg B$.</li>
 </ul>
@@ -806,7 +811,6 @@ resolution. This involves FOL variant of the CNF from
 <li>
 <p>Use the quantifier negation rules to move negations inwards via the following rules:</p>
 <ul>
-<li>$\neg\neg A\leadsto A$</li>
 <li>$\neg\forall xA\leadsto \exists x\neg A$</li>
 <li>$\neg\exists xA\leadsto \forall x\neg A$</li>
 </ul>
