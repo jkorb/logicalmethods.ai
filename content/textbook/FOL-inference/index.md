@@ -477,18 +477,18 @@ Note that $[u\mapsto x,v\mapsto y]$ is a unification for the formulas
 $\mathsf{OlderThan}(u,v)$ and $\neg\mathsf{OlderThan}(x,y).$ This gives us the
 most general form of the **FOL resolution rule**:
 
-$$l_1\lor l_2\lor \dots\lor m \qquad \qquad \neg m\lor k_1\lor k_2\lor\dots$$
+$$l_1\lor l_2\lor \dots\lor m \qquad \qquad \neg n\lor k_1\lor k_2\lor\dots$$
 
 you can infer: 
 
-$$(l_1\lor l_2\lor \dots k_1\lor k_2\lor\dots)[m,\neg m]_U$$
+$$(l_1\lor l_2\lor \dots k_1\lor k_2\lor\dots)[m,\neg n]_U$$
 
 This is the resolution rule we've applied in the inference:
 
 {{< img src="img/resolution-universal.png" class="img-thumbnail mx-auto d-block my-4" >}}
 
 To make this a general inference rule, we allow the $m,\neg m$ pair to occur
-anywhere within $l_1\lor l_2\lor \dots\lor m, \neg m\lor k_1\lor k_2\lor\dots$
+anywhere within $l_1\lor l_2\lor \dots\lor m, \neg n\lor k_1\lor k_2\lor\dots$
 respectively (not only at the end/beginning).
 
 It turns out that we can describe a general FOL inference procedure using
