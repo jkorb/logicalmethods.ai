@@ -185,7 +185,7 @@ Also here a truth-table gives a quick answer:
 
 {{< img src="img/fallacy-2.png" class="img-thumbnail" >}}
 
-We see that if we set $\mathsf{BIKE}=0$ and $\mathsf{SUN}=0$, the premises
+We see that if we set $\mathsf{BIKE}=1$ and $\mathsf{SUN}=0$, the premises
 are true and the conclusion false.
 
 # Horn clauses {.solved}
