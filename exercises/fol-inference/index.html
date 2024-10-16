@@ -3,17 +3,37 @@
   <head>
     <meta charset="utf-8"></meta>
     <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-    <title>logicalmethods.ai &ndash; Slides </title>
+    <title>logicalmethods.ai &ndash; FOL inference </title>
     <link rel="icon" type="image/x-icon" href="https://logicalmethods.ai/favicon.ico"></link>
     <link href="https://logicalmethods.ai/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"></link>
     <link rel="stylesheet" href="https://logicalmethods.ai/icons/font/bootstrap-icons.min.css"></link>
     <link rel="stylesheet" href="https://logicalmethods.ai/css/layout.css"></link>
     
-    
+<link rel="stylesheet" href="https://logicalmethods.ai/css/exercises.css"></link>
+
     <style>
       
       
     </style>
+    
+      <link rel="stylesheet" href="https://logicalmethods.ai/katex/katex.min.css">
+<script defer src="https://logicalmethods.ai/katex/katex.min.js"></script>
+<script defer src="https://logicalmethods.ai/katex/contrib/auto-render.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},     
+        {left: '$', right: '$', display: false},     
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '\\(', right: '\\)', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
     
   </head>
   <body class="bg-black d-flex flex-column m-0 p-0">
@@ -86,19 +106,19 @@
       <li class="nav-item">
         <div class="d-flex flex-row">
           <div class="container">
-            <a class="nav-link fw-bold active" href="/slides/"><i class="bi bi-rocket-takeoff-fill"></i> &nbsp;&nbsp; Slides</a>
+            <a class="nav-link " href="/slides/"><i class="bi bi-rocket-takeoff-fill"></i> &nbsp;&nbsp; Slides</a>
           </div>
           <button 
             class="btn btn-sm btn-dark" 
             href="/slides/"
             id="navbarSectionsli-home" data-bs-toggle="collapse"
             data-bs-target="#collapsesli-home"  
-            aria-expanded="true"
+            aria-expanded="aria-expanded=false"
             aria-controls="collapsesli-home">
             <i class="bi bi-caret-left-fill toggle-icon"></i>
           </button>
         </div>
-        <div class="collapse show" id="collapsesli-home">
+        <div class="collapse " id="collapsesli-home">
           <ul class="list-unstyled ms-3">
             <li>
               <a class="dropdown-item " href="/slides/logic-and-ai/">1. Logic and AI</a>
@@ -143,19 +163,19 @@
       <li class="nav-item">
         <div class="d-flex flex-row">
           <div class="container">
-            <a class="nav-link " href="/exercises/"><i class="bi-gear-fill"></i> &nbsp;&nbsp; Exercises</a>
+            <a class="nav-link fw-bold active" href="/exercises/"><i class="bi-gear-fill"></i> &nbsp;&nbsp; Exercises</a>
           </div>
           <button 
             class="btn btn-sm btn-dark" 
             href="/exercises/"
             id="navbarSectionexe-home" data-bs-toggle="collapse"
             data-bs-target="#collapseexe-home"  
-            aria-expanded="aria-expanded=false"
+            aria-expanded="true"
             aria-controls="collapseexe-home">
             <i class="bi bi-caret-left-fill toggle-icon"></i>
           </button>
         </div>
-        <div class="collapse " id="collapseexe-home">
+        <div class="collapse show" id="collapseexe-home">
           <ul class="list-unstyled ms-3">
             <li>
               <a class="dropdown-item " href="/exercises/logic-and-ai/">1. Logic and AI</a>
@@ -190,7 +210,7 @@
             </li>
             
             <li>
-              <a class="dropdown-item " href="/exercises/fol-inference/">9. FOL inference</a>
+              <a class="dropdown-item fw-bold active" href="/exercises/fol-inference/">9. FOL inference</a>
             </li>
             </ul>
         </div>
@@ -226,26 +246,54 @@
     
     <main class="align-self-center d-flex flex-column flex-fill bg-light m-md-1 p-0" data-bs-theme="light">
       
-  <div class="container p-3 text-center">
-  <h1 class="display-1">
-    <strong><span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
-</strong> 
-  </h1>
-  <h1 class="text-body-emphasis">Logical methods for AI</h1>
-  <p class="lead">
-    
-    Lecture <strong>slides</strong>
-    
-  </p>
-  <h1 class="text-body-emphasis">
-    
-    <i class="bi bi-rocket-takeoff-fill"></i>
-    
-  </h1>
-  
+  <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="passwordModalLabel">Enter Password</h6>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="password" id="passwordInput" class="form-control" placeholder="Password">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="passwordSubmitButton">Submit</button>
+      </div>
+    </div>
+  </div>
 </div>
 
+  <ul class="navbar-nav flex-row justify-content-between mt-2">
   
+  <li class="nav-item">
+    <a href="/exercises/fol/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-chevron-left"></i>
+    </a>
+    
+  </li>
+  <li class="nav-item">
+    <a href="/exercises/" class="btn " tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-house-up"></i>
+    </a>
+  </li>
+  <li class="nav-item">
+    
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-chevron-right"></i>
+    </a>
+    
+  </li>
+</ul>
+
+  <div class="container text-center">
+  <h3>
+    Tutorial 9. FOL inference
+  </h3>
+  <em>Exercise sheet</em>
+</div>
+
+
+
 
   
    
@@ -260,19 +308,26 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body text-start">
-          <p>Here you can find the lecture slides.</p>
-<p>You can use them to follow along during the lecture and to go through the
-material again after.</p>
-<p>Feel free to ask questions during the lecture!!</p>
-<p><strong>Technical info</strong></p>
-<p>You can use the arrow keys to navigate through the slides, or
-alternatively, click the little arrows on the slides themselves.</p>
-<p>Pressing the F-key while the slides are selected, puts them in
-fullscreen. You can quit fullscreen by pressing ESC.</p>
-<p>There are more the slides can do, find out under
-<i class="bi bi-box-arrow-up-right h-6"></i>
-<a href="https://revealjs.com/" class="link-dark" rel="external" target="_blank">https://revealjs.com/</a>
-.</p>
+          <p>On this page, you can find the exercise sheets for the work groups.</p>
+<p>Each section has a set of exercises that you&rsquo;ll go through with your TA in the
+session.</p>
+<p>Some exercises are marked as homework, they are due at the beginning of the
+next session.</p>
+<p>You&rsquo;ll receive constructive feedback from your TA on your work.</p>
+<p>You can also ask your TA for suggestions and advice.</p>
+<p>You <strong>must</strong> show your work in order to get tips, meaning that if you just
+say &ldquo;i don&rsquo;t know&rdquo;. Try by yourself first and explain <em>what</em> you don&rsquo;t get.</p>
+<p>The exercises marked with
+<i class="bi bi-house-gear-fill text-danger">
+</i>
+
+are homework questions.</p>
+<p>The questions marked with a
+<i class="bi bi-lightbulb-fill">
+</i>
+
+have solutions available online. The solutions are
+password protected and you&rsquo;ll receive the password in the work groups.</p>
 
       </div>
       <div class="modal-footer">
@@ -288,87 +343,116 @@ fullscreen. You can quit fullscreen by pressing ESC.</p>
 </div>
 
 
-  
-<div class="container text-center">
-  <p class="copyright" xmlns:cc="http://creativecommons.org/ns#" >
-    This work is licensed under 
-    CC BY 4.0
-    <i class="bi bi-cc-circle"></i> <i class="bi bi-universal-access-circle"></i>
-  </p> 
-</div>
 
 
-  <hr>
-  
-    <a href="/slides/teaser"
-   class="btn btn-sm btn-link link-dark link-underline-opacity-0"
-   
-   
-   
-   
-   >
-  
-<h5><i class="bi bi-box-arrow-up-right h-6"></i> Teaser lecture </h5>
 
-</a>
 
 <hr>
-
-  
-  
-<div class="container mb-4">
-  
-  <h5>Lectures</h5>
-  
-  <ul class="list-group shadow">
+<div class="container exercises" style="max-width: 720px">
+  <div class="container-fluid m-0 p-0">
     
-    <li class="list-group-item list-group-item-action">
-      <a class="link-dark link-underline-light d-none d-sm-block" href="/slides/logic-and-ai/"><i class="bi bi-file-earmark-slides"></i> Lecture 1. Logic and AI </a>
-      <a class="link-dark link-underline-light d-block d-sm-none" href="/slides/logic-and-ai/"><i class="bi bi-file-earmark-slides"></i> 2. Logic and AI </a>
-    </li>
     
-    <li class="list-group-item list-group-item-action">
-      <a class="link-dark link-underline-light d-none d-sm-block" href="/slides/valid-inference/"><i class="bi bi-file-earmark-slides"></i> Lecture 2. Valid inference </a>
-      <a class="link-dark link-underline-light d-block d-sm-none" href="/slides/valid-inference/"><i class="bi bi-file-earmark-slides"></i> 2. Valid inference </a>
-    </li>
-    
-    <li class="list-group-item list-group-item-action">
-      <a class="link-dark link-underline-light d-none d-sm-block" href="/slides/formal-languages/"><i class="bi bi-file-earmark-slides"></i> Lecture 3. Formal languages </a>
-      <a class="link-dark link-underline-light d-block d-sm-none" href="/slides/formal-languages/"><i class="bi bi-file-earmark-slides"></i> 2. Formal languages </a>
-    </li>
-    
-    <li class="list-group-item list-group-item-action">
-      <a class="link-dark link-underline-light d-none d-sm-block" href="/slides/boolean/"><i class="bi bi-file-earmark-slides"></i> Lecture 4. Boolean algebra </a>
-      <a class="link-dark link-underline-light d-block d-sm-none" href="/slides/boolean/"><i class="bi bi-file-earmark-slides"></i> 2. Boolean algebra </a>
-    </li>
-    
-    <li class="list-group-item list-group-item-action">
-      <a class="link-dark link-underline-light d-none d-sm-block" href="/slides/sat/"><i class="bi bi-file-earmark-slides"></i> Lecture 5. Boolean satisfiability </a>
-      <a class="link-dark link-underline-light d-block d-sm-none" href="/slides/sat/"><i class="bi bi-file-earmark-slides"></i> 2. Boolean satisfiability </a>
-    </li>
-    
-    <li class="list-group-item list-group-item-action">
-      <a class="link-dark link-underline-light d-none d-sm-block" href="/slides/conditionals/"><i class="bi bi-file-earmark-slides"></i> Lecture 6. Logical conditionals </a>
-      <a class="link-dark link-underline-light d-block d-sm-none" href="/slides/conditionals/"><i class="bi bi-file-earmark-slides"></i> 2. Logical conditionals </a>
-    </li>
-    
-    <li class="list-group-item list-group-item-action">
-      <a class="link-dark link-underline-light d-none d-sm-block" href="/slides/proof/"><i class="bi bi-file-earmark-slides"></i> Lecture 7. Logical proofs </a>
-      <a class="link-dark link-underline-light d-block d-sm-none" href="/slides/proof/"><i class="bi bi-file-earmark-slides"></i> 2. Logical proofs </a>
-    </li>
-    
-    <li class="list-group-item list-group-item-action">
-      <a class="link-dark link-underline-light d-none d-sm-block" href="/slides/fol/"><i class="bi bi-file-earmark-slides"></i> Lecture 8. FOL </a>
-      <a class="link-dark link-underline-light d-block d-sm-none" href="/slides/fol/"><i class="bi bi-file-earmark-slides"></i> 2. FOL </a>
-    </li>
-    
-    <li class="list-group-item list-group-item-action">
-      <a class="link-dark link-underline-light d-none d-sm-block" href="/slides/fol-inference/"><i class="bi bi-file-earmark-slides"></i> Lecture 9. FOL inference </a>
-      <a class="link-dark link-underline-light d-block d-sm-none" href="/slides/fol-inference/"><i class="bi bi-file-earmark-slides"></i> 2. FOL inference </a>
-    </li>
-    
-  </ul>
+      
 </div>
+<div id="natural-deduction" class=" homework"><h5 class="homework">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Natural deduction
+    </div>
+</h5><p><em>Exercises 2.,4.,6. are homework</em></p>
+<p>Show the following in natural deduction for FOL:</p>
+<ol>
+<li>$\forall x\mathsf{Happy}(x)\land \forall x\mathsf{Fulfilled}(x)\vdash \forall x(\mathsf{Happy}(x)\land \mathsf{Fulfilled}(x))$</li>
+<li>$\exists x(\mathsf{Happy}(x)\lor \mathsf{Fulfilled}(x))\vdash \exists x\mathsf{Happy}(x)\lor\exists x\mathsf{Fulfilled}(x)$</li>
+<li>$\forall x\neg\mathsf{Happy}(x)\vdash \exists x\neg \mathsf{Happy}(x)$</li>
+<li>$\exists x\forall y\mathsf{Friend}(x,y)\vdash \forall y\exists x\mathsf{Friend}(x,y)$</li>
+<li>$\neg\exists x\mathsf{Happy}(x)\vdash \forall x\neg \mathsf{Happy}(x)$</li>
+<li>$\neg\forall x\mathsf{Sad}(x)\vdash \exists x\neg \mathsf{Sad}(x)$</li>
+</ol>
+
+</div>
+<div id="unification" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Unification
+    </div>
+</h5><p>For the following pairs of formulas, determine whether there are unifications.
+If there is one, give it, if there is not explain why not.</p>
+<ol>
+<li>$\mathsf{Between}(Munich,y,z)$ and $\mathsf{Between}(x,Milan,Rome)$</li>
+<li>$\mathsf{Between}(x,Rome,Rome)$ and $\mathsf{Between}(Rome,y,x)$</li>
+<li>$\mathsf{Knows}(Mary,x)\land \neg\mathsf{Happy}(x)$ and $\mathsf{Knows}(x,x)\land\neg\mathsf{Happy}(Jane)$</li>
+<li>$\neg\mathsf{Happy}(x)\lor \mathsf{Knows}(Mary,x)$ and $\mathsf{Knows}(x,x)\land\neg\mathsf{Happy}(Mary)$</li>
+</ol>
+
+</div>
+<div id="cnf" class=" homework"><h5 class="homework">
+    <div class="d-inline-flex flex-row m-0  p-0 ">CNF
+    </div>
+</h5><p><em>Exercises 2.,4. are homework</em></p>
+<p>Transform the following formulas into FOL CNF. Give your step-by-step
+transformation (you may perform several similar transformations in a single
+step).</p>
+<ol>
+<li>$\forall x\exists y (\mathsf{Friend}(x,y)\to \exists z\neg (\mathsf{Happy}(z)\land\mathsf{Fulfilled}(z)))$</li>
+<li>$\forall x(\forall y \mathsf{Friend}(x,y)\to \forall z\neg (\mathsf{Happy}(z)\land\mathsf{Fulfilled}(z)))$</li>
+<li>$\mathsf{Happy}(x)\to \neg\forall x(\mathsf{Friend}(x,y)\land \neg\mathsf{Friend}(y,x))$</li>
+<li>$\neg \exists x(\mathsf{Happy}(x)\land(\neg\mathsf{Fulfilled}(x)\land\mathsf{Knows}(x,x)))$</li>
+</ol>
+
+</div>
+<div id="resolution" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Resolution
+    </div>
+</h5><p>Use the resolution rule to justify the following inferences:</p>
+<ol>
+<li>$\forall x(\mathsf{Lord}(x)\to \mathsf{Happy}(x)),\neg\mathsf{Happy}(Byron)\vDash \neg\mathsf{Lord}(Byron)$</li>
+<li>$\neg\exists x(\mathsf{Lord}(x)\land \mathsf{Happy}(x)),\forall x\exists y(\mathsf{Friend}(x,y)\to \neg\mathsf{Happy}(x))\vDash \neg\exists x(\mathsf{Lord}(x)\land \exists y(\mathsf{Friend}(x,y)))$</li>
+</ol>
+
+</div>
+<div id="research" class=" homework"><h5 class="homework">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Research
+    </div>
+</h5>
+</div>
+<div id="a" ><h6 class="">a)</h6><p>How can we handle the equality $=$ in natural deduction for FOL? Give an simple
+sample derivation in the system, which shows how the rules work.</p>
+
+</div>
+<div id="b" ><h6 class="">b)</h6><p>What are the corresponding rules in resolution systems called?</p>
+
+</div>
+<div id="discussion" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Discussion
+    </div>
+</h5><p>Some researchers, especially those interested in the conceptual foundations of
+logic, argue that resolution-based proof systems are not &ldquo;really&rdquo; proof systems
+because they don&rsquo;t directly model human-style reasoning. Do you agree or
+disagree? Substantiate your answer with an argument.</p>
+
+  </div>
+</div>
+
+
+<ul class="navbar-nav flex-row justify-content-between mt-auto">
+  
+  <li class="nav-item">
+    <a href="/exercises/fol/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-chevron-left"></i>
+    </a>
+    
+  </li>
+  <li class="nav-item">
+    <button class="btn btn-back-to-top">
+    <i class="bi bi-chevron-double-up"></i>
+  </button>
+  </li>
+  <li class="nav-item">
+    
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-chevron-right"></i>
+    </a>
+    
+  </li>
+</ul>
+
 
 
     </main>
@@ -387,7 +471,8 @@ fullscreen. You can quit fullscreen by pressing ESC.</p>
       <script src="https://logicalmethods.ai/js/helpers.js"></script>
       <script src="https://logicalmethods.ai/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
       
-      
+<script src="https://logicalmethods.ai/js/exercises.js"></script>
+
     </footer>
   </body>
 </html>

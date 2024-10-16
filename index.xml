@@ -178,6 +178,13 @@
     </item>
     <item>
       <title>FOL inference</title>
+      <link>https://logicalmethods.ai/exercises/fol-inference/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://logicalmethods.ai/exercises/fol-inference/</guid>
+      <description>&lt;/div&gt;&#xA;&lt;div id=&#34;natural-deduction&#34; class=&#34; homework&#34;&gt;&lt;h5 class=&#34;homework&#34;&gt;&#xA;    &lt;div class=&#34;d-inline-flex flex-row m-0  p-0 &#34;&gt;Natural deduction&#xA;    &lt;/div&gt;&#xA;&lt;/h5&gt;&lt;p&gt;&lt;em&gt;Exercises 2.,4.,6. are homework&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;Show the following in natural deduction for FOL:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;$\forall x\mathsf{Happy}(x)\land \forall x\mathsf{Fulfilled}(x)\vdash \forall x(\mathsf{Happy}(x)\land \mathsf{Fulfilled}(x))$&lt;/li&gt;&#xA;&lt;li&gt;$\exists x(\mathsf{Happy}(x)\lor \mathsf{Fulfilled}(x))\vdash \exists x\mathsf{Happy}(x)\lor\exists x\mathsf{Fulfilled}(x)$&lt;/li&gt;&#xA;&lt;li&gt;$\forall x\neg\mathsf{Happy}(x)\vdash \exists x\neg \mathsf{Happy}(x)$&lt;/li&gt;&#xA;&lt;li&gt;$\exists x\forall y\mathsf{Friend}(x,y)\vdash \forall y\exists x\mathsf{Friend}(x,y)$&lt;/li&gt;&#xA;&lt;li&gt;$\neg\exists x\mathsf{Happy}(x)\vdash \forall x\neg \mathsf{Happy}(x)$&lt;/li&gt;&#xA;&lt;li&gt;$\neg\forall x\mathsf{Sad}(x)\vdash \exists x\neg \mathsf{Sad}(x)$&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&#xA;&lt;/div&gt;&#xA;&lt;div id=&#34;unification&#34; &gt;&lt;h5 class=&#34;&#34;&gt;&#xA;    &lt;div class=&#34;d-inline-flex flex-row m-0  p-0 &#34;&gt;Unification&#xA;    &lt;/div&gt;&#xA;&lt;/h5&gt;&lt;p&gt;For the following pairs of formulas, determine whether there are unifications.&#xA;If there is one, give it, if there is not explain why not.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>FOL inference</title>
       <link>https://logicalmethods.ai/slides/fol-inference/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://logicalmethods.ai/slides/fol-inference/</guid>
