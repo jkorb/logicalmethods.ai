@@ -481,7 +481,9 @@ $$l_1\lor l_2\lor \dots\lor m \qquad \qquad \neg n\lor k_1\lor k_2\lor\dots$$
 
 you can infer: 
 
-$$(l_1\lor l_2\lor \dots k_1\lor k_2\lor\dots)[m,\neg n]_U$$
+$$(l_1\lor l_2\lor \dots k_1\lor k_2\lor\dots)[m, n]_U$$
+
+Assuming that $[m, n]_U$ does indeed exist.
 
 This is the resolution rule we've applied in the inference:
 
