@@ -6,5 +6,5 @@ params:
   - level: "danger"
     body: "This course is still under active development. Content will regularly be added and updated. Check regularly for updates!"
   - level: "warning"
-    body: "New chapter added: Chapter 9. FOL inference!! Read now 🤓"
+    body: "New chapter added: Chapter 10. Many-valued logics!! Read now 🤓"
 ---
