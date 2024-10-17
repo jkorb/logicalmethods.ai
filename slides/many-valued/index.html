@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8"></meta>
     <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-    <title>logicalmethods.ai &ndash; Valid inference </title>
+    <title>logicalmethods.ai &ndash; Many-valued logics </title>
     <link rel="icon" type="image/x-icon" href="https://logicalmethods.ai/favicon.ico"></link>
     <link href="https://logicalmethods.ai/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"></link>
     <link rel="stylesheet" href="https://logicalmethods.ai/icons/font/bootstrap-icons.min.css"></link>
@@ -111,7 +111,7 @@
             </li>
             
             <li>
-              <a class="dropdown-item fw-bold active" href="/slides/valid-inference/">2. Valid inference</a>
+              <a class="dropdown-item " href="/slides/valid-inference/">2. Valid inference</a>
             </li>
             
             <li>
@@ -143,7 +143,7 @@
             </li>
             
             <li>
-              <a class="dropdown-item " href="/slides/many-valued/">10. Many-valued logics</a>
+              <a class="dropdown-item fw-bold active" href="/slides/many-valued/">10. Many-valued logics</a>
             </li>
             </ul>
         </div>
@@ -239,7 +239,7 @@
 <ul class="navbar-nav flex-row justify-content-between mt-2">
   
   <li class="nav-item">
-    <a href="/slides/logic-and-ai/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="/slides/fol-inference/" class="btn" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-left"></i>
     </a>
     
@@ -251,7 +251,7 @@
   </li>
   <li class="nav-item">
     
-    <a href="/slides/formal-languages/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-right"></i>
     </a>
     
@@ -260,7 +260,7 @@
 
 <div class="container text-center">
   <h3>
-    Lecture 2. Valid inference
+    Lecture 10. Many-valued logics
   </h3>
   <em>Slides</em>
 </div>
@@ -316,8 +316,8 @@ fullscreen. You can quit fullscreen by pressing ESC.</p>
 			<section>
 				<h1>&forall;I</h1>
         <p>Logical <strong>methods</strong> for AI</p>
-        <p>Lecture 2</p>
-        <p class="text-danger"><em>Valid inference</em></p>
+        <p>Lecture 10</p>
+        <p class="text-danger"><em>Many-valued logics</em></p>
         
 <div class="container text-center">
   <p class="copyright" xmlns:cc="http://creativecommons.org/ns#" >
@@ -333,257 +333,278 @@ fullscreen. You can quit fullscreen by pressing ESC.</p>
 <section>
     
     
-    <img src="https://logicalmethods.ai/slides/valid-inference/img/qr-code.png" class="img-thumbnail"  alt="" >
+    <img src="https://logicalmethods.ai/slides/many-valued/img/qr-code.png" class="img-thumbnail"  alt="" >
     
 
     <p><a href="https://forms.gle/JiXXM9eysAZaJMja9" target="_blank" style="font-size:1.5em">https://forms.gle/JiXXM9eysAZaJMja9</a></p>
   </section>
 <section>
-  <section id="inference">
+  <section id="mv">
     <dl class="row" >
       <dd class="col">
-        <i class="bi bi-motherboard text-primary" style="font-size:100px;"></i> 
-        <h1>Valid <span class="text-danger">inference</span></h1>
+        <i class="bi bi-activity text-primary" style="font-size:100px;"></i> 
+        <h1><span class="text-danger">Many-valued</span> logics</h1>
       </dd>
       <dt class="col"></dt>
     </dl>
   </section>
   <section>
-    <h1> <i class="bi bi- text-danger"></i> Correctness</h1>
+    <h1>Background</h1>
     <ul>
-      <li class="fragment fade-right">Valid inference = "good" inference</li>
-      <li class="fragment fade-right"><em>Not</em>: simple, clear, precise, ... $\Rightarrow$ <strong>rhetoric</strong></li>
-      <li class="fragment fade-right">Validity vs fallacies:</li>
+      <li class="fragment fade-right">Classical assumption: bivalence with $0,1$</li>
+      <li class="fragment fade-right">Many AI applications conflict with that.</li>
+      <li class="fragment fade-right">We look at <em>some</em> many-valued logics.</li>
+    </ul>
+  </section>
+  <section>
+    <h1>Syntax</h1>
+    <span class="fragment fade-right fs-2">
+      $$\langle prop\rangle::= p_1\mid \dots\mid p_n$$
+
+      $$\langle fml\rangle::=\langle prop\rangle\mid\neg\langle fml\rangle\mid
+      (\langle fml\rangle\land \langle fml\rangle)\mid (\langle fml\rangle\lor
+      \langle fml\rangle)$$    
+    </span>
+  </section>
+</section>
+<section>
+  <section id="kleene">
+    <dl class="row" >
+      <dd class="col">
+        <i class="bi bi-123 text-primary" style="font-size:100px;"></i> 
+        <h1><span class="text-danger">Kleene/Łukasiewicz</span> logics</h1>
+      </dd>
+      <dt class="col"></dt>
+    </dl>
+  </section>
+  <section>
+    <h1>Motivation</h1>
+    <ul>
+      <li class="fragment fade-right">What's the truth-value of: $$\mathsf{RAIN\_TOMORROW}?$$</li>
+      <li class="fragment fade-right">Proposal: <em>indeterminate</em> $i$.</li>
+      <li class="fragment fade-right">Open world assumption</li>
+      <li class="fragment fade-right">SQL null</li>
+  </section>
+  <section>
+    <h1>3-valued valuations</h1>
+    $$\nu:\langle prop\rangle\to \Set{0,i,1}$$
+  </section>
+  <section>
+    
+    
+    <img src="https://logicalmethods.ai/slides/many-valued/img/negation.png" class="img-thumbnail"  alt="" >
+    
+
+  </section>
+  <section>
+    
+    
+    <img src="https://logicalmethods.ai/slides/many-valued/img/conjunction.png" class="img-thumbnail"  alt="" >
+    
+
+  </section>
+  <section>
+    
+    
+    <img src="https://logicalmethods.ai/slides/many-valued/img/disjunction.png" class="img-thumbnail"  alt="" >
+    
+
+  </section>
+  <section>
+    <h1>Recursive truth</h1>
+    $$\nu(\neg A)=-\nu(A)$$
+    $$\nu(A\land B)=\nu(A)\times \nu(B)$$
+    $$\nu(A\lor B)=\nu(A)+\nu(B)$$
+  </section>
+  <section>
+    <h1>Valid inference</h1>
+    $$[A]:=\Set{\nu:\nu(A)=1}$$
+    $$P_1,P_2,\dots\vDash C\Leftrightarrow [P_1]\cap [P_2]\cap \dots\subseteq [C]$$
+  </section>
+  <section>
+    $$\mathsf{RAIN}\lor \mathsf{BIKE},\neg\mathsf{RAIN}\vDash\mathsf{BIKE}$$
+    &nbsp;
+    $$!!!$$
+  </section>
+  <section>
+    <h1>Changes?</h1>
+    <ul>
+      <li class="fragment fade-right">Complementation 1: $x\times -x=0$</li>
+      <span class="fragment fade-right">$$i\times -i=i\times i=i$$</span>
+      <li class="fragment fade-right">Complementation 2: $x+ -x=1$</li>
+      <span class="fragment fade-right">$$i+ -i=i+i=i$$</span>
+    </ul>
+  </section>
+  <section>
+    <h1>Changes?</h1>
+    <ul>
+      <li class="fragment fade-right">No logical truths: </li>
+      <span class="fragment fade-right fs-1">$$\nvDash \mathsf{RAIN\_TOMORROW}\lor\neg\mathsf{RAIN\_TOMORROW}$$</span>
+      <li class="fragment fade-right">Open world assumption!</li>
+    </ul>        
+  </section>
+  <section>
+    <h1>Contradictions</h1>
+    <ul>
+      <li class="fragment fade-right">No contradictions: </li>
+      <span class="fragment fade-right fs-1">$$x\times - x\neq 1$$</span>
+      <span class="fragment fade-right fs-1">$$1\times - 1=1\times 0=0$$</span>
+      <span class="fragment fade-right fs-1">$$i\times - i=i\times i=i$$</span>
+      <span class="fragment fade-right fs-1">$$0\times - 0=0\times 1=0$$</span>
+      <li class="fragment fade-right">$\leadsto$ paraconsistent logics</li>
+    </ul>        
+  </section>
+  <section id="conditionals">
+    
+    
+    <img src="https://logicalmethods.ai/slides/many-valued/img/cond_question.png" class="img-thumbnail"  alt="" >
+    
+
+  </section>
+  <section>
+    
+    
+    <img src="https://logicalmethods.ai/slides/many-valued/img/cond_kleene.png" class="img-thumbnail"  alt="" >
+    
+
+  </section>
+  <section>
+    <h1>Kleene</h1>
+    <ul>
+      <li class="fragment fade-right">$A\to B$ "means" $\neg A\lor B$</li>
+      <li class="fragment fade-right">But:
+        $$\nvDash \mathsf{RAIN\_TOMORROW}\to \mathsf{RAIN\_TOMORROW}$$
+      </li>
+      <li class="fragment fade-right">Just set: $$\nu(\mathsf{RAIN\_TOMORROW})=i$$</li>
+    </ul>
+  </section>
+  <section>
+    
+    
+    <img src="https://logicalmethods.ai/slides/many-valued/img/cond_luk.png" class="img-thumbnail"  alt="" >
+    
+
+  </section>
+  <section>
+    <h1>Łukasiewicz</h1>
+      <li class="fragment fade-right">$A\to B$ becomes a <em>logical</em> conditional</li>
+      <li class="fragment fade-right">We get:
+        $$\vDash \mathsf{RAIN\_TOMORROW}\to \mathsf{RAIN\_TOMORROW}$$
+      </li>
+  </section>
+</section>
+<section>
+  <section id="fuzzy">
+    <dl class="row" >
+      <dd class="col">
+        <i class="bi bi-node-plus text-primary" style="font-size:100px;"></i> 
+        <h1><span class="text-danger">Fuzzy</span> logics</h1>
+      </dd>
+      <dt class="col"></dt>
+    </dl>
+  </section>
+  <section>
+    <h1>Vaguenes</h1>
+    <ul>
+      <li class="fragment fade-right">What's the truth-value of $\mathsf{WARM}$?</li>
+      <li class="fragment fade-right">Fuzzy:
+        <ul>
+          <li class="fragment fade-right">At 30℃  close to 1</li>
+          <li class="fragment fade-right">At 15℃  close to 0.5</li>
+          <li class="fragment fade-right">At 0℃  close to 0</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h1>Fuzzy systems</h1>
+    <ul>
+      <li class="fragment fade-right">Rules like: $$\mathbf{IF}\ \mathsf{WARM}\lor\mathsf{HUMID}\ \mathbf{ THEN }\ \mathsf{POWER}$$</li>
+      <li class="fragment fade-right">Turn the power on <em>to the extend that</em> it's warm and humid</li>
+      <li class="fragment fade-right">Big in Japan!
+        <ul>
+          <li class="fragment fade-right">AC</li>
+          <li class="fragment fade-right">Autofocus</li>
+          <li class="fragment fade-right">Self-driving trains</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h1>Fuzzy valuations</h1>
+    $$\nu:\langle prop\rangle\to [0,1]$$
+  </section>
+  <section>
+    <h1>Fuzzy truth-functions</h1>
+    $$f_\neg(x)=1-x$$
+    $$f_\land(x,y)=min(x,y)$$
+    $$f_\lor(x,y)=max(x,y)$$
+  </section>
+  <section>
+    <h1>Recursive values</h1>
+    $$\nu(\neg A)=1-\nu(A)$$
+    $$\nu(A\land B)=min(\nu(A),\nu(B))$$
+    $$\nu(A\lor B)=max(\nu(A),\nu(B))$$
+  </section>
+  <section>
+    <h1>Valid inference</h1>
+    <p>
+      Modelled after fuzzy rules:
+    </p>
+    $$P_1,P_2,\dots\vDash C$$
+    $$\Leftrightarrow$$
+    $$\text{for all }\nu, min(\nu(P_1),\dots,\nu(P_n))\leq \nu(C)$$
+  </section>
+  <section>
+    $$\mathsf{WARM}\vDash\mathsf{WARM}\lor\mathsf{HUMID}$$
+
+    <span class="fragment fade-right text-danger">
+    $$\nu(\mathsf{WARM})\leq max(\nu(\mathsf{WARM})$$
+    </span>
+
+    $$\mathsf{WARM}\land\mathsf{HUMID}\vDash \mathsf{WARM}$$
+
+    <span class="fragment fade-right text-danger">
+    $$\min(\nu(\mathsf{WARM}),\nu(\mathsf{HUMID}))\leq\nu(\mathsf{WARM})$$
+    </span>
+  </section>
+  <section>
+    $$\neg\mathsf{WARM},\mathsf{WARM}\lor \mathsf{HUMID}\nvDash \mathsf{HUMID}$$
+
+    <span class="fragment fade-right text-danger fs-1">
+      $$\nu(\neg\mathsf{WARM})=0.5$$
+    </span>
+
+    <span class="fragment fade-right text-danger fs-1">
+      $$\nu(\mathsf{WARM}\lor \mathsf{HUMID})=min(\nu(\mathsf{WARM}),\nu(\mathsf{HUMID}))=$$
+      $$max(0.5,0.25)=0.5$$
+    </span>
+
+    <span class="fragment fade-right text-danger fs-1">
+      $$min(\nu(\neg\mathsf{WARM}), \nu(\mathsf{HUMID}\lor\mathsf{WARM}))=0.5$$
+      $$\nleq$$
+      $$\nu(\mathsf{HUMID})=0.25$$
+    </span>
+  </section>
+  <section>
+    <h1>Outlook</h1>
+    <ul>
+      <li class="fragment fade-right">Many many-valued logics:</li>
       <ul>
-        <li class="fragment fade-right">If it is sunny, Jan is cycling. Jan is cycling. Therefore, it is sunny.</li>
-        <li class="fragment fade-right">If it is sunny, Jan is cycling. It is sunny. Therefore, Jan is cycling.</li>
+        <li class="fragment fade-right">3-valued <em>Logic of Pardox</em></li>
+        <li class="fragment fade-right">4-valued <em>FDE</em></li>
+        <li class="fragment fade-right">8-valued, 16-valued logics,...</li>
       </ul>
-      <li class="fragment fade-right">What's the difference?</li>
-    </ul>
-  </section>
-  <section id="preservation">
-    <h1>Hypothetically</h1>
+      <li class="fragment fade-right">Fuzzy logic is a <em>huge</em> field
+        (especially in Japan).</li>
     <ul>
-      <li class="fragment fade-right">All pigs fly. Maddy is a pig. So, Maddy flies.</li>
-      <li class="fragment fade-right"><em>If</em> the premises are true, <em>then</em> the conclusion is true.</li>
-      <li class="fragment fade-right">Possibility: Premises are false!</li>
     </ul>
-    <dl class="row fragment fade-right" >
-      <dt class="col">
-        <i class="bi bi-exclamation-diamond-fill text-danger"></i> 
-        <strong>Definition</strong>:
-      </dt>
-      <dd class="col">An inference is valid iff the conclusion is true <em>if (hypothetically)</em> the premises are true</dd>
-    </dl>
-  </section>
-  <section id="deduction">
-    <h1>Always</h1>
-    <ul>
-      <li class="fragment fade-right">Deduction = premises <em>guarantee</em> conclusion</li>
-      <li class="fragment fade-right">$P_1, P_2, \dots\vDash C$</li>
-      <li class="fragment fade-right">Either it rained last night or the car is dry, the car is not dry $\vDash$ It rained last night</li>
-    </ul>
-  </section>
-  <section id="induction">
-    <h1>Mostly</h1>
-    <ul>
-      <li class="fragment fade-right">Induction = premises <em>make likely</em> conclusion</li>
-      <li class="fragment fade-right">$P_1, P_2, P_1, P_2, \dots\stackrel{!}{\mid\approx} C$</li>
-      <li class="fragment fade-right">80% of 20k voters support strict laws $\stackrel{!}{\mid\approx}$ 80% of <em>all</em> support strict laws</li>
-    </ul>
-  </section>
-</section>
-<section>
-  <section id="formalization">
-    <dl class="row" >
-      <dd class="col">
-        <i class="bi bi-calculator text-warning" style="font-size:100px;"></i> 
-        <h1><span class="text-danger">Formal</span>ization</h1>
-      </dd>
-      <dt class="col"></dt>
-    </dl>
-  </section>
-  <section>
-    <h1>Logical form</h1>
-    <ul>
-      <li class="fragment fade-right">If it rains, the street is wet, it rains $\vDash$ The street is wet</li>
-      <li class="fragment fade-right">If it's sunny, the street is wet, it's sunny $\vDash$ The street is wet</li>
-      <li class="fragment fade-right">If pigs fly, Santa brings presents, pigs fly $\vDash$ Santa brings presents</li>
-    </ul>
-      <p class="fragment fade-right">(<strong>MP</strong>) If $A$, then $B$; $A$ $\vDash$ $B$ </p>
-  </section>
-  <section>
-    <h1>Propositional</h1>
-    <ul>
-      <li class="fragment fade-right">Sentences $\leadsto A, B, C, \dots$</li>
-      <li class="fragment fade-right">Not $\leadsto \neg$</li>
-      <li class="fragment fade-right">And $\leadsto \land$</li>
-      <li class="fragment fade-right">Or $\leadsto \lor$</li>
-      <li class="fragment fade-right">If ..., then ... $\leadsto~\to$</li>
-    </ul>
-      <p class="fragment fade-right">(<strong>MP</strong>) $A\to B, A\vDash B$ </p>
-  </section>
-  <section>
-    <h1>Quantified</h1>
-    <ul>
-      <li class="fragment fade-right">Predicates $\leadsto P(x), Q(x), R(x,y), \dots$</li>
-      <li class="fragment fade-right">Names $\leadsto a,b,c, \dots$</li>
-      <li class="fragment fade-right">All $\leadsto \forall$</li>
-      <li class="fragment fade-right">Some $\leadsto \exists$</li>
-    </ul>
-      <p class="fragment fade-right">(<strong>UI</strong>) $\forall xP(x)\vDash P(a)$ </p>
-      <p class="fragment fade-right">(<strong>EG</strong>) $R(a,b)\vDash \exists xR(a,x)$ </p>
-  </section>
-</section>
-<section>
-  <section id="deductive_logic">
-    <dl class="row" >
-      <dd class="col">
-        <i class="bi bi-plus-slash-minus text-primary" style="font-size:100px;"></i> 
-        <h1><span class="text-danger">Deductive</span> logic</h1>
-      </dd>
-      <dt class="col"></dt>
-    </dl>
-  </section>
-  <section>
-    <h1>Features</h1>
-    <ul>
-      <li class="fragment fade-right">indefeasible</li>
-      <li class="fragment fade-right">general</li>
-      <li class="fragment fade-right">certain</li>
-    </ul>
-  </section>
-  <section>
-    <h1>Methods</h1>
-    <ul>
-      <li class="fragment fade-right">Model = possible reasoning scenario</li>
-      <li class="fragment fade-right">$A$ is true in a model</li>
-      <li class="fragment fade-right">$[A]$ <em>set</em>(!) of all models</li>
-      <li class="fragment fade-right">$[A]\cap [B]$ = interesection</li>
-      <li class="fragment fade-right">$[A]\subseteq [B]$ = subset</li>
-    </ul>
-    <dl class="row fragment fade-right" >
-      <dt class="col">
-        <i class="bi bi-exclamation-diamond-fill text-danger"></i> 
-        <strong>Definition</strong>:
-      </dt>
-      <dd class="col">$P_1,P_2,\dots\vDash C$ iff $[P_1]\cap [P_2]\cap\dots\subseteq [C]$</dd>
-    </dl>
-  </section>
-  <section>
-    
-    
-    <img src="https://logicalmethods.ai/slides/valid-inference/img/intersection.jpeg" class="img-thumbnail"  alt="" >
-    
-
-  </section>
-  <section>
-    <h1>Example</h1>
-    <dl class="row fragment fade-right" >
-      <dt class="col">
-        <i class="bi bi-exclamation-diamond-fill text-danger"></i> 
-        <strong>Definition</strong>:
-      </dt>
-      <dd class="col">$P_1,P_2,\dots\vDash C$ iff $[P_1]\cap [P_2]\cap\dots\subseteq [C]$</dd>
-    </dl>
-    <ul>
-      <li class="fragment fade-right">$A\land B\vDash A$</li>
-      <li class="fragment fade-right">$[A\land B]=[A]\cap [B]$</li>
-      <li class="fragment fade-right">$[A\land B]\subseteq [A]$</li>
-    </ul>
-  </section>
-  <section>
-    <h1>Example</h1>
-    <dl class="row fragment fade-right" >
-      <dt class="col">
-        <i class="bi bi-exclamation-diamond-fill text-danger"></i> 
-        <strong>Definition</strong>:
-      </dt>
-      <dd class="col">$P_1,P_2,\dots\vDash C$ iff $[P_1]\cap [P_2]\cap\dots\subseteq [C]$</dd>
-    </dl>
-    <ul>
-      <li class="fragment fade-right">$A\lor B,A\nvDash \neg B$</li>
-      <li class="fragment fade-right">$A$ true, $B$ true</li>
-      <li class="fragment fade-right"><em>countermodel</em></li>
-    </ul>
-  </section>
-</section>
-<section>
-  <section id="inductive_logic">
-    <dl class="row" >
-      <dd class="col">
-        <i class="bi bi-percent text-warning" style="font-size:100px;"></i> 
-        <h1><span class="text-danger">Inductive</span> logic</h1>
-      </dd>
-      <dt class="col"></dt>
-    </dl>
-  </section>
-  <section>
-    <h1>Features</h1>
-    <ul>
-      <li class="fragment fade-right">defeasible</li>
-      <li class="fragment fade-right">particular</li>
-      <li class="fragment fade-right">likely</li>
-    </ul>
-  </section>
-  <section>
-    <h1>Methods</h1>
-    <ul>
-      <li class="fragment fade-right">Probability = likelihood of truth $(0,\dots,1)$</li>
-      <li class="fragment fade-right">$Pr(A)\approx$ in how many situations is $A$ true</li>
-      <li class="fragment fade-right">$Pr(A|B)\approx$ in how many situations <em>where $B$ is true</em> is $A$ true</li>
-      <li class="fragment fade-right">$Pr(A|B)=\frac{Pr(A\land B)}{Pr(B)}$
-    </ul>
-    <dl class="row fragment fade-right" >
-      <dt class="col">
-        <i class="bi bi-exclamation-diamond-fill text-danger"></i> 
-        <strong>Definition</strong>:
-      </dt>
-      <dd class="col fs-1">$P_1,P_2,\dots\mid\approx C$ iff $Pr(C|P_1\land P_2\land \dots)>Pr(C)$</dd>
-    </dl>
-  </section>
-  <section>
-    
-    
-    <img src="https://logicalmethods.ai/slides/valid-inference/img/intersection.jpeg" class="img-thumbnail"  alt="" >
-    
-
-  </section>
-  <section>
-    <h1>Example</h1>
-    <dl class="row fragment fade-right" >
-      <dt class="col">
-        <i class="bi bi-exclamation-diamond-fill text-danger"></i> 
-        <strong>Definition</strong>:
-      </dt>
-      <dd class="col fs-1">$P_1,P_2,\dots\mid\approx C$ iff $Pr(C|P_1\land P_2\land \dots)>Pr(C)$</dd>
-    </dl>
-    <ul>
-      <li class="fragment fade-right">$A\land B\mid\approx A$</li>
-      <li class="fragment fade-right">$Pr(A|A\land B)=1$</li>
-      <li class="fragment fade-right">$Pr(A|A\land B)\geq Pr(A)$</li>
-    </ul>
-  </section>
-  <section>
-    <h1>Monotonicity</h1>
-    <ul>
-      <li class="fragment fade-right">$P_1,P_2,\dots\vDash C\Rightarrow Q,P_1,P_2,\dots\vDash C$</li>
-      <li class="fragment fade-right">$P_1,P_2,\dots\mid\approx C\nRightarrow Q,P_1,P_2,\dots\mid\approx C$</li>
-      <li class="fragment fade-right">defeasible vs indefeasible</li>
-    </ul>
-  </section>
-  <section>
-    
-    
-    <img src="https://logicalmethods.ai/slides/valid-inference/img/probabilities.jpg" class="img-thumbnail" width="700" alt="" >
-    
 
   </section>
 </section>
 <section>
   <h1>Thanks<span class="text-danger">!</span></h1>
 </section>
-
  
 			</section>
 		</div>
@@ -597,19 +618,13 @@ fullscreen. You can quit fullscreen by pressing ESC.</p>
   <h5>Highlights</h5>
   <ul class="list-group">
     
-    <a href="#/inference" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Inference</strong></a> 
+    <a href="#/mv" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Many-valued logics</strong></a> 
     
-    <a href="#/preservation" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Truth-preservation</strong></a> 
+    <a href="#/nd" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Kleene and Łukasiewicz logics</strong></a> 
     
-    <a href="#/deduction" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Deduction</strong></a> 
+    <a href="#/conditionals" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>3-valued conditionals</strong></a> 
     
-    <a href="#/induction" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Induction</strong></a> 
-    
-    <a href="#/formalization" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Formalization</strong></a> 
-    
-    <a href="#/deductive_logic" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Deductive logic</strong></a> 
-    
-    <a href="#/inductive_logic" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Inductive logic</strong></a> 
+    <a href="#/fuzzy" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Fuzzy logic</strong></a> 
     
   </ul>
 </div>
@@ -626,7 +641,7 @@ fullscreen. You can quit fullscreen by pressing ESC.</p>
 <ul class="navbar-nav flex-row justify-content-between mt-auto">
   
   <li class="nav-item">
-    <a href="/slides/logic-and-ai/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="/slides/fol-inference/" class="btn" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-left"></i>
     </a>
     
@@ -638,7 +653,7 @@ fullscreen. You can quit fullscreen by pressing ESC.</p>
   </li>
   <li class="nav-item">
     
-    <a href="/slides/formal-languages/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-right"></i>
     </a>
     
