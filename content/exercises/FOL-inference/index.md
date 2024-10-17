@@ -49,7 +49,7 @@ step).
 Use the resolution rule to justify the following inferences:
 
 1. $\forall x(\mathsf{Lord}(x)\to \mathsf{Happy}(x)),\neg\mathsf{Happy}(Byron)\vDash \neg\mathsf{Lord}(Byron)$
-2. $\neg\exists x(\mathsf{Lord}(x)\land \mathsf{Happy}(x)),\forall x\exists y(\mathsf{Friend}(x,y)\to \neg\mathsf{Happy}(x))\vDash \neg\exists x(\mathsf{Lord}(x)\land \exists y(\mathsf{Friend}(x,y)))$
+2. $\neg\exists x(\mathsf{Lord}(x)\land \mathsf{Happy}(x)),\forall x\exists y(\mathsf{Friend}(x,y)\to \mathsf{Happy}(x))\vDash \neg\exists x(\mathsf{Lord}(x)\land \exists y(\mathsf{Friend}(x,y)))$
 
 # Research {.homework}
 
