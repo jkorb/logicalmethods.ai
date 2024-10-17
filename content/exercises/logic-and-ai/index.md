@@ -71,14 +71,20 @@ computer how to think.
 
 ## Solution {#validitySolution .solution}
 
+**a.)** This argument is deductively _in_valid: it's possible that all attempts have failed but the next one succeeds. The argument _may_ be inductively valid if, for example, there were sufficiently many previous attempts, and we tried all different angles.
+
+**b.)** This argument is deductively valid: not not doing something is the same as doing it. 
+
+**c.)** Without any additional premises the argument is not deductively valid, since it is logically possible that you did it and pigs fly. One might argue that the argument is inductively valid given the probabilistic information we already have available, viz. the probability of pigs flying is low.
+
+**d.)** This inference is deductively valid: if everything is so and so, any thing you can talk about also is so and so.
+
+**e.)** An argument could be made that the argument is deductively valid: if a thinking computer is not a computer, then there cannot be a thinking computer, since this would lead to a contradiction (something which both is and isn't a computer). 
+
 # Deductive and inductive inference
 
 Provide an argument that every deductively valid inference is also
 inductively valid. Does the converse also hold?
-
-# Expert systems
-
-
 
 # Thinking, Fast and Slow 
 

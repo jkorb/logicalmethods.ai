@@ -123,5 +123,6 @@ const passwords = {
   "exc-sat": "Icantgetno",
   "exc-if": "Password",
   "exc-proof": "Mellon",
+  "exc-fol": "Sesame",
   // Add more solutionId: password pairs here
 };
