@@ -519,13 +519,19 @@ x_2B$.
 
 5. For each quantifier, apply the following procedure known as **Skolemization**:[^skolemization]
 
-    + Eliminate the quantifier from the formula and replace the variable it
-    quantifiers over with a function symbol $f_i(x_j,x_k,\dots)$, where: $x_i$
+    + Eliminate any existential quantifier from the formula and replace the variable it
+    quantifiers over with a new function symbol $f_i(x_j,x_k,\dots)$, where: $x_i$
     is the variable the universal quantifier used and $x_j,x_k,\dots$ are all
-    the universally quantified variables that come before $x_i$ in the formula.
+    the universally quantified variables that come before $x_i$ in the formula. If no variables occur before use a fresh constant $c_i$.
 
-    + For example, $\forall x\exists y(P(x)\to R(x,y))$ becomes $\forall
-    x(P(x)\to R(x,f(x)))$.
+    For example:
+
+      +  $\forall x\exists y(P(x)\to R(x,y))$ becomes $\forall
+      x(P(x)\to R(x,f(x)))$.
+  
+      + $\exists x(P(x)\to \forall yR(y,x))$ becomes $P(c)\to \forall yR(y,c)$.
+  
+      + $\forall x(\exists yR(x,y)\land \exists zP(x,z))$ becomes $\forall x(R(x,f(x))\land R(x,g(x))$.
 
 6. Drop all the remaining universal quantifiers.
 
