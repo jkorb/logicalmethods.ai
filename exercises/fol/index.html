@@ -362,8 +362,19 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
     
       
 </div>
-<div id="models" class=" homework"><h5 class="homework">
+<div id="models" class=" homework solved"><h5 class="homework solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Models
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="modelsSolution"
+        onclick="showPasswordModal('modelsSolution', 'exc-fol')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p><em>Only 3. and 6. are homework</em></p>
 <p>Suppose we&rsquo;re dealing with a FOL language with:</p>
@@ -401,8 +412,64 @@ the recursive clauses. Ideally but not necessarily, this would be a
 calculation.</p>
 
 </div>
-<div id="knowledge-engineering" ><h5 class="">
+<div id="modelsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>1.</strong>
+$a^M\in P^M$ so $\nu(P(a))=1$ and $b^M\in P^M$ so $\nu(P(b))=1$.
+Then for the full formula we have $\nu(P(a)\land P(b))=\nu(P(a))\times\nu(P(b))=1\times 1=1$</p>
+<p><strong>2.</strong>
+On any assignment $\alpha$ we have $\nu_\alpha(P(\mathbf{o_3}))=0$.
+Then for the full formula we have $\nu_\alpha(\forall xP(x))=\Pi_{\mathbf{o}\in D}(P(\mathbf{o}))=0$</p>
+<p><strong>3.</strong>
+On any assignment $\alpha$ we have $\nu_\alpha(P(\mathbf{o_1}))=1$ and so for the quantified formula $\nu_\alpha(\exists xP(x))=\Sigma_{\mathbf{o}\in D}(P(\mathbf{o}))=1$. Similarly we have $\nu_\alpha(\neg P(\mathbf{o_3}))=-\nu_\alpha(P(\mathbf{o_3}))=-0=1$ and so for the quantified formula $\nu_\alpha(\exists x\neg P(x))=\Sigma_{\mathbf{o}\in D}(\neg P(\mathbf{o}))=1$.
+Then for the full formula we have $\nu_\alpha(\exists xP(x)\land \exists x\neg P(x)=1)$</p>
+<p><strong>4.</strong>
+$\forall x\exists yR(x,y)$</p>
+<p>The formula is true.</p>
+<p>Here&rsquo;s the calculation:</p>
+<p>We know:</p>
+<p>$$\nu(\forall x\exists yR(x,y))=
+\nu(\exists yR(\mathbf{o_1},y))
+\times
+\nu(\exists yR(\mathbf{o_2},y))
+\times
+\nu(\exists yR(\mathbf{o_3},y))$$</p>
+<p>For each $i=1,2,3$, we have:
+$\nu(\exists yR(\mathbf{o_i},y))=
+\nu(R(\mathbf{o_i},{o_1}))
++\nu(R(\mathbf{o_i},{o_2}))
++\nu(R(\mathbf{o_i},{o_3}))$</p>
+<p>And for each $i$, one of the summands here is true: for $i=1$, we have
+$\nu(R(\mathbf{o_1},\mathbf{o_2})=1$, for $i=2$, we have $\nu(R(\mathbf{o_2},\mathbf{o_3})=1$, and for $i=3$, we have $\nu(R(\mathbf{o_3},\mathbf{o_3})=1$. Hence:
+$\nu(\exists yR(\mathbf{o_i},y))=
+\nu(R(\mathbf{o_i},{o_1}))
++\nu(R(\mathbf{o_i},{o_2}))
++\nu(R(\mathbf{o_i},{o_3}))=1$.</p>
+<p>And so the big product is $1$, too.</p>
+<p><strong>5.</strong>
+$\forall x\forall y((P(x)\land R(x,y))\to P(y))$</p>
+<p>The formula is false: $\mathbf{o_2}$ and $\mathbf{o_3}$ provide the counterexample:</p>
+<p>$$\nu(P(\mathbf{o_2}))=1$$
+$$\nu(R(\mathbf{o_2},\mathbf{o_3}))=1$$
+$$\nu(\mathsf{P}(\mathbf{o_3}))=0$$</p>
+<p>Hence $$\nu(P(\mathbf{o_2})\land R(\mathbf{o_2},\mathbf{o_3})\to P(\mathbf{o_3}))=0$$</p>
+<p>This makes any $\prod$-product involving this value $0$ as well.</p>
+<p><strong>6.</strong>
+We will observe a fact about the left object $\mathbf{o_1}$. On any assignment, if we choose any object $\mathbf{o}$ at all, we have $\nu_\alpha(R(\mathbf{o},\mathbf{o_1})=0$ and so $\nu_\alpha(R(\mathbf{o},\mathbf{o_1}\times P(\mathbf{o}))=0$. That means, if we sum over all objects in the $\mathbf{o}$ position we have $\Sigma_{\mathbf{o}\in D}(\nu_\alpha(R(\mathbf{o},\mathbf{o_1}))\times\nu_\alpha(P(\mathbf{o})))=0$. Since this sum comes out false for the particular object $\mathbf{o_1}$, if we then do a product calculation over all objects $\mathbf{o&rsquo;}$ in that same position we get $\Pi_{\mathbf{o&rsquo;}\in D}\Sigma_{\mathbf{o}\in D}(\nu_\alpha(R(\mathbf{o},\mathbf{o&rsquo;}))\times\nu_\alpha(P(\mathbf{o})))=0$.
+And that is precisely how to calculate the value of our formula $\nu_\alpha(\forall x\exists y(R(y,x)\land P(y)))=0$.</p>
+
+</div>
+<div id="knowledge-engineering" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Knowledge engineering
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="knowledge-engineeringSolution"
+        onclick="showPasswordModal('knowledge-engineeringSolution', 'exc-fol')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p><i class="bi bi-box-arrow-up-right h-6"></i>
 <a href="https://elibrary.pearson.de/book/99.150005/9781292401171" class="link-dark" rel="external" target="_blank">Russel and Norvig</a>
@@ -463,8 +530,56 @@ flipped, the light is still off at the next time.</p>
 domain.</strong></p>
 
 </div>
-<div id="consequence" ><h5 class="">
+<div id="knowledge-engineeringSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>BNF:</strong> We use &rsquo;left&rsquo; and &lsquo;right&rsquo; as names of the lamps on each side, and use numeric terms as names of infinitely many points in time going forward. This comes with a built-in operation of &lsquo;+1&rsquo; to refer to the next moment in time. Notice that predicates are restricted. They can only be combined with a lamp term in the first position and a time term in the second position.</p>
+<p>$$ \langle{var}\rangle ::= x \mid y \mid z $$</p>
+<p>$$ \langle{const_side}\rangle ::= \mathsf{left} \mid \mathsf{right} $$</p>
+<p>$$ \langle{const_time}\rangle ::= n\in\mathbb{N} $$</p>
+<p>$$ \langle{term_side}\rangle ::= \langle{var}\rangle \mid \langle{const_side}\rangle $$</p>
+<p>$$ \langle{term_time}\rangle ::= \langle{var}\rangle \mid \langle{const_time}\rangle $$</p>
+<p>$$ \langle{unop}\rangle ::= \neg $$</p>
+<p>$$ \langle{binop}\rangle ::= \land \mid \lor \mid \rightarrow \mid \leftrightarrow $$</p>
+<p>$$ \langle{quant}\rangle ::= \forall \mid \exists $$</p>
+<p>$$ \langle{pred}\rangle^2 ::= \mathsf{On} \mid \mathsf{Off} \mid \mathsf{Switch} $$</p>
+<p>$$ \langle{atom}\rangle ::= \langle{pred}\rangle^2(\langle{term_side}\rangle,\langle{term_time}\rangle) $$</p>
+<p>$$ \langle{fml}\rangle ::= \langle{atom}\rangle \mid \langle{unop}\rangle\langle{fml}\rangle \mid (\langle{fml}\rangle\langle{binop}\rangle\langle{fml}\rangle) \mid \langle{quant}\rangle\langle{var}\rangle\langle{fml}\rangle $$</p>
+<!-- raw HTML omitted -->
+<p><strong>Task:</strong> Formalization</p>
+<p>Setup</p>
+<ul>
+<li>$\mathsf{On}(\mathsf{left},1)$</li>
+<li>$\mathsf{Off}(\mathsf{right},1)$</li>
+</ul>
+<p>Goals</p>
+<ul>
+<li>$\exists x\mathsf{Off}(\mathsf{left},x)$</li>
+<li>$\exists x\mathsf{On}(\mathsf{right},x)$</li>
+</ul>
+<p>Rules</p>
+<ul>
+<li>$\forall x\forall y(\mathsf{Off}(x,y)\leftrightarrow\neg\mathsf{On}(x,y))$</li>
+<li>$\forall x\forall y((\mathsf{On}(x,y)\land\mathsf{Switch}(x,y))\to\mathsf{Off}(x,y+1))$</li>
+<li>$\forall x\forall y((\mathsf{Off}(x,y)\land\mathsf{Switch}(x,y))\to\mathsf{On}(x,y+1))$</li>
+</ul>
+<p>Frames</p>
+<ul>
+<li>$\forall x\forall y((\mathsf{On}(x,y)\land\neg\mathsf{Switch}(x,y))\to\mathsf{On}(x,y+1))$</li>
+<li>$\forall x\forall y((\mathsf{Off}(x,y)\land\neg\mathsf{Switch}(x,y))\to\mathsf{Off}(x,y+1))$</li>
+</ul>
+
+</div>
+<div id="consequence" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Consequence
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="consequenceSolution"
+        onclick="showPasswordModal('consequenceSolution', 'exc-fol')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>This exercise is about how logical laws follow from Boolean laws. Each of the
 following two parts contains a Boolean law and a corresponding logical law/valid
@@ -482,8 +597,42 @@ that.</p>
 \exists x(\mathsf{Blue}(a)\land \mathsf{Round}(x)) $$</p>
 
 </div>
-<div id="counter-models" ><h5 class="">
+<div id="consequenceSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong>
+$x+(y_1\times y_2\times\ldots)=(x+ y_1)\times(x+ y_2)\times\ldots$ follows from n-many applications of the Boolean law of absorption</p>
+<p>relation to logical law???</p>
+<p><strong>b)</strong>
+First of all, this principle follows from repeated applications of the Boolean law of distributivity:
+$x\times(y_1+ y_2+\ldots)=(x\times y_1)+(x\times y_2)+\ldots$</p>
+<p>Now, we can use this to verify the following inference.</p>
+<p>$$\mathsf{Blue}(a)\land\exists x\mathsf{Round}(x)\vDash \exists x(\mathsf{Blue}(a)\land \mathsf{Round}(x))$$</p>
+<p>Consider any model with assignment $\alpha$ where the premise is true:</p>
+<p>$$\nu_\alpha(\mathsf{Blue}(a)\land\exists x\mathsf{Round}(x))=1$$</p>
+<p>If we break down this calculation it is equivalent to:</p>
+<p>$$\nu_\alpha(\mathsf{Blue}(a))\times\Sigma_{\mathbf{o}\in D} \nu_\alpha(\mathsf{Round}(\mathbf{o}))=1$$</p>
+<p>The &lsquo;big&rsquo; summation over all objects in the domain is equivalent to a list of individual sums over each object $\mathbf{o_i}$ in the domain:</p>
+<p>$$\nu_\alpha(\mathsf{Blue}(a))\times(\nu_\alpha(\mathsf{Round}(\mathbf{o_1})+\nu_\alpha(\mathsf{Round}(\mathbf{o_2})+\ldots)=1$$</p>
+<p>If we apply the Boolean principle that we started with, we get:</p>
+<p>$$(\nu_\alpha(\mathsf{Blue}(a))\times\nu_\alpha(\mathsf{Round}(\mathbf{o_1}))+(\nu_\alpha(\mathsf{Blue}(a))\times\nu_\alpha(\mathsf{Round}(\mathbf{o_2}))+\ldots=1$$</p>
+<p>This is equivalent to the following &lsquo;big&rsquo; summation over all objects:</p>
+<p>$$\Sigma_{\mathbf{o}\in D}(\nu_\alpha(\mathsf{Blue}(a))\times\nu_\alpha(\mathsf{Round}(\mathbf{o}))=1$$</p>
+<p>Finally, the calculation above is the truth-value of our conclusion formula:</p>
+<p>$$\nu_\alpha(\exists x(\mathsf{Blue}(a)\land\mathsf{Round}(x)))=1$$</p>
+<p>We have shown that $[\mathsf{Blue}(a)\land\exists x\mathsf{Round}(x)]\subseteq[\exists x(\mathsf{Blue}(a)\land \mathsf{Round}(x))]$.</p>
+
+</div>
+<div id="counter-models" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Counter-models
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="counter-modelsSolution"
+        onclick="showPasswordModal('counter-modelsSolution', 'exc-fol')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>The following inferences are _in_valid in FOL. For each, describe a
 <strong>counter-model</strong>, where the premises are true but the conclusion is false. You
@@ -504,12 +653,48 @@ may use a diagram as in Exercise 1 to give your model.</p>
 <p>In each case, justify your answer, by explaining why the premises are true in the model and the conclusion is false.</p>
 
 </div>
-<div id="research" class=" homework"><h5 class="homework">
+<div id="counter-modelsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong>
+We need a set of swimmers $\mathsf{CanSwim}^M$ and a set of flyers $\mathsf{CanFly}^M$. We need one person/object that only belongs to the first set $a^M\in \mathsf{CanSwim}^M$ and $a^M\notin \mathsf{CanFly}^M$. Then we need another person/object that only belongs to the second set $b^M\notin \mathsf{CanSwim}^M$ and $b^M\in \mathsf{CanFly}^M$.</p>
+<p><strong>b)</strong>
+We construct a model with a domain with just two animals in it $D={ \mathbf{a_1,a_2} }$. One animal swims $\mathbf{a_1}\in \mathsf{CanSwim}^M$ but can&rsquo;t fly $\mathbf{a_1}\notin \mathsf{CanFly}^M$. The other animal can&rsquo;t swim $\mathbf{a_2}\notin \mathsf{CanSwim}^M$ but does fly $\mathbf{a_2}\in \mathsf{CanFly}^M$. Let $\alpha$ be any assignment in this model.</p>
+<p>This universal formula is false in this model $\nu_\alpha(\forall x(\mathsf{CanSwim}(x))=\Pi_{\mathbf{o}\in D}\nu_\alpha(\mathsf{CanSwim}(\mathbf{o}))=0$ because of the properties of the second animal $\mathbf{a_2}\notin \mathsf{CanSwim}^M$. This universal formula is false in this model $\nu_\alpha(\forall x(\mathsf{CanFly}(x))=\Pi_{\mathbf{o}\in D}\nu_\alpha(\mathsf{CanSwim}(\mathbf{o}))=0$ because of the properties of the first animal $\mathbf{a_1}\notin \mathsf{CanFly}^M$. That means that $\nu_\alpha(\forall x(\mathsf{CanSwim}(x)\lor\forall x(\mathsf{CanFly}(x))=0$.</p>
+<p>However, we always get $\nu_\alpha(\mathsf{CanSwim}(\mathbf{o})\lor\mathsf{CanFly}(\mathbf{o}))=1$ no matter which object we test it on, so we have $\nu_\alpha(\forall x(\mathsf{CanSwim}(x)\lor\mathsf{CanFly}(x))=\Pi_{\mathbf{o}\in D}\nu_\alpha(\mathsf{CanSwim}(\mathbf{o})\lor\mathsf{CanSwim}(\mathbf{o}))=1$.
+This makes it a counter-model to the intended inference.</p>
+
+</div>
+<div id="research" class=" homework solved"><h5 class="homework solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Research
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="researchSolution"
+        onclick="showPasswordModal('researchSolution', 'exc-fol')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>In class, we said that FOL is <em>very</em> expressive. But there are several
 limitations of FOL, which are things that you <em>can&rsquo;t</em> formalize in FOL.
 Research at least two kinds of claims that FOL can&rsquo;t formalize and explain why.</p>
+
+</div>
+<div id="researchSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>Here are two phenomena that FOL can&rsquo;t handle well:</p>
+<ol>
+<li>Higher-order quantification: Statements like &ldquo;Ada has all the properties of a good student&rdquo;, which should be something like $$\forall F(\forall x(\mathsf{GoodStudent}(x)\to F(x))\to F(Ada)))$$</li>
+</ol>
+<p>But this formula is not proper FOL syntax. A system that can handle this is <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/Second-order_logic" class="link-dark" rel="external" target="_blank">second-order logic</a>
+.</p>
+<ol start="2">
+<li>FOL lacks devices to handle many natural language phenomena, such as adverbial constructions: John failed <em>badly</em>.</li>
+</ol>
+<p>We might be tempted to formalize this as $\mathsf{FailedBadly}(John)$, but then it doesn&rsquo;t follow that John failed since $\mathsf{FailedBadly}(John)\nvDash\mathsf{Failed}(John).$</p>
+<p><i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://philarchive.org/archive/HAZFLW-3v4" class="link-dark" rel="external" target="_blank">This paper</a>
+ develops an extension of FOL that can deal with adverbs.</p>
 
 </div>
 <div id="discussion" ><h5 class="">

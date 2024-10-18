@@ -362,23 +362,77 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
     
       
 </div>
-<div id="natural-deduction" class=" homework"><h5 class="homework">
+<div id="natural-deduction" class=" homework solved"><h5 class="homework solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Natural deduction
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="natural-deductionSolution"
+        onclick="showPasswordModal('natural-deductionSolution', 'exc-finf')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p><em>Exercises 2.,4.,6. are homework</em></p>
 <p>Show the following in natural deduction for FOL:</p>
 <ol>
 <li>$\forall x\mathsf{Happy}(x)\land \forall x\mathsf{Fulfilled}(x)\vdash \forall x(\mathsf{Happy}(x)\land \mathsf{Fulfilled}(x))$</li>
 <li>$\exists x(\mathsf{Happy}(x)\lor \mathsf{Fulfilled}(x))\vdash \exists x\mathsf{Happy}(x)\lor\exists x\mathsf{Fulfilled}(x)$</li>
-<li>$\forall x\neg\mathsf{Happy}(x)\vdash \exists x\neg \mathsf{Happy}(x)$</li>
+<li>$\forall x\neg\mathsf{Happy}(x)\vdash \neg \exists x\mathsf{Happy}(x)$</li>
 <li>$\exists x\forall y\mathsf{Friend}(x,y)\vdash \forall y\exists x\mathsf{Friend}(x,y)$</li>
 <li>$\neg\exists x\mathsf{Happy}(x)\vdash \forall x\neg \mathsf{Happy}(x)$</li>
 <li>$\neg\forall x\mathsf{Sad}(x)\vdash \exists x\neg \mathsf{Sad}(x)$</li>
 </ol>
 
 </div>
-<div id="unification" ><h5 class="">
+<div id="natural-deductionSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>
+
+<img src="https://logicalmethods.ai/exercises/fol-inference/img/nd-1.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+
+
+
+
+<img src="https://logicalmethods.ai/exercises/fol-inference/img/nd-2.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+
+
+
+
+<img src="https://logicalmethods.ai/exercises/fol-inference/img/nd-3.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+
+
+
+
+<img src="https://logicalmethods.ai/exercises/fol-inference/img/nd-4.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+
+
+
+
+<img src="https://logicalmethods.ai/exercises/fol-inference/img/nd-5.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+
+
+
+
+<img src="https://logicalmethods.ai/exercises/fol-inference/img/nd-6.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+
+</p>
+
+</div>
+<div id="unification" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Unification
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="unificationSolution"
+        onclick="showPasswordModal('unificationSolution', 'exc-finf')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>For the following pairs of formulas, determine whether there are unifications.
 If there is one, give it, if there is not explain why not.</p>
@@ -390,8 +444,34 @@ If there is one, give it, if there is not explain why not.</p>
 </ol>
 
 </div>
-<div id="cnf" class=" homework"><h5 class="homework">
+<div id="unificationSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>1.</strong></p>
+<p>$[x\mapsto Munich,y\mapsto Milan, z\mapsto Rome]$</p>
+<p><strong>2.</strong></p>
+<p>$[x\mapsto Rome,y\mapsto Rome, z\mapsto Rome]$</p>
+<p><strong>3.</strong></p>
+<p>Not possible. With $[x\mapsto Mary]$ we have $\neg\mathsf{Happy}(Mary)$ on one
+side and $\neg\mathsf{Happy}(Jane)$ on the other side. With $[x\mapsto Jane]$
+we have $\mathsf{Knows}(Mary, Jane)$ on one side and
+$\mathsf{Knows}(Jane,Jane)$ on the other side.</p>
+<p><strong>4.</strong></p>
+<p>Not possible. The logical form of the two sentences would be different
+regardless of how we substitute terms. The main connective on the left is
+disjunction and on the right is conjunction.</p>
+
+</div>
+<div id="cnf" class=" homework solved"><h5 class="homework solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">CNF
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="cnfSolution"
+        onclick="showPasswordModal('cnfSolution', 'exc-finf')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p><em>Exercises 2.,4. are homework</em></p>
 <p>Transform the following formulas into FOL CNF. Give your step-by-step
@@ -405,14 +485,104 @@ step).</p>
 </ol>
 
 </div>
-<div id="resolution" ><h5 class="">
+<div id="cnfSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>1.</strong></p>
+<ul>
+<li>Start here:
+$\forall x\exists y(\mathsf{Friend}(x,y)\to\exists z\neg(\mathsf{Happy}(z)\land\mathsf{Fulfilled}(z)))$</li>
+<li>Convert the conditional:
+$\forall x\exists y(\neg\mathsf{Friend}(x,y)\lor\exists z\neg(\mathsf{Happy}(z)\land\mathsf{Fulfilled}(z)))$</li>
+<li>Use de Morgan rule on the right:
+$\forall x\exists y(\neg\mathsf{Friend}(x,y)\lor\exists z(\neg\mathsf{Happy}(z)\lor\neg\mathsf{Fulfilled}(z)))$</li>
+<li>Skolemize the inner existential:
+$\forall x\exists y(\neg\mathsf{Friend}(x,y)\lor(\neg\mathsf{Happy}(f(x))\lor\neg\mathsf{Fulfilled}(f(x))))$</li>
+<li>Skolemize the outer existential:
+$\forall x(\neg\mathsf{Friend}(x,g(x))\lor(\neg\mathsf{Happy}(f(x))\lor\neg\mathsf{Fulfilled}(f(x))))$</li>
+<li>Drop the universal:
+$\neg\mathsf{Friend}(x,g(x))\lor\neg\mathsf{Happy}(f(x))\lor\neg\mathsf{Fulfilled}(f(x))$</li>
+</ul>
+<!-- raw HTML omitted -->
+<p><strong>2.</strong></p>
+<ul>
+<li>Start here:
+$\forall x(\forall y\mathsf{Friend}(x,y)\to\forall z\neg(\mathsf{Happy}(z)\land\mathsf{Fulfilled}(z)))$</li>
+<li>Convert the conditional:
+$\forall x(\neg\forall y\mathsf{Friend}(x,y)\lor\forall z\neg(\mathsf{Happy}(z)\land\mathsf{Fulfilled}(z)))$</li>
+<li>Use de Morgan rule on the right:
+$\forall x(\neg\forall y\mathsf{Friend}(x,y)\lor\forall z(\neg\mathsf{Happy}(z)\lor\neg\mathsf{Fulfilled}(z)))$</li>
+<li>Convert negated universal on the left:
+$\forall x(\exists y\neg\mathsf{Friend}(x,y)\lor\forall z(\neg\mathsf{Happy}(z)\lor\neg\mathsf{Fulfilled}(z)))$</li>
+<li>Skolemize the existential:
+$\forall x(\neg\mathsf{Friend}(x,f(x))\lor\forall z(\neg\mathsf{Happy}(z)\lor\neg\mathsf{Fulfilled}(z)))$</li>
+<li>Drop the universal quantifiers:
+$\neg\mathsf{Friend}(x,f(x))\lor\neg\mathsf{Happy}(z)\lor\neg\mathsf{Fulfilled}(z)$</li>
+</ul>
+<!-- raw HTML omitted -->
+<p><strong>3.</strong></p>
+<ul>
+<li>Start here:
+$\mathsf{Happy}(x)\to\neg\forall x(\mathsf{Friend}(x,y)\land\neg\mathsf{Friend}(y,x))$</li>
+<li>Relabel variable on the left:
+$\mathsf{Happy}(z)\to\neg\forall x(\mathsf{Friend}(x,y)\land\neg\mathsf{Friend}(y,x))$</li>
+<li>Convert the conditional:
+$\neg\mathsf{Happy}(z)\lor\neg\forall x(\mathsf{Friend}(x,y)\land\neg\mathsf{Friend}(y,x))$</li>
+<li>Convert negated universal:
+$\neg\mathsf{Happy}(z)\lor\exists x\neg(\mathsf{Friend}(x,y)\land\neg\mathsf{Friend}(y,x))$</li>
+<li>Use de Morgan rule on the right:
+$\neg\mathsf{Happy}(z)\lor\exists x(\neg\mathsf{Friend}(x,y)\lor\neg\neg\mathsf{Friend}(y,x))$</li>
+<li>Remove double negation:
+$\neg\mathsf{Happy}(z)\lor\exists x(\neg\mathsf{Friend}(x,y)\lor\mathsf{Friend}(y,x))$</li>
+<li>Skolemize the existential:
+$\neg\mathsf{Happy}(z)\lor\neg\mathsf{Friend}(f,y)\lor\mathsf{Friend}(y,f)$</li>
+</ul>
+<!-- raw HTML omitted -->
+<p><strong>4.</strong></p>
+<ul>
+<li>Start here:
+$\neg\exists x(\mathsf{Happy}(x)\land(\neg\mathsf{Fulfilled}(x)\land\mathsf{Knows}(x,x)))$</li>
+<li>Convert negated existential:
+$\forall x\neg(\mathsf{Happy}(x)\land(\neg\mathsf{Fulfilled}(x)\land\mathsf{Knows}(x,x)))$</li>
+<li>Use de Morgan rule:
+$\forall x(\neg\mathsf{Happy}(x)\lor\neg(\neg\mathsf{Fulfilled}(x)\land\mathsf{Knows}(x,x)))$</li>
+<li>Use de Morgan again:
+$\forall x(\neg\mathsf{Happy}(x)\lor(\neg\neg\mathsf{Fulfilled}(x)\lor\neg\mathsf{Knows}(x,x)))$</li>
+<li>Remove double negation:
+$\forall x(\neg\mathsf{Happy}(x)\lor(\mathsf{Fulfilled}(x)\lor\neg\mathsf{Knows}(x,x)))$</li>
+<li>Drop the universal quantifier:
+$\neg\mathsf{Happy}(x)\lor\mathsf{Fulfilled}(x)\lor\neg\mathsf{Knows}(x,x)$</li>
+</ul>
+
+</div>
+<div id="resolution" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Resolution
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="resolutionSolution"
+        onclick="showPasswordModal('resolutionSolution', 'exc-finf')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>Use the resolution rule to justify the following inferences:</p>
 <ol>
 <li>$\forall x(\mathsf{Lord}(x)\to \mathsf{Happy}(x)),\neg\mathsf{Happy}(Byron)\vDash \neg\mathsf{Lord}(Byron)$</li>
 <li>$\neg\exists x(\mathsf{Lord}(x)\land \mathsf{Happy}(x)),\forall x\exists y(\mathsf{Friend}(x,y)\to \mathsf{Happy}(x))\vDash \neg\exists x(\mathsf{Lord}(x)\land \exists y(\mathsf{Friend}(x,y)))$</li>
 </ol>
+
+</div>
+<div id="resolutionSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>
+
+<img src="https://logicalmethods.ai/exercises/fol-inference/img/resolution-1.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+
+
+
+
+<img src="https://logicalmethods.ai/exercises/fol-inference/img/resolution-2.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+
+</p>
 
 </div>
 <div id="research" class=" homework"><h5 class="homework">
