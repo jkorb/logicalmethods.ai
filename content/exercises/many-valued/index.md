@@ -102,7 +102,7 @@ $$\mathsf{HOT},\mathsf{COLD},\mathsf{HUMID},\mathsf{AC},\mathsf{HEAT}$$
 
 formule fuzzy rules that represent our fuzzy control rules from above.
 
-## b) 
+## b) {.homework}
 
 Check whether the rules behave reasonably by going through what happens with
 some concrete numerical values representing:
