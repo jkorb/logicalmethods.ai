@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8"></meta>
     <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-    <title>logicalmethods.ai &ndash; Formal languages </title>
+    <title>logicalmethods.ai &ndash; Many-valued logics </title>
     <link rel="icon" type="image/x-icon" href="https://logicalmethods.ai/favicon.ico"></link>
     <link href="https://logicalmethods.ai/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"></link>
     <link rel="stylesheet" href="https://logicalmethods.ai/icons/font/bootstrap-icons.min.css"></link>
@@ -194,7 +194,7 @@
             </li>
             
             <li>
-              <a class="dropdown-item fw-bold active" href="/exercises/formal-languages/">3. Formal languages</a>
+              <a class="dropdown-item " href="/exercises/formal-languages/">3. Formal languages</a>
             </li>
             
             <li>
@@ -222,7 +222,7 @@
             </li>
             
             <li>
-              <a class="dropdown-item " href="/exercises/many-valued/">10. Many-valued logics</a>
+              <a class="dropdown-item fw-bold active" href="/exercises/many-valued/">10. Many-valued logics</a>
             </li>
             </ul>
         </div>
@@ -278,7 +278,7 @@
   <ul class="navbar-nav flex-row justify-content-between mt-2">
   
   <li class="nav-item">
-    <a href="/exercises/valid-inference/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="/exercises/fol-inference/" class="btn" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-left"></i>
     </a>
     
@@ -290,7 +290,7 @@
   </li>
   <li class="nav-item">
     
-    <a href="/exercises/boolean/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-right"></i>
     </a>
     
@@ -299,7 +299,7 @@
 
   <div class="container text-center">
   <h3>
-    Tutorial 3. Formal languages
+    Tutorial 10. Many-valued logics
   </h3>
   <em>Exercise sheet</em>
 </div>
@@ -366,343 +366,197 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
     
       
 </div>
-<div id="bnfs" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0  p-0 ">BNFs
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="bnfsSolution"
-        onclick="showPasswordModal('bnfsSolution', 'exc-for')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="3-valued-truth-tables" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0  p-0 ">3-valued truth-tables
     </div>
-</h5>
-</div>
-<div id="a" class=" homework"><h6 class=" homework">a)</h6><p>Consider the following propositional language, described informally:</p>
-<div class="container " >
-  <figure>
-    <blockquote class="blockquote fs-6">
-      <p>
-      We have three propositional variables $BLUE$, $GREEN$, and $RED$. Further, we
-have the propositional connectives $\neg,\land, \lor$, which work as usual, i.e.
-$\neg$ can be written in front of a formula to negate it, $\land$ can be written
-between two formulas flanked by parentheses to conjoin them, and similarly for
-$\lor$. Additionally, we have two unary modal operators $\square,\lozenge$, which can be
-written in front of a formula to form a new formula.
-      </p>
-    </blockquote>
-    
-  </figure>
-</div>
-
-<p>Determine the BNF of this language.</p>
-
-</div>
-<div id="b" ><h6 class="">b)</h6><p>Consider the following BNF for FOL. Describe the grammar of this language using
-induction, i.e. using clauses like in 
+</h5><p>In 
 
 
-<a href="https://logicalmethods.ai/textbook/formal-languages//#grammar"
+<a href="https://logicalmethods.ai/textbook/sat/"
    
    
    
    
    
-   > Section 3.2.2</a>
+   > Ch. 5. Boolean satisfiability</a>
 
-:</p>
-<p>$$\langle const\rangle ::= a_1 \mid \dots \mid a_n$$</p>
-<p>$$\qquad\langle var\rangle ::= x_1 \mid \dots \mid x_n$$</p>
-<p>$$\langle unop\rangle ::= \neg$$</p>
-<p>$$\qquad\langle binop\rangle ::=\land\mid\lor\mid\to\mid\leftrightarrow$$</p>
-<p>$$\langle quant\rangle ::= \forall\mid\exists$$</p>
-<p>$$\langle func\rangle^n ::= f_1^n\mid \dots \mid f_{k_n}^n$$</p>
-<p>$$\langle pred\rangle^n ::= P_1^n \mid \dots \mid P_{l_n}^n $$</p>
-<p>for $n=1,2,\dots$. This means that for each number $n=1,2,\dots$ there is a
-certain number $k_n$ of $n$-ary function symbols and another number $l_n$ of
-$n$-ary predicates. So, e.g., if $n=2$, then there are $k_2$-many functions that
-take $2$ arguments.</p>
-<p>$$\langle term\rangle::= \langle const\rangle\mid\langle variable\rangle\mid
-\langle func\rangle^n(\langle term\rangle_1,\dots,\langle term\rangle_n)$$</p>
-<p>$$\langle atom\rangle::= \langle pred\rangle^n(\langle term\rangle_1,\dots\langle term\rangle_n)$$</p>
-<p>$$\langle fml\rangle::=\langle atom\rangle\mid\langle unop\rangle\langle fml\rangle\mid
-(\langle fml\rangle\langle binop\rangle \langle fml\rangle)\mid \langle quant\rangle \langle
-var\rangle\langle fml\rangle$$</p>
-<p><em>Hint</em>: You need to define more than just the set $\mathcal{L}$ by induction.
-You also need to define the <em>auxiliary</em> sets of terms.</p>
+, we&rsquo;ve described a truth-table method to test for valid
+inference $P_1,P_2,\dots\vDash C$, which worked by testing whether $P_1\land
+P_2\land \dots\to C$ is a logical truth in classical logic.</p>
+<p>This method doesn&rsquo;t work in Kleene logic because there are <em>no</em> logical truths
+but there <em>are</em> valid inferences. But there is an <em>adjusted</em> truth-table method
+that works for both Kleene and Łukasciewicz.</p>
+<p>For this method, we need to have one row for each possible assignment of the
+truth-values $0,i,1$ to the variables in the formula (for $2$ propositional
+variables that already gives us $3\times 3=9$ rows). Then we recursively
+calculate the truth-values of both $P_1\land P_2\land \dots$ and $C$ for each
+row, and we check if in every row where $P_1\land P_2\land \dots$ has value 1,
+$C$ also has value $1$. If so, the inference is valid, if not it isn&rsquo;t.</p>
+<p>Use this adjusted truth-table method to to determine whether the following
+inferences are valid in both Kleene and Łukasciewicz logic.</p>
 
 </div>
-<div id="c" ><h6 class="">c)</h6><p>Consider the following formulas:</p>
-<p>$$p, q,(\neg p), (p\supseteq q), (p\mid\mid r), ((p\supseteq r)\&amp;\&amp;(\neg q))$$</p>
-<p>Determine a BNF, such that these are well-formed formulas according to the
-corresponding grammar.</p>
-<p><em>Note</em>: There are, of course, many different possible answers. Try to find the
-most &ldquo;natural&rdquo; one.</p>
+<div id="a" ><h6 class="">a)</h6><p>$\mathsf{HOT},\mathsf{HOT}\to \mathsf{HUMID}\vDash \mathsf{HUMID}$</p>
 
 </div>
-<div id="d" class=" homework"><h6 class=" homework">d)</h6><p>Determine the BNF for the fragment of FOL, subject to the following constraints:</p>
-<ul>
-<li>
-<p>We only have two unary predicates $RED,ROUND$ and one binary predicate
-$BIGGER$.</p>
-</li>
-<li>
-<p>There are no function symbols or constants.</p>
-</li>
-<li>
-<p>A quantifier ($\forall, \exists)$ can only occur when it&rsquo;s followed by a
-variable $\alpha=x,y,z,\dots$ and then a formula of the form $(P(\alpha)\to B)$,
-where $P$ is a unary predicate.</p>
-</li>
-</ul>
+<div id="b" class=" homework"><h6 class=" homework">b)</h6><p>$\mathsf{HOT}\vDash \mathsf{RAIN}\to \mathsf{HOT}$</p>
 
 </div>
-<div id="bnfsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong></p>
-<p>$$ A::= BLUE, GREEN, RED \mid \neg A \mid \Box A \mid \Diamond A \mid (A\land A) \mid (A\lor A) $$</p>
-<p><strong>b)</strong></p>
-<ul>
-<li>If $a_i$ is a constant, then $a_i\in\mathcal{T}$</li>
-<li>If $x_i$ is a variable, then $x_i\in\mathcal{T}$</li>
-<li>If $f^n_i$ is an $n$-place function sign and $t_1,\ldots,t_n\in\mathcal{T}$, then $f^n_i(t_1,\ldots,t_n)\in\mathcal{T}$</li>
-<li>If $P^n_i$ is an $n$-place predicate and $t_1,\ldots,t_n\in\mathcal{T}$, then $P^n_i(t_1,\ldots,t_n)\in\mathcal{L}$</li>
-<li>If $A\in\mathcal{L}$, then $\neg A\in\mathcal{L}$</li>
-<li>If $A,B\in\mathcal{L}$, then $(A\land B), (A\lor B), (A\rightarrow B), (A\leftrightarrow B)\in\mathcal{L}$</li>
-<li>If $A\in\mathcal{L}$ and $x_i$ is a variable, then $\forall x_i A, \exists x_i A\in\mathcal{L}$</li>
-</ul>
-<p><strong>c)</strong></p>
-<p>$$ A::= p,q,r \mid \neg A \mid (A\supseteq A) \mid (A||A) \mid (A\&amp;\&amp;A) $$</p>
-<p><strong>d)</strong></p>
-<p>$$ \langle{var}\rangle ::= x_1 \mid \ldots \mid x_n $$</p>
-<p>$$ \langle{unop}\rangle ::= \neg $$</p>
-<p>$$ \langle{binop}\rangle ::= \land \mid \lor \mid \rightarrow \mid \leftrightarrow $$</p>
-<p>$$ \langle{quant}\rangle ::= \forall \mid \exists $$</p>
-<p>$$ \langle{pred}\rangle^1 ::= RED \mid ROUND $$</p>
-<p>$$ \langle{pred}\rangle^2 ::= BIGGER $$</p>
-<p>$$ \langle{atom}\rangle ::= \langle{pred}\rangle^n(\langle{var}\rangle_1,\ldots,\langle{var}\rangle_n) $$</p>
-<p>$$ \langle{fml}\rangle ::= \langle{atom}\rangle \mid
-\langle{unop}\rangle\langle{fml}\rangle \mid
-(\langle{fml}\rangle\langle{binop}\rangle\langle{fml}\rangle)$$
-$$\mid \langle{quant}\rangle\langle{var}\rangle(\langle{pred}\rangle^1(\langle{var}\rangle)\rightarrow\langle{fml}\rangle) $$</p>
+<div id="c" ><h6 class="">c)</h6><p>$\mathsf{HOT}\lor \neg \mathsf{HUMID},\mathsf{HUMID}\lor \mathsf{DRY}\vDash
+\mathsf{HOT}\lor\mathsf{DRY}$</p>
 
 </div>
-<div id="formalization" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Formalization
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="formalizationSolution"
-        onclick="showPasswordModal('formalizationSolution', 'exc-for')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="d" class=" homework"><h6 class=" homework">d)</h6><p>$\mathsf{HOT}\land \neg \mathsf{HOT}\vDash \mathsf{COLD}$</p>
+
+</div>
+<div id="e" ><h6 class="">e)</h6><p>$\mathsf{HOT}\vDash \mathsf{HUMID}\to\mathsf{HUMID}$</p>
+
+</div>
+<div id="f" class=" homework"><h6 class=" homework">f)</h6><p>$\neg\mathsf{HOT}\vDash \mathsf{HOT}\to\mathsf{HOT}$</p>
+
+</div>
+<div id="fuzzy-logic" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Fuzzy logic
     </div>
-</h5>
-</div>
-<div id="a-1" ><h6 class="">a)</h6><p>You arrive at an uninhabited planet and find an old space rover that some
-ancient civilization that still used expert systems for AI used to explore the
-planet. You inspect its knowledge base and find the following code:</p>
-<ul>
-<li>
-<p>$(RAIN\to SEEK\_COVER)$</p>
-</li>
-<li>
-<p>$(SUN\to CHARGE\_BATTERIES)$</p>
-</li>
-<li>
-<p>$((\neg CHARGE\_BATTERIES\land SUN)\to REQUEST\_REPAIR)$</p>
-</li>
-<li>
-<p>$(\neg(SUN\lor RAIN)\to INSPECT\_SENSORS)$</p>
-</li>
-<li>
-<p>$(SHUT\_DOWN\leftrightarrow ((REQUEST\_REPAIR\land\neg REPAIR)\lor
-(INSPECT\_SENSORS\land FAULTY)))$</p>
-</li>
-</ul>
-<p>Explain these rules in natural language.</p>
+</h5><p>Test for each of the following inferences whether it&rsquo;s valid or not in the fuzzy
+logic Ł. If the inference is valid, provide an argument, if the inference is
+invalid provide a countermodel.</p>
 
 </div>
-<div id="b-1" ><h6 class="">b)</h6><p>Consider the following natural language claims. Translate them into a suitable
-propositional or FOL language:</p>
-<ul>
-<li>
-<p>Alan Turing built the first computer but Ada Lovelace invented the first
-computer algorithm.</p>
-</li>
-<li>
-<p>Only if Alan Turing built the first computer, it&rsquo;s Monday today.</p>
-</li>
-<li>
-<p>Either Alan Turing or Ada Lovelace is your favorite computer scientist.</p>
-</li>
-<li>
-<p>Today is Monday if and only if both yesterday was Tuesday and tomorrow is
-Saturday.</p>
-</li>
-</ul>
-<ul>
-<li>
-<p>A number that is greater than every even number is odd.</p>
-</li>
-<li>
-<p>Every number is greater than at least one number.</p>
-</li>
-<li>
-<p>There is an even number that is smaller than an odd number that is greater
-than another odd number.</p>
-</li>
-<li>
-<p>There is no number that is greater than every number.</p>
-</li>
-<li>
-<p>No number is greater than itself.</p>
-</li>
-<li>
-<p>Every odd number is greater than 0.</p>
-</li>
-<li>
-<p>Every odd number is greater than an even number.</p>
-</li>
-</ul>
+<div id="a-1" class=" homework"><h6 class=" homework">a)</h6><p>$\mathsf{RAIN}\land\neg\mathsf{RAIN}\vDash \mathsf{HOT}$</p>
 
 </div>
-<div id="c-1" class=" homework"><h6 class=" homework">c)</h6><p>We&rsquo;re thinking of a scenario where there&rsquo;s a factory that makes balls. We want
-to create a robot that ultimately sorts balls by color and material. But we&rsquo;re not
-there yet, for now we need to represent the following knowledge claims about the
-factory to the robot:</p>
-<div class="container " >
-  <figure>
-    <blockquote class="blockquote fs-6">
-      <p>
-      The balls we make have one of three colors, blue, red, and green. The blue balls
-are all made from rubber, but the red and green balls can be made of leather or
-rubber. Rubber balls are cheaper, but the leather balls are more durable than
-the rubber balls.
-      </p>
-    </blockquote>
-    
-  </figure>
-</div>
-
-<p>Devise a suitable FOL-language and represent the knowledge claims in the above
-paragraph into a knowledge base $\mathbf{KB}$.</p>
+<div id="b-1" ><h6 class="">b)</h6><p>$\mathsf{HOT}\vDash \mathsf{HOT}\lor(\mathsf{RAIN}\land \mathsf{HOT})$</p>
 
 </div>
-<div id="formalizationSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solutions</h6><p><strong>a)</strong></p>
-<ul>
-<li>If it is rainy, then seek cover.</li>
-<li>If it is sunny, then charge batteries.</li>
-<li>If batteries do not charge and it is sunny, then request repair.</li>
-<li>If it is neither rainy nor sunny, then inspect the sensors.</li>
-<li>Shut down if, and only if, you request repair and don&rsquo;t get it or you inspect the sensors and they are faulty.</li>
-</ul>
-<p><strong>b)</strong></p>
-<ul>
-<li>$BUILT(alan) \land INVENTED(ada)$</li>
-<li>$MON(today) \rightarrow BUILT(alan)$</li>
-<li>$FAVORITE(alan) \lor FAVORITE(ada)$</li>
-<li>$MON(today) \leftrightarrow (TUES(yesterday)\land SAT(tomorrow))$</li>
-<li>$\forall x((NUM(x)\land\forall y(EVEN(y)\rightarrow GREAT(x,y)))\rightarrow ODD(x))$</li>
-<li>$\forall x(NUM(x)\rightarrow\exists yGREATER(x,y))$</li>
-<li>$\exists x((NUM(x) \land EVEN(x)) \land \exists y(SMALL(x,y) \land((NUM(y) \land ODD(y)) \land \exists z(y\neq z \land NUM(z)\land ODD(z) \land GREAT(y,z)))))$</li>
-<li>$\neg\exists x(NUM(x) \land \forall y(NUM(y)\rightarrow GREAT(x,y)))$</li>
-<li>$\neg\exists x(NUM(x) \land GREAT(x,x))$</li>
-<li>$\forall x((NUM(x) \land ODD(x))\rightarrow GREAT(x,0))$</li>
-<li>$\forall x((NUM(x) \land ODD(x))\rightarrow \exists y(NUM(y)\land EVEN(y)\land GREAT(x,y)))$</li>
-</ul>
-<p><strong>c)</strong></p>
-<p>$$ \langle{var}\rangle ::= x \mid y $$</p>
-<p>$$ \langle{unop}\rangle ::= \neg $$</p>
-<p>$$ \langle{binop}\rangle ::= \land \mid \lor \mid \rightarrow \mid \leftrightarrow $$</p>
-<p>$$ \langle{quant}\rangle ::= \forall \mid \exists $$</p>
-<p>$$ \langle{pred}\rangle^1 ::= BLUE \mid RED \mid GREEN \mid LEATHER\mid
-RUBBER$$</p>
-<p>$$ \langle{pred}\rangle^2 ::= CHEAPER \mid DURABLE $$</p>
-<p>$$ \langle{atom}\rangle ::= \langle{pred}\rangle^n(\langle{var}\rangle_1,\ldots,\langle{var}\rangle_n) $$</p>
-<p>$$ \langle{fml}\rangle ::= \langle{atom}\rangle \mid \langle{unop}\rangle\langle{fml}\rangle \mid (\langle{fml}\rangle\langle{binop}\rangle\langle{fml}\rangle) \mid \langle{quant}\rangle\langle{var}\rangle\langle{fml}\rangle $$</p>
-<p>KB entries:</p>
-<ul>
-<li>
-<p>$\forall x(BLUE(x) \lor RED(x) \lor GREEN(x))$</p>
-</li>
-<li>
-<p>$\forall x (BLUE(x) \rightarrow RUBBER(x))$</p>
-</li>
-<li>
-<p>$\forall x (RED(x) \rightarrow (LEATHER(x) \lor RUBBER(x)))$</p>
-</li>
-<li>
-<p>$\forall x (GREEN(x) \rightarrow (LEATHER(x) \lor RUBBER(x)))$</p>
-</li>
-<li>
-<p>$\forall x \forall y ((RUBBER(x) \land LEATHER(y)) \rightarrow CHEAPER(x,y))$</p>
-</li>
-<li>
-<p>$\forall x \forall y ((LEATHER(x) \land RUBBER(y)) \rightarrow DURABLE(x,y))$</p>
-</li>
-</ul>
+<div id="c-1" class=" homework"><h6 class=" homework">c) </h6><p>$\mathsf{HOT}\lor \neg \mathsf{HUMID},\mathsf{HUMID}\lor \mathsf{DRY}\vDash
+\mathsf{HOT}\lor\mathsf{DRY}$</p>
 
 </div>
-<div id="parsing" ><h5 class="">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Parsing
+<div id="d-1" ><h6 class="">d)</h6><p>$\mathsf{HOT}\land \neg \mathsf{HOT}\vDash \mathsf{COLD}$</p>
+
+</div>
+<div id="e-1" class=" homework"><h6 class=" homework">e)</h6><p>$\mathsf{HOT}\vDash \mathsf{HUMID}\lor\neg\mathsf{HUMID}$</p>
+
+</div>
+<div id="fuzzy-rules" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Fuzzy rules
     </div>
-</h5>
+</h5><p>Remember that a fuzzy rule $$\textbf{IF } A \textbf{ THEN } B$$ means that $B$ holds
+to the extend that $A$.</p>
+<p>Imagine an
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/Heating,_ventilation,_and_air_conditioning" class="link-dark" rel="external" target="_blank">HVAC</a>
+-system,
+with a fuzzy control unit. We want the system to behave as follows:</p>
+<ul>
+<li>If it&rsquo;s hot or humid, then power up the AC unit.</li>
+<li>If it&rsquo;s cold or humid, then power up the heating unit.</li>
+<li>If you power up the AC unit, power down the heating unit.</li>
+<li>If you power up the heating unit, power down the AC unit.</li>
+</ul>
+
 </div>
-<div id="a-2" class=" homework"><h6 class=" homework">a)</h6><p>Parse the following formulas according to the BNF for propositional logic:</p>
+<div id="a-2" ><h6 class="">a)</h6><p>Using only the propositional variables</p>
+<p>$$\mathsf{HOT},\mathsf{COLD},\mathsf{HUMID},\mathsf{AC},\mathsf{HEAT}$$</p>
+<p>formule fuzzy rules that represent our fuzzy control rules from above.</p>
+
+</div>
+<div id="b-2" class=" homework"><h6 class=" homework">b)</h6><p>Check whether the rules behave reasonably by going through what happens with
+some concrete numerical values representing:</p>
+<ul>
+<li>hot high, humidity high</li>
+<li>hot medium, humidity high</li>
+<li>hot low, humidity high</li>
+<li>hot high, humidity medium</li>
+<li>hot medium, humidity medium</li>
+<li>hot low, humidity medium</li>
+<li>hot high, humidity low</li>
+<li>hot medium, humidity low</li>
+<li>hot low, humidity low</li>
+</ul>
+<p>Are there any problematic cases? If so, can we fix them?</p>
+
+</div>
+<div id="t-norms" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0  p-0 ">T-norms
+    </div>
+</h5><p>The general theory of fuzzy logics uses the concept of a
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/T-norm" class="link-dark" rel="external" target="_blank">t-norm</a>
+, which is short for &ldquo;triangular
+norm.&rdquo; T-norms are used to define a fuzzy conditional that behaves in a natural
+way as a &ldquo;logical&rdquo; conditional for fuzzy logic. These logical conditionals of
+fuzzy find applications in fuzzy knowledge bases, where they allow the
+application of chaining methods for example.</p>
+<p>We&rsquo;ll not go into the details of the construction of the conditional here, but
+rather focus on what the t-norm for Łukasiewicz fuzzy logic.</p>
+
+</div>
+<div id="a-strong-conjunction" ><h6 class="">a) Strong conjunction</h6><p>The t-norm for fuzzy logic can be expressed by introducing an extra connective
+$\otimes$ (&ldquo;strong conjunction&rdquo;) to the language with $\neg,\land,\lor$. This
+connective uses the fuzzy truth-function: $$f_\otimes(x,y)=\max(0,x+y-1).$$
+That is the recursive truth-values for $A\otimes B$ are calculated as follows:</p>
+<p>$$\nu(A\otimes B)=\max(0,\nu(A)+\nu(B)-1).$$</p>
+<p>Check that the following characteristic properties hold for the operation $f_\otimes$:</p>
+<ol>
+<li>$f_\otimes(x,y)=f_\times(y,x)$</li>
+<li>If $x\leq x&rsquo;$ and $y\leq y&rsquo;$, then $f_\otimes(x,y)\leq f_\otimes(x&rsquo;,y&rsquo;)$</li>
+<li>$f_\otimes(x,f_\otimes(y,z))=f_\otimes(f_\otimes(x,y),z)$</li>
+<li>$f_\otimes(x,1)=x$</li>
+</ol>
+<p><em>Hint</em>: Here you cannot check all possible cases, since $x,y,z\in\mathbb{R}$ can
+take infinitely many values. Instead, you need to reason &ldquo;algebraically&rdquo; about
+how the values hang together. Here are some tips on what to use:</p>
 <ul>
 <li>
-<p>$(\neg p\to \neg p)$</p>
+<p>For the first, you need to use the mathematical fact that $x+y=y+x$.</p>
 </li>
 <li>
-<p>$(p\leftrightarrow (\neg r\land q))$</p>
+<p>For the second, you need to consider the cases where $f_\otimes(x,y)$ can be
+$0$ and the mathematical fact that sums of bigger numbers are bigger.</p>
 </li>
 <li>
-<p>$((q\land s)\to (p\lor r))$</p>
+<p>For the third, you need to use the fact that $x+(y+z)=(x+y)+z$.</p>
 </li>
 <li>
-<p>$(((p\land q)\lor (r\land s))\land \neg ((p\land q\land r\land s)))$</p>
+<p>For the fourth, you&rsquo;re on your own 😃</p>
 </li>
 </ul>
 
 </div>
-<div id="b-2" ><h6 class="">b)</h6><p>Parse the following formulas according to the BNF for FOL:</p>
-<ul>
-<li>
-<p>$ \exists  x S(x,p)$</p>
-</li>
-<li>
-<p>$\forall x (  \exists y G(x,y) \rightarrow   \exists  y S(x,y))$</p>
-</li>
-<li>
-<p>$\lnot  \exists x G(p,x) \wedge   \lnot  \exists  y S(y,p)$</p>
-</li>
-<li>
-<p>$\forall x  (B(x) \rightarrow   \exists y G(y,x))$</p>
-</li>
-</ul>
+<div id="b-fuzzy-logical-conditional" class=" homework"><h6 class=" homework">b) Fuzzy logical conditional</h6><p>In Łukasiewicz&rsquo;s logic, the logical conditional $\to$ is interpreted by the
+following truth-function:</p>
+<p>$$f_\to(x,y)=\min(x,1-x+y)$$</p>
+<p>That means that:</p>
+<p>$$\nu(A\to B)=\min(x,1-\nu(A)+\nu(B))$$</p>
+<p>Check that the following holds in Łukasiewicz&rsquo;s logic:</p>
+<p>$$\mathsf{RAIN}\otimes (\mathsf{RAIN}\to \mathsf{WET})\vDash \mathsf{WET}$$</p>
 
 </div>
-<div id="research" class=" homework"><h5 class="homework">
+<div id="research" ><h5 class="">
     <div class="d-inline-flex flex-row m-0  p-0 ">Research
     </div>
-</h5><p>Can the grammar of <em>every</em> formal language be given by a BNF? If so, explain
-why, if not give a counterexample and explain why it is, indeed, a
-counterexample.</p>
+</h5><p>Find out what fuzzy sets are.</p>
+
+</div>
+<div id="a-3" ><h6 class="">a)</h6><p>How are fuzzy sets related to fuzzy logic?</p>
+
+</div>
+<div id="b-3" ><h6 class="">b)</h6><p>How are fuzzy sets used in AI?</p>
 
 </div>
 <div id="discussion" ><h5 class="">
     <div class="d-inline-flex flex-row m-0  p-0 ">Discussion
     </div>
-</h5><p>Some AI researchers thought that everything that can be said can be said in FOL.
-Doing some necessary research, do you agree? Support your answer with arguments
-and/or examples.</p>
+</h5><p>Kleene logic has no logical laws/tautologies, as discussed in class. For
+example, if we don&rsquo;t know whether it&rsquo;ll rain or now and model this by
+$$\nu(\mathsf{RAIN})=i,$$ in Kleene&rsquo;s logic, we&rsquo;ll get the consequence that
+$$\nu(\mathsf{RAIN}\lor\neg\mathsf{RAIN})=i.$$ In a sense, this is what we want
+(we don&rsquo;t know whether it&rsquo;ll rain or not), but in a sense this is also
+unsatisfactory: we know that <em>one</em> of the two will happen, we just don&rsquo;t know
+which. Is this a problem for applications of Kleene logic in AI-decision making
+systems? Argue your answer in one or two paragraphs.</p>
 
   </div>
 </div>
@@ -711,7 +565,7 @@ and/or examples.</p>
 <ul class="navbar-nav flex-row justify-content-between mt-auto">
   
   <li class="nav-item">
-    <a href="/exercises/valid-inference/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="/exercises/fol-inference/" class="btn" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-left"></i>
     </a>
     
@@ -723,7 +577,7 @@ and/or examples.</p>
   </li>
   <li class="nav-item">
     
-    <a href="/exercises/boolean/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-right"></i>
     </a>
     
