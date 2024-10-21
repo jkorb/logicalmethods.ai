@@ -519,7 +519,7 @@ To see this, take the following values:
 We get:
 
 + $\nu(\neg\mathsf{WARM})=0.5$
-+ $\nu(\mathsf{WARM}\lor \mathsf{HUMID})=min(\nu(\mathsf{WARM}),\nu(\mathsf{HUMID}))=max(0.5,0.25)=0.5$
++ $\nu(\mathsf{WARM}\lor \mathsf{HUMID})=max(\nu(\mathsf{WARM}),\nu(\mathsf{HUMID}))=max(0.5,0.25)=0.5$
 + So, $min(\nu(\neg\mathsf{WARM}), \nu(\mathsf{HUMID}\lor
 \mathsf{WARM}))=0.5\nleq \nu(\mathsf{HUMID})=0.25$
 
