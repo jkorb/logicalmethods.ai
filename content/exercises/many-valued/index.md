@@ -74,7 +74,7 @@ $\mathsf{HOT}\lor \neg \mathsf{HUMID},\mathsf{HUMID}\lor \mathsf{DRY}\vDash
 
 ## d)
 
-$\mathsf{HOT}\land \neg \mathsf{HOT}\vDash \mathsf{COLD}$
+$\mathsf{HOT}\land \neg \mathsf{HOT}\vDash \mathsf{HOT}$
 
 ## e) {.homework}
 
