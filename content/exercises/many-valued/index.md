@@ -98,7 +98,7 @@ with a fuzzy control unit. We want the system to behave as follows:
 
 Using only the propositional variables 
 
-$$\mathsf{HOT},\mathsf{COLD},\mathsf{HUMID},\mathsf{AC},\mathsf{HEAT}$$
+$$\mathsf{HOT},\mathsf{HUMID},\mathsf{AC},\mathsf{HEAT}$$
 
 formule fuzzy rules that represent our fuzzy control rules from above.
 
@@ -142,7 +142,7 @@ $$\nu(A\otimes B)=\max(0,\nu(A)+\nu(B)-1).$$
 
 Check that the following characteristic properties hold for the operation $f_\otimes$:
 
-1) $f_\otimes(x,y)=f_\times(y,x)$
+1) $f_\otimes(x,y)=f_\otimes(y,x)$
 2) If $x\leq x'$ and $y\leq y'$, then $f_\otimes(x,y)\leq f_\otimes(x',y')$
 3) $f_\otimes(x,f_\otimes(y,z))=f_\otimes(f_\otimes(x,y),z)$
 4) $f_\otimes(x,1)=x$
