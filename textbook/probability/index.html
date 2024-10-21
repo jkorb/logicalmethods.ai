@@ -1,0 +1,996 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <title>logicalmethods.ai &ndash; Logic and probability </title>
+    <link rel="icon" type="image/x-icon" href="https://logicalmethods.ai/favicon.ico"></link>
+    <link href="https://logicalmethods.ai/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"></link>
+    <link rel="stylesheet" href="https://logicalmethods.ai/icons/font/bootstrap-icons.min.css"></link>
+    <link rel="stylesheet" href="https://logicalmethods.ai/css/layout.css"></link>
+    <link href="https://logicalmethods.ai/css/textbook.css" rel="stylesheet"></link>
+    <style>
+      
+    :root {
+      --chapter: "11";
+    }
+
+    </style>
+    
+      <link rel="stylesheet" href="https://logicalmethods.ai/katex/katex.min.css">
+<script defer src="https://logicalmethods.ai/katex/katex.min.js"></script>
+<script defer src="https://logicalmethods.ai/katex/contrib/auto-render.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},     
+        {left: '$', right: '$', display: false},     
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '\\(', right: '\\)', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
+    
+  </head>
+  <body class="bg-black d-flex flex-column m-0 p-0">
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas-nav" aria-labelledby="offcanvas-navLabel" data-bs-theme="dark">
+  <div class="offcanvas-header">
+    <div class="h5 offcanvas-title" id="offcanvas-navLabel">
+      Browse course
+    </div>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  
+  <div class="offcanvas-body">
+    <ul class="navbar-nav"><li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link fw-bold active" href="/textbook/"><i class="bi bi-book"></i> &nbsp;&nbsp; Textbook</a>
+          </div>
+          <button 
+            class="btn btn-sm btn-dark" 
+            href="/textbook/"
+            id="navbarSectiontxt-home" data-bs-toggle="collapse"
+            data-bs-target="#collapsetxt-home"  
+            aria-expanded="true"
+            aria-controls="collapsetxt-home">
+            <i class="bi bi-caret-left-fill toggle-icon"></i>
+          </button>
+        </div>
+        <div class="collapse show" id="collapsetxt-home">
+          <ul class="list-unstyled ms-3">
+            <li>
+              <a class="dropdown-item " href="/textbook/logic-and-ai/">1. Logic and AI</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/textbook/valid-inference/">2. Valid Inference</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/textbook/formal-languages/">3. Formal languages</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/textbook/boolean/">4. Boolean algebra</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/textbook/sat/">5. Boolean satisfiability</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/textbook/conditionals/">6. Logical conditionals</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/textbook/proofs/">7. Logical proofs</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/textbook/fol/">8. FOL</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/textbook/fol-inference/">9. FOL Inference</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/textbook/many-valued/">10. Many-valued logics</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item fw-bold active" href="/textbook/probability/">11. Logic and probability</a>
+            </li>
+            </ul>
+        </div>
+        
+      </li>
+      <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/slides/"><i class="bi bi-rocket-takeoff-fill"></i> &nbsp;&nbsp; Slides</a>
+          </div>
+          <button 
+            class="btn btn-sm btn-dark" 
+            href="/slides/"
+            id="navbarSectionsli-home" data-bs-toggle="collapse"
+            data-bs-target="#collapsesli-home"  
+            aria-expanded="aria-expanded=false"
+            aria-controls="collapsesli-home">
+            <i class="bi bi-caret-left-fill toggle-icon"></i>
+          </button>
+        </div>
+        <div class="collapse " id="collapsesli-home">
+          <ul class="list-unstyled ms-3">
+            <li>
+              <a class="dropdown-item " href="/slides/logic-and-ai/">1. Logic and AI</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/slides/valid-inference/">2. Valid inference</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/slides/formal-languages/">3. Formal languages</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/slides/boolean/">4. Boolean algebra</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/slides/sat/">5. Boolean satisfiability</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/slides/conditionals/">6. Logical conditionals</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/slides/proof/">7. Logical proofs</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/slides/fol/">8. FOL</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/slides/fol-inference/">9. FOL inference</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/slides/many-valued/">10. Many-valued logics</a>
+            </li>
+            </ul>
+        </div>
+        
+      </li>
+      <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/exercises/"><i class="bi-gear-fill"></i> &nbsp;&nbsp; Exercises</a>
+          </div>
+          <button 
+            class="btn btn-sm btn-dark" 
+            href="/exercises/"
+            id="navbarSectionexe-home" data-bs-toggle="collapse"
+            data-bs-target="#collapseexe-home"  
+            aria-expanded="aria-expanded=false"
+            aria-controls="collapseexe-home">
+            <i class="bi bi-caret-left-fill toggle-icon"></i>
+          </button>
+        </div>
+        <div class="collapse " id="collapseexe-home">
+          <ul class="list-unstyled ms-3">
+            <li>
+              <a class="dropdown-item " href="/exercises/logic-and-ai/">1. Logic and AI</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/exercises/valid-inference/">2. Valid inference</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/exercises/formal-languages/">3. Formal languages</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/exercises/boolean/">4. Boolean algebra</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/exercises/sat/">5. Boolean satisfiability</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/exercises/conditionals/">6. Logical conditionals</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/exercises/proof/">7. Logical proofs</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/exercises/fol/">8. FOL</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/exercises/fol-inference/">9. FOL inference</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item " href="/exercises/many-valued/">10. Many-valued logics</a>
+            </li>
+            </ul>
+        </div>
+        
+      </li>
+      <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/about/"><i class="bi-file-person-fill"></i> &nbsp;&nbsp; About</a>
+          </div>
+      </li>
+      <hr>
+      
+    </ul>
+  </div>
+</div>
+
+    <header class="align-self-center d-flex flex-column m-0 mb-md-1 p-0" data-bs-theme="dark">
+      <nav class="navbar bg-dark shadow" data-bs-theme="dark" aria-label="header-navbar">
+  <div class="container-sm align-self-center px-3">
+    <a class="navbar-brand fs-6" href="https://logicalmethods.ai/"><span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+<i class="bi bi-caret-right-fill"></i>logicalmethods.ai</a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-nav" aria-controls="offcanvas-nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+
+      
+      
+    </header>
+    
+    <main class="align-self-center d-flex flex-column flex-fill bg-light m-md-1 p-0" data-bs-theme="light">
+      <ul class="navbar-nav flex-row justify-content-between mt-2">
+  
+  <li class="nav-item">
+    <a href="/textbook/many-valued/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-chevron-left"></i>
+    </a>
+    
+  </li>
+  <li class="nav-item">
+    <a href="/textbook/" class="btn " tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-house-up"></i>
+    </a>
+  </li>
+  <li class="nav-item">
+    
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-chevron-right"></i>
+    </a>
+    
+  </li>
+</ul>
+<div class="container chapter">
+  <p>By: <em>Johannes Korbmacher</em></p><h1 id="logic-and-probability">Logic and probability<button class="btn btn-back-to-top">
+    
+  </button>
+</h1>
+<hr>
+
+<p>In Chapters 
+
+
+<a href="https://logicalmethods.ai/textbook/logic-and-ai/"
+   
+   
+   
+   
+   
+   > 1. Logic and AI</a>
+
+ and 
+
+
+<a href="https://logicalmethods.ai/textbook/valid-inference/"
+   
+   
+   
+   
+   
+   > 2. Valid
+inference</a>
+
+, we&rsquo;ve distinguished between <strong>deductive</strong> inference
+(the truth of the premises guarantees the truth of the conclusion) and
+<strong>inductive</strong> inference (the truth of the premises makes the truth of the
+conclusion more likely). So far, we&rsquo;ve only focused on models of deductive
+inference. In this chapter, you&rsquo;ll learn more about how to model inductive
+inference.</p>
+<p>We&rsquo;ll begin by looking at how to <a href="#models-of-probability">model probabilities</a>
+in a logical setting. We&rsquo;ll then go through a useful method for calculating
+probabilities using <a href="#probability-truth-tables">probability truth-tables</a>. After
+this, we turn to <a href="#conditional-probabilities">conditional probabilities</a>, which
+then allow us to discuss a simple model of <a href="#inductive-validity">inductive
+validity</a>. To conclude the chapter, we look at some
+examples of valid and invalid inductive inferences in our model.</p>
+<h2 id="models-of-probability">Models of probability<button class="btn btn-back-to-top">
+    
+    <i class="bi bi-chevron-double-up"></i>
+    
+  </button>
+</h2>
+<hr>
+
+<p>The probability of an event describes the <strong>how likely it is</strong> that the event
+occurs. Think, for example, of how likely it is that you roll a 3 on a 6
+sided-die, or how likely it is that it rains tomorrow.</p>
+<p>What this <em>really</em> means is actually a matter of substantial debate. There
+different schools of thought on the interpretation of probability:</p>
+<ul>
+<li>
+<p>Objectivists argue that the likelihood we&rsquo;re talking about here is an
+objective feature of reality, sometimes called <em>objective chance</em>. An example of
+this are <a href="https://en.wikipedia.org/wiki/Frequentist_probability"
+  target="_blank">frequentist</a>
+interpretations of probability, which think of probabilities as a measure of how
+often an event would occur if we repeated the circumstances.</p>
+</li>
+<li>
+<p>Subjectivists argue that the likelihood in question is a subjective, epistemic
+feature of world. An example of this are
+<a href="https://en.wikipedia.org/wiki/Bayesian_probability"
+  target="_blank">Bayesian</a> interpretations
+of probability, which think of probabilities as a measure of our <em>degree of
+belief</em> in an event occurring.</p>
+</li>
+</ul>
+<p>Here, we won&rsquo;t take sides in this debate. We&rsquo;ll work with a pre-theoretic notion
+of probability and focus on the formalism.</p>
+<p>Probabilities play many important roles in AI research. On the one hand, they
+are the basis for the statistical methods used in modern subsymbolic <a href="https://en.wikipedia.org/wiki/Machine_learning"
+  target="_blank">machine
+learning</a> methods.  On the other
+hand, probabilities are the main method for dealing with inductive inference and
+uncertainty in symbolic settings, such as expert systems.</p>
+<p>Different applications of probabilities in AI use different (though equivalent)
+ways of developing the formalism. Here, we&rsquo;ll develop a <strong>symbolic approach to
+probabilities</strong>, which models probabilities as real numbers assigned to formulas
+in formal languages.</p>
+<p>But you should be aware of the fact that <a href="https://en.wikipedia.org/wiki/Probability_theory"
+  target="_blank">mathematical probability
+theory</a>, in general, is a
+broader theory that can be applied in many different, symbolic and subsymbolic
+settings.</p>
+<p>For now, we work (
+
+
+<a href="https://logicalmethods.ai/textbook/many-valued//#syntax"
+   
+   
+   
+   
+   
+   >again</a>
+
+) with a propositional language $\mathcal{L}$ with variables
+$p_1,\dots,p_n$ and connectives $\neg,\land,\lor$.</p>
+<p>A <strong>probability</strong> for $\mathcal{L}$ is a function $Pr:\mathcal{L}\to\mathbb{R}$, which assigns <a href="https://en.wikipedia.org/wiki/Real_number"
+  target="_blank">real numbers</a> to formulas, subject to the following three conditions:</p>
+<ol>
+<li>
+<p>$Pr(A)\geq 1$, for all $A\in\mathcal{L}$</p>
+</li>
+<li>
+<p>$Pr(A)=1$, whenever $\vDash A$ (i.e. $A$ is a classical logical truth)</p>
+</li>
+<li>
+<p>$Pr(A\lor B)=Pr(A)+Pr(B)$, whenever $\vDash \neg (A\land B)$ (i.e. $A\land B$ is unsatisfiable)</p>
+</li>
+</ol>
+<p>These are the so-called <a href="https://en.wikipedia.org/wiki/Probability_axioms"
+  target="_blank">Kolmogorov axioms</a> for classical probability theory. Note that they use notions from classical logic (logical truth and satisfiability).<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<p>These are only the basic axioms, there are also <strong>derived laws</strong>. For example,
+it&rsquo;s easy to show that for all formulas $A$, we have: $$P(\neg A)=1-P(A).$$</p>
+<p>To see this, we can reason as follows:</p>
+<ul>
+<li>We know that $\vDash \neg(A\land \neg A)$ using Boolean logic.</li>
+<li>It follows that $Pr(A\lor \neg A)=Pr(A)+Pr(\neg A)$ by the third axiom.</li>
+<li>We further know that $\vDash A\lor \neg A$ using Boolean logic.</li>
+<li>It follows that $Pr(A\lor \neg A)=1$ from the second axiom.</li>
+<li>Putting it all together, it follows $1=Pr(A)+Pr(\neg A)$, which gives our
+claim by simple algebra (subtracting $Pr(A)$ on both sides).</li>
+</ul>
+<p>In a similar way, you can show rules like the following:</p>
+<ul>
+<li>$Pr(A)=0$, whenever $\vDash \neg A$</li>
+<li>$Pr(A\lor B)=Pr(A)+Pr(B)-Pr(A\land B)$ (the &ldquo;inclusion-exclusion&rdquo; principle)</li>
+<li>If $A\vDash B$, then $Pr(A)\leq Pr(B)$.</li>
+<li>If $A$ and $B$ are equivalent, then $Pr(A)=Pr(B)$.</li>
+</ul>
+<p>These kinds of laws hold for <em>all</em> probabilities. And importantly, there are
+many possible probability measures, which correspond to different modeling
+situations. But how do we give a concrete probability? Well, we have to give a
+rule that specifies the probability of every formula. Let&rsquo;s look at an example.</p>
+<p>Suppose we&rsquo;re modeling the throw of a single, 6-sided die. Correspondingly, we
+have six propositional variables in our language:
+$$\mathsf{RESULT}_1,\mathsf{RESULT}_2,\mathsf{RESULT}_3,\mathsf{RESULT}_4,\mathsf{RESULT}_5,\mathsf{RESULT}_6,$$
+where $\mathsf{RESULT}_i$ means that the result of the die-roll is $i$.</p>
+<p>If we&rsquo;re dealing with a fair die, we can define a corresponding probability
+measure $Pr_{\text{fair}}$ as follows:</p>
+<p>$$Pr_{\text{fair}}(\mathsf{RESULT}_i)=\frac{1}{6}\text{, for }i=1,\dots,6$$
+$$Pr_{\text{fair}}(\mathsf{RESULT}_i\land \mathsf{RESULT}_j)=0\text{, for all }i\neq
+j$$</p>
+<p>The second rule formalizes the fact that a die can&rsquo;t show two numbers at the
+same time, it&rsquo;s impossible that the result is both a $1$ and a $6$, say. In
+other words, we assume that the results are mutually exclusive.</p>
+<p>The first rule, then, captures the fact that each result is equally likely, i.e.
+the die is fair. Since there are $6$ mutually exclusive results, the only way to
+achieve this is by assigning $\frac{1}{6}$ to each.</p>
+<p>It turns out that these two rules are sufficient to define a value
+$Pr_\text{fair}(A)$ for each formula $A$. Showing this is not hard, but not
+trivial either.<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> Here we won&rsquo;t go into the details, but instead
+highlight that <strong>probabilities are not recursive</strong>.</p>
+<p>That is, the first rule is <em>not</em> sufficient to calculate the probabilities of all
+formulas. To calculate the probability of the die being 2 or 4, for example,</p>
+<p>$$Pr_\text{fair}(\mathsf{RESULT}_2\lor \mathsf{RESULT}_4),$$</p>
+<p>we need both rules:</p>
+<ul>
+<li>We know from the derived inclusion-exclusion principle that: $$Pr_\text{fair}(\mathsf{RESULT}_2\lor \mathsf{RESULT}_4)=$$
+$$Pr_\text{fair}(\mathsf{RESULT}_2)+Pr_\text{fair}(\mathsf{RESULT}_4)-Pr(\mathsf{RESULT}_2\land \mathsf{RESULT}_4)$$</li>
+<li>We further know from the second rule that: $$Pr(\mathsf{RESULT}_2\land \mathsf{RESULT}_4).$$</li>
+<li>So we get that: $$Pr_\text{fair}(\mathsf{RESULT}_2\lor \mathsf{RESULT}_4)=Pr_\text{fair}(\mathsf{RESULT}_2)+Pr_\text{fair}(\mathsf{RESULT}_4).$$</li>
+<li>Since by the first rule, we have $Pr_\text{fair}(\mathsf{RESULT}_2=\frac{1}{6})$ and $Pr_\text{fair}(\mathsf{RESULT}_4=\frac{1}{6})$, we know that:</li>
+</ul>
+<p>$$Pr_\text{fair}(\mathsf{RESULT}_2\lor \mathsf{RESULT}_4)=\frac{1}{6}+\frac{1}{6}=\frac{1}{3}$$</p>
+<p>But note that crucially, we needed <strong>both rules</strong> in this calculation. The
+probabilities of the propositional variables are not enough, we also need the
+values of their conjunctions.<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
+<p>In our simple example, this was easy: no conjunction could be true. But in more
+complex modeling scenarios, that makes specifying probabilities explicitly
+fairly difficult. This is why we&rsquo;ll now describe a method for defining
+probabilities that&rsquo;s easier to implement.</p>
+<h2 id="probability-truth-tables">Probability truth-tables<button class="btn btn-back-to-top">
+    
+    <i class="bi bi-chevron-double-up"></i>
+    
+  </button>
+</h2>
+<hr>
+
+<p>It turns out that we can <strong>truth-tables</strong> to specify probabilities for a whole
+language.<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup> To see how this works, let&rsquo;s discuss the abstract theory
+first, and then go through a concrete example.</p>
+<p>The basic idea is that we can specify probabilities by saying how likely
+different <em>valuations</em> are. Here, we think of valuations again as logically
+possible scenarios and of the likelihood of a valuation as how likely it is that
+the things in the actual world turn out exactly like in the scenario.</p>
+<p>So, we have $\mathsf{RAIN}$ and $\mathsf{SUN}$ as our propositional variables,
+then we have 4 different valuations:</p>
+<ul>
+<li>$\nu_1(\mathsf{RAIN})=1$ and $\nu_1(\mathsf{SUN})=1$</li>
+<li>$\nu_2(\mathsf{RAIN})=1$ and $\nu_2(\mathsf{SUN})=0$</li>
+<li>$\nu_3(\mathsf{RAIN})=0$ and $\nu_3(\mathsf{SUN})=1$</li>
+<li>$\nu_4(\mathsf{RAIN})=0$ and $\nu_4(\mathsf{SUN})=0$</li>
+</ul>
+<p>These correspond to the &ldquo;world&rdquo; where it rains and the sun shines ($\nu_1$), it
+rains but the sun doesn&rsquo;t shine ($\nu_2$), and so forth.</p>
+<p>We now measure with a <strong>probability weight</strong> $m$ how likely each of these
+scenarios is. For example, we could say:</p>
+<ul>
+<li>$m(\nu_1)=0.5$</li>
+<li>$m(\nu_2)=0.3$</li>
+<li>$m(\nu_3)=0.2$</li>
+<li>$m(\nu_4)=0$</li>
+</ul>
+<p>What this means is that the likelihood of it raining and the sun shining is 0.5,
+the likelihood of it raining and the sun not shining 0.3, and so forth.</p>
+<p>We could use any weight distribution here, as long as they sum up to $1$. This
+expresses the assumption that at least one of the different scenarios <em>will</em>
+happen.</p>
+<p>So, more generally, a <strong>probability weight</strong> for our language is a function $m$,
+which assigns to each valuation $\nu$ a positive value $0\leq m(\nu)$ such that
+these values sum up to one: $$\sum_{\nu}m(\nu)=1$$</p>
+<p>One we have these values, we can calculate the probability of each formula by adding
+the probability weights of the worlds, where the formula is true:
+$$Pr_m(A)=\sum_{\nu(A)=1}m(\nu).$$</p>
+<p>So, in our example, to get the probability of $\mathsf{RAIN},$
+for example, we&rsquo;d calculate
+$$Pr(\mathsf{RAIN})=\sum_{\nu(\mathsf{RAIN})=1}
+m(\nu)=$$
+$$m(\nu_1)+m(\nu_2)=0.5+0.3=0.8$$</p>
+<p>That is, in our model, the probability of it raining is 0.8. This is because the
+only scenarios where it rains are $\nu_1$ and $\nu_2$ and they have a combined
+likelihood of 0.8.</p>
+<p>It turns out, as a matter of mathematical fact, that <em>every</em> probability
+function $Pr$ can be expressed in this way. We shall not look into the proof of
+this, but rather how to use this fact as convenient method for specifying
+probabilities.</p>
+<p>The point is that it&rsquo;s much easier to specify a weight for each valuation than
+to assign a value to each formula: there are typically way fewer valuations than
+relevantly distinct formulas. Which brings us to the connection with
+truth-tables.</p>
+<p>Remember from 
+
+
+<a href="https://logicalmethods.ai/textbook/sat//#truth-tables"
+   
+   
+   
+   
+   
+   > Chapter 5.2
+</a>
+
+ that in a truth-table, each line corresponds to a
+valuation:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/probability/img/prob-table-basis.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+
+
+<p>This means that in the table, we can conveniently give the information of our
+measure as follows:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/probability/img/prob-table-weight.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+
+
+<p>So far, so good. What makes this method really powerful is that it allows us to
+calculate the probability of a formula: simply calculate the values of the
+formula for each row in the usual way and then sum up the $m$-values for each
+row where the formula gets value $1$.</p>
+<p>So, in our example, if we want to know the probability of
+$\mathsf{RAIN}\lor\neg\mathsf{SUN}$, we&rsquo;d proceed as follows:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/probability/img/prob-table-full.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+
+
+<p>Then, we can see that:
+$$Pr(\mathsf{RAIN}\lor\neg\mathsf{SUN})=m(\nu_1)+m(\nu_2)+m(\nu_4)=0.5+0.3+0=0.8$$</p>
+<p>This is a powerful method for representing and calculating probabilities. But it
+also has its limits. For example, it suffers from the same problem of
+<strong>combinatorial explosion</strong> as the truth-tables method for validity checking.
+For example, writing the full truth-table for our die example from above, we
+need $2^6=64$ rows. That means that we need to use &ldquo;tricks&rdquo; to handle them
+efficiently. In this example, we can use the fact that every row where more than
+one $\mathsf{RESULT}_i$ gets value $1$ will have $m$-value $0$, so we can leave
+it out of the table:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/probability/img/prob-table-die.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+
+
+<p>Unfortunately, computationally efficient implementations of probabilities are
+beyond what we can discuss in this setting.</p>
+<h2 id="conditional-probabilities">Conditional probabilities<button class="btn btn-back-to-top">
+    
+    <i class="bi bi-chevron-double-up"></i>
+    
+  </button>
+</h2>
+<hr>
+
+<p>Having outlined what probabilities are and how we can describe them, we now turn
+our attention to modeling inductive inference using probabilities. As we&rsquo;ve
+discussed already in 
+
+
+<a href="https://logicalmethods.ai/textbook/valid-inference//#semantic-methods-for-induction"
+   
+   
+   
+   
+   
+   > Chapter 2. Valid inference</a>
+
+, the idea is to use <strong>conditional probabilities</strong> for this
+purpose.</p>
+<p>The conditional probability of one formula $A$ <em>given</em> another formula $B$ is,
+intuitively, a measure of how likely it is that $A$ is true assuming that  $B$
+is true. This idea is formally captured in the definition:</p>
+<p>$$Pr(A\mid B)=\frac{Pr(A\land B)}{Pr(B)}$$</p>
+<p>Here we need to assume that $Pr(B)\neq 0$ to avoid <a href="https://en.wikipedia.org/wiki/Division_by_zero"
+  target="_blank">division by
+0</a>.</p>
+<p>Let&rsquo;s look at how this works in some examples:</p>
+<ul>
+<li>
+<p>In the $\mathsf{RAIN},\mathsf{SUN}$ example, we could ask, for example, what
+the probability is that it rain&rsquo;s given that the sun is shining:
+$$\mathsf{Pr}(\mathsf{RAIN}\mid\mathsf{SUN})=\frac{Pr(\mathsf{SUN}\land\mathsf{RAIN})}{Pr(\mathsf{SUN})}$$</p>
+<p>For this calculation, we need to know $Pr(\mathsf{RAIN}\land\mathsf{SUN}),Pr(\mathsf{SUN})$. We get them from the following table:</p>
+
+  
+  <img src="https://logicalmethods.ai/textbook/probability/img/prob-table-rain.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+  
+
+<p>We get $Pr(\mathsf{RAIN}\land\mathsf{SUN})=0.5$ and
+$Pr(\mathsf{SUN})=0.5+0.2=0.7$. We get:</p>
+<p>$$\mathsf{Pr}(\mathsf{RAIN}\mid\mathsf{SUN})=\frac{0.5}{0.7}\approx 0.71$$</p>
+<p>So, the answer is that the chance of it raining given that the sun is shining
+is around 71%.</p>
+</li>
+<li>
+<p>Let&rsquo;s do another example to drive the point home. In our die example, let&rsquo;s
+ask how likely it is to roll a 2 given that we roll an even number. Abbreviating
+$\mathsf{RESULT}_i$ to $\mathsf{R}_i$, we can represent  rolling an
+even number with the formula $$\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6.$$</p>
+<p>Our question this is:</p>
+<p>$$Pr(\mathsf{R}_2\mid \mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 )=\frac{Pr(\mathsf{R}_2\land (\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6))}{Pr(\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6)}$$</p>
+<p>We use the following simplified truth-table for the calculation:</p>
+
+  
+  <img src="https://logicalmethods.ai/textbook/probability/img/prob-table-even.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+  
+
+<p>We get:</p>
+<p>$$Pr(\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6)=\frac{1}{6}+\frac{1}{6}+\frac{1}{6}=\frac{1}{2}$$</p>
+<p>$$Pr(\mathsf{R}_2\land (\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6))=\frac{1}{6}$$</p>
+<p>So:
+$$Pr(\mathsf{R}_2\mid \mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 )=\frac{\frac{1}{6}}{\frac{1}{2}}=\frac{1}{3}$$
+That is, the chance of getting a 2 <em>given</em> that you get an even number is
+$\frac{1}{3}$.</p>
+</li>
+</ul>
+<p>Besides helping us to define valid inductive inference, which we&rsquo;ll turn to in
+the next section, conditional probabilities have a lot of theoretical use.</p>
+<p>One important application that underlies many practical applications is to
+define the notion of <strong>probabilistic independence</strong>. We say that two formulas
+$A,B$ are probabilistically independent iff $$Pr(A|B)=Pr(A).$$</p>
+<p>If $A,B$ are probabilistically independent, then whether $B$ occurs &ldquo;doesn&rsquo;t
+matter&rdquo; for whether $A$ occurs.</p>
+<p>For example, in the following example, we have that whether it rains and the sun
+is shining are independent:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/probability/img/prob-table-indep.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+
+
+<p>To see this, consider:</p>
+<p>$$Pr(\mathsf{SUN}\mid
+\mathsf{RAIN})=\frac{Pr(\mathsf{SUN}\land\mathsf{RAIN})}{Pr(\mathsf{RAIN})}$$
+$$=\frac{0.5}{0.5+0.3=0.8}=0.625=0.5+0.125=Pr(\mathsf{SUN})$$</p>
+<p>It&rsquo;s worth noting that if $A,B$ are probabilistically independent, we can
+calculate the probability of $A\land B$ from the probabilities of $A,B$:</p>
+<ul>
+<li>If $Pr(A|B)=Pr(A)$, then $Pr(A\land B)=Pr(A)\times Pr(B)$.</li>
+</ul>
+<p>This holds in our example, since
+$$Pr(\mathsf{RAIN})=0.5+0.3=0.8$$
+$$Pr(\mathsf{SUN})=0.5+0.125=0.625$$
+$$Pr(\mathsf{RAIN}\land\mathsf{SUN})=0.5=0.8\times 0.625$$</p>
+<p>But it&rsquo;s important to note that this <em>doesn&rsquo;t</em> hold in general. In the original
+table:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/probability/img/prob-table-rain.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+
+
+<p>We have:</p>
+<p>$$Pr(\mathsf{RAIN})=0.5+0.3=0.8$$
+$$Pr(\mathsf{SUN})=0.5+0.2=0.7$$
+$$Pr(\mathsf{RAIN}\land\mathsf{SUN})=0.5\neq 0.8\times 0.7=0.56$$</p>
+<h2 id="inductive-validity">Inductive validity<button class="btn btn-back-to-top">
+    
+    <i class="bi bi-chevron-double-up"></i>
+    
+  </button>
+</h2>
+<hr>
+
+<p>It is now time to turn to <strong>inductive validity</strong>. But before we give an account,
+it is important to note that inductive logic is a <em>broad field</em>: essentially all
+of statistics is concerned with valid inductive inference. Given the broad
+variety of <a href="https://en.wikipedia.org/wiki/Statistical_inference"
+  target="_blank">statistical
+inference</a>, we should note
+that the account of inductive validity we present here is just <em>one</em> view of
+valid inference in a narrow sense.</p>
+<p>The situation is similar to the one we face in deductive logic: Boolean logic,
+many-valued logic, fuzzy logic, etc. all give slightly different models of
+deductively valid inference, which are applicable in different circumstances,
+under different assumptions, etc.</p>
+<p>Correspondingly, there are different models of inductive inference. The model
+we&rsquo;ll discuss in this section is a simple version of what&rsquo;s known as <a href="https://en.wikipedia.org/wiki/Statistical_inference"
+  target="_blank">Bayesian
+inference</a>. But we won&rsquo;t go
+into the details of <strong>Bayesian statistics</strong> and the difference to other paradigms.
+Instead, we&rsquo;ll focus on the idea of using conditional probability as a measure
+of inductive support, which is especially important in Bayesian statistics but
+on a general level, is characteristic of inductive inference.</p>
+<p>The basic idea we&rsquo;re pursuing is, as discussed in 
+
+
+<a href="https://logicalmethods.ai/textbook/valid-inference/"
+   
+   
+   
+   
+   
+   > Chapter 2. Valid inference </a>
+
+,
+the idea that an inference is inductively valid just in case the premises make
+the conclusion more likely. We interpret this &ldquo;more likely&rdquo; as: the conditional
+probability of the conclusion given the premises is higher than the
+unconditional probability of the conclusion.</p>
+<p>Using the symbol $\mid\approx$ for inductive validity, the definition is:
+$$ P_1,P_2,\dots\mid\approx C \Leftrightarrow Pr(C|P_1\land P_2\land
+\dots)\geq Pr(C)$$
+This concept is essentially what <a href="https://en.wikipedia.org/wiki/Rudolf_Carnap"
+  target="_blank">Rudolf
+Carnap</a> calls the <strong>increase of
+firmness</strong> concept of evidential support: the premises, if we were to add them
+to our knowledge bank, would raise the degree with which our KB supports the
+conclusion.</p>
+<p>There are a few things to note about the definition, at this point:</p>
+<ul>
+<li>
+<p>The right-hand side of this definition is only well-defined if $Pr(P_1\land
+P_2\land \dots)\neq 0$. That is, we need to assume that the premises are
+probabilistically consistent. What should we say if they are not? The natural
+answer would be that the inference should be inductively valid in the same way
+an inference with classically inconsistent premises is deductively valid.</p>
+</li>
+<li>
+<p>The concept of inductive validity depends on a background probability. That
+is, technically speaking, our concept of $\mid\approx$ is <em>relative</em> to $Pr$ and
+should be written $\mid\approx_{Pr}$. In this sense, our notion of what
+constitutes a valid inductive inference depends on what we already know (or
+believe) about the world. This is an issue we&rsquo;ll be revising in the next
+chapter, when we&rsquo;ll explore logic-based learning. In practice, however, we often
+leave out the subscript $Pr$ and simply write $\mid\approx$.</p>
+</li>
+<li>
+<p>There are, however, <strong>laws of inductive logic</strong> which don&rsquo;t depend on the
+choice of $Pr$ and are therefore purely logical. We&rsquo;ll discuss some
+examples below.</p>
+</li>
+<li>
+<p>The notion of inductive support given by the above definition is <em>weak</em>. <em>Any</em>
+increase of firmness for the conclusion constitutes an inductively valid
+inference, not matter how small. This means that having an inductively valid
+inference for the conclusion from true premises is by itself not a reason to
+believe the conclusion.</p>
+<p>For this, we need <strong>inductively strong</strong> inferences. These are inferences,
+where the conditional probability of the conclusion given the premises is
+<em>high</em>. The simplest version of this idea is where we say that:
+$$ P_1,P_2,\dots\mid\overset{!}{\approx} C \Leftrightarrow Pr(C|P_1\land P_2\land
+\dots)\gg Pr(C),$$</p>
+<p>where $x\gg y$ means that $x$ is &ldquo;much&rdquo; bigger than $y$. What &ldquo;much bigger&rdquo;
+means can then depend on the context, such as, for example, what $Pr(C)$ is.
+An inductively strong inference may push $Pr(C)$ from $0.9$ to $0.99$ or from
+$0.5$ to $0.9$. What counts as a</p>
+<p>But there are alternative notions as well: we could, for example, set a
+<strong>threshold</strong> $\epsilon$, typically bigger than $0.5$, for how high the
+probability of a conclusion needs to become in order for the inference to
+count as strong:
+$$ P_1,P_2,\dots\mid\overset{!}{\approx} C \Leftrightarrow Pr(C|P_1\land P_2\land
+\dots)\geq \epsilon&gt;0.5.$$ A good inductive inference is one which makes the
+conclusion more likely than not.</p>
+<p>The upshot is that in inductive logic, there is not as much uniformity as in
+deductive logic: different notions are available and there&rsquo;s absolute
+agreement on what the &ldquo;standard&rdquo; concept should be.</p>
+</li>
+</ul>
+<p>We&rsquo;ll continue thinking about the simple increase of firmness concept of
+inductive validity $\mid\approx$. We can note the following <strong>inductive laws</strong>,
+which are independent of the choice of $Pr$:</p>
+<ul>
+<li>
+<p>If $P_1,P_2,\dots\vDash C$, then $P_1,P_2,\dots\mid\approx C$.</p>
+<p>This follows from the above observation that if $A,B$ are equivalent, then
+$Pr(A)=Pr(B)$. Because if $P_1,P_2,\dots\vDash C$, then, as a matter of
+mathematical fact we won&rsquo;t show in detail, $P_1\land P_2\land\dots \land C$ is
+equivalent to $P_1\land P_2\land\dots$. This gives us: $$Pr(C\mid
+P_1,P_2,\dots)=\frac{Pr(P_1\land P_2\land \dots\land C)}{Pr(P_1\land P_2\land
+\dots)}=\frac{Pr(P_1\land P_2\land \dots)}{Pr(P_1\land P_2\land \dots)}=1$$</p>
+<p>Since $1\geq Pr(C)$ for each $C$, this proves our claim.</p>
+</li>
+<li>
+<p>If $C\vDash P_1\land P_2\land \dots$, then $P_1\land P_2\land \dots\mid\approx
+C$.</p>
+<p>This follows from the fact that if $A\vDash B$, then $Pr(A)\leq Pr(B)$, we
+observed above. Because from this it follows that if $C\vDash P_1\land P_2\land \dots$, then $Pr(C)\leq Pr(P_1\land P_2\land \dots)$. Further, as before we have that $C\land P_1\land P_2\land \dots$ is equivalent to $C$ and so, we can reason as follows:
+$$Pr(C\mid P_1\land P_2\land \dots)=\frac{Pr(C\land P_1\land
+P_2\land\dots)}{Pr(P_1\land P_2\land)}$$
+$$=\frac{Pr(C)}{Pr(P_1\land P_2\land\dots)}\overset{Pr(C)\leq Pr(P_1\land P_2\land \dots)}\geq Pr(C)$$</p>
+</li>
+</ul>
+<p>The latter law will allow us to observe the inductive validity of some
+well-known principles, one of which we&rsquo;ll discuss on the following section.</p>
+<p>The law is a sort of mathematical proof of the so-called <a href="https://en.wikipedia.org/wiki/Deductive-nomological_model"
+  target="_blank">deductive-nomological
+model</a> of
+confirmation, which though not unproblematic has been hugely influential in
+thinking about what confirmation is.</p>
+<h2 id="validities-and-fallacies">Validities and fallacies<button class="btn btn-back-to-top">
+    
+    <i class="bi bi-chevron-double-up"></i>
+    
+  </button>
+</h2>
+<hr>
+
+<p>To conclude our theoretical discussion of inductive inference, let&rsquo;s discuss two
+concrete examples of inductive inference, one valid, one invalid.</p>
+<h3 id="enumerative-induction">Enumerative induction<button class="btn btn-back-to-top">
+    
+    <i class="bi bi-chevron-double-up"></i>
+    
+  </button>
+</h3>
+<hr>
+
+<p><strong>Enumerative induction</strong> is the principle that we can infer $\forall x P(x)$
+from sufficiently many and well-chosen instances $P(a_1), P(a_2),\dots$. In our
+simple setting, we can express this as: $$P(a_1),P(a_2),\dots\mid\approx \forall
+xP(x).$$ The simple, standard example of this inference is that all observed
+swans, sampled well and wide, were wide, so all swans are white. Of course, this
+inference is deductively invalid—it can always happen that there&rsquo;s a non-white
+swan somewhere—but we can show, mathematically, that the inference is
+inductively valid in the (weak) increase of firmness sense.</p>
+<p>This follows from the previous law that if the conclusion implies the premises,
+an inference is inductively valid. Let&rsquo;s suppose for a moment that we have
+extended our treatment of probabilities to a FOL language, which is rather
+straight-forward but takes a lot of space.<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup> Assuming that we still get our
+theorem (which we do), we can infer the validity of enumerative induction from
+the simple fact that $$\forall xP(x)\vDash P(a_i),$$ for each $i$ following the
+law of universal instantiation.</p>
+<p>Even more so, since the function $$Pr(\forall xP(x)\mid \dots)$$ grows
+monotonically if we put every increasing numbers of instances in<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup>
+$$P(a_1)$$
+$$P(a_1)\land P(a_2)$$
+$$P(a_1)\land P(a_2)\land \dots$$
+we will eventually &ldquo;crack&rdquo; every threshold of $\epsilon\geq 0.5$ we could chose.</p>
+<p>This means that on our simple model of inductive validity, for sufficiently
+large $n$, $$P(a_1),\dots,P(a_n)\mid\overset{!}{\approx}\forall xP(x)$$</p>
+<h2 id="conjunction-fallacy">Conjunction fallacy<button class="btn btn-back-to-top">
+    
+    <i class="bi bi-chevron-double-up"></i>
+    
+  </button>
+</h2>
+<hr>
+
+<p>Here&rsquo;s the original <strong>Linda problem</strong> from Tversky and Kahneman:</p>
+<p><em>Linda is 31 years old, single, outspoken, and very bright. She majored in philosophy. As a student, she was deeply concerned with issues of discrimination and social justice, and also participated in anti-nuclear demonstrations.</em></p>
+<p><em>Which is more probable?</em></p>
+<ol>
+<li><em>Linda is a bank teller.</em></li>
+<li><em>Linda is a bank teller and is active in the feminist movement.</em></li>
+</ol>
+<p>In experimental surveys, people reliably judge option 2 more likely as option 1,
+which is a <strong>probabilistic fallacy</strong>.</p>
+<p>We can now see why: Since $$\mathsf{BANK}\land\mathsf{FEMINIST}\vDash
+\mathsf{BANK},$$ we can infer that $$Pr(\mathsf{BANK}\land\mathsf{FEMINIST})\leq
+Pr(\mathsf{BANK}),$$ for any $Pr$ we could chose.</p>
+<p>There is an extensive psychological literature that tries to explain <em>why</em>
+people make this and related fallacies. But for us, from a logical perspective,
+the crucial point is <em>that</em> people do. In symbolic inductive reasoning, we have
+to be careful not fall into the trap of these fallacies, and the best way is to
+use logical methods to model inductive reasoning.</p>
+<h2 id="further-readings">Further readings<button class="btn btn-back-to-top">
+    
+    <i class="bi bi-chevron-double-up"></i>
+    
+  </button>
+</h2>
+<hr>
+
+<p>An excellent introduction to the formalism of Bayesian epistemology is:</p>
+<ul>
+<li><a href="https://global.oup.com/ukhe/product/fundamentals-of-bayesian-epistemology-1-9780198707615?cc=gb&amp;lang=en&amp;"
+  target="_blank">Titelbaum, Michael. 2022. Fundamentals of Bayesian Epsitemology I. Oxford
+University Press</a>.</li>
+</ul>
+<p>Chapters 12 and 13 of <a href="https://elibrary.pearson.de/book/99.150005/9781292401171"
+  target="_blank">Russel and Norvig</a> are an excellent introduction to more detailed uses of probabilistic reasoning in AI.</p>
+<p><strong>Notes</strong>:</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>There are also <em>non</em>-classical probability theories, which build on alternative background logics. For example, there is strong Kleene probability theory. Check out <a href="https://eprints.whiterose.ac.uk/104891/1/nonclassicalprobabilityfinal.pdf"
+  target="_blank">this paper</a>.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>The proof involves a different normal form than the CNFs we used in
+
+
+
+<a href="https://logicalmethods.ai/textbook/sat//#normal-forms"
+   
+   
+   
+   
+   
+   > Chapter 5. Boolean
+satisfiability </a>
+
+, called <a href="https://en.wikipedia.org/wiki/Disjunctive_normal_form"
+  target="_blank">disjunctive normal forms
+(DNFs)</a>. It also uses the
+facts that equivalent formulas have the same probability and that if one formula
+implies the other the probability of the one is lower than that of the other.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>&hellip; for example. There are other ways of specifying a probability, using
+all probabilities of disjunctions, for example. But that&rsquo;s not the important
+point.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p>The only constraint is that we only have finitely many propositional
+variables $p_1,\dots,p_n$ and not infinitely many $p_1,p_2,\dots$. But in
+concrete, AI modeling situations, this isn&rsquo;t usually a practical problem.&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5">
+<p>See the Titelbaum book in the suggested readings for how to do this
+precisely.&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:6">
+<p>This mathematical fact is easy to show but we omit it here for
+brevity&rsquo;s sake. Can you fill the gap?&#160;<a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+ <p><em>Last edited: </em>21/10/2024</p>
+</div>
+
+
+<ul class="navbar-nav flex-row justify-content-between mt-auto">
+  
+  <li class="nav-item">
+    <a href="/textbook/many-valued/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-chevron-left"></i>
+    </a>
+    
+  </li>
+  <li class="nav-item">
+    <button class="btn btn-back-to-top">
+    <i class="bi bi-chevron-double-up"></i>
+  </button>
+  </li>
+  <li class="nav-item">
+    
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-chevron-right"></i>
+    </a>
+    
+  </li>
+</ul>
+
+    </main>
+    <footer class="align-self-center d-flex flex-column mt-md-1 p-0" data-bs-theme="dark">
+      <nav class="navbar bg-dark shadow" data-bs-theme="dark" aria-label="footer-navbar">
+  <div class="container-sm align-self-center px-3">
+    <a class="navbar-brand fs-6" href="/about" aria-label="copyright-link">&copy; 2024 jkorbmacher et al. </a>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link fs-6" href="https://github.com/jkorb/logicalmethods.ai" target="_blank"><i class="bi bi-github"></i></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+ 
+      <script src="https://logicalmethods.ai/js/helpers.js"></script>
+      <script src="https://logicalmethods.ai/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+      
+      
+    </footer>
+  </body>
+</html>
