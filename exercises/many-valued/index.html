@@ -374,8 +374,19 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
     
       
 </div>
-<div id="3-valued-truth-tables" ><h5 class="">
+<div id="3-valued-truth-tables" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">3-valued truth-tables
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="3-valued-truth-tablesSolution"
+        onclick="showPasswordModal('3-valued-truth-tablesSolution', 'exc-mv')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>In 
 
@@ -423,8 +434,41 @@ inferences are valid in both Kleene and Łukasciewicz logic.</p>
 <div id="f" class=" homework"><h6 class=" homework">f)</h6><p>$\neg\mathsf{HOT}\vDash \mathsf{HOT}\to\mathsf{HOT}$</p>
 
 </div>
-<div id="fuzzy-logic" ><h5 class="">
+<div id="3-valued-truth-tablesSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solutions</h6><p>
+
+<img src="https://logicalmethods.ai/exercises/many-valued/img/1a.png" class="img-thumbnail"  alt="" >
+
+
+
+
+<img src="https://logicalmethods.ai/exercises/many-valued/img/1b.png" class="img-thumbnail"  alt="" >
+
+
+
+
+<img src="https://logicalmethods.ai/exercises/many-valued/img/1c.png" class="img-thumbnail"  alt="" >
+
+
+
+
+<img src="https://logicalmethods.ai/exercises/many-valued/img/1d.png" class="img-thumbnail"  alt="" >
+
+</p>
+
+</div>
+<div id="fuzzy-logic" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Fuzzy logic
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="fuzzy-logicSolution"
+        onclick="showPasswordModal('fuzzy-logicSolution', 'exc-mv')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>Test for each of the following inferences whether it&rsquo;s valid or not in the fuzzy
 logic Ł. If the inference is valid, provide an argument, if the inference is
@@ -447,8 +491,52 @@ invalid provide a countermodel.</p>
 <div id="e-1" class=" homework"><h6 class=" homework">e)</h6><p>$\mathsf{HOT}\vDash \mathsf{HUMID}\lor\neg\mathsf{HUMID}$</p>
 
 </div>
-<div id="fuzzy-rules" ><h5 class="">
+<div id="fuzzy-logicSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solutions</h6><p>For fuzzy-logic-consequence we check all valuations to see if the smallest premise value will always be lower than the conclusion value.
+The idea is that this shows us that whenever the premises get &lsquo;closer&rsquo; to $1$, the conclusion does too, so there is a truth-strengthening connection between them.</p>
+<!-- raw HTML omitted -->
+<p><strong>(a)</strong>
+This is invalid. Consider a valuation where $R$ is fuzzy or vague, $v(R)=0.5$, but the conclusion is definitely false $v(H)=0$.
+Then we have $v(\neg R)=0.5$ and $v(R\land\neg R)=0.5$ which is greater than the conclusion value.</p>
+<!-- raw HTML omitted -->
+<p><strong>(b)</strong>
+This is valid. We want to show that we always get: $v(H)\leq v(H\lor(R\land H))$.</p>
+<ul>
+<li>Break down the calculation $v(H\lor(R\land H))=\mathrm{max}(v(H),\mathrm{min}(v(R),v(H)))$.</li>
+<li>Consider two ways the atomic parts might be interpreted:
+$v(H)\leq v(R)$ or $v(H)&gt;v(R)$. Every valuation has to be one of these types. We will show that the result holds on either type.</li>
+<li>If we are looking at the first type of valuation, we have $\mathrm{min}(v(R),v(H))=v(H)$, but that makes $\mathrm{max}(v(H),\mathrm{min}(v(R),v(H)))=\mathrm{max}(v(H),v(H))=v(H)$. So we have $\mathrm{max}(v(H),\mathrm{min}(v(R),v(H)))\leq v(H)$ as desired.</li>
+<li>If we are looking at the second type of valuation, we have $\mathrm{min}(v(R),v(H))=v(R)$, but that makes $\mathrm{max}(v(H),\mathrm{min}(v(R),v(H)))=\mathrm{max}(v(H),v(R))=v(H)$.
+Again, we have $\mathrm{max}(v(H),\mathrm{min}(v(R),v(H)))\leq v(H)$ as desired.</li>
+</ul>
+<!-- raw HTML omitted -->
+<p><strong>(c)</strong>
+This is invalid. Consider a valuation where $U$ is fuzzy or vague, $v(U)=0.5$, but the other statements are definitely false $v(H)=0$ and $v(D)=0$.  Then we have $v(H\lor\neg U)=\mathrm{max}(v(H),1-v(U))=0.5$. We also have $v(U\lor D)=\mathrm{max}(v(U),v(D))=0.5$. Take the minimum $\mathrm{min}(\mathrm{max}(v(H),v(\neg U)),\mathrm{max}(v(U),v(D)))=0.5$. But this value is greater than the conclusion value $v(H\lor D)=\mathrm{max}(v(H),v(D))=0$, so we have a counter-model.</p>
+<!-- raw HTML omitted -->
+<p><strong>(d)</strong>
+This is valid. We want to show that we always get: $v(H\land\neg H)\leq v(H)$. It&rsquo;s immediate from $v(H\land\neg H)=\mathrm{min}(v(H),1-v(H))$.
+This guarantees that the premises cannot exceed the value of H itself.</p>
+<ul>
+<li>To illustrate, suppose that $v(H)=0$ then we get $v(H\land\neg H)= 0$.</li>
+<li>Suppose that $v(H)=0.1$ then we get $v(H\land\neg H)= 0.1$.</li>
+<li>Suppose that $v(H)=0.5$ then we get $v(H\land\neg H)= 0.5$.</li>
+<li>Suppose that $v(H)=0.9$ then we get $v(H\land\neg H)= 0.1$.</li>
+<li>Suppose that $v(H)=1$ then we get $v(H\land\neg H)= 0$.</li>
+</ul>
+
+</div>
+<div id="fuzzy-rules" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Fuzzy rules
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="fuzzy-rulesSolution"
+        onclick="showPasswordModal('fuzzy-rulesSolution', 'exc-mv')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>Remember that a fuzzy rule $$\textbf{IF } A \textbf{ THEN } B$$ means that $B$ holds
 to the extend that $A$.</p>
@@ -486,8 +574,43 @@ some concrete numerical values representing:</p>
 <p>Are there any problematic cases? If so, can we fix them?</p>
 
 </div>
-<div id="t-norms" ><h5 class="">
+<div id="fuzzy-rulesSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solutions</h6><p><strong>(a)</strong>
+Here is the best way to write the rules in our limited formal language.
+Remember, we want to interpret these like fuzzy-logic-consequence:
+whenever the antecedent side gets &lsquo;closer&rsquo; to $1$, we want the conclusion to do the same.</p>
+<p>IF HOT$\lor$HUMID, THEN AC</p>
+<p>IF $\neg$HOT$\lor$HUMID, THEN HEATER</p>
+<p>IF AC, THEN $\neg$HEATER</p>
+<p>IF HEATER, THEN $\neg$AC</p>
+<!-- raw HTML omitted -->
+<p><strong>(b)</strong>
+One example of a problem for these rules: situations with low heat and high humidity.
+To be precise, consider a valuation where $v(\mathsf{HOT})=0.2$ and $v(\mathsf{HUMID})=0.8$.
+This makes $v(\neg\mathsf{HOT})=1-v(\mathsf{HOT})=0.8$.</p>
+<p>We calculate $v(\mathsf{HOT}\lor\mathsf{HUMID})=0.8$.</p>
+<p>So the first rule requires $0.8\leq v(\mathsf{AC})$.</p>
+<p>We also calculate $v(\neg\mathsf{HOT}\lor\mathsf{HUMID})=0.8$.</p>
+<p>So the second rule requires $0.8\leq v(\mathsf{HEATER})$.</p>
+<p>This is okay so far, but the final rules create a problem.</p>
+<p>For instance, the last rule requires $0.8\leq 1-v(\mathsf{AC})$.</p>
+<p>There is no value that gives $0.8\leq v(\mathsf{AC})$ and $0.8\leq 1-v(\mathsf{AC})$.</p>
+<p>So these rules do not &lsquo;work&rsquo; as intended in all possible fuzzy valuations.</p>
+<!-- raw HTML omitted -->
+
+</div>
+<div id="t-norms" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">T-norms
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="t-normsSolution"
+        onclick="showPasswordModal('t-normsSolution', 'exc-mv')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>The general theory of fuzzy logics uses the concept of a
 <i class="bi bi-box-arrow-up-right h-6"></i>
@@ -540,6 +663,82 @@ following truth-function:</p>
 <p>$$\nu(A\to B)=\min(x,1-\nu(A)+\nu(B))$$</p>
 <p>Check that the following holds in Łukasiewicz&rsquo;s logic:</p>
 <p>$$\mathsf{RAIN}\otimes (\mathsf{RAIN}\to \mathsf{WET})\vDash \mathsf{WET}$$</p>
+
+</div>
+<div id="t-normsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>(a)</strong>
+Strong Conjunction.</p>
+<p>The $f_\otimes$ function calculates its output in two different ways, depending on the input values.
+We get a default value $f_\otimes(x,y)=0$ when $x+y\leq 1$, but we get $f_\otimes(x,y)=x+y-1$ when $1&lt;x+y$.
+For these exercises we prove both cases separately.</p>
+<!-- raw HTML omitted -->
+<p><strong>(1)</strong>
+We prove the goal in two cases using $x+y=y+x$.</p>
+<ol>
+<li>
+<p>If $f_\otimes(x,y)=0$ then $x+y\leq 1$. This implies that $y+x\leq 1$ and so $f_\otimes(y,x)=0$.</p>
+</li>
+<li>
+<p>If $f_\otimes(x,y)\neq 0$ then $f_\otimes(x,y)=x+y-1=y+x-1=f_\otimes(y,x)$.</p>
+</li>
+</ol>
+<!-- raw HTML omitted -->
+<p><strong>(2)</strong>
+We prove the goal in two cases.</p>
+<ol>
+<li>
+<p>If $f_\otimes(x,y)=0$ then obviously $f_\otimes(x,y)\leq f_\otimes(x&rsquo;,y&rsquo;)$.</p>
+</li>
+<li>
+<p>If $f_\otimes(x,y)\neq 0$ then we reason:</p>
+</li>
+</ol>
+<ul>
+<li>$x\leq x&rsquo;$ and $y\leq y&rsquo;$</li>
+<li>so we have $x+y\leq x&rsquo;+y&rsquo;$</li>
+<li>so we have $x+y-1\leq x&rsquo;+y&rsquo;-1$</li>
+<li>therefore $f_\otimes(x,y)\leq f_{\oplus}(x&rsquo;,y&rsquo;)$</li>
+</ul>
+<!-- raw HTML omitted -->
+<p><strong>(3)</strong>
+We prove the goal in two cases using $x+(y+z)=(x+y)+z$.</p>
+<ol>
+<li>
+<p>If $f_\otimes(x,f_\otimes(y,z))=0$ then SOMETHING</p>
+</li>
+<li>
+<p>If $f_\otimes(x,y)\neq 0$ then we reason: SOMETHING</p>
+</li>
+</ol>
+<!-- raw HTML omitted -->
+<p><strong>(4)</strong>
+We prove the goal in two cases.</p>
+<ol>
+<li>
+<p>If $f_\otimes(x,1)=0$ this means that $x+1\leq 1$ and so $0=x$.</p>
+</li>
+<li>
+<p>If $f_\otimes(x,1)\neq 0$ then $f_\otimes(x,1)= x+1-1 = x$.</p>
+</li>
+</ol>
+<!-- raw HTML omitted -->
+<p><strong>(b)</strong>
+Fuzzy Conditional.</p>
+<p>The $f_\to$ function calculates its output in two different ways, depending on the input values.
+We default to the antecedent value $f_\to(x,y)=x$ when $2x-y\leq 1$, but we get $f_\to(x,y)=1-x+y$ when $1&lt;2x-y$.</p>
+<p>For fuzzy-logic-consequence we check all valuations to see if the smallest premise value will always be lower than the conclusion value.
+So we want to show that we always get: $v(R\otimes (R\to W))\leq v(W)$.</p>
+<p>Break down the calculation $v(R\otimes (R\to W))=f_\otimes(v(R),v(R\to W))=f_\otimes(v(R),f_\to(v(R),v(W)))$.</p>
+<p>We can think about how $f_\otimes(v(R),f_\to(v(R),v(W)))$ is calculated in two ways.</p>
+<ol>
+<li>The first possibility is quick: If $f_\otimes(v(R),f_\to(v(R),v(W)))=0$ then obviously $v(R\otimes (R\to W))\leq v(W)$.</li>
+<li>The second possibility requires more thinking: suppose that $f_\otimes(v(R),f_\to(v(R),v(W)))\neq 0$.</li>
+</ol>
+<ul>
+<li>That means $f_\otimes(v(R),f_\to(v(R),v(W)))=v(R)+f_\to(v(R),v(W))-1$.</li>
+<li>We now think about how $f_\to(v(R),v(W))$ is calculated in two ways.</li>
+<li>First, if $2v(R)-v(W)\leq 1$ that gives us two pieces of information.  We have $f_\to(v(R),v(W))=v(R)$ which plugs into our original calculation to give us $f_\otimes(v(R),f_\to(v(R),v(W)))=2v(R)-1$ and we also have $2v(R)-1\leq v(W)$.  It follows that $f_\otimes(v(R),f_\to(v(R),v(W)))\leq v(W)$.</li>
+<li>Second, if $1&lt;2v(R)-v(W)$, then $f_\to(v(R),v(W))=1-v(R)+v(W)$ and $f_\otimes(v(R),f_\to(v(R),v(W)))=v(R)+(1-v(R)+v(W))-1=v(W)$. It follows that $f_\otimes(v(R),f_\to(v(R),v(W)))\leq v(W)$.</li>
+</ul>
 
 </div>
 <div id="research" ><h5 class="">

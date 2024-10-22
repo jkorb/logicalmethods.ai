@@ -125,5 +125,6 @@ const passwords = {
   "exc-proof": "Mellon",
   "exc-fol": "Sesame",
   "exc-finf": "Schibboleth",
+  "exc-mv": "MoreThanTwo",
   // Add more solutionId: password pairs here
 };
