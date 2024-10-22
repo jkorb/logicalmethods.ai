@@ -74,7 +74,7 @@ $p_1,\dots,p_n$ and connectives $\neg,\land,\lor$.
 
 A **probability** for $\mathcal{L}$ is a function $Pr:\mathcal{L}\to\mathbb{R}$, which assigns [real numbers](https://en.wikipedia.org/wiki/Real_number) to formulas, subject to the following three conditions:
 
-1) $Pr(A)\geq 1$, for all $A\in\mathcal{L}$
+1) $Pr(A)\geq 0$, for all $A\in\mathcal{L}$
 
 2) $Pr(A)=1$, whenever $\vDash A$ (i.e. $A$ is a classical logical truth)
 
