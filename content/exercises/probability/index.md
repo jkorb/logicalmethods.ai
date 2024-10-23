@@ -43,7 +43,7 @@ $$Pr(\mathsf{HEADS})=\frac{1}{2}\quad Pr(\mathsf{TAILS})=\frac{1}{2}$$
 
 $$Pr(\mathsf{HEADS}\lor\mathsf{TAILS})=\frac{1}{2} \qquad Pr(\mathsf{HEADS}\land\mathsf{TAILS})=\frac{1}{2}$$
 
-## c)
+## c) {.homework}
 
 $$Pr(\mathsf{HEADS})=0.7\quad Pr(\mathsf{TAILS})=0.3\qquad
 Pr(\mathsf{HEADS}\land\mathsf{TAILS})=0$$
@@ -52,19 +52,109 @@ Pr(\mathsf{HEADS}\land\mathsf{TAILS})=0$$
 
 $$Pr(\mathsf{HEADS}\land\mathsf{TAILS})=1$$
 
-## e)
+## e) {.homework}
 
 $$Pr(\mathsf{HEADS})=0\qquad Pr(\mathsf{HEADS}\land\mathsf{TAILS})=0$$
 
+# Probability laws
+
+Derive the following laws for probabilities from the axioms:
+
+## a)
+
+$$Pr(A)\leq 1,\text{ for all }A\in\mathcal{L}$$
+
+
+## b)
+
+If $A\vDash B$, then $Pr(A)\leq Pr(B)$
+
+_Hint_: Remember that if $A\vDash B$, then $\vDash\neg(A\land \neg B)$ and $B$
+is equivalent to $A\lor B$.
+
+## c)
+
+$$Pr(A\lor B)=Pr(A)+Pr(B)-Pr(A\land B)$$
+
 # Probability truth-tables
 
+Remember our probability function for the fair die:
+
+$$Pr_{\text{fair}}(\mathsf{RESULT}_i)=\frac{1}{6}\text{, for }i=1,\dots,6$$
+$$Pr\_{\text{fair}}(\mathsf{RESULT}_i\land \mathsf{RESULT}_j)=0\text{, for all }i\neq
+j$$
+$$Pr\_{\text{fair}}(\neg\mathsf{RESULT}_1\land \dots\land\neg\mathsf{RESULT}_6)=0$$
+
+_Note_: I had forgotten the third rule in the textbook, but it's necessary and
+added there now, too.
+
+## a)
+
+Use the probability truth-table method to give a probability function for an
+_un_fair die, where it's twice as likely that 6 comes up than any other number,
+while still exactly one number comes up.
+
+## b)
+
+Making use of appropriate formalizations, calculate the probabilities of the
+following claims according to the table:
+
+1. The result is even.
+2. The result is odd.
+3. The result is neither even nor odd.
+4. The result is divisible by 3.
 
 # Inductive validity
 
-# Research 
+Take the probability function for the unfair die in the previous exercise.
+Using appropriate formalizations, determine whether the following inferences
+are (weakly) inductively valid:
 
+## a) {.homework}
 
+The die came up odd, so it's likely a 3 or 5.
 
-# Discussion
+## b) 
 
+The die came up odd, so it's likely a 6.
 
+## b)
+
+The die came up even, so it's likely a 2.
+
+## c) {.homework}
+
+The die came up even, so it's likely a 6.
+
+# Measures of inductive strength
+
+Inductive logicians have proposed different measures of the inductive strength
+of an argument.
+
+We've effectively seen:
+
+$$Pr(C|P_1\land P_2\land\dots)-Pr(C)$$
+
+A popular alternative measure is: 
+
+$$\log\frac{Pr(C|P_1\land P_2\land\dots)}{Pr(C)}$$
+
+Here $\log$ is the [logarithm
+function](https://en.wikipedia.org/wiki/Logarithm) with basis $2$.
+
+Using a suitable computer (for calculating the $\log$'s), compare the two
+measures by plugging in values for:
+$$Pr(C)$$
+$$Pr(C|P_1\land P_2\land\dots)$$ 
+
+What are the differences between the two measures, where do they work better,
+where worse?
+
+# Discussion {.homework}
+
+Our notion of valid inductive inference has as a consequence that if
+$$P_1,P_2,\dots\mid\approx C,$$ then $$P_1,P_2,\dots\mid\approx C\land D,$$ for
+arbitrary $D$ (check you understand why!!). Some authors think that this is a
+problem, because the $D$ might be completely irrelevant to the inference at
+hand. Do you think this is a problem? Justify your answer in one or two
+paragraphs, making use of an example.
