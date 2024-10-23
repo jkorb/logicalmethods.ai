@@ -447,7 +447,7 @@ $$Pr_{\text{fair}}(\mathsf{RESULT}_i\land \mathsf{RESULT}_j)=0\text{, for all }i
 j$$
 $$Pr_{\text{fair}}(\neg\mathsf{RESULT}_1\land \dots\neg\mathsf{RESULT}_6)=0$$</p>
 <p>The third rule ensures that we have at least one result: it&rsquo;s impossible that
-the result isn&rsquo;t $1$, isn&rsquo;t $2$, \dots, isn&rsquo;t $6$.</p>
+the result isn&rsquo;t $1$, isn&rsquo;t $2$, $\dots$, isn&rsquo;t $6$.</p>
 <p>The second rule formalizes the fact that a die can&rsquo;t show two numbers at the
 same time, it&rsquo;s impossible that the result is both a $1$ and a $6$, say. In
 other words, we assume that the results are mutually exclusive.</p>
@@ -465,9 +465,9 @@ formulas. To calculate the probability of the die being 2 or 4, for example,</p>
 <ul>
 <li>We know from the derived inclusion-exclusion principle that: $$Pr_\text{fair}(\mathsf{RESULT}_2\lor \mathsf{RESULT}_4)=$$
 $$Pr_\text{fair}(\mathsf{RESULT}_2)+Pr_\text{fair}(\mathsf{RESULT}_4)-Pr(\mathsf{RESULT}_2\land \mathsf{RESULT}_4)$$</li>
-<li>We further know from the second rule that: $$Pr(\mathsf{RESULT}_2\land \mathsf{RESULT}_4).$$</li>
+<li>We further know from the second rule that: $$Pr(\mathsf{RESULT}_2\land \mathsf{RESULT}_4) = 0.$$</li>
 <li>So we get that: $$Pr_\text{fair}(\mathsf{RESULT}_2\lor \mathsf{RESULT}_4)=Pr_\text{fair}(\mathsf{RESULT}_2)+Pr_\text{fair}(\mathsf{RESULT}_4).$$</li>
-<li>Since by the first rule, we have $Pr_\text{fair}(\mathsf{RESULT}_2)=\frac{1}{6}$ and $Pr_\text{fair}(\mathsf{RESULT}_4=\frac{1}{6})$, we know that:</li>
+<li>Since by the first rule, we have $Pr_\text{fair}(\mathsf{RESULT}_2)=\frac{1}{6}$ and $Pr_\text{fair}(\mathsf{RESULT}_4)=\frac{1}{6}$, we know that:</li>
 </ul>
 <p>$$Pr_\text{fair}(\mathsf{RESULT}_2\lor \mathsf{RESULT}_4)=\frac{1}{6}+\frac{1}{6}=\frac{1}{3}$$</p>
 <p>But note that crucially, we needed <strong>both rules</strong> in this calculation. The
@@ -485,7 +485,7 @@ probabilities that&rsquo;s easier to implement.</p>
 </h2>
 <hr>
 
-<p>It turns out that we can <strong>truth-tables</strong> to specify probabilities for a whole
+<p>It turns out that we can use <strong>truth-tables</strong> to specify probabilities for a whole
 language.<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup> To see how this works, let&rsquo;s discuss the abstract theory
 first, and then go through a concrete example.</p>
 <p>The basic idea is that we can specify probabilities by saying how likely
@@ -518,7 +518,7 @@ happen.</p>
 <p>So, more generally, a <strong>probability weight</strong> for our language is a function $m$,
 which assigns to each valuation $\nu$ a positive value $0\leq m(\nu)$ such that
 these values sum up to one: $$\sum_{\nu}m(\nu)=1$$</p>
-<p>One we have these values, we can calculate the probability of each formula by adding
+<p>Once we have these values, we can calculate the probability of each formula by adding
 the probability weights of the worlds, where the formula is true:
 $$Pr_m(A)=\sum_{\nu(A)=1}m(\nu).$$</p>
 <p>So, in our example, to get the probability of $\mathsf{RAIN},$
@@ -531,7 +531,7 @@ only scenarios where it rains are $\nu_1$ and $\nu_2$ and they have a combined
 likelihood of 0.8.</p>
 <p>It turns out, as a matter of mathematical fact, that <em>every</em> probability
 function $Pr$ can be expressed in this way. We shall not look into the proof of
-this, but rather how to use this fact as convenient method for specifying
+this, but rather how to use this fact as a convenient method for specifying
 probabilities.</p>
 <p>The point is that it&rsquo;s much easier to specify a weight for each valuation than
 to assign a value to each formula: there are typically way fewer valuations than
@@ -625,7 +625,7 @@ is true. This idea is formally captured in the definition:</p>
 <ul>
 <li>
 <p>In the $\mathsf{RAIN},\mathsf{SUN}$ example, we could ask, for example, what
-the probability is that it rain&rsquo;s given that the sun is shining:
+the probability is that it rains given that the sun is shining:
 $$\mathsf{Pr}(\mathsf{RAIN}\mid\mathsf{SUN})=\frac{Pr(\mathsf{SUN}\land\mathsf{RAIN})}{Pr(\mathsf{SUN})}$$</p>
 <p>For this calculation, we need to know $Pr(\mathsf{RAIN}\land\mathsf{SUN}),Pr(\mathsf{SUN})$. We get them from the following table:</p>
 
