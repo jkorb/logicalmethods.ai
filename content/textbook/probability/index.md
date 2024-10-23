@@ -472,7 +472,7 @@ C$.
   This follows from the fact that if $A\vDash B$, then $Pr(A)\leq Pr(B)$, we
   observed above. Because from this it follows that if $C\vDash P_1\land P_2\land \dots$, then $Pr(C)\leq Pr(P_1\land P_2\land \dots)$. Further, as before we have that $C\land P_1\land P_2\land \dots$ is equivalent to $C$ and so, we can reason as follows:
   $$Pr(C\mid P_1\land P_2\land \dots)=\frac{Pr(C\land P_1\land
-  P_2\land\dots)}{Pr(P_1\land P_2\land)}$$
+  P_2\land\dots)}{Pr(P_1\land P_2\land\dots)}$$
   $$=\frac{Pr(C)}{Pr(P_1\land P_2\land\dots)}\overset{Pr(C)\leq Pr(P_1\land P_2\land \dots)}\geq Pr(C)$$
 
 The latter law will allow us to observe the inductive validity of some
@@ -494,7 +494,7 @@ concrete examples of inductive inference, one valid, one invalid.
 from sufficiently many and well-chosen instances $P(a_1), P(a_2),\dots$. In our
 simple setting, we can express this as: $$P(a_1),P(a_2),\dots\mid\approx \forall
 xP(x).$$ The simple, standard example of this inference is that all observed
-swans, sampled well and wide, were wide, so all swans are white. Of course, this
+swans, sampled well and wide, were white, so all swans are white. Of course, this
 inference is deductively invalid—it can always happen that there's a non-white
 swan somewhere—but we can show, mathematically, that the inference is
 inductively valid in the (weak) increase of firmness sense.
