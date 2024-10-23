@@ -436,7 +436,10 @@ where $\mathsf{RESULT}_i$ means that the result of the die-roll is $i$.</p>
 measure $Pr_{\text{fair}}$ as follows:</p>
 <p>$$Pr_{\text{fair}}(\mathsf{RESULT}_i)=\frac{1}{6}\text{, for }i=1,\dots,6$$
 $$Pr_{\text{fair}}(\mathsf{RESULT}_i\land \mathsf{RESULT}_j)=0\text{, for all }i\neq
-j$$</p>
+j$$
+$$Pr_{\text{fair}}(\neg\mathsf{RESULT}_1\land \dots\neg\mathsf{RESULT}_6)=0$$</p>
+<p>The third rule ensures that we have at least one result: it&rsquo;s impossible that
+the result isn&rsquo;t $1$, isn&rsquo;t $2$, \dots, isn&rsquo;t $6$.</p>
 <p>The second rule formalizes the fact that a die can&rsquo;t show two numbers at the
 same time, it&rsquo;s impossible that the result is both a $1$ and a $6$, say. In
 other words, we assume that the results are mutually exclusive.</p>
@@ -456,7 +459,7 @@ formulas. To calculate the probability of the die being 2 or 4, for example,</p>
 $$Pr_\text{fair}(\mathsf{RESULT}_2)+Pr_\text{fair}(\mathsf{RESULT}_4)-Pr(\mathsf{RESULT}_2\land \mathsf{RESULT}_4)$$</li>
 <li>We further know from the second rule that: $$Pr(\mathsf{RESULT}_2\land \mathsf{RESULT}_4).$$</li>
 <li>So we get that: $$Pr_\text{fair}(\mathsf{RESULT}_2\lor \mathsf{RESULT}_4)=Pr_\text{fair}(\mathsf{RESULT}_2)+Pr_\text{fair}(\mathsf{RESULT}_4).$$</li>
-<li>Since by the first rule, we have $Pr_\text{fair}(\mathsf{RESULT}_2=\frac{1}{6})$ and $Pr_\text{fair}(\mathsf{RESULT}_4=\frac{1}{6})$, we know that:</li>
+<li>Since by the first rule, we have $Pr_\text{fair}(\mathsf{RESULT}_2)=\frac{1}{6}$ and $Pr_\text{fair}(\mathsf{RESULT}_4=\frac{1}{6})$, we know that:</li>
 </ul>
 <p>$$Pr_\text{fair}(\mathsf{RESULT}_2\lor \mathsf{RESULT}_4)=\frac{1}{6}+\frac{1}{6}=\frac{1}{3}$$</p>
 <p>But note that crucially, we needed <strong>both rules</strong> in this calculation. The
@@ -696,20 +699,19 @@ $$Pr(\mathsf{RAIN}\land\mathsf{SUN})=0.5\neq 0.8\times 0.7=0.56$$</p>
 </h2>
 <hr>
 
-<p>It is now time to turn to <strong>inductive validity</strong>. But before we give an account,
-it is important to note that inductive logic is a <em>broad field</em>: essentially all
-of statistics is concerned with valid inductive inference. Given the broad
-variety of <a href="https://en.wikipedia.org/wiki/Statistical_inference"
+<p>It is now time to turn to <strong>inductive validity</strong>. But before we give an
+account, it is important to note that inductive logic is a <em>broad field</em>, which
+is closely related to <a href="https://en.wikipedia.org/wiki/Statistical_inference"
   target="_blank">statistical
-inference</a>, we should note
-that the account of inductive validity we present here is just <em>one</em> view of
-valid inference in a narrow sense.</p>
+inference</a>. Given this, we
+should note that the account of inductive validity we present here is just
+<em>one</em> view of valid inference in a narrow sense.</p>
 <p>The situation is similar to the one we face in deductive logic: Boolean logic,
 many-valued logic, fuzzy logic, etc. all give slightly different models of
 deductively valid inference, which are applicable in different circumstances,
 under different assumptions, etc.</p>
 <p>Correspondingly, there are different models of inductive inference. The model
-we&rsquo;ll discuss in this section is a simple version of what&rsquo;s known as <a href="https://en.wikipedia.org/wiki/Statistical_inference"
+we&rsquo;ll discuss in this section is a simple version of what&rsquo;s known as <a href="https://en.wikipedia.org/wiki/Bayesian_inference"
   target="_blank">Bayesian
 inference</a>. But we won&rsquo;t go
 into the details of <strong>Bayesian statistics</strong> and the difference to other paradigms.
@@ -855,8 +857,9 @@ straight-forward but takes a lot of space.<sup id="fnref:5"><a href="#fn:5" clas
 theorem (which we do), we can infer the validity of enumerative induction from
 the simple fact that $$\forall xP(x)\vDash P(a_i),$$ for each $i$ following the
 law of universal instantiation.</p>
-<p>Even more so, since the function $$Pr(\forall xP(x)\mid \dots)$$ grows
-monotonically if we put every increasing numbers of instances in<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup>
+<p>Even more so, given some reasonable assumptions, since the function
+$$Pr(\forall xP(x)\mid \dots)$$ grows monotonically, if we put every increasing
+numbers of instances in<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup>
 $$P(a_1)$$
 $$P(a_1)\land P(a_2)$$
 $$P(a_1)\land P(a_2)\land \dots$$
