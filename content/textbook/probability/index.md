@@ -120,7 +120,7 @@ j$$
 $$Pr\_{\text{fair}}(\neg\mathsf{RESULT}_1\land \dots\neg\mathsf{RESULT}_6)=0$$
 
 The third rule ensures that we have at least one result: it's impossible that
-the result isn't $1$, isn't $2$, \dots, isn't $6$.
+the result isn't $1$, isn't $2$, $\dots$, isn't $6$.
 
 The second rule formalizes the fact that a die can't show two numbers at the
 same time, it's impossible that the result is both a $1$ and a $6$, say. In
@@ -144,9 +144,9 @@ we need both rules:
 
 + We know from the derived inclusion-exclusion principle that: $$Pr_\text{fair}(\mathsf{RESULT}\_2\lor \mathsf{RESULT}\_4)=$$
 $$Pr_\text{fair}(\mathsf{RESULT}\_2)+Pr\_\text{fair}(\mathsf{RESULT}\_4)-Pr(\mathsf{RESULT}\_2\land \mathsf{RESULT}\_4)$$
-+ We further know from the second rule that: $$Pr(\mathsf{RESULT}\_2\land \mathsf{RESULT}\_4).$$
++ We further know from the second rule that: $$Pr(\mathsf{RESULT}\_2\land \mathsf{RESULT}\_4) = 0.$$
 + So we get that: $$Pr_\text{fair}(\mathsf{RESULT}\_2\lor \mathsf{RESULT}\_4)=Pr_\text{fair}(\mathsf{RESULT}\_2)+Pr\_\text{fair}(\mathsf{RESULT}\_4).$$
-+ Since by the first rule, we have $Pr_\text{fair}(\mathsf{RESULT}\_2)=\frac{1}{6}$ and $Pr_\text{fair}(\mathsf{RESULT}\_4=\frac{1}{6})$, we know that:
++ Since by the first rule, we have $Pr_\text{fair}(\mathsf{RESULT}\_2)=\frac{1}{6}$ and $Pr_\text{fair}(\mathsf{RESULT}\_4)=\frac{1}{6}$, we know that:
 
 $$Pr_\text{fair}(\mathsf{RESULT}\_2\lor \mathsf{RESULT}\_4)=\frac{1}{6}+\frac{1}{6}=\frac{1}{3}$$
 
@@ -161,7 +161,7 @@ probabilities that's easier to implement.
 
 ## Probability truth-tables
 
-It turns out that we can **truth-tables** to specify probabilities for a whole
+It turns out that we can use **truth-tables** to specify probabilities for a whole
 language.[^finite] To see how this works, let's discuss the abstract theory
 first, and then go through a concrete example.
 
@@ -200,7 +200,7 @@ So, more generally, a **probability weight** for our language is a function $m$,
 which assigns to each valuation $\nu$ a positive value $0\leq m(\nu)$ such that
 these values sum up to one: $$\sum_{\nu}m(\nu)=1$$
 
-One we have these values, we can calculate the probability of each formula by adding
+Once we have these values, we can calculate the probability of each formula by adding
 the probability weights of the worlds, where the formula is true:
 $$Pr_m(A)=\sum_{\nu(A)=1}m(\nu).$$
 
@@ -216,7 +216,7 @@ likelihood of 0.8.
 
 It turns out, as a matter of mathematical fact, that _every_ probability
 function $Pr$ can be expressed in this way. We shall not look into the proof of
-this, but rather how to use this fact as convenient method for specifying
+this, but rather how to use this fact as a convenient method for specifying
 probabilities. 
 
 The point is that it's much easier to specify a weight for each valuation than
@@ -283,7 +283,7 @@ Here we need to assume that $Pr(B)\neq 0$ to avoid [division by
 Let's look at how this works in some examples:
 
 + In the $\mathsf{RAIN},\mathsf{SUN}$ example, we could ask, for example, what
-the probability is that it rain's given that the sun is shining:
+the probability is that it rains given that the sun is shining:
 $$\mathsf{Pr}(\mathsf{RAIN}\mid\mathsf{SUN})=\frac{Pr(\mathsf{SUN}\land\mathsf{RAIN})}{Pr(\mathsf{SUN})}$$ 
 
   For this calculation, we need to know $Pr(\mathsf{RAIN}\land\mathsf{SUN}),Pr(\mathsf{SUN})$. We get them from the following table:
