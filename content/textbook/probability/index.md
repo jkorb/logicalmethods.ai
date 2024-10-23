@@ -117,6 +117,10 @@ measure $Pr_{\text{fair}}$ as follows:
 $$Pr_{\text{fair}}(\mathsf{RESULT}_i)=\frac{1}{6}\text{, for }i=1,\dots,6$$
 $$Pr\_{\text{fair}}(\mathsf{RESULT}_i\land \mathsf{RESULT}_j)=0\text{, for all }i\neq
 j$$
+$$Pr\_{\text{fair}}(\neg\mathsf{RESULT}_1\land \dots\neg\mathsf{RESULT}_6)=0$$
+
+The third rule ensures that we have at least one result: it's impossible that
+the result isn't $1$, isn't $2$, \dots, isn't $6$.
 
 The second rule formalizes the fact that a die can't show two numbers at the
 same time, it's impossible that the result is both a $1$ and a $6$, say. In
@@ -142,7 +146,7 @@ we need both rules:
 $$Pr_\text{fair}(\mathsf{RESULT}\_2)+Pr\_\text{fair}(\mathsf{RESULT}\_4)-Pr(\mathsf{RESULT}\_2\land \mathsf{RESULT}\_4)$$
 + We further know from the second rule that: $$Pr(\mathsf{RESULT}\_2\land \mathsf{RESULT}\_4).$$
 + So we get that: $$Pr_\text{fair}(\mathsf{RESULT}\_2\lor \mathsf{RESULT}\_4)=Pr_\text{fair}(\mathsf{RESULT}\_2)+Pr\_\text{fair}(\mathsf{RESULT}\_4).$$
-+ Since by the first rule, we have $Pr_\text{fair}(\mathsf{RESULT}\_2=\frac{1}{6})$ and $Pr_\text{fair}(\mathsf{RESULT}\_4=\frac{1}{6})$, we know that:
++ Since by the first rule, we have $Pr_\text{fair}(\mathsf{RESULT}\_2)=\frac{1}{6}$ and $Pr_\text{fair}(\mathsf{RESULT}\_4=\frac{1}{6})$, we know that:
 
 $$Pr_\text{fair}(\mathsf{RESULT}\_2\lor \mathsf{RESULT}\_4)=\frac{1}{6}+\frac{1}{6}=\frac{1}{3}$$
 
@@ -362,13 +366,12 @@ $$Pr(\mathsf{RAIN}\land\mathsf{SUN})=0.5\neq 0.8\times 0.7=0.56$$
 
 ## Inductive validity
 
-It is now time to turn to **inductive validity**. But before we give an account,
-it is important to note that inductive logic is a _broad field_: essentially all
-of statistics is concerned with valid inductive inference. Given the broad
-variety of [statistical
-inference](https://en.wikipedia.org/wiki/Statistical_inference), we should note
-that the account of inductive validity we present here is just _one_ view of
-valid inference in a narrow sense.
+It is now time to turn to **inductive validity**. But before we give an
+account, it is important to note that inductive logic is a _broad field_, which
+is closely related to [statistical
+inference](https://en.wikipedia.org/wiki/Statistical_inference). Given this, we
+should note that the account of inductive validity we present here is just
+_one_ view of valid inference in a narrow sense.
 
 The situation is similar to the one we face in deductive logic: Boolean logic,
 many-valued logic, fuzzy logic, etc. all give slightly different models of
@@ -377,7 +380,7 @@ under different assumptions, etc.
 
 Correspondingly, there are different models of inductive inference. The model
 we'll discuss in this section is a simple version of what's known as [Bayesian
-inference](https://en.wikipedia.org/wiki/Statistical_inference). But we won't go
+inference](https://en.wikipedia.org/wiki/Bayesian_inference). But we won't go
 into the details of **Bayesian statistics** and the difference to other paradigms.
 Instead, we'll focus on the idea of using conditional probability as a measure
 of inductive support, which is especially important in Bayesian statistics but
@@ -504,8 +507,9 @@ theorem (which we do), we can infer the validity of enumerative induction from
 the simple fact that $$\forall xP(x)\vDash P(a_i),$$ for each $i$ following the
 law of universal instantiation.
 
-Even more so, since the function $$Pr(\forall xP(x)\mid \dots)$$ grows
-monotonically if we put every increasing numbers of instances in[^math]
+Even more so, given some reasonable assumptions, since the function
+$$Pr(\forall xP(x)\mid \dots)$$ grows monotonically, if we put every increasing
+numbers of instances in[^math]
 $$P(a_1)$$ 
 $$P(a_1)\land P(a_2)$$ 
 $$P(a_1)\land P(a_2)\land \dots$$ 

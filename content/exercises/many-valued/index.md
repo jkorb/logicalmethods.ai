@@ -7,7 +7,7 @@ params:
   math: true
 ---
 
-# 3-valued truth-tables
+# 3-valued truth-tables {.solved}
 
 In {{< chapter_ref chapter="sat" >}} Ch. 5. Boolean satisfiability{{<
 /chapter_ref >}}, we've described a truth-table method to test for valid
@@ -53,7 +53,15 @@ $\mathsf{HOT}\vDash \mathsf{HUMID}\to\mathsf{HUMID}$
 
 $\neg\mathsf{HOT}\vDash \mathsf{HOT}\to\mathsf{HOT}$
 
-# Fuzzy logic
+## Solutions {.solution #3-valued-truth-tablesSolution}
+
+
+{{< img src="img/1a.png" class="img-thumbnail" >}}
+{{< img src="img/1b.png" class="img-thumbnail" >}}
+{{< img src="img/1c.png" class="img-thumbnail" >}}
+{{< img src="img/1d.png" class="img-thumbnail" >}}
+
+# Fuzzy logic {.solved}
 
 Test for each of the following inferences whether it's valid or not in the fuzzy
 logic Ł. If the inference is valid, provide an argument, if the inference is
@@ -80,7 +88,47 @@ $\mathsf{HOT}\land \neg \mathsf{HOT}\vDash \mathsf{HOT}$
 
 $\mathsf{HOT}\vDash \mathsf{HUMID}\lor\neg\mathsf{HUMID}$
 
-# Fuzzy rules
+## Solutions {.solution #fuzzy-logicSolution}
+
+For fuzzy-logic-consequence we check all valuations to see if the smallest premise value will always be lower than the conclusion value.
+The idea is that this shows us that whenever the premises get 'closer' to $1$, the conclusion does too, so there is a truth-strengthening connection between them.
+
+<br>
+
+**(a)**
+This is invalid. Consider a valuation where $R$ is fuzzy or vague, $v(R)=0.5$, but the conclusion is definitely false $v(H)=0$. 
+Then we have $v(\neg R)=0.5$ and $v(R\land\neg R)=0.5$ which is greater than the conclusion value.
+
+<br>
+
+**(b)**
+This is valid. We want to show that we always get: $v(H)\leq v(H\lor(R\land H))$.
+
++ Break down the calculation $v(H\lor(R\land H))=\mathrm{max}(v(H),\mathrm{min}(v(R),v(H)))$.
++ Consider two ways the atomic parts might be interpreted:
+$v(H)\leq v(R)$ or $v(H)>v(R)$. Every valuation has to be one of these types. We will show that the result holds on either type.
++ If we are looking at the first type of valuation, we have $\mathrm{min}(v(R),v(H))=v(H)$, but that makes $\mathrm{max}(v(H),\mathrm{min}(v(R),v(H)))=\mathrm{max}(v(H),v(H))=v(H)$. So we have $\mathrm{max}(v(H),\mathrm{min}(v(R),v(H)))\leq v(H)$ as desired.
++ If we are looking at the second type of valuation, we have $\mathrm{min}(v(R),v(H))=v(R)$, but that makes $\mathrm{max}(v(H),\mathrm{min}(v(R),v(H)))=\mathrm{max}(v(H),v(R))=v(H)$.
+Again, we have $\mathrm{max}(v(H),\mathrm{min}(v(R),v(H)))\leq v(H)$ as desired.
+
+<br>
+
+**(c)**
+This is invalid. Consider a valuation where $U$ is fuzzy or vague, $v(U)=0.5$, but the other statements are definitely false $v(H)=0$ and $v(D)=0$.  Then we have $v(H\lor\neg U)=\mathrm{max}(v(H),1-v(U))=0.5$. We also have $v(U\lor D)=\mathrm{max}(v(U),v(D))=0.5$. Take the minimum $\mathrm{min}(\mathrm{max}(v(H),v(\neg U)),\mathrm{max}(v(U),v(D)))=0.5$. But this value is greater than the conclusion value $v(H\lor D)=\mathrm{max}(v(H),v(D))=0$, so we have a counter-model.
+
+<br>
+
+**(d)**
+This is valid. We want to show that we always get: $v(H\land\neg H)\leq v(H)$. It's immediate from $v(H\land\neg H)=\mathrm{min}(v(H),1-v(H))$.
+This guarantees that the premises cannot exceed the value of H itself.
+
++ To illustrate, suppose that $v(H)=0$ then we get $v(H\land\neg H)= 0$.
++ Suppose that $v(H)=0.1$ then we get $v(H\land\neg H)= 0.1$.
++ Suppose that $v(H)=0.5$ then we get $v(H\land\neg H)= 0.5$.
++ Suppose that $v(H)=0.9$ then we get $v(H\land\neg H)= 0.1$.
++ Suppose that $v(H)=1$ then we get $v(H\land\neg H)= 0$.
+
+# Fuzzy rules {.solved}
 
 Remember that a fuzzy rule $$\textbf{IF } A \textbf{ THEN } B$$ means that $B$ holds
 to the extend that $A$.
@@ -119,7 +167,47 @@ some concrete numerical values representing:
 
 Are there any problematic cases? If so, can we fix them?
 
-# T-norms
+## Solutions {.solution #fuzzy-rulesSolution}
+
+**(a)**
+Here is the best way to write the rules in our limited formal language.
+Remember, we want to interpret these like fuzzy-logic-consequence:
+whenever the antecedent side gets 'closer' to $1$, we want the conclusion to do the same.
+
+IF HOT$\lor$HUMID, THEN AC
+
+IF $\neg$HOT$\lor$HUMID, THEN HEATER
+
+IF AC, THEN $\neg$HEATER
+
+IF HEATER, THEN $\neg$AC
+
+<br>
+
+**(b)**
+One example of a problem for these rules: situations with low heat and high humidity.
+To be precise, consider a valuation where $v(\mathsf{HOT})=0.2$ and $v(\mathsf{HUMID})=0.8$.
+This makes $v(\neg\mathsf{HOT})=1-v(\mathsf{HOT})=0.8$.
+
+We calculate $v(\mathsf{HOT}\lor\mathsf{HUMID})=0.8$.
+
+So the first rule requires $0.8\leq v(\mathsf{AC})$.
+
+We also calculate $v(\neg\mathsf{HOT}\lor\mathsf{HUMID})=0.8$.
+
+So the second rule requires $0.8\leq v(\mathsf{HEATER})$.
+
+This is okay so far, but the final rules create a problem.
+
+For instance, the last rule requires $0.8\leq 1-v(\mathsf{AC})$.
+
+There is no value that gives $0.8\leq v(\mathsf{AC})$ and $0.8\leq 1-v(\mathsf{AC})$.
+
+So these rules do not 'work' as intended in all possible fuzzy valuations.
+
+<br>
+
+# T-norms {.solved}
 
 The general theory of fuzzy logics uses the concept of a
 [t-norm](https://en.wikipedia.org/wiki/T-norm), which is short for "triangular
@@ -175,6 +263,78 @@ Check that the following holds in Łukasiewicz's logic:
 
 $$\mathsf{RAIN}\otimes (\mathsf{RAIN}\to \mathsf{WET})\vDash \mathsf{WET}$$
 
+## Solution {.solution #t-normsSolution}
+
+**(a)**
+Strong Conjunction.
+
+The $f_\otimes$ function calculates its output in two different ways, depending on the input values.
+We get a default value $f_\otimes(x,y)=0$ when $x+y\leq 1$, but we get $f_\otimes(x,y)=x+y-1$ when $1<x+y$.
+For these exercises we prove both cases separately.
+
+<br>
+
+**(1)**
+We prove the goal in two cases using $x+y=y+x$.
+
+1. If $f_\otimes(x,y)=0$ then $x+y\leq 1$. This implies that $y+x\leq 1$ and so $f_\otimes(y,x)=0$.
+
+2. If $f_\otimes(x,y)\neq 0$ then $f_\otimes(x,y)=x+y-1=y+x-1=f_\otimes(y,x)$.
+
+<br>
+
+**(2)**
+We prove the goal in two cases.
+
+1. If $f_\otimes(x,y)=0$ then obviously $f_\otimes(x,y)\leq f_\otimes(x',y')$.
+
+2. If $f_\otimes(x,y)\neq 0$ then we reason:
+
++ $x\leq x'$ and $y\leq y'$
++ so we have $x+y\leq x'+y'$
++ so we have $x+y-1\leq x'+y'-1$
++ therefore $f_\otimes(x,y)\leq f_{\oplus}(x',y')$
+
+<br>
+
+**(3)**
+We prove the goal in two cases using $x+(y+z)=(x+y)+z$.
+
+1. If $f_\otimes(x,f_\otimes(y,z))=0$ then SOMETHING
+
+2. If $f_\otimes(x,y)\neq 0$ then we reason: SOMETHING
+
+<br>
+
+**(4)**
+We prove the goal in two cases.
+
+1. If $f_\otimes(x,1)=0$ this means that $x+1\leq 1$ and so $0=x$.
+
+2. If $f_\otimes(x,1)\neq 0$ then $f_\otimes(x,1)= x+1-1 = x$.
+
+<br>
+
+**(b)**
+Fuzzy Conditional.
+
+The $f_\to$ function calculates its output in two different ways, depending on the input values.
+We default to the antecedent value $f_\to(x,y)=x$ when $2x-y\leq 1$, but we get $f_\to(x,y)=1-x+y$ when $1<2x-y$. 
+
+For fuzzy-logic-consequence we check all valuations to see if the smallest premise value will always be lower than the conclusion value.
+So we want to show that we always get: $v(R\otimes (R\to W))\leq v(W)$.
+
+Break down the calculation $v(R\otimes (R\to W))=f_\otimes(v(R),v(R\to W))=f_\otimes(v(R),f_\to(v(R),v(W)))$.
+
+We can think about how $f_\otimes(v(R),f_\to(v(R),v(W)))$ is calculated in two ways.
+
+1. The first possibility is quick: If $f_\otimes(v(R),f_\to(v(R),v(W)))=0$ then obviously $v(R\otimes (R\to W))\leq v(W)$.
+2. The second possibility requires more thinking: suppose that $f_\otimes(v(R),f_\to(v(R),v(W)))\neq 0$.
+
++ That means $f_\otimes(v(R),f_\to(v(R),v(W)))=v(R)+f_\to(v(R),v(W))-1$.
++ We now think about how $f_\to(v(R),v(W))$ is calculated in two ways.
++ First, if $2v(R)-v(W)\leq 1$ that gives us two pieces of information.  We have $f_\to(v(R),v(W))=v(R)$ which plugs into our original calculation to give us $f_\otimes(v(R),f_\to(v(R),v(W)))=2v(R)-1$ and we also have $2v(R)-1\leq v(W)$.  It follows that $f_\otimes(v(R),f_\to(v(R),v(W)))\leq v(W)$.
++  Second, if $1<2v(R)-v(W)$, then $f_\to(v(R),v(W))=1-v(R)+v(W)$ and $f_\otimes(v(R),f_\to(v(R),v(W)))=v(R)+(1-v(R)+v(W))-1=v(W)$. It follows that $f_\otimes(v(R),f_\to(v(R),v(W)))\leq v(W)$.
 
 # Research 
 
