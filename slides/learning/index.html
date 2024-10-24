@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8"></meta>
     <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-    <title>logicalmethods.ai &ndash; Logical proofs </title>
+    <title>logicalmethods.ai &ndash; Logical learning </title>
     <link rel="icon" type="image/x-icon" href="https://logicalmethods.ai/favicon.ico"></link>
     <link href="https://logicalmethods.ai/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"></link>
     <link rel="stylesheet" href="https://logicalmethods.ai/icons/font/bootstrap-icons.min.css"></link>
@@ -139,7 +139,7 @@
             </li>
             
             <li>
-              <a class="dropdown-item fw-bold active" href="/slides/proof/">7. Logical proofs</a>
+              <a class="dropdown-item " href="/slides/proof/">7. Logical proofs</a>
             </li>
             
             <li>
@@ -159,7 +159,7 @@
             </li>
             
             <li>
-              <a class="dropdown-item " href="/slides/learning/">12. Logical learning</a>
+              <a class="dropdown-item fw-bold active" href="/slides/learning/">12. Logical learning</a>
             </li>
             </ul>
         </div>
@@ -263,7 +263,7 @@
 <ul class="navbar-nav flex-row justify-content-between mt-2">
   
   <li class="nav-item">
-    <a href="/slides/conditionals/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="/slides/probability/" class="btn" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-left"></i>
     </a>
     
@@ -275,7 +275,7 @@
   </li>
   <li class="nav-item">
     
-    <a href="/slides/fol/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-right"></i>
     </a>
     
@@ -284,7 +284,7 @@
 
 <div class="container text-center">
   <h3>
-    Lecture 7. Logical proofs
+    Lecture 12. Logical learning
   </h3>
   <em>Slides</em>
 </div>
@@ -340,8 +340,8 @@ fullscreen. You can quit fullscreen by pressing ESC.</p>
 			<section>
 				<h1>&forall;I</h1>
         <p>Logical <strong>methods</strong> for AI</p>
-        <p>Lecture 7</p>
-        <p class="text-danger"><em>Logical proofs</em></p>
+        <p>Lecture 12</p>
+        <p class="text-danger"><em>Logical learning</em></p>
         
 <div class="container text-center">
   <p class="copyright" xmlns:cc="http://creativecommons.org/ns#" >
@@ -355,303 +355,263 @@ fullscreen. You can quit fullscreen by pressing ESC.</p>
         
 </section>
 <section>
-    
-    
-    <img src="https://logicalmethods.ai/slides/proof/img/qr-code.png" class="img-thumbnail"  alt="" >
-    
+  
+  
+  <img src="https://logicalmethods.ai/slides/learning/img/qr-code.png" class="img-thumbnail"  alt="" >
+  
 
-    <p><a href="https://forms.gle/JiXXM9eysAZaJMja9" target="_blank" style="font-size:1.5em">https://forms.gle/JiXXM9eysAZaJMja9</a></p>
-  </section>
+  <p><a href="https://forms.gle/JiXXM9eysAZaJMja9" target="_blank" style="font-size:1.5em">https://forms.gle/JiXXM9eysAZaJMja9</a></p>
+</section>
 <section>
-  <section id="proofs">
+  <section>
     <dl class="row" >
       <dd class="col">
-        <i class="bi bi-box-fill text-primary" style="font-size:100px;"></i> 
-        <h1>Logical <span class="text-danger">proofs</span></h1>
+        <i class="bi bi-mortarboard-fill text-primary" style="font-size:100px;"></i> 
+        <h1>Logic-based <span class="text-danger">learning</span></h1>
       </dd>
       <dt class="col"></dt>
     </dl>
   </section>
-  <section id="ideas">
-    <h1>Proof systems</h1>
-    <span class="fragment fade-right">Model of step-wise inference:</span>
-    <p class="fragment fade-right">
-      <em>
-        Ada is either in the study or on the Philosopher’s Walk, and if she’s on
-        the Philosopher’s Walk, she’s thinking about mathematics. Ada is not
-        in the study, so she must be thinking about mathematics.
-      </em>
-    </p>
-  </section>
-  <section>
-    <h1>Proofs</h1>
+  <section id="learning">
+    <h1>Aim</h1>
     <ul>
-      <li class="fragment fade-right">Sequence of formulas, where each is either:</li>
-      <ol>
-        <li class="fragment fade-right">assumption/axiom</li>
-        <li class="fragment fade-right">derived from earlier formulas via an inference rule</li>
-      </ol>
-      <li class="fragment fade-right">Final formula = conclusion.</li>
+      <li class="fragment fade-right">For last lecture: <em>learning</em></li>
+      <li class="fragment fade-right">We understand this today as: how to respond to new facts.</li>
+      <li class="fragment fade-right">There are other concepts of logical learning, e.g. "data fitting."</li>
+      <li class="fragment fade-right">Some overlap.</li>
     </ul>
   </section>
-  <section>
-    <h1>Inference rule</h1>
-    $$\begin{array}{ccc} A_1 & \dots  & A_n \\ \hline & C \end{array}$$
-  </section>
-  <section>
-    <span class="fs-2">
-    $$\mathsf{STUDY}\lor\mathsf{WALK},\mathsf{WALK}\to\mathsf{MATH},\neg\mathsf{STUDY}\vdash\mathsf{MATH}$$
-    </span>
-    
-    
-    <img src="https://logicalmethods.ai/slides/proof/img/inference1.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
-    
-
+  <section id="learning">
+    <h1>Aim</h1>
+    <ul>
+      <li class="fragment fade-right">Two models:</li>
+      <ul>
+        <li class="fragment fade-right">Deductive: belief revision</li>
+        <li class="fragment fade-right">Inductive: Bayesian updating</li>
+      </ul>
+    </ul>
   </section>
 </section>
 <section>
-  <section id="proofs">
+  <section id="bel">
     <dl class="row" >
       <dd class="col">
-        <i class="bi bi-bounding-box-circles text-primary" style="font-size:100px;"></i> 
-        <h1>Proof <span class="text-danger">systems</span></h1>
+        <i class="bi bi-arrow-return-left text-primary" style="font-size:100px;"></i> 
+        <h1>Belief <span class="text-danger">revision</span></h1>
       </dd>
       <dt class="col"></dt>
     </dl>
   </section>
-  <section id="hilbert">
-    <h1>Hilbert systems</h1>
+  <section>
+    <h1>Setup</h1>
     <ul>
-      <li class="fragment fade-right">Axioms: Basic truths</li>
-      <li class="fragment fade-right">Inference rules: as few as possible</li>
+      <li class="fragment fade-right">Knowledge base: $\mathsf{KB}\subseteq \mathcal{L}$</li>
+      <li class="fragment fade-right">Deductive closure: $\mathsf{KB}\vDash A\Rightarrow A\in KB$</li>
+      <li class="fragment fade-right">Learn <em>new</em> fact: $A\notin \mathsf{KB}$.
+        $$\text{Say}: \mathsf{RAIN}\notin\mathsf{KB}$$
+      </li>
+      <li class="fragment fade-right">What to do?</li>
     </ul>
   </section>
   <section>
-    <ol>
-      <li class="fragment fade-right">Axioms:</li>
-      <span class="fragment fade-right fs-2">
-        $$ A\to ( B\to A)$$
-
-        $$( A\to ( B\to C))\to(( A\to B)\to ( A\to C))$$
-
-        $$(\neg  A\to \neg  B)\to ( B\to A)$$
-      </span>
-      <li class="fragment fade-right">Inference rule: 
-      <span class="fragment fade-right fs-2">
-        $$A,A\to B\vdash B$$
-      </span>
-      </li>
-    </ol>
-  </section>
-  <section>
-    <ol class="fs-3">
-      <li class="fragment fade-right"> $((\mathsf{RAIN} \to ((\mathsf{RAIN} \to \mathsf{RAIN}) \to \mathsf{RAIN})) \to ((\mathsf{RAIN} \to (\mathsf{RAIN} \to \mathsf{RAIN})) \to (\mathsf{RAIN} \to \mathsf{RAIN})))$ 
-
-        <p class="fs-2">
-          Axiom 2. with $A=\mathsf{RAIN}, B=(\mathsf{RAIN}\to \mathsf{RAIN}),$ and $C=\mathsf{RAIN}$
-        </p>
-      </li>
-      <li class="fragment fade-right"> $(\mathsf{RAIN} \to ((\mathsf{RAIN} \to \mathsf{RAIN}) \to \mathsf{RAIN}))$ 
-        <p class="fs-2">
-          Axiom 1. with $A=\mathsf{RAIN}$ and $B=(\mathsf{RAIN}\to \mathsf{RAIN})$)
-        </p>
-      </li>
-
-      <li class="fragment fade-right"> $((\mathsf{RAIN} \to (\mathsf{RAIN} \to \mathsf{RAIN})) \to (\mathsf{RAIN} \to \mathsf{RAIN}))$ 
-        <p class="fs-2">
-          From 1. and 2. by MP.
-        </p>
-      </li>
-
-      <li class="fragment fade-right"> $(\mathsf{RAIN} \to (\mathsf{RAIN} \to \mathsf{RAIN}))$ 
-        <p class="fs-2">
-        Axiom 1. with $A=\mathsf{RAIN}$ and $B=\mathsf{RAIN}$.
-        </p>
-      </li>
-
-      <li class="fragment fade-right"> $(\mathsf{RAIN} \to \mathsf{RAIN})$
-
-        <p class="fs-2">
-        From 3. and 4. by MP.
-        </p>
-      </li>
-    </ol>
-  </section>
-  <section>
-    $$( A\land B)\leadsto \neg( A\to\neg B)$$
-    $$( A\lor B)\leadsto(\neg A\to B)$$ 
-    $$( A\leftrightarrow B)\leadsto(( A\to B)\land( B\to A))$$
-  </section>
-  <section>
-    <span class="fs-1">
-    $$\mathsf{STUDY}\lor\mathsf{WALK},\mathsf{WALK}\to\mathsf{MATH},\neg\mathsf{STUDY}\vdash\mathsf{MATH}$$
-    $$\mathsf{STUDY}\lor\mathsf{WALK}\leadsto\neg\mathsf{STUDY}\lor\mathsf{WALK}$$
-    </span>
-    <span class="fs-1 fragment fade-right">
-    $$\leadsto\neg\mathsf{STUDY}\to\mathsf{WALK},\mathsf{WALK}\to\mathsf{MATH},\neg\mathsf{STUDY}\vdash\mathsf{MATH}$$
-    </span>
-    <ol>
-      <li class="fragment fade-right"> $\neg \mathsf{STUDY}\to\mathsf{WALK}$ (Assumption)</li>
-      <li class="fragment fade-right">$\neg \mathsf{STUDY}$ (Assumption)</li>
-      <li class="fragment fade-right">$\mathsf{WALK}$ (1.,2. MP)</li>
-      <li class="fragment fade-right">$\mathsf{WALK}\to\mathsf{MATH}$ (Assumption)</li>
-      <li class="fragment fade-right">$\mathsf{MATH}$ (3.,4. MP)</li>
-    </ol>
-  </section>
-</section>
-<section>
-  <section id="nd">
-    <h1>Natural deduction</h1>
+    <h1>Easy: no conflict</h1>
+    $$\neg\mathsf{RAIN}\notin\mathsf{KB}$$
     <ul>
-      <li class="fragment fade-right">No axioms</li>
-      <li class="fragment fade-right"><em>Only</em> inference rules</li>
-      <li class="fragment fade-right">Try to model "natural" deduction</li>
+      <li class="fragment fade-right">Simply add $\mathsf{RAIN}$.</li>
+      <li class="fragment fade-right">$\mathsf{KB}+A=\Set{B:\mathsf{KB},A\vdash B}$</li>
+      <li class="fragment fade-right">Conservative:
+        $$\mathsf{KB},A\vdash \mathsf{KB}$$ $$\mathsf{KB},A\vdash A$$
+      </li>
     </ul>
   </section>
   <section>
-    
-    
-    <img src="https://logicalmethods.ai/slides/proof/img/nd.png" class="img-thumbnail"  alt="" >
-    
-
-  </section>
-  <section>
-    <p>Discharging assumptions: $$\vdash \neg(\mathsf{RAIN}\land\neg\mathsf{RAIN})$$</p>
-    <span class="fragment fade-right">
-      
-      
-      <img src="https://logicalmethods.ai/slides/proof/img/non-contradiction.png" class="img-thumbnail"  alt="" >
-      
-
-    </span>
-  </section>
-  <section>
-    <span class="fs-1">
-    $$\mathsf{STUDY}\lor\mathsf{WALK},\mathsf{WALK}\to\mathsf{MATH},\neg\mathsf{STUDY}\vdash\mathsf{MATH}$$
-    </span>
-    
-    
-    <img src="https://logicalmethods.ai/slides/proof/img/inference1-nd.png" class="img-thumbnail"  alt="" >
-    
-
-  </section>
-  <section id="resolution">
-    <h1>Resolution-based systems</h1>
+    <h1>Harder: conflict</h1>
+    $$\neg\mathsf{RAIN}\in\mathsf{KB}$$
     <ul>
-      <li class="fragment fade-right">No axioms</li>
-      <li class="fragment fade-right">One rule</li>
+      <li class="fragment fade-right">Problem: $\mathsf{KB}+\mathsf{RAIN}$ is inconsistent.</li>
+      <li class="fragment fade-right">Idea: "remove" $\neg\mathsf{RAIN}$.</li>
+      <li class="fragment fade-right fs-1">First approach:
+        $$\mathsf{KB}-\neg A = \Set{B\in\mathsf{KB}:B\text{ not eqv. to }\neg A}$$ 
+        $$(\mathsf{KB}-\neg A)+A?$$
+      </li>
     </ul>
   </section>
-  <section class="fs-2">
-    <h1>Resolution rule</h1>
-    <p>$l_{i},k_{j}$ literals:</p>
-    $$\begin{array}{ccc} l_1\lor l_2\lor \dots\lor p & & \neg p\lor k_1\lor
-    k_2\lor\dots  \\ \hline & l_1\lor l_2\lor \dots k_1\lor k_2\lor\dots
-    \end{array}$$
-
-    $$\begin{array}{ccc} p & & \neg p  \\ \hline & \bot \end{array}$$
-  </section>
-  <section>
-    <span class="fs-1">
-      $$\mathsf{STUDY}\lor\mathsf{WALK},\mathsf{WALK}\to\mathsf{MATH},\neg\mathsf{STUDY}\vdash\mathsf{MATH}$$
-      $$\mathsf{WALK}\to\mathsf{MATH}\leadsto\neg\mathsf{WALK}\lor\mathsf{MATH}$$
-    </span>
-      
-      
-      <img src="https://logicalmethods.ai/slides/proof/img/resolution.png" class="img-thumbnail"  alt="" >
-      
-
-  </section>
-  <section>
+  <section class="fs-1">
     <h1>Problem</h1>
-    $$\mathsf{RAIN}\vDash\mathsf{RAIN}\lor\mathsf{SNOW}?$$
+    <ul >
+      <li class="fragment fade-right">Suppose: 
+        $$\mathsf{HIGH\_PRESSURE}\in\mathsf{KB}$$
+        $$\mathsf{WARM}\in\mathsf{KB}$$
+        $$\mathsf{HIGH\_PRESSURE}\land\mathsf{WARM}\to\neg\mathsf{RAIN}\in\mathsf{KB}$$
+      </li>
+      <li class="fragment fade-right">Then:
+        $$(\mathsf{KB}-\neg\mathsf{RAIN})+\mathsf{RAIN}\vdash \neg\mathsf{RAIN}$$
+      </li>
+    </ul>
+  </section>
+  <section class="fs-1">
+    <h1>Worse</h1>
+    <ul >
+      <li class="fragment fade-right">By closure:
+        $$\neg\mathsf{RAIN}\vdash \neg\mathsf{RAIN}\lor \bot\in\mathsf{KB}$$
+        $$\neg\mathsf{RAIN}\in\mathsf{KB}\Rightarrow\neg\mathsf{RAIN}\lor \bot\in\mathsf{KB}$$
+      </li>
+      <li class="fragment fade-right">So:
+        $$(\mathsf{KB}-\neg\mathsf{RAIN})+\mathsf{RAIN}\vdash \bot$$
+      </li>
+      <li class="fragment fade-right">Even if we solved the first problem.</li>
+    </ul>
   </section>
   <section>
-    <h1>(Re)Solution</h1>
-    $$A_1,A_2,\dots\vdash C\Leftrightarrow $$
-    $$CNF(A_1),CNF(A_2),\dots,CNF(\neg C)\vdash \bot$$
+    <h1>What to do?</h1>
+    <ul>
+      <li class="fragment fade-right">Which "grounds" to remove?
+        $$\mathsf{HIGH\_PRESSURE}\in\mathsf{KB}$$
+        $$\mathsf{WARM}\in\mathsf{KB}$$
+        $$\mathsf{HIGH\_PRESSURE}\land\mathsf{WARM}\to\neg\mathsf{RAIN}\in\mathsf{KB}$$
+      </li>
+      <li class="fragment fade-right">Which consequences to remove?</li>
+    </ul>
+  </section>
+  <section id="agm" class="fs-1">
+    <h1>AGM Axioms</h1>
+    <ol>
+      <li>$\mathsf{KB}\ast A$ is always deductively closed</li>
+      <li>$A\in \mathsf{KB}\ast A$</li>
+      <li>$\mathsf{KB}\ast A\subseteq \mathsf{KB}+A$</li>
+      <li>If $\neg A\notin\mathsf{KB}$, then $\mathsf{KB}\ast A=\mathsf{KB}+A$</li>
+      <li>$\mathsf{KB}\ast A$ is only inconsistent if $A$ itself is</li>
+      <li>If $A,B$ are logically equivalent, then $\mathsf{KB}\ast A=\mathsf{KB}\ast B$</li>
+      <li>$\mathsf{KB}\ast(A\land B)\subseteq (\mathsf{KB}\ast A)+B$</li>
+      <li>If $\neg B\notin\mathsf{KB}\ast A$, then $(\mathsf{KB}\ast A)+B\subseteq
+        \mathsf{KB}\ast(A\land B)$</li>
+    </ol>
   </section>
   <section>
-    $$\mathsf{RAIN}\vdash \mathsf{RAIN}\lor\mathsf{SNOW}\leadsto$$ 
-    $$\mathsf{RAIN},\neg\mathsf{RAIN},\neg\mathsf{SNOW}\vdash\bot$$
-    $$\begin{array}{ccc} \mathsf{RAIN} & & \neg \mathsf{RAIN}  \\ \hline & \bot \end{array}$$
+    <h1>Outlook</h1>
+    <ul>
+      <li class="fragment fade-right">Aim: define revision operator $\ast$.</li>
+      <li class="fragment fade-right">Problem: many different options.</li>
+      <li class="fragment fade-right">"Best" revision depends on the world, subject matter, $KB$-external knowledge, ...</li>
+    </ul>
   </section>
 </section>
-<section>
-  <section id="proofs">
+<section >
+  <section id="bayes">
     <dl class="row" >
       <dd class="col">
-        <i class="bi bi-database-fill-gear text-primary" style="font-size:100px;"></i> 
-        <h1>Applications</h1>
+        <i class="bi bi-emoji-smile-fill text-primary" style="font-size:100px;"></i> 
+        <h1>Bayesian <span class="text-danger">updating</span></h1>
       </dd>
       <dt class="col"></dt>
     </dl>
   </section>
-  <section id="metalogic">
-    <h1>Metalogic</h1>
+  <section>
+    <h1>Setup</h1>
     <ul>
-      <li class="fragment fade-right">Soundness: All derivable inferences are valid</li>
-      <li class="fragment fade-right">Completeness: All valid inferences are derivable</li>
-      <li class="fragment fade-right">Soundness and completeness: $$P_1,P_2,\dots\vDash C\ \Leftrightarrow \ P_1,P_2,\dots\vdash C$$</li>
-      <li class="fragment fade-right">Computationally tractable model of valid inference</li>
+      <li class="fragment fade-right">Knowledge base: $Pr_\mathsf{KB}:\mathcal{L}\to\mathbb{R}$</li>
+      <li class="fragment fade-right">Learn <em>new</em> fact $A$: $Pr_\mathsf{KB}(A)\neq 1$.</li>
+      <li class="fragment fade-right">"Learnable" fact: $Pr_\mathsf{KB}(A)\neq 0$.</li>
+      <li class="fragment fade-right">What now?</li>
     </ul>
   </section>
-  <section id="itp">
-    <h1>Proof verification</h1>
-    <ul>
-      <li class="fragment fade-right">Interactive theorem prover (ITP): program that checks inferences in formal language</li>
-      <li class="fragment fade-right">Distribution of epistemic burden.</li>
-    </ul>
+  <section>
+    <h1>Solution</h1>
+    $$Pr_{\mathsf{KB}\ast\mathsf{RAIN}}(\ \cdot\ )=Pr_\mathsf{KB}(\ \cdot \mid
+    \mathsf{RAIN})$$
   </section>
   <section>
     
     
-    <img src="https://logicalmethods.ai/slides/proof/img/lean.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+    <img src="https://logicalmethods.ai/slides/learning/img/prob-table-die.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+    
+
+    $$\text{Learn}: \mathsf{RESULT}_2\lor\mathsf{RESULT}_4\lor \mathsf{RESULT}_6?$$
+  </section>
+  <section>
+    $$Pr(\mathsf{R}_2\land (\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 ))=\frac{1}{6}$$
+    $$\Rightarrow Pr(\mathsf{R}_2\mid \mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 )=\frac{1}{3}$$
+    $$Pr(\mathsf{R}_1\land (\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 ))=0$$
+    $$\Rightarrow Pr(\mathsf{R}_1\mid \mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 )=0$$
+  </section>
+  <section>
+    
+    
+    <img src="https://logicalmethods.ai/slides/learning/img/prob-table-die-updated.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
     
 
   </section>
-  <section>
-    <h1>Example</h1>
-    <pre tabindex="0"><code class="text-warning">
-      variable {p : Prop}
-      variable {q : Prop}
-      variable {r : Prop}
-      open Classical
-      
-      theorem hilbert_1 : p → (q → p) := by
-        intro h
-        intro _
-        exact h
-      
-      theorem hilbert_2: (p → (q → r))→ ((p → q) → (p → r)) := by
-        intros h1 h2 hp
-        apply h1 hp
-        apply h2
-        assumption
-      
-      theorem hilbert_3 : (¬p → ¬q) → (q → p) := by
-        intros h hq
-        by_cases hp : p
-        · -- Case when p is true
-          exact hp
-        · -- Case when p is false (¬p)
-          have hnq := h hp
-          contradiction
-      
-      #print hilbert_1
-      #print hilbert_2
-      #print hilbert_3
-      </code></pre>
-    <a href="https://live.lean-lang.org/" target="_blank"><i class="bi bi-link-45deg"></i> Lean 4 Life</a>
-  </section>
-  <section id="automated">
-    <h1>Automated theorem proving</h1>
+  <section id="rule">
+    <h1>Bayes rule</h1>
+    $$Pr(A\mid B)=\frac{Pr(B\mid A)\times Pr(A)}{Pr(B)}$$
+
     <ul>
-      <li class="fragment fade-right">Automating mathematical reasoning.</li>
-      <li class="fragment fade-right">Teach neural networks to use ITPs.</li>
-      <li class="fragment fade-right">Very active area of research.</li>
+      <li class="fragment fade-right">
+        $Pr(A\mid B)$ is the <strong>posterior probability</strong>
+      </li>
+      <li class="fragment fade-right">
+        $Pr(A)$ is called the <strong>prior probability</strong>
+      </li>
+      <li class="fragment fade-right">
+        $Pr(B)$ is called the <strong>marginal probability</strong>
+      </li>
+      <li class="fragment fade-right">
+        $Pr(B\mid A)$ is called the <strong>likelihood</strong>
+      </li>
     </ul>
   </section>
+  <section class="fs-1">
+    <h1>Example</h1>
+    $$\mathbf{Marginal}: Pr_\mathsf{KB}(\mathsf{RAIN})=0.25$$
+    $$\mathbf{Likelihood}: Pr_\mathsf{KB}(\mathsf{RAIN}\mid \mathsf{HIGH\_PRESSURE})=0.2$$
+    $$\mathbf{Prior}: Pr_\mathsf{KB}(\mathsf{HIGH\_PRESSURE})=0.8$$
+    $$\mathbf{Posterior}: Pr(\mathsf{HIGH\\_PRESSURE}\mid\mathsf{RAIN})$$
+    $$=\frac{Pr(\mathsf{RAIN}\mid \mathsf{HIGH\_PRESSURE})\times
+    Pr(\mathsf{HIGH\_PRESSURE})}{Pr(\mathsf{RAIN})}$$
+    $$=\frac{0.2\times0.8}{0.25}=0.64$$
+  </section>
+  <section>
+    <h1>Applications</h1>
+    <ul>
+
+      <li class="fragment fade-right">From text recognition to spam filters.</li>
+      <li class="fragment fade-right"><em>Not</em> efficient: need to
+        recalculate <em>all</em> probabilities every time.</li>
+    </ul>
+  </section>
+</section>
+<section>
+   <section>
+    <dl class="row" >
+      <dd class="col">
+        <i class="bi bi-flag-fill text-primary" style="font-size:100px;"></i> 
+        <h1><span class="text-danger">Conclusion</span></h1>
+      </dd>
+      <dt class="col"></dt>
+    </dl>
+  </section>
+  <section>
+    <h1>Conclusion</h1>
+    <ul>
+      <li class="fragment fade-right">Three roles of logic: 
+        <ul>
+          <li class="fragment fade-right">Foundational</li>
+          <li class="fragment fade-right">Methodological</li>
+          <li class="fragment fade-right">As a tool</li>
+        </ul>
+      </li>
+      <li class="fragment fade-right">Not the main method (anymore), but
+        <em>everywhere</em>.</li>
+      <li class="fragment fade-right">You now know how this works, abstractly.</li>
+    </ul>
+  </section>
+</section>
+<section>
+  
+  
+  <img src="https://logicalmethods.ai/slides/learning/img/adventure.jpg" class="img-thumbnail"  alt="" >
+  
+
 </section>
 <section>
   <h1>Thanks<span class="text-danger">!</span></h1>
@@ -669,19 +629,13 @@ fullscreen. You can quit fullscreen by pressing ESC.</p>
   <h5>Highlights</h5>
   <ul class="list-group">
     
-    <a href="#/proofs" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Logical proofs</strong></a> 
+    <a href="#/bel" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Belief revision</strong></a> 
     
-    <a href="#/hilbert" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Hilbert systems</strong></a> 
+    <a href="#/agm" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>AGM axioms</strong></a> 
     
-    <a href="#/nd" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Natural deduction</strong></a> 
+    <a href="#/bayes" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Bayesian updating</strong></a> 
     
-    <a href="#/resolution" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Resolution-based systems</strong></a> 
-    
-    <a href="#/metalogic" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Metalogic (soundness and completeness)</strong></a> 
-    
-    <a href="#/itp" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Interactive Theorem Provers</strong></a> 
-    
-    <a href="#/automated" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Automated Theorem Prover</strong></a> 
+    <a href="#/rule" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Bayes rule</strong></a> 
     
   </ul>
 </div>
@@ -698,7 +652,7 @@ fullscreen. You can quit fullscreen by pressing ESC.</p>
 <ul class="navbar-nav flex-row justify-content-between mt-auto">
   
   <li class="nav-item">
-    <a href="/slides/conditionals/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="/slides/probability/" class="btn" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-left"></i>
     </a>
     
@@ -710,7 +664,7 @@ fullscreen. You can quit fullscreen by pressing ESC.</p>
   </li>
   <li class="nav-item">
     
-    <a href="/slides/fol/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-right"></i>
     </a>
     
