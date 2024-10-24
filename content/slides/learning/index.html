@@ -1,0 +1,265 @@
+---
+title: Logical learning
+author: Johannes Korbmacher
+weight: 12
+params: 
+  id: sli-learn
+  license: 'CC-BY-4.0'
+  highlights:
+     - keyword: "Belief revision"
+       id: "bel"
+     - keyword: "AGM axioms"
+       id: "agm"
+     - keyword: "Bayesian updating"
+       id: "bayes"
+     - keyword: "Bayesian rule"
+       id: "rule"
+---
+
+</section>
+<section>
+  {{< img src="img/qr-code.png" class="img-thumbnail" >}}
+  <p><a href="https://forms.gle/JiXXM9eysAZaJMja9" target="_blank" style="font-size:1.5em">https://forms.gle/JiXXM9eysAZaJMja9</a></p>
+</section>
+<section>
+  <section>
+    <dl class="row" >
+      <dd class="col">
+        <i class="bi bi-mortarboard-fill text-primary" style="font-size:100px;"></i> 
+        <h1>Logic-based <span class="text-danger">learning</span></h1>
+      </dd>
+      <dt class="col"></dt>
+    </dl>
+  </section>
+  <section id="learning">
+    <h1>Aim</h1>
+    <ul>
+      <li class="fragment fade-right">For last lecture: <em>learning</em></li>
+      <li class="fragment fade-right">We understand this today as: how to respond to new facts.</li>
+      <li class="fragment fade-right">There are other concepts of logical learning, e.g. "data fitting."</li>
+      <li class="fragment fade-right">Some overlap.</li>
+    </ul>
+  </section>
+  <section id="learning">
+    <h1>Aim</h1>
+    <ul>
+      <li class="fragment fade-right">Two models:</li>
+      <ul>
+        <li class="fragment fade-right">Deductive: belief revision</li>
+        <li class="fragment fade-right">Inductive: Bayesian updating</li>
+      </ul>
+    </ul>
+  </section>
+</section>
+<section>
+  <section id="bel">
+    <dl class="row" >
+      <dd class="col">
+        <i class="bi bi-arrow-return-left text-primary" style="font-size:100px;"></i> 
+        <h1>Belief <span class="text-danger">revision</span></h1>
+      </dd>
+      <dt class="col"></dt>
+    </dl>
+  </section>
+  <section>
+    <h1>Setup</h1>
+    <ul>
+      <li class="fragment fade-right">Knowledge base: $\mathsf{KB}\subseteq \mathcal{L}$</li>
+      <li class="fragment fade-right">Deductive closure: $\mathsf{KB}\vDash A\Rightarrow A\in KB$</li>
+      <li class="fragment fade-right">Learn <em>new</em> fact: $A\notin \mathsf{KB}$.
+        $$\text{Say}: \mathsf{RAIN}\notin\mathsf{KB}$$
+      </li>
+      <li class="fragment fade-right">What to do?</li>
+    </ul>
+  </section>
+  <section>
+    <h1>Easy: no conflict</h1>
+    $$\neg\mathsf{RAIN}\notin\mathsf{KB}$$
+    <ul>
+      <li class="fragment fade-right">Simply add $\mathsf{RAIN}$.</li>
+      <li class="fragment fade-right">$\mathsf{KB}+A=\Set{B:\mathsf{KB},A\vdash B}$</li>
+      <li class="fragment fade-right">Conservative:
+        $$\mathsf{KB},A\vdash \mathsf{KB}$$ $$\mathsf{KB},A\vdash A$$
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h1>Harder: conflict</h1>
+    $$\neg\mathsf{RAIN}\in\mathsf{KB}$$
+    <ul>
+      <li class="fragment fade-right">Problem: $\mathsf{KB}+\mathsf{RAIN}$ is inconsistent.</li>
+      <li class="fragment fade-right">Idea: "remove" $\neg\mathsf{RAIN}$.</li>
+      <li class="fragment fade-right fs-1">First approach:
+        $$\mathsf{KB}-\neg A = \Set{B\in\mathsf{KB}:B\text{ not eqv. to }\neg A}$$ 
+        $$(\mathsf{KB}-\neg A)+A?$$
+      </li>
+    </ul>
+  </section>
+  <section class="fs-1">
+    <h1>Problem</h1>
+    <ul >
+      <li class="fragment fade-right">Suppose: 
+        $$\mathsf{HIGH\_PRESSURE}\in\mathsf{KB}$$
+        $$\mathsf{WARM}\in\mathsf{KB}$$
+        $$\mathsf{HIGH\_PRESSURE}\land\mathsf{WARM}\to\neg\mathsf{RAIN}\in\mathsf{KB}$$
+      </li>
+      <li class="fragment fade-right">Then:
+        $$(\mathsf{KB}-\neg\mathsf{RAIN})+\mathsf{RAIN}\vdash \neg\mathsf{RAIN}$$
+      </li>
+    </ul>
+  </section>
+  <section class="fs-1">
+    <h1>Worse</h1>
+    <ul >
+      <li class="fragment fade-right">By closure:
+        $$\neg\mathsf{RAIN}\vdash \neg\mathsf{RAIN}\lor \bot\in\mathsf{KB}$$
+        $$\neg\mathsf{RAIN}\in\mathsf{KB}\Rightarrow\neg\mathsf{RAIN}\lor \bot\in\mathsf{KB}$$
+      </li>
+      <li class="fragment fade-right">So:
+        $$(\mathsf{KB}-\neg\mathsf{RAIN})+\mathsf{RAIN}\vdash \bot$$
+      </li>
+      <li class="fragment fade-right">Even if we solved the first problem.</li>
+    </ul>
+  </section>
+  <section>
+    <h1>What to do?</h1>
+    <ul>
+      <li class="fragment fade-right">Which "grounds" to remove?
+        $$\mathsf{HIGH\_PRESSURE}\in\mathsf{KB}$$
+        $$\mathsf{WARM}\in\mathsf{KB}$$
+        $$\mathsf{HIGH\_PRESSURE}\land\mathsf{WARM}\to\neg\mathsf{RAIN}\in\mathsf{KB}$$
+      </li>
+      <li class="fragment fade-right">Which consequences to remove?</li>
+    </ul>
+  </section>
+  <section id="agm" class="fs-1">
+    <h1>AGM Axioms</h1>
+    <ol>
+      <li>$\mathsf{KB}\ast A$ is always deductively closed</li>
+      <li>$A\in \mathsf{KB}\ast A$</li>
+      <li>$\mathsf{KB}\ast A\subseteq \mathsf{KB}+A$</li>
+      <li>If $\neg A\notin\mathsf{KB}$, then $\mathsf{KB}\ast A=\mathsf{KB}+A$</li>
+      <li>$\mathsf{KB}\ast A$ is only inconsistent if $A$ itself is</li>
+      <li>If $A,B$ are logically equivalent, then $\mathsf{KB}\ast A=\mathsf{KB}\ast B$</li>
+      <li>$\mathsf{KB}\ast(A\land B)\subseteq (\mathsf{KB}\ast A)+B$</li>
+      <li>If $\neg B\notin\mathsf{KB}\ast A$, then $(\mathsf{KB}\ast A)+B\subseteq
+        \mathsf{KB}\ast(A\land B)$</li>
+    </ol>
+  </section>
+  <section>
+    <h1>Outlook</h1>
+    <ul>
+      <li class="fragment fade-right">Aim: define revision operator $\ast$.</li>
+      <li class="fragment fade-right">Problem: many different options.</li>
+      <li class="fragment fade-right">"Best" revision depends on the world, subject matter, $KB$-external knowledge, ...</li>
+    </ul>
+  </section>
+</section>
+<section >
+  <section id="bayes">
+    <dl class="row" >
+      <dd class="col">
+        <i class="bi bi-emoji-smile-fill text-primary" style="font-size:100px;"></i> 
+        <h1>Bayesian <span class="text-danger">updating</span></h1>
+      </dd>
+      <dt class="col"></dt>
+    </dl>
+  </section>
+  <section>
+    <h1>Setup</h1>
+    <ul>
+      <li class="fragment fade-right">Knowledge base: $Pr_\mathsf{KB}:\mathcal{L}\to\mathbb{R}$</li>
+      <li class="fragment fade-right">Learn <em>new</em> fact $A$: $Pr_\mathsf{KB}(A)\neq 1$.</li>
+      <li class="fragment fade-right">"Learnable" fact: $Pr_\mathsf{KB}(A)\neq 0$.</li>
+      <li class="fragment fade-right">What now?</li>
+    </ul>
+  </section>
+  <section>
+    <h1>Solution</h1>
+    $$Pr_{\mathsf{KB}\ast\mathsf{RAIN}}(\ \cdot\ )=Pr_\mathsf{KB}(\ \cdot \mid
+    \mathsf{RAIN})$$
+  </section>
+  <section>
+    {{< img src="img/prob-table-die.png" class="img-thumbnail mx-auto d-block my-4" >}}
+    $$\text{Learn}: \mathsf{RESULT}_2\lor\mathsf{RESULT}_4\lor \mathsf{RESULT}_6?$$
+  </section>
+  <section>
+    $$Pr(\mathsf{R}_2\land (\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 ))=\frac{1}{6}$$
+    $$\Rightarrow Pr(\mathsf{R}_2\mid \mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 )=\frac{1}{3}$$
+    $$Pr(\mathsf{R}_1\land (\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 ))=0$$
+    $$\Rightarrow Pr(\mathsf{R}_1\mid \mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 )=0$$
+  </section>
+  <section>
+    {{< img src="img/prob-table-die-updated.png" class="img-thumbnail mx-auto d-block my-4" >}}
+  </section>
+  <section id="rule">
+    <h1>Bayes rule</h1>
+    $$Pr(A\mid B)=\frac{Pr(B\mid A)\times Pr(A)}{Pr(B)}$$
+
+    <ul>
+      <li class="fragment fade-right">
+        $Pr(A\mid B)$ is the <strong>posterior probability</strong>
+      </li>
+      <li class="fragment fade-right">
+        $Pr(A)$ is called the <strong>prior probability</strong>
+      </li>
+      <li class="fragment fade-right">
+        $Pr(B)$ is called the <strong>marginal probability</strong>
+      </li>
+      <li class="fragment fade-right">
+        $Pr(B\mid A)$ is called the <strong>likelihood</strong>
+      </li>
+    </ul>
+  </section>
+  <section class="fs-1">
+    <h1>Example</h1>
+    $$\mathbf{Marginal}: Pr_\mathsf{KB}(\mathsf{RAIN})=0.25$$
+    $$\mathbf{Likelihood}: Pr_\mathsf{KB}(\mathsf{RAIN}\mid \mathsf{HIGH\_PRESSURE})=0.2$$
+    $$\mathbf{Prior}: Pr_\mathsf{KB}(\mathsf{HIGH\_PRESSURE})=0.8$$
+    $$\mathbf{Posterior}: Pr(\mathsf{HIGH\\_PRESSURE}\mid\mathsf{RAIN})$$
+    $$=\frac{Pr(\mathsf{RAIN}\mid \mathsf{HIGH\_PRESSURE})\times
+    Pr(\mathsf{HIGH\_PRESSURE})}{Pr(\mathsf{RAIN})}$$
+    $$=\frac{0.2\times0.8}{0.25}=0.64$$
+  </section>
+  <section>
+    <h1>Applications</h1>
+    <ul>
+
+      <li class="fragment fade-right">From text recognition to spam filters.</li>
+      <li class="fragment fade-right"><em>Not</em> efficient: need to
+        recalculate <em>all</em> probabilities every time.</li>
+    </ul>
+  </section>
+</section>
+<section>
+   <section>
+    <dl class="row" >
+      <dd class="col">
+        <i class="bi bi-flag-fill text-primary" style="font-size:100px;"></i> 
+        <h1><span class="text-danger">Conclusion</span></h1>
+      </dd>
+      <dt class="col"></dt>
+    </dl>
+  </section>
+  <section>
+    <h1>Conclusion</h1>
+    <ul>
+      <li class="fragment fade-right">Three roles of logic: 
+        <ul>
+          <li class="fragment fade-right">Foundational</li>
+          <li class="fragment fade-right">Methodological</li>
+          <li class="fragment fade-right">As a tool</li>
+        </ul>
+      </li>
+      <li class="fragment fade-right">Not the main method (anymore), but
+        <em>everywhere</em>.</li>
+      <li class="fragment fade-right">You now know how this works, abstractly.</li>
+    </ul>
+  </section>
+</section>
+<section>
+  {{< img src="img/adventure.jpg" class="img-thumbnail" >}}
+</section>
+<section>
+  <h1>Thanks<span class="text-danger">!</span></h1>
+</section>
