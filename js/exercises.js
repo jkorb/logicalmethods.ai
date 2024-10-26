@@ -126,5 +126,7 @@ const passwords = {
   "exc-fol": "Sesame",
   "exc-finf": "Schibboleth",
   "exc-mv": "MoreThanTwo",
+  "exc-prob": "Probably",
+  "exc-learn" : "NonScholae"
   // Add more solutionId: password pairs here
 };

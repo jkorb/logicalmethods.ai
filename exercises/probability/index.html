@@ -386,8 +386,19 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
     
       
 </div>
-<div id="probability-functions" ><h5 class="">
+<div id="probability-functions" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Probability functions
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="probability-functionsSolution"
+        onclick="showPasswordModal('probability-functionsSolution', 'exc-prob')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>Suppose we&rsquo;re dealing with a coin-flip, which we analyze in a propositional
 language with $\neg,\land,\lor$ and propositional variables:</p>
@@ -427,8 +438,66 @@ Pr(\mathsf{HEADS}\land\mathsf{TAILS})=0$$</p>
 <div id="e" class=" homework"><h6 class=" homework">e)</h6><p>$$Pr(\mathsf{HEADS})=0\qquad Pr(\mathsf{HEADS}\land\mathsf{TAILS})=0$$</p>
 
 </div>
-<div id="probability-laws" ><h5 class="">
+<div id="probability-functionsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>(a)</strong></p>
+<p>Solutions:</p>
+<ol>
+<li>$Pr(\neg H) = 1-Pr(H) = 0.5$</li>
+<li>$Pr(\neg T) = 1-Pr(T) = 0.5$</li>
+<li>We could solve this if we could solve 4, but&hellip;</li>
+<li>We don&rsquo;t have enough information to determine $Pr(H\land B)$.</li>
+</ol>
+<!-- raw HTML omitted -->
+<p><strong>(b)</strong></p>
+<p>Using inclusion-exclusion we have $Pr(H\lor T)=Pr(H)+Pr(T)-Pr(H\land T)$, plugging in the two values given in this case $0.5=Pr(H)+Pr(T)-0.5$ and so we have $1=Pr(H)+Pr(T)$.</p>
+<ol>
+<li>$Pr(\neg H) = 1-Pr(H)$. From above $1-Pr(H)=Pr(T)$. So we can say $Pr(\neg H) = Pr(T)$ but that&rsquo;s about the best we can do.</li>
+<li>$Pr(\neg T) = 1-Pr(T)$. From above $1-Pr(T)=Pr(H)$. So we can say $Pr(\neg T) = Pr(H)$ but that&rsquo;s about the best we can do.</li>
+<li>The answer was given in the exercise.</li>
+<li>The answer was given in the exercise.</li>
+</ol>
+<!-- raw HTML omitted -->
+<p><strong>(c)</strong>
+Solutions:</p>
+<ol>
+<li>$Pr(\neg H) = 1-Pr(H) = 0.3$</li>
+<li>$Pr(\neg T) = 1-Pr(T) = 0.7$</li>
+<li>Since $Pr(H\land T)=0$, we have $Pr(H\lor T)=Pr(H)+Pr(T)=1$ by the third axiom.</li>
+<li>The answer was given in the exercise.</li>
+</ol>
+<!-- raw HTML omitted -->
+<p><strong>(d)</strong>
+Solutions:</p>
+<ol>
+<li>We don&rsquo;t have enough information to determine $Pr(H)$ or $Pr(\neg H)$.</li>
+<li>We don&rsquo;t have enough information to determine $Pr(T)$ or $Pr(\neg T)$.</li>
+<li>$Pr(H\lor T)=Pr(H)+Pr(T)-1$ using inclusion-exclusion but that is all we can say.</li>
+<li>The answer was given in the exercise.</li>
+</ol>
+<!-- raw HTML omitted -->
+<p><strong>(e)</strong></p>
+<p>Solutions:</p>
+<ol>
+<li>$Pr(\neg H) = 1-Pr(H) = 1$</li>
+<li>We don&rsquo;t have enough information to determine $Pr(T)$ or $Pr(\neg T)$.</li>
+<li>Since $Pr(H\land T)=0$, we have $Pr(H\lor T)=Pr(H)+Pr(T)=0+Pr(T)$ by the third axiom, but that is all we can say.</li>
+<li>The answer was given in the exercise.</li>
+</ol>
+<!-- raw HTML omitted -->
+
+</div>
+<div id="probability-laws" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Probability laws
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="probability-lawsSolution"
+        onclick="showPasswordModal('probability-lawsSolution', 'exc-prob')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>Derive the following laws for probabilities from the axioms:</p>
 
@@ -444,8 +513,88 @@ is equivalent to $A\lor B$.</p>
 <div id="c-1" ><h6 class="">c)</h6><p>$$Pr(A\lor B)=Pr(A)+Pr(B)-Pr(A\land B)$$</p>
 
 </div>
-<div id="probability-truth-tables" ><h5 class="">
+<div id="probability-lawsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>(a)</strong></p>
+<p>Solution:</p>
+<ul>
+<li>Take any $A$. Consider its negation $\neg A$.</li>
+<li>$0\leq Pr(\neg A)$ by the first axiom.</li>
+<li>We know that $Pr(\neg A)= 1-Pr(A)$.</li>
+<li>$0\leq 1-Pr(A)$ by substitution.</li>
+<li>$Pr(A)\leq 1$ by adding $Pr(A)$ to each side.</li>
+</ul>
+<!-- raw HTML omitted -->
+<p><strong>(b)</strong>
+Solution:</p>
+<ul>
+<li>Assume that $A\vDash B$.</li>
+<li>Our assumption implies that $\vDash\neg(A\land\neg B)$</li>
+<li>So we have $Pr(A\lor\neg B)=Pr(A)+Pr(\neg B)$ by the third axiom.</li>
+<li>We know that $Pr(\neg B)= 1-Pr(B)$.</li>
+<li>So we have $Pr(A\lor\neg B)=Pr(A)+1-Pr(B)$.</li>
+<li>We just proved that $Pr(A\lor\neg B)\leq 1$ holds for any formula.</li>
+<li>So in this case we must have $Pr(A)+1-Pr(B)\leq 1$.</li>
+<li>$Pr(A)+1\leq Pr(B)+1$ by adding $Pr(B)$ to each side.</li>
+<li>$Pr(A)\leq Pr(B)$ by subtracting $1$ from each side.</li>
+</ul>
+<!-- raw HTML omitted -->
+<p><strong>(c)</strong>
+This one is complicated.</p>
+<p>Fact 1.</p>
+<ul>
+<li>$A\lor(B\land\neg A)\vDash A\lor B$ and $A\lor B\vDash A\lor(B\land\neg A)$</li>
+<li>You can check this with truth tables or natural deduction proofs</li>
+<li>By exercise (b) these formulas must have the same probability</li>
+<li>$Pr(A\lor B)=Pr(A\lor(B\land\neg A))$</li>
+</ul>
+<p>Fact 2.</p>
+<ul>
+<li>$\vDash\neg(A\land(B\land\neg A))$</li>
+<li>That means we have independence of these events,</li>
+<li>Using axiom three we calculate the disjunction as follows</li>
+<li>$Pr(A\lor(B\land\neg A))=Pr(A)+Pr(B\land\neg A)$</li>
+</ul>
+<p>Fact 3.</p>
+<ul>
+<li>$Pr(A\land B)-Pr(A\land B)=0$</li>
+<li>That means we can &ldquo;add this&rdquo; to any quantity</li>
+<li>$Pr(A)+Pr(B\land\neg A)=Pr(A)+Pr(B\land\neg A)+Pr(A\land B)-Pr(A\land B)$</li>
+</ul>
+<p>Fact 4.</p>
+<ul>
+<li>$\vDash\neg((B\land\neg A)\land(A\land B))$</li>
+<li>That means we have independence of our two middle quantities</li>
+<li>$Pr(B\land\neg A)$ and $Pr(A\land B)$ determine the disjunction $Pr((B\land\neg A)\lor(A\land B))$</li>
+<li>$Pr(A)+Pr(B\land\neg A)+Pr(A\land B)-Pr(A\land B)=Pr(A)+Pr((B\land\neg A)\lor(A\land B))-Pr(A\land B)$</li>
+</ul>
+<p>Fact 5.</p>
+<ul>
+<li>$B\vDash (B\land A)\lor(B\land\neg A)$ and $(B\land A)\lor(B\land\neg A)\vDash B$</li>
+<li>You can check this with truth tables or natural deduction proofs</li>
+<li>By exercise (b) these formulas must have the same probability</li>
+<li>$Pr(B)=Pr((B\land A)\lor(B\land\neg A))$</li>
+</ul>
+<p>Fact 6.</p>
+<ul>
+<li>By combining the results from Fact 4 and 5 we get this</li>
+<li>$Pr(A)+Pr((B\land\neg A)\lor(A\land B))-Pr(A\land B)=Pr(A)+Pr(B)-Pr(A\land B)$</li>
+<li>And if we string together Facts 1-6 we have the inclusion-exclusion equation</li>
+</ul>
+<!-- raw HTML omitted -->
+
+</div>
+<div id="probability-truth-tables" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Probability truth-tables
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="probability-truth-tablesSolution"
+        onclick="showPasswordModal('probability-truth-tablesSolution', 'exc-prob')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>Remember our probability function for the fair die:</p>
 <p>$$Pr_{\text{fair}}(\mathsf{RESULT}_i)=\frac{1}{6}\text{, for }i=1,\dots,6$$
@@ -471,8 +620,26 @@ following claims according to the table:</p>
 </ol>
 
 </div>
-<div id="inductive-validity" ><h5 class="">
+<div id="probability-truth-tablesSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6>
+
+<img src="https://logicalmethods.ai/exercises/probability/img/prob-table.png" class="img-thumbnail mx-auto d-block my-4"  alt="" >
+
+
+
+</div>
+<div id="inductive-validity" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Inductive validity
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="inductive-validitySolution"
+        onclick="showPasswordModal('inductive-validitySolution', 'exc-prob')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>Take the probability function for the unfair die in the previous exercise.
 Using appropriate formalizations, determine whether the following inferences
@@ -491,8 +658,33 @@ are (weakly) inductively valid:</p>
 <div id="c-2" class=" homework"><h6 class=" homework">c)</h6><p>The die came up even, so it&rsquo;s likely a 6.</p>
 
 </div>
-<div id="measures-of-inductive-strength" ><h5 class="">
+<div id="inductive-validitySolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>(a)</strong></p>
+<p>The premise is $\mathsf{ODD}$ and we have $Pr(\mathsf{ODD})=\frac{3}{7}$. The conclusion is $\mathsf{RES}_3\lor\mathsf{RES}_5$ and we have $Pr(\mathsf{RES}_3\lor\mathsf{RES}_5)=\frac{2}{7}$. We also need the information $Pr(\mathsf{ODD}\land(\mathsf{RES}_3\lor\mathsf{RES}_5))=\frac{2}{7}$. Then we calculate conditional probability $Pr(\mathsf{RES}_3\lor\mathsf{RES}_5|\mathsf{ODD})=\frac{2}{7}/\frac{3}{7}=\frac{2}{3}$. Since this is higher than the conclusion by itself, the inference is (weakly) inductively valid.</p>
+<!-- raw HTML omitted -->
+<p><strong>(b)</strong></p>
+<p>The premise is $\mathsf{ODD}$ and we have $Pr(\mathsf{ODD})=\frac{3}{7}$. The conclusion is $\mathsf{RES}_6$ and we have $Pr(\mathsf{RES}_6)=\frac{2}{7}$. We also need the information $Pr(\mathsf{ODD}\land\mathsf{RES}_3)=0$. Then we calculate conditional probability $Pr(\mathsf{RES}_6|\mathsf{ODD})=0/\frac{3}{7}=0$. This is lower than the conclusion probability by itself. The inference is invalid.</p>
+<!-- raw HTML omitted -->
+<p><strong>(c)</strong></p>
+<p>The premise is $\mathsf{EVEN}$ and we have $Pr(\mathsf{EVEN})=\frac{4}{7}$. The conclusion is $\mathsf{RES}_2$ and we have $Pr(\mathsf{RES}_2)=\frac{1}{7}$. We also need the information $Pr(\mathsf{EVEN}\land\mathsf{RES}_2)=\frac{1}{7}$. Then we calculate conditional probability $Pr(\mathsf{RES}_2|\mathsf{EVEN})=\frac{1}{7}/\frac{4}{7}=\frac{1}{4}$. Since this is higher than the conclusion by itself, the inference is ((weakly) inductively valid.</p>
+<!-- raw HTML omitted -->
+<p><strong>(d)</strong></p>
+<p>The premise is $\mathsf{EVEN}$ and we have $Pr(\mathsf{EVEN})=\frac{4}{7}$. The conclusion is $\mathsf{RES}_6$ and we have $Pr(\mathsf{RES}_6)=\frac{2}{7}$. We also need the information $Pr(\mathsf{EVEN}\land\mathsf{RES}_6)=\frac{2}{7}$. Then we calculate conditional probability $Pr(\mathsf{RES}_6|\mathsf{EVEN})=\frac{2}{7}/\frac{4}{7}=\frac{1}{2}$. Since this is higher than the conclusion by itself, the inference is (weakly) inductively valid.</p>
+<!-- raw HTML omitted -->
+
+</div>
+<div id="measures-of-inductive-strength" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Measures of inductive strength
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="measures-of-inductive-strengthSolution"
+        onclick="showPasswordModal('measures-of-inductive-strengthSolution', 'exc-prob')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>Inductive logicians have proposed different measures of the inductive strength
 of an argument.</p>
@@ -510,6 +702,12 @@ $$Pr(C)$$
 $$Pr(C|P_1\land P_2\land\dots)$$</p>
 <p>What are the differences between the two measures, where do they work better,
 where worse?</p>
+
+</div>
+<div id="measures-of-inductive-strengthSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>Consider the last two inferences we studied $\mathsf{EVEN} \mid\overset{!}{\approx} \mathsf{RES}_2$ and $\mathsf{EVEN} \mid\overset{!}{\approx} \mathsf{RES}_6$ about the unfair die. Just based on informal thinking, do you think one inference is stronger?</p>
+<p>Let&rsquo;s compare two formal measures of strength.</p>
+<p>According to the measure we have been assuming, the strength of the first inference $\mathsf{EVEN} \mid\overset{!}{\approx} \mathsf{RES}_2$ is calculated by $Pr(\mathsf{RES}_2|\mathsf{EVEN})-Pr(\mathsf{RES}_2)=\frac{1}{4}-\frac{1}{7}\approx 0,107$. The strength of the second inference $\mathsf{EVEN} \mid\overset{!}{\approx} \mathsf{RES}_6$ is calculated by $Pr(\mathsf{RES}_6|\mathsf{EVEN})-Pr(\mathsf{RES}_6)=\frac{1}{2}-\frac{2}{7}\approx 0,214$. Neither inference is extremely strong but there is a big difference between them.</p>
+<p>According to the logarithmic measure, the strength of the first inference $\mathsf{EVEN} \mid\overset{!}{\approx} \mathsf{RES}_2$ is calculated by $\mathrm{log}(Pr(\mathsf{RES}_2|\mathsf{EVEN})/Pr(\mathsf{RES}_2))=\mathrm{log}(\frac{1}{4}/\frac{1}{7})\approx 0.807$. The strength of the second inference $\mathsf{EVEN} \mid\overset{!}{\approx} \mathsf{RES}_6$ is calculated by $\mathrm{log}(Pr(\mathsf{RES}_6|\mathsf{EVEN})/Pr(\mathsf{RES}_6))=\mathrm{log}(\frac{1}{2}/\frac{2}{7})\approx 0.807$. This theory says that the strength is the same. Do you think that is the right way to model strength of reasoning? Or is the other measurement better?</p>
 
 </div>
 <div id="discussion" class=" homework"><h5 class="homework">
