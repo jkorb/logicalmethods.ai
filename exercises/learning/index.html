@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8"></meta>
     <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-    <title>logicalmethods.ai &ndash; Boolean algebra </title>
+    <title>logicalmethods.ai &ndash; Logical learning </title>
     <link rel="icon" type="image/x-icon" href="https://logicalmethods.ai/favicon.ico"></link>
     <link href="https://logicalmethods.ai/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"></link>
     <link rel="stylesheet" href="https://logicalmethods.ai/icons/font/bootstrap-icons.min.css"></link>
@@ -214,7 +214,7 @@
             </li>
             
             <li>
-              <a class="dropdown-item fw-bold active" href="/exercises/boolean/">4. Boolean algebra</a>
+              <a class="dropdown-item " href="/exercises/boolean/">4. Boolean algebra</a>
             </li>
             
             <li>
@@ -246,7 +246,7 @@
             </li>
             
             <li>
-              <a class="dropdown-item " href="/exercises/learning/">12. Logical learning</a>
+              <a class="dropdown-item fw-bold active" href="/exercises/learning/">12. Logical learning</a>
             </li>
             </ul>
         </div>
@@ -302,7 +302,7 @@
   <ul class="navbar-nav flex-row justify-content-between mt-2">
   
   <li class="nav-item">
-    <a href="/exercises/formal-languages/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="/exercises/probability/" class="btn" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-left"></i>
     </a>
     
@@ -314,7 +314,7 @@
   </li>
   <li class="nav-item">
     
-    <a href="/exercises/sat/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-right"></i>
     </a>
     
@@ -323,7 +323,7 @@
 
   <div class="container text-center">
   <h3>
-    Tutorial 4. Boolean algebra
+    Tutorial 12. Logical learning
   </h3>
   <em>Exercise sheet</em>
 </div>
@@ -388,322 +388,99 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
   <div class="container-fluid m-0 p-0">
     
     
-      <p>$\LaTeX$: The solutions for exercises marked with this symbol need to be typed
-up using the latex typesetting system. If the exercise is homework, you need to
-digitally submit the solution as a PDF. Ask your TA to find out how.</p>
-<p>If you don&rsquo;t know what $\LaTeX$ is and how it works, you can learn it in 30
-minutes by following this
-<i class="bi bi-box-arrow-up-right h-6"></i>
-<a href="https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes" class="link-dark" rel="external" target="_blank">link</a>
+      <p>For the last workgroup, we just have one exercise that illustrate an important
+concepts about Bayesian learning. The rest of the workgroup you can use to ask
+questions for the exam.</p>
+
+</div>
+<div id="base-rate-fallacy" class=" solved"><h5 class="solved">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Base-rate fallacy
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="base-rate-fallacySolution"
+        onclick="showPasswordModal('base-rate-fallacySolution', 'exc-learn')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
+    </div>
+</h5><p>The <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/Base_rate_fallacy" class="link-dark" rel="external" target="_blank">base-rate fallacy</a>
+ is
+about a common misestimation concerning conditional probabilities.</p>
+<p>A simple example concerns diagnostic tests for rare diseases.</p>
+<p>Suppose that a certain disease has a prevalence of 1% in the population. This is
+already quite high, most &ldquo;serious&rdquo; infectious diseases have a way lower
+prevalence in the general population.</p>
+<p>Now suppose that we have a test for the disease, which is 90% accurate in the
+following sense:</p>
+<ul>
+<li>
+<p>If you have the disease, the test is positive with 0.90 probability. This is
+called the 
+<a href="Sensitivity_and_specificity" class="link-dark">test sensitivity</a>
 .</p>
-<p>For convenience, there are copy-paste-able $\LaTeX$-snippets included at the end
-of each question (click to expand).</p>
-
-</div>
-<div id="recursion" class=" latex solved"><h5 class="latex solved">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Recursion
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="recursionSolution"
-        onclick="showPasswordModal('recursionSolution', 'exc-bool')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
-    </div>
-</h5><p>For this exercise, use a propositional language with the following variables:</p>
-<ul>
-<li>$MARS$, which stands for &ldquo;Mars is red&rdquo;,</li>
-<li>$VENUS$, which stands for &ldquo;Venus is green&rdquo;,</li>
-<li>$PLUTO$, which stands for &ldquo;Pluto is black&rdquo;.</li>
+</li>
+<li>
+<p>If you don&rsquo;t have the disease, the test is negative with 0.90 probability. This is
+called the 
+<a href="Sensitivity_and_specificity" class="link-dark">test specificity</a>
+.</p>
+</li>
 </ul>
-<p>Take a model where:</p>
+<p>Note that test sensitivity and specificity can differ, but we assume both are
+the same for simplicity.</p>
+
+</div>
+<div id="a" ><h6 class="">a)</h6><p>Using a language with only the propositional variables
+$$\mathsf{DISEASE},\mathsf{POSITIVE},$$ determine the probabilities given by the
+above description (it&rsquo;s sufficient to determine the ones you need for b).</p>
+<p><em>Hint</em>: You can estimate the unconditional probability of the person having the
+disease as the prevalence of the disease in the population.</p>
+
+</div>
+<div id="b" ><h6 class="">b)</h6><p>Suppose we&rsquo;re administering the test to a randomly selected person from the
+population. The test results positive. What is the probability that the person
+has the disease given this outcome?</p>
+<p><em>Hint</em>: Use the alternative formulation of Bayes theorem.</p>
+
+</div>
+<div id="c" ><h6 class="">c)</h6><p>Let&rsquo;s take the Netherlands with around 18 million people as sample population?
+Interpreting probabilities as frequencies and work out what the numbers from
+before mean. This may help understand the situation.</p>
+
+</div>
+<div id="base-rate-fallacySolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong></p>
+<p>The information we&rsquo;re given can be represented as follows:</p>
 <ul>
-<li>$\nu(MARS)=1$,</li>
-<li>$\nu(VENUS)=1$,</li>
-<li>$\nu(PLUTO)=0$.</li>
+<li>$Pr(\mathsf{DISEASE})=0.01$</li>
+<li>$Pr(\mathsf{POSITIVE}\mid\mathsf{DISEASE})=0.9$</li>
+<li>$Pr(\neg\mathsf{POSITIVE}\mid\neg\mathsf{DISEASE})=0.9$</li>
 </ul>
-<p>Show the recursive calculation in this model for the truth-value of each formula below.</p>
-<ol>
-<li>$\nu(\neg PLUTO)=$ ?</li>
-<li>$\nu(MARS\land VENUS)=$ ?</li>
-<li>$\nu(PLUTO\lor\neg MARS)=$ ?</li>
-<li>$\nu(MARS\land\neg PLUTO)=$ ?</li>
-<li>$\nu(\neg(VENUS\land\neg\neg (PLUTO\lor MARS)))=$ ?</li>
-</ol>
-
-
-
-
-
-
-<hr>
-<a class="btn btn-sm btn-link link-dark link-underline-opacity-0" href="#95536a4e72d6e2890b4f5f2618fffc530cf9dc5788069857841cc5b9e70169e9" type="button" data-bs-toggle="collapse" data-bs-target="#95536a4e72d6e2890b4f5f2618fffc530cf9dc5788069857841cc5b9e70169e9" aria-expanded="false" aria-controls="95536a4e72d6e2890b4f5f2618fffc530cf9dc5788069857841cc5b9e70169e9" >
-$\LaTeX$ answer template <i class="bi bi-chevron-left toggle-icon"></i>
-</a>
-<div id="95536a4e72d6e2890b4f5f2618fffc530cf9dc5788069857841cc5b9e70169e9" class="collapse bg-black rounded m-2 p-2 " style="position:relative;">
-  <button class="btn btn-primary shadow" style="position:absolute; top:10px;right:10px" onclick="copyContent('95536a4e72d6e2890b4f5f2618fffc530cf9dc5788069857841cc5b9e70169e9-inner')"><i class="bi bi-clipboard"></i> Copy!</button>
-  <pre><code class="text-white" id="95536a4e72d6e2890b4f5f2618fffc530cf9dc5788069857841cc5b9e70169e9-inner">
-\begin{enumerate}
-  \item  $\nu(\neg PLUTO)=$ 
-  \item  $\nu(MARS\land VENUS)=$ 
-  \item  $\nu(PLUTO\lor\neg MARS)=$ 
-  \item  $\nu(MARS\land\neg PLUTO)=$ 
-  \item  $\nu(\neg(VENUS\land\neg\neg (PLUTO\lor MARS)))=$ 
-\end{enumerate}
-</code></pre>
-</div>
-<hr>
-
-
-</div>
-<div id="recursionSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><ol>
-<li>Answer:</li>
-</ol>
+<p>From this we can derive a few probabilities that will be useful for the
+following question:</p>
 <ul>
-<li>$\nu(\neg PLUTO)$</li>
-<li>$=-\nu(PLUTO)$</li>
-<li>$=-0$</li>
-<li>$=1$</li>
+<li>$Pr(\neg\mathsf{DISEASE})=0.99$</li>
+<li>$Pr(\mathsf{POSITIVE}\mid\neg\mathsf{DISEASE})=0.1$</li>
 </ul>
-<ol start="2">
-<li>Answer:</li>
-</ol>
-<ul>
-<li>$\nu(MARS\land VENUS)$</li>
-<li>$=\nu(MARS)\times\nu(VENUS)$</li>
-<li>$=1\times 1$</li>
-<li>$=1$</li>
-</ul>
-<ol start="3">
-<li>Answer:</li>
-</ol>
-<ul>
-<li>$\nu(PLUTO\lor\neg MARS)$</li>
-<li>$=\nu(PLUTO)+\nu(\neg MARS)$</li>
-<li>$=\nu(PLUTO)+(-\nu(MARS))$</li>
-<li>$=0+(-1)$</li>
-<li>$=0+0$</li>
-<li>$=0$</li>
-</ul>
-<ol start="4">
-<li>Answer:</li>
-</ol>
-<ul>
-<li>$\nu(MARS\land\neg PLUTO)$</li>
-<li>$=\nu(MARS)\times\nu(\neg PLUTO)$</li>
-<li>$=\nu(MARS)\times(-\nu(PLUTO))$</li>
-<li>$=1\times(-0)$</li>
-<li>$=1\times 1$</li>
-<li>$=1$</li>
-</ul>
-<ol start="5">
-<li>Answer:</li>
-</ol>
-<ul>
-<li>$\nu(\neg(VENUS\land\neg\neg (PLUTO\lor MARS)))$</li>
-<li>$=-\nu(VENUS\land\neg\neg (PLUTO\lor MARS))$</li>
-<li>$=-(\nu(VENUS)\times\nu(\neg\neg (PLUTO\lor MARS)))$</li>
-<li>$=-(\nu(VENUS)\times &ndash;\nu(PLUTO\lor MARS))$</li>
-<li>$=-(\nu(VENUS)\times&ndash;(\nu(PLUTO)+\nu(MARS)))$</li>
-<li>$=-(1\times&ndash;(0+1))$</li>
-<li>$=-(1\times&ndash;1)$</li>
-<li>$=-(1\times-0)$</li>
-<li>$=-(1\times 1)$</li>
-<li>$=- 1$</li>
-<li>$= 0$</li>
-</ul>
-
-</div>
-<div id="boolean-laws" class=" latex solved"><h5 class="latex solved">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Boolean laws
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="boolean-lawsSolution"
-        onclick="showPasswordModal('boolean-lawsSolution', 'exc-bool')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
-    </div>
-</h5><p>Use the Boolean laws in section 4.6 to explain why these equations are correct.</p>
-
-</div>
-<div id="a" ><h6 class="">a)</h6><p>$x\times (x+y) =  x+(x\times y)$</p>
-
-</div>
-<div id="b" ><h6 class="">b)</h6><p>$y\times z = y\times (z\times y)$</p>
-
-</div>
-<div id="c" ><h6 class="">c)</h6><p>$(x + (y\times z))+x=(x+y)\times(x+z)$</p>
-
-
-
-
-
-
-<hr>
-<a class="btn btn-sm btn-link link-dark link-underline-opacity-0" href="#66b6eb50f1d38159914e1dbe41091836e0c4c3d8876fb54b477b0da0aa41c556" type="button" data-bs-toggle="collapse" data-bs-target="#66b6eb50f1d38159914e1dbe41091836e0c4c3d8876fb54b477b0da0aa41c556" aria-expanded="false" aria-controls="66b6eb50f1d38159914e1dbe41091836e0c4c3d8876fb54b477b0da0aa41c556" >
-$\LaTeX$ answer template <i class="bi bi-chevron-left toggle-icon"></i>
-</a>
-<div id="66b6eb50f1d38159914e1dbe41091836e0c4c3d8876fb54b477b0da0aa41c556" class="collapse bg-black rounded m-2 p-2 " style="position:relative;">
-  <button class="btn btn-primary shadow" style="position:absolute; top:10px;right:10px" onclick="copyContent('66b6eb50f1d38159914e1dbe41091836e0c4c3d8876fb54b477b0da0aa41c556-inner')"><i class="bi bi-clipboard"></i> Copy!</button>
-  <pre><code class="text-white" id="66b6eb50f1d38159914e1dbe41091836e0c4c3d8876fb54b477b0da0aa41c556-inner">
-
-% For reference: the laws
-
-\begin{tabular}{ c c }
-  Conjunction laws          &                                          \\[2ex]
-  
-  Idempotence of $\times$   & $x\times x=x$                            \\
-  Commutativity of $\times$ & $x\times y=y\times x$                    \\
-  Associativity of $\times$ & $x\times(y\times z)=(x\times y)\times z$ \\
-  Identity for $\times$     & $x\times 1=x$                            \\
-  Annihilation for $\times$ & $x\times 0=0$                            \\[2ex]
-  
-  Disjunction laws          &                                          \\[2ex]
-  
-  Idempotence of $+$        & $x+x=x$                                  \\
-  Commutativity of $+$      & $x+y=y+x$                                \\
-  Associativity of $+$      & $x+(y+z)=(x+y)+z$                        \\
-  Identity for $+$          & $x+0=x$                                  \\
-  Annihilation for $+$      & $x+ 1=1$                                 \\[2ex]
-  
-  Interaction laws          &                                          \\[2ex]
-  
-  Distributivity $\times$/$+$ & $x\times(y+z)=(x\times y)+(x\times z)$ \\
-  Distributivity $+$/$\times$ & $x+(y\times z)=(x+y)\times(x+ z)$      \\
-  Absorption 1                & $x+(x\times y)=x$                      \\
-  Absorption 2                & $x\times(x+ y)=x$                      \\[2ex]
-  
-  Negation laws               &                                        \\[2ex]
-  
-  Complementation 1           & $x\times -x=0$                         \\
-  Complementation 2           & $x+ -x=1$                              \\
-  Involution                  & $\-\-x=x$                              \\
-  De Morgan 1                 & $-(x+y)=-x\times -y$                   \\
-  De Morgan 2                 & $-(x\times y)=-x+-y$                   \\
-\end{tabular}
-
-% An item for each identity
-
-\begin{itemize}
-  \item  $x\times (x+y) =  x+(x\times y)$
-  \item  $y\times z = y\times (z\times y)$
-  \item  $(x+(y\times z))+x = (x+y)\times(x+z)$
-\end{itemize}
-
-</code></pre>
-</div>
-<hr>
-
-
-</div>
-<div id="boolean-lawsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong></p>
-<ol>
-<li>$x\times (x+y) ,=,  x \qquad$ <strong>[absorption]</strong></li>
-<li>$x ,=,  x + (x\times y)\qquad$ <strong>[absorption]</strong></li>
-<li>$x\times (x+y) ,=,  x\times (x+y) \qquad$ <strong>[1,2]</strong></li>
-</ol>
 <p><strong>b)</strong></p>
-<ol>
-<li>$y ,=, y\times y \qquad$ <strong>[idempotence]</strong></li>
-<li>$y\times z ,=, (y\times y)\times z \qquad$ <strong>[1]</strong></li>
-<li>$(y\times y)\times z ,=, y\times(y\times z) \qquad$ <strong>[associativity]</strong></li>
-<li>$y\times z ,=, z\times y \qquad$ <strong>[commutativity]</strong></li>
-<li>$y\times(y\times z),=, y\times(z\times y) \qquad$ <strong>[4]</strong></li>
-<li>$y\times z ,=, y\times (z\times y) \qquad$ <strong>[2,3,5]</strong></li>
-</ol>
-<p><strong>c)</strong></p>
-<ol>
-<li>$(x + (y\times z)) + x ,=, x+(x + (y\times z)) \qquad$ <strong>[commutativity]</strong></li>
-<li>$x+(x + (y\times z)) ,=, (x+x) + (y\times z) \qquad$ <strong>[associativity]</strong></li>
-<li>$x+x ,=, x \qquad$ <strong>[idempotence]</strong></li>
-<li>$(x+x) + (y\times z) ,=, x+(y\times z) \qquad$ <strong>[3]</strong></li>
-<li>$x+(y\times z) ,=, (x+y)\times(x+z) \qquad$ <strong>[idempotence]</strong></li>
-<li>$(x + (y\times z)) + x ,=, (x+y)\times(x+z) \qquad$ <strong>[1,2,4,5]</strong></li>
-</ol>
+<p>We can use the following instance of the alternative Bayes theorem:</p>
+<span  style="font-size:0.8em"
+  >
+$$Pr(\mathsf{DISEASE}\mid \mathsf{POSITIVE})=$$
+$$\frac{Pr(\mathsf{POSITIVE}\mid \mathsf{DISEASE})\times Pr(\mathsf{DISEASE})}{Pr(\mathsf{POSITIVE}\mid \mathsf{DISEASE})\times
+Pr(\mathsf{DISEASE})+Pr(\mathsf{POSITIVE}\mid\neg \mathsf{DISEASE})\times Pr(\neg \mathsf{DISEASE})}$$
+</span>
 
-</div>
-<div id="validity" class=" latex solved"><h5 class="latex solved">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Validity
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="validitySolution"
-        onclick="showPasswordModal('validitySolution', 'exc-bool')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
-    </div>
-</h5><p>a) Use the definition of a Boolean model to show that $[A\lor A]=[A]$ for any formula $A$.</p>
-<p>b) Use the previous fact to explain why $A\lor A\vDash A$ and $A\vDash A\lor A$</p>
-
-
-
-
-
-
-<hr>
-<a class="btn btn-sm btn-link link-dark link-underline-opacity-0" href="#1cdf1be8cba17837963f08f4ed45bdc6b6d029717afd091f711dfe9a9ff1cfa2" type="button" data-bs-toggle="collapse" data-bs-target="#1cdf1be8cba17837963f08f4ed45bdc6b6d029717afd091f711dfe9a9ff1cfa2" aria-expanded="false" aria-controls="1cdf1be8cba17837963f08f4ed45bdc6b6d029717afd091f711dfe9a9ff1cfa2" >
-$\LaTeX$ answer template <i class="bi bi-chevron-left toggle-icon"></i>
-</a>
-<div id="1cdf1be8cba17837963f08f4ed45bdc6b6d029717afd091f711dfe9a9ff1cfa2" class="collapse bg-black rounded m-2 p-2 " style="position:relative;">
-  <button class="btn btn-primary shadow" style="position:absolute; top:10px;right:10px" onclick="copyContent('1cdf1be8cba17837963f08f4ed45bdc6b6d029717afd091f711dfe9a9ff1cfa2-inner')"><i class="bi bi-clipboard"></i> Copy!</button>
-  <pre><code class="text-white" id="1cdf1be8cba17837963f08f4ed45bdc6b6d029717afd091f711dfe9a9ff1cfa2-inner">
-\begin{itemize}
-  \item Use the definition of a Boolean model to show that $[A\lor A]=[A]$ for any formula $A$. 
-  \item Use the previous fact to explain why $A\lor A\vDash A$ and $A\vDash A\lor A$
-\end{itemize}
-</code></pre>
-</div>
-<hr>
-
-
-</div>
-<div id="validitySolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong></p>
-<p>The set of models $[A\lor A]={ \nu : \nu(A\lor A)=1}$. Since $\nu(A\lor A)=\nu(A)+\nu(A)$ we know by idempotence that we always have the equivlance $\nu(A\lor A)=\nu(A)$. This shows that $[A\lor A]=[A]$.</p>
-<p><strong>b)</strong></p>
-<p>It follows from above that $[A\lor A]\subseteq[A]$ which is the definition of $A\lor A\vDash A$. It also follows that $[A]\subseteq[A\lor A]$ which is the definition of $A\vDash A\lor A$.</p>
-
-</div>
-<div id="research" ><h5 class="">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Research
-    </div>
-</h5><p><em>This one went up late, but if you have the time, it&rsquo;s a good exercise</em></p>
-<p><i class="bi bi-box-arrow-up-right h-6"></i>
-<a href="https://en.wikipedia.org/wiki/Logic_gate" class="link-dark" rel="external" target="_blank">Logic gates</a>
- are a different way
-of thinking about Boolean truth-function. Familiarize yourself with what
-they are and</p>
-
-</div>
-<div id="a-1" ><h6 class="">a)</h6><p>Write the following Boolean truth-functions using the logic gates
-for $NOT,AND,OR$</p>
-<ul>
-<li>
-<p>$(x+y)\times -(x\times y)$</p>
-</li>
-<li>
-<p>$-(x+y)$</p>
-</li>
-<li>
-<p>$-((x\times y)+z)$</p>
-</li>
-</ul>
-
-</div>
-<div id="b-1" ><h6 class="">b)</h6><p>It&rsquo;s a mathematical fact that all logic gates can be implemented using
-$NOR$ gates. Find the $NOR$-only gates for the functions above.</p>
+<p>Plugging in the values from above, we get:</p>
+<p>$$Pr(\mathsf{DISEASE}\mid \mathsf{POSITIVE})=$$
+$$\frac{0.9\times 0.01}{(0.9\times 0.01)+(0.1\times 0.99)}=0.08\bar{3}$$</p>
+<p>That is, a positive test for a randomly picked person should raise your credence
+in that person having the disease from 1% to about 8%. This may be surprising in
+is nowhere <em>near</em> the 90% reliability of the test.</p>
 
   </div>
 </div>
@@ -712,7 +489,7 @@ $NOR$ gates. Find the $NOR$-only gates for the functions above.</p>
 <ul class="navbar-nav flex-row justify-content-between mt-auto">
   
   <li class="nav-item">
-    <a href="/exercises/formal-languages/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="/exercises/probability/" class="btn" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-left"></i>
     </a>
     
@@ -724,7 +501,7 @@ $NOR$ gates. Find the $NOR$-only gates for the functions above.</p>
   </li>
   <li class="nav-item">
     
-    <a href="/exercises/sat/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-right"></i>
     </a>
     
