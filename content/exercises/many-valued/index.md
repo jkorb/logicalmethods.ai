@@ -60,6 +60,8 @@ $\neg\mathsf{HOT}\vDash \mathsf{HOT}\to\mathsf{HOT}$
 {{< img src="img/1b.png" class="img-thumbnail" >}}
 {{< img src="img/1c.png" class="img-thumbnail" >}}
 {{< img src="img/1d.png" class="img-thumbnail" >}}
+{{< img src="img/1e.png" class="img-thumbnail" >}}
+{{< img src="img/1f.png" class="img-thumbnail" >}}
 
 # Fuzzy logic {.solved}
 
