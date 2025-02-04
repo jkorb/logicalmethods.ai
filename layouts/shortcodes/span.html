@@ -1,0 +1,4 @@
+<span {{ with .Get "class"}}class="{{ .}}"{{ end }} {{ with .Get "style"}}style="{{ .}}"{{ end }}
+  {{ with .Get "id"}}id="{{. }}"{{end}}>
+{{ .Inner | markdownify}}
+</span>
