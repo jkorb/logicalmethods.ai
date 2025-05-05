@@ -16,6 +16,7 @@
   <div class="d-flex justify-content-center p-2 ">
     <div class="list-group shadow">
       {{ range sort .Site.Sections.ByWeight }}
+      {{ if not .Params.hidden }}
       <a href="{{ .RelPermalink }}" class="list-group-item list-group-item-action d-flex gap-3 py-3">
         {{ .Param "emoji" }}
         <div class="d-flex gap-2 w-100 justify-content-between">
@@ -25,6 +26,7 @@
           </div>
         </div>
       </a>
+      {{ end }}
       {{ end }}
     </div>
   </div>
