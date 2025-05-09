@@ -7,23 +7,31 @@ params:
   id: exc-laa
 ---
 
-# Definitions
+# Definitions { .solved }
 
 _Note_: A definition needs to fully explain the meaning of a concept. This is
 typically done by saying under which precise conditions the concept applies.
 That is, the answer should have the form like "A valid inference is an inference
 such that..." or "An inference is valid just in case ...".
 
-## a.) Inference
+## a.) Inference 
 
 Give a definition of inference. Include examples (where your definition applies)
 and non-examples (where it does not). Make sure to explain why your definition
 applies or not.
 
+
 ## b.) Validity {.homework}
 
 Give a definition of deductive and inductive inference. Include examples 
 and non-examples with explanations. 
+
+## Solution {#definitionsSolution .solution}
+a.) Does this work? test
+
+b.) test
+
+
 
 # Indicators { .solved }
 
