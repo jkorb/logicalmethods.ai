@@ -7,7 +7,7 @@ resources:
     name: inferences
 params: 
   date: 31/08/2024        
-  last_edited: 01/09/2024 
+  last_edited: 09/05/2025 
   id: txt-laa
   math: true
 ---
