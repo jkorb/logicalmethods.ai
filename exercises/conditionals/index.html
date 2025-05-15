@@ -260,6 +260,13 @@
           </div>
       </li>
       <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/verdiepingspakketten/"> &nbsp;&nbsp; </a>
+          </div>
+      </li>
+      <hr>
       
     </ul>
   </div>
@@ -630,7 +637,7 @@ in your argument:</p>
 <p>$$(p_1 \times \ldots \times p_n)\Rightarrow q$$</p>
 <p>Which is the truth-condition of the following formula:</p>
 <p>$$(p_1 \land \ldots \land p_n)\rightarrow q$$</p>
-<!-- raw HTML omitted -->
+<br>
 <p><strong>b)</strong></p>
 <p>No. Example: $p\land q$ does not have an equivalent Horn form.</p>
 <p>Consider an arbitrary Horn clause $\neg r_1\lor\neg r_2\lor\ldots\lor s$. Call it $A$. Since $A$ has at most one positive part $s$ by definition, the following thing must happen in all valuations:  $\nu(A)=1$ if and only if $\nu(r_i)=0$ for one of its negative parts or $\nu(s)=1$ for its positive part. This gives us a general idea of the format of truth-conditions for any Horn clause.</p>
@@ -756,10 +763,10 @@ application of the transitivity principle.</p>
 <p>A final step of unit propogation on $p$ shows us that the set is unsatisfiable.</p>
 <p>$\Set{ \Set{ } }$</p>
 <p>This means that it is impossible to make the premises and negation of the conclusion true. Which means that the inference is valid.</p>
-<!-- raw HTML omitted -->
+<br>
 <p><strong>b)</strong></p>
 <p>This inference, called the <em>Disjunctive Syllogism</em> (DS), is just an application of the Resolution Rule. We just showed in part (a) that the Resolution Rule always leads to valid reasoning. So this gives us a new way to see why DS is valid. The reasoning we use for resolution is just like the Splitting rule of the DPLL algorithm.</p>
-<!-- raw HTML omitted -->
+<br>
 <p><strong>c)</strong></p>
 <p>We take the premises combined with the negation of the conclusion and convert into a single CNF formula:</p>
 <p>$\mathsf{RAIN}\land(\neg\mathsf{RAIN}\lor\neg\mathsf{RAIN})\land(\neg\mathsf{RAIN}\lor\neg\mathsf{SUN})$</p>
@@ -770,7 +777,7 @@ application of the transitivity principle.</p>
 <p>By applying the Resolution Rule on the first two clauses we get:</p>
 <p>$\Set{  \Set{  }, \Set{ \neg\mathsf{RAIN},\neg\mathsf{SUN} } }$</p>
 <p>Since there is an empty set, this shows that the inference is valid.</p>
-<!-- raw HTML omitted -->
+<br>
 <p><strong>d)</strong></p>
 <p>The only time we <em>can</em> apply the Resolution Rule to two Horn clauses is when the same literal occurs as a positive part in one Horn clause and a negative part in the other Horn clause. Like the literal $q$ in these two formulas:</p>
 <p>$$\neg p_1\lor\ldots\lor\neg p_n\lor q$$</p>
@@ -778,7 +785,7 @@ application of the transitivity principle.</p>
 <p>When we apply the Resolution Rule we get this:</p>
 <p>$$\neg p_1\lor\ldots\lor\neg p_n\lor\neg r_1\lor\ldots\lor\neg r_m\lor s$$</p>
 <p>Since the original two formulas had only one positive part, and the positive $q$ was eliminated by Resolution, this means that the final formula also has only one positive part. Which means that it still qualifies as a Horn clause.</p>
-<!-- raw HTML omitted -->
+<br>
 <p><strong>e)</strong>
 We take the premises combined with the negation of the conclusion and convert into a single CNF formula:</p>
 <p>$(\neg\mathsf{RAIN}\lor\mathsf{CAR})\land(\neg\mathsf{CAR}\lor\mathsf{KEYS})\land\mathsf{RAIN}\land\neg\mathsf{KEYS}$</p>
@@ -791,7 +798,7 @@ We take the premises combined with the negation of the conclusion and convert in
 <p>Apply the Resolution Rule on $\mathsf{KEYS}$.</p>
 <p>$\Set{ \Set{ } }$</p>
 <p>Since there is an empty set, this shows that the inference is valid.</p>
-<!-- raw HTML omitted -->
+<br>
 <p><strong>f)</strong></p>
 <p>If we have two simply Horn clauses that are eligible for Resolution, they look like this.</p>
 <p>$$\neg p_1\lor\ldots\lor\neg p_n\lor q$$</p>

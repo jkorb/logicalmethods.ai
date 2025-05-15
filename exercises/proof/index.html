@@ -260,6 +260,13 @@
           </div>
       </li>
       <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/verdiepingspakketten/"> &nbsp;&nbsp; </a>
+          </div>
+      </li>
+      <hr>
       
     </ul>
   </div>
@@ -433,13 +440,13 @@ Easier</p>
 <li>$(p\to p)\to(\neg p\to(p\to p))\quad$ <strong>(Axiom 1)</strong></li>
 <li>$\neg p\to(p\to p)\quad$ <strong>(MP, 5, 6)</strong></li>
 </ol>
-<!-- raw HTML omitted -->
+<br>
 <p><strong>Proof:</strong> $\vdash q\to(p\lor q)$</p>
 <ol>
 <li>$q\to(\neg p\to q)\quad$ <strong>(Axiom 1)</strong></li>
 <li>$q\to(p\lor q)\quad$ <strong>(Rewriting $(\neg p\to q)$ as $(p\lor q)$)</strong></li>
 </ol>
-<!-- raw HTML omitted -->
+<br>
 <p><strong>Proof:</strong> $p\to q,q\to r\vdash p\to r$</p>
 <ol>
 <li>$p\to q\quad$ <strong>(Assumption)</strong></li>
@@ -450,7 +457,7 @@ Easier</p>
 <li>$(p\to q)\to(p\to r)\quad$ <strong>(MP, 4, 5)</strong></li>
 <li>$p\to r\quad$ <strong>(MP, 1, 6)</strong></li>
 </ol>
-<!-- raw HTML omitted -->
+<br>
 <p><strong>b)</strong>
 Harder</p>
 <p><strong>Proof:</strong> $\vdash\neg\neg p\to p$</p>
@@ -465,7 +472,7 @@ Harder</p>
 <li>$(\neg\neg p\to\neg\neg p)\to(\neg\neg p\to p)\quad$ <strong>(MP, 6, 7)</strong></li>
 <li>$\neg\neg p\to p\quad$ <strong>(MP, 1, 8)</strong></li>
 </ol>
-<!-- raw HTML omitted -->
+<br>
 <p><strong>Proof:</strong> $\vdash p\to(p\lor q)$</p>
 <ol>
 <li>$p\to(\neg q\to p)\quad$ <strong>(Axiom 1)</strong></li>
@@ -481,7 +488,7 @@ Harder</p>
 <li>$p\to(\neg p\to q)\quad$  <strong>(Use proof strategy for $\phi\to\psi,\psi\to\chi\vdash\phi\to\chi$ on 9,10)</strong></li>
 <li>$p\to(p\lor q)\quad$ <strong>(Rewriting $(\neg p\to q)$ as $(p\lor q)$)</strong></li>
 </ol>
-<!-- raw HTML omitted -->
+<br>
 <p><strong>Proof:</strong> $\vdash(p\land q)\to p$</p>
 <ol>
 <li>$\neg p\to(q\to\neg p)\quad$ <strong>(Axiom 1)</strong></li>
@@ -505,7 +512,7 @@ Harder</p>
 <li>$\neg(p\to\neg q)\to p\quad$ <strong>(MP, 17, 18)</strong></li>
 <li>$(p\land q)\to p\quad$  <strong>(Rewriting $(\neg(p\to\neg q))$ as $(p\land q)$)</strong></li>
 </ol>
-<!-- raw HTML omitted -->
+<br>
 
 </div>
 <div id="natural-deduction-systems" class=" solved"><h5 class="solved">
@@ -843,7 +850,7 @@ translating into natural deduction (you get the idea)</p>
       </tr>
   </tbody>
 </table>
-<!-- raw HTML omitted -->
+<br>
 <p><strong>b)</strong>
 finishing the proof</p>
 
@@ -876,7 +883,7 @@ apply Or.elim (And.right h)
 </div>
 <hr>
 
-<!-- raw HTML omitted -->
+<br>
 <p><strong>c)</strong>
 constructing a lean proof</p>
 

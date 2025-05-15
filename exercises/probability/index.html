@@ -260,6 +260,13 @@
           </div>
       </li>
       <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/verdiepingspakketten/"> &nbsp;&nbsp; </a>
+          </div>
+      </li>
+      <hr>
       
     </ul>
   </div>
@@ -450,7 +457,7 @@ Pr(\mathsf{HEADS}\land\mathsf{TAILS})=0$$</p>
 <li>We could solve this if we could solve 4, but&hellip;</li>
 <li>We don&rsquo;t have enough information to determine $Pr(H\land B)$.</li>
 </ol>
-<!-- raw HTML omitted -->
+<br>
 <p><strong>(b)</strong></p>
 <p>Using inclusion-exclusion we have $Pr(H\lor T)=Pr(H)+Pr(T)-Pr(H\land T)$, plugging in the two values given in this case $0.5=Pr(H)+Pr(T)-0.5$ and so we have $1=Pr(H)+Pr(T)$.</p>
 <ol>
@@ -459,7 +466,7 @@ Pr(\mathsf{HEADS}\land\mathsf{TAILS})=0$$</p>
 <li>The answer was given in the exercise.</li>
 <li>The answer was given in the exercise.</li>
 </ol>
-<!-- raw HTML omitted -->
+<br>
 <p><strong>(c)</strong>
 Solutions:</p>
 <ol>
@@ -468,7 +475,7 @@ Solutions:</p>
 <li>Since $Pr(H\land T)=0$, we have $Pr(H\lor T)=Pr(H)+Pr(T)=1$ by the third axiom.</li>
 <li>The answer was given in the exercise.</li>
 </ol>
-<!-- raw HTML omitted -->
+<br>
 <p><strong>(d)</strong>
 Solutions:</p>
 <ol>
@@ -477,7 +484,7 @@ Solutions:</p>
 <li>$Pr(H\lor T)=Pr(H)+Pr(T)-1$ using inclusion-exclusion but that is all we can say.</li>
 <li>The answer was given in the exercise.</li>
 </ol>
-<!-- raw HTML omitted -->
+<br>
 <p><strong>(e)</strong></p>
 <p>Solutions:</p>
 <ol>
@@ -486,7 +493,7 @@ Solutions:</p>
 <li>Since $Pr(H\land T)=0$, we have $Pr(H\lor T)=Pr(H)+Pr(T)=0+Pr(T)$ by the third axiom, but that is all we can say.</li>
 <li>The answer was given in the exercise.</li>
 </ol>
-<!-- raw HTML omitted -->
+<br>
 
 </div>
 <div id="probability-laws" class=" solved"><h5 class="solved">
@@ -526,7 +533,7 @@ is equivalent to $A\lor B$.</p>
 <li>$0\leq 1-Pr(A)$ by substitution.</li>
 <li>$Pr(A)\leq 1$ by adding $Pr(A)$ to each side.</li>
 </ul>
-<!-- raw HTML omitted -->
+<br>
 <p><strong>(b)</strong>
 Solution:</p>
 <ul>
@@ -540,7 +547,7 @@ Solution:</p>
 <li>$Pr(A)+1\leq Pr(B)+1$ by adding $Pr(B)$ to each side.</li>
 <li>$Pr(A)\leq Pr(B)$ by subtracting $1$ from each side.</li>
 </ul>
-<!-- raw HTML omitted -->
+<br>
 <p><strong>(c)</strong>
 This one is complicated.</p>
 <p>Fact 1.</p>
@@ -583,7 +590,7 @@ This one is complicated.</p>
 <li>$Pr(A)+Pr((B\land\neg A)\lor(A\land B))-Pr(A\land B)=Pr(A)+Pr(B)-Pr(A\land B)$</li>
 <li>And if we string together Facts 1-6 we have the inclusion-exclusion equation</li>
 </ul>
-<!-- raw HTML omitted -->
+<br>
 
 </div>
 <div id="probability-truth-tables" class=" solved"><h5 class="solved">
@@ -664,16 +671,16 @@ are (weakly) inductively valid:</p>
 </div>
 <div id="inductive-validitySolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>(a)</strong></p>
 <p>The premise is $\mathsf{ODD}$ and we have $Pr(\mathsf{ODD})=\frac{3}{7}$. The conclusion is $\mathsf{RES}_3\lor\mathsf{RES}_5$ and we have $Pr(\mathsf{RES}_3\lor\mathsf{RES}_5)=\frac{2}{7}$. We also need the information $Pr(\mathsf{ODD}\land(\mathsf{RES}_3\lor\mathsf{RES}_5))=\frac{2}{7}$. Then we calculate conditional probability $Pr(\mathsf{RES}_3\lor\mathsf{RES}_5|\mathsf{ODD})=\frac{2}{7}/\frac{3}{7}=\frac{2}{3}$. Since this is higher than the conclusion by itself, the inference is (weakly) inductively valid.</p>
-<!-- raw HTML omitted -->
+<br>
 <p><strong>(b)</strong></p>
 <p>The premise is $\mathsf{ODD}$ and we have $Pr(\mathsf{ODD})=\frac{3}{7}$. The conclusion is $\mathsf{RES}_6$ and we have $Pr(\mathsf{RES}_6)=\frac{2}{7}$. We also need the information $Pr(\mathsf{ODD}\land\mathsf{RES}_3)=0$. Then we calculate conditional probability $Pr(\mathsf{RES}_6|\mathsf{ODD})=0/\frac{3}{7}=0$. This is lower than the conclusion probability by itself. The inference is invalid.</p>
-<!-- raw HTML omitted -->
+<br>
 <p><strong>(c)</strong></p>
 <p>The premise is $\mathsf{EVEN}$ and we have $Pr(\mathsf{EVEN})=\frac{4}{7}$. The conclusion is $\mathsf{RES}_2$ and we have $Pr(\mathsf{RES}_2)=\frac{1}{7}$. We also need the information $Pr(\mathsf{EVEN}\land\mathsf{RES}_2)=\frac{1}{7}$. Then we calculate conditional probability $Pr(\mathsf{RES}_2|\mathsf{EVEN})=\frac{1}{7}/\frac{4}{7}=\frac{1}{4}$. Since this is higher than the conclusion by itself, the inference is ((weakly) inductively valid.</p>
-<!-- raw HTML omitted -->
+<br>
 <p><strong>(d)</strong></p>
 <p>The premise is $\mathsf{EVEN}$ and we have $Pr(\mathsf{EVEN})=\frac{4}{7}$. The conclusion is $\mathsf{RES}_6$ and we have $Pr(\mathsf{RES}_6)=\frac{2}{7}$. We also need the information $Pr(\mathsf{EVEN}\land\mathsf{RES}_6)=\frac{2}{7}$. Then we calculate conditional probability $Pr(\mathsf{RES}_6|\mathsf{EVEN})=\frac{2}{7}/\frac{4}{7}=\frac{1}{2}$. Since this is higher than the conclusion by itself, the inference is (weakly) inductively valid.</p>
-<!-- raw HTML omitted -->
+<br>
 
 </div>
 <div id="measures-of-inductive-strength" class=" solved"><h5 class="solved">

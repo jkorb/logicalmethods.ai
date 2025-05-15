@@ -260,6 +260,13 @@
           </div>
       </li>
       <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/verdiepingspakketten/"> &nbsp;&nbsp; </a>
+          </div>
+      </li>
+      <hr>
       
     </ul>
   </div>
@@ -739,7 +746,7 @@ which actions to carry out. If there&rsquo;s more than one, it can chose.</p>
 <p>$$ \langle{unop}\rangle ::= \neg $$</p>
 <p>$$ \langle{binop}\rangle ::= \land \mid \lor $$</p>
 <p>$$ \langle{fml}\rangle ::= \langle{unop}\rangle\langle{fml}\rangle \mid (\langle{fml}\rangle\langle{binop}\rangle\langle{fml}\rangle) $$</p>
-<!-- raw HTML omitted -->
+<br/>
 <p><strong>Task:</strong> Formalization</p>
 <p>Setup</p>
 <ul>
@@ -765,7 +772,7 @@ which actions to carry out. If there&rsquo;s more than one, it can chose.</p>
 <li>$\neg(RL1\land\neg RS1)\lor RL2$</li>
 <li>$\neg(\neg RL1\land\neg RS1)\lor\neg RL2$</li>
 </ul>
-<!-- raw HTML omitted -->
+<br/>
 <p><strong>Task:</strong> DPLL</p>
 <p>Convert the rules into CNF.</p>
 <ul>
@@ -781,7 +788,7 @@ which actions to carry out. If there&rsquo;s more than one, it can chose.</p>
 <li>$\neg RL1\lor RS1\lor RL2$</li>
 <li>$RL1\lor RS1\lor\neg RL2$</li>
 </ul>
-<!-- raw HTML omitted -->
+<br/>
 <p>Combine with the setup and goal formulas to get the following set of conditions.</p>
 <p>$$\lbrace\Set{ LL1 } , \Set{ \neg RL1 } , \Set{ \neg LL2 } , \Set{ RL2 } ,$$</p>
 <p>$$\Set{ \neg LL1 , \neg LS1 , \neg LL2 } , \Set{ LL1 , \neg LS1 , LL2 } , \Set{
@@ -790,15 +797,15 @@ $$\Set{ RL1 , \neg RS1 , RL2 } ,$$</p>
 <p>$$\Set{ \neg LL1 , LS1 , LL2 } , \Set{ LL1 , LS1 , \neg LL2 } , \Set{ \neg RL1 ,
 RS1 , RL2 }, $$
 $$\Set{ RL1 , RS1 , \neg RL2 }\rbrace$$</p>
-<!-- raw HTML omitted -->
+<br/>
 <p>By unit propogation, first on $LL1$ and then on $RL2$, we get:</p>
 <p>$$\lbrace\Set{ \neg RL1 } , \Set{ \neg LL2 } , \Set{ \neg LS1 , \neg LL2 } , \Set{ \neg
 RL1 , \neg RS1 } ,$$
 $$\Set{ LS1 , LL2 } , \Set{ RL1 , RS1 }\rbrace$$</p>
-<!-- raw HTML omitted -->
+<br/>
 <p>By unit propogation, next on $\neg RL1$ and then on $\neg LL2$, we get:</p>
 <p>$$\Set{\Set{ LS1 } , \Set{ RS1 }}$$</p>
-<!-- raw HTML omitted -->
+<br/>
 <p>By unit propogation on $LS1$ and $RS1$ we get a solution.</p>
 <p>$\nu(LL1)=1, \nu(LL2)=0, \nu(RL1)=0,\nu(RL2)=1, \nu(LS1)=1, \nu(RS1)=1$</p>
 

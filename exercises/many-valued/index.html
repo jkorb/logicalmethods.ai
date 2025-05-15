@@ -260,6 +260,13 @@
           </div>
       </li>
       <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/verdiepingspakketten/"> &nbsp;&nbsp; </a>
+          </div>
+      </li>
+      <hr>
       
     </ul>
   </div>
@@ -519,11 +526,11 @@ invalid provide a countermodel.</p>
 </div>
 <div id="fuzzy-logicSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solutions</h6><p>For fuzzy-logic-consequence we check all valuations to see if the smallest premise value will always be lower than the conclusion value.
 The idea is that this shows us that whenever the premises get &lsquo;closer&rsquo; to $1$, the conclusion does too, so there is a truth-strengthening connection between them.</p>
-<!-- raw HTML omitted -->
+<br>
 <p><strong>(a)</strong>
 This is invalid. Consider a valuation where $R$ is fuzzy or vague, $v(R)=0.5$, but the conclusion is definitely false $v(H)=0$.
 Then we have $v(\neg R)=0.5$ and $v(R\land\neg R)=0.5$ which is greater than the conclusion value.</p>
-<!-- raw HTML omitted -->
+<br>
 <p><strong>(b)</strong>
 This is valid. We want to show that we always get: $v(H)\leq v(H\lor(R\land H))$.</p>
 <ul>
@@ -534,10 +541,10 @@ $v(H)\leq v(R)$ or $v(H)&gt;v(R)$. Every valuation has to be one of these types.
 <li>If we are looking at the second type of valuation, we have $\mathrm{min}(v(R),v(H))=v(R)$, but that makes $\mathrm{max}(v(H),\mathrm{min}(v(R),v(H)))=\mathrm{max}(v(H),v(R))=v(H)$.
 Again, we have $\mathrm{max}(v(H),\mathrm{min}(v(R),v(H)))\leq v(H)$ as desired.</li>
 </ul>
-<!-- raw HTML omitted -->
+<br>
 <p><strong>(c)</strong>
 This is invalid. Consider a valuation where $U$ is fuzzy or vague, $v(U)=0.5$, but the other statements are definitely false $v(H)=0$ and $v(D)=0$.  Then we have $v(H\lor\neg U)=\mathrm{max}(v(H),1-v(U))=0.5$. We also have $v(U\lor D)=\mathrm{max}(v(U),v(D))=0.5$. Take the minimum $\mathrm{min}(\mathrm{max}(v(H),v(\neg U)),\mathrm{max}(v(U),v(D)))=0.5$. But this value is greater than the conclusion value $v(H\lor D)=\mathrm{max}(v(H),v(D))=0$, so we have a counter-model.</p>
-<!-- raw HTML omitted -->
+<br>
 <p><strong>(d)</strong>
 This is valid. We want to show that we always get: $v(H\land\neg H)\leq v(H)$. It&rsquo;s immediate from $v(H\land\neg H)=\mathrm{min}(v(H),1-v(H))$.
 This guarantees that the premises cannot exceed the value of H itself.</p>
@@ -608,7 +615,7 @@ whenever the antecedent side gets &lsquo;closer&rsquo; to $1$, we want the concl
 <p>IF $\neg$HOT$\lor$HUMID, THEN HEATER</p>
 <p>IF AC, THEN $\neg$HEATER</p>
 <p>IF HEATER, THEN $\neg$AC</p>
-<!-- raw HTML omitted -->
+<br>
 <p><strong>(b)</strong>
 One example of a problem for these rules: situations with low heat and high humidity.
 To be precise, consider a valuation where $v(\mathsf{HOT})=0.2$ and $v(\mathsf{HUMID})=0.8$.
@@ -621,7 +628,7 @@ This makes $v(\neg\mathsf{HOT})=1-v(\mathsf{HOT})=0.8$.</p>
 <p>For instance, the last rule requires $0.8\leq 1-v(\mathsf{AC})$.</p>
 <p>There is no value that gives $0.8\leq v(\mathsf{AC})$ and $0.8\leq 1-v(\mathsf{AC})$.</p>
 <p>So these rules do not &lsquo;work&rsquo; as intended in all possible fuzzy valuations.</p>
-<!-- raw HTML omitted -->
+<br>
 
 </div>
 <div id="t-norms" class=" solved"><h5 class="solved">
@@ -696,7 +703,7 @@ Strong Conjunction.</p>
 <p>The $f_\otimes$ function calculates its output in two different ways, depending on the input values.
 We get a default value $f_\otimes(x,y)=0$ when $x+y\leq 1$, but we get $f_\otimes(x,y)=x+y-1$ when $1&lt;x+y$.
 For these exercises we prove both cases separately.</p>
-<!-- raw HTML omitted -->
+<br>
 <p><strong>(1)</strong>
 We prove the goal in two cases using $x+y=y+x$.</p>
 <ol>
@@ -707,7 +714,7 @@ We prove the goal in two cases using $x+y=y+x$.</p>
 <p>If $f_\otimes(x,y)\neq 0$ then $f_\otimes(x,y)=x+y-1=y+x-1=f_\otimes(y,x)$.</p>
 </li>
 </ol>
-<!-- raw HTML omitted -->
+<br>
 <p><strong>(2)</strong>
 We prove the goal in two cases.</p>
 <ol>
@@ -724,7 +731,7 @@ We prove the goal in two cases.</p>
 <li>so we have $x+y-1\leq x&rsquo;+y&rsquo;-1$</li>
 <li>therefore $f_\otimes(x,y)\leq f_{\oplus}(x&rsquo;,y&rsquo;)$</li>
 </ul>
-<!-- raw HTML omitted -->
+<br>
 <p><strong>(3)</strong>
 We prove the goal in two cases using $x+(y+z)=(x+y)+z$.</p>
 <ol>
@@ -735,7 +742,7 @@ We prove the goal in two cases using $x+(y+z)=(x+y)+z$.</p>
 <p>If $f_\otimes(x,y)\neq 0$ then we reason: SOMETHING</p>
 </li>
 </ol>
-<!-- raw HTML omitted -->
+<br>
 <p><strong>(4)</strong>
 We prove the goal in two cases.</p>
 <ol>
@@ -746,7 +753,7 @@ We prove the goal in two cases.</p>
 <p>If $f_\otimes(x,1)\neq 0$ then $f_\otimes(x,1)= x+1-1 = x$.</p>
 </li>
 </ol>
-<!-- raw HTML omitted -->
+<br>
 <p><strong>(b)</strong>
 Fuzzy Conditional.</p>
 <p>The $f_\to$ function calculates its output in two different ways, depending on the input values.
