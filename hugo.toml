@@ -3,16 +3,19 @@ languageCode = 'en-us'
 title = 'logicalmethods.ai'
 contentDir = "content"
 
+[markup.goldmark.renderer]
+unsafe = true
+
 [module]
-  [[module.mounts]]
-    source = "assets/katex/fonts"
-    target = "static/katex/fonts"
-  [[module.mounts]]
-    source = "assets/icons/font/fonts"
-    target = "static/icons/font/fonts"
-  [[module.mounts]]
-    source = "assets/bootstrap/dist"
-    target = "static/bootstrap/dist"
-  [[module.mounts]]
-    source = "content"
-    target = "content"
+[[module.mounts]]
+source = "assets/katex/fonts"
+target = "static/katex/fonts"
+[[module.mounts]]
+source = "assets/icons/font/fonts"
+target = "static/icons/font/fonts"
+[[module.mounts]]
+source = "assets/bootstrap/dist"
+target = "static/bootstrap/dist"
+[[module.mounts]]
+source = "content"
+target = "content"
