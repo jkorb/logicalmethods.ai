@@ -1,0 +1,203 @@
+:root {
+  --yellow: #FFCD00;
+  --black: #000000;
+  --white: #FFFFFF;
+  --blue: #5287C6;
+  --btn-primary-bg: var(--yellow);
+  --btn-primary-color: var(--black);
+  --cream: rgb(255, 230, 171);
+  --light-cream: rgb(255, 230, 171,0.8);
+  --learning-color:rgb(170,21,85);
+  --reasoning-color:rgb(82,135,198);
+  --cognitive-color:rgb(91,33,130);
+}
+body {
+  background-color: var(--white);
+  font-family: 'Merriweather', serif;
+  /* margin: 0; */
+}
+body, html {
+  overflow: auto;         
+  min-height:100vh;
+  /* height: 100%; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
+@media (min-width: 768px) {
+  body {
+    background-color: var(--light-cream);
+  }
+  #wrapper {
+    background-color: var(--white);
+    border-radius: .5rem;
+    width: 100%;
+    min-width: 600px;
+    max-width: 600px;
+    min-height: 780px;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    border: 2px solid var(--black);
+    overflow: visible;
+    /* max-height: 90vh;         /* but never taller than 90% of the viewport */ */
+    margin: 1rem auto;        /* center horizontally, small top/bottom margin */
+  }
+  #questions-wrapper,
+  #loading,
+  #result {
+    flex: 1 1 auto;           /* can grow to fill space, but not force wrapper bigger */
+    overflow-y: auto;         /* scroll if content taller than wrapper */
+  }
+
+}
+@media (max-width: 768px) {
+  #wrapper {
+    max-height: 90vh;  
+    padding: 1.5rem;
+    width: 100%;
+    border: none;
+  }
+}
+.question { display: none; }
+.question.active { display: block; }
+.btn-nav { margin: 1rem 0.5rem 0 0; }
+/* Primary button styling */
+.btn-primary, .btn-success {
+  background-color: var(--btn-primary-bg) !important;
+  border-color: var(--black) !important;
+  color: var(--btn-primary-color) !important;
+}
+
+.btn-primary:hover { background-color: #e6bf00; }
+/* Checkbox & radio visibility */
+.form-check-input {
+  background-color: #f0f0f0;
+  border: 1px solid var(--black) !important;
+  width: 1.2em;
+  height: 1.2em;
+  accent-color: var(--black);
+}
+
+.progress-bar-container {
+  margin: 1rem 0.5rem 0 0;
+}
+
+/* Progress-button base */
+.progress-bar-container button {
+  margin: 0 3px;
+  width: 2rem;
+  padding: 0.25rem;
+  font-weight: normal;
+}
+
+/* Future/“upcoming” questions get grayed out */
+.progress-bar-container button.upcoming {
+  color: #6c757d;
+  border: 1px solid #6c757d;
+  background-color: transparent;
+  cursor: default;
+}
+
+/* Already answered (past) get solid blue */
+.progress-bar-container button.completed {
+  color: #fff;
+  background-color: var(--blue);
+  border: 1px solid var(--blue);
+}
+
+/* Current question: blue + bold */
+.progress-bar-container button.active {
+  color: #fff;
+  background-color: var(--blue);
+  border: 1px solid var(--blue);
+  font-weight: bold;
+}
+
+.typing > * {
+  opacity: 0;
+  transform: translateY(0.5em);
+  animation: fadeInUp 0.4s ease-out forwards;
+}
+
+/* stagger them by their index */
+.typing > *:nth-child(1)  { animation-delay: 0.2s; }
+.typing > *:nth-child(2)  { animation-delay: 0.6s; }
+.typing > *:nth-child(3)  { animation-delay: 1.0s; }
+.typing > *:nth-child(4)  { animation-delay: 1.4s; }
+.typing > *:nth-child(5)  { animation-delay: 2.1s; }
+.typing > *:nth-child(6)  { animation-delay: 3.0s; }
+.typing > *:nth-child(7)  { animation-delay: 3.4s; }
+.typing > *:nth-child(8)  { animation-delay: 3.8s; }
+.typing > *:nth-child(9)  { animation-delay: 4.4s; }
+.typing > *:nth-child(10) { animation-delay: 4.8s; }
+.typing > *:nth-child(11) { animation-delay: 5.0s; }
+.typing > *:nth-child(12) { animation-delay: 5.2s; }
+
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+#loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* .score-chart { margin-top: 1.5rem; } */
+/* .score-chart div { padding: 0.5rem; color: #fff; border-radius: 4px; } */
+/* .bar-learning   { background-color: var(--learning-color); } */
+/* .bar-reasoning  { background-color: var(--reasoning-color); } */
+/* .bar-cognitive  { background-color: var(--cognitive-color); } */
+/**/
+/* .score-chart .bar { */
+/*   display: inline-block;    /* so min-width applies */ */
+/*   text-align: right;        /* keep the “%” flush right */ */
+/*   font-family: monospace;   /* makes measurements consistent */ */
+/* } */
+
+
+#score-chart .score-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5em;
+}
+
+.score-label {
+  flex: 0 0 180px;        /* fixed width for labels */
+  /* font-weight: bold; */
+}
+
+.score-bar-bg {
+  flex: 1;                /* take remaining space */
+  background: #eee;
+  height: 1em;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 0 0.5em;
+}
+
+.score-bar {
+  height: 100%;
+  transition: width 0.5s ease;
+}
+
+/* you already have these classes—just add whatever bg-colors you were using */
+.score-bar-learning   { background: var(--learning-color); }
+.score-bar-reasoning  { background: var(--reasoning-color); }
+.score-bar-cognitive  { background: var(--cognitive-color); }
+
+.score-value {
+  flex: 0 0 2.5em;
+  text-align: right;
+}
