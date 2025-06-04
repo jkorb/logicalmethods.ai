@@ -260,6 +260,12 @@ conclusions,
 + and a **proof theory**, which is a model of _stepwise valid
 inference_.
 
+[**AdH_comment**: Maybe it is an idea to introduce the Chinese room experiment of Searle here. The Chines room makes clear what the difference between syntx and semantics is. For example:
+
+To understand the difference between syntax and semantic better, we look at the [Chinese Room](https://en.wikipedia.org/wiki/Chinese_room) argument of the American philosopher John Searle. According to Searle, computers can't think properly, because a computer only has syntax, instead of semantics too. Suppose a closed room. In the room, there is a person (or a computer) surrounded by multiple books. These books consist of translation rules. The person in the room recieves cards with Chinese questions. However, the person doesn't master Chinese. With the books the person is capable to manipualte the signs on the cards to answer the questions in Chinese, without understanding the meaning of either the questions and the answers. The person outside of the room, receives the manipulated answers in perfect Chinese. This person would think the person inside the room is a native Chinese speaker. This is the same case as with a computer. The computer's syntax, manipulation of symbols by applying rules, is like what happens inside the room. The semantics is the understanding of the symbols' meaning, by the one outside the room. According to Searle, the person inside the room or the computer is not capable of semantics, meaning, but only of syntax.
+
+]
+
 Together, these three components provide a mathematical model of valid
 inference. Throughout the course, you'll learn more about syntax, semantics, and
 proof theory by studying how they are used in different AI applications. By the
@@ -674,6 +680,40 @@ World. Penguin](https://en.wikipedia.org/wiki/The_Master_Algorithm).
 
 In general, I recommend to use the internet to keep up to date on logic and AI
 developments. Read, Learn, Improve!
+
+## List of definitions
+
+There need to be done some technical things to make this useful on the website, I curious how to do it. 
+
+### Logic
+### Inference
+### Indicators
+### Premise
+### Conclusion
+### Validity
+### Syntax
+### Semantics
+### Proof theory
+### Formal language
+### Logical formulas
+### Formal models
+### Logical laws
+### Formal derivations
+### Classical logic
+### Intuitionistic Logic
+### Paracomplete and paraconsistent logics
+### AI
+### Metalogic
+### (First) incompleteness theorem
+### Undecidability theorem
+### Symbolic AI
+### Subsymbolic AI
+### If-then rules
+### Machine learning
+### Knowledge Representation and Reasoning
+### Large language models
+### System 1 thinking
+### System 2 thinking
 
 **Notes:**
 
