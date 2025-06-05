@@ -1,7 +1,7 @@
 # About
 
 This is the source code for the course "Logical methods in AI". The course is
-under heavy construction. Use with caution.
+under heavy construction. Use with caution!
 
 # License
 
