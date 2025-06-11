@@ -472,6 +472,8 @@ The expert information typically takes the form of **if-then rules**.
 The expert information in the KB of an expert system for medical diagnosis, for
 example, could include the following:
 
+[**AdH_comment:** maybe the difference between antecedent and consequent could be mentioned shortly.]
+
 + _If_ the patient has a runny nose, a sore throat, and a mild fever, _then_ the
 patient likely has the common cold.
 
