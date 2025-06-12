@@ -1,0 +1,11 @@
+main:
+
+  - term: AI
+    long: |
+      "the field focused on studying and creating systems that exhibit behaviors
+      deemed intelligent by human standards."
+    short: |
+      "the field focused on studying and creating systems that exhibit behaviors
+      deemed intelligent by human standards."
+    chapter: logic-and-ai
+    id: ai-120620251038
