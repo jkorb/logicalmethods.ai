@@ -8,7 +8,9 @@ params:
 ---
 
 # Inferences { .solved }
+
 ## What is true about inferences?
+
 - [ ] Psychological processes to form a conclusion are not relevant to an inference as a technical term.
 - [ ] The following proposition consists of three indicators: "Something is immortal, because it is not human, and since AI is not human, we can conclude that AI is immortal." 
 - [ ] Premises, as an element of an inference, is a proposition that can be either true or false.
@@ -16,7 +18,8 @@ params:
 - [X] All of the above
 - [ ] None of the above
 
-## Solution {#inferencesSolution .solution}
+### Solution {#inferencesSolution .solution}
+
 All of the above are correct: 
 
 **a.)** An inference is a technical term, which means that it has not the everyday meaning. An inference is just the combination of premises and a conclusion, without paying attention to phycological processes of drawing a conclusion from premises.
@@ -27,8 +30,10 @@ All of the above are correct:
 
 **d.)** If the conclusion can be drawn from the premises, the inference (consisting of a combination of premises and a conclusion) is valid.
 
-# Logical systems { .solved }
+# Logical systems 
+
 ## Which of the following is a logical systems?
+
 - [X] Propositional logic, that consists of variables, connectives and rules for inferences
 - [X] Predicate logic (first order-logic), that uses rules to formalize relations between objects denoted by predicate symbols, functions, variables and quantors.
 - [ ] Grammatical system, that uses grammar rules to construct correct sentences.
@@ -37,6 +42,7 @@ All of the above are correct:
 - [ ] None of the above
 
 ## Solution {#logical-systemsSolution .solution}
+
 A logical system consists of three key elements: syntax, semantics and proof theory.
 
 **a.)** Propositional logic is an example of a logical system, since the syntax is the specified symbols, the logical connectives and the formation rules for well-formed formulas. In addition, the semantics of this system is the truth-value of every proposition. The connectives are interpreted by truth tables. Lastly, it is a proof theory, because it captures semantic entailment by using a deductive system.
@@ -48,6 +54,7 @@ A logical system consists of three key elements: syntax, semantics and proof the
 **d.)** Lambda calculus is an example of a logical system, since the syntax is exactly defined by expressions built from variables, abstraction and application rules. The semantics of this system are visible in the rules for reduction. These rules for reduction are part of proof theory.
 
 # Formal systems { .solved }
+
 ## Which of the following is true about formal systems?
 - [ ] They use only syntax and semantics.
 - [X] They use formal language which is a set of well-formed formulates. These formulas are strings of symbols formed by a formal grammar.
@@ -56,7 +63,7 @@ A logical system consists of three key elements: syntax, semantics and proof the
 - [ ] All of the above
 - [ ] None of the above
 
-## Solution {#formal-systemsSolution .solution}
+### Solution {#formal-systemsSolution .solution}
 **a.)** False, formal systems do use syntax and semantics as central aspects of formal languages. However, a formal system has a deductive system as well. 
 
 **b.)** True, the formal language is used to define symbols, and the formal grammar determines how the symbols are connected to reach well-formed formulas. These formulas are strings of symbols that correspond with the rules of the grammar.
