@@ -365,6 +365,8 @@ Now you have a first idea of what the science of logic is all about.[^logic] But
 before we can talk about the role of logic in AI, we need a working definition
 of AI.
 
+{{< definition term="AI" id="ai-160620250933" >}}{{< /definition >}}
+
 In this course, we take **AI** to be the study of the models and replication of
 _intelligent behavior_. Here we're understand "intelligent behavior" in a rather
 inclusive way, counting such diverse activities as behavior of [switching
@@ -378,8 +380,7 @@ in this way. We'll go through them in turn.
 
 ### As a foundation
 
-The first way in which logic is relevant to AI is the most direct one: valid
-inference simply _is_ paradigmatic intelligent behavior. So, logical systems
+The first way in which logic is relevant to AI is the most direct one: valid inference simply _is_ paradigmatic intelligent behavior. So, logical systems
 directly target what we're trying to model in AI---logical systems are models of
 intelligent behavior. So, by our definition, logical systems are part of AI.
 This makes logic a **subdiscipline** of AI.

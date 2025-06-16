@@ -41,7 +41,7 @@ All of the above are correct:
 - [ ] All of the above
 - [ ] None of the above
 
-## Solution {#logical-systemsSolution .solution}
+### Solution {#logical-systemsSolution .solution}
 
 A logical system consists of three key elements: syntax, semantics and proof theory.
 
@@ -80,7 +80,7 @@ A logical system consists of three key elements: syntax, semantics and proof the
 - [ ] All of the above
 - [X] None of the above
 
-## Solution {#incompleteness-theoremSolution .solution}
+### Solution {#incompleteness-theoremSolution .solution}
 None of the above is the correct answer, because:
 
 **a.)** True, even though the system may be sound (i.e., only proves true statements), it cannot prove all truths about the natural numbers. There will always be some arithmetical truths that elude formal proof within the system. This confirms the statement's correctness.
@@ -98,7 +98,7 @@ None of the above is the correct answer, because:
 - [X] All of the above
 - [ ] None of the above
 
-## Solution {#undecidability-theoremSolution .solution}
+### Solution {#undecidability-theoremSolution .solution}
 The correct answer is: All of the above. Here is why each statement fails to accurately reflect Turing’s result:
 
 **a.)** While it’s broadly accurate that Turing’s theorem shows the existence of algorithmically unsolvable problems, the phrase "no algorithm can solve for all possible inputs" is too general. Many undecidable problems can be semi-decided or solved on some inputs. The undecidability claim refers to decidability in the general case, not impossibility of solving any instance.
@@ -116,7 +116,7 @@ The correct answer is: All of the above. Here is why each statement fails to acc
 - [ ] All of the above
 - [X] None of the above
 
-## Solution {#if-then-rulesSolution .solution}
+### Solution {#if-then-rulesSolution .solution}
 None of the statements is true, because:
 
 **a.)** False, this statement is incomplete but true. While if-then rules are used in expert systems (as stated), it's only one part of the picture. The question asks for a true statement overall, and the rest of the options are clearly false or misleading, making “None of the above” the correct aggregate.
@@ -136,7 +136,7 @@ None of the statements is true, because:
 - [ ] All of the above
 - [ ] None of the above
 
-# Solution {#logic-as-a-toolSolution .solution}
+### Solution {#logic-as-a-toolSolution .solution}
 **a.)** True, although of a different type, both symbolic and subsymbolic rely on inference. Where symbolic AI uses the deductive inference, subsymbolic AI relies ond statistical inductive inference.
 
 **b.)** False, LLMS lack the capabilities for system 2 thinking, because they do not possess mechanisms for deliberate, structured and conscious reasoning that is decoupled from patterns association ans statistical prediction.
