@@ -42,7 +42,7 @@ if an inference _lacks_ validity, when it is **invalid**? Well, that shows us
 that something went wrong. The inference made a _mistake_. As we mentioned in 
 {{< chapter_ref chapter="logic-and-ai" id="validity">}}
 Chapter 1.1.2 Validity{{< /chapter_ref >}}, some of these logical mistakes or
-**fallacies** are so famous that they have their own names.
+**fallacies** are so famous that they have their own names. [**AdHcomment** The students expect to read more about the different fallacies now. However, the next paragraph is about valid inference.]
 
 [**AdHcomment** a student starts reading this section without knowledge about validity. It may be helpful to explain the concepts via examples and counterexamples. For instance: 
 

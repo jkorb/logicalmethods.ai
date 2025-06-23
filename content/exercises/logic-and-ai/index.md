@@ -6,98 +6,6 @@ weight: 1
 params: 
   id: exc-laa
 ---
-
-# Test your knowledge { .solved }
-## a.) Which of the following statements is true about inferences?
-- [ ] An inference is simply any collection of sentences.
-- [X] An inference consists of one or more premises and a conclusion, with their indicators, together forming an argument for a claim. 
-- [ ] An inference combines multiple conclusions to produce a single premise for later reasoning.
-- [ ] An inference always requires numerical data or statistical evidence to support the conclusion.
-
-## b.) What is a logical system?
-- [X] A logical system is a system that consists of a component that is responsible for determination whether an inference is valid, the language of the inferences, and the meaning of the premises and conclusions.
-- [ ] A logical system is a software library that contains precompiled proofs but has no formal rules for deriving new conclusions.
-- [ ] A logical system is a set of inference rules only, where the meaning of symbols and the language of expressions are considered not relevant.
-- [ ] A logical system is defined solely by its semantics (interpretations of symbols), with no corresponding syntactic rules or proof theory.
-
-## c.) Which of the following statements is true about logical systems?
-- [X] A category of a logical system is one that assumes that every sentence is true or false, which is called classical logic.
-- [ ] Propositional logic is a logical system that is classified by the background assumptions. 
-- [ ] Quantifiers are used in modal logic.
-- [X] A way of classifying logical systems is by the kind of inferences they deal with
-
-## d.) What is AI?
-- [ ] AI is the worldwide network of webcams that observes human behavior and predicts human actions.
-- [ ] AI is the technology to program computers, to make sure that they function without human interaction.
-- [X] Models and replication of "intelligent behavior", in the broad sense of the emulation of human abilities with a computer system, is studied by AI
-- [ ] Models and replications of "intelligent behavior" are studied by AI via MRI scans and neurological research.
-
-## e.) Why is logic considered a foundational subdiscipline of AI?
-- [ ] Because logical systems are practical tools for automating all AI applications in industry.
-- [X] Because valid inference is paradigmatic intelligent behavior, so logical systems model what AI aims to replicate.
-- [ ] Because logic's primary aim is to optimize machine learning algorithms for speed and efficiency.
-- [ ] Because logic deals exclusively with hardware design, which underlies AI systems.
-
-## f.) Which of the following best explains why expert systems (symbolic AI) struggled to scale and ultimately contributed to the decline of symbolic approaches?
-
-- [ ] They required neural networks to process if-then rules, which dramatically increased hardware costs.
-- [ ] Expert systems could only be written in LISP, limiting their applicability to modern programming environments.
-- [X] It was extremely difficult and time-consuming to encode comprehensive expert knowledge into correct if-then rules, making upkeep and expansion impractical.
-- [ ] They relied on subsymbolic (statistical) methods that produced opaque models, undermining explainability.
-
-## g.) Which statement most accurately contrasts subsymbolic AI with symbolic (logic-based) AI?
-- [X] Subsymbolic AI relies on statistical models and inductive inference from data, whereas symbolic AI relies on explicit knowledge bases and deductive reasoning via logical inference engines.
-- [ ] Subsymbolic AI models are always fully transparent in their decision process, while symbolic AI models are inherently opaque.
-- [ ] Subsymbolic AI emerged first in the 1950s, whereas symbolic AI was a later development spurred by deep learning breakthroughs.
-- [ ] Subsymbolic AI stores knowledge as human-readable if-then rules, whereas symbolic AI uses neural networks trained on large datasets.
-
-## h.) Why are subsymbolic AI systems often considered less explainable than symbolic AI systems like expert systems?
-- [ ] Subsymbolic AI systems use if-then rules that are too numerous for humans to inspect, whereas symbolic AI uses simple equations.
-- [ ] Subsymbolic AI relies on Gödel’s incompleteness theorem to handle undecidable statements, which inherently prevents explanations.
-- [ ] Subsymbolic AI systems do not perform any inference at all, so there is nothing to explain, whereas symbolic AI performs inference.
-- [X] Subsymbolic AI models (e.g., neural networks) learn statistical representations from data, making their internal decision processes opaque, while symbolic AI uses transparent, human-readable rules and inference steps.
-
-## i.) Which statement best describes the distinction between storing factual knowledge in subsymbolic AI models (e.g., LLMs) versus symbolic AI systems (e.g., databases)?
-- [ ] Subsymbolic models guarantee 100% recall of stored facts, whereas symbolic databases may occasionally lose information.
-- [ ] Subsymbolic models cannot store any factual information, whereas symbolic databases can only store numerical data.
-- [X] Subsymbolic models store information implicitly in learned parameters and can hallucinate; symbolic databases store facts explicitly and allow precise retrieval.
-- [ ] Subsymbolic models use predicate logic for queries, while symbolic databases rely solely on neural network inference.
-
-## j.) What does Codd’s theorem imply about the relationship between databases and logic?
-- [ ] That logical systems are irrelevant for understanding how databases retrieve data.
-- [X] That querying a relational database can often be viewed as evaluating formulas in predicate logic.
-- [ ] That databases cannot represent any logical formulas unless they are converted to expert systems.
-- [ ] That every database must be implemented in LISP to support logical inference.
-
-## k.) According to the excerpt’s discussion of Kahneman’s System 1 and System 2, why do large language models (LLMs) struggle with precise logical reasoning compared to symbolic systems?
-- [ ] LLMs excel at conscious, deliberate System 2 thinking but lack fast, intuitive System 1 capabilities.
-- [ ] LLMs are not trained on any textual data, making them unable to perform even simple associative tasks.
-- [X] LLMs are strong at fast, pattern‐based System 1 thinking (e.g., language mimicry) but have weak System 2 abilities (e.g., exact calculations), whereas symbolic systems excel at System 2.
-- [ ] LLMs rely exclusively on explicit if-then rules, which prevents them from performing any intuitive reasoning.
-
-## Solution {#test-your-knowledgeSolution .solution}
-**a.)** B, an inference by definition links explicit premises (with indicators like "since" and "because") to a conclusion. The other options either omit premises or mischaracterize how conclusions are formed.
-
-**b.)** A, a logical system has three parts: syntax (language of the inference), semantics (meaning), and proof theory (validity checking). The incorrect options each leave out one of these crucial components.
-
-**c.)** Both A and D are true, because A) classical logic’s hallmark is bivalence (“true or false”) and D) logical systems differ (e.g., propositional vs. predicate) by the inference rules they support. The distractors confuse systems (“quantifiers in modal logic” is false, “propositional logic classified by background assumptions” is garbled).
-
-**d.)** C, AI studies how to build models that emulate human-like intelligent tasks. The false options describe surveillance, generic automation, or neuroscience research rather than modeling intelligence.
-
-**e.)** B, valid inference is paradigmatic intelligent behavior. What we call intelligent, namely drawing valid conclusions based on known facts, is formalized in logical systems. Logic therefore forms a foundation for AI, because the formalization of valid reasoning precisely matches what AI models.
-
-**f.)** C, expert systems require manually crafting and maintaining large rule sets. The wrong answers wrongly blame hardware costs, programming language choice, or subsymbolic methods.
-
-**g.)** A, subsymbolic (e.g., neural nets) infer patterns from data; symbolic systems use hand‐crafted rules and logic. The wrong choices reverse transparency or timeline.
-
-**h.)** D, neural nets learned weights aren’t easily interpretable; expert systems’ if-then rules can be directly inspected. The false options misattribute rule usage or Gödel’s theorem.
-
-**i.)** C, LLMs encode facts in weights (prone to error), whereas databases record exact entries. The distractors misunderstand recall, data types, or querying.
-
-**j.)** B, Codd showed SQL-like queries correspond to predicate logic statements. The other statements falsely assert irrelevance of logic or mandate LISP.
-
-**k.)** C, LLMs predict next-word patterns (fast, intuitive), but lack reliable step-by-step reasoning; symbolic AIs handle deliberate, logical tasks well. The wrong options misstate LLM capabilities or rule usage.
-
 # Definitions { .solved }
 
 _Note_: A definition needs to fully explain the meaning of a concept. This is
@@ -198,7 +106,7 @@ If &forall;`I` notices that the milk is running low, it directly orders new milk
 
 ## e.) 
 
-If &forall;`I` notices that energy consumption is low at night, it turns off devces, and if &forall;`I` detects peak consumption, it shifts usage to cheaper hours. But energy consumption is now either low or there is peak consumption. So, &forall;`I` either turns off devices or shifts usage to cheaper hours.
+If &forall;`I` notices that energy consumption is low at night, it turns off devices, and if &forall;`I` detects peak consumption, it shifts usage to cheaper hours. But energy consumption is now either low or there is peak consumption. So, &forall;`I` either turns off devices or shifts usage to cheaper hours.
 
 ## f.)
 
