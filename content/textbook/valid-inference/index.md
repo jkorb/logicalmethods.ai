@@ -20,27 +20,35 @@ Remember from {{< chapter_ref chapter="logic-and-ai" >}}
 Chapter 1. Logic and AI{{< /chapter_ref >}} 
 that logic is the study of **valid inference**. In this
 chapter, you'll learn more about the _concept_ of validity. 
+[**AdHcomment** In the first chapter, the part about validity is left out. Therefore, start with recalling information about inferences in general and its premises and conclusion. Now, introduction of validity, the utility of an inference.]
 
 In particular, we'll go into more details of what it means for an inference to
-be [correct](#correctness), we'll describe [abstract methods](#formalisation)
+be [correct](#correctness), we'll describe [abstract methods](#formalization)
 for modeling valid inferences, and we'll dig into important differences
 between [deductive](#deduction) and [inductive validity](#induction).
+[**AdHcomment** The link to the section about "abstract methods" was not working, due to a typo in "formalization", now it is working.]
 
 ## Correctness
-
 When we talk about validity, we are talking about a _good feature_ of inferences,
 but this is not the only good feature an inference can have. For example, it is
 good for inferences to be simple, clear, precise, economical, etc. Logic does
 not deal with all of these topics. Most of these topics are part of **rhetoric**,
 the study of persuasive writing style. Logic deals with _validity_.
+[**AdHcomment** the part about "good features" seems a little bit unclear. Possibly, it is worth mentioning that this is in every day definition. This makes the distinction between rhetoric and logic clearer.]
 
-Validity is a standard of **correctness** for inferences. To really fix this
+Validity [**AdHcomment** in logic] is a standard of **correctness** for inferences. To really fix this
 concept, it might help to think about it from the other direction. What happens
 if an inference _lacks_ validity, when it is **invalid**? Well, that shows us
 that something went wrong. The inference made a _mistake_. As we mentioned in 
 {{< chapter_ref chapter="logic-and-ai" id="validity">}}
 Chapter 1.1.2 Validity{{< /chapter_ref >}}, some of these logical mistakes or
-**fallacies** are so famous that they have their own names.
+**fallacies** are so famous that they have their own names. [**AdHcomment** The students expect to read more about the different fallacies now. However, the next paragraph is about valid inference.]
+
+[**AdHcomment** a student starts reading this section without knowledge about validity. It may be helpful to explain the concepts via examples and counterexamples. For instance: 
+
+Consider the following example: If ∀`I` writes two premises, then it formulates a conclusion as well. ∀`I` writes two premises. Thus, it formulates a conclusion. 
+
+This is an example of a valid inference. The conclusion follows automatically from the premises. Namely, it is said that ∀`I` writes two premises and if he does so, he formulates a conclusion. From both premises follows that ∀`I` writes a conclusion. This marks the concept of validity. The conclusion of the inference is a consequence of the premises. Validity is a standard of **correctness** for inferences. To understand what a valid inference contains, let's consider the opposite: an invalid inference. Within the inference, something went wrong. The conclusion doesn't follow from the premises. The inference made a mistake. For example: If ∀`I` is doing mathematics, it listens to music. ∀`I` is listening to music. Therefore, it is doing mathematics. This is an example of a fallacy called _affirming the consequent_ and this is an invalid argument.]
 
 Here is an example of a fallacy called _affirming the consequent_:
 
@@ -51,27 +59,27 @@ that sun leads to sport. However, the other premise of this inference is not
 _about_ sunny weather, so those two premises don't really "add up" to anything
 useful. They certainly do not support the conclusion that it is sunny today.
 
-Here is an example of a valid inference called "modus ponens".
+Here is an example of a valid inference called "modus ponens". [**AdHcomment:** In my opinion, it is better to start with an example of a valid inference and then the invalid one, as I mentioned above.]
 
 2. If it is sunny, Jan is cycling. It is sunny. Therefore, Jan is cycling.
 
 This inference involves a premise about sunny weather, which connects with the
 conditional premise in the right way. This inference is valid because it uses
-all of its premises correctly. These two examples show that it can be easy to
+all its premises correctly. These two examples show that it can be easy to
 confuse valid and invalid inferences if we don't pay attention to the details.
 At a glance, the two inferences look pretty similar.
 
 This is why logic aims for a _systematic_ definition of validity. This notion
 should be applicable not only to humans but to any information-processing
 system. It can tell us what counts as _intelligent_ behavior. Without a
-definition of correct reasoning, how do we even know what we want AI to achieve?
+definition of correct reasoning, how do we even know what we want AI to achieve? [**AdHcomment:** possibly, mention the function of logic in AI or another reference to the first chapter.]
 So, we would like to say, in general, what _makes_ an inference valid or
 invalid. The standard idea is that valid inferences **preserve truth** from
 their premises to their conclusion.
 
 ### Hypothetically
 
-To test whether an inference is valid, we ask if the conclusion is true _when_
+To test whether an inference is valid, we ask if the conclusion is true _when_ [**AdHcomment:** why not using the phrase "if and only if".]
 the premises are true. This is a **hypothetical** question. Answering this
 question does not require us to know that the premises really _are_ true. In
 fact, we can make a stronger point: it is possible to have an inference that is
@@ -98,7 +106,7 @@ kind of world, it has to be true that Maddy flies.
 
 This is the basic idea of truth-preservation.
 
-+ **Valid Inference:** an inference whose conclusion is true under the
++ **Valid Inference:** an inference whose conclusion is true [**AdHcomment:** conclusion as a consequence of the premises.] under the
 (hypothetical) assumption that all of the premises are true.
 
 Now, we can ask a series of follow-up questions. How tight is the
@@ -107,6 +115,8 @@ does an inference need to be in order to call it "valid"? Different answers to
 these questions take us in two directions: deductive and inductive logic.
 
 ### Always
+
+[**AdHcomment:** students don't anything about deduction at this point. Deduction is a type of reasoning in which the necessity of an inference follows from one or multiple premises. Deduction starts with the general and ends with something specific. Which is discussed in depth [later](#deduction) this chapter.]
 
 With **deductively valid** inference, truth-preservation _always_ holds. We want
 100% reliability in all situations whatsoever. No exceptions allowed.
@@ -124,11 +134,11 @@ system is not dangerous.
 rained last night.
 
 6. All dogs are friendly. Some dogs are chubby. So, some chubby animals are
-friendly.
+friendly. 
 
 In deductive logic, we use the symbol
 $$\vDash$$
-to stand for a deductively valid inference. So if we have a deductively valid
+to stand for a deductively valid inference. So, if we have a deductively valid
 inference going from premise $P_1,P_2,\dots$ to conclusion $C$, we can
 abbreviate this with symbols:
 
@@ -143,11 +153,13 @@ dry}\vDash \text{It rained last night}$$
 
 ### Mostly
 
+[**AdHcomment:** students don't anything about induction at this point. Instead of starting with the general and ending with the specific, as deduction does, induction goes from the specific to the general.]
+
 With **inductively valid** inference, truth-preservation _mostly_ holds. If the
 premises are true, the conclusion is _probably_ true. The likelihood could be
 slightly increased (weak induction) or greatly increased (strong induction).
 Either way, assuming that the premises are true gives us _some_ reason to
-believe the conclusion is true. Inductive inference is not air-tight. There is a
+believe the conclusion is true. Inductive inference is not air tight. There is a
 chance of going from truth to falsity, but that is a risk we have to take when
 we are dealing with uncertain information.
 
@@ -173,7 +185,7 @@ In inductive logic, we use the symbol $$\mid\approx$$ to stand for an
 inductively valid inference, writing $$P_1, P_2, \dots\mid\approx C$$ to say
 that the inference from premises $P_1, P_2, \mathellipsis$ to conclusion $C$ is
 inductively valid. To say that an inference is inductively _strong_, we write a
-$!$ on top, like so: $$\stackrel{!}{\mid\approx}$$. So if we have a inductively
+$!$ on top, like so: $$\stackrel{!}{\mid\approx}$$. So, if we have an inductively
 strong inference going from premises $P_1, P_2, \dots$ to conclusion $C$ we can
 abbreviate this with symbols: $$P_1, P_2, \dots\stackrel{!}{\mid\approx} C.$$
 
@@ -183,7 +195,7 @@ By steps, we can make things even more precise. One of the steps we mentioned in
 {{< chapter_ref chapter="logic-and-ai" >}}
 Chapter 1. {{< /chapter_ref >}} is **formalization**. We can build
 formal languages and study their properties. We can also develop theories about
-how these kind of formal patterns map onto ordinary human communication and
+how these kinds of formal patterns map onto ordinary human communication and
 thinking.
 
 One powerful idea in logic is that different inferences have the same **logical
@@ -194,7 +206,7 @@ the idea that sparked the first wave of AI research in the 1950s.
 
 The next chapter will delve into more details of formal syntax and how to
 interpret the logical forms of sentences. We will mention just a few examples of
-formalisation that are useful for this chapter.
+formalization that are useful for this chapter.
 
 + The symbol "$\neg$" can be read "not" in English. $\neg A$ says "Not $A$."
 
@@ -204,7 +216,7 @@ and $B$."
 + The symbol "$\rightarrow$" can be read "if, then" in English. $A\rightarrow B$
 says "If $A$, then $B$".
 
-Let"s see how this formalisation is used:
+Let's see how this formalization is used:
 
 1) The inference form of "modus ponens" looks like this: $ A\rightarrow B,
 A\vDash B$. This sequence of symbols says that whenever you put together two
@@ -230,7 +242,7 @@ pattern. Here are some more examples. These are all instances of "modus ponens":
 2) The fallacy of "affirming the consequent" looks like this: $ A\rightarrow B,
 B\nvDash A$. This sequence of symbols says that if you put together two separate
 pieces of information, a premise "If $A$, then $B$" and a premise $B$, it is
-invalid to infer the conclusion $A$. If you use this reasoning, you are making a
+invalid to infer the conclusion $A$. [**AdHcomment:** thus, the symbol $\nvDash$ means not-valid or invalid. If you use this reasoning, you are making a
 mistake. We said that example 1. commits this mistake. Here are some more
 examples:
 
@@ -253,7 +265,7 @@ examples:
     reasoning.
 
 We have now said a lot about the concept of validity. But what do the tools of
-logical analysis look like? How do we use logical form to identify *whether an
+logical analysis looks like? How do we use logical form to identify *whether an
 inference is valid*? That is our next topic.
 
 ## Deduction
@@ -278,11 +290,11 @@ can defeat a deductively valid inference.
 
 The optimal way of using deduction is to take a set of existing beliefs (or
 knowledge) and then add more beliefs (or knowledge) by applying logical rules. A
-common, real world _implementation_ of deductive reasoning occurs whenenever we
+common, real world _implementation_ of deductive reasoning occurs whenever we
 apply some general pattern to a specific case:
 
 16. Vixens are female foxes. That is the definition of the concept _vixen_.
-Suppose you know this and you hear someone say "there is a vixen living in the
+Suppose you know this, and you hear someone say "there is a vixen living in the
 forest!". In that case, you might use deduction to infer that there is a fox
 living the forest.  
 
@@ -295,10 +307,10 @@ Like the examples of "modus ponens", we have here two examples of inferences
 with the same logical form. It is actually closely related to "modus ponens" but
 also involves the **quantifier** "all" or "every". In example 16. there is an
 implicit premise "all vixens are female foxes". In example 17. there is an
-implicit premise "all days with footbal are days without the bus".
+implicit premise "all days with football are days without the bus".
 
 Both of these inferences simply apply general pattern to a specific instance.
-That reasoning is correct as long as the  word "all" _really_ means "all". If we
+That reasoning is correct as long as the word "all" _really_ means "all". If we
 assume that a totally general pattern is true "all Ps are Qs" and "this is P" is
 also true, it has to be true that "this is Q". The conclusion follows
 necessarily.
@@ -318,7 +330,7 @@ which can only be acquired by long and patient study..."
 {{< /blockquote >}}
 
 Sherlock uses the word "deduction" for any reasoning that is careful,
-systematic, and reliable. However, the examples in this passage sounds a lot
+systematic, and reliable. However, the example in this passage sounds a lot
 like inductive reasoning. Take a small sample and make an educated guess about
 the larger collection that it belongs to. That kind of reasoning is not
 indefeasible, it does not make a necessary connection. _We_ do not call that
@@ -344,13 +356,13 @@ program. Sometimes when you ran the program and entered the number 1, you might
 get the correct answer that 1 is a positive number, but other times you might
 you get no answer at all. That would be useless and frustrating. In order to
 make the behavior of programs predictable, we want them to effectively follow
-deductive rules of reasoning.
+deductive rules of reasoning. [**AdHcomment:** maybe it is good to expand about the link between deduction and AI.]
 
 ### Semantic methods for deduction
 
 Let's now take a brief look at **semantics**. This is the part of logic where we
 give a model of meaning and truth. A semantics for a language delineates which
-inferences are deductively valid in that language. To keep things simple we will
+inferences are deductively valid in that language. To keep things simple, we will
 talk about a stripped-down formal language that only represents the logical form
 of "and" sentences like "$A$ and $B$", represented $A\land B$.
 
@@ -375,7 +387,7 @@ two sentences $A$ and $B$. When the elements of one set are also
 contained in another set, we say that there is a **subset** relation between
 them.
 
-For example, the set of triangle is a subset of the set of figures. The set of
+For example, the set of triangles is a subset of the set of figures. The set of
 cats is a subset of the set of animals. All of the things in the first set are
 also in the second set. If $[A]$ is a subset of $[B]$, we write
 $[A]\subseteq[B]$.
@@ -403,13 +415,13 @@ collection of semantic models.
 To give an illustration of this method, let's look at some inferences with "and"
 sentences. When we write $A\land B$ it is supposed to represent a single
 complex sentence that combines two simpler thoughts. For example, we could
-formalise English sentences like this.
+formalize English sentences like this.
 
-+ $P$ formalises "Putnam is happy."
++ $P$ formalizes "Putnam is happy."
 
-+ $Q$ formalises "Quine is happy."
++ $Q$ formalizes "Quine is happy."
 
-+ $P\land Q$ formalises "Putnam and Quine are both happy."
++ $P\land Q$ formalizes "Putnam and Quine are both happy."
 
 If a person asserts $P$ and then asserts $Q$, they make two separate
 statements. If a person asserts $P\land Q$, they make one single statement
@@ -429,7 +441,7 @@ and $Y$.
 
 For example, if $F$ was the set of all fruits and $O$ was the set of all
 orange things, then $F\cap O$ would be the set of orange fruits. This
-intersection set contains mandarines, apricots, and mangoes but it does not
+intersection set contains mandarins, apricots, and mangoes but it does not
 contain bananas (not orange) and it does not contain carrots (not fruits).
 
 We can apply this operation to any two sets. What if we apply it to $[A]$
@@ -465,7 +477,7 @@ conclusions.
 
 _Sketch of an Explanation_: Assuming that $A \vDash B$ and $A
 \vDash C$ hold we have $[A]\subseteq[B]$ and $[A]\subseteq[C]$. So if
-any model $\mathcal{M}$ is in $[A]$, the same  model $\mathcal{M}$
+any model $\mathcal{M}$ is in $[A]$, the same model $\mathcal{M}$
 also has to be in $[B]\cap[C]$. We have $[A]\subseteq[B]\cap[C]$.
 
 + If $A \vDash C$, then $A\land B \vDash C$
@@ -484,14 +496,14 @@ The last fact is called **monotonicity** and it gets to the heart of what makes
 deduction special. If there is an element of your beliefs that implies a
 conclusion, then as long as you hold on to that original element your beliefs
 will always imply the same conclusion -- no matter how much new information you
-aquire! This is why we say that deductive rules are _indefeasible_.
+acquire! This is why we say that deductive rules are _indefeasible_.
 
 [John
 McCarthy](https://en.wikipedia.org/wiki/John_McCarthy_(computer_scientist)) was
 famously optimistic about the power of logical methods. He even thought we could
 use them to capture the kind of _commonsense reasoning_ that most adults are
 capable of doing. This led to the field of **knowledge representation** where
-engineers try to formalise vast amounts of information. These are like axioms of
+engineers try to formalize vast amounts of information. These are like axioms of
 a massively complicated theory, but the method has its limitations.
 
 ## Induction
@@ -512,7 +524,7 @@ inductive rule can be better in some environments, worse in others.
 
 The early work on logic-based AI quickly shifted from deductive logic to
 inductive logic. The main reason is that induction is immensely important to a
-complete description of commonsense reasoning.
+complete description of commonsense reasoning. [**AdHcomment:** maybe it is good to expand more about the function of induction for AI.]
 
 Suppose that you agreed to meet Karl for lunch in a few minutes. Karl eats lunch
 every day in the canteen and he always gets there early. You infer that Karl is
@@ -533,7 +545,7 @@ _generic_ information.
 swans around the IJsselmeer. Every swan that I observed was white. So, I infer
 that all swans are white.
 
-19. Birds fly. Tweety is a bird. Thus, tweety flies.
+19. Birds fly. Tweety is a bird. Thus, Tweety flies.
 
 The example of Tweety is a famous example of perfectly good induction, but one
 that obviously 'goes wrong' in some contexts. Generic information like "birds
@@ -587,14 +599,14 @@ that validity if a hypothetical concept. So to properly capture inductive
 validity, we need a notion of _hypothetical probability_.
 
 Mathematically, we write $Pr(B|A)$ for the conditional probability of $B$ given
-$A$. Intuitively,  $Pr(B|A)$ is a measure of how likely it is that $B$ is true
+$A$. Intuitively, $Pr(B|A)$ is a measure of how likely it is that $B$ is true
 assuming that the actual scenario is an $A$-scenario. That is, if $A$ is the
 sentence "Pigs can fly", for example, and $B$ is "horses can fly", then
 $Pr(B|A)$ asks how likely it is that horses can fly, assuming that pigs can fly.
 
 But how should we define this mathematically? It turns out that assuming the
 simplified interpretation of probabilities as proportion of scenarios from
-before gives us a very natural answer. The idea is to say that :
+before gives us a very natural answer. The idea is to say that:
 $$Pr(B|A)=\frac{Pr(A\land B)}{Pr(A)}.$$ Basically, what this definition says is
 that $Pr(B|A)$ is a measure of the proportion of $A$-scenarios that are
 $B$-scenarios (look at the intersection diagram to see this immediately).
