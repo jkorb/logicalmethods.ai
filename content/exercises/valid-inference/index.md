@@ -31,19 +31,38 @@ An inductively invalid inference, about ∀I as a doctor.
 
 **a.)** Deductively valid inference if the conclusion follows necessarily from the premises. If both premises are true, the conclusion must be true in every model. For example:
 
-If ∀I composes music, then ∀I is a musician. ∀I compose music. Therefore, ∀I is a musician.
+If ∀I composes music, then ∀I is a musician. ∀I compose music. Therefore, ∀I is a musician. (modus ponens)
+
+If ∀I plays the piano, it doesn't play guitar. ∀I plays guitar. Therefore, ∀I doesn't play piano. (modus tollens)
+
+∀I thinks: "I hear either a minor or a major chord. Since I don't hear a major chord, I thus hear a minor chord." (disjunctive syllogism)
+
+∀I thinks: "If I want to cheer people up, then I need to do something that has emotion in it. If I do something with emotion in it, then I should play music. Therefore, if I want to cheer people up, then I should play music." (hypothetic syllogism)
 
 **b.)** Deductively invalid inference: the conclusion does not follow logically. The premises could be true while the conclusion is false.
 
-If ∀I is an author, then ∀I has written a book. ∀I has written a book. Therefore, ∀I is an author.
+If ∀I is an author, then ∀I has written a book. ∀I has written a book. Therefore, ∀I is an author. (affriming the consequent)
+
+If the books ∀I wrote are interesting, then people will read those. People don't read its books. Therefore the books ∀I wrote aren't interesting. (denying the anteccedent)
+
+∀I either prints its writings or it stores a pdf file. ∀I stores a pfd file. Therefore, it doesn't print its writings. (misinterpretating exclusive)
+
+∀I uses letters to write text. The entire text consists of letters only. (fallacy of composition)
 
 **c.)** Inductively valid inference (strong): The conclusion is plausible and supported by statistical generalization. It's not certain (as deductive validity would require), but it reflects a high conditional probability. For example:
 
-In 95% of cases, characters with elite physical performance and competitive records are professional athletes. ∀I has elite physical performance and competitive records. Therefore, ∀I is probably a professional athlete.
+In 95% of cases, characters with elite physical performance and competitive records are professional athletes. ∀I has elite physical performance and competitive records. Therefore, ∀I is probably a professional athlete. (static syllogism)
+
+∀I has won all past games. Therefore, it will win the next game too. (enumerative induction)
 
 **d.)** Inductively invalid inference (weak): the inference fails as an inductive generalization. It gives the illusion of support, but the premises don't meaningfully raise the probability of the conclusion. For example:
 
-∀I wears a white coat. Most doctors wear white coats. Therefore, ∀I is probably a doctor.
+∀I wears a white coat. Most doctors wear white coats. Therefore, ∀I is probably a doctor. (false analogy)
+
+∀I can tell us the correct diagnose. Therefore, all robots can tell us the correct diagnose. (hasty generalization)
+
+∀I draws blood, and then finds out the patient is ill. Therefore, drawing blood causes the patient's illness. (false causality)
+
 
 # Monotonicity {.solved}
 
@@ -63,7 +82,7 @@ Why does this argument fail for inductive logic?
 Deductive validity is necessary. Suppose $A\vDash C$. Necessarily, if $A$ is
 true, $C$ is true. If we consider any possibility where $A\land B$ is true, it
 also makes $A$ true, which means that is has to make $C$ true (based on what we
-just observed). So $A\land B\vDash C$.
+just observed). So $A\land B\vDash C$. The key feature of deductive validity is that it is truth-preserving: if all the premises are true, then the conclusion must also be true in all models. Adding new information cannot invalidate a previously valid inference. This is called monotonicity of deduction.
 
 For example: ∀I thinks "If the light is green, then it's safe to cross." The light turns green. So, it's safe to cross. Suddenly, ∀I's friend ∃n runs up and says: "Wait, you have to check whether there are cars coming or not." Luckily, no cars. Thus, it remains safe to cross the street.
 
@@ -72,7 +91,7 @@ For example: ∀I thinks "If the light is green, then it's safe to cross." The l
 Inductive validity isn't necessary. $A\mid\!\approx C$ only tells us that when
 $A$ is true, *it is likely* that $C$ is true. This does not guarantee that when
 $A\land B$ is true, *it is equally likely* that $C$ is true. Sometimes new
-information $B$ lowers or cancels out the probability of $C$. 
+information $B$ lowers or cancels out the probability of $C$. Inductive inferences are non-monotonic. That is, adding premises can defeat a previously strong inductive inference. The reasoning is not truth-preserving, but rather support-strengthening, and additional information can undermine that support.
 
 # Validity {.homework .solved}
 

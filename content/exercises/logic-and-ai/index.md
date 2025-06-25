@@ -262,7 +262,7 @@ Undecidability is a feature of certain (especially expressive) logical systems, 
 
 An example of an expert system that is still used today is Cyc, which aims to codify a vast base of common-sense knowledge using formal logic, expressed in the Cyc language—a richly expressive predicate logic tailored to support ontological reasoning. The system’s knowledge base includes millions of rules and assertions about everyday concepts, causality, actions, and more. Cyc’s core strength lies in its ability to represent nuanced common-sense knowledge that purely statistical systems often struggle with (e.g., that people usually wear clothes, or that physical objects don’t pass through each other). Moreover, Cyc has been used in hybrid architectures, where statistical models are combined with logical reasoning to interpret results, correct errors, or validate inferences. Lastly, it has been applied in government, defense, and industrial settings. Therefore, this system is still useful today. 
 
-# Discussion {.discussion} {.solved}
+# Discussion {.solved}
 
 _Note_: The following questions require argumentative writing, i.e. you're asked
 to take an informed view on the question, clearly state your position, and the
