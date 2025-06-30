@@ -9,3 +9,10 @@ h5::before {
   list-style-type: none; 
   padding-left: 0;
 }
+
+.solution { }
+.hidden  { display: none !important;}
+
+.solution :is(h1,h2,h3,h4,h5,h6)::before {
+  content: none !important;
+}
