@@ -7,6 +7,30 @@ main:
     chapter: logic-and-ai
     id: ai-160620250933
 
+  - term: Affirming-the-consequent 
+    long: |
+      "A formal fallacy where one infers the antecedent from the consequent of a conditional: from A → B and B, one erroneously concludes A. This is invalid because B might result from causes other than A."
+    short: |
+      "A formal fallacy where one infers the antecedent from the consequent of a conditional"
+    chapter: valid-inference
+    id: affriming-the-consequent-010720251418
+
+  - term: Axiomaic-method
+    long: |
+      "A method of reasoning in formal systems that begins with a set of axioms (assumed truths) and derives theorems using specified rules of inference. This method underpins mathematical logic and formal sciences."
+    short: |
+      "A method of reasoning in formal systems that begins with a set of axioms (assumed truths) and derives theorems using specified rules of inference."
+    chapter: valid-inference
+    id: axiomatic-method-010720251419
+
+  - term: Belief-modulation
+    long: |
+      "The process of updating degrees of belief in response to new evidence, typically formalized using Bayesian updating. It captures the dynamics of rational inference in uncertain or evolving informational contexts."
+    short: |
+      "The process of updating degrees of belief in response to new evidence."
+    chapter: valid-inference
+    id: belief-modulation-010720251424
+
   - term: Classical-logic
     long: |
       "The standard formal system of logic that assumes every proposition is either true or false (principle of bivalence) and that contradictions cannot be true (principle of non-contradiction). It forms the basis of much of modern mathematics and deductive reasoning."
@@ -14,6 +38,22 @@ main:
       "A standard formal system based on bivalent truth values and principles of non-contradiction."
     chapter: logic-and-ai
     id: classical-logic-160620251026
+
+  - term: Conditional-premise
+    long: |
+      "A proposition of the form “If A, then B” (A → B), where A is called the antecedent and B the consequent. It forms the basis for many logical inferences, such as modus ponens and modus tollens."
+    short: |
+      "A proposition of the form “If A, then B” (A → B)"
+    chapter: valid-inference
+    id: conditional-premise-010720251425
+
+  - term: Conditional-probabilities
+    long: |
+      "The probability that a statement B is true given that another statement A is true, formally written as $Pr(B\|A)$. Central to Bayesian reasoning, it quantifies dependence between propositions."
+    short: |
+      "The probability that a statement B is true given that another statement A is true"
+    chapter: valid-inference
+    id: conditional-probabilities-010720251427
 
   - term: Conclusion
     long: |
@@ -23,6 +63,31 @@ main:
     chapter: logic-and-ai
     id: conclusion-160620251028
 
+  - term: Correctness
+    long: |
+      "A general property of inferences where conclusions are appropriate or justified given the premises. In logic, this often reduces to formal validity (deductive) or strength (inductive)."
+    short: |
+      "A general property of inferences where conclusions are appropriate or justified given the premises."
+    chapter: valid-inference
+    id: correctness-010720251428
+
+  - term: Deduction
+    long: |
+      "A form of reasoning in which the conclusion follows necessarily from the premises. If the premises are true and the reasoning is valid, the conclusion cannot be false. It contrasts with inductive and abductive reasoning."
+    short: |
+      "A form of reasoning in which the conclusion follows necessarily from the premises."
+    chapter: valid-inference
+    id: deduction-010720251429
+
+  - term: Deductively-valid-inference
+    long: |
+      "An inference is deductively valid if it preserves truth under all interpretations: if the premises are true, the conclusion must be true. Validity depends only on logical form, not content."
+    short: |
+      "An inference is deductively valid if it preserves truth under all interpretations"
+    chapter: valid-inference
+    id: deductively-valid-inference-010720251430
+
+
   - term: Formal-derivations
     long: |
       "Model of stepwise valid inference based on logical rules. It is a finite sequence of formulas in a formal system where each formula is either an axiom or follows from earlier formulas by rules of inference. It demonstrates, step by step, how a conclusion can be logically deduced from a set of premises using only syntactic rules, independent of any interpretation or meaning."
@@ -30,6 +95,14 @@ main:
       "Model of stepwise valid inference based on logical rules."
     chapter: logic-and-ai
     id: formal-derivations-160620251030
+
+  - term: Formalization
+    long: |
+      "The process of translating informal, natural language arguments into a precise formal language (e.g. propositional or predicate logic) to make logical structure and validity explicit."
+    short: |
+      "The process of translating informal, natural language arguments into a precise formal language"
+    chapter: valid-inference
+    id: formalization-010720251431
 
   - term: Formal-language
     long: |
@@ -74,6 +147,21 @@ main:
     chapter: logic-and-ai
     id: indicators-160620251041
 
+  - term: Induction
+    long: |
+      "A mode of reasoning that infers general rules or future cases from specific observations. Conclusions are not guaranteed, but probabilistically supported; hence, inductive inferences are ampliative but fallible."
+    short: |
+      "A mode of reasoning that infers general rules or future cases from specific observations."
+    chapter: valid-inference
+    id: induction-010720251431
+
+  - term: Inductively-valid-inference
+    long: |
+      "A probabilistically strong inference where the truth of the premises significantly raises the probability of the conclusion, though it does not entail it. Inductive validity is gradient, not binary."
+    short: |
+      "A probabilistically strong inference where the truth of the premises significantly raises the probability of the conclusion."
+    chapter: valid-inference
+    id: inductively-valid-inference-010720251432
 
   - term: Inference
     long: |
@@ -92,6 +180,38 @@ main:
     chapter: logic-and-ai
     id: intuitionistic-logic-160620251044
 
+
+  - term: Invalid-inference
+    long: |
+      "An inference where, even if the premises are true, the conclusion may still be false. This indicates a failure in logical form or a misuse of inference rules."
+    short: |
+      "An inference where, even if the premises are true, the conclusion may still be false."
+    chapter: valid-inference
+    id: invalid-inference-010720251433
+
+  - term: Knowledge representation
+    long: |
+      "The encoding of information (objects, facts, rules, relations) into a formal structure (often using logic or graph models) that supports automated reasoning in AI and cognitive systems."
+    short: |
+      "The encoding of information into a formal structure that supports automated reasoning in AI and cognitive systems."
+    chapter: valid-inference
+    id: knowledge-representation-010720251434
+
+  - term: Logical-conjunction
+    long: |
+      "A compound proposition of the form A ∧ B, which is true only when both A and B are true. It represents the intersection of truth conditions and is one of the basic connectives in propositional logic."
+    short: |
+      "A compound proposition of the form A ∧ B."
+    chapter: valid-inference
+    id: logical-conjunction-010720251435
+    
+  - term: Logical-form 
+    long: |
+      "The underlying structure of an argument abstracted from its content. Logical form reveals whether an inference is valid based solely on its syntax and connectives, irrespective of subject matter."
+    short: |
+      "The underlying structure of an argument abstracted from its content."
+    chapter: valid-inference
+    id: logical-form-010720251436
 
   - term: Logical formulas
     long: |
@@ -134,6 +254,39 @@ main:
     chapter: logic-and-ai
     id: metalogic-160620251050
 
+  - term: Modus-ponens
+    long: |
+      "A valid deductive argument form: from A → B and A, one infers B. This form preserves truth and is foundational to deductive systems."
+    short: |
+      "A valid deductive argument form: from A → B and A, one infers B."
+    chapter: valid-inference
+    id: modus-ponens-010720251436
+
+  - term: Modus-tollens
+    long: |
+      "A valid deductive form: from A → B and ¬B (not B), one infers ¬A. It is often used to refute hypotheses by demonstrating that their consequences are false."
+    short: |
+      "A valid deductive form: from A → B and ¬B (not B), one infers ¬A."
+    chapter: valid-inference
+    id: modus-tollens-010720251437
+
+  - term: Monotonicity
+    long: |
+      "A property of deductive logic wherein adding new premises to an argument cannot invalidate an already valid inference. Once a conclusion is validly drawn, it remains valid under additional premises."
+    short: |
+      "A property of deductive logic wherein adding new premises to an argument cannot invalidate an already valid inference."
+    chapter: valid-inference
+    id: monotonicity-010720251438
+
+  - term: Non-monotonicity
+    long: |
+      "A feature of many inductive or default reasoning systems in which new information can retract previously justified conclusions. This models real-world reasoning more realistically than monotonic logic."
+    short: |
+      "A feature of many inductive or default reasoning systems in which new information can retract previously justified conclusions."
+    chapter: valid-inference
+    id: non-monotonicity-010720251439
+
+
   - term: Premise
     long: |
       "A statement assumed to be true within an argument from which a conclusion is derived. The conclusion is based on the premises of the inferences."
@@ -141,6 +294,14 @@ main:
       "a propositional assumption or starting point in a logical argument or formal inference."
     chapter: logic-and-ai
     id: premise-160620251051
+
+  - term: Probabilities
+    long: |
+      "Quantitative measures (between 0 and 1) of how likely a proposition is to be true, given a defined probability space. Probabilistic reasoning formalizes uncertainty and is core to statistics, AI, and epistemology."
+    short: |
+      "Quantitative measures of how likely a proposition is to be true."
+    chapter: valid-inference
+    id: probabilities-010720251440
 
   - term: Proof theory
     long: |
@@ -150,6 +311,22 @@ main:
     chapter: logic-and-ai
     id: proof-theory-160620251052
 
+  - term: Quantifier
+    long: |
+      "Logical operators that express generality or existence over a domain. The universal quantifier (∀) means "for all," while the existential quantifier (∃) means "there exists." Used in predicate logic to formulate general statements."
+    short: |
+      "Logical operators that express generality or existence over a domain."
+    chapter: valid-inference
+    id: quantifier-010720251441
+
+  - term: Rhetoric
+    long: |
+      "The art of persuasive communication, concerned with style, emotional appeal, and audience effects. Unlike logic, it does not require arguments to be valid or sound, only effective."
+    short: |
+      "The art of persuasive communication, concerned with style."
+    chapter: valid-inference
+    id: rhetoric-010720251442
+
   - term: Semantics
     long: |
       "A model of the meaning of the premises and conclusions. The branch of logic dealing with meaning and truth in formal languages, often via interpretations or models."
@@ -157,6 +334,30 @@ main:
       "The branch of logic that studies the meaning of expressions in a formal language."
     chapter: logic-and-ai
     id: semantics-160620251053
+
+  - term: Semantic-model
+    long: |
+      "A formal interpretation of a logical language that assigns meanings (e.g., truth values) to expressions. It provides a way to evaluate whether statements are true within specific "possible worlds" or domains."
+    short: |
+      "A formal interpretation of a logical language that assigns meanings"
+    chapter: valid-inference
+    id: semantic-model-010720251443
+
+  - term: Strong-inductive-inference
+    long: |
+      "An inductive inference where the conclusion's probability is significantly higher given the premises than it was a priori. Such inferences justify belief revision and are central to scientific reasoning."
+    short: |
+      "An inductive inference where the conclusion's probability is significantly higher given the premises than it was a priori."
+    chapter: valid-inference
+    id: strong-inductive-inference-010720251444
+
+  - term: Subset
+    long: |
+      "A set A is a subset of B (A ⊆ B) if every element of A is also in B. In logic and set theory, this relation is fundamental to hierarchical and inclusion structures."
+    short: |
+      "A set A is a subset of B (A ⊆ B) if every element of A is also in B."
+    chapter: valid-inference
+    id: subset-010720251445
 
   - term: Subsymbolic AI
     long: |
@@ -198,6 +399,16 @@ main:
     chapter: logic-and-ai
     id: system-2-thinking-160620251058
 
+
+  - term: Truth-preservation
+    long: |
+      "A feature of valid deductive inferences: if the premises are true, the conclusion must also be true. This ensures that reasoning does not introduce falsehood."
+    short: |
+      "A feature of valid deductive inferences."
+    chapter: valid-inference
+    id: truth-preservation-010720251446
+
+
   - term: Undecidability theorem
     long: |
       "A theorem which establishes that there exist well-defined decision problems in formal logic and computation that cannot be solved by any algorithm. That is, there is no mechanical procedure that can always give a yes-or-no answer to every instance of the problem."
@@ -213,3 +424,19 @@ main:
       "A property of arguments such that if the premises are true, the conclusion must necessarily be true."
     chapter: logic-and-ai
     id: validity-160620251101
+
+  - term: Valid-inference
+    long: |
+      "An inference in which the conclusion follows necessarily from the premises. Validity is defined syntactically (by rules of inference) or semantically (truth-preservation across all models)."
+    short: |
+      "An inference in which the conclusion follows necessarily from the premises."
+    chapter: valid-inference
+    id: valid-inference-010720251447
+
+  - term: Weak-inductive-inference
+    long: |
+      "An inference where the conclusion becomes only marginally more probable given the premises. Such inferences are low in inductive strength and often fail to justify confident belief."
+    short: |
+      "An inference where the conclusion becomes only marginally more probable given the premises."
+    chapter: valid-inference
+    id: weak-inductive-inference-010720251448

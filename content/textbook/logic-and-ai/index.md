@@ -684,39 +684,6 @@ World. Penguin](https://en.wikipedia.org/wiki/The_Master_Algorithm).
 In general, I recommend to use the internet to keep up to date on logic and AI
 developments. Read, Learn, Improve!
 
-## List of definitions
-
-There need to be done some technical things to make this useful on the website, I curious how to do it. 
-
-### Logic
-### Inference
-### Indicators
-### Premise
-### Conclusion
-### Validity
-### Syntax
-### Semantics
-### Proof theory
-### Formal language
-### Logical formulas
-### Formal models
-### Logical laws
-### Formal derivations
-### Classical logic
-### Intuitionistic Logic
-### Paracomplete and paraconsistent logics
-### AI
-### Metalogic
-### (First) incompleteness theorem
-### Undecidability theorem
-### Symbolic AI
-### Subsymbolic AI
-### If-then rules
-### Machine learning
-### Knowledge Representation and Reasoning
-### Large language models
-### System 1 thinking
-### System 2 thinking
 
 **Notes:**
 
