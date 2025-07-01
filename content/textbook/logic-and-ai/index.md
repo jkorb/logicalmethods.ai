@@ -7,7 +7,7 @@ resources:
     name: inferences
 params: 
   date: 31/08/2024        
-  last_edited: 09/05/2025 
+  last_edited: 01/09/2024 
   id: txt-laa
   math: true
 ---
@@ -32,7 +32,7 @@ Then, you'll learn about three ways in which logic is relevant for AI:
 
 On the most general level, **logic** is the study of _valid inference_. To
 understand this definition better, let's discuss inferences and validity in
-turn.
+turn. 
 
 ### Inference
 
@@ -44,7 +44,7 @@ _Philosopher's Walk_ or in the study, and she's not in the study, she therefore
 must be on the _Philosopher's Walk_.
 
 2) If [Alan](https://en.wikipedia.org/wiki/Alan_Turing) can’t crack the code,
-then nobody else can. Alan can crack the code. So nobody else can.
+then nobody else can. Alan can crack the code. So nobody else can. [**AdH_comment**: I understand that this example is used to illustrate an invalid argument. However, it might be better to introduce this chapter with examples of valid reasoning first. Later on, the original example could be modified into an invalid argument in order to clarify the difference in meaning between valid and invalid arguments. It feels unnatural to start the second example with a falsity. Another option is to introduce this set of examples with a warning that no all reasonings are _right_. Instead of this example, I would use: "If Alan can't crack the code, then nobody else can. Alan can't crack the code. So nobody else can." or: "If Alan can crack the code, then nobody else can. Alan can crack the code. So nobody else can."]
 
 3) [Blondie24](https://en.wikipedia.org/wiki/Blondie24) is a neural
 network-based AI system that struggled to reach world-class checkers
@@ -53,7 +53,13 @@ Blue](https://en.wikipedia.org/wiki/Deep_Blue_(chess_computer)), instead, is a
 logic-based AI system that beat the [world
 champion](https://en.wikipedia.org/wiki/Garry_Kasparov) in chess. This shows
 that logic-based AI systems are inherently better than neural network-based
-systems at games.
+systems at games. [**AdH_comment:** Maybe this is an example of a hasty generalization, as the argument draws a general conclusion about AI system types based on two unrelated cases: one concerning checkers (Blondie24) and the other chess (Deep Blue). The two premises focus on different games and contexts, and therefore do not provide a logical basis for the conclusion that logic-based AI systems are inherently better than neural network-based systems at games. A different or more consistent set of premises and conclusion would better support the theory, for example: "[Blondie24](https://en.wikipedia.org/wiki/Blondie24) is a neural
+network-based AI system that struggled to reach world-class checkers
+performance. [Deep
+Blue](https://en.wikipedia.org/wiki/Deep_Blue_(chess_computer)), instead, is a
+logic-based AI system that beat the [world
+champion](https://en.wikipedia.org/wiki/Garry_Kasparov) in chess. This shows
+that logic-based AI systems are inherently better at winning a chess game than neural network-based systems are at checkers."].
 
 4) Since [Watson](https://en.wikipedia.org/wiki/IBM_Watson) is a logic-based AI
 system that beat [_Jeopardy!_](https://en.wikipedia.org/wiki/Jeopardy!), we can
@@ -66,18 +72,58 @@ conclude that some logic-based AI systems are capable of beating game shows.
 relevance. Therefore, the next generation of GPT models will further improve in
 this respect.
 
+[**AdH_comment:** The original structure of this section is: inference indicators related to the conclusion, an explanation of the conclusion, an explanation of the premises, premise indicators and general explanation of inferences. However, this order seems a bit disorganized to me. A clearer structure of this part would be: explanation of inferences, explanation of the conclusions and premises, then the indicators (both inference and premise), because they structure the argument, but they aren't the main part of an argument. Below is an example version of the revised text.]
+
+[**AdH_addtext:** 
+
+**Caveat**: Our topic is _not_ how people actually reason (psychology of
+reasoning), how to use arguments to convince others (rhetoric), or anything of
+that sort. These things are good to know, of course, but they are not our main
+interest. As logicians, we are interested in the structure of inferences.
+
+**Inferences** are the primary subject of logical theory. Note that in logic,
+"inference" is a **technical term**, which does not necessarily have its
+everyday meaning. An inference is a linguistic entity, consisting of premises
+and a conclusion---_and nothing else_. It is not, for example, the psychological
+process of drawing a conclusion from premises.
+
+Before we go ahead and look more closely at the quality of these inferences,
+let's introduce some important terminology.
+
+These inferences, arguments, consist of a **conclusion** that is supported by the **premises** and indicators to dituiguish the conclusions and premises.
+
+The **conclusion**[^conclusion] of an inference is what's being inferred or
+established based on the preceding arguments. It's the statement that logically follows from a set of sentences that support the conclusion. In 4., for example, the conclusion is that some logic-based AI systems are capable of beating game shows. The examples above all end with the conclusion. However, the conclusion can occur in any position. For example:
+
+&nbsp;&nbsp;&nbsp;&nbsp;1<sup>*</sup>. Ada is not in the study. Thus she must be on the _Philosopher's Walk_, because she is either there or in the study.
+
+The **premises** of an inference are its assumptions or hypotheses, they are what the conclusion is based on. These statements provide support for the conclusion. They serve as the basis or evidence from whcih the conclusion is logically derived. Thus, the conclusion is drawn from the premises. In 4., for example, the premise is that Watson is a logic-based AI system that beat _Jeopardy!_
+
+An inference can have any number of premises. While inference 4. has only one premise, inference 1. has _two_: that Ada is either on the _Philosopher's Walk_ or in the study, and that she's not in the study. In logical theory, we also consider the limit cases of having _no_ premises and of having _infinitely many_ premises. More about that later.
+
+Besides, **indicators** are used to structure the argument. They are used to clarify the structure of an argument by distinguishing conclusions from the supporting statements, i.e., the premises. 
+
+We call phrases like "therefore", "so", and "we can conclude that" **inference indicators**, because they introduce the conclusion. In 5., the inference indicator "therefore" introduces the conclusion _the next generation of GPT models will further improve in this respect_. 
+
+**Premise indicators** signalate that the following sentence is a premise. Examples of premise indicators are "since", "because" and "given that". These phrases show the parts of the inference that provide the support of the conclusion.
+
+
+Logical theory is interested in whether an conclusion is supported by the premises. Inferences come with the expectation that the conclusion does, in fact, _follow from_ the premises, that the premises _support_ the conclusion in this way. In logical terminology, we want our inferences to be **valid**.[^valid] We'll turn to what that means in the next section.
+
+**Original text below:**]
+
 Before we go ahead and look more closely at the quality of these inferences,
 let's introduce some important terminology.
 
 We call phrases like "therefore", "so", and "we can conclude that" **inference
-indicators**.
+indicators**. 
 
 The **conclusion**[^conclusion] of an inference is what's being inferred or
 established. In 4., for example, the conclusion is that some logic-based AI
 systems are capable of beating game shows.
 
 The conclusion often follows the inference indicator, but it can also be the
-other way around:
+other way around. [**AdH_comment:** I don't think this is correct, regarding the example. The function of the indicator "since" in this example is to indicate the premise _Watson is a logic-based AI system that beat Jeopardy!_, instead of the conclusion as mentioned here. The sentence is a reason to accept the conclusion _We know some logic-based AI systems are capable of beating game shows_. I think the explanation (The conclusion ... way around) is meant to explain that the conclusion not always closes the inference. However, this is a bit unclear. See "AdH_addtext" for a changed explanation.]
 
 6) We know that some logic-based AI systems are capable of beating game shows,
 since [Watson](https://en.wikipedia.org/wiki/IBM_Watson) is a logic-based AI
@@ -99,7 +145,7 @@ Inferences are the primary subject of logical theory. Note that in logic,
 "inference" is a **technical term**, which does not necessarily have its
 everyday meaning. An inference is a linguistic entity, consisting of premises
 and a conclusion---_and nothing else_. It is not, for example, the psychological
-process of drawing a conclusion from premises.
+process of drawing a conclusion from premises. [**AdH_comment**: I think it is better to start the section with this paragraph, beacuse it explains why it is important to understand this section.]
 
 Inferences come with the expectation that the conclusion does, in fact, _follow
 from_ the premises, that the premises _support_ the conclusion in this way. In
@@ -112,6 +158,7 @@ that sort. These things are good to know, of course, but they are not our main
 interest.
 
 ### Validity
+[**AdH_addtext:** In the previous section, we have looked at the basic concepts of an inference, i.e., arguments as a collection of premises, by which the conclusion is derived. This suggets that Validity is one of the key concepts within logic. Finish this ]
 
 Consider inference 1) again:
 
@@ -213,6 +260,12 @@ conclusions,
 + and a **proof theory**, which is a model of _stepwise valid
 inference_.
 
+[**AdH_comment**: Maybe it is an idea to introduce the Chinese room experiment of Searle here. The Chines room makes clear what the difference between syntx and semantics is. For example:
+
+To understand the difference between syntax and semantic better, we look at the [Chinese Room](https://en.wikipedia.org/wiki/Chinese_room) argument of the American philosopher John Searle. According to Searle, computers can't think properly, because a computer only has syntax, instead of semantics too. Suppose a closed room. In the room, there is a person (or a computer) surrounded by multiple books. These books consist of translation rules. The person in the room recieves cards with Chinese questions. However, the person doesn't master Chinese. With the books the person is capable to manipualte the signs on the cards to answer the questions in Chinese, without understanding the meaning of either the questions and the answers. The person outside of the room, receives the manipulated answers in perfect Chinese. This person would think the person inside the room is a native Chinese speaker. This is the same case as with a computer. The computer's syntax, manipulation of symbols by applying rules, is like what happens inside the room. The semantics is the understanding of the symbols' meaning, by the one outside the room. According to Searle, the person inside the room or the computer is not capable of semantics, meaning, but only of syntax.
+
+]
+
 Together, these three components provide a mathematical model of valid
 inference. Throughout the course, you'll learn more about syntax, semantics, and
 proof theory by studying how they are used in different AI applications. By the
@@ -312,6 +365,8 @@ Now you have a first idea of what the science of logic is all about.[^logic] But
 before we can talk about the role of logic in AI, we need a working definition
 of AI.
 
+{{< definition term="AI" id="ai-160620250933" >}}{{< /definition >}}
+
 In this course, we take **AI** to be the study of the models and replication of
 _intelligent behavior_. Here we're understand "intelligent behavior" in a rather
 inclusive way, counting such diverse activities as behavior of [switching
@@ -325,8 +380,7 @@ in this way. We'll go through them in turn.
 
 ### As a foundation
 
-The first way in which logic is relevant to AI is the most direct one: valid
-inference simply _is_ paradigmatic intelligent behavior. So, logical systems
+The first way in which logic is relevant to AI is the most direct one: valid inference simply _is_ paradigmatic intelligent behavior. So, logical systems
 directly target what we're trying to model in AI---logical systems are models of
 intelligent behavior. So, by our definition, logical systems are part of AI.
 This makes logic a **subdiscipline** of AI.
@@ -418,6 +472,8 @@ and the expert information.
 The expert information typically takes the form of **if-then rules**.
 The expert information in the KB of an expert system for medical diagnosis, for
 example, could include the following:
+
+[**AdH_comment:** maybe the difference between antecedent and consequent could be mentioned shortly.]
 
 + _If_ the patient has a runny nose, a sore throat, and a mild fever, _then_ the
 patient likely has the common cold.
@@ -627,6 +683,7 @@ World. Penguin](https://en.wikipedia.org/wiki/The_Master_Algorithm).
 
 In general, I recommend to use the internet to keep up to date on logic and AI
 developments. Read, Learn, Improve!
+
 
 **Notes:**
 
