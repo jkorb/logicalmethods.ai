@@ -12,13 +12,6 @@
 
 <body>
 
-[WARNING] Could not convert TeX math \Sigma_P = \{\overbrace{p_1,\ldots,p_2}^{\mbox{variables}}\},\underbrace{\neg,\land,\lor,\rightarrow,\leftrightarrow}_{\mbox{operators}},\overbrace{(,)}^{\mbox{auxiliaries}}\}, rendering as TeX
-[WARNING] Could not convert TeX math (A\to A) $
-  , rendering as TeX:
-  (A\to A) $
-           ^
-  unexpected '$'
-  expecting "\\bangle", "\\brace", "\\brack", "\\choose", "\\displaystyle", "\\textstyle", "\\scriptstyle", "\\scriptscriptstyle", "{", "\\operatorname", letter, digit, ".", "!", "'", "''", "'''", "''''", "*", "+", ",", "-", ".", "/", ":", ":=", ";", "<", "=", ">", "?", "@", "~", "_", "^", "\\left", "\\", "\\hyperref" or end of input
 [WARNING] Could not convert TeX math \land,\\&, rendering as TeX:
   \land,\\&
           ^
@@ -29,6 +22,9 @@
     ^
   unexpected control sequence \\
   expecting "%", "\\label", "\\tag", "\\nonumber" or whitespace
+[WARNING] Could not convert TeX math \langle term\rangle::= \langle const\rangle\mid\langle variable\rangle\mid
+  \langle fun^n\rangle(\overbrace{\langle term\rangle,\dots,\langle term\rangle}^{n\text{ times}}), rendering as TeX
+[WARNING] Could not convert TeX math \langle atom\rangle::= \langle pred^n\rangle(\underbrace{\langle term\rangle,\dots\langle term\rangle}_{n\text{ times}}), rendering as TeX
 <h1 id="formal-languages">Formal languages</h1>
 <p>In {{&lt; chapter_ref chapter=“logic-and-ai”
 id=“logical-systems”&gt;}} Chapter 1. Logic and AI{{&lt; /chapter_ref
@@ -101,13 +97,16 @@ language are developed using programming languages, which are formal
 languages. We cannot construct a neural network using natural language.
 So even sub-symbolic approaches to AI rely on formalisms that have
 symbolic roots. More generally, however, natural languages have some
-properties that make them unsuitable for doing logic, maths or AI. Two
-such properties stand out:</p>
+properties that make them unsuitable for doing logic or maths and,
+equally importantly, that make them unsuitable for storing human
+knowledge. Two such properties stand out:</p>
 <ul>
 <li><p>Natural languages are <em>ambiguous</em>: Statements formulated
-in a natural language can often be interpreted in multiple ways. This
-makes natural language unsuitable as a vehicle for studying valid
-inference and equally unsuitable for storing knowledge.</p></li>
+in a natural language can often be interpreted in multiple ways. As a
+consequence, if we choose to use natural language as a basis for drawing
+inferences, we can’t always be sure that rules or facts that we want
+would want an AI system to benefit from are understood in the
+appropriate way.</p></li>
 <li><p>Natural languages are <em>over-expressive</em>: Specific
 statements made in a natural language tend to describe highly specific
 thoughts. This makes natural language unsuitable for studying
@@ -117,39 +116,52 @@ thoughts. This makes natural language unsuitable for studying
 <h3 id="natural-language-hosts-ambiguity">Natural language hosts
 ambiguity</h3>
 <p>Imagine that we want to build an AI system that gives out safety
-advice on eating mushrooms. Say, we have the following information
-(stated in a natural language, <em>English</em>).</p>
+advice on eating foraged mushrooms. We have access to a lot of expert
+knowledge about mushrooms. One idea could be to feed this knowledge to
+the AI system in the form of natural language statements. For instance,
+we could give the system lots of English language sentences that
+together make up all our knowledge. Say, these sentences include the
+following:</p>
 <blockquote>
 <p><span class="math inline"><em>S</em><sub>1</sub> =</span> If a
 mushroom has red spots and gills, then it is not poisonous.</p>
 </blockquote>
+<p>Also, we prompt the AI system with another English language
+sentence:</p>
 <blockquote>
 <p><span class="math inline"><em>S</em><sub>2</sub> =</span> The
 mushroom in front of me has red spots and gills.</p>
 </blockquote>
 <p>It may seem straightforward how the AI system can prepare an advice
-on the basis of this information. We may think that all the AI system
-needs to do is recognise that it can apply modus ponens. From “If the
-door is open, you can come in” and “The door is open”, you can infer
-that you can come in. Completely parallel then, you would expect that
-from the two statements above we can infer that the mushroom in question
-is not poisonous.</p>
+on the basis of the knowledge captured in <span
+class="math inline"><em>S</em><sub>1</sub></span> and the information in
+the user prompt <span class="math inline"><em>S</em><sub>2</sub></span>.
+We may think that all the AI system needs to do is recognise that it can
+apply modus ponens. From “If the door is open, you can come in” and “The
+door is open”, you can infer that you can come in. Completely parallel
+then, you would expect that from the two statements above the AI system
+should infer that the mushroom in question is not poisonous.</p>
 <p>The problem, however, is that “X has red spots and gills” is
 ambiguous. It could either mean that X has red spots and red gills, or
 it could state that it has red spots and that it has gills (of whatever
 colour). Because of this we cannot be sure what either of these
-statements are saying exactly. And because of thàt we cannot be sure
-whether modus ponens applies. For instance, perhaps <span
+statements are saying exactly. It is not clear what the rule is that
+<span class="math inline"><em>S</em><sub>1</sub></span> is intended to
+capture, nor is it clear what observation the user is describing with
+<span class="math inline"><em>S</em><sub>2</sub></span>. And because of
+all that uncertainty, we cannot be sure whether modus ponens applies.
+For instance, perhaps <span
 class="math inline"><em>S</em><sub>1</sub></span> is intended to mean
 that mushrooms that have red spots and red gills are not poisonous,
 while <span class="math inline"><em>S</em><sub>2</sub></span> is
 intended to mean that the mushroom in question has gills (gray ones, in
-fact) and red spots. In that case, modus ponens would not apply. But if
-our understanding is different from the intended one, we could
-accidentally apply modus ponens and end up poisoning ourselves.</p>
-<p>A similar problem concerns words like “<em>if</em>” and
+fact) and red spots. In that case, modus ponens would not apply. In
+other words, if our AI system accidentally interprets these sentences
+not as they were intended, it could end up applying modus ponens and
+cause the users to poison themselves.</p>
+<p>A similar problem concerns the words “<em>if</em>” and
 “<em>then</em>” in languages like English. Say, I remove the ambiguity
-from <span class="math inline"><em>S</em><sub>1</sub></span> above and
+in <span class="math inline"><em>S</em><sub>1</sub></span> above and
 instead state that:</p>
 <blockquote>
 <p><span class="math inline"><em>S</em><sub>1</sub>′ =</span> If a
@@ -174,14 +186,21 @@ be saying what happens when they do not behave well. <span
 class="math inline"><em>S</em><sub>3</sub></span> seems to clearly
 suggest that if the child does <em>not</em> behave well, then there
 won’t be any icecream. So, “<em>if</em>” and “<em>then</em>” are
-interpreted differently in different examples. This again means that
-with natural language we often cannot be entirely sure what something
-means.</p>
-<p>Ambiguity is extremely common. For that reason it is important to use
-an unambiguous language for a theory of valid inference. More generally,
-whenever we want represent knowledge and rules precisely, we should
-avoid the inherent ambiguity of natural language. Formal languages allow
-us to do just that.</p>
+interpreted differently in different examples. This simple observation
+has profound consequences for AI. If we feed the AI system our knowledge
+in the form of a long list of English sentences of the form “If X, then
+Y”, then how does the AI system decide which of these to interpret the
+way we interpreted <span
+class="math inline"><em>S</em><sub>1</sub>′</span> and which to
+interpret parallel to our understanding of <span
+class="math inline"><em>S</em><sub>3</sub></span>? Once more, the use of
+a natural language complicates the storing of knowledge, since a single
+natural language sentence often come with more than one
+interpretation.</p>
+<p>Ambiguity is extremely common. Whenever we want represent knowledge
+and rules precisely, we should avoid the inherent ambiguity of natural
+language. Formal languages allow us to do just that. Let us now turn to
+a second reason why we choose formal over natural languages.</p>
 <h3 id="over-expressiveness">Over-expressiveness</h3>
 <p>To illustrate the problem of over-expressiveness, let us look at
 another case of modus ponens:</p>
@@ -254,8 +273,8 @@ specific details of situations, it is very bad at abstracting away.
 class="math inline"><em>M</em>′</span> are highly specific examples of
 premises that with the right further premise bring us in a situation
 where we can apply modus ponens. To be able to talk about modus ponens
-as a /general/ principle of valid inference, we would need to let go of
-the specifics in these examples and state the principle using an
+as a <em>general</em> principle of valid inference, we would need to let
+go of the specifics in these examples and state the principle using an
 abstract formal language.</p>
 <p>In the formal language of propositional logic, the two stories can be
 captured in a single schema:</p>
@@ -269,20 +288,20 @@ class="math display"><em>A</em> → <em>B</em>,  <em>A</em>  ⊨  
 </colgroup>
 <tbody>
 <tr class="odd">
+<td><span class="math inline"><em>A</em> → <em>B</em></span></td>
+<td><span class="math inline"><em>M</em></span></td>
+<td><span class="math inline"><em>M</em>′</span></td>
+</tr>
+<tr class="even">
 <td><span class="math inline"><em>A</em></span></td>
 <td>an object was placed in a normal box and subsequently nothing
 happened to the box</td>
 <td>two numbers were multiplied and both numbers were odd</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><span class="math inline"><em>B</em></span></td>
 <td>the box is still empty</td>
 <td>the result is odd</td>
-</tr>
-<tr class="odd">
-<td><span class="math inline"><em>A</em> → <em>B</em></span></td>
-<td><span class="math inline"><em>M</em></span></td>
-<td><span class="math inline"><em>M</em>′</span></td>
 </tr>
 </tbody>
 </table>
@@ -317,7 +336,8 @@ to <span class="math display">(<em>x</em>+3)(<em>x</em>+2) = 0</span>,
 which means that <span class="math display"><em>x</em></span> is either
 -3 or -2. Just imagine doing this without the use of abstract symbols
 like <span class="math display"><em>x</em></span>!</p>
-<h2 id="formal-languages-for-logic">Formal languages for logic</h2>
+<h3 id="formal-languages-for-logic-and-ai">Formal languages for logic
+and AI</h3>
 <p>In logical theory, the main role of formal languages is to provide a
 model of <strong>logical form</strong>. As foreshadowed in {{&lt;
 chapter_ref chapter=“valid-inference” id=“formalization”&gt;}} Chapter
@@ -341,8 +361,8 @@ teaching the class.</p></li>
 valid inferences like this. If we let <span
 class="math inline"><em>A</em></span> and <span
 class="math inline"><em>B</em></span> be arbitrary sentences, then the
-pattern is <span class="math display"><em>A</em> or <em>B</em>,  not
-B ⊨ <em>A</em>.</span> This is the logical form of inferences 1.-3.,
+pattern is: <span class="math display"><em>A</em> or <em>B</em>,  not
+B ⊨ <em>A</em></span>. This is the logical form of inferences 1.-3.,
 which, by the way, is known as <a
 href="https://en.wikipedia.org/wiki/Disjunctive_syllogism">disjunctive
 syllogism</a>. Using a formal language, we have overcome the problem of
@@ -351,11 +371,11 @@ single formula.</p>
 <p>From this perspective, formal languages are the result of introducing
 <em>placeholders</em> for the logically irrelevant parts of language and
 special symbols, so-called <strong>logical constants</strong> for the
-logically relevant parts of language.</p>
-<p>In the case of disjunctive syllogism, for example, the relevant
-formal language will use so-called <strong>sentence letters</strong>
-(<span class="math inline"><em>p</em>, <em>q</em>, <em>r</em>, …</span>)
-to stand for arbitrary sentences, and <strong>propositional
+logically relevant parts of language. In the case of disjunctive
+syllogism, for example, the relevant formal language will use so-called
+<strong>sentence letters</strong> (<span
+class="math inline"><em>p</em>, <em>q</em>, <em>r</em>, …</span>) to
+stand for arbitrary sentences, and <strong>propositional
 connectives</strong> for the logically relevant <a
 href="https://en.wikipedia.org/wiki/Conjunction_(grammar)">grammatical
 conjunctions</a> (<span class="math inline">¬</span> for “not”, <span
@@ -484,15 +504,16 @@ number}</span> is the set that contains all and only the prime numbers.
 So we have that <span class="math inline">3 ∈ {<em>x</em> : <em>x</em>
 is a prime number}</span> but <span
 class="math inline">4 ∉ {<em>x</em> : <em>x</em> is a prime
-number}.</span></p>
-<p>Most formal languages that we will encounter will also be infinite
-sets. So what exactly <em>is</em> a formal language? Put simply, a
-formal language is <strong>a set of sequences of symbols</strong>. A
-formal language starts with the specification of what these building
-blocks are. We call this an <strong>alphabet</strong>, which is just a
-set of symbols. Using the alphabet, we then use a
-<strong>grammar</strong> to construct the set sequences, i.e. the formal
-language.</p>
+number}.</span> Obviously, we could write such things down using an
+extensional definition of the set of prime numbers.</p>
+<p>Most formal languages that we will encounter will be infinite sets.
+So what exactly <em>is</em> a formal language? Put simply, a formal
+language is <strong>a set of sequences of symbols</strong>. Symbols are
+the building blocks of a formal language. A formal language starts with
+the specification of what these building blocks are. We call this an
+<strong>alphabet</strong>, which is just a set of symbols. Using the
+alphabet, we then use a <strong>grammar</strong> to construct the set of
+sequences, i.e. the formal language.</p>
 <h3 id="alphabets">Alphabets</h3>
 <p>Sequences of symbols are recruited from an alphabet. We usually write
 <span class="math inline"><em>Σ</em></span> to denote the alphabet of a
@@ -521,10 +542,11 @@ class="math inline">000881</span>, which are not natural numbers (in the
 Western Arabic decimal system, at least). So, while the Kleene star
 gives us a way to construct the set of all sequences made from an
 alphabet, most formal languages we are interested in will be a specific
-small subset of <span class="math inline"><em>Σ</em><sup>*</sup></span>.
-This is why we need a <em>grammar</em>.</p>
+smaller subset of <span
+class="math inline"><em>Σ</em><sup>*</sup></span>. This is why we need a
+<em>grammar</em>.</p>
 <h3 id="grammar">Grammar</h3>
-<p>The grammar of a language determines which strings of symbols from
+<p>The grammar of a language determines which sequences of symbols from
 <span class="math inline"><em>Σ</em></span> are valid expressions of the
 language.</p>
 <p>In the case of most formal languages in logic, grammars use a
@@ -547,9 +569,10 @@ class="math inline"><em>N</em>9</span></li>
 <li>Nothing else is a natural number</li>
 </ol>
 <p>Here’s how this definition works: In the first step we get all the
-natural numbers that can be written as a single digit. Then in the
-second step we can represent numbers that correspond to sequences of any
-length <span class="math inline"> &gt; 1</span>. For instance, this
+natural numbers that can be written as a single digit. This is the whole
+alphabet with the exception of 0, which isn’t a natural number. Then in
+the second step we can represent numbers that correspond to sequences of
+any length <span class="math inline"> &gt; 1</span>. For instance, this
 definition shows that <span class="math inline">120</span> is a natural
 number: (i) 1 is a natural number (step 1); (ii) 12 is a natural number
 (step 2); (iii) 120 is a natural number (step 2). Using this inductive
@@ -586,13 +609,21 @@ combine</li>
 </ul>
 <p>An example of an alphabet for the language of propositional logic
 is:</p>
-<p><span class="math display">$$\Sigma_P =
-\{\overbrace{p_1,\ldots,p_2}^{\mbox{variables}}\},\underbrace{\neg,\land,\lor,\rightarrow,\leftrightarrow}_{\mbox{operators}},\overbrace{(,)}^{\mbox{auxiliaries}}\}$$</span></p>
+<p><span
+class="math display"><em>Σ</em><sub><em>P</em></sub> = {<em>p</em><sub>1</sub>, …, <em>p</em><sub><em>n</em></sub>, ¬,∧,∨,→,↔︎,(,)}</span></p>
+<p>Here, <span
+class="math inline"><em>p</em><sub>1</sub>, …<em>p</em><sub><em>n</em></sub></span>
+are the <em>variables</em>, <span class="math inline">¬</span>, <span
+class="math inline">∧</span>, <span class="math inline">∨</span>, <span
+class="math inline">→</span>, <span class="math inline">↔︎</span> are
+the <em>operators</em>, and <span class="math inline">(</span> and <span
+class="math inline">)</span> are the auxiliaries.</p>
 <p>The Kleene star of this set, <span
-class="math display"><em>Σ</em><sup>*</sup></span> provides us with all
-the sequences that we can build using these symbols. <span
-class="math display"><em>Σ</em><sup>*</sup></span> contains meaningful
-expressions like:</p>
+class="math display"><em>Σ</em><sub><em>P</em></sub><sup>*</sup></span>
+provides us with all the sequences that we can build using these
+symbols. <span
+class="math display"><em>Σ</em><sub><em>P</em></sub><sup>*</sup></span>
+contains meaningful expressions like:</p>
 <p><span
 class="math display">((<em>p</em><sub>1</sub>∧<em>p</em><sub>3</sub>)→¬<em>p</em><sub>2</sub>)</span></p>
 <p>but also lots of expressions that are not well-formed for
@@ -674,7 +705,7 @@ class="math inline"><em>Σ</em><sub><em>P</em></sub></span>. One obvious
 way in which logics can differ is in the choice and number of
 propositional variables. More interestingly, some logics will only use a
 subset of the operators. For instance, the language <span
-class="math inline">ℒ′</span> defined in the following way, is another
+class="math inline">ℒ′</span>, defined in the following way, is another
 example of a logical formal language.</p>
 <p><span
 class="math display"><em>A</em> :  := <em>p</em><sub><em>i</em></sub> ∣ ¬<em>A</em> ∣ (<em>A</em>∧<em>A</em>)</span></p>
@@ -755,7 +786,7 @@ class="math inline">(¬<em>q</em>→<em>p</em>)</span></td>
 it’s not in the right one</td>
 <td style="text-align: center;"><span class="math inline">⤳</span></td>
 <td style="text-align: center;"><span
-class="math inline">(<em>p</em>→¬<em>q</em>)</span></td>
+class="math inline">(<em>p</em>↔︎¬<em>q</em>)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">The letter is in the left drawer just in
@@ -801,231 +832,279 @@ propositional constants <span class="math inline"><em>p</em></span>,
 class="math inline"><em>r</em></span>:</p>
 <p><span
 class="math display"><em>A</em> :  := <em>p</em> ∣ <em>q</em> ∣ <em>r</em> ∣ ¬<em>A</em> ∣ (<em>A</em>∧<em>A</em>) ∣ (<em>A</em>∨<em>A</em>) ∣ (<em>A</em>→<em>A</em>) ∣ (<em>A</em>↔︎<em>A</em>)</span></p>
-<p>Essentially, this is a collection of eight production rules:</p>
-<table style="width:98%;">
-<colgroup>
-<col style="width: 48%" />
-<col style="width: 13%" />
-<col style="width: 35%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;"><span
-class="math display"><em>r</em><sub>1</sub></span>: <span
-class="math display"><em>A</em>⇒</span> <span
-class="math display"><em>p</em></span> <span
-class="math display"><em>r</em><sub>2</sub></span>: <span
-class="math display"><em>A</em>⇒</span> <span
-class="math display"><em>q</em></span> <span
-class="math display"><em>r</em><sub>3</sub></span>: <span
-class="math display"><em>A</em>⇒</span> <span
-class="math display"><em>r</em></span> <span
-class="math display"><em>r</em><sub>4</sub></span>: <span
-class="math display"><em>A</em>⇒</span> <span
-class="math display">¬<em>A</em></span> <span
-class="math display"><em>r</em><sub>5</sub></span>: <span
-class="math display"><em>A</em>⇒</span> <span
-class="math display">(<em>A</em>∧<em>A</em>)</span>r_6<span
-class="math display">:</span>A<span class="math display"></span>(AA)
-<span class="math display"><em>r</em><sub>7</sub></span>: <span
-class="math display"><em>A</em>⇒</span> <span
-class="math display">$$(A\to A) $
-$$</span>r_8<span class="math display">:</span>A<span
-class="math display"></span>(A</th>
-<th style="text-align: left;"><span class="math display"></span> $
-htarrow A)$$</th>
-<th style="text-align: left;">that can be <em>derived</em> by applying a
-finite number of choices from these rules. n this language, we start
-with <span class="math inline"><em>A</em></span> and, using the rules
-above, we rewrite this <span class="math inline"><em>A</em></span> until
-we arrive that this formula. We can do this in three steps:</th>
-</tr>
-</thead>
+<p>Essentially, this is a collection of eight rules:</p>
+<table>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Not everybody handsome is smart</td>
-<td style="text-align: left;"><span class="math inline">⤳</span></td>
+<td><span class="math display"><em>r</em><sub>1</sub></span>:</td>
+<td><span class="math display"><em>A</em>⇒</span></td>
 <td style="text-align: left;"><span
-class="math inline">¬∀<em>x</em>(<em>H</em>(<em>x</em>)→<em>S</em>(<em>x</em>))</span></td>
+class="math display"><em>p</em></span></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Everybody who’s smart is handsome</td>
-<td style="text-align: left;"><span class="math inline">⤳</span></td>
+<td><span class="math display"><em>r</em><sub>2</sub></span>:</td>
+<td><span class="math display"><em>A</em>⇒</span></td>
 <td style="text-align: left;"><span
-class="math inline">∀<em>x</em>(<em>S</em>(<em>x</em>)→<em>H</em>(<em>x</em>))</span></td>
+class="math display"><em>q</em></span></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">A person who’s smart is handsome</td>
-<td style="text-align: left;"><span class="math inline">⤳</span></td>
+<td><span class="math display"><em>r</em><sub>3</sub></span>:</td>
+<td><span class="math display"><em>A</em>⇒</span></td>
 <td style="text-align: left;"><span
-class="math inline">∀<em>x</em>(<em>S</em>(<em>x</em>)→<em>H</em>(<em>x</em>))</span></td>
+class="math display"><em>r</em></span></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Someone who’s smart is handsome</td>
-<td style="text-align: left;"><span class="math inline">⤳</span></td>
+<td><span class="math display"><em>r</em><sub>4</sub></span>:</td>
+<td><span class="math display"><em>A</em>⇒</span></td>
 <td style="text-align: left;"><span
-class="math inline">∀<em>x</em>(<em>S</em>(<em>x</em>)→<em>H</em>(<em>x</em>))</span></td>
+class="math display">¬<em>A</em></span></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Everybody’s smart and handsome</td>
-<td style="text-align: left;"><span class="math inline">⤳</span></td>
+<td><span class="math display"><em>r</em><sub>5</sub></span>:</td>
+<td><span class="math display"><em>A</em>⇒</span></td>
 <td style="text-align: left;"><span
-class="math inline">∀<em>x</em>(<em>S</em>(<em>x</em>)∧<em>H</em>(<em>x</em>))</span></td>
+class="math display">(<em>A</em>∧<em>A</em>)</span></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Somebody who’s smart exists</td>
-<td style="text-align: left;"><span class="math inline">⤳</span></td>
+<td><span class="math display"><em>r</em><sub>6</sub></span>:</td>
+<td><span class="math display"><em>A</em>⇒</span></td>
 <td style="text-align: left;"><span
-class="math inline">∃<em>x</em><em>S</em>(<em>x</em>)</span></td>
+class="math display">(<em>A</em>∨<em>A</em>)</span></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">There’s somebody who’s not smart</td>
-<td style="text-align: left;"><span class="math inline">⤳</span></td>
+<td><span class="math display"><em>r</em><sub>7</sub></span>:</td>
+<td><span class="math display"><em>A</em>⇒</span></td>
 <td style="text-align: left;"><span
-class="math inline">∃<em>x</em>¬<em>S</em>(<em>x</em>)</span></td>
+class="math display">(<em>A</em>→<em>A</em>)</span></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Somebody’s smart and somebody’s
-handsome</td>
-<td style="text-align: left;"><span class="math inline">⤳</span></td>
+<td><span class="math display"><em>r</em><sub>8</sub></span>:</td>
+<td><span class="math display"><em>A</em>⇒</span></td>
 <td style="text-align: left;"><span
-class="math inline">∃<em>x</em><em>S</em>(<em>x</em>) ∧ ∃<em>x</em><em>H</em>(<em>x</em>)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Somebody’s smart and handsome</td>
-<td style="text-align: left;"><span class="math inline">⤳</span></td>
-<td style="text-align: left;"><span
-class="math inline">∃<em>x</em>(<em>S</em>(<em>x</em>)∧<em>H</em>(<em>x</em>))</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Nobody’s both smart and handsome</td>
-<td style="text-align: left;"><span class="math inline">⤳</span></td>
-<td style="text-align: left;"><span
-class="math inline">¬∃<em>x</em>(<em>S</em>(<em>x</em>)∧<em>H</em>(<em>x</em>))</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Somebody, who’s smart, is handsome</td>
-<td style="text-align: left;"><span class="math inline">⤳</span></td>
-<td style="text-align: left;"><span
-class="math inline">∃<em>x</em>(<em>S</em>(<em>x</em>)∧<em>H</em>(<em>x</em>))</span></td>
+class="math display">(<em>A</em>↔︎<em>A</em>)</span></td>
 </tr>
 </tbody>
 </table>
-<p>Indeterminate terms, like pronouns, indexicals, etc., are formalized
-using variables. Only when clearly the same thing is meant, use the same
-variable, if different things could be meant, use different
-variables:</p>
-<table style="width:96%;">
-<colgroup>
-<col style="width: 51%" />
-<col style="width: 18%" />
-<col style="width: 26%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">He’s handsome</td>
-<td style="text-align: center;"><span class="math inline">⤳</span></td>
-<td style="text-align: left;"><span
-class="math inline"><em>H</em>(<em>x</em>)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">She’s handsome and smart</td>
-<td style="text-align: center;"><span class="math inline">⤳</span></td>
-<td style="text-align: left;"><span
-class="math inline"><em>H</em>(<em>x</em>) ∧ <em>S</em>(<em>x</em>)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">He’s handsome and <em>he</em>’s smart</td>
-<td style="text-align: center;"><span class="math inline">⤳</span></td>
-<td style="text-align: left;"><span
-class="math inline"><em>H</em>(<em>x</em>) ∧ <em>S</em>(<em>y</em>)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">He’s handsome and she’s smart</td>
-<td style="text-align: center;"><span class="math inline">⤳</span></td>
-<td style="text-align: left;"><span
-class="math inline"><em>H</em>(<em>x</em>) ∧ <em>S</em>(<em>y</em>)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">That’s a smart and handsome person</td>
-<td style="text-align: center;"><span class="math inline">⤳</span></td>
-<td style="text-align: left;"><span
-class="math inline"><em>H</em>(<em>x</em>) ∧ <em>S</em>(<em>x</em>)</span></td>
-</tr>
-</tbody>
-</table>
-<p>Most languages used for KR are <strong>fragments</strong> of FOL,
-since FOL has certain theoretical limitations, which we’ll discuss later
-in the course.</p>
+<p>Rules like this are sometimes called <em>rewrite rules</em>. The
+intuition is that starting from the abstract ‘start’ symbol <span
+class="math inline"><em>A</em></span>, the rules allow you to rewrite
+<span class="math inline"><em>A</em></span> to any formula in the
+language. So, any formula in the language can be <em>derived</em> by
+applying a finite number of choices from these rules. For instance, to
+show that <span class="math inline">¬(<em>p</em>∧<em>q</em>)</span> is a
+formula in this language, we start with <span
+class="math inline"><em>A</em></span> and, using the rules above, we
+rewrite this <span class="math inline"><em>A</em></span> until we arrive
+at this formula. We can do this in four steps:</p>
+<p><span
+class="math display"><em>A</em> ⇒<sub><em>r</em><sub>4</sub></sub>¬<em>A</em> ⇒<sub><em>r</em><sub>5</sub></sub>¬(<em>A</em>∧<em>A</em>) ⇒<sub><em>r</em><sub>1</sub></sub>¬(<em>p</em>∧<em>A</em>) ⇒<sub><em>r</em><sub>2</sub></sub>¬(<em>p</em>∧<em>q</em>)</span></p>
+<p>To make this more insightful, we can turn this derivation into a
+so-called <strong>parse tree</strong>, which is a very useful
+representation of the syntax of a formula. A parse tree is a structure
+that is rooted in the abstract label <span
+class="math inline"><em>A</em></span> that forms the base of our BNF
+definition of the language. You can construct a tree by just following
+the derivation above, step by step. Each application of a rule
+introduces a new branching, until there is nothing left to do anymore.
+Here is how to construct the parse tree for the derivation we gave for
+<span class="math inline">¬(<em>p</em>∧<em>q</em>)</span>. We start with
+a node <span class="math inline"><em>A</em></span> and then look at the
+derivation to see which rule to apply first. This is rule 4, which maps
+<span class="math inline"><em>A</em></span> to a new formula <span
+class="math inline">¬<em>A</em></span>. For each new symbol we create a
+new branch:</p>
+<p><img src="tex_gen/tree_1_a.png" alt="parse tree" width="100pt" class="img-thumbnail"></p>
+<p>Then, we apply rule 5 to the right-most branch. This rule rewrites
+this <span class="math inline"><em>A</em></span> into <span
+class="math inline">(<em>A</em>∧<em>A</em>)</span>, which creates five
+more branches:</p>
+<p><img src="tex_gen/tree_1_b.png" alt="parse tree" width="200pt" class="img-thumbnail"></p>
+<p>Then, we apply rule 1 to <span class="math inline"><em>A</em></span>
+that is to the left of “<span class="math inline">∧</span>”:</p>
+<p><img src="tex_gen/tree_1_c.png" alt="parse tree" width="200pt" class="img-thumbnail" ></p>
+<p>Finally, we apply rule 2:</p>
+<p><img src="tex_gen/tree_1_d.png" alt="parse tree" width="200pt" class="img-thumbnail" ></p>
+<p>This now is the parse tree corresponding to our derivation of <span
+class="math inline">¬(<em>p</em>∧<em>q</em>)</span>. The leaves of the
+tree spell out the formula, each branching is an application of a rule
+from the BNF grammar.</p>
+<p>Here is an example of a derivation for a more complicated
+formula:</p>
+<p><span
+class="math display"><em>A</em> ⇒<sub><em>r</em><sub>7</sub></sub>(<em>A</em>→<em>A</em>) ⇒<sub><em>r</em><sub>4</sub></sub>(<em>A</em>→¬<em>A</em>) ⇒<sub><em>r</em><sub>2</sub></sub>(<em>A</em>→¬<em>q</em>) ⇒<sub><em>r</em><sub>5</sub></sub>((<em>A</em>∧<em>A</em>)→¬<em>q</em>)</span></p>
+<p><span
+class="math display">⇒<sub><em>r</em><sub>1</sub></sub>((<em>p</em>∧<em>A</em>)→¬<em>q</em>) ⇒<sub><em>r</em><sub>7</sub></sub>((<em>p</em>∧(<em>A</em>→<em>A</em>))→¬<em>q</em>)</span></p>
+<p><span
+class="math display">⇒<sub><em>r</em><sub>2</sub></sub>((<em>p</em>∧(<em>A</em>→<em>q</em>))→¬<em>q</em>) ⇒<sub><em>r</em><sub>1</sub></sub>((<em>p</em>∧(<em>p</em>→<em>q</em>))→¬<em>q</em>)</span></p>
+<p>The corresponding parse tree looks like this:</p>
+<p><img src="./tex_gen/tree_2.png" alt="parsing tree" width="300pt" class="img-thumbnail" ></p>
+<p>Here is yet another example of a formula, a derivation for that
+formula and the parse tree for that derivation:</p>
+<p><span
+class="math display">(¬(<em>p</em>∨<em>q</em>)∧<em>r</em>)</span></p>
+<p><span
+class="math display"><em>A</em>⇒<sub><em>r</em><sub>5</sub></sub>(<em>A</em>∧<em>A</em>)⇒<sub><em>r</em><sub>4</sub></sub>(¬<em>A</em>∧<em>A</em>)⇒<sub>5</sub>(¬(<em>A</em>∨<em>A</em>)∧<em>A</em>)⇒<sub><em>r</em><sub>1</sub></sub>(¬(<em>p</em>∨<em>A</em>)∧<em>A</em>)⇒<sub><em>r</em><sub>2</sub></sub>(¬(<em>p</em>∨<em>q</em>)∧<em>A</em>)⇒<sub><em>r</em><sub>3</sub></sub>(¬(<em>p</em>∨<em>q</em>)∧<em>r</em>)</span></p>
+<p><img src="tex_gen/tree_4.png" alt="parse tree" width="200pt" class="img-thumbnail" ></p>
+<p>For a computer it is essential to be capable of parsing a complex
+formula in this way. This is because the parse of a formula gives us
+access to the logical form. Say, that the propositions in this logical
+language are meant to give a medical system crucial information about a
+patient. For instance, <span class="math inline"><em>p</em></span>,
+<span class="math inline"><em>q</em></span> and <span
+class="math inline"><em>r</em></span> each correspond to the proposition
+that states that the patient has a certain symptom, call these symptoms
+<span class="math inline"><em>P</em></span>, <span
+class="math inline"><em>Q</em></span> and <span
+class="math inline"><em>R</em></span>, respectively. If we feed the
+system the formula <span
+class="math inline">¬(<em>p</em>∨<em>q</em>) ∧ <em>r</em></span>, then
+we want the system to know that the patient is showing symptom <span
+class="math inline"><em>R</em></span>, but not showing <span
+class="math inline"><em>P</em></span> or <span
+class="math inline"><em>Q</em></span>. It needs to figure out that the
+sub-proposition <span class="math inline">(<em>p</em>∨<em>q</em>)</span>
+are negated, while sub-proposition <span
+class="math inline"><em>r</em></span> is not. To do this, it needs to
+parse the formula correctly. From the parse, it is clear that the
+disjunction <span class="math inline">(<em>p</em>∨<em>q</em>)</span> is
+negated, but that <span class="math inline"><em>r</em></span> escapes
+the effect of that negation.</p>
+<p>Parsing allows us to distinguish seemingly similar, but crucially
+different logical forms like:</p>
+<p><span
+class="math display">(¬(<em>p</em>∨<em>q</em>)∧<em>r</em>)</span></p>
+<p><span
+class="math display">¬((<em>p</em>∨<em>q</em>)∧<em>r</em>)</span></p>
+<p><span
+class="math display">((¬<em>p</em>∨<em>q</em>)∧<em>r</em>)</span></p>
+<p>A fundamental insight of logical theory is that when a grammar is
+properly defined, we get what’s known as <strong>unique
+readability</strong>. A formula has this property when the grammar only
+provides a single parse tree for it. This is the case for the examples
+we gave above. For instance, for <span
+class="math inline">((<em>p</em>∧(<em>p</em>→<em>q</em>))→¬<em>q</em>)</span>
+we don’t have a choice in what rule to apply first when we start our
+derivation. We cannot for instance apply rule 4 before we apply rule 7.
+If we did, we would end up with a different formula. We do have some
+choices later in the derivation. For instance, after applying rule 4, we
+could have chosen to apply rule 5 to the <span
+class="math inline"><em>A</em></span> to the left of the <span
+class="math inline">→</span>. But that is not a choice that affects the
+structure. The parse tree would remain the same. In other words, all
+derivations of this formula lead to the same tree.</p>
+<p>Unique readability is of the utmost importance since if it fails,
+this means that formulas are <strong>ambiguous</strong>. Since we said
+that avoiding ambiguity is one of the motivations for the use of formal
+languages, this means that we need to take special care in designing our
+grammar. Take the following logic, for instance:</p>
+<p><span
+class="math display"><em>A</em>: := <em>p</em> ∣ <em>q</em> ∣ ¬<em>A</em> ∣ <em>A</em> ∧ <em>A</em></span></p>
+<p>Using this grammar, we can derive <span
+class="math display">¬<em>p</em> ∧ <em>q</em></span>. Crucially, though,
+we can derive this in two distinct ways, corresponding to the following
+two parse trees.</p>
+<p><img src="tex_gen/tree_3.png" alt="parsing tree" width="300pt" class="img-thumbnail" ></p>
+<p>Imagine we are building an AI system to regulate a train crossing.
+There is a light stopping traffic from crossing the railway when it
+turns red and similarly there is a light indicating the train should
+stop and wait with crossing the road until that light turns green. Let’s
+say we have trained a neural network to regulate things as efficiently
+as possible, minimizing train delays and traffic jams. Unfortunately,
+the neural network is not flawless. We need a rule-based system to make
+sure the decisions made by the network are safe. To do this, we
+translate the network’s decisions to statements in a propositional logic
+and compare these to rules that we want the system to obey. Let’s say
+that <span class="math inline"><em>p</em></span> means that the cars
+have a green light and <span class="math inline"><em>q</em></span> means
+that the train has a green light. We now want a rule that says that
+<span class="math inline"><em>p</em></span> and <span
+class="math inline"><em>q</em></span> cannot be true at the same
+time.</p>
+<p>As the two parse trees above show us, we have no way of doing this.
+If we state the rule as <span
+class="math inline">¬<em>p</em> ∧ <em>q</em></span>, we end up with
+something that could be misunderstood. The two trees correspond to two
+distinct derivations, which correspond to two different structures for
+the same formula. In turn this means that the formula will have two
+interpretations. On the right is the interpretation that would be handy
+for this AI system: cars and trains do not have a green light at the
+same time. But if the system instead adopts the structure on the left,
+we could end up with a system that demands that trains have a green
+light while cars do not. Ambiguity might just have created a huge
+traffic jam! This shows that the BNF above is unsuitable as a formal
+language, since it fails the property of unique readability. All this is
+why we need to be careful about the <strong>auxiliaries</strong>, like
+<span class="math inline">(,)</span>, which ultimately guarantee unique
+readability.</p>
+<p>Parsing is an incredibly important subject in the foundations and
+practice of programming, natural language processing (NLP), and
+elsewhere. We don’t have time to go into the details, but think of
+programming for a second. A <a
+href="https://en.wikipedia.org/wiki/Programming_language">programming
+language</a> is essentially a tool to write down instructions for a
+computer in a human-readable way. What happens “under the hood” is that
+the computer translates the program you write into machine instructions
+(the proverbial 1’s and 0’s).</p>
+<p>To ensure that the machine instructions really correspond to what you
+had in mind when you wrote the program, the computer needs to understand
+<em>what you meant</em>. Since a computer is deterministic and not
+<em>particularly</em> intelligent, the only way it can do this is
+according to unambiguous instructions about what means what.</p>
+<p>But clearly, we can’t just write for each program what it means in
+machine instructions-otherwise, what’s the point of having the language
+in the first place? Instead, we specify what the individual expressions
+of the language mean and how combining them according to the grammar
+affects that meaning. In this way, we guarantee that for each program we
+could possibly write, we can translate it into machine instructions.</p>
+<p>But to do so, we need to know which expressions occur in which order
+in the program. To determine this is the role of the <a
+href="https://en.wikipedia.org/wiki/Parsing#Parser">parser</a>. This
+shows the fundamental importance of parsing in programming and
+human-computer interaction.</p>
 <h2 id="applications">Applications</h2>
-<p>Let’s talk for a moment about the role of formal languages in AI.
-We’ve already talked about the fact that programming languages are
-essentially just formal languages. So we can use the theory of formal
-languages to understand this aspect of human-machine interaction, which
-is crucial also in AI. Here are some other applications:</p>
-<h3 id="natural-language-processing">Natural language processing</h3>
-<p>One application of formula languages, parsing, and related techniques
-is in <a
-href="https://en.wikipedia.org/wiki/Natural_language_processing"><strong>natural
-language processing (NLP)</strong></a>. For a long time (until roughly
-the 1990s), formal languages played a key role in NLP in what in analogy
-to symbolic AI is known as <a
-href="https://en.wikipedia.org/wiki/Natural_language_processing#Symbolic_NLP_(1950s_%E2%80%93_early_1990s)">symbolic
-NLP</a>.</p>
-<p>As suggested by Wikipedia, we can use a famous thought experiment
-known as the <em>Chinese room</em> to illustrate the idea:</p>
-<p>{{&lt; blockquote author=“Jon Searle. 1999. ‘The Chinese Room’”&gt;}}
-Imagine a native English speaker who knows no Chinese locked in a room
-full of boxes of Chinese symbols (a data base) together with a book of
-instructions for manipulating the symbols (the program). Imagine that
-people outside the room send in other Chinese symbols which, unknown to
-the person in the room, are questions in Chinese (the input). And
-imagine that by following the instructions in the program the man in the
-room is able to pass out Chinese symbols which are correct answers to
-the questions (the output). The program enables the person in the room
-to pass the Turing Test for understanding Chinese but he does not
-understand a word of Chinese. {{&lt; /blockquote &gt;}} Essentially, the
-computer is the person in the room. The rules are parsing rules and
-formal grammars, which enable the room to “speak Chinese”.</p>
-<p>The idea was to build NLP technologies in a similar way and for a
-while this was moderately successful. But much for the same reasons why
-symbolic AI in general “failed”, symbolic NLP is no longer a strong
-paradigm in NLP. While symbolic methods are still around, in NLP,
-statistical methods, which are at the core of <a
-href="https://en.wikipedia.org/wiki/Large_language_model">LLMs</a>, for
-example, rule the waves.</p>
-<h3 id="knowledge-representation">Knowledge representation</h3>
-<p>Things are more interesting when it comes to KR. To this day, formal
-languages and knowledge bases (KBs) are <strong>powerful tools</strong>
-when it comes to storing and making accessible known facts to
-computational systems, such as computers or AI-systems. Mathematically
-speaking, a knowledge bases is just a set of formulas. In a slogan:
-<span
-class="math display"><strong>K</strong><strong>B</strong> ⊆ ℒ</span></p>
-<p>The main strengths of KBs is their <strong>reliability</strong> and
-<strong>precision</strong>. Mistakes in KBs are essentially only due to
-human error. Interestingly, though, there is <a
-href="https://arxiv.org/abs/2407.13578">ongoing research</a> on using
-LLMs, for example, to store factual information, even though they can’t
-compete with knowledge bases yet.</p>
-<p>What we should note, though, is that the formal languages that are
-used for KR are usually <strong>less expressive</strong> than FOL. This
-is due to some theoretical results about FOL, which provide fundamental
-roadblocks to using its full expressive power in computational contexts.
-We’ve already briefly touched upon one such reason in {{&lt; chapter_ref
-chapter=“logic-and-ai” id=“as-a-foundation”&gt;}} Chapter 1. Logic and
-AI{{&lt; /chapter_ref &gt;}}, when we spoke about Turing’s <a
-href="https://en.wikipedia.org/wiki/Decidability_%28logic%29">undecidability
-theorem</a>, which states that validity checking in FOL, specifically,
-cannot be fully automated. <a
-href="https://en.wikipedia.org/wiki/Description_logic">Description
-logic</a> is an interesting example of an approach to KR that uses
-what’s effectively a fragment of FOL KR-purposes.</p>
-<p>An active area of research is the so-called <a
-href="https://en.wikipedia.org/wiki/Semantic_Web">semantic web</a>,
-which uses languages like <a
-href="https://en.wikipedia.org/wiki/Web_Ontology_Language">OWL</a> to
-make data on the internet machine readable.</p>
+<p>The development of large language models for generative AI has made a
+significant impact on applications of AI. Because the interaction with
+such models involves the medium of natural language, generative AI has a
+serious ambiguity problem. For that reason, it is crucial for
+applications that require precision that there are rule-based components
+that avoid the problems inherent to natural language.</p>
+<p>So, let’s talk for a moment about the role of formal languages in AI
+applications. We’ve already talked about the fact that programming
+languages are essentially just formal languages. So we can use the
+theory of formal languages to understand this crucial aspect of
+human-machine interaction. Formal languages, however, solve the problem
+of how to communicate with computers in a much more general way. Their
+potential to avoid ambiguity means that formal languages are essential
+to applications that require precision. In the 80s and 90s of the
+previous century, this idea lead to the rise of so-called <em>expert
+systems</em>. These are systems where vast bodies of existing
+‘expertise’ in a certain domain were translated into databases of
+formalised statements and rules, in order to solve complex problems
+concerning the domain in question. In such systems, there are so many
+rules and facts that it is impossible for the human expert to keep track
+of everything. The expert system, however, can generate unknown novel
+facts on the basis of a great many applications of modus ponens and
+other patterns of valid inference. Conversely, expert systems could be
+used to answer queries. This means that a user prompts the system with a
+certain proposition (standing for some statement in the domain of
+expertise) and the expert system would then search for a chain of
+inferences either leading to that proposition or to its negation.
+Ultimately then, the expert system can help the user understand whether
+something relevant to the domain of expertise is true or not, and also
+why that conclusion can be drawn.</p>
+<p>Currently, the term ‘expert system’ is not used a lot anymore.
+However, rule-based systems are still very popular applications of
+formal languages in businesses. They are cheap to build and maintain,
+they are fast and reliable. As we hinted at above, they are also fully
+<em>transparent</em>, meaning that an expert system doesn’t just solve a
+complex problem, it can also provide a detailed explanation of how it
+came to the solution, since it can show you the rules and facts it used
+in order to reach it. This is in stark contrast to generative AI, which
+relies on untraceable statistical regularities in vast amounts of data.
+This lack of traceable reasoning makes the reliability of generative AI
+questionable, thereby raising question about its safe use. Even worse,
+it makes it less clear that AI can be held accountable for the decisions
+it makes.</p>
 <h2 id="further-readings">Further readings</h2>
 <p>An incredibly rich and extensive discussion of formal languages and
 their role in logic is:</p>
@@ -1260,6 +1339,7 @@ are required for to capture all linguistic nuances (which are often
 <a
 href="https://en.wikipedia.org/wiki/Context-sensitive_grammar">context-sensitive
 grammars</a>.</p>
+<h1 id="stuff-that-got-removed">Stuff that got removed</h1>
 <h2 id="ideas">Ideas</h2>
 <p>Like much of logic, formal languages have a <em>long</em> history.<a
 href="#fn1" class="footnote-ref" id="fnref1"
@@ -1276,6 +1356,309 @@ mathematics, culminating in <a
 href="https://en.wikipedia.org/wiki/Logicism">logicist</a> projects,
 such as Gottlob Frege’s <a
 href="https://en.wikipedia.org/wiki/Begriffsschrift">Begriffsschrift</a>.</p>
+<h2 id="knowledge-representation">Knowledge representation</h2>
+<p>One of the most important applications of formal languages is as a
+formalism that allows storing knowledge. This could be knowledge of any
+kind: facts about the world, facts about the clients and their orders of
+a major company, the location of objects in a space that a robot is
+navigating, etc.</p>
+<p>Above we introduced a formal language for propositional logic as
+follows:</p>
+<p><span
+class="math display"><em>A</em> :  := <em>p</em><sub><em>i</em></sub> ∣ ¬<em>A</em> ∣ (<em>A</em>∧<em>A</em>) ∣ (<em>A</em>∨<em>A</em>) ∣ (<em>A</em>→<em>A</em>) ∣ (<em>A</em>↔︎<em>A</em>)</span></p>
+<p>We could use this for knowledge representation, but it will be easy
+to see that its applications will be rather limited. Say, we want to
+represent the knowledge we have about the location of three objects,
+<span class="math inline"><em>A</em></span>, <span
+class="math inline"><em>B</em></span> and <span
+class="math inline"><em>C</em></span>. We know that <span
+class="math inline"><em>A</em></span> is left of <span
+class="math inline"><em>B</em></span> and <span
+class="math inline"><em>B</em></span> is on left of <span
+class="math inline"><em>C</em></span>. How do we store that knowledge
+using propositional logic. Unfortunately, all we can do is something
+like this: First we state that <span
+class="math inline"><em>p</em><sub>1</sub></span> corresponds to <span
+class="math inline"><em>A</em></span> is left of <span
+class="math inline"><em>B</em></span> and that <span
+class="math inline"><em>p</em><sub>2</sub></span> corresponds to <span
+class="math inline"><em>B</em></span> is left of <span
+class="math inline"><em>C</em></span>. Then, we declare all our
+knowledge:</p>
+<p><span class="math display"><em>p</em><sub>1</sub></span></p>
+<p><span class="math display"><em>p</em><sub>2</sub></span></p>
+<p>This is hardly useful. What we see here is that although
+propositional logic is unambiguous and really useful for stating general
+cases of valid inference, it is <strong>under-expressive</strong> for
+most applications that concern knowledge representation. Propositional
+logic can only represent propositions, things that are true or false.
+These propositions themselves have no aboutness and, in particular,
+there is no role in propositional logic for (representations of) objects
+in the world. In other words, we would like to have a formal language
+that not just state that certain things are true or false, but be
+explicit about what these propositions are about. In <strong>first order
+predicate logic</strong>, for instance, we can express the location of
+the objects <span class="math inline"><em>A</em></span>, <span
+class="math inline"><em>B</em></span> and <span
+class="math inline"><em>C</em></span> much more transparently:</p>
+<p><span
+class="math display"><em>l</em><em>e</em><em>f</em><em>t</em>(<em>A</em>,<em>B</em>)</span></p>
+<p><span
+class="math display"><em>l</em><em>e</em><em>f</em><em>t</em>(<em>B</em>,<em>C</em>)</span></p>
+<p>Here, “left” is a predicate and it expresses a relation that holds of
+two entities. Additionally, using first order logic, we can express
+relations that hold in general. Consider, for instance, the following
+rule:</p>
+<p><span
+class="math display">∀<em>x</em>∀<em>y</em>∀<em>z</em>[(<em>l</em><em>e</em><em>f</em><em>t</em>(<em>x</em>,<em>y</em>)∧<em>l</em><em>e</em><em>f</em><em>t</em>(<em>y</em>,<em>z</em>)→<em>l</em><em>e</em><em>f</em><em>t</em>(<em>x</em>,<em>z</em>)]</span></p>
+<p>This rule states that if for any object <span
+class="math inline"><em>x</em></span>, for any object <span
+class="math inline"><em>y</em></span> and for any object <span
+class="math inline"><em>z</em></span> it holds that if <span
+class="math inline"><em>x</em></span> is to the left of <span
+class="math inline"><em>y</em></span> and <span
+class="math inline"><em>y</em></span> is to the left of <span
+class="math inline"><em>z</em></span>, then it follows that <span
+class="math inline"><em>x</em></span> is to the left of <span
+class="math inline"><em>z</em></span>. Using this rule and the two facts
+above, we can derive a new fact, namely that <span
+class="math inline"><em>l</em><em>e</em><em>f</em><em>t</em>(<em>A</em>,<em>C</em>)</span>.</p>
+<p><strong>First-order logic (FOL)</strong> is extremely important in
+logical theory and in AI applications. In part, this is because FOL has
+a lot of <strong>expressive power</strong>: a lot of claims—<a
+href="https://en.wikipedia.org/wiki/John_McCarthy_(computer_scientist)">some</a>
+would say <em>everything</em>—can be formalized in it.</p>
+<p>Let us turn to defining FOL as a formal language. In general, the
+alphabet looks something like this:</p>
+<p><span
+class="math display">{<em>a</em>, <em>b</em>, <em>c</em>, …, <em>x</em>, <em>y</em>, <em>z</em>, …, <em>f</em>, <em>g</em>, <em>h</em>, …, <em>P</em>, <em>Q</em>, <em>R</em>, …, ¬,∧,∨,→,↔︎,∀,∃,(,),,}</span></p>
+<p><strong>NB</strong>: There’s no typo at the end here 😃 The last
+symbol is a literal comma.</p>
+<p>For a concrete language, we’d need to pick some suitable constants
+<span class="math inline"><em>a</em>, <em>b</em>, <em>c</em>, …</span>,
+function symbols <span
+class="math inline"><em>f</em>, <em>g</em>, <em>h</em>, …</span>, and
+predicates <span
+class="math inline"><em>P</em>, <em>Q</em>, <em>R</em>, …</span>.
+Usually, in KR-contexts, these will be mnemonic, of course.</p>
+<p>The full syntax of FOL, then, is:</p>
+<p><span
+class="math display">⟨<em>c</em><em>o</em><em>n</em><em>s</em><em>t</em>⟩ :  := <em>a</em> ∣ <em>b</em> ∣ …</span>
+<span
+class="math display">⟨<em>v</em><em>a</em><em>r</em>⟩ :  := <em>x</em> ∣ <em>y</em> ∣ …</span>
+<span
+class="math display">⟨<em>u</em><em>n</em><em>o</em><em>p</em>⟩ :  := ¬</span>
+<span
+class="math display">⟨<em>b</em><em>i</em><em>n</em><em>o</em><em>p</em>⟩ :  :=  ∧  ∣  ∨  ∣  →  ∣ ↔︎</span>
+<span
+class="math display">⟨<em>q</em><em>u</em><em>a</em><em>n</em><em>t</em>⟩ :  := ∀ ∣ ∃</span>
+<span
+class="math display">⟨<em>f</em><em>u</em><em>n</em><sup><em>n</em></sup>⟩ :  := <em>f</em><sup><em>n</em></sup> ∣ <em>g</em><sup><em>n</em></sup> ∣ …</span>
+<span class="math display">$$\langle term\rangle::= \langle
+const\rangle\mid\langle variable\rangle\mid
+\langle fun^n\rangle(\overbrace{\langle term\rangle,\dots,\langle
+term\rangle}^{n\text{ times}})$$</span> <span
+class="math display">⟨<em>p</em><em>r</em><em>e</em><em>d</em><sup><em>n</em></sup>⟩ :  := <em>P</em><sup><em>n</em></sup> ∣ <em>Q</em><sup><em>n</em></sup> ∣ …</span>
+<span class="math display">$$\langle atom\rangle::= \langle
+pred^n\rangle(\underbrace{\langle term\rangle,\dots\langle
+term\rangle}_{n\text{ times}})$$</span> <span
+class="math display">⟨<em>f</em><em>m</em><em>l</em>⟩ :  := ⟨<em>a</em><em>t</em><em>o</em><em>m</em>⟩ ∣ ⟨<em>u</em><em>n</em><em>o</em><em>p</em>⟩⟨<em>f</em><em>m</em><em>l</em>⟩ ∣ (⟨<em>f</em><em>m</em><em>l</em>⟩⟨<em>b</em><em>i</em><em>n</em><em>o</em><em>p</em>⟩⟨<em>f</em><em>m</em><em>l</em>⟩) ∣ ⟨<em>q</em><em>u</em><em>a</em><em>n</em><em>t</em>⟩⟨<em>v</em><em>a</em><em>r</em>⟩⟨<em>f</em><em>m</em><em>l</em>⟩</span></p>
+<p>As you can see, the syntax of FOL is significantly more complex than
+the syntax of propositional logic. But syntactically, nothing too
+complicated is going on. Assuming, for example, that <span
+class="math inline"><em>F</em><em>R</em><em>I</em><em>E</em><em>N</em><em>D</em></span>
+is a binary predicate and <span
+class="math inline"><em>d</em><em>a</em><em>t</em><em>a</em></span> a
+constant for data in our language, we can write:</p>
+<p><span
+class="math display">∃<em>x</em><em>F</em><em>R</em><em>I</em><em>E</em><em>N</em><em>D</em>(<em>d</em><em>a</em><em>t</em><em>a</em>,<em>x</em>)</span></p>
+<p>to say that Data has a friend.</p>
+<p>Here are some more suggestions on how to formalize:</p>
+<table style="width:98%;">
+<colgroup>
+<col style="width: 48%" />
+<col style="width: 13%" />
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Not everybody handsome is smart</td>
+<td style="text-align: left;"><span class="math inline">⤳</span></td>
+<td><span
+class="math inline">¬∀<em>x</em>(<em>H</em>(<em>x</em>)→<em>S</em>(<em>x</em>))</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Everybody who’s smart is handsome</td>
+<td style="text-align: left;"><span class="math inline">⤳</span></td>
+<td><span
+class="math inline">∀<em>x</em>(<em>S</em>(<em>x</em>)→<em>H</em>(<em>x</em>))</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A person who’s smart is handsome</td>
+<td style="text-align: left;"><span class="math inline">⤳</span></td>
+<td><span
+class="math inline">∀<em>x</em>(<em>S</em>(<em>x</em>)→<em>H</em>(<em>x</em>))</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Someone who’s smart is handsome</td>
+<td style="text-align: left;"><span class="math inline">⤳</span></td>
+<td><span
+class="math inline">∀<em>x</em>(<em>S</em>(<em>x</em>)→<em>H</em>(<em>x</em>))</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Everybody’s smart and handsome</td>
+<td style="text-align: left;"><span class="math inline">⤳</span></td>
+<td><span
+class="math inline">∀<em>x</em>(<em>S</em>(<em>x</em>)∧<em>H</em>(<em>x</em>))</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Somebody who’s smart exists</td>
+<td style="text-align: left;"><span class="math inline">⤳</span></td>
+<td><span
+class="math inline">∃<em>x</em><em>S</em>(<em>x</em>)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">There’s somebody who’s not smart</td>
+<td style="text-align: left;"><span class="math inline">⤳</span></td>
+<td><span
+class="math inline">∃<em>x</em>¬<em>S</em>(<em>x</em>)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Somebody’s smart and somebody’s
+handsome</td>
+<td style="text-align: left;"><span class="math inline">⤳</span></td>
+<td><span
+class="math inline">∃<em>x</em><em>S</em>(<em>x</em>) ∧ ∃<em>x</em><em>H</em>(<em>x</em>)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Somebody’s smart and handsome</td>
+<td style="text-align: left;"><span class="math inline">⤳</span></td>
+<td><span
+class="math inline">∃<em>x</em>(<em>S</em>(<em>x</em>)∧<em>H</em>(<em>x</em>))</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Nobody’s both smart and handsome</td>
+<td style="text-align: left;"><span class="math inline">⤳</span></td>
+<td><span
+class="math inline">¬∃<em>x</em>(<em>S</em>(<em>x</em>)∧<em>H</em>(<em>x</em>))</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Somebody, who’s smart, is handsome</td>
+<td style="text-align: left;"><span class="math inline">⤳</span></td>
+<td><span
+class="math inline">∃<em>x</em>(<em>S</em>(<em>x</em>)∧<em>H</em>(<em>x</em>))</span></td>
+</tr>
+</tbody>
+</table>
+<p>Indeterminate terms, like pronouns, indexicals, etc., are formalized
+using variables. Only when clearly the same thing is meant, use the same
+variable, if different things could be meant, use different
+variables:</p>
+<table style="width:96%;">
+<colgroup>
+<col style="width: 51%" />
+<col style="width: 18%" />
+<col style="width: 26%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">He’s handsome</td>
+<td style="text-align: center;"><span class="math inline">⤳</span></td>
+<td style="text-align: left;"><span
+class="math inline"><em>H</em>(<em>x</em>)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">She’s handsome and smart</td>
+<td style="text-align: center;"><span class="math inline">⤳</span></td>
+<td style="text-align: left;"><span
+class="math inline"><em>H</em>(<em>x</em>) ∧ <em>S</em>(<em>x</em>)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">He’s handsome and <em>he</em>’s smart</td>
+<td style="text-align: center;"><span class="math inline">⤳</span></td>
+<td style="text-align: left;"><span
+class="math inline"><em>H</em>(<em>x</em>) ∧ <em>S</em>(<em>y</em>)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">He’s handsome and she’s smart</td>
+<td style="text-align: center;"><span class="math inline">⤳</span></td>
+<td style="text-align: left;"><span
+class="math inline"><em>H</em>(<em>x</em>) ∧ <em>S</em>(<em>y</em>)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">That’s a smart and handsome person</td>
+<td style="text-align: center;"><span class="math inline">⤳</span></td>
+<td style="text-align: left;"><span
+class="math inline"><em>H</em>(<em>x</em>) ∧ <em>S</em>(<em>x</em>)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Most languages used for KR are <strong>fragments</strong> of FOL,
+since FOL has certain theoretical limitations, which we’ll discuss later
+in the course.</p>
+<h3 id="knowledge-representation-1">Knowledge representation</h3>
+<p>Things are more interesting when it comes to KR. To this day, formal
+languages and knowledge bases (KBs) are <strong>powerful tools</strong>
+when it comes to storing and making accessible known facts to
+computational systems, such as computers or AI-systems. Mathematically
+speaking, a knowledge bases is just a set of formulas. In a slogan:
+<span
+class="math display"><strong>K</strong><strong>B</strong> ⊆ ℒ</span></p>
+<p>The main strengths of KBs is their <strong>reliability</strong> and
+<strong>precision</strong>. Mistakes in KBs are essentially only due to
+human error. Interestingly, though, there is <a
+href="https://arxiv.org/abs/2407.13578">ongoing research</a> on using
+LLMs, for example, to store factual information, even though they can’t
+compete with knowledge bases yet.</p>
+<p>What we should note, though, is that the formal languages that are
+used for KR are usually <strong>less expressive</strong> than FOL. This
+is due to some theoretical results about FOL, which provide fundamental
+roadblocks to using its full expressive power in computational contexts.
+We’ve already briefly touched upon one such reason in {{&lt; chapter_ref
+chapter=“logic-and-ai” id=“as-a-foundation”&gt;}} Chapter 1. Logic and
+AI{{&lt; /chapter_ref &gt;}}, when we spoke about Turing’s <a
+href="https://en.wikipedia.org/wiki/Decidability_%28logic%29">undecidability
+theorem</a>, which states that validity checking in FOL, specifically,
+cannot be fully automated. <a
+href="https://en.wikipedia.org/wiki/Description_logic">Description
+logic</a> is an interesting example of an approach to KR that uses
+what’s effectively a fragment of FOL KR-purposes.</p>
+<p>An active area of research is the so-called <a
+href="https://en.wikipedia.org/wiki/Semantic_Web">semantic web</a>,
+which uses languages like <a
+href="https://en.wikipedia.org/wiki/Web_Ontology_Language">OWL</a> to
+make data on the internet machine readable.</p>
+<h3 id="natural-language-processing">Natural language processing</h3>
+<p>One application of formula languages, parsing, and related techniques
+is in <a
+href="https://en.wikipedia.org/wiki/Natural_language_processing"><strong>natural
+language processing (NLP)</strong></a>. For a long time (until roughly
+the 1990s), formal languages played a key role in NLP in what in analogy
+to symbolic AI is known as <a
+href="https://en.wikipedia.org/wiki/Natural_language_processing#Symbolic_NLP_(1950s_%E2%80%93_early_1990s)">symbolic
+NLP</a>.</p>
+<p>As suggested by Wikipedia, we can use a famous thought experiment
+known as the <em>Chinese room</em> to illustrate the idea:</p>
+<p>{{&lt; blockquote author=“Jon Searle. 1999. ‘The Chinese Room’”&gt;}}
+Imagine a native English speaker who knows no Chinese locked in a room
+full of boxes of Chinese symbols (a data base) together with a book of
+instructions for manipulating the symbols (the program). Imagine that
+people outside the room send in other Chinese symbols which, unknown to
+the person in the room, are questions in Chinese (the input). And
+imagine that by following the instructions in the program the man in the
+room is able to pass out Chinese symbols which are correct answers to
+the questions (the output). The program enables the person in the room
+to pass the Turing Test for understanding Chinese but he does not
+understand a word of Chinese. {{&lt; /blockquote &gt;}} Essentially, the
+computer is the person in the room. The rules are parsing rules and
+formal grammars, which enable the room to “speak Chinese”.</p>
+<p>The idea was to build NLP technologies in a similar way and for a
+while this was moderately successful. But much for the same reasons why
+symbolic AI in general “failed”, symbolic NLP is no longer a strong
+paradigm in NLP. While symbolic methods are still around, in NLP,
+statistical methods, which are at the core of <a
+href="https://en.wikipedia.org/wiki/Large_language_model">LLMs</a>, for
+example, rule the waves.</p>
 <section class="footnotes footnotes-end-of-document"
 role="doc-endnotes">
 <hr />
