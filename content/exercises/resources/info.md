@@ -1,5 +1,8 @@
 On this page, you can find the exercise sheets for the work groups.
 
+Exercise sheets for sessions currently under development are locked. They will
+be unlocked in time for the tutorial.
+
 Each section has a set of exercises that you'll go through with your TA in the
 session. 
 
