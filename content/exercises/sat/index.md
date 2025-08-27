@@ -1,6 +1,7 @@
 ---
 title: Boolean satisfiability
 author: Johannes Korbmacher
+locked: true
 weight: 5
 params: 
   id: exc-sat

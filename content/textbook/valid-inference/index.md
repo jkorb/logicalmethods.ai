@@ -1,7 +1,8 @@
 ---
 title: Valid Inference
 author: Colin Caret
-weight: 2
+locked: true
+weight: 3
 resources:
   - src: img/probabilities.jpg
     name: probabilities

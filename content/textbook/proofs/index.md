@@ -1,6 +1,7 @@
 ---
 title: Logical proofs
 author: Johannes Korbmacher
+locked: true
 weight: 7
 params: 
   date: 03/10/2024        

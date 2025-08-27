@@ -1,6 +1,7 @@
 ---
 title: FOL Inference
 author: Johannes Korbmacher
+locked: true
 weight: 9
 params: 
   date: 14/10/2024

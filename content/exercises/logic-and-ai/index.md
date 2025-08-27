@@ -1,6 +1,7 @@
 ---
 title: Logic and AI
 subtitle: test
+locked: true
 author: Johannes Korbmacher
 weight: 1
 params: 

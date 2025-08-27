@@ -1,6 +1,7 @@
 ---
 title: Boolean algebra
 author: Johannes Korbmacher
+locked: true
 weight: 4
 params: 
   date: "13/09/2024"

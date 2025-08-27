@@ -1,6 +1,7 @@
 ---
 title: Logical conditionals
 author: Johannes Korbmacher
+locked: true
 weight: 6
 params: 
   date: 24/09/2024

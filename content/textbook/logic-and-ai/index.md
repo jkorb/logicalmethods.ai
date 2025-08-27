@@ -2,6 +2,7 @@
 title: Logic and AI
 author: Johannes Korbmacher
 weight: 1
+locked: true
 resources:
   - src: img/inferences.png
     name: inferences

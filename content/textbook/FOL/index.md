@@ -1,6 +1,7 @@
 ---
 title: FOL
 author: Johannes Korbmacher
+locked: true
 weight: 8
 params: 
   date: 09/10/2024

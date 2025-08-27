@@ -1,6 +1,7 @@
 ---
 title: Boolean satisfiability
 author: Johannes Korbmacher
+locked: true
 weight: 5
 params: 
   date: 24/09/2024

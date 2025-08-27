@@ -1,6 +1,7 @@
 ---
 title: Many-valued logics
 author: Johannes Korbmacher
+locked: true
 weight: 10
 params: 
   date: 16/10/2024
