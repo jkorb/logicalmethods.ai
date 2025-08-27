@@ -1,15 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
   const rules = [
-    {
-      className: 'homework',
-      iconClass: 'bi bi-house-gear-fill',
-      colorClass: 'text-danger'
-    },
-    {
-      className: 'latex',
-      latexString: '\\LaTeX',
-      colorClass: 'text-success'
-    },
+    // {
+    //   className: 'homework',
+    //   iconClass: 'bi bi-house-gear-fill',
+    //   colorClass: 'text-danger'
+    // },
+    // {
+    //   className: 'latex',
+    //   latexString: '\\LaTeX',
+    //   colorClass: 'text-success'
+    // },
     // {
     //   className: 'discussion',
     //   iconClass: 'bi bi-chat-dots-fill',
