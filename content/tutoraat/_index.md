@@ -4,12 +4,12 @@ hidden: true
 
 ## TOC
 
-- [1. Introduction](./#introduction)
-- [2. Team](./#team)
-- [3. Program](./#program)
-- [4. Meetings](./#meetings)
-- [5. Materials](./#materials)
-- [6. Declaration](./#declaration)
+- [1. Introduction](./#1-introduction)
+- [2. Team](./#2-team)
+- [3. Program](./#3-program)
+- [4. Meetings](./#4-meetings)
+- [5. Materials](./#5-materials)
+- [6. Declaration](./#6-declaration)
 
 # 1. Introduction 
 
