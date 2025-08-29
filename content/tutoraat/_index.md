@@ -146,9 +146,8 @@ section. Please take note of where you're needed and when.
 | Time            | Person                                 |
 | --------------- | -------------------------------------- |
 | 13:15–13:20     | Algemeen welkom (Johannes)             |
-| 13:20–13:30     | Bachelorcoordinator (Niels & Dominik)  |
-| 13:30–13:40     | OC                                     |
-| 13:40–13:50     | Studieadviseur (Ruben)                 |
+| 13:20–13:35     | Bachelorcoordinator (Niels & Dominik)  |
+| 13:35–13:50     | Studieadviseur (Ruben)                 |
 | 13:50–14:00     | Incognito                              |
 
 **Tutor meetings**
