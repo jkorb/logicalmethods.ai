@@ -224,7 +224,7 @@ section. Please take note of where you're needed and when.
 4. Tips & Tricks activity (10 min)  
 5. Weekly planning activity (15 min)
 
-For material for the exercises, see the section [workshop materials](./#materials).
+For material for the exercises, see the section [workshop materials](./#5-materials).
 
 ---
 
@@ -246,7 +246,7 @@ For material for the exercises, see the section [workshop materials](./#material
 4. Teaching aims activity (15 min)  
 5. Wrap-up + reminders (5 min)
 
-For material for the exercises and the reflection forms, see the section [workshop materials](./#workshop-materials).
+For material for the exercises and the reflection forms, see the section [materials](./#5-materials).
 
 ---
 
