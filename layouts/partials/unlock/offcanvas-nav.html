@@ -29,18 +29,7 @@
           <ul class="list-unstyled ms-3">
             {{- range .Pages }}
             <li>
-              <a class="dropdown-item 
-                {{ if eq $currentPage . }}fw-bold active{{ end }}
-                {{if .Params.locked}}link-opacity-50{{ end }}
-                "
-
-                href="{{ if .Params.locked }}javascript:;{{else}}{{.RelPermalink}}{{ end }}"
-                >{{ .Weight }}. {{ if not .Params.locked }}
-                <i class="bi bi-unlock-fill"></i>
-                {{ else }}
-                <i class="bi bi-lock-fill"></i>
-                {{ end }} {{ .Title }}
-              </a>
+              <a class="dropdown-item {{ if eq $currentPage . }}fw-bold active{{ end }}" href="{{ .RelPermalink }}">{{ .Weight }}. {{ .Title }}</a>
             </li>
             {{ end -}}
           </ul>
