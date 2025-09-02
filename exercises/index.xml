@@ -8,6 +8,13 @@
     <language>en-us</language>
     <atom:link href="https://logicalmethods.ai/exercises/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Preamble</title>
+      <link>https://logicalmethods.ai/exercises/preamble/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://logicalmethods.ai/exercises/preamble/</guid>
+      <description>&lt;/div&gt;&#xA;&lt;div id=&#34;overleaf&#34; &gt;&lt;h5 class=&#34;&#34;&gt;&#xA;    &lt;div class=&#34;d-inline-flex flex-row m-0  p-0 &#34;&gt;Overleaf&#xA;    &lt;/div&gt;&#xA;&lt;/h5&gt;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Go to &lt;i class=&#34;bi bi-box-arrow-up-right h-6&#34;&gt;&lt;/i&gt;&#xA;&lt;a href=&#34;https://www.overleaf.com/&#34; class=&#34;link-dark&#34; rel=&#34;external&#34; target=&#34;_blank&#34;&gt;https://www.overleaf.com/&lt;/a&gt;&#xA; and make an account (if you don&amp;rsquo;t have one already).&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Read through the tutorial &lt;i class=&#34;bi bi-box-arrow-up-right h-6&#34;&gt;&lt;/i&gt;&#xA;&lt;a href=&#34;https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes&#34; class=&#34;link-dark&#34; rel=&#34;external&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;&#xA;.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&#xA;&lt;/div&gt;&#xA;&lt;div id=&#34;create-project&#34; &gt;&lt;h5 class=&#34;&#34;&gt;&#xA;    &lt;div class=&#34;d-inline-flex flex-row m-0  p-0 &#34;&gt;Create project&#xA;    &lt;/div&gt;&#xA;&lt;/h5&gt;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Set up a new (blank) project in your Overleaf.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Give it a suitable project name, like &amp;ldquo;Assignments logical methods&amp;rdquo;.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Share that project with at least one of your fellow students.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Use &lt;code&gt;main.tex&lt;/code&gt; to typeset the exercise below.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Logic and AI</title>
       <link>https://logicalmethods.ai/exercises/logic-and-ai/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
