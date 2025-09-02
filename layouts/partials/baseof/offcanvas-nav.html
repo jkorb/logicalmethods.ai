@@ -1,4 +1,4 @@
-<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas-nav" aria-labelledby="offcanvas-navLabel" data-bs-theme="dark">
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas-nav" aria-labelledby="offcanvas-navLabel" data-bs-theme="dark" data-bs-backdrop="false">
   <div class="offcanvas-header">
     <div class="h5 offcanvas-title" id="offcanvas-navLabel">
       Browse course
@@ -8,46 +8,51 @@
   {{ $currentPage := . }}
   <div class="offcanvas-body">
     <ul class="navbar-nav">
-      {{- range sort .Site.Sections.ByWeight -}}
+      {{- $sections := sort .Site.Sections "Weight" -}}
+      {{- range $i, $s := $sections -}}
+      {{ if not $s.Params.hidden }}
+      {{ if gt $i 0 }}<hr>{{ end }}
       <li class="nav-item">
         <div class="d-flex flex-row">
           <div class="container">
-            <a class="nav-link {{ if or (eq $currentPage.Section .Section) (eq $currentPage .) }}fw-bold active{{ end }}" href="{{ .RelPermalink }}">{{ .Param "icon" | safeHTML}} &nbsp;&nbsp; {{ .Title }}</a>
+            <a class="nav-link {{ if or (eq $currentPage.Section $s.Section) (eq $currentPage $s) }}fw-bold active{{ end }}" href="{{ $s.RelPermalink }}">{{ $s.Param "icon" | safeHTML}} &nbsp;&nbsp; {{ $s.Title }}</a>
           </div>
-          {{- if .Pages }}
+          {{- if $s.Pages }}
           <button 
             class="btn btn-sm btn-dark" 
-            href="{{ .RelPermalink }}"
-            id="navbarSection{{ .Param "id" }}" data-bs-toggle="collapse"
-            data-bs-target="#collapse{{ .Param "id" }}"  
-            aria-expanded="{{ if or (eq $currentPage.Section .Section) (eq $currentPage .)}}true{{ else }}aria-expanded=false{{ end }}"
-            aria-controls="collapse{{ .Param "id" }}">
+            href="{{ $s.RelPermalink }}"
+            id="navbarSection{{ $s.Param "id" }}" data-bs-toggle="collapse"
+            data-bs-target="#collapse{{ $s.Param "id" }}"  
+            aria-expanded="{{ if or (eq $currentPage.Section $s.Section) (eq $currentPage $s)}}true{{ else }}aria-expanded=false{{ end }}"
+            aria-controls="collapse{{ $s.Param "id" }}">
             <i class="bi bi-caret-left-fill toggle-icon"></i>
           </button>
         </div>
-        <div class="collapse {{ if or (eq $currentPage.Section .Section) (eq $currentPage .) }}show{{ end }}" id="collapse{{ .Param "id" }}">
+        <div class="collapse {{ if or (eq $currentPage.Section $s.Section) (eq $currentPage $s) }}show{{ end }}" id="collapse{{ $s.Param "id" }}">
           <ul class="list-unstyled ms-3">
-            {{- range .Pages }}
+            {{- range $s.Pages }}
             <li>
               <a class="dropdown-item 
                 {{ if eq $currentPage . }}fw-bold active{{ end }}
                 {{if .Params.locked}}link-opacity-50{{ end }}
                 "
                 href="{{ if .Params.locked }}javascript:;{{else}}{{.RelPermalink}}{{ end }}"
-                >{{ math.Div .Weight 10 }}. {{ if not .Params.locked }}
+              >{{ math.Div .Weight 10 }}. {{ if not .Params.locked }}
                 <i class="bi bi-unlock-fill"></i>
                 {{ else }}
                 <i class="bi bi-lock-fill"></i>
                 {{ end }} {{ .Title }}
               </a>
             </li>
-            {{ end -}}
+            {{ end }}
           </ul>
         </div>
-        {{ end }}
+          {{ end }}
       </li>
-      <hr>
+      {{ end }}
       {{ end }}
     </ul>
   </div>
 </div>
+
+
