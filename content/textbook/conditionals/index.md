@@ -2,7 +2,7 @@
 title: Logical conditionals
 author: Johannes Korbmacher
 locked: true
-weight: 6
+weight: 60
 params: 
   date: 24/09/2024
   last_edited: 24/09/2024

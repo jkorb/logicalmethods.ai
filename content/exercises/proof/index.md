@@ -2,7 +2,7 @@
 title: Logical proofs
 author: Johannes Korbmacher
 locked: true
-weight: 7
+weight: 70
 params: 
   id: exc-proof
   math: true

@@ -2,7 +2,7 @@
 title: FOL
 author: Johannes Korbmacher
 locked: true
-weight: 8
+weight: 80
 params: 
   date: 09/10/2024
   last_edited: 09/10/2024

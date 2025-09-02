@@ -2,7 +2,7 @@
 title: Formal languages
 author: Johannes Korbmacher
 locked: true
-weight: 2
+weight: 20
 resources:
   - src: img/inferences.png
     name: inferences

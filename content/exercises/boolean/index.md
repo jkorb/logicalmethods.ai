@@ -2,7 +2,7 @@
 title: Boolean algebra
 author: Johannes Korbmacher
 locked: true
-weight: 4
+weight: 40
 params: 
   id: exc-bool
   math: true

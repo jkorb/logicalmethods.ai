@@ -2,7 +2,7 @@
 title: Many-valued logics
 author: Johannes Korbmacher
 locked: true
-weight: 10
+weight: 100
 params: 
   id: exc-mv
   math: true

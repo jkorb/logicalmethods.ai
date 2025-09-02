@@ -3,7 +3,7 @@ title: Logic and AI
 subtitle: test
 locked: true
 author: Johannes Korbmacher
-weight: 1
+weight: 10
 params: 
   id: exc-laa
 ---

@@ -2,7 +2,7 @@
 title: FOL Inference
 author: Johannes Korbmacher
 locked: true
-weight: 9
+weight: 90
 params: 
   date: 14/10/2024
   last_edited: 15/10/2024

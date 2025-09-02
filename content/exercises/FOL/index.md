@@ -2,7 +2,7 @@
 title: FOL
 author: Johannes Korbmacher
 locked: true
-weight: 8
+weight: 80
 params: 
   id: exc-fol
   math: true

@@ -1,7 +1,7 @@
 ---
 title: Formal languages
 author: Johannes Korbmacher
-weight: 2
+weight: 20
 locked: true
 params: 
   id: exc-for

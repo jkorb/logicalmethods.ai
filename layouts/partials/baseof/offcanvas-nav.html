@@ -33,9 +33,8 @@
                 {{ if eq $currentPage . }}fw-bold active{{ end }}
                 {{if .Params.locked}}link-opacity-50{{ end }}
                 "
-
                 href="{{ if .Params.locked }}javascript:;{{else}}{{.RelPermalink}}{{ end }}"
-                >{{ .Weight }}. {{ if not .Params.locked }}
+                >{{ math.Div .Weight 10 }}. {{ if not .Params.locked }}
                 <i class="bi bi-unlock-fill"></i>
                 {{ else }}
                 <i class="bi bi-lock-fill"></i>

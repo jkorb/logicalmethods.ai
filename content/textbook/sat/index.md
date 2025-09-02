@@ -2,7 +2,7 @@
 title: Boolean satisfiability
 author: Johannes Korbmacher
 locked: true
-weight: 5
+weight: 50
 params: 
   date: 24/09/2024
   last_edited: 24/09/2024

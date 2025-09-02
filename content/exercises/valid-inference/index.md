@@ -2,7 +2,7 @@
 title: Valid inference
 author: Colin Caret
 locked: true
-weight: 3
+weight: 30
 params: 
   id: exc-val
   math: true

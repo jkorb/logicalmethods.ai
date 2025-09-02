@@ -2,7 +2,7 @@
 title: Logical proofs
 author: Johannes Korbmacher
 locked: true
-weight: 7
+weight: 70
 params: 
   date: 03/10/2024        
   last_edited: 03/10/2024         

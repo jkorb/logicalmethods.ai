@@ -4,7 +4,7 @@
   <h5>{{ . | markdownify}}</h5>
   {{ end }}
   <ul class="list-group shadow">
-    {{ range $curPage.Pages }}
+    {{ range $curPage.Pages.ByWeight }}
     <li class="list-group-item list-group-item-action">
       <a class="link-dark link-underline-light d-none d-sm-block 
         {{if .Params.locked}}
@@ -18,7 +18,7 @@
         {{ else }}
           <i class="bi bi-lock-fill"></i>
         {{ end }}
-        {{ $curPage.Param "section-names"}} {{ .Weight }}. {{ .Title }} 
+        {{ $curPage.Param "section-names"}} {{ math.Div .Weight 10 }}. {{ .Title }} 
       </a> 
       <a class="link-dark link-underline-light d-block d-sm-none
         {{if .Params.locked}}
@@ -32,7 +32,7 @@
         {{ else }}
           <i class="bi bi-lock-fill"></i>
         {{ end }}
-        {{ $curPage.Param "section-names"}} {{ .Weight }}. {{ .Title }} 
+        {{ $curPage.Param "section-names"}} {{ math.Div .Weight 10 }}. {{ .Title }} 
       </a>
     </li>
     {{end}}
