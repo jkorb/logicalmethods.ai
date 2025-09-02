@@ -5,10 +5,9 @@ author:
   - 'Johannes Korbmacher'
 contributors:
     - 'Colin Caret'
-    - 'Tomas Klos'
     - 'Rick Nouwen'
 show-author: false
-weight: 2
+weight: 3
 params: 
   id: 'sli-home'
   icon: '<i class="bi bi-rocket-takeoff-fill"></i>'

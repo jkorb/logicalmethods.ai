@@ -1,6 +1,6 @@
 ---
 title: Exercises
-weight: 3
+weight: 4
 params: 
   id: exe-home
   emoji: "🏋️"

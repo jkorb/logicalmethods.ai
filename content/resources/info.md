@@ -1,4 +1,4 @@
-This page containes the material for the course [Logical methods for
+This page contains the material for the course [Logical methods for
 AI](https://osiris-student.uu.nl/onderwijscatalogus/extern/cursus?cursuscode=KI1V24001&taal=nl&collegejaar=2024)
 as taught at [Utrecht
 University](https://www.uu.nl/bachelors/kunstmatige-intelligentie").
