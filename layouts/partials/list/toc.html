@@ -1,8 +1,8 @@
 {{ $curPage := .Page }}
-<div class="container mb-4">
-  {{ with .Param "toc-title"}}
-  <h5>{{ . | markdownify}}</h5>
-  {{ end }}
+<div class="d-flex justify-content-center mb-5">
+  <!-- {{ with .Param "toc-title"}} -->
+  <!-- <h5>{{ . | markdownify}}</h5> -->
+  <!-- {{ end }} -->
   <ul class="list-group shadow">
     {{ range $curPage.Pages.ByWeight }}
     <li class="list-group-item list-group-item-action">

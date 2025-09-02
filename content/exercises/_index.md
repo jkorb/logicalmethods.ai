@@ -12,4 +12,5 @@ params:
   section-names: "Tutorial"
   section-subtitle: "Exercise sheet"
   license: 'CC-BY-4.0'
+  title_img: 'exercises_title.png'
 ---

@@ -20,5 +20,6 @@ params:
   teaser: 'Follow during class!'
   md-title: 'Lecture **slides**'
   license: 'CC-BY-4.0'
+  title_img: "slides_title.png"
 ---
 

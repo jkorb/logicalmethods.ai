@@ -1,18 +1,9 @@
 <div class="container p-3 text-center">
-  <h1 class="display-1">
-    <strong>{{ partial "baseof/logo" .}}</strong> 
-  </h1>
-  <h1 class="text-body-emphasis">Logical methods for AI</h1>
-  <p class="lead">
-    {{ with .Param "md-title" }}
-    {{ . | markdownify}}
+  {{ with .Param "title_img" }}
+    {{ with resources.Get (printf "img/%s" .) }}
+       <img src="{{ .Permalink }}" draggable="false" width="460">
     {{ end }}
-  </p>
-  <h1 class="text-body-emphasis">
-    {{ with .Param "icon"}}
-    {{ . | safeHTML}}
-    {{ end }}
-  </h1>
+  {{ end }}
   {{ if .Param "show-author" }}
   <p>
     <ul class="list-group">
