@@ -634,7 +634,7 @@
 </ul>
 <div class="container chapter">
   <p>By: <em>Johannes Korbmacher</em></p>
-  <div class="m-5"><h1 id="many-valued-logics">Many-valued logics<button class="btn btn-back-to-top">
+  <div class="m-3"><h1 id="many-valued-logics">Many-valued logics<button class="btn btn-back-to-top">
     
   </button>
 </h1>
@@ -644,12 +644,15 @@
 logics. Specifically, we&rsquo;ll leave behind the <strong>modelling assumption</strong> of
 classical logic that there are just the two truth-values $0,1$. In other words,
 in this chapter you&rsquo;ll learn about <strong>many-valued logics</strong>.</p>
-<p>After briefly talking about <a href="#syntax">syntax</a>, we&rsquo;ll discuss two different
+<p>After briefly talking about 
+<a class="link-dark" href="#syntax">syntax</a>, we&rsquo;ll discuss two different
 families of many-valued logics, with different motivations and applications in
 AI:</p>
 <ul>
-<li>the 3-valued <a href="#kleene-and-%c5%82ukasiewicz-logics">Kleene and Łukasiewicz logics</a>,</li>
-<li>the infinitely valued <a href="#fuzzy-logics">fuzzy logics</a>.</li>
+<li>the 3-valued 
+<a class="link-dark" href="#kleene-and-%c5%82ukasiewicz-logics">Kleene and Łukasiewicz logics</a>,</li>
+<li>the infinitely valued 
+<a class="link-dark" href="#fuzzy-logics">fuzzy logics</a>.</li>
 </ul>
 <p>The chapter mainly focuses on semantics to illustrate the underlying ideas and
 models of the world that motivate the relevant logics. Inference in many-valued
@@ -695,9 +698,11 @@ possible in order to focus on non-classical, many-valued semantics.</p>
 </h2>
 <hr>
 
-<p>The logics of <a href="https://en.wikipedia.org/wiki/Stephen_Cole_Kleene"
+<p>The logics of <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Stephen_Cole_Kleene"
   target="_blank">Kleene</a> and
-<a href="https://en.wikipedia.org/wiki/Jan_%C5%81ukasiewicz"
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Jan_%C5%81ukasiewicz"
   target="_blank">Łukasiewicz</a> which we&rsquo;ll
 look at in this section are examples of <strong>3-valued logics</strong>. That is, when it
 comes to semantics we&rsquo;ll not only have $0,1$ as possible values, but an
@@ -711,7 +716,8 @@ tomorrow. What truth-value does it have <em>now</em>? We might have evidence for
 against it raining tomorrow: the forecast, the way the weather is today,
 information about air pressure, temperature, and so on. But ultimately, these
 only lead to a <em>probability</em> of rain tomorrow. Unless we&rsquo;re strong
-<a href="https://en.wikipedia.org/wiki/Determinism"
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Determinism"
   target="_blank">determinists</a>, we may very well
 believe that the truth-value of $\mathsf{RAIN\_TOMORROW}$ is not decided yet,
 it is <em>indeterminate</em>.</p>
@@ -732,7 +738,8 @@ answer? We&rsquo;ve encountered this with backward chaining in
    > Chapter 6. Logical conditionals
 </a>
 
-. Back then, we applied the <a href="https://en.wikipedia.org/wiki/Closed-world_assumption"
+. Back then, we applied the <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Closed-world_assumption"
   target="_blank">closed-world assumption
 (CWA)</a>, which says that
 non-derivable statements as false.</p>
@@ -742,17 +749,21 @@ tomorrow. We don&rsquo;t want to conclude from this that $\mathsf{RAIN\_TOMORROW
 <em>false</em>. It may turn out true, it may turn out false&hellip; we don&rsquo;t know. It&rsquo;s
 current truth-value is indeterminate. The <strong>open-world assumption</strong> allows us to
 do just that.</p>
-<p>Another example of a similar kind is provided by the <a href="https://en.wikipedia.org/wiki/SQL"
+<p>Another example of a similar kind is provided by the <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/SQL"
   target="_blank">Structured Query Language
 (SQL)</a>, which is one of the standard
-languages for <a href="https://en.wikipedia.org/wiki/Relational_database_management_system"
+languages for <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Relational_database_management_system"
   target="_blank">relational database
 management</a>
 and behind much of the internet&rsquo;s
-<a href="https://en.wikipedia.org/wiki/Frontend_and_backend"
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Frontend_and_backend"
   target="_blank">backend</a>. In SQL, when a
 query doesn&rsquo;t return a result because of the absence of data, it returns the
-<a href="https://en.wikipedia.org/wiki/Null_%28SQL%29"
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Null_%28SQL%29"
   target="_blank">SQL null</a>, which is essentially our
 third truth-value $i$. Moreover, when <code>null</code> returns as part of a complex
 query, SQL applies what&rsquo;s effectively Kleene&rsquo;s 3-valued logic.</p>
@@ -993,11 +1004,13 @@ other.</p>
 But here&rsquo;s a reason for thinking why in many AI applications it&rsquo;s not:</p>
 <blockquote>
 <p>When we&rsquo;re developing an AI capable of
-<a href="https://en.wikipedia.org/wiki/Machine_learning"
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Machine_learning"
   target="_blank">learning</a> the starting
 assumption is that there are things that it doesn&rsquo;t know. Correspondingly, the
 AI shouldn&rsquo;t make <em>any</em> assumptions about what the world is like with respect
-to the things it doesn&rsquo;t know, it should be a <a href="https://en.wikipedia.org/wiki/Tabula_rasa"
+to the things it doesn&rsquo;t know, it should be a <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Tabula_rasa"
   target="_blank">tabula
 rasa</a>. The failure of the Boolean
 laws is an example of just that: the AI doesn&rsquo;t know whether it rains tomorrow or
@@ -1104,10 +1117,12 @@ handle vague concepts: in classical logic $\mathsf{WARM}$$, for any given
 possible situation, it is either warm or not. In other words, there is a clear
 cut-off point across all possible situations.</p>
 <p><strong>Fuzzy logic</strong> is an approach to valid inference involving vague concepts,
-which models vagueness by using <a href="https://en.wikipedia.org/wiki/Real_number"
+which models vagueness by using <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Real_number"
   target="_blank">real
 numbers</a> between 0 and 1 (from the
-so-called <a href="https://en.wikipedia.org/wiki/Unit_interval"
+so-called <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Unit_interval"
   target="_blank">unit interval</a>) instead
 of truth-values.</p>
 <p>For example, a fuzzy logician could assign to $\mathsf{WARM}$:</p>
@@ -1131,16 +1146,20 @@ of truth-values.</p>
 <p>This approach is then extended to handle complex vague concepts, like
 $$\mathsf{WARM}\land\mathsf{HUMID},$$ and the like. This is the topic we&rsquo;ll be
 looking into in this section.</p>
-<p>Fuzzy logic has had a significant impact on AI. After <a href="https://en.wikipedia.org/wiki/Lotfi_A._Zadeh"
+<p>Fuzzy logic has had a significant impact on AI. After <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Lotfi_A._Zadeh"
   target="_blank">Lotfi
 Zadeh</a> introduced the AI/computer
 science community, the approach took off mainly in Japanese research and
-development, where many so-called <a href="https://en.wikipedia.org/wiki/Fuzzy_control_system"
+development, where many so-called <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Fuzzy_control_system"
   target="_blank">fuzzy control
 systems</a> were developed.
-These concerned logic-based AI systems, ranging from AC units over camera autofocus to the automated controls for <a href="https://en.wikipedia.org/wiki/Sendai_Subway_Namboku_Line"
+These concerned logic-based AI systems, ranging from AC units over camera autofocus to the automated controls for <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Sendai_Subway_Namboku_Line"
   target="_blank">subway lines</a>.</p>
-<p>These systems involve <a href="https://en.wikipedia.org/wiki/Fuzzy_rule"
+<p>These systems involve <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Fuzzy_rule"
   target="_blank">fuzzy rules</a>
 which relate two vague concepts in the form of a (fuzzy) logical conditional.
 For example, an AC unit might involve the fuzzy rule:</p>
@@ -1197,7 +1216,8 @@ they are no longer helpful mnemonics. We rather write $f_\neg,f_\land,f_\lor$
 for the truth-functions corresponding to $\neg,\land,\lor$.</p>
 <p>There are different possible answers to the question of how the fuzzy values of
 $\neg A, A\land B,A\lor B$ depend on the values of $A,B$. The most general
-theory involves so-called <a href="https://en.wikipedia.org/wiki/T-norm"
+theory involves so-called <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/T-norm"
   target="_blank">t-norms</a>. The
 system Ł is just a special case of this, but it&rsquo;s particularly easy to
 understand.</p>
@@ -1274,11 +1294,13 @@ tool to keep in one&rsquo;s toolbox.</p>
 <hr>
 
 <p>In this chapter, we&rsquo;ve only touched the surface of many-valued logics for AI. There
-are many different issues that require alternative approach. <a href="https://en.wikipedia.org/wiki/Paraconsistent_logic"
+are many different issues that require alternative approach. <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Paraconsistent_logic"
   target="_blank">Paraconsistent
 logics</a>, for example,
 handle reasoning with <strong>inconsistent information</strong>. There are <em>many</em> different
-kinds of <a href="https://en.wikipedia.org/wiki/Fuzzy_logic"
+kinds of <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Fuzzy_logic"
   target="_blank">fuzzy logics</a>, which are
 all over AI applications. The point of this chapter was to show <em>how</em> one
 approaches such an issue. At this point, you should be able to study different
@@ -1288,14 +1310,16 @@ non-classical logics independently.</p>
 <hr>
 <ol>
 <li id="fn:1">
-<p>There also exists <a href="https://en.wikipedia.org/wiki/Many-valued_logic#Bochvar%27s_internal_three-valued_logic"
+<p>There also exists <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Many-valued_logic#Bochvar%27s_internal_three-valued_logic"
   target="_blank"><em>weak</em> Kleene
 logic</a>,
 but it finds fewer applications that strong Kleene logic.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2">
 <p>A traditional issue that illustrates the point very clearly but goes
-beyond our topic is the so-called <a href="https://en.wikipedia.org/wiki/Sorites_paradox"
+beyond our topic is the so-called <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Sorites_paradox"
   target="_blank">sorites paradox</a>.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>

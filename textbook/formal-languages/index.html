@@ -634,7 +634,7 @@
 </ul>
 <div class="container chapter">
   <p>By: <em>Rick Nouwen and Johannes Korbmacher</em></p>
-  <div class="m-5"><h1 id="formal-languages">Formal languages<button class="btn btn-back-to-top">
+  <div class="m-3"><h1 id="formal-languages">Formal languages<button class="btn btn-back-to-top">
     
   </button>
 </h1>
@@ -674,16 +674,22 @@ formal languages in AI and beyond.</p>
 <p>What <em>is</em> a [formal language] and how does it differ from a natural one?</p>
 </li>
 <li>
-<p>We give a mathematical <a href="#languages">definition</a> of formal languages via <a href="#alphabets">alphabets</a> and
-<a href="#grammar">grammars</a>.</p>
+<p>We give a mathematical 
+<a class="link-dark" href="#languages">definition</a> of formal languages via 
+<a class="link-dark" href="#alphabets">alphabets</a> and
+
+<a class="link-dark" href="#grammar">grammars</a>.</p>
 </li>
 </ul>
 <p>Once this definition is sufficiently clear, we&rsquo;ll move to:</p>
 <ul>
-<li>some <a href="#examples">examples</a></li>
-<li>and the idea reading or <a href="#parsing">parsing</a> a formal language.</li>
+<li>some 
+<a class="link-dark" href="#examples">examples</a></li>
+<li>and the idea reading or 
+<a class="link-dark" href="#parsing">parsing</a> a formal language.</li>
 </ul>
-<p>We conclude with some <a href="#applications">applications</a>.</p>
+<p>We conclude with some 
+<a class="link-dark" href="#applications">applications</a>.</p>
 <h2 id="formal-versus-natural-languages">Formal versus natural languages<button class="btn btn-back-to-top">
     
     <i class="bi bi-chevron-double-up"></i>
@@ -692,9 +698,12 @@ formal languages in AI and beyond.</p>
 </h2>
 <hr>
 
-<p><em>English</em>, <em><a href="https://en.wikipedia.org/wiki/Lillooet_language"
-  target="_blank">St̓át̓imcets</a></em> and <em><a href="https://en.wikipedia.org/wiki/Ripuarian_language"
-  target="_blank">Ripuarian</a></em> are examples of natural languages. <em>Python</em>, <em>propositional logic</em> and <em><a href="https://en.wikipedia.org/wiki/Algebraic_notation_%28chess%29"
+<p><em>English</em>, <em><i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Lillooet_language"
+  target="_blank">St̓át̓imcets</a></em> and <em><i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Ripuarian_language"
+  target="_blank">Ripuarian</a></em> are examples of natural languages. <em>Python</em>, <em>propositional logic</em> and <em><i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Algebraic_notation_%28chess%29"
   target="_blank">algebraic chess notation</a></em> are examples of formal languages. What makes a language a natural language and what makes it a formal one?</p>
 <p>We all speak at least one natural language and many of us speak multiple. A natural language is a naturally evolved system that you learn spontaneously, for instance by interacting with your parents and other people around you when you are very young. Native speakers of English, St̓át̓imcets or Ripuarian didn&rsquo;t learn their native language at school or by studying grammar books, but simply by being in an environment where the language was used. Because natural languages are acquired in this way, they are also very susceptible to change. They constantly evolve, just by being used and passed on to next generations.</p>
 <p>In contrast, nobody learns python, propositional logic or algebraic chess notation simply by interacting with their parents. Also, these languages clearly didn&rsquo;t evolve naturally and while the conventions of these languages may change over time, they do not do so spontaneously, but rather because a community of users explicitly decides to make a certain change.</p>
@@ -811,7 +820,8 @@ the concrete words or sentences involved. <em>All</em> of the below inferences a
 valid:</p>
 <ol>
 <li>
-<p><a href="https://en.wikipedia.org/wiki/BERT_%28language_model%29"
+<p><i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/BERT_%28language_model%29"
   target="_blank">BERT</a> is either my
 favorite dog or an LLM, and BERT not an LLM. So, BERT is my favorite dog.</p>
 </li>
@@ -820,7 +830,8 @@ favorite dog or an LLM, and BERT not an LLM. So, BERT is my favorite dog.</p>
 not in the study, she therefore must be on the Philosopher’s Walk.</p>
 </li>
 <li>
-<p>Either Johannes or <a href="https://en.wikipedia.org/wiki/Data_%28Star_Trek%29"
+<p>Either Johannes or <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Data_%28Star_Trek%29"
   target="_blank">Data</a> is
 teaching this class and Data is not teaching it. So, Johannes is teaching the
 class.</p>
@@ -829,7 +840,8 @@ class.</p>
 <p>It&rsquo;s easy to recognize the pattern and generate more examples of valid
 inferences like this. If we let $A$ and $B$ be arbitrary sentences, then the
 pattern is: $$A\text{ or }B, \text{ not B}\vDash A$$. This is the logical form of inferences 1.-3., which, by the way, is known as
-<a href="https://en.wikipedia.org/wiki/Disjunctive_syllogism"
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Disjunctive_syllogism"
   target="_blank">disjunctive syllogism</a>. Using a formal language, we have overcome the problem of over-expressiveness: we can express this type of valid inference in a single formula.</p>
 <p>From this perspective, formal languages are the result of introducing
 <em>placeholders</em> for the logically irrelevant parts of language and special
@@ -838,12 +850,14 @@ language.
 In the case of disjunctive syllogism, for example, the relevant formal language
 will use so-called <strong>sentence letters</strong> ($p,q,r,\dots$) to stand for arbitrary
 sentences, and <strong>propositional connectives</strong> for the logically relevant
-<a href="https://en.wikipedia.org/wiki/Conjunction_%28grammar%29"
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Conjunction_%28grammar%29"
   target="_blank">grammatical conjunctions</a>
 ($\neg$ for &ldquo;not&rdquo;, $\land$ for &ldquo;and&rdquo;, $\lor$ for &ldquo;or&rdquo;, $\rightarrow$ for &ldquo;if &hellip;, then
 &hellip;&rdquo;, &hellip;). We get something like the following as the model for the shared logical form of inferences 1.-3.</p>
 <p>$$p\lor q,\neg p\vDash q$$</p>
-<p>The resulting <a href="/textbook/logic-and-ai/#logical-systems">logical
+<p>The resulting 
+<a class="link-dark" href="/textbook/logic-and-ai/#logical-systems">logical
 system</a>, known as <strong>propositional
 logic</strong>, then, investigates the validity of these <em>formal</em> inferences. Crucially, in that system each statement that can be expressed in not only entirely abstract, it is also unambiguous. In other words, each statement corresponds to a unique logical form.</p>
 <p>Note that what&rsquo;s happening here is very much in line with the picture from 
@@ -868,7 +882,8 @@ constant, e.g. $\land$, for the many different ways to express conjunction in
 natural language: &ldquo;and&rdquo;, &ldquo;as well as&rdquo;, &ldquo;together with&rdquo;, &hellip;</p>
 <p>From the perspective of logical theory, the main advantage of developing
 mathematical models of language and, more concretely, logical form is that it
-allows us to investigate valid inference with <a href="https://en.wikipedia.org/wiki/Rigour#Mathematics"
+allows us to investigate valid inference with <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Rigour#Mathematics"
   target="_blank"><strong>mathematical
 rigor</strong></a>, permitting us to
 establish (meta-)logical facts <em>beyond any reasonable doubt</em>. But in this
@@ -879,14 +894,17 @@ store knowledge in such a way that we can communicate it to computational models
 of intelligent behavior (computers)?</em> Formal languages solve this problem
 because given their deterministic, mathematical nature, it is relatively easy to
 teach them to computers. In fact, a fundamental insight from computer science is
-that <a href="https://en.wikipedia.org/wiki/Programming_language"
+that <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Programming_language"
   target="_blank">programming
 langauges</a> are, for all
 intents and purposes, formal languages.</p>
-<p>Moreover, for us as students of AI, it is important to note that <a href="https://en.wikipedia.org/wiki/Database#Database_languages"
+<p>Moreover, for us as students of AI, it is important to note that <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Database#Database_languages"
   target="_blank">database
 languages</a>, which are
-used to create and search databases, <a href="https://en.wikipedia.org/wiki/Ontology_language"
+used to create and search databases, <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Ontology_language"
   target="_blank">ontology
 languages</a>, which are used to
 create representations of factual knowledge of the world, and so on <em>all are</em>
@@ -943,7 +961,8 @@ For example, ${x:x\text{ is a prime number}}$ is the set that contains all and o
 usually write $\Sigma$ to denote the alphabet of a language.</p>
 <p>It&rsquo;s important to note that the alphabet can be <em>any</em> set. So, e.g.,</p>
 <p>$\Sigma={0,1,2,3,4,5,6,7,8,9}$</p>
-<p>is a perfectly fine alphabet. You can use it to define the language for all the natural numbers. One way to do that is to use an operation called the Kleene star, named after the American mathematician <a href="https://en.wikipedia.org/wiki/Stephen_Cole_Kleene"
+<p>is a perfectly fine alphabet. You can use it to define the language for all the natural numbers. One way to do that is to use an operation called the Kleene star, named after the American mathematician <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Stephen_Cole_Kleene"
   target="_blank">Stephen Kleene</a> and written as an asterix. The set $$\Sigma^<em>$$ is the set of all sequences that you can build with the elements of $\Sigma$. This set is a formal language and it includes sequences such as $15935304888$ and $249583$ and $2$. This is not the set of what we normally consider to be natural numbers, though, since $\Sigma^</em>$ will also include sequences like $0$, $000000001$ and $000881$, which are not natural numbers (in the Western Arabic decimal system, at least). So, while the Kleene star gives us a way to construct the set of all sequences made from an alphabet, most formal languages we are interested in will be a specific smaller subset of $\Sigma^*$. This is why we need a <em>grammar</em>.</p>
 <h3 id="grammar">Grammar<button class="btn btn-back-to-top">
     
@@ -1028,14 +1047,17 @@ $$(\langle fml\rangle\rightarrow \langle fml\rangle)\mid (\langle
 fml\rangle\leftrightarrow \langle fml\rangle)$$</p>
 <p>but these are just
 notational differences.</p>
-<p><a href="https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form"
+<p><i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form"
   target="_blank">BNFs</a> are a <strong>powerful
 method for defining formal languages</strong>. They are frequently used in logic,
 computer science, and AI. For example, the syntax of most programming languages
 is defined in BNF, see, e.g.,
-<a href="https://docs.python.org/3/reference/grammar.html"
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://docs.python.org/3/reference/grammar.html"
   target="_blank">Python</a>. Even if you want to
-know what a valid email really is, you need to look up <a href="https://datatracker.ietf.org/doc/html/rfc5322"
+know what a valid email really is, you need to look up <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://datatracker.ietf.org/doc/html/rfc5322"
   target="_blank">its
 BNF</a>.</p>
 <p>Importantly, the BNF we provided above is just one example of a logic that we can define on the basis of $\Sigma_P$. One obvious way in which logics can differ is in the choice and number of propositional variables. More interestingly, some logics will only use a subset of the operators. For instance, the language $\mathcal{L}&rsquo;$, defined in the following way, is another example of a logical formal language.</p>
@@ -1065,23 +1087,28 @@ out:</p>
 <ul>
 <li>
 <p>Pick your favorite programming language (if you have one):
-<a href="https://docs.python.org/3/reference/grammar.html"
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://docs.python.org/3/reference/grammar.html"
   target="_blank">Python</a> we mentioned above,
-<a href="https://cs.wmich.edu/~gupta/teaching/cs4850/sumII06/The%20syntax%20of%20C%20in%20Backus-Naur%20form.htm"
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://cs.wmich.edu/~gupta/teaching/cs4850/sumII06/The%20syntax%20of%20C%20in%20Backus-Naur%20form.htm"
   target="_blank">C</a>
 is a popular low-level language,
-<a href="http://tau-prolog.org/files/doc/grammar-specification.pdf"
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="http://tau-prolog.org/files/doc/grammar-specification.pdf"
   target="_blank">Prolog</a> is a
 logic-based language.</p>
 </li>
 <li>
-<p>A more complex AI example is <a href="https://en.wikipedia.org/wiki/Description_logic"
+<p>A more complex AI example is <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Description_logic"
   target="_blank">description
 logic</a>, which is a powerful KR
 language for designing knowledge bases.</p>
 </li>
 <li>
-<p>The <a href="https://datatracker.ietf.org/doc/html/rfc5322"
+<p>The <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://datatracker.ietf.org/doc/html/rfc5322"
   target="_blank">RFC</a> for emails contains
 the BNF for valid email addresses. Check it out 🤓</p>
 </li>
@@ -1157,7 +1184,8 @@ ultimately guarantee unique readability.</p>
 <p>Parsing is an incredibly important subject in the foundations and practice of
 programming, natural language processing (NLP), and elsewhere. We don&rsquo;t have
 time to go into the details, but think of programming for a second. A
-<a href="https://en.wikipedia.org/wiki/Programming_language"
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Programming_language"
   target="_blank">programming language</a> is
 essentially a tool to write down instructions for a computer in a human-readable
 way. What happens &ldquo;under the hood&rdquo; is that the computer translates the program
@@ -1174,7 +1202,8 @@ way, we guarantee that for each program we could possibly write, we can
 translate it into machine instructions.</p>
 <p>But to do so, we need to know which expressions occur in which order in the
 program. To determine this is the role of the
-<a href="https://en.wikipedia.org/wiki/Parsing#Parser"
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Parsing#Parser"
   target="_blank">parser</a>. This shows the
 fundamental importance of parsing in programming and human-computer interaction.</p>
 <h2 id="applications">Applications<button class="btn btn-back-to-top">
@@ -1199,14 +1228,16 @@ fundamental importance of parsing in programming and human-computer interaction.
 <p>An incredibly rich and extensive discussion of formal languages and their role
 in logic is:</p>
 <ul>
-<li><a href="https://doi.org/10.1017/CBO9781139108010"
+<li><i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://doi.org/10.1017/CBO9781139108010"
   target="_blank">Duthil Novaes, Catarina. 2012. Formal languages in logic. Cambridge
 University Press</a></li>
 </ul>
 <p>From a linguistic perspective, a highly influential idea is Montague&rsquo;s idea to
 understand &ldquo;English as a formal language&rdquo;:</p>
 <ul>
-<li><a href="https://doi.org/10.1515/9783111546216-007"
+<li><i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://doi.org/10.1515/9783111546216-007"
   target="_blank">Montague, Richard. 1968.English as a formal
 language.</a></li>
 </ul>
@@ -1233,7 +1264,8 @@ $\pi$.</p>
 </li>
 <li>
 <p><strong>Function symbols</strong>.</p>
-<p>These stand for <a href="https://en.wikipedia.org/wiki/Function_%28mathematics%29"
+<p>These stand for <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Function_%28mathematics%29"
   target="_blank">functional
 expressions</a>, like &ldquo;+&rdquo;
 or &ldquo;the father of&rdquo;. In logic, often $f,g,h,\dots$ and in KR often mnemonic,
@@ -1243,7 +1275,8 @@ like $FatherOf$. In mathematical logic, function symbols like $+,-,\cdot,
 <li>
 <p><strong>Predicates</strong>.</p>
 <p>They stand for &hellip;
-<a href="https://en.wikipedia.org/wiki/Predicate_%28grammar%29https://en.wikipedia.org/wiki/Predicate_%28grammar%29"
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Predicate_%28grammar%29https://en.wikipedia.org/wiki/Predicate_%28grammar%29"
   target="_blank">predicates</a>,
 which are expressions that define properties or relationships, like &ldquo;being
 blue&rdquo; or &ldquo;being greater than&rdquo;. In logic, usually $P,Q,R,\dots$ and in KR,
@@ -1366,7 +1399,8 @@ examples are the <strong>classical propositional connectives</strong>:</p>
 operators in detail.</p>
 <p>The operators listed above are standard <em>logical</em> operators. But note that
 in programming languages, for example, we often have mnemonic conditionals,
-like in the following <a href="https://en.wikipedia.org/wiki/Pseudocode"
+like in the following <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Pseudocode"
   target="_blank">pseudocode</a>, for example:</p>
 <pre tabindex="0"><code>  IF ... THEN
       ...
@@ -1376,10 +1410,12 @@ like in the following <a href="https://en.wikipedia.org/wiki/Pseudocode"
 </code></pre><p>Similarly, programming languages often have idiosyncratic notation for the
 classical propositional connectives (which are, of course, easier to type on
 ordinary keyboards), such as $||$ for disjunction, $\&amp;\&amp;$ for conjunction
-in <a href="https://en.wikipedia.org/wiki/C_%28programming_language%29"
+in <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/C_%28programming_language%29"
   target="_blank">C</a>, or simply
 $\mathsf{and}$, $\mathsf{or}$, $\mathsf{not}$ in
-<a href="https://en.wikipedia.org/wiki/Python_%28programming_language%29"
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Python_%28programming_language%29"
   target="_blank">Pyton</a>.</p>
 </li>
 <li>
@@ -1409,7 +1445,8 @@ according to <em>rules</em>.</p>
 they allow for uncomplicated grammars. The complex grammatical phenomena we
 often encounter in natural languages, for example, which are required for to
 capture all linguistic nuances (which are often <em>logically</em> irrelevant), we need
-more sophisticated grammas, like <a href="https://en.wikipedia.org/wiki/Context-sensitive_grammar"
+more sophisticated grammas, like <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Context-sensitive_grammar"
   target="_blank">context-sensitive
 grammars</a>.</p>
 <h1 id="stuff-that-got-removed">Stuff that got removed<button class="btn btn-back-to-top">
@@ -1428,17 +1465,21 @@ grammars</a>.</p>
 
 <p>Like much of logic, formal languages have a <em>long</em> history.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> The use of
 abstract sentence letters as in $$A\text{ and }B$$ to express logical form can
-already be found in <a href="https://en.wikipedia.org/wiki/Organon"
+already be found in <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Organon"
   target="_blank">Aristotle&rsquo;s
-<em>Organon</em></a>. Leibniz&rsquo;s <a href="https://en.wikipedia.org/wiki/Characteristica_universalis"
+<em>Organon</em></a>. Leibniz&rsquo;s <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Characteristica_universalis"
   target="_blank">characteristica
 universalis</a> is
 perhaps the first attempt at defining a formal language in the modern sense. In
 mathematics, the rise of formal languages is associated with rise of logical
 rigor in the foundations of mathematics, culminating in
-<a href="https://en.wikipedia.org/wiki/Logicism"
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Logicism"
   target="_blank">logicist</a> projects, such as Gottlob
-Frege&rsquo;s <a href="https://en.wikipedia.org/wiki/Begriffsschrift"
+Frege&rsquo;s <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Begriffsschrift"
   target="_blank">Begriffsschrift</a>.</p>
 <h2 id="knowledge-representation">Knowledge representation<button class="btn btn-back-to-top">
     
@@ -1463,7 +1504,8 @@ Frege&rsquo;s <a href="https://en.wikipedia.org/wiki/Begriffsschrift"
 <p><strong>First-order logic (FOL)</strong> is extremely important in logical theory and in AI
 applications. In part, this is because FOL has a lot of <strong>expressive power</strong>: a
 lot of
-claims—<a href="https://en.wikipedia.org/wiki/John_McCarthy_%28computer_scientist%29"
+claims—<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/John_McCarthy_%28computer_scientist%29"
   target="_blank">some</a>
 would say <em>everything</em>—can be formalized in it.</p>
 <p>Let us turn to defining FOL as a formal language. In general, the alphabet looks something like this:</p>
@@ -1532,7 +1574,8 @@ AI-systems. Mathematically speaking, a knowledge bases is just a set of
 formulas. In a slogan: $$\mathbf{KB}\subseteq \mathcal{L}$$</p>
 <p>The main strengths of KBs is their <strong>reliability</strong> and <strong>precision</strong>. Mistakes
 in KBs are essentially only due to human error. Interestingly, though, there is
-<a href="https://arxiv.org/abs/2407.13578"
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://arxiv.org/abs/2407.13578"
   target="_blank">ongoing research</a> on using LLMs, for example,
 to store factual information, even though they can&rsquo;t compete with knowledge
 bases yet.</p>
@@ -1552,18 +1595,22 @@ one such reason in
    > Chapter 1. Logic and AI</a>
 
 , when we
-spoke about Turing&rsquo;s <a href="https://en.wikipedia.org/wiki/Decidability_%28logic%29"
+spoke about Turing&rsquo;s <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Decidability_%28logic%29"
   target="_blank">undecidability
 theorem</a>, which states
 that validity checking in FOL, specifically, cannot be fully automated.
-<a href="https://en.wikipedia.org/wiki/Description_logic"
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Description_logic"
   target="_blank">Description logic</a> is an
 interesting example of an approach to KR that uses what&rsquo;s effectively a fragment
 of FOL KR-purposes.</p>
-<p>An active area of research is the so-called <a href="https://en.wikipedia.org/wiki/Semantic_Web"
+<p>An active area of research is the so-called <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Semantic_Web"
   target="_blank">semantic
 web</a>, which uses languages like
-<a href="https://en.wikipedia.org/wiki/Web_Ontology_Language"
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Web_Ontology_Language"
   target="_blank">OWL</a> to make data on the
 internet machine readable.</p>
 <h3 id="natural-language-processing">Natural language processing<button class="btn btn-back-to-top">
@@ -1575,11 +1622,13 @@ internet machine readable.</p>
 <hr>
 
 <p>One application of formula languages, parsing, and related techniques is in
-<a href="https://en.wikipedia.org/wiki/Natural_language_processing"
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Natural_language_processing"
   target="_blank"><strong>natural language processing
 (NLP)</strong></a>. For a long
 time (until roughly the 1990s), formal languages played a key role in NLP in
-what in analogy to symbolic AI is known as <a href="https://en.wikipedia.org/wiki/Natural_language_processing#Symbolic_NLP_%281950s_%E2%80%93_early_1990s%29"
+what in analogy to symbolic AI is known as <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Natural_language_processing#Symbolic_NLP_%281950s_%E2%80%93_early_1990s%29"
   target="_blank">symbolic
 NLP</a>.</p>
 <p>As suggested by Wikipedia, we can use a famous thought experiment known as the
@@ -1605,7 +1654,8 @@ and formal grammars, which enable the room to &ldquo;speak Chinese&rdquo;.</p>
 moderately successful. But much for the same reasons why symbolic AI in general
 &ldquo;failed&rdquo;, symbolic NLP is   no longer a strong paradigm in NLP.  While symbolic
 methods are still around, in NLP, statistical methods, which are at the core of
-<a href="https://en.wikipedia.org/wiki/Large_language_model"
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Large_language_model"
   target="_blank">LLMs</a>, for example, rule
 the waves.</p>
 <div class="footnotes" role="doc-endnotes">

@@ -634,7 +634,7 @@
 </ul>
 <div class="container chapter">
   <p>By: <em>Johannes Korbmacher</em></p>
-  <div class="m-5"><h1 id="logical-conditionals">Logical conditionals<button class="btn btn-back-to-top">
+  <div class="m-3"><h1 id="logical-conditionals">Logical conditionals<button class="btn btn-back-to-top">
     
   </button>
 </h1>
@@ -659,15 +659,19 @@ in propositional logic.</p>
 <p>First, you&rsquo;ll learn about the truth-functional way of thinking about if-then
 statements, the so-called</p>
 <ul>
-<li><a href="#the-material-conditional">material conditional</a>.</li>
+<li>
+<a class="link-dark" href="#the-material-conditional">material conditional</a>.</li>
 </ul>
 <p>Then, we move on to inference patterns that are important for AI applications,
 in particular:</p>
 <ul>
-<li><a href="#forward-chaining">forward chaining</a>,</li>
-<li><a href="#backward-chaining">backward chaining</a>.</li>
+<li>
+<a class="link-dark" href="#forward-chaining">forward chaining</a>,</li>
+<li>
+<a class="link-dark" href="#backward-chaining">backward chaining</a>.</li>
 </ul>
-<p>We conclude with an outlook and remarks on <a href="#non-material-conditionals">non-material
+<p>We conclude with an outlook and remarks on 
+<a class="link-dark" href="#non-material-conditionals">non-material
 conditionals</a>.</p>
 <h2 id="the-material-conditional">The material conditional<button class="btn btn-back-to-top">
     
@@ -729,7 +733,8 @@ then-part is logically valid.</p>
 
 <p>Our first motivation for treating $\to$ as a material conditional is the above
 connection between valid inference and the conditional, which is also known as
-the <a href="https://en.wikipedia.org/wiki/Deduction_theorem"
+the <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Deduction_theorem"
   target="_blank">deduction theorem</a>. One
 interesting implication of the deduction theorem is that it gives us an
 interesting variant of the truth-table method.</p>
@@ -772,7 +777,8 @@ a foundational topic for AI, as we&rsquo;ve seen in
    >
 Chapter 3. Formal languages</a>
 
-. Consider the following <a href="https://en.wikipedia.org/wiki/Pseudocode"
+. Consider the following <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Pseudocode"
   target="_blank">pseudo
 code</a>:</p>
 <pre tabindex="0"><code>  for n in range(1,10)
@@ -797,7 +803,8 @@ important in AI applications.</p>
 
 <p>The <strong>forward chaining</strong> method is, essentially, a series of applications of the
 reasoning pattern known in logical theory as <strong>modus ponens (MP)</strong>. It&rsquo;s an
-important method for <a href="https://en.wikipedia.org/wiki/Automated_theorem_proving"
+important method for <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Automated_theorem_proving"
   target="_blank">automated theorem
 proving</a>, which deals
 with automating valid inference.</p>
@@ -929,7 +936,8 @@ goal: $\mathsf{KEYS}$. Our KB has settled the question.</p>
 It turns out that this is not such an easy question. We&rsquo;ve shown that our
 knowledge base doesn&rsquo;t settle the question. But there a lot of questions it
 doesn&rsquo;t settle, should we treat them all as false?</p>
-<p>The so-called <a href="https://en.wikipedia.org/wiki/Closed-world_assumption"
+<p>The so-called <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Closed-world_assumption"
   target="_blank">closed-world assumption
 (CWA)</a> in AI says yes. In
 short, the CWA tells us to treat non-derivable statements as false, meaning we&rsquo;d
@@ -953,7 +961,8 @@ like this:</p>
     EFFECT-2
   else:
     EFFECT-3
-</code></pre><p>For example, a solution to the  famous <a href="https://en.wikipedia.org/wiki/Fizz_buzz"
+</code></pre><p>For example, a solution to the  famous <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Fizz_buzz"
   target="_blank">fizz
 buzz</a> programming exercise looks
 something like this:</p>
@@ -986,7 +995,8 @@ conditionals:</p>
 <p>These are, essentially, a knowledge base. If we change the known facts
 corresponding to the actual divisibility facts of the number, we can derive what
 to print using standard inference techniques, such as forward/backward chaining.</p>
-<p><a href="https://en.wikipedia.org/wiki/Conditional_%28computer_programming%29"
+<p><i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Conditional_%28computer_programming%29"
   target="_blank">Conditionals</a>
 are a fundamental reason for the expressive power of programming languages and
 at their very heart lies the behavior of the material conditional.</p>
@@ -1009,11 +1019,13 @@ the truth-function $\Rightarrow$, since the moon is <em>not</em> made of green c
 the conditional would need to get the value $0\Rightarrow 0=1$.</p>
 <p>This and similar phenomena have lead to the development of various <strong>conditional
 logics</strong>, which aim to provide a more adequate formalization of various if-then
-clauses. Of these logics, especially the logic of <a href="https://en.wikipedia.org/wiki/Counterfactual_conditional"
+clauses. Of these logics, especially the logic of <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Counterfactual_conditional"
   target="_blank">counterfactual
 conditionals</a>, which
 are conditionals that talk about what <em>would have been</em>, play an important role
-in the representation of causal knowledge and in <a href="https://en.wikipedia.org/wiki/Explainable_artificial_intelligence"
+in the representation of causal knowledge and in <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Explainable_artificial_intelligence"
   target="_blank">XAI</a>.</p>
 <h2 id="further-readings">Further readings<button class="btn btn-back-to-top">
     

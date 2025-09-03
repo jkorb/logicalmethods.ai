@@ -634,7 +634,7 @@
 </ul>
 <div class="container chapter">
   <p>By: <em>Johannes Korbmacher</em></p>
-  <div class="m-5"><h1 id="boolean-satisfiability">Boolean satisfiability<button class="btn btn-back-to-top">
+  <div class="m-3"><h1 id="boolean-satisfiability">Boolean satisfiability<button class="btn btn-back-to-top">
     
   </button>
 </h1>
@@ -656,14 +656,19 @@ Boolean algebra</a>
 reasoning and computation. In this chapter, we&rsquo;ll further explore the
 applications of Boolean algebra in AI.</p>
 <p>In particular, you&rsquo;ll learn about how to efficiently test for valid inference in
-Boolean algebra. First, we&rsquo;ll discuss the &ldquo;naive&rdquo; <a href="#truth-tables">truth-table
-method</a>, which suffers from the problem of <a href="https://en.wikipedia.org/wiki/Combinatorial_explosion"
+Boolean algebra. First, we&rsquo;ll discuss the &ldquo;naive&rdquo; 
+<a class="link-dark" href="#truth-tables">truth-table
+method</a>, which suffers from the problem of <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Combinatorial_explosion"
   target="_blank">combinatorial
 explosion</a>. Then you&rsquo;ll
 learn about a more efficient method for validity checking, which is known as the
-<a href="#dpll">Davis–Putnam–Logemann–Loveland (DPLL)</a> algorithm. This methods requires
-you to know about <a href="#normal-forms">normal forms</a>, so we&rsquo;ll cover those, too.</p>
-<p>The <a href="https://en.wikipedia.org/wiki/DPLL_algorithm"
+
+<a class="link-dark" href="#dpll">Davis–Putnam–Logemann–Loveland (DPLL)</a> algorithm. This methods requires
+you to know about 
+<a class="link-dark" href="#normal-forms">normal forms</a>, so we&rsquo;ll cover those, too.</p>
+<p>The <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/DPLL_algorithm"
   target="_blank">DPLL algorithm</a> is the basis
 for many modern AI applications, especially in planning and diagnosis. You&rsquo;ll
 explore some of these applications in the exercises.</p>
@@ -816,7 +821,8 @@ what the rest of the chapter is about.</p>
 <hr>
 
 <p>The first method, we&rsquo;ll discuss is the &ldquo;naive&rdquo; way of simply going through all
-relevant valuations by <a href="https://en.wikipedia.org/wiki/Brute-force_search"
+relevant valuations by <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Brute-force_search"
   target="_blank">brute
 force</a>.</p>
 <p>Take our example from before:</p>
@@ -941,11 +947,13 @@ the formula: $$(((P_1\land P_2)\land \dots )\land \neg C)$$</p>
 <em>inference</em> is valid.</p>
 <p>The truth-table method is a working method for computationally determining the
 validity of inferences. So why doesn&rsquo;t the chapter end here?</p>
-<p>The <strong>problem</strong> is that truth-tables suffer from what&rsquo;s known as <a href="https://en.wikipedia.org/wiki/Combinatorial_explosion"
+<p>The <strong>problem</strong> is that truth-tables suffer from what&rsquo;s known as <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Combinatorial_explosion"
   target="_blank">combinatorial
 explosion</a>. The problem
 is that the size of the necessary truth-table grows
-<a href="https://en.wikipedia.org/wiki/Exponential_growth"
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Exponential_growth"
   target="_blank">exponentially</a> with the
 number of propositional variables in the formula, as in the following table:</p>
 <table>
@@ -994,7 +1002,8 @@ and for <em>relatively</em> simple, but real world applications.</p>
 </h2>
 <hr>
 
-<p>The method we&rsquo;ll be working with uses <a href="https://en.wikipedia.org/wiki/Canonical_normal_form"
+<p>The method we&rsquo;ll be working with uses <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Canonical_normal_form"
   target="_blank">normal
 forms</a>. Generally speaking,
 a <strong>normal form</strong> is a special way of writing formulas such that every formula
@@ -1307,11 +1316,13 @@ up with an empty clause).</p>
 </h2>
 <hr>
 
-<p>The <a href="https://en.wikipedia.org/wiki/Boolean_satisfiability_problem"
+<p>The <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Boolean_satisfiability_problem"
   target="_blank">Boolean satisfiability problem
 (SAT)</a> is one of
 the most important technical concepts in AI. It&rsquo;s lies at the core of <strong>automated
-reasoning techniques</strong> (&ldquo;theorem proving&rdquo;), as well as things like <a href="https://en.wikipedia.org/wiki/Automated_planning_and_scheduling"
+reasoning techniques</strong> (&ldquo;theorem proving&rdquo;), as well as things like <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Automated_planning_and_scheduling"
   target="_blank">automated planning
 and
 scheduling</a>.</p>
@@ -1321,14 +1332,18 @@ scheduling</a>.</p>
 for $\Set{P_1,P_2,\dots,\neg C}$.</li>
 <li>Apply a SAT solving algorithm, like DPLL, to get the answer to the SAT problem.</li>
 </ul>
-<p>This is, at the very core, how many <a href="https://en.wikipedia.org/wiki/Automated_theorem_proving"
+<p>This is, at the very core, how many <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Automated_theorem_proving"
   target="_blank">automated reasoning
 programs</a>, like
-<a href="https://en.wikipedia.org/wiki/Prover9"
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Prover9"
   target="_blank">Prover9</a>,
-<a href="https://en.wikipedia.org/wiki/Z3_Theorem_Prover"
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Z3_Theorem_Prover"
   target="_blank">Z3</a>, and
-<a href="https://en.wikipedia.org/wiki/Vampire_theorem_prover"
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Vampire_theorem_prover"
   target="_blank">Vampire</a>, work.</p>
 <p>In the exercises for this chapter, you&rsquo;ll learn a bit more about the &ldquo;planning&rdquo;
 applications.</p>

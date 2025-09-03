@@ -634,7 +634,7 @@
 </ul>
 <div class="container chapter">
   <p>By: <em>Johannes Korbmacher</em></p>
-  <div class="m-5"><h1 id="logic-and-probability">Logic and probability<button class="btn btn-back-to-top">
+  <div class="m-3"><h1 id="logic-and-probability">Logic and probability<button class="btn btn-back-to-top">
     
   </button>
 </h1>
@@ -669,11 +669,15 @@ inference</a>
 conclusion more likely). So far, we&rsquo;ve only focused on models of deductive
 inference. In this chapter, you&rsquo;ll learn more about how to model inductive
 inference.</p>
-<p>We&rsquo;ll begin by looking at how to <a href="#models-of-probability">model probabilities</a>
+<p>We&rsquo;ll begin by looking at how to 
+<a class="link-dark" href="#models-of-probability">model probabilities</a>
 in a logical setting. We&rsquo;ll then go through a useful method for calculating
-probabilities using <a href="#probability-truth-tables">probability truth-tables</a>. After
-this, we turn to <a href="#conditional-probabilities">conditional probabilities</a>, which
-then allow us to discuss a simple model of <a href="#inductive-validity">inductive
+probabilities using 
+<a class="link-dark" href="#probability-truth-tables">probability truth-tables</a>. After
+this, we turn to 
+<a class="link-dark" href="#conditional-probabilities">conditional probabilities</a>, which
+then allow us to discuss a simple model of 
+<a class="link-dark" href="#inductive-validity">inductive
 validity</a>. To conclude the chapter, we look at some
 examples of valid and invalid inductive inferences in our model.</p>
 <h2 id="models-of-probability">Models of probability<button class="btn btn-back-to-top">
@@ -693,7 +697,8 @@ different schools of thought on the interpretation of probability:</p>
 <li>
 <p>Objectivists argue that the likelihood we&rsquo;re talking about here is an
 objective feature of reality, sometimes called <em>objective chance</em>. An example of
-this are <a href="https://en.wikipedia.org/wiki/Frequentist_probability"
+this are <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Frequentist_probability"
   target="_blank">frequentist</a>
 interpretations of probability, which think of probabilities as a measure of how
 often an event would occur if we repeated the circumstances.</p>
@@ -701,7 +706,8 @@ often an event would occur if we repeated the circumstances.</p>
 <li>
 <p>Subjectivists argue that the likelihood in question is a subjective, epistemic
 feature of world. An example of this are
-<a href="https://en.wikipedia.org/wiki/Bayesian_probability"
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Bayesian_probability"
   target="_blank">Bayesian</a> interpretations
 of probability, which think of probabilities as a measure of our <em>degree of
 belief</em> in an event occurring.</p>
@@ -710,7 +716,8 @@ belief</em> in an event occurring.</p>
 <p>Here, we won&rsquo;t take sides in this debate. We&rsquo;ll work with a pre-theoretic notion
 of probability and focus on the formalism.</p>
 <p>Probabilities play many important roles in AI research. On the one hand, they
-are the basis for the statistical methods used in modern subsymbolic <a href="https://en.wikipedia.org/wiki/Machine_learning"
+are the basis for the statistical methods used in modern subsymbolic <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Machine_learning"
   target="_blank">machine
 learning</a> methods.  On the other
 hand, probabilities are the main method for dealing with inductive inference and
@@ -719,7 +726,8 @@ uncertainty in symbolic settings, such as expert systems.</p>
 ways of developing the formalism. Here, we&rsquo;ll develop a <strong>symbolic approach to
 probabilities</strong>, which models probabilities as real numbers assigned to formulas
 in formal languages.</p>
-<p>But you should be aware of the fact that <a href="https://en.wikipedia.org/wiki/Probability_theory"
+<p>But you should be aware of the fact that <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Probability_theory"
   target="_blank">mathematical probability
 theory</a>, in general, is a
 broader theory that can be applied in many different, symbolic and subsymbolic
@@ -737,7 +745,8 @@ settings.</p>
 
 ) with a propositional language $\mathcal{L}$ with variables
 $p_1,\dots,p_n$ and connectives $\neg,\land,\lor$.</p>
-<p>A <strong>probability</strong> for $\mathcal{L}$ is a function $Pr:\mathcal{L}\to\mathbb{R}$, which assigns <a href="https://en.wikipedia.org/wiki/Real_number"
+<p>A <strong>probability</strong> for $\mathcal{L}$ is a function $Pr:\mathcal{L}\to\mathbb{R}$, which assigns <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Real_number"
   target="_blank">real numbers</a> to formulas, subject to the following three conditions:</p>
 <ol>
 <li>
@@ -750,7 +759,8 @@ $p_1,\dots,p_n$ and connectives $\neg,\land,\lor$.</p>
 <p>$Pr(A\lor B)=Pr(A)+Pr(B)$, whenever $\vDash \neg (A\land B)$ (i.e. $A\land B$ is unsatisfiable)</p>
 </li>
 </ol>
-<p>These are the so-called <a href="https://en.wikipedia.org/wiki/Probability_axioms"
+<p>These are the so-called <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Probability_axioms"
   target="_blank">Kolmogorov axioms</a> for classical probability theory. Note that they use notions from classical logic (logical truth and satisfiability).<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
 <p>These are only the basic axioms, there are also <strong>derived laws</strong>. For example,
 it&rsquo;s easy to show that for all formulas $A$, we have: $$P(\neg A)=1-P(A).$$</p>
@@ -956,7 +966,8 @@ purpose.</p>
 intuitively, a measure of how likely it is that $A$ is true assuming that  $B$
 is true. This idea is formally captured in the definition:</p>
 <p>$$Pr(A\mid B)=\frac{Pr(A\land B)}{Pr(B)}$$</p>
-<p>Here we need to assume that $Pr(B)\neq 0$ to avoid <a href="https://en.wikipedia.org/wiki/Division_by_zero"
+<p>Here we need to assume that $Pr(B)\neq 0$ to avoid <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Division_by_zero"
   target="_blank">division by
 0</a>.</p>
 <p>Let&rsquo;s look at how this works in some examples:</p>
@@ -1047,7 +1058,8 @@ $$Pr(\mathsf{RAIN}\land\mathsf{SUN})=0.5\neq 0.8\times 0.7=0.56$$</p>
 
 <p>It is now time to turn to <strong>inductive validity</strong>. But before we give an
 account, it is important to note that inductive logic is a <em>broad field</em>, which
-is closely related to <a href="https://en.wikipedia.org/wiki/Statistical_inference"
+is closely related to <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Statistical_inference"
   target="_blank">statistical
 inference</a>. Given this, we
 should note that the account of inductive validity we present here is just
@@ -1057,7 +1069,8 @@ many-valued logic, fuzzy logic, etc. all give slightly different models of
 deductively valid inference, which are applicable in different circumstances,
 under different assumptions, etc.</p>
 <p>Correspondingly, there are different models of inductive inference. The model
-we&rsquo;ll discuss in this section is a simple version of what&rsquo;s known as <a href="https://en.wikipedia.org/wiki/Bayesian_inference"
+we&rsquo;ll discuss in this section is a simple version of what&rsquo;s known as <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Bayesian_inference"
   target="_blank">Bayesian
 inference</a>. But we won&rsquo;t go
 into the details of <strong>Bayesian statistics</strong> and the difference to other paradigms.
@@ -1083,7 +1096,8 @@ unconditional probability of the conclusion.</p>
 <p>Using the symbol $\mid\approx$ for inductive validity, the definition is:
 $$ P_1,P_2,\dots\mid\approx C \Leftrightarrow Pr(C|P_1\land P_2\land
 \dots)\geq Pr(C)$$
-This concept is essentially what <a href="https://en.wikipedia.org/wiki/Rudolf_Carnap"
+This concept is essentially what <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Rudolf_Carnap"
   target="_blank">Rudolf
 Carnap</a> calls the <strong>increase of
 firmness</strong> concept of evidential support: the premises, if we were to add them
@@ -1165,7 +1179,8 @@ $$=\frac{Pr(C)}{Pr(P_1\land P_2\land\dots)}\overset{Pr(C)\leq Pr(P_1\land P_2\la
 </ul>
 <p>The latter law will allow us to observe the inductive validity of some
 well-known principles, one of which we&rsquo;ll discuss on the following section.</p>
-<p>The law is a sort of mathematical proof of the so-called <a href="https://en.wikipedia.org/wiki/Deductive-nomological_model"
+<p>The law is a sort of mathematical proof of the so-called <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Deductive-nomological_model"
   target="_blank">deductive-nomological
 model</a> of
 confirmation, which though not unproblematic has been hugely influential in
@@ -1247,18 +1262,21 @@ use logical methods to model inductive reasoning.</p>
 
 <p>An excellent introduction to the formalism of Bayesian epistemology is:</p>
 <ul>
-<li><a href="https://global.oup.com/ukhe/product/fundamentals-of-bayesian-epistemology-1-9780198707615?cc=gb&amp;lang=en&amp;"
+<li><i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://global.oup.com/ukhe/product/fundamentals-of-bayesian-epistemology-1-9780198707615?cc=gb&amp;lang=en&amp;"
   target="_blank">Titelbaum, Michael. 2022. Fundamentals of Bayesian Epsitemology I. Oxford
 University Press</a>.</li>
 </ul>
-<p>Chapters 12 and 13 of <a href="https://elibrary.pearson.de/book/99.150005/9781292401171"
+<p>Chapters 12 and 13 of <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://elibrary.pearson.de/book/99.150005/9781292401171"
   target="_blank">Russel and Norvig</a> are an excellent introduction to more detailed uses of probabilistic reasoning in AI.</p>
 <p><strong>Notes</strong>:</p>
 <div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
 <li id="fn:1">
-<p>There are also <em>non</em>-classical probability theories, which build on alternative background logics. For example, there is strong Kleene probability theory. Check out <a href="https://eprints.whiterose.ac.uk/104891/1/nonclassicalprobabilityfinal.pdf"
+<p>There are also <em>non</em>-classical probability theories, which build on alternative background logics. For example, there is strong Kleene probability theory. Check out <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://eprints.whiterose.ac.uk/104891/1/nonclassicalprobabilityfinal.pdf"
   target="_blank">this paper</a>.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2">
@@ -1275,7 +1293,8 @@ University Press</a>.</li>
    > Chapter 5. Boolean
 satisfiability </a>
 
-, called <a href="https://en.wikipedia.org/wiki/Disjunctive_normal_form"
+, called <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Disjunctive_normal_form"
   target="_blank">disjunctive normal forms
 (DNFs)</a>. It also uses the
 facts that equivalent formulas have the same probability and that if one formula

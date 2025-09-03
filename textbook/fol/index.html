@@ -634,7 +634,7 @@
 </ul>
 <div class="container chapter">
   <p>By: <em>Johannes Korbmacher</em></p>
-  <div class="m-5"><h1 id="fol">FOL<button class="btn btn-back-to-top">
+  <div class="m-3"><h1 id="fol">FOL<button class="btn btn-back-to-top">
     
   </button>
 </h1>
@@ -647,16 +647,20 @@ AI research.</p>
 <p>In AI research, the main application of FOL is as a benchmark background system,
 in which &ldquo;everything&rsquo;s possible&rdquo;. The impressive expressive strength of FOL
 allows us to formalize almost any problem we might come across, which makes FOL
-a great tool for <a href="https://en.wikipedia.org/wiki/Knowledge_engineering"
+a great tool for <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Knowledge_engineering"
   target="_blank">knowledge
 engineering</a>. At the same
 time, FOL has important limitations that limits its direct use for AI applications.</p>
 <p>In this chapter, you&rsquo;ll learn about the:</p>
 <ul>
-<li><a href="#syntax">syntax</a> and</li>
-<li><a href="#semantics">semantics</a></li>
+<li>
+<a class="link-dark" href="#syntax">syntax</a> and</li>
+<li>
+<a class="link-dark" href="#semantics">semantics</a></li>
 </ul>
-<p>for FOL. After this, we&rsquo;ll briefly turn to the <a href="#limitations">limitations</a> of
+<p>for FOL. After this, we&rsquo;ll briefly turn to the 
+<a class="link-dark" href="#limitations">limitations</a> of
 FOL. In the next chapter, we&rsquo;ll talk about the proof theory and inference
 strategies for FOL.</p>
 <h2 id="syntax">Syntax<button class="btn btn-back-to-top">
@@ -780,7 +784,8 @@ put information about in our knowledge base:</p>
 <li>$\mathsf{AI}(Hal_{9000})$ says that Hal 9000 is an AI-system.</li>
 <li>$\mathsf{Sister}(Ada,x)$ says that <em>they</em> (person $x$) is Ada&rsquo;s sister.</li>
 <li>$\mathsf{Lord}(\mathsf{FatherOf}(Ada))$ says that the father of Ada Lovelace
-was a Lord (<a href="https://en.wikipedia.org/wiki/Lord_Byron"
+was a Lord (<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Lord_Byron"
   target="_blank">Byron</a>).</li>
 </ul>
 <p>The crucial addition in FOL, however, are the <strong>quantifiers</strong>, they are what
@@ -831,7 +836,8 @@ tree for a formula also parses the terms involved. Here&rsquo;s an example:</p>
 <p>There are different ways to interpret FOL in AI. Here, we&rsquo;ll discuss the
 standard <strong>set-theoretic semantics</strong>. It&rsquo;s the most general form of semantics
 for FOL, which summarizes other approaches, like database semantics or
-<a href="https://en.wikipedia.org/wiki/Knowledge_graph"
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Knowledge_graph"
   target="_blank">knowledge graphs</a>.</p>
 <p>
 
@@ -1104,7 +1110,8 @@ as truth-preservation from premises to conclusion in all models:</p>
 </h2>
 <hr>
 
-<p>While <a href="https://en.wikipedia.org/wiki/G%C3%B6del%27s_completeness_theorem"
+<p>While <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/G%C3%B6del%27s_completeness_theorem"
   target="_blank">Gödel&rsquo;s original completeness theorem</a> showed that the Hilbert system for FOL is sound and complete, i.e. we have $$P_1,P_2,\dots\vDash C\Leftrightarrow P_1,P_2,\dots\vdash C$$ in FOL, there are two important limiting results about FOL with severe implications for AI.</p>
 <p>We&rsquo;ve already mentioned these results in 
 
@@ -1120,7 +1127,8 @@ as truth-preservation from premises to conclusion in all models:</p>
 :</p>
 <ul>
 <li>
-<p>Gödel&rsquo;s <a href="https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems"
+<p>Gödel&rsquo;s <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems"
   target="_blank"><strong>(first) incompleteness
 theorem</strong></a>,
 which implies that for every logical system that is free of internal
@@ -1129,7 +1137,8 @@ statement that is <em>undecidable</em> in the system, meaning that the statement
 neither be proven nor refuted in that system.</p>
 </li>
 <li>
-<p>Turing&rsquo;s <a href="https://en.wikipedia.org/wiki/Decidability_%28logic%29"
+<p>Turing&rsquo;s <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Decidability_%28logic%29"
   target="_blank"><strong>undecidability
 theorem</strong></a>, which states
 that validity in the standard system of predicate logic is <em>(algorithmically)
@@ -1148,7 +1157,8 @@ result involves an impressive illustration of the expressive power of FOL:</p>
 <ul>
 <li>
 <p>The standard theory of the natural numbers, which is the basis for <em>all</em>
-modern number theory is <a href="https://en.wikipedia.org/wiki/Peano_axioms"
+modern number theory is <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Peano_axioms"
   target="_blank">Peano arithmetic</a> is a FOL-theory.</p>
 </li>
 <li>
@@ -1178,7 +1188,8 @@ makes inference in FOL a <em>hard</em> topic, which we&rsquo;ll look into in the
 chapter.</p>
 <p>Just like with Gödel&rsquo;s theorem, the proof of Turing&rsquo;s theorem is out of scope.
 But what we&rsquo;ll be able to appreciate are the pitfalls that naive inference
-algorithms in FOL can fall into, such as <a href="https://en.wikipedia.org/wiki/Infinite_loop"
+algorithms in FOL can fall into, such as <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Infinite_loop"
   target="_blank">infinite
 loops</a> in proof search, for
 example.</p>

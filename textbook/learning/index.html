@@ -634,7 +634,7 @@
 </ul>
 <div class="container chapter">
   <p>By: <em>Johannes Korbmacher</em></p>
-  <div class="m-5"><h1 id="logic-based-learning">Logic-based learning<button class="btn btn-back-to-top">
+  <div class="m-3"><h1 id="logic-based-learning">Logic-based learning<button class="btn btn-back-to-top">
     
   </button>
 </h1>
@@ -645,16 +645,19 @@ logic-based approach to AI.</p>
 <p>We&rsquo;ll discuss two approaches:</p>
 <ul>
 <li>
-<p>a <em>deductive</em> logic-based approach, known as <a href="#belief-revision">belief
+<p>a <em>deductive</em> logic-based approach, known as 
+<a class="link-dark" href="#belief-revision">belief
 revision</a>, and</p>
 </li>
 <li>
-<p>an <em>inductive</em>, probability-based approach, known as <a href="#bayesian-updating">Bayesian updating</a>.</p>
+<p>an <em>inductive</em>, probability-based approach, known as 
+<a class="link-dark" href="#bayesian-updating">Bayesian updating</a>.</p>
 </li>
 </ul>
 <p>Both approaches find applications in AI, even though Bayesian updating is <em>by
 far</em> more popular. In the end, though, symbolic learning methods are <em>not</em> the
-gold standard for <a href="https://en.wikipedia.org/wiki/Machine_learning"
+gold standard for <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Machine_learning"
   target="_blank">machine
 learning</a>—statistics is. In this
 chapter, we&rsquo;ll see why.</p>
@@ -717,7 +720,8 @@ $$\mathsf{WET}\in\mathsf{KB}+\mathsf{RAIN}.$$</p>
 <p>But what should we do if $$\neg\mathsf{RAIN}\in\mathsf{KB}?$$ What if our new
 information <em>contradicts</em> some information in the knowledge base?</p>
 <p>We cannot directly add $\mathsf{RAIN}$ to the knowledge base then, since this
-would make it inconsistent and because of the <a href="https://en.wikipedia.org/wiki/Principle_of_explosion"
+would make it inconsistent and because of the <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Principle_of_explosion"
   target="_blank">principle of
 explosion</a>, $$A,\neg
 A\vdash C,\text{ for any }C,$$ this would make our updated knowledge base
@@ -784,7 +788,8 @@ behave. In our notation, the rules are:</p>
 \mathsf{KB}\ast(A\land B)$</li>
 </ol>
 <p>These axioms are known as the <strong>AGM postulates</strong> and they guide most research
-into logic-based <a href="https://en.wikipedia.org/wiki/Belief_revision"
+into logic-based <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Belief_revision"
   target="_blank">belief
 revision</a>. Much of this research
 is directed at finding the &ldquo;right&rdquo; formulas to remove given a concrete modeling
@@ -813,7 +818,8 @@ $$Pr_\mathsf{KB}(\neg\mathsf{RAIN})=0.75$$
 $$Pr_\mathsf{KB}(\mathsf{RAIN})=0.25$$
 How should we, in this setting, respond to learning that, as a matter of fact,
 it&rsquo;s raining?</p>
-<p>The <a href="https://en.wikipedia.org/wiki/Bayesian_epistemology"
+<p>The <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Bayesian_epistemology"
   target="_blank">Bayesian</a> answer, is
 to say that we should use a process known as <strong>conditionalization</strong>, which
 calculates a new, updated probability function from the old function by applying
@@ -839,7 +845,8 @@ probabilistic knowledge bank already contains the information about how to
 respond to new information via it&rsquo;s conditional probabilities, which are,
 remember, defined as follows:</p>
 <p>$$Pr(A\mid B)=\frac{Pr(A\land B)}{Pr(B)}$$</p>
-<p>Where we assume that $Pr(B)\neq 0$ to avoid <a href="https://en.wikipedia.org/wiki/Division_by_zero"
+<p>Where we assume that $Pr(B)\neq 0$ to avoid <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Division_by_zero"
   target="_blank">division by
 0</a>.</p>
 <p>Let&rsquo;s look at a simple, concrete example to see how this works. Remember our
@@ -894,7 +901,8 @@ $$Pr(\mathsf{R}_5\mid (\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 ))=0$$</p>
 odd results become impossible.</p>
 <p>Bayesian updating is an impressively effective method for changing believes in
 the light of evidence. The method has <em>a lot</em> of applications in AI, ranging
-from text classification to <a href="https://en.wikipedia.org/wiki/Naive_Bayes_spam_filtering"
+from text classification to <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Naive_Bayes_spam_filtering"
   target="_blank">email spam
 filters</a>.</p>
 <p>We conclude this chapter by discussing the most important method for calculating
@@ -947,10 +955,12 @@ probability of $A$ before learning that $B$</p>
 </li>
 <li>
 <p>$Pr(B\mid A)$ is called the
-<a href="https://en.wikipedia.org/wiki/Likelihood_function"
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Likelihood_function"
   target="_blank">likelihood</a>, since it&rsquo;s a
 measure of how likely the thing we learned is. This concept connects Bayes
-formula to <a href="https://en.wikipedia.org/wiki/Bayesian_statistics"
+formula to <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Bayesian_statistics"
   target="_blank">Bayesian
 statistics</a>, but
 unfortunately, we don&rsquo;t have the time to explore this connection here.</p>

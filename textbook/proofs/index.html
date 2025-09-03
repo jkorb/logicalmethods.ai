@@ -634,7 +634,7 @@
 </ul>
 <div class="container chapter">
   <p>By: <em>Johannes Korbmacher</em></p>
-  <div class="m-5"><h1 id="proofs">Proofs<button class="btn btn-back-to-top">
+  <div class="m-3"><h1 id="proofs">Proofs<button class="btn btn-back-to-top">
     
   </button>
 </h1>
@@ -681,16 +681,23 @@ and semantics in
 
 ,
 after this chapter, you&rsquo;ll have seen all the components of logical systems.</p>
-<p>First, we&rsquo;ll go through the <a href="#ideas">ideas</a>, after which we&rsquo;ll cover two of the most important examples of <a href="#proof-systems">proof systems</a>:</p>
+<p>First, we&rsquo;ll go through the 
+<a class="link-dark" href="#ideas">ideas</a>, after which we&rsquo;ll cover two of the most important examples of 
+<a class="link-dark" href="#proof-systems">proof systems</a>:</p>
 <ul>
-<li><a href="#hilbert-systems">Hilbert systems</a>, and</li>
-<li><a href="#natural-deduction">natural deduction</a>.</li>
+<li>
+<a class="link-dark" href="#hilbert-systems">Hilbert systems</a>, and</li>
+<li>
+<a class="link-dark" href="#natural-deduction">natural deduction</a>.</li>
 </ul>
 <p>Finally, you&rsquo;ll learn about applications of proof systems. Specifically:</p>
 <ul>
-<li><a href="#metalogic">metalogic</a>,</li>
-<li><a href="#proof-verification">proof assistants</a>,</li>
-<li><a href="#automated-theorem-provers">automated theorem proving</a>.</li>
+<li>
+<a class="link-dark" href="#metalogic">metalogic</a>,</li>
+<li>
+<a class="link-dark" href="#proof-verification">proof assistants</a>,</li>
+<li>
+<a class="link-dark" href="#automated-theorem-provers">automated theorem proving</a>.</li>
 </ul>
 <h2 id="ideas">Ideas<button class="btn btn-back-to-top">
     
@@ -754,7 +761,8 @@ systems.</p>
 </h2>
 <hr>
 
-<p>There are many different kinds of <a href="https://en.wikipedia.org/wiki/Proof_calculus"
+<p>There are many different kinds of <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Proof_calculus"
   target="_blank">proof
 systems</a>, here we&rsquo;ll go through
 the most important examples from the perspective of logical theory.</p>
@@ -767,7 +775,8 @@ the most important examples from the perspective of logical theory.</p>
 <hr>
 
 <p><strong>Hilbert systems</strong> are traditionally the most common kinds of proof systems.
-They are modelled after mathematical <a href="https://en.wikipedia.org/wiki/Axiomatic_system"
+They are modelled after mathematical <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Axiomatic_system"
   target="_blank">axiomatic systems</a>, where we aim to derive all relevant truths from a limited number of basic truths or <strong>axioms</strong>. All axioms are treated as known facts.</p>
 <p>Typically, Hilbert systems have few inference rules, sometimes as few as just
 one.</p>
@@ -826,7 +835,8 @@ $$( A\leftrightarrow B)\leadsto(( A\to B)\land( B\to A))$$</p>
 <p>It is far from easy to find derivations like this. It is hard to learn for both
 humans and machines. On the upside, Hilbert systems are economical from a
 mathematical perspective. They are easy to define and to investigate, making
-them ideal for <a href="#metalogic">metalogical</a> applications.</p>
+them ideal for 
+<a class="link-dark" href="#metalogic">metalogical</a> applications.</p>
 <p>But Hilbert systems also have practical use. They are <em>relatively</em> easy to apply when assumptions are involved and we translate the formulas in question using the re-writing rules mentioned above.</p>
 <p>Let&rsquo;s look at a Hilbert-style proof for:
 $$\mathsf{STUDY}\lor\mathsf{WALK},\mathsf{WALK}\to\mathsf{MATH},\neg\mathsf{STUDY}\vdash\mathsf{MATH}$$</p>
@@ -898,10 +908,12 @@ $\neg(\mathsf{RAIN}\land\neg\mathsf{RAIN})$ (it&rsquo;s not both raining and not
 
 <p>Note that while there are two assumptions that aren&rsquo;t among our premises, $\mathsf{STUDY}$ and $\mathsf{WALK}$, both are discharged. So, this shows that:</p>
 <p>$$\mathsf{STUDY}\lor\mathsf{WALK},\mathsf{WALK}\to\mathsf{MATH},\neg\mathsf{STUDY}\vdash\mathsf{MATH}$$</p>
-<p>There are many, many different equivalent <a href="https://en.wikipedia.org/wiki/Natural_deduction"
+<p>There are many, many different equivalent <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Natural_deduction"
   target="_blank">natural deduction
 systems</a> for writing natural
-deduction proofs. The notation we&rsquo;re using here is called <a href="https://en.wikipedia.org/wiki/Dag_Prawitz"
+deduction proofs. The notation we&rsquo;re using here is called <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Dag_Prawitz"
   target="_blank">Prawitz-style
 natural deduction</a>.</p>
 <p>Since the rule $\to E$ is essentially also just MP, we can use chaining algorithms with natural deduction as well.</p>
@@ -914,9 +926,11 @@ natural deduction</a>.</p>
 <hr>
 
 <p>These are just the most commonly used kind of systems in logical theory. But
-there are way <a href="https://en.wikipedia.org/wiki/Propositional_proof_system"
+there are way <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Propositional_proof_system"
   target="_blank">more different kinds of
-systems</a>, where especially <a href="https://en.wikipedia.org/wiki/Sequent_calculus"
+systems</a>, where especially <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Sequent_calculus"
   target="_blank">sequent calculus</a> is of special theoretical importance.</p>
 <p>But in the context of logic and AI, we should mention that the resolution
 algorithm (as well as DPLL), which we studied in the exercises for 
@@ -1025,7 +1039,8 @@ can be derived:</p>
 proof system can derive <em>all</em> consequences, the ones we&rsquo;ve thought of and the
 ones we haven&rsquo;t. This is quite a feat.</p>
 <p>A milestone result in metalogical research were the soundness and completeness
-theorems proved by <a href="https://en.wikipedia.org/wiki/Kurt_G%C3%B6del"
+theorems proved by <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Kurt_G%C3%B6del"
   target="_blank">Kurt Gödel</a>
 and others. A special case of this result is that the systems we&rsquo;ve discussed in
 this chapter are sound and complete with respect to the Boolean algebra
@@ -1057,7 +1072,8 @@ validity in a logical proof system.</p>
 <p>A <strong>proof assistant</strong> or <strong>interactive theorem prover</strong> is a computer program
 that interactively checks formal arguments provided in a formal language. To
 illustrate, here are the proofs of our Hilbert $Axioms_{1&ndash;3}$ in the
-interactive theorem prover <a href="https://en.wikipedia.org/wiki/Lean_%28proof_assistant%29"
+interactive theorem prover <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Lean_%28proof_assistant%29"
   target="_blank">Lean</a>:</p>
 
 
@@ -1065,7 +1081,8 @@ interactive theorem prover <a href="https://en.wikipedia.org/wiki/Lean_%28proof_
 
 
 <p>As you can see, Lean works very much like a programming language with an
-<a href="https://en.wikipedia.org/wiki/Interpreter_%28computing%29"
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Interpreter_%28computing%29"
   target="_blank">interpreter</a> running &ldquo;on
 the side&rdquo;. In the interpreter window, you can see whether the proof that you&rsquo;ve
 so-far is correct.</p>
@@ -1078,16 +1095,21 @@ verify it is correct. We no longer need to check each proof individually, we
 just need to check the verifier itself.</p>
 <p>There is a wide range of proof assistants on the market such as:</p>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Lean_%28proof_assistant%29"
+<li><i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Lean_%28proof_assistant%29"
   target="_blank">Lean</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Isabelle_%28proof_assistant%29"
+<li><i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Isabelle_%28proof_assistant%29"
   target="_blank">Isabelle</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Coq_%28software%29"
+<li><i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Coq_%28software%29"
   target="_blank">Coq</a></li>
 </ul>
 <p>The project of formally verifying mathematical results is a very undertaking in
-current research, which has yielded impressive results like, <a href="https://leanprover-community.github.io/index.html"
-  target="_blank">Lean&rsquo;s <code>mathlib</code></a>, and is actively pursued by leading research mathematicians, like <a href="https://en.wikipedia.org/wiki/Terence_Tao"
+current research, which has yielded impressive results like, <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://leanprover-community.github.io/index.html"
+  target="_blank">Lean&rsquo;s <code>mathlib</code></a>, and is actively pursued by leading research mathematicians, like <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Terence_Tao"
   target="_blank">Terence Tao</a>.</p>
 <h3 id="automated-theorem-provers">Automated theorem provers<button class="btn btn-back-to-top">
     
@@ -1106,7 +1128,8 @@ proving</strong>, which is a combination of logic-based methods, like interactiv
 theorem provers, and modern sub-symbolic methods. The idea is to train neural
 networks how to use interactive theorem provers, like Lean. This project has
 been fairly successful so far and has lead to AI&rsquo;s that can solve problems from
-the <a href="https://openai.com/index/formal-math/"
+the <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://openai.com/index/formal-math/"
   target="_blank">mathematics Olympiad</a>.</p>
 <h2 id="further-readings">Further readings<button class="btn btn-back-to-top">
     
@@ -1118,7 +1141,8 @@ the <a href="https://openai.com/index/formal-math/"
 
 <p>You can find an amazing talk about how AI can influence science and
 mathematics, in part using proof systems under
-<a href="https://www.youtube.com/watch?v=_sTDSO74D8Q"
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://www.youtube.com/watch?v=_sTDSO74D8Q"
   target="_blank">https://www.youtube.com/watch?v=_sTDSO74D8Q</a>.</p>
 <p><strong>Notes</strong></p>
 </div>

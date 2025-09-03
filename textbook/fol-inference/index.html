@@ -634,7 +634,7 @@
 </ul>
 <div class="container chapter">
   <p>By: <em>Johannes Korbmacher</em></p>
-  <div class="m-5"><h1 id="fol-inference">FOL Inference<button class="btn btn-back-to-top">
+  <div class="m-3"><h1 id="fol-inference">FOL Inference<button class="btn btn-back-to-top">
     
   </button>
 </h1>
@@ -755,7 +755,8 @@ variables</em> for that, which are variables that are not &ldquo;captured&rdquo;
 quantifier. Take the statement:</p>
 <p>$$\exists y\mathsf{Parent}(x,y)$$</p>
 <p>In line with the reading of variables as pronouns, this says something like
-<a href="https://en.wikipedia.org/wiki/Singular_they"
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Singular_they"
   target="_blank">they</a> have a parent, without
 specifying who &ldquo;they&rdquo; are. If we have established that <em>they</em> have a parent
 without having assumed anything else about who they are,  we&rsquo;ve effectively
@@ -880,7 +881,8 @@ just brute force the problem. And even a smart algorithm may sometimes never
 find the answer.</p>
 <p>The mathematical proof of this fundamental fact about reasoning is out of reach
 in this course, but we can illustrate <em>why</em> this happens. In fact, showing this
-is a great setup for the next <a href="#generalized-mp-and-unification">topic</a>:</p>
+is a great setup for the next 
+<a class="link-dark" href="#generalized-mp-and-unification">topic</a>:</p>
 <p>Suppose that our premises contain a premise of the form:</p>
 <p>$$\forall x\exists y\mathsf{BiggerThan}(x,y)$$</p>
 <p>We want to know whether some conclusion follows from this. It doesn&rsquo;t really
@@ -904,7 +906,8 @@ second why there&rsquo;s an index):</p>
 $\exists E$ again. Since our constant must be new, we choose $c_2$. Ah, a new
 constant, so we need to use $\forall E$ for our premise again, giving us:</p>
 <p>$$\exists y\mathsf{BiggerThan}(c_1,c_2)$$</p>
-<p>Now you quickly see that we&rsquo;re caught in a <a href="https://en.wikipedia.org/wiki/Infinite_loop"
+<p>Now you quickly see that we&rsquo;re caught in a <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Infinite_loop"
   target="_blank">infinite
 loop</a>. Every time we instantiate
 the universal quantifier, the existential quantifier gives us a new constant to
@@ -931,7 +934,8 @@ the right time–otherwise we might get &ldquo;stuck&rdquo; in an infinite loop.
 is that we have a KB with a bunch of rules of the form:</p>
 <p>$$\forall x\forall y\dots((P_1(x,y,\dots)\land P_2(x,y,\dots))\land \dots \to
 C(x,y,\dots))$$</p>
-<p>These are simple if-then rules (which correspond to <a href="https://en.wikipedia.org/wiki/Horn_clause"
+<p>These are simple if-then rules (which correspond to <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Horn_clause"
   target="_blank">Horn
 clauses</a>).</p>
 <p>Take, for example, the FOL version of the rules for our robot planning example:
@@ -1311,7 +1315,8 @@ reasoning, which provides the basis for many ATPs.</p>
 <hr>
 
 <p>An excellent overview of FOL inference with more concrete discussion of the
-implementations of forward and backward chaining in FOL can be found in <a href="https://elibrary.pearson.de/book/99.150005/9781292401171"
+implementations of forward and backward chaining in FOL can be found in <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://elibrary.pearson.de/book/99.150005/9781292401171"
   target="_blank">Russel and Norvig. 2021. Artificial Intelligence: A Modern Approach. 4th
 Edition. Pearson</a>,
 chapter 9.</p>
@@ -1320,7 +1325,8 @@ chapter 9.</p>
 <hr>
 <ol>
 <li id="fn:1">
-<p><a href="https://en.wikipedia.org/wiki/Unification_%28computer_science%29"
+<p><i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Unification_%28computer_science%29"
   target="_blank">Unification</a> as a
 general procedure can be used to solve equations of various kinds. Using it for
 FOL formulas is just a special case.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
