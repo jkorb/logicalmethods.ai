@@ -1,13 +1,14 @@
 ---
 title: Formal languages
-author: Johannes Korbmacher & Rick Nouwen
-weight: 3
+author: Rick Nouwen and Johannes Korbmacher
+locked: true
+weight: 20
 resources:
   - src: img/inferences.png
     name: inferences
 params: 
   date: 09/09/2024
-  last_edited: 30/4/2025
+  last_edited: 03/09/2025
   id: txt-lang
   math: true
 ---
@@ -107,11 +108,11 @@ In the formal language of propositional logic, the two stories can be captured i
 
 $$ A\rightarrow B,\ \ A\quad\models\quad B$$
 
-| | | |
-| ---- | ----- | ----- |
-| $A\rightarrow B$ | $M$ | $M'$ |
-| $A$ | an object was placed in a normal box  and subsequently nothing happened to the box | two numbers were multiplied and both numbers were odd |
-| $B$ | the box is still empty | the result is odd |
+ |                  |                                                                                    |                                                       |
+ | ---------------- | -----                                                                              | -----                                                 |
+ | $A\rightarrow B$ | $M$                                                                                | $M'$                                                  |
+ | $A$              | an object was placed in a normal box  and subsequently nothing happened to the box | two numbers were multiplied and both numbers were odd |
+ | $B$              | the box is still empty                                                             | the result is odd                                     |
 
 In both cases above, we thought $A\rightarrow B$ was the case, as was $A$. But in both cases, we thought $B$ was not the case. Given that this clashes with modus ponens we start questioning our assumptions. Either something is wrong with our assumption $A$ or $A\rightarrow B$, or something is wrong with our belief that $B$ is false. Logic allows us to do make such reasoning very explicit and very general. By using a formal language we can focus on the pattern underlying our mechanisms of valid inference.
 

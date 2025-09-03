@@ -23,4 +23,17 @@ main, .element {
   transform: rotate(90deg);
 }
 
+.inert-img {
+  user-select: none;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none;
+  -ms-user-select: none;
+
+  -webkit-user-drag: none;   /* Safari/old WebKit */
+  -khtml-user-drag: none;
+
+  -webkit-touch-callout: none; /* no long-press menu on iOS */
+  pointer-events: none;        /* if you don't want it clickable */
+}
+
 

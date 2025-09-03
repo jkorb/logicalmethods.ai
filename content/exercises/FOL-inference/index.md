@@ -1,7 +1,8 @@
 ---
 title: FOL inference
 author: Johannes Korbmacher
-weight: 9
+locked: true
+weight: 90
 params: 
   id: exc-finf
   math: true

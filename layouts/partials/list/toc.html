@@ -1,13 +1,39 @@
 {{ $curPage := .Page }}
-<div class="container mb-4">
-  {{ with .Param "toc-title"}}
-  <h5>{{ . | markdownify}}</h5>
-  {{ end }}
+<div class="d-flex justify-content-center mb-5">
+  <!-- {{ with .Param "toc-title"}} -->
+  <!-- <h5>{{ . | markdownify}}</h5> -->
+  <!-- {{ end }} -->
   <ul class="list-group shadow">
-    {{ range $curPage.Pages }}
+    {{ range $curPage.Pages.ByWeight }}
     <li class="list-group-item list-group-item-action">
-      <a class="link-dark link-underline-light d-none d-sm-block" href="{{.RelPermalink}}">{{$curPage.Param "section-icon" | safeHTML }} {{ $curPage.Param "section-names"}} {{ .Weight }}. {{ .Title }} </a>
-      <a class="link-dark link-underline-light d-block d-sm-none" href="{{.RelPermalink}}">{{$curPage.Param "section-icon" | safeHTML }} {{ $curPage.Weight }}. {{ .Title }} </a>
+      <a class="link-dark link-underline-light d-none d-sm-block 
+        {{if .Params.locked}}
+        link-opacity-50
+        {{ end }}
+        " 
+        href="{{ if .Params.locked }}javascript:;{{else}}{{.RelPermalink}}{{ end }}"
+        >
+        {{ if not .Params.locked }}
+          <i class="bi bi-unlock-fill"></i>
+        {{ else }}
+          <i class="bi bi-lock-fill"></i>
+        {{ end }}
+        {{ $curPage.Param "section-names"}} {{ math.Div .Weight 10 }}. {{ .Title }} 
+      </a> 
+      <a class="link-dark link-underline-light d-block d-sm-none
+        {{if .Params.locked}}
+        link-opacity-50
+        {{ end }}
+        " 
+        href="{{ if .Params.locked }}javascript:;{{else}}{{.RelPermalink}}{{ end }}"
+      >
+        {{ if not .Params.locked }}
+          <i class="bi bi-unlock-fill"></i>
+        {{ else }}
+          <i class="bi bi-lock-fill"></i>
+        {{ end }}
+        {{ $curPage.Param "section-names"}} {{ math.Div .Weight 10 }}. {{ .Title }} 
+      </a>
     </li>
     {{end}}
   </ul>

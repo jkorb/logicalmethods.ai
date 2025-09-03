@@ -1,7 +1,8 @@
 ---
 title: Boolean algebra
 author: Johannes Korbmacher
-weight: 4
+locked: true
+weight: 40
 params: 
   id: exc-bool
   math: true
