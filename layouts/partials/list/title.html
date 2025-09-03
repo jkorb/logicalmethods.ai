@@ -1,7 +1,7 @@
 <div class="container p-3 text-center">
   {{ with .Param "title_img" }}
     {{ with resources.Get (printf "img/%s" .) }}
-       <img src="{{ .Permalink }}" draggable="false" width="460">
+       <img src="{{ .Permalink }}" draggable="false" width="460" class="inert-img">
     {{ end }}
   {{ end }}
   {{ if .Param "show-author" }}
