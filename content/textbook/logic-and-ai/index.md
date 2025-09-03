@@ -15,204 +15,230 @@ params:
 
 # Logic and AI
 
-In this chapter, you'll learn about what logic is and what it has to do with AI.
+Logic and AI are intimately connected. In this chapter you'll learn how.
 
-First, you'll make acquaintance with some basic concepts of logical theory:
+At the end of the chapter, you'll be able to:
 
-+ [inference](#inference)
-+ [validity](#validity), and
-+ [logical systems](#logical-systems).
+- define logic and artificial intelligence as scientific disciplines, 
+- explain the three main ways in which the two disciplines are related, and 
+- give some examples of uses of logical methods in AI and distinguish them from
+  non-logical methods.
 
-Then, you'll learn about three ways in which logic is relevant for AI:
+By the way, meet {{< logo >}}&nbsp; (read: "for all I")!
 
-+ [foundationally](#as-a-foundation),
-+ [methodologically](#as-a-methodology), and
-+ [instrumentally](#as-a-tool). 
+{{< img src="img/ai_welcome.png" class="rounded mx-auto d-block inert-img img-fluid" width="200px">}}
+
+It is our friendly course mascot, and will feature in many of the examples and
+exercises.
+
+## What is AI?
+
+The term "artificial intelligence" (AI) is used in different ways. Sometimes we
+mean by it intelligence which is artificial. That is, we think of AI as an
+ability that computational systems (≈computers) can have or not. This is, for
+example, how [Wikipedia](https://en.wikipedia.org/wiki/Artificial_intelligence)
+defines AI in the first place (read the first sentence of the article). In this
+sense of the term we can ask, for example, whether "true" AI is possible.
+
+Sometimes, by AI we mean a specific technology or set of technologies. In recent
+societal discourse especially, "artificial intelligence" has become virtually
+synonymous with [generative
+AI](https://en.wikipedia.org/wiki/Generative_artificial_intelligence) (GenAI)
+and its various applications. This is the sense of AI in which
+[ChatGPT](https://en.wikipedia.org/wiki/ChatGPT),
+[Copilot](https://en.wikipedia.org/wiki/Microsoft_Copilot),
+[Gemini](https://en.wikipedia.org/wiki/Gemini_(chatbot)),
+[Claude](https://en.wikipedia.org/wiki/Claude_(language_model)),
+[Grok](https://en.wikipedia.org/wiki/Grok_(chatbot)),
+[Llama](https://en.wikipedia.org/wiki/Llama_(language_model)) and
+[DeepSeek](https://en.wikipedia.org/wiki/DeepSeek_(chatbot)) are AIs. In this
+sense of the term, AI is not only possible but real: these technologies exist
+(obviously)!
+
+{{< img src="img/ai_is.png" class="rounded mx-auto d-block inert-img img-fluid" width="200px">}}
+
+There is also a sense of AI as
+[AI-engineering](https://en.wikipedia.org/wiki/Artificial_intelligence_engineering),
+which is concerned with the practical details of designing, optimizing, and
+realizing AI technologies. This is the sense of AI when somebody says that they
+"work in AI".
+
+In yet another sense of the word, AI is a *scientific discipline*. It is not
+easy to define this discipline in simple terms—when you think about it, most
+scientific disciplines are actually quite hard to define—but as a first shot we
+can say that AI aims to understand, artificially replicate, and possibly improve
+intelligent behavior. 
+
+AI in this sense is a rather multifaceted discipline. Clearly, [computer
+science](https://en.wikipedia.org/wiki/Computer_science) plays an important role
+in AI as it studies computation and automation and the main (and perhaps only?)
+method for artificially replicating intelligent behavior is by automated,
+computational models—i.e. computer programs.
+
+But AI is not only computer science. Understanding intelligent behavior is also
+a core objective of [psychology](https://en.wikipedia.org/wiki/Psychology).
+Thinking about what it means to have (artificial) intelligence (in the
+capability sense of the word), whether it's possible to have true artificial
+intelligence, and so on are important questions in
+[philosophy](https://en.wikipedia.org/wiki/Philosophy), especially the
+[philosophy of mind](https://en.wikipedia.org/wiki/Philosophy_of_mind).
+
+The special role of language for thought—illustrated, for example, by Fodor's
+[language of thought
+hypothesis](https://en.wikipedia.org/wiki/Language_of_thought_hypothesis) —shows
+that also [linguistics](https://en.wikipedia.org/wiki/Linguistics) plays a role
+in AI.—In short, AI is highly *interdisciplinary* field of study.
+
+All of these senses of AI will play a role in this course. For example, we'll
+look at the role that logic plays in intelligent behavior, the role of logic in
+AI technologies, and the relationship between logic as a discipline and AI.
 
 ## What is logic?
 
-On the most general level, **logic** is the study of _valid inference_. To
-understand this definition better, let's discuss inferences and validity in
-turn.
+So, what is logic, then? Well, as a discipline, logic is the study of _valid
+reasoning_. Let's talk about what that means.
 
-### Inference
+The basic concept of logic is that of an _inference_ (sometimes "argument"),
+which is a simple piece of reasoning like the following:
 
-The basic concept of logic is that of an **inference**,[^inference] a simple
-piece of reasoning like the following:
++ All humans are mortal and Socrates is human. So, Socrates is mortal.
 
-1) Given that [Ada](https://en.wikipedia.org/wiki/Ada_Lovelace) is either on the
-_Philosopher's Walk_ or in the study, and she's not in the study, she therefore
-must be on the _Philosopher's Walk_.
++ All swans we've observed so far were white. Therefore, all swans are white.
 
-2) If [Alan](https://en.wikipedia.org/wiki/Alan_Turing) can’t crack the code,
-then nobody else can. Alan can crack the code. So nobody else can.
+You've almost certainly come across these examples if you had any contact with
+philosophy or argumentation theory or the like.
 
-3) [Blondie24](https://en.wikipedia.org/wiki/Blondie24) is a neural
-network-based AI system that struggled to reach world-class checkers
-performance. [Deep
-Blue](https://en.wikipedia.org/wiki/Deep_Blue_(chess_computer)), instead, is a
-logic-based AI system that beat the [world
-champion](https://en.wikipedia.org/wiki/Garry_Kasparov) in chess. This shows
-that logic-based AI systems are inherently better than neural network-based
-systems at games.
+To talk about logic and validity, it's helpful to introduce some technical
+terminology. In an inference:
 
-4) Since [Watson](https://en.wikipedia.org/wiki/IBM_Watson) is a logic-based AI
-system that beat [_Jeopardy!_](https://en.wikipedia.org/wiki/Jeopardy!), we can
-conclude that some logic-based AI systems are capable of beating game shows.
+- The **conclusion** (sometimes "consequence") is what's being inferred. 
+- The **premises** are the assumptions or hypotheses that the conclusion is
+based on.
 
-5) [GPT-4](https://en.wikipedia.org/wiki/GPT-4) improved upon
-[GPT-3](https://en.wikipedia.org/wiki/GPT-3), which improved upon
-[GPT-2](https://en.wikipedia.org/wiki/GPT-2), which, in turn, improved upon
-[GPT-1](https://en.wikipedia.org/wiki/GPT-1) in terms of coherence and
-relevance. Therefore, the next generation of GPT models will further improve in
-this respect.
+So, in the first inference, all humans being mortal and Socrates being human are
+the premises, and Socrates being mortal is the conclusion. In the second
+inference, all swans observed so far being white is the premise, and all swans
+being white is the conclusion.
 
-Before we go ahead and look more closely at the quality of these inferences,
-let's introduce some important terminology.
+Typically, there are some linguistic hints that allow you to identify premises
+and conclusions. Phrases like "so" and "therefore" are **inference indicators**.
+The conclusion typically follows them, though it can be the other way around.
+Take the inference indicator "since", for example, and look at how we use it in
+the following inference:
 
-We call phrases like "therefore", "so", and "we can conclude that" **inference
-indicators**.
+- The ground is wet since it's raining and if it's raining, the ground
+is wet.
 
-The **conclusion**[^conclusion] of an inference is what's being inferred or
-established. In 4., for example, the conclusion is that some logic-based AI
-systems are capable of beating game shows.
+Similarly, the premises typically precede any inference indicators, but as in
+our example can also come after. There are also **premise indicators**, like the
+"given that" in the following mathematical inference:
 
-The conclusion often follows the inference indicator, but it can also be the
-other way around:
+- Given that this figure is a triangle and the sum of all angles in a triangle
+is 180°, we can conclude that the sum of all angles in this figure is 180°.
 
-6) We know that some logic-based AI systems are capable of beating game shows,
-since [Watson](https://en.wikipedia.org/wiki/IBM_Watson) is a logic-based AI
-system that beat [_Jeopardy!_](https://en.wikipedia.org/wiki/Jeopardy!).
+By the way, here "we can conclude that" is the conclusion indicator.
 
-The **premises** of an inference are its assumptions or hypotheses, they are
-what the conclusion is based on. In 4., for example, the premise is that
-Watson is a logic-based AI system that beat _Jeopardy!_
+Once we've identified the logical structure of an inference, we often represent
+it in a visually clear way. For example, {{< logo >}}&nbsp; uses the so-called
+**inference line** to indicate the inferential structure here:
 
-An inference can have any number of premises. While inference 4. has only one
-premise, inference 1. has _two_: that Ada is either on the _Philosopher's
-Walk_ or in the study, and that she's not in the study. In logical theory, we
-also consider the limit cases of having _no_ premises and of having _infinitely
-many_ premises. More about that later.
+{{< img src="img/ai_inference.png" class="rounded mx-auto d-block inert-img img-fluid" width="200px">}}
 
-Phrases like "given that" in 1. are called **premise indicators**.
+There are many different notations. For example, in mathematics, we often use
+the turnstile $\vdash$ to indicate a (valid) inference and commas to separate
+the premises, like so:
+{{< img src="img/there_is_turnstile.png" class="rounded mx-auto d-block inert-img img-fluid" width="500px">}}
 
-Inferences are the primary subject of logical theory. Note that in logic,
-"inference" is a **technical term**, which does not necessarily have its
-everyday meaning. An inference is a linguistic entity, consisting of premises
-and a conclusion---_and nothing else_. It is not, for example, the psychological
-process of drawing a conclusion from premises.
+The robot cat next to the inference is {{< there_is >}}&nbsp; (read: "there is"), which
+is {{< logo >}}'s pet.
 
-Inferences come with the expectation that the conclusion does, in fact, _follow
-from_ the premises, that the premises _support_ the conclusion in this way. In
-logical terminology, we want our inferences to be **valid**.[^valid] We'll turn
-to what that means next.
+With an inference comes the expectation that the premises _support_ the
+conclusion, that the conclusion _follows from_ the premises. An inference where
+this is the case is a **valid** inference. 
 
-**Caveat**: Our topic is _not_ how people actually reason (psychology of
-reasoning), how to use arguments to convince others (rhetoric), or anything of
-that sort. These things are good to know, of course, but they are not our main
-interest.
+The first inference—the one about Socrates' mortality—looks pretty solid. If all
+humans are mortal and Socrates is human, then he _must_ be mortal. In logic, we
+call an inference like that, where the premises _necessitate_ the conclusion,
+**deductively valid**. Deductive inferences are the traditional topic of most
+logical theory. They are often associated with mathematical reasoning.
 
-### Validity
+But what about the second inference—the one about the swans. Even if all the
+swans we've observed were white, it's certainly possible that there's a
+non-white (robot?) swan—just that we haven't seen it yet. {{< img src="img/robot_swan.png" class="rounded  float-start inert-img img-fluid" width="150px">}}
+So, the inference from all previously observed swans being white to all swans
+being white is *not* deductively valid—it is deductively *in*valid. 
 
-Consider inference 1) again:
+But isn't there a sense in which the fact that all the swans we've observed were
+white *does* support the claim that all swans are white? Now, we know that there
+are black swans, so let's take slightly modified inference. Suppose that there
+are a hundred marbles in this bowl. We can't see inside the bowl and we can only
+take the marbles out one by one. We keep taking out marbles and they are all
+white. We've sampled the marbles randomly, we've taken them from the bottom of
+the bag, from the top, and so on. They're always white. 
 
-1) Given that Ada is either on the _Philosopher's Walk_ or in the study, and
-she's not in the study, she therefore must be on the _Philosopher's Walk_.
+After some time of sampling—but before we've sampled them all—it would seem
+reasonable to conclude that _all_ marbles are white. {{< img
+src="img/ai_induction.png" class="rounded  float-end inert-img img-fluid" width="150px">}}
+It might be debatable when exactly this point is—after 50, 70, 80 white
+marbles—but it seems rather clear that at some point, we can reasonably conclude
+that all marbles are white. Not with certainty—a black marble might still be in
+there somewhere—but with reasonable _confidence_.
 
-This looks like a pretty solid inference: if it's indeed the case what the
-premises say, it _must_ be the case what the conclusion says.
+The point is that for some number of marbles, for argument's sake let's say 70,
+the fact that we've samples 70 white marbles together with the assumption that
+we've sampled well (to avoid [selection
+bias](https://en.wikipedia.org/wiki/Selection_bias) and the like), supports the
+conclusion that all marbles are white by making it _more likely_. An inference
+like this—where the premises make the conclusion more likely—is called an
+**inductively strong** inference. In this context, the strength of the inference
+is determined by _how much_ more likely the conclusion is given the premises:
+the inference from 90 white marbles is stronger than the one from 70 white
+marbles.
 
-In logic, we call an inference like that, where the premises _necessitate_ the
-conclusion, **deductively valid**. Deductive inferences are the
-traditional topic of most logical theory. They are often associated with
-mathematical reasoning.
+So, this is, in essence, what logicians study: different notions of "good"
+inference, ways in which the premises can support a conclusion. We've already
+seen a kind of classification emerging, which we'll study in more detail in {{<
+chapter_ref chapter="valid-inference" id="valid-inference">}} Chapter 3. Valid
+inference{{< /chapter_ref >}}:
 
-An inference that's not valid is called **invalid**. Take 2.:
+{{< img src="img/classification.png" class="rounded mx-auto mb-2 d-block inert-img img-fluid" width="500px">}}
 
-2) If Alan can’t crack the code, then nobody else can. Alan can crack the code.
-So nobody else can.
+Note that logicians *don't* (qua logicians) study how people actually reason
+(psychology of reasoning), or how to use arguments to convince others
+(rhetoric), or things of that sort. These are all good to know, of course, but
+they are not the main interest of logicians.
 
-This inference seems pretty hopeless: obviously, other people might still be
-able to crack the code even if Alan did---it might just not have been very hard.
+Just like with the term "artificial intelligence", the term "logic" is used with
+different meanings. What we've looked at so far is the academic *discipline* of
+logic (and we'll soon be looking at its relation to AI). In this context, we
+might say that an inference is "logical" and mean that it's valid (or
+inductively strong). This is in contrast saying something like "it's logical
+that I was scared", which means something like "it's *understandable* that I was
+scared".
 
-Flawed inferences like this are also called **fallacies**. Frequently committed
-fallacies often have names. This one is called "denying the
-antecedent."[^fallacies]
+There's also a common way of speaking of "someone's logic", as in "according to
+your logic, we should go home". This points to an important aspect of logical
+theory, which we'll need to talk about before we can move to the relationship
+between logic and AI: the existence of different logical _systems_. 
 
-What about 5.?
+What we mean when we say that "according to your logic we should do the thing"
+is something like "according to the system of premises and inferences you
+accept, we should do the thing". It turns out that this sense of logic, we also
+find in logical theory.
 
-5. GPT-4 improved upon GPT-3 which in turn improved upon GPT-2 and GPT-1 in
-terms of coherence and relevance. Therefore, the next generation of GPT models
-will further improve in this respect.
-
-This inference is clearly not deductively valid: it _could_ happen that the next
-generation of GPT models shows serious performance regression.
-
-But given the evidence, such a scenario is not very _likely_: we've seen GPT
-models consistently improve with each new generation, so why should the next
-generation be any different?
-
-An inference like this, where the premises make the conclusion (more) _likely_ is
-known as an **inductively valid** inference. Inductive inferences play an
-important role in the sciences. They are often associated with statistics and
-probability theory.
-
-An important difference between deductive and inductive inferences is that
-validity for deductive validity is all or nothing, while inductive validity
-comes in _degrees_. What we mean by this is that when it comes to deductive
-validity, an inference is either valid or not: the premises either necessitate
-the conclusion or they don't---there's nothing in between. With inductive
-inferences, instead, there are more options.
-
-Consider the following two (hypothetical) inferences, for example:
-
-6. Out of 200 randomly sampled voters, around 40% support strict AI laws.
-Therefore, one in two members of the general voting population supports strict
-AI laws.
-
-7. Strict AI laws have a support of around 80% in a randomly selected sample of
-20.000 voters. Therefore, support for strict AI laws in the general public is
-around 80%.
-
-Neither inference seems inductively invalid---assuming the sampling was done
-randomly and with sufficient care, in both inferences the premise would seem to
-support the conclusion. 
-
-But clearly, the second inference 7. is much _stronger_ than the first one
-6.: given that the sample size is orders of magnitude larger than in the first
-inference, the sample is likely more representative of the actual population by
-making different forms of [selection
-bias](https://en.wikipedia.org/wiki/Selection_bias) less likely.
-
-We end up with something like the following picture:
-
-{{< img src="img/inferences.jpeg" alt="Inference Image" class="img-thumbnail" >}}
-
-That is, on the first level, we classify inferences into valid (good) and
-invalid (bad) ones. Then, on the second level, we distinguish between
-deductively and inductively valid inferences. And finally, on the third level,
-we distinguish between strong and weak inductive inferences.
-
-This concludes our overview of the _subject_ of logical theory: logicians study
-the different forms of valid and invalid inference. We'll delve further into the
-conceptual background of logical theory in the next chapter, where you'll learn
-foundations of the concept of validity. For now, we'll turn to the _way_ in
-which logicians study this subject, we'll look at **logical systems**.
-
-### Logical systems
+## Logical systems
 
 Logicians approach the study of valid inference the way most scientists approach
 their subject matter: using [mathematical
-models](https://en.wikipedia.org/wiki/Mathematical_model). We call the
-models that logicians use to study valid inference **_logical systems_**.
+models](https://en.wikipedia.org/wiki/Mathematical_model). We call the models
+that logicians use to study valid inference **_logical systems_**.
 
 A logical system typically has three components:
 
 + a **syntax**, which is a model of the _language_ of the inferences,
 + a **semantics**, which is model of the _meaning_ of the premises and
 conclusions, 
-+ and a **proof theory**, which is a model of _stepwise valid
-inference_.
++ and a **proof theory**, which is a model of _stepwise inference_.
 
 Together, these three components provide a mathematical model of valid
 inference. Throughout the course, you'll learn more about syntax, semantics, and
@@ -223,25 +249,27 @@ inference.
 
 In essence, logical systems are not all that different from the mathematical
 models used by physicists, for example. To illustrate, think about how a
-physicist would approach the question of how far our little robot ```SYS-2```
+physicist would approach the question of how far {{< logo >}}&nbsp;
 can throw its ball: 
 
-{{< img src="img/reality.jpeg" alt="Inference Image" class="img-thumbnail" >}}
+{{< img src="img/reality.png" class="rounded mx-auto mb-2 d-block inert-img img-fluid" width="500px">}}
 
-The physicist uses [Newtonian
+The physicist might use [Newtonian
 mechanics](https://en.wikipedia.org/wiki/Classical_mechanics) to predict how far
-the ball will fly, but they don't apply the laws of mechanics _directly_ to the
-real world. First, they build a mathematical model of the situation, which looks
-something like this: 
+the ball will fly, but they wouldn't apply the laws of mechanics _directly_ to
+the real world. First, they'd build a mathematical model of the situation, which
+looks something like this: 
 
-{{< img src="img/model.jpeg" alt="Inference Image" class="img-thumbnail" >}}
+{{< img src="img/model.png" class="rounded mx-auto mb-2 d-block inert-img img-fluid" width="500px">}}
 
-In this model, the physicist assigns a mass to the ball, represents the ball
-as a point in 2-dimensional [Euclidian
+
+In this model, the physicist would assign a mass to the ball, represents the
+ball as a point in 2-dimensional [Euclidian
 space](https://en.wikipedia.org/wiki/Euclidean_space), and treats the forces
 acting on the ball as [vectors](https://en.wikipedia.org/wiki/Euclidean_vector).
 Assuming that there's no air resistance, it's a high-school level exercise to
-calculate where the ball will land using the laws of classical mechanics (can you still do it?). 
+calculate where the ball will land using the laws of classical mechanics (can
+you still do it?). 
 
 What's characteristic of mathematical models is that they _abstract away_ from
 irrelevant features of reality (ignoring the trees, for example), they
@@ -272,12 +300,11 @@ where the ball will land using the laws of mechanics, these derivations
 calculate valid inferences from the basic laws of logic.
 
 Developing and studying logical systems is the core business of logical theory
-and has lead to rich body of logical knowledge, which you'll familiarize
-yourself with during this course.
+and has lead to rich body of logical knowledge.
 
 One last thing to note about logical systems is that there are _many_ of them.
 In this course, you'll learn about a wide range of logical systems and how they
-are used in AI. So, be prepared for a **logical diversity**!
+are used in AI. So, there's what we might call **logical diversity**!
 
 There are different ways of classifying logical systems, but let's just just
 look at two to get the point of logical diversity across.
@@ -305,24 +332,82 @@ logics](https://en.wikipedia.org/wiki/Paraconsistent_logic), which allow for
 exceptions to certain classical logical laws, such as that there's no true
 contradiction.
 
-As you'll see different systems are useful in different contexts. 
+As you'll see different systems are useful in different contexts. {{< img src="img/mouse.png" class="rounded  float-end inert-img img-fluid" width="50px">}}
 
-## Logic in AI
 
-Now you have a first idea of what the science of logic is all about.[^logic] But
-before we can talk about the role of logic in AI, we need a working definition
-of AI.
+## Logic and AI
 
-In this course, we take **AI** to be the study of the models and replication of
-_intelligent behavior_. Here we're understand "intelligent behavior" in a rather
-inclusive way, counting such diverse activities as behavior of [switching
-circuits](https://en.wikipedia.org/wiki/A_Symbolic_Analysis_of_Relay_and_Switching_Circuits),
-[spam filters](https://en.wikipedia.org/wiki/Naive_Bayes_spam_filtering), and
-[self-driving cars](https://en.wikipedia.org/wiki/Vehicular_automation) as
-intelligent behavior.
+Logic plays a special role in AI since its inception as an academic discipline
+in the second half of the 20th century. One event that is often mentioned as a
+"beginning" of AI is the 1956 [Dartmouth Summer Research Project on Artificial
+Intelligence](https://en.wikipedia.org/wiki/Dartmouth_workshop), which was
+organized by [Claude Shannon](https://en.wikipedia.org/wiki/Claude_Shannon),
+[John
+McCarthy](https://en.wikipedia.org/wiki/John_McCarthy_(computer_scientist)),
+[Nathaniel
+Rochester](https://en.wikipedia.org/wiki/Nathaniel_Rochester_(computer_scientist)),
+and [Marvin Minsky](https://en.wikipedia.org/wiki/Marvin_Minsky) and who are
+therefore considered by some the "founding fathers". The research proposal
+contains for the event one of the first documented uses of the term "artificial
+intelligence" to refer to an academic discipline. 
 
-There are at least **three ways**, in which logic is relevant to AI understood
-in this way. We'll go through them in turn.
+The naming of the discipline is typically attributed to McCarthy, who thought
+that logic is the path to achieving human-level artificial intelligence (in the
+ability sense of the term). But we don't need to think about *human*-level
+intelligence to understand the relevance of logic to AI research. An insight
+typically attributed to Claude Shannon in [his master's
+thesis](https://en.wikipedia.org/wiki/A_Symbolic_Analysis_of_Relay_and_Switching_Circuits)
+is that we can think of the behavior of electrical circuits (specifically
+[relays](https://en.wikipedia.org/wiki/Relay)) in logical terms. 
+
+To illustrate the idea, take this simple circuit with two switches, A and B:
+
+{{< img src="img/shannon_circuit.png" class="rounded mx-auto mb-2 d-block inert-img img-fluid" width="500px">}}
+
+If—and *only if*—both A and B are flipped, the light turns on. Shannon realized
+that this is effectively the operation of [logical
+conjunction](https://en.wikipedia.org/wiki/Logical_conjunction) from [Boolean
+logic](https://en.wikipedia.org/wiki/Boolean_algebra): Think of a switch being
+flipped "on" as 1 and it being switched "off" as 0. Similarly, take the light
+turning "on" to be 1 and it being "off" as 0. Then the behavior of the circuit
+is to return 1 just in case both A and B are 1 and 0 otherwise—which is just the
+operation of logical conjunction from Boolean logic.
+
+This relates logic to circuits, but what does this have to do with AI? One way
+of making the connection is to widen our understanding of "intelligent behavior"
+from human intelligence to something that allows us to think of a circuit like
+the one above as a reasoning, intelligent agent. The idea is that we can
+reconstruct the behavior of the circuit as an inference from two statements—A
+and B, which we take to mean that the respective switches are "on"—to an action
+being carried out—turning on the light, which we can think of as yet another
+statement, L. So the circuit *in a sense* performs an inference: it infers L
+from both A and B.
+
+Widening our understanding of intelligence like this allows us to study the
+behavior of sliding doors, AC systems, self-driving cars, and much more as AI
+systems using logic. This is a very powerful idea.
+
+The thought that logic is the path to achieving human-level artificial
+intelligence is the paradigm of **logic-based AI**, which was the dominant
+paradigm for AI research from the 1950 until at least the late 1980s. Around
+this time, probability theory and statistics slowly started to take over as the
+main approach to the problems of AI, putting the focus on ideas like [machine
+learning](https://en.wikipedia.org/wiki/Machine_learning) and [big
+data](https://en.wikipedia.org/wiki/Big_data).
+
+The success of this approach is not in small part due to [artificial neural
+networks (ANNs)](https://en.wikipedia.org/wiki/Neural_network), which are,
+effectively, statistical models of data, obtained through machine learning on an
+architecture that is inspired by the structure of the human brain. {{< img
+src="img/ai_ann.png" class="rounded  float-end inert-img img-fluid"
+width="150px">}} Today, **statistics-based AI** using ANNs is, by far, the
+dominant paradigm in AI research. This is the approach that led to the recent
+developments in GenAI.
+
+The full story of this shift is nuanced and complicated, but looking at it from
+a certain angle can help us understand the role of logic in AI—both in the past
+and in the future. We'll do this by looking at three different roles that logic
+plays in AI research.
 
 ### As a foundation
 
@@ -425,9 +510,9 @@ patient likely has the common cold.
 
 If we present the system with the known fact that our patient does have a runny
 nose, a sore throat, and a mild fever, the inference engine could easily derive
-that the patient likely has a common cold.[^implementation] If some symptom is
-missing, say the patient doesn't have a fever, the engine can no longer validly
-infer that the patient has a cold---it could be something else.
+that the patient likely has a common cold. If some symptom is missing, say the
+patient doesn't have a fever, the engine can no longer validly infer that the
+patient has a cold---it could be something else.
 
 This is roughly how expert systems work. By the way, this example makes it also
 easy to explain why expert systems (and for similar reasons other logic-based AI
@@ -487,16 +572,16 @@ events in the mid 2010s, AlphaGo managed to beat professional Go players at the
 highest level, suggesting the superiority of neural networks over expert systems
 for beating games.
 
-Success stories like this have lead to the rise of what's known as
-**subsymbolic AI**, which many take to be the predominant approach to AI today.
-Subsymbolic AI prefers conditional probabilities and inductive inference over
-if-then rules and deductive inference, and it prefers statistical models
-generated from **big data** over knowledge bases generated by experts. As a
-consequence, the information stored in a subsymbolic AI system, especially when
-it comes in the form of a neural network, is often _opaque_ and hard for humans
-to understand.[^XAI] The systems seem to operate on a "lower level", much like the
-neurons in the brain are on a "lower level" as compared to our thoughts and
-ideas---whence the name _subsymbolic AI_.
+Success stories like this have lead to the rise of what's known as **subsymbolic
+AI**, which many take to be the predominant approach to AI today. Subsymbolic AI
+prefers conditional probabilities and inductive inference over if-then rules and
+deductive inference, and it prefers statistical models generated from big data
+over knowledge bases generated by experts. As a consequence, the information
+stored in a subsymbolic AI system, especially when it comes in the form of a
+neural network, is often _opaque_ and hard for humans to understand.[^XAI] The
+systems seem to operate on a "lower level", much like the neurons in the brain
+are on a "lower level" as compared to our thoughts and ideas---whence the name
+_subsymbolic AI_.
 
 But if subsymbolic AI seems to dominate symbolic AI, what's the place for logic
 in AI today?
@@ -542,8 +627,8 @@ we'll pay special attention to the tight connections between logical systems and
 probability theory and statistics---as we'll see they are two sides of the same
 coin.
 
-Finally, there's **cutting edge research**. The last years have seen the
-meteoric rise of generative AI systems, and especially [**large language models
+Finally, there's **recent research**. The last years have seen the meteoric rise
+of GenAI systems, and especially [**large language models
 (LLMs)**](https://en.wikipedia.org/wiki/Large_language_model). These are
 subsymbolic AI systems that are essentially large-scale probabilistic models of
 natural language. Under the hood, LLMs are neural networks with billions of
@@ -611,49 +696,24 @@ Priest's](https://en.wikipedia.org/wiki/Graham_Priest) 2017 book:
 Press.](https://global.oup.com/academic/product/logic-a-very-short-introduction-9780198811701).
 
 The present textbook is neither a standard logic textbook nor a general AI
-textbook. It might be advisable, though is by no means necessary, to consult one
+textbook. It might be advisable—though is by no means necessary—to consult one
 of each from time to time. I recommend:
 
-+ [Halbach. 2010. _The Logic Manual_. Oxford University Press](https://global.oup.com/ushe/product/the-logic-manual-9780199587841?cc=us&lang=en&) 
++ [Halbach. 2010. _The Logic Manual_. Oxford University Press.](https://global.oup.com/ushe/product/the-logic-manual-9780199587841?cc=us&lang=en&) 
 
 + [Russel and Norvig. 2021. Artificial Intelligence: A Modern Approach. 4th
 Edition. Pearson](https://elibrary.pearson.de/book/99.150005/9781292401171).
-
-If you're interested in some history and an interesting narrative about the
-current direction of AI research and development, I recommend:
-
-+ [Domingos. 2015. The Master Algorithm: How the Quest for the Ultimate Learning
-Machine Will Remake Our
-World. Penguin](https://en.wikipedia.org/wiki/The_Master_Algorithm).
 
 In general, I recommend to use the internet to keep up to date on logic and AI
 developments. Read, Learn, Improve!
 
 **Notes:**
 
-[^inference]: Another common term for the same concept is "argument". 
-
-[^conclusion]: Also sometimes called "consequence".
-
-[^valid]: We'll also sometimes say "correct", but never "true".
-
-[^fallacies]: You'll learn some more names for fallacies in this book, but just
-as a curiosity.
-
-[^logic]: You'll have a much better idea at the end of this book.
-
-[^propositional]: This important system will be a recurring topic throughout the
-course.
-
 [^bivalence]: Why is this a simplifying assumption?
 
 [^history]: The history of symbolic AI is an intriguing but complex topic. We
 don't have the space here to get into it too much. Check out some of the
 suggestions in the [references](#further-readings).
-
-[^implementation]: Don't worry too much about how knowledge bases and
-inference engines are implemented for now. You'll learn this in other courses
-later.
 
 [^XAI]: This is, of course, a problem for XAI, as many scandals, like the [Dutch
 childcare benefits
