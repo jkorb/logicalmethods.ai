@@ -1,0 +1,15 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+
+\begin{document}
+
+\begin{tikzpicture}
+%\Tree [.$((p\land(p\rightarrow q))\rightarrow \neg q)$
+%[.$(p\land (p\rightarrow q))$ $p$ [.$(p\rightarrow q)$ $p$ $q$ ] ] [.$\neg q$ $q$ ] ]
+\Tree [.$A$ $($ [.$A$ $($ [.$A$ p ] $\land$ [.$A$ $($ [.$A$ $p$ ] $\rightarrow$ [.$A$ $q$ ] $)$ ] $)$  ] $\rightarrow$ [.$A$ $\neg$ [.$A$ $q$ ] ] $)$ ]
+\end{tikzpicture}
+
+
+
+\end{document}
