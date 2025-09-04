@@ -239,11 +239,11 @@
             <li>
               <a class="dropdown-item 
                 fw-bold active
-                link-opacity-50
+                
                 "
-                href="javascript:;"
+                href="/slides/logic-and-ai/"
               >1. 
-                <i class="bi bi-lock-fill"></i>
+                <i class="bi bi-unlock-fill"></i>
                  Logic and AI
               </a>
             </li>
@@ -593,331 +593,35 @@
     
     <main class="align-self-center d-flex flex-column flex-fill bg-white m-md-1 p-0" data-bs-theme="light">
       
-<ul class="navbar-nav flex-row justify-content-between mt-2">
-  
-  <li class="nav-item">
-    <a href="/slides/teaser/" class="btn" tabindex="-1" role="button" aria-disabled="true">
-      <i class="bi bi-chevron-left"></i>
-    </a>
-    
-  </li>
+<ul class="navbar-nav flex-row justify-content-center mt-2">
+
   <li class="nav-item">
     <a href="/slides/" class="btn " tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-house-up"></i>
     </a>
   </li>
-  <li class="nav-item">
-    
-    <a href="/slides/valid-inference/" class="btn" tabindex="-1" role="button" aria-disabled="true">
-      <i class="bi bi-chevron-right"></i>
-    </a>
-    
-  </li>
 </ul>
 
 <div class="container text-center">
   <h3>
-    Lecture 10. Logic and AI
+    Lecture 1. Logic and AI
   </h3>
   <em>Slides</em>
 </div>
 
 
 
-  
-   
+
+<iframe 
+  src="https://link.excalidraw.com/p/readonly/0cyxzk4xXAC2tuD83XwV"
+  width="100%" height="460px" allowFullScreen="true" style="border: 10px;"
+  >
+</iframe>
 
 
 
-<div class="modal fade" id="info" tabindex="-1" aria-labelledby="InfoLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="infolabel">Info</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-start">
-          <p>Here you can find the lecture slides.</p>
-<p>Slides that are currently under development are locked. They will be unlocked
-in time for class.</p>
-<p>You can use them to follow along during the lecture and to go through the
-material again after.</p>
-<p>Feel free to ask questions during the lecture!!</p>
-<p><strong>Technical info</strong></p>
-<p>You can use the arrow keys to navigate through the slides, or
-alternatively, click the little arrows on the slides themselves.</p>
-<p>Pressing the F-key while the slides are selected, puts them in
-fullscreen. You can quit fullscreen by pressing ESC.</p>
-<p>There are more the slides can do, find out under
-<i class="bi bi-box-arrow-up-right h-6"></i>
-<a href="https://revealjs.com/" class="link-dark" rel="external" target="_blank">https://revealjs.com/</a>
-.</p>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Got it!</button>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="container p-2 text-center">
-  <button type="button" class="btn btn-primary shadow" data-bs-toggle="modal" data-bs-target="#info">
-    <i class="bi bi-info-circle"></i>
-  </button>
-</div>
 
 
-<hr>
-
-<div class="d-flex flex-column">
-  <div class="align-self-center reveal border border-1 border-secondary border-opacity-50" style="aspect-ratio: 16 / 9; max-width: 710px">
-		<div class="slides" id="slides">
-			<section>
-				<h1>&forall;I</h1>
-        <p>Logical <strong>methods</strong> for AI</p>
-        <p>Lecture 10</p>
-        <p class="text-danger"><em>Logic and AI</em></p>
-        
-<div class="container text-center">
-  <p class="copyright" xmlns:cc="http://creativecommons.org/ns#" >
-    This work is licensed under 
-    CC BY 4.0
-    <i class="bi bi-cc-circle"></i> <i class="bi bi-universal-access-circle"></i>
-  </p> 
-</div>
-
-
-        
-</section>
-<section>
-    
-    
-    <img src="https://logicalmethods.ai/slides/logic-and-ai/img/qr-code.png" class="img-thumbnail"  alt="" >
-    
-
-    <p><a href="https://forms.gle/JiXXM9eysAZaJMja9" target="_blank" style="font-size:1.5em">https://forms.gle/JiXXM9eysAZaJMja9</a></p>
-  </section>
-<section>
-  <section id="syllabus">
-    <dl class="row" >
-      <dd class="col">
-        <i class="bi bi-file-earmark-text-fill text-primary" style="font-size:100px;"></i> 
-        <h1>Course <span class="text-danger">manual</span></h1>
-      </dd>
-      <dt class="col"></dt>
-  </section>
-  <section>
-    <a href="https://uu.blackboard.com" class="link" style="font-size:1.5em" target="_blank" >https://uu.blackboard.com</a>
-  </section>
-  <section>
-    <h1> <i class="bi bi-exclamation-triangle-fill text-danger"></i> Important</h1>
-    <ul>
-      <li class="fragment fade-right">Email: <a href="mailto:logische.methoden@uu.nl" class="link-light link-opacity-100-hover" target="_blank">logische.methoden@uu.nl</a></li>
-      <li class="fragment fade-right">New course: active development</li>
-      <li class="fragment fade-right">Material: <a href="https://logicalmethods.ai" class="link-light link-opacity-100-hover" target="_blank">logicalmethods.ai</a></li>
-      <li class="fragment fade-right">Exams: only endterm</li>
-    </ul>
-  </section>
-  <section>
-    
-    
-    <img src="https://logicalmethods.ai/slides/logic-and-ai/img/humboldt.jpg" class="img-thumbnail"  alt="" >
-    
-
-  </section>
-</section>
-
-<section>
-  <section id="logic">
-    <dl class="row" >
-      <dd class="col">
-        <i class="bi bi-infinity text-success" style="font-size:100px;"></i> 
-        <h1>What is <span class="text-danger">logic</span>?</h1>
-      </dd>
-      <dt class="col"></dt>
-  </section>
-  <section>
-      <h3 class="fragment fade-right">Science of valid inference</h3>
-  </section>
-  <section>
-    <p>Given that Ada is either on the Philosopher’s Walk or in the study, and she’s not in the study, she <em class="text-danger">therefore</em> must be on the Philosopher’s Walk.</p>
-    <ul>
-      <li class="fragment fade-right">Inference indicator</li>
-      <li class="fragment fade-right">Premise indicator</li>
-      <li class="fragment fade-right">Conclusion</li>
-    </ul>
-  </section>
-  <section id="validity">
-      <h3 class="fragment fade-right">Validity = premises support conclusion</h3>
-    <ul>
-      <li class="fragment fade-right">Deductive validity = necessitation</li>
-      <li class="fragment fade-right">Inductive validity = probability raising</li>
-      <li class="fragment fade-right text-danger">Fallacy = reasoning mistake</li>
-    </ul>
-  </section>
-</section>
-
-<section>
-  <section>
-    <dl class="row" >
-      <dd class="col">
-        <i class="bi bi-motherboard text-warning" style="font-size:100px;"></i> 
-        <h1><span class="text-danger">Logical</span> systems</h1>
-      </dd>
-      <dt class="col"></dt>
-  </section>
-  <section>
-    <h3>Components</h3>
-    <ul>
-      <li class="fragment fade-right">Syntax = model of language</li>
-      <li class="fragment fade-right">Semantics = model of meaning</li>
-      <li class="fragment fade-right">Proof theory = model of stepwise inference</li>
-    </ul>
-  </section>
-  <section id="models">
-    <h3>Mathematical models</h3>
-    <ul>
-      <li class="fragment fade-right">abstraction</li>
-      <li class="fragment fade-right">idealization</li>
-      <li class="fragment fade-right">assumptions</li>
-    </ul>
-  </section>
-</section>
-
-<section>
-  <section>
-    <dl class="row" >
-      <dd class="col">
-        <i class="bi bi-robot text-primary" style="font-size:100px;"></i> 
-        <h1>Artificial <span class="text-danger">intelligence</span></h1>
-      </dd>
-      <dt class="col"></dt>
-  </section>
-  <section id="ai">
-    <h3>AI=study+replication of intelligence</h3>
-    <ul>
-      <li class="fragment fade-right">Foundations</li>
-      <li class="fragment fade-right">Methodology</li>
-      <li class="fragment fade-right">Tool</li>
-    </ul>
-  </section>
-  <section>
-    <h3>Foundations</h3>
-    <ul>
-      <li class="fragment fade-right">Inference is intelligence</li>
-      <li class="fragment fade-right">Know your enemy!</li>
-      <li class="fragment fade-right">Gödel and Turing</li>
-    </ul>
-  </section>
-  <section id="expert">
-    <h3>Methodology</h3>
-    <ul>
-      <li class="fragment fade-right">Logic-based/symbolic AI</li>
-      <li class="fragment fade-right">Expert systems: KB + Inference engine</li>
-    </ul>
-  </section>
-  <section>
-    
-    
-    <img src="https://logicalmethods.ai/slides/logic-and-ai/img/diogenes.jpg" class="img-thumbnail"  alt="" >
-    
-
-  </section>
-  <section>
-    <h3>Plato.ai</h3>
-     <ul>
-      <li class="fragment fade-right">Knowledge base:
-        $$Featherless(x)\land Biped(x)\Rightarrow Human(x)$$
-     </li>
-      <li class="fragment fade-right">Inference engine:
-      $$Featherless(c),Biped(c)\vdash Human(c)$$
-      </li>
-      <li class="fragment fade-right">Hard to build and maintain</li>
-    </ul>     
-  </section>
-  <section>
-    <h3>Subsymbolic AI</h3>
-      <p class="fragment fade-right">Statistics + machine learning </p>
-  </section>
-  <section id="systems">
-    <h3>Thinking, fast and slow</h3>
-     <ul>
-      <li class="fragment fade-right"><strong>System 1</strong>: fast, automatic, intuitive, unconscious, associative, ...</li>
-      <li class="fragment fade-right"><strong>System 2</strong>: slow, deliberate, conscious, logical, calculating, ...</li>
-    </ul>     
-  </section>
-  <section>
-    <h3><i class="bi bi-arrow-through-heart-fill text-danger"></i> Logic and AI</h3>
-    <ul>
-      <li class="fragment fade-right">Subsymbolic AI = system 1</li>
-      <li class="fragment fade-right">Symbolic AI = system 2</li>
-    </ul>          
-  </section>
-</section>
-<section>
-  <h1>Thanks<span class="text-danger">!</span></h1>
-</section>
-
- 
-			</section>
-		</div>
-	</div>
-</div>
-
-
-<hr>
-
-<div class="container">
-  <h5>Highlights</h5>
-  <ul class="list-group">
-    
-    <a href="#/syllabus" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Course manual</strong></a> 
-    
-    <a href="#/logic" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>What is logic?</strong></a> 
-    
-    <a href="#/validity" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Validity</strong></a> 
-    
-    <a href="#/models" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Mathematical models</strong></a> 
-    
-    <a href="#/ai" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Logic and AI</strong></a> 
-    
-    <a href="#/expert" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Expert systems</strong></a> 
-    
-    <a href="#/systems" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>System 1 vs. system 2</strong></a> 
-    
-  </ul>
-</div>
-
-
-<div class="d-flex align-items-center justify-content-end me-1 mt-auto">
-  Powered by &nbsp;
-  <a class="icon-link" href="https://revealjs.com/" target="_blank">
-    <img src="https://logicalmethods.ai/img/revealjs-logo.png" style="max-width:150px" class="img-thumbnail" alt="reveail.js">
-  </a>
-</div>
-
-
-<ul class="navbar-nav flex-row justify-content-between mt-auto">
-  
-  <li class="nav-item">
-    <a href="/slides/teaser/" class="btn" tabindex="-1" role="button" aria-disabled="true">
-      <i class="bi bi-chevron-left"></i>
-    </a>
-    
-  </li>
-  <li class="nav-item">
-    <button class="btn btn-back-to-top">
-    <i class="bi bi-chevron-double-up"></i>
-  </button>
-  </li>
-  <li class="nav-item">
-    
-    <a href="/slides/valid-inference/" class="btn" tabindex="-1" role="button" aria-disabled="true">
-      <i class="bi bi-chevron-right"></i>
-    </a>
-    
-  </li>
-</ul>
 
 
     </main>
@@ -936,18 +640,7 @@ fullscreen. You can quit fullscreen by pressing ESC.</p>
       <script src="https://logicalmethods.ai/js/helpers.js"></script>
       <script src="https://logicalmethods.ai/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
       
-<script src="https://logicalmethods.ai/reveal.js/dist/reveal.js"></script>
-<script src="https://logicalmethods.ai/reveal.js/plugin/math/math.js"></script>
-<script>
-Reveal.initialize({
-  embedded: true, 
-  
-  plugins: [ RevealMath.KaTeX ],
-  hash: true
-  
-});
-</script>
-
+      
     </footer>
   </body>
 </html>
