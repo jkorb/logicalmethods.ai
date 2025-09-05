@@ -46,4 +46,6 @@ main, .element {
 .excalifont 
 {
   font-family: 'Excalifont', sans-serif;
+  /* font-weight: bold; */
+  font-size: 13pt;
 }
