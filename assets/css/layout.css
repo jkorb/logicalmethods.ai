@@ -36,4 +36,14 @@ main, .element {
   pointer-events: none;        /* if you don't want it clickable */
 }
 
+@font-face {
+  font-family: 'Excalifont';
+  src: url('/fonts/Excalifont.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
 
+.excalifont 
+{
+  font-family: 'Excalifont', sans-serif;
+}
