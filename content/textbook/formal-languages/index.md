@@ -1,7 +1,7 @@
 ---
 title: Formal languages
 author: Rick Nouwen and Johannes Korbmacher
-locked: true
+locked: false
 weight: 20
 resources:
   - src: img/inferences.png
