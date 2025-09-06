@@ -2,6 +2,7 @@
 title: Formal languages
 author: Johannes Korbmacher
 locked: false
+layout: 'excalidraw_slides'
 weight: 20
 params: 
   id: sli-form
