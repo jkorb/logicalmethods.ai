@@ -1,7 +1,7 @@
 ---
 title: Logic and AI
 subtitle: test
-locked: true
+locked: false
 author: Johannes Korbmacher
 weight: 10
 params: 
@@ -64,16 +64,16 @@ b.) It follows that, thus, hence, consequently, we know that, therefore, so, acc
 Name the premise and inference indicators in the following paragraphs.
 
 ## a.) 
-Because &forall;`I` knows that location of every book in the library, and the student asks for a specific title, it follows that forall;`I`can guide the user directly to the book's shelf.
+Because {{< logo >}}&nbsp; knows that location of every book in the library, and the student asks for a specific title, it follows that {{< logo >}}&nbsp;can guide the user directly to the book's shelf.
 
 ## b.)
-If &forall;`I` detects that a student struggles with mathematics, then it recommends extra practice problems. Since the student's last test scores were low, so &forall;`I` suggest additional exercises.
+If {{< logo >}}&nbsp; detects that a student struggles with mathematics, then it recommends extra practice problems. Since the student's last test scores were low, so {{< logo >}}&nbsp; suggest additional exercises.
 
 ## c.)
-&forall;`I` thinks that he recognizes the face of a student entering the classroom. When a face is recognized by &forall;`I`, then it marks attendance automatically in the specific class. &forall;`I` remembers the face of the student, but the student is actually in another class. Consequently, &forall;`I` the attendance is not recorded.
+{{< logo >}}&nbsp; thinks that he recognizes the face of a student entering the classroom. When a face is recognized by {{< logo >}}&nbsp;, then it marks attendance automatically in the specific class. {{< logo >}}&nbsp; remembers the face of the student, but the student is actually in another class. Consequently, {{< logo >}}&nbsp; the attendance is not recorded.
 
 ## e.)
-If &forall;`I` detects pronunciation errors in a student's speech, it will provide corrective feedback. Given that the student is practicing regularly, therefore &forall;`I` improves their pronunciation over time.
+If {{< logo >}}&nbsp; detects pronunciation errors in a student's speech, it will provide corrective feedback. Given that the student is practicing regularly, therefore {{< logo >}}&nbsp; improves their pronunciation over time.
 
 ## Solution {#recognizing-indicatorsSolution .solution}
 
@@ -91,62 +91,62 @@ Define the premise(s) and conclusion of each of the following inferences.
 
 ## a.) 
 
-The robot &forall;`I` rides towards entering of the supermarket. The supermarket's automatic sliding doors open, when someone stands in front of the sensor. The sensor detects &forall;`I`. Therefore, the supermarket's automatic doors open.
+The robot {{< logo >}}&nbsp; rides towards entering of the supermarket. The supermarket's automatic sliding doors open, when someone stands in front of the sensor. The sensor detects {{< logo >}}&nbsp;. Therefore, the supermarket's automatic doors open.
 
 ## b.)
 
-Since the robot &forall;`I` nests itself in the phone, is it able to take over the function of Face ID. If &forall;`I` recognizes the face, it will unlock the phone. A phone's user, ∃`n`, picks up the phone and tries to unlock it by showing its face to the phone. However, &forall;`I` doesn't know ∃`n`, so the phone stays unlocked.
+Since the robot {{< logo >}}&nbsp; nests itself in the phone, is it able to take over the function of Face ID. If {{< logo >}}&nbsp; recognizes the face, it will unlock the phone. A phone's user, ∃`n`, picks up the phone and tries to unlock it by showing its face to the phone. However, {{< logo >}}&nbsp; doesn't know ∃`n`, so the phone stays unlocked.
 
 ## c.)
 
-If &forall;`I` notices that the milk is running low, it directly orders new milk. The ordered milk will arrive tomorrow, because ∃`n` delivers milk the day after the order is made by &forall;`I`. 
+If {{< logo >}}&nbsp; notices that the milk is running low, it directly orders new milk. The ordered milk will arrive tomorrow, because ∃`n` delivers milk the day after the order is made by {{< logo >}}&nbsp;. 
 
 ## d.)
 
-&forall;`I` (in the personality of an autonomous driving car), at a red traffic light either brakes or chooses an alternative route. Since &forall;`I` isn't braking, it must currently be still driving. Thus, it should have chosen another route.
+{{< logo >}}&nbsp; (in the personality of an autonomous driving car), at a red traffic light either brakes or chooses an alternative route. Since {{< logo >}}&nbsp; isn't braking, it must currently be still driving. Thus, it should have chosen another route.
 
 ## e.) 
 
-If &forall;`I` notices that energy consumption is low at night, it turns off devices, and if &forall;`I` detects peak consumption, it shifts usage to cheaper hours. But energy consumption is now either low or there is peak consumption. So, &forall;`I` either turns off devices or shifts usage to cheaper hours.
+If {{< logo >}}&nbsp; notices that energy consumption is low at night, it turns off devices, and if {{< logo >}}&nbsp; detects peak consumption, it shifts usage to cheaper hours. But energy consumption is now either low or there is peak consumption. So, {{< logo >}}&nbsp; either turns off devices or shifts usage to cheaper hours.
 
 ## f.)
 
-If &forall;`I` detects plagiarism in an assignment, the teacher is alerted. The teacher was not alerted. Consequently, AI did not detect plagiarism.
+If {{< logo >}}&nbsp; detects plagiarism in an assignment, the teacher is alerted. The teacher was not alerted. Consequently, AI did not detect plagiarism.
 
 ## g.)
-&forall;`I` is a useful additional teacher to students, because &forall;`I` carefully analyzes the submitted homework to spot areas where the student struggles. Since &forall;`I` can identify these specific weaknesses, it knows exactly what advice to give to help the student improve. Moreover, thanks to the help of &forall;`I`, the teacher can focus on more structural or analytical explanations.
+{{< logo >}}&nbsp; is a useful additional teacher to students, because {{< logo >}}&nbsp; carefully analyzes the submitted homework to spot areas where the student struggles. Since {{< logo >}}&nbsp; can identify these specific weaknesses, it knows exactly what advice to give to help the student improve. Moreover, thanks to the help of {{< logo >}}&nbsp;, the teacher can focus on more structural or analytical explanations.
 
 ## Solution {#inferencesSolution .solution}
 
-**a.)** P1: The robot &forall;`I` rides towards entering of the supermarket. P2: The supermarket's automatic sliding doors open, when someone stands in front of the sensor.P3: The sensor detects &forall;`I`. C: the supermarket's automatic doors open.
+**a.)** P1: The robot {{< logo >}}&nbsp; rides towards entering of the supermarket. P2: The supermarket's automatic sliding doors open, when someone stands in front of the sensor.P3: The sensor detects {{< logo >}}&nbsp;. C: the supermarket's automatic doors open.
 
-**b.)** P1: Since the robot &forall;`I` nests itself in the phone, is it able to take over the function of Face ID.
-P2: If &forall;`I` recognizes the face, it will unlock the phone. 
+**b.)** P1: Since the robot {{< logo >}}&nbsp; nests itself in the phone, is it able to take over the function of Face ID.
+P2: If {{< logo >}}&nbsp; recognizes the face, it will unlock the phone. 
 P3: A phone's user, ∃`n`, picks up the phone and tries to unlock it by showing its face to the phone. 
-P4: &forall;`I` doesn't know ∃`n`
+P4: {{< logo >}}&nbsp; doesn't know ∃`n`
 C: The phone stays unlocked.
 
-**c.)** P1: If &forall;`I` notices that the milk is running low, it directly orders new milk. 
-P2: ∃`n` delivers milk the day after the order is made by &forall;`I`. 
+**c.)** P1: If {{< logo >}}&nbsp; notices that the milk is running low, it directly orders new milk. 
+P2: ∃`n` delivers milk the day after the order is made by {{< logo >}}&nbsp;. 
 C: The ordered milk will arrive tomorrow.
 
-**d.)** P1: &forall;`I` (in the personality of an autonomous driving car), at a red traffic light either brakes or chooses an alternative route. 
-P2: Since &forall;`I` isn't braking, it must currently be still driving. 
+**d.)** P1: {{< logo >}}&nbsp; (in the personality of an autonomous driving car), at a red traffic light either brakes or chooses an alternative route. 
+P2: Since {{< logo >}}&nbsp; isn't braking, it must currently be still driving. 
 C: It should have chosen another route.
 
-**e.)** P1: If &forall;`I` notices that energy consumption is low at night, it turns off devices. 
-P2: if &forall;`I` detects peak consumption, it shifts usage to cheaper hours. 
+**e.)** P1: If {{< logo >}}&nbsp; notices that energy consumption is low at night, it turns off devices. 
+P2: if {{< logo >}}&nbsp; detects peak consumption, it shifts usage to cheaper hours. 
 P3: Energy consumption is now either low or there is peak consumption. 
-C: &forall;`I` either turns off devices or shifts usage to cheaper hours.
+C: {{< logo >}}&nbsp; either turns off devices or shifts usage to cheaper hours.
 
-**f.)** P1: If &forall;`I` detects plagiarism in an assignment, the teacher is alerted. 
+**f.)** P1: If {{< logo >}}&nbsp; detects plagiarism in an assignment, the teacher is alerted. 
 P2: The teacher was not alerted. 
-C: &forall;`I` did not detect plagiarism.
+C: {{< logo >}}&nbsp; did not detect plagiarism.
 
-**g.)** P1: &forall;`I` carefully analyzes the submitted homework to spot areas where the student struggles. 
-P2: &forall;`I` can identify these specific weaknesses, it knows exactly what advice to give to help the student improve. 
-P3: thanks to the help of &forall;`I`, the teacher can focus on more structural or analytical explanations.
-C: &forall;`I` is a useful additional teacher to students.
+**g.)** P1: {{< logo >}}&nbsp; carefully analyzes the submitted homework to spot areas where the student struggles. 
+P2: {{< logo >}}&nbsp; can identify these specific weaknesses, it knows exactly what advice to give to help the student improve. 
+P3: thanks to the help of {{< logo >}}&nbsp;, the teacher can focus on more structural or analytical explanations.
+C: {{< logo >}}&nbsp; is a useful additional teacher to students.
 
 # Symbolic or subsymbolic { .solved }
 
