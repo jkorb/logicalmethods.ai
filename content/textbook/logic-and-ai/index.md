@@ -216,6 +216,8 @@ inductively strong). This is in contrast saying something like "it's logical
 that I was scared", which means something like "it's *understandable* that I was
 scared".
 
+## Logical systems
+
 There's also a common way of speaking of "someone's logic", as in "according to
 your logic, we should go home". This points to an important aspect of logical
 theory, which we'll need to talk about before we can move to the relationship
@@ -225,8 +227,6 @@ What we mean when we say that "according to your logic we should do the thing"
 is something like "according to the system of premises and inferences you
 accept, we should do the thing". It turns out that this sense of logic, we also
 find in logical theory.
-
-## Logical systems
 
 Logicians approach the study of valid inference the way most scientists approach
 their subject matter: using [mathematical
