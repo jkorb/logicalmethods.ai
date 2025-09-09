@@ -1255,8 +1255,7 @@ language.</p>
 <p class="text-center">
 <span class="excalifont ">Σ={0,1,2,3,4,5,6,7,8,9}</span>
 
-<p>is a perfectly fine alphabet. You can use it to define the language for all the
-natural numbers.</p>
+<p>is a perfectly fine alphabet. You can use it to define the language of all the <em>numerals</em> (terms for natural numbers).</p>
 <p>One way to do that is to use an operation called the Kleene
 star, named after the American mathematician <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Stephen_Cole_Kleene"
@@ -1279,7 +1278,7 @@ sequences such as
 
 <span class="excalifont ">2</span>
 . This is not the set of
-what we normally consider to be natural numbers, though, since 
+what we normally consider to be numerals, though, since 
 <span class="excalifont ">Σ*</span>
  will
 also include sequences like
@@ -1288,8 +1287,7 @@ also include sequences like
  and
 
 <span class="excalifont ">000881</span>
-, which are not natural
-numbers (in the Western Arabic decimal system, at least).</p>
+, which are not numerals (in the Western Arabic decimal system, at least).</p>
 <p>So, while the Kleene star gives us a way to construct the set of all sequences
 made from an alphabet, most formal languages we are interested in will be a
 specific smaller subset of 
@@ -1309,7 +1307,7 @@ we need a <em>grammar</em>.</p>
  are valid expressions of the language.</p>
 <p>In the case of most formal languages in logic, grammars use a technique known as
 <strong>inductive definition</strong>. Here is an example of such a definition for the set of
-all numerals (names for natural numbers) built from 
+all numerals  built from 
 <span class="excalifont ">Σ</span>
 .</p>
 <ol>
@@ -1351,33 +1349,33 @@ all numerals (names for natural numbers) built from
 .</li>
 <li>Nothing else is a numeral.</li>
 </ol>
-<p>Here&rsquo;s how this definition works: In the first step we get all the natural numbers that can be written as a single digit. This is the whole alphabet with the exception of 
+<p>Here&rsquo;s how this definition works: In the first step we get all the numerals that can be written as a single digit. This is the whole alphabet with the exception of 
 <span class="excalifont ">0</span>
 .
-, which isn&rsquo;t a natural number. Then in the second step we can represent numbers
+, which isn&rsquo;t a numeral. Then in the second step we can represent numbers
 that correspond to sequences of any length 
 <span class="excalifont ">>1</span>
 . For instance, this definition
 shows that 
 <span class="excalifont ">120</span>
- is a natural number:</p>
+ is a numeral:</p>
 <ul>
 <li>
 <span class="excalifont ">1</span>
- is a natural number (step 1);</li>
+ is a numeral (step 1);</li>
 <li>
 <span class="excalifont ">12</span>
- is a natural number (step 2);</li>
+ is a numeral (step 2);</li>
 <li>
 <span class="excalifont ">120</span>
- is a natural number (step 2).</li>
+ is a numeral (step 2).</li>
 </ul>
 <p>Using this inductive definition, there is no way to show that
 
 <span class="excalifont ">01</span>
  is a natural
 number. Given the final line of the definition, we must conclude that it is
-therefore not a natural number.<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
+therefore not a numeral.<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
 <h3 id="the-language-of-logic">The language of logic<button class="btn btn-back-to-top">
     
     <i class="bi bi-chevron-double-up"></i>
@@ -2031,22 +2029,21 @@ new object, but this strategy won&rsquo;t work forever. This is a result of
 
 <span class="excalifont ">{0,1,2,…}</span>
  is supposed to be
-the set of all natural numbers because we recognize the pattern, there is no
+the set of all numerals because we recognize the pattern, there is no
 known pattern for the primes that we could use.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:3">
 <p>The driving force behind this definition is actually an application of
 modus ponens. One instance of step 2 in the definition is: If 
 <span class="excalifont ">1</span>
- is a natural number, then so is 
+ is a numeral, then so is 
 <span class="excalifont ">12</span>
 . Now, since step 1 tells us
 that 
 <span class="excalifont ">1</span>
- is indeed a natural number it follows by modus ponens that 
+ is indeed a numeral it follows by modus ponens that 
 <span class="excalifont ">12</span>
- is also
-a natural number.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+ is also a numeral.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </div>
