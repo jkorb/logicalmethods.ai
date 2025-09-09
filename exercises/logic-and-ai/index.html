@@ -418,11 +418,11 @@
             <li>
               <a class="dropdown-item 
                 fw-bold active
-                link-opacity-50
+                
                 "
-                href="javascript:;"
+                href="/exercises/logic-and-ai/"
               >1. 
-                <i class="bi bi-lock-fill"></i>
+                <i class="bi bi-unlock-fill"></i>
                  Logic and AI
               </a>
             </li>
@@ -628,6 +628,7 @@
 
 
 
+  
    
 
 
@@ -640,18 +641,21 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body text-start">
-          <p>The exercises marked with
-<i class="bi bi-house-gear-fill text-danger">
-</i>
-
-are homework questions.</p>
+          <p>On this page, you can find the exercise sheets for the work groups.</p>
+<p>Exercise sheets for sessions currently under development are locked. They will
+be unlocked in time for the tutorial.</p>
+<p>Each section has a set of exercises that you&rsquo;ll go through with your TA in the
+session.</p>
+<p>You&rsquo;ll receive constructive feedback from your TA on your work.</p>
+<p>You can also ask your TA for suggestions and advice.</p>
+<p>You <strong>must</strong> show your work in order to get tips, meaning that if you just
+say &ldquo;i don&rsquo;t know&rdquo;. Try by yourself first and explain <em>what</em> you don&rsquo;t get.</p>
 <p>The questions marked with a
 <i class="bi bi-lightbulb-fill">
 </i>
 
-have solutions available online.</p>
-<p>The solutions are password protected and you&rsquo;ll receive the password in the work
-groups.</p>
+have solutions available online. The solutions are
+password protected and you&rsquo;ll receive the password in the work groups.</p>
 
       </div>
       <div class="modal-footer">
@@ -678,13 +682,23 @@ groups.</p>
     
       
 </div>
-<div id="definitions" ><h5 class="">
+<div id="definitions" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Definitions
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="definitionsSolution"
+        onclick="showPasswordModal('definitionsSolution', 'exc-laa')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p><em>Note</em>: A definition needs to fully explain the meaning of a concept. This is
 typically done by saying under which precise conditions the concept applies.
-That is, the answer should have the form like &ldquo;A valid inference is an inference
-such that&hellip;&rdquo; or &ldquo;An inference is valid just in case &hellip;&rdquo;.</p>
+That is, the answer should have the form like &ldquo;A inference is &hellip; and consists of&hellip;&rdquo; or &ldquo;An AI system is symbolic just in case &hellip;&rdquo;.</p>
 
 </div>
 <div id="a-inference" ><h6 class="">a.) Inference</h6><p>Give a definition of inference. Include examples (where your definition applies)
@@ -692,19 +706,29 @@ and non-examples (where it does not). Make sure to explain why your definition
 applies or not.</p>
 
 </div>
-<div id="b-validity" class=" homework"><h6 class=" homework">b.) Validity</h6><p>Give a definition of deductive and inductive inference. Include examples
-and non-examples with explanations.</p>
+<div id="b-symbolic-ai" ><h6 class="">b.) Symbolic AI</h6><p>Give a definition of symbolic AI. Include examples and non-examples with explanations.</p>
 
 </div>
-<div id="indicators" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Indicators
+<div id="definitionsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>These are examples of good answers.</p>
+<p><strong>a.)</strong> An inference is a process in which one or more premises are taken to support a conclusion, such that the conclusion follows from the premises according to a rule of reasoning. More precisely, an inference occurs just in case a transition from premises to conclusion is made under a rule that is truth-preserving (in deductive cases) or likelihood-enhancing (in inductive cases), and the premises are treated as grounds or reasons for endorsing the conclusion.</p>
+<p>In deductive cases, an inference consists of a finite set of well-formed formulas (the premises) and a conclusion such that the conclusion is derivable from the formulas under a given system of inference rules. Then, the specific is derived from something general. For instance: all humans are mortal, Socrates is a human, so Socrates is mortal. Hence, the conclusion necessarily follows from the premises under standard first-order logic (deductive logic)</p>
+<p>An inductive inference is one that is probabilistic: from the formulas (premises), one infers the conclusion, not because the conclusion is necessarily true, but because the premises makes the conclusion more plausible. To illustrate: the last hundred swans observed in this region were white, thus the next swan observed in this region will also be white. Consequently, the conclusion is not guaranteed but supported by a pattern in empirical data.</p>
+<p>A non-example is the following: The moon shines at night, so Socrates is a philosopher. This is not an inference because there is no logical or probabilistic connection between the premise and the conclusion. The provides no reason to accept the conclusion.</p>
+<p><strong>b.)</strong> An AI system is symbolic just in case it represents knowledge using explicit, human-interpretable symbols (e.g., words, logical predicates, rules), and manipulates these symbols via formal rules of inference or transformation. The operation of such a system is grounded in symbolic representation and rule-based reasoning, typically following paradigms from logic, production systems, or semantic networks.</p>
+<p>A symbolic AI system consists of three elements: a knowledge base (an explicit set of facts and rules, often written in a logical language), an inference engine (a mechanism that applies inference rules to derive new knowledge or make decisions) and an explicit representation of concepts and relationships.</p>
+<p>An example of an expert system that is a symbolic system is MYCIN. This system used rules, e.g., &ldquo;If the infection is bacterial and the organism is gram-positive, then prescribe penicillin. Besides, it used explicit symbolic facts, e.g., &ldquo;Patient has streptococcus.&rdquo; The system reasons via if-then rules to derive conclusions about diagnosis or treatment.</p>
+<p>A deep neural network, such as ChatGPT, is not symbolic AI. It processes input as high-dimensional numerical vectors and performs operations like matrix multiplication, without explicit symbolic rules or interpretable representations. This is not-symbolic, because the symbols are not readable for humans, no logical inference is engine and no explicit rule-based reasoning is used.</p>
+
+</div>
+<div id="examples-of-indicators" class=" solved"><h5 class="solved">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Examples of indicators
       
       &nbsp;
       <button 
         class="btn p-0 m-0 border-0" 
         aria-expanded="false"
-        aria-controls="indicatorsSolution"
-        onclick="showPasswordModal('indicatorsSolution', 'exc-laa')">
+        aria-controls="examples-of-indicatorsSolution"
+        onclick="showPasswordModal('examples-of-indicatorsSolution', 'exc-laa')">
         <i class="bi bi-lightbulb-fill"></i>
       </button>
       
@@ -719,72 +743,365 @@ and non-examples with explanations.</p>
 <div id="b" ><h6 class="">b.)</h6><p>inference indicators.</p>
 
 </div>
-<div id="indicatorsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>a.) Since, because, since, for, whereas, as.</p>
-<p>b.) It follows that, thus, hence, consequently, we know that.</p>
+<div id="examples-of-indicatorsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>a.) Since, because, for, whereas, as, given that, assuming that, considering that, due to.</p>
+<p>b.) It follows that, thus, hence, consequently, we know that, therefore, so, accordingly, then, as a result, this implies that.</p>
 
 </div>
-<div id="validity" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Validity
+<div id="recognizing-indicators" class=" solved"><h5 class="solved">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Recognizing indicators
       
       &nbsp;
       <button 
         class="btn p-0 m-0 border-0" 
         aria-expanded="false"
-        aria-controls="validitySolution"
-        onclick="showPasswordModal('validitySolution', 'exc-laa')">
+        aria-controls="recognizing-indicatorsSolution"
+        onclick="showPasswordModal('recognizing-indicatorsSolution', 'exc-laa')">
         <i class="bi bi-lightbulb-fill"></i>
       </button>
       
       
     </div>
-</h5><p>Which of the following inferences is valid? Specify whether the inference is
-deductively or inductively valid.</p>
+</h5><p>Name the premise and inference indicators in the following paragraphs.</p>
 
 </div>
-<div id="a-1" ><h6 class="">a.)</h6><p>Every attempt so far has failed. So the next attempt will also fail.</p>
+<div id="a-1" ><h6 class="">a.)</h6><p>Because <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  knows that location of every book in the library, and the student asks for a specific title, it follows that <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+ can guide the user directly to the book&rsquo;s shelf.</p>
 
 </div>
-<div id="b-1" ><h6 class="">b.)</h6><p>Well, I didn’t not cause the bug. So, I caused the bug.</p>
+<div id="b-1" ><h6 class="">b.)</h6><p>If <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  detects that a student struggles with mathematics, then it recommends extra practice problems. Since the student&rsquo;s last test scores were low, so <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  suggest additional exercises.</p>
 
 </div>
-<div id="c" ><h6 class="">c.)</h6><p>If you did <em>that</em>, pigs can fly. So, you didn&rsquo;t do it.</p>
+<div id="c" ><h6 class="">c.)</h6><p><span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  thinks that he recognizes the face of a student entering the classroom. When a face is recognized by <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+ , then it marks attendance automatically in the specific class. <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  remembers the face of the student, but the student is actually in another class. Consequently, <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  the attendance is not recorded.</p>
 
 </div>
-<div id="d" ><h6 class="">d.)</h6><p>All software has bugs. So, this software has bugs, too.</p>
+<div id="e" ><h6 class="">e.)</h6><p>If <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  detects pronunciation errors in a student&rsquo;s speech, it will provide corrective feedback. Given that the student is practicing regularly, therefore <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  improves their pronunciation over time.</p>
 
 </div>
-<div id="e" ><h6 class="">e.)</h6><p>A thinking computer is not a computer anymore. So it&rsquo;s impossible to teach a
-computer how to think.</p>
+<div id="recognizing-indicatorsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>a.) Premise indicators: because, and.
+Conclusion indicator: it follows that.</p>
+<p>b.) Premise indicators: if, then, since. Conclusion indicator: so.</p>
+<p>c.) Premise indicators: when, then. Conclusion indicator: consequently.</p>
+<p>d.) Premise indicators: if, given that. Conclusion indicator: therefore.</p>
 
 </div>
-<div id="validitySolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a.)</strong> This argument is deductively _in_valid: it&rsquo;s possible that all attempts have failed but the next one succeeds. The argument <em>may</em> be inductively valid if, for example, there were sufficiently many previous attempts, and we tried all different angles.</p>
-<p><strong>b.)</strong> This argument is deductively valid: not not doing something is the same as doing it.</p>
-<p><strong>c.)</strong> Without any additional premises the argument is not deductively valid, since it is logically possible that you did it and pigs fly. One might argue that the argument is inductively valid given the probabilistic information we already have available, viz. the probability of pigs flying is low.</p>
-<p><strong>d.)</strong> This inference is deductively valid: if everything is so and so, any thing you can talk about also is so and so.</p>
-<p><strong>e.)</strong> An argument could be made that the argument is deductively valid: if a thinking computer is not a computer, then there cannot be a thinking computer, since this would lead to a contradiction (something which both is and isn&rsquo;t a computer).</p>
-
-</div>
-<div id="deductive-and-inductive-inference" ><h5 class="">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Deductive and inductive inference
+<div id="inferences" class=" solved"><h5 class="solved">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Inferences
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="inferencesSolution"
+        onclick="showPasswordModal('inferencesSolution', 'exc-laa')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
-</h5><p>Provide an argument that every deductively valid inference is also
-inductively valid. Does the converse also hold?</p>
+</h5><p>Define the premise(s) and conclusion of each of the following inferences.</p>
 
 </div>
-<div id="thinking-fast-and-slow" ><h5 class="">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Thinking, Fast and Slow
+<div id="a-2" ><h6 class="">a.)</h6><p>The robot <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  rides towards entering of the supermarket. The supermarket&rsquo;s automatic sliding doors open, when someone stands in front of the sensor. The sensor detects <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+ . Therefore, the supermarket&rsquo;s automatic doors open.</p>
+
+</div>
+<div id="b-2" ><h6 class="">b.)</h6><p>Since the robot <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  nests itself in the phone, is it able to take over the function of Face ID. If <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  recognizes the face, it will unlock the phone. A phone&rsquo;s user, ∃<code>n</code>, picks up the phone and tries to unlock it by showing its face to the phone. However, <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  doesn&rsquo;t know ∃<code>n</code>, so the phone stays unlocked.</p>
+
+</div>
+<div id="c-1" ><h6 class="">c.)</h6><p>If <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  notices that the milk is running low, it directly orders new milk. The ordered milk will arrive tomorrow, because ∃<code>n</code> delivers milk the day after the order is made by <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+ .</p>
+
+</div>
+<div id="d" ><h6 class="">d.)</h6><p><span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  (in the personality of an autonomous driving car), at a red traffic light either brakes or chooses an alternative route. Since <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  isn&rsquo;t braking, it must currently be still driving. Thus, it should have chosen another route.</p>
+
+</div>
+<div id="e-1" ><h6 class="">e.)</h6><p>If <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  notices that energy consumption is low at night, it turns off devices, and if <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  detects peak consumption, it shifts usage to cheaper hours. But energy consumption is now either low or there is peak consumption. So, <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  either turns off devices or shifts usage to cheaper hours.</p>
+
+</div>
+<div id="f" ><h6 class="">f.)</h6><p>If <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  detects plagiarism in an assignment, the teacher is alerted. The teacher was not alerted. Consequently, AI did not detect plagiarism.</p>
+
+</div>
+<div id="g" ><h6 class="">g.)</h6><p><span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  is a useful additional teacher to students, because <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  carefully analyzes the submitted homework to spot areas where the student struggles. Since <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  can identify these specific weaknesses, it knows exactly what advice to give to help the student improve. Moreover, thanks to the help of <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+ , the teacher can focus on more structural or analytical explanations.</p>
+
+</div>
+<div id="inferencesSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a.)</strong> P1: The robot <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  rides towards entering of the supermarket. P2: The supermarket&rsquo;s automatic sliding doors open, when someone stands in front of the sensor.P3: The sensor detects <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+ . C: the supermarket&rsquo;s automatic doors open.</p>
+<p><strong>b.)</strong> P1: Since the robot <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  nests itself in the phone, is it able to take over the function of Face ID.
+P2: If <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  recognizes the face, it will unlock the phone.
+P3: A phone&rsquo;s user, ∃<code>n</code>, picks up the phone and tries to unlock it by showing its face to the phone.
+P4: <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  doesn&rsquo;t know ∃<code>n</code>
+C: The phone stays unlocked.</p>
+<p><strong>c.)</strong> P1: If <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  notices that the milk is running low, it directly orders new milk.
+P2: ∃<code>n</code> delivers milk the day after the order is made by <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+ .
+C: The ordered milk will arrive tomorrow.</p>
+<p><strong>d.)</strong> P1: <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  (in the personality of an autonomous driving car), at a red traffic light either brakes or chooses an alternative route.
+P2: Since <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  isn&rsquo;t braking, it must currently be still driving.
+C: It should have chosen another route.</p>
+<p><strong>e.)</strong> P1: If <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  notices that energy consumption is low at night, it turns off devices.
+P2: if <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  detects peak consumption, it shifts usage to cheaper hours.
+P3: Energy consumption is now either low or there is peak consumption.
+C: <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  either turns off devices or shifts usage to cheaper hours.</p>
+<p><strong>f.)</strong> P1: If <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  detects plagiarism in an assignment, the teacher is alerted.
+P2: The teacher was not alerted.
+C: <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  did not detect plagiarism.</p>
+<p><strong>g.)</strong> P1: <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  carefully analyzes the submitted homework to spot areas where the student struggles.
+P2: <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  can identify these specific weaknesses, it knows exactly what advice to give to help the student improve.
+P3: thanks to the help of <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+ , the teacher can focus on more structural or analytical explanations.
+C: <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  is a useful additional teacher to students.</p>
+
+</div>
+<div id="symbolic-or-subsymbolic" class=" solved"><h5 class="solved">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Symbolic or subsymbolic
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="symbolic-or-subsymbolicSolution"
+        onclick="showPasswordModal('symbolic-or-subsymbolicSolution', 'exc-laa')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
-</h5><p>Give at least 3 new examples of:</p>
+</h5><p>Below are technical descriptions of different AI systems taken from Wikipedia. In each case, classify the system as either symbolic or sub-symbolic system based on the description. Justify your answer by referencing the relevant aspects.</p>
 
 </div>
-<div id="a-2" ><h6 class="">a.)</h6><p>System 1</p>
+<div id="a-3" ><h6 class="">a.)</h6><div class="container " id="MYCIN-quote">
+  <figure>
+    <blockquote class="blockquote fs-6">
+      <p>
+      <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/Mycin" class="link-dark" rel="external" target="_blank">MYCIN</a>
+ was an early backward chaining expert system that used artificial intelligence to identify bacteria causing severe infections, such as bacteremia and meningitis, and to recommend antibiotics, with the dosage adjusted for patient&rsquo;s body weight. MYCIN operated using a fairly simple inference engine and a knowledge base of ~600 rules by obtaining individual inferential facts identified by experts and encoding such facts as individual production rules. No other AI program at the time contained as much domain-specific knowledge clearly separated from its inference procedures as MYCIN. It would query the physician running the program via a long series of simple yes/no or textual questions. At the end, it provided a list of possible culprit bacteria ranked from high to low based on the probability of each diagnosis, its confidence in each diagnosis&rsquo; probability, the reasoning behind each diagnosis (that is, MYCIN would also list the questions and rules which led it to rank a diagnosis a particular way), and its recommended course of drug treatment.
+      </p>
+    </blockquote>
+    
+    <figcaption class="blockquote-footer text-end">
+      MYCIN, Wikipedia
+    </figcaption>
+    
+  </figure>
+</div>
+
 
 </div>
-<div id="b-2" ><h6 class="">b.)</h6><p>System 2</p>
+<div id="b-3" ><h6 class="">b.)</h6><div class="container " id="Vampire-quote">
+  <figure>
+    <blockquote class="blockquote fs-6">
+      <p>
+      <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/Vampire_%28theorem_prover%29" class="link-dark" rel="external" target="_blank">Vampire</a>
+ is an automatic theorem prover for first-order classical logic developed in the Department of Computer Science at the University of Manchester. Vampire&rsquo;s kernel implements the calculi of ordered binary resolution and superposition (for handling equality). The splitting rule and negative equality splitting can be simulated by the introduction of new predicate definitions and dynamic folding of such definitions. A DPLL-style algorithm splitting is also supported. A number of standard redundancy criteria and simplification techniques are used for pruning the search space: tautology deletion, subsumption resolution, rewriting by ordered unit equalities, basicness restrictions and irreducibility of substitution terms. The reduction ordering on terms is the standard Knuth–Bendix ordering.
+      </p>
+    </blockquote>
+    
+    <figcaption class="blockquote-footer text-end">
+      Vampire, Wikipedia
+    </figcaption>
+    
+  </figure>
+</div>
+
 
 </div>
-<div id="research" class=" research"><h5 class="research">
+<div id="c-2" ><h6 class="">c.)</h6><div class="container " id="SOFM-quote">
+  <figure>
+    <blockquote class="blockquote fs-6">
+      <p>
+      A <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/Self-organizing_map" class="link-dark" rel="external" target="_blank">self-organizing map</a>
+ (SOM) or self-organizing feature map (SOFM) is an unsupervised machine learning technique used to produce a low-dimensional (typically two-dimensional) representation of a higher-dimensional data set while preserving the topological structure of the data. For example, a data set with p variables measured in n observations could be represented as clusters of observations with similar values for the variables. These clusters then could be visualized as a two-dimensional &ldquo;map&rdquo; such that observations in proximal clusters have more similar values than observations in distal clusters. This can make high-dimensional data easier to visualize and analyze.
+      </p>
+    </blockquote>
+    
+    <figcaption class="blockquote-footer text-end">
+      SOFM, Wikipedia
+    </figcaption>
+    
+  </figure>
+</div>
+
+
+</div>
+<div id="d-1" ><h6 class="">d.)</h6><div class="container " id="ELIZA-quote">
+  <figure>
+    <blockquote class="blockquote fs-6">
+      <p>
+      <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/ELIZA" class="link-dark" rel="external" target="_blank">ELIZA</a>
+ is an early natural language processing computer program developed from 1964 to 1967 at MIT by Joseph Weizenbaum. Created to explore communication between humans and machines, ELIZA simulated conversation by using a pattern matching and substitution methodology that gave users an illusion of understanding on the part of the program, but had no representation that could be considered really understanding what was being said by either party. ELIZA itself examined the text for keywords, applied values to said keywords, and transformed the input into an output; the script that ELIZA ran determined the keywords, set the values of keywords, and set the rules of transformation for the output.
+      </p>
+    </blockquote>
+    
+    <figcaption class="blockquote-footer text-end">
+      ELIZA, Wikipedia
+    </figcaption>
+    
+  </figure>
+</div>
+
+
+</div>
+<div id="e-2" ><h6 class="">e.)</h6><div class="container " id="LDA-quote">
+  <figure>
+    <blockquote class="blockquote fs-6">
+      <p>
+      In natural language processing, <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Inference" class="link-dark" rel="external" target="_blank">latent Dirichlet allocation</a>
+ (LDA) is a Bayesian network (and, therefore, a generative statistical model) for modeling automatically extracted topics in textual corpora. The LDA is an example of a Bayesian topic model. In this, observations (e.g., words) are collected into documents, and each word&rsquo;s presence is attributable to one of the document&rsquo;s topics. Each document will contain a small number of topics. Documents are represented as random mixtures over latent topics, where each topic is characterized by a distribution over all the words.
+      </p>
+    </blockquote>
+    
+    <figcaption class="blockquote-footer text-end">
+      LDA, Wikipedia
+    </figcaption>
+    
+  </figure>
+</div>
+
+
+</div>
+<div id="f-1" ><h6 class="">f.)</h6><div class="container " id="SVM-quote">
+  <figure>
+    <blockquote class="blockquote fs-6">
+      <p>
+      In machine learning, <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/Support_vector_machine" class="link-dark" rel="external" target="_blank">support vector machines</a>
+ (SVMs, also support vector networks) are supervised max-margin models with associated learning algorithms that analyze data for classification and regression analysis. SVMs can efficiently perform non-linear classification using the kernel trick, representing the data only through a set of pairwise similarity comparisons between the original data points using a kernel function, which transforms them into coordinates in a higher-dimensional feature space. Thus, SVMs use the kernel trick to implicitly map their inputs into high-dimensional feature spaces, where linear classification can be performed.
+      </p>
+    </blockquote>
+    
+    <figcaption class="blockquote-footer text-end">
+      SVM, Wikipedia
+    </figcaption>
+    
+  </figure>
+</div>
+
+
+</div>
+<div id="symbolic-or-subsymbolicSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a.)</strong> MYCIN is a <em>symbolic system</em>, because its knoweldge is encoded explicitly as about 600 rules, each of which has a claer antecedent (if-condition) and consequent (then-condition) structure: &ldquo;if [symptom/criteria], then [diagnostic or treatment fact]. During a consultation, MYCIN&rsquo;s inference engine performs backward chaining over those rules: it starts from a hypothesis and works backward, asking the user yes/no or textual questions to verify which rules&rsquo; conditions hold. At the end of a session, MYCIN prints out exactly which questions it asked, which rules fired, how it computed confidence scores, and why it ranked bacteria in a certain order. Because everything is represented as discrete symbols, and because the inference mechanism manipulates those symbols according to logic production rules, MYCIN is one of the typical symbolic AI systems.</p>
+<p><strong>b.)</strong> Vampire is a <em>symblic system</em>, since it is an automatic theorem prover for first-order classical logic, and it operates entirely by manipulating symbolic clauses. Its core kernel implements ordered binary resolution and superposition, both of which are pure logical inference methods over symbolic expressions. When Vampire searches for a proof, it treats every proposition as a structure of function symbols, predicate symbols, and variables. It applies resolution rules to those literals, tries to unify terms symbolically, and prunes search branches using well-defined redundancy criteria (e.g., subsumption, tautology deletion, rewrite rules). All of these operations occur on discrete symbols rather than on numeric vectors or statistical parameters. Because Vampire&rsquo;s entire &ldquo;knowledge&rdquo; is the set of logical axioms and conjectures expressed symbolically, and because its inference mechanism is purely rule-based symbol manipulation, Vampire is a symbolic system.</p>
+<p><strong>c.)</strong> SOFM is an example of a <em>subsymbolic system</em>, because the computations the system makes are governed by continuous weight vectors and iterative adjustment via a neighborhood function. There is no explicit, human-readable rule like &ldquo;if [some symbolic condition] then [assign to cluster X]&rdquo;. Instead, each neuron in the map has a weight vector, and during training the network iteratively adjusts those weights so that nearby neurons in the two-dimensional lattice come to represent similar input patterns. Since the system&rsquo;s knowledge is embedded in continuous numeric parameters and the learning algorithm is based on iterative numeric adjustments rather than symbolic rules, SOFMs are subsymbolic.</p>
+<p><strong>d.)</strong> ELIZA contains no numeric learning or statistical modeling, but relies entirely on a set of pattern-matching rules, which makes it a <em>symbolic system</em>. Each rule consists of patterns (literal strings) and associated response templates. For example, if the user&rsquo;s input matches the pattern &ldquo;I am feeling X&rdquo;, ELIZA might respond by transforming &ldquo;I am feeling X&rdquo; into &ldquo;Why are you feeling X?&rdquo; or &ldquo;Do you often feel X?&rdquo; All transformations are simple text substitutions based on pattern matching. Although the output often gives an illusion of understanding, under the hood of ELIZA never computes any numeric score or probabilistic weight, it just looks for matching keywords and applies the corresponding transformation rules. Since all its behavior comes from explicit scripts, and because there is no hidden continuous state, ELIZA is purely symbolic.</p>
+<p><strong>e.)</strong> LDA is an example of a <em>subsymbolic system</em> which is a generative probabilistic model in which topics are latent (hidden) variables, and documents are assumed to be mixtures over those topics. The core of LDA is a graphical (Bayesian) network in which each document has a probability distribution over K topics, and each topic is itself a probability distribution over the vocabulary. Although topics are sometimes describing in words, those are numeric probability vectors. There are no explicit it-then-rules. Instead, topics are soft distributions over words. Since LDA&rsquo;s behavior is entirely driven by numeric latent variables, and it lacks any explicit discrete rule set, it is subsymbolic.</p>
+<p><strong>f.)</strong> SVMs is a <em>subsymbolic system</em>, because it relies on continuous parameters learned via optimalization, and because knowledge is hidden in support-vector coefficients rather than expressed as logical rules. SVMs are supervised learning models that learn a decision boundary (hyperplane) by solving a convex quadratic optimalization problem. Each training instance is mapped into a feature space, and the algorithm finds the maximum-margin hyperplane that separates classes. Because SVM is a maximum-margin numeric classifier, it is a typical example of a symbolic system.</p>
+
+</div>
+<div id="thinking-fast-and-slow" class=" solved"><h5 class="solved">
+    <div class="d-inline-flex flex-row m-0  p-0 ">Thinking, fast and slow
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="thinking-fast-and-slowSolution"
+        onclick="showPasswordModal('thinking-fast-and-slowSolution', 'exc-laa')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
+    </div>
+</h5><p>Give at least 3 new examples of system 1 and system 2 thinking and explain why.</p>
+
+</div>
+<div id="a-4" ><h6 class="">a.)</h6><p>System 1</p>
+
+</div>
+<div id="b-4" ><h6 class="">b.)</h6><p>System 2</p>
+
+</div>
+<div id="thinking-fast-and-slowSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a.)</strong> <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/Thinking,_Fast_and_Slow" class="link-dark" rel="external" target="_blank">System 1</a>
+ thinking, which is fast, automatic, intuitive, unconscious, associative. For example:</p>
+<ul>
+<li>To localize the source of a specific sound is a typical example of System 1 thinking, since the process happens unconscious and automatic. The brains register auditory stimuli and, within a fraction of a second, converts them into a rough spatial estimate (e.g., &ldquo;it sounds like it&rsquo;s behind me&rdquo;). This happens without any conscious analysis of frequencies or time differences. Actually, it is largely a reflective, evolutionarily conditioned reaction that helps one detect danger or other relevant cues quickly.</li>
+<li>The understanding of simple sentences in a native language is an example of System 1 thinking if one masters the language fluently. Then, one recognizes the structures of sentences, word order and semantics so quickly that one doesn&rsquo;t need to consciously think about them. A sentence like &ldquo;The book is on the table&rdquo; is understood almost immediately, without any explicit grammatical analysis. However, if the sentences is grammatically complex, ambiguous or new, one would use System 2 thinking to break it down, even though the sentence is in someone&rsquo;s native language.</li>
+<li>Reaching out to grab something that falls, is a reflexive motor pattern. As soon as one sees that something is about to fall, visual and proprioceptive signals send information to your hand-eye coordination System, causing one to reach out. There is no time or space for conscious thought, this happens unconsciously in a split second.</li>
+<li>Forming the mental image associated with the word &ldquo;book&rdquo; is an example of System 1 thinking, because, when one hears or reads the word &ldquo;book&rdquo;, the brain instantly and automatically triggers a visual and semantic schema which creates the image of a cover, pages, printed or written text and ensembles this to an image of a book. This requires almost no conscious or rational interpretation, since it comes from automated, associative memory links. On the other hand, one might object that forming a mental image could be a form of System 2 thinking as well. For instance, if one reflects on which specific book is meant and how that book looks like, then one needs a deliberate step-by-step mental construction.</li>
+<li>An AI System for facial recognition on a phone recognizes faces automatically without “thinking” about what a face looks like. This is a System 1 kind of thinking for the user of the phone. The phone unlocks almost instantly when one&rsquo;s face is detected, without one thinking consciously about what exactly constitutes a &ldquo;face&rdquo;. The algorithm processes facial features rapidly via trained neural networks: the associations between pixel patterns and facial characteristics occur largely unconsciously.</li>
+<li>Algorithms that recommended content based on viewing history, without explanation why this is recommended, is an example of System 1 thinking. For the user, it feels like an immediate suggestion that catches one&rsquo;s eye without needing to think about the why or how. The algorithm itself relies on generated correlations and patterns from datasets, which are performed quickly. So the recommendation pops up right away.</li>
+<li>Voice assistant like Siri or Alexa use System 1 thinking: the voice assistant instantly interprets and responds to a simple command like &ldquo;What time is it?&rdquo; When one speaks a phrase to the voice assistant, almost immediately the answer appears. Siri or Alexa doesn&rsquo;t think about it. The process of speech recognition, intent interpretation and response generation runs in an optimized and automated sequence. For the user, there is no slow, conscious analysis. Instead, it feels intuitive and instantaneous.</li>
+<li>AI model that detects spam in emails uses System 1 thinking: based on pattern recognition and prior data, it automatically classifies a message as spam. As soon as an email arrives, it seamlessly passes through a pertained classification model and ends up in the spam folder or inbox without setting explicit rules. Thinking about whether something is spam, is not necessary, the system recognizes it unconsciously.</li>
+<li>Simple chatbots, such as ChatGPT-3.5 that react fast and do not reason much, which make them an example of System 1 thinking. A user asks a simple question and almost immediately receives a (hopefully) coherent answer. The chatbot relies mostly on automatic, subsymbolic processes to generate text, without reasoning about the content. Besides, the user doesn&rsquo;t see the internal logic or reasoning steps. However, the boundary is blurry: when the chatbot has to perform multilayered reasoning, it begins to use System 2 thinking.</li>
+</ul>
+<p><strong>b.)</strong> <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/Thinking,_Fast_and_Slow" class="link-dark" rel="external" target="_blank">System 2</a>
+ thinking, which is slow, deliberate, conscious, logical, calculating. For example:</p>
+<ul>
+<li>Solving a complex arithmetic calculation requires focused attention, step-by-step reasoning and memory. These are aspects that indicate System 2 thinking, because one needs to deliberately apply arithmetic rules and keep track of intermediate steps. However, for some people who are really capable of mathematics, this complex calculation can be System 1 thinking as well. They can perform complex arithmetic rapidly and seemingly effortlessly, often without needing to go through conscious, step-by-step logic each time. Indeed, they may use mental shortcuts or visual strategies that bypass traditional calculation steps or their working and long-term memory for numbers and patterns are highly trained.</li>
+<li>Finding the solution for a multi-criteria optimalization problem is typically System 2 thinking. These problems involve evaluating trade-offs between competing variables, often using algorithms or logical reasoning. Optimalization requires listing out each criterion, assigning relative weights and then comparing all alternatives systematically. This approach is slow, deliberate and explicitly logical.</li>
+<li>Trying to identify the source of an unfamiliar sound or analyze a musical chord structure are examples of System 2 thinking, because it involves methodical processes without memorizing. Breaking down a chord means consciously naming each pitch, recognizing interval relationships, and mapping it back onto music theory. Both tasks demand focused attention, conscious comparison to mental templates and stepwise inference. On the other hand, an experiences mechanic or audiophile often instantly knows that a ratcheting click at a particular frequency means a loose piston pin. Likewise, a trained musician or ear-trainer can identify a complex chord by ear almost reflexively. Years of exposure have bundled the steps into an automatic pattern match, now functioning like System 1.</li>
+<li>Count the number of A&rsquo;s in a certain text requires full concentration. One must consciously move letter by letter, keep an accurate count, perhaps use pen-and-paper, and maintain vigilance to avoid losing track.</li>
+<li>Determine the price/quality ratio of two phones is an example of System 2 thinking, because it demands conscious, logical and calculating thinking. If one determines the ratio, one first getters the important information and relevant specification that determine the quality of the phone. Then one should normalize the specification, to make sure all variables are converted to a common scale. One makes use of its mental competences and step-by-step logic, while computing the price/quality ratio. The last step is the interpretation of those ratios which requires conscious consideration. This all is System 2 thinking, one actively reflects on what is or is not relevant to the context.</li>
+<li>To determine the validity of a complex logical reasoning, one should consciously map premises, consider contrapositives, check for fallacies, possibly draw a truth table, and ensure that each inference follows logically. This conscious, logical proof is typically System 2 thinking.</li>
+<li>AI model that can play chess, like <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/AlphaZero" class="link-dark" rel="external" target="_blank">AlphaZero</a>
+, that analyzes all possible moves and learns every strategy, can be considered as an example of System 2 thinking. When a human grandmaster faces a novel position, he might engage in complex &ldquo;tree search&rdquo;, calculating forcing variation, evaluating material imbalances, and computing candidate lines many moves deep. This exhaustive mental process matches the description of System 2, as it is a slower, effortful and rule-based analysis. AI models like AlphaZero use a neural network that doesn&rsquo;t literally &ldquo;reason&rdquo; move-by-move as humans do, but it uses a learned value network to evaluate positions quickly. The algorithm searches subtrees.</li>
+<li><i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/GPT-4" class="link-dark" rel="external" target="_blank">ChatGPT-4</a>
+ is able to use reasoning for functional programming, which van be considered as System 2 thinking. If one prompts GPT-4 to write a Python function that finds all prime factors of a large integer, it stimulates internally, step-by-step, the algorithm: trial division, recursion, memorization of known primes. It assembles correct code tokens based on logical patterns. This chain-of-thought that GPT-4 deploys, especially when it is asked for explanation, resembles System 2: deliberate, token-by-token reasoning about how to structure, map, filter and recursion.</li>
+<li>AI models like <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/WolframAlpha" class="link-dark" rel="external" target="_blank">WolframAlpha</a>
+ are used to solve complex mathematical problems and analyze data, which is an example of System 2 thinking. WolframAlpha frequently shows a stepwise solution. Each intermediate, applying integration by parts, simplifying each term, substituting limits, is to System 2 reasoning. It explicitly follows mathematical rules and applies formulae.</li>
+</ul>
+
+</div>
+<div id="research" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Research
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="researchSolution"
+        onclick="showPasswordModal('researchSolution', 'exc-laa')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p><em>Note</em>: These questions require you to do your own research, using reliable
 academic sources. You need to reference your sources!</p>
@@ -797,8 +1114,28 @@ academic sources. You need to reference your sources!</p>
 still in use today. Explain why the first one failed.</p>
 
 </div>
-<div id="discussion" class=" discussion"><h5 class="discussion">
+<div id="researchSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>These are examples of possible answers.</p>
+<p><strong>a.)</strong> No, not all logical systems are undecidable. A logical system is said ro be decidable if there exists an effective algorithm that, for any arbitrary formula within the system, determines in finite time whether that formula is derivable (i.e., a theorem) in the system. However, some logical systems are decidable, especially those with carefully limited expressive power. For instance, propositional logic is decidable. It has a finite number of variables and truth assignments, and its satisfiability and validity can be determined algorithmically via truth tables. Moreover, monadic first-order logic, which is first-order logic that is restricted to unary predicates and without function symbols, is also decidable.</p>
+<p>In contrast, &ldquo;Full First-Order Logic&rdquo; is undecidable, as shown by Church and Turing (1935 &amp; 1936). There is no general algorithm to decide the validity of arbitrary first-order formulas.</p>
+<p>Undecidability is a feature of certain (especially expressive) logical systems, but not a universal property. Decidability depends on the expressive power and syntactic structure of the system in question.</p>
+<p>Undecidability is a feature of certain (especially expressive) logical systems, but not a universal property. Decidability depends on the expressive power and syntactic structure of the system in question.</p>
+<p><strong>b.)</strong> An example of an expert system that failed is MYCIN, which was focused on diagnosis and treatment of bacterial infections. This system used rule-based reasoning with around 450 if-then rules. Moreover, it used certainty factors to handle uncertainty. Despite outperforming some human doctors in limited tests, MYCIN was never used in clinical settings. Indeed, medical professionals hesitated to rely on a black-box system in high-stakes situations without knowing how it arrived at its conclusions.</p>
+<p>An example of an expert system that is still used today is Cyc, which aims to codify a vast base of common-sense knowledge using formal logic, expressed in the Cyc language—a richly expressive predicate logic tailored to support ontological reasoning. The system’s knowledge base includes millions of rules and assertions about everyday concepts, causality, actions, and more. Cyc’s core strength lies in its ability to represent nuanced common-sense knowledge that purely statistical systems often struggle with (e.g., that people usually wear clothes, or that physical objects don’t pass through each other). Moreover, Cyc has been used in hybrid architectures, where statistical models are combined with logical reasoning to interpret results, correct errors, or validate inferences. Lastly, it has been applied in government, defense, and industrial settings. Therefore, this system is still useful today.</p>
+
+</div>
+<div id="discussion" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0  p-0 ">Discussion
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="discussionSolution"
+        onclick="showPasswordModal('discussionSolution', 'exc-laa')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p><em>Note</em>: The following questions require argumentative writing, i.e. you&rsquo;re asked
 to take an informed view on the question, clearly state your position, and the
@@ -809,6 +1146,14 @@ reasons for it.</p>
 
 </div>
 <div id="b-minds-and-machines" class=" homework"><h6 class=" homework">b.) Minds and machines</h6><p>Does Gödel&rsquo;s theorem show that we cannot build a logic-based AGI?</p>
+
+</div>
+<div id="discussionSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a.)</strong> Logical thinking is in most cases system 2 thinking but can be system 1 thinking as well. System 2 thinking refers to slow, deliberate, effortful, and conscious reasoning. However, system 1 is fast, automatic, intuitive, and largely unconscious.</p>
+<p><strong>System 1</strong> Experts often exhibit system 1 logical reasoning. For instance, a trained mathematician might automatically detect a contradiction in a proof sketch without conscious deliberation. This is similar to chunking in cognitive science: trained subroutines become fast and intuitive.</p>
+<p><strong>System 2</strong> Solving a difficult mathematical proof, debugging a computer program, or building a clear logical argument usually depends on System 2 thinking. These tasks take effort because they require one to hold several ideas in mind at once (working memory), think about one&rsquo;s own thinking (meta-representation), and resist jumping to easy or intuitive answers that might be wrong (inhibitory control). In short, when a task is unfamiliar, complex, or goes against instincts, then slow, careful, and deliberate reasoning is needed to get it right. Therefore, most logical thinking is system 2 thinking.</p>
+<p><strong>b.)</strong> According to Gödel&rsquo;s First incompleteness Theorem, any consistent formal system F that is capable of expressing elementary arithmetic is incomplete. Indeed, there exist true statements G in the language of F that cannot be proven within F.</p>
+<p>The theorem tells us that no single formal system can be both complete and consistent for arithmetic. This does not imply that a machine cannot recognize or output Gödel sentences. It only constrains what provable conclusions the machine can produce within a fixed formalism. In fact, any Turing machine simulating a particular formal system is subject to the same limitation, but a Turing machine can switch systems, iterate meta-reasoning, or simulate alternative logics.</p>
+<p>A logic-based AGI can be equipped with meta-logical capabilities, engage in proof search, probabilistic reasoning or non-monotonic logic, and recognize the limitations of a system and extend it. Thus, Gödel’s theorem does not block the possibility of adaptive, logic-using AGI. Gödel&rsquo;s theorem places fundamental constraints on formal systems but does not rule out a logic-based AGI. It rules out completeness, not intelligence.</p>
 
   </div>
 </div>
