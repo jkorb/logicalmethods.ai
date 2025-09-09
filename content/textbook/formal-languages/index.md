@@ -489,8 +489,7 @@ It's important to note that the alphabet can be _any_ set. So, e.g.,
 
 {{< excalifont display=true >}}Σ={0,1,2,3,4,5,6,7,8,9}{{< /excalifont >}}
 
-is a perfectly fine alphabet. You can use it to define the language for all the
-natural numbers. 
+is a perfectly fine alphabet. You can use it to define the language of all the _numerals_ (terms for natural numbers). 
 
 One way to do that is to use an operation called the Kleene
 star, named after the American mathematician [Stephen
@@ -502,11 +501,10 @@ sequences such as
 {{< excalifont >}}15935304888{{< /excalifont >}},
 {{< excalifont >}}249583{{< /excalifont >}}, and simply 
 {{< excalifont >}}2{{< /excalifont >}}. This is not the set of
-what we normally consider to be natural numbers, though, since {{< excalifont >}}Σ*{{< /excalifont >}} will
+what we normally consider to be numerals, though, since {{< excalifont >}}Σ*{{< /excalifont >}} will
 also include sequences like 
 {{< excalifont >}}000000001{{< /excalifont >}} and 
-{{< excalifont >}}000881{{< /excalifont >}}, which are not natural
-numbers (in the Western Arabic decimal system, at least). 
+{{< excalifont >}}000881{{< /excalifont >}}, which are not numerals (in the Western Arabic decimal system, at least). 
 
 
 So, while the Kleene star gives us a way to construct the set of all sequences
@@ -520,7 +518,7 @@ The grammar of a language determines which sequences of symbols from {{< excalif
 
 In the case of most formal languages in logic, grammars use a technique known as
 **inductive definition**. Here is an example of such a definition for the set of
-all numerals (names for natural numbers) built from {{< excalifont >}}Σ{{< /excalifont >}}.
+all numerals  built from {{< excalifont >}}Σ{{< /excalifont >}}.
 
 1. The following are all numerals: {{< excalifont >}}1,2,3,4,5,6,7,8,9{{< /excalifont >}}
 2. If {{< excalifont >}}N{{< /excalifont >}} is a numeral, then so are 
@@ -536,19 +534,19 @@ all numerals (names for natural numbers) built from {{< excalifont >}}Σ{{< /exc
 {{< excalifont >}}N9{{< /excalifont >}}.
 3. Nothing else is a numeral.
 
-Here's how this definition works: In the first step we get all the natural numbers that can be written as a single digit. This is the whole alphabet with the exception of {{< excalifont >}}0{{< /excalifont >}}.
-, which isn't a natural number. Then in the second step we can represent numbers
+Here's how this definition works: In the first step we get all the numerals that can be written as a single digit. This is the whole alphabet with the exception of {{< excalifont >}}0{{< /excalifont >}}.
+, which isn't a numeral. Then in the second step we can represent numbers
 that correspond to sequences of any length {{< excalifont >}}>1{{< /excalifont >}}. For instance, this definition
-shows that {{< excalifont >}}120{{< /excalifont >}} is a natural number: 
+shows that {{< excalifont >}}120{{< /excalifont >}} is a numeral: 
 
-- {{< excalifont >}}1{{< /excalifont >}} is a natural number (step 1); 
-- {{< excalifont >}}12{{< /excalifont >}} is a natural number (step 2); 
-- {{< excalifont >}}120{{< /excalifont >}} is a natural number (step 2).
+- {{< excalifont >}}1{{< /excalifont >}} is a numeral (step 1); 
+- {{< excalifont >}}12{{< /excalifont >}} is a numeral (step 2); 
+- {{< excalifont >}}120{{< /excalifont >}} is a numeral (step 2).
 
 Using this inductive definition, there is no way to show that 
 {{< excalifont >}}01{{< /excalifont >}} is a natural
 number. Given the final line of the definition, we must conclude that it is
-therefore not a natural number.[^mp]
+therefore not a numeral.[^mp]
 
 
 ### The language of logic
@@ -975,13 +973,12 @@ are usually used in the alphabets, which have special meanings.
 
 [^primes]: We couldn't even use a … notation. While we might understand that 
 {{< excalifont >}}{0,1,2,…}{{< /excalifont >}} is supposed to be
-the set of all natural numbers because we recognize the pattern, there is no
+the set of all numerals because we recognize the pattern, there is no
 known pattern for the primes that we could use.
 
 [^mp]: The driving force behind this definition is actually an application of
-    modus ponens. One instance of step 2 in the definition is: If {{< excalifont >}}1{{< /excalifont >}} is a natural number, then so is {{<
+    modus ponens. One instance of step 2 in the definition is: If {{< excalifont >}}1{{< /excalifont >}} is a numeral, then so is {{<
 excalifont >}}12{{< /excalifont >}}. Now, since step 1 tells us
-that {{< excalifont >}}1{{< /excalifont >}} is indeed a natural number it follows by modus ponens that {{<
-excalifont >}}12{{< /excalifont >}} is also
-a natural number.
+that {{< excalifont >}}1{{< /excalifont >}} is indeed a numeral it follows by modus ponens that {{<
+excalifont >}}12{{< /excalifont >}} is also a numeral.
 
