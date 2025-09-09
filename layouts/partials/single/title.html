@@ -1,6 +1,6 @@
 <div class="container text-center">
   <h3>
-    {{ .CurrentSection.Param "section-names" }} {{ .Weight }}. {{.Title}}
+    {{ .CurrentSection.Param "section-names" }} {{ math.Div .Weight 10}}. {{.Title}}
   </h3>
   <em>{{ .CurrentSection.Param "section-subtitle"}}</em>
 </div>

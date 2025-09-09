@@ -1,15 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
   const rules = [
-    {
-      className: 'homework',
-      iconClass: 'bi bi-house-gear-fill',
-      colorClass: 'text-danger'
-    },
-    {
-      className: 'latex',
-      latexString: '\\LaTeX',
-      colorClass: 'text-success'
-    },
+    // {
+    //   className: 'homework',
+    //   iconClass: 'bi bi-house-gear-fill',
+    //   colorClass: 'text-danger'
+    // },
+    // {
+    //   className: 'latex',
+    //   latexString: '\\LaTeX',
+    //   colorClass: 'text-success'
+    // },
     // {
     //   className: 'discussion',
     //   iconClass: 'bi bi-chat-dots-fill',
@@ -116,17 +116,18 @@ function copyContent(idSuffix) {
 }
 
 const passwords = {
-  "exc-laa": "logicROCKS!",
-  "exc-val": "AIdoestoo!",
-  "exc-for": "Formal?",
-  "exc-bool": "TrueOrFalse",
-  "exc-sat": "Icantgetno",
-  "exc-if": "Password",
-  "exc-proof": "Mellon",
-  "exc-fol": "Sesame",
-  "exc-finf": "Schibboleth",
-  "exc-mv": "MoreThanTwo",
-  "exc-prob": "Probably",
-  "exc-learn" : "NonScholae"
-  // Add more solutionId: password pairs here
+  "exc-latex" : "chalk",
+  "exc-laa": "apple",
+  "exc-val": "robot",
+  "exc-for": "quiz",
+  "exc-bool": "doodle",
+  "exc-sat": "puzzle",
+  "exc-if": "rocket",
+  "exc-proof": "story",
+  "exc-fol": "magic",
+  "exc-finf": "panda",
+  "exc-mv": "balloon",
+  "exc-prob": "rainbow",
+  "exc-learn" : "teacher"
 };
+

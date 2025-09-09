@@ -1,7 +1,8 @@
 ---
 title: Logical proofs
 author: Johannes Korbmacher
-weight: 7
+locked: true
+weight: 70
 params: 
   date: 03/10/2024        
   last_edited: 03/10/2024         

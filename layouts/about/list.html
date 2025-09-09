@@ -1,0 +1,9 @@
+{{ define "main" }}
+  {{ partial "list/title" . }}
+  {{ with .Content }}
+  <div class="m-5">
+    {{ . }}
+  </div>
+  {{ end }}
+  {{ partial "list/toc.html" . }}
+{{ end }}

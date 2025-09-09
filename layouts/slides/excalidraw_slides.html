@@ -1,0 +1,18 @@
+{{ define "head" }}
+<link rel="stylesheet" href="{{ (resources.Get "reveal.js/dist/reveal.css").Permalink}}">
+<link rel="stylesheet" href="{{ (resources.Get "css/slides.css").Permalink }}">
+{{ end }}
+
+{{ define "main" }}
+{{ partial "single/nav-top" . }}
+{{ partial "single/title" . }}
+
+<!-- <hr> -->
+
+{{ .Content }}
+
+<!-- <hr> -->
+
+<!-- {{ partial "single/nav-bot" . }} -->
+{{ end }}
+

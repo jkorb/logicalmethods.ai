@@ -1,7 +1,8 @@
 ---
 title: Logical learning
 author: Johannes Korbmacher
-weight: 12
+locked: true
+weight: 120
 params: 
   id: exc-learn
   math: true

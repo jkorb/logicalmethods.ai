@@ -1,7 +1,8 @@
 ---
 title: Valid inference
 author: Colin Caret
-weight: 2
+locked: true
+weight: 30
 params: 
   id: exc-val
   math: true

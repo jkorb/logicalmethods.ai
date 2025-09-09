@@ -4,7 +4,7 @@
 
 {{ define "style"}}
     :root {
-      --chapter: "{{ .Weight}}";
+      --chapter: "{{ math.Div .Weight 10}}";
     }
 {{end}}
 
@@ -13,7 +13,9 @@
 
 <div class="container chapter">
   {{ with .Params.author }}<p>By: <em>{{.}}</em></p>{{end}}
+  <div class="m-3">
   {{- .Content -}}
+  </div>
   {{ with .Params.last_edited }} <p><em>Last edited: </em>{{.}}</p>{{ end }}
 </div>
 
