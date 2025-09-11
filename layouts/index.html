@@ -1,7 +1,7 @@
 {{ define "main" }}
 <div class="element align-self-center bg-white mb-2">
   <div class="pt-5 pb-2 text-center ">
-    <img src="{{ (resources.Get "img/title-graphics.png").Permalink }}" draggable="false" width="460px" class="inert-img img-fluid p-4">
+    <img src="{{ (resources.Get "img/title-graphics.png").Permalink }}" draggable="false" width="660px" class="inert-img img-fluid p-4">
   </div>
   <div class="d-flex justify-content-center p-2 ">
     <div class="list-group shadow">
@@ -11,7 +11,7 @@
         {{ .Param "emoji" }}
         <div class="d-flex gap-2 w-100 justify-content-between">
           <div>
-            <h6 class="mb-0">{{ .Title }}</h6>
+            <h6 class="mb-0" style="font-size: 18pt;">{{ .Title }}</h6>
             <p class="mb-0 opacity-75">{{ .Param "teaser" }}</p>
           </div>
         </div>

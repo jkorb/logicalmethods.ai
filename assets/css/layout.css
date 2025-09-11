@@ -1,10 +1,11 @@
 body {
   min-height: 100vh; 
+  font-size: 18pt;
 }
 
 header, footer, main, .alert, .element {
   width:100vw;
-  max-width:720px;
+  max-width:1140px;
 }
 
 main, .element {
@@ -47,5 +48,5 @@ main, .element {
 {
   font-family: 'Excalifont', sans-serif;
   /* font-weight: bold; */
-  font-size: 13pt;
+  font-size: 19pt;
 }
