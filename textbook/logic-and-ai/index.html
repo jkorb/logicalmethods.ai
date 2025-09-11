@@ -598,7 +598,7 @@
       <nav class="navbar bg-dark shadow" data-bs-theme="dark" aria-label="header-navbar">
   <div class="container-sm align-self-center px-3">
     <a class="navbar-brand fs-6" href="https://logicalmethods.ai/">
-    <img src="https://logicalmethods.ai/img/nav_id.png" class="inert-img" draggable="false" width="250px">
+    <img src="https://logicalmethods.ai/img/nav_id.png" class="inert-img m-2" draggable="false" width="400px">
     </a>
     <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-nav" aria-controls="offcanvas-nav">
       <span class="navbar-toggler-icon"></span>
@@ -614,14 +614,14 @@
       <ul class="navbar-nav flex-row justify-content-center mt-2">
 
   <li class="nav-item">
-    <a href="/textbook/" class="btn " tabindex="-1" role="button" aria-disabled="true">
+    <a href="/textbook/" class="btn" style="font-size: 20pt;" tabindex="-1" role="button" aria-disabled="false">
       <i class="bi bi-house-up"></i>
     </a>
   </li>
 </ul>
 <div class="container chapter">
   <p>By: <em>Johannes Korbmacher</em></p>
-  <div class="m-3"><h1 id="logic-and-ai">Logic and AI<button class="btn btn-back-to-top">
+  <div class="m-4"><h1 id="logic-and-ai">Logic and AI<button class="btn btn-back-to-top">
     
   </button>
 </h1>
@@ -795,7 +795,7 @@ it in a visually clear way. For example, <span style="margin-right:-4px;vertical
 <strong>inference line</strong> to indicate the inferential structure here:</p>
 
 
-<img src="https://logicalmethods.ai/textbook/logic-and-ai/img/ai_inference.png" class="rounded mx-auto d-block inert-img img-fluid"  width="200px"  alt="" >
+<img src="https://logicalmethods.ai/textbook/logic-and-ai/img/ai_inference.png" class="rounded mx-auto d-block inert-img img-fluid"  width="600px"  alt="" >
 
 
 <p>There are many different notations. For example, in mathematics, we often use
@@ -803,7 +803,7 @@ the turnstile $\vdash$ to indicate a (valid) inference and commas to separate
 the premises, like so:
 
 
-<img src="https://logicalmethods.ai/textbook/logic-and-ai/img/there_is_turnstile.png" class="rounded mx-auto d-block inert-img img-fluid"  width="500px"  alt="" >
+<img src="https://logicalmethods.ai/textbook/logic-and-ai/img/there_is_turnstile.png" class="rounded mx-auto d-block inert-img img-fluid"  width="800px"  alt="" >
 
 </p>
 <p>The robot cat next to the inference is <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IE</span>
@@ -822,7 +822,7 @@ logical theory. They are often associated with mathematical reasoning.</p>
 swans we&rsquo;ve observed were white, it&rsquo;s certainly possible that there&rsquo;s a
 non-white (robot?) swan—just that we haven&rsquo;t seen it yet. 
 
-<img src="https://logicalmethods.ai/textbook/logic-and-ai/img/robot_swan.png" class="rounded  float-start inert-img img-fluid"  width="150px"  alt="" >
+<img src="https://logicalmethods.ai/textbook/logic-and-ai/img/robot_swan.png" class="rounded  float-start inert-img img-fluid"  width="350px"  alt="" >
 
 
 So, the inference from all previously observed swans being white to all swans
@@ -837,7 +837,7 @@ the bag, from the top, and so on. They&rsquo;re always white.</p>
 <p>After some time of sampling—but before we&rsquo;ve sampled them all—it would seem
 reasonable to conclude that <em>all</em> marbles are white. 
 
-<img src="https://logicalmethods.ai/textbook/logic-and-ai/img/ai_induction.png" class="rounded  float-end inert-img img-fluid"  width="150px"  alt="" >
+<img src="https://logicalmethods.ai/textbook/logic-and-ai/img/ai_induction.png" class="rounded  float-end inert-img img-fluid"  width="450px"  alt="" >
 
 
 It might be debatable when exactly this point is—after 50, 70, 80 white
@@ -858,43 +858,16 @@ the inference from 90 white marbles is stronger than the one from 70 white
 marbles.</p>
 <p>So, this is, in essence, what logicians study: different notions of &ldquo;good&rdquo;
 inference, ways in which the premises can support a conclusion. We&rsquo;ve already
-seen a kind of classification emerging, which we&rsquo;ll study in more detail in 
+seen a kind of classification emerging, which we&rsquo;ll study in more detail:</p>
 
 
-<a href="https://logicalmethods.ai/textbook/valid-inference//#valid-inference"
-   
-   
-   
-   
-   
-   > Chapter 3. Valid
-inference</a>
-
-:</p>
+<img src="https://logicalmethods.ai/textbook/logic-and-ai/img/classification.png" class="rounded mx-auto mb-2 d-block inert-img img-fluid"  width="700px"  alt="" >
 
 
-<img src="https://logicalmethods.ai/textbook/logic-and-ai/img/classification.png" class="rounded mx-auto mb-2 d-block inert-img img-fluid"  width="500px"  alt="" >
-
-
-<p>Note that logicians <em>don&rsquo;t</em> (qua logicians) study how people actually reason
+<p>Note that logicians (qua logicians)  <em>don&rsquo;t</em> study how people actually reason
 (psychology of reasoning), or how to use arguments to convince others
 (rhetoric), or things of that sort. These are all good to know, of course, but
 they are not the main interest of logicians.</p>
-<p>Just like with the term &ldquo;artificial intelligence&rdquo;, the term &ldquo;logic&rdquo; is used with
-different meanings. What we&rsquo;ve looked at so far is the academic <em>discipline</em> of
-logic (and we&rsquo;ll soon be looking at its relation to AI). In this context, we
-might say that an inference is &ldquo;logical&rdquo; and mean that it&rsquo;s valid (or
-inductively strong). This is in contrast saying something like &ldquo;it&rsquo;s logical
-that I was scared&rdquo;, which means something like &ldquo;it&rsquo;s <em>understandable</em> that I was
-scared&rdquo;.</p>
-<p>There&rsquo;s also a common way of speaking of &ldquo;someone&rsquo;s logic&rdquo;, as in &ldquo;according to
-your logic, we should go home&rdquo;. This points to an important aspect of logical
-theory, which we&rsquo;ll need to talk about before we can move to the relationship
-between logic and AI: the existence of different logical <em>systems</em>.</p>
-<p>What we mean when we say that &ldquo;according to your logic we should do the thing&rdquo;
-is something like &ldquo;according to the system of premises and inferences you
-accept, we should do the thing&rdquo;. It turns out that this sense of logic, we also
-find in logical theory.</p>
 <h2 id="logical-systems">Logical systems<button class="btn btn-back-to-top">
     
     <i class="bi bi-chevron-double-up"></i>
@@ -903,6 +876,20 @@ find in logical theory.</p>
 </h2>
 <hr>
 
+<p>Just like with the term &ldquo;artificial intelligence&rdquo;, the term &ldquo;logic&rdquo; is used
+with different meanings. What we&rsquo;ve looked at so far is the academic
+<em>discipline</em> of logic. In this context, we might say that an inference is
+&ldquo;logical&rdquo; and mean that it&rsquo;s valid (or inductively strong). This is in contrast
+saying something like &ldquo;it&rsquo;s logical that I was scared&rdquo;, which means something
+like &ldquo;it&rsquo;s <em>understandable</em> that I was scared&rdquo;.</p>
+<p>But there&rsquo;s also a common way of speaking of &ldquo;someone&rsquo;s logic&rdquo;, as in &ldquo;according to
+your logic, we should go home&rdquo;. This points to an important aspect of logical
+theory, which we&rsquo;ll need to talk about before we can move to the relationship
+between logic and AI: the existence of different logical <em>systems</em>.</p>
+<p>What we mean when we say that &ldquo;according to your logic we should do the thing&rdquo;
+is something like &ldquo;according to the system of premises and inferences you
+accept, we should do the thing&rdquo;. It turns out that this sense of logic, we also
+find in logical theory.</p>
 <p>Logicians approach the study of valid inference the way most scientists approach
 their subject matter: using <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Mathematical_model"
@@ -969,13 +956,17 @@ to allow us to make exact mathematical calculations about valid inference:</p>
 <p>Syntax introduces the ideas of a <strong>formal language</strong> and of <strong>logical
 formulas</strong>, which are abstract representations of the logically relevant
 structure of premises and conclusions. This is roughly analogous to the way the
-physicist represents the ball as a point-mass.</p>
+physicist represents the ball as a point-mass in a coordinate system, and the forces acting on the ball as vectors, etc.</p>
 </li>
 <li>
 <p>Semantics introduces the idea of <strong>formal models</strong>, which are representations
 of meaning, spelled out in the context of formal languages. These models allow
 us to study <strong>logical laws</strong>, which are roughly analogous to the laws of
-mechanics, such as: $$F=ma$$ Interestingly, formal models often involve
+mechanics, such as:</p>
+<p class="text-center">
+<span class="excalifont ">F = m x a</span>
+
+<p>Interestingly, formal models often involve
 simplifying assumptions, such as that every sentence has a determinate
 truth-value from either true or false.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
 </li>
@@ -1130,16 +1121,15 @@ networks (ANNs)</a>, which are,
 effectively, statistical models of data, obtained through machine learning on an
 architecture that is inspired by the structure of the human brain. 
 
-<img src="https://logicalmethods.ai/textbook/logic-and-ai/img/ai_ann.png" class="rounded  float-end inert-img img-fluid"  width="150px"  alt="" >
+<img src="https://logicalmethods.ai/textbook/logic-and-ai/img/ai_ann.png" class="rounded  float-end inert-img img-fluid"  width="250px"  alt="" >
 
- Today, <strong>statistics-based AI</strong> using ANNs is, by far, the
-dominant paradigm in AI research. This is the approach that led to the recent
-developments in GenAI.</p>
-<p>The full story of this shift is nuanced and complicated, but looking at it from
-a certain angle can help us understand the role of logic in AI—both in the past
-and in the future. We&rsquo;ll do this by looking at three different roles that logic
-plays in AI research.</p>
-<h3 id="as-a-foundation">As a foundation<button class="btn btn-back-to-top">
+ Today, <strong>statistics-based AI</strong> using <abbr title="explainable AI"><a  class="link-underline-opacity-0 link-body-emphasis"> XAI</a></abbr>s is, by far, the dominant paradigm in
+AI research. This is the approach that led to the recent developments in <abbr title="generative AI"><a  class="link-underline-opacity-0 link-body-emphasis"> GenAI</a></abbr>.</p>
+<p>To understand this shift, it&rsquo;s helpful to look at the various ways in which
+logic and AI are related. On a very general level, we can distinguish three ways
+in which logic is relevant for AI research: there is a <em>foundational</em>,
+<em>methodological</em>, and <em>auxiliary</em> entanglement between logic and AI research.</p>
+<h3 id="foundational">Foundational<button class="btn btn-back-to-top">
     
     <i class="bi bi-chevron-double-up"></i>
     
@@ -1147,18 +1137,26 @@ plays in AI research.</p>
 </h3>
 <hr>
 
-<p>The first way in which logic is relevant to AI is the most direct one: valid
-inference simply <em>is</em> paradigmatic intelligent behavior. So, logical systems
-directly target what we&rsquo;re trying to model in AI&mdash;logical systems are models of
-intelligent behavior. So, by our definition, logical systems are part of AI.
-This makes logic a <strong>subdiscipline</strong> of AI.</p>
-<p>The relevance of logic in this sense is primarily <strong>foundational</strong>, meaning that
-logic contributes to the understanding of (one of) the basic concepts of AI. A
-part of logical theory that&rsquo;s particularly relevant here is
-<i class="bi bi-box-arrow-up-right h-6"></i>
+<p>Valid inference simply <em>is</em> paradigmatic intelligent behavior. So, logical
+systems directly target what we&rsquo;re trying to model in AI—logical systems are
+models of intelligent behavior. So, by our definition, logical systems are part
+of AI. This makes logical part of AI and the results of logical research <em>qua</em>
+logical research relevant to AI research.</p>
+<p>
+
+<img src="https://logicalmethods.ai/textbook/logic-and-ai/img/logic_math.png" class="rounded  float-start inert-img img-fluid m-3"  width="400px"  alt="" >
+
+
+The relevance of logic in this sense is mainly
+<strong>foundational</strong>, meaning that logic contributes to the understanding of (one
+of) the basic concepts of AI. A part of logical theory that&rsquo;s particularly
+relevant here is <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Metalogic"
-  target="_blank"><strong>metalogic</strong></a>, which deals with the
-limits and possibilities of logical systems <em>in principle</em>.</p>
+  target="_blank"><strong>metalogic</strong></a>, which
+deals with the limits and possibilities of logical systems <em>in principle</em>.
+What&rsquo;s particularly interesting about this is that metalogical research is, more
+or less, research in <em>pure mathematics</em>, which turns out to be highly relevant
+to practical questions in AI research.</p>
 <p>Here are two famous metalogical results that (some) people think are highly
 relevant to AI research:</p>
 <ul>
@@ -1179,16 +1177,15 @@ mistakes, but a <em>very</em> rough version of the argument runs as follows:</p>
 there is no in principle undecidable mathematical fact for the human mind,
 Gödel&rsquo;s result shows that the human mind cannot be modeled or replicated by a
 logical system.</em></p>
-<p>If this is correct, it dooms a wide range of approaches to AI, including the
-logic-based approaches discussed 
-<a class="link-dark" href="#as-a-methodology">below</a>.</p>
+<p>If this is correct, it dooms a wide range of approaches to AI, including
+logic-based approaches discussed.</p>
 </li>
 <li>
-<p>Turing&rsquo;s <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Decidability_%28logic%29"
+<p>Church and Turing&rsquo;s <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Halting_problem"
   target="_blank"><strong>undecidability
-theorem</strong></a>, which states
-that validity in the standard system of predicate logic is <em>(algorithmically)
+theorem</strong></a>, which entails that
+validity in the standard system of predicate logic is <em>(algorithmically)
 undecidable</em>, meaning that  there is no algorithm and there can never be an
 algorithm that correctly determines in finitely many steps whether any given
 inference in the system of predicate logic is valid.</p>
@@ -1198,15 +1195,12 @@ checking using AI and maintain absolute reliability.</p>
 </ul>
 <p>The relevance of logic to AI in this sense is hard to deny. At the same time, a
 young engineer setting out to change the world with AI, <em>might</em> think of logic
-in this sense as <em>just theory</em> with little practical relevance. Although logic
-in this sense <em>is</em> used for some AI applications (e.g. <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Formal_verification"
-  target="_blank">formal
-verification</a>), it&rsquo;s true
-that logical theory is a somewhat theoretical endeavor (which doesn&rsquo;t make it
-any less exciting, of course 🤓). Next, we&rsquo;ll turn to a much more practical
-relevance of logic to AI.</p>
-<h3 id="as-a-methodology">As a methodology<button class="btn btn-back-to-top">
+in this sense as <em>just theory</em> with little practical relevance. But it&rsquo;s
+important to keep in mind that it can be very helpful to know the limits and in
+principle possibilities of an approach <em>before</em> you start investing a lot of
+time and effort. Otherwise, you might try to solve a provably unsolvable
+problem.</p>
+<h3 id="methodological">Methodological<button class="btn btn-back-to-top">
     
     <i class="bi bi-chevron-double-up"></i>
     
@@ -1214,81 +1208,90 @@ relevance of logic to AI.</p>
 </h3>
 <hr>
 
-<p>The second way in which logic is relevant to AI is that its the basis for an
-entire approach to AI itself, which is known as <strong>logic-based</strong> or <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Symbolic_artificial_intelligence"
-  target="_blank"><strong><em>symbolic
-AI</em></strong></a>. Its hard
-to overstate the influence that logic has had on the development of AI as a
-discipline: among other things, logic has influenced programming languages
-(<i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Lisp_%28programming_language%29"
-  target="_blank">LISP</a>), the way we
-store knowledge (see <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Knowledge_representation_and_reasoning"
-  target="_blank">Knowledge Representation and
-Reasoning</a>
-or <strong>KRR</strong> for short), and advanced AI-technologies (such as
+<p>Historically, perhaps the most lasting influence that logic has had on the
+development of AI is via the logic-based AI paradigm, which is also known as
+<strong>symbolic AI</strong> due to its use of transparent, human-readable methods.</p>
+<p>The idea that logic is the path to achieving human-level artificial intelligence
+has led to the development of many important technologies, both on as abstract
+designs and concrete technologies, such as the
 <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/WolframAlpha"
-  target="_blank">WolframAlpha</a>).<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> It is
-also the approach that ultimately underpins amazing AIs such as <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/IBM_Watson"
-  target="_blank">IBM&rsquo;s
-Watson</a> and <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Deep_Blue_%28chess_computer%29"
-  target="_blank">Deep
-Blue</a> (from above).
-For a while, there was even the (not <em>completely</em> unreasonable) hope that logic
-could provide a complete foundation for AI, in the sense that everything you
-want to do in AI could be done using logical methods.</p>
-<p>In the course, you&rsquo;ll learn more about logic-based AI, but you should know right
-off the start that symbolic AI is no longer the predominant approach to AI.
-There are complex reasons for that, but its possible to get an idea why without
-knowing <em>too</em> much about logic and AI to begin with.</p>
-<p>An good example of symbolic AI technologies are so-called <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Lisp_%28programming_language%29"
+  target="_blank">LISP</a> programming
+language.</p>
+<p>The technology which has had arguably the most influence within AI to come from
+the logic-based paradigm are the so-called <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Expert_system"
   target="_blank"><strong>expert
 systems</strong></a>, which are computer
 systems designed to behave like human experts at certain reasoning or decision
-making tasks, such as <i class="bi bi-box-arrow-up-right h-6"></i>
+making tasks. Examples of expert systems that found &ldquo;real world&rdquo; applications
+include <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Mycin"
-  target="_blank">medical diagnosis</a>
-or <i class="bi bi-box-arrow-up-right h-6"></i>
+  target="_blank">Mycin</a>, which is a system for
+medical diagnosis, and <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Xcon"
-  target="_blank">selecting computer parts</a> for your new
-gaming PC.</p>
-<p>Expert systems typically have two components: a <em>knowledge base</em> and an
-<em>inference engine</em>. The <strong>knowledge base (KB)</strong> stores the expert information and the
-<strong>inference engine</strong> derives new information from known facts using valid inference
-and the expert information.</p>
-<p>The expert information typically takes the form of <strong>if-then rules</strong>.
-The expert information in the KB of an expert system for medical diagnosis, for
-example, could include the following:</p>
+  target="_blank">XCon</a>, which helped
+selecting computer parts for your new gaming PC.</p>
+<p>
+
+<img src="https://logicalmethods.ai/textbook/logic-and-ai/img/expert_system.png" class="rounded  float-start inert-img img-fluid mx-4"  width="550px"  alt="" >
+
+
+An expert system (typically) has two components:</p>
 <ul>
-<li><em>If</em> the patient has a runny nose, a sore throat, and a mild fever, <em>then</em> the
-patient likely has the common cold.</li>
+<li>
+<p>a <em>knowledge base (KB)</em>, which stores the expert information and known facts,
+and</p>
+</li>
+<li>
+<p>an <em>inference engine (IE)</em>, which derives new information/decisions from input
+using the <abbr title="knowledge base"><a  class="link-underline-opacity-0 link-body-emphasis"> KB</a></abbr> and valid inference.</p>
+</li>
 </ul>
+<p>Typically, the information in the <abbr title="knowledge base"><a  class="link-underline-opacity-0 link-body-emphasis"> KB</a></abbr> takes the form of <strong>if-then rules</strong>. To
+An exper system for medical diagnosis, for example, may contain the following
+rule:</p>
+<p class="text-center">
+<span class="excalifont ">
+If the patient has a runny nose, a sore throat, and a mild fever,<br>  
+then the patient likely has a common cold. 
+</span>
+
 <p>If we present the system with the known fact that our patient does have a runny
 nose, a sore throat, and a mild fever, the inference engine could easily derive
 that the patient likely has a common cold. If some symptom is missing, say the
 patient doesn&rsquo;t have a fever, the engine can no longer validly infer that the
 patient has a cold&mdash;it could be something else.</p>
-<p>This is roughly how expert systems work. By the way, this example makes it also
-easy to explain why expert systems (and for similar reasons other logic-based AI
-technologies) are also called <strong>symbolic AI</strong>: the rules and inference mechanism
-of an expert system are completely transparent, human-readable, and, in this
-sense, <em>symbolic</em>. Importantly, one can tell why an expert system makes a
-certain prediction by looking at how the inference engine arrived at the
-conclusion, which inference patterns it used and which pieces of expert
-information it relied on. This is of utmost importance for what&rsquo;s known today
-as <i class="bi bi-box-arrow-up-right h-6"></i>
+
+
+<img src="https://logicalmethods.ai/textbook/logic-and-ai/img/ai_sick.png" class="rounded mx-auto d-block inert-img img-fluid"  width="700px"  alt="" >
+
+
+<p>One major advantage of expert systems—especially in hindsight, compared to
+modern statistics-based systems—is that their decisions, predictions,
+recommendations, &hellip; are <em>explainable</em>. In our case of the common cold, for
+example, we can explain <em>why</em> the system predicts that <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+ has the
+common cold: because the robot presents the symptoms <em>and</em> there is a
+corresponding rule for the symptoms. This is typically very different with
+<abbr title="explainable AI"><a  class="link-underline-opacity-0 link-body-emphasis"> XAI</a></abbr>-based systems, for example, where it&rsquo;s not always possible to say
+why the system makes the predictions it does, making them &ldquo;<strong>black boxes</strong>&rdquo;.
+This has lead to development of the field of <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Explainable_artificial_intelligence"
-  target="_blank"><strong>explainable
-AI</strong></a> or
-<strong>XAI</strong> for short.</p>
-<p>To illustrate the problem with expert systems, let&rsquo;s consider an ancient
-anecdote reported by
+  target="_blank">explainable AI
+(XAI)</a>, which
+tries to resolve the black box problems for statistics-based AI systems. The
+problem simply doesn&rsquo;t occur for most logic-based systems.</p>
+<p>So, why did the paradigm shift from logic-based AI to statistics-based AI?—The
+full (hi)story of this shift is nuanced and complicated, but looking at aspects
+of in a slightly simplified fashion may still help us understand the rather
+complex entanglement between logic and AI research.</p>
+<p>We can identify at least two factors that contributed to the shift. One is the
+failure of logic-based systems to deliver on their promises. And the second one is
+the success of statistics-based systems with problems that logic-based systems
+failed to solve.</p>
+<p>The &ldquo;failures&rdquo; of logic-based systems are themselves a complex topic, but we can
+illustrate at least some of the issues with a simple anecdote reported by
 <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Diogenes_Laertius"
   target="_blank">Laërtius</a>. According to the
@@ -1300,60 +1303,92 @@ featherless biped, much to the approval of everybody in the agora at the time
 <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Diogenes"
   target="_blank">Diogenes</a>, and presented Plato with a
-plucked chicken, remarking &ldquo;Behold, Plato&rsquo;s human.&rdquo;</p>
-<p>What this example shows is the following. Plato&rsquo;s definition seems to give us
-the following if-then rule:</p>
-<ul>
-<li><em>If</em> something&rsquo;s a featherless biped, <em>then</em> this is a human.</li>
-</ul>
-<p>Diogenes presents us with an object that satisfies the two conditions
-in the if-part of the rule, but not the condition in the then-part. He found a
-<em>counterexample</em> to Plato&rsquo;s definition.</p>
-<p>The point of the anecdote, for us anyways, is that it is <em>incredibly hard</em> to
-formulate expert knowledge as if-then rules. Obviously, Plato knew how to
-distinguish a human from a plucked chicken, but turning this ability into an
-if-then clause caused even the philosophical giant to stumble. Finding correct
-if-then rules often requires <em>a lot</em> of effort, trial-and-error, etc. and then
-maintenance, bug-fixing, and so on. This is one of the main issues that stalled
-the advancement of symbolic AI&mdash;ultimately leading to the (second) <i class="bi bi-box-arrow-up-right h-6"></i>
+plucked chicken, remarking &ldquo;Behold, Plato&rsquo;s human.&rdquo;
+
+
+<img src="https://logicalmethods.ai/textbook/logic-and-ai/img/featherless_biped.png" class="rounded  float-end inert-img img-fluid m-3"  width="500px"  alt="" >
+
+</p>
+<p>This seemingly unrelated anecdote from the history of philosophy illustrates a
+very relevant problem for logic-based AI systems: identifying the precise
+conditions under which concepts apply can be incredibly hard—even in seemingly
+simple cases (being a human) and even for clear experts (Plato was at the
+forefront of scientific research in his time, and he certainly could identify
+humans).</p>
+<p>Plato&rsquo;s definition seems to give us the following if-then rule:</p>
+<p class="text-center">
+<span class="excalifont ">If something's a featherless biped, then it is human.</span>
+
+<p>Diogenes presents us with an object that satisfies the two conditions in the
+if-part of the rule, but not the condition in the then-part. He found a
+<em>counterexample</em> to Plato&rsquo;s definition. We can easily imagine this kind of
+situation happening with expert systems, where the expert knowledge is expressed
+in similar if-then rules and the AI-system make corresponding classification
+errors by rigidly applying these rules. Fixing systems in light of such errors
+is a tedious process, which cannot easily be automated and requires further
+expert input: finding correct if-then rules often requires <em>a lot</em> of effort,
+trial-and-error, fine-tuning, etc. and then maintenance, bug-fixing, and so on.</p>
+<p>Moreover, each problem (medical diagnostics, computer assembly, identifying
+humans, &hellip;) requires its own expert knowledge and expert system.
+Correspondingly, in general, we can&rsquo;t expect the solutions to problems for one
+expert systems to transfer to the problems of another system.</p>
+<p>These are some of the issues with expert systems that lead to development of
+such systems slowing down over the years, and ultimately halting during the
+(second) <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/AI_winter"
-  target="_blank">AI
-winter</a> and &ldquo;downfall&rdquo; of symbolic AI.</p>
-<p>It turns out that statistics-based approaches, using <strong>neural networks</strong> and
-<strong>machine learning</strong> instead of knowledge bases and inference engines, are <em>much
-more</em> efficient at many tasks that people tried to solve using expert systems.</p>
-<p>IBM&rsquo;s <i class="bi bi-box-arrow-up-right h-6"></i>
+  target="_blank">AI winter</a>.</p>
+<p>Logic-based AI achieved great things: IBM&rsquo;s <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Deep_Blue_%28chess_computer%29"
-  target="_blank">Deep Blue</a>,
-which beat world chess champion Gary Kasparov in the 1990s using a rule-based
-expert system is a success story of symbolic AI. It shows how super-human
-performance can be achieved using expert systems. At the same time, &ldquo;beating&rdquo; games like
-<i class="bi bi-box-arrow-up-right h-6"></i>
+  target="_blank">Deep
+Blue</a>, which beat
+world chess champion Gary Kasparov in the 1990s, is ultimately a rule-based
+expert system and one of the main success stories of symbolic, logic-based AI.
+It shows how human-level—even <em>super-human</em>—intelligence can be achieved using
+logic-based expert systems. At the same time, logic-based methods struggled to
+generalize to more applications.</p>
+<p>One example, which contrasts well with the achievement that is Deep Blue, is the
+case of <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Go_%28game%29"
-  target="_blank">Go</a> in the same sense eluded expert systems
-for a long time. It just seemed that the complexities of the game are too high
-to capture in a knowledge base, even after years of trying.</p>
+  target="_blank">Go</a>. Developing an AI that
+performs at expert human, let alone super-human, levels in this game was
+generally considered out of reach for logic-based systems.</p>
 <p>This changed with DeepMind&rsquo;s <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/AlphaGo"
   target="_blank">AlphaGo</a>,
-which is a neural network-based AI that&rsquo;s been trained using statistical machine
+which is a <abbr title="explainable AI"><a  class="link-underline-opacity-0 link-body-emphasis"> XAI</a></abbr>-based AI that&rsquo;s been trained using statistical machine
 learning methods on large sets of game data. In a series of highly publicized
 events in the mid 2010s, AlphaGo managed to beat professional Go players at the
-highest level, suggesting the superiority of neural networks over expert systems
+highest level, suggesting the superiority of <abbr title="explainable AI"><a  class="link-underline-opacity-0 link-body-emphasis"> XAI</a></abbr> over expert systems
 for beating games.</p>
-<p>Success stories like this have lead to the rise of what&rsquo;s known as <strong>subsymbolic
-AI</strong>, which many take to be the predominant approach to AI today. Subsymbolic AI
-prefers conditional probabilities and inductive inference over if-then rules and
-deductive inference, and it prefers statistical models generated from big data
-over knowledge bases generated by experts. As a consequence, the information
-stored in a subsymbolic AI system, especially when it comes in the form of a
-neural network, is often <em>opaque</em> and hard for humans to understand.<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> The
-systems seem to operate on a &ldquo;lower level&rdquo;, much like the neurons in the brain
-are on a &ldquo;lower level&rdquo; as compared to our thoughts and ideas&mdash;whence the name
-<em>subsymbolic AI</em>.</p>
-<p>But if subsymbolic AI seems to dominate symbolic AI, what&rsquo;s the place for logic
-in AI today?</p>
-<h3 id="as-a-tool">As a tool<button class="btn btn-back-to-top">
+<p>The success of statistics-based systems like AlphaGo at solving problems that
+logic-based systems have struggled with for a long time is another factor in
+the paradigm shift from logic-based to statistics-based systems. The comparison
+between Deep Blue and AlphaGo is instructive, but the success of
+statistics-based AI really is &ldquo;across the board&rdquo;: image recognition,
+translation, text-generation, …. In fact, statistics-based methods are at the
+heart of the recent developments of <abbr title="generative AI"><a  class="link-underline-opacity-0 link-body-emphasis"> GenAI</a></abbr>.
+
+<img src="https://logicalmethods.ai/textbook/logic-and-ai/img/text_generation.png" class="rounded  float-start inert-img img-fluid m-3"  width="400px"  alt="" >
+
+</p>
+<p>The statistics-based approach uses <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Machine_learning"
+  target="_blank">machine
+learning</a> to train its systems.
+In contrast to expert systems, we no longer need to hard-code the relations
+between different facts, but the system learns these relations from the data.
+Rather than if-then rules, statistics-based systems typically use <strong>conditional
+probabilities</strong> to make predictions. For example, when a chatbot like ChatGPT or
+Claude answers a prompt, this essentially works by the underlying model
+repeatedly predicting what&rsquo;s the most likely next piece <em>given</em> or <em>conditional
+upon</em> the prompt and text that&rsquo;s already been generated, and then printing this
+most likely piece of text. This works impressively well.</p>
+<p>It&rsquo;s important to note, however, that it can be very hard to extract the learned
+rules from a statistics-based model: the models are, generally speaking
+<em>opaque</em>. This is in part because of the size of the models—the language models
+that underpin chatbot-technologies have literally billions of parameters—and in
+part because of the way the machine learning algorithms work.</p>
+<h3 id="auxiliary">Auxiliary<button class="btn btn-back-to-top">
     
     <i class="bi bi-chevron-double-up"></i>
     
@@ -1361,20 +1396,19 @@ in AI today?</p>
 </h3>
 <hr>
 
-<p>The third way in which logic is relevant to AI (partially) answers this
-question: logical theory provides is extremely sharp powerful <em>tools</em> for many
-different tasks in AI research and development. These tools are ultimately what
-the course is about.</p>
-<p>We should note that while subsymbolic AI outperforms symbolic AI in many tasks,
-there are still areas where symbolic AI reigns supreme. One of these is the way
-we store important factual knowledge in AI systems, which is what <strong>Knowledge
-Representation and Reasoning (KRR)</strong> is all about.</p>
-<p>While subsymbolic systems, especially <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Generative_artificial_intelligence"
-  target="_blank"><strong>generative AI
-systems</strong></a> like
-ChatGPT, <em>can</em> store factual information, they are&mdash;at least in the current
-state of the art&mdash;fairly unreliable with
+<p>While statistics-based methods are, at the moment, the state of the art, logic
+still plays an important role in AI research. Logic-based research in AI has
+sparked the development of extremely sharp and powerfull <em>tool</em> for different
+tasks in AI development, which are still in use today.
+
+<img src="https://logicalmethods.ai/textbook/logic-and-ai/img/logical_tools.png" class="rounded  float-end inert-img img-fluid m-3"  width="300px"  alt="" >
+
+</p>
+<p>One big area where this is the case is what&rsquo;s known as <strong>Knowledge
+Representation and Reasoning (KRR)</strong>.  While subsymbolic systems, especially
+<abbr title="generative AI"><a  class="link-underline-opacity-0 link-body-emphasis"> GenAI</a></abbr>-systems
+like ChatGPT, <em>can</em> store factual information, they are&mdash;at least in the
+current state of the art&mdash;fairly unreliable with
 <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Hallucination_%28artificial_intelligence%29"
   target="_blank"><strong>hallucinations</strong></a>
@@ -1385,36 +1419,40 @@ information (think: your bank account, passwords, &hellip;), we need to use
   target="_blank"><strong>databases</strong></a>. Roughly, the difference
 between using a subsymbolic model to store information and using a symbolic
 model is the difference between trying to remember the information and writing
-it down.</p>
-<p>The connection between databases and logic is very deep: <i class="bi bi-box-arrow-up-right h-6"></i>
+it down. The connection between databases and logic is very deep: <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Codd%27s_theorem"
   target="_blank">Codd&rsquo;s
 theorem</a> shows that <strong>querying</strong>
 a database is, in many cases, essentially just a special way of evaluating the
-formulas of the logical system of predicate logic. KRR is just one example of
-where a logical tool is useful outside the scope of expert systems, and symbolic
-AI in the narrow sense of using logic as the sole foundation for AI. In the
-course, you&rsquo;ll see that logical tools and methods are (almost) <em>everywhere</em> in
-AI, ranging from the way the transistors work that our computers are build from
-to the way neural network models &ldquo;think&rdquo;.</p>
-<p>It is important to note that even subsymbolic AI systems still typically
-ultimately rely on inference, just statistical <em>inductive</em> inference and not the
-deductive inference that&rsquo;s typically used in symbolic AI systems. In the course,
-we&rsquo;ll pay special attention to the tight connections between logical systems and
-probability theory and statistics&mdash;as we&rsquo;ll see they are two sides of the same
-coin.</p>
-<p>Finally, there&rsquo;s <strong>recent research</strong>. The last years have seen the meteoric rise
-of GenAI systems, and especially <i class="bi bi-box-arrow-up-right h-6"></i>
+formulas of the logical system of predicate logic.</p>
+<p>KRR is just one example of where a logical tool is useful outside the scope of
+expert systems, and symbolic AI in the narrow sense of using logic as the sole
+foundation for AI. During the course, you&rsquo;ll see logic is (almost) <em>everywhere</em>
+in AI, ranging from low-level transistors via high-level programming languages
+to the abstract study of AI&rsquo;s abilities—all of this has to do with logic. Logic
+is, to this day, one of the main auxiliary disciplines of AI research.</p>
+<h2 id="the-way-forward">The way forward<button class="btn btn-back-to-top">
+    
+    <i class="bi bi-chevron-double-up"></i>
+    
+  </button>
+</h2>
+<hr>
+
+<p>In recent developments and ongoing AI research, logic and logic-related topics
+are starting to play a significant role again.</p>
+<p>The last years have seen the meteoric rise
+of <abbr title="generative AI"><a  class="link-underline-opacity-0 link-body-emphasis"> GenAI</a></abbr> systems, and especially <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Large_language_model"
   target="_blank"><strong>large language models
 (LLMs)</strong></a>. These are
 subsymbolic AI systems that are essentially large-scale probabilistic models of
-natural language. Under the hood, LLMs are neural networks with billions of
+natural language. Under the hood, <abbr title="large language model"><a  class="link-underline-opacity-0 link-body-emphasis"> LLM</a></abbr>s are neural networks with billions of
 parameters that are trained on huge sets of textual data using advanced
 machine-learning technologies. These neural networks approximate textual
 probabilities which estimate the likelihood of an expression being the next
 expression given a sequence of previously processed expressions.</p>
-<p>LLMs have the impressive ability to mimic human language behavior. LLMs are the
+<p>LLMs have the impressive ability to mimic human language behavior. <abbr title="large language model"><a  class="link-underline-opacity-0 link-body-emphasis"> LLM</a></abbr>s are the
 underlying technology of chatbots, like ChatGPT, who interact with humans by
 generating text responses to prompts—questions, instructions, descriptions, and
 the like. These responses are generated by repeatedly outputting the most likely
@@ -1424,8 +1462,9 @@ at human-style interaction that it can <i class="bi bi-box-arrow-up-right h-6"><
   target="_blank">fool you into thinking you&rsquo;re talking to
 a human</a>.</p>
 <p>But despite their awesome performance on many linguistic tasks, when it comes to
-precise, exact reasoning, mathematical calculations, and the like, the
-performance of LLMs is rather poor. Many leading researchers frame the issue in
+<strong>reasoning</strong>, such as precise mathematical calculations, and the like, the
+performance of <abbr title="large language model"><a  class="link-underline-opacity-0 link-body-emphasis"> LLM</a></abbr>s is rather poor.</p>
+<p>Many leading researchers frame the issue in
 terms of a distinction that&rsquo;s been popularized by <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Daniel_Kahneman"
   target="_blank">Daniel
@@ -1457,10 +1496,10 @@ calculating, and the like. Examples:</p>
 </ul>
 </li>
 </ul>
-<p>The diagnosis of the problem with LLMS shared promoted, e.g., by <i class="bi bi-box-arrow-up-right h-6"></i>
+<p>The diagnosis of the problem with <abbr title="large language model"><a  class="link-underline-opacity-0 link-body-emphasis"> LLM</a></abbr>S shared promoted, e.g., by <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Andrej_Karpathy"
   target="_blank">Andrej
-Karpathy</a> is that LLMs are really
+Karpathy</a> is that <abbr title="large language model"><a  class="link-underline-opacity-0 link-body-emphasis"> LLM</a></abbr>s are really
 good at system 1 thinking, but are lacking in system 2 capabilities. Symbolic
 systems, like expert systems, instead, are really good at system 2 thinking, but
 have little to no system 1 capabilities. There are different ways of tackling
@@ -1468,13 +1507,31 @@ this problem, but one promising way that&rsquo;s being explored by companies lik
 <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/OpenAI"
   target="_blank">OpenAI</a> at the moment is to create
-<strong>hybrid systems</strong>, which both have symbolic and subsymbolic components. Think
-of teaching ChaptGPT to use calculator rather than letting it try to solve a
-calculation &ldquo;in its head&rdquo;.</p>
-<p>This is where symbolic AI methods, especially logical methods, are once more
-coming to the forefront of AI research: building powerful, state-of-the-art
-hybrid AI systems requires a solid background in logical methods for AI&mdash;which
-is what you&rsquo;ll acquire in this course.</p>
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Hybrid_intelligent_system"
+  target="_blank"><strong>hybrid systems</strong></a>,
+which both have symbolic and subsymbolic components. Think of teaching ChaptGPT
+to use calculator rather than letting it try to solve a calculation &ldquo;in its
+head&rdquo;.</p>
+<p>Another way in which logic-based methods play a role in recent research is in
+<abbr title="explainable AI"><a  class="link-underline-opacity-0 link-body-emphasis"> XAI</a></abbr>. When a statistics-based AI
+system, especially an <abbr title="artificial neural network"><a  class="link-underline-opacity-0 link-body-emphasis"> ANN</a></abbr>-
+based system, makes a prediction (image classification, text prediction, etc.)
+it can be very hard to figure out <em>why</em> it made this prediction. This is because
+of the opaque nature of statistics-based systems and the way they are learned
+from data. One popular approach in <abbr title="explainable AI"><a  class="link-underline-opacity-0 link-body-emphasis"> XAI</a></abbr> is to try to extract if-then rules from the underlying
+<abbr title="artificial neural network"><a  class="link-underline-opacity-0 link-body-emphasis"> ANN</a></abbr>.</p>
+<p>Finally, it is important to note that statistics-based AI systems still
+typically rely on inference, just statistical, <em>inductive</em> inference and not the
+deductive inference that&rsquo;s typically used in logic-based AI systems. In fact,
+the stage of next-word-prediction in <abbr title="large language models"><a  class="link-underline-opacity-0 link-body-emphasis"> 
+LLMs</a></abbr> is called &ldquo;inference&rdquo;: the system <em>infers</em> which piece of
+text should come next given the previous text as premise information. This
+prompts us to revisit Shannon&rsquo;s connection between circuits and Boolean
+truth-functions mentioned above: can we perhaps understand <abbr title="artificial neural networks"><a  class="link-underline-opacity-0 link-body-emphasis"> ANNs</a></abbr> in a similarly structured way through the lens of <em>inductive</em> logic?</p>
+<p>The bottom-line is that even if logic-based AI is no longer &ldquo;the only game in
+town&rdquo;, you still need to learn logic and logical methods if you want to
+understand AI research.</p>
 <h2 id="further-readings">Further readings<button class="btn btn-back-to-top">
     
     <i class="bi bi-chevron-double-up"></i>
@@ -1517,20 +1574,6 @@ developments. Read, Learn, Improve!</p>
 <ol>
 <li id="fn:1">
 <p>Why is this a simplifying assumption?&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:2">
-<p>The history of symbolic AI is an intriguing but complex topic. We
-don&rsquo;t have the space here to get into it too much. Check out some of the
-suggestions in the 
-<a class="link-dark" href="#further-readings">references</a>.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:3">
-<p>This is, of course, a problem for XAI, as many scandals, like the <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Dutch_childcare_benefits_scandal"
-  target="_blank">Dutch
-childcare benefits
-scandal</a> have
-shown.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </div>
