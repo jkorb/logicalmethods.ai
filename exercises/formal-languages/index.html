@@ -449,11 +449,11 @@
             <li>
               <a class="dropdown-item 
                 fw-bold active
-                link-opacity-50
+                
                 "
-                href="javascript:;"
+                href="/exercises/formal-languages/"
               >2. 
-                <i class="bi bi-lock-fill"></i>
+                <i class="bi bi-unlock-fill"></i>
                  Formal languages
               </a>
             </li>
@@ -695,302 +695,101 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
 
 
 <hr>
-<div class="container exercises" style="max-width: 720px">
-  <div class="container-fluid m-0 p-0">
+<div class="container exercises m-4">
+  <div class="container-fluid">
     
     
       
 </div>
-<div id="bnfs" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0  p-0 ">BNFs
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="bnfsSolution"
-        onclick="showPasswordModal('bnfsSolution', 'exc-for')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="ambiguity" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Ambiguity
     </div>
-</h5>
-</div>
-<div id="a" class=" homework"><h6 class=" homework">a)</h6><p>Consider the following propositional language, described informally:</p>
-<div class="container " >
-  <figure>
-    <blockquote class="blockquote fs-6">
-      <p>
-      We have three propositional variables $BLUE$, $GREEN$, and $RED$. Further, we
-have the propositional connectives $\neg,\land, \lor$, which work as usual, i.e.
-$\neg$ can be written in front of a formula to negate it, $\land$ can be written
-between two formulas flanked by parentheses to conjoin them, and similarly for
-$\lor$. Additionally, we have two unary modal operators $\square,\lozenge$, which can be
-written in front of a formula to form a new formula.
-      </p>
-    </blockquote>
-    
-  </figure>
-</div>
-
-<p>Determine the BNF of this language.</p>
-
-</div>
-<div id="b" ><h6 class="">b)</h6><p>Consider the following BNF for FOL. Describe the grammar of this language using
-induction, i.e. using clauses like in 
-
-
-<a href="https://logicalmethods.ai/textbook/formal-languages//#grammar"
-   
-   
-   
-   
-   
-   > Section 3.2.2</a>
-
-:</p>
-<p>$$\langle const\rangle ::= a_1 \mid \dots \mid a_n$$</p>
-<p>$$\qquad\langle var\rangle ::= x_1 \mid \dots \mid x_n$$</p>
-<p>$$\langle unop\rangle ::= \neg$$</p>
-<p>$$\qquad\langle binop\rangle ::=\land\mid\lor\mid\to\mid\leftrightarrow$$</p>
-<p>$$\langle quant\rangle ::= \forall\mid\exists$$</p>
-<p>$$\langle func\rangle^n ::= f_1^n\mid \dots \mid f_{k_n}^n$$</p>
-<p>$$\langle pred\rangle^n ::= P_1^n \mid \dots \mid P_{l_n}^n $$</p>
-<p>for $n=1,2,\dots$. This means that for each number $n=1,2,\dots$ there is a
-certain number $k_n$ of $n$-ary function symbols and another number $l_n$ of
-$n$-ary predicates. So, e.g., if $n=2$, then there are $k_2$-many functions that
-take $2$ arguments.</p>
-<p>$$\langle term\rangle::= \langle const\rangle\mid\langle variable\rangle\mid
-\langle func\rangle^n(\langle term\rangle_1,\dots,\langle term\rangle_n)$$</p>
-<p>$$\langle atom\rangle::= \langle pred\rangle^n(\langle term\rangle_1,\dots\langle term\rangle_n)$$</p>
-<p>$$\langle fml\rangle::=\langle atom\rangle\mid\langle unop\rangle\langle fml\rangle\mid
-(\langle fml\rangle\langle binop\rangle \langle fml\rangle)\mid \langle quant\rangle \langle
-var\rangle\langle fml\rangle$$</p>
-<p><em>Hint</em>: You need to define more than just the set $\mathcal{L}$ by induction.
-You also need to define the <em>auxiliary</em> sets of terms.</p>
-
-</div>
-<div id="c" ><h6 class="">c)</h6><p>Consider the following formulas:</p>
-<p>$$p, q,(\neg p), (p\supseteq q), (p\mid\mid r), ((p\supseteq r)\&amp;\&amp;(\neg q))$$</p>
-<p>Determine a BNF, such that these are well-formed formulas according to the
-corresponding grammar.</p>
-<p><em>Note</em>: There are, of course, many different possible answers. Try to find the
-most &ldquo;natural&rdquo; one.</p>
-
-</div>
-<div id="d" class=" homework"><h6 class=" homework">d)</h6><p>Determine the BNF for the fragment of FOL, subject to the following constraints:</p>
-<ul>
+</h5><p>Which of the following statements in natural language are
+<abbr title="i.e. has two or more readings"><a  class="link-underline-opacity-0 link-body-emphasis"> ambiguous</a></abbr>? If
+you find an ambiguous statement, paraphrase the different readings to bring out
+the ambiguity. Try to find an inference, whose validity depends on the
+ambiguity, in the sense that it&rsquo;s valid under one reading and invalid under the
+other.</p>
+<ol>
 <li>
-<p>We only have two unary predicates $RED,ROUND$ and one binary predicate
-$BIGGER$.</p>
+<p>I see his goose.</p>
 </li>
 <li>
-<p>There are no function symbols or constants.</p>
+<p>I see her duck.</p>
 </li>
 <li>
-<p>A quantifier ($\forall, \exists)$ can only occur when it&rsquo;s followed by a
-variable $\alpha=x,y,z,\dots$ and then a formula of the form $(P(\alpha)\to B)$,
-where $P$ is a unary predicate.</p>
+<p>He thanked her children, Alan and Ada.</p>
 </li>
-</ul>
+<li>
+<p>They greeted their parents, Bob, and Betty.</p>
+</li>
+<li>
+<p>I see a man with my binoculars.</p>
+</li>
+<li>
+<p>There&rsquo;s the woman with my telescope.</p>
+</li>
+<li>
+<p>A friendly dog walker.</p>
+</li>
+<li>
+<p>I&rsquo;m happy I&rsquo;m here, and so is she.</p>
+</li>
+<li>
+<p>The priest married my uncle.</p>
+</li>
+<li>
+<p>They fed her dog food.</p>
+</li>
+</ol>
 
 </div>
-<div id="bnfsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong></p>
-<p>$$ A::= BLUE, GREEN, RED \mid \neg A \mid \Box A \mid \Diamond A \mid (A\land A) \mid (A\lor A) $$</p>
-<p><strong>b)</strong></p>
-<ul>
-<li>If $a_i$ is a constant, then $a_i\in\mathcal{T}$</li>
-<li>If $x_i$ is a variable, then $x_i\in\mathcal{T}$</li>
-<li>If $f^n_i$ is an $n$-place function sign and $t_1,\ldots,t_n\in\mathcal{T}$, then $f^n_i(t_1,\ldots,t_n)\in\mathcal{T}$</li>
-<li>If $P^n_i$ is an $n$-place predicate and $t_1,\ldots,t_n\in\mathcal{T}$, then $P^n_i(t_1,\ldots,t_n)\in\mathcal{L}$</li>
-<li>If $A\in\mathcal{L}$, then $\neg A\in\mathcal{L}$</li>
-<li>If $A,B\in\mathcal{L}$, then $(A\land B), (A\lor B), (A\rightarrow B), (A\leftrightarrow B)\in\mathcal{L}$</li>
-<li>If $A\in\mathcal{L}$ and $x_i$ is a variable, then $\forall x_i A, \exists x_i A\in\mathcal{L}$</li>
-</ul>
-<p><strong>c)</strong></p>
-<p>$$ A::= p,q,r \mid \neg A \mid (A\supseteq A) \mid (A||A) \mid (A\&amp;\&amp;A) $$</p>
-<p><strong>d)</strong></p>
-<p>$$ \langle{var}\rangle ::= x_1 \mid \ldots \mid x_n $$</p>
-<p>$$ \langle{unop}\rangle ::= \neg $$</p>
-<p>$$ \langle{binop}\rangle ::= \land \mid \lor \mid \rightarrow \mid \leftrightarrow $$</p>
-<p>$$ \langle{quant}\rangle ::= \forall \mid \exists $$</p>
-<p>$$ \langle{pred}\rangle^1 ::= RED \mid ROUND $$</p>
-<p>$$ \langle{pred}\rangle^2 ::= BIGGER $$</p>
-<p>$$ \langle{atom}\rangle ::= \langle{pred}\rangle^n(\langle{var}\rangle_1,\ldots,\langle{var}\rangle_n) $$</p>
-<p>$$ \langle{fml}\rangle ::= \langle{atom}\rangle \mid
-\langle{unop}\rangle\langle{fml}\rangle \mid
-(\langle{fml}\rangle\langle{binop}\rangle\langle{fml}\rangle)$$
-$$\mid \langle{quant}\rangle\langle{var}\rangle(\langle{pred}\rangle^1(\langle{var}\rangle)\rightarrow\langle{fml}\rangle) $$</p>
-
-</div>
-<div id="formalization" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Formalization
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="formalizationSolution"
-        onclick="showPasswordModal('formalizationSolution', 'exc-for')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="over-expressiveness" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Over-expressiveness
     </div>
-</h5>
-</div>
-<div id="a-1" ><h6 class="">a)</h6><p>You arrive at an uninhabited planet and find an old space rover that some
-ancient civilization that still used expert systems for AI used to explore the
-planet. You inspect its knowledge base and find the following code:</p>
-<ul>
-<li>
-<p>$(RAIN\to SEEK\_COVER)$</p>
-</li>
-<li>
-<p>$(SUN\to CHARGE\_BATTERIES)$</p>
-</li>
-<li>
-<p>$((\neg CHARGE\_BATTERIES\land SUN)\to REQUEST\_REPAIR)$</p>
-</li>
-<li>
-<p>$(\neg(SUN\lor RAIN)\to INSPECT\_SENSORS)$</p>
-</li>
-<li>
-<p>$(SHUT\_DOWN\leftrightarrow ((REQUEST\_REPAIR\land\neg REPAIR)\lor
-(INSPECT\_SENSORS\land FAULTY)))$</p>
-</li>
-</ul>
-<p>Explain these rules in natural language.</p>
+</h5><p>Consider the following inference:</p>
+
+
+<img src="https://logicalmethods.ai/exercises/formal-languages/img/presupposition.png" class="rounded mx-auto my-4 d-block inert-img img-fluid"  width="550px"  alt="" >
+
+
+<p>The inference is deductively invalid. Show this by providing a scenario in which
+the premise is true and the conclusion isn&rsquo;t. Explain how the
+over-expressiveness of natural language is responsible for the inference seeming
+to be valid.</p>
 
 </div>
-<div id="b-1" ><h6 class="">b)</h6><p>Consider the following natural language claims. Translate them into a suitable
-propositional or FOL language:</p>
-<ul>
+<div id="sets" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Sets
+    </div>
+</h5><p>Describe the following sets using set notation:</p>
+<ol>
 <li>
-<p>Alan Turing built the first computer but Ada Lovelace invented the first
-computer algorithm.</p>
+<p>the set containing no object whatsoever—the so-called <em>empty</em> set</p>
 </li>
 <li>
-<p>Only if Alan Turing built the first computer, it&rsquo;s Monday today.</p>
+<p>the set containing <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+, Utrecht University, and the set containing
+<span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+ and nothing else.</p>
 </li>
 <li>
-<p>Either Alan Turing or Ada Lovelace is your favorite computer scientist.</p>
+<p>the set of all even numbers between 1 and 10</p>
 </li>
 <li>
-<p>Today is Monday if and only if both yesterday was Tuesday and tomorrow is
-Saturday.</p>
-</li>
-</ul>
-<ul>
-<li>
-<p>A number that is greater than every even number is odd.</p>
+<p>the set of all even numbers</p>
 </li>
 <li>
-<p>Every number is greater than at least one number.</p>
+<p>the set of all non-empty sets that contain only the numbers 1, 2, and 3</p>
 </li>
-<li>
-<p>There is an even number that is smaller than an odd number that is greater
-than another odd number.</p>
-</li>
-<li>
-<p>There is no number that is greater than every number.</p>
-</li>
-<li>
-<p>No number is greater than itself.</p>
-</li>
-<li>
-<p>Every odd number is greater than 0.</p>
-</li>
-<li>
-<p>Every odd number is greater than an even number.</p>
-</li>
-</ul>
-
-</div>
-<div id="c-1" class=" homework"><h6 class=" homework">c)</h6><p>We&rsquo;re thinking of a scenario where there&rsquo;s a factory that makes balls. We want
-to create a robot that ultimately sorts balls by color and material. But we&rsquo;re not
-there yet, for now we need to represent the following knowledge claims about the
-factory to the robot:</p>
-<div class="container " >
-  <figure>
-    <blockquote class="blockquote fs-6">
-      <p>
-      The balls we make have one of three colors, blue, red, and green. The blue balls
-are all made from rubber, but the red and green balls can be made of leather or
-rubber. Rubber balls are cheaper, but the leather balls are more durable than
-the rubber balls.
-      </p>
-    </blockquote>
-    
-  </figure>
-</div>
-
-<p>Devise a suitable FOL-language and represent the knowledge claims in the above
-paragraph into a knowledge base $\mathbf{KB}$.</p>
-
-</div>
-<div id="formalizationSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solutions</h6><p><strong>a)</strong></p>
-<ul>
-<li>If it is rainy, then seek cover.</li>
-<li>If it is sunny, then charge batteries.</li>
-<li>If batteries do not charge and it is sunny, then request repair.</li>
-<li>If it is neither rainy nor sunny, then inspect the sensors.</li>
-<li>Shut down if, and only if, you request repair and don&rsquo;t get it or you inspect the sensors and they are faulty.</li>
-</ul>
-<p><strong>b)</strong></p>
-<ul>
-<li>$BUILT(alan) \land INVENTED(ada)$</li>
-<li>$MON(today) \rightarrow BUILT(alan)$</li>
-<li>$FAVORITE(alan) \lor FAVORITE(ada)$</li>
-<li>$MON(today) \leftrightarrow (TUES(yesterday)\land SAT(tomorrow))$</li>
-<li>$\forall x((NUM(x)\land\forall y(EVEN(y)\rightarrow GREAT(x,y)))\rightarrow ODD(x))$</li>
-<li>$\forall x(NUM(x)\rightarrow\exists yGREATER(x,y))$</li>
-<li>$\exists x((NUM(x) \land EVEN(x)) \land \exists y(SMALL(x,y) \land((NUM(y) \land ODD(y)) \land \exists z(y\neq z \land NUM(z)\land ODD(z) \land GREAT(y,z)))))$</li>
-<li>$\neg\exists x(NUM(x) \land \forall y(NUM(y)\rightarrow GREAT(x,y)))$</li>
-<li>$\neg\exists x(NUM(x) \land GREAT(x,x))$</li>
-<li>$\forall x((NUM(x) \land ODD(x))\rightarrow GREAT(x,0))$</li>
-<li>$\forall x((NUM(x) \land ODD(x))\rightarrow \exists y(NUM(y)\land EVEN(y)\land GREAT(x,y)))$</li>
-</ul>
-<p><strong>c)</strong></p>
-<p>$$ \langle{var}\rangle ::= x \mid y $$</p>
-<p>$$ \langle{unop}\rangle ::= \neg $$</p>
-<p>$$ \langle{binop}\rangle ::= \land \mid \lor \mid \rightarrow \mid \leftrightarrow $$</p>
-<p>$$ \langle{quant}\rangle ::= \forall \mid \exists $$</p>
-<p>$$ \langle{pred}\rangle^1 ::= BLUE \mid RED \mid GREEN \mid LEATHER\mid
-RUBBER$$</p>
-<p>$$ \langle{pred}\rangle^2 ::= CHEAPER \mid DURABLE $$</p>
-<p>$$ \langle{atom}\rangle ::= \langle{pred}\rangle^n(\langle{var}\rangle_1,\ldots,\langle{var}\rangle_n) $$</p>
-<p>$$ \langle{fml}\rangle ::= \langle{atom}\rangle \mid \langle{unop}\rangle\langle{fml}\rangle \mid (\langle{fml}\rangle\langle{binop}\rangle\langle{fml}\rangle) \mid \langle{quant}\rangle\langle{var}\rangle\langle{fml}\rangle $$</p>
-<p>KB entries:</p>
-<ul>
-<li>
-<p>$\forall x(BLUE(x) \lor RED(x) \lor GREEN(x))$</p>
-</li>
-<li>
-<p>$\forall x (BLUE(x) \rightarrow RUBBER(x))$</p>
-</li>
-<li>
-<p>$\forall x (RED(x) \rightarrow (LEATHER(x) \lor RUBBER(x)))$</p>
-</li>
-<li>
-<p>$\forall x (GREEN(x) \rightarrow (LEATHER(x) \lor RUBBER(x)))$</p>
-</li>
-<li>
-<p>$\forall x \forall y ((RUBBER(x) \land LEATHER(y)) \rightarrow CHEAPER(x,y))$</p>
-</li>
-<li>
-<p>$\forall x \forall y ((LEATHER(x) \land RUBBER(y)) \rightarrow DURABLE(x,y))$</p>
-</li>
-</ul>
+</ol>
 
 </div>
 <div id="parsing" ><h5 class="">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Parsing
+    <div class="d-inline-flex flex-row m-0 p-0 ">Parsing
     </div>
-</h5>
-</div>
-<div id="a-2" class=" homework"><h6 class=" homework">a)</h6><p>Parse the following formulas according to the BNF for propositional logic:</p>
+</h5><p>Parse the following formulas according to the grammar of propositional logic.
+You can either do this by giving the rewrite sequence or the parsing tree.</p>
 <ul>
 <li>
 <p>$(\neg p\to \neg p)$</p>
@@ -1007,37 +806,191 @@ RUBBER$$</p>
 </ul>
 
 </div>
-<div id="b-2" ><h6 class="">b)</h6><p>Parse the following formulas according to the BNF for FOL:</p>
-<ul>
+<div id="polish-notation" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Polish notation
+    </div>
+</h5><p>In the lesson on formal languages, we explained the need for parentheses in
+order to avoid ambiguity in the language for propositional logic.</p>
+<p>But it turns out that there&rsquo;s another way, which is known as <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/Polish_notation" class="link-dark" rel="external" target="_blank">Polish notation</a>
+,
+in honor of the Polish logician <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/Jan_%C5%81ukasiewicz" class="link-dark" rel="external" target="_blank">Jan
+Łukasiewicz</a>
+, who pioneered
+it.</p>
+<p>We&rsquo;ll look at a simple proposition language in Polish notation, with the
+following alphabet:</p>
+<p class="text-center">
+<span class="excalifont ">Σ = { p, q, r, N, K, A, C, B }</span>
+
+<p>The letters 
+<span class="excalifont ">p,q,r</span>
+ are propositional variables,
+and 
+<span class="excalifont ">N</span>
+ stands for negation 
+
+<img src="https://logicalmethods.ai/exercises/formal-languages/img/negation.png" class="inert-img" height="18px"  style="ZgotmplZ" alt="" >
+
+, 
+<span class="excalifont ">K</span>
+ for conjunction  
+
+<img src="https://logicalmethods.ai/exercises/formal-languages/img/conjunction.png" class="inert-img" height="18px"  style="ZgotmplZ" alt="" >
+
+, 
+<span class="excalifont ">K</span>
+ for disjunction 
+
+<img src="https://logicalmethods.ai/exercises/formal-languages/img/disjunction.png" class="inert-img" height="18px"  style="ZgotmplZ" alt="" >
+
+, 
+<span class="excalifont ">C</span>
+ for the conditional 
+
+<img src="https://logicalmethods.ai/exercises/formal-languages/img/conditional.png" class="inert-img" height="18px"  style="ZgotmplZ" alt="" >
+
+, and 
+<span class="excalifont ">B</span>
+ for the bi-conditional  
+
+<img src="https://logicalmethods.ai/exercises/formal-languages/img/bi-conditional.png" class="inert-img" height="18px"  style="ZgotmplZ" alt="" >
+
+,</p>
+<p>Polish notation is a <em>prefix</em> notation as compared to the usual <em>infix</em>
+notation. That is, instead of writing 
+
+<img src="https://logicalmethods.ai/exercises/formal-languages/img/formula.png" class="inert-img" height="24px"  style="ZgotmplZ" alt="" >
+
+, for example, we write 
+<span class="excalifont ">CKpCpqNq</span>
+.</p>
+<ol>
 <li>
-<p>$ \exists  x S(x,p)$</p>
+<p>Determine the grammar of Polish notation both in terms of recursive clauses
+and as a BNF.</p>
 </li>
 <li>
-<p>$\forall x (  \exists y G(x,y) \rightarrow   \exists  y S(x,y))$</p>
+<p>Determine the corresponding re-write rules and generate the parsing tree for
+
+<span class="excalifont ">CKpCpqNq</span>
+.</p>
 </li>
 <li>
-<p>$\lnot  \exists x G(p,x) \wedge   \lnot  \exists  y S(y,p)$</p>
+<p>Give an argument why 
+<span class="excalifont ">pCpqNqCpr</span>
+ is <em>not</em> a
+formula in Polish notation.</p>
 </li>
 <li>
-<p>$\forall x  (B(x) \rightarrow   \exists y G(y,x))$</p>
+<p>Go back to the example from the textbook which illustrated the need for
+parentheses when using infix notation and write the corresponding formulas in
+Polish notation. Explain with the example why we no longer need parentheses
+in Polish notation.</p>
 </li>
-</ul>
+</ol>
 
 </div>
-<div id="research" class=" homework"><h5 class="homework">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Research
+<div id="knowledge-representation" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Knowledge representation
+    </div>
+</h5><p><span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  has taken up <abbr title="state-sanctioned piracy, nothing illegal going on here..."><a  class="link-underline-opacity-0 link-body-emphasis"> privateering</a></abbr>. Now, he&rsquo;s got a treasure of numerous Bitcoin, rare computer chips, and Alan Turing&rsquo;s old <abbr title="knowledge base"><a  class="link-underline-opacity-0 link-body-emphasis"> KB</a></abbr>.</p>
+
+
+<img src="https://logicalmethods.ai/exercises/formal-languages/img/ai_piracy.png" class="rounded mx-auto my-4 d-block inert-img img-fluid"  width="550px"  alt="" >
+
+
+<p><span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  hid the treasure on some remote disk-world and now he&rsquo;s trying to
+write instructions on how to find the treasure. Since he&rsquo;s an AI system, he
+does so using propositional logic.</p>
+<p>First, he divided the disk-world into 4 quadrants, indicating in the following coordinate system:</p>
+
+
+<img src="https://logicalmethods.ai/exercises/formal-languages/img/map.png" class="rounded mx-auto my-4 d-block inert-img img-fluid"  width="550px"  alt="" >
+
+
+<p>He then devised a formal language with propositional variables 
+<span class="excalifont ">T(i,j)</span>
+ to say that the treasure is at coordinate 
+<span class="excalifont ">(i,j)</span>
+ with the first component being the 
+<span class="excalifont ">x</span>
+-axis and the second the 
+<span class="excalifont ">y</span>
+-axis.</p>
+<p>Correspondingly, the BNF of his language is:</p>
+
+
+<img src="https://logicalmethods.ai/exercises/formal-languages/img/bnf_treasure.png" class="rounded mx-auto my-4 d-block inert-img img-fluid"  width="750px"  alt="" >
+
+
+<p>Help <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+  to represent the following hints about the treasure&rsquo;s location in the resulting language:</p>
+<ol>
+<li>
+<p>The treasure is in the upper right quadrant and in none of the other
+quadrants.</p>
+</li>
+<li>
+<p>The treasure is in exactly one quadrant, that is, it is either in the upper
+left, upper right, lower left, or lower right quadrant, but not in any two
+quadrants at the same time.</p>
+</li>
+<li>
+<p>If the treasure is not in the lower right quadrant, then it&rsquo;s in the upper
+left quadrant, but only if it&rsquo;s not in the lower left quadrant.</p>
+</li>
+<li>
+<p>The treasure is only in the upper right quadrant, if it is not in the lower
+right quadrant.</p>
+</li>
+<li>
+<p>The treasure is in any of the right quadrants just in case it is not in the
+upper left quadrant.</p>
+</li>
+<li>
+<p>The treasure is nowhere on the disk-world.</p>
+</li>
+<li>
+<p>The treasure is somewhere on the disk-world.</p>
+</li>
+<li>
+<p>The treasure is everywhere on the disk-world.</p>
+</li>
+</ol>
+
+</div>
+<div id="knowledge-extraction" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Knowledge extraction
+    </div>
+</h5><p>You arrive at an uninhabited planet and find an old space rover that some
+ancient civilization, which still used expert systems for AI, used to explore
+the planet.</p>
+
+
+<img src="https://logicalmethods.ai/exercises/formal-languages/img/rover.png" class="rounded mx-auto my-4 d-block inert-img img-fluid"  width="750px"  alt="" >
+
+
+<p>You inspect its <abbr title="knowledge base"><a  class="link-underline-opacity-0 link-body-emphasis"> KB</a></abbr> and find the
+following:</p>
+
+
+<img src="https://logicalmethods.ai/exercises/formal-languages/img/rover_kb.png" class="rounded mx-auto my-4 d-block inert-img img-fluid"  width="750px"  alt="" >
+
+
+<p>Explain these instructions in natural language. Can you tell why the robot shut
+down?</p>
+
+</div>
+<div id="research" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Research
     </div>
 </h5><p>Can the grammar of <em>every</em> formal language be given by a BNF? If so, explain
 why, if not give a counterexample and explain why it is, indeed, a
 counterexample.</p>
-
-</div>
-<div id="discussion" ><h5 class="">
-    <div class="d-inline-flex flex-row m-0  p-0 ">Discussion
-    </div>
-</h5><p>Some AI researchers thought that everything that can be said can be said in FOL.
-Doing some necessary research, do you agree? Support your answer with arguments
-and/or examples.</p>
 
   </div>
 </div>
