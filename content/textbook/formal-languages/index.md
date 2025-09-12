@@ -848,7 +848,7 @@ program. To determine this is the role of the
 [parser](https://en.wikipedia.org/wiki/Parsing#Parser). This shows the
 fundamental importance of parsing in programming and human-computer interaction.
 
-## AI applications
+## Knowledge representation
 
 The development of large language models for generative AI has made a
 significant impact on applications of AI. Because the interaction with such
