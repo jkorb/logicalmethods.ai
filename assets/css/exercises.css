@@ -1,8 +1,15 @@
 .exercises {
   counter-reset : h5;
+  max-width: 1000px
+}
+h5 {
+font-size: 20pt;
+margin-top: 1.5rem;
+margin-bottom: 1.5rem;
 }
 h5::before {
   content: "Exercise " counter(h5,decimal) ". ";
   counter-increment: h5;
+  font-weight: bold;
 }
 
