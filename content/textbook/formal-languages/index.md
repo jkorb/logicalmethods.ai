@@ -15,7 +15,7 @@ params:
 
 # Formal languages
 
-{{< img src="img/ai_language.png" class="rounded  float-start inert-img img-fluid m-2" width="150px">}}
+{{< img src="img/ai_language.png" class="rounded  float-start inert-img img-fluid m-2" width="350px">}}
 When we try to develop AI systems, we immediately run into an issue: computers,
 which are the basis for any modern AI technology, "speak" a different language
 than us—the proverbial 1's and 0's. 
@@ -24,7 +24,7 @@ That is, even if we understand what intelligent behavior is and we manage to
 break it down into instructions that a computer can, in principle, follow, we
 still need to express these instructions in an unambiguous language that the
 computer can "understand" (i.e. execute).
-{{< img src="img/ai_understand.png" class="rounded  float-end inert-img img-fluid m-2" width="150px">}}
+{{< img src="img/ai_understand.png" class="rounded  float-end inert-img img-fluid m-2" width="350px">}}
 We need to write *code*.
 
 Moreover, since intelligent behavior involves knowledge about the world and
@@ -79,7 +79,7 @@ being in an environment where the language was used. Because natural languages
 are acquired in this way, they are also very susceptible to change. They
 constantly evolve, just by being used and passed on to next generations. 
 
-{{< img src="img/ai_learning_language.png" class="rounded float-start inert-img img-fluid mx-2 my-1" width="250px">}}
+{{< img src="img/ai_learning_language.png" class="rounded float-start inert-img img-fluid mx-2 my-1" width="450px">}}
 In contrast, nobody learns Python, propositional logic or algebraic chess
 notation simply by interacting with their parents. Also, these languages clearly
 didn't evolve naturally and while the conventions of these languages may change
@@ -216,9 +216,9 @@ choose formal over natural languages.
 ### Over-expressiveness
 
 To illustrate the problem of over-expressiveness, let us look at another case of modus ponens:
-{{< img src="img/box_example.png" class="rounded mx-auto my-2 d-block inert-img img-fluid" width="400px">}}
+{{< img src="img/box_example.png" class="rounded mx-auto my-2 d-block inert-img img-fluid" width="800px">}}
 
-{{< img src="img/ai_magic.png" class="rounded float-end inert-img img-fluid mx-2 my-1" width="250px">}}
+{{< img src="img/ai_magic.png" class="rounded float-end inert-img img-fluid mx-2 my-1" width="450px">}}
 Say a magician places a rabbit in a cardboard box and they close the box. After
 a short while they open it again and show the audience that the box is empty.
 The audience gasps. Why? Because on the basis of a common assumption like 
@@ -247,7 +247,7 @@ must be false. In other words, these people believe in magic.
 
 Now, compare this story to the following statement:
 
-{{< img src="img/odd_numbers.png" class="rounded mx-auto my-2 d-block inert-img img-fluid" width="400px">}}
+{{< img src="img/odd_numbers.png" class="rounded mx-auto my-2 d-block inert-img img-fluid" width="800px">}}
 
 
 Say now I calculate:
@@ -268,7 +268,7 @@ are both odd. Or perhaps my observation that
 even believe that their maths book is wrong in stating {{< excalifont >}}N{{<
 /excalifont >}}. 
 
-{{< img src="img/ai_math.png" class="rounded float-start inert-img img-fluid mx-2 my-1" width="250px">}}
+{{< img src="img/ai_math.png" class="rounded float-start inert-img img-fluid mx-2 my-1" width="450px">}}
 In any case, both the case of magic and the case of odd number multiplication
 show that modus ponens is a very strong inference. As soon as we have all the
 ingredients for modus ponens, we cannot help but draw the conclusion. And if
@@ -391,7 +391,7 @@ set multiple times.
 It can sometimes be helpful (but also sometimes hurtful!) to think of a set as
 "bag" of objects from an ambient "space". Consider the following illustration:
 
-{{< img src="img/set.png" class="rounded mx-auto my-2 d-block inert-img img-fluid" width="400px">}}
+{{< img src="img/set.png" class="rounded mx-auto my-2 d-block inert-img img-fluid" width="900px">}}
 
 The yellow rectangle is out ambient space of objects, everything in its confines
 is a potential member of our set. It contains a bunch of things: animals,
@@ -551,7 +551,7 @@ therefore not a numeral.[^mp]
 
 ### The language of logic
 
-{{< img src="img/logic_abc.png" class="rounded  float-end inert-img img-fluid m-2" width="250px">}}
+{{< img src="img/logic_abc.png" class="rounded  float-end inert-img img-fluid m-2" width="450px">}}
 Just like the language of numeral notation we saw above, logics are also sets of
 sequences of symbols. We often refer to these sequences as **formulas**, so a
 logic is a formal language consisting of formulas. In order to specify such a
@@ -670,7 +670,7 @@ the BNF for valid email addresses. Check it out 🤓
 
 ## Parsing
 
-{{< img src="img/ai_confused.png" class="rounded  float-start inert-img img-fluid m-2" width="200px" >}} Now that we've formally defined what formal
+{{< img src="img/ai_confused.png" class="rounded  float-start inert-img img-fluid m-2" width="400px" >}} Now that we've formally defined what formal
 languages and their formulas _are_, let's look at how computers (and also
 _perhaps_ humans, subconsciously) read these formulas.
 
@@ -885,7 +885,7 @@ statements. To illustrate, let's consider a toy example. Suppose that our friend
 {{< logo >}} is looking for an important letter, which should be somewhere
 around this desk with two drawers:
 
-{{< img src="img/ai_drawers.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="400px">}}
+{{< img src="img/ai_drawers.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="700px">}}
 
 Suppose we have some information that we want to pass on to {{< logo >}}, who
 understands the language of propositional logic. Here are a few claims in
@@ -896,7 +896,7 @@ that the letter is in the left drawer, and {{< excalifont >}}RIGHT{{<
 /excalifont >}} is a propositional variable, which states that the letter is in
 the right drawer:
 
-{{< img src="img/guidelines.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="600px">}}
+{{< img src="img/guidelines.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="100%">}}
 
 These examples can be a helpful guideline, but it's important to keep in mind
 that formalization and knowledge representation is more of an **engineering
