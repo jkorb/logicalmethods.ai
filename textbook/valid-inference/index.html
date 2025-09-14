@@ -102,11 +102,11 @@
             <li>
               <a class="dropdown-item 
                 fw-bold active
-                link-opacity-50
+                
                 "
-                href="javascript:;"
+                href="/textbook/valid-inference/"
               >3. 
-                <i class="bi bi-lock-fill"></i>
+                <i class="bi bi-unlock-fill"></i>
                  Valid Inference
               </a>
             </li>
@@ -620,36 +620,38 @@
   </li>
 </ul>
 <div class="container chapter">
-  <p>By: <em>Colin Caret</em></p>
+  <p>By: <em>Colin Caret and Johannes Korbmacher</em></p>
   <div class="m-4"><h1 id="valid-inference">Valid inference<button class="btn btn-back-to-top">
     
   </button>
 </h1>
 <hr>
 
-<p>Remember from 
+<p>Inference is everywhere in AI. We&rsquo;ve seen how deductive inference occurs on the
+level of circuits using Shannon&rsquo;s interpretation, we&rsquo;ve mentioned that <abbr title="large language models, such as GPT, Claude, Llama, ..."><a  class="link-underline-opacity-0 link-body-emphasis"> LLMs</a></abbr>
+use a form of inductive inference to predict pieces of text, and, of course, any
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Artificial_General_Intelligence"
+  target="_blank">artificial general intelligence
+(AGI)</a> would need
+to be able perform valid inferences, like our first example:</p>
 
 
-<a href="https://logicalmethods.ai/textbook/logic-and-ai/"
-   
-   
-   
-   
-   
-   >
-Chapter 1. Logic and AI</a>
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/socrates_inference.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="400px"  alt="" >
 
 
-that logic is the study of <strong>valid inference</strong>. In this
-chapter, you&rsquo;ll learn more about the <em>concept</em> of validity.</p>
-<p>In particular, we&rsquo;ll go into more details of what it means for an inference to
-be 
-<a class="link-dark" href="#correctness">correct</a>, we&rsquo;ll describe 
-<a class="link-dark" href="#formalisation">abstract methods</a>
-for modeling valid inferences, and we&rsquo;ll dig into important differences
-between 
-<a class="link-dark" href="#deduction">deductive</a> and 
-<a class="link-dark" href="#induction">inductive validity</a>.</p>
+<p>So what precisely makes an inference valid? What distinguishes good from bad
+inferences, both in deductive and inductive reasoning?—In this chapter, we&rsquo;ll
+deep dive into the logical theory of valid inference.</p>
+<p>At the end of the chapter, you&rsquo;ll be able to:</p>
+<ul>
+<li>explain the relevance of logical form to valid inference,</li>
+<li>explain the difference between material (domain-specific) and logical
+(domain-general) validity</li>
+<li>distinguish deductively valid from invalid inferences in terms of
+truth-preservation</li>
+<li>distinguish inductively strong from inductively weak inferences in terms of probability raising</li>
+</ul>
 <h2 id="correctness">Correctness<button class="btn btn-back-to-top">
     
     <i class="bi bi-chevron-double-up"></i>
@@ -666,51 +668,52 @@ the study of persuasive writing style. Logic deals with <em>validity</em>.</p>
 <p>Validity is a standard of <strong>correctness</strong> for inferences. To really fix this
 concept, it might help to think about it from the other direction. What happens
 if an inference <em>lacks</em> validity, when it is <strong>invalid</strong>? Well, that shows us
-that something went wrong. The inference made a <em>mistake</em>. As we mentioned in
-
-
-
-<a href="https://logicalmethods.ai/textbook/logic-and-ai//#validity"
-   
-   
-   
-   
-   
-   >
-Chapter 1.1.2 Validity</a>
-
-, some of these logical mistakes or
-<strong>fallacies</strong> are so famous that they have their own names.</p>
+that something went wrong. The inference made a <em>mistake</em>. Some of these logical
+mistakes or <strong>fallacies</strong> are so famous that they have their own names.</p>
 <p>Here is an example of a fallacy called <em>affirming the consequent</em>:</p>
-<ol>
-<li>If it is sunny, Jan is cycling. Jan is cycling. Therefore, it is sunny.</li>
-</ol>
-<p>The mistake should be clear. The <em>conditional</em> premise (&ldquo;if&hellip;, then&hellip;&rdquo;) says
-that sun leads to sport. However, the other premise of this inference is not
-<em>about</em> sunny weather, so those two premises don&rsquo;t really &ldquo;add up&rdquo; to anything
-useful. They certainly do not support the conclusion that it is sunny today.</p>
-<p>Here is an example of a valid inference called &ldquo;modus ponens&rdquo;.</p>
-<ol start="2">
-<li>If it is sunny, Jan is cycling. It is sunny. Therefore, Jan is cycling.</li>
-</ol>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/cycling_invalid.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="500px"  alt="" >
+
+
+<p>
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/ai_cycling_rain.png" class="rounded  float-end inert-img img-fluid"  width="400px"  alt="" >
+
+
+The mistake should be clear. The
+<abbr title="&#39;if  ..., then ...&#39; statement"><a  class="link-underline-opacity-0 link-body-emphasis"> conditional</a></abbr> premise says that sun leads
+to sport. However, the other premise of this inference is not <em>about</em> sunny
+weather, so those two premises don&rsquo;t really &ldquo;add up&rdquo; to anything useful. They
+certainly do not support the conclusion that it is sunny today.</p>
+<p>Contrast this with the following valid inference:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/cycling_valid.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="500px"  alt="" >
+
+
 <p>This inference involves a premise about sunny weather, which connects with the
 conditional premise in the right way. This inference is valid because it uses
 all of its premises correctly. These two examples show that it can be easy to
 confuse valid and invalid inferences if we don&rsquo;t pay attention to the details.
-At a glance, the two inferences look pretty similar.</p>
+At a glance, the two inferences look pretty similar.
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/ai_cycling_sun.png" class="rounded  float-start inert-img img-fluid"  width="400px"  alt="" >
+
+</p>
 <p>This is why logic aims for a <em>systematic</em> definition of validity. This notion
 should be applicable not only to humans but to any information-processing
 system. It can tell us what counts as <em>intelligent</em> behavior. Without a
-definition of correct reasoning, how do we even know what we want AI to achieve?
-So, we would like to say, in general, what <em>makes</em> an inference valid or
+definition of correct reasoning, how do we even know what we want AI to achieve?</p>
+<p>So, we would like to say, in general, what <em>makes</em> an inference valid or
 invalid. The standard idea is that valid inferences <strong>preserve truth</strong> from
 their premises to their conclusion.</p>
-<h3 id="hypothetically">Hypothetically<button class="btn btn-back-to-top">
+<h2 id="hypothetically">Hypothetically<button class="btn btn-back-to-top">
     
     <i class="bi bi-chevron-double-up"></i>
     
   </button>
-</h3>
+</h2>
 <hr>
 
 <p>To test whether an inference is valid, we ask if the conclusion is true <em>when</em>
@@ -718,12 +721,14 @@ the premises are true. This is a <strong>hypothetical</strong> question. Answeri
 question does not require us to know that the premises really <em>are</em> true. In
 fact, we can make a stronger point: it is possible to have an inference that is
 valid even though it has false premises. Here is an example.</p>
-<ol start="3">
-<li>All pigs fly. Maddy is a pig. So, Maddy flies.</li>
-</ol>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/ei_can_fly.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="500px"  alt="" >
+
+
 <p>The <em>reasoning</em> behind this inference is perfectly correct. The conclusion
 follows from the premises. That makes the inference valid. But we obviously know
-that this inference also involves some false premises. Pigs can&rsquo;t really fly.</p>
+that this inference also involves some false premises. Cats can&rsquo;t really fly.</p>
 <p>The important point is that validity is not determined by the actual truth or
 falsity of statements. What we care about is the <em>connections between</em>
 statements.</p>
@@ -731,111 +736,22 @@ statements.</p>
 conclusion, instead we look for a <strong>relationship</strong> between their truth-values.
 You can think about it like this: imagine that the premises and true and think
 about whether the conclusion is true <em>under this assumption</em>.</p>
-<p>Think about inference (3) this way. When we do this, we imagine a world that is
-slightly different from the actual world, a world where pigs do fly. In that
-kind of world, it has to be true that Maddy flies.</p>
-<p>This is the basic idea of truth-preservation.</p>
-<ul>
-<li><strong>Valid Inference:</strong> an inference whose conclusion is true under the
-(hypothetical) assumption that all of the premises are true.</li>
-</ul>
+<p>Think about the inference this way. When we do this, we imagine a world that is
+slightly different from the actual world, a world where cats do fly. In that
+kind of world, it has to be true that <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IE</span>
+ flies.</p>
+<p>This is the basic idea of truth-preservation:</p>
+<p class="text-center">
+<span class="excalifont ">
+  An inference is valid <abbr title="if and only if">iff</abbr> the conclusion
+  is true under the (hypothetical) assumption that the premises are true.
+</span>
+
 <p>Now, we can ask a series of follow-up questions. How tight is the
 truth-preservation relationship? How often does it have to hold? How reliable
 does an inference need to be in order to call it &ldquo;valid&rdquo;? Different answers to
 these questions take us in two directions: deductive and inductive logic.</p>
-<h3 id="always">Always<button class="btn btn-back-to-top">
-    
-    <i class="bi bi-chevron-double-up"></i>
-    
-  </button>
-</h3>
-<hr>
-
-<p>With <strong>deductively valid</strong> inference, truth-preservation <em>always</em> holds. We want
-100% reliability in all situations whatsoever. No exceptions allowed.
-<em>Necessarily</em>, if the premises are true, the conclusion is true. Otherwise, its
-not deductively valid. This is a high standard we are asking for but it is very
-nice when we can identify this kind of air-tight reasoning.</p>
-<p>Here are some common examples of deductively valid inferences.</p>
-<ol start="4">
-<li>
-<p>If this superintelligent AI system is dangerous, then it gives a lot of bad
-advice. It does not give a lot of bad advice. So, this superintelligent AI
-system is not dangerous.</p>
-</li>
-<li>
-<p>Either it rained last night or the car is dry. The car is not dry. Thus, it
-rained last night.</p>
-</li>
-<li>
-<p>All dogs are friendly. Some dogs are chubby. So, some chubby animals are
-friendly.</p>
-</li>
-</ol>
-<p>In deductive logic, we use the symbol
-$$\vDash$$
-to stand for a deductively valid inference. So if we have a deductively valid
-inference going from premise $P_1,P_2,\dots$ to conclusion $C$, we can
-abbreviate this with symbols:</p>
-<p>$$P_1,P2,\mathellipsis \vDash C$$</p>
-<p>In inference 5, for example, we have that $P_1$ is the sentence &ldquo;Either it
-rained last night or the car is dry&rdquo;, $P_2$ is &ldquo;The car is not dry&rdquo;, and $C$ is
-&ldquo;It rained last night&rdquo;. So, we can write the inference as:</p>
-<p>$$\text{Either it rained last night or the car is dry}, \text{The car is not
-dry}\vDash \text{It rained last night}$$</p>
-<h3 id="mostly">Mostly<button class="btn btn-back-to-top">
-    
-    <i class="bi bi-chevron-double-up"></i>
-    
-  </button>
-</h3>
-<hr>
-
-<p>With <strong>inductively valid</strong> inference, truth-preservation <em>mostly</em> holds. If the
-premises are true, the conclusion is <em>probably</em> true. The likelihood could be
-slightly increased (weak induction) or greatly increased (strong induction).
-Either way, assuming that the premises are true gives us <em>some</em> reason to
-believe the conclusion is true. Inductive inference is not air-tight. There is a
-chance of going from truth to falsity, but that is a risk we have to take when
-we are dealing with uncertain information.</p>
-<p>Here are some common examples of inductively valid inferences. In each of these
-examples, the premises give us good reason to believe the conclusion, but <em>none</em>
-of these &lsquo;risky&rsquo; inferences qualifies as a deductively valid inference (all of
-them are deductively invalid).</p>
-<ol start="7">
-<li>
-<p>It looks like a duck. It quacks like a duck. So, it is a duck.</p>
-</li>
-<li>
-<p>Strict AI laws have a support of around 80% in a randomly selected sample of
-20.000 voters. Therefore, support for strict AI laws in the general public is
-around 80%.</p>
-</li>
-<li>
-<p><i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/GPT-4"
-  target="_blank">GPT-4</a> improved upon
-<i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/GPT-3"
-  target="_blank">GPT-3</a>, which improved upon
-<i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/GPT-2"
-  target="_blank">GPT-2</a>, which, in turn, improved upon
-<i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/GPT-1"
-  target="_blank">GPT-1</a> in terms of coherence and
-relevance. Therefore, the next generation of GPT models will further improve in
-this respect.</p>
-</li>
-</ol>
-<p>In inductive logic, we use the symbol $$\mid\approx$$ to stand for an
-inductively valid inference, writing $$P_1, P_2, \dots\mid\approx C$$ to say
-that the inference from premises $P_1, P_2, \mathellipsis$ to conclusion $C$ is
-inductively valid. To say that an inference is inductively <em>strong</em>, we write a
-$!$ on top, like so: $$\stackrel{!}{\mid\approx}$$. So if we have a inductively
-strong inference going from premises $P_1, P_2, \dots$ to conclusion $C$ we can
-abbreviate this with symbols: $$P_1, P_2, \dots\stackrel{!}{\mid\approx} C.$$</p>
-<h2 id="formalization">Formalization<button class="btn btn-back-to-top">
+<h2 id="formally--logical-validity">Formally &ndash; Logical validity<button class="btn btn-back-to-top">
     
     <i class="bi bi-chevron-double-up"></i>
     
@@ -843,172 +759,695 @@ abbreviate this with symbols: $$P_1, P_2, \dots\stackrel{!}{\mid\approx} C.$$</p
 </h2>
 <hr>
 
-<p>By steps, we can make things even more precise. One of the steps we mentioned in
+<p>Take our first example again:</p>
 
 
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/socrates_inference.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="400px"  alt="" >
 
-<a href="https://logicalmethods.ai/textbook/logic-and-ai/"
-   
-   
-   
-   
-   
-   >
-Chapter 1. </a>
 
- is <strong>formalization</strong>. We can build
-formal languages and study their properties. We can also develop theories about
-how these kind of formal patterns map onto ordinary human communication and
-thinking.</p>
-<p>One powerful idea in logic is that different inferences have the same <strong>logical
-form</strong>. This allows us to identify many valid inferences all at once, just by
-studying their shared form. Reasoning that can be captured in a finite set of
-symbols and rules can also be programmed into a computer. This was essentially
-the idea that sparked the first wave of AI research in the 1950s.</p>
-<p>The next chapter will delve into more details of formal syntax and how to
-interpret the logical forms of sentences. We will mention just a few examples of
-formalisation that are useful for this chapter.</p>
-<ul>
-<li>
-<p>The symbol &ldquo;$\neg$&rdquo; can be read &ldquo;not&rdquo; in English. $\neg A$ says &ldquo;Not $A$.&rdquo;</p>
-</li>
-<li>
-<p>The symbol &ldquo;$\land$&rdquo; can be read &ldquo;and&rdquo; in English. $A\land B$ says &ldquo;Both $A$
-and $B$.&rdquo;</p>
-</li>
-<li>
-<p>The symbol &ldquo;$\rightarrow$&rdquo; can be read &ldquo;if, then&rdquo; in English. $A\rightarrow B$
-says &ldquo;If $A$, then $B$&rdquo;.</p>
-</li>
-</ul>
-<p>Let&quot;s see how this formalisation is used:</p>
-<ol>
-<li>
-<p>The inference form of &ldquo;modus ponens&rdquo; looks like this: $ A\rightarrow B,
-A\vDash B$. This sequence of symbols says that whenever you put together two
-separate pieces of information, a premise &ldquo;If $A$, then $B$&rdquo; and a premise $A$,
-you can validly infer the conclusion $B$. We said that example 2. follows this
-pattern. Here are some more examples. These are all instances of &ldquo;modus ponens&rdquo;:</p>
-<ol start="10">
-<li>
-<p>If programming is difficult to learn, then some people cannot do it.
-Programming is difficult to learn. Therefore, some people cannot do it.</p>
-</li>
-<li>
-<p>If ELIZA ever beat GPT-3.5 in the Turing Test, then it is cutting-edge AI
-technology. <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://arxiv.org/abs/2310.20216"
-  target="_blank">ELIZA did beat GPT-3.5</a> in the
-Turing Test. So, ELIZA is cutting-edge AI technology.</p>
-</li>
-<li>
-<p>If the sun will rise tomorrow, then you will win the lottery next week. The
-sun will rise tomorrow. So, you will win the lottery next week.</p>
-</li>
-</ol>
-<p>In logic, we represent inferences 10.-12. the same way. They have the same
-form but different content. As we will show later, the form is enough to
-explain why all of these inferences are valid. Obviously, this does not
-guarantee that the conclusion is actually true!</p>
-</li>
-<li>
-<p>The fallacy of &ldquo;affirming the consequent&rdquo; looks like this: $ A\rightarrow B,
-B\nvDash A$. This sequence of symbols says that if you put together two separate
-pieces of information, a premise &ldquo;If $A$, then $B$&rdquo; and a premise $B$, it is
-invalid to infer the conclusion $A$. If you use this reasoning, you are making a
-mistake. We said that example 1. commits this mistake. Here are some more
-examples:</p>
-<ol start="13">
-<li>
-<p>If ZFC is consistent, it cannot settle the value of BB(8000). ZFC cannot
-<i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://scottaaronson.blog/?p=2725"
-  target="_blank">settle the value of BB(8000)</a>. So, ZFC is
-consistent.</p>
-</li>
-<li>
-<p>If Strong AI is possible, then there is a flaw in the <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://plato.stanford.edu/entries/chinese-room/"
-  target="_blank">Chinese Room thought
-experiment</a>. There is a flaw
-in the Chinese Room thought experiment. Therefore, Strong AI is possible.</p>
-</li>
-<li>
-<p>If Topsy was an elephant, then Topsy had a trunk. Topsy had a trunk. So,
-<i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Topsy_%28elephant%29"
-  target="_blank">Topsy was an elephant</a>.</p>
-</li>
-</ol>
-<p>Again, we can represent 13.-15. the same way and this common structure can
-explain why all of these inferences are invalid. This means that they use
-reasoning. It does not necessarily mean that all of these inferences have
-false conclusions! For example, the conclusion of 15. is true, but it would
-be a mistake if you came to believe this conclusion by using this fallacious
+<p>This is, of course, a valid inference: under the assumption that the premises
+are true, so is the conclusion. But note that for this, it doesn&rsquo;t matter that
+we&rsquo;re talking about Socrates or mortality. If we change the term
+
+<span class="excalifont "> Socrates</span>
+ to, say,
+
+<span class="excalifont ">Alan Turing</span>
+, and we change the <abbr title="expression that ascribes a property"><a  class="link-underline-opacity-0 link-body-emphasis"> predicates</a></abbr>
+
+<span class="excalifont ">human</span>
+ and 
+<span class="excalifont ">mortal</span>
+
+to, say, 
+<span class="excalifont ">mathematician</span>
+ and 
+<span class="excalifont ">smart</span>
+,
+we&rsquo;d get the following inference, which is also valid:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/turing_inference.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="500px"  alt="" >
+
+
+<p>Also our example from above about <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IE</span>
+ being able to fly is the
+result of changing 
+<span class="excalifont ">Socrates</span>
+ to
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/there_is.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+
+,
+
+<span class="excalifont ">human</span>
+ to 
+<span class="excalifont ">cat</span>
+, and 
+<span class="excalifont ">mortal</span>
+ to 
+<span class="excalifont ">can fly</span>
+. In fact, for <em>every</em> way of replacing terms and predicates like this, the inference remains valid.</p>
+<p>In logical theory, we say that the argument is valid <em>in virtue of its logical
+form</em>. We can express the shared <strong>logical form</strong> of the inferences in question
+as follows:
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/syllogism_inference.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="800px"  alt="" >
+
+
+Here, the 
+<span class="excalifont ">A</span>
+ and
+
+<span class="excalifont ">B</span>
+ are placeholders for arbitrary predicates,
+and the lower-case 
+<span class="excalifont ">c</span>
+ is an arbitrary term. The
+idea is that whichever expressions we put in for
+
+<span class="excalifont ">A,B</span>
+ and 
+<span class="excalifont ">c</span>
+, as
+long as they&rsquo;re of the right grammatical category, we&rsquo;ll get a valid inference.
+By representing the logical form of our inference in this way, we&rsquo;re
+<em>abstracting away</em> from the logically irrelevant predicates and terms and obtain
+an abstract representation of the logical form.</p>
+<p>So far, we&rsquo;ve discussed the idea of logical form in natural language. But as
+we&rsquo;ve discussed in the previous chapter, for the purposes of AI research, we
+need to work in <em>formal</em> languages. We haven&rsquo;t encountered a formal language
+yet that is expressive enough to represent our inference about Socrates, but we
+can illustrate the point with relation to <abbr title="modus ponens"><a  class="link-underline-opacity-0 link-body-emphasis"> MP</a></abbr>, which is the following inference schema, introduced in the previous
+chapter:
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/modus_ponens.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="500px"  alt="" >
+
+
+In the language of propositional logic, we can express this logical form more
+precisely using the logical operators we&rsquo;ve introduced in the previous chapter.
+Remember that 
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/conditional.png" class="inert-img" height="18px"  style="ZgotmplZ" alt="" >
+
+ represents the natural language &ldquo;if …, then …&rdquo;. In formal
+languages, we let letters like 
+<span class="excalifont ">A,B</span>
+ represent
+arbitrary formulas, like in the schema we wrote before. So, in purely formal
+terms, we can write the inference as:
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/mp_schematic.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="200px"  alt="" >
+
+
+To be able to write this in one line, we also use the symbol 
+<span class="excalifont ">∴</span>
+ (read &ldquo;therefore&rdquo;) in place of the inference line like so: 
+<span class="excalifont ">A, (A → B) ∴ C</span>
+.</p>
+<p>To express the logical claim that <abbr title="modus ponens"><a  class="link-underline-opacity-0 link-body-emphasis"> MP</a></abbr>
+is valid we use the logical symbol 
+<span class="excalifont ">⊨</span>
+, which is
+called the &ldquo;double turnstile&rdquo; or &ldquo;models&rdquo; (for reasons we&rsquo;ll get into later).
+So, we write the validity of MP in purely formal notation as 
+<span class="excalifont ">A, (A → B) ⊨ B</span>
+.</p>
+<p>By the way, it&rsquo;s important to distinguish between the inference
+
+<span class="excalifont ">A, (A → B) ∴ C</span>
+ and its validity
+
+<span class="excalifont ">A, (A → B) ⊨ B</span>
+: there are logical systems where
+MP is <em>not</em> valid. In those contexts, an AI system might
+still—fallaciously—reason according to MP, i.e. it might apply 
+<span class="excalifont ">A, (A → B) ∴ C</span>
+ even though, in this context, 
+<span class="excalifont ">A, (A → B) ⊭ B</span>
+.</p>
+<p>Validity in virtue of logical form, as just discussed, is known as <strong>logical
+consequence</strong>. But, importantly, not <em>all</em> valid inferences are logically
+valid—valid in virtue of their logical form. Consider the following inference,
+for example:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/uncle_inference.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="500px"  alt="" >
+
+
+<p>Following the truth-preservation criterion, this inference is certainly valid.
+Under the assumption that 
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/sigma_premise.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+
+
+it&rsquo;s true that 
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/sigma_conclusion.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+
+
+since an uncle is, by definition, a parent&rsquo;s male sibling.</p>
+<p>But if we replace 
+<span class="excalifont ">brother</span>
+ with 
+<span class="excalifont ">sister</span>
+, for example, we get the following <em>in</em>valid inference:
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/sigma_aunt.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="500px"  alt="" >
+
+
+If we assume that 
+<span class="excalifont ">Σ</span>
+ is <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+&rsquo;s mother&rsquo;s
+sister, 
+<span class="excalifont ">Σ</span>
+ is <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+&rsquo;s aunt and not their
+uncle. This shows that the inference is not valid in virtue of its form, which
+is something like:
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/form_uncle.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="500px"  alt="" >
+
+</p>
+<p>But the inference <em>is</em> valid … in a sense. The validity of the inference depends
+on the concrete predicates involved—the
+meanings of 
+<span class="excalifont ">brother</span>
+,
+
+<span class="excalifont ">mother</span>
+, and
+
+<span class="excalifont ">uncle</span>
+. In logical theory, we also call
+inferences like this, which are valid, but not in virtue of their logical form,
+<strong>materially valid</strong>. While logical validity—validity in virtue of logical
+form—is is <strong>domain-general</strong>, material validity is <strong>domain-specific</strong>. As
+we&rsquo;ve seen, for the validity of our inference about Socrates it doesn&rsquo;t matter
+that we&rsquo;re talking about Socrates, being human, or being mortal, but for the
+validity of our inference about <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+&rsquo;s uncle, it does matter that we&rsquo;re
+talking about his mother&rsquo;s brother and not sister.</p>
+<p>This means that the classification of valid inferences we&rsquo;ve discussed before
+needs to be further qualified on the deductive side:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/logical_material.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="700px"  alt="" >
+
+
+<p>The distinction between domain-general and domain-specific inference is crucial
+to understand some recent advances in AI research: while <abbr title="large language models"><a  class="link-underline-opacity-0 link-body-emphasis"> LLMs</a></abbr> are getting better and better at
+domain-<em>specific</em> inference, such as inference in mathematics, they are still
+underperforming in domain-<em>general</em>, logical inference. Some researchers speculate
+that improving the domain-general reasoning abilities of AI systems improves
+their domain-specific reasoning abilities as well.</p>
+<p>There is close connection between logical and material validity. Some
+logician&rsquo;s, like <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://de.wikipedia.org/wiki/Rudolf_Carnap"
+  target="_blank">Rudolf Carnap</a>,
+have suggested that we can <em>reduce</em> material validity to a special case of
+logical validity under additional assumptions, so-called &ldquo;meaning postulates&rdquo;.
+His idea is based on the observation that the material validity of the inference
+about <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+&rsquo;s uncle can be expressed in the <em>logical</em> validity of the
+following inference:
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/valid_uncle.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="700px"  alt="" >
+
+
+Here the statement 
+<span class="excalifont ">the brother of a person's mother is their
+uncle</span>
+ is a meaning postulate, which captures (part of) the
+meaning of the term 
+<span class="excalifont ">uncle</span>
+.
+While</p>
+<h2 id="always--deductive-validity">Always &ndash; Deductive validity<button class="btn btn-back-to-top">
+    
+    <i class="bi bi-chevron-double-up"></i>
+    
+  </button>
+</h2>
+<hr>
+
+<p>We&rsquo;ve previously defined a deductively valid inference to be one where the
+premises <em>necessitate</em> the conclusion. We can think of this as stipulating that
+truth-preservation <em>always</em> holds. In deductive inferences, we want 100%
+reliability in all situations whatsoever. No exceptions allowed. <em>Necessarily</em>,
+in any situation where the premises are true, the conclusion is true as well.
+Otherwise, if there&rsquo;s a situation where the premises are true and the conclusion
+isn&rsquo;t, the inference is deductively <em>in</em>valid. This is a high standard we are
+asking for but it is very useful when we can identify this kind of air-tight
 reasoning.</p>
-</li>
-</ol>
-<p>We have now said a lot about the concept of validity. But what do the tools of
-logical analysis look like? How do we use logical form to identify <em>whether an
-inference is valid</em>? That is our next topic.</p>
-<h2 id="deduction">Deduction<button class="btn btn-back-to-top">
-    
-    <i class="bi bi-chevron-double-up"></i>
-    
-  </button>
-</h2>
-<hr>
+<p>
 
-<p>The study of deduction goes back to ancient philosophy and mathematics.
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/ai_asteroid.png" class="rounded  float-start inert-img img-fluid mx-3"  width="400px"  alt="" >
+
+
+Deductive reasoning is characteristic of <strong>mathematical inference</strong>, which we
+encounter not only in pure math, but also in applications of mathematics in
+physics and the natural sciences. When we make predictions, for example, about
+the trajectory of an asteroid heading towards earth, this involves a lot of
+deductive, mathematical reasoning. We start with some empirical observations
+and apply physical laws, but the actual calculation is deductive. That means
+that, assuming the calculations are carried out correctly, the result is as
+certain as the observation: the only reason why the prediction could be wrong
+is that the assumptions—the laws or observations—are wrong.</p>
+<p>Since the rules for deductive logic are <em>indefeasible</em>, they are suited to
+<strong>belief accumulation</strong>. These rules do not vary between contexts. They do not
+require special justification. There is nothing that can make these rules fail.
+Nothing can defeat a deductively valid inference.</p>
+<p>
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/fox.png" class="rounded  float-end inert-img img-fluid mx-3"  width="300px"  alt="" >
+
+
+The optimal way of using deduction is to take a set of existing beliefs (or
+knowledge) and then add more beliefs (or knowledge) by applying logical rules.
+A common, real world <em>implementation</em> of deductive reasoning occurs whenever we
+apply some general pattern to a specific case. For example,
 <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://plato.stanford.edu/entries/aristotle-logic/"
-  target="_blank">Aristotle</a> considered it
-to be the pinnacle of reasoning.
-<i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Euclidean_geometry"
-  target="_blank">Euclid</a> used deductive
-reasoning to prove things about basic geometry. He also introduced the
-<strong>axiomatic method</strong>. This method has two parts: axioms and rules. An axiom is
-just a definition.</p>
-<p>The first Euclidan axiom says &ldquo;between any two points there is a line&rdquo;, which
-partly defines the abstract concepts of <em>point</em> and <em>line</em> by telling us how
-these things relate to each other. The other part of this method is a set of
-rules for reasoning. In other words: logic.</p>
-<p>Rules for deductive logic are <em>indefeasible</em> and suited to belief
-<em>accumulation</em>. These rules do not vary between contexts. They do not require
-special justification. There is nothing that can make these rules fail. Nothing
-can defeat a deductively valid inference.</p>
-<p>The optimal way of using deduction is to take a set of existing beliefs (or
-knowledge) and then add more beliefs (or knowledge) by applying logical rules. A
-common, real world <em>implementation</em> of deductive reasoning occurs whenenever we
-apply some general pattern to a specific case:</p>
-<ol start="16">
-<li>
-<p>Vixens are female foxes. That is the definition of the concept <em>vixen</em>.
-Suppose you know this and you hear someone say &ldquo;there is a vixen living in the
-forest!&rdquo;. In that case, you might use deduction to infer that there is a fox
-living the forest.</p>
-</li>
-<li>
-<p>Suppose that you live in a village where the bus does not run on days when
-there is a football match. You know about this policy. You also know that there
-is a football match today. If you put together these existing beliefs, you might
-use deduction to infer that there is no bus running today.</p>
-</li>
-</ol>
-<p>Like the examples of &ldquo;modus ponens&rdquo;, we have here two examples of inferences
-with the same logical form. It is actually closely related to &ldquo;modus ponens&rdquo; but
-also involves the <strong>quantifier</strong> &ldquo;all&rdquo; or &ldquo;every&rdquo;. In example 16. there is an
-implicit premise &ldquo;all vixens are female foxes&rdquo;. In example 17. there is an
-implicit premise &ldquo;all days with footbal are days without the bus&rdquo;.</p>
-<p>Both of these inferences simply apply general pattern to a specific instance.
-That reasoning is correct as long as the  word &ldquo;all&rdquo; <em>really</em> means &ldquo;all&rdquo;. If we
-assume that a totally general pattern is true &ldquo;all Ps are Qs&rdquo; and &ldquo;this is P&rdquo; is
-also true, it has to be true that &ldquo;this is Q&rdquo;. The conclusion follows
-necessarily.</p>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Fox"
+  target="_blank">vixens</a> are female foxes. That is the
+definition of the concept <em>vixen</em>. Suppose you know this and you hear someone
+say &ldquo;there is a vixen living in the forest!&rdquo;. In that case, you might use
+deduction to infer that there is a fox living the forest.—This kind of
+deductive inference should be carried out by any reasoning AI system, such as
+expert systems, but also reasoning <abbr title="large language models"><a  class="link-underline-opacity-0 link-body-emphasis"> LLMs</a></abbr>, such as OpenAI&rsquo;s <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/OpenAI_o4-mini"
+  target="_blank">o4-mini</a> or Deepseek&rsquo;s <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/DeepSeek"
+  target="_blank">R1</a>.</p>
+<p>Moreover, many <strong>programming languages</strong> are essentially formal languages with
+deductive rules. This is a perfect way to apply logical methods. Consider the
+code snippet below. This simple Python snipped is supposed to take an input
+that is a whole number and identify whether it is a positive number or not:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/python.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="600px"  alt="" >
+
+
+<p>Imagine what would happen if the computer did, effectively, not obey deductive
+rules like &ldquo;modus ponens&rdquo;. We would have no idea what to expect when we run this
+program. Sometimes when you ran the program and entered the number 1, you might
+get the correct answer that 1 is a positive number, but other times you might
+you get no answer at all. That would be useless and frustrating. In order to
+make the behavior of programs predictable, we want them to effectively follow
+deductive rules of reasoning.</p>
+<p>We&rsquo;ve already encountered some examples of deductively valid inferences, like
+the one concerning Socrates&rsquo; mortality. Here are some further examples of
+inference <em>schemas</em>, which are often considered to be deductively valid in
+propositional logic:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/inference_patterns.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="700px"  alt="" >
+
+
+<p>Similarly, we&rsquo;ve seen some inference patterns that may seem deductively valid,
+but are generally agreed to be <strong>fallacies</strong>:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/propositional_fallacies.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="700px"  alt="" >
+
+
+<p>One of the central aims of deductive logic is to provide a <strong>theory of
+deductively valid inference</strong> which can account for the apparent deductive
+validity and invalidity of the above inference schemas.</p>
+<p>
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/there_is_wants.png" class="rounded  float-end inert-img img-fluid mx-3"  width="300px"  alt="" >
+
+
+The standard approach to developing such an account is the <strong>semantic
+approach</strong>. The basic tool it uses is that of a <strong>semantic model</strong>. A semantic
+model is like a picture of a possible reasoning scenario. Think for example of
+the scenario we considered above, where all cats—and thus <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IE</span>
+—could fly. If we look
+at a model, we can ask whether a specific sentence
+
+<span class="excalifont ">A</span>
+ is true or not in that model. Every model
+gives an answer. It assigns a definite truth-value to each sentence. If we take
+the sentence 
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/there_is.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+
+
+<span class="excalifont "> can fly</span>
+
+and consider the scenario, where cats can fly, we get the answer that the
+sentence is <em>true</em>. But if we evaluate the sentence relative to the way things
+actually are, the answer is that it&rsquo;s not <em>true</em>.</p>
+<p>In logical theory, semantic models are defined relative to a formal language
+and the concrete definition of a model depends on the specifics of the language
+under consideration. In fact, as we&rsquo;ll see a lot of work goes into defining the
+notion of a model with mathematical precision. So, we&rsquo;ll have to postpone this
+to later lessons. But what we <em>can</em> talk about is the general pattern that all
+semantic definitions of deductively valid inference follow.</p>
+<p>For this, let&rsquo;s assume that we&rsquo;re dealing with a formal language 
+<span class="excalifont ">L</span>
+, defined in terms of an alphabet and grammar,
+for which we&rsquo;ve defined the notion of a model, such that for every model 
+<span class="excalifont ">M</span>
+ for 
+<span class="excalifont ">L</span>
+
+each formula 
+<span class="excalifont ">A</span>
+ of 
+<span class="excalifont ">L</span>
+ is either true or not. Generally speaking, a formal language
+has more than one model. Different models assign different values to the same
+sentences. In one model perhaps 
+<span class="excalifont ">A</span>
+ is true
+and  
+<span class="excalifont ">B</span>
+ is not. In another model 
+<span class="excalifont ">B</span>
+ is true and  
+<span class="excalifont ">A</span>
+ is not. That variation allows models to picture different
+scenarios.</p>
+<p>Now it&rsquo;ll be helpful to talk about
+<abbr title="collection of objects"><a  class="link-underline-opacity-0 link-body-emphasis"> sets</a></abbr> again.
+Remember that a set is collection of arbitrary objects, <em>anything</em> can be in a
+set—even abstract mathematical objects like models. So for each formula 
+<span class="excalifont ">A</span>
+, we can consider the set of models where
+the formula is true. We write this as 
+<span class="excalifont ">[A]</span>
+.
+Using the set-theoretic notation we introduced when talking about formal
+languages, we can write an explicit definition of this set using set abstraction:
+<p class="text-center">
+<span class="excalifont ">[A] = { M : M is a model, where A is true} </span>
+</p>
+<p>It can be helpful to imagine this set as part of a <strong>logical space</strong> of models.
+In the diagram below, we assume that every model 
+<span class="excalifont ">M</span>
+ for our language 
+<span class="excalifont ">L</span>
+
+&ldquo;lives&rdquo; in the yellow rectangle. We depict them as little blue balls or
+&ldquo;worlds&rdquo;. The green set (region) inside it is the set of all models where 
+<span class="excalifont ">A</span>
+ is true, i.e. 
+<span class="excalifont ">[A]</span>
+:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/logical_space.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="900px"  alt="" >
+
+
+<p>The set 
+<span class="excalifont ">[A]</span>
+ is also called the
+<strong>proposition</strong> expressed by the formula 
+<span class="excalifont ">A</span>
+.
+The set 
+<span class="excalifont ">[A]</span>
+ represents, as it were, the
+<em>semantic content</em> of the formula 
+<span class="excalifont ">A</span>
+ from a
+logical perspective.</p>
+<p>We can use this picture of logical space to define the notion of deductively
+valid inference, but first we need another bit of set theory. When all the
+members of one set, 
+<span class="excalifont ">S</span>
+, are
+also members of another set, 
+<span class="excalifont ">T</span>
+, we say
+that the set 
+<span class="excalifont ">S</span>
+ is a <strong>subset</strong> of 
+<span class="excalifont ">T</span>
+. Symbolically, we write: 
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/subset.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+
+. When there is at least one member in 
+<span class="excalifont ">S</span>
+ that is not in 
+<span class="excalifont ">T</span>
+, then 
+<span class="excalifont ">S</span>
+ is not a subset of 
+<span class="excalifont ">T</span>
+, symbolically: 
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/nsubset.png" class="inert-img" height="38px"  style="ZgotmplZ" alt="" >
+
+.</p>
+<p>Take, for example, the set that contains little Jimmy, the set
+that contains the number one and my beer, as well as Mr. Sir:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/set_big.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="400px"  alt="" >
+
+
+<p>Then consider the set that contains only little Jimmy and Mr. Sir:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/set_small.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="200px"  alt="" >
+
+
+<p>Then the latter set is a subset of the former, since both elements of the latter set—little Jimmy and Mr. Sir—are also members of the latter set:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/set_subset.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="600px"  alt="" >
+
+
+<p>The set that contains Mr. Sir and my beer, in contrast, is not a subset:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/big_set_nsubset.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="600px"  alt="" >
+
+
+<p>This is because the set contains my beer, which is not a member of the bigger set:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/nsubset_ex.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="800px"  alt="" >
+
+
+<p>Graphically, the subset-relation amounts to one set being &ldquo;enclosed by&rdquo; another:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/sub_vs_nsub.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="800px"  alt="" >
+
+
+<p>In the case of a simple inference (in a formal language), with just one premise
+
+<span class="excalifont ">P</span>
+ and conclusion 
+<span class="excalifont ">C</span>
+,
+we can directly understand deductive validity in terms of the subset relation.</p>
+<p>The idea is that we can understand truth-preservation—the idea that the
+conclusion is true under the hypothesis that the premises are true—can be
+spelled out using models:</p>
+<p class="text-center">
+<span class="excalifont ">
+<strong>Single-premise deductive validity</strong><br>
+
+=<br>
+
+In every model, where the premise P is true, the
+conclusion C must be true as well. 
+</span>
+
+<p>But in set-theoretic terms that just means that the set of models of the premise
+is a <em>subset</em> of the set of models of the conclusion: 
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/single_premise_validity.png" class="inert-img" height="38px"  style="ZgotmplZ" alt="" >
+
+.</p>
+<p>That is, for the inference from 
+<span class="excalifont ">P</span>
+ to 
+<span class="excalifont ">C</span>
+ to be valid, the situation needs to be like the
+one depicted here:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/p_entails_c.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="800px"  alt="" >
+
+
+<p>If, instead, there is a model where 
+<span class="excalifont ">P</span>
+ is
+true but 
+<span class="excalifont ">C</span>
+ is not, if there is a
+<strong>countermodel</strong> as depicted here, the inference is deductively invalid:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/p_nentails_c.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="800px"  alt="" >
+
+
+<p>To generalize this idea to arguments with multiple premises, we need one final
+set-theoretic concept. The <strong>intersection</strong> of two sets
+
+<span class="excalifont ">S</span>
+ and 
+<span class="excalifont ">T</span>
+,
+denoted 
+<span class="excalifont ">S ∩ T</span>
+  is
+the set that contains all and only the elements that are in <em>both</em> sets, i.e.</p>
+<p class="text-center">
+<span class="excalifont ">S ∩ T = { a : a ∈ S and a ∈ T}</span>
+
+<p>Visually, the idea of intersection can be represented as in the following
+diagram, where the intersection of 
+<span class="excalifont ">S</span>
+ and 
+<span class="excalifont ">T</span>
+
+is indicated by the shaded area:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/intersection_img.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="800px"  alt="" >
+
+
+<p>So, for example, the intersection of the set containing little Jimmy and Mr. Sir
+and the set containing little Jimmy and the number one is the set containing
+just little Jimmy:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/intersection_calc.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="600px"  alt="" >
+
+
+<p>When we have an inference with multiple premises
+
+<span class="excalifont ">P₁</span>
+, 
+<span class="excalifont ">P₂</span>
+, …, and conclusion 
+<span class="excalifont ">C</span>
+,
+we want to say that this inference is deductively valid just in case whenever
+all the premises are true, so is the conclusion. That is:</p>
+<p class="text-center">
+<span class="excalifont ">
+
+<strong>General deductive validity</strong><br>
+
+=<br>
+
+In every model, where P₁, P₂, … are all true, the
+C must be true as well. 
+</span>
+
+<p>But we can describe the models where 
+<span class="excalifont ">P₁</span>
+,
+
+<span class="excalifont ">P₂</span>
+, … are true in terms of the sets
+
+<span class="excalifont ">[P₁]</span>
+, 
+<span class="excalifont ">[P₂]</span>
+, …,
+where each individual formula is true:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/premise_intersection.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="600px"  alt="" >
+
+
+<p>This gives us the final definition deductively valid inference:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/validity_general.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="600px"  alt="" >
+
+
+<p>So, for an inference with two premises 
+<span class="excalifont ">P,Q</span>
+ and
+conclusion 
+<span class="excalifont ">C</span>
+ to be valid, the situation needs
+to like the one depicted here:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/valid_multi_premise.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="900px"  alt="" >
+
+
+<p>An example of a set-up, where the inference from 
+<span class="excalifont ">P,Q</span>
+  to 
+<span class="excalifont ">C</span>
+ is <em>in</em>valid is depicted here:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/invalid_multi_premise.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="900px"  alt="" >
+
+
+<p>This is, in abstract terms, the standard logical theory of deductive inference.
+But it is <em>truly</em> abstract: we haven&rsquo;t defined yet what a model really is. To
+obtain a workable definition for a concrete language—like the language of
+propositional logic—we need to supply the notion of a model for that language.
+What we have is a sort of <strong>blueprint</strong> for deductive validity: for any
+language, if we supply a definition of a model for that language and say what it
+means for a formula to be true in such a model, we obtain the notion of
+deductively valid inference in that language.</p>
+<p>So, if we want to show that disjunctive syllogism is deductively valid in
+propositional logic, for example, we need to show that:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/valid_ds.png" class="rounded mx-auto d-block inert-img img-fluid my-5"  width="500px"  alt="" >
+
+
+<p>That is, we need to show that in all models where 
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/a_or_b.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+
+ and 
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/neg_a.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+
+ are both true, 
+<span class="excalifont ">B</span>
+ is true as well.</p>
+<p>Similarly, if we want to show that denying the antecedent is</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/invalid_dc.png" class="rounded mx-auto d-block inert-img img-fluid my-5"  width="500px"  alt="" >
+
+
+<p>That is we need to show that there&rsquo;s a model where 
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/a_to_b.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+
+ and 
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/neg_a.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+
+ are true, but 
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/neg_b.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+
+ is not.</p>
+<p>To be able to do this, we need the notion of a model for the language of
+propositional logic and conditions when negations, disjunctions, conditionals,
+and so on are true in them—providing this is the core task of semantic theory.</p>
 <p>The concept of deductive validity is specialized. It makes sense to use
 deductive reasoning for specific tasks: reasoning in mathematics or other
-axiomatic theories, reasoning with precisely defined concepts or pattern that
+specific theories, reasoning with precisely defined concepts or pattern that
 are truly general. Notice how this air-tight reasoning is not quite the same
 thing as what Sherlock Holmes calls &ldquo;doing a deduction&rdquo;:</p>
 <div class="container " >
@@ -1036,168 +1475,7 @@ like inductive reasoning. Take a small sample and make an educated guess about
 the larger collection that it belongs to. That kind of reasoning is not
 indefeasible, it does not make a necessary connection. <em>We</em> do not call that
 deduction.</p>
-<p>Many <strong>programming languages</strong> are essentially formal languages with deductive
-rules. This is a perfect way to apply logical methods. Consider the code snippet
-below. This code is supposed to take an input that is a whole number and
-identify whether it is a positive number or not:</p>
-<pre tabindex="0"><code>num = int(input(&#39;Enter a whole number: &#39;))
-
-if num &gt; 0:
-     print(f&#39;{num} is positive.&#39;)
-else:
-     print(f&#39;{num} is not positive.&#39;)
-</code></pre><p>Imagine what would happen if the computer did, effectively, not obey deductive
-rules like &ldquo;modus ponens&rdquo;. We would have no idea what to expect when we run this
-program. Sometimes when you ran the program and entered the number 1, you might
-get the correct answer that 1 is a positive number, but other times you might
-you get no answer at all. That would be useless and frustrating. In order to
-make the behavior of programs predictable, we want them to effectively follow
-deductive rules of reasoning.</p>
-<h3 id="semantic-methods-for-deduction">Semantic methods for deduction<button class="btn btn-back-to-top">
-    
-    <i class="bi bi-chevron-double-up"></i>
-    
-  </button>
-</h3>
-<hr>
-
-<p>Let&rsquo;s now take a brief look at <strong>semantics</strong>. This is the part of logic where we
-give a model of meaning and truth. A semantics for a language delineates which
-inferences are deductively valid in that language. To keep things simple we will
-talk about a stripped-down formal language that only represents the logical form
-of &ldquo;and&rdquo; sentences like &ldquo;$A$ and $B$&rdquo;, represented $A\land B$.</p>
-<p>Even with a stripped-down formal language like this, we can learn a lot about
-deductive logic. The basic tool we will use is called a <strong>semantic model</strong>. A
-semantic model is like a picture of a possible reasoning scenario. If we look at
-a model, we can ask whether a specific sentence $A$ is true or false in that
-model. Every model gives an answer. It assigns a definite truth-value to each
-sentence.</p>
-<p>A formal language $\mathcal{L}$ has more than one model. Different models
-assign different values to the same sentences. In one model perhaps $A$ is
-true and $B$ is false. In another model $A$ is false and $B$ is
-true. That variation allows models to picture different scenarios. Once we have
-defined all possible models for a language $\mathcal{L}$, how do we use
-them?<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
-<p>For any sentence $A$ in our formal language, we will write $[A]$ to
-refer to the set of models where that sentence is true. With this notation we
-can talk about relations between sets of models $[A]$ and $[B]$ for any
-two sentences $A$ and $B$. When the elements of one set are also
-contained in another set, we say that there is a <strong>subset</strong> relation between
-them.</p>
-<p>For example, the set of triangle is a subset of the set of figures. The set of
-cats is a subset of the set of animals. All of the things in the first set are
-also in the second set. If $[A]$ is a subset of $[B]$, we write
-$[A]\subseteq[B]$.</p>
-<p>This relation is a good first step to defining deductive validity:<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
-<p>$$A\vDash B \text{ if, and only if, } [A]\subseteq[B]$$</p>
-<p>Why does this definition work? Let&rsquo;s analyze what this says. In the background
-we assume that there is well-defined notion of all possible models for our
-language. From there, we define $[A]$ and $[B]$ for any two sentences
-$A$ and $B$. Suppose that $[A]\subseteq[B]$ holds. That means for
-<em>absolutely any</em> model $\mathcal{M}$ of our language, if $\mathcal{M}$
-makes $A$ true, then $\mathcal{M}$ also makes $B$ true. That means
-that an inference from premise $A$ to conclusion $B$ would preserve
-truth in every possible scenario. It would <em>always</em> preserve truth. It is
-<em>necessarily</em> truth-preserving. And that is exactly the concept of <strong>deductive
-validity</strong> $\vDash$.</p>
-<p>The approach we have just described is very abstract. It can be used for <em>any</em>
-formal language. If we can explain how to define all possible models for a
-language, the definition of deductive validity just &lsquo;falls out&rsquo; of that
-collection of semantic models.</p>
-<p>To give an illustration of this method, let&rsquo;s look at some inferences with &ldquo;and&rdquo;
-sentences. When we write $A\land B$ it is supposed to represent a single
-complex sentence that combines two simpler thoughts. For example, we could
-formalise English sentences like this.</p>
-<ul>
-<li>
-<p>$P$ formalises &ldquo;Putnam is happy.&rdquo;</p>
-</li>
-<li>
-<p>$Q$ formalises &ldquo;Quine is happy.&rdquo;</p>
-</li>
-<li>
-<p>$P\land Q$ formalises &ldquo;Putnam and Quine are both happy.&rdquo;</p>
-</li>
-</ul>
-<p>If a person asserts $P$ and then asserts $Q$, they make two separate
-statements. If a person asserts $P\land Q$, they make one single statement
-that has a complex, inner structure made from a combination of simpler
-statements with the logical word &ldquo;and&rdquo;. Semantics can model the meaning of this
-logical word as an operation on sets of models. The relevant operation is called
-<strong>set intersection</strong>:</p>
-
-
-<img src="https://logicalmethods.ai/textbook/valid-inference/img/intersection.jpeg" class="img-thumbnail"    alt="Intersection" >
-
-
-<p>In the diagram, we see that there is a set $X$ and there is a set $Y$.
-Maybe these are sets of people or sets of numbers. It doesn&rsquo;t really matter. We
-just want to see what the intersection of two sets refers to. The intersection
-$X\cap Y$ is the overlapping part of those two sets. The elements of
-$X\cap Y$ are all of the things that are shared in common between $X$
-and $Y$.</p>
-<p>For example, if $F$ was the set of all fruits and $O$ was the set of all
-orange things, then $F\cap O$ would be the set of orange fruits. This
-intersection set contains mandarines, apricots, and mangoes but it does not
-contain bananas (not orange) and it does not contain carrots (not fruits).</p>
-<p>We can apply this operation to any two sets. What if we apply it to $[A]$
-and $[B]$? What does $[A]\cap[B]$ refer to? For <em>absolutely any</em> model
-$\mathcal{M}$ in the intersection set $[A]\cap[B]$, that same model
-$\mathcal{M}$ has to make $A$ true and $\mathcal{M}$ has to make
-$B$ true. This operation essentially takes the models of two separate
-sentences and cuts them down to the set of models that make both true at once.
-It is natural to identify the meaning of &ldquo;and&rdquo; with this operation: $$[A\land
-B] = [A]\cap[B].$$ This gives a very precise meaning to &lsquo;$\land$&rsquo; which we
-call the <strong>logical conjunction</strong>.</p>
-<p>Using these methods, we can establish some useful facts about valid inferences.
-The way we verify these facts is to just think carefully about the definitions
-of formal symbols like &lsquo;$\land$&rsquo; and &lsquo;$\vDash$&rsquo;. In other words, we are going to
-put the axiomatic approach into action. We take definitions of basic concepts
-and see where they lead. In this chapter, we will only sketch the explanations
-or proofs of these facts.</p>
-<ul>
-<li>$A\land B \vDash A$</li>
-</ul>
-<p>Why is this form of inference valid?</p>
-<p><em>Sketch of an Explanation</em>: $[A\land
-B]=[A]\cap[B]$ and since the intersection of two sets has to be part of each
-set, we know that $[A]\cap[B]\subseteq[A]$.</p>
-<ul>
-<li>If $A \vDash B$ and $A \vDash C$, then $A \vDash B\land C$</li>
-</ul>
-<p>This says that if there are two valid inferences using the same premises, you
-can also use those premises to validly infer a conjunction of the previous
-conclusions.</p>
-<p><em>Sketch of an Explanation</em>: Assuming that $A \vDash B$ and $A
-\vDash C$ hold we have $[A]\subseteq[B]$ and $[A]\subseteq[C]$. So if
-any model $\mathcal{M}$ is in $[A]$, the same  model $\mathcal{M}$
-also has to be in $[B]\cap[C]$. We have $[A]\subseteq[B]\cap[C]$.</p>
-<ul>
-<li>If $A \vDash C$, then $A\land B \vDash C$</li>
-</ul>
-<p>This principle says that if it is valid to infer a conclusion from some
-premises, then it is valid to infer the exact same conclusion after &lsquo;adding new
-information&rsquo; to those premises.</p>
-<p><em>Sketch of an Explanation</em>: We showed that $A\land B \vDash A$. So if we
-asume $A \vDash C$ then we have both $[A\land B]\subseteq[A]$ and
-$[A]\subseteq[C]$. This implies $[A\land B]\subseteq[C]$ because the
-subset relation is <strong>transitive</strong>: if first set is part of second, and second
-set is part of third, the first one has to be part of the third.</p>
-<p>The last fact is called <strong>monotonicity</strong> and it gets to the heart of what makes
-deduction special. If there is an element of your beliefs that implies a
-conclusion, then as long as you hold on to that original element your beliefs
-will always imply the same conclusion &ndash; no matter how much new information you
-aquire! This is why we say that deductive rules are <em>indefeasible</em>.</p>
-<p><i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/John_McCarthy_%28computer_scientist%29"
-  target="_blank">John
-McCarthy</a> was
-famously optimistic about the power of logical methods. He even thought we could
-use them to capture the kind of <em>commonsense reasoning</em> that most adults are
-capable of doing. This led to the field of <strong>knowledge representation</strong> where
-engineers try to formalise vast amounts of information. These are like axioms of
-a massively complicated theory, but the method has its limitations.</p>
-<h2 id="induction">Induction<button class="btn btn-back-to-top">
+<h2 id="mostly">Mostly<button class="btn btn-back-to-top">
     
     <i class="bi bi-chevron-double-up"></i>
     
@@ -1205,7 +1483,20 @@ a massively complicated theory, but the method has its limitations.</p>
 </h2>
 <hr>
 
-<p>The study of induction also has roots in ancient philosophy and psychology. The
+<p>With <strong>inductively valid</strong> inference, truth-preservation <em>mostly</em> holds. We&rsquo;ve
+defined an inductively valid inference as one where if  the premises are true,
+the conclusion is <em>probably</em> true. The likelihood could be slightly increased
+(weak induction) or greatly increased (strong induction). Either way, assuming
+that the premises are true gives us <em>some</em> reason to believe the conclusion is
+true. Inductive inference is not air-tight. There is a chance of going from
+truth to falsity, but that is a risk we have to take when we are dealing with
+uncertain information.</p>
+<p>
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/smoke_fire.png" class="rounded mx-2 float-start inert-img img-fluid"  width="400px"  alt="" >
+
+
+The study of induction also has roots in ancient philosophy and psychology. The
 Buddhist scholars, and brothers, <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://plato.stanford.edu/entries/logic-india/"
   target="_blank">Asaṅga and
@@ -1215,165 +1506,328 @@ associative thinking, tracking regularities in experience, and drawing
 structural analogies to be the cornerstones of real human belief-forming
 practices. This was an attempt to describe how the mind really functions to help
 us navigate a world where evidence is imperfect.</p>
-<p>Rules for inductive logic are <strong>defeasible</strong> and suited to <strong>belief
-modulation</strong>. These rules can vary between contexts. They often require special
-backing. These rules can fail, or perhaps a better way to put it is that an
-inductive rule can be better in some environments, worse in others.</p>
-<p>The early work on logic-based AI quickly shifted from deductive logic to
-inductive logic. The main reason is that induction is immensely important to a
-complete description of commonsense reasoning.</p>
-<p>Suppose that you agreed to meet Karl for lunch in a few minutes. Karl eats lunch
-every day in the canteen and he always gets there early. You infer that Karl is
-in the canteen now. This is inductively valid. However, as you are walking to
-the canteen you see that the building is on fire and the occupants are standing
-on the pavement watching the fire fighters put out the blaze. You <em>take back</em>
-the inference and the conclusion you previously drew. Now, you infer that Karl
-is not in the canteen (at least, you hope not).</p>
-<p>The optimal way of using induction is to take a set of existing beliefs (or
-knowledge) and then tentatively entertain the beliefs (or knowledge) that are
-most likely to be true based on your initial information. Some common, real
-world <em>implementations</em> of inductive reasoning occur when we use observations of
-similarities to infer the existence of a general pattern, or we apply so-called
-<em>generic</em> information.</p>
-<ol start="18">
-<li>
-<p>I tallied thousands of swans around the river Rhine. I tallied thousands of
-swans around the IJsselmeer. Every swan that I observed was white. So, I infer
-that all swans are white.</p>
-</li>
-<li>
-<p>Birds fly. Tweety is a bird. Thus, tweety flies.</p>
-</li>
-</ol>
-<p>The example of Tweety is a famous example of perfectly good induction, but one
-that obviously &lsquo;goes wrong&rsquo; in some contexts. Generic information like &ldquo;birds
-fly&rdquo; is very different from a truly general pattern. It is not talking about
-<em>absolutely every</em> bird. It means that most birds fly, typical birds fly. So if
-you apply this generic information to Tweety, then your conclusion is probably
-true. But this conclusion could be false if it turns out that Tweety is a
-penguin or an ostrich.</p>
-<h3 id="semantic-methods-for-induction">Semantic methods for induction<button class="btn btn-back-to-top">
-    
-    <i class="bi bi-chevron-double-up"></i>
-    
-  </button>
-</h3>
-<hr>
+<p>Inductive reasoning is characteristic of <strong>scientific
+inference</strong>, especially in disciplines where statistical empirical research
+plays an important role. For example, we commonly use <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Randomized_controlled_trial"
+  target="_blank">randomized control
+trials</a> in medical
+research to determine the whether a drug is effective. Very roughly, the idea is
+that we randomly allocate participants a drug or placebo (or the like) and see
+if one group (drug or placebo) has significantly better outcomes. Along the way,
+we control for various confounding factors. If the group with the drug has
+better outcome than the other, we conclude that the drug is effective. This is,
+ultimately, a form of inductive inference: we infer that a drug works from the
+fact that it has worked in many cases, which have been well-sampled.—The
+complete story is, of course, much more complicated (how <em>do</em> we guarantee that
+we sample well, what does &ldquo;significantly better&rdquo; mean, …), but at the heart of
+this lies inductive inference.</p>
+<p>
 
-<p>One way to approach semantics for inductive logic is to introduce
-<strong>probabilities</strong> into the picture of semantic models for deductive logic. The
-idea is that if we can talk about the probabilities of the premises and
-conclusion in our semantics, we can directly translate the idea of the premises
-making the conclusion (more) likely into our model. We will illustrate these
-ideas by focusing on a stripped-down formal language that only represents the
-logical form of &ldquo;and&rdquo; sentences.</p>
-<p>Assume that we have access to absolutely all possible models of our formal
-language, just like before with deductive logic. Remember from section 
-<a class="link-dark" href="#semantic-methods-for-deduction">2.3.1
-Semantic methods for deduction</a> that for a
-sentence $A$, the notation $[A]$ denotes the set of all the possible reasoning
-scenarios where $A$ is true. Similarly, we have the same definition of logical
-conjunction $$[A\land B] = [A]\cap[B]$$ within this background set of all
-models.</p>
-<p>In this setting, we introduce the probabilities as numeric measures of how
-likely it is that a given sentence is actually true.<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> For a
-sentence $A$, we write $$Pr(A)$$ to denote this measure. You can think of
-$Pr(A)$ as a measure of how likely it is that the way things actually are is
-among the possibilities $[A]$ according to which $A$ is true.</p>
-<p>There are a number of laws that probabilities satisfy. For example, the value of
-$Pr(A)$ must always be between $0$ and $1$ (inclusive): $$0\leq Pr(A)\leq
-1.$$ We&rsquo;ll study these laws later in the book, when we return to probabilities
-and inductive reasoning. For now, a simplified interpretation of the numbers
-$Pr(A)$ works just fine.</p>
-<p>For now, you can think of $Pr(A)$ as measuring the proportion of all possible
-scenarios that are $A$-scenarios. So, if $A$ is the sentence &ldquo;Robots can fly&rdquo;,
-$Pr(A)$ measures how many scenarios of all scenarios are ones where robots can
-fly. Assuming that all scenarios are equally likely, then if robots can fly in
-half of all scenarios, then $Pr(A)=0.5$. And if robots can fly in
-$\frac{3}{4}$ of all possible scenarios, then $Pr(A)=0.75$. And so on.</p>
-<p>Now that we have gotten some idea of probabilities in this way, we can talk
-about <strong>conditional probabilities</strong>: how likely it is that something&rsquo;s true
-<em>assuming that</em> something else is true. Remember from 
-<a class="link-dark" href="#hypothetically">above</a>
-that validity if a hypothetical concept. So to properly capture inductive
-validity, we need a notion of <em>hypothetical probability</em>.</p>
-<p>Mathematically, we write $Pr(B|A)$ for the conditional probability of $B$ given
-$A$. Intuitively,  $Pr(B|A)$ is a measure of how likely it is that $B$ is true
-assuming that the actual scenario is an $A$-scenario. That is, if $A$ is the
-sentence &ldquo;Pigs can fly&rdquo;, for example, and $B$ is &ldquo;horses can fly&rdquo;, then
-$Pr(B|A)$ asks how likely it is that horses can fly, assuming that pigs can fly.</p>
-<p>But how should we define this mathematically? It turns out that assuming the
-simplified interpretation of probabilities as proportion of scenarios from
-before gives us a very natural answer. The idea is to say that :
-$$Pr(B|A)=\frac{Pr(A\land B)}{Pr(A)}.$$ Basically, what this definition says is
-that $Pr(B|A)$ is a measure of the proportion of $A$-scenarios that are
-$B$-scenarios (look at the intersection diagram to see this immediately).</p>
-<p>With this out of the way, we get a very natural model of inductive validity by
-saying that: $$ P_1,P_2,\dots\mid\approx C \text{ if, and only if, }
-Pr(C|P_1\land P_2\land \dots)\geq Pr(C)$$ In words, the inference from $P_1,P_2,
-\dots$ to $C$ is inductively valid just in case the conditional probability of
-$C$ given $P_1,P_2, \dots$ is higher than the probability of $C$ not assuming
-the premises. <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Rudolf_Carnap"
-  target="_blank">Rudolf Carnap</a>
-coined the term &ldquo;increase of firmness&rdquo; for this relation.</p>
-<p>In fact, in this model we can also measure <em>how much</em> the premises raise the
-probability of the conclusion. This is simply $Pr(C|P_1\land P_2\land
-\dots)-Pr(C)$. Using this idea, we can define a <strong>strong inductive inference</strong>
-as one where the conditional probability of the conclusion given the premises is
-<em>much</em> larger ($\gg$) than that of the conclusion:
-$$P_1, P_2, \dots\stackrel{!}{\mid\approx} C \text{just in case }Pr(C|P_1\land P_2\land
-\dots) \gg Pr(C)$$</p>
-<p>Let&rsquo;s think about this model for inductive validity. Using it, we can establish
-some useful facts about inductive inferences. As before, we will only sketch the
-explanations or proofs of these facts. We start off with some commonalities
-between inductive and deductive logic.</p>
-<p>For example, we can easily show that:</p>
-<ul>
-<li>$A\land B \mid\approx A$</li>
-</ul>
-<p><em>Sketch of an Explanation</em>: This is inductively valid because the proportion of
-$A\land B$-scenarios which are $A$-scenarios is $1$: <em>all</em> $A\land B$-scenarios
-are $A$-scenarios. That is $Pr(A|A\land B)=1$. Since $0\leq Pr(A)\leq 1$, we
-know that $Pr(A|A\land B)\geq Pr(A)$.</p>
-<p><em>Question</em>: is the inference always inductively <em>strong</em>?</p>
-<p>But, crucially, we get that:</p>
-<ul>
-<li>It is possible to have $P_1,P_2,\dots \mid\approx C$, but not
-$Q,P_1,P_2,\dots\mid\approx C$.</li>
-</ul>
-<p>This says that <strong>monotonicity fails for induction</strong>. In other words, it can be valid
-to infer a conclusion from certain premises, but invalid to infer the exact same
-conclusion after &ldquo;adding new information&rdquo; to those premises. New information
-changes the conclusion we can inductively infer.</p>
-<p><em>Sketch of an Explanation</em>: Suppose you live in a town with a few vegans. You
-know that all those people ride bicycles, they do not own cars.</p>
-<p>In the diagram below, $Pr(A)$ is the probability of being a cyclist, $Pr(B)$ is
-the probability of eating meat, and $Pr(C)$ is the probability of being vegan:</p>
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/ai_rct.png" class="rounded mx-2 float-end inert-img img-fluid"  width="400px"  alt="" >
+
+ Since inductive reasoning is <strong>defeasible</strong>—it can be
+overturned by further evidence—it is well-suited to <strong>belief modulation</strong>: to
+change our beliefs in light of new evidence. Take the case of smoke means fire,
+for example. If <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+ sees smoke coming up behind the trees, it might
+think that there&rsquo;s an illegal open camp-fire burning in the woods. But if <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+ learns that that Mr. Sir often smokes his pipe in the forest, he might
+change his conclusions. Even though the original evidence didn&rsquo;t go away, it&rsquo;s
+been further supplemented by additional information, which changes the
+conclusions we draw. In this way, inductive logic is closely related to
+<strong>learning from evidence</strong>, which is a core concept of AI research.</p>
+<p>Similarly, inductive reasoning play a central role in <strong>prediction</strong>. We make
+predictions when we don&rsquo;t know what&rsquo;s going to happen: the weather, what the
+stock market will look like tomorrow, and so on. In fact, we&rsquo;ve already
+discussed how next-word-prediction is essentially the core concept underlying
+recent AI <abbr ><a  class="link-underline-opacity-0 link-body-emphasis"> LLMs</a></abbr></p>
 
 
-<img src="https://logicalmethods.ai/textbook/valid-inference/img/probabilities.jpg" class="img-thumbnail"    alt="" >
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/text_prediction.png" class="rounded mx-auto d-block inert-img img-fluid my-5"  width="700px"  alt="" >
 
 
-<p>For a randomly chosen person, $Pr(C)$ is not very high since the proportion of
-vegans, $C$, among the general population is low.</p>
-<p>At the same time, $Pr(C|A)$ is relatively high, <em>of the cyclists</em>, $A$, a much
-larger proportion is vegan than in the general population. This means that
-$Pr(C|A) &gt; P(C)$, and so $A\mid\approx C$. Or, in words, a randomly chosen
-person being a cyclist is inductive evidence for that person being vegan.</p>
-<p>But if we look at the proportion of bikers that are cyclist and meat eaters,
-obviously, <em>none</em> of them is a vegan&ndash;they&rsquo;re meat eaters, after all. This means
-that $Pr(C| A\land B)=0$. But since $Pr(C)$ is positive&mdash;there are <em>some</em>
-vegans, this means that $Pr(C| A\land B)\ngeq Pr(C)$ and so $A,B\mid\approx C$
-fails.</p>
-<p>The <strong>non-monotonicity</strong> of induction is very important. Perhaps a certain
-element of your beliefs implies a conclusion at this moment, but if you acquire
-new information then your <em>updated</em> beliefs might not imply the same conclusion
-anymore. This is why we say that inductive rules are <em>defeasible</em>. At one
-moment, in one context, it might be inductively good to infer a conclusion based
-on some limited information. At the next moment, based on new information, it is
-no longer inductively good to infer that same conclusion. You have to &rsquo;take
-back&rsquo; the previous &lsquo;outcome&rsquo; of your inferences.</p>
+<p>The examples we used to motivate the idea of logical form where all deductive
+inferences. But also <em>in</em>ductive logic, deals with logic form. Let&rsquo;s revisit
+some examples. First, take the inference about swans, perhaps the most
+traditional example of an inductive inference:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/swans_inference.png" class="rounded mx-auto d-block inert-img img-fluid my-5"  width="700px"  alt="" >
+
+
+<p>In light of the well-known fact that there are black swan&rsquo;s we&rsquo;ve slightly
+modified the example to a case where <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+ draws marbles from a jar:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/marbles_inference.png" class="rounded mx-auto d-block inert-img img-fluid my-5"  width="700px"  alt="" >
+
+
+<p>Note that there&rsquo;s the same kind of pattern going on that we&rsquo;ve observed in the
+case of the inference about Socrates&rsquo; mortality: we can replace one predicate
+with another and get what looks like another inductively valid inference.</p>
+<p>The underlying pattern of this inference is known as <strong>enumerative induction</strong>:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/enumerative_induction_1.png" class="rounded mx-auto d-block inert-img img-fluid my-5"  width="700px"  alt="" >
+
+
+<p>There are different ways in which enumerative induction is represented. Here&rsquo;s
+another:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/enumerative_induction_2.png" class="rounded mx-auto d-block inert-img img-fluid my-5"  width="350px"  alt="" >
+
+
+<p>The assumption here is, of course, that 
+<span class="excalifont ">a</span>
+,
+
+<span class="excalifont ">b</span>
+, 
+<span class="excalifont ">c</span>
+,
+… run through a sufficiently large number of instances.</p>
+<p>Just like in deductive logic, we can use formal languages to mathematically
+represent inductive inferences. Unfortunately, however, to express inference
+schemas like enumerative induction, we need more expressive languages than
+propositional logic, so this will have to wait. But what we <em>can</em> talk about
+now, is how inductive validity is defined in formal languages <em>in general</em>, just
+like we did for deductive validity.</p>
+<p>In inductive logic, we use the symbol 
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/inductive_validity.png" class="inert-img" height="26px"  style="ZgotmplZ" alt="" >
+
+ to stand for
+an inductively valid inference, writing
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/inductively_valid_inference.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="200px"  alt="" >
+
+
+to say that the inference from the premises
+
+<span class="excalifont ">P₁</span>
+, 
+<span class="excalifont ">P₂</span>
+, …,
+to the conclusion 
+<span class="excalifont ">C</span>
+
+inductively valid. To say that an inference is inductively <em>strong</em>, we write a
+
+<span class="excalifont ">!</span>
+ on top, like so 
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/inductively_strong_validity.png" class="inert-img" height="40px"  style="ZgotmplZ" alt="" >
+
+. So if we have a inductively
+strong inference going from premises 
+<span class="excalifont ">P₁</span>
+, 
+<span class="excalifont ">P₂</span>
+, …,
+to conclusion 
+<span class="excalifont ">C</span>
+ we can
+abbreviate this with symbols:
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/inductively_strong_inference.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="200px"  alt="" >
+
+</p>
+<p>There are different approaches to obtain a semantic definition of inductive
+validity, but the most prominent approach involves <strong>probability theory</strong>, which we
+use to spell out the idea of the premises making the conclusion more likely.</p>
+<p>A straight-forward way for implementing probabilities for the formal languages
+of logic &ldquo;piggy-backs&rdquo; on the notion of a model, which we&rsquo;ve used in deductive
+logic to define validity. So, we&rsquo;ll be working with a logical space, in which
+each formula 
+<span class="excalifont ">A</span>
+ has an associated set
+
+<span class="excalifont ">[A]</span>
+ of models where it is true.</p>
+<p>In inductive logic, we think of these models as ways the world could turn out to
+be. If we roll a 6-sided die, for example, there are six ways the world could
+turn out to be: it can come up 1, 2, 3, 4, 5, or 6. Each of these corresponds to
+a model:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/dice_worlds.png" class="rounded mx-auto d-block inert-img img-fluid my-5"  width="700px"  alt="" >
+
+
+<p>If in our language we have a formulas 
+<span class="excalifont ">EVEN</span>
+ and 
+<span class="excalifont ">ODD</span>
+, for example, to say that the outcome will be even or odd, then these would correspond to the following <abbr title="set of models"><a  class="link-underline-opacity-0 link-body-emphasis"> propositions</a></abbr>:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/even_odd_prop.png" class="rounded mx-auto d-block inert-img img-fluid my-5"  width="700px"  alt="" >
+
+
+<p>In standard <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Probability_space"
+  target="_blank">probability
+theory</a>, such a logical space
+is also known as an <strong>sample space</strong>, whose members represent different possible
+outcomes. In <em>logical</em> theory, however, the outcomes are just models: possible
+reasoning scenarios. The sets of models which we associate with our formulas,
+the <em>propositions</em>,  are called <strong>events</strong> in standard probability theory. From
+the perspective of logical theory, however, they are just the semantic content
+of formulas.</p>
+<p>A <strong>probability function</strong> is a mathematical function, which assigns to each
+<abbr title="set of models"><a  class="link-underline-opacity-0 link-body-emphasis"> propositions</a></abbr> a real number between 0
+and 1—the proposition&rsquo;s <strong>probability</strong>. Well talk about the laws of
+probabilities when we discuss concrete systems of inductive logic, but we can
+outline the basic ideas of inductive logic without worrying too much about the
+details.</p>
+<p>In our toy example of a die role, here&rsquo;s one way the probabilities could work
+out:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/fair_die.png" class="rounded mx-auto d-block inert-img img-fluid my-5"  width="700px"  alt="" >
+
+
+<p>This probability distribution corresponds to the assumption that our die is
+<em>fair</em>.</p>
+<p>But this is not the only way the probabilities could work out. For example, if
+we assume that the die we&rsquo;re dealing with is <em>loaded</em>, for example to be much
+more likely to roll a six, the probabilities could look like this:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/loaded_die.png" class="rounded mx-auto d-block inert-img img-fluid my-5"  width="700px"  alt="" >
+
+
+<p>We can use probabilities to mathematically spell out the idea that a conclusion
+is <em>likely</em> true on the hypothesis that the premises are. For this, we use the
+concept of <strong>conditional probabilities</strong>.</p>
+<p>We write 
+<span class="excalifont ">Pr([A] | [B])</span>
+ to
+denote the conditional probability of 
+<span class="excalifont ">A</span>
+ being
+true under the hypothesis that 
+<span class="excalifont ">B</span>
+ is true. The
+standard definition of this is given by the following formula:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/conditional_probability.png" class="rounded mx-auto d-block inert-img img-fluid my-5"  width="700px"  alt="" >
+
+
+<p>Here, we crucially need to assume that 
+<span class="excalifont ">Pr([B]) ≠ 0</span>
+ to avoid <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Division_by_zero"
+  target="_blank">division by zero</a>.
+What this formula says is that the conditional probability  
+<span class="excalifont ">Pr([A] | [B])</span>
+ of 
+<span class="excalifont ">A</span>
+ given 
+<span class="excalifont ">B</span>
+
+is the &ldquo;part&rdquo; of 
+<span class="excalifont ">B</span>
+&rsquo;s probability that is an 
+<span class="excalifont ">A</span>
+-probability—a measaure of the proportion of 
+<span class="excalifont ">A</span>
+ scenarios that are 
+<span class="excalifont ">B</span>
+ scenarios.</p>
+<p>Here&rsquo;s how this plays out in our previous two distributions if we ask ourselves
+what&rsquo;s the probability of the role being a two given that/under the hypothesis
+that it&rsquo;s even:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/two_given_even.png" class="rounded mx-auto d-block inert-img img-fluid my-5"  width="900px"  alt="" >
+
+
+<p>What we can see here is that the probability of the roll being a two <em>goes up</em>
+under the hypothesis that it&rsquo;s even: from  
+<span class="excalifont ">1/3</span>
+
+to 
+<span class="excalifont ">1/2</span>
+ in the case of the fair die, and from 
+<span class="excalifont ">1/10</span>
+ to 
+<span class="excalifont ">1/7</span>
+ in the case of the loaded die. In this sense, the hypothesis that the roll is even <em>supports</em> the conclusion.</p>
+<p>You might be worried about this increase of probabilities depending on the
+concrete numbers, but in fact, it doesn&rsquo;t. Once we&rsquo;ve introduced the laws of
+probability theory, we&rsquo;ll be able to show that for <em>any</em> assignments of
+mathematically coherent probabilities the hypothesis that the roll is even will
+raise the probability of the roll being a two. This gives us a clear sense of
+inductively valid inference:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/final_definition_single.png" class="rounded mx-auto d-block inert-img img-fluid my-5"  width="500px"  alt="" >
+
+
+<p>The <strong>strength</strong> of the inference can be determined in different ways, but the
+most straight-forward one is to look at the absolute increase of probability.
+That is, we measure the strength of an inductive inference by:</p>
+<p class="text-center">
+<span class="excalifont ">strength = | Pr([C] | [P]) - Pr([C]) |</span>
+
+<p>By the way: here the notation 
+<span class="excalifont ">| number |</span>
+ stands for the <em>absolute value</em>  of 
+<span class="excalifont "> number </span>
+, where, for example, 
+<span class="excalifont ">| -2 | = | 2 | = 2</span>
+.</p>
+<p>In general, the strength of an inductive inference is going to depend on concrete probabilities. For example, the strength of the inference from even to two assuming a fair die is:</p>
+<p class="text-center">
+<span class="excalifont ">| 1/3 - 1/6 | = 1/6</span>
+
+<p>Instead assuming the loaded die it&rsquo;s</p>
+<p class="text-center">
+<span class="excalifont ">| 1/10 - 1/7 | = 3/70</span>
+
+<p>Since 
+<span class="excalifont ">1/6 > 3/70</span>
+, the inference is (much)
+stronger assuming a fair die (which makes sense, given that assuming a loaded
+die, a six becomes <em>much</em> more likely given that the outcome is even, while
+assuming a fair die, all even results go up &ldquo;to the same degree&rdquo;).</p>
+<p>This gives us the chance to briefly revisit the distinction between
+domain-specific and domain-general, between material and logical validity. When
+the concrete probabilities matter in inductive inference, what we&rsquo;re dealing
+with is <em>material</em> inductive inference. This kind of inference figures much more
+in scientific inference. Logically valid inductive inference is a much rarer
+phenomenon, but it underpins the basic principles of belief revision,
+prediction, and more.</p>
+<p>It remains to generalize the notion of inductively valid inference to inferences
+with more than one premise 
+<span class="excalifont ">P₁</span>
+, 
+<span class="excalifont ">P₂</span>
+, …, and conclusion 
+<span class="excalifont ">C</span>
+.
+But given what we know now about intersection from the study of deductive
+inference, this is pretty straight-forward. The obvious definition is:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/valid-inference/img/final_definition_multiple.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="500px"  alt="" >
+
+
+<p>Similarly, one straight-forward way of calculating the strength of the inference
+is:
+<p class="text-center">
+<span class="excalifont ">strength = | Pr([C] | [P₁] ∩ [P₂] ∩ …) - Pr([C]) |</span>
+</p>
+<p>This gives us a blueprint for the study of inductively valid inference: once
+we&rsquo;ve supplied a theory of models (which we&rsquo;ll obtain from the study of
+deductive inference), all we need to supply is a theory of probabilities and we
+obtain a notion of inductively valid inference.</p>
 <h2 id="further-readings">Further readings<button class="btn btn-back-to-top">
     
     <i class="bi bi-chevron-double-up"></i>
@@ -1419,32 +1873,8 @@ influenced by the work of Rudolf Carnap:</p>
 Models and Cumulative Logics&rdquo;. <em>Artifical Intelligence</em>, 44: 167–207,
 1990.</a>.</li>
 </ul>
-<p><strong>Notes:</strong></p>
-<div class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn:1">
-<p>If you stopped here and thought &ldquo;yes, but <em>how do we</em> define all
-possible models for a language?&rdquo; Don&rsquo;t worry. We will explain this in detail
-later.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:2">
-<p>Why only a &ldquo;first step&rdquo;? Well, the main reason is that we know it
-is possible for an inference to use many premises. However, the way we are
-setting up this definition of validity, it only applies to inferences that have
-a single premise sentence. It is not a full definition.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:3">
-<p>In probability theory, there are many different ways of
-thinking about what probabilities &ldquo;really are&rdquo;: subjective estimates, objective
-chances, frequencies, or something else altogether. Here we avoid this question
-and treat probabilities intuitively. We return to the &ldquo;nature&rdquo; of probabilities
-later in the book.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-</ol>
 </div>
-</div>
-   <p><em>Last edited: </em>09/09/2024</p>
+   <p><em>Last edited: </em>12/09/2025</p>
 </div>
 
 
