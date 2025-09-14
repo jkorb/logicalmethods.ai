@@ -1,267 +1,72 @@
 ---
 title: Formal languages
 author: Johannes Korbmacher
-weight: 3
+weight: 20
+locked: false
 params: 
   id: exc-for
   math: true
 ---
 
-# BNFs {.solved}
+# Ambiguity
 
-## a) {.homework}
+Which of the following statements in natural language are 
+{{< abbr title="i.e. has two or more readings" >}}ambiguous{{< /abbr >}}? If
+you find an ambiguous statement, paraphrase the different readings to bring out
+the ambiguity. Try to find an inference, whose validity depends on the
+ambiguity, in the sense that it's valid under one reading and invalid under the
+other.
 
-Consider the following propositional language, described informally:
+1. I see his goose.
 
-{{< blockquote >}}
+2. I see her duck.
 
-We have three propositional variables $BLUE$, $GREEN$, and $RED$. Further, we
-have the propositional connectives $\neg,\land, \lor$, which work as usual, i.e.
-$\neg$ can be written in front of a formula to negate it, $\land$ can be written
-between two formulas flanked by parentheses to conjoin them, and similarly for
-$\lor$. Additionally, we have two unary modal operators $\square,\lozenge$, which can be
-written in front of a formula to form a new formula.
+3. He thanked her children, Alan and Ada. 
 
-{{< /blockquote >}}
+4. They greeted their parents, Bob, and Betty. 
 
-Determine the BNF of this language.
+5. I see a man with my binoculars.
 
-## b) 
+6. There's the woman with my telescope.
 
-Consider the following BNF for FOL. Describe the grammar of this language using
-induction, i.e. using clauses like in {{< chapter_ref chapter="formal-languages"
-id="grammar" >}} Section 3.2.2{{< /chapter_ref >}}:
+7. A friendly dog walker.
 
-$$\langle const\rangle ::= a_1 \mid \dots \mid a_n$$  
+8. I'm happy I'm here, and so is she.
 
-$$\qquad\langle var\rangle ::= x_1 \mid \dots \mid x_n$$
+9. The priest married my uncle.
 
-$$\langle unop\rangle ::= \neg$$
+10. They fed her dog food.
 
-$$\qquad\langle binop\rangle ::=\land\mid\lor\mid\to\mid\leftrightarrow$$
+# Over-expressiveness
 
-$$\langle quant\rangle ::= \forall\mid\exists$$
+Consider the following inference:
 
-$$\langle func\rangle^n ::= f_1^n\mid \dots \mid f_{k_n}^n$$
+{{< img src="img/presupposition.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="550px">}}
 
-$$\langle pred\rangle^n ::= P_1^n \mid \dots \mid P_{l_n}^n $$
+The inference is deductively invalid. Show this by providing a scenario in which
+the premise is true and the conclusion isn't. Explain how the
+over-expressiveness of natural language is responsible for the inference seeming
+to be valid.
 
-for $n=1,2,\dots$. This means that for each number $n=1,2,\dots$ there is a
-certain number $k_n$ of $n$-ary function symbols and another number $l_n$ of
-$n$-ary predicates. So, e.g., if $n=2$, then there are $k_2$-many functions that
-take $2$ arguments.
+# Sets 
 
-$$\langle term\rangle::= \langle const\rangle\mid\langle variable\rangle\mid
-\langle func\rangle^n(\langle term\rangle_1,\dots,\langle term\rangle_n)$$
+Describe the following sets using set notation:
 
-$$\langle atom\rangle::= \langle pred\rangle^n(\langle term\rangle_1,\dots\langle term\rangle_n)$$
+1. the set containing no object whatsoever—the so-called _empty_ set
 
-$$\langle fml\rangle::=\langle atom\rangle\mid\langle unop\rangle\langle fml\rangle\mid
-(\langle fml\rangle\langle binop\rangle \langle fml\rangle)\mid \langle quant\rangle \langle
-var\rangle\langle fml\rangle$$
+2. the set containing {{< logo >}}, Utrecht University, and the set containing
+{{< logo >}} and nothing else.
 
-_Hint_: You need to define more than just the set $\mathcal{L}$ by induction.
-You also need to define the _auxiliary_ sets of terms.
+3. the set of all even numbers between 1 and 10
 
-## c)
+4. the set of all even numbers 
 
-Consider the following formulas:
-
-$$p, q,(\neg p), (p\supseteq q), (p\mid\mid r), ((p\supseteq r)\\&\\&(\neg q))$$
-
-Determine a BNF, such that these are well-formed formulas according to the
-corresponding grammar. 
-
-_Note_: There are, of course, many different possible answers. Try to find the
-most "natural" one.
-
-## d) {.homework}
-
-Determine the BNF for the fragment of FOL, subject to the following constraints:
-
-+ We only have two unary predicates $RED,ROUND$ and one binary predicate
-$BIGGER$.
-
-+ There are no function symbols or constants.
-
-+ A quantifier ($\forall, \exists)$ can only occur when it's followed by a
-variable $\alpha=x,y,z,\dots$ and then a formula of the form $(P(\alpha)\to B)$,
-where $P$ is a unary predicate.
-
-## Solution {.solution #bnfsSolution}
-
-**a)**
-
-$$ A::= BLUE, GREEN, RED \mid \neg A \mid \Box A \mid \Diamond A \mid (A\land A) \mid (A\lor A) $$
-
-**b)** 
-
-+ If $a_i$ is a constant, then $a_i\in\mathcal{T}$
-+ If $x_i$ is a variable, then $x_i\in\mathcal{T}$
-+ If $f^n_i$ is an $n$-place function sign and $t_1,\ldots,t_n\in\mathcal{T}$, then $f^n_i(t_1,\ldots,t_n)\in\mathcal{T}$
-+ If $P^n_i$ is an $n$-place predicate and $t_1,\ldots,t_n\in\mathcal{T}$, then $P^n_i(t_1,\ldots,t_n)\in\mathcal{L}$
-+ If $A\in\mathcal{L}$, then $\neg A\in\mathcal{L}$
-+ If $A,B\in\mathcal{L}$, then $(A\land B), (A\lor B), (A\rightarrow B), (A\leftrightarrow B)\in\mathcal{L}$
-+ If $A\in\mathcal{L}$ and $x_i$ is a variable, then $\forall x_i A, \exists x_i A\in\mathcal{L}$
-
-**c)**
-
-$$ A::= p,q,r \mid \neg A \mid (A\supseteq A) \mid (A||A) \mid (A\\&\\&A) $$
-
-**d)**
-
-$$ \langle{var}\rangle ::= x_1 \mid \ldots \mid x_n $$
-
-$$ \langle{unop}\rangle ::= \neg $$
-
-$$ \langle{binop}\rangle ::= \land \mid \lor \mid \rightarrow \mid \leftrightarrow $$
-
-$$ \langle{quant}\rangle ::= \forall \mid \exists $$
-
-$$ \langle{pred}\rangle^1 ::= RED \mid ROUND $$
-
-$$ \langle{pred}\rangle^2 ::= BIGGER $$
-
-$$ \langle{atom}\rangle ::= \langle{pred}\rangle^n(\langle{var}\rangle_1,\ldots,\langle{var}\rangle_n) $$
-
-$$ \langle{fml}\rangle ::= \langle{atom}\rangle \mid
-\langle{unop}\rangle\langle{fml}\rangle \mid
-(\langle{fml}\rangle\langle{binop}\rangle\langle{fml}\rangle)$$
-$$\mid \langle{quant}\rangle\langle{var}\rangle(\langle{pred}\rangle^1(\langle{var}\rangle)\rightarrow\langle{fml}\rangle) $$
-
-# Formalization {.solved}
-
-## a) 
-
-You arrive at an uninhabited planet and find an old space rover that some
-ancient civilization that still used expert systems for AI used to explore the
-planet. You inspect its knowledge base and find the following code:
-
-+ $(RAIN\to SEEK\\_COVER)$
-
-+ $(SUN\to CHARGE\\_BATTERIES)$
-
-+ $((\neg CHARGE\\_BATTERIES\land SUN)\to REQUEST\\_REPAIR)$
-
-+ $(\neg(SUN\lor RAIN)\to INSPECT\\_SENSORS)$
-
-+ $(SHUT\\_DOWN\leftrightarrow ((REQUEST\\_REPAIR\land\neg REPAIR)\lor
-(INSPECT\\_SENSORS\land FAULTY)))$
-
-Explain these rules in natural language.
-
-## b) 
-
-Consider the following natural language claims. Translate them into a suitable
-propositional or FOL language:
-
-+ Alan Turing built the first computer but Ada Lovelace invented the first
-computer algorithm.
-                                                                                             
-+ Only if Alan Turing built the first computer, it's Monday today.
-                                                                                             
-+ Either Alan Turing or Ada Lovelace is your favorite computer scientist.
-                                                                                             
-+ Today is Monday if and only if both yesterday was Tuesday and tomorrow is
-Saturday.
-
-- A number that is greater than every even number is odd.
-
-- Every number is greater than at least one number.
-
-- There is an even number that is smaller than an odd number that is greater
-than another odd number.
-
-- There is no number that is greater than every number.
-
-- No number is greater than itself.
-
-- Every odd number is greater than 0.
-
-- Every odd number is greater than an even number.
-
-## c) {.homework}
-
-We're thinking of a scenario where there's a factory that makes balls. We want
-to create a robot that ultimately sorts balls by color and material. But we're not
-there yet, for now we need to represent the following knowledge claims about the
-factory to the robot:
-
-{{< blockquote >}}
-
-The balls we make have one of three colors, blue, red, and green. The blue balls
-are all made from rubber, but the red and green balls can be made of leather or
-rubber. Rubber balls are cheaper, but the leather balls are more durable than
-the rubber balls. 
-
-{{< /blockquote >}}
-
-Devise a suitable FOL-language and represent the knowledge claims in the above
-paragraph into a knowledge base $\mathbf{KB}$.
-
-## Solutions {.solution #formalizationSolution}
-
-**a)**
-
-+ If it is rainy, then seek cover.
-+ If it is sunny, then charge batteries.
-+ If batteries do not charge and it is sunny, then request repair.
-+ If it is neither rainy nor sunny, then inspect the sensors.
-+ Shut down if, and only if, you request repair and don't get it or you inspect the sensors and they are faulty.
-
-**b)**
-
-+ $BUILT(alan) \land INVENTED(ada)$
-+ $MON(today) \rightarrow BUILT(alan)$
-+ $FAVORITE(alan) \lor FAVORITE(ada)$
-+ $MON(today) \leftrightarrow (TUES(yesterday)\land SAT(tomorrow))$
-+ $\forall x((NUM(x)\land\forall y(EVEN(y)\rightarrow GREAT(x,y)))\rightarrow ODD(x))$
-+ $\forall x(NUM(x)\rightarrow\exists yGREATER(x,y))$
-+ $\exists x((NUM(x) \land EVEN(x)) \land \exists y(SMALL(x,y) \land((NUM(y) \land ODD(y)) \land \exists z(y\neq z \land NUM(z)\land ODD(z) \land GREAT(y,z)))))$
-+ $\neg\exists x(NUM(x) \land \forall y(NUM(y)\rightarrow GREAT(x,y)))$
-+ $\neg\exists x(NUM(x) \land GREAT(x,x))$
-+ $\forall x((NUM(x) \land ODD(x))\rightarrow GREAT(x,0))$
-+ $\forall x((NUM(x) \land ODD(x))\rightarrow \exists y(NUM(y)\land EVEN(y)\land GREAT(x,y)))$
-
-**c)**
-
-$$ \langle{var}\rangle ::= x \mid y $$
-
-$$ \langle{unop}\rangle ::= \neg $$
-
-$$ \langle{binop}\rangle ::= \land \mid \lor \mid \rightarrow \mid \leftrightarrow $$
-
-$$ \langle{quant}\rangle ::= \forall \mid \exists $$
-
-$$ \langle{pred}\rangle^1 ::= BLUE \mid RED \mid GREEN \mid LEATHER\mid
-RUBBER$$
-
-$$ \langle{pred}\rangle^2 ::= CHEAPER \mid DURABLE $$
-
-$$ \langle{atom}\rangle ::= \langle{pred}\rangle^n(\langle{var}\rangle_1,\ldots,\langle{var}\rangle_n) $$
-
-$$ \langle{fml}\rangle ::= \langle{atom}\rangle \mid \langle{unop}\rangle\langle{fml}\rangle \mid (\langle{fml}\rangle\langle{binop}\rangle\langle{fml}\rangle) \mid \langle{quant}\rangle\langle{var}\rangle\langle{fml}\rangle $$
-
-KB entries:
-
-+ $\forall x(BLUE(x) \lor RED(x) \lor GREEN(x))$
-
-+ $\forall x (BLUE(x) \rightarrow RUBBER(x))$
-
-+ $\forall x (RED(x) \rightarrow (LEATHER(x) \lor RUBBER(x)))$
-
-+ $\forall x (GREEN(x) \rightarrow (LEATHER(x) \lor RUBBER(x)))$
-
-+ $\forall x \forall y ((RUBBER(x) \land LEATHER(y)) \rightarrow CHEAPER(x,y))$
-
-+ $\forall x \forall y ((LEATHER(x) \land RUBBER(y)) \rightarrow DURABLE(x,y))$
+5. the set of all non-empty sets that contain only the numbers 1, 2, and 3
 
 # Parsing
 
-## a) {.homework}
-
-Parse the following formulas according to the BNF for propositional logic:
-
+Parse the following formulas according to the grammar of propositional logic.
+You can either do this by giving the rewrite sequence or the parsing tree.
 
 + $(\neg p\to \neg p)$
 
@@ -271,26 +76,110 @@ Parse the following formulas according to the BNF for propositional logic:
 
 + $(((p\land q)\lor (r\land s))\land \neg ((p\land q\land r\land s)))$
 
-## b) 
+# Polish notation
 
-Parse the following formulas according to the BNF for FOL:
+In the lesson on formal languages, we explained the need for parentheses in
+order to avoid ambiguity in the language for propositional logic. 
 
-+ $ \exists  x S(x,p)$
+But it turns out that there's another way, which is known as [Polish notation](https://en.wikipedia.org/wiki/Polish_notation),
+in honor of the Polish logician [Jan
+Łukasiewicz](https://en.wikipedia.org/wiki/Jan_%C5%81ukasiewicz), who pioneered
+it.
 
-+ $\forall x (  \exists y G(x,y) \rightarrow   \exists  y S(x,y))$
+We'll look at a simple proposition language in Polish notation, with the
+following alphabet:
 
-+ $\lnot  \exists x G(p,x) \wedge   \lnot  \exists  y S(y,p)$
+{{< excalifont display=true >}}Σ = { p, q, r, N, K, A, C, B }{{< /excalifont >}}
 
-+ $\forall x  (B(x) \rightarrow   \exists y G(y,x))$
+The letters {{<excalifont>}}p,q,r{{</excalifont>}} are propositional variables,
+and {{<excalifont>}}N{{</excalifont>}} stands for negation {{< img
+src="img/negation.png" class="inert-img" height="18px" style="vertical-align: middle;" >}}, {{<excalifont>}}K{{</excalifont>}} for conjunction  {{< img
+src="img/conjunction.png" class="inert-img" height="18px" style="vertical-align: middle;" >}}, {{<excalifont>}}K{{</excalifont>}} for disjunction {{< img
+src="img/disjunction.png" class="inert-img" height="18px" style="vertical-align: middle;" >}}, {{<excalifont>}}C{{</excalifont>}} for the conditional {{< img
+src="img/conditional.png" class="inert-img" height="18px" style="vertical-align: middle;" >}}, and {{<excalifont>}}B{{</excalifont>}} for the bi-conditional  {{< img
+src="img/bi-conditional.png" class="inert-img" height="18px" style="vertical-align: middle;" >}}, 
 
-# Research {.homework}
+Polish notation is a _prefix_ notation as compared to the usual _infix_
+notation. That is, instead of writing {{< img src="img/formula.png" class="inert-img" height="24px" style="vertical-align: middle;" >}}, for example, we write {{< excalifont >}}CKpCpqNq{{< /excalifont >}}.
+
+1. Determine the grammar of Polish notation both in terms of recursive clauses
+   and as a BNF.
+
+2. Determine the corresponding re-write rules and generate the parsing tree for 
+{{< excalifont >}}CKpCpqNq{{< /excalifont >}}.
+
+3. Give an argument why {{< excalifont >}}pCpqNqCpr{{< /excalifont >}} is _not_ a
+   formula in Polish notation.
+
+4. Go back to the example from the textbook which illustrated the need for
+   parentheses when using infix notation and write the corresponding formulas in
+   Polish notation. Explain with the example why we no longer need parentheses
+in Polish notation.
+
+# Knowledge representation
+
+{{< logo >}}&nbsp; has taken up {{< abbr title="state-sanctioned piracy, nothing illegal going on here...">}}privateering{{</abbr>}}. Now, he's got a treasure of numerous Bitcoin, rare computer chips, and Alan Turing's old {{< abbr title="knowledge base">}}KB{{< /abbr >}}.
+
+{{< img src="img/ai_piracy.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="550px">}}
+
+{{< logo >}}&nbsp; hid the treasure on some remote disk-world and now he's trying to
+write instructions on how to find the treasure. Since he's an AI system, he
+does so using propositional logic.
+
+First, he divided the disk-world into 4 quadrants, indicating in the following coordinate system: 
+
+{{< img src="img/map.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="550px">}}
+
+He then devised a formal language with propositional variables {{< excalifont >}}T(i,j){{</excalifont>}} to say that the treasure is at coordinate {{< excalifont >}}(i,j){{</excalifont>}} with the first component being the {{<excalifont>}}x{{</excalifont>}}-axis and the second the {{<excalifont>}}y{{</excalifont>}}-axis.
+
+Correspondingly, the BNF of his language is:
+
+{{< img src="img/bnf_treasure.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="750px">}}
+
+
+Help {{< logo >}}&nbsp; to represent the following hints about the treasure's location in the resulting language:
+
+1. The treasure is in the upper right quadrant and in none of the other
+   quadrants.
+
+2. The treasure is in exactly one quadrant, that is, it is either in the upper
+   left, upper right, lower left, or lower right quadrant, but not in any two
+   quadrants at the same time.
+
+3. If the treasure is not in the lower right quadrant, then it's in the upper
+   left quadrant, but only if it's not in the lower left quadrant.
+
+4. The treasure is only in the upper right quadrant, if it is not in the lower
+   right quadrant.
+
+5. The treasure is in any of the right quadrants just in case it is not in the
+   upper left quadrant.
+
+6. The treasure is nowhere on the disk-world.
+
+7. The treasure is somewhere on the disk-world.
+
+8. The treasure is everywhere on the disk-world.
+
+
+# Knowledge extraction 
+
+You arrive at an uninhabited planet and find an old space rover that some
+ancient civilization, which still used expert systems for AI, used to explore
+the planet. 
+
+{{< img src="img/rover.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="750px">}}
+
+You inspect its {{< abbr title="knowledge base" >}}KB{{</abbr>}} and find the
+following:
+
+{{< img src="img/rover_kb.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="750px">}}
+
+Explain these instructions in natural language. Can you tell why the robot shut
+down?
+
+# Research
 
 Can the grammar of _every_ formal language be given by a BNF? If so, explain
 why, if not give a counterexample and explain why it is, indeed, a
 counterexample.
-
-# Discussion
-
-Some AI researchers thought that everything that can be said can be said in FOL.
-Doing some necessary research, do you agree? Support your answer with arguments
-and/or examples.

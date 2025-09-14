@@ -1,7 +1,8 @@
 ---
 title: Boolean satisfiability
 author: Johannes Korbmacher
-weight: 5
+locked: true
+weight: 50
 params: 
   date: 24/09/2024
   last_edited: 24/09/2024

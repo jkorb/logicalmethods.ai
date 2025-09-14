@@ -1,561 +1,661 @@
 ---
 title: Formal languages
-author: Johannes Korbmacher
-weight: 3
+author: Rick Nouwen and Johannes Korbmacher
+locked: false
+weight: 20
 resources:
   - src: img/inferences.png
     name: inferences
 params: 
   date: 09/09/2024
-  last_edited: 11/09/2024
+  last_edited: 03/09/2025
   id: txt-lang
   math: true
 ---
 
 # Formal languages
 
-In {{< chapter_ref chapter="logic-and-ai" id="logical-systems">}}
-Chapter 1. Logic and AI{{< /chapter_ref >}}, we introduced formal languages as a
-**mathematical model of language**. In {{< chapter_ref
-chapter="valid-inference" id="formalization">}}
-Chapter 2. Valid inference{{< /chapter_ref >}}, we further developed the idea of
-formal languages as a model of **logical form**.
+{{< img src="img/ai_language.png" class="rounded  float-start inert-img img-fluid m-2" width="350px">}}
+When we try to develop AI systems, we immediately run into an issue: computers,
+which are the basis for any modern AI technology, "speak" a different language
+than us—the proverbial 1's and 0's. 
 
-In this chapter, you'll learn the nitty-gritty of how formal languages are
-defined mathematically, and we'll look at some of the _many_ applications of
-formal languages in AI and beyond. 
+That is, even if we understand what intelligent behavior is and we manage to
+break it down into instructions that a computer can, in principle, follow, we
+still need to express these instructions in an unambiguous language that the
+computer can "understand" (i.e. execute).
+{{< img src="img/ai_understand.png" class="rounded  float-end inert-img img-fluid m-2" width="350px">}}
+We need to write *code*.
 
-We'll begin by discussing:
+Moreover, since intelligent behavior involves knowledge about the world and
+acting on the basis of such knowledge, we need to be able to communicate such
+knowledge to any prospective AI system. That is, we need a way to *represent*
+our knowledge about the world.
 
-+ the [ideas](#ideas) of formal languages, and
+The solution to the first problem are—of course—*programming languages*, which
+are precisely defined, rule-based systems for expressing unambiguous
+instructions in a language that we can understand, but which we can
+automatically transform into instructions that a computer can understand. The
+solution to the second problem are *knowledge representation languages*, which
+are systems of precisely defined expressions that can represent various facts
+about the world.
 
-+ the official [definition](#languages) via [alphabets](#alphabets) and
-[grammars](#grammar).
+It turns out that, fundamentally, both programming languages and knowledge
+representation languages are instances of the same kind of mathematical
+structure: they are *formal languages*.
 
-Once this definition is sufficiently clear, we'll move to:
+Formal languages have their origin in the study of valid inference—in logical
+theory—but today they are one of the most widely used logical tools in AI and
+other disciplines that employ logical tools. 
 
-+ some [examples](#examples)
-+ and the idea reading or [parsing](#parsing) a formal language. 
+In this chapter, we'll study formal languages, how they are defined
+mathematically, and how they are used in logical theory and AI.
 
-We conclude with some [applications](#applications).
+At the end of this chapter, you'll be able to:
 
-## Ideas
+- explain the ambiguity and over-expressiveness of natural language using
+examples
+- define formal languages using formal grammars
+- parse logical formulas using rewrite rules and parsing trees
+- represent simple facts about the world using the language of propositional
+logic
+- name standard examples of formal languages and their use cases
 
-Like much of logic, formal languages have a _long_ history.[^history] The use of
-abstract sentence letters as in $$A\text{ and }B$$ to express logical form can
-already be found in [Aristotle's
-_Organon_](https://en.wikipedia.org/wiki/Organon). Leibniz's [characteristica
-universalis](https://en.wikipedia.org/wiki/Characteristica_universalis) is
-perhaps the first attempt at defining a formal language in the modern sense. In
-mathematics, the rise of formal languages is associated with rise of logical
-rigor in the foundations of mathematics, culminating in
-[logicist](https://en.wikipedia.org/wiki/Logicism) projects, such as Gottlob
-Frege's [Begriffsschrift](https://en.wikipedia.org/wiki/Begriffsschrift).
+## Formal vs. natural languages
 
-In logical theory, the main role of formal languages is to provide a model of
-**logical form**. Remember from {{< chapter_ref
-chapter="valid-inference" id="formalization">}}
-Chapter 2. Valid inference{{< /chapter_ref >}} that validity doesn't depend on
-the concrete words or sentences involved. _All_ of the below inferences are
-valid:
+_English_, _[St̓át̓imcets](https://en.wikipedia.org/wiki/Lillooet_language)_ and
+_[Ripuarian](https://en.wikipedia.org/wiki/Ripuarian_language)_ are examples of
+natural languages. _Python_, _propositional logic_ and _[algebraic chess
+notation](https://en.wikipedia.org/wiki/Algebraic_notation_(chess))_ are
+examples of formal languages. What makes a language a natural language and what
+makes it a formal one?
 
-1. [BERT](https://en.wikipedia.org/wiki/BERT_(language_model)) is either my
-favorite dog or an LLM, and BERT not an LLM. So, BERT is my favorite dog.
+We all speak at least one natural language and many of us speak multiple. A
+natural language is a naturally evolved system that you learn spontaneously, for
+instance by interacting with your parents and other people around you when you
+are very young. Native speakers of English, St̓át̓imcets or Ripuarian didn't learn
+their native language at school or by studying grammar books, but simply by
+being in an environment where the language was used. Because natural languages
+are acquired in this way, they are also very susceptible to change. They
+constantly evolve, just by being used and passed on to next generations. 
 
-2. Given that Ada is either on the Philosopher’s Walk or in the study, and she’s
-not in the study, she therefore must be on the Philosopher’s Walk.
+{{< img src="img/ai_learning_language.png" class="rounded float-start inert-img img-fluid mx-2 my-1" width="450px">}}
+In contrast, nobody learns Python, propositional logic or algebraic chess
+notation simply by interacting with their parents. Also, these languages clearly
+didn't evolve naturally and while the conventions of these languages may change
+over time, they do not do so spontaneously, but rather because a community of
+users explicitly decides to make a certain change.  
 
-3. Either Johannes or [Data](https://en.wikipedia.org/wiki/Data_(Star_Trek)) is
-teaching this class and Data is not teaching it. So, Johannes is teaching the
-class.
+Having command of a natural language is an extremely powerful skill. It allows
+you to communicate with others about your desires, your thoughts, your
+observations, your plans. It allows you to learn things in school, to teach
+other people what you have learned, to enjoy art in the form of literature,
+poetry and song lyrics, to laugh at jokes, to persuade others to change their
+actions, etc. etc. 
 
-It's easy to recognize the pattern and generate more examples of valid
-inferences like this. If we let $A$ and $B$ be arbitrary sentences, then the
-pattern is $$A\text{ or }B, \text{ not B}\vDash A.$$
-This is the logical form of inferences 1.-3., which, by the way, is known as
-[disjunctive syllogism](https://en.wikipedia.org/wiki/Disjunctive_syllogism).
+Most of the recent advances in AI make use of the fact that natural language is
+such a pervasive part of our lives. Because language is everywhere, it creates
+an enormous wealth of data about many facets of human existence and human
+cognition, ready as input for machine learning. Given this, why don't we just
+use natural language for everything in AI? What do we need formal languages for?
 
-From this perspective, formal languages are the result of introducing
-_placeholders_ for the logically irrelevant parts of language and special
-symbols, so-called **logical constants** for the logically relevant parts of
-language.
+There are many different reasons formal languages are important in general and
+for AI in particular. One reason that is relatively quick to appreciate is that
+powerful large language models trained on natural language are developed using
+programming languages, which are formal languages. We cannot construct a neural
+network using natural language. So even sub-symbolic approaches to AI rely on
+formalisms that have symbolic roots. 
 
-In the case of disjunctive syllogism, for example, the relevant formal language
-will use so-called **sentence letters** ($p,q,r,\dots$) to stand for arbitrary
-sentences, and **propositional connectives** for the logically relevant
-[grammatical conjunctions](https://en.wikipedia.org/wiki/Conjunction_(grammar))
-($\neg$ for "not", $\land$ for "and", $\lor$ for "or", $\to$ for "if ..., then
-...", ...). We get something like this $$p\lor q,\neg p\vDash q$$ as the model
-for the shared logical form of inferences 1.-3. The resulting [logical
-system](/textbook/logic-and-ai/#logical-systems), known as **propositional
-logic**, then, investigates the validity of these _formal_ inferences.
+More generally, however, natural languages
+have some properties that make them unsuitable for doing logic or maths and,
+equally importantly, that make them unsuitable for storing human knowledge. Two
+such properties stand out:
 
-Note that what's happening here is very much in line with the picture from {{< chapter_ref chapter="logic-and-ai" id="logical-systems">}}
-Chapter 1. Logic and AI{{< /chapter_ref >}}, where we described logical systems
-as *mathematical models* of valid inference. Mathematical models, remember, are
-characterized by abstraction, idealization, and assumptions. Here it is easy to
-see, for example, where the abstraction lies: we're abstracting away from
-logically irrelevant features of language, such as which concrete sentence is
-involved. A good example of idealization is that we're writing a single logical
-constant, e.g. $\land$, for the many different ways to express conjunction in
-natural language: "and", "as well as", "together with", ...
++ Natural languages are _ambiguous_: Statements formulated in a natural language
+can often be interpreted in multiple ways. As a consequence, if we choose to use
+natural language as a basis for drawing inferences, we can't always be sure that
+rules or facts that we want would want an AI system to benefit from are
+understood in the appropriate way.
 
-From the perspective of logical theory, the main advantage of developing
-mathematical models of language and, more concretely, logical form is that it
-allows us to investigate valid inference with [**mathematical
-rigor**](https://en.wikipedia.org/wiki/Rigour#Mathematics), permitting us to
-establish (meta-)logical facts _beyond any reasonable doubt_. But in this
-course, we take a slightly more pragmatic perspective at formal languages as a
-**logical tool**.
++ Natural languages are _over-expressive_: Specific statements made in a natural
+language tend to describe highly specific thoughts. This makes natural language
+unsuitable for studying _generalities_ in valid inference.
 
-For us, formal languages **solve a fundamental problem** for AI: _How can we
-store knowledge in such a way that we can communicate it to computational models
-of intelligent behavior (computers)?_ Formal languages solve this problem
-because given their deterministic, mathematical nature, it is relatively easy to
-teach them to computers. In fact, a fundamental insight from computer science is
-that [programming
-langauges](https://en.wikipedia.org/wiki/Programming_language) are, for all
-intents and purposes, formal languages. 
+Let us discuss both these properties in more detail.
 
-Moreover, for us as students of AI, it is important to note that [database
-languages](https://en.wikipedia.org/wiki/Database#Database_languages), which are
-used to create and search databases, [ontology
-languages](https://en.wikipedia.org/wiki/Ontology_language), which are used to
-create representations of factual knowledge of the world, and so on _all are_
-formal languages. In short, in knowledge representation, logical methods reign
-supreme.
+### Ambiguity
 
-## Languages
+Imagine that we want to build an AI system that gives out safety advice on
+eating foraged mushrooms. We have access to a lot of expert knowledge about
+mushrooms. One idea could be to feed this knowledge to the AI system in the form
+of natural language statements. For instance, we could give the system lots of
+English language sentences that together make up all our knowledge. Say, these
+sentences include the following:
 
-Before we can go ahead and give the mathematical definition of what a formal
-language is, we need to talk a bit more about _sets_. Formal languages _are_
-sets. So, we need to know what a set is before we can talk about formal
-languages.
+{{< excalifont display=true >}}S = If a mushroom has red spots and gills, then
+it's not poisonous.{{< /excalifont >}}
 
-In {{< chapter_ref chapter="valid-inference" id="semantic-methods-for-deduction" >}}
-2.3.1 {{< /chapter_ref >}}, you first encountered sets. We now delve a bit
-more into **elementary set theory**, the basic theory of sets.
+Also, we prompt the AI system with another English language sentence:
 
-A _set_ is a collection of objects, called its **elements** or **members**. The
-elements of a set are also said to _belong to_ the set or to _be contained in_
-the set. A set may contain any kind of objects whatsoever: numbers, symbols,
-people, or even other sets. For $X$ a set and $x$ an object, we write $$x\in X$$
-to say that $x$ is an element of $X$ and we write $$x \notin X$$ to say that $x$
-is _not_ an element of $X$. If we have many objects $x_1, \mathellipsis, x_n$,
-then we also write $x_1, \mathellipsis, x_n\in X$ to say that $x_1\in X$, and
-..., and $x_n\in X$.
+{{< excalifont display=true >}}T = The mushroom in front of me has red spots and
+gills.{{< /excalifont >}}
 
-If the elements of a set are precisely $a_1, \mathellipsis, a_n$, then we can
-denote the set by $$\Set{a_1, \mathellipsis, a_n}.$$ This is called an
-**extensional definition** of the set. So, the set $\Set{1,a,
-\Set{\text{Robbie},0}}$, for example, contains precisely the number 1, the
-symbol $a$, and the set $\Set{\text{Robbie},0}$, which in turn contains Robbie and
-the number 0 as elements.
+It may seem straightforward how the AI system can prepare an advice on the basis
+of the knowledge captured in {{< excalifont >}}S{{< /excalifont >}} and the information in the user
+prompt {{< excalifont >}}T{{< /excalifont >}}. 
 
-If the elements of a set are precisely the objects satisfying condition $\Phi$,
-then we can denote the set by $$\Set{x:\Phi(x)}.$$ This is called a definition
-by **set abstraction**. For example, $\Set{x:x\text{ is a prime number}}$ is the
-set that contains all and only the prime numbers. So we have that $$3\in
-\Set{x:x\text{ is a prime number}}$$ but $$4\notin \Set{x:x\text{ is a prime
-number}}.$$
+We may think that all the AI system needs to do is recognise that it can apply
+the deductive inference pattern known as **modus ponens (MP)**, which licenses
+the inference from an if-then statement together with the if-part to the
+then-part: from "if the door is open, you can come in" and "the door is open",
+you can infer "you can come in." Schematically, modus ponens licenses all the
+inferences of the following form, where {{< excalifont >}}A{{< /excalifont >}}
+and {{< excalifont >}}A{{< /excalifont >}}  are *any* two statements:
+{{< img src="img/modus_ponens.png" class="rounded mx-auto d-block inert-img img-fluid" width="150px">}}
+Applying this principle, then, you would expect that from the two statements
+above the AI system should infer that the mushroom in question is not poisonous. 
 
-Formal languages are sets of elements, which are called **formulas**. We usually
-denote formulas by uppercase letters $A,B,C,\dots$ or lowercase Greek letters
-$\phi,\psi,\theta,\dots$. In general, a formal language $\mathcal{L}$ is defined
-by two things: an **alphabet**, which contains the symbols the
-$\mathcal{L}$-formulas are built up from, and a **grammar**, which says _how_
-the formulas are to be constructed. Let's discuss the two in turn.
+{{< img src="img/mushroom.png" class="rounded float-start inert-img img-fluid" width="300px">}}
+
+The problem, however, is that "the mushroom in front of me has red spots and
+gills" is ambiguous. It could either mean that the mushroom has red spots and
+red gills, or it could state that it has red spots and that it has gills (of
+whatever colour). Because of this we cannot be sure what either of these
+statements are saying exactly. It is not clear what the rule is that
+{{< excalifont >}}S{{< /excalifont >}} is intended to capture, nor is it clear what observation the user
+is describing with {{< excalifont >}}T{{< /excalifont >}}. And because of all that uncertainty, we
+cannot be sure whether modus ponens applies. For instance, perhaps
+{{< excalifont >}}S{{< /excalifont >}} is intended to mean that mushrooms that have red spots and red
+gills are not poisonous, while {{< excalifont >}}T{{< /excalifont >}} is intended to mean that the
+mushroom in question has gills (gray ones, in fact) and red spots. In that case,
+modus ponens would not apply. In other words, if our AI system accidentally
+interprets these sentences not as they were intended, it could end up applying
+modus ponens and cause the users to poison themselves. 
+
+A similar problem concerns the words "if" and "then" in languages like English.
+Say, I remove the ambiguity in {{< excalifont >}}S{{< /excalifont >}} above and instead state that:
+
+{{< excalifont display=true >}}S' = If a mushroom has red spots and red gills,
+then it's not poisonous.{{< /excalifont >}}
+
+It is now clear what this means. It tells us what is the case when a mushroom
+has the features that are mentioned. Does this tell us anything about mushrooms
+that do not have red spots and red gills? For most people, the intuition is that
+it does not: on the basis of just {{< excalifont >}}S'{{< /excalifont >}} I cannot conclude
+anything about a mushroom with black gills and no spots. 
+
+The problem, however, is that "if" and "then" are not always understood in this
+way. Imagine yourself saying this to a child:
+
+{{< excalifont display=true >}}
+U = If you behave well, I will buy you an
+ice-cream.
+{{< /excalifont >}}
+
+This clearly tells the child, via modus ponens, what happens when they are
+well-behaved. However, in this case the statement also seems to be saying what
+happens when they do not behave well. {{< excalifont >}}U{{< /excalifont >}} seems to clearly suggest
+that if the child does _not_ behave well, then there won't be any ice-cream. 
+
+So, "if" and "then" are interpreted differently in different examples. This
+simple observation has profound consequences for AI. If we feed the AI system
+our knowledge in the form of a long list of English sentences of the form 
+
+{{< excalifont display=true >}}If A, then B{{< /excalifont >}}
+
+how does the AI system decide which of these to interpret the way we interpreted
+{{< excalifont >}}S'{{< /excalifont >}} and which to interpret parallel to our understanding of {{< excalifont >}}U{{< /excalifont >}}? The
+use of a natural language complicates the storing of knowledge, since a single
+natural language sentence often come with more than one interpretation. 
+
+Ambiguity is extremely common. Whenever we want represent knowledge and rules
+precisely, we should avoid the inherent ambiguity of natural language. Formal
+languages allow us to do just that. Let us now turn to a second reason why we
+choose formal over natural languages. 
+
+### Over-expressiveness
+
+To illustrate the problem of over-expressiveness, let us look at another case of modus ponens:
+{{< img src="img/box_example.png" class="rounded mx-auto my-2 d-block inert-img img-fluid" width="800px">}}
+
+{{< img src="img/ai_magic.png" class="rounded float-end inert-img img-fluid mx-2 my-1" width="450px">}}
+Say a magician places a rabbit in a cardboard box and they close the box. After
+a short while they open it again and show the audience that the box is empty.
+The audience gasps. Why? Because on the basis of a common assumption like 
+{{< excalifont >}}M{{< /excalifont >}}
+and modus ponens, the audience expects the box to contain the rabbit. An object
+was placed in what looks like a normal box, we didn't see anything happening to
+the box, so we infer via modus ponens that the object is still in the box.
+
+Members of the audience now need to somehow reconcile the empty box with what
+they saw. They have a number of options. It looked like the box was a normal
+box, but perhaps it wasn't. Perhaps there is some trick that lets the rabbit
+escape from the box unseen by the audience. In that case, this is not a normal
+box and modus ponens would not allow us to conclude that the rabbit is still in
+the box. Similarly, the audience didn't see anything happen to the box, but
+perhaps the magician managed to distract his audience and perhaps he removed the
+rabbit in a way we couldn't see? 
+
+Once more, modus ponens does not apply and we do not end up inferring that the
+rabbit is in the box. Another possibility is that the rabbit is still in the
+box. That is, we were right to apply modus ponens, but we are wrong in our
+observation that the rabbit is gone. (Perhaps the magician isn't showing us all
+of the box?) Finally, and most interestingly, perhaps some people in the
+audience take this failure of modus ponens as evidence that 
+{{< excalifont >}}M{{< /excalifont >}}
+must be false. In other words, these people believe in magic. 
+
+Now, compare this story to the following statement:
+
+{{< img src="img/odd_numbers.png" class="rounded mx-auto my-2 d-block inert-img img-fluid" width="800px">}}
+
+
+Say now I calculate:
+
+{{< excalifont display=true >}}a x b = c{{< /excalifont >}}
+
+and both 
+{{< excalifont >}}a{{< /excalifont >}}
+and 
+{{< excalifont >}}b{{< /excalifont >}} are odd. I observe that 
+{{< excalifont >}}c{{< /excalifont >}} is an even number, then there's a few
+options again. Perhaps I was wrong to believe that 
+{{< excalifont >}}a x b = c{{< /excalifont >}}, or perhaps I was
+wrong to believe that 
+{{< excalifont >}}a{{< /excalifont >}} and {{< excalifont>}}b{{< /excalifont >}} 
+are both odd. Or perhaps my observation that 
+{{< excalifont >}}c{{< /excalifont >}} is even was wrong. An arrogant person may
+even believe that their maths book is wrong in stating {{< excalifont >}}N{{<
+/excalifont >}}. 
+
+{{< img src="img/ai_math.png" class="rounded float-start inert-img img-fluid mx-2 my-1" width="450px">}}
+In any case, both the case of magic and the case of odd number multiplication
+show that modus ponens is a very strong inference. As soon as we have all the
+ingredients for modus ponens, we cannot help but draw the conclusion. And if
+that conclusion is not in line with what we observe, we start questioning our
+assumptions and our observation. 
+
+The two stories also show that modus ponens is a very _general_ inference. It
+exists completely independent of subject matter. Structurally, the story above
+about {{< excalifont >}}M{{< /excalifont >}} is completely parallel to that of
+{{< excalifont >}}N{{< /excalifont >}}. 
+
+This is where the **over-expressiveness** of natural language comes in. We can
+use natural language to express individual cases where modus ponens applies, as
+we just did above. But because natural language is so good at talking about the
+specific details of situations, it can make us lose sight of the more general,
+abstract patterns that underlie our reasoning—it is very bad at *abstracting
+away* form logically irrelevant details. {{< excalifont >}}M{{< /excalifont >}}
+and {{< excalifont >}}N{{< /excalifont >}} are highly specific examples of
+premises that with the right further premise bring us in a situation where we
+can apply modus ponens. To be able to talk about modus ponens as a _general_
+principle of valid inference, we would need to let go of the specifics in these
+examples and state the principle using an abstract formal language. This can be
+very hard to do in natural language.
+
+From a logical perspective, however, both stories have the same underlying
+structure. In both cases, we have a _conditional_ statement—an
+"if-then"-statement—of the form 
+
+{{< excalifont display=true >}}If A, then B.{{< /excalifont >}}
+
+In the first example, {{< excalifont >}}M{{< /excalifont >}}, we have:
+
+{{< excalifont display=true >}}
+A = We put an object in a cardboard box and nothing happens to that box
+{{< /excalifont >}} 
+
+{{< excalifont display=true >}}
+B = The object will remain in the box
+{{< /excalifont >}}
+
+In the second example, {{< excalifont >}}N{{< /excalifont >}}, we have:
+
+{{< excalifont display=true >}}
+A = We multiply two odd numbers
+{{< /excalifont >}} 
+
+{{< excalifont display=true >}}
+B = The result is odd
+{{< /excalifont >}} 
+
+
+In both cases above, we thought 
+{{< excalifont >}}If A, then B{{< /excalifont >}} 
+was the case, as was 
+{{< excalifont >}}A{{< /excalifont >}}. But in both cases, we also thought 
+{{< excalifont >}}B{{< /excalifont >}}
+was not the case. Given that this clashes with modus ponens we start questioning our
+assumptions. Either something is wrong with our assumptions
+{{< excalifont >}}A{{< /excalifont >}} or {{< excalifont >}}If A, then B{{< /excalifont >}}, or something's wrong with our belief that 
+{{< excalifont >}}B{{< /excalifont >}}.—Logic allows us to
+do make such reasoning very explicit and very general. By using a formal
+language we can focus on the pattern underlying our mechanisms of valid
+inference.
+
+In other words, when we study valid inference, we often do not care about the
+specific content of the statements our inferences are built on. It would be
+extremely hard to define a notion like modus ponens using just a natural
+language. The abstraction offered by a _formal_ language makes it possible to
+make explicit what all inferences that are to be classified as such have in
+common.
+
+More generally, when we study systems of valid inference, we are often looking
+to find out what the consequences are of our assumptions about logical laws.  If
+we only had natural language to study this, which sentences should we use then?
+Should these be about mushrooms, rabbits, numbers, or ice creams? Similar
+considerations apply to mathematics. Highly abstract formal languages allow us
+to focus on the important things. We all learn that we can simplify a quadratic
+equations like 
+
+{{< excalifont display=true >}}x² + 5x + 6 = 0{{< /excalifont >}}
+
+to 
+
+{{< excalifont display=true >}}(x+3)(x+2)=0{{< /excalifont >}}
+
+by factorization, which means that {{< excalifont >}}x{{< /excalifont >}} is
+either {{< excalifont >}}-3{{< /excalifont >}} or {{< excalifont >}}-2{{<
+/excalifont >}}. Just imagine doing this without the use of abstract symbols
+like {{< excalifont >}}x{{< /excalifont >}}!
+
+## Formal languages
+
+Formal languages are neither ambiguous nor over-expressive. They were
+specifically designed as mathematical models of language, which abstract away
+from irrelevant details in a formally precise fashion. This is precisely what
+makes them so great for "talking" with computers: they solve the issue of
+precision that we mentioned at the outset. In fact, it turns out that they are
+also able to represent knowledge about the world, but we'll return to this point
+later.
+
+So far, you've only had a glimpse of what a formal language looks like. We have
+not specified one formally yet. Before we can go ahead and give the mathematical
+definition of what a formal language is, we need to talk a bit more about
+_sets_. Formal languages _are_ sets. So, we need to know what a set is before we
+can talk about formal languages.
+
+## Sets
+
+A **set** is the simplest kind of collection of objects. All that matters to a set
+is which things are in it and which things are not. If some object 
+{{< excalifont >}}x{{< /excalifont >}} is in a
+set, we say that 
+{{< excalifont >}}x{{< /excalifont >}}
+is one of its **elements** or **members**. Elements of a
+set are also said to _belong to_ the set or to _be contained in_ the set. Beyond
+membership, nothing matters to a set. For instance, there is no order to the
+elements in a set and an object is either in the set or not - it cannot be in a
+set multiple times. 
+
+It can sometimes be helpful (but also sometimes hurtful!) to think of a set as
+"bag" of objects from an ambient "space". Consider the following illustration:
+
+{{< img src="img/set.png" class="rounded mx-auto my-2 d-block inert-img img-fluid" width="900px">}}
+
+The yellow rectangle is out ambient space of objects, everything in its confines
+is a potential member of our set. It contains a bunch of things: animals,
+people, drinks, playing cards, numbers, …. The green area is a set in this
+space: the set that contains little Jimmy, my beer, and the number 1. It's
+important to keep in mind, though, that this is just a visualization aid. Sets
+really are mathematical objects, not areas in space. There are sets that are
+impossible to draw or locate. 
+
+A set may contain any kind of object: numbers, symbols, people, or even other
+sets. For {{< excalifont >}}S{{< /excalifont >}} a set and {{< excalifont >}}s{{< /excalifont >}} an object, we write 
+{{< excalifont >}}a ϵ S{{< /excalifont >}}
+to say that {{< excalifont >}}a{{< /excalifont >}} is an
+element of {{< excalifont >}}S{{< /excalifont >}}, and we write 
+{{< excalifont >}}a&nbsp;ϵ<span style="display:inline-block;width:0;position:relative;left:-0.5em;">/</span>&nbsp;S{{< /excalifont >}} to say that {{< excalifont >}}a{{< /excalifont >}} is _not_ an element of
+{{< excalifont >}}S{{< /excalifont >}}. If we have many objects {{< excalifont >}}a₁, ..., aₙ{{< /excalifont >}}, then we also write {{< excalifont >}}a₁, ..., aₙ ϵ S{{< /excalifont >}} to say that 
+{{< excalifont >}}a₁ ϵ S{{< /excalifont >}}
+and 
+{{< excalifont >}}a₂ ϵ S{{< /excalifont >}}
+and
+…, and 
+{{< excalifont >}}aₙ ϵ S{{< /excalifont >}}.
+
+If the elements of a set are precisely {{< excalifont >}}a₁, ..., aₙ{{< /excalifont >}}, then we can
+denote the set by 
+
+{{< excalifont display=true >}}{a₁, ..., aₙ}{{< /excalifont >}}
+
+This is called an **extensional definition** of the set. So, for example, the
+set 
+{{< img src="img/set_example.png" class="rounded mx-auto my-2 d-block inert-img img-fluid" width="300px">}}
+contains precisely little Jimmy and the set that contains the number 1 and my
+beer as elements. That is, the set has *two* elements, not three. This also
+shows why we can't "draw" all sets: how do you manage to draw a set that
+contains a set in a space?[^footnote]
+
+For most interesting sets, however, we cannot give an extensional definition.
+One reason for this could be that we may not know exactly what the elements are.
+For instance, if the elements of a set are precisely the objects satisfying
+condition {{< excalifont >}}Φ{{< /excalifont >}}, then we can denote the set by: 
+
+{{< excalifont display=true >}}{x : Φ(x)}{{< /excalifont >}}
+
+This is called a definition by **set abstraction**. For example, if I have the
+quadratic equation 
+
+{{< excalifont display=true >}}x²+5x+6 = 0,{{< /excalifont >}}
+
+
+then we can express the set of solutions to this equation as:
+
+{{< excalifont display=true >}}{x : x²+5x+6 = 0}.{{< /excalifont >}}
+
+In other words, we have a way of expressing the solutions, even if we do not yet
+know what they are. By the way, it turns out that this abstracted set is equal to the
+extensional set
+{{< excalifont display=true >}}{-3,-2}.{{< /excalifont >}}
+
+Another reason why non-extensional definitions are handy is because many of the
+kinds of sets we want to study are typically infinite. For example, 
+
+{{< excalifont display=true >}}{x : x is a prime number}{{< /excalifont >}}
+
+is the set that contains all and only the prime numbers. So we have, for
+example:
+
+{{< excalifont display=true >}}3 ϵ {x : x is a prime number}{{< /excalifont >}}
+
+but 
+
+{{< excalifont display=true >}}4 ϵ<span style="display:inline-block;width:0;position:relative;left:-0.5em;">/</span> {x : x is a prime number}{{< /excalifont >}}
+
+But by [Euclids theorem](https://en.wikipedia.org/wiki/Euclid%27s_theorem),
+there are infinitely many prime numbers. So, for reasons of time and space, we
+could never write down a list of all the prime numbers for an extensional
+definition of the set.[^primes] 
+
+
+Most formal languages that we will encounter will be infinite sets. So what
+exactly _is_ a formal language? Put simply, a formal language is **a set of
+sequences of symbols**. Symbols are the building blocks of a formal language. A
+formal language starts with the specification of what these building blocks are.
+We call this an **alphabet**, which is just a set of symbols. Using the
+alphabet, we then use a **grammar** to construct the set of sequences, i.e. the
+formal language.
 
 ### Alphabets 
 
-Formulas are sequences of symbols, which are recruited from an alphabet. We
-usually write $\Sigma$ to denote the alphabet of a language. 
+Sequences of symbols are recruited from an alphabet. We usually write {{<
+excalifont >}}Σ{{< /excalifont >}} to denote the alphabet of a
+language. 
+
 
 It's important to note that the alphabet can be _any_ set. So, e.g., 
 
-$$\Sigma=\Set{0,1,2,3,4,5,6,7,8,9}$$
+{{< excalifont display=true >}}Σ={0,1,2,3,4,5,6,7,8,9}{{< /excalifont >}}
 
-is a perfectly fine alphabet. You can use it to define the language for all the
-numbers.
+is a perfectly fine alphabet. You can use it to define the language of all the _numerals_ (terms for natural numbers). 
 
-There is not so much more to be said about the alphabet but it's useful to
-remark that in logical contexts, there are some special kinds of symbols that
-are usually used in the alphabets, which have special meanings.
-
-Here is a (non-exhaustive) list. Typically, we distinguish between:
-
-**Non-logical symbols**
-
-These symbols are typically the result of logical abstraction. But in knowledge
-representation contexts, they can also be the result of representing
-extra-logical information.
-
-1) **Propositional variables** also known as **sentence letters**. 
-
-    These stand for sentences, like "it is raining" or "logic is awesome". When
-    it doesn't matter which sentences we're talking about, they are often
-    $p,q,r,\dots$. In knowledge representation (KR) contexts, they can also be
-    mnemonic, like $RAIN$ or $AWESOME$.
-
-2) **Constants**. 
-
-    These stand for proper names, like "Alan" or "Ada". In logic, they are often
-    $a,b,c,\dots$, but in KR-contexts, they can also be mnemonic, like $alan$ or
-    $ada$. Sometimes, they are just ordinary numerals, like $0,1,2,\dots$ or
-    $\pi$.
+One way to do that is to use an operation called the Kleene
+star, named after the American mathematician [Stephen
+Kleene](https://en.wikipedia.org/wiki/Stephen_Cole_Kleene) and written as an
+asterix. The set 
+{{< excalifont >}}Σ*{{< /excalifont >}} is the set of all sequences that you can build
+with the elements of {{< excalifont >}}Σ{{< /excalifont >}}. This set is a formal language and it includes
+sequences such as 
+{{< excalifont >}}15935304888{{< /excalifont >}},
+{{< excalifont >}}249583{{< /excalifont >}}, and simply 
+{{< excalifont >}}2{{< /excalifont >}}. This is not the set of
+what we normally consider to be numerals, though, since {{< excalifont >}}Σ*{{< /excalifont >}} will
+also include sequences like 
+{{< excalifont >}}000000001{{< /excalifont >}} and 
+{{< excalifont >}}000881{{< /excalifont >}}, which are not numerals (in the Western Arabic decimal system, at least). 
 
 
-3) **Function symbols**. 
-
-    These stand for [functional
-    expressions](https://en.wikipedia.org/wiki/Function_(mathematics)), like "+"
-    or "the father of". In logic, often $f,g,h,\dots$ and in KR often mnemonic,
-    like $FatherOf$. In mathematical logic, function symbols like $+,-,\cdot,
-    \dots$ are common, too.
-
-4) **Predicates**. 
-
-    They stand for ...
-    [predicates](https://en.wikipedia.org/wiki/Predicate_(grammar)https://en.wikipedia.org/wiki/Predicate_(grammar)),
-    which are expressions that define properties or relationships, like "being
-    blue" or "being greater than". In logic, usually $P,Q,R,\dots$ and in KR,
-    also mnemonics, like $BLUE$ or $GREATER$.
-
-    A special case is the identity symbol $=$, which some logicians treat as
-    logical and some as non-logical. Otherwise, it works just like predicate.
-
-**NB**: Function symbols and predicates come with an _arity_, which is how many
-arguments they take. In syntax specifications, we often write this as a
-superscript. So, for example, the fact that $BLUE$ applies to one thing (it's
-_unary_) would be written $BLUE^1$. 
-
-**Logical symbols**
-
-These are the result of idealization. Which logical symbols are available
-depends on the logical system. There symbols for _many_ logically relevant
-concepts.
-
-6) **Variables**.
-
-    These stand for arbitrary but concrete individuals or properties. They have
-    a mainly logical function in the context of quantification, which we'll
-    cover more extensively later in the book.
-
-    They are typically $x,y,z,\dots$ but sometimes $\alpha,\beta,\delta$, when
-    we're talking about individuals. And they are typically $X,Y,Z,\dots$ when
-    we're talking about variables for properties.
-
-
-7) **Sentential operators**.
-
-    These connect one or more sentences or phrases to form a new one. Typical
-    examples are the **classical propositional connectives**:
-
-    | **Symbol**  | &nbsp;   | **Meaning** |
-    | ------------|--|---------|
-    | $\neg,\sim$  | | not     |
-    | $\land,\\&$ | | and     |
-    | $\lor$  | | or      |
-    | $\to,\Rightarrow,\supset$   | | if ..., then ...    |
-    | $\leftrightarrow,\Leftrightarrow,\equiv$ | | iff     |
-    | $\vdots$ | | $\vdots$     |
-
-    But many other operators are known and/or can be introduced:
-
-    | **Symbol**  | &nbsp;&nbsp;   | **Meaning** |
-    | ------------|--|---------|
-    | $\square,\lozenge$  | | necessity, possibility     |
-    | $K,B$ | | knowledge, belief     |
-    | $G,F,H,P$  | | past, future      |
-    | $P,O$   | |  permission, obligation    |
-    | $!$ | | announcement     |
-    | $?$ | | questions     |
-    | $\vdots$ | | $\vdots$     |
-
-    Unfortunately, we won't be able to cover most of these more advanced
-    operators in detail.
-
-    The operators listed above are standard _logical_ operators. But note that
-    in programming languages, for example, we often have mnemonic conditionals,
-    like in the following [pseudocode](https://en.wikipedia.org/wiki/Pseudocode), for example:
-
-    ```
-      IF ... THEN
-          ...
-      ELSE
-          ...
-      END IF
-    ```
-
-    Similarly, programming languages often have idiosyncratic notation for the
-    classical propositional connectives (which are, of course, easier to type on
-    ordinary keyboards), such as $||$ for disjunction, $\\&\\&$ for conjunction
-    in [C](https://en.wikipedia.org/wiki/C_(programming_language)), or simply
-    $\mathsf{and}$, $\mathsf{or}$, $\mathsf{not}$ in
-    [Pyton](https://en.wikipedia.org/wiki/Python_(programming_language)). 
-
-6) **Quantifiers**.
-
-    These allow us to express claims about all ($\forall$) or some ($\exists$)
-    things. More generally, quantifiers allow us to make _generalizations_.
-    There are also specialized quantifiers, such as numeric quantifiers, like
-    $\exists_3$ which says "there are exactly 3".
-
-**Auxiliaries**.
-
-8) **Parsing** 
-
-    These are symbols that help the notation of the language. They are things
-    like commas "," or parentheses "(" and ")". They don't have a meaning
-    themselves, but they help us to disambiguate formulas. They are important
-    for parsing (see below).
-
-These are, in any case, only examples of some common symbols in the alphabets of
-formal languages. Ultimately, the sky is the limit.
-
-The formulas, then, are sequences of symbols from the alphabet. But not every
-sequence of symbols is a formula, formulas are constructed from the symbols
-according to _rules_.
+So, while the Kleene star gives us a way to construct the set of all sequences
+made from an alphabet, most formal languages we are interested in will be a
+specific smaller subset of {{< excalifont >}}Σ*{{< /excalifont >}}. This is why
+we need a _grammar_.
 
 ### Grammar 
 
-The grammar of a language determines which strings of symbols from $\Sigma$ are
-valid expressions of the language. 
+The grammar of a language determines which sequences of symbols from {{< excalifont >}}Σ{{< /excalifont >}} are valid expressions of the language. 
 
 In the case of most formal languages in logic, grammars use a technique known as
-**inductive definition**, which works as follows:
+**inductive definition**. Here is an example of such a definition for the set of
+all numerals  built from {{< excalifont >}}Σ{{< /excalifont >}}.
 
-Our aim is to define the set $\mathcal{L}$ of **(well-formed) formulas**. We do
-this by specifying in a first step a set of **atomic formulas**, which are not
-themselves constructed. And then, in a second step, giving a set of
-**construction rules**, which tell us how to construct new formulas from old
-ones.
+1. The following are all numerals: {{< excalifont >}}1,2,3,4,5,6,7,8,9{{< /excalifont >}}
+2. If {{< excalifont >}}N{{< /excalifont >}} is a numeral, then so are 
+{{< excalifont >}}N0{{< /excalifont >}},
+{{< excalifont >}}N1{{< /excalifont >}},
+{{< excalifont >}}N2{{< /excalifont >}},
+{{< excalifont >}}N3{{< /excalifont >}},
+{{< excalifont >}}N4{{< /excalifont >}},
+{{< excalifont >}}N5{{< /excalifont >}},
+{{< excalifont >}}N6{{< /excalifont >}},
+{{< excalifont >}}N7{{< /excalifont >}},
+{{< excalifont >}}N8{{< /excalifont >}},
+{{< excalifont >}}N9{{< /excalifont >}}.
+3. Nothing else is a numeral.
 
-Here's how this works for a standard language in propositional logic, where $\Sigma$ contains:
+Here's how this definition works: In the first step we get all the numerals that can be written as a single digit. This is the whole alphabet with the exception of {{< excalifont >}}0{{< /excalifont >}}.
+, which isn't a numeral. Then in the second step we can represent numbers
+that correspond to sequences of any length {{< excalifont >}}>1{{< /excalifont >}}. For instance, this definition
+shows that {{< excalifont >}}120{{< /excalifont >}} is a numeral: 
 
-+ $p_1,\dots, p_n$ ($n$ propositional variables)
+- {{< excalifont >}}1{{< /excalifont >}} is a numeral (step 1); 
+- {{< excalifont >}}12{{< /excalifont >}} is a numeral (step 2); 
+- {{< excalifont >}}120{{< /excalifont >}} is a numeral (step 2).
 
-+ $\neg,\land,\lor,\to,\leftrightarrow$ (the propositional operators), and
+Using this inductive definition, there is no way to show that 
+{{< excalifont >}}01{{< /excalifont >}} is a natural
+number. Given the final line of the definition, we must conclude that it is
+therefore not a numeral.[^mp]
 
-+ $(,)$ (the auxiliaries).
 
-We then say that: 
+### The language of logic
 
-+ $p_1,\dots, p_n \in \mathcal{L}$ and
+{{< img src="img/logic_abc.png" class="rounded  float-end inert-img img-fluid m-2" width="450px">}}
+Just like the language of numeral notation we saw above, logics are also sets of
+sequences of symbols. We often refer to these sequences as **formulas**, so a
+logic is a formal language consisting of formulas. In order to specify such a
+language, we will want to specify an alphabet and a grammar so that the formulas
+that make up the formal language are well-formed sequences that are useful for
+the study of valid inference. Here, we will define the language used for
+**propositional logic**. 
 
-+ if $A\in\mathcal{L}$, then $\neg A\in \mathcal{L}$ as well as
+Starting with the alphabet, we should first note that, in logic, not all
+elements of the alphabet play the same role. (Similarly, in the case of the
+language of numbers we saw that 0 played a different role than the other
+digits). For propositional logic, the alphabet consists of three kinds of
+things: 
 
-+ if $A,B\in\mathcal{L}$, then $(A\land B),(A\lor B),(A\to B),(A\leftrightarrow
-B)\in \mathcal{L}$
++ propositional variables: symbols that stand for propositions
++ operators: symbols that operate on or connect propositions
++ auxiliaries: symbols that indicate how parts of a formula combine
 
-The crux of the definition is the implicit assumption that _nothing else is a
-formula_. This "closure condition" guarantees that $\mathcal{L}$ is a
-well-defined set, where for each sequence of symbols from $\Sigma$, we can
-determine whether it's in $\mathcal{L}$ or not.
+An example of an alphabet for the language of propositional logic is:
 
-For example, we can easily see that $$(A\lor (B\leftrightarrow \neg A))$$ is a
-member of $\mathcal{L}$. To see this, we simply perform the construction:
+{{< img src="img/logic_alphabet.png" class="rounded mx-auto my-2 d-block inert-img img-fluid" width="400px">}}
 
-+ We know that $A$ is a formula.
-+ So we know that $\neg A$ is a formula.
-+ We also know that $B$ is a formula.
-+ So we know that $(B\leftrightarrow \neg A)$ is a formula.
-+ So, finally, we know that $(A\lor (B\leftrightarrow \neg A))$ is a formula.
 
-But we can also see that $\neg A\neg$ is not a formula, since no rule every
-allows for $\neg$ to occur in a formula without being followed by formula.
+Here, {{< excalifont >}}p₁, …, pₙ{{< /excalifont >}} are the _(propositional)
+variables_, {{< img src="img/operators.png" class="inert-img" height="24px"
+style="vertical-align: middle;" >}} are are the _operators_, and 
+{{< excalifont >}}({{< /excalifont >}}  and {{< excalifont >}}){{< /excalifont >}} are the
+auxiliaries.
+
+The operators have the following conventional names and readings:
+
+{{< img src="img/operators_reading.png" class="rounded mx-auto my-2 d-block inert-img img-fluid" width="400px">}}
+
+
+The Kleene star of this set, {{< excalifont >}}Σ*{{< /excalifont >}},
+provides us with all the sequences that we can build using these symbols. {{< excalifont >}}Σ*{{< /excalifont >}}, contains meaningful expressions like:
+
+{{< img src="img/formula_example.png" class="rounded mx-auto my-2 d-block inert-img img-fluid" width="200px">}}
+
+but also lots of expressions that are not well-formed for propositional logic, like:
+
+{{< img src="img/formula_counterexample.png" class="rounded mx-auto my-2 d-block inert-img img-fluid" width="200px">}}
+
+
+So, we should give an inductive definition for the language of propositional logic, which we will call {{< excalifont >}}L{{< /excalifont >}}:
+
++ {{< excalifont >}}p₁, ..., pₙ ϵ L{{< /excalifont >}} and
+
++ if {{< excalifont >}}A ϵ L{{< /excalifont >}}, then {{< img
+src="img/negation_A.png" class="inert-img" height="18px" style="vertical-align: middle;" >}}, as well as
+
++ if {{< excalifont >}}A, B ϵ L{{< /excalifont >}}, then {{< img
+src="img/operator_AB.png" class="inert-img" height="24px" style="vertical-align: middle;" >}}.
+
+As before, crucially, we assume in addition that nothing else is in {{<
+excalifont >}}L{{< /excalifont >}}, but from now on, we will leave this "closure
+condition" implicit. In other words, we assume that if something complies with
+the above statements, then it is indeed in 
+{{< excalifont >}}L{{< /excalifont >}}, but if it does not, then it is not. 
+
+We can now easily see that {{< img
+src="img/formula_example.png" class="inert-img" height="24px" style="vertical-align: middle;" >}} is a
+member of {{< excalifont >}}L{{< /excalifont >}}. To see this, we simply perform the construction:
+
+1. We know that {{< excalifont >}}p₁{{< /excalifont >}} and {{< excalifont >}}p₃{{< /excalifont >}} are formulas (by the first clause of the inductive definition).
+2. So, we know that {{< img
+src="img/formula_example_1.png" class="inert-img" height="24px" style="vertical-align: middle;" >}} is a formula (by the third clause and 1.).
+3. We know that {{< excalifont >}}p₂{{< /excalifont >}} is a formula (by the
+   first clause).
+4. So, we know that {{< img
+src="img/formula_example_2.png" class="inert-img" height="24px" style="vertical-align: middle;" >}} (by the second clause and 3.)
+5. So, we know that {{< img
+src="img/formula_example.png" class="inert-img" height="24px" style="vertical-align: middle;" >}} (by the third clause and 4. and 5.)
+
+But we can also see that {{< img
+src="img/formula_counterexample_2.png" class="inert-img" height="18px" style="vertical-align: middle;" >}} is _not_ a formula, since no rule every
+allows for {{< img
+src="img/negation.png" class="inert-img" height="18px" style="vertical-align: middle;" >}} to occur in a formula without being followed by formula.
 
 In computer science and AI, there is a wide-spread notation that significantly
 simplifies the above rules: the so-called **Backus-Naur Form (BNF)**. In BNF,
-instead of all of the above, we can simply write:
+instead of all of the above, we can simply write the following to define the same language {{< excalifont >}}L{{< /excalifont >}}:
 
-$$A::= p_i\mid\neg A\mid (A\land A)\mid (A\lor A)\mid (A\to A)\mid (A\leftrightarrow A)$$
+{{< img src="img/bnf.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="400px">}}
 
-Here, we read the "$\mid$" as an "or". And so this reads: a formula is either a
+Here, we read the {{< excalifont >}}|{{< /excalifont >}} as an "or". And so this reads: a formula is either a
 propositional variable, or the negation of a formula, or the conjunction of two
 formulas, or ....
 
 You should know that BNFs sometimes take different forms. Here is an equivalent
 way of giving the BNF for the same language:
 
-$$\langle prop\rangle\mapsto p_1\mid \dots\mid p_n$$
+{{< img src="img/bnf_alt.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="400px">}}
 
-$$\langle fml\rangle\mapsto\langle prop\rangle\mid\neg\langle fml\rangle\mid
-(\langle fml\rangle\land \langle fml\rangle)\mid (\langle fml\rangle\lor
-\langle fml\rangle)\mid $$
-$$(\langle fml\rangle\to \langle fml\rangle)\mid (\langle
-fml\rangle\leftrightarrow \langle fml\rangle)$$
-
-but these are just
-notational differences. 
+but these are just notational differences. 
 
 [BNFs](https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form) are a **powerful
 method for defining formal languages**. They are frequently used in logic,
-computer science, and AI. For example, the syntax of most programming languages
-is defined in BNF, see, e.g.,
-[Python](https://docs.python.org/3/reference/grammar.html). Even if you want to
-know what a valid email really is, you need to look up [its
-BNF](https://datatracker.ietf.org/doc/html/rfc5322).
-
-The formal languages we use in logic and KR are usually rather simple in that
-they allow for uncomplicated grammars. The complex grammatical phenomena we
-often encounter in natural languages, for example, which are required for to
-capture all linguistic nuances (which are often _logically_ irrelevant), we need
-more sophisticated grammas, like [context-sensitive
-grammars](https://en.wikipedia.org/wiki/Context-sensitive_grammar).
-
-## Examples
-
-Here are some standard logical languages, which will frequently occur in the
-book:
-
-**Propositional logic**
-
-We've already seen the simple BNF for this:
-
-$$A::= p_i\mid\neg A\mid (A\land A)\mid (A\lor A)\mid (A\to A)\mid (A\leftrightarrow A)$$
-
-This works with
-$\Sigma=\Set{p_1,\dots,p_n,\neg,\land,\lor,\to,\leftrightarrow,(,)}$
-
-Some remarks:
-
-+ Depending on the choice of propositional variables, there are many _different_
-propositional languages. It's always important to exactly specify what your
-propositional variables are.
-
-+ Sometimes, we only use a subset of the operators. E.g. the language:
-
-    $$A::= p_i\mid\neg A\mid (A\land A)$$
-
-    It turns out that this language is equally **expressive** as the language
-    above: everything that can be said using propositional variables and
-    $\neg,\land,\lor,\to,\leftrightarrow$ can also be said using just
-    $\neg,\land$. Seeing why is a topic for later in the course.
-
-+ Translating natural language expressions into a formal language expression is
-a process known as **formalization**. It's not always easy, but here are some
-examples for formalization with propositional languages:
-
-  -------------------------------------------------------------------------- ------------ -----------------------------
-  The letter isn't in the left drawer                                         $\leadsto$            $\neg p$
-
-  It's not the case that the letter is in the left drawer                     $\leadsto$            $\neg p$
-
-  The letter is in the left and in the right drawer                           $\leadsto$            $(p\land q)$
-
-  The letter is not in the left drawer, but it's also not in the right one    $\leadsto$     $(\neg p\land \neg q)$
-
-  The letter is in the left or in the right drawer                            $\leadsto$           $(p\lor q)$
-
-  The letter is neither in the left nor in the right drawer                   $\leadsto$     $(\neg p\land \neg q)$
-
-  If the letter is in the left drawer, then it's not in the right drawer      $\leadsto$         $(p\to \neg q)$
-
-  The letter is in the left drawer, if it's not in the right one              $\leadsto$         $(\neg q\to p)$
-
-  The letter is only in the left drawer, if it's not in the right one         $\leadsto$         $(p\to \neg q)$
-
-  The letter is in the left drawer just in case it's not in the right one     $\leadsto$   $(p\leftrightarrow \neg q)$
-  -------------------------------------------------------------------------- ------------ -----------------------------
-
-**First-order logic**
-
-**First-order logic (FOL)** is extremely important in logical theory and in AI
-applications. In part, this is because FOL has a lot of **expressive power**: a
-lot of
-claims—[some](https://en.wikipedia.org/wiki/John_McCarthy_(computer_scientist))
-would say _everything_—can be formalized in it.
-
-In general, the alphabet looks something like this:
-
-$$\Set{a,b,c,\dots,
-x,y,z,\dots,f,g,h,\dots,P,Q,R,\dots,\neg,\land,\lor,\to,\leftrightarrow,\forall,\exists,(,),,}$$
-
-**NB**: There's no typo at the end here 😃 The last symbol is a literal comma.
-
-For a concrete language, we'd need to pick some suitable constants
-$a,b,c,\dots$, function symbols $f,g,h,\dots$, and predicates $P,Q,R,\dots$.
-Usually, in KR-contexts, these will be mnemonic, of course. 
-
-The full syntax of FOL, then, is:
-
-$$\langle const\rangle ::= a \mid b\mid \dots $$
-$$\langle var\rangle ::= x \mid y\mid \dots $$
-$$\langle unop\rangle ::= \neg$$
-$$\langle binop\rangle ::= \land\mid\lor\mid\to\mid\leftrightarrow$$
-$$\langle quant\rangle ::= \forall\mid\exists$$
-$$\langle fu n^n\rangle ::= f^n\mid g^n\mid \dots $$
-$$\langle term\rangle::= \langle const\rangle\mid\langle variable\rangle\mid
-\langle fun^n\rangle(\overbrace{\langle term\rangle,\dots,\langle term\rangle}^{n\text{ times}})$$
-$$\langle pred^n\rangle ::= P^n\mid Q^n\mid \dots $$
-$$\langle atom\rangle::= \langle pred^n\rangle(\underbrace{\langle term\rangle,\dots\langle term\rangle}_{n\text{ times}})$$
-$$\langle fml\rangle::=\langle atom\rangle\mid\langle unop\rangle\langle fml\rangle\mid
-(\langle fml\rangle\langle binop\rangle \langle fml\rangle)\mid \langle quant\rangle \langle
-var\rangle\langle fml\rangle$$
-
-As you can see, the syntax of FOL is significantly more complex than the syntax
-of propositional logic. But syntactically, nothing too complicated is going on.
-Assuming, for example, that $FRIEND$ is a binary predicate and $data$ a constant
-for data in our language, we can write:
-
-$$\exists xFRIEND(data,x)$$
-
-to say that Data has a friend.
-
-Here are some more suggestions on how to formalize:
-
-  ------------------------------------------- ----------- -------------------------------
-  Not everybody handsome is smart             $\leadsto$  $\neg\forall x(H(x)\to S(x))$
-
-  Everybody who's smart is handsome           $\leadsto$  $\forall x(S(x)\to H(x))$
-
-  A person who's smart is handsome            $\leadsto$  $\forall x(S(x)\to H(x))$
-
-  Someone who's smart is handsome             $\leadsto$  $\forall x(S(x)\to H(x))$
-
-  Everybody's smart and handsome              $\leadsto$  $\forall x(S(x)\land H(x))$
-
-  Somebody who's smart exists                 $\leadsto$  $\exists x S(x)$
-
-  There's somebody who's not smart            $\leadsto$  $\exists x\neg S(x)$
-
-  Somebody's smart and somebody's handsome    $\leadsto$  $\exists xS(x)\land \exists xH(x)$
-
-  Somebody's smart and handsome               $\leadsto$  $\exists x(S(x)\land H(x))$
-
-  Nobody's both smart and handsome            $\leadsto$  $\neg\exists x(S(x)\land H(x))$
-
-  Somebody, who's smart, is handsome          $\leadsto$  $\exists x(S(x)\land H(x))$
-
-  ------------------------------------------- ----------- -------------------------------
-
-Indeterminate terms, like pronouns, indexicals, etc., are formalized using variables. Only when clearly the same thing is meant, use the same variable, if different things could be meant, use different variables:
-
-  ------------------------------------ ------------ ------------------
-  He's handsome                         $\leadsto$  $H(x)$
-
-  She's handsome and smart              $\leadsto$  $H(x)\land S(x)$
-
-  He's handsome and *he*'s smart        $\leadsto$  $H(x)\land S(y)$
-
-  He's handsome and she's smart         $\leadsto$  $H(x)\land S(y)$
-
-  That's a smart and handsome person    $\leadsto$  $H(x)\land S(x)$
-  ------------------------------------ ------------ ------------------
-
-Most languages used for KR are **fragments** of FOL, since FOL has certain
-theoretical limitations, which we'll discuss later in the course.
-
-**More examples**
-
-At this point, you know enough about how logical grammars and BNFs work that you
-can check out your own examples. Here are some suggestions for grammars to check
-out:
-
+computer science, and AI. At this point, you know enough about how logical
+grammars and BNFs work that you can check out your own examples. Here are some
+suggestions for grammars to check out:
 
 + Pick your favorite programming language (if you have one):
-[Python](https://docs.python.org/3/reference/grammar.html) we mentioned above,
+[Python](https://docs.Python.org/3/reference/grammar.html) we mentioned above,
 [C](https://cs.wmich.edu/~gupta/teaching/cs4850/sumII06/The%20syntax%20of%20C%20in%20Backus-Naur%20form.htm)
 is a popular low-level language,
 [Prolog](http://tau-prolog.org/files/doc/grammar-specification.pdf) is a
@@ -570,56 +670,158 @@ the BNF for valid email addresses. Check it out 🤓
 
 ## Parsing
 
-So far, we've looked at how to define formulas by looking at how they are
-constructed from simpler formulas. Now, we'll invert the perspective and
-_desconstruct_ or **parse** formulas.
+{{< img src="img/ai_confused.png" class="rounded  float-start inert-img img-fluid m-2" width="400px" >}} Now that we've formally defined what formal
+languages and their formulas _are_, let's look at how computers (and also
+_perhaps_ humans, subconsciously) read these formulas.
 
-_Why?_ you ask? Well, the reason we need to look into this is because that's
-essentially what computers do to **understand formulas**. The idea of parsing is
-to split a formula according to the rules of the grammar to recover how it was
-constructed.
+This happens by means of a process known as **parsing**, which is the step-wise
+reconstruction of formulas into their constitutive parts. Essentially,
+"unwinding" the formula, by figuring out how it was constructed.
 
-An example shows this more clearly than words. This is the result of parsing the
-propositional formula $((p\land(p\to q))\to\neg q)$:
+This is the first step of how computers **understand** formulas (computer
+programs etc.) as it gives them a clear order in which to process its
+components. Later, when we'll look into how the semantic processing of formulas
+works—how we assign _meaning_ to them—this will become very important.
 
-{{< img src="img/tree.png" alt="parsing tree" class="img-thumbnail" >}}
+To illustrate the idea of parsing, let's assume that our propositional language
+has just the three propositional variables {{< excalifont >}}p, q, r{{<
+/excalifont >}}. We can then understand the grammar of this language as the
+collection of the following eight rules:
 
-The result is what's known as a **parsing tree**, it is a useful representation
-of the syntactic structure of a formula. 
 
-Here is an example from first-order logic: 
+Essentially, this is a collection of eight rules:
 
-{{< img src="img/fo-tree.png" alt="parsing tree" class="img-thumbnail" >}}
+{{< img src="img/rewriting_rules.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="300px">}}
 
-The parsing tree of a formula essentially tells you, which rules have been
-applied in which order to obtain the formula in question.
+Rules like this are sometimes called _rewrite rules_. The intuition is that starting from the abstract 'start' symbol {{< excalifont >}}A{{< /excalifont >}}, the rules allow you to rewrite {{< excalifont >}}A{{< /excalifont >}}  to any formula in the language. So, any formula in the language can be _derived_ by applying a finite number of choices from these rules.
+For instance, to show that {{< img
+src="img/neg_p_and_q.png" class="inert-img" height="24px" style="vertical-align: middle;" >}} is a formula in this language, we start with {{< excalifont >}}A{{< /excalifont >}} and, using the rules above, we rewrite this {{< excalifont >}}A{{< /excalifont >}} until we arrive at this formula. We can do this in four steps:
+
+{{< img src="img/rewriting_example.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="500px">}}
+
+To make this more insightful, we can turn this derivation into a so-called
+**parse tree**, which is a very useful representation of the syntax of a
+formula. A parse tree is a structure that is rooted in the abstract label {{<
+excalifont >}}A{{< /excalifont >}} that forms the base of our BNF definition of
+the language. You can construct a tree by just following the derivation above,
+step by step. Each application of a rule introduces a new branching, until there
+is nothing left to do anymore. Here is how to construct the parse tree for the
+derivation we gave for {{< img
+src="img/neg_p_and_q.png" class="inert-img" height="24px" style="vertical-align: middle;" >}}. We start with a node 
+{{< excalifont >}}A{{< /excalifont >}} and then look at the derivation to see which rule to
+apply first. This is rule 4, which maps {{< excalifont >}}A{{< /excalifont >}}
+to a new formula {{< img
+src="img/neg_A.png" class="inert-img" height="24px" style="vertical-align: middle;" >}}. For each new symbol we create a new branch:
+
+{{< img src="img/negation_tree.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="150px">}}
+
+
+Then, we apply rule 5 to the right-most branch. This rule rewrites this {{< excalifont >}}A{{< /excalifont >}} into $(A\land A)$, which creates five more branches:
+
+{{< img src="img/tree_negation_conjunction.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="250px">}}
+
+Then, we apply rule 1 to {{< excalifont >}}A{{< /excalifont >}} that is to the left of "$\land$":
+
+{{< img src="img/tree_step_3.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="250px">}}
+
+Finally, we apply rule 2:
+
+{{< img src="img/tree_step_4.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="250px">}}
+
+This now is the parse tree corresponding to our derivation of {{< img src="img/neg_p_and_q.png" class="inert-img" height="24px" style="vertical-align: middle;" >}}. The leaves of the tree spell out the formula, each branching is an
+application of a rule from the BNF grammar.
+
+For a computer it is essential to be capable of parsing a complex formula in
+this way. This is because the parse of a formula gives us access to the logical
+form. Say, that the propositions in this logical language are meant to give a
+medical system crucial information about a patient. For instance, {{< excalifont >}}p, q{{< /excalifont >}}, and {{< excalifont >}}r{{< /excalifont >}} each correspond to the proposition that states that the patient has a
+certain symptom, call these symptoms 
+{{< excalifont >}}P{{< /excalifont >}},
+{{< excalifont >}}Q{{< /excalifont >}}, and
+{{< excalifont >}}R{{< /excalifont >}}
+, respectively. If we feed
+the system the formula 
+{{< img src="img/neg_p_or_q_and_r.png" class="inert-img" height="24px" style="vertical-align: middle;" >}}, 
+then we want the system to know
+that the patient is showing symptom $R$, but not showing 
+{{< excalifont >}}P{{< /excalifont >}} or
+{{< excalifont >}}Q{{< /excalifont >}}.
+It needs to
+figure out that the sub-proposition 
+{{< img src="img/p_or_q.png" class="inert-img" height="24px" style="vertical-align: middle;" >}}, 
+are negated, while
+sub-proposition $r$ is not. To do this, it needs to parse the formula correctly.
+From the parse, it is clear that the disjunction 
+{{< img src="img/p_or_q.png" class="inert-img" height="24px" style="vertical-align: middle;" >}} is negated, but
+that 
+{{< excalifont >}}r{{< /excalifont >}},
+escapes the effect of that negation. 
+
+Parsing allows us to distinguish seemingly similar, but crucially different logical forms like:
+
+{{< img src="img/negation_scope.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="500px">}}
 
 A fundamental insight of logical theory is that when a grammar is properly
-defined, we get what's known as **unique readability**. Unique readability is of
-the utmost importance since if it fails, this means that formulas are
-**ambiguous**: they have two (or more) possible readings. 
+defined, we get what's known as **unique readability**. A formula has this
+property when the grammar only provides a single parse tree for it. This is the
+case for the examples we gave above. For instance, for 
+{{< img src="img/p_and_p_to_q.png" class="inert-img" height="24px" style="vertical-align: middle;" >}}, 
+we don't have a choice in what rule to apply first when
+we start our derivation. We cannot for instance apply rule 4 before we apply
+rule 7. If we did, we would end up with a different formula. We do have some
+choices later in the derivation. For instance, after applying rule 4, we could
+have chosen to apply rule 5 to the {{< excalifont >}}A{{< /excalifont >}} to the
+left of the 
+{{< img src="img/to.png" class="inert-img" height="24px" style="vertical-align: middle;" >}}. But that is not a choice that affects the structure.
+The parse tree would remain the same. In other words, all derivations of this
+formula lead to the same tree.
 
-To understand the problem, consider the "formula" $p\land q\lor r$. Note that
-this is not really a formula because of the missing parentheses (check the
-rules). You could encounter this formula, for example, in a KR context, where
-you represent breakfast options to a computer: $p$ stands for having granola,
-$q$ stands for having tea, and $r$ stands for having coffee context. Now the way
-the "formula" is written, there are two ways of parsing it:
+Unique readability is of the utmost importance since if it fails, this means
+that formulas are **ambiguous**. Since we said that avoiding ambiguity is one of
+the motivations for the use of formal languages, this means that we need to take
+special care in designing our grammar. Take the following grammar, for example
+(note the absence of parentheses in the conjunction case):
+{{< img src="img/bad_bnf.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="250px">}}
+In this language, we can derive the following formula:
+{{< img src="img/neg_p_and_q.png" class="inert-img" height="24px" style="vertical-align: middle;" >}}. 
+Crucially, though, we can derive this in two distinct ways, corresponding
+to the following two parse trees.
 
-{{< img src="img/ambiguity.png" alt="ambiguous" class="img-thumbnail" >}}
+{{< img src="img/two_derivations.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="500px">}}
 
-These correspond to two readings:
+Imagine we are building an AI system to regulate a train crossing. There is a
+light stopping traffic from crossing the railway when it turns red and similarly
+there is a light indicating the train should stop and wait with crossing the
+road until that light turns green. Let's say we have trained a neural network to
+regulate things as efficiently as possible, minimizing train delays and traffic
+jams. Unfortunately, the neural network is not flawless. We need a rule-based
+system to make sure the decisions made by the network are safe. To do this, we
+translate the network's decisions to statements in a propositional logic and
+compare these to rules that we want the system to obey. Let's say that 
+{{< excalifont >}}p{{< /excalifont >}}
+means that the cars have a green light and 
+{{< excalifont >}}q{{< /excalifont >}}
+means that the train has a green light.
+We now want a rule that says that 
+{{< excalifont >}}p{{< /excalifont >}} and 
+{{< excalifont >}}q{{< /excalifont >}}
+cannot be true at the same time. 
 
-1. You can have eggs and either tea or coffee. $(p\land (q\lor r))$, the left
-tree
-2. You can have eggs and tea or just coffee. $((p\land q)\lor r))$, the right
-tree
-
-Obviously, these are very different things and might lead to the terrible
-consequence of not having anything to eat for breakfast.
-
-This is why we need to be careful about the **auxiliaries**, like $(,)$, which
-ultimately guarantee unique readability. So, we need to be careful.
+As the two parse trees above show us, we have no way of doing this. If we state the rule as 
+{{< img src="img/neg_p_and_q.png" class="inert-img" height="24px" style="vertical-align: middle;" >}}, 
+we end up with something that could be misunderstood. The two trees correspond
+to two distinct derivations, which correspond to two different structures for
+the same formula. In turn this means that the formula will have two
+interpretations. On the right is the interpretation that would be handy for this
+AI system: cars and trains do not have a green light at the same time. But if
+the system instead adopts the structure on the left, we could end up with a
+system that demands that trains have a green light while cars do not. Ambiguity
+might just have created a huge traffic jam! This shows that the BNF above is
+unsuitable as a formal language, since it fails the property of unique
+readability. All this is why we need to be careful about the auxiliaries,
+like 
+{{< img src="img/parentheses.png" class="inert-img" height="20px" style="vertical-align: middle;" >}}, 
+which ultimately guarantee unique readability. 
 
 Parsing is an incredibly important subject in the foundations and practice of
 programming, natural language processing (NLP), and elsewhere. We don't have
@@ -632,8 +834,7 @@ you write into machine instructions (the proverbial 1's and 0's).
 To ensure that the machine instructions really correspond to what you had in
 mind when you wrote the program, the computer needs to understand _what you
 meant_. Since a computer is deterministic and not _particularly_ intelligent,
-the only way it can do this is according to clear instructions about what means
-what. 
+the only way it can do this is according to unambiguous instructions about what means what. 
 
 But clearly, we can't just write for each program what it means in machine
 instructions-otherwise, what's the point of having the language in the first
@@ -647,70 +848,103 @@ program. To determine this is the role of the
 [parser](https://en.wikipedia.org/wiki/Parsing#Parser). This shows the
 fundamental importance of parsing in programming and human-computer interaction.
 
-## Applications
+## Knowledge representation
 
-Let's talk for a moment about the role of formal languages in AI. We've already
-talked about the fact that programming languages are essentially just formal
-languages. So we can use the theory of formal languages to understand this
-aspect of human-machine interaction, which is crucial also in AI. Here are some
-other applications:
+The development of large language models for generative AI has made a
+significant impact on applications of AI. Because the interaction with such
+models involves the medium of natural language, generative AI has a serious
+ambiguity problem. For that reason, it is crucial for applications that require
+precision that there are rule-based components that avoid the problems inherent
+to natural language.
 
-### Natural language processing
+So, let's talk for a moment about the role of formal languages in AI
+applications. We've already talked about the fact that programming languages are
+essentially just formal languages. So we can use the theory of formal languages
+to understand this crucial aspect of human-machine interaction. Formal
+languages, however, solve the problem of how to communicate with computers in a
+much more general way. Their potential to avoid ambiguity means that formal
+languages are essential to applications that require precision. 
 
-One application of formula languages, parsing, and related techniques is in
-[**natural language processing
-(NLP)**](https://en.wikipedia.org/wiki/Natural_language_processing). For a long
-time (until roughly the 1990s), formal languages played a key role in NLP in
-what in analogy to symbolic AI is known as [symbolic
-NLP](https://en.wikipedia.org/wiki/Natural_language_processing#Symbolic_NLP_(1950s_%E2%80%93_early_1990s)).
+In {{< chapter_ref chapter="logic-and-ai" >}} Chapter 1. Logic and AI{{<
+/chapter_ref >}}, we introduced so-called _expert systems_. These are systems
+where vast bodies of 'expertise' in a certain domain have been translated
+into databases of formalised statements and (if-then) rules, in order to solve
+complex problems concerning the domain in question. In such systems, there are
+so many rules and facts that it is impossible for the human expert to keep track
+of everything. 
 
-As suggested by Wikipedia, we can use a famous thought experiment known as the
-_Chinese room_ to illustrate the idea:
+Designing expert systems involves translating existing expert knowledge into a
+formal language that the AI expert system can work with. The process of
+translating a natural language expression into a formal language is known as
+**formalization**, which is a large part of the broader field known as
+**knowledge representation**. 
 
-{{< blockquote author="Jon Searle. 1999. 'The Chinese Room'">}}
-Imagine a native English speaker who knows no Chinese locked in a room full of boxes of Chinese symbols (a data base) together with a book of instructions for manipulating the symbols (the program). Imagine that people outside the room send in other Chinese symbols which, unknown to the person in the room, are questions in Chinese (the input). And imagine that by following the instructions in the program the man in the room is able to pass out Chinese symbols which are correct answers to the questions (the output). The program enables the person in the room to pass the Turing Test for understanding Chinese but he does not understand a word of Chinese. 
-{{< /blockquote >}}
-Essentially, the computer is the person in the room. The rules are parsing rules
-and formal grammars, which enable the room to "speak Chinese".
+The idea is that we can represent basic facts about the world using logical
+formulas of a suitable language and rules as if-then statements between such
+statements. To illustrate, let's consider a toy example. Suppose that our friend
+{{< logo >}} is looking for an important letter, which should be somewhere
+around this desk with two drawers:
 
-The idea was to build NLP technologies in a similar way and for a while this was
-moderately successful. But much for the same reasons why symbolic AI in general
-"failedd", symbolic NLP is no longer a strong paradigm in NLP.  While symbolic
-methods are still around, in NLP, statistical methods, which are at the core of
-[LLMs](https://en.wikipedia.org/wiki/Large_language_model), for example, rule
-the waves.
+{{< img src="img/ai_drawers.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="700px">}}
 
-### Knowledge representation
+Suppose we have some information that we want to pass on to {{< logo >}}, who
+understands the language of propositional logic. Here are a few claims in
+natural language that we might want to convey, both in natural language and in
+the formal language of propositional logic, where we stipulate that {{<
+excalifont >}}LEFT{{< /excalifont >}} is a propositional variable, which states
+that the letter is in the left drawer, and {{< excalifont >}}RIGHT{{<
+/excalifont >}} is a propositional variable, which states that the letter is in
+the right drawer:
 
-Things are more interesting when it comes to KR. To this day, formal languages
-and knowledge bases (KBs) are **powerful tools** when it comes to storing and
-making accessible known facts to computational systems, such as computers or
-AI-systems. Mathematically speaking, a knowledge bases is just a set of
-formulas. In a slogan: $$\mathbf{KB}\subseteq \mathcal{L}$$ 
+{{< img src="img/guidelines.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="100%">}}
 
-The main strengths of KBs is their **reliability** and **precision**. Mistakes
-in KBs are essentially only due to human error. Interestingly, though, there is
-[ongoing research](https://arxiv.org/abs/2407.13578) on using LLMs, for example,
-to store factual information, even though they can't compete with knowledge
-bases yet.
+These examples can be a helpful guideline, but it's important to keep in mind
+that formalization and knowledge representation is more of an **engineering
+problem** than a mathematical problem: there is not always an absolutely right or
+wrong answer (even though some cases are clearly right/wrong), it depends on the
+purpose of the formalization, on the reasoning context, and other factors what
+is a good or bad formalization.
 
-What we should note, though, is that the formal languages that are used for KR
-are usually **less expressive** than FOL. This is due to some theoretical
-results about FOL, which provide fundamental roadblocks to using its full
-expressive power in computational contexts. We've already briefly touched upon
-one such reason in {{< chapter_ref chapter="logic-and-ai"
-id="as-a-foundation">}} Chapter 1. Logic and AI{{< /chapter_ref >}}, when we
-spoke about Turing's [undecidability
-theorem](https://en.wikipedia.org/wiki/Decidability_%28logic%29), which states
-that validity checking in FOL, specifically, cannot be fully automated.
-[Description logic](https://en.wikipedia.org/wiki/Description_logic) is an
-interesting example of an approach to KR that uses what's effectively a fragment
-of FOL KR-purposes.
+Already the choice of language can be a difficult decision. We need to evaluate
+a language's expressive power against the additional complexity that comes with
+that. Sometimes, simple languages, like the language of propositional logic, are
+the right choice, sometimes we need more complex languages. 
 
-An active area of research is the so-called [semantic
-web](https://en.wikipedia.org/wiki/Semantic_Web), which uses languages like
-[OWL](https://en.wikipedia.org/wiki/Web_Ontology_Language) to make data on the
-internet machine readable. 
+Once we've formalized our claims in a suitable formal language, we collect our
+formalized knowledge in what's known as a **knowledge bas (KB)**. Generally
+speaking, a KB is a way of storing formalized knowledge in such a way that any
+agent—artificial or otherwise—can both **ask** the KB what is already known or
+**tell** the KB new facts. From a logical perspective, it turns out, that we can
+then think of a KB  as simply as set of formulas of a suitable language. 
+
+An expert system can generate unknown novel facts on the basis of a great many
+applications of modus ponens and other patterns of valid inference. Conversely,
+expert systems could be used to answer queries. This means that a user prompts
+the system with a certain proposition (standing for some statement in the domain
+of expertise) and the expert system would then search for a chain of inferences
+either leading to that proposition or to its negation. Ultimately then, the
+expert system can help the user understand whether something relevant to the
+domain of expertise is true or not, and also why that conclusion can be drawn.
+
+The concept of a KB is one of the fundamental concepts of the AI discipline
+known as **Knowledge Representation and Reasoning**, and will accompany us
+throughout the course
+
+Currently, the term 'expert system' is not used a lot anymore. However,
+rule-based systems are still very popular applications of formal languages in
+businesses and research in systems such as
+[WolframAlpha](https://en.wikipedia.org/wiki/WolframAlpha). They are
+(relatively) cheap to build and, importantly, they are fast and reliable. As we
+hinted at above, they are also fully _transparent_, meaning that an expert
+system doesn't just solve a complex problem, it can also provide a detailed
+explanation of how it came to the solution, since it can show you the rules and
+facts it used in order to reach it. 
+
+This is in stark contrast to generative AI, which relies on untraceable
+statistical regularities in vast amounts of data. This lack of traceable
+reasoning makes the reliability of generative AI questionable, thereby raising
+question about its safe use. Even worse, it makes it less clear that AI can be
+held accountable for the decisions it makes. 
 
 ## Further readings
 
@@ -729,3 +963,22 @@ language.](https://doi.org/10.1515/9783111546216-007)
 **Notes:**
 
 [^history]: See the book by Duthil Novaes, for example.
+There is not so much more to be said about the alphabet but it's useful to
+remark that in logical contexts, there are some special kinds of symbols that
+are usually used in the alphabets, which have special meanings.
+
+[^footnote]: We can, of course, ad hoc add any individual set to our space as a
+    new object, but this strategy won't work forever. This is a result of
+[Cantor's theorem](https://en.wikipedia.org/wiki/Cantor%27s_theorem), which we unfortunately don't have time to explore.
+
+[^primes]: We couldn't even use a … notation. While we might understand that 
+{{< excalifont >}}{0,1,2,…}{{< /excalifont >}} is supposed to be
+the set of all numerals because we recognize the pattern, there is no
+known pattern for the primes that we could use.
+
+[^mp]: The driving force behind this definition is actually an application of
+    modus ponens. One instance of step 2 in the definition is: If {{< excalifont >}}1{{< /excalifont >}} is a numeral, then so is {{<
+excalifont >}}12{{< /excalifont >}}. Now, since step 1 tells us
+that {{< excalifont >}}1{{< /excalifont >}} is indeed a numeral it follows by modus ponens that {{<
+excalifont >}}12{{< /excalifont >}} is also a numeral.
+

@@ -5,6 +5,9 @@ I expect students to have read the chapter before the lecture.
 
 It is also a good idea to review the chapter again _after_ the lecture. 
 
+Chapters that are currently under development are locked and their links don't
+work. They will be unlocked in time for class.
+
 **Reminder!**
 
 Keep in mind that your education is in your own hands: what you get out of the

@@ -3,8 +3,8 @@
 <div {{with index .Attributes "id"}}id="{{ . }}"{{end}} {{ with index .Attributes "class"}}class="{{ if in . "solution"}}collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light{{end}} {{.}}"{{end}}>
 {{- if eq .Level 1 -}}
 <h5 class="{{ with index .Attributes "class"}}{{.}}{{end}}">
-    <div class="d-inline-flex flex-row m-0  p-0 ">
-      {{- .Text | safeHTML -}}   
+    <div class="d-inline-flex flex-row m-0 p-0 ">
+      {{- .Text | safeHTML -}}
       {{ if in (index .Attributes "class") "solved" }}
       {{ with index .Attributes "id" }}
       &nbsp;

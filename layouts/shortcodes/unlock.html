@@ -1,0 +1,52 @@
+<div class="container" tabindex="-1" id="offcanvas-nav" aria-labelledby="offcanvas-navLabel" data-bs-theme="dark" data-bs-backdrop="false">
+  <div class="container">
+    <div class="h5 offcanvas-title" id="offcanvas-navLabel">
+      Browse 
+    </div>
+  </div>
+  {{ $currentPage := .Page }}
+  <div class="container">
+    <ul class="navbar-nav">
+      {{- $sections := sort site.Sections "Weight" -}}
+      {{- range $i, $s := $sections -}}
+      {{ if not $s.Params.hidden }}
+      {{ if gt $i 0 }}<hr>{{ end }}
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link {{ if or (eq $currentPage.Section $s.Section) (eq $currentPage $s) }}fw-bold active{{ end }}" href="{{ $s.RelPermalink }}">{{ $s.Param "icon" | safeHTML}} &nbsp;&nbsp; {{ $s.Title }}</a>
+          </div>
+          {{- if $s.Pages }}
+          <button 
+            class="btn btn-sm btn-secondary" 
+            href="{{ $s.RelPermalink }}"
+            id="navbarSection{{ $s.Param "id" }}" data-bs-toggle="collapse"
+            data-bs-target="#collapse{{ $s.Param "id" }}"  
+            aria-expanded="{{ if or (eq $currentPage.Section $s.Section) (eq $currentPage $s)}}true{{ else }}aria-expanded=false{{ end }}"
+            aria-controls="collapse{{ $s.Param "id" }}">
+            <i class="bi bi-caret-left-fill toggle-icon"></i>
+          </button>
+        </div>
+        <div class="collapse {{ if or (eq $currentPage.Section $s.Section) (eq $currentPage $s) }}show{{ end }}" id="collapse{{ $s.Param "id" }}">
+          <ul class="list-unstyled ms-3">
+            {{- range $s.Pages }}
+            <li>
+              <a class="dropdown-item 
+                {{ if eq $currentPage . }}fw-bold active{{ end }}
+                "
+                href="{{.RelPermalink}}"
+              >{{ math.Div .Weight 10 }}. {{ .Title }}
+              </a>
+            </li>
+            {{ end }}
+          </ul>
+        </div>
+          {{ end }}
+      </li>
+      {{ end }}
+      {{ end }}
+    </ul>
+  </div>
+</div>
+
+

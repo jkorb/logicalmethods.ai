@@ -15,8 +15,8 @@
 
 
 <hr>
-<div class="container exercises" style="max-width: 720px">
-  <div class="container-fluid m-0 p-0">
+<div class="container exercises m-4">
+  <div class="container-fluid">
     {{ $content := .Content }}
     {{ $content = replaceRE "<table>" "<table class=\"table\">" $content }}
       {{ $content | safeHTML }}

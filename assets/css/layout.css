@@ -1,10 +1,11 @@
 body {
   min-height: 100vh; 
+  font-size: 18pt;
 }
 
 header, footer, main, .alert, .element {
   width:100vw;
-  max-width:720px;
+  max-width:1140px;
 }
 
 main, .element {
@@ -23,4 +24,29 @@ main, .element {
   transform: rotate(90deg);
 }
 
+.inert-img {
+  user-select: none;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none;
+  -ms-user-select: none;
 
+  -webkit-user-drag: none;   /* Safari/old WebKit */
+  -khtml-user-drag: none;
+
+  -webkit-touch-callout: none; /* no long-press menu on iOS */
+  pointer-events: none;        /* if you don't want it clickable */
+}
+
+@font-face {
+  font-family: 'Excalifont';
+  src: url('/fonts/Excalifont.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.excalifont 
+{
+  font-family: 'Excalifont', sans-serif;
+  /* font-weight: bold; */
+  font-size: 19pt;
+}

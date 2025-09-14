@@ -17,5 +17,8 @@ target = "static/icons/font/fonts"
 source = "assets/bootstrap/dist"
 target = "static/bootstrap/dist"
 [[module.mounts]]
+source = "assets/fonts"
+target = "static/fonts"
+[[module.mounts]]
 source = "content"
 target = "content"
