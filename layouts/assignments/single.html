@@ -1,0 +1,28 @@
+{{ define "head" }}
+<link rel="stylesheet" href="{{ (resources.Get "css/assignments.css").Permalink }}"></link>
+{{ end }}
+
+{{ define "main" }}
+  {{ partial "exercises/password-modal" . }}
+  {{ partial "single/nav-top" . }}
+  {{ partial "single/title" . }}
+
+{{ partial "shared/info" . }}
+
+<hr>
+<div class="container exercises m-4">
+  <div class="container-fluid">
+    {{ $content := .Content }}
+    {{ $content = replaceRE "<table>" "<table class=\"table\">" $content }}
+      {{ $content | safeHTML }}
+  </div>
+</div>
+
+{{ partial "single/nav-bot" . }}
+
+{{ end }}
+
+
+{{ define "footer" }}
+<script src="{{ (resources.Get "js/exercises.js").Permalink}}"></script>
+{{ end }}

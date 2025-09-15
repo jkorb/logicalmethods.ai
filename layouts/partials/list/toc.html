@@ -18,7 +18,8 @@
         {{ else }}
           <i class="bi bi-lock-fill"></i>
         {{ end }}
-        {{ $curPage.Param "section-names"}} {{ math.Div .Weight 10 }}. {{ .Title }} 
+        {{ if $curPage.Param "section-names"}}{{ $curPage.Param "section-names" }} {{ math.Div .Weight 10 }}.{{ end }}
+         {{ .Title }} 
       </a> 
       <a class="link-dark link-underline-light d-block d-sm-none
         {{if .Params.locked}}
