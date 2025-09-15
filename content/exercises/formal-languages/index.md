@@ -89,12 +89,10 @@ it.
 We'll look at a simple proposition language in Polish notation, with the
 following alphabet:
 
-{{< excalifont display=true >}}Σ = { p, q, r, N, K, A, C, B }{{< /excalifont >}}
-
 The letters {{<excalifont>}}p,q,r{{</excalifont>}} are propositional variables,
 and {{<excalifont>}}N{{</excalifont>}} stands for negation {{< img
 src="img/negation.png" class="inert-img" height="18px" style="vertical-align: middle;" >}}, {{<excalifont>}}K{{</excalifont>}} for conjunction  {{< img
-src="img/conjunction.png" class="inert-img" height="18px" style="vertical-align: middle;" >}}, {{<excalifont>}}K{{</excalifont>}} for disjunction {{< img
+src="img/conjunction.png" class="inert-img" height="18px" style="vertical-align: middle;" >}}, {{<excalifont>}}A{{</excalifont>}} for disjunction {{< img
 src="img/disjunction.png" class="inert-img" height="18px" style="vertical-align: middle;" >}}, {{<excalifont>}}C{{</excalifont>}} for the conditional {{< img
 src="img/conditional.png" class="inert-img" height="18px" style="vertical-align: middle;" >}}, and {{<excalifont>}}B{{</excalifont>}} for the bi-conditional  {{< img
 src="img/bi-conditional.png" class="inert-img" height="18px" style="vertical-align: middle;" >}}, 
