@@ -461,11 +461,11 @@
             <li>
               <a class="dropdown-item 
                 fw-bold active
-                link-opacity-50
+                
                 "
-                href="javascript:;"
+                href="/exercises/valid-inference/"
               >3. 
-                <i class="bi bi-lock-fill"></i>
+                <i class="bi bi-unlock-fill"></i>
                  Valid inference
               </a>
             </li>
@@ -701,267 +701,460 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
     
       
 </div>
-<div id="deduction-and-induction" ><h5 class="">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Deduction and Induction
+<div id="material-and-logical-validity" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Material and logical validity
     </div>
-</h5><p>Give an example of one for each of the following:</p>
+</h5><p>For each of the following inferences, determine whether it is logically or only materially valid:</p>
+<ol>
+<li>
+<p>Little Jimmy&rsquo;s parents are U.S. citizens, so he&rsquo;s a U.S. citizen.</p>
+</li>
+<li>
+<p>Every logician knows this proof and little Jimmy is a logician. Therefore little
+Jimmy knows the proof.</p>
+</li>
+<li>
+<p>The sentence &ldquo;snow is white&rdquo; is not true. Thus, the sentence is false.</p>
+</li>
+<li>
+<p>I think, therefore I am.</p>
+</li>
+<li>
+<p>Courage requires fear and you&rsquo;re not afraid. So, you&rsquo;re not courageous.</p>
+</li>
+</ol>
+<p><strong>Show your work!</strong> That is: identify the schematic logical form of each
+inference and check whether there are invalid inferences of this form.</p>
+<p>For the materially valid inferences, identify a premise you could add to turn
+the inference into a logically valid inference.</p>
 
 </div>
-<div id="a" class=" homework"><h6 class=" homework">a)</h6><p>A deductively valid inference</p>
-
-</div>
-<div id="b" ><h6 class="">b)</h6><p>A deductively invalid inference</p>
-
-</div>
-<div id="c" ><h6 class="">c)</h6><p>An inductively valid inference</p>
-
-</div>
-<div id="d" class=" homework"><h6 class=" homework">d)</h6><p>An inductively invalid inference</p>
-
-</div>
-<div id="monotonicity" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Monotonicity
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="monotonicitySolution"
-        onclick="showPasswordModal('monotonicitySolution', 'exc-val')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="reasoning-mistakes" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Reasoning mistakes
     </div>
-</h5>
-</div>
-<div id="a-deduction" ><h6 class="">a) Deduction</h6><p>Give an argument that if an inference is deductively valid, then adding
-additional premises doesn’t cancel the validity of the inference.</p>
+</h5><p>The following inferences contain reasoning mistakes.</p>
+<ol>
+<li>
+<p>If you went to Oxford or Cambridge, then you went to university in the UK.
+Mr. Sir neither went to Oxford nor Cambridge, so he didn&rsquo;t go to university
+in the UK.</p>
+</li>
+<li>
+<p>Only New Yorkers are Yankees fans and little Jimmy is not a Yankees fan. So,
+little Jimmy is not a New Yorker.</p>
+</li>
+<li>
+<p>I&rsquo;ve tried over 10.000 burger places on the East Coast and almost none of
+them had vegetarian options. So, it&rsquo;s unlikely that this burger place on the
+West Coast will have any veggie options either.</p>
+</li>
+<li>
+<p>An AI system must be logic-based or statistics-based, and <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+ is
+logic-based. So, <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+ is not statistics-based.</p>
+</li>
+<li>
+<p>The roulette wheel spun black 42 times. So, the next time it&rsquo;s more likely to
+spin red.</p>
+</li>
+</ol>
+<p><strong>Show your work!</strong> That is: apply the criterion of truth-preservation by
+showing that there&rsquo;s a hypothetical reasoning situation where the premises are
+true and the conclusion isn&rsquo;t.</p>
+<p>Does it make a difference whether we take the inference in question to be
+inductive or deductive?</p>
 
 </div>
-<div id="b-induction" class=" homework"><h6 class=" homework">b) Induction</h6><p>Why does this argument fail for inductive logic?</p>
-
-</div>
-<div id="monotonicitySolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong></p>
-<p>Deductive validity is necessary. Suppose $A\vDash C$. Necessarily, if $A$ is
-true, $C$ is true. If we consider any possibility where $A\land B$ is true, it
-also makes $A$ true, which means that is has to make $C$ true (based on what we
-just observed). So $A\land B\vDash C$.</p>
-<p><strong>b)</strong></p>
-<p>Inductive validity isn&rsquo;t necessary. $A\mid!\approx C$ only tells us that when
-$A$ is true, <em>it is likely</em> that $C$ is true. This does not guarantee that when
-$A\land B$ is true, <em>it is equally likely</em> that $C$ is true. Sometimes new
-information $B$ lowers or cancels out the probability of $C$.</p>
-
-</div>
-<div id="validity" class=" homework solved"><h5 class="homework solved">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Validity
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="validitySolution"
-        onclick="showPasswordModal('validitySolution', 'exc-val')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="inferences-in-llms" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Inferences in LLMs
     </div>
-</h5><p>For every invalid inference, it’s possible to add one or more premises to make it
-valid. Why?</p>
-
-</div>
-<div id="validitySolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>If you have an invalid inference $P_1,\ldots, P_n\nvDash C$ you can just add $C$ on the premise side and you get a valid inference $C,P_1,\ldots, P_n\vDash C$.</p>
-
-</div>
-<div id="truth-preservation" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Truth-Preservation
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="truth-preservationSolution"
-        onclick="showPasswordModal('truth-preservationSolution', 'exc-val')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
-    </div>
-</h5><p>Which of the following is possible? Make your answer clear and precise, by
-showing how the definition of deductive validity and the definition of inductive
-validity/strength relate to these questions.</p>
-
-</div>
-<div id="a-1" ><h6 class="">a)</h6><p>Can an inference be deductively valid and have a false premise?</p>
-
-</div>
-<div id="b-1" ><h6 class="">b)</h6><p>Can an inference be deductively valid and have a false conclusion?</p>
-
-</div>
-<div id="c-1" ><h6 class="">c)</h6><p>Can an inference be deductively valid, have true premises, and have a false conclusion?</p>
-
-</div>
-<div id="d-1" ><h6 class="">d)</h6><p>Can an inference be deductively valid but inductively invalid?</p>
-
-</div>
-<div id="e" ><h6 class="">e)</h6><p>Can an inference be inductively valid and have a false premise?</p>
-
-</div>
-<div id="f" ><h6 class="">f)</h6><p>Can an inference be inductively valid and have a false conclusion?</p>
-
-</div>
-<div id="g" ><h6 class="">g)</h6><p>Can an inference be inductively valid, have true premises, and have a false conclusion?</p>
-
-</div>
-<div id="h" ><h6 class="">h)</h6><p>Can an inference be inductively valid but deductively invalid?</p>
-
-</div>
-<div id="truth-preservationSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong></p>
-<p>Yes. Just fill in any valid logical form with a false premise. Maddy the pig
-example.</p>
-<p><strong>b)</strong></p>
-<p>Yes. Just fill in any valid logical form with a false conclusion.</p>
-<p><strong>c)</strong></p>
-<p>No. That contradicts the definition of validity.</p>
-<p><strong>d)</strong></p>
-<p>No. If an inference preserves truth always, then it preserves truth most of the
-time. You can illustrate with standard &lsquo;definitional&rsquo; rules for the logical
-connectives, which are easily seen to be inductively valid. $A\land B\vDash A$
-and $A\vDash A\lor B$ etc.</p>
-<p><strong>e)</strong> z Yes. Take any strong conditional probability with a false condition.
-The moon is made of cheese, so its probably delicious.</p>
-<p><strong>f)</strong></p>
-<p>Yes. Take any strong conditional probability with a false outcome.</p>
-<p><strong>g)</strong></p>
-<p>Yes. Because inductive validity is not necessary.</p>
-<p><strong>h)</strong></p>
-<p>Yes. For example, any strong, statistical reasoning.</p>
-
-</div>
-<div id="semantic-tools" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Semantic tools
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="semantic-toolsSolution"
-        onclick="showPasswordModal('semantic-toolsSolution', 'exc-val')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
-    </div>
-</h5><p>Explain the following facts:</p>
-
-</div>
-<div id="a-2" ><h6 class="">a)</h6><p>The subset relation, defined in 
-
-
-<a href="https://logicalmethods.ai/textbook/valid-inference//#semantic-methods-for-deduction"
-   
-   
-   
-   
-   
-   >
-2.3.1 </a>
-
-, has the following property:</p>
+</h5><p>Log in to your favorite chatbot, be it <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://chatgpt.com/" class="link-dark" rel="external" target="_blank">ChatGPT</a>
+,
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://claude.ai/" class="link-dark" rel="external" target="_blank">Claude</a>
+, <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://www.deepseek.com/en" class="link-dark" rel="external" target="_blank">DeepSeek</a>
+, or any
+other. A free account is fine for this exercise.</p>
+<p>If you have access to a <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/Reasoning_language_model" class="link-dark" rel="external" target="_blank">reasoning language
+model</a>
+, like
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/OpenAI_o4-mini" class="link-dark" rel="external" target="_blank">o4-mini</a>
+, DeepSeek-R1, or the
+like, use it for this exercise.</p>
+<ol>
+<li>
+<p>Write a prompt that requires your chatbot to reason. Here are a few
+strategies for doing so:</p>
 <ul>
-<li>If $X\subseteq Y$ and $Y\subseteq Z$, then $X\subseteq Z$.</li>
+<li>
+<p>Write a clear set up with relevant pieces of information. Like (but maybe
+not exactly):</p>
+<p><em>Example prompt</em>:  <code>When I was 10, my sister was twice my age. Now I'm 24.</code></p>
+</li>
+<li>
+<p>Clearly ask for the information you want the chatbot to infer:</p>
+<p><em>Example prompt</em>: <code>How old is my sister now? Answer with a number.</code></p>
+</li>
+<li>
+<p>Explicitly ask the chatbot to think &ldquo;step by step&rdquo;.</p>
+<p><em>Example prompt</em>:  <code>When determining your answer, think step-by-step.</code></p>
+<p>This is called <em>chain of thought (COT) prompting</em>.</p>
+</li>
+<li>
+<p>Ask the chatbot <em>not</em> to use tools, such as Python.</p>
+<p><em>Example prompt</em>:  <code>Please don't use tools, such as Python.</code></p>
+</li>
 </ul>
-<p><em>Note</em>: This property is called &ldquo;transitivity&rdquo;.</p>
+</li>
+<li>
+<p>Determine whether the resulting reasoning is valid of invalid, material or
+logical, deductive or inductive.</p>
+</li>
+<li>
+<p>Test how &ldquo;fragile&rdquo; these properties are. Can you add additional information
+to your prompt which makes the answer be valid, invalid, material or logical?</p>
+<ul>
+<li>
+<p>One strategy that can prompt mistakes is adding &ldquo;distracting&rdquo; information
+or to suggest false answers, such as:</p>
+<p><em>Example prompt</em>:  <code>When I was 10, my sister was twice my age. Now I'm 24. How old is my sister now? Think step-by-step without any tools. But the answer is 48, right?</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Document your work in a file called something like <code>chatbot_reasoning_2025-09-15.txt</code>. Write to different strategies you tried, what the inputs and output where, what you did or didn&rsquo;t like about an answer (scientifically speaking), etc.</p>
+</li>
+<li>
+<p>Finally, evaluate your work. What does this tell you about reasoning in LLMs?</p>
+</li>
+</ol>
+<p><abbr title="Nota bene=note carefully/well"><a  class="link-underline-opacity-0 link-body-emphasis"> <strong>NB</strong></a></abbr>:</p>
+<ul>
+<li>
+<p>For this exercise, we explicitly asked you to use <abbr title="generative AI"><a  class="link-underline-opacity-0 link-body-emphasis"> genAI</a></abbr>. There are other exercises where we <em>don&rsquo;t</em>. This usually means you shouldn&rsquo;t use GenAI for these exercises.</p>
+</li>
+<li>
+<p>The benefits and drawbacks of GenAI-use in learning is not very well
+understood. It should be clear that just having ChatGPT do your homework will
+not help you. But even just having the assistance of GenAI can hurt your
+understanding. Sometimes, you just got to do the tough work yourself to get the
+reward (understanding).</p>
+</li>
+<li>
+<p>Documenting your use of GenAI is good practice (step 4). It allows you to
+demonstrate what&rsquo;s your work and what&rsquo;s the contribution of the LLM. But it&rsquo;s
+also helpful for your own learning journey, for example, to look back at what
+you did and learn from it.</p>
+</li>
+<li>
+<p><strong>Watch out</strong>: In academic contexts, the use of GenAI is a sensitive topic! There
+are contexts, where it is strictly forbidden. For example, when you&rsquo;re supposed
+to demonstrate <em>your own</em> understanding of a topic in an exam, thesis, or the
+like. This is a question of academic integrity.</p>
+</li>
+<li>
+<p>If you&rsquo;re a university student or academic, make sure you&rsquo;re absolutely clear
+on what the relevant standards are.</p>
+</li>
+</ul>
+<p>If want to know more about prompt engineering, you can check out <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://www.leeboonstra.dev/" class="link-dark" rel="external" target="_blank">Lee Boonstra&rsquo;s</a>
+ amazing whitepaper, <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://www.kaggle.com/whitepaper-prompt-engineering" class="link-dark" rel="external" target="_blank">here</a>
+.</p>
 
 </div>
-<div id="b-2" class=" homework"><h6 class=" homework">b)</h6><p>Remember that the intersection $X\cap Y$ of two sets $X,Y$ is the overlapping
-part of those two sets. We have that $X\cap Y\subseteq X$ and $X\cap Y\subseteq
-Y$.</p>
-
-</div>
-<div id="semantic-toolsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong></p>
-<p>$X\subseteq Y$ means all elements of set $X$ are elements of set $Y$.
-$Y\subseteq Z$ means all elements of set $Y$ are elements of set $Z$. Then it
-must be true that all elements of set $X$ are elements of set $Z$.</p>
-<p><strong>b)</strong></p>
-<p>The intersection $X\cap Y$ is the overlapping part of $X$ and $Y$. So the
-elements of $X\cap Y$ have to be elements of $X$. That means $X\cap Y\subseteq
-X$. And the elements of $X\cap Y$ have to be elements of $Y$. That means $X\cap
-Y\subseteq Y$.</p>
-
-</div>
-<div id="research" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Research
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="researchSolution"
-        onclick="showPasswordModal('researchSolution', 'exc-val')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="sets" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Sets
     </div>
-</h5><p>Note: These questions <em>require</em> you to research the answer yourself using reliable academic sources. You need to reference your sources!</p>
-<p><strong>Reasoning</strong></p>
-<p>Are all forms of &ldquo;good&rdquo; reasoning either deductive or inductive?</p>
+</h5><p>Calculate the results of the following set theoretic operations:</p>
+<ol>
+<li>
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/set_1.png" class="inert-img" height="100px"  style="ZgotmplZ" alt="" >
+
+</li>
+<li>
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/set_2.png" class="inert-img" height="100px"  style="ZgotmplZ" alt="" >
+
+</li>
+<li>
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/set_3.png" class="inert-img" height="50px"  style="ZgotmplZ" alt="" >
+
+</li>
+<li>
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/set_4.png" class="inert-img" height="150px"  style="ZgotmplZ" alt="" >
+
+</li>
+<li>
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/set_5.png" class="inert-img" height="100px"  style="ZgotmplZ" alt="" >
+
+</li>
+</ol>
+<p>Which of the following claims are true? Explain your answer in terms of the
+definition of the subset relation:</p>
+<ol start="6">
+<li>
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/subset_1.png" class="inert-img" height="100px"  style="ZgotmplZ" alt="" >
+
+</li>
+<li>
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/subset_2.png" class="inert-img" height="75px"  style="ZgotmplZ" alt="" >
+
+</li>
+<li>
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/subset_3.png" class="inert-img" height="150px"  style="ZgotmplZ" alt="" >
+
+</li>
+<li>
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/subset_4.png" class="inert-img" height="100px"  style="ZgotmplZ" alt="" >
+
+</li>
+</ol>
+<p>Find all the subsets of the following set:</p>
+<ol start="10">
+<li>
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/set_ex.png" class="inert-img" height="100px"  style="ZgotmplZ" alt="" >
+
+</li>
+</ol>
 
 </div>
-<div id="researchSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>Try to give positive feedback on any interesting answer that shows some work.
-Here is one possible answer.</p>
-<p>We defined induction by probablistic support. That is pretty much the broadest
-notion of truth-preservation we can define. If truth is all that matters then
-all good reasoning would have to be deductive or inductive. But there are
-theories of reasoning that say that some reasoning methods are good for other
-reasons apart from tracking truth. For example, some people think that
-<em>inference to the best explanation</em> is a good reasoning strategy, but the notion
-of &ldquo;best&rdquo; explanation depends on contingent scientific values of a community.</p>
-
-</div>
-<div id="discussion" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Discussion
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="discussionSolution"
-        onclick="showPasswordModal('discussionSolution', 'exc-val')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="monotonicity-of-deductive-inference" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Monotonicity of deductive inference
     </div>
-</h5><p>Inductive logic in general is non-monotonic because new (premise) information
-can turn a valid inference into an invalid inference. But what if we know
-something about <em>how</em> a new piece of information <em>relates</em> to our old premises?
-Some versions of inductive logic support &rsquo;limited&rsquo; versions of monotonicity
-based on situations where new information (the &lsquo;$B$&rsquo; premises in these examples)
-comes from the right place. Do you think these limited forms of monotonicity are
-correct? Explain your answer.</p>
-<p>a) Cautious Monotonicity: If $A \mid\approx C$ and $A \mid\approx B$, then $
-A\land B \mid\approx C $</p>
-<p>b) Rational Monotonicity: If $A \mid\approx C$ and not $A \mid\approx \neg B$,
-then $ A\land B \mid\approx C $</p>
+</h5><p>An important fact about deductive inference is that it&rsquo;s <em>monotone</em>, which means
+that adding further premises to a deductively valid inference can never turn
+that inference invalid. In this exercise you will <em>prove</em> this fact using
+mathematical reasoning:</p>
+<ol>
+<li>
+<p>Formally state the property of monotonicity by writing out the claim that if
+an inference with premises 
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/pi_premises.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+
+ and conclusion 
+<span class="excalifont ">C</span>
+ is valid, then the inference with premises 
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/q_premises.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+
+ and conclusion 
+<span class="excalifont ">C</span>
+ is valid, where 
+<span class="excalifont ">Q</span>
+ is any new statement. Use the symbol 
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/models.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+
+ for this.</p>
+</li>
+<li>
+<p>Apply the definition of 
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/models.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+
+ in terms of the
+propositions 
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/propositions.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+
+, the operation 
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/cap.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+
+, and
+relation 
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/subseteq.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+
+ to transform the claim it into a set
+theoretic claim.</p>
+</li>
+<li>
+<p>Suppose that 
+<span class="excalifont ">S,S',T</span>
+ are arbitrary sets. Show
+the following set-theoretic 
+<span class="excalifont "><strong>Theorem</strong></span>
+:</p>
+
+   
+   <img src="https://logicalmethods.ai/exercises/valid-inference/img/monotonicity.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="400px"  alt="" >
+   
+
+<p><em>Hint</em>: Apply the definitions of
+
+   
+   <img src="https://logicalmethods.ai/exercises/valid-inference/img/cap.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+   
+ and
+
+   
+   <img src="https://logicalmethods.ai/exercises/valid-inference/img/subseteq.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+   
+, and
+reason step-by-step:</p>
+<ul>
+<li>
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/def_cap.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+
+</li>
+<li>
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/def_subseteq.png" class="inert-img" height="25px"  style="ZgotmplZ" alt="" >
+
+</li>
+<li>
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/def_subseteq_2.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+
+</li>
+<li>Assume that the if-part, 
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/s_subseteq_t.png" class="inert-img" height="25px"  style="ZgotmplZ" alt="" >
+
+,
+holds, try to reason to the then-part, 
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/ss_subseteq_t.png" class="inert-img" height="25px"  style="ZgotmplZ" alt="" >
+
+ .</li>
+<li>That is, suppose that you have a member of 
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/intersection_s_sprime.png" class="inert-img" height="25px"  style="ZgotmplZ" alt="" >
+
+, what can it look like?</li>
+<li>Use the assumption that 
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/s_subseteq_t.png" class="inert-img" height="25px"  style="ZgotmplZ" alt="" >
+
+,
+what can you say about the members of 
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/intersection_s_sprime.png" class="inert-img" height="25px"  style="ZgotmplZ" alt="" >
+
+?</li>
+</ul>
+</li>
+<li>
+<p>Conclude that the monotonicity property holds.</p>
+<p><em>Hint</em>: Note that 
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/long_intersect.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+
+
+is a single set.</p>
+</li>
+<li>
+<p>Illustrate the theorem with an example. Take a deductively valid inference and add an
+arbitrary new premise. In natural language, go through the reasoning, which shows that the new
+inference is still deductively valid.</p>
+</li>
+</ol>
 
 </div>
-<div id="discussionSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>There are theoretical assumptions behind the concept of inductive support. So
-the student can try to explain some assumptions that <em>verify</em> these rules. They
-can also try to explain why the rules <em>fail</em> for standard conditional
-probabilities.</p>
-<p>Here an example for <strong>Cautious Monotonicity</strong>. You have a population of toys in
-different shapes: monsters, aliens, dinosaurs. Every toy is red, blue, green,
-purple, or yellow. Almost all toys are yellow. The few green toys are all
-dinosaurs, and the few red toys are all dinosaurs. There are a lot of yellow
-dinosaurs too. With $A=$ dinosaur, $B=$ red, $C=$ green, we could have
-probabilities like this.</p>
-<p>$P(B|A)=0.2$ greater than $P(B)=0.1$</p>
-<p>$P(C|A)=0.2$ greater than $P(C)=0.1$</p>
-<p>$P(C|A\land B)=0$ becuase no green toy is a red dinosaur toy.</p>
+<div id="failure-of-inductive-monotonicity" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Failure of inductive monotonicity
+    </div>
+</h5><p>In contrast to deductive inference, <em>in</em>ductive inference is not monotonic. That
+is, we can have an inference with premises 
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/pi_premises.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+
+ and
+conclusion 
+<span class="excalifont ">C</span>
+ which is inductively valid, but
+the inference with premises 
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/q_premises.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+
+ and conclusion
+
+<span class="excalifont ">C</span>
+ is inductively <em>in</em>valid.</p>
+<p>We&rsquo;ll show this by looking at our die example again. Here are the relevant
+probabilities for a fair die:</p>
+
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/die_setup.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="900px"  alt="" >
+
+
+<p>Note the crucial fact that 
+<span class="excalifont ">P({ })=0</span>
+, where
+
+<span class="excalifont ">{ }</span>
+ is the <em>empty</em> set with no elements, which
+corresponds to an impossible situation. The laws of probability theory dictate
+that 
+<span class="excalifont ">{ }</span>
+ has probability 0.</p>
+<p>We&rsquo;ve also added the proposition 
+<span class="excalifont ">[>3]</span>
+, which
+states that the outcome is higher than a 3. We use this to give a counterexample
+to the monotonicity of inductive inference:</p>
+<ol>
+<li>
+<p>In the textbook, we claimed that the inference from
+
+<span class="excalifont ">EVEN</span>
+ to 
+<span class="excalifont ">2</span>
+
+is inductively valid. Check that this claim conforms with the example by
+calculating and comparing the probabilities 
+<span class="excalifont ">Pr([2] |
+     [EVEN])</span>
+ and 
+<span class="excalifont ">Pr([2])</span>
+.</p>
+</li>
+<li>
+<p>Calculate the conditional probability 
+<span class="excalifont ">P([2] | [EVEN] ∩ [>3])</span>
+.</p>
+</li>
+<li>
+<p>Apply the general definition of inductively valid inference to infer that the
+inference from 
+<span class="excalifont ">EVEN</span>
+ and
+
+<span class="excalifont ">>3</span>
+ to the conclusion that
+
+<span class="excalifont ">2</span>
+ is inductively <em>in</em>valid.</p>
+</li>
+<li>
+<p>What is happening? Interpret the result in general terms by abstracting from
+the case of the die and describing the situation in terms of arbitrary
+formulas 
+<span class="excalifont ">A,B,C</span>
+. Can you generalize this example
+to other inductively valid inferences? Take at least one example and add a
+premise following the pattern, such that the inference becomes invalid.</p>
+</li>
+</ol>
 
   </div>
 </div>
