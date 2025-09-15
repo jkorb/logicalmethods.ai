@@ -23,6 +23,13 @@
       <description>&lt;iframe &#xA;  src=&#34;https://link.excalidraw.com/p/readonly/LvV2d4Oy7i1sEYtAh2hS&#34;&#xA;  width=&#34;100%&#34; height=&#34;460px&#34; allowFullScreen=&#34;true&#34; style=&#34;border: 10px;&#34;&#xA;  &gt;&#xA;&lt;/iframe&gt;</description>
     </item>
     <item>
+      <title>Assignment 1 (due 09/19/2025)</title>
+      <link>https://logicalmethods.ai/assignments/assignment_1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://logicalmethods.ai/assignments/assignment_1/</guid>
+      <description>&lt;p&gt;Submission via Brightspace in $\LaTeX$ generated PDF. GenAI-use not allowed.&lt;/p&gt;&#xA;&#xA;&lt;/div&gt;&#xA;&lt;div id=&#34;logic-and-ai&#34; &gt;&lt;h5 class=&#34;&#34;&gt;&#xA;    &lt;div class=&#34;d-inline-flex flex-row m-0 p-0 &#34;&gt;Logic and AI&#xA;    &lt;/div&gt;&#xA;&lt;/h5&gt;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Give an example of a materially valid deductive inference (which has not&#xA;occurred anywhere in the course yet). Show how it can be transformed into a logically valid inference by adding a premise. (1 point)&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Give an example of an inductively strong inference (again, not from anywhere&#xA;in the course). Show that it is deductively invalid by describing a&#xA;reasoning scenario, where its premises are true but the conclusion isn&amp;rsquo;t. Then provide a (non-formal) argument that the premise nevertheless makes the conclusion (more) likely. (1 point)&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Logic and AI</title>
       <link>https://logicalmethods.ai/exercises/logic-and-ai/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

@@ -1,0 +1,977 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <title>logicalmethods.ai &ndash; Assignment 1 (due 09/19/2025) </title>
+    <link rel="icon" type="image/x-icon" href="https://logicalmethods.ai/favicon.ico"></link>
+    <link href="https://logicalmethods.ai/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"></link>
+    <link rel="stylesheet" href="https://logicalmethods.ai/icons/font/bootstrap-icons.min.css"></link>
+    <link rel="stylesheet" href="https://logicalmethods.ai/css/layout.css"></link>
+    
+<link rel="stylesheet" href="https://logicalmethods.ai/css/assignments.css"></link>
+
+    <style>
+      
+      
+    </style>
+    
+      <link rel="stylesheet" href="https://logicalmethods.ai/katex/katex.min.css">
+<script defer src="https://logicalmethods.ai/katex/katex.min.js"></script>
+<script defer src="https://logicalmethods.ai/katex/contrib/auto-render.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},     
+        {left: '$', right: '$', display: false},     
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '\\(', right: '\\)', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
+    
+  </head>
+  <body class="bg-black d-flex flex-column m-0 p-0">
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas-nav" aria-labelledby="offcanvas-navLabel" data-bs-theme="dark" data-bs-backdrop="false">
+  <div class="offcanvas-header">
+    <div class="h5 offcanvas-title" id="offcanvas-navLabel">
+      Browse course
+    </div>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  
+  <div class="offcanvas-body">
+    <ul class="navbar-nav">
+      
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/about/"><i class="bi-file-person-fill"></i> &nbsp;&nbsp; About</a>
+          </div>
+      </li>
+      
+      
+      <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/textbook/"><i class="bi bi-book"></i> &nbsp;&nbsp; Textbook</a>
+          </div>
+          <button 
+            class="btn btn-sm btn-dark" 
+            href="/textbook/"
+            id="navbarSectiontxt-home" data-bs-toggle="collapse"
+            data-bs-target="#collapsetxt-home"  
+            aria-expanded="aria-expanded=false"
+            aria-controls="collapsetxt-home">
+            <i class="bi bi-caret-left-fill toggle-icon"></i>
+          </button>
+        </div>
+        <div class="collapse " id="collapsetxt-home">
+          <ul class="list-unstyled ms-3">
+            <li>
+              <a class="dropdown-item 
+                
+                
+                "
+                href="/textbook/logic-and-ai/"
+              >1. 
+                <i class="bi bi-unlock-fill"></i>
+                 Logic and AI
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                
+                "
+                href="/textbook/formal-languages/"
+              >2. 
+                <i class="bi bi-unlock-fill"></i>
+                 Formal languages
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                
+                "
+                href="/textbook/valid-inference/"
+              >3. 
+                <i class="bi bi-unlock-fill"></i>
+                 Valid Inference
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                link-opacity-50
+                "
+                href="javascript:;"
+              >4. 
+                <i class="bi bi-lock-fill"></i>
+                 Boolean algebra
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                link-opacity-50
+                "
+                href="javascript:;"
+              >5. 
+                <i class="bi bi-lock-fill"></i>
+                 Boolean satisfiability
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                link-opacity-50
+                "
+                href="javascript:;"
+              >6. 
+                <i class="bi bi-lock-fill"></i>
+                 Logical conditionals
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                link-opacity-50
+                "
+                href="javascript:;"
+              >7. 
+                <i class="bi bi-lock-fill"></i>
+                 Logical proofs
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                link-opacity-50
+                "
+                href="javascript:;"
+              >8. 
+                <i class="bi bi-lock-fill"></i>
+                 FOL
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                link-opacity-50
+                "
+                href="javascript:;"
+              >9. 
+                <i class="bi bi-lock-fill"></i>
+                 FOL Inference
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                link-opacity-50
+                "
+                href="javascript:;"
+              >10. 
+                <i class="bi bi-lock-fill"></i>
+                 Many-valued logics
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                link-opacity-50
+                "
+                href="javascript:;"
+              >11. 
+                <i class="bi bi-lock-fill"></i>
+                 Logic and probability
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                link-opacity-50
+                "
+                href="javascript:;"
+              >12. 
+                <i class="bi bi-lock-fill"></i>
+                 Logic-based learning
+              </a>
+            </li>
+            
+          </ul>
+        </div>
+          
+      </li>
+      
+      
+      <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/slides/"><i class="bi bi-rocket-takeoff-fill"></i> &nbsp;&nbsp; Slides</a>
+          </div>
+          <button 
+            class="btn btn-sm btn-dark" 
+            href="/slides/"
+            id="navbarSectionsli-home" data-bs-toggle="collapse"
+            data-bs-target="#collapsesli-home"  
+            aria-expanded="aria-expanded=false"
+            aria-controls="collapsesli-home">
+            <i class="bi bi-caret-left-fill toggle-icon"></i>
+          </button>
+        </div>
+        <div class="collapse " id="collapsesli-home">
+          <ul class="list-unstyled ms-3">
+            <li>
+              <a class="dropdown-item 
+                
+                
+                "
+                href="/slides/teaser/"
+              >0. 
+                <i class="bi bi-unlock-fill"></i>
+                 Preamble
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                
+                "
+                href="/slides/logic-and-ai/"
+              >1. 
+                <i class="bi bi-unlock-fill"></i>
+                 Logic and AI
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                
+                "
+                href="/slides/formal-languages/"
+              >2. 
+                <i class="bi bi-unlock-fill"></i>
+                 Formal languages
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                link-opacity-50
+                "
+                href="javascript:;"
+              >3. 
+                <i class="bi bi-lock-fill"></i>
+                 Valid inference
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                link-opacity-50
+                "
+                href="javascript:;"
+              >4. 
+                <i class="bi bi-lock-fill"></i>
+                 Boolean algebra
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                link-opacity-50
+                "
+                href="javascript:;"
+              >5. 
+                <i class="bi bi-lock-fill"></i>
+                 Boolean satisfiability
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                link-opacity-50
+                "
+                href="javascript:;"
+              >6. 
+                <i class="bi bi-lock-fill"></i>
+                 Logical conditionals
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                link-opacity-50
+                "
+                href="javascript:;"
+              >7. 
+                <i class="bi bi-lock-fill"></i>
+                 Logical proofs
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                link-opacity-50
+                "
+                href="javascript:;"
+              >8. 
+                <i class="bi bi-lock-fill"></i>
+                 FOL
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                link-opacity-50
+                "
+                href="javascript:;"
+              >9. 
+                <i class="bi bi-lock-fill"></i>
+                 FOL inference
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                link-opacity-50
+                "
+                href="javascript:;"
+              >10. 
+                <i class="bi bi-lock-fill"></i>
+                 Many-valued logics
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                link-opacity-50
+                "
+                href="javascript:;"
+              >11. 
+                <i class="bi bi-lock-fill"></i>
+                 Logic and probability
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                link-opacity-50
+                "
+                href="javascript:;"
+              >12. 
+                <i class="bi bi-lock-fill"></i>
+                 Logical learning
+              </a>
+            </li>
+            
+          </ul>
+        </div>
+          
+      </li>
+      
+      
+      <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link " href="/exercises/"><i class="bi-gear-fill"></i> &nbsp;&nbsp; Exercises</a>
+          </div>
+          <button 
+            class="btn btn-sm btn-dark" 
+            href="/exercises/"
+            id="navbarSectionexe-home" data-bs-toggle="collapse"
+            data-bs-target="#collapseexe-home"  
+            aria-expanded="aria-expanded=false"
+            aria-controls="collapseexe-home">
+            <i class="bi bi-caret-left-fill toggle-icon"></i>
+          </button>
+        </div>
+        <div class="collapse " id="collapseexe-home">
+          <ul class="list-unstyled ms-3">
+            <li>
+              <a class="dropdown-item 
+                
+                
+                "
+                href="/exercises/preamble/"
+              >0. 
+                <i class="bi bi-unlock-fill"></i>
+                 Preamble
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                
+                "
+                href="/exercises/logic-and-ai/"
+              >1. 
+                <i class="bi bi-unlock-fill"></i>
+                 Logic and AI
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                
+                "
+                href="/exercises/formal-languages/"
+              >2. 
+                <i class="bi bi-unlock-fill"></i>
+                 Formal languages
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                
+                "
+                href="/exercises/valid-inference/"
+              >3. 
+                <i class="bi bi-unlock-fill"></i>
+                 Valid inference
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                link-opacity-50
+                "
+                href="javascript:;"
+              >4. 
+                <i class="bi bi-lock-fill"></i>
+                 Boolean algebra
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                link-opacity-50
+                "
+                href="javascript:;"
+              >5. 
+                <i class="bi bi-lock-fill"></i>
+                 Boolean satisfiability
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                link-opacity-50
+                "
+                href="javascript:;"
+              >6. 
+                <i class="bi bi-lock-fill"></i>
+                 Logical conditionals
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                link-opacity-50
+                "
+                href="javascript:;"
+              >7. 
+                <i class="bi bi-lock-fill"></i>
+                 Logical proofs
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                link-opacity-50
+                "
+                href="javascript:;"
+              >8. 
+                <i class="bi bi-lock-fill"></i>
+                 FOL
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                link-opacity-50
+                "
+                href="javascript:;"
+              >9. 
+                <i class="bi bi-lock-fill"></i>
+                 FOL inference
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                link-opacity-50
+                "
+                href="javascript:;"
+              >10. 
+                <i class="bi bi-lock-fill"></i>
+                 Many-valued logics
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                link-opacity-50
+                "
+                href="javascript:;"
+              >11. 
+                <i class="bi bi-lock-fill"></i>
+                 Logic and probability
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item 
+                
+                link-opacity-50
+                "
+                href="javascript:;"
+              >12. 
+                <i class="bi bi-lock-fill"></i>
+                 Logical learning
+              </a>
+            </li>
+            
+          </ul>
+        </div>
+          
+      </li>
+      
+      
+      <hr>
+      <li class="nav-item">
+        <div class="d-flex flex-row">
+          <div class="container">
+            <a class="nav-link fw-bold active" href="/assignments/"><i class="bi bi-house-gear-fill"></i> &nbsp;&nbsp; Assignments</a>
+          </div>
+          <button 
+            class="btn btn-sm btn-dark" 
+            href="/assignments/"
+            id="navbarSectionass-home" data-bs-toggle="collapse"
+            data-bs-target="#collapseass-home"  
+            aria-expanded="true"
+            aria-controls="collapseass-home">
+            <i class="bi bi-caret-left-fill toggle-icon"></i>
+          </button>
+        </div>
+        <div class="collapse show" id="collapseass-home">
+          <ul class="list-unstyled ms-3">
+            <li>
+              <a class="dropdown-item 
+                fw-bold active
+                
+                "
+                href="/assignments/assignment_1/"
+              >1. 
+                <i class="bi bi-unlock-fill"></i>
+                 Assignment 1 (due 09/19/2025)
+              </a>
+            </li>
+            
+          </ul>
+        </div>
+          
+      </li>
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+</div>
+
+
+
+    <header class="align-self-center d-flex flex-column m-0 mb-md-1 p-0" data-bs-theme="dark">
+      <nav class="navbar bg-dark shadow" data-bs-theme="dark" aria-label="header-navbar">
+  <div class="container-sm align-self-center px-3">
+    <a class="navbar-brand fs-6" href="https://logicalmethods.ai/">
+    <img src="https://logicalmethods.ai/img/nav_id.png" class="inert-img m-2" draggable="false" width="400px">
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-nav" aria-controls="offcanvas-nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+
+      
+      
+    </header>
+    
+    <main class="align-self-center d-flex flex-column flex-fill bg-white m-md-1 p-0" data-bs-theme="light">
+      
+  <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="passwordModalLabel">Enter Password</h6>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="password" id="passwordInput" class="form-control" placeholder="Password">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="passwordSubmitButton">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <ul class="navbar-nav flex-row justify-content-center mt-2">
+
+  <li class="nav-item">
+    <a href="/assignments/" class="btn" style="font-size: 20pt;" tabindex="-1" role="button" aria-disabled="false">
+      <i class="bi bi-house-up"></i>
+    </a>
+  </li>
+</ul>
+
+  <div class="container text-center">
+  <h3>
+    Assignment 1 (due 09/19/2025)
+  </h3>
+  <em></em>
+</div>
+
+
+
+
+  
+   
+
+
+
+
+
+<hr>
+<div class="container exercises m-4">
+  <div class="container-fluid">
+    
+    
+      <p>Submission via Brightspace in $\LaTeX$ generated PDF. GenAI-use not allowed.</p>
+
+</div>
+<div id="logic-and-ai" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Logic and AI
+    </div>
+</h5><ol>
+<li>
+<p>Give an example of a materially valid deductive inference (which has not
+occurred anywhere in the course yet). Show how it can be transformed into a logically valid inference by adding a premise. (1 point)</p>
+</li>
+<li>
+<p>Give an example of an inductively strong inference (again, not from anywhere
+in the course). Show that it is deductively invalid by describing a
+reasoning scenario, where its premises are true but the conclusion isn&rsquo;t. Then provide a (non-formal) argument that the premise nevertheless makes the conclusion (more) likely. (1 point)</p>
+</li>
+<li>
+<p>For each of your examples, explain in one to two paragraphs why
+understanding this kind of inference is important to AI research and
+development. (2 points)</p>
+</li>
+</ol>
+
+</div>
+<div id="reverse-polish-notation" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Reverse Polish notation
+    </div>
+</h5><p>In the exercises for the chapter on formal languages, you encountered <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/Polish_notation" class="link-dark" rel="external" target="_blank">Polish
+notation</a>
+, which gets achieves
+unique readability without parentheses.</p>
+<p>For this question, we&rsquo;ll consider a variant of Polish notation known as
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/Reverse_Polish_notation" class="link-dark" rel="external" target="_blank">reverse Polish
+notation</a>
+, which rather
+than writing logical operations before their operands in so-called &ldquo;prefix
+notation&rdquo; of the Polish system, reverse Polish notation writes the operators
+<em>after</em> in so-called &ldquo;postfix notation.&rdquo;</p>
+<p>For simplicity, we&rsquo;ll use the ordinary symbols 
+
+<img src="https://logicalmethods.ai/assignments/assignment_1/img/negation.png" class="inert-img" height="18px"  style="ZgotmplZ" alt="" >
+
+, 
+
+<img src="https://logicalmethods.ai/assignments/assignment_1/img/conjunction.png" class="inert-img" height="18px"  style="ZgotmplZ" alt="" >
+
+, 
+
+<img src="https://logicalmethods.ai/assignments/assignment_1/img/disjunction.png" class="inert-img" height="18px"  style="ZgotmplZ" alt="" >
+
+, 
+
+<img src="https://logicalmethods.ai/assignments/assignment_1/img/conditional.png" class="inert-img" height="18px"  style="ZgotmplZ" alt="" >
+
+,  
+
+<img src="https://logicalmethods.ai/assignments/assignment_1/img/bi-conditional.png" class="inert-img" height="18px"  style="ZgotmplZ" alt="" >
+
+
+rather than the Polish 
+<span class="excalifont ">N, K, A, C, B</span>
+ for the logical operators.</p>
+<p>Our alphabet, thus is:</p>
+
+
+<img src="https://logicalmethods.ai/assignments/assignment_1/img/rpn_alphabet.png" class="rounded mx-auto my-4 d-block inert-img img-fluid"  width="550px"  alt="" >
+
+
+<p>Note the absence of parentheses.</p>
+<ol>
+<li>
+<p>Determine the grammar of reverse Polish notation in BNF. (1 point)</p>
+</li>
+<li>
+<p>Determine the corresponding re-write rules and generate the parsing tree for the formula 
+
+<img src="https://logicalmethods.ai/assignments/assignment_1/img/rpn_formula.png" class="inert-img" height="38px"  style="ZgotmplZ" alt="" >
+
+. (2 points)</p>
+</li>
+<li>
+<p>Give an argument why 
+
+<img src="https://logicalmethods.ai/assignments/assignment_1/img/non_fml.png" class="inert-img" height="38px"  style="ZgotmplZ" alt="" >
+
+ isn&rsquo;t a formula in reverse Polish notation. (1 point)</p>
+</li>
+<li>
+<p>A very important parsing algorithm is the so-called <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/Shunting_yard_algorithm" class="link-dark" rel="external" target="_blank">shunting yard
+algorithm</a>
+. This
+algorithm can be used to transform formulas from ordinary infix notation into
+reverse Polish notation. Here&rsquo;s a quick description of the algorithm:</p>
+<ul>
+<li>
+<p>We keep two separate areas, the <strong>output queue</strong> and the <strong>stack</strong>:</p>
+<ul>
+<li>The queue constructs our re-written formula, step-by-step.</li>
+<li>The <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/Stack_%28abstract_data_type%29" class="link-dark" rel="external" target="_blank">stack</a>
+
+is processed first-to-last (&ldquo;last in, first out&rdquo; or LIFO). Writing an
+expression at the beginning of the stack is called &ldquo;pushing onto&rdquo; the
+stack. Removing an expression from the start of the stack is &ldquo;pop&rdquo; it
+off the stack.</li>
+</ul>
+</li>
+<li>
+<p>We go through the symbols of our formula from left to right and apply the following rules to transform the expression:</p>
+<ol>
+<li>For a propositional variable, we write it directly to the output queue.</li>
+<li>For a left parenthesis 
+<span class="excalifont ">(</span>
+, we push it onto the stack.</li>
+<li>For a right parenthesis 
+<span class="excalifont ">)</span>
+, we pop operators from the stack to the queue until we either encounter a left parenthesis or the stack is empty. We discard the parenthesis pair.</li>
+<li>For a logical operator, we push it onto the stack.</li>
+<li>At the end, we pop any remaining operators to the output queue.</li>
+</ol>
+</li>
+</ul>
+<p>Apply this algorithm step-by-step to transform the infix formula 
+
+<img src="https://logicalmethods.ai/assignments/assignment_1/img/formula_convert.png" class="inert-img" height="40px"  style="ZgotmplZ" alt="" >
+
+ into reverse Polish notation. Write step-by-step what the <code>QUEUE</code> is and what the <code>STACK</code> is. (2 points)</p>
+</li>
+</ol>
+
+</div>
+<div id="transitivity-of-deductive-inference" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Transitivity of deductive inference
+    </div>
+</h5><p>In the exercises for the chapter on valid inference, we showed that deductive
+inference is monotone, that is, adding additional premises preserves validity.</p>
+<p>For this question, you&rsquo;ll show that valid deductive inference is <em>transitive</em>.
+That is, you&rsquo;ll show that if the inference from
+
+<span class="excalifont ">P</span>
+ to 
+<span class="excalifont ">Q</span>
+ is
+deductively valid and the inference from 
+<span class="excalifont ">Q</span>
+ to
+
+<span class="excalifont ">C</span>
+ is valid, then the inference from
+
+<span class="excalifont ">P</span>
+ to 
+<span class="excalifont ">C</span>
+ is
+valid.</p>
+<ol>
+<li>
+<p>Formally state the property of transitivity using the symbol 
+
+<img src="https://logicalmethods.ai/assignments/assignment_1/img/models.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+
+. (1 point)</p>
+</li>
+<li>
+<p>Apply the definition of 
+
+<img src="https://logicalmethods.ai/assignments/assignment_1/img/models.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+
+ in terms of the
+propositions 
+<span class="excalifont ">[P], [Q]</span>
+, and 
+<span class="excalifont ">[C]</span>
+, the operation 
+
+<img src="https://logicalmethods.ai/assignments/assignment_1/img/cap.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+
+, and
+relation 
+
+<img src="https://logicalmethods.ai/assignments/assignment_1/img/subseteq.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+
+ to transform the claim it into a set
+theoretic claim. (1 point)</p>
+</li>
+<li>
+<p>Suppose that 
+<span class="excalifont ">S, T</span>
+, and 
+<span class="excalifont ">U</span>
+ are arbitrary sets. Show
+the following set-theoretic 
+<span class="excalifont "><strong>Theorem</strong></span>
+:</p>
+
+   
+   <img src="https://logicalmethods.ai/assignments/assignment_1/img/theorem.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="400px"  alt="" >
+   
+
+<p><em>Hint</em>: Apply the definition of
+
+      
+      <img src="https://logicalmethods.ai/assignments/assignment_1/img/cap.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+      
+ and reason &ldquo;step-by-step&rdquo;:</p>
+<ul>
+<li>
+
+<img src="https://logicalmethods.ai/assignments/assignment_1/img/def_subseteq.png" class="inert-img" height="25px"  style="ZgotmplZ" alt="" >
+
+</li>
+<li>
+
+<img src="https://logicalmethods.ai/assignments/assignment_1/img/def_subseteq_1.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+
+</li>
+<li>Assume you have an arbitrary member of 
+<span class="excalifont ">S</span>
+, why must it be a member of 
+<span class="excalifont ">U</span>
+?</li>
+</ul>
+<p>(2 points)</p>
+</li>
+<li>
+<p>Conclude that the transitivity property holds. (1 point)</p>
+</li>
+</ol>
+
+  </div>
+</div>
+
+
+<ul class="navbar-nav flex-row justify-content-between mt-auto">
+  
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-chevron-left"></i>
+    </a>
+    
+  </li>
+  <li class="nav-item">
+    <button class="btn btn-back-to-top">
+    <i class="bi bi-chevron-double-up"></i>
+  </button>
+  </li>
+  <li class="nav-item">
+    
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
+      <i class="bi bi-chevron-right"></i>
+    </a>
+    
+  </li>
+</ul>
+
+
+
+    </main>
+    <footer class="align-self-center d-flex flex-column mt-md-1 p-0" data-bs-theme="dark">
+      <nav class="navbar bg-dark shadow" data-bs-theme="dark" aria-label="footer-navbar">
+  <div class="container-sm align-self-center px-3">
+    <a class="navbar-brand fs-6" href="/about" aria-label="copyright-link">&copy; 2025 jkorbmacher et al. </a>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link fs-6" href="https://github.com/jkorb/logicalmethods.ai" target="_blank"><i class="bi bi-github"></i></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+ 
+      <script src="https://logicalmethods.ai/js/helpers.js"></script>
+      <script src="https://logicalmethods.ai/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+      
+<script src="https://logicalmethods.ai/js/exercises.js"></script>
+
+    </footer>
+  </body>
+</html>
