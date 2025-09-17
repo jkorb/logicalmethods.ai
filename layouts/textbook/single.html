@@ -14,7 +14,18 @@
 <div class="container chapter">
   {{ with .Params.author }}<p>By: <em>{{.}}</em></p>{{end}}
   <div class="m-4">
-  {{- .Content -}}
+  {{- $patternBlock := `(?s)\$\$(.*?)\$\$` -}}
+  {{- $replacementBlock := `<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">${1}</div>` -}}
+  
+  {{- $patternInline := `(?s)\$(.*?)\$` -}}
+  {{- $replacementInline := `<span class="excalifont">${1}</span>` -}}
+  
+  {{- $processed := .RawContent 
+      | replaceRE $patternBlock $replacementBlock 
+      | replaceRE $patternInline $replacementInline -}}
+  
+  {{ $processed | .RenderString }}
+
   </div>
   {{ with .Params.last_edited }} <p><em>Last edited: </em>{{.}}</p>{{ end }}
 </div>
