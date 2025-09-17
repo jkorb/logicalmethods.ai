@@ -114,11 +114,11 @@
             <li>
               <a class="dropdown-item 
                 
-                link-opacity-50
+                
                 "
-                href="javascript:;"
+                href="/textbook/boolean/"
               >4. 
-                <i class="bi bi-lock-fill"></i>
+                <i class="bi bi-unlock-fill"></i>
                  Boolean algebra
               </a>
             </li>
@@ -634,7 +634,7 @@
       <nav class="navbar bg-dark shadow" data-bs-theme="dark" aria-label="header-navbar">
   <div class="container-sm align-self-center px-3">
     <a class="navbar-brand fs-6" href="https://logicalmethods.ai/">
-    <img src="https://logicalmethods.ai/img/nav_id.png" class="inert-img m-2" draggable="false" width="400px">
+    <img src="https://logicalmethods.ai/img/nav_id.png" class="inert-img img-fluid m-2" draggable="false" width="400px">
     </a>
     <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-nav" aria-controls="offcanvas-nav">
       <span class="navbar-toggler-icon"></span>
@@ -676,8 +676,8 @@
 Boolean algebra</a>
 
  so far, we&rsquo;ve avoided dealing with
-<strong>conditionals</strong>: &ldquo;<em>if</em> &hellip;, <em>then</em> &hellip;&quot;-statements which we formalize as $$A\to
-B.$$ In this chapter, you&rsquo;ll learn about how conditionals are defined and used
+<strong>conditionals</strong>: &ldquo;<em>if</em> &hellip;, <em>then</em> &hellip;&quot;-statements which we formalize as <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">A\to
+B.</div> In this chapter, you&rsquo;ll learn about how conditionals are defined and used
 in propositional logic.</p>
 <p>First, you&rsquo;ll learn about the truth-functional way of thinking about if-then
 statements, the so-called</p>
@@ -704,49 +704,49 @@ conditionals</a>.</p>
 </h2>
 <hr>
 
-<p>How should we treat statements like $$\mathsf{RAIN}\to \mathsf{WET}$$ in Boolean
+<p>How should we treat statements like <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{RAIN}\to \mathsf{WET}</div> in Boolean
 algebra? This, it turns out, is not an easy question.</p>
 <p>The easy part is this:</p>
 <ul>
 <li>
-<p>If $\nu(\mathsf{RAIN})=1$ and $\nu(\mathsf{WET})=1$, we want $\nu(\mathsf{RAIN}\to
-\mathsf{WET})=1$.</p>
+<p>If <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(\mathsf{RAIN})=1</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(\mathsf{WET})=1</span>, we want <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(\mathsf{RAIN}\to
+\mathsf{WET})=1</span>.</p>
 </li>
 <li>
-<p>If $\nu(\mathsf{RAIN})=1$ and $\nu(\mathsf{WET})=0$, we want, $\nu(\mathsf{RAIN}\to \mathsf{WET})=0$.</p>
+<p>If <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(\mathsf{RAIN})=1</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(\mathsf{WET})=0</span>, we want, <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(\mathsf{RAIN}\to \mathsf{WET})=0</span>.</p>
 </li>
 </ul>
 <p>But this only gives us a partial table for the truth-function
-$\Rightarrow:\Set{0,1}^2\to \Set{0,1}$ which interprets
-$\to$:</p>
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\Rightarrow:\Set{0,1}^2\to \Set{0,1}</span> which interprets
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\to</span>:</p>
 
 
 <img src="https://logicalmethods.ai/textbook/conditionals/img/tt-partial.png" class="img-thumbnail"    alt="" >
 
 
-<p>So, what do we do if $\nu(\mathsf{RAIN})=0$? It turns out that we want to say
-$\nu(\mathsf{RAIN}\to \mathsf{WET})=1$ <em>regardless</em> of the truth-value of
-$\mathsf{WET}$.</p>
+<p>So, what do we do if <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(\mathsf{RAIN})=0</span>? It turns out that we want to say
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(\mathsf{RAIN}\to \mathsf{WET})=1</span> <em>regardless</em> of the truth-value of
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{WET}</span>.</p>
 <p>One of the reasons for this is the connection between valid inference and the
 conditional. To understand, we need the concept of a <strong>tautology</strong> or <strong>logical
 truth</strong>.</p>
 <p>In Boolean algebra, a <em>tautology</em> is any formula that is true under all
-valuations. Consider, for example, $\mathsf{RAIN}\lor\mathsf{SUN}$—it&rsquo;s
-either raining or not raining. No matter the value $\nu(\mathsf{RAIN})$ of
-$\mathsf{RAIN}$, we have $\nu(\mathsf{RAIN}\lor\mathsf{SUN})=1$:</p>
+valuations. Consider, for example, <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}\lor\mathsf{SUN}</span>—it&rsquo;s
+either raining or not raining. No matter the value <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(\mathsf{RAIN})</span> of
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}</span>, we have <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(\mathsf{RAIN}\lor\mathsf{SUN})=1</span>:</p>
 <ul>
-<li>If $\nu(\mathsf{RAIN})=1$, then $\nu(\mathsf{RAIN}\lor\mathsf{SUN})=1+0=1$</li>
-<li>If $\nu(\mathsf{RAIN})=0$, then $\nu(\mathsf{RAIN}\lor\mathsf{SUN})=0+1=1$</li>
+<li>If <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(\mathsf{RAIN})=1</span>, then <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(\mathsf{RAIN}\lor\mathsf{SUN})=1+0=1</span></li>
+<li>If <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(\mathsf{RAIN})=0</span>, then <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(\mathsf{RAIN}\lor\mathsf{SUN})=0+1=1</span></li>
 </ul>
-<p>If a formula $A$, like $\mathsf{RAIN}\lor\mathsf{SUN}$, is a logical truth
-we write $\vDash A$ to indicate this. So, what we&rsquo;ve just shown is that
-$$\vDash\mathsf{RAIN}\lor\mathsf{SUN}.$$</p>
-<p>Now the thing is that if we say that that $\nu(A\to B)=1$ whenever $\nu(A)=0$,
-we get the following beautiful connection between validity and the conditional:
-$$P_1, P_2, \dots\vDash C\Leftrightarrow\ \vDash (P_1\land P_2\land \dots)\to
-C$$ In words, an inference is valid if and only if the conditional formed from
+<p>If a formula <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A</span>, like <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}\lor\mathsf{SUN}</span>, is a logical truth
+we write <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\vDash A</span> to indicate this. So, what we&rsquo;ve just shown is that</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\vDash\mathsf{RAIN}\lor\mathsf{SUN}.</div>
+<p>Now the thing is that if we say that that <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(A\to B)=1</span> whenever <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(A)=0</span>,
+we get the following beautiful connection between validity and the conditional:</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">P_1, P_2, \dots\vDash C\Leftrightarrow\ \vDash (P_1\land P_2\land \dots)\to
+C</div> In words, an inference is valid if and only if the conditional formed from
 taking the conjunction of the premises as the if-part and the conclusion as the
-then-part is logically valid.</p>
+then-part is logically valid.
 <p>The truth-function that&rsquo;s given by the following table is known as the
 <strong>material conditional</strong>:</p>
 
@@ -754,15 +754,15 @@ then-part is logically valid.</p>
 <img src="https://logicalmethods.ai/textbook/conditionals/img/tt.png" class="img-thumbnail"    alt="" >
 
 
-<p>Our first motivation for treating $\to$ as a material conditional is the above
+<p>Our first motivation for treating <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\to</span> as a material conditional is the above
 connection between valid inference and the conditional, which is also known as
 the <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Deduction_theorem"
   target="_blank">deduction theorem</a>. One
 interesting implication of the deduction theorem is that it gives us an
 interesting variant of the truth-table method.</p>
-<p>The idea is that in order to test whether $P_1,P_2, \dots\vDash C$ we can also
-just test whether the formula $(P_1\land P_2\land \dots)\to C$ gets value 1
+<p>The idea is that in order to test whether <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">P_1,P_2, \dots\vDash C</span> we can also
+just test whether the formula <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">(P_1\land P_2\land \dots)\to C</span> gets value 1
 under each valuation. Take our example from the 
 
 
@@ -775,10 +775,10 @@ under each valuation. Take our example from the
    >
 previous chapter</a>
 
- again:
-$$(\mathsf{RAIN}\lor \mathsf{BIKE}),\neg\mathsf{RAIN}\vDash\mathsf{BIKE}$$
+ again:</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(\mathsf{RAIN}\lor \mathsf{BIKE}),\neg\mathsf{RAIN}\vDash\mathsf{BIKE}</div>
 We can test this inference by doing the truth-table for the following formula:
-$$(\mathsf{RAIN}\lor \mathsf{BIKE})\land\neg\mathsf{RAIN}\to\mathsf{BIKE}$$</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(\mathsf{RAIN}\lor \mathsf{BIKE})\land\neg\mathsf{RAIN}\to\mathsf{BIKE}</div>
 
 
 <img src="https://logicalmethods.ai/textbook/conditionals/img/tt-2.png" class="img-thumbnail"    alt="" >
@@ -831,9 +831,9 @@ important method for <i class="bi bi-box-arrow-up-right h-6"></i>
   target="_blank">automated theorem
 proving</a>, which deals
 with automating valid inference.</p>
-<p>MP is following inference pattern: $$A,A\to B\vDash B$$ So, for example,
-$$\mathsf{RAIN},\mathsf{RAIN}\to\mathsf{WET}\vDash \mathsf{WET}$$ This pattern
-is perhaps the most paradigmatic <em>logical</em> reasoning pattern out there.</p>
+<p>MP is following inference pattern: <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">A,A\to B\vDash B</div> So, for example,</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{RAIN},\mathsf{RAIN}\to\mathsf{WET}\vDash \mathsf{WET}</div> This pattern
+is perhaps the most paradigmatic _logical_ reasoning pattern out there. 
 <p>There are different ways in which we can justify the pattern, but let&rsquo;s use a
 truth-table for a particularly comprehensive explanation:</p>
 
@@ -850,19 +850,19 @@ follows:</p>
 <li>
 <p>We have a <em>knowledge base</em> that contains a series of conditional rules:</p>
 <ol>
-<li>$\mathsf{SUN}\to \mathsf{BIKE}$</li>
-<li>$\mathsf{RAIN}\to \mathsf{CAR}$</li>
-<li>$\mathsf{WARM}\to \mathsf{SHIRT}$</li>
-<li>$\mathsf{COLD}\to \mathsf{COAT}$</li>
-<li>$\mathsf{BIKE}\to \mathsf{HELMET}$</li>
-<li>$\mathsf{CAR}\to \mathsf{KEYS}$</li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{SUN}\to \mathsf{BIKE}</span></li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}\to \mathsf{CAR}</span></li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{WARM}\to \mathsf{SHIRT}</span></li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{COLD}\to \mathsf{COAT}</span></li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{BIKE}\to \mathsf{HELMET}</span></li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{CAR}\to \mathsf{KEYS}</span></li>
 </ol>
 </li>
 <li>
 <p>Additionally, we have some <em>known facts</em>:</p>
 <ul>
-<li>$\mathsf{RAIN}$</li>
-<li>$\mathsf{COLD}$</li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}</span></li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{COLD}</span></li>
 </ul>
 </li>
 </ul>
@@ -870,26 +870,26 @@ follows:</p>
 antecedents (if-part) of any of our conditional rules contains a known fact.</p>
 <p>We find for example, the rule:</p>
 <ol start="2">
-<li>$\mathsf{RAIN}\to \mathsf{CAR}$</li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}\to \mathsf{CAR}</span></li>
 </ol>
-<p>Since $\mathsf{RAIN}$ is among our known facts, we can reason as follows:</p>
-<p>$$\mathsf{RAIN},\mathsf{RAIN}\to \mathsf{CAR}\vDash\mathsf{CAR}$$</p>
-<p>As a result, we add $\mathsf{CAR}$ to our known facts. This makes the following
+<p>Since <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}</span> is among our known facts, we can reason as follows:</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{RAIN},\mathsf{RAIN}\to \mathsf{CAR}\vDash\mathsf{CAR}</div>
+<p>As a result, we add <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{CAR}</span> to our known facts. This makes the following
 rule applicable:</p>
 <ol start="6">
-<li>$\mathsf{CAR}\to \mathsf{KEYS}$</li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{CAR}\to \mathsf{KEYS}</span></li>
 </ol>
 <p>Again, using MP-style reasoning, we proceed:</p>
-<p>$$\mathsf{CAR},\mathsf{CAR}\to \mathsf{KEYS}\vDash\mathsf{KEYS}$$</p>
-<p>We thus add $\mathsf{KEYS}$ to our known facts. In a similar fashion, we add
-$\mathsf{COAT}$ to our known facts arriving at the
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{CAR},\mathsf{CAR}\to \mathsf{KEYS}\vDash\mathsf{KEYS}</div>
+<p>We thus add <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KEYS}</span> to our known facts. In a similar fashion, we add
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{COAT}</span> to our known facts arriving at the
 final known facts:</p>
 <ul>
-<li>$\mathsf{RAIN}$</li>
-<li>$\mathsf{COLD}$</li>
-<li>$\mathsf{CAR}$</li>
-<li>$\mathsf{KEYS}$</li>
-<li>$\mathsf{COAT}$</li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}</span></li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{COLD}</span></li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{CAR}</span></li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KEYS}</span></li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{COAT}</span></li>
 </ul>
 <p>This is all we can get &ldquo;out&rdquo; of our known facts using our knowledge base.
 AI researchers typically think of forward-chaining as a <strong>data driven</strong>
@@ -913,48 +913,48 @@ trying to answer. This makes backward chaining a <strong>goal directed</strong> 
 <li>
 <p>Our <em>knowledge base</em> contains:</p>
 <ol>
-<li>$\mathsf{SUN}\to \mathsf{BIKE}$</li>
-<li>$\mathsf{RAIN}\to \mathsf{CAR}$</li>
-<li>$\mathsf{WARM}\to \mathsf{SHIRT}$</li>
-<li>$\mathsf{COLD}\to \mathsf{COAT}$</li>
-<li>$\mathsf{BIKE}\to \mathsf{HELMET}$</li>
-<li>$\mathsf{CAR}\to \mathsf{KEYS}$</li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{SUN}\to \mathsf{BIKE}</span></li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}\to \mathsf{CAR}</span></li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{WARM}\to \mathsf{SHIRT}</span></li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{COLD}\to \mathsf{COAT}</span></li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{BIKE}\to \mathsf{HELMET}</span></li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{CAR}\to \mathsf{KEYS}</span></li>
 </ol>
 </li>
 <li>
 <p>Our <em>known facts</em> are:</p>
 <ul>
-<li>$\mathsf{RAIN}$</li>
-<li>$\mathsf{COLD}$</li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}</span></li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{COLD}</span></li>
 </ul>
 </li>
 </ul>
 <p>But instead of just wondering what we can derive, we&rsquo;re specifically asking the
 question whether we should take our helmet. That is, we have a set of <strong>goals</strong>
-that contains: $$\mathsf{HELMET}$$</p>
+that contains: <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{HELMET}</div></p>
 <p>With this specific question in mind, we go through the rules and see whether
-there&rsquo;s a rule that would allow us to infer $\mathsf{HELMET}$. We find:</p>
+there&rsquo;s a rule that would allow us to infer <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{HELMET}</span>. We find:</p>
 <ol start="5">
-<li>$\mathsf{BIKE}\to \mathsf{HELMET}$</li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{BIKE}\to \mathsf{HELMET}</span></li>
 </ol>
-<p>If we would know that $\mathsf{BIKE}$, we could infer $\mathsf{HELMET}$. So we
-temporarily add $\mathsf{BIKE}$ to our goals. Again, we check whether we find a
+<p>If we would know that <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{BIKE}</span>, we could infer <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{HELMET}</span>. So we
+temporarily add <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{BIKE}</span> to our goals. Again, we check whether we find a
 corresponding rule:</p>
 <ol>
-<li>$\mathsf{SUN}\to \mathsf{BIKE}$</li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{SUN}\to \mathsf{BIKE}</span></li>
 </ol>
-<p>We now add $\mathsf{SUN}$ to our temporary goals. But at this point our
-search terminates. We can&rsquo;t find any rule that gives us $\mathsf{SUN}$. We
+<p>We now add <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{SUN}</span> to our temporary goals. But at this point our
+search terminates. We can&rsquo;t find any rule that gives us <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{SUN}</span>. We
 couldn&rsquo;t reach our goals</p>
 <p>Now suppose, instead, we ask whether we should take our keys and add
-$\mathsf{KEYS}$ to our goals. We can then backwards chain the rules:</p>
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KEYS}</span> to our goals. We can then backwards chain the rules:</p>
 <ol start="2">
-<li>$\mathsf{RAIN}\to \mathsf{CAR}$</li>
-<li>$\mathsf{CAR}\to \mathsf{KEYS}$</li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}\to \mathsf{CAR}</span></li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{CAR}\to \mathsf{KEYS}</span></li>
 </ol>
-<p>We arrive at a goal that&rsquo;s among our known facts, viz. $\mathsf{RAIN}$. This
+<p>We arrive at a goal that&rsquo;s among our known facts, viz. <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}</span>. This
 means that using a series of MP&rsquo;s and rules 2 and 6, we can derive our ultimate
-goal: $\mathsf{KEYS}$. Our KB has settled the question.</p>
+goal: <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KEYS}</span>. Our KB has settled the question.</p>
 <p>But wait a moment, have we established yet that we <em>shouldn&rsquo;t</em> take a helmet?
 It turns out that this is not such an easy question. We&rsquo;ve shown that our
 knowledge base doesn&rsquo;t settle the question. But there a lot of questions it
@@ -964,8 +964,8 @@ doesn&rsquo;t settle, should we treat them all as false?</p>
   target="_blank">closed-world assumption
 (CWA)</a> in AI says yes. In
 short, the CWA tells us to treat non-derivable statements as false, meaning we&rsquo;d
-conclude $\neg\mathsf{HELMET}$ from the fact that we can&rsquo;t derive
-$\mathsf{HELMET}$. The CWA plays a fundamental role in knowledge representation.</p>
+conclude <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg\mathsf{HELMET}</span> from the fact that we can&rsquo;t derive
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{HELMET}</span>. The CWA plays a fundamental role in knowledge representation.</p>
 <h2 id="conditionals-in-programming">Conditionals in programming<button class="btn btn-back-to-top">
     
     <i class="bi bi-chevron-double-up"></i>
@@ -1004,16 +1004,16 @@ number whether it&rsquo;s divisible by both 3 and 5, in which case it prints
 prints &ldquo;Fizz&rdquo;, if that&rsquo;s also not the case but the number is divisible by 5, the
 program prints &ldquo;Buzz&rdquo;, and if all else fails, it prints the number.</p>
 <p>This results in a sequence that begins like this:</p>
-<p>$$1,2,Fizz,4,Buzz,Fizz,7,8,Fizz,Buzz,\dots$$</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">1,2,Fizz,4,Buzz,Fizz,7,8,Fizz,Buzz,\dots</div>
 <p>The material conditional can help us understand what&rsquo;s going on here. Each of
 the conditions is a Boolean condition: it evaluates either to true false. The
 &ldquo;if-then-else&rdquo; statements can therefore be modelled by the following material
 conditionals:</p>
 <ul>
-<li>$\mathsf{DIV\_3}\land \mathsf{DIV\_5}\to \mathsf{PRINT\_FIZZBUZZ}$</li>
-<li>$\mathsf{DIV\_3}\land \neg\mathsf{DIV\_5}\to \mathsf{PRINT\_FIZZ}$</li>
-<li>$\neg\mathsf{DIV\_3}\land \mathsf{DIV\_5}\to \mathsf{PRINT\_BUZZ}$</li>
-<li>$\neg\mathsf{DIV\_3}\land \neg\mathsf{DIV\_5}\to \mathsf{PRINT\_NUMBER}$</li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{DIV\_3}\land \mathsf{DIV\_5}\to \mathsf{PRINT\_FIZZBUZZ}</span></li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{DIV\_3}\land \neg\mathsf{DIV\_5}\to \mathsf{PRINT\_FIZZ}</span></li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg\mathsf{DIV\_3}\land \mathsf{DIV\_5}\to \mathsf{PRINT\_BUZZ}</span></li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg\mathsf{DIV\_3}\land \neg\mathsf{DIV\_5}\to \mathsf{PRINT\_NUMBER}</span></li>
 </ul>
 <p>These are, essentially, a knowledge base. If we change the known facts
 corresponding to the actual divisibility facts of the number, we can derive what
@@ -1033,13 +1033,13 @@ at their very heart lies the behavior of the material conditional.</p>
 
 <p>Before we conclude the chapter, we should talk about the <strong>limitations</strong> of the
 logical conditional.</p>
-<p>The most important limitation is that $\Rightarrow$ is not a good model of many
+<p>The most important limitation is that <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\Rightarrow</span> is not a good model of many
 uses of the phrase &ldquo;if &hellip;, then &hellip;&rdquo; in natural language. For example,
 typically, people think that conditionals like &ldquo;If the moon is made of cheese,
 then pigs can fly&rdquo; are false. The reason is, arguably, that the material of the
 moon has nothing to do with the abilities of pigs. But if we treat if-then as
-the truth-function $\Rightarrow$, since the moon is <em>not</em> made of green cheese,
-the conditional would need to get the value $0\Rightarrow 0=1$.</p>
+the truth-function <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\Rightarrow</span>, since the moon is <em>not</em> made of green cheese,
+the conditional would need to get the value <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">0\Rightarrow 0=1</span>.</p>
 <p>This and similar phenomena have lead to the development of various <strong>conditional
 logics</strong>, which aim to provide a more adequate formalization of various if-then
 clauses. Of these logics, especially the logic of <i class="bi bi-box-arrow-up-right h-6"></i>
@@ -1073,7 +1073,9 @@ Modern Approach.&rdquo; (see the detailed reference in
 
 ).</p>
 <p><strong>Notes:</strong></p>
-</div>
+
+
+  </div>
    <p><em>Last edited: </em>24/09/2024</p>
 </div>
 

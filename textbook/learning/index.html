@@ -114,11 +114,11 @@
             <li>
               <a class="dropdown-item 
                 
-                link-opacity-50
+                
                 "
-                href="javascript:;"
+                href="/textbook/boolean/"
               >4. 
-                <i class="bi bi-lock-fill"></i>
+                <i class="bi bi-unlock-fill"></i>
                  Boolean algebra
               </a>
             </li>
@@ -634,7 +634,7 @@
       <nav class="navbar bg-dark shadow" data-bs-theme="dark" aria-label="header-navbar">
   <div class="container-sm align-self-center px-3">
     <a class="navbar-brand fs-6" href="https://logicalmethods.ai/">
-    <img src="https://logicalmethods.ai/img/nav_id.png" class="inert-img m-2" draggable="false" width="400px">
+    <img src="https://logicalmethods.ai/img/nav_id.png" class="inert-img img-fluid m-2" draggable="false" width="400px">
     </a>
     <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-nav" aria-controls="offcanvas-nav">
       <span class="navbar-toggler-icon"></span>
@@ -696,119 +696,119 @@ challenges they face.</p>
 <hr>
 
 <p>We start with the deductive approach: <strong>belief revision</strong>. Suppose we have
-knowledge base $\mathsf{KB}$, which contains our knowledge about the relevant subject
-matter. For belief revision, it&rsquo;s important that we understand our $\mathsf{KB}$ as a set
-of formulas, meaning $\mathsf{KB}\subseteq \mathcal{L}$. In addition, we assume that
-we&rsquo;ve already explored all the <em>logical</em> consequences of our $\mathsf{KB}$ and added them
+knowledge base <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span>, which contains our knowledge about the relevant subject
+matter. For belief revision, it&rsquo;s important that we understand our <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span> as a set
+of formulas, meaning <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}\subseteq \mathcal{L}</span>. In addition, we assume that
+we&rsquo;ve already explored all the <em>logical</em> consequences of our <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span> and added them
 to the base so that it satisfies the following <em>closure</em> condition:</p>
 <ul>
-<li>If $\mathsf{KB}\vDash A$, then $A\in KB$</li>
+<li>If <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}\vDash A</span>, then <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A\in KB</span></li>
 </ul>
-<p>Another way of expressing this condition is to say that our $\mathsf{KB}$ is <strong>deductively
+<p>Another way of expressing this condition is to say that our <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span> is <strong>deductively
 closed</strong>: it contains all the logical consequences of its members.</p>
-<p>Conceptually, it&rsquo;s important to assume that our $\mathsf{KB}$ is <em>revisable</em>, that is, we
-assume that it&rsquo;s possible that some &ldquo;facts&rdquo; in our $\mathsf{KB}$ turn out false, and upon
+<p>Conceptually, it&rsquo;s important to assume that our <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span> is <em>revisable</em>, that is, we
+assume that it&rsquo;s possible that some &ldquo;facts&rdquo; in our <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span> turn out false, and upon
 learning new information need to be revised.</p>
 <p>There are many reasons for why this can happen:</p>
 <ul>
-<li>we made a mistake in the original design of the $\mathsf{KB}$</li>
-<li>we based the $\mathsf{KB}$ on unreliable or incorrect information</li>
-<li>we used inductive reasoning to generate the $\mathsf{KB}$</li>
+<li>we made a mistake in the original design of the <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span></li>
+<li>we based the <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span> on unreliable or incorrect information</li>
+<li>we used inductive reasoning to generate the <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span></li>
 <li>&hellip;</li>
 </ul>
 <p>Our aim is figure out how we should respond when we receive new information. For
 concreteness sake, let&rsquo;s assume that we learn that it&rsquo;s, as a matter of fact, raining:</p>
-<p>$$\mathsf{RAIN}$$</p>
-<p>What should this do with our knowledge base $\mathsf{KB}$?</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{RAIN}</div>
+<p>What should this do with our knowledge base <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span>?</p>
 <p>The answer would seem rather simple when our knowledge base doesn&rsquo;t contradict
-this new fact, i.e. when $$\neg\mathsf{RAIN}\notin \mathsf{KB}.$$ In that case,
-we can &ldquo;simply add&rdquo; $\mathsf{RAIN}$ to our knowledge base.</p>
+this new fact, i.e. when <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\neg\mathsf{RAIN}\notin \mathsf{KB}.</div> In that case,
+we can &ldquo;simply add&rdquo; <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}</span> to our knowledge base.</p>
 <p>The operation of &ldquo;simply adding&rdquo; a formula to the knowledge base is symbolically
-denoted with $+$, that is, $\mathsf{KB}+A$ is the result of adding the formula $A$ to the
-knowledge base $\mathsf{KB}$.</p>
+denoted with <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">+</span>, that is, <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}+A</span> is the result of adding the formula <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A</span> to the
+knowledge base <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span>.</p>
 <p>There is one small caveat, however. That is, we want that our new, updated
-knowledge base again be deductively closed. But by simply adding $A$ to
-$\mathsf{KB}$, this is not guaranteed. We also need to add anything that follows
-from $A$ and the $\mathsf{KB}$. We achieve this as follows:</p>
-<p>$$KB+A=\Set{B:\mathsf{KB}\cup A\vdash B}$$</p>
+knowledge base again be deductively closed. But by simply adding <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A</span> to
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span>, this is not guaranteed. We also need to add anything that follows
+from <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A</span> and the <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span>. We achieve this as follows:</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">KB+A=\Set{B:\mathsf{KB}\cup A\vdash B}</div>
 <p>That is, we define our updated knowledge base to contain everything that we can
 derive from the old knowledge base, together with the new information. This, of
-course, contains everything in $\mathsf{KB}$ plus the new information, since:
-$$\mathsf{KB},A\vdash \mathsf{KB}$$ $$\mathsf{KB},A\vdash A$$ But in addition,
-this also contains everything that we can derive from the $\mathsf{KB}$ and $A$.</p>
-<p>For example, if we have the rule $$\mathsf{RAIN}\to\mathsf{WET}$$ in our
-$\mathsf{KB}$ and we add $\mathsf{RAIN}$ to it, we&rsquo;ll get
-$$\mathsf{KB},\mathsf{RAIN}\vdash \mathsf{WET}$$ and so
-$$\mathsf{WET}\in\mathsf{KB}+\mathsf{RAIN}.$$</p>
-<p>But what should we do if $$\neg\mathsf{RAIN}\in\mathsf{KB}?$$ What if our new
+course, contains everything in <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span> plus the new information, since:</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{KB},A\vdash \mathsf{KB}</div> <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{KB},A\vdash A</div> But in addition,
+this also contains everything that we can derive from the <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A</span>.
+<p>For example, if we have the rule <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{RAIN}\to\mathsf{WET}</div> in our
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span> and we add <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}</span> to it, we&rsquo;ll get</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{KB},\mathsf{RAIN}\vdash \mathsf{WET}</div> and so
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{WET}\in\mathsf{KB}+\mathsf{RAIN}.</div>
+<p>But what should we do if <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\neg\mathsf{RAIN}\in\mathsf{KB}?</div> What if our new
 information <em>contradicts</em> some information in the knowledge base?</p>
-<p>We cannot directly add $\mathsf{RAIN}$ to the knowledge base then, since this
+<p>We cannot directly add <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}</span> to the knowledge base then, since this
 would make it inconsistent and because of the <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Principle_of_explosion"
   target="_blank">principle of
-explosion</a>, $$A,\neg
-A\vdash C,\text{ for any }C,$$ this would make our updated knowledge base
+explosion</a>, <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">A,\neg
+A\vdash C,\text{ for any }C,</div> this would make our updated knowledge base
 trivial in the sense that it contains <em>all</em> facts.</p>
-<p>Since we&rsquo;re treating $\mathsf{RAIN}$ as a newly learned <em>fact</em>, a natural
-thought is to first <em>remove</em> the &ldquo;falsified&rdquo; $\neg\mathsf{RAIN}$ from
-$\mathsf{KB}$. We could try to define an operation $-$ of &ldquo;subtraction&rdquo;, defined
-by:
-$$\mathsf{KB} -A = \Set{B\in\mathsf{KB}:B\text{ is not equivalent to }B}$$
-If we denote the operation of <strong>revising</strong> our knowledge bank $\mathsf{KB}$ in
-light of the new information $A$ by $\mathsf{KB}\ast A,$ we might just try to
-say that $$\mathsf{KB}\ast A=(\mathsf{KB}-\neg A)+A$$</p>
-<p>But this approach, with a so-defined <strong>contraction</strong> operation $-$ doesn&rsquo;t work.</p>
-<p>Suppose, for example, that $\neg\mathsf{RAIN}$ is in our $\mathsf{KB}$ because
+<p>Since we&rsquo;re treating <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}</span> as a newly learned <em>fact</em>, a natural
+thought is to first <em>remove</em> the &ldquo;falsified&rdquo; <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg\mathsf{RAIN}</span> from
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span>. We could try to define an operation <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">-</span> of &ldquo;subtraction&rdquo;, defined
+by:</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{KB} -A = \Set{B\in\mathsf{KB}:B\text{ is not equivalent to }B}</div> 
+If we denote the operation of **revising** our knowledge bank <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span> in
+light of the new information <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A</span> by <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}\ast A,</span> we might just try to
+say that <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{KB}\ast A=(\mathsf{KB}-\neg A)+A</div>
+<p>But this approach, with a so-defined <strong>contraction</strong> operation <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">-</span> doesn&rsquo;t work.</p>
+<p>Suppose, for example, that <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg\mathsf{RAIN}</span> is in our <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span> because
 we&rsquo;ve derived it from some other facts in the bank. For example, we could have
 had:</p>
-<p>$$\mathsf{HIGH\_PRESSURE}\in\mathsf{KB}$$
-$$\mathsf{WARM}\in\mathsf{KB}$$
-$$\mathsf{HIGH\_PRESSURE}\land\mathsf{WARM}\to\neg\mathsf{RAIN}\in\mathsf{KB}$$</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{HIGH\\_PRESSURE}\in\mathsf{KB}</div>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{WARM}\in\mathsf{KB}</div>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{HIGH\\_PRESSURE}\land\mathsf{WARM}\to\neg\mathsf{RAIN}\in\mathsf{KB}</div>
 <p>Then, we still have:</p>
-<p>$$(\mathsf{KB}-\neg\mathsf{RAIN})+\mathsf{RAIN}\vdash \neg\mathsf{RAIN}$$</p>
-<p>The reason is that we didn&rsquo;t remove the &ldquo;grounds&rdquo; for $\neg\mathsf{RAIN}$ from
-$\mathsf{KB}$, in this case $\mathsf{HIGH\_PRESSURE}$, $\mathsf{WARM}$ and
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(\mathsf{KB}-\neg\mathsf{RAIN})+\mathsf{RAIN}\vdash \neg\mathsf{RAIN}</div>
+<p>The reason is that we didn&rsquo;t remove the &ldquo;grounds&rdquo; for <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg\mathsf{RAIN}</span> from
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span>, in this case <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{HIGH\_PRESSURE}</span>, <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{WARM}</span> and
 the rule
-$\mathsf{HIGH\_PRESSURE}\land\mathsf{WARM}\to\neg\mathsf{RAIN}$.
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{HIGH\_PRESSURE}\land\mathsf{WARM}\to\neg\mathsf{RAIN}</span>.
 So, when we consider the deductive closure of
-$(\mathsf{KB}-\neg\mathsf{RAIN})+\mathsf{RAIN}$, we can simply use MP again to
-obtain $\neg\mathsf{RAIN}\in\mathsf{KB}$.</p>
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">(\mathsf{KB}-\neg\mathsf{RAIN})+\mathsf{RAIN}</span>, we can simply use MP again to
+obtain <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg\mathsf{RAIN}\in\mathsf{KB}</span>.</p>
 <p>Worse even, this makes our revised knowledge base <em>inconsistent</em>, since we now
-have both $\mathsf{RAIN}\in\mathsf{KB}$ and $\neg\mathsf{RAIN}\in\mathsf{KB}$.</p>
+have both <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}\in\mathsf{KB}</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg\mathsf{RAIN}\in\mathsf{KB}</span>.</p>
 <p>The problem is only exacerbated by the following argument: If
-$\neg\mathsf{RAIN}\in\mathsf{KB}$, then, because $\mathsf{KB}$ is deductively
-closed and $\neg\mathsf{RAIN}\vdash \neg\mathsf{RAIN}\lor (1+1=0)\in\mathsf{KB}$
-by $\lor I$, we have $\neg\mathsf{RAIN}\lor (1+1=0)\in\mathsf{KB}$. But if we
-now retract &ldquo;just&rdquo; $\neg \mathsf{RAIN}$ from $\mathsf{KB}$, while leaving
-$\neg\mathsf{RAIN}\lor (1+1=0)\in\mathsf{KB}$, adding $\mathsf{RAIN}$ to
-$\mathsf{KB}$ will be disastrous. This is because
-$$\mathsf{RAIN},\neg\mathsf{RAIN}\lor (1+1=0)\vdash (1+1=0).$$
-That means we&rsquo;d get $$(1+1=0)\in\mathsf{KB}\ast\mathsf{RAIN},$$ which is obviously
-problematic.</p>
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg\mathsf{RAIN}\in\mathsf{KB}</span>, then, because <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span> is deductively
+closed and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg\mathsf{RAIN}\vdash \neg\mathsf{RAIN}\lor (1+1=0)\in\mathsf{KB}</span>
+by <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\lor I</span>, we have <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg\mathsf{RAIN}\lor (1+1=0)\in\mathsf{KB}</span>. But if we
+now retract &ldquo;just&rdquo; <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg \mathsf{RAIN}</span> from <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span>, while leaving
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg\mathsf{RAIN}\lor (1+1=0)\in\mathsf{KB}</span>, adding <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}</span> to
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span> will be disastrous. This is because</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{RAIN},\neg\mathsf{RAIN}\lor (1+1=0)\vdash (1+1=0).</div>
+That means we'd get <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(1+1=0)\in\mathsf{KB}\ast\mathsf{RAIN},</div> which is obviously
+problematic.
 <p>The upshot is that we need to be <em>very</em> careful when removing
-$\neg\mathsf{RAIN}$: we need to remove at least some of its &ldquo;grounds&rdquo; (if they
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg\mathsf{RAIN}</span>: we need to remove at least some of its &ldquo;grounds&rdquo; (if they
 exist) and many of its consequences from the base as well. But which ones
-<em>exactly</em> to remove. Think of $\mathsf{HIGH\_PRESSURE}$, $\mathsf{WARM}$ and
-the rule $\mathsf{HIGH\_PRESSURE}\land\mathsf{WARM}\to\neg\mathsf{RAIN}$ again.
-Removing any of them will do to make it possible to add $\mathsf{RAIN}$, but
+<em>exactly</em> to remove. Think of <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{HIGH\_PRESSURE}</span>, <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{WARM}</span> and
+the rule <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{HIGH\_PRESSURE}\land\mathsf{WARM}\to\neg\mathsf{RAIN}</span> again.
+Removing any of them will do to make it possible to add <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}</span>, but
 which one to remove? Often, we&rsquo;d try to stick to the rule, as it usually
 expresses expert knowledge, but even then: should we remove
-$\mathsf{HIGH\_PRESSURE}$ or $\mathsf{WARM}$? More information than just
-$\mathsf{RAIN}$ seems to be required, the information <strong>under-determines</strong> our
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{HIGH\_PRESSURE}</span> or <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{WARM}</span>? More information than just
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}</span> seems to be required, the information <strong>under-determines</strong> our
 revision.</p>
 <p>To tackle this problem, Alchourrón, Gärdenfors, and Makinson have laid down
 <strong>axioms</strong> for belief revision, which are rules for how belief revision <em>should</em>
 behave. In our notation, the rules are:</p>
 <ol>
-<li>$\mathsf{KB}\ast A$ is always deductively closed</li>
-<li>$A\in \mathsf{KB}\ast A$</li>
-<li>$\mathsf{KB}\ast A\subseteq \mathsf{KB}+A$</li>
-<li>If $\neg A\notin\mathsf{KB}$, then $\mathsf{KB}\ast A=\mathsf{KB}+A$</li>
-<li>$\mathsf{KB}\ast A$ is only inconsistent if $A$ itself is</li>
-<li>If $A,B$ are logically equivalent, then $\mathsf{KB}\ast A=\mathsf{KB}\ast B$</li>
-<li>$\mathsf{KB}\ast(A\land B)\subseteq (\mathsf{KB}\ast A)+B$</li>
-<li>If $\neg B\notin\mathsf{KB}\ast A$, then $(\mathsf{KB}\ast A)+B\subseteq
-\mathsf{KB}\ast(A\land B)$</li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}\ast A</span> is always deductively closed</li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A\in \mathsf{KB}\ast A</span></li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}\ast A\subseteq \mathsf{KB}+A</span></li>
+<li>If <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg A\notin\mathsf{KB}</span>, then <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}\ast A=\mathsf{KB}+A</span></li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}\ast A</span> is only inconsistent if <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A</span> itself is</li>
+<li>If <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A,B</span> are logically equivalent, then <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}\ast A=\mathsf{KB}\ast B</span></li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}\ast(A\land B)\subseteq (\mathsf{KB}\ast A)+B</span></li>
+<li>If <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg B\notin\mathsf{KB}\ast A</span>, then <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">(\mathsf{KB}\ast A)+B\subseteq
+\mathsf{KB}\ast(A\land B)</span></li>
 </ol>
 <p>These axioms are known as the <strong>AGM postulates</strong> and they guide most research
 into logic-based <i class="bi bi-box-arrow-up-right h-6"></i>
@@ -834,13 +834,13 @@ updating</strong>, which is based on inductive, rather than deductive inference.
 bank with a lot of qualitative knowledge (0/1, we know or we don&rsquo;t), we have
 assume that our background knowledge bank is <em>probabilistic</em>. In fact, we simply
 assume that we can represent our probabilistic knowledge about the world by
-means of a probability $$Pr_\mathsf{KB}:\mathcal{L}\to\mathbb{R}.$$</p>
-<p>Our probabilistic knowledge bank $Pr_\mathsf{KB}$ could, for example, contain
-information like:
-$$Pr_\mathsf{KB}(\neg\mathsf{RAIN})=0.75$$
-$$Pr_\mathsf{KB}(\mathsf{RAIN})=0.25$$
+means of a probability <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr_\mathsf{KB}:\mathcal{L}\to\mathbb{R}.</div></p>
+<p>Our probabilistic knowledge bank <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Pr_\mathsf{KB}</span> could, for example, contain
+information like:</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr_\mathsf{KB}(\neg\mathsf{RAIN})=0.75</div>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr_\mathsf{KB}(\mathsf{RAIN})=0.25</div>
 How should we, in this setting, respond to learning that, as a matter of fact,
-it&rsquo;s raining?</p>
+it's raining?
 <p>The <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Bayesian_epistemology"
   target="_blank">Bayesian</a> answer, is
@@ -860,15 +860,15 @@ the
 conditional probability</a>
 
  given the newly learned fact. That
-is, we would have that
-$$Pr_{\mathsf{KB}\ast\mathsf{RAIN}}(\ \cdot\ )=Pr_\mathsf{KB}(\ \cdot \mid
-\mathsf{RAIN}).$$</p>
+is, we would have that</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr_{\mathsf{KB}\ast\mathsf{RAIN}}(\ \cdot\ )=Pr_\mathsf{KB}(\ \cdot \mid
+\mathsf{RAIN}).</div>
 <p>The crucial idea here is that according to this approach, the original
 probabilistic knowledge bank already contains the information about how to
 respond to new information via it&rsquo;s conditional probabilities, which are,
 remember, defined as follows:</p>
-<p>$$Pr(A\mid B)=\frac{Pr(A\land B)}{Pr(B)}$$</p>
-<p>Where we assume that $Pr(B)\neq 0$ to avoid <i class="bi bi-box-arrow-up-right h-6"></i>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(A\mid B)=\frac{Pr(A\land B)}{Pr(B)}</div>
+<p>Where we assume that <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Pr(B)\neq 0</span> to avoid <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Division_by_zero"
   target="_blank">division by
 0</a>.</p>
@@ -880,11 +880,11 @@ fair die from the last chapter?</p>
 
 
 <p>In this setting, how would a Bayesian respond to getting the partial information
-that the die-roll was even, formalized as
-$$\mathsf{RESULT}_2\lor\mathsf{RESULT}_4\lor \mathsf{RESULT}_6?$$</p>
+that the die-roll was even, formalized as</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{RESULT}_2\lor\mathsf{RESULT}_4\lor \mathsf{RESULT}_6?</div>
 <p>The answer is to conditionalize on this proposition. Let&rsquo;s go through the
-outcomes of this. We&rsquo;ve already calculated result for $\mathsf{RESULT}_2$
-(abbreviated as $\mathsf{R}_2$)
+outcomes of this. We&rsquo;ve already calculated result for <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RESULT}_2</span>
+(abbreviated as <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{R}_2</span>)
 
 
 <a href="https://logicalmethods.ai/textbook/probability//#conditional-probabilities"
@@ -896,24 +896,24 @@ outcomes of this. We&rsquo;ve already calculated result for $\mathsf{RESULT}_2$
    > last chapter </a>
 
 . The
-calculation, for $\mathsf{R}_4$ and $\mathsf{R}_6$ is exactly analogous, giving
+calculation, for <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{R}_4</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{R}_6</span> is exactly analogous, giving
 us:</p>
-<p>$$Pr(\mathsf{R}_2\mid \mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 )=\frac{1}{3}$$
-$$Pr(\mathsf{R}_4\mid \mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 )=\frac{1}{3}$$
-$$Pr(\mathsf{R}_6\mid \mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 )=\frac{1}{3}$$</p>
-<p>In the case of $\mathsf{R}_1,\mathsf{R}_3$ and $\mathsf{R}_5$—the <em>odd</em>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{R}_2\mid \mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 )=\frac{1}{3}</div>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{R}_4\mid \mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 )=\frac{1}{3}</div>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{R}_6\mid \mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 )=\frac{1}{3}</div>
+<p>In the case of <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{R}_1,\mathsf{R}_3</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{R}_5</span>—the <em>odd</em>
 results—the calculation is also analogous in all three cases. We do the one for
-$\mathsf{R}_1$:</p>
-<p>$$Pr(\mathsf{R}_1\land (\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 ))=0$$</p>
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{R}_1</span>:</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{R}_1\land (\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 ))=0</div>
 <p>This holds because the only valuations where this formula is true are ones where
-both $\mathsf{R}_1$ and one of either $\mathsf{R}_2,\mathsf{R}_4,$ or $\mathsf{R}_6$
-is true. But all of these valuations have weight $0$, meaning that the whole
-formula has value $0$.</p>
+both <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{R}_1</span> and one of either <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{R}_2,\mathsf{R}_4,</span> or <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{R}_6</span>
+is true. But all of these valuations have weight <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">0</span>, meaning that the whole
+formula has value <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">0</span>.</p>
 <p>From this it immediately follows that:</p>
-<p>$$Pr(\mathsf{R}_1\mid (\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 ))=0$$</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{R}_1\mid (\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 ))=0</div>
 <p>Analogously, we get:</p>
-<p>$$Pr(\mathsf{R}_3\mid (\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 ))=0$$
-$$Pr(\mathsf{R}_5\mid (\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 ))=0$$</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{R}_3\mid (\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 ))=0</div>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{R}_5\mid (\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 ))=0</div>
 <p>We can present the result in the following table:</p>
 
 
@@ -933,51 +933,51 @@ conditional probabilities in practical settings, from which Bayesian updating
 receives its name: <strong>Bayes rule</strong>.</p>
 <p>Bayes rule is a simple probabilistic law, which can easily be derived from the
 axioms of probability and states that:</p>
-<p>$$Pr(A\mid B)=\frac{Pr(B\mid A)\times Pr(A)}{Pr(B)}$$</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(A\mid B)=\frac{Pr(B\mid A)\times Pr(A)}{Pr(B)}</div>
 <p>There are alternative but equivalent formulations, such as:</p>
-<p>$$Pr(A\mid B)=\frac{Pr(B\mid A)\times Pr(A)}{Pr(B\mid A)\times
-Pr(A)+Pr(B\mid\neg A)\times Pr(\neg A)}$$</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(A\mid B)=\frac{Pr(B\mid A)\times Pr(A)}{Pr(B\mid A)\times
+Pr(A)+Pr(B\mid\neg A)\times Pr(\neg A)}</div>
 <p>The reason why Bayes rule is so important is because <em>in practical applications</em>
 the values on the right hand are often known or easier to figure out than the
 conditional probability on the left of the equation.</p>
-<p>For example, if we&rsquo;re wondering what should $$Pr(\mathsf{HIGH\_PRESSURE}\mid
-\mathsf{RAIN})$$ be. That is, how should we change our credence in the air
+<p>For example, if we&rsquo;re wondering what should <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{HIGH\_PRESSURE}\mid
+\mathsf{RAIN})</div> be. That is, how should we change our credence in the air
 pressure being high if we learn that it rains.</p>
 <p>Bayes formula tells us that this is the same as:</p>
-<p>$$\frac{Pr(\mathsf{RAIN}\mid \mathsf{HIGH\_PRESSURE})\times
-Pr(\mathsf{HIGH\_PRESSURE})}{Pr(\mathsf{RAIN})}$$</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\frac{Pr(\mathsf{RAIN}\mid \mathsf{HIGH\\_PRESSURE})\times
+Pr(\mathsf{HIGH\\_PRESSURE})}{Pr(\mathsf{RAIN})}</div>
 <p>Our starting point was to say that</p>
-<p>$$Pr_\mathsf{KB}(\mathsf{RAIN})=0.25$$</p>
-<p>Now the point is that it&rsquo;s easier to figure out what $Pr(\mathsf{RAIN}\mid
-\mathsf{HIGH\_PRESSURE})$ is easier to assess than
-$Pr(\mathsf{HIGH\_PRESSURE}\mid\mathsf{RAIN})$: high pressure makes rain
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr_\mathsf{KB}(\mathsf{RAIN})=0.25</div>
+<p>Now the point is that it&rsquo;s easier to figure out what <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Pr(\mathsf{RAIN}\mid
+\mathsf{HIGH\_PRESSURE})</span> is easier to assess than
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Pr(\mathsf{HIGH\_PRESSURE}\mid\mathsf{RAIN})</span>: high pressure makes rain
 unlikely, since low pressure is one of the main factors in rain. Let&rsquo;s suppose
 we have:</p>
-<p>$$Pr(\mathsf{RAIN}\mid \mathsf{HIGH\_PRESSURE})=0.2$$</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{RAIN}\mid \mathsf{HIGH\\_PRESSURE})=0.2</div>
 <p>Now all we need is to figure out what the unconditional probability of high
 pressure is. Assuming that it&rsquo;s winter, when the air pressure is usually high,
-we could set: $$Pr(\mathsf{HIGH\_PRESSURE})=0.8.$$</p>
-<p>The outcome would be
-$$Pr(\mathsf{HIGH\_PRESSURE}\mid\mathsf{RAIN})$$
-$$=\frac{Pr(\mathsf{RAIN}\mid \mathsf{HIGH\_PRESSURE})\times
-Pr(\mathsf{HIGH\_PRESSURE})}{Pr(\mathsf{RAIN})}$$
-$$=\frac{0.2\times0.8}{0.25}=0.64$$</p>
-<p>In this setting, we usually give the terms $Pr(A\mid B)$, $Pr(B\mid A)$,
-$Pr(A)$, and $Pr(B)$ special names:</p>
+we could set: <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{HIGH\_PRESSURE})=0.8.</div></p>
+<p>The outcome would be</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{HIGH\\_PRESSURE}\mid\mathsf{RAIN})</div>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">=\frac{Pr(\mathsf{RAIN}\mid \mathsf{HIGH\\_PRESSURE})\times
+Pr(\mathsf{HIGH\\_PRESSURE})}{Pr(\mathsf{RAIN})}</div>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">=\frac{0.2\times0.8}{0.25}=0.64</div>
+<p>In this setting, we usually give the terms <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Pr(A\mid B)</span>, <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Pr(B\mid A)</span>,
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Pr(A)</span>, and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Pr(B)</span> special names:</p>
 <ul>
 <li>
-<p>$Pr(A\mid B)$ is the <strong>posterior probability</strong>, since it&rsquo;s the outcome of our
+<p><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Pr(A\mid B)</span> is the <strong>posterior probability</strong>, since it&rsquo;s the outcome of our
 learning process</p>
 </li>
 <li>
-<p>$Pr(A)$ is called the <strong>prior probability</strong>, since it&rsquo;s what we know about the
-probability of $A$ before learning that $B$</p>
+<p><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Pr(A)</span> is called the <strong>prior probability</strong>, since it&rsquo;s what we know about the
+probability of <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A</span> before learning that <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">B</span></p>
 </li>
 <li>
-<p>$Pr(B)$ is called the <strong>marginal probability</strong></p>
+<p><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Pr(B)</span> is called the <strong>marginal probability</strong></p>
 </li>
 <li>
-<p>$Pr(B\mid A)$ is called the
+<p><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Pr(B\mid A)</span> is called the
 <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Likelihood_function"
   target="_blank">likelihood</a>, since it&rsquo;s a
@@ -1003,7 +1003,7 @@ paradigm for machine learning: statistical methods reign supreme.</p>
 <p>The main reason for this is the <strong>computational complexity</strong> of logic-based
 learning procedures. This point is easy to see with the methods we&rsquo;ve discussed
 in this chapter: AGM belief revision requires a defining a selection function
-that generally performs the contractions (removing the $\neg A$) and therefore
+that generally performs the contractions (removing the <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg A</span>) and therefore
 needs to go through all the subsets of our knowledge base.</p>
 <p>Bayesian updating, instead, requires updating the probabilities of <em>every</em>
 proposition, even if they&rsquo;re not relevant to the learning situation.</p>
@@ -1013,7 +1013,9 @@ update.</p>
 while they are not efficient as a general learning algorithm, they are useful
 methods when precision counts or the scenario allows for simple retraction
 functions or modeling with few propositions.</p>
-</div>
+
+
+  </div>
    <p><em>Last edited: </em>23/10/2024</p>
 </div>
 

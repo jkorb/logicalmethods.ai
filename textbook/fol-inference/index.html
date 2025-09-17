@@ -114,11 +114,11 @@
             <li>
               <a class="dropdown-item 
                 
-                link-opacity-50
+                
                 "
-                href="javascript:;"
+                href="/textbook/boolean/"
               >4. 
-                <i class="bi bi-lock-fill"></i>
+                <i class="bi bi-unlock-fill"></i>
                  Boolean algebra
               </a>
             </li>
@@ -634,7 +634,7 @@
       <nav class="navbar bg-dark shadow" data-bs-theme="dark" aria-label="header-navbar">
   <div class="container-sm align-self-center px-3">
     <a class="navbar-brand fs-6" href="https://logicalmethods.ai/">
-    <img src="https://logicalmethods.ai/img/nav_id.png" class="inert-img m-2" draggable="false" width="400px">
+    <img src="https://logicalmethods.ai/img/nav_id.png" class="inert-img img-fluid m-2" draggable="false" width="400px">
     </a>
     <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-nav" aria-controls="offcanvas-nav">
       <span class="navbar-toggler-icon"></span>
@@ -720,8 +720,8 @@ reasoning. This makes it a good starting point for our exploration of FOL
 inference.</p>
 <p>The natural deduction system for FOL has four new rules in addition to the rules
 for the propositional connectives, two for each of the quantifiers
-$\forall,\exists$.</p>
-<p>Let&rsquo;s begin with the <strong>universal quantifier</strong> $\forall$. Here&rsquo;s a straight-forward
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall,\exists</span>.</p>
+<p>Let&rsquo;s begin with the <strong>universal quantifier</strong> <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall</span>. Here&rsquo;s a straight-forward
 inference:</p>
 
 
@@ -736,39 +736,39 @@ universal quantifier:</p>
 <img src="https://logicalmethods.ai/textbook/fol-inference/img/ue.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
 
 
-<p>Here $A(t)$ stands for the result of replacing the variable $x$ with the term
-$t$ everywhere where $x$ is not &ldquo;captured by&rdquo; another quantifier:</p>
+<p>Here <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A(t)</span> stands for the result of replacing the variable <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">x</span> with the term
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">t</span> everywhere where <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">x</span> is not &ldquo;captured by&rdquo; another quantifier:</p>
 <ul>
 <li>
-<p>Suppose $\forall xA(x)$ is $\forall x\exists y\mathsf{Parent}(x,y)$.</p>
+<p>Suppose <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall xA(x)</span> is <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall x\exists y\mathsf{Parent}(x,y)</span>.</p>
 </li>
 <li>
-<p>Then $A(x)$ is $\exists y\mathsf{Parent}(x,y)$.</p>
+<p>Then <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A(x)</span> is <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\exists y\mathsf{Parent}(x,y)</span>.</p>
 </li>
 <li>
-<p>If $t$ is $Ada$, then $A(t)$ is $\exists y\mathsf{Parent}(Ada,y)$.</p>
+<p>If <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">t</span> is <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Ada</span>, then <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A(t)</span> is <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\exists y\mathsf{Parent}(Ada,y)</span>.</p>
 </li>
 <li>
-<p><strong>NB</strong>: If $A(x)$ is</p>
-<p>$$\exists y\mathsf{Parent}(x,y)\land \forall x\mathsf{Human}(x)$$</p>
-<p>and $t$ is Ada, then $A(t)$ is</p>
-<p>$$\exists y\mathsf{Parent}(Ada,y)\land \forall x\mathsf{Human}(x)$$</p>
+<p><strong>NB</strong>: If <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A(x)</span> is</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\exists y\mathsf{Parent}(x,y)\land \forall x\mathsf{Human}(x)</div> 
+<p>and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">t</span> is Ada, then <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A(t)</span> is</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\exists y\mathsf{Parent}(Ada,y)\land \forall x\mathsf{Human}(x)</div> 
 <p>and <em>not</em></p>
-<p>$$\exists y\mathsf{Parent}(Ada,y)\land \forall x\mathsf{Human}(Ada)$$</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\exists y\mathsf{Parent}(Ada,y)\land \forall x\mathsf{Human}(Ada)</div>
 </li>
 </ul>
 <p>This rule is also called <strong>universal instantiation</strong>, it formalizes the
 idea that if everything is so and so, then any thing you may pick is also so and
 so.</p>
-<p>There is a small <strong>caveat</strong>: We may not chose $t$ <em>completely</em> freely in
-$\forall E$. The thing is that $t$ may not contain a variable $x$, which would
+<p>There is a small <strong>caveat</strong>: We may not chose <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">t</span> <em>completely</em> freely in
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall E</span>. The thing is that <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">t</span> may not contain a variable <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">x</span>, which would
 be &ldquo;captured&rdquo; by another quantifier after. So, we may not, for example, infer:</p>
-<p>$$\exists y\mathsf{Parent}(y,y)$$</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\exists y\mathsf{Parent}(y,y)</div> 
 <p>from</p>
-<p>$$\forall x\exists y \mathsf{Parent}(x,y).$$</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\forall x\exists y \mathsf{Parent}(x,y).</div>
 <p>We cannot infer from everyone having a parent that there&rsquo;s somebody who&rsquo;s their
 own parent.</p>
-<p>This may seem &ldquo;obvious&rdquo;, but it&rsquo;s important to keep in mind. The term $t$ may be
+<p>This may seem &ldquo;obvious&rdquo;, but it&rsquo;s important to keep in mind. The term <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">t</span> may be
 a variable, but if may not be &ldquo;captured&rdquo; by another quantifier.</p>
 <p>These kinds of side-conditions are <em>par for the course</em> in FOL.</p>
 <p>This tells us what we can infer <em>from</em> a universally quantified claim, but from
@@ -776,7 +776,7 @@ what can we infer a universally quantified claim itself?</p>
 <p>The idea in natural deduction and much of the following is that we can use <em>free
 variables</em> for that, which are variables that are not &ldquo;captured&rdquo; by any
 quantifier. Take the statement:</p>
-<p>$$\exists y\mathsf{Parent}(x,y)$$</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\exists y\mathsf{Parent}(x,y)</div>
 <p>In line with the reading of variables as pronouns, this says something like
 <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Singular_they"
@@ -796,21 +796,21 @@ something like this, then we may infer that <em>every</em> person has a parent:<
 <img src="https://logicalmethods.ai/textbook/fol-inference/img/ui.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
 
 
-<p>Here the $\alpha$ stands for an arbitrary variable $x,y,z,\dots$ subject to the
-following <strong>extremely important</strong> side-condition $\dagger$:</p>
+<p>Here the <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\alpha</span> stands for an arbitrary variable <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">x,y,z,\dots</span> subject to the
+following <strong>extremely important</strong> side-condition <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\dagger</span>:</p>
 <ul>
-<li>We may <em>only</em> infer $\forall xA(x)$ from $A(\alpha)$ if the variable $\alpha$
+<li>We may <em>only</em> infer <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall xA(x)</span> from <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A(\alpha)</span> if the variable <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\alpha</span>
 is <em>really</em> arbitrary. We ensure this by demanding that in no assumption, which
-occurs in the derivation before $A(\alpha)$ we may have $\alpha$ occurring
+occurs in the derivation before <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A(\alpha)</span> we may have <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\alpha</span> occurring
 unless its &ldquo;captured&rdquo; by a quantifier.</li>
 </ul>
 <p>If we wouldn&rsquo;t have this condition, we&rsquo;d be saying that the following inference
 is valid:</p>
-<p>$$\exists y\mathsf{Friend}(x,y)\vDash \forall x\exists y\mathsf{Friend}(x,y)$$</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\exists y\mathsf{Friend}(x,y)\vDash \forall x\exists y\mathsf{Friend}(x,y)</div>
 <p>If <em>they</em> have a friend, then <em>everybody</em> has a friend. This is, of course, not
 a good inference: just because some person has friends, doesn&rsquo;t mean everybody
 does.</p>
-<p>The point is that we can only apply $\forall I$ if the variable doesn&rsquo;t depend
+<p>The point is that we can only apply <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall I</span> if the variable doesn&rsquo;t depend
 on anything else, so what would be OK, would be the following inference:</p>
 
 
@@ -819,8 +819,8 @@ on anything else, so what would be OK, would be the following inference:</p>
 
 <p>If everybody has a friend, then everybody either has a friend or is their own
 enemy.</p>
-<p>Let&rsquo;s turn to the <strong>existential quantifier</strong> $\exists$. As in the case of the
-universal quantifier $\forall$, there is a straight-forward inference that
+<p>Let&rsquo;s turn to the <strong>existential quantifier</strong> <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\exists</span>. As in the case of the
+universal quantifier <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall</span>, there is a straight-forward inference that
 motivates our first inference rule.</p>
 <p>Consider the following inference:</p>
 
@@ -847,7 +847,7 @@ Here&rsquo;s how this work &ldquo;in action&rdquo;:</p>
 <img src="https://logicalmethods.ai/textbook/fol-inference/img/ex-ee.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
 
 
-<p>We&rsquo;re just introducing a new constant $c$ for the person who&rsquo;s on the Walk. It&rsquo;s
+<p>We&rsquo;re just introducing a new constant <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">c</span> for the person who&rsquo;s on the Walk. It&rsquo;s
 important that this constant doesn&rsquo;t appear anywhere else in our derivation (or
 background knowledge base) to avoid serious mistakes.</p>
 <p>For example, the following inference is (obviously) problematic:</p>
@@ -864,7 +864,7 @@ that Ada is both on the walk and not.</p>
 <img src="https://logicalmethods.ai/textbook/fol-inference/img/ee.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
 
 
-<p>Here the side-condition $\ddagger$ says that the constant $c$ must be new to the
+<p>Here the side-condition <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\ddagger</span> says that the constant <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">c</span> must be new to the
 inference (and knowledge base or any other background facts).</p>
 <p>In a more complex reasoning setting, we would apply this rule as follows:</p>
 
@@ -907,28 +907,28 @@ in this course, but we can illustrate <em>why</em> this happens. In fact, showin
 is a great setup for the next 
 <a class="link-dark" href="#generalized-mp-and-unification">topic</a>:</p>
 <p>Suppose that our premises contain a premise of the form:</p>
-<p>$$\forall x\exists y\mathsf{BiggerThan}(x,y)$$</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\forall x\exists y\mathsf{BiggerThan}(x,y)</div>
 <p>We want to know whether some conclusion follows from this. It doesn&rsquo;t really
 matter what the potential conclusion is, since the problem already occurs if we
-automatically draw inferences from $$\forall x\exists
-y\mathsf{BiggerThan}(x,y)$$ in an unfortunate way.</p>
-<p>Suppose we already have a constant in our knowledge base, say $0$ for the number
+automatically draw inferences from <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\forall x\exists
+y\mathsf{BiggerThan}(x,y)</div> in an unfortunate way.</p>
+<p>Suppose we already have a constant in our knowledge base, say <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">0</span> for the number
 zero. A natural thing to do is to instantiate any universal quantifier we come
-across with all the constants we know to see if we get the result. So, we infer
-$$\exists y\mathsf{BiggerThan}(0,y)$$
-So far so good. Now, we don&rsquo;t have any other constants, so we don&rsquo;t draw any
-further inferences using $\forall E$. Since we&rsquo;ve got nothing else we can do, we
-try the rule $\exists E$ and introduce a new constant: $c_1$ (you&rsquo;ll see in a
-second why there&rsquo;s an index):</p>
-<p>$$\exists y\mathsf{BiggerThan}(0,c_1)$$</p>
+across with all the constants we know to see if we get the result. So, we infer</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\exists y\mathsf{BiggerThan}(0,y)</div>
+So far so good. Now, we don't have any other constants, so we don't draw any
+further inferences using <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall E</span>. Since we've got nothing else we can do, we
+try the rule <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\exists E</span> and introduce a new constant: <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">c_1</span> (you'll see in a
+second why there's an index):
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\exists y\mathsf{BiggerThan}(0,c_1)</div>
 <p>But wait, we&rsquo;ve got a new constant, so we should infer:</p>
-<p>$$\exists y\mathsf{BiggerThan}(c_1,y)$$</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\exists y\mathsf{BiggerThan}(c_1,y)</div>
 <p>from</p>
-<p>$$\forall x\exists y\mathsf{BiggerThan}(x,y)$$</p>
-<p>Again, we&rsquo;ve instantiated the $\forall$ with all our constants, so we try
-$\exists E$ again. Since our constant must be new, we choose $c_2$. Ah, a new
-constant, so we need to use $\forall E$ for our premise again, giving us:</p>
-<p>$$\exists y\mathsf{BiggerThan}(c_1,c_2)$$</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\forall x\exists y\mathsf{BiggerThan}(x,y)</div>
+<p>Again, we&rsquo;ve instantiated the <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall</span> with all our constants, so we try
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\exists E</span> again. Since our constant must be new, we choose <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">c_2</span>. Ah, a new
+constant, so we need to use <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall E</span> for our premise again, giving us:</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\exists y\mathsf{BiggerThan}(c_1,c_2)</div>
 <p>Now you quickly see that we&rsquo;re caught in a <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Infinite_loop"
   target="_blank">infinite
@@ -937,7 +937,7 @@ the universal quantifier, the existential quantifier gives us a new constant to
 instantiate the universal quantifier for. This procedure gives us a bunch of
 proofs, but never the one we&rsquo;re looking for.</p>
 <p>Of course, we could avoid hitting the infinite loop &ldquo;immediately&rdquo; by first
-applying some other rules after we&rsquo;ve introduced $c_1$. This would give us some
+applying some other rules after we&rsquo;ve introduced <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">c_1</span>. This would give us some
 more inferences, which is good of course. The problem, however, is that we can
 never <em>completely</em> avoid infinite loops like this. That&rsquo;s the consequence of
 undecidability.</p>
@@ -955,15 +955,15 @@ the right time–otherwise we might get &ldquo;stuck&rdquo; in an infinite loop.
 
 <p>A standard setup we find ourselves in when it comes to automated FOL inference
 is that we have a KB with a bunch of rules of the form:</p>
-<p>$$\forall x\forall y\dots((P_1(x,y,\dots)\land P_2(x,y,\dots))\land \dots \to
-C(x,y,\dots))$$</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\forall x\forall y\dots((P_1(x,y,\dots)\land P_2(x,y,\dots))\land \dots \to
+C(x,y,\dots))</div>
 <p>These are simple if-then rules (which correspond to <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Horn_clause"
   target="_blank">Horn
 clauses</a>).</p>
-<p>Take, for example, the FOL version of the rules for our robot planning example:
-$$\forall x\forall n((On(x, n) \land Switch(x, n)) \to Off(x, n + 1))$$
-$$\forall x\forall n((Off(x, n) \land Switch(x, n)) \to On(x, n + 1))$$</p>
+<p>Take, for example, the FOL version of the rules for our robot planning example:</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\forall x\forall n((On(x, n) \land Switch(x, n)) \to Off(x, n + 1))</div>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\forall x\forall n((Off(x, n) \land Switch(x, n)) \to On(x, n + 1))</div>
 <p>A straight-forward inference strategy to extract information from these clauses
 is to instantiate them and try to use <em>modus ponens</em>, effectively applying the
 
@@ -993,17 +993,17 @@ chaining</a>
 
  techniques.</p>
 <p>Suppose, for example, that we have the following information and want to know
-what this determines:
-$$On(L,1)$$
-$$Switch(L,1)$$
-We can then reason as follows (here in natural deduction):</p>
+what this determines:</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">On(L,1)</div>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Switch(L,1)</div>
+We can then reason as follows (here in natural deduction):
 
 
 <img src="https://logicalmethods.ai/textbook/fol-inference/img/gmp-example.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
 
 
-<p>In this way, in two steps using $\land I$ and $\forall E$, we can infer that the
-left light will be off at time point $1+1=2$.</p>
+<p>In this way, in two steps using <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\land I</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall E</span>, we can infer that the
+left light will be off at time point <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1+1=2</span>.</p>
 <p>Once we recognize the pattern, we might want to be able to apply it directly as
 in the following:</p>
 
@@ -1012,56 +1012,56 @@ in the following:</p>
 
 
 <p>This can be achieved by adding the following <strong>generalized MP</strong> rule to our
-calculus (with the justification of being able to derive it using $\land I$ and
-$\forall E$):</p>
+calculus (with the justification of being able to derive it using <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\land I</span> and
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall E</span>):</p>
 
 
 <img src="https://logicalmethods.ai/textbook/fol-inference/img/gmp.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
 
 
-<p>Here $\vec{t}=t_1,t_2,\dots$ and $\vec{x}=x_1,x_2\dots$ are abbreviations.</p>
+<p>Here <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\vec{t}=t_1,t_2,\dots</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\vec{x}=x_1,x_2\dots</span> are abbreviations.</p>
 <p>The generalized MP rule puts the focus a key questions for efficient FOL
 inference: choosing the right variables to instantiate universal quantifiers.</p>
 <p>The point of inference pattern is to avoid unnecessary (but valid)
 instantiations when trying to apply universal instantiation.</p>
 <p>To see whether we can apply generalized MP, we need to find an instantiation for
 the variables</p>
-<p>$$x_1,x_2,\dots$$</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">x_1,x_2,\dots</div>
 <p>such that applying it to</p>
-<p>$$P_1(x_1,x_2,\dots)\land P_2(x_1,x_2,\dots)\land\dots$$</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">P_1(x_1,x_2,\dots)\land P_2(x_1,x_2,\dots)\land\dots</div>
 <p>gives us</p>
-<p>$$P_1(t_1,t_2,\dots)\land P_2(t_1,t_2,\dots)\land\dots$$</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">P_1(t_1,t_2,\dots)\land P_2(t_1,t_2,\dots)\land\dots</div>
 <p>Here, it is clear what the answer is, viz:</p>
-<p>$$x_1\mapsto t_1,x_2\mapsto t_2,\dots$$</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">x_1\mapsto t_1,x_2\mapsto t_2,\dots</div>
 <p>But this example allows us to explain a key concept in FOL inference, which
 underlies most FOL inference algorithm. This concept is known as <strong>unification</strong>.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
 <p>A unification procedure takes as input two formulas and gives as output a
 substitution of terms that makes the two formulas identical.</p>
 <p>So, for example, if the input are the two formulas:</p>
-<p>$$On(L,1)\land Switch(L,1)\qquad \text{ and } \qquad On(x,y)\land Switch(x,y)$$</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">On(L,1)\land Switch(L,1)\qquad \text{ and } \qquad On(x,y)\land Switch(x,y)</div>
 <p>the unification procedure would give as output:</p>
-<p>$$x\mapsto L, y\mapsto 1$$</p>
-<p>since substituting $L$ for $x$ and $1$ for $y$ everywhere, will turn the second
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">x\mapsto L, y\mapsto 1</div>
+<p>since substituting <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">L</span> for <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">x</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span> for <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">y</span> everywhere, will turn the second
 input into the first.</p>
 <p>Note that unification can be applied to two formulas where both need
 substitutions. Take, for example, the following two formulas as input:</p>
-<p>$$\mathsf{YoungerThan}(x,Ada)\qquad \text{ and }\mathsf{YoungerThan}(Alan,y)$$</p>
-<p>If we replace $x$ with $Alan$ in the first input and $y$ with $Ada$ in the
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{YoungerThan}(x,Ada)\qquad \text{ and }\mathsf{YoungerThan}(Alan,y)</div>
+<p>If we replace <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">x</span> with <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Alan</span> in the first input and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">y</span> with <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Ada</span> in the
 second input, we obtain the unified clause</p>
-<p>$$\mathsf{YoungerThan}(Alan,Ada)$$</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{YoungerThan}(Alan,Ada)</div>
 <p>Note also that there can be pairs of formulas that are <strong>not unifiable</strong>. Take,
-for example, the formulas
-$$\mathsf{OlderThan}(x,Alan)\qquad\mathsf{OlderThan}(Ada,x)$$
-To unify the two formulas, we&rsquo;d need to have both $x\mapsto Ada$ and $x\mapsto
-Alan$, which is impossible.</p>
-<p>We use the notation $A[x_1\mapsto t_1,x_2\mapsto t_2,\dots]$ to denote the
-result of replacing $x_1$ with $t_1$, $x_2$ with $t_2$, and so forth everywhere
+for example, the formulas</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{OlderThan}(x,Alan)\qquad\mathsf{OlderThan}(Ada,x)</div>
+To unify the two formulas, we'd need to have both <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">x\mapsto Ada</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">x\mapsto
+Alan</span>, which is impossible.
+<p>We use the notation <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A[x_1\mapsto t_1,x_2\mapsto t_2,\dots]</span> to denote the
+result of replacing <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">x_1</span> with <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">t_1</span>, <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">x_2</span> with <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">t_2</span>, and so forth everywhere
 those variables aren&rsquo;t captured by quantifiers. This procedure is known
-<strong>substitution</strong>. We call the rule $x_1\mapsto t_1,x_2\mapsto t_2,\dots$ <em>a</em>
+<strong>substitution</strong>. We call the rule <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">x_1\mapsto t_1,x_2\mapsto t_2,\dots</span> <em>a</em>
 substitution.</p>
 <p>Using this notation, we can formulate the unification procedure as a procedure
-that gives us for two formulas $A,B$ a substitution $$[A,B]_{U}$$ such that
-$$A[A,B]_{U}=B[A,B]_{U}.$$</p>
+that gives us for two formulas <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A,B</span> a substitution <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">[A,B]_{U}</div> such that</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">A[A,B]_{U}=B[A,B]\_{U}.</div>
 <p>Using unification, we can write the generalized MP rule as follows:</p>
 
 
@@ -1080,26 +1080,26 @@ chaining <em>directly</em>, side-stepping a search through all possible instanti
 
 <p>A main limitation of the generalized MP rule is that it works only with
 universal conditions of the form we discussed above:</p>
-<p>$$\forall x\forall y\dots((P_1(x,y,\dots)\land P_2(x,y,\dots))\land \dots \to
-C(x,y,\dots))$$</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\forall x\forall y\dots((P_1(x,y,\dots)\land P_2(x,y,\dots))\land \dots \to
+C(x,y,\dots))</div>
 <p>While these are <em>very</em> common in KBs, we often come across situations, where
 we&rsquo;d like to apply FOL inference to <em>arbitrary</em> formulas.</p>
 <p>A very effective and widely used technique for that is the generalization of the
 <strong>resolution method for FOL</strong>.</p>
 <p>Remember that the <strong>resolution rule</strong> says that if you have two clauses</p>
-<p>$$l_1\lor l_2\lor \dots\lor p \qquad \qquad \neg p\lor k_1\lor k_2\lor\dots$$</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">l_1\lor l_2\lor \dots\lor p \qquad \qquad \neg p\lor k_1\lor k_2\lor\dots</div>
 <p>you can infer:</p>
-<p>$$l_1\lor l_2\lor \dots k_1\lor k_2\lor\dots$$</p>
-<p>In this rule $l_i,k_j$ are literals, meaning either propositional variables or
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">l_1\lor l_2\lor \dots k_1\lor k_2\lor\dots</div>
+<p>In this rule <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">l_i,k_j</span> are literals, meaning either propositional variables or
 their negations. How can we generalize this rule to the FOL case?</p>
 <p>First, note that literals correspond to basic facts in propositional logic:
-$\mathsf{RAIN}$ is the basic fact that it rains, and $\neg\mathsf{RAIN}$ is the
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}</span> is the basic fact that it rains, and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg\mathsf{RAIN}</span> is the
 basic fact that it doesn&rsquo;t. In fact, these basic facts directly correspond to
-the basic <em>modeling</em> facts $\nu(\mathsf{RAIN})=1$ and $\nu(\mathsf{RAIN})=0$.
+the basic <em>modeling</em> facts <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(\mathsf{RAIN})=1</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(\mathsf{RAIN})=0</span>.
 What are the corresponding basic facts in FOL?</p>
 <p>The straight-forward answer is that they are atomic formulas and their
 negations, like:</p>
-<p>$$\mathsf{OlderThan}(\mathsf{FatherOf}(Ada),Ada)\qquad \neg\mathsf{OlderThan}(\mathsf{FatherOf}(Ada),Ada)$$</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{OlderThan}(\mathsf{FatherOf}(Ada),Ada)\qquad \neg\mathsf{OlderThan}(\mathsf{FatherOf}(Ada),Ada)</div>
 <p>Using these, we can, for example, formulate valid, resolution-style inferences
 like the following:</p>
 
@@ -1108,7 +1108,7 @@ like the following:</p>
 
 
 <p>If we have complex FOL formulas, which are just build up from atoms using
-$\neg,\land,\lor,\to$, we can straight-forwardly generalize the propositional
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg,\land,\lor,\to</span>, we can straight-forwardly generalize the propositional
 procedure to the FOL case: simply re-write the formula in CNF (following the
 procedure laid out in  
 
@@ -1125,21 +1125,21 @@ chapter 5.3</a>
 ), and we can apply the resolution rule.</p>
 <p>For example, the above application of the resolution rule shows the validity of
 the following FOL inference:</p>
-<p>$$\mathsf{Parent}(\mathsf{FatherOf}(Ada),Ada)\to
-\mathsf{OlderThan}(\mathsf{FatherOf}(Ada),Ada),$$
-$$\mathsf{OlderThan}(\mathsf{FatherOf}(Ada),Ada)\to$$
-$$\mathsf{Before}(\mathsf{BirthdayOf}(\mathsf{FatherOf}(Ada)),\mathsf{BirthdayOf}(Ada))\vDash$$
-$$\mathsf{Parent}(\mathsf{FatherOf}(Ada),Ada)\to$$
-$$\mathsf{Before}(\mathsf{BirthdayOf}(\mathsf{FatherOf}(Ada)),\mathsf{BirthdayOf}(Ada))$$</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{Parent}(\mathsf{FatherOf}(Ada),Ada)\to
+\mathsf{OlderThan}(\mathsf{FatherOf}(Ada),Ada),</div>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{OlderThan}(\mathsf{FatherOf}(Ada),Ada)\to</div>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{Before}(\mathsf{BirthdayOf}(\mathsf{FatherOf}(Ada)),\mathsf{BirthdayOf}(Ada))\vDash</div>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{Parent}(\mathsf{FatherOf}(Ada),Ada)\to</div>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{Before}(\mathsf{BirthdayOf}(\mathsf{FatherOf}(Ada)),\mathsf{BirthdayOf}(Ada))</div>
 <p>It turns out that universal quantifiers are relatively easy to handle using a
 simple &ldquo;trick&rdquo;. We simply treat &ldquo;free&rdquo; variables, that is variables which are
 not captured by a corresponding quantifier, as <em>implicitly quantified</em>. To
 illustrate, consider the following example.</p>
-<p>We want to check the validity of the following inference:
-$$\forall x\forall y(\mathsf{Parent}(x,y)\to \mathsf{OlderThan}(x,y)),$$
-$$\forall x\forall y(\mathsf{OlderThan}(x,y)\to \mathsf{Before}(\mathsf{BirthdayOf}(x),\mathsf{BirthdayOf}(y)))\vDash$$
-$$\forall x\forall y(\mathsf{Parent}(x,y)\to \mathsf{Before}(\mathsf{BirthdayOf}(x),\mathsf{BirthdayOf}(y)))$$
-We do this with the following application of the resolution rule:</p>
+<p>We want to check the validity of the following inference:</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\forall x\forall y(\mathsf{Parent}(x,y)\to \mathsf{OlderThan}(x,y)),</div>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\forall x\forall y(\mathsf{OlderThan}(x,y)\to \mathsf{Before}(\mathsf{BirthdayOf}(x),\mathsf{BirthdayOf}(y)))\vDash</div>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\forall x\forall y(\mathsf{Parent}(x,y)\to \mathsf{Before}(\mathsf{BirthdayOf}(x),\mathsf{BirthdayOf}(y)))</div>
+We do this with the following application of the resolution rule:
 
 
 <img src="https://logicalmethods.ai/textbook/fol-inference/img/resolution-universal.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
@@ -1151,33 +1151,33 @@ We do this with the following application of the resolution rule:</p>
 rename all variables in such a way that every formula has unique variables.</li>
 <li>We re-wrote the resulting quantifier free formulas in using the re-writing
 rules.</li>
-<li>We applied the resolution rule using a substitution where $u\mapsto x$ and
-$v\mapsto y$.
+<li>We applied the resolution rule using a substitution where <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">u\mapsto x</span> and
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">v\mapsto y</span>.
 The first and third steps are the crucial things to focus on here: we allow a
-resolution application with atoms $$\mathsf{OlderThan}(u,v)$$ and
-$$\neg\mathsf{OlderThan}(x,y).$$ This is the way in which we treat the free
-variables $x,y,u,v$ as &ldquo;implicitly quantified&rdquo;. We think of them as being able
-to assume different values, in particular $x$ and $u$ and $y$ and $v$ <em>can</em>
-assume the same values, which makes this an ordinary case of resolution.</li>
+resolution application with atoms <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{OlderThan}(u,v)</div> and</li>
 </ol>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\neg\mathsf{OlderThan}(x,y).</div> This is the way in which we treat the free
+variables <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">x,y,u,v</span> as "implicitly quantified". We think of them as being able
+to assume different values, in particular <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">x</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">u</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">y</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">v</span> _can_
+assume the same values, which makes this an ordinary case of resolution. 
 <p>But when doing so, we must respect the new assignment of variables. That is, we
-apply the substitution $u\mapsto x,v\mapsto y$ to the entire formula, giving us
+apply the substitution <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">u\mapsto x,v\mapsto y</span> to the entire formula, giving us
 the conclusion.</p>
-<p>Note that $[u\mapsto x,v\mapsto y]$ is a unification for the formulas
-$\mathsf{OlderThan}(u,v)$ and $\neg\mathsf{OlderThan}(x,y).$ This gives us the
+<p>Note that <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">[u\mapsto x,v\mapsto y]</span> is a unification for the formulas
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{OlderThan}(u,v)</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg\mathsf{OlderThan}(x,y).</span> This gives us the
 most general form of the <strong>FOL resolution rule</strong>:</p>
-<p>$$l_1\lor l_2\lor \dots\lor m \qquad \qquad \neg n\lor k_1\lor k_2\lor\dots$$</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">l_1\lor l_2\lor \dots\lor m \qquad \qquad \neg n\lor k_1\lor k_2\lor\dots</div>
 <p>you can infer:</p>
-<p>$$(l_1\lor l_2\lor \dots k_1\lor k_2\lor\dots)[m, n]_U$$</p>
-<p>Assuming that $[m, n]_U$ does indeed exist.</p>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(l_1\lor l_2\lor \dots k_1\lor k_2\lor\dots)[m, n]_U</div>
+<p>Assuming that <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">[m, n]_U</span> does indeed exist.</p>
 <p>This is the resolution rule we&rsquo;ve applied in the inference:</p>
 
 
 <img src="https://logicalmethods.ai/textbook/fol-inference/img/resolution-universal.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
 
 
-<p>To make this a general inference rule, we allow the $m,\neg m$ pair to occur
-anywhere within $l_1\lor l_2\lor \dots\lor m, \neg n\lor k_1\lor k_2\lor\dots$
+<p>To make this a general inference rule, we allow the <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">m,\neg m</span> pair to occur
+anywhere within <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">l_1\lor l_2\lor \dots\lor m, \neg n\lor k_1\lor k_2\lor\dots</span>
 respectively (not only at the end/beginning).</p>
 <p>It turns out that we can describe a general FOL inference procedure using
 resolution. This involves FOL variant of the CNF from 
@@ -1196,47 +1196,47 @@ resolution. This involves FOL variant of the CNF from
 <strong>FO-CNF</strong>:</p>
 <ol>
 <li>
-<p>Re-write all conditionals using the rule: $A\to B\leadsto \neg A\lor B$</p>
+<p>Re-write all conditionals using the rule: <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A\to B\leadsto \neg A\lor B</span></p>
 </li>
 <li>
 <p>Use the de Morgan rules to move all negations inwards, i.e. apply the rules:</p>
 <ul>
-<li>$\neg\neg A\leadsto A$</li>
-<li>$\neg(A\land B)\leadsto \neg A\lor\neg B$</li>
-<li>$\neg(A\lor B)\leadsto \neg A\land\neg B$.</li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg\neg A\leadsto A</span></li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg(A\land B)\leadsto \neg A\lor\neg B</span></li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg(A\lor B)\leadsto \neg A\land\neg B</span>.</li>
 </ul>
 </li>
 <li>
 <p>Use the quantifier negation rules to move negations inwards via the following rules:</p>
 <ul>
-<li>$\neg\forall xA\leadsto \exists x\neg A$</li>
-<li>$\neg\exists xA\leadsto \forall x\neg A$</li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg\forall xA\leadsto \exists x\neg A</span></li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg\exists xA\leadsto \forall x\neg A</span></li>
 </ul>
 </li>
 <li>
 <p>Re-name the variables such that each quantifier has its own variable, so
-that, e.g. $\forall xA\land \exists xB\leadsto \forall x_1A\land \forall
-x_2B$.</p>
+that, e.g. <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall xA\land \exists xB\leadsto \forall x_1A\land \forall
+x_2B</span>.</p>
 </li>
 <li>
 <p>For each quantifier, apply the following procedure known as <strong>Skolemization</strong>:<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
 <ul>
 <li>Eliminate any existential quantifier from the formula and replace the variable it
-quantifiers over with a new function symbol $f_i(x_j,x_k,\dots)$, where: $x_i$
-is the variable the universal quantifier used and $x_j,x_k,\dots$ are all
-the universally quantified variables that come before $x_i$ in the formula. If no variables occur before use a fresh constant $c_i$.</li>
+quantifiers over with a new function symbol <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">f_i(x_j,x_k,\dots)</span>, where: <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">x_i</span>
+is the variable the universal quantifier used and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">x_j,x_k,\dots</span> are all
+the universally quantified variables that come before <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">x_i</span> in the formula. If no variables occur before use a fresh constant <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">c_i</span>.</li>
 </ul>
 <p>For example:</p>
 <ul>
 <li>
-<p>$\forall x\exists y(P(x)\to R(x,y))$ becomes $\forall
-x(P(x)\to R(x,f(x)))$.</p>
+<p><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall x\exists y(P(x)\to R(x,y))</span> becomes <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall
+x(P(x)\to R(x,f(x)))</span>.</p>
 </li>
 <li>
-<p>$\exists x(P(x)\to \forall yR(y,x))$ becomes $P(c)\to \forall yR(y,c)$.</p>
+<p><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\exists x(P(x)\to \forall yR(y,x))</span> becomes <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">P(c)\to \forall yR(y,c)</span>.</p>
 </li>
 <li>
-<p>$\forall x(\exists yR(x,y)\land \exists zP(x,z))$ becomes $\forall x(R(x,f(x))\land R(x,g(x))$.</p>
+<p><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall x(\exists yR(x,y)\land \exists zP(x,z))</span> becomes <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall x(R(x,f(x))\land R(x,g(x))</span>.</p>
 </li>
 </ul>
 </li>
@@ -1246,43 +1246,43 @@ x(P(x)\to R(x,f(x)))$.</p>
 <li>
 <p>Apply the distribution law:</p>
 <ul>
-<li>$A\lor (B\land C)\leadsto (A\lor B)\land (A\lor C)$</li>
+<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A\lor (B\land C)\leadsto (A\lor B)\land (A\lor C)</span></li>
 </ul>
 </li>
 </ol>
 <p>We apply all these steps recursively until we&rsquo;ve got a formula in CNF.</p>
-<p>For example, here&rsquo;s what the procedure does to the formula $$\forall x\forall
-y(\mathsf{Parent}(x,y)\to \neg \forall z (\mathsf{Parent}(z,y)\to x=z))$$</p>
+<p>For example, here&rsquo;s what the procedure does to the formula <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\forall x\forall
+y(\mathsf{Parent}(x,y)\to \neg \forall z (\mathsf{Parent}(z,y)\to x=z))</div></p>
 <ul>
 <li>
-<p>$\forall x\forall
-y(\neg \mathsf{Parent}(x,y)\lor \neg\forall z(\neg \mathsf{Parent}(z,y)\lor x= z))$ (Re-write conditionals)</p>
+<p><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall x\forall
+y(\neg \mathsf{Parent}(x,y)\lor \neg\forall z(\neg \mathsf{Parent}(z,y)\lor x= z))</span> (Re-write conditionals)</p>
 </li>
 <li>
-<p>$\forall x\forall
-y(\neg \mathsf{Parent}(x,y)\lor \exists z\neg (\mathsf{Parent}(z,y)\land x= z))$</p>
+<p><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall x\forall
+y(\neg \mathsf{Parent}(x,y)\lor \exists z\neg (\mathsf{Parent}(z,y)\land x= z))</span></p>
 </li>
 <li>
-<p>$\forall x\forall
-y(\neg \mathsf{Parent}(x,y)\lor \exists z\neg (\neg\mathsf{Parent}(z,y)\lor x= z))$</p>
+<p><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall x\forall
+y(\neg \mathsf{Parent}(x,y)\lor \exists z\neg (\neg\mathsf{Parent}(z,y)\lor x= z))</span></p>
 </li>
 <li>
-<p>$\forall x\forall
-y(\neg \mathsf{Parent}(x,y)\lor \exists z(\neg \neg\mathsf{Parent}(z,y)\land x\neq z))$</p>
+<p><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall x\forall
+y(\neg \mathsf{Parent}(x,y)\lor \exists z(\neg \neg\mathsf{Parent}(z,y)\land x\neq z))</span></p>
 </li>
 <li>
-<p>$\forall x\forall
-y(\neg \mathsf{Parent}(x,y)\lor \exists z(\mathsf{Parent}(z,y)\land x\neq z))$</p>
+<p><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall x\forall
+y(\neg \mathsf{Parent}(x,y)\lor \exists z(\mathsf{Parent}(z,y)\land x\neq z))</span></p>
 </li>
 <li>
-<p>$\forall x\forall
-y(\neg \mathsf{Parent}(x,y)\lor (\mathsf{Parent}(f(x,y),y)\land x\neq f(x,y)))$</p>
+<p><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall x\forall
+y(\neg \mathsf{Parent}(x,y)\lor (\mathsf{Parent}(f(x,y),y)\land x\neq f(x,y)))</span></p>
 </li>
 <li>
-<p>$\neg \mathsf{Parent}(x,y)\lor (\mathsf{Parent}(f(x,y),y)\land x\neq f(x,y))$</p>
+<p><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg \mathsf{Parent}(x,y)\lor (\mathsf{Parent}(f(x,y),y)\land x\neq f(x,y))</span></p>
 </li>
 <li>
-<p>$(\neg \mathsf{Parent}(x,y)\lor \mathsf{Parent}(f(x,y),y))\land (\neg \mathsf{Parent}(x,y)\lor x\neq f(x,y)))$</p>
+<p><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">(\neg \mathsf{Parent}(x,y)\lor \mathsf{Parent}(f(x,y),y))\land (\neg \mathsf{Parent}(x,y)\lor x\neq f(x,y)))</span></p>
 </li>
 </ul>
 <p>The CNF procedure always leads to a formula that is in CNF from the perspective
@@ -1292,9 +1292,9 @@ equivalent</strong> to the original formula in FOL. It is what&rsquo;s called
 only if the original formula has a model.</p>
 <p>This is because of the <strong>Skolemization</strong> involved, but we won&rsquo;t go into the
 mathematical details here. The crucial thing is that the procedure gives us a
-formula, which is in CNF and doesn&rsquo;t involve quantifiers. For $A$ a formula, we
-denote the result of applying the above procedure by $CNF(A)$.</p>
-<p>Since the formula $CNF(A)$ is equi-satisfiable with the original formula $A$, we
+formula, which is in CNF and doesn&rsquo;t involve quantifiers. For <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A</span> a formula, we
+denote the result of applying the above procedure by <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">CNF(A)</span>.</p>
+<p>Since the formula <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">CNF(A)</span> is equi-satisfiable with the original formula <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A</span>, we
 can apply the resolution technique to determine the transformed formula&rsquo;s
 satisfiability and infer the satisfiability status of the original formula.
 This, it turns out, gives us a sound and complete inference system.</p>
@@ -1314,18 +1314,18 @@ Chapter 7.2.3</a>
 ):</p>
 <ul>
 <li>
-<p>To test an inference $$P_1,P_2,\dots\vDash C$$ for validity, we test whether the
-formula $$P_1\land P_2\land \dots\land \neg C$$ is satisfiability.</p>
+<p>To test an inference <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">P_1,P_2,\dots\vDash C</div> for validity, we test whether the
+formula <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">P_1\land P_2\land \dots\land \neg C</div> is satisfiability.</p>
 </li>
 <li>
 <p>We do this by
-applying the resolution rule as many times as possible to the clauses of
-$$CNF(P_1\land P_2\land \dots\land \neg C).$$</p>
+applying the resolution rule as many times as possible to the clauses of</p>
 </li>
-<li>
-<p>If we can derive $\bot$, the inference is valid, if we cannot, the inference
-is invalid.</p>
-</li>
+</ul>
+<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">CNF(P_1\land P_2\land \dots\land \neg C).</div>
+<ul>
+<li>If we can derive <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\bot</span>, the inference is valid, if we cannot, the inference
+is invalid.</li>
 </ul>
 <p>The procedure we&rsquo;ve just sketched leads to a very effective way of automated
 reasoning, which provides the basis for many ATPs.</p>
@@ -1359,7 +1359,9 @@ FOL formulas is just a special case.&#160;<a href="#fnref:1" class="footnote-bac
 </li>
 </ol>
 </div>
-</div>
+
+
+  </div>
    <p><em>Last edited: </em>15/10/2024</p>
 </div>
 
