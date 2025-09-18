@@ -66,5 +66,9 @@ pre code {
 }
 
 .excalifont code {
-  color: #1971c2; /* force black text */
+  color: #1971c2; 
+}
+
+.blue {
+  color: #1971c2; 
 }
