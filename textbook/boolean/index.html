@@ -742,7 +742,7 @@ algebra:</p>
 
 <p>Boolean algebra is the logic of the proverbial 0&rsquo;s and 1&rsquo;s. That is, the Boolean
 truth-values are:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">{0, 1}</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">{0, 1}</div>
 <p>These values have many different interpretations depending on the reasoning
 context we&rsquo;re in: on/off, high/low, true/false, ….</p>
 <p>In logic, the true/false interpretation is the most common. If we&rsquo;re dealing
@@ -775,16 +775,12 @@ These are <i class="bi bi-box-arrow-up-right h-6"></i>
   target="_blank">functions</a> in
 the mathematical sense, which take one or more Boolean truth-values as input and
 return exactly one Boolean truth-value as output.</p>
-<p>For now, we&rsquo;ll restrict ourselves to the basic functions
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><strong>NOT</strong></span>,
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><strong>AND</strong></span>, and
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><strong>OR</strong></span>. These are not the most
-fundamental truth-functions in any sense of the word, but <em>are</em> the most
-commonly used truth-functions in logical theory. In computer science, instead,
-especially when we&rsquo;re thinking about basic semiconductor circuits
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><strong>XOR</strong></span> and especially when we&rsquo;re
-thinking about basic semiconductor circuits
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><strong>NAND</strong></span> are more commonly used as
+<p>For now, we&rsquo;ll restrict ourselves to the basic functions <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>NOT</code></span>, <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>AND</code></span>, and
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>OR</code></span>. These are not the most fundamental truth-functions in any sense of the
+word, but <em>are</em> the most commonly used truth-functions in logical theory. In
+computer science, instead, especially when we&rsquo;re thinking about basic
+semiconductor circuits <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>XOR</code></span> and especially when we&rsquo;re
+thinking about basic semiconductor circuits <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>NAND</code></span> are more commonly used as
 basic functions.</p>
 <p>The truth-functions are given by the following functional tables, where the
 first input is in the first column and the second input in the first row. In the
@@ -795,17 +791,13 @@ intersecting the two input columns:</p>
 <img src="https://logicalmethods.ai/textbook/boolean/img/function_tables.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="900px"  alt="" >
 
 
-<p>So, for example, <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><strong>NOT</strong> 0 = 1</span> and
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1 <strong>OR</strong> 0 = 1</span>.</p>
-<p>The truth-functions <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><strong>NOT</strong></span>,
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><strong>AND</strong></span>, and
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><strong>OR</strong></span> are sufficient to express
-<em>any</em> truth-function whatsoever. This mathematical fact is known as the joint
+<p>So, for example, <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>NOT</code> 0 = 1</span> and
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1 <code>OR</code> 0 = 1</span>.</p>
+<p>The truth-functions <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>NOT</code></span>, <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>AND</code></span>, and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>OR</code></span> are sufficient to express <em>any</em>
+truth-function whatsoever. This mathematical fact is known as the joint
 <strong>truth-functional completeness</strong> of these operators, and we&rsquo;ll investigate it
-in the exercises. <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><strong>NOT</strong></span>,
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><strong>AND</strong></span>, and
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><strong>OR</strong></span> are not the only collection
-of truth-functions with this property, not even the smallest one. But especially
+in the exercises. <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>NOT</code></span>, <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>AND</code></span>, and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>OR</code></span> are not the only collection of
+truth-functions with this property, not even the smallest one. But especially
 in logical contexts, they are the most commonly used ones, since using these
 truth-functions, we can easily describe many different important concepts and
 algorithms with relative ease.</p>
@@ -868,7 +860,7 @@ lamp represents the output in the same way: if it is <span class="excalifont" st
 if it is <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">on</span> the output is <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span>. So, the set-up is depicted in the configuration
 for the first and second input both being <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">0</span>. Since we haven&rsquo;t implemented
 anything yet, the output is also <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">0</span>.</p>
-<p>We can implement the <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">NOT</span> function with a single <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">default &ldquo;on&rdquo;</span> relay:</p>
+<p>We can implement the <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>NOT</code></span> function with a single <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">default &ldquo;on&rdquo;</span> relay:</p>
 
 
 <img src="https://logicalmethods.ai/textbook/boolean/img/negation_impl.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="900px"  alt="" >
@@ -878,7 +870,7 @@ anything yet, the output is also <span class="excalifont" style="  font-size: cl
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">off</span>), the output is <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span> (the lamp is <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">on</span>); and if the first input is <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span> (<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">X</span>
 is <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">on</span>), the output is <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">0</span> (the lamp is <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">off</span>). The second input doesn&rsquo;t
 matter, of course.</p>
-<p>We can implement <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">AND</span> using the other kind of relay as follows:</p>
+<p>We can implement <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>AND</code></span> using the other kind of relay as follows:</p>
 
 
 <img src="https://logicalmethods.ai/textbook/boolean/img/conjunction_impl.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="900px"  alt="" >
@@ -888,8 +880,8 @@ matter, of course.</p>
 inputs are <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span> the output is
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span>. In all other configurations, the output is
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">0</span>—just like the
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">AND</span> function, requires.</p>
-<p>Implementing the <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">OR</span> function using the relays
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>AND</code></span> function, requires.</p>
+<p>Implementing the <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>OR</code></span> function using the relays
 is one of the exercises. If you want to try more, you can try the amazing
 <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://nandgame.com/"
@@ -908,36 +900,49 @@ computer &ldquo;by hand&rdquo;.</p>
 <img src="https://logicalmethods.ai/textbook/boolean/img/laws_of_logic.png" class="rounded  float-end inert-img img-fluid mx-3"  width="300px"  alt="" >
 
 
-The behavior of the Boolean truth-functions is governed by a series of
-<strong>algebraic laws</strong>, that is <em>identities</em> describing their interaction. These
-identities are formulated using <strong>variables</strong>
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">X,Y,…</span>, which can assume arbitrary values from
-among the set <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">{0, 1}</span>. Take, for example, the
-equation:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(X AND Y) = (Y AND X)</div>
+The behavior of the Boolean truth-functions is
+governed by a series of <strong>algebraic laws</strong>, that is <em>identities</em> describing
+their interaction. These identities are formulated using <strong>variables</strong> <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">X,Y,…</span>,
+which can assume arbitrary values from among the set <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">{0, 1}</span>. Take, for
+example, the equation:</p>
+<div class="text-center my-4">
+<code>(X <span class="blue">AND</span>
+ Y) = (Y <span class="blue">AND</span>
+ X)</code>
+</div>
 <p>This equation says that for any pair of values
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">X,Y</span> from 
 <span class="excalifont ">{0,
   1}</span>
 , the result of applying
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">AND</span> with <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">X</span> as
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>AND</code></span> with <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">X</span> as
 the first input and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Y</span> as the second is the same
-as applying <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">AND</span> with
+as applying <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>AND</code></span> with
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Y</span> as the first input and
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">X</span> as the second.</p>
 <p>You can verify this law by inspecting the function table for
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">AND</span> and going through all possible values for
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>AND</code></span> and going through all possible values for
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">X</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Y</span>. Here
 are the corresponding calculations:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(0 AND 0) &nbsp; = &nbsp; (0 AND 0)</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(0 AND 1) = 0 = (1 AND 0)</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(1 AND 0) = 0 = (0 AND 1)</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(1 AND 1) &nbsp; = &nbsp; (1 AND 1)</div>
+<div class="text-center my-4">
+<p><code>(0 <span class="blue">AND</span>
+ 0)   =   (0 <span class="blue">AND</span>
+ 0)</code></p>
+<p><code>(0 <span class="blue">AND</span>
+ 1) = 0 = (1 <span class="blue">AND</span>
+ 0)</code></p>
+<p><code>(1 <span class="blue">AND</span>
+ 0) = 0 = (0 <span class="blue">AND</span>
+ 1)</code></p>
+<p><code>(1 <span class="blue">AND</span>
+ 1)   =   (1 <span class="blue">AND</span>
+ 1)</code></p>
+</div>
 <p>Only the second and third line are &ldquo;interesting&rdquo; calculations, the first and
 last are &ldquo;trivial&rdquo;.</p>
 <p>This law is called the law of <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Commutativity</span> for
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">AND</span>, which states that for
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">AND</span>, the order of its inputs doesn&rsquo;t matter.
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>AND</code></span>, which states that for
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>AND</code></span>, the order of its inputs doesn&rsquo;t matter.
 Many laws of Boolean algebra have such names.</p>
 <p>Here are the most important laws and their corresponding names:</p>
 <table>
@@ -950,7 +955,15 @@ Many laws of Boolean algebra have such names.</p>
   </thead>
   <tbody>
       <tr>
-          <td><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">(X OR (Y OR Z)) = ((X OR Y) OR Z)</span><br><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">(X AND (Y AND Z)) = ((X AND Y) AND Z)</span></td>
+          <td><code>(X <span class="blue">OR</span>
+ (Y <span class="blue">OR</span>
+ Z)) = ((X <span class="blue">OR</span>
+ Y) <span class="blue">OR</span>
+ Z)</code><br><code>(X <span class="blue">AND</span>
+ (Y <span class="blue">AND</span>
+ Z)) = ((X <span class="blue">AND</span>
+ Y) <span class="blue">AND</span>
+ Z)</code></td>
           <td>   </td>
           <td><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">(&ldquo;Associativity&rdquo;)</span></td>
       </tr>
@@ -960,7 +973,11 @@ Many laws of Boolean algebra have such names.</p>
           <td></td>
       </tr>
       <tr>
-          <td><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">(X OR Y) = (Y OR X)</span><br><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">(X AND Y) = (Y AND X)</span></td>
+          <td><code>(X <span class="blue">OR</span>
+ Y) = (Y <span class="blue">OR</span>
+ X)</code><br><code>(X <span class="blue">AND</span>
+ Y) = (Y <span class="blue">AND</span>
+ X)</code></td>
           <td></td>
           <td><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">(&ldquo;Commutativity&rdquo;)</span></td>
       </tr>
@@ -970,7 +987,11 @@ Many laws of Boolean algebra have such names.</p>
           <td></td>
       </tr>
       <tr>
-          <td><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">(X OR (X AND Y) = X </span><br><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">(X AND (X OR Y) = X </span></td>
+          <td><code>(X <span class="blue">OR</span>
+ (X <span class="blue">AND</span>
+ Y) = X </code><br><code>(X <span class="blue">AND</span>
+ (X <span class="blue">OR</span>
+ Y) = X </code></td>
           <td></td>
           <td><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">(&ldquo;Absorption&rdquo;)</span></td>
       </tr>
@@ -980,7 +1001,17 @@ Many laws of Boolean algebra have such names.</p>
           <td></td>
       </tr>
       <tr>
-          <td><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">(X OR (Y AND Z)) = ((X OR Y) AND (X OR Z) </span> <br><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">(X AND (Y OR Z)) = ((X AND Y) OR (X AND Z) </span></td>
+          <td><code>(X <span class="blue">OR</span>
+ (Y <span class="blue">AND</span>
+ Z)) = ((X <span class="blue">OR</span>
+ Y) <span class="blue">AND</span>
+ (X <span class="blue">OR</span>
+ Z) </code> <br><code>(X <span class="blue">AND</span>
+ (Y <span class="blue">OR</span>
+ Z)) = ((X <span class="blue">AND</span>
+ Y) <span class="blue">OR</span>
+ (X <span class="blue">AND</span>
+ Z) </code></td>
           <td></td>
           <td><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">(&ldquo;Distributivity&rdquo;)</span></td>
       </tr>
@@ -990,7 +1021,11 @@ Many laws of Boolean algebra have such names.</p>
           <td></td>
       </tr>
       <tr>
-          <td><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">(X OR NOT X) = 1 </span> <br><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">(X AND NOT X) = 0 </span></td>
+          <td><code>(X <span class="blue">OR</span>
+ <span class="blue">NOT</span>
+ X) = 1 </code> <br><code>(X <span class="blue">AND</span>
+ <span class="blue">NOT</span>
+ X) = 0 </code></td>
           <td></td>
           <td><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">(&ldquo;Complementation&rdquo;)</span></td>
       </tr>
@@ -1000,7 +1035,9 @@ Many laws of Boolean algebra have such names.</p>
           <td></td>
       </tr>
       <tr>
-          <td><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">(X OR 0) = X </span> <br> <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">(X AND 1) = X </span></td>
+          <td><code>(X <span class="blue">OR</span>
+ 0) = X </code> <br> <code>(X <span class="blue">AND</span>
+ 1) = X </code></td>
           <td></td>
           <td><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">(&ldquo;Identity&rdquo;)</span></td>
       </tr>
@@ -1010,7 +1047,9 @@ Many laws of Boolean algebra have such names.</p>
           <td></td>
       </tr>
       <tr>
-          <td><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">(X AND 0) = 0 </span> <br><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">(X OR 1) = 1 </span></td>
+          <td><code>(X <span class="blue">AND</span>
+ 0) = 0 </code> <br><code>(X <span class="blue">OR</span>
+ 1) = 1 </code></td>
           <td></td>
           <td><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">(&ldquo;Domination&rdquo;)</span></td>
       </tr>
@@ -1038,7 +1077,17 @@ important family of laws known as the <strong>de Morgan laws</strong>:</p>
   </thead>
   <tbody>
       <tr>
-          <td><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">NOT (X OR Y) = (NOT X AND NOT Y)</span><br><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">NOT (X AND Y) = (NOT X OR NOT Y) </span></td>
+          <td><code><span class="blue">NOT</span>
+ (X <span class="blue">OR</span>
+ Y) = (<span class="blue">NOT</span>
+ X <span class="blue">AND</span>
+ <span class="blue">NOT</span>
+ Y)</code><br><code><span class="blue">NOT</span>
+ (X <span class="blue">AND</span>
+ Y) = (<span class="blue">NOT</span>
+ X <span class="blue">OR</span>
+ <span class="blue">NOT</span>
+ Y) </code></td>
           <td>   </td>
           <td><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">(&ldquo;De Morgan Identities&rdquo;)</span></td>
       </tr>
@@ -1048,7 +1097,9 @@ important family of laws known as the <strong>de Morgan laws</strong>:</p>
           <td></td>
       </tr>
       <tr>
-          <td><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">NOT NOT X = X </span></td>
+          <td><code><span class="blue">NOT</span>
+ <span class="blue">NOT</span>
+ X = X </code></td>
           <td></td>
           <td><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">(&ldquo;Double Negation&rdquo;)</span></td>
       </tr>
@@ -1066,68 +1117,193 @@ important family of laws known as the <strong>de Morgan laws</strong>:</p>
 <ol>
 <li>
 <p>We start with</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">NOT NOT X = ((NOT NOT X) AND 1),</div>
+<p><code><span class="blue">NOT</span>
+ <span class="blue">NOT</span>
+ X = ((<span class="blue">NOT</span>
+ <span class="blue">NOT</span>
+ X) <span class="blue">AND</span>
+ 1),</code></p>
 <p>which we know by <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">&ldquo;Identity&rdquo;</span>.</p>
 </li>
 <li>
-<p>We then apply the fact that <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">X OR NOT X = 1</span> <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">(&ldquo;Complementation&rdquo;)</span>, which gives us that</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">NOT NOT X = ((NOT NOT X) AND (X OR NOT X)),</div>
+<p>We then apply the fact that <code>X <span class="blue">OR</span>
+ <span class="blue">NOT</span>
+ X = 1</code>, that is <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">&ldquo;Complementation&rdquo;</span>, which gives us that</p>
+<p><code><span class="blue">NOT</span>
+ <span class="blue">NOT</span>
+ X = ((<span class="blue">NOT</span>
+ <span class="blue">NOT</span>
+ X) <span class="blue">AND</span>
+ (X <span class="blue">OR</span>
+ <span class="blue">NOT</span>
+ X)),</code></p>
 </li>
 <li>
 <p>By <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">&ldquo;Distributivity&rdquo;</span>, we have</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">((NOT NOT X) AND (X OR NOT X))= ((NOT NOT X) AND X) OR ((NOT NOT X) AND NOT X),</div>
+<p><code>((<span class="blue">NOT</span>
+ <span class="blue">NOT</span>
+ X) <span class="blue">AND</span>
+ (X <span class="blue">OR</span>
+ <span class="blue">NOT</span>
+ X))= ((<span class="blue">NOT</span>
+ <span class="blue">NOT</span>
+ X) <span class="blue">AND</span>
+ X) <span class="blue">OR</span>
+ ((<span class="blue">NOT</span>
+ <span class="blue">NOT</span>
+ X) <span class="blue">AND</span>
+ <span class="blue">NOT</span>
+ X),</code></p>
 <p>so we can conclude that</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">NOT NOT X = ((NOT NOT X) AND X) OR ((NOT NOT X) AND NOT X).</div>
+<p><code><span class="blue">NOT</span>
+ <span class="blue">NOT</span>
+ X = ((<span class="blue">NOT</span>
+ <span class="blue">NOT</span>
+ X) <span class="blue">AND</span>
+ X) <span class="blue">OR</span>
+ ((<span class="blue">NOT</span>
+ <span class="blue">NOT</span>
+ X) <span class="blue">AND</span>
+ <span class="blue">NOT</span>
+ X).</code></p>
 </li>
 <li>
-<p>Now, notice that  <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">((NOT NOT X) AND NOT X) = 0</span> by <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">(&ldquo;Complementation&rdquo;)</span>. So step 3. simplifies to:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">NOT NOT X = ((NOT NOT X) AND X) OR 0.</div>
-<p>which by <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">(&ldquo;Identity&rdquo;)</span> simplifies further
+<p>Now, notice that  <code>((<span class="blue">NOT</span>
+ <span class="blue">NOT</span>
+ X) <span class="blue">AND</span>
+ <span class="blue">NOT</span>
+ X) = 0</code> by <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">&ldquo;Complementation&rdquo;</span>. So step 3. simplifies to:</p>
+<p><code><span class="blue">NOT</span>
+ <span class="blue">NOT</span>
+ X = ((<span class="blue">NOT</span>
+ <span class="blue">NOT</span>
+ X) <span class="blue">AND</span>
+ X) <span class="blue">OR</span>
+ 0.</code></p>
+<p>which by <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">&ldquo;Identity&rdquo;</span> simplifies further
 down to:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">NOT NOT X = (NOT NOT X) AND X.</div>
+<p><code><span class="blue">NOT</span>
+ <span class="blue">NOT</span>
+ X = (<span class="blue">NOT</span>
+ <span class="blue">NOT</span>
+ X) <span class="blue">AND</span>
+ X.</code></p>
 </li>
 <li>
 <p>Going a bit faster, we can see by analogous reasoning that</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">X = X AND 1 = X AND ((NOT NOT X) OR NOT X),</div>
+<p><code>X = X <span class="blue">AND</span>
+ 1 = X <span class="blue">AND</span>
+ ((<span class="blue">NOT</span>
+ <span class="blue">NOT</span>
+ X) <span class="blue">OR</span>
+ <span class="blue">NOT</span>
+ X),</code></p>
 <p>using <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">&ldquo;Identity&rdquo;</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">&ldquo;Complementation&rdquo;</span> like before.</p>
 </li>
 <li>
 <p>Using <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">&ldquo;Distributivity&rdquo;</span>, this gives us</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">X = (X AND NOT NOT X) OR (X AND NOT X).</div>
+<p><code>X = (X <span class="blue">AND</span>
+ <span class="blue">NOT</span>
+ <span class="blue">NOT</span>
+ X) <span class="blue">OR</span>
+ (X <span class="blue">AND</span>
+ <span class="blue">NOT</span>
+ X).</code></p>
 </li>
 <li>
-<p>But since 
-<span class="excalifont ">(X AND NOT X) = 0</span>
-, we now get</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">X = (X AND (NOT NOT X))</div>
+<p>But since <code>
+<span class="excalifont ">(X <span class="blue">AND</span>
+ <span class="blue">NOT</span>
+ X) = 0</span>
+</code>, we now get</p>
+<p><code>X = (X <span class="blue">AND</span>
+ (<span class="blue">NOT</span>
+ <span class="blue">NOT</span>
+ X))</code></p>
 <p>using <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">&ldquo;Identity&rdquo;</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">&ldquo;Complementation&rdquo;</span>.</p>
 </li>
 <li>
 <p>But now we know that both:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">NOT NOT X = (NOT NOT X) AND X</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">X = (X AND (NOT NOT X)),</div>
-where the latter is just 
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">X = (NOT NOT X) AND X,</div>
-using <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">"Commutativity"</span> to reorder.
-So, we can conclude that: <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">NOT NOT X = X</div> 
 </li>
 </ol>
+<p><code><span class="blue">NOT</span>
+ <span class="blue">NOT</span>
+ X = (<span class="blue">NOT</span>
+ <span class="blue">NOT</span>
+ X) <span class="blue">AND</span>
+ X</code></p>
+<p><code>X = (X <span class="blue">AND</span>
+ (<span class="blue">NOT</span>
+ <span class="blue">NOT</span>
+ X)),</code></p>
+<p>where the latter is just <code>X = (<span class="blue">NOT</span>
+ <span class="blue">NOT</span>
+ X) <span class="blue">AND</span>
+
+X,</code> using <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">&ldquo;Commutativity&rdquo;</span> to reorder. So, we can conclude that: <code><span class="blue">NOT</span>
+
+<span class="blue">NOT</span>
+ X = X</code></p>
 <p>This derivation may seem a bit tedious—especially since we can prove the fact
-that <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">NOT NOT X = X</span> fact by simply inspecting
-the function tables: <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">NOT NOT 1 = 1</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">NOT NOT 0 = 0</span>.</p>
+that <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><span class="blue">NOT</span>
+ <span class="blue">NOT</span>
+ X = X</span> fact by simply inspecting
+the function tables: <code><span class="blue">NOT</span>
+ <span class="blue">NOT</span>
+ 1 = 1<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"> and </span><span class="blue">NOT</span>
+ <span class="blue">NOT</span>
+ 0 = 0</code>.</p>
 <p>But there are also questions where the laws are much more efficient at giving
 you the answer than inspecting the tables. Take for example the Boolean
 expression:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">X AND ((Y AND Z) OR NOT (Y AND Z))</div>
+<div class="my-4 text-center">
+<code>X <span class="blue">AND</span>
+ ((Y <span class="blue">AND</span>
+ Z) <span class="blue">OR</span>
+ <span class="blue">NOT</span>
+ (Y <span class="blue">AND</span>
+ Z))</code>
+</div>
 <p>It turns out that this expression reduces to simply
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">X</span>. To see this by truth-table inspection, we
 need to go through <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">2³ = 8</span> different
 combinations of truth-values for <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">X, Y, Z</span> and
 for each combination, we need to calculate <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">5</span> different operations. That&rsquo;s a
 lot of calculations.</p>
-<p>Using the laws of Boolean algebra, however, we can recognize that <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">((Y AND Z) OR NOT (Y AND Z))</div> is of the form <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">[something] OR NOT [something],</div> where <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">[something] = (Y AND Z)</span>. So, by <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">&ldquo;Complementation&rdquo;</span>, we can reduce</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">X AND ((Y AND Z) OR NOT (Y AND Z))</div>
-down to <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">X AND 1,</div> which by <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">"Identity"</span> is just <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">X</span>.
+<p>Using the laws of Boolean algebra, however, we can recognize that</p>
+<div class="my-4 text-center">
+<span class="blue">((Y </span>
+AND<span class="blue"> Z) </span>
+OR<span class="blue"> </span>
+NOT<span class="blue"> (Y </span>
+AND<span class="blue"> Z))</span>
+
+</div>
+  is of the form 
+<div class="my-4 text-center">
+<code>[something] <span class="blue">OR</span>
+ <span class="blue">NOT</span>
+ [something],</code> 
+</div>
+<p>where <code>[something] = (Y <span class="blue">AND</span>
+ Z)</code>. So, by
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">&ldquo;Complementation&rdquo;</span>, we can reduce</p>
+<div class="my-4 text-center">
+<code>X <span class="blue">AND</span>
+ ((Y
+<span class="blue">AND</span>
+ Z) <span class="blue">OR</span>
+ <span class="blue">NOT</span>
+ (Y
+<span class="blue">AND</span>
+ Z))</code>
+</div>
+down to 
+<div class="my-4 text-center">
+<code>X <span class="blue">AND</span>
+ 1,</code> 
+</div>
+<p>which by <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">&ldquo;Identity&rdquo;</span> is just <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">X</span>.</p>
 <p>
 
 <img src="https://logicalmethods.ai/textbook/boolean/img/ai_tools.png" class="rounded  float-end inert-img img-fluid mx-3"  width="100px"  alt="" >
@@ -1139,7 +1315,7 @@ the initial list. In fact, we can derive <em>all</em> valid identities of Boolea
 algebra from these laws. The list of laws is <strong>complete</strong> in this sense.
 Having a complete list of laws for a subject matter is an incredibly feat: <em>all
 there is to know about Boolean algebras is encoded in these laws</em>. And as the
-example of <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">X AND ((Y AND Z) OR NOT (Y AND Z))</span> shows, this can be a handy tool
+example of <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">X <code>AND</code> ((Y <code>AND</code> Z) <code>OR</code> <code>NOT</code> (Y <code>AND</code> Z))</span> shows, this can be a handy tool
 in the toolbox of any AI researcher.</p>
 <p>On a more historical note, the set of laws we&rsquo;ve discussed are originally due to
 <i class="bi bi-box-arrow-up-right h-6"></i>
@@ -1151,8 +1327,21 @@ But it is not the only collection of complete laws and certainly not the
   target="_blank">minimal one</a>.
 It turns out that the following single law is enough to derive all the other
 laws of Boolean algebra (expressed using  only
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">NOT</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">OR</span>):</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">NOT (NOT (NOT (X OR Y) OR Z) OR NOT (X OR NOT (NOT Z OR NOT (Z OR U)))) = Z</div>
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>NOT</code></span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>OR</code></span>):</p>
+<p><code><span class="blue">NOT</span>
+ (<span class="blue">NOT</span>
+ (<span class="blue">NOT</span>
+ (X <span class="blue">OR</span>
+ Y) <span class="blue">OR</span>
+ Z) <span class="blue">OR</span>
+ <span class="blue">NOT</span>
+ (X <span class="blue">OR</span>
+ <span class="blue">NOT</span>
+ (<span class="blue">NOT</span>
+ Z <span class="blue">OR</span>
+ <span class="blue">NOT</span>
+ (Z <span class="blue">OR</span>
+ U)))) = Z</code></p>
 <p>But that&rsquo;s a story for another day.</p>
 <h2 id="adders">Adders<button class="btn btn-back-to-top">
     
@@ -1181,7 +1370,7 @@ numbers into something a Boolean function can understand. We need to talk about
   target="_blank">binary
 numbers</a> is that we can represent
 any natural number as a sequence of <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">0</span>&rsquo;s and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span>&rsquo;s. Here&rsquo;s how this works. Take
-the string <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">1101,</div> for example. This string is the binary representation of
+the string <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">1101,</div> for example. This string is the binary representation of
 the number <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">13</span>. Here&rsquo;s how this works:</p>
 
 
@@ -1202,12 +1391,12 @@ unusual at first, but is also common in computer science. So, the first bit of <
 
 
 <p>To calculate the number represented by a string, you go through the digits one.
-Let&rsquo;s call the <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">n</span>th bit <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">dₙ</span>. So, in our example, we have: <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">d₀ = 1, d₁ = 0,
+Let&rsquo;s call the <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">n</span>th bit <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">dₙ</span>. So, in our example, we have: <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">d₀ = 1, d₁ = 0,
 d₂ = 1, d₃ = 1</div></p>
 <p>Then you multiply the <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">n-th</span> bit with the <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">n-th</span> power of <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">2</span>, that is, you
-calculate: <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(dₙ x 2ⁿ)</div>
+calculate: <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(dₙ x 2ⁿ)</div>
 And then you sum up the results for all the digits:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(d₀ x 2⁰) + (d₁ x 2¹) + (d₂ x 2²) + …</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(d₀ x 2⁰) + (d₁ x 2¹) + (d₂ x 2²) + …</div>
 This is the general formula for calculating the number represented by a binary
 string. In our case of <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1101</span>, this formula gives us precisely the calculation
 from above. In more general mathematical notation, we can write this as:
@@ -1239,7 +1428,7 @@ The way this works is that you start from the end again and you add the two
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">0</span>th digits according to the following rules:</p>
 <ul>
 <li>
-<p>If one digit is a <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">0</span> and the other is a <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span>, the result is <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span>, since <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(0 x
+<p>If one digit is a <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">0</span> and the other is a <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span>, the result is <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span>, since <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(0 x
 2⁰) + (1 x 2⁰) = (1 x
 2⁰) + (0 x 2⁰) = 1</div></p>
 </li>
@@ -1247,7 +1436,7 @@ The way this works is that you start from the end again and you add the two
 <p>If both digits are a <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">0</span>, then the result is <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">0</span>, since</p>
 </li>
 </ul>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(0 x 2⁰) + (0 x 2⁰) = 0</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(0 x 2⁰) + (0 x 2⁰) = 0</div>
 <ul>
 <li>
 <p>If both digits are a <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span>, then the result is <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">0</span> with a <strong>carry</strong> of <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span> (this
@@ -1268,27 +1457,27 @@ carry.</p>
 <p>According to the rules, the first output, the <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">0</span>th digit of our addition, is
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span> just in case exactly one (and not both) of <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">d₀</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">e₀</span> is <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span>. Otherwise, if
 either <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">d₀ = e₀ = 0</span> or <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">d₀ = e₀ = 1</span>, the output is <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">0</span>. This describes a
-truth-function, which is known as <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">XOR</span> (&ldquo;exclusive or&rdquo;), which has the
+truth-function, which is known as <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>XOR</code></span> (&ldquo;exclusive or&rdquo;), which has the
 following function table:</p>
 
 
 <img src="https://logicalmethods.ai/textbook/boolean/img/xor_table.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="500px"  alt="" >
 
 
-<p>We can actually express this function using only <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">NOT, AND, OR</span>, but using <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">XOR</span>
-directly it&rsquo;s much easier.</p>
+<p>We can actually express this function using only <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>NOT</code>, <code>AND</code>, <code>OR</code></span>, but
+using <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>XOR</code></span> directly it&rsquo;s much easier.</p>
 <p>The carry, instead, is <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span> just in case both <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">d₀</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">e₀</span> are <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">0</span>
-otherwise. But that&rsquo;s just the specification of <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">AND</span>. So, we can describe the
+otherwise. But that&rsquo;s just the specification of <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>AND</code></span>. So, we can describe the
 rule as follows using Boolean truth-functions:</p>
 <ul>
 <li>
-<p>the <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">0</span>th digit of our addition is <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">d₀ XOR e₀</span></p>
+<p>the <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">0</span>th digit of our addition is <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">d₀ <code>XOR</code> e₀</span></p>
 </li>
 <li>
-<p>the carry is <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">d₀ AND e₀</span></p>
+<p>the carry is <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">d₀ <code>AND</code> e₀</span></p>
 </li>
 </ul>
-<p>If we&rsquo;ve implemented <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">XOR</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">AND</span> using relays or semiconductors, following
+<p>If we&rsquo;ve implemented <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>XOR</code></span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>AND</code></span> using relays or semiconductors, following
 the ideas sketched above, we can implement this rule using the following
 circuit known as a <strong>half-adder</strong>:</p>
 
@@ -1301,7 +1490,7 @@ circuit known as a <strong>half-adder</strong>:</p>
 <img src="https://logicalmethods.ai/textbook/boolean/img/ai_half_adder.png" class="rounded  float-start inert-img img-fluid mx-3"  width="100px"  alt="" >
 
 
-The idea is that the blue boxes are implementations of <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">XOR</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">AND</span>
+The idea is that the blue boxes are implementations of <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>XOR</code></span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>AND</code></span>
 respectively, which take two inputs and give two outputs. The input switches
 represent <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">d₀</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">e₀</span> respectively, on meaning <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span> and off meaning <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">0</span>. The
 two lamps stand for the results, the <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">0</span>th digit and the carry, respectively. A
@@ -1329,7 +1518,7 @@ reasoning is like in the two input case from before:</p>
 <ul>
 <li>
 <p>If there&rsquo;s no <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span>, we get:</p>
-  <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(0 x 2¹) + (0 x 2¹) + (0 x 2¹)</div>
+  <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(0 x 2¹) + (0 x 2¹) + (0 x 2¹)</div>
   
     
     <img src="https://logicalmethods.ai/textbook/boolean/img/addition_full_0.png" class="rounded mx-auto d-block inert-img img-fluid "  width="150px"  alt="" >
@@ -1338,9 +1527,9 @@ reasoning is like in the two input case from before:</p>
 </li>
 <li>
 <p>If there&rsquo;s precisely one <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span>, we have:</p>
-  <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(1 x 2¹) + (0 x 2¹) + (0 x 2¹)</div>
-  <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">= (0 x 2¹) + (1 x 2¹) + (0 x 2¹)</div>
-  <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">= (0 x 2¹) + (0 x 2¹) + (1 x 2¹)</div>
+  <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(1 x 2¹) + (0 x 2¹) + (0 x 2¹)</div>
+  <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">= (0 x 2¹) + (1 x 2¹) + (0 x 2¹)</div>
+  <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">= (0 x 2¹) + (0 x 2¹) + (1 x 2¹)</div>
   
     
     <img src="https://logicalmethods.ai/textbook/boolean/img/addition_full_1.png" class="rounded mx-auto d-block inert-img img-fluid "  width="150px"  alt="" >
@@ -1349,9 +1538,9 @@ reasoning is like in the two input case from before:</p>
 </li>
 <li>
 <p>If there&rsquo;s exactly two <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span>&rsquo;s, we get:</p>
-  <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(1 x 2¹) + (1 x 2¹) + (0 x 2¹)</div>
-  <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">= (1 x 2¹) + (0 x 2¹) + (1 x 2¹)</div>
-  <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">= (0 x 2¹) + (1 x 2¹) + (1 x 2¹)</div>
+  <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(1 x 2¹) + (1 x 2¹) + (0 x 2¹)</div>
+  <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">= (1 x 2¹) + (0 x 2¹) + (1 x 2¹)</div>
+  <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">= (0 x 2¹) + (1 x 2¹) + (1 x 2¹)</div>
   
     
     <img src="https://logicalmethods.ai/textbook/boolean/img/addition_full_2.png" class="rounded mx-auto d-block inert-img img-fluid"  width="300px"  alt="" >
@@ -1360,7 +1549,7 @@ reasoning is like in the two input case from before:</p>
 </li>
 <li>
 <p>And if there&rsquo;s three <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span>&rsquo;s, we have:</p>
-  <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">= (1 x 2¹) + (1 x 2¹) + (1 x 2¹)</div>
+  <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">= (1 x 2¹) + (1 x 2¹) + (1 x 2¹)</div>
   
     
     <img src="https://logicalmethods.ai/textbook/boolean/img/addition_full_3.png" class="rounded mx-auto d-block inert-img img-fluid"  width="300px"  alt="" >
@@ -1370,13 +1559,13 @@ reasoning is like in the two input case from before:</p>
 </ul>
 <p>The Boolean truth-function which gives us precisely the desired output for the
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span>st digit of our computation is:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(d₁ XOR e₁ ) XOR c₀</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(d₁ <code>XOR</code> e₁ ) <code>XOR</code> c₀</div>
 <p>But what should the carry be? Inspecting the cases, we can see that we should
 carry a <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span> in one of two scenarios: if there&rsquo;s exactly two <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span>&rsquo;s and if there&rsquo;s
 precisely three. How can we express this in terms of truth-functions? While
-there are different ways of doing this, here&rsquo;s a common one using <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">AND, OR,</span> and
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">XOR</span>:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(d₁ AND e₁ ) OR (c₀ AND (d₁ XOR e₁))</div>
+there are different ways of doing this, here&rsquo;s a common one using <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>AND</code>, <code>OR</code>,</span> and
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>XOR</code></span>:</p>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(d₁ <code>AND</code> e₁ ) <code>OR</code> (c₀ <code>AND</code> (d₁ <code>XOR</code> e₁))</div>
 <p>The reasoning is that we can analyze our two scenarios (exactly two <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span>&rsquo;s and
 exactly three <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span>&rsquo;s) in a slightly different way: either both inputs are <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span> or
 exactly one input is <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span> and the carry from before is <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span>. You can—and—
@@ -1552,7 +1741,7 @@ corresponding scenarios are:</p>
 <p>The idea is to <em>identify</em> the possible reasoning scenarios—from a logical
 perspective—with these assignments. That is, we say that a <strong>model</strong> for the
 language <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">L</span> <em>is</em> an assignment of Boolean truth-values to the propositional
-variables. In short: <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Mᵢ = vᵢ</div></p>
+variables. In short: <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Mᵢ = vᵢ</div></p>
 <p>Each model tells us what the truth-values for the propositional variables are.
 This allows as, for example, to determine the proposition <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">[SUN]</span> as follows:</p>
 
@@ -1586,17 +1775,17 @@ is:
 <img src="https://logicalmethods.ai/textbook/boolean/img/neg_sun.png" class="inert-img" height="28px"  style="ZgotmplZ" alt="" >
 
  says that it&rsquo;s not sunny, so the formula
-should be true in precisely those models, where <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">SUN</span> is <em>not</em> true: <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">v(
+should be true in precisely those models, where <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">SUN</span> is <em>not</em> true: <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">v(
 
 <img src="https://logicalmethods.ai/textbook/boolean/img/neg_sun.png" class="inert-img" height="34px"  style="ZgotmplZ" alt="" >
 
 ) = 1 just in case v(SUN) = 0.</div></p>
-<p>But do you recognize it? This is exactly what the Boolean truth-function <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">NOT</span>
-does! That is, we can implement the proposal using <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">NOT</span> as follows: <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">v(
+<p>But do you recognize it? This is exactly what the Boolean truth-function <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>NOT</code></span>
+does! That is, we can implement the proposal using <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>NOT</code></span> as follows: <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">v(
 
 <img src="https://logicalmethods.ai/textbook/boolean/img/neg_sun.png" class="inert-img" height="34px"  style="ZgotmplZ" alt="" >
 
-) = NOT v(SUN)</div></p>
+) = <code>NOT</code> v(SUN)</div></p>
 <p>This means that 
 
 <img src="https://logicalmethods.ai/textbook/boolean/img/neg_sun.png" class="inert-img" height="34px"  style="ZgotmplZ" alt="" >
@@ -1623,7 +1812,7 @@ those models where both <span class="excalifont" style="  font-size: clamp(0.9re
 <img src="https://logicalmethods.ai/textbook/boolean/img/condition_sun_and_rain.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="850px"  alt="" >
 
 
-<p>But that&rsquo;s just what <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">AND</span> does! So, we can implement this by saying:</p>
+<p>But that&rsquo;s just what <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>AND</code></span> does! So, we can implement this by saying:</p>
 
 
 <img src="https://logicalmethods.ai/textbook/boolean/img/clause_and.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="600px"  alt="" >
@@ -1639,7 +1828,7 @@ those models where both <span class="excalifont" style="  font-size: clamp(0.9re
 <img src="https://logicalmethods.ai/textbook/boolean/img/condition_sun_or_rain.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="800px"  alt="" >
 
 
-<p>This, we can implement using the Boolean <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">OR</span> by saying that:</p>
+<p>This we can implement using the Boolean <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>OR</code></span> by saying that:</p>
 
 
 <img src="https://logicalmethods.ai/textbook/boolean/img/clause_or.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="600px"  alt="" >
@@ -1667,6 +1856,22 @@ truth-values under an assignment:</p>
 <img src="https://logicalmethods.ai/textbook/boolean/img/clauses.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="600px"  alt="" >
 
 
+<p>For example, we can calculate the proposition expressed by 
+
+<img src="https://logicalmethods.ai/textbook/boolean/img/complex_fml.png" class="inert-img" height="24px"  style="ZgotmplZ" alt="" >
+
+ as follows:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/boolean/img/complex_proposition.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="900px"  alt="" >
+
+
+<p>The most difficult part to work out in this example is, as you might have
+noticed, for which <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">v</span> we have <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">v(SUN) <code>OR</code> (v(RAIN) <code>AND</code> (<code>NOT</code> v(SUN))) =
+1</span>. Basically, you need to go through all the valuations and calculate the
+value of the Boolean expression. This is tedious work! In the next chapter,
+we&rsquo;ll discuss methods for making our lives a bit easier using the method of
+truth-tables for this.</p>
 <p>This is, in a nutshell, the standard implementation of the Boolean semantics
 for propositional logic. Let&rsquo;s use it to check some inferences for deductive validity!</p>
 <p>We&rsquo;ll do two examples:</p>
@@ -1740,16 +1945,12 @@ identified as a traditional fallacy. Let&rsquo;s see. For the inference to be va
 
 <p>Once we&rsquo;ve worked out the propositions, we can see that 
 
-<img src="https://logicalmethods.ai/textbook/boolean/img/intersect_id.png" class="inert-img" height="38px"  style="ZgotmplZ" alt="" >
-
- and 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/countermodel.png" class="inert-img" height="40px"  style="ZgotmplZ" alt="" >
 
 . This makes <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">M₁</span> a <strong>countermodel</strong> for the inference, which shows that</p>
 
 
-<img src="https://logicalmethods.ai/textbook/boolean/img/ds_inval.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="500px"  alt="" >
+<img src="https://logicalmethods.ai/textbook/boolean/img/aff_inval.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="500px"  alt="" >
 
 
 <p>This means that, indeed: 
@@ -1761,7 +1962,7 @@ identified as a traditional fallacy. Let&rsquo;s see. For the inference to be va
 
 <img src="https://logicalmethods.ai/textbook/boolean/img/disjunction.png" class="inert-img" height="32px"  style="ZgotmplZ" alt="" >
 
- using <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">OR</span>. If we read the operation as an <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">XOR</span>, the story changes—which you&rsquo;ll see in the exercises.</p>
+ using <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>OR</code></span>. If we read the operation as an <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"><code>XOR</code></span>, the story changes—which you&rsquo;ll see in the exercises.</p>
 <h2 id="further-readings">Further readings<button class="btn btn-back-to-top">
     
     <i class="bi bi-chevron-double-up"></i>

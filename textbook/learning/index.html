@@ -718,10 +718,10 @@ learning new information need to be revised.</p>
 </ul>
 <p>Our aim is figure out how we should respond when we receive new information. For
 concreteness sake, let&rsquo;s assume that we learn that it&rsquo;s, as a matter of fact, raining:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{RAIN}</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{RAIN}</div>
 <p>What should this do with our knowledge base <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span>?</p>
 <p>The answer would seem rather simple when our knowledge base doesn&rsquo;t contradict
-this new fact, i.e. when <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\neg\mathsf{RAIN}\notin \mathsf{KB}.</div> In that case,
+this new fact, i.e. when <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\neg\mathsf{RAIN}\notin \mathsf{KB}.</div> In that case,
 we can &ldquo;simply add&rdquo; <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}</span> to our knowledge base.</p>
 <p>The operation of &ldquo;simply adding&rdquo; a formula to the knowledge base is symbolically
 denoted with <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">+</span>, that is, <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}+A</span> is the result of adding the formula <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A</span> to the
@@ -730,42 +730,42 @@ knowledge base <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 
 knowledge base again be deductively closed. But by simply adding <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A</span> to
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span>, this is not guaranteed. We also need to add anything that follows
 from <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A</span> and the <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span>. We achieve this as follows:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">KB+A=\Set{B:\mathsf{KB}\cup A\vdash B}</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">KB+A=\Set{B:\mathsf{KB}\cup A\vdash B}</div>
 <p>That is, we define our updated knowledge base to contain everything that we can
 derive from the old knowledge base, together with the new information. This, of
 course, contains everything in <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span> plus the new information, since:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{KB},A\vdash \mathsf{KB}</div> <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{KB},A\vdash A</div> But in addition,
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{KB},A\vdash \mathsf{KB}</div> <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{KB},A\vdash A</div> But in addition,
 this also contains everything that we can derive from the <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A</span>.
-<p>For example, if we have the rule <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{RAIN}\to\mathsf{WET}</div> in our
+<p>For example, if we have the rule <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{RAIN}\to\mathsf{WET}</div> in our
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span> and we add <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}</span> to it, we&rsquo;ll get</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{KB},\mathsf{RAIN}\vdash \mathsf{WET}</div> and so
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{WET}\in\mathsf{KB}+\mathsf{RAIN}.</div>
-<p>But what should we do if <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\neg\mathsf{RAIN}\in\mathsf{KB}?</div> What if our new
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{KB},\mathsf{RAIN}\vdash \mathsf{WET}</div> and so
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{WET}\in\mathsf{KB}+\mathsf{RAIN}.</div>
+<p>But what should we do if <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\neg\mathsf{RAIN}\in\mathsf{KB}?</div> What if our new
 information <em>contradicts</em> some information in the knowledge base?</p>
 <p>We cannot directly add <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}</span> to the knowledge base then, since this
 would make it inconsistent and because of the <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Principle_of_explosion"
   target="_blank">principle of
-explosion</a>, <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">A,\neg
+explosion</a>, <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">A,\neg
 A\vdash C,\text{ for any }C,</div> this would make our updated knowledge base
 trivial in the sense that it contains <em>all</em> facts.</p>
 <p>Since we&rsquo;re treating <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}</span> as a newly learned <em>fact</em>, a natural
 thought is to first <em>remove</em> the &ldquo;falsified&rdquo; <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg\mathsf{RAIN}</span> from
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span>. We could try to define an operation <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">-</span> of &ldquo;subtraction&rdquo;, defined
 by:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{KB} -A = \Set{B\in\mathsf{KB}:B\text{ is not equivalent to }B}</div> 
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{KB} -A = \Set{B\in\mathsf{KB}:B\text{ is not equivalent to }B}</div> 
 If we denote the operation of **revising** our knowledge bank <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span> in
 light of the new information <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A</span> by <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}\ast A,</span> we might just try to
-say that <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{KB}\ast A=(\mathsf{KB}-\neg A)+A</div>
+say that <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{KB}\ast A=(\mathsf{KB}-\neg A)+A</div>
 <p>But this approach, with a so-defined <strong>contraction</strong> operation <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">-</span> doesn&rsquo;t work.</p>
 <p>Suppose, for example, that <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg\mathsf{RAIN}</span> is in our <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span> because
 we&rsquo;ve derived it from some other facts in the bank. For example, we could have
 had:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{HIGH\\_PRESSURE}\in\mathsf{KB}</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{WARM}\in\mathsf{KB}</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{HIGH\\_PRESSURE}\land\mathsf{WARM}\to\neg\mathsf{RAIN}\in\mathsf{KB}</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{HIGH\\_PRESSURE}\in\mathsf{KB}</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{WARM}\in\mathsf{KB}</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{HIGH\\_PRESSURE}\land\mathsf{WARM}\to\neg\mathsf{RAIN}\in\mathsf{KB}</div>
 <p>Then, we still have:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(\mathsf{KB}-\neg\mathsf{RAIN})+\mathsf{RAIN}\vdash \neg\mathsf{RAIN}</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(\mathsf{KB}-\neg\mathsf{RAIN})+\mathsf{RAIN}\vdash \neg\mathsf{RAIN}</div>
 <p>The reason is that we didn&rsquo;t remove the &ldquo;grounds&rdquo; for <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg\mathsf{RAIN}</span> from
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span>, in this case <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{HIGH\_PRESSURE}</span>, <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{WARM}</span> and
 the rule
@@ -782,8 +782,8 @@ by <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4r
 now retract &ldquo;just&rdquo; <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg \mathsf{RAIN}</span> from <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span>, while leaving
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg\mathsf{RAIN}\lor (1+1=0)\in\mathsf{KB}</span>, adding <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}</span> to
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{KB}</span> will be disastrous. This is because</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{RAIN},\neg\mathsf{RAIN}\lor (1+1=0)\vdash (1+1=0).</div>
-That means we'd get <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(1+1=0)\in\mathsf{KB}\ast\mathsf{RAIN},</div> which is obviously
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{RAIN},\neg\mathsf{RAIN}\lor (1+1=0)\vdash (1+1=0).</div>
+That means we'd get <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(1+1=0)\in\mathsf{KB}\ast\mathsf{RAIN},</div> which is obviously
 problematic.
 <p>The upshot is that we need to be <em>very</em> careful when removing
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg\mathsf{RAIN}</span>: we need to remove at least some of its &ldquo;grounds&rdquo; (if they
@@ -834,11 +834,11 @@ updating</strong>, which is based on inductive, rather than deductive inference.
 bank with a lot of qualitative knowledge (0/1, we know or we don&rsquo;t), we have
 assume that our background knowledge bank is <em>probabilistic</em>. In fact, we simply
 assume that we can represent our probabilistic knowledge about the world by
-means of a probability <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr_\mathsf{KB}:\mathcal{L}\to\mathbb{R}.</div></p>
+means of a probability <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr_\mathsf{KB}:\mathcal{L}\to\mathbb{R}.</div></p>
 <p>Our probabilistic knowledge bank <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Pr_\mathsf{KB}</span> could, for example, contain
 information like:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr_\mathsf{KB}(\neg\mathsf{RAIN})=0.75</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr_\mathsf{KB}(\mathsf{RAIN})=0.25</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr_\mathsf{KB}(\neg\mathsf{RAIN})=0.75</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr_\mathsf{KB}(\mathsf{RAIN})=0.25</div>
 How should we, in this setting, respond to learning that, as a matter of fact,
 it's raining?
 <p>The <i class="bi bi-box-arrow-up-right h-6"></i>
@@ -861,13 +861,13 @@ conditional probability</a>
 
  given the newly learned fact. That
 is, we would have that</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr_{\mathsf{KB}\ast\mathsf{RAIN}}(\ \cdot\ )=Pr_\mathsf{KB}(\ \cdot \mid
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr_{\mathsf{KB}\ast\mathsf{RAIN}}(\ \cdot\ )=Pr_\mathsf{KB}(\ \cdot \mid
 \mathsf{RAIN}).</div>
 <p>The crucial idea here is that according to this approach, the original
 probabilistic knowledge bank already contains the information about how to
 respond to new information via it&rsquo;s conditional probabilities, which are,
 remember, defined as follows:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(A\mid B)=\frac{Pr(A\land B)}{Pr(B)}</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(A\mid B)=\frac{Pr(A\land B)}{Pr(B)}</div>
 <p>Where we assume that <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Pr(B)\neq 0</span> to avoid <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Division_by_zero"
   target="_blank">division by
@@ -881,7 +881,7 @@ fair die from the last chapter?</p>
 
 <p>In this setting, how would a Bayesian respond to getting the partial information
 that the die-roll was even, formalized as</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{RESULT}_2\lor\mathsf{RESULT}_4\lor \mathsf{RESULT}_6?</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{RESULT}_2\lor\mathsf{RESULT}_4\lor \mathsf{RESULT}_6?</div>
 <p>The answer is to conditionalize on this proposition. Let&rsquo;s go through the
 outcomes of this. We&rsquo;ve already calculated result for <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RESULT}_2</span>
 (abbreviated as <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{R}_2</span>)
@@ -898,22 +898,22 @@ outcomes of this. We&rsquo;ve already calculated result for <span class="excalif
 . The
 calculation, for <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{R}_4</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{R}_6</span> is exactly analogous, giving
 us:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{R}_2\mid \mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 )=\frac{1}{3}</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{R}_4\mid \mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 )=\frac{1}{3}</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{R}_6\mid \mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 )=\frac{1}{3}</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{R}_2\mid \mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 )=\frac{1}{3}</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{R}_4\mid \mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 )=\frac{1}{3}</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{R}_6\mid \mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 )=\frac{1}{3}</div>
 <p>In the case of <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{R}_1,\mathsf{R}_3</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{R}_5</span>—the <em>odd</em>
 results—the calculation is also analogous in all three cases. We do the one for
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{R}_1</span>:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{R}_1\land (\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 ))=0</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{R}_1\land (\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 ))=0</div>
 <p>This holds because the only valuations where this formula is true are ones where
 both <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{R}_1</span> and one of either <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{R}_2,\mathsf{R}_4,</span> or <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{R}_6</span>
 is true. But all of these valuations have weight <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">0</span>, meaning that the whole
 formula has value <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">0</span>.</p>
 <p>From this it immediately follows that:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{R}_1\mid (\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 ))=0</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{R}_1\mid (\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 ))=0</div>
 <p>Analogously, we get:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{R}_3\mid (\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 ))=0</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{R}_5\mid (\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 ))=0</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{R}_3\mid (\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 ))=0</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{R}_5\mid (\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 ))=0</div>
 <p>We can present the result in the following table:</p>
 
 
@@ -933,35 +933,35 @@ conditional probabilities in practical settings, from which Bayesian updating
 receives its name: <strong>Bayes rule</strong>.</p>
 <p>Bayes rule is a simple probabilistic law, which can easily be derived from the
 axioms of probability and states that:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(A\mid B)=\frac{Pr(B\mid A)\times Pr(A)}{Pr(B)}</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(A\mid B)=\frac{Pr(B\mid A)\times Pr(A)}{Pr(B)}</div>
 <p>There are alternative but equivalent formulations, such as:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(A\mid B)=\frac{Pr(B\mid A)\times Pr(A)}{Pr(B\mid A)\times
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(A\mid B)=\frac{Pr(B\mid A)\times Pr(A)}{Pr(B\mid A)\times
 Pr(A)+Pr(B\mid\neg A)\times Pr(\neg A)}</div>
 <p>The reason why Bayes rule is so important is because <em>in practical applications</em>
 the values on the right hand are often known or easier to figure out than the
 conditional probability on the left of the equation.</p>
-<p>For example, if we&rsquo;re wondering what should <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{HIGH\_PRESSURE}\mid
+<p>For example, if we&rsquo;re wondering what should <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{HIGH\_PRESSURE}\mid
 \mathsf{RAIN})</div> be. That is, how should we change our credence in the air
 pressure being high if we learn that it rains.</p>
 <p>Bayes formula tells us that this is the same as:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\frac{Pr(\mathsf{RAIN}\mid \mathsf{HIGH\\_PRESSURE})\times
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\frac{Pr(\mathsf{RAIN}\mid \mathsf{HIGH\\_PRESSURE})\times
 Pr(\mathsf{HIGH\\_PRESSURE})}{Pr(\mathsf{RAIN})}</div>
 <p>Our starting point was to say that</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr_\mathsf{KB}(\mathsf{RAIN})=0.25</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr_\mathsf{KB}(\mathsf{RAIN})=0.25</div>
 <p>Now the point is that it&rsquo;s easier to figure out what <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Pr(\mathsf{RAIN}\mid
 \mathsf{HIGH\_PRESSURE})</span> is easier to assess than
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Pr(\mathsf{HIGH\_PRESSURE}\mid\mathsf{RAIN})</span>: high pressure makes rain
 unlikely, since low pressure is one of the main factors in rain. Let&rsquo;s suppose
 we have:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{RAIN}\mid \mathsf{HIGH\\_PRESSURE})=0.2</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{RAIN}\mid \mathsf{HIGH\\_PRESSURE})=0.2</div>
 <p>Now all we need is to figure out what the unconditional probability of high
 pressure is. Assuming that it&rsquo;s winter, when the air pressure is usually high,
-we could set: <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{HIGH\_PRESSURE})=0.8.</div></p>
+we could set: <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{HIGH\_PRESSURE})=0.8.</div></p>
 <p>The outcome would be</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{HIGH\\_PRESSURE}\mid\mathsf{RAIN})</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">=\frac{Pr(\mathsf{RAIN}\mid \mathsf{HIGH\\_PRESSURE})\times
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{HIGH\\_PRESSURE}\mid\mathsf{RAIN})</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">=\frac{Pr(\mathsf{RAIN}\mid \mathsf{HIGH\\_PRESSURE})\times
 Pr(\mathsf{HIGH\\_PRESSURE})}{Pr(\mathsf{RAIN})}</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">=\frac{0.2\times0.8}{0.25}=0.64</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">=\frac{0.2\times0.8}{0.25}=0.64</div>
 <p>In this setting, we usually give the terms <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Pr(A\mid B)</span>, <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Pr(B\mid A)</span>,
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Pr(A)</span>, and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Pr(B)</span> special names:</p>
 <ul>

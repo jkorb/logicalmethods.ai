@@ -692,8 +692,8 @@ logics will be a topic for the exercises.</p>
 <p>For much of the chapter, we&rsquo;ll assume that our language is a propositional
 language with <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">n</span> propositional variables, <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">p_1, \dots, p_n</span>, and only the
 connectives <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg,\land,\lor</span>. That is, the BNF of our language is:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\langle prop\rangle::= p_1\mid \dots\mid p_n</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\langle fml\rangle::=\langle prop\rangle\mid\neg\langle fml\rangle\mid
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\langle prop\rangle::= p_1\mid \dots\mid p_n</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\langle fml\rangle::=\langle prop\rangle\mid\neg\langle fml\rangle\mid
 (\langle fml\rangle\land \langle fml\rangle)\mid (\langle fml\rangle\lor
 \langle fml\rangle)</div>
 <p>For concreteness sake, we&rsquo;ll use concrete propositional constants, like
@@ -706,9 +706,9 @@ won&rsquo;t cover in this chapter since—despite its name—is more complicated
 other systems, we have <em>two</em> conjunction operators: <em>strong conjunction</em>
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\otimes</span> and <em>weak conjunction</em> <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\land</span>. In fact, in BL, we typically take
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\otimes</span> to be the primitive operator and treat the &ldquo;normal&rdquo; <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\land</span> as defined
-using <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\otimes,\to</span> via the rule: <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">A\land B=A\otimes (A\to B).</div></p>
+using <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\otimes,\to</span> via the rule: <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">A\land B=A\otimes (A\to B).</div></p>
 <p>It&rsquo;s an interesting exercise to check that in a classical, Boolean setting,</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">A\land B</div> and <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">A\land (A\to B)</div> are logically equivalent. It is important to
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">A\land B</div> and <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">A\land (A\to B)</div> are logically equivalent. It is important to
 note, however, that in non-classical settings, the logical laws may be
 different.
 <p>In this chapter, however, we try to avoid non-classical syntax as much as
@@ -788,7 +788,7 @@ query doesn&rsquo;t return a result because of the absence of data, it returns t
 <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Null_%28SQL%29"
   target="_blank">SQL null</a>, which is essentially our
-third truth-value <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">i</span>. Moreover, when <code>null</code> returns as part of a complex
+third truth-value <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">i</span>. Moreover, when <code></code><code>null</code><code></code> returns as part of a complex
 query, SQL applies what&rsquo;s effectively Kleene&rsquo;s 3-valued logic.</p>
 <h3 id="semantics">Semantics<button class="btn btn-back-to-top">
     
@@ -818,14 +818,14 @@ logic</strong>.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-
    > valuation  </a>
 
 
-valuation was a function <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu:\langle prop\rangle\to\Set{0,1}.</div> In this
-chapter, instead, a valuation will simply be a function <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu:\langle
+valuation was a function <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu:\langle prop\rangle\to\Set{0,1}.</div> In this
+chapter, instead, a valuation will simply be a function <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu:\langle
 prop\rangle\to\Set{0,i,1}.</div></p>
 <p>Just like in Boolean algebra, we can think of a valuation as a model of a
-logically possible situation, where <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{RAIN\_TOMORROW})=1</div> means
+logically possible situation, where <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{RAIN\_TOMORROW})=1</div> means
 that according to <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu</span> it <em>will</em> rain tomorrow,</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{RAIN\\_TOMORROW})=0</div> means that according to <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu</span> it _won't_
-rain tomorrow, and <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{RAIN\\_TOMORROW})=i</div> means that according to
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{RAIN\\_TOMORROW})=0</div> means that according to <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu</span> it _won't_
+rain tomorrow, and <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{RAIN\\_TOMORROW})=i</div> means that according to
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu</span> it's _indeterminate_ whether it will rain tomorrow.
 <p>Next, we generalize our <strong>truth-function</strong> to the 3-valued setting. Remember
 that a 
@@ -882,9 +882,9 @@ the conjunction must be false. If <span class="excalifont" style="  font-size: c
 we get <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">0</span>, which is why we say <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">0\times i=0</span>.</p>
 <p>We can now use these truth-functions to recursively define truth in a valuation
 in the same way we did it in Boolean algebra:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\neg A)=-\nu(A)</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(A\land B)=\nu(A)\times \nu(B)</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(A\lor B)=\nu(A)+\nu(B)</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\neg A)=-\nu(A)</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(A\land B)=\nu(A)\times \nu(B)</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(A\lor B)=\nu(A)+\nu(B)</div>
 <p>Just that now the truth-functions <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">-,\times,+</span> are 3-valued.</p>
 <p>Somewhat surprisingly, even the definition of 
 
@@ -899,10 +899,10 @@ in the same way we did it in Boolean algebra:</p>
 
  remains the same—we just
 applied in a 3-valued setting.</p>
-<p>First, we define the <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">[A]</span> of a formula <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A</span> to be: <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">[A]:=\Set{\nu:\nu(A)=1}.</div>
+<p>First, we define the <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">[A]</span> of a formula <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A</span> to be: <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">[A]:=\Set{\nu:\nu(A)=1}.</div>
 Put in words, this means that the content of <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A</span> is the set of
 valuations/models, which assign to <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A</span> the truth-value <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span>. We then say:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">P_1,P_2,\dots\vDash C\Leftrightarrow [P_1]\cap [P_2]\cap \dots\subseteq [C]</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">P_1,P_2,\dots\vDash C\Leftrightarrow [P_1]\cap [P_2]\cap \dots\subseteq [C]</div>
 <p>Many inference that are classically valid remain valid in Kleene logic.
 Remember, for example our proof of concept inference from
 
@@ -917,7 +917,7 @@ Remember, for example our proof of concept inference from
    > Chapter 4 </a>
 
 :</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{RAIN}\lor \mathsf{BIKE},\neg\mathsf{RAIN}\vDash\mathsf{BIKE}</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{RAIN}\lor \mathsf{BIKE},\neg\mathsf{RAIN}\vDash\mathsf{BIKE}</div>
 <p>The reasoning to show that this inference is valid works <em>exactly like that</em> in
 Kleene logic.</p>
 <blockquote>
@@ -943,7 +943,7 @@ that the members of <span class="excalifont" style="  font-size: clamp(0.9rem, 1
 are only the ones that <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(\mathsf{BIKE})=1</span>.</p>
 </li>
 <li>
-<p>But that means that <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">[\mathsf{RAIN}\lor \mathsf{BIKE}]\cap
+<p>But that means that <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">[\mathsf{RAIN}\lor \mathsf{BIKE}]\cap
 [\neg\mathsf{RAIN}]\subseteq [\mathsf{BIKE}],</div> as desired.</p>
 </li>
 </ul></blockquote>
@@ -1009,17 +1009,17 @@ chapter 4 </a>
   </tbody>
 </table>
 <p>To see this, just plug in <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">i</span> for <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">x</span> in the equations:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">i\times -i=i\times i=i</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">i+-i=i+i=i</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">i\times -i=i\times i=i</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">i+-i=i+i=i</div>
 <p>The main consequence of the failure of these two laws is that Kleene logic has
 <strong>no logical truth</strong>. In Boolean logic, we have, for example:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\vDash \mathsf{RAIN\\_TOMORROW}\lor\neg \mathsf{RAIN\\_TOMORROW}</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\vDash \mathsf{RAIN\\_TOMORROW}\lor\neg \mathsf{RAIN\\_TOMORROW}</div>
 <p>This means, of course, that the formula get&rsquo;s value <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span> in all models, it&rsquo;s a
 logical truth—<em>of Boolean logic</em>. In Kleene logic, it&rsquo;s easy to find a
 valuation, where the formula is not true. Just assign:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{RAIN\\_TOMORROW})=i</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{RAIN\\_TOMORROW})=i</div>
 <p>We get:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{RAIN\\_TOMORROW}\lor\neg \mathsf{RAIN\\_TOMORROW})=i</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{RAIN\\_TOMORROW}\lor\neg \mathsf{RAIN\\_TOMORROW})=i</div>
 <p>Under the open world assumption, this is exactly as it should be: whether it
 rains tomorrow or not is an open question, it&rsquo;s not settled one way or the
 other.</p>
@@ -1082,14 +1082,14 @@ truth-value, which gives us:</p>
 <p>This truth-table recovers the Boolean logical equivalence between <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A\to B</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg
 A\lor B</span> in our 3-valued setting. But it faces a problem.</p>
 <p>Consider the conditional:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{RAIN\\_TOMORROW}\to \mathsf{RAIN\\_TOMORROW}</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{RAIN\\_TOMORROW}\to \mathsf{RAIN\\_TOMORROW}</div>
 <p>This sounds plausible even if we think that it&rsquo;s not settled whether it rains
 tomorrow: if it does rain, it rains.</p>
 <p>But on Kleene&rsquo;s table for <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\Rightarrow</span>, it&rsquo;s possible to give this formula the
 value <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">i</span>. Just set:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{RAIN\\_TOMORROW})=i</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{RAIN\\_TOMORROW})=i</div>
 <p>You get:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{RAIN\\_TOMORROW}\to \mathsf{RAIN\\_TOMORROW})=i\Rightarrow_K i=i</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{RAIN\\_TOMORROW}\to \mathsf{RAIN\\_TOMORROW})=i\Rightarrow_K i=i</div>
 <p>Łukasiewicz&rsquo;s thought is that this is unsatisfactory, treating <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A\to A</span> as a
 logical law doesn&rsquo;t make any substantial assumptions about the world. So we
 should adjust our table to make it a law. It turns out that this is possible,
@@ -1100,7 +1100,7 @@ without introducing additional problems by setting:</p>
 
 
 <p>This table gives us:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\vDash\mathsf{RAIN\\_TOMORROW}\to \mathsf{RAIN\\_TOMORROW}</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\vDash\mathsf{RAIN\\_TOMORROW}\to \mathsf{RAIN\\_TOMORROW}</div>
 <p>It&rsquo;s easy to check this by considering the possible truth-values for <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN\_TOMORROW}</span>:</p>
 <ul>
 <li>
@@ -1126,7 +1126,7 @@ formula <em>rules</em> for 3-valued systems.</p>
 
 <p>Having seen a fruitful approach to indeterminacy, we&rsquo;ll turn to a different
 issue that motivates abandoning the bivalence assumption: <em>vagueness</em>.</p>
-<p>Take, for example, the statement <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{WARM}.</div> We might come across this in
+<p>Take, for example, the statement <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{WARM}.</div> We might come across this in
 the context of a weather forecast system, as in the previous section. When
 should our system judge this statement as <em>true</em>?</p>
 <p>Clearly, at 0℃ , the statement is false. And at 30℃  the statement is clearly
@@ -1136,7 +1136,7 @@ point is. Suppose you think it needs to be at least 20℃  to be warm, but 20℃
 between the two temperatures, but we just said one is warm the other is cold.</p>
 <p>There doesn&rsquo;t seem to be a clear &ldquo;cutoff point&rdquo; between warm and not: the
 concept is <strong>vague</strong>.<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> Classical propositional logic cannot easily
-handle vague concepts: in classical logic <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{WARM}<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">, for any given
+handle vague concepts: in classical logic <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{WARM}<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">, for any given
 possible situation, it is either warm or not. In other words, there is a clear
 cut-off point across all possible situations.</p>
 <p><strong>Fuzzy logic</strong> is an approach to valid inference involving vague concepts,
@@ -1167,7 +1167,7 @@ of truth-values.</p>
 </li>
 </ul>
 <p>This approach is then extended to handle complex vague concepts, like</p>
-</div>\mathsf{WARM}\land\mathsf{HUMID},<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);"> and the like. This is the topic we'll be
+</div>\mathsf{WARM}\land\mathsf{HUMID},<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);"> and the like. This is the topic we'll be
 looking into in this section.
 <p>Fuzzy logic has had a significant impact on AI. After <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Lotfi_A._Zadeh"
@@ -1218,7 +1218,7 @@ systems we&rsquo;ve discussed previously It is one of the simpler systems that l
 up nicely with the systems we&rsquo;ve discussed previously.</p>
 <p>We&rsquo;ll focus on propositional logic with </span>\neg,\land,\lor<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">.</p>
 <p>First, let&rsquo;s introduce <strong>fuzzy valuations</strong>, that is functions</p>
-</div>\nu:\Set{p_1,p_2,\dots}\to [0,1],<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">
+</div>\nu:\Set{p_1,p_2,\dots}\to [0,1],<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">
 where </span>p_1,p_2,\dots<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"> are our propositional varibles and </span>[0,1]<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"> is the unit
 interval of numbers between 0 and 1.
 <p>The idea is, like before, that a valuation models a possible situation, now
@@ -1245,20 +1245,20 @@ theory involves so-called <i class="bi bi-box-arrow-up-right h-6"></i>
 system Ł is just a special case of this, but it&rsquo;s particularly easy to
 understand.</p>
 <p>In Ł, we use the following truth-functions:</p>
-</div>f_\neg(x)=1-x<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">
-</div>f_\land(x,y)=min(x,y)<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">
-</div>f_\lor(x,y)=max(x,y)<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">
+</div>f_\neg(x)=1-x<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">
+</div>f_\land(x,y)=min(x,y)<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">
+</div>f_\lor(x,y)=max(x,y)<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">
 <p>Here the </span>min<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"> and </span>max<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"> functions pick the smaller or bigger of two numbers,
 respectively.</p>
 <p>These functions, then, recursively interpret the operators as usual:</p>
-</div>\nu(\neg A)=f_\neg(\nu(A))<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">
-</div>\nu(A\land B)=f_\land(\nu(A),\nu(B))<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">
-</div>\nu(A\lor B)=f_\lor(\nu(A),\nu(B))<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">
+</div>\nu(\neg A)=f_\neg(\nu(A))<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">
+</div>\nu(A\land B)=f_\land(\nu(A),\nu(B))<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">
+</div>\nu(A\lor B)=f_\lor(\nu(A),\nu(B))<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">
 <p>So, if, for example, we have:</p>
-</div>\nu(\mathsf{WARM})=0.7<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">
-</div>\nu(\mathsf{HUMID})=0.4<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">
+</div>\nu(\mathsf{WARM})=0.7<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">
+</div>\nu(\mathsf{HUMID})=0.4<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">
 That is, if it's somewhat warm and more dry than humid. Then, we'd get:
-</div>\nu(\mathsf{WARM}\lor\mathsf{HUMID})=0.7<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">
+</div>\nu(\mathsf{WARM}\lor\mathsf{HUMID})=0.7<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">
 That is, it's somewhat warm or humid.
 <p>Why should we pick these fuzzy truth-functions and not some others? Here&rsquo;s one
 motivation (which may work in some situation but not in others). We <em>can</em> (but
@@ -1274,18 +1274,18 @@ model valid inference and apply the idea of truth-<em>degree</em> preservation b
 saying that an inference </span>P_1,\dots,P_n\vDash C<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"> is valid just in case for every
 valuation </span>\nu<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">, the value </span>\nu(C)<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"> is bigger than the smallest value of
 </span>\nu(P_1),\dots,\nu(P_n)<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">. More mathematically, we say:</p>
-</div>P_1,P_2,\dots\vDash C<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">
-</div>\Leftrightarrow<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">
-</div>\text{for all }\nu, min(\nu(P_1),\dots,\nu(P_n))\leq \nu(C)<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">
+</div>P_1,P_2,\dots\vDash C<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">
+</div>\Leftrightarrow<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">
+</div>\text{for all }\nu, min(\nu(P_1),\dots,\nu(P_n))\leq \nu(C)<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">
 <p>This definition gives us the validity of various inferences. For example, we
 have:</p>
-</div>\mathsf{WARM}\vDash\mathsf{WARM}\lor\mathsf{HUMID}<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">
-<p>This is because </span>\nu(\mathsf{WARM}\lor\mathsf{HUMID})=max(\nu(\mathsf{WARM}),\nu(\mathsf{HUMID}))<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"> and  </div>\nu(\mathsf{WARM})\leq max(\nu(\mathsf{WARM}),\nu(\mathsf{HUMID})).<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);"></p>
+</div>\mathsf{WARM}\vDash\mathsf{WARM}\lor\mathsf{HUMID}<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">
+<p>This is because </span>\nu(\mathsf{WARM}\lor\mathsf{HUMID})=max(\nu(\mathsf{WARM}),\nu(\mathsf{HUMID}))<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"> and  </div>\nu(\mathsf{WARM})\leq max(\nu(\mathsf{WARM}),\nu(\mathsf{HUMID})).<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);"></p>
 <p>Similarly, we get:</p>
-</div>\mathsf{WARM}\land\mathsf{HUMID}\vDash \mathsf{WARM}<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">
+</div>\mathsf{WARM}\land\mathsf{HUMID}\vDash \mathsf{WARM}<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">
 <p>This is because:</p>
-<p></span>\nu(\mathsf{WARM}\land\mathsf{HUMID})=min(\nu(\mathsf{WARM}),\nu(\mathsf{HUMID}))<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"> and </div> min(\nu(\mathsf{WARM}),\nu(\mathsf{HUMID}))\leq \nu(\mathsf{WARM}).<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);"></p>
-<p>We also get inference patterns like the double negation law: </div>\neg\neg A\vDash A\text{ and }A\vDash \neg\neg A<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);"> since </span>1-(1-x)=x<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">.</p>
+<p></span>\nu(\mathsf{WARM}\land\mathsf{HUMID})=min(\nu(\mathsf{WARM}),\nu(\mathsf{HUMID}))<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);"> and </div> min(\nu(\mathsf{WARM}),\nu(\mathsf{HUMID}))\leq \nu(\mathsf{WARM}).<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);"></p>
+<p>We also get inference patterns like the double negation law: </div>\neg\neg A\vDash A\text{ and }A\vDash \neg\neg A<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);"> since </span>1-(1-x)=x<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">.</p>
 <p>But other familiar reasoning patterns fail! For example, our common example of
 disjunctive syllogism fails:</p>
 </div>\neg\mathsf{WARM},\mathsf{WARM}\lor \mathsf{HUMID}\nvDash \mathsf{HUMID}</span><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">

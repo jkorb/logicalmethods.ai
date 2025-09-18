@@ -786,7 +786,7 @@ settings.</p>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Probability_axioms"
   target="_blank">Kolmogorov axioms</a> for classical probability theory. Note that they use notions from classical logic (logical truth and satisfiability).<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
 <p>These are only the basic axioms, there are also <strong>derived laws</strong>. For example,
-it&rsquo;s easy to show that for all formulas <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A</span>, we have: <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">P(\neg A)=1-P(A).</div></p>
+it&rsquo;s easy to show that for all formulas <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A</span>, we have: <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">P(\neg A)=1-P(A).</div></p>
 <p>To see this, we can reason as follows:</p>
 <ul>
 <li>We know that <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\vDash \neg(A\land \neg A)</span> using Boolean logic.</li>
@@ -809,14 +809,14 @@ situations. But how do we give a concrete probability? Well, we have to give a
 rule that specifies the probability of every formula. Let&rsquo;s look at an example.</p>
 <p>Suppose we&rsquo;re modeling the throw of a single, 6-sided die. Correspondingly, we
 have six propositional variables in our language:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{RESULT}_1,\mathsf{RESULT}_2,\mathsf{RESULT}_3,\mathsf{RESULT}_4,\mathsf{RESULT}_5,\mathsf{RESULT}_6,</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{RESULT}_1,\mathsf{RESULT}_2,\mathsf{RESULT}_3,\mathsf{RESULT}_4,\mathsf{RESULT}_5,\mathsf{RESULT}_6,</div>
 where <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RESULT}_i</span> means that the result of the die-roll is <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">i</span>.
 <p>If we&rsquo;re dealing with a fair die, we can define a corresponding probability
 measure <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Pr_{\text{fair}}</span> as follows:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr_{\text{fair}}(\mathsf{RESULT}_i)=\frac{1}{6}\text{, for }i=1,\dots,6</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr\_{\text{fair}}(\mathsf{RESULT}_i\land \mathsf{RESULT}_j)=0\text{, for all }i\neq
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr_{\text{fair}}(\mathsf{RESULT}_i)=\frac{1}{6}\text{, for }i=1,\dots,6</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr\_{\text{fair}}(\mathsf{RESULT}_i\land \mathsf{RESULT}_j)=0\text{, for all }i\neq
 j</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr\_{\text{fair}}(\neg\mathsf{RESULT}_1\land \dots\neg\mathsf{RESULT}_6)=0</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr\_{\text{fair}}(\neg\mathsf{RESULT}_1\land \dots\neg\mathsf{RESULT}_6)=0</div>
 <p>The third rule ensures that we have at least one result: it&rsquo;s impossible that
 the result isn&rsquo;t <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span>, isn&rsquo;t <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">2</span>, <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\dots</span>, isn&rsquo;t <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">6</span>.</p>
 <p>The second rule formalizes the fact that a die can&rsquo;t show two numbers at the
@@ -831,16 +831,16 @@ trivial either.<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-
 highlight that <strong>probabilities are not recursive</strong>.</p>
 <p>That is, the first rule is <em>not</em> sufficient to calculate the probabilities of all
 formulas. To calculate the probability of the die being 2 or 4, for example,</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr_\text{fair}(\mathsf{RESULT}_2\lor \mathsf{RESULT}_4),</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr_\text{fair}(\mathsf{RESULT}_2\lor \mathsf{RESULT}_4),</div>
 <p>we need both rules:</p>
 <ul>
-<li>We know from the derived inclusion-exclusion principle that: <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr_\text{fair}(\mathsf{RESULT}_2\lor \mathsf{RESULT}_4)=</div></li>
+<li>We know from the derived inclusion-exclusion principle that: <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr_\text{fair}(\mathsf{RESULT}_2\lor \mathsf{RESULT}_4)=</div></li>
 </ul>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr_\text{fair}(\mathsf{RESULT}\_2)+Pr\_\text{fair}(\mathsf{RESULT}\_4)-Pr(\mathsf{RESULT}\_2\land \mathsf{RESULT}\_4)</div>
-+ We further know from the second rule that: <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{RESULT}\_2\land \mathsf{RESULT}\_4) = 0.</div>
-+ So we get that: <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr_\text{fair}(\mathsf{RESULT}\_2\lor \mathsf{RESULT}\_4)=Pr_\text{fair}(\mathsf{RESULT}\_2)+Pr\_\text{fair}(\mathsf{RESULT}\_4).</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr_\text{fair}(\mathsf{RESULT}\_2)+Pr\_\text{fair}(\mathsf{RESULT}\_4)-Pr(\mathsf{RESULT}\_2\land \mathsf{RESULT}\_4)</div>
++ We further know from the second rule that: <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{RESULT}\_2\land \mathsf{RESULT}\_4) = 0.</div>
++ So we get that: <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr_\text{fair}(\mathsf{RESULT}\_2\lor \mathsf{RESULT}\_4)=Pr_\text{fair}(\mathsf{RESULT}\_2)+Pr\_\text{fair}(\mathsf{RESULT}\_4).</div>
 + Since by the first rule, we have <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Pr_\text{fair}(\mathsf{RESULT}\_2)=\frac{1}{6}</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Pr_\text{fair}(\mathsf{RESULT}\_4)=\frac{1}{6}</span>, we know that:
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr_\text{fair}(\mathsf{RESULT}\_2\lor \mathsf{RESULT}\_4)=\frac{1}{6}+\frac{1}{6}=\frac{1}{3}</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr_\text{fair}(\mathsf{RESULT}\_2\lor \mathsf{RESULT}\_4)=\frac{1}{6}+\frac{1}{6}=\frac{1}{3}</div>
 <p>But note that crucially, we needed <strong>both rules</strong> in this calculation. The
 probabilities of the propositional variables are not enough, we also need the
 values of their conjunctions.<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
@@ -888,15 +888,15 @@ expresses the assumption that at least one of the different scenarios <em>will</
 happen.</p>
 <p>So, more generally, a <strong>probability weight</strong> for our language is a function <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">m</span>,
 which assigns to each valuation <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu</span> a positive value <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">0\leq m(\nu)</span> such that
-these values sum up to one: <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\sum_{\nu}m(\nu)=1</div></p>
+these values sum up to one: <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\sum_{\nu}m(\nu)=1</div></p>
 <p>Once we have these values, we can calculate the probability of each formula by adding
 the probability weights of the worlds, where the formula is true:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr_m(A)=\sum_{\nu(A)=1}m(\nu).</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr_m(A)=\sum_{\nu(A)=1}m(\nu).</div>
 <p>So, in our example, to get the probability of <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN},</span>
 for example, we&rsquo;d calculate</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{RAIN})=\sum_{\nu(\mathsf{RAIN})=1}
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{RAIN})=\sum_{\nu(\mathsf{RAIN})=1}
 m(\nu)=</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">m(\nu_1)+m(\nu_2)=0.5+0.3=0.8</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">m(\nu_1)+m(\nu_2)=0.5+0.3=0.8</div>
 <p>That is, in our model, the probability of it raining is 0.8. This is because the
 only scenarios where it rains are <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu_1</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu_2</span> and they have a combined
 likelihood of 0.8.</p>
@@ -946,7 +946,7 @@ row where the formula gets value <span class="excalifont" style="  font-size: cl
 
 
 <p>Then, we can see that:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{RAIN}\lor\neg\mathsf{SUN})=m(\nu_1)+m(\nu_2)+m(\nu_4)=0.5+0.3+0=0.8</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{RAIN}\lor\neg\mathsf{SUN})=m(\nu_1)+m(\nu_2)+m(\nu_4)=0.5+0.3+0=0.8</div>
 <p>This is a powerful method for representing and calculating probabilities. But it
 also has its limits. For example, it suffers from the same problem of
 <strong>combinatorial explosion</strong> as the truth-tables method for validity checking.
@@ -988,7 +988,7 @@ purpose.</p>
 <p>The conditional probability of one formula <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A</span> <em>given</em> another formula <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">B</span> is,
 intuitively, a measure of how likely it is that <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A</span> is true assuming that  <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">B</span>
 is true. This idea is formally captured in the definition:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(A\mid B)=\frac{Pr(A\land B)}{Pr(B)}</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(A\mid B)=\frac{Pr(A\land B)}{Pr(B)}</div>
 <p>Here we need to assume that <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Pr(B)\neq 0</span> to avoid <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Division_by_zero"
   target="_blank">division by
@@ -998,7 +998,7 @@ is true. This idea is formally captured in the definition:</p>
 <li>In the <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN},\mathsf{SUN}</span> example, we could ask, for example, what
 the probability is that it rains given that the sun is shining:</li>
 </ul>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{Pr}(\mathsf{RAIN}\mid\mathsf{SUN})=\frac{Pr(\mathsf{SUN}\land\mathsf{RAIN})}{Pr(\mathsf{SUN})}</div> 
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{Pr}(\mathsf{RAIN}\mid\mathsf{SUN})=\frac{Pr(\mathsf{SUN}\land\mathsf{RAIN})}{Pr(\mathsf{SUN})}</div> 
 <p>For this calculation, we need to know <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Pr(\mathsf{RAIN}\land\mathsf{SUN}),Pr(\mathsf{SUN})</span>. We get them from the following table:</p>
 
   
@@ -1007,7 +1007,7 @@ the probability is that it rains given that the sun is shining:</li>
 
 <p>We get <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Pr(\mathsf{RAIN}\land\mathsf{SUN})=0.5</span> and
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Pr(\mathsf{SUN})=0.5+0.2=0.7</span>. We get:</p>
-  <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{Pr}(\mathsf{RAIN}\mid\mathsf{SUN})=\frac{0.5}{0.7}\approx 0.71</div>
+  <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{Pr}(\mathsf{RAIN}\mid\mathsf{SUN})=\frac{0.5}{0.7}\approx 0.71</div>
 <p>So, the answer is that the chance of it raining given that the sun is shining
 is around 71%.</p>
 <ul>
@@ -1015,9 +1015,9 @@ is around 71%.</p>
 <p>Let&rsquo;s do another example to drive the point home. In our die example, let&rsquo;s
 ask how likely it is to roll a 2 given that we roll an even number. Abbreviating
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RESULT}_i</span> to <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{R}_i</span>, we can represent  rolling an
-even number with the formula <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6.</div></p>
+even number with the formula <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6.</div></p>
 <p>Our question this is:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{R}_2\mid \mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 )=\frac{Pr(\mathsf{R}_2\land (\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6))}{Pr(\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6)}</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{R}_2\mid \mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 )=\frac{Pr(\mathsf{R}_2\land (\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6))}{Pr(\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6)}</div>
 <p>We use the following simplified truth-table for the calculation:</p>
 
   
@@ -1025,19 +1025,19 @@ even number with the formula <div class="text-center my-4 excalifont" style="  f
   
 
 <p>We get:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6)=\frac{1}{6}+\frac{1}{6}+\frac{1}{6}=\frac{1}{2}</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{R}_2\land (\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6))=\frac{1}{6}</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6)=\frac{1}{6}+\frac{1}{6}+\frac{1}{6}=\frac{1}{2}</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{R}_2\land (\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6))=\frac{1}{6}</div>
 <p>So:</p>
 </li>
 </ul>
- <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{R}_2\mid \mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 )=\frac{\frac{1}{6}}{\frac{1}{2}}=\frac{1}{3}</div>
+ <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{R}_2\mid \mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 )=\frac{\frac{1}{6}}{\frac{1}{2}}=\frac{1}{3}</div>
   That is, the chance of getting a 2 _given_ that you get an even number is
   <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\frac{1}{3}</span>.
 <p>Besides helping us to define valid inductive inference, which we&rsquo;ll turn to in
 the next section, conditional probabilities have a lot of theoretical use.</p>
 <p>One important application that underlies many practical applications is to
 define the notion of <strong>probabilistic independence</strong>. We say that two formulas
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A,B</span> are probabilistically independent iff <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(A|B)=Pr(A).</div></p>
+<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A,B</span> are probabilistically independent iff <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(A|B)=Pr(A).</div></p>
 <p>If <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A,B</span> are probabilistically independent, then whether <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">B</span> occurs &ldquo;doesn&rsquo;t
 matter&rdquo; for whether <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A</span> occurs.</p>
 <p>For example, in the following example, we have that whether it rains and the sun
@@ -1048,18 +1048,18 @@ is shining are independent:</p>
 
 
 <p>To see this, consider:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{SUN}\mid
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{SUN}\mid
 \mathsf{RAIN})=\frac{Pr(\mathsf{SUN}\land\mathsf{RAIN})}{Pr(\mathsf{RAIN})}</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">=\frac{0.5}{0.5+0.3=0.8}=0.625=0.5+0.125=Pr(\mathsf{SUN})</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">=\frac{0.5}{0.5+0.3=0.8}=0.625=0.5+0.125=Pr(\mathsf{SUN})</div>
 <p>It&rsquo;s worth noting that if <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A,B</span> are probabilistically independent, we can
 calculate the probability of <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A\land B</span> from the probabilities of <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A,B</span>:</p>
 <ul>
 <li>If <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Pr(A|B)=Pr(A)</span>, then <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Pr(A\land B)=Pr(A)\times Pr(B)</span>.</li>
 </ul>
 <p>This holds in our example, since</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{RAIN})=0.5+0.3=0.8</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{SUN})=0.5+0.125=0.625</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{RAIN}\land\mathsf{SUN})=0.5=0.8\times 0.625</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{RAIN})=0.5+0.3=0.8</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{SUN})=0.5+0.125=0.625</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{RAIN}\land\mathsf{SUN})=0.5=0.8\times 0.625</div>
 <p>But it&rsquo;s important to note that this <em>doesn&rsquo;t</em> hold in general. In the original
 table:</p>
 
@@ -1068,9 +1068,9 @@ table:</p>
 
 
 <p>We have:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{RAIN})=0.5+0.3=0.8</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{SUN})=0.5+0.2=0.7</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{RAIN}\land\mathsf{SUN})=0.5\neq 0.8\times 0.7=0.56</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{RAIN})=0.5+0.3=0.8</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{SUN})=0.5+0.2=0.7</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{RAIN}\land\mathsf{SUN})=0.5\neq 0.8\times 0.7=0.56</div>
 <h2 id="inductive-validity">Inductive validity<button class="btn btn-back-to-top">
     
     <i class="bi bi-chevron-double-up"></i>
@@ -1117,7 +1117,7 @@ the conclusion more likely. We interpret this &ldquo;more likely&rdquo; as: the 
 probability of the conclusion given the premises is higher than the
 unconditional probability of the conclusion.</p>
 <p>Using the symbol <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mid\approx</span> for inductive validity, the definition is:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);"> P_1,P_2,\dots\mid\approx C \Leftrightarrow Pr(C|P_1\land P_2\land
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);"> P_1,P_2,\dots\mid\approx C \Leftrightarrow Pr(C|P_1\land P_2\land
 \dots)\geq Pr(C)</div>
 This concept is essentially what [Rudolf
 Carnap](https://en.wikipedia.org/wiki/Rudolf_Carnap) calls the **increase of
@@ -1156,7 +1156,7 @@ believe the conclusion.</p>
 <p>For this, we need <strong>inductively strong</strong> inferences. These are inferences,
 where the conditional probability of the conclusion given the premises is
 <em>high</em>. The simplest version of this idea is where we say that:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);"> P_1,P_2,\dots\mid\overset{!}{\approx} C \Leftrightarrow Pr(C|P_1\land P_2\land
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);"> P_1,P_2,\dots\mid\overset{!}{\approx} C \Leftrightarrow Pr(C|P_1\land P_2\land
 \dots)\gg Pr(C),</div>
 <p>where <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">x\gg y</span> means that <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">x</span> is &ldquo;much&rdquo; bigger than <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">y</span>. What &ldquo;much bigger&rdquo;
 means can then depend on the context, such as, for example, what <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Pr(C)</span> is.
@@ -1166,7 +1166,7 @@ An inductively strong inference may push <span class="excalifont" style="  font-
 <strong>threshold</strong> <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\epsilon</span>, typically bigger than <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">0.5</span>, for how high the
 probability of a conclusion needs to become in order for the inference to
 count as strong:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);"> P_1,P_2,\dots\mid\overset{!}{\approx} C \Leftrightarrow Pr(C|P_1\land P_2\land
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);"> P_1,P_2,\dots\mid\overset{!}{\approx} C \Leftrightarrow Pr(C|P_1\land P_2\land
 \dots)\geq \epsilon>0.5.</div> A good inductive inference is one which makes the
 conclusion more likely than not.
 <p>The upshot is that in inductive logic, there is not as much uniformity as in
@@ -1183,7 +1183,7 @@ which are independent of the choice of <span class="excalifont" style="  font-si
 <p>This follows from the above observation that if <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A,B</span> are equivalent, then
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Pr(A)=Pr(B)</span>. Because if <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">P_1,P_2,\dots\vDash C</span>, then, as a matter of
 mathematical fact we won&rsquo;t show in detail, <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">P_1\land P_2\land\dots \land C</span> is
-equivalent to <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">P_1\land P_2\land\dots</span>. This gives us: <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(C\mid
+equivalent to <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">P_1\land P_2\land\dots</span>. This gives us: <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(C\mid
 P_1,P_2,\dots)=\frac{Pr(P_1\land P_2\land \dots\land C)}{Pr(P_1\land P_2\land
 \dots)}=\frac{Pr(P_1\land P_2\land \dots)}{Pr(P_1\land P_2\land \dots)}=1</div></p>
 <p>Since <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1\geq Pr(C)</span> for each <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">C</span>, this proves our claim.</p>
@@ -1193,9 +1193,9 @@ P_1,P_2,\dots)=\frac{Pr(P_1\land P_2\land \dots\land C)}{Pr(P_1\land P_2\land
 C</span>.</p>
 <p>This follows from the fact that if <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A\vDash B</span>, then <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Pr(A)\leq Pr(B)</span>, we
 observed above. Because from this it follows that if <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">C\vDash P_1\land P_2\land \dots</span>, then <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Pr(C)\leq Pr(P_1\land P_2\land \dots)</span>. Further, as before we have that <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">C\land P_1\land P_2\land \dots</span> is equivalent to <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">C</span> and so, we can reason as follows:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(C\mid P_1\land P_2\land \dots)=\frac{Pr(C\land P_1\land
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(C\mid P_1\land P_2\land \dots)=\frac{Pr(C\land P_1\land
 P_2\land\dots)}{Pr(P_1\land P_2\land)}</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">=\frac{Pr(C)}{Pr(P_1\land P_2\land\dots)}\overset{Pr(C)\leq Pr(P_1\land P_2\land \dots)}\geq Pr(C)</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">=\frac{Pr(C)}{Pr(P_1\land P_2\land\dots)}\overset{Pr(C)\leq Pr(P_1\land P_2\land \dots)}\geq Pr(C)</div>
 </li>
 </ul>
 <p>The latter law will allow us to observe the inductive validity of some
@@ -1226,7 +1226,7 @@ concrete examples of inductive inference, one valid, one invalid.</p>
 
 <p><strong>Enumerative induction</strong> is the principle that we can infer <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall x P(x)</span>
 from sufficiently many and well-chosen instances <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">P(a_1), P(a_2),\dots</span>. In our
-simple setting, we can express this as: <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">P(a_1),P(a_2),\dots\mid\approx \forall
+simple setting, we can express this as: <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">P(a_1),P(a_2),\dots\mid\approx \forall
 xP(x).</div> The simple, standard example of this inference is that all observed
 swans, sampled well and wide, were wide, so all swans are white. Of course, this
 inference is deductively invalid—it can always happen that there&rsquo;s a non-white
@@ -1237,17 +1237,17 @@ an inference is inductively valid. Let&rsquo;s suppose for a moment that we have
 extended our treatment of probabilities to a FOL language, which is rather
 straight-forward but takes a lot of space.<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup> Assuming that we still get our
 theorem (which we do), we can infer the validity of enumerative induction from
-the simple fact that <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\forall xP(x)\vDash P(a_i),</div> for each <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">i</span> following the
+the simple fact that <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\forall xP(x)\vDash P(a_i),</div> for each <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">i</span> following the
 law of universal instantiation.</p>
 <p>Even more so, given some reasonable assumptions, since the function</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\forall xP(x)\mid \dots)</div> grows monotonically, if we put every increasing
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\forall xP(x)\mid \dots)</div> grows monotonically, if we put every increasing
 numbers of instances in[^math]
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">P(a_1)</div> 
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">P(a_1)\land P(a_2)</div> 
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">P(a_1)\land P(a_2)\land \dots</div> 
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">P(a_1)</div> 
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">P(a_1)\land P(a_2)</div> 
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">P(a_1)\land P(a_2)\land \dots</div> 
 we will eventually "crack" every threshold of <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\epsilon\geq 0.5</span> we could chose.
 <p>This means that on our simple model of inductive validity, for sufficiently
-large <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">n</span>, <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">P(a_1),\dots,P(a_n)\mid\overset{!}{\approx}\forall xP(x)</div></p>
+large <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">n</span>, <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">P(a_1),\dots,P(a_n)\mid\overset{!}{\approx}\forall xP(x)</div></p>
 <h2 id="conjunction-fallacy">Conjunction fallacy<button class="btn btn-back-to-top">
     
     <i class="bi bi-chevron-double-up"></i>
@@ -1265,8 +1265,8 @@ large <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1
 </ol>
 <p>In experimental surveys, people reliably judge option 2 more likely as option 1,
 which is a <strong>probabilistic fallacy</strong>.</p>
-<p>We can now see why: Since <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{BANK}\land\mathsf{FEMINIST}\vDash
-\mathsf{BANK},</div> we can infer that <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{BANK}\land\mathsf{FEMINIST})\leq
+<p>We can now see why: Since <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{BANK}\land\mathsf{FEMINIST}\vDash
+\mathsf{BANK},</div> we can infer that <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">Pr(\mathsf{BANK}\land\mathsf{FEMINIST})\leq
 Pr(\mathsf{BANK}),</div> for any <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Pr</span> we could chose.</p>
 <p>There is an extensive psychological literature that tries to explain <em>why</em>
 people make this and related fallacies. But for us, from a logical perspective,

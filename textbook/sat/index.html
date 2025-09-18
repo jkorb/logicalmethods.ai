@@ -718,7 +718,7 @@ test for valid inference. Why is this a problem?</p>
 
  that valid inference is truth-preservation from premises to
 conclusion:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">P_1,P_2,\dots\vDash C\Leftrightarrow [P_1]\cap [P_2]\cap \dots\subseteq [C]</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">P_1,P_2,\dots\vDash C\Leftrightarrow [P_1]\cap [P_2]\cap \dots\subseteq [C]</div>
 <p>In 
 
 
@@ -734,7 +734,7 @@ Chapter 4.5 </a>
 , we implemented this definition in the context of
 Boolean algebras. In this setting, the above condition is equivalent to saying
 that:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">P_1,P_2,\dots\vDash C\Leftrightarrow \text{ for all }\nu,\text{ if
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">P_1,P_2,\dots\vDash C\Leftrightarrow \text{ for all }\nu,\text{ if
 }\nu(P_1)=1, \nu(P_2)=1\dots\text{, then }\nu(C)=1.</div>
 <p>In words, this means that the inference is valid iff for all Boolean valuations,
 where the premises are all true (have value 1), the conclusion is also true
@@ -752,7 +752,7 @@ of an inference.</p>
    > Chapter 4.5 </a>
 
 , we went through an example calculation to show that:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{RAIN}\lor \mathsf{BIKE},\neg\mathsf{RAIN}\vDash\mathsf{BIKE}</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{RAIN}\lor \mathsf{BIKE},\neg\mathsf{RAIN}\vDash\mathsf{BIKE}</div>
 <p>The problem is that this was a &ldquo;human-style&rdquo; calculation. How can we teach a
 (non-intelligent) computer system the necessary skills to test for valid
 inference itself?</p>
@@ -789,7 +789,7 @@ conditions give us that <span class="excalifont" style="  font-size: clamp(0.9re
 that&rsquo;s impossible, meaning that the set is unsatisfiable.</p>
 <p>The reason why we&rsquo;re talking about satisfiability is that there&rsquo;s a test for
 valid inference in terms of satisfiability, which looks as follows:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">P_1,P_2,\dots\vDash C\Leftrightarrow \Set{P_1,P_2,\dots, \neg C}\text{ is
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">P_1,P_2,\dots\vDash C\Leftrightarrow \Set{P_1,P_2,\dots, \neg C}\text{ is
 \emph{un}satisfiable}</div>
 <p>The idea is simply that <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\Set{P_1,P_2,\dots, \neg C}</span> is
 satisfiable just in case its possible to make all the premises <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">P_1,P_2,\dots</span>
@@ -811,10 +811,10 @@ false.</p>
 4.5 </a>
 
  again:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{RAIN}\lor \mathsf{BIKE},\neg\mathsf{RAIN}\vDash\mathsf{BIKE}</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{RAIN}\lor \mathsf{BIKE},\neg\mathsf{RAIN}\vDash\mathsf{BIKE}</div>
 <p>We can show this using the previous test by checking whether the following set
 is satisfiable:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\mathsf{RAIN}\lor \mathsf{BIKE},\neg\mathsf{RAIN},\neg \mathsf{BIKE}}</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\mathsf{RAIN}\lor \mathsf{BIKE},\neg\mathsf{RAIN},\neg \mathsf{BIKE}}</div>
 <p><em>We</em> can quickly see that this set is unsatisfiable:</p>
 <ul>
 <li>
@@ -827,7 +827,7 @@ is satisfiable:</p>
 </li>
 <li>
 <p>But we also need <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(\mathsf{RAIN}\lor \mathsf{BIKE})=</span>. Which means:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{RAIN}\lor \mathsf{BIKE})=\nu(\mathsf{RAIN})+\nu(\mathsf{BIKE})=1</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{RAIN}\lor \mathsf{BIKE})=\nu(\mathsf{RAIN})+\nu(\mathsf{BIKE})=1</div>
 <p>Since we know that <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(\mathsf{RAIN})=0</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(\mathsf{BIKE})=0</span>, this is
 impossible (<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">0+0=1</span>) and so the set is unsatisfiable.</p>
 </li>
@@ -930,7 +930,7 @@ steps in a table.</p>
 
 
 <p>The <strong>truth-table method</strong> for validity checking is to use the truth-table for
-the formula: <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(((P_1\land P_2)\land \dots )\land \neg C)</div></p>
+the formula: <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(((P_1\land P_2)\land \dots )\land \neg C)</div></p>
 <ul>
 <li>If there is a row  with value <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span>, the inference is invalid.</li>
 <li>If all rows have value <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">0</span>, the inference is valid.</li>
@@ -1058,7 +1058,7 @@ still quite abstract, but we can work with that using some examples.</p>
 CNFs, though, which is what make them a normal form, is that <em>every</em> formula can
 equivalently be re-written in CNF. What we mean by that is that for each formula
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A</span>, there exists a formula <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A_{CNF}</span> such that for each valuation:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(A)=\nu(A_{CNF}).</div> A formula that's equivalent in this way is equivalent
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(A)=\nu(A_{CNF}).</div> A formula that's equivalent in this way is equivalent
 for all (logical and AI) intents and purposes.
 <p>Here are the equivalent formulas for the non-CNF formulas:</p>
 <ul>
@@ -1108,36 +1108,36 @@ needed until your formula is in CNF:</p>
 <p>The way to read these rules is that if you come across any of the left formulas
 within a non-CNF formula, replace the occurrence with the right formula.</p>
 <p>Here&rsquo;s how the procedure looks like in practice:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{RAIN}\lor \neg(\mathsf{SUN}\lor \neg \mathsf{BIKE})</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\leadsto\mathsf{RAIN}\lor (\neg\mathsf{SUN}\land \neg\neg \mathsf{BIKE})</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\leadsto(\mathsf{RAIN}\lor \neg\mathsf{SUN})\land (\mathsf{RAIN}\lor \neg\neg \mathsf{BIKE})</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\leadsto(\mathsf{RAIN}\lor \neg\mathsf{SUN})\land (\mathsf{RAIN}\lor \mathsf{BIKE})</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{RAIN}\lor \neg(\mathsf{SUN}\lor \neg \mathsf{BIKE})</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\leadsto\mathsf{RAIN}\lor (\neg\mathsf{SUN}\land \neg\neg \mathsf{BIKE})</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\leadsto(\mathsf{RAIN}\lor \neg\mathsf{SUN})\land (\mathsf{RAIN}\lor \neg\neg \mathsf{BIKE})</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\leadsto(\mathsf{RAIN}\lor \neg\mathsf{SUN})\land (\mathsf{RAIN}\lor \mathsf{BIKE})</div>
 <p>Before we move to the DPLL algorithm, we need to talk about what CNF formulas
 look like <em>in general</em>. Above, we defined a CNF as a conjunction of disjunctions
 of propositional variables or their negations. First, some terminology:</p>
 <ul>
 <li>A <em>literal</em> is a propositional variable or its negation. In BNF:</li>
 </ul>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\langle lit\rangle ::= \langle prop\rangle\mid \neg\langle prop\rangle</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\langle lit\rangle ::= \langle prop\rangle\mid \neg\langle prop\rangle</div>
 <ul>
-<li>A <em>clause</em> is a set of literals. That is, a clause is: <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{l_1,\dots,
+<li>A <em>clause</em> is a set of literals. That is, a clause is: <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{l_1,\dots,
 l_n},</div> where <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">l_1, \dots, l_n</span> are literals.</li>
 </ul>
 <p>A convenient way of talking about CNFs is simply as sets of sets of literals. So
-we write: <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\Set{l_1^1,\dots,l_{n_1}^1},\dots \Set{l_1^k,\dots,l_{n_k}^k}}</div>
-instead of <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(l_1^1\lor\dots\lor l_{n_1}^1)\land\dots\land(l_1^k\lor\dots\lor
+we write: <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\Set{l_1^1,\dots,l_{n_1}^1},\dots \Set{l_1^k,\dots,l_{n_k}^k}}</div>
+instead of <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(l_1^1\lor\dots\lor l_{n_1}^1)\land\dots\land(l_1^k\lor\dots\lor
 l_{n_k}^k).</div></p>
 <p>That is, there are <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1,\dots,k</span> clauses:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{l_1^1,\dots,l_{n_1}^1}</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\vdots</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{l_1^k,\dots,l_{n_k}^k}.</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{l_1^1,\dots,l_{n_1}^1}</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\vdots</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{l_1^k,\dots,l_{n_k}^k}.</div>
 <p>The first clause has length <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">n_1</span>, the second one length <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">n_2</span>&hellip;, and the last,
 the <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">k</span>-th one has length <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">n_k</span>.</p>
 <p>This is obviously criminally abstract (though unfortunately necessary), but
 looking at a concrete example hopefully helps understand this quicker. The idea
-is simply that instead of instead of  <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(\mathsf{RAIN}\lor
+is simply that instead of instead of  <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(\mathsf{RAIN}\lor
 \neg\mathsf{SUN})\land (\mathsf{RAIN}\lor \mathsf{BIKE}),</div> we just write:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\Set{\mathsf{RAIN},\neg\mathsf{SUN}},\Set{\mathsf{RAIN},\mathsf{BIKE}}}</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\Set{\mathsf{RAIN},\neg\mathsf{SUN}},\Set{\mathsf{RAIN},\mathsf{BIKE}}}</div>
 <h2 id="dpll">DPLL<button class="btn btn-back-to-top">
     
     <i class="bi bi-chevron-double-up"></i>
@@ -1149,18 +1149,18 @@ is simply that instead of instead of  <div class="text-center my-4 excalifont" s
 <p>The DPLL algorithm determines whether a given formula in CNF is satisfiable,
 i.e. whether there&rsquo;s a Boolean valuation that makes the entire formula true.</p>
 <p>Using the notation from before, we assume that our formula looks as follows:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\Set{l_1^1,\dots,l_{n_1}^1},\dots \Set{l_1^k,\dots,l_{n_k}^k}}</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\Set{l_1^1,\dots,l_{n_1}^1},\dots \Set{l_1^k,\dots,l_{n_k}^k}}</div>
 <p>The crucial thing to understand is that in order to make the corresponding
 formula true, it&rsquo;s sufficient to make one literal from each clause true.</p>
 <p>Let&rsquo;s start with the &ldquo;criminally abstract&rdquo; way of saying what that means: we
 simply need to find a sequence:</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">l_{i_1}^1\in \Set{l_1^1m\dots, l_{n_1}^1}</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\vdots</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">l_{i_k}^1\in \Set{l_k^1m\dots, l_{n_k}^k}</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">l_{i_1}^1\in \Set{l_1^1m\dots, l_{n_1}^1}</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\vdots</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">l_{i_k}^1\in \Set{l_k^1m\dots, l_{n_k}^k}</div>
 of literals with a valuation <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu</span> such that 
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(l_{i_1})=1</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\vdots</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(l_{i_k})=1</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(l_{i_1})=1</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\vdots</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(l_{i_k})=1</div>
 <p>The DPLL algorithm is, essentially, a smart way of making this search easier
 than just going &ldquo;brute force&rdquo; through all the possibilities. In some cases, we
 still need to search through some possibilities, but by thinking about the
@@ -1170,7 +1170,7 @@ abstract examples:</p>
 <ul>
 <li>
 <p><strong>Pure literal elimination</strong>. Take the following CNF</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\Set{\mathsf{RAIN},\neg\mathsf{SUN}},\Set{\mathsf{RAIN},\mathsf{BIKE}},
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\Set{\mathsf{RAIN},\neg\mathsf{SUN}},\Set{\mathsf{RAIN},\mathsf{BIKE}},
 \Set{\neg \mathsf{SUN},\mathsf{BIKE}},\Set{\neg\mathsf{SUN},\neg\mathsf{BIKE}}}</div>
 <p>Note that <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}</span> only occurs &ldquo;positively&rdquo; in the formula, we never
 have <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg\mathsf{RAIN}</span> anywhere. This means that if we set
@@ -1178,19 +1178,19 @@ have <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}</span> true and we can focus on the others (remember that clauses are
 just disjunctions).</p>
 <p>So, realizing this, we can just focus on satisfying</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\Set{\neg \mathsf{SUN},\mathsf{BIKE}},\Set{\neg\mathsf{SUN},\neg\mathsf{BIKE}}}</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\Set{\neg \mathsf{SUN},\mathsf{BIKE}},\Set{\neg\mathsf{SUN},\neg\mathsf{BIKE}}}</div>
 <p>But here both <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg\mathsf{SUN}</span> has a similar property as <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}</span>
 before: it only &ldquo;negatively&rdquo; (there&rsquo;s never <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{SUN}</span>).</p>
 <p>So, we can just set <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(\mathsf{SUN})=0</span> to get <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(\neg \mathsf{SUN})=1</span> as
 desired, and we satisfy both  <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\Set{\neg \mathsf{SUN},\mathsf{BIKE}}</span> and
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\Set{\neg\mathsf{SUN},\neg\mathsf{BIKE}}</span> at the same time.</p>
 <p>At this stage, what remains after eliminating all the clauses we&rsquo;ve satisfied
-is the empty set <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{},</div> as we&rsquo;ve found a &ldquo;truthmaker&rdquo; for each clause.</p>
+is the empty set <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{},</div> as we&rsquo;ve found a &ldquo;truthmaker&rdquo; for each clause.</p>
 <p>Now, it&rsquo;s easy to check that our valuation <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu</span> with</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{RAIN})=1</div>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{SUN})=0</div> 
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{RAIN})=1</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{SUN})=0</div> 
 <p>indeed makes the formula</p>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(\mathsf{RAIN}\lor\neg\mathsf{SUN})\land(\mathsf{RAIN}\lor\mathsf{BIKE})\land
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(\mathsf{RAIN}\lor\neg\mathsf{SUN})\land(\mathsf{RAIN}\lor\mathsf{BIKE})\land
 (\neg \mathsf{SUN}\lor\mathsf{BIKE})\land(\neg\mathsf{SUN}\lor\neg\mathsf{BIKE})</div>
 <p>true, no matter what the value of
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(\mathsf{BIKE})</span> is.</p>
@@ -1207,25 +1207,25 @@ are clauses that contain only a single literal, such as the clause
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\Set{\mathsf{BIKE}}</span> in</p>
 </li>
 </ul>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\Set{\mathsf{RAIN},\neg\mathsf{SUN}},\Set{\mathsf{RAIN},\neg\mathsf{BIKE}},
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\Set{\mathsf{RAIN},\neg\mathsf{SUN}},\Set{\mathsf{RAIN},\neg\mathsf{BIKE}},
 \Set{\neg \mathsf{SUN}},\Set{\mathsf{BIKE}}}</div> The point is that the _only_ way
 to make a member of <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\Set{\mathsf{BIKE}}</span> true is to make <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{BIKE}</span> true.
 We thus need to set <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(\mathsf{BIKE})=1</span> and can eliminate
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\Set{\mathsf{BIKE}}</span> from the search.
-<p>This also means that we <em>can&rsquo;t</em> make <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\mathsf{RAIN},\neg
+<p>This also means that we <em>can&rsquo;t</em> make <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\mathsf{RAIN},\neg
 \mathsf{BIKE}}</div> true by making <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg\mathsf{BIKE}</span> true. That would require
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{BIKE}</span> to be false. As a result, we need to satisfy the following
 modified formula:</p>
-  <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\Set{\mathsf{RAIN},\neg\mathsf{SUN}},\Set{\mathsf{RAIN}},
+  <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\Set{\mathsf{RAIN},\neg\mathsf{SUN}},\Set{\mathsf{RAIN}},
   \Set{\neg \mathsf{SUN}}}</div>
 <p>At this point, we can continue with the same reasoning and unit clause
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\Set{\mathsf{RAIN}}</span>. We infer that <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(\mathsf{RAIN})=1</span> and get:<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
-  <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\Set{\neg \mathsf{SUN}}}</div>
+  <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\Set{\neg \mathsf{SUN}}}</div>
 <p>A last application of the same principle gives us <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(\mathsf{SUN})=0</span> and we
 have a solution with the valuation:</p>
-  <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{BIKE})=1</div>
-  <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{RAIN})=1</div>
-  <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{SUN})=0</div> 
+  <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{BIKE})=1</div>
+  <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{RAIN})=1</div>
+  <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{SUN})=0</div> 
 <p>In general, the rule of <strong>unit propagation</strong> says that when there&rsquo;s a unit clause
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\Set{l}</span> in the CNF, we need to set the truth-value accordingly and can
 ignore that clause in further search, <em>and</em> we need to eliminate any
@@ -1233,47 +1233,47 @@ ignore that clause in further search, <em>and</em> we need to eliminate any
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">p</span>) from any other clause.</p>
 <p>An important thing to note here is that applying unit propagation, we can end
 up with an <strong>empty clause</strong>. For example, applying unit propagation to:</p>
-  <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\Set{\mathsf{RAIN}},\Set{\neg\mathsf{RAIN}}}</div>
-  gives us <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\Set{}}.</div> If this happens, it tells us that the CNF is
+  <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\Set{\mathsf{RAIN}},\Set{\neg\mathsf{RAIN}}}</div>
+  gives us <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\Set{}}.</div> If this happens, it tells us that the CNF is
   **unsatisfiable**. This is because we still need to find a way of making the
   remaining clause true and there are no options. 
 <p>In this case, this makes a lot of sense, since the CNF
 <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\Set{\Set{\mathsf{RAIN}},\Set{\neg\mathsf{RAIN}}}</span> corresponds to the formula</p>
-  <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{RAIN}\land \neg\mathsf{RAIN},</div> which is obviously unsatisfiable.
+  <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{RAIN}\land \neg\mathsf{RAIN},</div> which is obviously unsatisfiable.
 <ul>
 <li><strong>Splitting rule</strong>. The two previous rules, <strong>unit propagation</strong> and <strong>pure
 literal elimination</strong> don&rsquo;t cover all the possibilities. There are situations,
 where we can&rsquo;t apply either, such as the following CNF:</li>
 </ul>
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\Set{\mathsf{RAIN},\mathsf{BIKE}},\Set{\neg\mathsf{RAIN},\neg\mathsf{BIKE}}}.</div>
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\Set{\mathsf{RAIN},\mathsf{BIKE}},\Set{\neg\mathsf{RAIN},\neg\mathsf{BIKE}}}.</div>
 <p>At this point, we have to <strong>guess</strong>. Simply pick a literal and test if you can
 make it true. We pick <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}</span> and assume <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(\mathsf{RAIN})=1</span>. This
 will make the first clause true and what remains to be checked is</p>
-  <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\Set{\neg\mathsf{BIKE}}}.</div> Note that <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg\mathsf{RAIN}</span> has
+  <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\Set{\neg\mathsf{BIKE}}}.</div> Note that <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg\mathsf{RAIN}</span> has
   disappeared from the clause since we can no longer make that true.
 <p>Now, we can apply unit propagation to give us <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(\mathsf{BIKE})=0</span> and we
-have the satisfying valuation: <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{RAIN})=1</div></p>
-  <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{BIKE})=0</div>
+have the satisfying valuation: <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{RAIN})=1</div></p>
+  <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{BIKE})=0</div>
 <p>Sometimes the first guess doesn&rsquo;t work. Consider:</p>
-  <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\Set{\mathsf{RAIN},\neg\mathsf{BIKE}},\Set{\neg\mathsf{RAIN},\neg\mathsf{BIKE}},\Set{\neg\mathsf{RAIN},\mathsf{BIKE}}}.</div>
+  <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\Set{\mathsf{RAIN},\neg\mathsf{BIKE}},\Set{\neg\mathsf{RAIN},\neg\mathsf{BIKE}},\Set{\neg\mathsf{RAIN},\mathsf{BIKE}}}.</div>
 <p>If we guess <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(\mathsf{RAIN})=1</span> in order to make the first clause true,
 what we end up with is:</p>
-  <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\Set{\neg\mathsf{BIKE}},\Set{\mathsf{BIKE}}}.</div>
-<p>By unit propagation, this results in <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\Set{}}</div> meaning the procedure
+  <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\Set{\neg\mathsf{BIKE}},\Set{\mathsf{BIKE}}}.</div>
+<p>By unit propagation, this results in <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\Set{}}</div> meaning the procedure
 fails.</p>
 <p>But fear not! We haven&rsquo;t tried <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(\mathsf{RAIN})=0</span>. What we do now, is we
 <strong>backtrack</strong> to the last choice and try the opposite choice. That is we go
 back to the CNF</p>
-  <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\Set{\mathsf{RAIN},\neg\mathsf{BIKE}},\Set{\neg\mathsf{RAIN},\neg\mathsf{BIKE}},\Set{\neg\mathsf{RAIN},\mathsf{BIKE}}}</div>
+  <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\Set{\mathsf{RAIN},\neg\mathsf{BIKE}},\Set{\neg\mathsf{RAIN},\neg\mathsf{BIKE}},\Set{\neg\mathsf{RAIN},\mathsf{BIKE}}}</div>
   and see if we can proceed with the assumption that <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(\mathsf{RAIN})=0</span>. 
 <p>What we end up with then, is</p>
-  <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\Set{\neg\mathsf{BIKE}}}.</div> But now we get our satisfying valuation via
+  <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{\Set{\neg\mathsf{BIKE}}}.</div> But now we get our satisfying valuation via
   unit propagation and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(\mathsf{BIKE})=0</span>. 
 <p>So, the final outcome is</p>
-  <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{RAIN})=0</div>
-  <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{BIKE})=0</div>
+  <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{RAIN})=0</div>
+  <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{BIKE})=0</div>
   which clearly satisfies the corresponding formula
-  <div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(\mathsf{RAIN}\lor\neg\mathsf{BIKE})\land(\neg\mathsf{RAIN}\lor\neg\mathsf{BIKE})\land(\neg\mathsf{RAIN}\lor\mathsf{BIKE})</div>
+  <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(\mathsf{RAIN}\lor\neg\mathsf{BIKE})\land(\neg\mathsf{RAIN}\lor\neg\mathsf{BIKE})\land(\neg\mathsf{RAIN}\lor\mathsf{BIKE})</div>
 <p>The <strong>splitting rule</strong>, in general, says that we should pick the first
 unassigned literal and try all unit propagation and pure literal elimination
 for  both possible truth-values of our picked literal. This means that we try
@@ -1312,7 +1312,7 @@ as possible.</p>
 <ul>
 <li>If we end up with an empty CNF <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\Set{}</span>, we&rsquo;ve satisfied the formula</li>
 <li>If we end up with an empty clause somewhere among our clauses <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">C_1,\dots, C_n</span>,
-<div class="text-center my-4 excalifont" style="  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{C_1,\dots,\Set{},\dots C_n},</div> the CNF is unsatisfiable.
+<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\Set{C_1,\dots,\Set{},\dots C_n},</div> the CNF is unsatisfiable.
 </li>
 </ul>
 </li>
