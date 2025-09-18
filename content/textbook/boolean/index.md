@@ -195,7 +195,7 @@ is one of the exercises. If you want to try more, you can try the amazing
 [nandgame](https://nandgame.com/), which allows you to implement an entire
 computer "by hand".
 
-# The Laws of Boolean algebra
+## The Laws of Boolean algebra
 
 {{< img src="img/laws_of_logic.png" class="rounded  float-end inert-img img-fluid mx-3" width="300px">}} 
 The behavior of the Boolean truth-functions is governed by a series of
