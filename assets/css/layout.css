@@ -64,3 +64,7 @@ pre code {
   /* font-weight: bold; */
   /* font-size: 19pt; */
 }
+
+.excalifont code {
+  color: #1971c2; /* force black text */
+}
