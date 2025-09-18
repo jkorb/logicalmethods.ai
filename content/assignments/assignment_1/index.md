@@ -110,7 +110,7 @@ theoretic claim. (1 point)
    {{< img src="img/theorem.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="400px">}}
 
    _Hint_: Apply the definition of 
-      {{< img src="img/cap.png" class="inert-img" height="30px" style="vertical-align: middle;" >}} and reason "step-by-step":
+      {{< img src="img/subseteq.png" class="inert-img" height="30px" style="vertical-align: middle;" >}} and reason "step-by-step":
    
      - {{< img src="img/def_subseteq.png" class="inert-img" height="25px" style="vertical-align: middle;" >}} 
      - {{< img src="img/def_subseteq_1.png" class="inert-img" height="30px" style="vertical-align: middle;" >}} 
