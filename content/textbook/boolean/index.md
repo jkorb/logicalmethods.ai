@@ -689,7 +689,7 @@ class="inert-img" height="30px" style="vertical-align: middle;" >}} says that it
 
 {{< img src="img/condition_sun_or_rain.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="800px">}}
 
-This, we can implement using the Boolean $OR$ by saying that:
+This we can implement using the Boolean $OR$ by saying that:
 
 {{< img src="img/clause_or.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}}
 
@@ -707,6 +707,10 @@ truth-values under an assignment:
 
 This is, in a nutshell, the standard implementation of the Boolean semantics
 for propositional logic. Let's use it to check some inferences for deductive validity!
+
+For example, we can calculate the proposition expressed by {{< img src="img/complex_fml.png" class="inert-img" height="24px" style="vertical-align: middle;" >}} as follows:
+
+{{< img src="img/complex_proposition.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="900px">}}
 
 We'll do two examples: 
 
@@ -749,7 +753,7 @@ Once we've worked out the propositions, we can see that {{< img src="img/interse
 class="inert-img" height="38px" style="vertical-align: middle;" >}} and {{< img src="img/countermodel.png"
 class="inert-img" height="40px" style="vertical-align: middle;" >}}. This makes $M₁$ a **countermodel** for the inference, which shows that 
 
-{{< img src="img/ds_inval.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="500px">}}
+{{< img src="img/aff_inval.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="500px">}}
 
 This means that, indeed: {{< img src="img/aff_val.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="500px">}}
 
