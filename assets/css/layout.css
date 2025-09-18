@@ -39,7 +39,21 @@ main, .element {
 
 @font-face {
   font-family: 'Excalifont';
-  src: url('/fonts/Excalifont.woff2') format('woff2');
+  src: url('/fonts/Excalifont.woff2') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+code,
+pre code {
+  font-family: "Comic Shanns", monospace;
+  color: #000; /* force black text */
+  font-size: clamp(1rem, 1vw + 0.6rem, 1.5rem); /* a bit larger than normal */
+}
+
+@font-face {
+  font-family: 'Comic Shanns';
+  src: url('/fonts/Comic Shanns/comic shanns.otf') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
