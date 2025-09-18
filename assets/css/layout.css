@@ -51,6 +51,15 @@ pre code {
   font-size: clamp(1rem, 1vw + 0.6rem, 1.5rem); /* a bit larger than normal */
 }
 
+pre code {
+  display: block;        /* pre is block by default */
+  margin: auto;
+  width: fit-content;
+  text-align: center;
+  justify-content: center;  /* horizontal center */
+}
+
+
 @font-face {
   font-family: 'Comic Shanns';
   src: url('/fonts/Comic Shanns/comic shanns.otf') format('woff2');

@@ -90,16 +90,12 @@ These are [functions](https://en.wikipedia.org/wiki/Function_(mathematics)) in
 the mathematical sense, which take one or more Boolean truth-values as input and
 return exactly one Boolean truth-value as output.
 
-For now, we'll restrict ourselves to the basic functions
-$<strong>NOT</strong>$,
-$<strong>AND</strong>$, and
-$<strong>OR</strong>$. These are not the most
-fundamental truth-functions in any sense of the word, but _are_ the most
-commonly used truth-functions in logical theory. In computer science, instead,
-especially when we're thinking about basic semiconductor circuits
-$<strong>XOR</strong>$ and especially when we're
-thinking about basic semiconductor circuits
-$<strong>NAND</strong>$ are more commonly used as
+For now, we'll restrict ourselves to the basic functions $`NOT`$, $`AND`$, and
+$`OR`$. These are not the most fundamental truth-functions in any sense of the
+word, but _are_ the most commonly used truth-functions in logical theory. In
+computer science, instead, especially when we're thinking about basic
+semiconductor circuits $`XOR`$ and especially when we're
+thinking about basic semiconductor circuits $`NAND`$ are more commonly used as
 basic functions.
 
 The truth-functions are given by the following functional tables, where the
@@ -109,18 +105,14 @@ intersecting the two input columns:
 
 {{< img src="img/function_tables.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="900px">}}
 
-So, for example, $<strong>NOT</strong> 0 = 1$ and 
-$1 <strong>OR</strong> 0 = 1$.
+So, for example, $`NOT` 0 = 1$ and 
+$1 `OR` 0 = 1$.
 
-The truth-functions $<strong>NOT</strong>$,
-$<strong>AND</strong>$, and
-$<strong>OR</strong>$ are sufficient to express
-_any_ truth-function whatsoever. This mathematical fact is known as the joint
+The truth-functions $`NOT`$, $`AND`$, and $`OR`$ are sufficient to express _any_
+truth-function whatsoever. This mathematical fact is known as the joint
 **truth-functional completeness** of these operators, and we'll investigate it
-in the exercises. $<strong>NOT</strong>$,
-$<strong>AND</strong>$, and
-$<strong>OR</strong>$ are not the only collection
-of truth-functions with this property, not even the smallest one. But especially
+in the exercises. $`NOT`$, $`AND`$, and $`OR`$ are not the only collection of
+truth-functions with this property, not even the smallest one. But especially
 in logical contexts, they are the most commonly used ones, since using these
 truth-functions, we can easily describe many different important concepts and
 algorithms with relative ease.
@@ -171,7 +163,7 @@ if it is $on$ the output is $1$. So, the set-up is depicted in the configuration
 for the first and second input both being $0$. Since we haven't implemented
 anything yet, the output is also $0$.
 
-We can implement the $NOT$ function with a single $default "on"$ relay:
+We can implement the $`NOT`$ function with a single $default "on"$ relay:
 
 {{< img src="img/negation_impl.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="900px">}}
 
@@ -180,7 +172,7 @@ $off$), the output is $1$ (the lamp is $on$); and if the first input is $1$ ($X$
 is $on$), the output is $0$ (the lamp is $off$). The second input doesn't
 matter, of course.
 
-We can implement $AND$ using the other kind of relay as follows:
+We can implement $`AND`$ using the other kind of relay as follows:
 
 {{< img src="img/conjunction_impl.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="900px">}}
 
@@ -188,72 +180,77 @@ There are four possible states of the circuits, but as you can see: only if both
 inputs are $1$ the output is
 $1$. In all other configurations, the output is
 $0$—just like the
-$AND$ function, requires.
+$`AND`$ function, requires.
 
-Implementing the $OR$ function using the relays
+Implementing the $`OR`$ function using the relays
 is one of the exercises. If you want to try more, you can try the amazing
 [nandgame](https://nandgame.com/), which allows you to implement an entire
 computer "by hand".
 
 ## The Laws of Boolean algebra
 
-{{< img src="img/laws_of_logic.png" class="rounded  float-end inert-img img-fluid mx-3" width="300px">}} 
-The behavior of the Boolean truth-functions is governed by a series of
-**algebraic laws**, that is _identities_ describing their interaction. These
-identities are formulated using **variables**
-$X,Y,…$, which can assume arbitrary values from
-among the set ${0, 1}$. Take, for example, the
-equation:
+{{< img src="img/laws_of_logic.png" class="rounded  float-end inert-img img-fluid mx-3" width="300px">}}
+The behavior of the Boolean truth-functions is
+governed by a series of **algebraic laws**, that is _identities_ describing
+their interaction. These identities are formulated using **variables** $X,Y,…$,
+which can assume arbitrary values from among the set ${0, 1}$. Take, for
+example, the equation:
 
-$$(X AND Y) = (Y AND X)$$
+<div class="text-center my-4">
+`(X {{<blue>}}AND{{</blue>}} Y) = (Y {{<blue>}}AND{{</blue>}} X)`
+</div>
 
 This equation says that for any pair of values
 $X,Y$ from {{<excalifont>}}{0,
   1}{{</excalifont>}}, the result of applying
-$AND$ with $X$ as
+$`AND`$ with $X$ as
 the first input and $Y$ as the second is the same
-as applying $AND$ with
+as applying $`AND`$ with
 $Y$ as the first input and
 $X$ as the second.
 
 You can verify this law by inspecting the function table for
-$AND$ and going through all possible values for
+$`AND`$ and going through all possible values for
 $X$ and $Y$. Here
 are the corresponding calculations:
 
-$$(0 AND 0) &nbsp; = &nbsp; (0 AND 0)$$
+<div class="text-center my-4">
 
-$$(0 AND 1) = 0 = (1 AND 0)$$
+`(0 {{<blue>}}AND{{</blue>}} 0) &nbsp; = &nbsp; (0 {{<blue>}}AND{{</blue>}} 0)`
 
-$$(1 AND 0) = 0 = (0 AND 1)$$
+`(0 {{<blue>}}AND{{</blue>}} 1) = 0 = (1 {{<blue>}}AND{{</blue>}} 0)`
 
-$$(1 AND 1) &nbsp; = &nbsp; (1 AND 1)$$
+`(1 {{<blue>}}AND{{</blue>}} 0) = 0 = (0 {{<blue>}}AND{{</blue>}} 1)`
+
+`(1 {{<blue>}}AND{{</blue>}} 1) &nbsp; = &nbsp; (1 {{<blue>}}AND{{</blue>}} 1)`
+
+</div>
 
 Only the second and third line are "interesting" calculations, the first and
 last are "trivial".
 
 This law is called the law of $Commutativity$ for
-$AND$, which states that for
-$AND$, the order of its inputs doesn't matter.
+$`AND`$, which states that for
+$`AND`$, the order of its inputs doesn't matter.
 Many laws of Boolean algebra have such names.
 
 Here are the most important laws and their corresponding names:
 
 |                                                                                                                                                              |               |                                                      |
 | ----------------------------------------------------------------------------                                                                                 | -             | -----------------------------------------            |
-| $(X OR (Y OR Z)) = ((X OR Y) OR Z)$<br>$(X AND (Y AND Z)) = ((X AND Y) AND Z)$                 | &emsp; &emsp; | $("Associativity")$   |
+| `(X {{<blue>}}OR{{</blue>}} (Y {{<blue>}}OR{{</blue>}} Z)) = ((X {{<blue>}}OR{{</blue>}} Y) {{<blue>}}OR{{</blue>}} Z)`<br>`(X {{<blue>}}AND{{</blue>}} (Y {{<blue>}}AND{{</blue>}} Z)) = ((X {{<blue>}}AND{{</blue>}} Y) {{<blue>}}AND{{</blue>}} Z)`                 | &emsp; &emsp; | $("Associativity")$   |
 | &nbsp;                                                                                                                                                       |               |
-| $(X OR Y) = (Y OR X)$<br>$(X AND Y) = (Y AND X)$                                               |               | $("Commutativity")$   |
+| `(X {{<blue>}}OR{{</blue>}} Y) = (Y {{<blue>}}OR{{</blue>}} X)`<br>`(X {{<blue>}}AND{{</blue>}} Y) = (Y {{<blue>}}AND{{</blue>}} X)`                                               |               | $("Commutativity")$   |
 | &nbsp;                                                                                                                                                       |               |
-| $(X OR (X AND Y) = X $<br>$(X AND (X OR Y) = X $                                               |               | $("Absorption")$      |
+| `(X {{<blue>}}OR{{</blue>}} (X {{<blue>}}AND{{</blue>}} Y) = X `<br>`(X {{<blue>}}AND{{</blue>}} (X {{<blue>}}OR{{</blue>}} Y) = X `                                               |               | $("Absorption")$      |
 | &nbsp;                                                                                                                                                       |               |
-| $(X OR (Y AND Z)) = ((X OR Y) AND (X OR Z) $ <br>$(X AND (Y OR Z)) = ((X AND Y) OR (X AND Z) $ |               | $("Distributivity")$  |
+| `(X {{<blue>}}OR{{</blue>}} (Y {{<blue>}}AND{{</blue>}} Z)) = ((X {{<blue>}}OR{{</blue>}} Y) {{<blue>}}AND{{</blue>}} (X {{<blue>}}OR{{</blue>}} Z) ` <br>`(X {{<blue>}}AND{{</blue>}} (Y {{<blue>}}OR{{</blue>}} Z)) = ((X {{<blue>}}AND{{</blue>}} Y) {{<blue>}}OR{{</blue>}} (X {{<blue>}}AND{{</blue>}} Z) ` |               | $("Distributivity")$  |
 | &nbsp;                                                                                                                                                       |               |
-| $(X OR NOT X) = 1 $ <br>$(X AND NOT X) = 0 $                                                   |               | $("Complementation")$ |
+| `(X {{<blue>}}OR{{</blue>}} {{<blue>}}NOT{{</blue>}} X) = 1 ` <br>`(X {{<blue>}}AND{{</blue>}} {{<blue>}}NOT{{</blue>}} X) = 0 `                                                   |               | $("Complementation")$ |
 | &nbsp;                                                                                                                                                       |               |
-| $(X OR 0) = X $ <br> $(X AND 1) = X $                                                          |               | $("Identity")$        |
+| `(X {{<blue>}}OR{{</blue>}} 0) = X ` <br> `(X {{<blue>}}AND{{</blue>}} 1) = X `                                                          |               | $("Identity")$        |
 | &nbsp;                                                                                                                                                       |               |
-| $(X AND 0) = 0 $ <br>$(X OR 1) = 1 $                                                           |               | $("Domination")$      |
+| `(X {{<blue>}}AND{{</blue>}} 0) = 0 ` <br>`(X {{<blue>}}OR{{</blue>}} 1) = 1 `                                                           |               | $("Domination")$      |
 | &nbsp;                                                                                                                                                       |               |
 
 You can (and should!) verify all these laws, just like we did for
@@ -267,9 +264,9 @@ important family of laws known as the **de Morgan laws**:
 
 |                                                                                                                                                              |               |                                                      |
 | ----------------------------------------------------------------------------                                                                                 | -             | -----------------------------------------            |
-| $NOT (X OR Y) = (NOT X AND NOT Y)$<br>$NOT (X AND Y) = (NOT X OR NOT Y) $                 | &emsp; &emsp; | $("De Morgan Identities")$   |
+| `{{<blue>}}NOT{{</blue>}} (X {{<blue>}}OR{{</blue>}} Y) = ({{<blue>}}NOT{{</blue>}} X {{<blue>}}AND{{</blue>}} {{<blue>}}NOT{{</blue>}} Y)`<br>`{{<blue>}}NOT{{</blue>}} (X {{<blue>}}AND{{</blue>}} Y) = ({{<blue>}}NOT{{</blue>}} X {{<blue>}}OR{{</blue>}} {{<blue>}}NOT{{</blue>}} Y) `                 | &emsp; &emsp; | $("De Morgan Identities")$   |
 | &nbsp;                                                                                                                                                       |               |
-| $NOT NOT X = X $                                              |               | $("Double Negation")$   |
+| `{{<blue>}}NOT{{</blue>}} {{<blue>}}NOT{{</blue>}} X = X `                                              |               | $("Double Negation")$   |
 | &nbsp;                                                                                                                                                       |               |
 
 Let's look at how to derive {{<excalifont>}}("Double
@@ -277,65 +274,69 @@ Let's look at how to derive {{<excalifont>}}("Double
 
 1. We start with 
 
-   $$NOT NOT X = ((NOT NOT X) AND 1),$$
-  
+   `{{<blue>}}NOT{{</blue>}} {{<blue>}}NOT{{</blue>}} X = (({{<blue>}}NOT{{</blue>}} {{<blue>}}NOT{{</blue>}} X) {{<blue>}}AND{{</blue>}} 1),`
+
     which we know by $"Identity"$.
 
-2. We then apply the fact that $X OR NOT X = 1$ $("Complementation")$, which gives us that 
+2. We then apply the fact that `X {{<blue>}}OR{{</blue>}} {{<blue>}}NOT{{</blue>}} X = 1`, that is $"Complementation"$, which gives us that 
  
-   $$NOT NOT X = ((NOT NOT X) AND (X OR NOT X)),$$
+   `{{<blue>}}NOT{{</blue>}} {{<blue>}}NOT{{</blue>}} X = (({{<blue>}}NOT{{</blue>}} {{<blue>}}NOT{{</blue>}} X) {{<blue>}}AND{{</blue>}} (X {{<blue>}}OR{{</blue>}} {{<blue>}}NOT{{</blue>}} X)),`
 
 3. By $"Distributivity"$, we have 
 
-   $$((NOT NOT X) AND (X OR NOT X))= ((NOT NOT X) AND X) OR ((NOT NOT X) AND NOT X),$$
+   `(({{<blue>}}NOT{{</blue>}} {{<blue>}}NOT{{</blue>}} X) {{<blue>}}AND{{</blue>}} (X {{<blue>}}OR{{</blue>}} {{<blue>}}NOT{{</blue>}} X))= (({{<blue>}}NOT{{</blue>}} {{<blue>}}NOT{{</blue>}} X) {{<blue>}}AND{{</blue>}} X) {{<blue>}}OR{{</blue>}} (({{<blue>}}NOT{{</blue>}} {{<blue>}}NOT{{</blue>}} X) {{<blue>}}AND{{</blue>}} {{<blue>}}NOT{{</blue>}} X),`
 
    so we can conclude that 
 
-   $$NOT NOT X = ((NOT NOT X) AND X) OR ((NOT NOT X) AND NOT X).$$
+   `{{<blue>}}NOT{{</blue>}} {{<blue>}}NOT{{</blue>}} X = (({{<blue>}}NOT{{</blue>}} {{<blue>}}NOT{{</blue>}} X) {{<blue>}}AND{{</blue>}} X) {{<blue>}}OR{{</blue>}} (({{<blue>}}NOT{{</blue>}} {{<blue>}}NOT{{</blue>}} X) {{<blue>}}AND{{</blue>}} {{<blue>}}NOT{{</blue>}} X).`
 
-4. Now, notice that  $((NOT NOT X) AND NOT X) = 0$ by $("Complementation")$. So step 3. simplifies to:
+4. Now, notice that  `(({{<blue>}}NOT{{</blue>}} {{<blue>}}NOT{{</blue>}} X) {{<blue>}}AND{{</blue>}} {{<blue>}}NOT{{</blue>}} X) = 0` by $"Complementation"$. So step 3. simplifies to:
 
-   $$NOT NOT X = ((NOT NOT X) AND X) OR 0.$$
+   `{{<blue>}}NOT{{</blue>}} {{<blue>}}NOT{{</blue>}} X = (({{<blue>}}NOT{{</blue>}} {{<blue>}}NOT{{</blue>}} X) {{<blue>}}AND{{</blue>}} X) {{<blue>}}OR{{</blue>}} 0.`
 
-   which by $("Identity")$ simplifies further
+   which by $"Identity"$ simplifies further
    down to:
 
-   $$NOT NOT X = (NOT NOT X) AND X.$$
+   `{{<blue>}}NOT{{</blue>}} {{<blue>}}NOT{{</blue>}} X = ({{<blue>}}NOT{{</blue>}} {{<blue>}}NOT{{</blue>}} X) {{<blue>}}AND{{</blue>}} X.`
 
 5. Going a bit faster, we can see by analogous reasoning that
 
-   $$X = X AND 1 = X AND ((NOT NOT X) OR NOT X),$$
+   `X = X {{<blue>}}AND{{</blue>}} 1 = X {{<blue>}}AND{{</blue>}} (({{<blue>}}NOT{{</blue>}} {{<blue>}}NOT{{</blue>}} X) {{<blue>}}OR{{</blue>}} {{<blue>}}NOT{{</blue>}} X),`
 
    using $"Identity"$ and $"Complementation"$ like before.
 
 6. Using $"Distributivity"$, this gives us
 
-   $$X = (X AND NOT NOT X) OR (X AND NOT X).$$
+   `X = (X {{<blue>}}AND{{</blue>}} {{<blue>}}NOT{{</blue>}} {{<blue>}}NOT{{</blue>}} X) {{<blue>}}OR{{</blue>}} (X {{<blue>}}AND{{</blue>}} {{<blue>}}NOT{{</blue>}} X).`
 
-7. But since {{<excalifont >}}(X AND NOT X) = 0{{</excalifont>}}, we now get 
+7. But since `{{<excalifont >}}(X {{<blue>}}AND{{</blue>}} {{<blue>}}NOT{{</blue>}} X) = 0{{</excalifont>}}`, we now get 
 
-   $$X = (X AND (NOT NOT X))$$
+   `X = (X {{<blue>}}AND{{</blue>}} ({{<blue>}}NOT{{</blue>}} {{<blue>}}NOT{{</blue>}} X))`
    
    using $"Identity"$ and $"Complementation"$.
 
-8. But now we know that both:
-   $$NOT NOT X = (NOT NOT X) AND X$$
-   $$X = (X AND (NOT NOT X)),$$
-   where the latter is just 
-   $$X = (NOT NOT X) AND X,$$
-   using $"Commutativity"$ to reorder.
-   So, we can conclude that: $$NOT NOT X = X$$ 
+8. But now we know that both: 
+
+`{{<blue>}}NOT{{</blue>}} {{<blue>}}NOT{{</blue>}} X = ({{<blue>}}NOT{{</blue>}} {{<blue>}}NOT{{</blue>}} X) {{<blue>}}AND{{</blue>}} X` 
+
+`X = (X {{<blue>}}AND{{</blue>}} ({{<blue>}}NOT{{</blue>}} {{<blue>}}NOT{{</blue>}} X)),` 
+
+where the latter is just `X = ({{<blue>}}NOT{{</blue>}} {{<blue>}}NOT{{</blue>}} X) {{<blue>}}AND{{</blue>}}
+   X,` using $"Commutativity"$ to reorder. So, we can conclude that: `{{<blue>}}NOT{{</blue>}}
+   {{<blue>}}NOT{{</blue>}} X = X` 
 
 
 This derivation may seem a bit tedious—especially since we can prove the fact
-that $NOT NOT X = X$ fact by simply inspecting
-the function tables: $NOT NOT 1 = 1$ and $NOT NOT 0 = 0$.
+that ${{<blue>}}NOT{{</blue>}} {{<blue>}}NOT{{</blue>}} X = X$ fact by simply inspecting
+the function tables: `{{<blue>}}NOT{{</blue>}} {{<blue>}}NOT{{</blue>}} 1 = 1$ and ${{<blue>}}NOT{{</blue>}} {{<blue>}}NOT{{</blue>}} 0 = 0`.
 
 But there are also questions where the laws are much more efficient at giving
 you the answer than inspecting the tables. Take for example the Boolean
 expression:
 
-$$X AND ((Y AND Z) OR NOT (Y AND Z))$$
+<div class="my-4 text-center">
+`X {{<blue>}}AND{{</blue>}} ((Y {{<blue>}}AND{{</blue>}} Z) {{<blue>}}OR{{</blue>}} {{<blue>}}NOT{{</blue>}} (Y {{<blue>}}AND{{</blue>}} Z))`
+</div>
 
 It turns out that this expression reduces to simply
 $X$. To see this by truth-table inspection, we
@@ -344,9 +345,33 @@ combinations of truth-values for $X, Y, Z$ and
 for each combination, we need to calculate $5$ different operations. That's a
 lot of calculations. 
 
-Using the laws of Boolean algebra, however, we can recognize that $$((Y AND Z) OR NOT (Y AND Z))$$ is of the form $$[something] OR NOT [something],$$ where $[something] = (Y AND Z)$. So, by $"Complementation"$, we can reduce  
-$$X AND ((Y AND Z) OR NOT (Y AND Z))$$
-down to $$X AND 1,$$ which by $"Identity"$ is just $X$.
+Using the laws of Boolean algebra, however, we can recognize that 
+
+<div class="my-4 text-center">
+{{<blue>}}((Y {{</blue>}}AND{{<blue>}} Z) {{</blue>}}OR{{<blue>}} {{</blue>}}NOT{{<blue>}} (Y {{</blue>}}AND{{<blue>}} Z)){{</blue>}}
+</div>
+  is of the form 
+
+<div class="my-4 text-center">
+`[something] {{<blue>}}OR{{</blue>}} {{<blue>}}NOT{{</blue>}} [something],` 
+</div>
+
+where `[something] = (Y {{<blue>}}AND{{</blue>}} Z)`. So, by
+$"Complementation"$, we can reduce  
+
+<div class="my-4 text-center">
+`X {{<blue>}}AND{{</blue>}} ((Y
+{{<blue>}}AND{{</blue>}} Z) {{<blue>}}OR{{</blue>}} {{<blue>}}NOT{{</blue>}} (Y
+{{<blue>}}AND{{</blue>}} Z))`
+
+</div>
+down to 
+
+<div class="my-4 text-center">
+`X {{<blue>}}AND{{</blue>}} 1,` 
+</div>
+
+which by $"Identity"$ is just $X$.
 
 {{< img src="img/ai_tools.png" class="rounded  float-end inert-img img-fluid mx-3" width="100px">}} 
 The derivation also illustrates an important point: the above laws of Boolean
@@ -355,7 +380,7 @@ the initial list. In fact, we can derive _all_ valid identities of Boolean
 algebra from these laws. The list of laws is **complete** in this sense. 
 Having a complete list of laws for a subject matter is an incredibly feat: _all
 there is to know about Boolean algebras is encoded in these laws_. And as the
-example of $X AND ((Y AND Z) OR NOT (Y AND Z))$ shows, this can be a handy tool
+example of $X `AND` ((Y `AND` Z) `OR` `NOT` (Y `AND` Z))$ shows, this can be a handy tool
 in the toolbox of any AI researcher.
 
 On a more historical note, the set of laws we've discussed are originally due to
@@ -364,9 +389,9 @@ But it is not the only collection of complete laws and certainly not the
 [minimal one](https://en.wikipedia.org/wiki/Minimal_axioms_for_Boolean_algebra).
 It turns out that the following single law is enough to derive all the other
 laws of Boolean algebra (expressed using  only
-$NOT$ and $OR$): 
+$`NOT`$ and $`OR`$): 
 
-$$NOT (NOT (NOT (X OR Y) OR Z) OR NOT (X OR NOT (NOT Z OR NOT (Z OR U)))) = Z$$
+`{{<blue>}}NOT{{</blue>}} ({{<blue>}}NOT{{</blue>}} ({{<blue>}}NOT{{</blue>}} (X {{<blue>}}OR{{</blue>}} Y) {{<blue>}}OR{{</blue>}} Z) {{<blue>}}OR{{</blue>}} {{<blue>}}NOT{{</blue>}} (X {{<blue>}}OR{{</blue>}} {{<blue>}}NOT{{</blue>}} ({{<blue>}}NOT{{</blue>}} Z {{<blue>}}OR{{</blue>}} {{<blue>}}NOT{{</blue>}} (Z {{<blue>}}OR{{</blue>}} U)))) = Z`
 
 But that's a story for another day.
 
@@ -455,23 +480,23 @@ carry.
 According to the rules, the first output, the $0$th digit of our addition, is
 $1$ just in case exactly one (and not both) of $d₀$ and $e₀$ is $1$. Otherwise, if
 either $d₀ = e₀ = 0$ or $d₀ = e₀ = 1$, the output is $0$. This describes a
-truth-function, which is known as $XOR$ ("exclusive or"), which has the
+truth-function, which is known as $`XOR`$ ("exclusive or"), which has the
 following function table:
 
 {{< img src="img/xor_table.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="500px">}}
 
-We can actually express this function using only $NOT, AND, OR$, but using $XOR$
-directly it's much easier.
+We can actually express this function using only $`NOT`, `AND`, `OR`$, but
+using $`XOR`$ directly it's much easier.
 
 The carry, instead, is $1$ just in case both $d₀$ and $e₀$ are $1$ and $0$
-otherwise. But that's just the specification of $AND$. So, we can describe the
+otherwise. But that's just the specification of $`AND`$. So, we can describe the
 rule as follows using Boolean truth-functions:
 
-+ the $0$th digit of our addition is $d₀ XOR e₀$
++ the $0$th digit of our addition is $d₀ `XOR` e₀$
 
-+ the carry is $d₀ AND e₀$
++ the carry is $d₀ `AND` e₀$
 
-If we've implemented $XOR$ and $AND$ using relays or semiconductors, following
+If we've implemented $`XOR`$ and $`AND`$ using relays or semiconductors, following
 the ideas sketched above, we can implement this rule using the following
 circuit known as a **half-adder**:
 
@@ -479,7 +504,7 @@ circuit known as a **half-adder**:
 
 
 {{< img src="img/ai_half_adder.png" class="rounded  float-start inert-img img-fluid mx-3" width="100px">}} 
-The idea is that the blue boxes are implementations of $XOR$ and $AND$
+The idea is that the blue boxes are implementations of $`XOR`$ and $`AND`$
 respectively, which take two inputs and give two outputs. The input switches
 represent $d₀$ and $e₀$ respectively, on meaning $1$ and off meaning $0$. The
 two lamps stand for the results, the $0$th digit and the carry, respectively. A
@@ -534,15 +559,15 @@ reasoning is like in the two input case from before:
 The Boolean truth-function which gives us precisely the desired output for the
 $1$st digit of our computation is:
 
-$$(d₁ XOR e₁ ) XOR c₀$$
+$$(d₁ `XOR` e₁ ) `XOR` c₀$$
 
 But what should the carry be? Inspecting the cases, we can see that we should
 carry a $1$ in one of two scenarios: if there's exactly two $1$'s and if there's
 precisely three. How can we express this in terms of truth-functions? While
-there are different ways of doing this, here's a common one using $AND, OR,$ and
-$XOR$:
+there are different ways of doing this, here's a common one using $`AND`, `OR`,$ and
+$`XOR`$:
 
-$$(d₁ AND e₁ ) OR (c₀ AND (d₁ XOR e₁))$$
+$$(d₁ `AND` e₁ ) `OR` (c₀ `AND` (d₁ `XOR` e₁))$$
 
 The reasoning is that we can analyze our two scenarios (exactly two $1$'s and
 exactly three $1$'s) in a slightly different way: either both inputs are $1$ or
@@ -662,10 +687,10 @@ style="vertical-align: middle;" >}} says that it's not sunny, so the formula
 should be true in precisely those models, where $SUN$ is _not_ true: $$v({{< img src="img/neg_sun.png" class="inert-img" height="34px"
 style="vertical-align: middle;" >}}) = 1 just in case v(SUN) = 0.$$
 
-But do you recognize it? This is exactly what the Boolean truth-function $NOT$
-does! That is, we can implement the proposal using $NOT$ as follows: $$v({{<
+But do you recognize it? This is exactly what the Boolean truth-function $`NOT`$
+does! That is, we can implement the proposal using $`NOT`$ as follows: $$v({{<
 img src="img/neg_sun.png" class="inert-img" height="34px"
-style="vertical-align: middle;" >}}) = NOT v(SUN)$$
+style="vertical-align: middle;" >}}) = `NOT` v(SUN)$$
 
 This means that {{< img src="img/neg_sun.png" class="inert-img" height="34px"
 style="vertical-align: middle;" >}} gets the following semantic content:
@@ -680,7 +705,7 @@ class="inert-img" height="30px" style="vertical-align: middle;" >}} is false. Th
 
 {{< img src="img/condition_sun_and_rain.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="850px">}}
 
-But that's just what $AND$ does! So, we can implement this by saying:
+But that's just what $`AND`$ does! So, we can implement this by saying:
 
 {{< img src="img/clause_and.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}}
 
@@ -689,7 +714,7 @@ class="inert-img" height="30px" style="vertical-align: middle;" >}} says that it
 
 {{< img src="img/condition_sun_or_rain.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="800px">}}
 
-This we can implement using the Boolean $OR$ by saying that:
+This we can implement using the Boolean $`OR`$ by saying that:
 
 {{< img src="img/clause_or.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}}
 
@@ -705,12 +730,19 @@ truth-values under an assignment:
 
 {{< img src="img/clauses.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}}
 
-This is, in a nutshell, the standard implementation of the Boolean semantics
-for propositional logic. Let's use it to check some inferences for deductive validity!
-
 For example, we can calculate the proposition expressed by {{< img src="img/complex_fml.png" class="inert-img" height="24px" style="vertical-align: middle;" >}} as follows:
 
 {{< img src="img/complex_proposition.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="900px">}}
+
+The most difficult part to work out in this example is, as you might have
+noticed, for which $v$ we have $v(SUN) `OR` (v(RAIN) `AND` (`NOT` v(SUN))) =
+1$. Basically, you need to go through all the valuations and calculate the
+value of the Boolean expression. This is tedious work! In the next chapter,
+we'll discuss methods for making our lives a bit easier using the method of
+truth-tables for this. 
+
+This is, in a nutshell, the standard implementation of the Boolean semantics
+for propositional logic. Let's use it to check some inferences for deductive validity!
 
 We'll do two examples: 
 
@@ -749,8 +781,7 @@ When we check logical space, we find the following:
 
 {{< img src="img/aff_countermodel.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="800px">}}
 
-Once we've worked out the propositions, we can see that {{< img src="img/intersect_id.png"
-class="inert-img" height="38px" style="vertical-align: middle;" >}} and {{< img src="img/countermodel.png"
+Once we've worked out the propositions, we can see that {{< img src="img/countermodel.png"
 class="inert-img" height="40px" style="vertical-align: middle;" >}}. This makes $M₁$ a **countermodel** for the inference, which shows that 
 
 {{< img src="img/aff_inval.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="500px">}}
@@ -758,7 +789,7 @@ class="inert-img" height="40px" style="vertical-align: middle;" >}}. This makes 
 This means that, indeed: {{< img src="img/aff_val.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="500px">}}
 
 Note, however, that the invalidity crucially depends on us interpreting {{< img src="img/disjunction.png"
-class="inert-img" height="32px" style="vertical-align: middle;" >}} using $OR$. If we read the operation as an $XOR$, the story changes—which you'll see in the exercises.
+class="inert-img" height="32px" style="vertical-align: middle;" >}} using $`OR`$. If we read the operation as an $`XOR`$, the story changes—which you'll see in the exercises.
 
 ## Further readings
 
