@@ -712,57 +712,57 @@ strategies for FOL.</p>
 <p><strong>Non-logical symbols</strong></p>
 <ul>
 <li>
-<p><em>Individual constants</em>: Typically <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">a,b,c,\dots</span> but in KR also mnemonic, like
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Alan</span> or <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Ada</span>. These stand for proper names, like “Alan” or “Ada”.</p>
+<p><em>Individual constants</em>: Typically <span class="excalifont">a,b,c,\dots</span> but in KR also mnemonic, like
+<span class="excalifont">Alan</span> or <span class="excalifont">Ada</span>. These stand for proper names, like “Alan” or “Ada”.</p>
 </li>
 <li>
-<p><em>Function symbols</em>: Typically <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">f,g,h,\dots</span>, but in KR also mnemonic, like
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">MotherOf</span> or <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">BirthplaceOf</span>. These stand for functional/one-to-one relations between
+<p><em>Function symbols</em>: Typically <span class="excalifont">f,g,h,\dots</span>, but in KR also mnemonic, like
+<span class="excalifont">MotherOf</span> or <span class="excalifont">BirthplaceOf</span>. These stand for functional/one-to-one relations between
 objects: everybody has a (biological) mother, everybody has a birthplace, &hellip;</p>
 </li>
 <li>
-<p><em>Predicates</em>: Typically, <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">P,Q,R,\dots</span> but also mnemonic, like <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Blue</span> or
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">BiggerThan</span>. These stand for properties and relations, like something <em>being
+<p><em>Predicates</em>: Typically, <span class="excalifont">P,Q,R,\dots</span> but also mnemonic, like <span class="excalifont">Blue</span> or
+<span class="excalifont">BiggerThan</span>. These stand for properties and relations, like something <em>being
 blue</em> or one thing <em>being bigger than</em> another.</p>
 </li>
 </ul>
 <p>Both function symbols and predicates have a so-called <em>arity</em>, which says how
-many arguments they take. For example, <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">BiggerThan</span> has arity 2, since two
+many arguments they take. For example, <span class="excalifont">BiggerThan</span> has arity 2, since two
 things stand in the relation of being bigger than: one is bigger than the other.</p>
 <p><strong>Logical symbols</strong></p>
 <ul>
 <li>
-<p><em>Variables</em>: Typically <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">x,y,z,\dots</span> but some authors use
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\alpha,\beta,\delta,\dots</span> and other symbols. Variables stand for arbitrary but
+<p><em>Variables</em>: Typically <span class="excalifont">x,y,z,\dots</span> but some authors use
+<span class="excalifont">\alpha,\beta,\delta,\dots</span> and other symbols. Variables stand for arbitrary but
 concrete objects and they play a fundamental role in quantification, which we&rsquo;ll
 discuss below.</p>
 </li>
 <li>
 <p><em>Sentential connectives</em>: We have the usual connectives
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg,\land,\lor,\to,\leftrightarrow</span>. These work just like before.</p>
+<span class="excalifont">\neg,\land,\lor,\to,\leftrightarrow</span>. These work just like before.</p>
 </li>
 <li>
-<p><em>Quantifiers</em>: The universal quantifier <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall</span>, which stands for the
-phrase &ldquo;for all&rdquo;, and the existential quantifier <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\exists</span>, which stands for
+<p><em>Quantifiers</em>: The universal quantifier <span class="excalifont">\forall</span>, which stands for the
+phrase &ldquo;for all&rdquo;, and the existential quantifier <span class="excalifont">\exists</span>, which stands for
 &ldquo;there is&rdquo;.</p>
 </li>
 </ul>
 <p><strong>Auxiliaries</strong></p>
 <ul>
-<li>We have the usual auxiliaries parentheses <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">(,)</span> and the comma <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">,</span>.</li>
+<li>We have the usual auxiliaries parentheses <span class="excalifont">(,)</span> and the comma <span class="excalifont">,</span>.</li>
 </ul>
 <p>These symbols construct formulas according to the following <strong>grammar</strong>:</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\langle const\rangle ::= a \mid b\mid \dots </div>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\langle var\rangle ::= x \mid y\mid \dots </div>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\langle unop\rangle ::= \neg</div>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\langle binop\rangle ::= \land\mid\lor\mid\to\mid\leftrightarrow</div>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\langle quant\rangle ::= \forall\mid\exists</div>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\langle fun^n\rangle ::= f^n\mid g^n\mid \dots </div>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\langle term\rangle::= \langle const\rangle\mid\langle variable\rangle\mid
+<div class="text-center my-4 excalifont">\langle const\rangle ::= a \mid b\mid \dots </div>
+<div class="text-center my-4 excalifont">\langle var\rangle ::= x \mid y\mid \dots </div>
+<div class="text-center my-4 excalifont">\langle unop\rangle ::= \neg</div>
+<div class="text-center my-4 excalifont">\langle binop\rangle ::= \land\mid\lor\mid\to\mid\leftrightarrow</div>
+<div class="text-center my-4 excalifont">\langle quant\rangle ::= \forall\mid\exists</div>
+<div class="text-center my-4 excalifont">\langle fun^n\rangle ::= f^n\mid g^n\mid \dots </div>
+<div class="text-center my-4 excalifont">\langle term\rangle::= \langle const\rangle\mid\langle variable\rangle\mid
 \langle fun^n\rangle(\overbrace{\langle term\rangle,\dots,\langle term\rangle}^{n\text{ times}})</div>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\langle pred^n\rangle ::= P^n\mid Q^n\mid \dots </div>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\langle atom\rangle::= \langle pred^n\rangle(\underbrace{\langle term\rangle,\dots\langle term\rangle}_{n\text{ times}})</div>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\langle fml\rangle::=\langle atom\rangle\mid\langle unop\rangle\langle fml\rangle\mid
+<div class="text-center my-4 excalifont">\langle pred^n\rangle ::= P^n\mid Q^n\mid \dots </div>
+<div class="text-center my-4 excalifont">\langle atom\rangle::= \langle pred^n\rangle(\underbrace{\langle term\rangle,\dots\langle term\rangle}_{n\text{ times}})</div>
+<div class="text-center my-4 excalifont">\langle fml\rangle::=\langle atom\rangle\mid\langle unop\rangle\langle fml\rangle\mid
 (\langle fml\rangle\langle binop\rangle \langle fml\rangle)\mid \langle quant\rangle \langle
 var\rangle\langle fml\rangle</div>
 <p>Let&rsquo;s talk for a second about what this rather complex syntax means, informally
@@ -775,18 +775,18 @@ and how it can be used to express knowledge claims for the purpose of KR.</p>
 <p>says of a thing, <em>the robot</em>, that it has a property, <em>being smart</em>. The sentence
 talks about the robot via the <em>singular term</em> &ldquo;the robot&rsquo;&rsquo; and it talks about
 being smart using the <em>predicate</em> &ldquo;&hellip; is smart.''</p>
-<p><strong>Atomic formulas</strong>, <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\langle atom\rangle</span> in the grammar, model the term-predicate
+<p><strong>Atomic formulas</strong>, <span class="excalifont">\langle atom\rangle</span> in the grammar, model the term-predicate
 structure of simple sentences. Their main purpose in AI is to formalize simple
 pieces knowledge, like:</p>
 <ul>
-<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{LLM}(ChatGPT)</span> to say that ChatGPT is a large language model.</li>
-<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{Sister}(Ada,Clara)</span> to say that Ada and Clara are sisters.</li>
-<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{Between}(Munich,Hamburg,Rome)</span> to say that Munich is between Hamburg
+<li><span class="excalifont">\mathsf{LLM}(ChatGPT)</span> to say that ChatGPT is a large language model.</li>
+<li><span class="excalifont">\mathsf{Sister}(Ada,Clara)</span> to say that Ada and Clara are sisters.</li>
+<li><span class="excalifont">\mathsf{Between}(Munich,Hamburg,Rome)</span> to say that Munich is between Hamburg
 and Rome.</li>
 </ul>
 <p>Using these formulas, we can directly input most basic facts into a given
 knowledge base.</p>
-<p>The expressions we use to refer to objects are called <strong>terms</strong>, <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\langle
+<p>The expressions we use to refer to objects are called <strong>terms</strong>, <span class="excalifont">\langle
 term\rangle</span> in the formal grammar. When doing knowledge representation with
 FOL, we distinguish three different kinds of terms:</p>
 <ul>
@@ -796,51 +796,51 @@ FOL, we distinguish three different kinds of terms:</p>
 </ul>
 <p>To each of these kinds of terms corresponds a syntactic category:</p>
 <ul>
-<li>The <strong>constants</strong>, <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\langle const\rangle</span>, formalize proper names.</li>
-<li>The <strong>variables</strong>, <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\langle var\rangle</span>, formalize pronouns.</li>
-<li>The <strong>function expressions</strong>, <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\langle fun^n\rangle(\langle term\rangle,\dots,\langle
+<li>The <strong>constants</strong>, <span class="excalifont">\langle const\rangle</span>, formalize proper names.</li>
+<li>The <strong>variables</strong>, <span class="excalifont">\langle var\rangle</span>, formalize pronouns.</li>
+<li>The <strong>function expressions</strong>, <span class="excalifont">\langle fun^n\rangle(\langle term\rangle,\dots,\langle
 term\rangle)</span>, formalize functional terms.</li>
 </ul>
 <p>Using these kinds of expressions, we can talk about most things we might want to
 put information about in our knowledge base:</p>
 <ul>
-<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{AI}(Hal_{9000})</span> says that Hal 9000 is an AI-system.</li>
-<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{Sister}(Ada,x)</span> says that <em>they</em> (person <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">x</span>) is Ada&rsquo;s sister.</li>
-<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{Lord}(\mathsf{FatherOf}(Ada))</span> says that the father of Ada Lovelace
+<li><span class="excalifont">\mathsf{AI}(Hal_{9000})</span> says that Hal 9000 is an AI-system.</li>
+<li><span class="excalifont">\mathsf{Sister}(Ada,x)</span> says that <em>they</em> (person <span class="excalifont">x</span>) is Ada&rsquo;s sister.</li>
+<li><span class="excalifont">\mathsf{Lord}(\mathsf{FatherOf}(Ada))</span> says that the father of Ada Lovelace
 was a Lord (<i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Lord_Byron"
   target="_blank">Byron</a>).</li>
 </ul>
 <p>The crucial addition in FOL, however, are the <strong>quantifiers</strong>, they are what
 gives the logic its expressive strength.</p>
-<p>In FOL we have the quantifiers <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall</span> for &ldquo;for all&rdquo; and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\exists</span> for &ldquo;there
+<p>In FOL we have the quantifiers <span class="excalifont">\forall</span> for &ldquo;for all&rdquo; and <span class="excalifont">\exists</span> for &ldquo;there
 is&rsquo;&rsquo; (and synonymous expressions like &ldquo;every,&rsquo;&rsquo; &ldquo;some,&rsquo;&rsquo; &hellip;).</p>
 <p>The quantifiers allow us to formalize <strong>general knowledge claims</strong>, such as:</p>
 <ul>
 <li>
-<p><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\exists x(\mathsf{KB}(x)\land \mathsf{Trivial}(x))</span> to say that there is a
+<p><span class="excalifont">\exists x(\mathsf{KB}(x)\land \mathsf{Trivial}(x))</span> to say that there is a
 trivial knowledge base.</p>
 </li>
 <li>
-<p><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall x(\mathsf{LLM}(x)\to \mathsf{StatsBased}(x))</span> to say that (all) LLMs
+<p><span class="excalifont">\forall x(\mathsf{LLM}(x)\to \mathsf{StatsBased}(x))</span> to say that (all) LLMs
 are statistic based.</p>
 </li>
 </ul>
 <p>The variables play a crucial role in making this work. Here&rsquo;s how. Take the
 claim that there&rsquo;s a trivial knowledge base. What underlies our formalization</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\exists x(\mathsf{KB}(x)\land \mathsf{Trivial}(x))</div> is the reading:
+<div class="text-center my-4 excalifont">\exists x(\mathsf{KB}(x)\land \mathsf{Trivial}(x))</div> is the reading:
 <ul>
 <li>There is a thing and it is a knowledge base and it is trivial.</li>
 </ul>
 <p>Here &ldquo;it&rdquo; is an indefinite term that stands for an arbitrary but fixed object
 which we say exists and is a trivial knowledge base. This indefinite term is,
 logically speaking, a variable, which is why in our formalization &ldquo;it&rdquo; becomes
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">x</span>.</p>
+<span class="excalifont">x</span>.</p>
 <p>In many contexts, we add a <strong>distinguished identity predicate</strong> to our language
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">=</span>. Syntactically, <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">=</span> works just like any other binary predicate: flanked by
-two terms it forms a formula <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">t_1=t_2</div> to say that the terms <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">t_1,t_2</span> denote
-the same object. When we have <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">=</span>, we often use <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">t_1\neq t_2</div> to abbreviate
-the formula <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\neg t_1=t_2.</div></p>
+<span class="excalifont">=</span>. Syntactically, <span class="excalifont">=</span> works just like any other binary predicate: flanked by
+two terms it forms a formula <div class="text-center my-4 excalifont">t_1=t_2</div> to say that the terms <span class="excalifont">t_1,t_2</span> denote
+the same object. When we have <span class="excalifont">=</span>, we often use <div class="text-center my-4 excalifont">t_1\neq t_2</div> to abbreviate
+the formula <div class="text-center my-4 excalifont">\neg t_1=t_2.</div></p>
 <p>Parsing in FOL works just like in any other language. But note that the parsing
 tree for a formula also parses the terms involved. Here&rsquo;s an example:</p>
 
@@ -878,98 +878,98 @@ enough to interpret FOL. Even though Boolean truth-values and truth-function
 will  we need more expressive structures to interpret FOL. What we need to
 interpret the language of FOL are the <em>objects</em> that our language talks about.</p>
 <p>These object together make up the <strong>domain (of discourse)</strong>. In a model for FOL,
-typically denoted <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathcal{M}</span>, we denote the domain by <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathcal{D}</span>. The
+typically denoted <span class="excalifont">\mathcal{M}</span>, we denote the domain by <span class="excalifont">\mathcal{D}</span>. The
 domain can contain all sorts of things, but in KR-settings usually are just
 representations of the objects our KB talks about. In a knowledge graph, for
 example, we&rsquo;d represent the individuals as nodes in a graph. When we&rsquo;re using a
 database as a model for FOL, we&rsquo;d use data to model the objects.</p>
 <p>Given a domain, we need to say what our terms and predicates stand for. For the
-terms, that&rsquo;s <em>relatively</em> straight-forward. For each constant, <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">c</span>, we assign a
+terms, that&rsquo;s <em>relatively</em> straight-forward. For each constant, <span class="excalifont">c</span>, we assign a
 <strong>denotation</strong> from among the objects of our model:</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">c^\mathcal{M}\in\mathcal{D}</div>. So, we'd have, for example, a denotation
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Ada^\mathcal{M}</span> which is our model's representation of Ada Lovelace. Depending
+<div class="text-center my-4 excalifont">c^\mathcal{M}\in\mathcal{D}</div>. So, we'd have, for example, a denotation
+<span class="excalifont">Ada^\mathcal{M}</span> which is our model's representation of Ada Lovelace. Depending
 on what our domain looks like, this would be a node in a graph, an entry in a
 database, or perhaps even a real person.
 <p>For function symbols, the denotation is simply a <strong>(mathematical) function</strong>
-over the domain. That means that if <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">f</span> is an <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">n</span>-ary function symbol, then</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">f^\mathcal{M}:\mathcal{D}^n\to \mathcal{D}</div> is an <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">n</span>-ary function, which
-takes <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">n</span> inputs from the domain and assigns an output to them. For example,
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Father^\mathcal{M}</span> would be a function which assigns to the representation of
+over the domain. That means that if <span class="excalifont">f</span> is an <span class="excalifont">n</span>-ary function symbol, then</p>
+<div class="text-center my-4 excalifont">f^\mathcal{M}:\mathcal{D}^n\to \mathcal{D}</div> is an <span class="excalifont">n</span>-ary function, which
+takes <span class="excalifont">n</span> inputs from the domain and assigns an output to them. For example,
+<span class="excalifont">Father^\mathcal{M}</span> would be a function which assigns to the representation of
 each object in our model the representation of their father. We should have, for
-example, <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{Father}^\mathcal{M}(Ada^\mathcal{M})=Byron^\mathcal{M}</div> In
-other words, the function <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{Father}^\mathcal{M}</span> assigns to our
+example, <div class="text-center my-4 excalifont">\mathsf{Father}^\mathcal{M}(Ada^\mathcal{M})=Byron^\mathcal{M}</div> In
+other words, the function <span class="excalifont">\mathsf{Father}^\mathcal{M}</span> assigns to our
 representation of Ada Lovelace the representation of Lord Byron, her father.
 <p>Variables are a bit trickier to deal with. For them, we need an <strong>assignment</strong>,
 which tells us what they stand for. An <strong>assigment</strong> in a model with domain
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathcal{D}</span> is a function <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\alpha:\Set{x,y,z,\dots}\to\mathcal{D}</div>, which says
+<span class="excalifont">\mathcal{D}</span> is a function <div class="text-center my-4 excalifont">\alpha:\Set{x,y,z,\dots}\to\mathcal{D}</div>, which says
 for each variable what it stands for. For example, we might have</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\alpha(x)=Ada^\mathcal{M},</div> which would mean that <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">x</span> stands for the
+<div class="text-center my-4 excalifont">\alpha(x)=Ada^\mathcal{M},</div> which would mean that <span class="excalifont">x</span> stands for the
 representation of Ada. Assignments play an important role in FOL inference,
 which we'll talk about more later. 
 <p>Once we&rsquo;ve interpreted all our term-forming expressions over a domain, we can
 assign denotations to arbitrary terms using recursion:</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">t^\mathcal{M}_\alpha::=\\begin{cases} c^\mathcal{M} & \\text{if }t=c\\\\
+<div class="text-center my-4 excalifont">t^\mathcal{M}_\alpha::=\\begin{cases} c^\mathcal{M} & \\text{if }t=c\\\\
 \alpha(x) & \\text{if }t=x \\\\ f^\mathcal{M}(t_1^\mathcal{M}, \dots
 t_n^\mathcal{M}) & \\text{if }t=f(t_1,\dots,t_n)\\end{cases}</div>
-In this way, we get a denotation for each term <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\langle term\rangle</span> given a
-model <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathcal{M}</span> and assignment <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\alpha</span>.
+In this way, we get a denotation for each term <span class="excalifont">\langle term\rangle</span> given a
+model <span class="excalifont">\mathcal{M}</span> and assignment <span class="excalifont">\alpha</span>.
 <p>The only thing that we haven&rsquo;t interpreted yet are the predicates. How does this
-work? Let&rsquo;s look at unary predicates like <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{Red}</span> first.
-The idea is that for each predicate <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">P</span>, we need to say which of the
-things in the domain <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathcal{D}</span> have the property &ldquo;being <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">P</span>&rdquo;. We do this
-directly by assigning a set <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">P^\mathcal{M}\subseteq \mathcal{D}</span> to the predicate
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">P</span>. This set is called the <strong>extension</strong> of the predicate. In the case of
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{Red}</span>, for example, we&rsquo;d set <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{Red}^\mathcal{M}</span> to be the set
+work? Let&rsquo;s look at unary predicates like <span class="excalifont">\mathsf{Red}</span> first.
+The idea is that for each predicate <span class="excalifont">P</span>, we need to say which of the
+things in the domain <span class="excalifont">\mathcal{D}</span> have the property &ldquo;being <span class="excalifont">P</span>&rdquo;. We do this
+directly by assigning a set <span class="excalifont">P^\mathcal{M}\subseteq \mathcal{D}</span> to the predicate
+<span class="excalifont">P</span>. This set is called the <strong>extension</strong> of the predicate. In the case of
+<span class="excalifont">\mathsf{Red}</span>, for example, we&rsquo;d set <span class="excalifont">\mathsf{Red}^\mathcal{M}</span> to be the set
 of all things our model represents as red.</p>
-<p>This generalizes to <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">n</span>-ary predicates. If we have <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{BiggerThan}</span>, for
+<p>This generalizes to <span class="excalifont">n</span>-ary predicates. If we have <span class="excalifont">\mathsf{BiggerThan}</span>, for
 example, we&rsquo;d assign the set
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{BiggerThan}^\mathcal{M}\subseteq\mathcal{D}\times\mathcal{D}</span>, which
-contains pairs of the form <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\langle object_1,object_2\rangle</span>, where <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">object_1</span>
-is bigger than <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">object_2</span>. Here we use the standard set-theoretic notation
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathcal{D}^n</span> to denote all the sequences of <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">n</span> objects from the domain.</p>
+<span class="excalifont">\mathsf{BiggerThan}^\mathcal{M}\subseteq\mathcal{D}\times\mathcal{D}</span>, which
+contains pairs of the form <span class="excalifont">\langle object_1,object_2\rangle</span>, where <span class="excalifont">object_1</span>
+is bigger than <span class="excalifont">object_2</span>. Here we use the standard set-theoretic notation
+<span class="excalifont">\mathcal{D}^n</span> to denote all the sequences of <span class="excalifont">n</span> objects from the domain.</p>
 <p>In sum, the basic concept concept of FOL semantics is that of a <strong>model</strong>,
-typically <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathcal{M}</span>, which consists of:</p>
+typically <span class="excalifont">\mathcal{M}</span>, which consists of:</p>
 <ul>
-<li>A <strong>domain</strong> <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathcal{D}</span>, which contains all the individuals that we talk
+<li>A <strong>domain</strong> <span class="excalifont">\mathcal{D}</span>, which contains all the individuals that we talk
 about.</li>
-<li>A <strong>denotation</strong> <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">a^\mathcal{M}\in \mathcal{D}</span> for each constant <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">a</span>.</li>
-<li>A <strong>function</strong> <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">f^\mathcal{M}:\mathcal{D}^n\to \mathcal{D}</span> for each function
+<li>A <strong>denotation</strong> <span class="excalifont">a^\mathcal{M}\in \mathcal{D}</span> for each constant <span class="excalifont">a</span>.</li>
+<li>A <strong>function</strong> <span class="excalifont">f^\mathcal{M}:\mathcal{D}^n\to \mathcal{D}</span> for each function
 symbol.</li>
-<li>An <strong>extension</strong> <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">P^\mathcal{M}\subseteq \mathcal{D}^n</span> for each
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">n</span>-ary predicate.</li>
+<li>An <strong>extension</strong> <span class="excalifont">P^\mathcal{M}\subseteq \mathcal{D}^n</span> for each
+<span class="excalifont">n</span>-ary predicate.</li>
 </ul>
-<p>Additionally, we have assignments <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\alpha: \Set{x,y,z,\dots}\to\mathcal{D}</span>.</p>
+<p>Additionally, we have assignments <span class="excalifont">\alpha: \Set{x,y,z,\dots}\to\mathcal{D}</span>.</p>
 <p>With all of this setup, we can re-introduce truth-values into the semantics. For
 FOL, our setting remains classical meaning we have the two truth-values
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\Set{0,1}</span> for false and true respectively.</p>
-<p>Our aim is to assign a truth-value <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu(A)\in\Set{0,1}</span> to each FOL-formula. We
+<span class="excalifont">\Set{0,1}</span> for false and true respectively.</p>
+<p>Our aim is to assign a truth-value <span class="excalifont">\nu(A)\in\Set{0,1}</span> to each FOL-formula. We
 do this by recursion. Once we look at how we interpreted our language, the base
-case is pretty clear. Take <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{Sister}(Ada,Clara)</span> for example. Our model
+case is pretty clear. Take <span class="excalifont">\mathsf{Sister}(Ada,Clara)</span> for example. Our model
 gives us:</p>
 <ul>
-<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Ada^\mathcal{M}</span>, which is a representation of Ada.</li>
-<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Clara^\mathcal{M}</span>, which is a representation of Clara.</li>
-<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{Sister}^\mathcal{M}</span>, which is a set of pairs <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\langle
-object_1,object_2\rangle</span> where <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">object_1</span> represents the sister of <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">object_2</span>.</li>
+<li><span class="excalifont">Ada^\mathcal{M}</span>, which is a representation of Ada.</li>
+<li><span class="excalifont">Clara^\mathcal{M}</span>, which is a representation of Clara.</li>
+<li><span class="excalifont">\mathsf{Sister}^\mathcal{M}</span>, which is a set of pairs <span class="excalifont">\langle
+object_1,object_2\rangle</span> where <span class="excalifont">object_1</span> represents the sister of <span class="excalifont">object_2</span>.</li>
 </ul>
 <p>Given this reading, we should set:</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu(\mathsf{Sister}(Ada^\mathcal{M},Clara^\mathcal{M}))=1\Leftrightarrow
+<div class="text-center my-4 excalifont">\nu(\mathsf{Sister}(Ada^\mathcal{M},Clara^\mathcal{M}))=1\Leftrightarrow
 \langle Ada^\mathcal{M},Clara^\mathcal{M}\rangle\in\mathsf{Sister}^\mathcal{M}</div>
 <p>That is, in our model, the formula which says that Ada and Clara are sisters
 should be true just in case the pair is a member of the set of things that
 represent sisters.</p>
 <p>What if variables are involved? Well, then we need assignments and our
 truth-value becomes relative to an assignment. So, for example, we&rsquo;d have</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu_\alpha(\mathsf{Blue}(x))=1\Leftrightarrow \alpha(x)\in\mathsf{Blue}^\mathcal{M}</div>
+<div class="text-center my-4 excalifont">\nu_\alpha(\mathsf{Blue}(x))=1\Leftrightarrow \alpha(x)\in\mathsf{Blue}^\mathcal{M}</div>
 <p>So, in general, then, the definition should be:</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu_\alpha(P(t_1,\dots,t_n))=1\Leftrightarrow \langle
+<div class="text-center my-4 excalifont">\nu_\alpha(P(t_1,\dots,t_n))=1\Leftrightarrow \langle
 (t_1)^\mathcal{M}\_\alpha,\dots,(t_n)^\mathcal{M}_\alpha\rangle\in P^\mathcal{M}</div>
 <p>At this point it might be important to mention that in a model, we can represent
 things in different ways. Of course, we should also allow models where Ada and
 Clara aren&rsquo;t sisters, even if in reality they are.</p>
-<p>An important exception to this is the identity predicate <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">=</span> around. We are not allowed to freely re-interpret this predicate, it always stands for identity. That means that it&rsquo;s subject to a special clause, which is:</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu_\alpha(t_1=t_2)=1\Leftrightarrow t_1^\mathcal{M}=t_2^\mathcal{M}</div>
-<p>Now, when it comes to the connectives <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg,\land,\lor,\to,\dots</span>, we
+<p>An important exception to this is the identity predicate <span class="excalifont">=</span> around. We are not allowed to freely re-interpret this predicate, it always stands for identity. That means that it&rsquo;s subject to a special clause, which is:</p>
+<div class="text-center my-4 excalifont">\nu_\alpha(t_1=t_2)=1\Leftrightarrow t_1^\mathcal{M}=t_2^\mathcal{M}</div>
+<p>Now, when it comes to the connectives <span class="excalifont">\neg,\land,\lor,\to,\dots</span>, we
 can fall back to the usual 
 
 
@@ -983,58 +983,58 @@ can fall back to the usual
 Boolean truth-functions </a>
 
 :</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu_\alpha(\neg A)=-\nu_\alpha(A)</div>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu_\alpha(A\land B)=\nu_\alpha(A)\times \nu_\alpha(B)</div>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu_\alpha(A\lor B)=\nu_\alpha(A)+\nu_\alpha(B)</div>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu_\alpha(A\to B)=\nu_\alpha(A)\Rightarrow\nu_\alpha(B)</div>
+<div class="text-center my-4 excalifont">\nu_\alpha(\neg A)=-\nu_\alpha(A)</div>
+<div class="text-center my-4 excalifont">\nu_\alpha(A\land B)=\nu_\alpha(A)\times \nu_\alpha(B)</div>
+<div class="text-center my-4 excalifont">\nu_\alpha(A\lor B)=\nu_\alpha(A)+\nu_\alpha(B)</div>
+<div class="text-center my-4 excalifont">\nu_\alpha(A\to B)=\nu_\alpha(A)\Rightarrow\nu_\alpha(B)</div>
 <p>It gets interesting when it comes to the quantifiers. In addition to the Boolean
 truth-functions , we&rsquo;ll need to find corresponding truth-functions
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">f_\forall,f_\exists</span> for the quantifiers <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall,\exists</span>.</p>
-<p>How does this work? Let&rsquo;s start with <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall</span> and take <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall
-x\mathsf{Blue}(x)</span>, for example. What we want is to say that <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall
+<span class="excalifont">f_\forall,f_\exists</span> for the quantifiers <span class="excalifont">\forall,\exists</span>.</p>
+<p>How does this work? Let&rsquo;s start with <span class="excalifont">\forall</span> and take <span class="excalifont">\forall
+x\mathsf{Blue}(x)</span>, for example. What we want is to say that <span class="excalifont">\forall
 x\mathsf{Blue}(x)</span> is true just in case all the things in our model are blue. To
-formally represent this, let&rsquo;s introduce for each object <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">o\in\mathcal{D}</span> an
-ad-hoc name <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathbf{o}</span> into our language with the stipulation that</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathbf{o}^\mathcal{M}=o.</div> This constant, then, allows us to consider the
+formally represent this, let&rsquo;s introduce for each object <span class="excalifont">o\in\mathcal{D}</span> an
+ad-hoc name <span class="excalifont">\mathbf{o}</span> into our language with the stipulation that</p>
+<div class="text-center my-4 excalifont">\mathbf{o}^\mathcal{M}=o.</div> This constant, then, allows us to consider the
 truth-value sequence
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu_\alpha(\mathsf{Blue}(\mathbf{o_1})),\nu_\alpha(\mathsf{Blue}(\mathbf{o_2})),\dots</div>
-for _all_ the objects <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">o_1,o_2,\dots</span> in the domain.
-<p>When do we want to say that <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall x\mathsf{Blue}(x)</span> is true? The answer
-seems to be when the sequence above just is <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">1,1,1,\dots.</div> In other words,
-when <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu_\alpha(\mathsf{Blue}(\mathbf{o}))=1</span> for all objects <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">o\in\mathcal{D}</span></p>
-<p>Think about a product <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">x\times y\times z\times\dots</div> where
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">x,y,z\in\Set{0,1}</span>. This number is <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span> precisely when the sequence</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">x,y,z,\dots</div> is the sequence <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">1,1,1,\dots.</div> This means we can give the
+<div class="text-center my-4 excalifont">\nu_\alpha(\mathsf{Blue}(\mathbf{o_1})),\nu_\alpha(\mathsf{Blue}(\mathbf{o_2})),\dots</div>
+for _all_ the objects <span class="excalifont">o_1,o_2,\dots</span> in the domain.
+<p>When do we want to say that <span class="excalifont">\forall x\mathsf{Blue}(x)</span> is true? The answer
+seems to be when the sequence above just is <div class="text-center my-4 excalifont">1,1,1,\dots.</div> In other words,
+when <span class="excalifont">\nu_\alpha(\mathsf{Blue}(\mathbf{o}))=1</span> for all objects <span class="excalifont">o\in\mathcal{D}</span></p>
+<p>Think about a product <div class="text-center my-4 excalifont">x\times y\times z\times\dots</div> where
+<span class="excalifont">x,y,z\in\Set{0,1}</span>. This number is <span class="excalifont">1</span> precisely when the sequence</p>
+<div class="text-center my-4 excalifont">x,y,z,\dots</div> is the sequence <div class="text-center my-4 excalifont">1,1,1,\dots.</div> This means we can give the
 following truth-functional analysis of the quantifiers:
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu\_\alpha(\forall x\mathsf{Blue}(x))=\nu_\alpha(\mathsf{Blue}(\mathbf{o}_1))\times\nu\_\alpha(\mathsf{Blue}(\mathbf{o}_2)\times\dots</div>
-where <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">o_1,o_2,\dots</span> are all the objects in <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathcal{D}</span>
+<div class="text-center my-4 excalifont">\nu\_\alpha(\forall x\mathsf{Blue}(x))=\nu_\alpha(\mathsf{Blue}(\mathbf{o}_1))\times\nu\_\alpha(\mathsf{Blue}(\mathbf{o}_2)\times\dots</div>
+where <span class="excalifont">o_1,o_2,\dots</span> are all the objects in <span class="excalifont">\mathcal{D}</span>
 <p>We can write this in a more concise form using the mathematical notation for
 &ldquo;long&rdquo; products:</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu\_\alpha(\forall
+<div class="text-center my-4 excalifont">\nu\_\alpha(\forall
 x\mathsf{Blue}(x))=\nu_\alpha(\mathsf{Blue}(\mathbf{o}_1))\times\nu\_\alpha(\mathsf{Blue}(\mathbf{o}\_2))\times\dots=\prod\_{o\in\mathcal{D}}\nu\_\alpha(\mathsf{Blue}(\mathbf{o}))</div>
-<p>Similar reasoning works for <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\exists</span>. In order for <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu_\alpha(\exists x\mathsf{Blue}(x))=1</span>, we would want to have at least one <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">1</span> in the sequence:</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu\_\alpha(\mathsf{Blue}(\mathbf{o}\_1)),\nu_\alpha(\mathsf{Blue}(\mathbf{o}_2)),\dots</div>
-<p>We can express this using the Boolean <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">+</span> by saying that:</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu_\alpha(\exists x\mathsf{Blue}(x))=\nu_\alpha(\mathsf{Blue}(\mathbf{o}\_1))+\nu\_\alpha(\mathsf{Blue}(\mathbf{o}\_2)+\dots</div>
+<p>Similar reasoning works for <span class="excalifont">\exists</span>. In order for <span class="excalifont">\nu_\alpha(\exists x\mathsf{Blue}(x))=1</span>, we would want to have at least one <span class="excalifont">1</span> in the sequence:</p>
+<div class="text-center my-4 excalifont">\nu\_\alpha(\mathsf{Blue}(\mathbf{o}\_1)),\nu_\alpha(\mathsf{Blue}(\mathbf{o}_2)),\dots</div>
+<p>We can express this using the Boolean <span class="excalifont">+</span> by saying that:</p>
+<div class="text-center my-4 excalifont">\nu_\alpha(\exists x\mathsf{Blue}(x))=\nu_\alpha(\mathsf{Blue}(\mathbf{o}\_1))+\nu\_\alpha(\mathsf{Blue}(\mathbf{o}\_2)+\dots</div>
 <p>Mathematically, we can write this:</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu_\alpha(\exists x\mathsf{Blue}(x))=\nu\_\alpha(\mathsf{Blue}(\mathbf{o}_1))+\nu\_\alpha(\mathsf{Blue}(\mathbf{o}_2))+\dots=\sum\_{o\in\mathcal{D}}\nu\_\alpha(\mathsf{Blue}(\mathbf{o}))</div>
-<p>The only thing left to do is to generalize this from the formulas <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall
+<div class="text-center my-4 excalifont">\nu_\alpha(\exists x\mathsf{Blue}(x))=\nu\_\alpha(\mathsf{Blue}(\mathbf{o}_1))+\nu\_\alpha(\mathsf{Blue}(\mathbf{o}_2))+\dots=\sum\_{o\in\mathcal{D}}\nu\_\alpha(\mathsf{Blue}(\mathbf{o}))</div>
+<p>The only thing left to do is to generalize this from the formulas <span class="excalifont">\forall
 x\mathsf{Blue}(x),\exists x\mathsf{Blue}(x)</span> to arbitrary formulas of the form
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall xA</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\exists xA</span>. For this, we just need a piece of notation: we
-write <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall xA(x)</span> to indicate that <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A</span> contains the variable <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">x</span> that we
-quantify &ldquo;over&rdquo; and then write <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A(\mathbf{o})</span> for the result of replacing all
-the occurrences of <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">x</span> in <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A</span>, which are not involved in another quantifier with
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathbf{o}</span>.</p>
-<p>So, for example, if <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall xA(x)</span> is <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\forall x(\mathsf{Student}(x)\to
-\mathsf{OlderThan}(x,18))</div> then <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">A(x)=\mathsf{Student}(x)\to
-\mathsf{OlderThan}(x,18))</div> and <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">A(\mathbf{o})=\mathsf{Student}(\mathbf{o})\to
+<span class="excalifont">\forall xA</span> and <span class="excalifont">\exists xA</span>. For this, we just need a piece of notation: we
+write <span class="excalifont">\forall xA(x)</span> to indicate that <span class="excalifont">A</span> contains the variable <span class="excalifont">x</span> that we
+quantify &ldquo;over&rdquo; and then write <span class="excalifont">A(\mathbf{o})</span> for the result of replacing all
+the occurrences of <span class="excalifont">x</span> in <span class="excalifont">A</span>, which are not involved in another quantifier with
+<span class="excalifont">\mathbf{o}</span>.</p>
+<p>So, for example, if <span class="excalifont">\forall xA(x)</span> is <div class="text-center my-4 excalifont">\forall x(\mathsf{Student}(x)\to
+\mathsf{OlderThan}(x,18))</div> then <div class="text-center my-4 excalifont">A(x)=\mathsf{Student}(x)\to
+\mathsf{OlderThan}(x,18))</div> and <div class="text-center my-4 excalifont">A(\mathbf{o})=\mathsf{Student}(\mathbf{o})\to
 \mathsf{OlderThan}(\mathbf{o},18)).</div></p>
 <p>Using this notation, we can finally give the full recursive clauses for
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall,\exists</span>:</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu_\alpha(\forall xA(x))=\prod_{o\in\mathcal{D}}\nu_\alpha(A(\mathbf{o}))</div>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\nu_\alpha(\exists xA(x))=\sum_{o\in\mathcal{D}}\nu_\alpha(A(\mathbf{o}))</div>
+<span class="excalifont">\forall,\exists</span>:</p>
+<div class="text-center my-4 excalifont">\nu_\alpha(\forall xA(x))=\prod_{o\in\mathcal{D}}\nu_\alpha(A(\mathbf{o}))</div>
+<div class="text-center my-4 excalifont">\nu_\alpha(\exists xA(x))=\sum_{o\in\mathcal{D}}\nu_\alpha(A(\mathbf{o}))</div>
 <p>This completes the rather long definition of a model for FOL, variable
-assignments <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\alpha</span>, of  and the associated valuation function <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\nu</span>.</p>
+assignments <span class="excalifont">\alpha</span>, of  and the associated valuation function <span class="excalifont">\nu</span>.</p>
 <p>One way of looking at the <strong>aim of knowledge representation in FOL</strong> is to
 describe an adequate model of the way we know/think the world is like using
 FOL-formulas.</p>
@@ -1053,7 +1053,7 @@ the idea from
 
  of modeling deductively valid inference
 as truth-preservation from premises to conclusion in all models:</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">P_1,P_2,\dots \vDash C\Leftrightarrow \text{ for all
+<div class="text-center my-4 excalifont">P_1,P_2,\dots \vDash C\Leftrightarrow \text{ for all
 }\mathcal{M},\nu,\alpha,\text{ if
 }\nu_\alpha(P_1)=1,\nu_\alpha(P_2)=1,\dots\text{, then }\nu_\alpha(C)=1.</div>
 <p>This definition gives rise to a series of <strong>FOL laws</strong>. The following
@@ -1068,39 +1068,14 @@ as truth-preservation from premises to conclusion in all models:</p>
   </thead>
   <tbody>
       <tr>
-          <td>Duality of <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\exists/\forall</span></td>
+          <td>Duality of <span class="excalifont">\exists/\forall</span></td>
           <td></td>
-          <td><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\exists xA\vDash \neg\forall x\neg A\qquad \neg\forall x\neg A\vDash \exists xA</span></td>
+          <td><span class="excalifont">\exists xA\vDash \neg\forall x\neg A\qquad \neg\forall x\neg A\vDash \exists xA</span></td>
       </tr>
       <tr>
-          <td>Duality of <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall/\exists</span></td>
+          <td>Duality of <span class="excalifont">\forall/\exists</span></td>
           <td></td>
-          <td><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall xA\vDash \neg\exists x\neg A\qquad \neg\exists x\neg A\vDash \forall xA</span></td>
-      </tr>
-      <tr>
-          <td> </td>
-          <td></td>
-          <td></td>
-      </tr>
-      <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-      </tr>
-      <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>Distribution <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall/\land</span></td>
-          <td></td>
-          <td><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall x(A\land B)\vDash \forall xA\land \forall xB\qquad \forall x A\land \forall x B\vDash \forall x(A\land B)</span></td>
-      </tr>
-      <tr>
-          <td>Distribution <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\exists/\lor</span></td>
-          <td></td>
-          <td><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\exists x(A\lor B)\vDash \exists xA\lor \exists xB\qquad \exists x A\lor \exists x B\vDash \exists x(A\lor B)</span></td>
+          <td><span class="excalifont">\forall xA\vDash \neg\exists x\neg A\qquad \neg\exists x\neg A\vDash \forall xA</span></td>
       </tr>
       <tr>
           <td> </td>
@@ -1108,14 +1083,39 @@ as truth-preservation from premises to conclusion in all models:</p>
           <td></td>
       </tr>
       <tr>
-          <td>Commutativity <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall</span></td>
           <td></td>
-          <td><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\forall x\forall yA\vDash \forall y\forall xA</span></td>
+          <td></td>
+          <td></td>
       </tr>
       <tr>
-          <td>Commutativity <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\exists</span></td>
           <td></td>
-          <td><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\exists x\exists yA\vDash \exists y\exists xA</span></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>Distribution <span class="excalifont">\forall/\land</span></td>
+          <td></td>
+          <td><span class="excalifont">\forall x(A\land B)\vDash \forall xA\land \forall xB\qquad \forall x A\land \forall x B\vDash \forall x(A\land B)</span></td>
+      </tr>
+      <tr>
+          <td>Distribution <span class="excalifont">\exists/\lor</span></td>
+          <td></td>
+          <td><span class="excalifont">\exists x(A\lor B)\vDash \exists xA\lor \exists xB\qquad \exists x A\lor \exists x B\vDash \exists x(A\lor B)</span></td>
+      </tr>
+      <tr>
+          <td> </td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>Commutativity <span class="excalifont">\forall</span></td>
+          <td></td>
+          <td><span class="excalifont">\forall x\forall yA\vDash \forall y\forall xA</span></td>
+      </tr>
+      <tr>
+          <td>Commutativity <span class="excalifont">\exists</span></td>
+          <td></td>
+          <td><span class="excalifont">\exists x\exists yA\vDash \exists y\exists xA</span></td>
       </tr>
       <tr>
           <td> </td>
@@ -1135,7 +1135,7 @@ as truth-preservation from premises to conclusion in all models:</p>
 
 <p>While <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/G%C3%B6del%27s_completeness_theorem"
-  target="_blank">Gödel&rsquo;s original completeness theorem</a> showed that the Hilbert system for FOL is sound and complete, i.e. we have <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">P_1,P_2,\dots\vDash C\Leftrightarrow P_1,P_2,\dots\vdash C</div> in FOL, there are two important limiting results about FOL with severe implications for AI.</p>
+  target="_blank">Gödel&rsquo;s original completeness theorem</a> showed that the Hilbert system for FOL is sound and complete, i.e. we have <div class="text-center my-4 excalifont">P_1,P_2,\dots\vDash C\Leftrightarrow P_1,P_2,\dots\vdash C</div> in FOL, there are two important limiting results about FOL with severe implications for AI.</p>
 <p>We&rsquo;ve already mentioned these results in 
 
 

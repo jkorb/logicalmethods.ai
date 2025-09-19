@@ -756,18 +756,18 @@ an assumption or known to be true or (ii) derives from the previous formulas in
 proof via <strong>inference rules</strong>. The final formula of a proof is the
 <strong>conclusion</strong>.</p>
 <p>An <strong>inference rule</strong> is a rule that sanctions an inference from assumptions
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A_1,\dots,A_n</span> to a conclusion <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">C</span>. Typically, we write this in the following
+<span class="excalifont">A_1,\dots,A_n</span> to a conclusion <span class="excalifont">C</span>. Typically, we write this in the following
 form:</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\\begin{array}{ccc} A_1 & \dots  & A_n \\\\ \\hline & C \\end{array}</div>
-<p>But there are also other notations, such as <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A_1,A_2,\dots</span>/<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">C</span> or
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A_1,A_2,\dots\vdash C</span>, for example.</p>
-<p>We write: <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">A_1, A_2, \dots\vdash C</div> to say that there exists a formal proof
-with assumptions <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A_1, A_2,\dots</span> and conclusion <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">C</span>.</p>
+<div class="text-center my-4 excalifont">\\begin{array}{ccc} A_1 & \dots  & A_n \\\\ \\hline & C \\end{array}</div>
+<p>But there are also other notations, such as <span class="excalifont">A_1,A_2,\dots</span>/<span class="excalifont">C</span> or
+<span class="excalifont">A_1,A_2,\dots\vdash C</span>, for example.</p>
+<p>We write: <div class="text-center my-4 excalifont">A_1, A_2, \dots\vdash C</div> to say that there exists a formal proof
+with assumptions <span class="excalifont">A_1, A_2,\dots</span> and conclusion <span class="excalifont">C</span>.</p>
 <p>As we&rsquo;ll see, there are many different proof systems even for just classical
 propositional logic. We typically clarify which system we mean by subscripting
-the <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\vdash</span> like so: <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">A_1, A_2, \dots\vdash_\mathbf{S} C</div></p>
+the <span class="excalifont">\vdash</span> like so: <div class="text-center my-4 excalifont">A_1, A_2, \dots\vdash_\mathbf{S} C</div></p>
 <p>Fully formalized, the above argument then becomes something like this:</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{STUDY}\lor\mathsf{WALK},\mathsf{WALK}\to\mathsf{MATH},\neg\mathsf{STUDY}\vdash\mathsf{MATH}</div>
+<div class="text-center my-4 excalifont">\mathsf{STUDY}\lor\mathsf{WALK},\mathsf{WALK}\to\mathsf{MATH},\neg\mathsf{STUDY}\vdash\mathsf{MATH}</div>
 <p>We can visually represent the corresponding proof as follows:</p>
 
 
@@ -807,19 +807,19 @@ one.</p>
 <ol>
 <li>All formulas of the following form are axioms:</li>
 </ol>
- <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);"> A\to ( B\to A)\tag{Axiom 1.}</div>
- <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">( A\to ( B\to C))\to(( A\to B)\to ( A\to C))\tag{Axiom 2.}</div>
- <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">(\neg  A\to \neg  B)\to ( B\to A)\tag{Axiom 3.}</div>
+ <div class="text-center my-4 excalifont"> A\to ( B\to A)\tag{Axiom 1.}</div>
+ <div class="text-center my-4 excalifont">( A\to ( B\to C))\to(( A\to B)\to ( A\to C))\tag{Axiom 2.}</div>
+ <div class="text-center my-4 excalifont">(\neg  A\to \neg  B)\to ( B\to A)\tag{Axiom 3.}</div>
 <ol start="2">
-<li>The only inference rule is <strong>MP</strong>: <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A,A\to B\vdash B</span></li>
+<li>The only inference rule is <strong>MP</strong>: <span class="excalifont">A,A\to B\vdash B</span></li>
 </ol>
-<p>Note that this system only uses <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\to,\neg</span> as its only connectives.</p>
+<p>Note that this system only uses <span class="excalifont">\to,\neg</span> as its only connectives.</p>
 <p>But there&rsquo;s a &ldquo;trick&rdquo; to deal with the other connectives. Using the following
-rewriting rules, we can rewrite every formula equivalently using only <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg</span> and
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\land</span>:</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">( A\land B)\leadsto \neg( A\to\neg B)</div>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">( A\lor B)\leadsto(\neg A\to B)</div> 
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">( A\leftrightarrow B)\leadsto(( A\to B)\land( B\to A))</div>
+rewriting rules, we can rewrite every formula equivalently using only <span class="excalifont">\neg</span> and
+<span class="excalifont">\land</span>:</p>
+<div class="text-center my-4 excalifont">( A\land B)\leadsto \neg( A\to\neg B)</div>
+<div class="text-center my-4 excalifont">( A\lor B)\leadsto(\neg A\to B)</div> 
+<div class="text-center my-4 excalifont">( A\leftrightarrow B)\leadsto(( A\to B)\land( B\to A))</div>
 <p>This works just like the rewriting into 
 
 
@@ -832,26 +832,26 @@ rewriting rules, we can rewrite every formula equivalently using only <span clas
    >CNF</a>
 
 .</p>
-<p>Here&rsquo;s how derivations work in a Hilbert system. We show that <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\vdash \mathsf{RAIN}\to \mathsf{RAIN}</span> , i.e. we can derive the logical truth <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}\to \mathsf{RAIN}</span> (if it rains, it rains) from the axioms only:</p>
+<p>Here&rsquo;s how derivations work in a Hilbert system. We show that <span class="excalifont">\vdash \mathsf{RAIN}\to \mathsf{RAIN}</span> , i.e. we can derive the logical truth <span class="excalifont">\mathsf{RAIN}\to \mathsf{RAIN}</span> (if it rains, it rains) from the axioms only:</p>
 <ol>
 <li>
-<p><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">((\mathsf{RAIN} \to ((\mathsf{RAIN} \to \mathsf{RAIN}) \to \mathsf{RAIN})) \to ((\mathsf{RAIN} \to (\mathsf{RAIN} \to \mathsf{RAIN})) \to (\mathsf{RAIN} \to \mathsf{RAIN})))</span></p>
-<p>(Axiom 2. with <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A=\mathsf{RAIN}, B=(\mathsf{RAIN}\to \mathsf{RAIN}),</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">C=\mathsf{RAIN}</span>)</p>
+<p><span class="excalifont">((\mathsf{RAIN} \to ((\mathsf{RAIN} \to \mathsf{RAIN}) \to \mathsf{RAIN})) \to ((\mathsf{RAIN} \to (\mathsf{RAIN} \to \mathsf{RAIN})) \to (\mathsf{RAIN} \to \mathsf{RAIN})))</span></p>
+<p>(Axiom 2. with <span class="excalifont">A=\mathsf{RAIN}, B=(\mathsf{RAIN}\to \mathsf{RAIN}),</span> and <span class="excalifont">C=\mathsf{RAIN}</span>)</p>
 </li>
 <li>
-<p><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">(\mathsf{RAIN} \to ((\mathsf{RAIN} \to \mathsf{RAIN}) \to \mathsf{RAIN}))</span></p>
-<p>(Axiom 1. with <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A=\mathsf{RAIN}</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">B=(\mathsf{RAIN}\to \mathsf{RAIN})</span>)</p>
+<p><span class="excalifont">(\mathsf{RAIN} \to ((\mathsf{RAIN} \to \mathsf{RAIN}) \to \mathsf{RAIN}))</span></p>
+<p>(Axiom 1. with <span class="excalifont">A=\mathsf{RAIN}</span> and <span class="excalifont">B=(\mathsf{RAIN}\to \mathsf{RAIN})</span>)</p>
 </li>
 <li>
-<p><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">((\mathsf{RAIN} \to (\mathsf{RAIN} \to \mathsf{RAIN})) \to (\mathsf{RAIN} \to \mathsf{RAIN}))</span></p>
+<p><span class="excalifont">((\mathsf{RAIN} \to (\mathsf{RAIN} \to \mathsf{RAIN})) \to (\mathsf{RAIN} \to \mathsf{RAIN}))</span></p>
 <p>(From 1. and 2. by MP.)</p>
 </li>
 <li>
-<p><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">(\mathsf{RAIN} \to (\mathsf{RAIN} \to \mathsf{RAIN}))</span></p>
-<p>(Axiom 1. with <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A=\mathsf{RAIN}</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">B=\mathsf{RAIN}</span>.)</p>
+<p><span class="excalifont">(\mathsf{RAIN} \to (\mathsf{RAIN} \to \mathsf{RAIN}))</span></p>
+<p>(Axiom 1. with <span class="excalifont">A=\mathsf{RAIN}</span> and <span class="excalifont">B=\mathsf{RAIN}</span>.)</p>
 </li>
 <li>
-<p><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">(\mathsf{RAIN} \to \mathsf{RAIN})</span></p>
+<p><span class="excalifont">(\mathsf{RAIN} \to \mathsf{RAIN})</span></p>
 <p>(From 3. and 4. by MP.)</p>
 </li>
 </ol>
@@ -862,17 +862,17 @@ them ideal for
 <a class="link-dark" href="#metalogic">metalogical</a> applications.</p>
 <p>But Hilbert systems also have practical use. They are <em>relatively</em> easy to apply when assumptions are involved and we translate the formulas in question using the re-writing rules mentioned above.</p>
 <p>Let&rsquo;s look at a Hilbert-style proof for:</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{STUDY}\lor\mathsf{WALK},\mathsf{WALK}\to\mathsf{MATH},\neg\mathsf{STUDY}\vdash\mathsf{MATH}</div>
-<p>First, we need to rewrite <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{STUDY}\lor\mathsf{WALK}</span> using the rules to
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg \mathsf{STUDY}\to\mathsf{WALK}</span>. So, what we really show is:</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\neg\mathsf{STUDY}\to\mathsf{WALK},\mathsf{WALK}\to\mathsf{MATH},\neg\mathsf{STUDY}\vdash\mathsf{MATH}</div>
+<div class="text-center my-4 excalifont">\mathsf{STUDY}\lor\mathsf{WALK},\mathsf{WALK}\to\mathsf{MATH},\neg\mathsf{STUDY}\vdash\mathsf{MATH}</div>
+<p>First, we need to rewrite <span class="excalifont">\mathsf{STUDY}\lor\mathsf{WALK}</span> using the rules to
+<span class="excalifont">\neg \mathsf{STUDY}\to\mathsf{WALK}</span>. So, what we really show is:</p>
+<div class="text-center my-4 excalifont">\neg\mathsf{STUDY}\to\mathsf{WALK},\mathsf{WALK}\to\mathsf{MATH},\neg\mathsf{STUDY}\vdash\mathsf{MATH}</div>
 We get:
 <ol>
-<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg \mathsf{STUDY}\to\mathsf{WALK}</span> (Assumption)</li>
-<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg \mathsf{STUDY}</span> (Assumption)</li>
-<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{WALK}</span> (1.,2. MP)</li>
-<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{WALK}\to\mathsf{MATH}</span> (Assumption)</li>
-<li><span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{MATH}</span> (3.,4. MP)</li>
+<li><span class="excalifont">\neg \mathsf{STUDY}\to\mathsf{WALK}</span> (Assumption)</li>
+<li><span class="excalifont">\neg \mathsf{STUDY}</span> (Assumption)</li>
+<li><span class="excalifont">\mathsf{WALK}</span> (1.,2. MP)</li>
+<li><span class="excalifont">\mathsf{WALK}\to\mathsf{MATH}</span> (Assumption)</li>
+<li><span class="excalifont">\mathsf{MATH}</span> (3.,4. MP)</li>
 </ol>
 <p>This is a pretty straight-forward derivation, just using MP twice. One way of looking at it is that the chaining algorithms we discussed in 
 
@@ -906,31 +906,31 @@ this:</p>
 
 
 <p>These rules need some explanation:</p>
-<p>The symbol <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\bot</span> is a logical symbol that stands for a logical contradiction.
+<p>The symbol <span class="excalifont">\bot</span> is a logical symbol that stands for a logical contradiction.
 It has some special rules but otherwise, it works just like any other
 propositional variable.</p>
 <p>In natural deduction, you can always introduce new assumptions to your proof by
 simply using them in an inference rule. The crucial thing is that you can
-<strong>discharge</strong> assumptions, as in the rule for <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\to I</span>:</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\\begin{array}{ccc} [A] \\\\ \vdots  \\\\ B \\\\ \\hline A\to B \\end{array}</div>
-<p>What this rule says is that if you have a derivation of <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">B</span> from <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A</span> using the
-rules of natural deduction, you can treat the assumption <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A</span> as <em>discharged</em> and it no longer counts as an assumption.</p>
+<strong>discharge</strong> assumptions, as in the rule for <span class="excalifont">\to I</span>:</p>
+<div class="text-center my-4 excalifont">\\begin{array}{ccc} [A] \\\\ \vdots  \\\\ B \\\\ \\hline A\to B \\end{array}</div>
+<p>What this rule says is that if you have a derivation of <span class="excalifont">B</span> from <span class="excalifont">A</span> using the
+rules of natural deduction, you can treat the assumption <span class="excalifont">A</span> as <em>discharged</em> and it no longer counts as an assumption.</p>
 <p>This is, for example, how we would derive the logical truth
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg(\mathsf{RAIN}\land\neg\mathsf{RAIN})</span> (it&rsquo;s not both raining and not raining):</p>
+<span class="excalifont">\neg(\mathsf{RAIN}\land\neg\mathsf{RAIN})</span> (it&rsquo;s not both raining and not raining):</p>
 
 
 <img src="https://logicalmethods.ai/textbook/proofs/img/non-contradiction.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
 
 
-<p>So, we get <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\vdash\neg(\mathsf{RAIN}\land\neg\mathsf{RAIN})</span> Note that there are no assumptions in this claim. The assumption that we made (twice!) that <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}\land\neg\mathsf{RAIN}</span> was discharged by the application of <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg I</span> at the end.</p>
+<p>So, we get <span class="excalifont">\vdash\neg(\mathsf{RAIN}\land\neg\mathsf{RAIN})</span> Note that there are no assumptions in this claim. The assumption that we made (twice!) that <span class="excalifont">\mathsf{RAIN}\land\neg\mathsf{RAIN}</span> was discharged by the application of <span class="excalifont">\neg I</span> at the end.</p>
 <p>Here&rsquo;s the derivation to for our running example:</p>
 
 
 <img src="https://logicalmethods.ai/textbook/proofs/img/inference1-nd.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
 
 
-<p>Note that while there are two assumptions that aren&rsquo;t among our premises, <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{STUDY}</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{WALK}</span>, both are discharged. So, this shows that:</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{STUDY}\lor\mathsf{WALK},\mathsf{WALK}\to\mathsf{MATH},\neg\mathsf{STUDY}\vdash\mathsf{MATH}</div>
+<p>Note that while there are two assumptions that aren&rsquo;t among our premises, <span class="excalifont">\mathsf{STUDY}</span> and <span class="excalifont">\mathsf{WALK}</span>, both are discharged. So, this shows that:</p>
+<div class="text-center my-4 excalifont">\mathsf{STUDY}\lor\mathsf{WALK},\mathsf{WALK}\to\mathsf{MATH},\neg\mathsf{STUDY}\vdash\mathsf{MATH}</div>
 <p>There are many, many different equivalent <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Natural_deduction"
   target="_blank">natural deduction
@@ -939,7 +939,7 @@ deduction proofs. The notation we&rsquo;re using here is called <i class="bi bi-
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Dag_Prawitz"
   target="_blank">Prawitz-style
 natural deduction</a>.</p>
-<p>Since the rule <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\to E</span> is essentially also just MP, we can use chaining algorithms with natural deduction as well.</p>
+<p>Since the rule <span class="excalifont">\to E</span> is essentially also just MP, we can use chaining algorithms with natural deduction as well.</p>
 <h3 id="resolution-based-systems">Resolution-based systems<button class="btn btn-back-to-top">
     
     <i class="bi bi-chevron-double-up"></i>
@@ -970,24 +970,24 @@ algorithm (as well as DPLL), which we studied in the exercises for
 ,
 is, essentially, also a proof system.</p>
 <p>Remember that the resolution rule, in its most general form, states that if you
-have two clauses (<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">l_i,k_j</span> are literals)</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">l_1\lor l_2\lor \dots\lor p \qquad \qquad \neg p\lor k_1\lor k_2\lor\dots</div>
+have two clauses (<span class="excalifont">l_i,k_j</span> are literals)</p>
+<div class="text-center my-4 excalifont">l_1\lor l_2\lor \dots\lor p \qquad \qquad \neg p\lor k_1\lor k_2\lor\dots</div>
 <p>you can infer:</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">l_1\lor l_2\lor \dots k_1\lor k_2\lor\dots</div>
+<div class="text-center my-4 excalifont">l_1\lor l_2\lor \dots k_1\lor k_2\lor\dots</div>
 <p>In rule form, we can thus write this as:</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\\begin{array}{ccc} l_1\lor l_2\lor \dots\lor p & & \neg p\lor k_1\lor
+<div class="text-center my-4 excalifont">\\begin{array}{ccc} l_1\lor l_2\lor \dots\lor p & & \neg p\lor k_1\lor
 k_2\lor\dots  \\\\ \\hline & l_1\lor l_2\lor \dots k_1\lor k_2\lor\dots
 \\end{array}</div>
-<p>Written as a rule like this, for formula-formula inferences rather than working with sets of literals, we need to answer one question: <em>What happens if <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">p</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg p</span> are the only members of their respective clauses</em>? That is, what happens if we have:</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\\begin{array}{ccc} p & & \neg p  \\\\ \\hline & ? \\end{array}</div>
-<p>The answer seems to be obvious: in this case, we&rsquo;ve arrived at a contradiction. So, <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">?</span> should be <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\bot</span>.</p>
+<p>Written as a rule like this, for formula-formula inferences rather than working with sets of literals, we need to answer one question: <em>What happens if <span class="excalifont">p</span> and <span class="excalifont">\neg p</span> are the only members of their respective clauses</em>? That is, what happens if we have:</p>
+<div class="text-center my-4 excalifont">\\begin{array}{ccc} p & & \neg p  \\\\ \\hline & ? \\end{array}</div>
+<p>The answer seems to be obvious: in this case, we&rsquo;ve arrived at a contradiction. So, <span class="excalifont">?</span> should be <span class="excalifont">\bot</span>.</p>
 <p>The resolution rule in this sense is <strong>sound</strong>: if the premises are true, then
 so is the conclusion. In other words, the rule corresponds to a valid inference.</p>
 <p>We can, for example, use the resolution rule to check the validity of our
 running example:</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{STUDY}\lor\mathsf{WALK},\mathsf{WALK}\to\mathsf{MATH},\neg\mathsf{STUDY}\vdash\mathsf{MATH}</div>
+<div class="text-center my-4 excalifont">\mathsf{STUDY}\lor\mathsf{WALK},\mathsf{WALK}\to\mathsf{MATH},\neg\mathsf{STUDY}\vdash\mathsf{MATH}</div>
 First, we need to use CNF re-writing and equivalently rewrite
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{WALK}\to\mathsf{MATH}</span> as <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg\mathsf{WALK}\lor\mathsf{MATH}</span>. Then we can apply resolution as follows:
+<span class="excalifont">\mathsf{WALK}\to\mathsf{MATH}</span> as <span class="excalifont">\neg\mathsf{WALK}\lor\mathsf{MATH}</span>. Then we can apply resolution as follows:
 
 
 <img src="https://logicalmethods.ai/textbook/proofs/img/resolution.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
@@ -996,9 +996,9 @@ First, we need to use CNF re-writing and equivalently rewrite
 <p>But the resolution rule <em>alone</em> doesn&rsquo;t give us an adequate proof system. To
 see this, note that we can never derive a <em>more complex</em> formula from a simpler
 formula using resolution. Take for example the valid inference
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}\vDash\mathsf{RAIN}\lor\mathsf{SNOW}</span>. There is no way to apply
-the resolution rule to get the conclusion, <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}\lor\mathsf{SNOW}</span>,
-from the premise <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}</span>. To do so, we need to widen our concept of a
+<span class="excalifont">\mathsf{RAIN}\vDash\mathsf{RAIN}\lor\mathsf{SNOW}</span>. There is no way to apply
+the resolution rule to get the conclusion, <span class="excalifont">\mathsf{RAIN}\lor\mathsf{SNOW}</span>,
+from the premise <span class="excalifont">\mathsf{RAIN}</span>. To do so, we need to widen our concept of a
 proof.</p>
 <p>So far, we&rsquo;ve looked at proofs as derivations of formulas from formulas by
 means of a step-wise arguments. This was a mathematical model of what we might
@@ -1007,23 +1007,23 @@ call &ldquo;direct inference&rdquo;.</p>
 perspective somewhat: we need to think of a proof as a formal procedure that
 establishes a valid inference between premises and conclusion:</p>
 <ul>
-<li>A proof for <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A_1,A_2,\dots\vdash C</span> in a resolution-based system is a
-derivation of <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\bot</span> from the clauses of the CNF&rsquo;s of <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">A_1,A_2,\dots, \neg C</span>.</li>
+<li>A proof for <span class="excalifont">A_1,A_2,\dots\vdash C</span> in a resolution-based system is a
+derivation of <span class="excalifont">\bot</span> from the clauses of the CNF&rsquo;s of <span class="excalifont">A_1,A_2,\dots, \neg C</span>.</li>
 </ul>
 <p>This is essentially the idea that we used in the resolution (and DPLL)
 algorithm, just expressed as a formal proof system: we show that it&rsquo;s logically
 impossible to make the premises true and the conclusion false.</p>
 <p>In the resulting system, then, we <em>can</em> prove
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN}\vDash\mathsf{RAIN}\lor\mathsf{SNOW}</span>. First, we need to determine
-the CNF of <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg(\mathsf{RAIN}\lor\mathsf{SNOW})</span>, which is just
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg\mathsf{RAIN}\land\neg\mathsf{SNOW}</span>. The clauses are therefore
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg\mathsf{RAIN}</span> and <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\neg\mathsf{SNOW}</span>. So, what we need to find is a
-derivation of <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\bot</span> from the clauses
-<span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\mathsf{RAIN},\neg\mathsf{RAIN},\mathsf{SNOW}</span>. But that&rsquo;s just an immediate
+<span class="excalifont">\mathsf{RAIN}\vDash\mathsf{RAIN}\lor\mathsf{SNOW}</span>. First, we need to determine
+the CNF of <span class="excalifont">\neg(\mathsf{RAIN}\lor\mathsf{SNOW})</span>, which is just
+<span class="excalifont">\neg\mathsf{RAIN}\land\neg\mathsf{SNOW}</span>. The clauses are therefore
+<span class="excalifont">\neg\mathsf{RAIN}</span> and <span class="excalifont">\neg\mathsf{SNOW}</span>. So, what we need to find is a
+derivation of <span class="excalifont">\bot</span> from the clauses
+<span class="excalifont">\mathsf{RAIN},\neg\mathsf{RAIN},\mathsf{SNOW}</span>. But that&rsquo;s just an immediate
 application of the resolution rule to the first two clauses:</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\\begin{array}{ccc} \mathsf{RAIN} & & \neg \mathsf{RAIN}  \\\\ \\hline & \bot \\end{array}</div>
+<div class="text-center my-4 excalifont">\\begin{array}{ccc} \mathsf{RAIN} & & \neg \mathsf{RAIN}  \\\\ \\hline & \bot \\end{array}</div>
 <p>This shows that in the resolution-based proof system, we get:</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">\mathsf{RAIN}\vdash\mathsf{RAIN}\lor\mathsf{SNOW}</div>
+<div class="text-center my-4 excalifont">\mathsf{RAIN}\vdash\mathsf{RAIN}\lor\mathsf{SNOW}</div>
 <h2 id="applications">Applications<button class="btn btn-back-to-top">
     
     <i class="bi bi-chevron-double-up"></i>
@@ -1052,12 +1052,12 @@ precisely defined in finite terms that are easy™️ to implement.</p>
 results, especially the so-called soundness and completeness theorems. A proof
 system is called <strong>sound</strong> if in the system, only things that actually follow
 can be derived:</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">P_1,P_2,\dots\vdash C\Rightarrow P_1,P_2,\dots\vDash C</div>
+<div class="text-center my-4 excalifont">P_1,P_2,\dots\vdash C\Rightarrow P_1,P_2,\dots\vDash C</div>
 <p>This is a sort of &ldquo;sanity check&rdquo; for a proof system. A system that doesn&rsquo;t
 satisfy soundness, is for obvious reasons not very useful.</p>
 <p>Conversely, a system is called <strong>complete</strong> if in the system <em>all</em> consequences
 can be derived:</p>
-<div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">P_1,P_2,\dots\vDash C\Rightarrow P_1,P_2,\dots\vdash C</div>
+<div class="text-center my-4 excalifont">P_1,P_2,\dots\vDash C\Rightarrow P_1,P_2,\dots\vdash C</div>
 <p>Completeness, in contrast to soundness, is <em>not</em> easy to obtain. A complete
 proof system can derive <em>all</em> consequences, the ones we&rsquo;ve thought of and the
 ones we haven&rsquo;t. This is quite a feat.</p>
@@ -1071,8 +1071,8 @@ semantics:</p>
 <ul>
 <li>
 <p><strong>Soundness and completeness theorem</strong>: In propositional logic, we have</p>
-  <div class="text-center my-4 excalifont" style="font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);">P_1,P_2,\dots\vDash C\Leftrightarrow P_1,P_2,\dots\vdash C</div>
-<p>where <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">\vdash</span> denotes derivability in our Hilbert, natural deduction, or
+  <div class="text-center my-4 excalifont">P_1,P_2,\dots\vDash C\Leftrightarrow P_1,P_2,\dots\vdash C</div>
+<p>where <span class="excalifont">\vdash</span> denotes derivability in our Hilbert, natural deduction, or
 resolution system.</p>
 </li>
 </ul>
@@ -1094,7 +1094,7 @@ language, calculations and proofs alike, and <em>verify</em> them by showing the
 validity in a logical proof system.</p>
 <p>A <strong>proof assistant</strong> or <strong>interactive theorem prover</strong> is a computer program
 that interactively checks formal arguments provided in a formal language. To
-illustrate, here are the proofs of our Hilbert <span class="excalifont" style="  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem);">Axioms_{1&ndash;3}</span> in the
+illustrate, here are the proofs of our Hilbert <span class="excalifont">Axioms_{1&ndash;3}</span> in the
 interactive theorem prover <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Lean_%28proof_assistant%29"
   target="_blank">Lean</a>:</p>
@@ -1131,7 +1131,7 @@ just need to check the verifier itself.</p>
 <p>The project of formally verifying mathematical results is a very undertaking in
 current research, which has yielded impressive results like, <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://leanprover-community.github.io/index.html"
-  target="_blank">Lean&rsquo;s <code></code><code>mathlib</code><code></code></a>, and is actively pursued by leading research mathematicians, like <i class="bi bi-box-arrow-up-right h-6"></i>
+  target="_blank">Lean&rsquo;s <div class="customBlock text-center my-4"><code class="customCode">mathlib</code></div></a>, and is actively pursued by leading research mathematicians, like <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Terence_Tao"
   target="_blank">Terence Tao</a>.</p>
 <h3 id="automated-theorem-provers">Automated theorem provers<button class="btn btn-back-to-top">
