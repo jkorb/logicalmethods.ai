@@ -1,239 +1,161 @@
 ---
 title: Boolean algebra
 author: Johannes Korbmacher
-locked: true
+locked: false
 weight: 40
 params: 
   id: exc-bool
   math: true
 ---
 
-$\LaTeX$: The solutions for exercises marked with this symbol need to be typed
-up using the latex typesetting system. If the exercise is homework, you need to
-digitally submit the solution as a PDF. Ask your TA to find out how.
+# Relay logic
 
-If you don't know what $\LaTeX$ is and how it works, you can learn it in 30
-minutes by following this
-[link](https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes).
+In the chapter you've learned about **relay logic**, that is the implementation
+of the Boolean functions using the $default "off"$ and $default "on"$ relay:
 
-For convenience, there are copy-paste-able $\LaTeX$-snippets included at the end
-of each question (click to expand).
+{{< img src="img/relays.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="400px">}}
 
-# Recursion {.latex .solved}
+We showed how to make circuits which behave just like !!NOT!! and !!AND!! using these relays. As a reminder, here are the concrete implementations:
 
-For this exercise, use a propositional language with the following variables:
+<div class="text-center">
+{{< img src="img/conjunction_impl.png" class="rounded mx-auto inert-img img-fluid my-4" width="400px">}}
+{{< img src="img/negation_impl.png" class="rounded mx-auto inert-img img-fluid my-4" width="400px">}}
+</div>
 
-+ $MARS$, which stands for "Mars is red",
-+ $VENUS$, which stands for "Venus is green",
-+ $PLUTO$, which stands for "Pluto is black".
+Note that we've depicted all possible configurations of the relay to
+demonstrate that the circuit behaves "according to spec", that is: just like
+the corresponding Boolean truth-function.
 
-Take a model where:
+For this exercise, you'll implement some more Boolean truth-functions using
+relays. You can draw the diagrams in whatever way works and clearly illustrates
+the idea. To show what I mean, here's one way to simplify the diagram for the
+!!AND!!-circuit (in the configuration for both inputs being $1$):
 
-+ $\nu(MARS)=1$,
-+ $\nu(VENUS)=1$,
-+ $\nu(PLUTO)=0$. 
+{{< img src="img/simplified_circuit.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="200px">}}
 
-Show the recursive calculation in this model for the truth-value of each formula below.
+Make sure that to verify that your circuit is according to spec! Note that you may need both kinds of relays for the implementations.
 
-1. $\nu(\neg PLUTO)=$ ?
-2. $\nu(MARS\land VENUS)=$ ?
-3. $\nu(PLUTO\lor\neg MARS)=$ ?
-4. $\nu(MARS\land\neg PLUTO)=$ ?
-5. $\nu(\neg(VENUS\land\neg\neg (PLUTO\lor MARS)))=$ ?
+1. Implement !!OR!!. 
 
-{{< latex >}}
-\begin{enumerate}
-  \item  $\nu(\neg PLUTO)=$ 
-  \item  $\nu(MARS\land VENUS)=$ 
-  \item  $\nu(PLUTO\lor\neg MARS)=$ 
-  \item  $\nu(MARS\land\neg PLUTO)=$ 
-  \item  $\nu(\neg(VENUS\land\neg\neg (PLUTO\lor MARS)))=$ 
-\end{enumerate}
-{{< /latex >}}
-
-## Solution {.solution #recursionSolution}
-
-
-1. Answer:
-
-  + $\nu(\neg PLUTO)$
-  + $=-\nu(PLUTO)$
-  + $=-0$
-  + $=1$
-
-2. Answer:
-
-  + $\nu(MARS\land VENUS)$
-  + $=\nu(MARS)\times\nu(VENUS)$
-  + $=1\times 1$
-  + $=1$
+{{< img src="img/or_table.png" class="rounded mx-auto d-block inert-img img-fluid " width="200px">}}
 
-3. Answer:
+2. Implement !!XOR!!
 
-  + $\nu(PLUTO\lor\neg MARS)$
-  + $=\nu(PLUTO)+\nu(\neg MARS)$
-  + $=\nu(PLUTO)+(-\nu(MARS))$
-  + $=0+(-1)$
-  + $=0+0$
-  + $=0$
+{{< img src="img/xor_table.png" class="rounded mx-auto d-block inert-img img-fluid " width="200px">}}
 
+3. Implement !!NAND!!
 
-4. Answer:
+{{< img src="img/nand_table.png" class="rounded mx-auto d-block inert-img img-fluid " width="200px">}}
 
-  + $\nu(MARS\land\neg PLUTO)$
-  + $=\nu(MARS)\times\nu(\neg PLUTO)$
-  + $=\nu(MARS)\times(-\nu(PLUTO))$
-  + $=1\times(-0)$
-  + $=1\times 1$
-  + $=1$
 
 
-5. Answer:
-
-  + $\nu(\neg(VENUS\land\neg\neg (PLUTO\lor MARS)))$
-  + $=-\nu(VENUS\land\neg\neg (PLUTO\lor MARS))$
-  + $=-(\nu(VENUS)\times\nu(\neg\neg (PLUTO\lor MARS)))$
-  + $=-(\nu(VENUS)\times --\nu(PLUTO\lor MARS))$
-  + $=-(\nu(VENUS)\times--(\nu(PLUTO)+\nu(MARS)))$
-  + $=-(1\times--(0+1))$
-  + $=-(1\times--1)$
-  + $=-(1\times-0)$
-  + $=-(1\times 1)$
-  + $=- 1$
-  + $= 0$
+# Defining functions
 
-# Boolean laws {.latex .solved}
+We've mentioned the idea of truth-functional completeness: we can express _all_
+truth-functions purely in terms of !!NOT!!, !!AND!!, and !!OR!!. 
 
-Use the Boolean laws in section 4.6 to explain why these equations are correct.
+To illustrate what this means, here's how we express !!OR!! in terms of !!NOT!! and !!AND!!. First, we write !!OR!! as a Boolean expression with two variables, which represent the two inputs:
 
-## a) 
+```
 
-$x\times (x+y) =  x+(x\times y)$
-
-## b) 
-
-$y\times z = y\times (z\times y)$
-
-## c) 
+```
 
-$(x + (y\times z))+x=(x+y)\times(x+z)$
+Using the function table for !!OR!!, we can calculate the value of this expression for all values of `X` and `Y`. The representation of !!OR!! in terms of !!NOT!! and !!AND!! is, then, the following Boolean expression:
 
-{{< latex >}}
+```
+!!NOT!! ((!!NOT!! X) !!AND!! (!!NOT!! Y))
+```
 
-% For reference: the laws
+We (by which I mean you 😉), we can verify this by going through the possible values for `X` and `Y` and check that for each such value, we have that:
 
-\begin{tabular}{ c c }
-  Conjunction laws          &                                          \\[2ex]
-  
-  Idempotence of $\times$   & $x\times x=x$                            \\
-  Commutativity of $\times$ & $x\times y=y\times x$                    \\
-  Associativity of $\times$ & $x\times(y\times z)=(x\times y)\times z$ \\
-  Identity for $\times$     & $x\times 1=x$                            \\
-  Annihilation for $\times$ & $x\times 0=0$                            \\[2ex]
-  
-  Disjunction laws          &                                          \\[2ex]
-  
-  Idempotence of $+$        & $x+x=x$                                  \\
-  Commutativity of $+$      & $x+y=y+x$                                \\
-  Associativity of $+$      & $x+(y+z)=(x+y)+z$                        \\
-  Identity for $+$          & $x+0=x$                                  \\
-  Annihilation for $+$      & $x+ 1=1$                                 \\[2ex]
-  
-  Interaction laws          &                                          \\[2ex]
-  
-  Distributivity $\times$/$+$ & $x\times(y+z)=(x\times y)+(x\times z)$ \\
-  Distributivity $+$/$\times$ & $x+(y\times z)=(x+y)\times(x+ z)$      \\
-  Absorption 1                & $x+(x\times y)=x$                      \\
-  Absorption 2                & $x\times(x+ y)=x$                      \\[2ex]
-  
-  Negation laws               &                                        \\[2ex]
-  
-  Complementation 1           & $x\times -x=0$                         \\
-  Complementation 2           & $x+ -x=1$                              \\
-  Involution                  & $\-\-x=x$                              \\
-  De Morgan 1                 & $-(x+y)=-x\times -y$                   \\
-  De Morgan 2                 & $-(x\times y)=-x+-y$                   \\
-\end{tabular}
+```
+X !!OR!! Y = !!NOT!! ((!!NOT!! X) !!AND!! (!!NOT!! Y))
+```
 
-% An item for each identity
+1. Verify this equation for all values of `X` and `Y`.
 
-\begin{itemize}
-  \item  $x\times (x+y) =  x+(x\times y)$
-  \item  $y\times z = y\times (z\times y)$
-  \item  $(x+(y\times z))+x = (x+y)\times(x+z)$
-\end{itemize}
+2. Represent !!XOR!! in terms of !!NOT!!, !!AND!!, and !!OR!!.
 
-{{< /latex >}}
+3. Represent !!NAND!! in terms of !!NOT!! and !!AND!!.
 
-## Solution {.solution #boolean-lawsSolution}
+4. Here's an interesting one: represent !!NOT!! in terms of !!XOR!!.
 
-**a)** 
+# Boolean laws 
 
-1. $x\times (x+y) \,=\,  x \qquad$ **[absorption]**
-2. $x \,=\,  x + (x\times y)\qquad$ **[absorption]**
-3. $x\times (x+y) \,=\,  x\times (x+y) \qquad$ **[1,2]**
+Use the laws of Boolean algebra to derive the following equation:
 
-**b)** 
+```
+X !!AND!! (Y !!OR!! Z) = X !!OR!! (Y !!AND!! Z)
+```
 
-1. $y \,=\, y\times y \qquad$ **[idempotence]**
-2. $y\times z \,=\, (y\times y)\times z \qquad$ **[1]**
-3. $(y\times y)\times z \,=\, y\times(y\times z) \qquad$ **[associativity]**
-4. $y\times z \,=\, z\times y \qquad$ **[commutativity]**
-5. $y\times(y\times z)\,=\, y\times(z\times y) \qquad$ **[4]**
-6. $y\times z \,=\, y\times (z\times y) \qquad$ **[2,3,5]**
+# Addition
 
-**c)**
+We've studied how you can add two numbers in binary. We'll use this to verify the equation: $$5 + 7 = 12.$$
 
-1. $(x + (y\times z)) + x \,=\, x+(x + (y\times z)) \qquad$ **[commutativity]**
-2. $x+(x + (y\times z)) \,=\, (x+x) + (y\times z) \qquad$ **[associativity]**
-3. $x+x \,=\, x \qquad$ **[idempotence]**
-4. $(x+x) + (y\times z) \,=\, x+(y\times z) \qquad$ **[3]**
-5. $x+(y\times z) \,=\, (x+y)\times(x+z) \qquad$ **[idempotence]**
-6. $(x + (y\times z)) + x \,=\, (x+y)\times(x+z) \qquad$ **[1,2,4,5]**
+1. Transform the summands 5 and 7 into binary notation. The result will be 3-bit
+   binary numbers.
 
-# Validity {.latex .solved}
+2. Calculate each bit of the sum step by step using the Boolean functions for
+   the full adder (note that you must initialize the carry to `0` for the first
+calculation to work). 
 
-a) Use the definition of a Boolean model to show that $[A\lor A]=[A]$ for any formula $A$. 
+# Models
 
-b) Use the previous fact to explain why $A\lor A\vDash A$ and $A\vDash A\lor A$
+Suppose that we have a language $L$ with three propositional variables $RED$, $BLUE$, and $GREEN$, which we use to reason about the color of a pixel in the [RGB color model](https://en.wikipedia.org/wiki/RGB_color_model).
 
-{{< latex >}}
-\begin{itemize}
-  \item Use the definition of a Boolean model to show that $[A\lor A]=[A]$ for any formula $A$. 
-  \item Use the previous fact to explain why $A\lor A\vDash A$ and $A\vDash A\lor A$
-\end{itemize}
-{{< /latex >}}
+1. Determine all the valuations for that language. 
 
-## Solution {.solution #validitySolution}
+2. If we change our language $RED₁$, $BLUE₁$, and $GREEN₁$ to talk about the
+   color of a first pixel, and $RED₂$, $BLUE₂$, and $GREEN₂$ to talk about the
+color of a second pixel, what happens to the number of valuations?
 
-**a)**
+3. How many valuations are there in the language that has a propositional variable for each RGB-value of each pixel on a [4K-resolution screen](https://en.wikipedia.org/wiki/4K_resolution). (You can't actually calculate that value, but you can write an expression that represents it.)
 
-The set of models $[A\lor A]=\{ \nu : \nu(A\lor A)=1\}$. Since $\nu(A\lor A)=\nu(A)+\nu(A)$ we know by idempotence that we always have the equivlance $\nu(A\lor A)=\nu(A)$. This shows that $[A\lor A]=[A]$. 
+# Deductive inference
 
-**b)**
+{{< img src="img/jimmy_inference.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}}
 
-It follows from above that $[A\lor A]\subseteq[A]$ which is the definition of $A\lor A\vDash A$. It also follows that $[A]\subseteq[A\lor A]$ which is the definition of $A\vDash A\lor A$.
+1. Translate the inference into a suitable formal language.
 
-# Research
+2. Determine whether the formal inference is valid using Boolean logic.
 
-_This one went up late, but if you have the time, it's a good exercise_
+# Logical laws
 
-[Logic gates](https://en.wikipedia.org/wiki/Logic_gate) are a different way
-of thinking about Boolean truth-function. Familiarize yourself with what
-they are and 
+So far, we've only shown of _particular_ inferences (about the weather or
+little Jimmy) that they are valid or invalid. For this exercise, you'll show
+that _all_ inferences of a certain form are valid, regardless what they're
+about. 
 
-## a) 
+For this, we'll focus on _disjunctive syllogism_, which we take to be the
+following inference schema, where $A$ and $B$ can be _any_ two formulas whatsoever:
 
-Write the following Boolean truth-functions using the logic gates
-for $NOT,AND,OR$
+{{< img src="img/disjunctive_syllogism.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="175px">}}
 
-+ $(x+y)\times -(x\times y)$
+To show that this inference is valid, following the definition of deductive
+validity, we need to show that:
 
-+ $-(x+y)$
+{{< img src="img/ds_validity_condition.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="200px">}}
 
-+ $-((x\times y)+z)$
+This means, according to the definition of $⊆$, that we need to show that any
+valuation $v$:
 
-## b) 
+{{< img src="img/ds_if_then.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="400px">}}
 
-It's a mathematical fact that all logic gates can be implemented using
-$NOR$ gates. Find the $NOR$-only gates for the functions above.
+This is the claim, we'll set out to show:
+
+1. Assume that $v$ is an arbitrary valuation, meaning you don't know anything
+   about, such as which values it assigns to which formula. Assume further that {{< img src="img/in_set_inline.png" class="inert-img" height="38px" style="vertical-align: middle;" >}}. Apply the definition of 
+   $$[A] = { v : v(A) = 1},$$ 
+   as well as the definition of intersection as 
+   {{< img src="img/intersection_definition.png" class="rounded mx-auto d-block inert-img img-fluid my-2" width="300px">}}
+
+   to infer what this means for the values of $A v B$ and $¬A$ under $v$.
+
+2. Using the general clauses for calculating the values under an assignment,
+
+   {{< img src="img/clauses.png" class="rounded mx-auto d-block inert-img img-fluid my-2" width="300px">}}
+
+   to transform the result of a last step into two Boolean equations.
+
+3. "Solve" this Boolean equation for the value $v(B)$ of $B$, that is infer
+   what that value must be. Conclude from this that {{< img src="img/ds_then.png" class="inert-img" height="38px" style="vertical-align: middle;" >}} and the inference is valid.
