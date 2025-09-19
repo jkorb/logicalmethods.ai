@@ -85,7 +85,7 @@ X !!OR!! Y = !!NOT!! ((!!NOT!! X) !!AND!! (!!NOT!! Y))
 Use the laws of Boolean algebra to derive the following equation:
 
 ```
-X !!AND!! (Y !!OR!! Z) = X !!OR!! (Y !!AND!! Z)
+X !!AND!! (X !!OR!! Y) = X !!OR!! (X !!AND!! Y)
 ```
 
 # Addition
