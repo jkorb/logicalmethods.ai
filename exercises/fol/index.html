@@ -473,11 +473,11 @@
             <li>
               <a class="dropdown-item 
                 
-                link-opacity-50
+                
                 "
-                href="javascript:;"
+                href="/exercises/boolean/"
               >4. 
-                <i class="bi bi-lock-fill"></i>
+                <i class="bi bi-unlock-fill"></i>
                  Boolean algebra
               </a>
             </li>
@@ -733,9 +733,6 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
 <hr>
 <div class="container exercises m-4">
   <div class="container-fluid">
-    
-    
-      
 </div>
 <div id="models" class=" homework solved"><h5 class="homework solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Models
@@ -754,9 +751,9 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
 </h5><p><em>Only 3. and 6. are homework</em></p>
 <p>Suppose we&rsquo;re dealing with a FOL language with:</p>
 <ul>
-<li>constants $a,b$</li>
-<li>a unary predicate $P$</li>
-<li>a binary predicate $R$</li>
+<li>constants <span class="excalifont">a,b</span></li>
+<li>a unary predicate <span class="excalifont">P</span></li>
+<li>a binary predicate <span class="excalifont">R</span></li>
 </ul>
 <p>Consider the model given by the following diagram:</p>
 
@@ -766,21 +763,21 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
 
 <p>To be clear:</p>
 <ul>
-<li>the objects may be called $o_1,o_2,o_3$ (from left to right)</li>
-<li>the denotations $a^\mathcal{M}, b^\mathcal{M}$ are given by the subscripts</li>
-<li>the interpretation of $P^\mathcal{M}$ is given by the red square</li>
-<li>the interpretation of $R^\mathcal{M}$ is given by the arrows (an arrow from
+<li>the objects may be called <span class="excalifont">o_1,o_2,o_3</span> (from left to right)</li>
+<li>the denotations <span class="excalifont">a^\mathcal{M}, b^\mathcal{M}</span> are given by the subscripts</li>
+<li>the interpretation of <span class="excalifont">P^\mathcal{M}</span> is given by the red square</li>
+<li>the interpretation of <span class="excalifont">R^\mathcal{M}</span> is given by the arrows (an arrow from
 one node to another means that the first node stands in the relation to the
 other in the model).</li>
 </ul>
 <p>Determine the truth-value of the following formulas in the model:</p>
 <ol>
-<li>$P(a)\land P(b)$</li>
-<li>$\forall x P(x)$</li>
-<li>$\exists x P(x)\land \exists x\neg P(x)$</li>
-<li>$\forall x\exists yR(x,y)$</li>
-<li>$\forall x\forall y((P(x)\land R(x,y))\to P(y))$</li>
-<li>$\forall x\exists y(R(y,x)\land P(y))$</li>
+<li><span class="excalifont">P(a)\land P(b)</span></li>
+<li><span class="excalifont">\forall x P(x)</span></li>
+<li><span class="excalifont">\exists x P(x)\land \exists x\neg P(x)</span></li>
+<li><span class="excalifont">\forall x\exists yR(x,y)</span></li>
+<li><span class="excalifont">\forall x\forall y((P(x)\land R(x,y))\to P(y))</span></li>
+<li><span class="excalifont">\forall x\exists y(R(y,x)\land P(y))</span></li>
 </ol>
 <p>Don&rsquo;t just give the truth-value but provide a justification with reference to
 the recursive clauses. Ideally but not necessarily, this would be a
@@ -788,48 +785,48 @@ calculation.</p>
 
 </div>
 <div id="modelsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>1.</strong>
-$a^M\in P^M$ so $\nu(P(a))=1$ and $b^M\in P^M$ so $\nu(P(b))=1$.
-Then for the full formula we have $\nu(P(a)\land P(b))=\nu(P(a))\times\nu(P(b))=1\times 1=1$</p>
+<span class="excalifont">a^M\in P^M</span> so <span class="excalifont">\nu(P(a))=1</span> and <span class="excalifont">b^M\in P^M</span> so <span class="excalifont">\nu(P(b))=1</span>.
+Then for the full formula we have <span class="excalifont">\nu(P(a)\land P(b))=\nu(P(a))\times\nu(P(b))=1\times 1=1</span></p>
 <p><strong>2.</strong>
-On any assignment $\alpha$ we have $\nu_\alpha(P(\mathbf{o_3}))=0$.
-Then for the full formula we have $\nu_\alpha(\forall xP(x))=\Pi_{\mathbf{o}\in D}(P(\mathbf{o}))=0$</p>
+On any assignment <span class="excalifont">\alpha</span> we have <span class="excalifont">\nu_\alpha(P(\mathbf{o_3}))=0</span>.
+Then for the full formula we have <span class="excalifont">\nu_\alpha(\forall xP(x))=\Pi_{\mathbf{o}\in D}(P(\mathbf{o}))=0</span></p>
 <p><strong>3.</strong>
-On any assignment $\alpha$ we have $\nu_\alpha(P(\mathbf{o_1}))=1$ and so for the quantified formula $\nu_\alpha(\exists xP(x))=\Sigma_{\mathbf{o}\in D}(P(\mathbf{o}))=1$. Similarly we have $\nu_\alpha(\neg P(\mathbf{o_3}))=-\nu_\alpha(P(\mathbf{o_3}))=-0=1$ and so for the quantified formula $\nu_\alpha(\exists x\neg P(x))=\Sigma_{\mathbf{o}\in D}(\neg P(\mathbf{o}))=1$.
-Then for the full formula we have $\nu_\alpha(\exists xP(x)\land \exists x\neg P(x)=1)$</p>
+On any assignment <span class="excalifont">\alpha</span> we have <span class="excalifont">\nu_\alpha(P(\mathbf{o_1}))=1</span> and so for the quantified formula <span class="excalifont">\nu_\alpha(\exists xP(x))=\Sigma_{\mathbf{o}\in D}(P(\mathbf{o}))=1</span>. Similarly we have <span class="excalifont">\nu_\alpha(\neg P(\mathbf{o_3}))=-\nu_\alpha(P(\mathbf{o_3}))=-0=1</span> and so for the quantified formula <span class="excalifont">\nu_\alpha(\exists x\neg P(x))=\Sigma_{\mathbf{o}\in D}(\neg P(\mathbf{o}))=1</span>.
+Then for the full formula we have <span class="excalifont">\nu_\alpha(\exists xP(x)\land \exists x\neg P(x)=1)</span></p>
 <p><strong>4.</strong>
-$\forall x\exists yR(x,y)$</p>
+<span class="excalifont">\forall x\exists yR(x,y)</span></p>
 <p>The formula is true.</p>
 <p>Here&rsquo;s the calculation:</p>
 <p>We know:</p>
-<p>$$\nu(\forall x\exists yR(x,y))=
+<div class="text-center my-4 excalifont">\nu(\forall x\exists yR(x,y))=
 \nu(\exists yR(\mathbf{o_1},y))
 \times
 \nu(\exists yR(\mathbf{o_2},y))
 \times
-\nu(\exists yR(\mathbf{o_3},y))$$</p>
-<p>For each $i=1,2,3$, we have:
-$\nu(\exists yR(\mathbf{o_i},y))=
+\nu(\exists yR(\mathbf{o_3},y))</div>
+<p>For each <span class="excalifont">i=1,2,3</span>, we have:
+<span class="excalifont">\nu(\exists yR(\mathbf{o_i},y))=
 \nu(R(\mathbf{o_i},{o_1}))
 +\nu(R(\mathbf{o_i},{o_2}))
-+\nu(R(\mathbf{o_i},{o_3}))$</p>
-<p>And for each $i$, one of the summands here is true: for $i=1$, we have
-$\nu(R(\mathbf{o_1},\mathbf{o_2})=1$, for $i=2$, we have $\nu(R(\mathbf{o_2},\mathbf{o_3})=1$, and for $i=3$, we have $\nu(R(\mathbf{o_3},\mathbf{o_3})=1$. Hence:
-$\nu(\exists yR(\mathbf{o_i},y))=
++\nu(R(\mathbf{o_i},{o_3}))</span></p>
+<p>And for each <span class="excalifont">i</span>, one of the summands here is true: for <span class="excalifont">i=1</span>, we have
+<span class="excalifont">\nu(R(\mathbf{o_1},\mathbf{o_2})=1</span>, for <span class="excalifont">i=2</span>, we have <span class="excalifont">\nu(R(\mathbf{o_2},\mathbf{o_3})=1</span>, and for <span class="excalifont">i=3</span>, we have <span class="excalifont">\nu(R(\mathbf{o_3},\mathbf{o_3})=1</span>. Hence:
+<span class="excalifont">\nu(\exists yR(\mathbf{o_i},y))=
 \nu(R(\mathbf{o_i},{o_1}))
 +\nu(R(\mathbf{o_i},{o_2}))
-+\nu(R(\mathbf{o_i},{o_3}))=1$.</p>
-<p>And so the big product is $1$, too.</p>
++\nu(R(\mathbf{o_i},{o_3}))=1</span>.</p>
+<p>And so the big product is <span class="excalifont">1</span>, too.</p>
 <p><strong>5.</strong>
-$\forall x\forall y((P(x)\land R(x,y))\to P(y))$</p>
-<p>The formula is false: $\mathbf{o_2}$ and $\mathbf{o_3}$ provide the counterexample:</p>
-<p>$$\nu(P(\mathbf{o_2}))=1$$
-$$\nu(R(\mathbf{o_2},\mathbf{o_3}))=1$$
-$$\nu(\mathsf{P}(\mathbf{o_3}))=0$$</p>
-<p>Hence $$\nu(P(\mathbf{o_2})\land R(\mathbf{o_2},\mathbf{o_3})\to P(\mathbf{o_3}))=0$$</p>
-<p>This makes any $\prod$-product involving this value $0$ as well.</p>
+<span class="excalifont">\forall x\forall y((P(x)\land R(x,y))\to P(y))</span></p>
+<p>The formula is false: <span class="excalifont">\mathbf{o_2}</span> and <span class="excalifont">\mathbf{o_3}</span> provide the counterexample:</p>
+<div class="text-center my-4 excalifont">\nu(P(\mathbf{o_2}))=1</div>
+<div class="text-center my-4 excalifont">\nu(R(\mathbf{o_2},\mathbf{o_3}))=1</div>
+<div class="text-center my-4 excalifont">\nu(\mathsf{P}(\mathbf{o_3}))=0</div>
+<p>Hence <div class="text-center my-4 excalifont">\nu(P(\mathbf{o_2})\land R(\mathbf{o_2},\mathbf{o_3})\to P(\mathbf{o_3}))=0</div></p>
+<p>This makes any <span class="excalifont">\prod</span>-product involving this value <span class="excalifont">0</span> as well.</p>
 <p><strong>6.</strong>
-We will observe a fact about the left object $\mathbf{o_1}$. On any assignment, if we choose any object $\mathbf{o}$ at all, we have $\nu_\alpha(R(\mathbf{o},\mathbf{o_1})=0$ and so $\nu_\alpha(R(\mathbf{o},\mathbf{o_1}\times P(\mathbf{o}))=0$. That means, if we sum over all objects in the $\mathbf{o}$ position we have $\Sigma_{\mathbf{o}\in D}(\nu_\alpha(R(\mathbf{o},\mathbf{o_1}))\times\nu_\alpha(P(\mathbf{o})))=0$. Since this sum comes out false for the particular object $\mathbf{o_1}$, if we then do a product calculation over all objects $\mathbf{o&rsquo;}$ in that same position we get $\Pi_{\mathbf{o&rsquo;}\in D}\Sigma_{\mathbf{o}\in D}(\nu_\alpha(R(\mathbf{o},\mathbf{o&rsquo;}))\times\nu_\alpha(P(\mathbf{o})))=0$.
-And that is precisely how to calculate the value of our formula $\nu_\alpha(\forall x\exists y(R(y,x)\land P(y)))=0$.</p>
+We will observe a fact about the left object <span class="excalifont">\mathbf{o_1}</span>. On any assignment, if we choose any object <span class="excalifont">\mathbf{o}</span> at all, we have <span class="excalifont">\nu_\alpha(R(\mathbf{o},\mathbf{o_1})=0</span> and so <span class="excalifont">\nu_\alpha(R(\mathbf{o},\mathbf{o_1}\times P(\mathbf{o}))=0</span>. That means, if we sum over all objects in the <span class="excalifont">\mathbf{o}</span> position we have <span class="excalifont">\Sigma_{\mathbf{o}\in D}(\nu_\alpha(R(\mathbf{o},\mathbf{o_1}))\times\nu_\alpha(P(\mathbf{o})))=0</span>. Since this sum comes out false for the particular object <span class="excalifont">\mathbf{o_1}</span>, if we then do a product calculation over all objects <span class="excalifont">\mathbf{o&rsquo;}</span> in that same position we get <span class="excalifont">\Pi_{\mathbf{o&rsquo;}\in D}\Sigma_{\mathbf{o}\in D}(\nu_\alpha(R(\mathbf{o},\mathbf{o&rsquo;}))\times\nu_\alpha(P(\mathbf{o})))=0</span>.
+And that is precisely how to calculate the value of our formula <span class="excalifont">\nu_\alpha(\forall x\exists y(R(y,x)\land P(y)))=0</span>.</p>
 
 </div>
 <div id="knowledge-engineering" class=" solved"><h5 class="solved">
@@ -882,7 +879,7 @@ the switches and has the following goal:</p>
 <i class="bi bi-box-arrow-up-right h-6"></i>
 <a href="https://en.wikipedia.org/wiki/Discrete" class="link-dark" rel="external" target="_blank">discrete</a>
  time points,
-$1,2,\dots,n$.</p>
+<span class="excalifont">1,2,\dots,n</span>.</p>
 </li>
 </ul>
 <p>We include the  <i class="bi bi-box-arrow-up-right h-6"></i>
@@ -905,39 +902,39 @@ domain.</strong></p>
 
 </div>
 <div id="knowledge-engineeringSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>BNF:</strong> We use &rsquo;left&rsquo; and &lsquo;right&rsquo; as names of the lamps on each side, and use numeric terms as names of infinitely many points in time going forward. This comes with a built-in operation of &lsquo;+1&rsquo; to refer to the next moment in time. Notice that predicates are restricted. They can only be combined with a lamp term in the first position and a time term in the second position.</p>
-<p>$$ \langle{var}\rangle ::= x \mid y \mid z $$</p>
-<p>$$ \langle{const_side}\rangle ::= \mathsf{left} \mid \mathsf{right} $$</p>
-<p>$$ \langle{const_time}\rangle ::= n\in\mathbb{N} $$</p>
-<p>$$ \langle{term_side}\rangle ::= \langle{var}\rangle \mid \langle{const_side}\rangle $$</p>
-<p>$$ \langle{term_time}\rangle ::= \langle{var}\rangle \mid \langle{const_time}\rangle $$</p>
-<p>$$ \langle{unop}\rangle ::= \neg $$</p>
-<p>$$ \langle{binop}\rangle ::= \land \mid \lor \mid \rightarrow \mid \leftrightarrow $$</p>
-<p>$$ \langle{quant}\rangle ::= \forall \mid \exists $$</p>
-<p>$$ \langle{pred}\rangle^2 ::= \mathsf{On} \mid \mathsf{Off} \mid \mathsf{Switch} $$</p>
-<p>$$ \langle{atom}\rangle ::= \langle{pred}\rangle^2(\langle{term_side}\rangle,\langle{term_time}\rangle) $$</p>
-<p>$$ \langle{fml}\rangle ::= \langle{atom}\rangle \mid \langle{unop}\rangle\langle{fml}\rangle \mid (\langle{fml}\rangle\langle{binop}\rangle\langle{fml}\rangle) \mid \langle{quant}\rangle\langle{var}\rangle\langle{fml}\rangle $$</p>
+<div class="text-center my-4 excalifont"> \langle{var}\rangle ::= x \mid y \mid z </div>
+<div class="text-center my-4 excalifont"> \langle{const\_side}\rangle ::= \mathsf{left} \mid \mathsf{right} </div>
+<div class="text-center my-4 excalifont"> \langle{const\_time}\rangle ::= n\in\mathbb{N} </div>
+<div class="text-center my-4 excalifont"> \langle{term\_side}\rangle ::= \langle{var}\rangle \mid \langle{const\_side}\rangle </div>
+<div class="text-center my-4 excalifont"> \langle{term\_time}\rangle ::= \langle{var}\rangle \mid \langle{const\_time}\rangle </div>
+<div class="text-center my-4 excalifont"> \langle{unop}\rangle ::= \neg </div>
+<div class="text-center my-4 excalifont"> \langle{binop}\rangle ::= \land \mid \lor \mid \rightarrow \mid \leftrightarrow </div>
+<div class="text-center my-4 excalifont"> \langle{quant}\rangle ::= \forall \mid \exists </div>
+<div class="text-center my-4 excalifont"> \langle{pred}\rangle^2 ::= \mathsf{On} \mid \mathsf{Off} \mid \mathsf{Switch} </div>
+<div class="text-center my-4 excalifont"> \langle{atom}\rangle ::= \langle{pred}\rangle^2(\langle{term\_side}\rangle,\langle{term\_time}\rangle) </div>
+<div class="text-center my-4 excalifont"> \langle{fml}\rangle ::= \langle{atom}\rangle \mid \langle{unop}\rangle\langle{fml}\rangle \mid (\langle{fml}\rangle\langle{binop}\rangle\langle{fml}\rangle) \mid \langle{quant}\rangle\langle{var}\rangle\langle{fml}\rangle </div>
 <br>
 <p><strong>Task:</strong> Formalization</p>
 <p>Setup</p>
 <ul>
-<li>$\mathsf{On}(\mathsf{left},1)$</li>
-<li>$\mathsf{Off}(\mathsf{right},1)$</li>
+<li><span class="excalifont">\mathsf{On}(\mathsf{left},1)</span></li>
+<li><span class="excalifont">\mathsf{Off}(\mathsf{right},1)</span></li>
 </ul>
 <p>Goals</p>
 <ul>
-<li>$\exists x\mathsf{Off}(\mathsf{left},x)$</li>
-<li>$\exists x\mathsf{On}(\mathsf{right},x)$</li>
+<li><span class="excalifont">\exists x\mathsf{Off}(\mathsf{left},x)</span></li>
+<li><span class="excalifont">\exists x\mathsf{On}(\mathsf{right},x)</span></li>
 </ul>
 <p>Rules</p>
 <ul>
-<li>$\forall x\forall y(\mathsf{Off}(x,y)\leftrightarrow\neg\mathsf{On}(x,y))$</li>
-<li>$\forall x\forall y((\mathsf{On}(x,y)\land\mathsf{Switch}(x,y))\to\mathsf{Off}(x,y+1))$</li>
-<li>$\forall x\forall y((\mathsf{Off}(x,y)\land\mathsf{Switch}(x,y))\to\mathsf{On}(x,y+1))$</li>
+<li><span class="excalifont">\forall x\forall y(\mathsf{Off}(x,y)\leftrightarrow\neg\mathsf{On}(x,y))</span></li>
+<li><span class="excalifont">\forall x\forall y((\mathsf{On}(x,y)\land\mathsf{Switch}(x,y))\to\mathsf{Off}(x,y+1))</span></li>
+<li><span class="excalifont">\forall x\forall y((\mathsf{Off}(x,y)\land\mathsf{Switch}(x,y))\to\mathsf{On}(x,y+1))</span></li>
 </ul>
 <p>Frames</p>
 <ul>
-<li>$\forall x\forall y((\mathsf{On}(x,y)\land\neg\mathsf{Switch}(x,y))\to\mathsf{On}(x,y+1))$</li>
-<li>$\forall x\forall y((\mathsf{Off}(x,y)\land\neg\mathsf{Switch}(x,y))\to\mathsf{Off}(x,y+1))$</li>
+<li><span class="excalifont">\forall x\forall y((\mathsf{On}(x,y)\land\neg\mathsf{Switch}(x,y))\to\mathsf{On}(x,y+1))</span></li>
+<li><span class="excalifont">\forall x\forall y((\mathsf{Off}(x,y)\land\neg\mathsf{Switch}(x,y))\to\mathsf{Off}(x,y+1))</span></li>
 </ul>
 
 </div>
@@ -962,36 +959,36 @@ the Boolean law holds and then, (ii) show that the logical law follows from
 that.</p>
 
 </div>
-<div id="a" ><h6 class="">a)</h6><p>$$\text{Boolean law}: x+(y_1\times y_2\times \dots)=(x+y_1)\times (x+y_2)\times \dots$$</p>
-<p>$$\text{Logical law}: \mathsf{Blue}(a)\lor \forall x \mathsf{Round}(x)\vDash \forall x(\mathsf{Blue}(a) \lor\mathsf{Round}(x))$$</p>
+<div id="a" ><h6 class="">a)</h6><div class="text-center my-4 excalifont">\text{Boolean law}: x+(y_1\times y_2\times \dots)=(x+y_1)\times (x+y_2)\times \dots</div>
+<div class="text-center my-4 excalifont">\text{Logical law}: \mathsf{Blue}(a)\lor \forall x \mathsf{Round}(x)\vDash \forall x(\mathsf{Blue}(a) \lor\mathsf{Round}(x))</div>
 
 </div>
-<div id="b" class=" homework"><h6 class=" homework">b)</h6><p>$$\text{Boolean law}: x\times (y_1+ y_2+ \dots)=(x\times y_1)+ (x\times y_2)+ \dots$$</p>
-<p>$$\text{Logical law}: \mathsf{Blue}(a)\land \exists x \mathsf{Round}(x)\vDash
-\exists x(\mathsf{Blue}(a)\land \mathsf{Round}(x)) $$</p>
+<div id="b" class=" homework"><h6 class=" homework">b)</h6><div class="text-center my-4 excalifont">\text{Boolean law}: x\times (y_1+ y_2+ \dots)=(x\times y_1)+ (x\times y_2)+ \dots</div>
+<div class="text-center my-4 excalifont">\text{Logical law}: \mathsf{Blue}(a)\land \exists x \mathsf{Round}(x)\vDash
+\exists x(\mathsf{Blue}(a)\land \mathsf{Round}(x)) </div>
 
 </div>
 <div id="consequenceSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong>
-$x+(y_1\times y_2\times\ldots)=(x+ y_1)\times(x+ y_2)\times\ldots$ follows from n-many applications of the Boolean law of absorption</p>
+<span class="excalifont">x+(y_1\times y_2\times\ldots)=(x+ y_1)\times(x+ y_2)\times\ldots</span> follows from n-many applications of the Boolean law of absorption</p>
 <p>relation to logical law???</p>
 <p><strong>b)</strong>
 First of all, this principle follows from repeated applications of the Boolean law of distributivity:
-$x\times(y_1+ y_2+\ldots)=(x\times y_1)+(x\times y_2)+\ldots$</p>
+<span class="excalifont">x\times(y_1+ y_2+\ldots)=(x\times y_1)+(x\times y_2)+\ldots</span></p>
 <p>Now, we can use this to verify the following inference.</p>
-<p>$$\mathsf{Blue}(a)\land\exists x\mathsf{Round}(x)\vDash \exists x(\mathsf{Blue}(a)\land \mathsf{Round}(x))$$</p>
-<p>Consider any model with assignment $\alpha$ where the premise is true:</p>
-<p>$$\nu_\alpha(\mathsf{Blue}(a)\land\exists x\mathsf{Round}(x))=1$$</p>
+<div class="text-center my-4 excalifont">\mathsf{Blue}(a)\land\exists x\mathsf{Round}(x)\vDash \exists x(\mathsf{Blue}(a)\land \mathsf{Round}(x))</div>
+<p>Consider any model with assignment <span class="excalifont">\alpha</span> where the premise is true:</p>
+<div class="text-center my-4 excalifont">\nu_\alpha(\mathsf{Blue}(a)\land\exists x\mathsf{Round}(x))=1</div>
 <p>If we break down this calculation it is equivalent to:</p>
-<p>$$\nu_\alpha(\mathsf{Blue}(a))\times\Sigma_{\mathbf{o}\in D} \nu_\alpha(\mathsf{Round}(\mathbf{o}))=1$$</p>
-<p>The &lsquo;big&rsquo; summation over all objects in the domain is equivalent to a list of individual sums over each object $\mathbf{o_i}$ in the domain:</p>
-<p>$$\nu_\alpha(\mathsf{Blue}(a))\times(\nu_\alpha(\mathsf{Round}(\mathbf{o_1})+\nu_\alpha(\mathsf{Round}(\mathbf{o_2})+\ldots)=1$$</p>
+<div class="text-center my-4 excalifont">\nu_\alpha(\mathsf{Blue}(a))\times\Sigma_{\mathbf{o}\in D} \nu_\alpha(\mathsf{Round}(\mathbf{o}))=1</div>
+<p>The &lsquo;big&rsquo; summation over all objects in the domain is equivalent to a list of individual sums over each object <span class="excalifont">\mathbf{o_i}</span> in the domain:</p>
+<div class="text-center my-4 excalifont">\nu_\alpha(\mathsf{Blue}(a))\times(\nu_\alpha(\mathsf{Round}(\mathbf{o_1})+\nu_\alpha(\mathsf{Round}(\mathbf{o_2})+\ldots)=1</div>
 <p>If we apply the Boolean principle that we started with, we get:</p>
-<p>$$(\nu_\alpha(\mathsf{Blue}(a))\times\nu_\alpha(\mathsf{Round}(\mathbf{o_1}))+(\nu_\alpha(\mathsf{Blue}(a))\times\nu_\alpha(\mathsf{Round}(\mathbf{o_2}))+\ldots=1$$</p>
+<div class="text-center my-4 excalifont">(\nu_\alpha(\mathsf{Blue}(a))\times\nu_\alpha(\mathsf{Round}(\mathbf{o_1}))+(\nu_\alpha(\mathsf{Blue}(a))\times\nu_\alpha(\mathsf{Round}(\mathbf{o_2}))+\ldots=1</div>
 <p>This is equivalent to the following &lsquo;big&rsquo; summation over all objects:</p>
-<p>$$\Sigma_{\mathbf{o}\in D}(\nu_\alpha(\mathsf{Blue}(a))\times\nu_\alpha(\mathsf{Round}(\mathbf{o}))=1$$</p>
+<div class="text-center my-4 excalifont">\Sigma_{\mathbf{o}\in D}(\nu_\alpha(\mathsf{Blue}(a))\times\nu_\alpha(\mathsf{Round}(\mathbf{o}))=1</div>
 <p>Finally, the calculation above is the truth-value of our conclusion formula:</p>
-<p>$$\nu_\alpha(\exists x(\mathsf{Blue}(a)\land\mathsf{Round}(x)))=1$$</p>
-<p>We have shown that $[\mathsf{Blue}(a)\land\exists x\mathsf{Round}(x)]\subseteq[\exists x(\mathsf{Blue}(a)\land \mathsf{Round}(x))]$.</p>
+<div class="text-center my-4 excalifont">\nu_\alpha(\exists x(\mathsf{Blue}(a)\land\mathsf{Round}(x)))=1</div>
+<p>We have shown that <span class="excalifont">[\mathsf{Blue}(a)\land\exists x\mathsf{Round}(x)]\subseteq[\exists x(\mathsf{Blue}(a)\land \mathsf{Round}(x))]</span>.</p>
 
 </div>
 <div id="counter-models" class=" solved"><h5 class="solved">
@@ -1013,26 +1010,26 @@ $x\times(y_1+ y_2+\ldots)=(x\times y_1)+(x\times y_2)+\ldots$</p>
 may use a diagram as in Exercise 1 to give your model.</p>
 
 </div>
-<div id="a-1" ><h6 class="">a)</h6><p>$$\exists x\mathsf{CanSwim}(x)\land \exists y\mathsf{CanFly}(y)\nvDash \exists x(\mathsf{CanSwim}(x)\land\mathsf{CanFly}(x))$$</p>
+<div id="a-1" ><h6 class="">a)</h6><div class="text-center my-4 excalifont">\exists x\mathsf{CanSwim}(x)\land \exists y\mathsf{CanFly}(y)\nvDash \exists x(\mathsf{CanSwim}(x)\land\mathsf{CanFly}(x))</div>
 
 </div>
-<div id="b-1" class=" homework"><h6 class=" homework">b)</h6><p>$$\forall x(\mathsf{CanSwim}(x)\lor \mathsf{CanFly}(x))\nvDash \forall x\mathsf{CanSwim}(x)\lor\forall y\mathsf{CanFly}(y)$$</p>
+<div id="b-1" class=" homework"><h6 class=" homework">b)</h6><div class="text-center my-4 excalifont">\forall x(\mathsf{CanSwim}(x)\lor \mathsf{CanFly}(x))\nvDash \forall x\mathsf{CanSwim}(x)\lor\forall y\mathsf{CanFly}(y)</div>
 
 </div>
-<div id="c" ><h6 class="">c)</h6><p>$$\forall x(\mathsf{Tresspasses}(x)\to \mathsf{IsProsecuted}(x))\nvDash \exists x(\mathsf{Tresspasses}(x)\land \mathsf{IsProsecuted}(x)$$</p>
+<div id="c" ><h6 class="">c)</h6><div class="text-center my-4 excalifont">\forall x(\mathsf{Tresspasses}(x)\to \mathsf{IsProsecuted}(x))\nvDash \exists x(\mathsf{Tresspasses}(x)\land \mathsf{IsProsecuted}(x)</div>
 
 </div>
-<div id="d" ><h6 class="">d)</h6><p>$$\forall x\exists y\mathsf{BiggerThan}(y,x)\nvDash\exists y\forall x \mathsf{BiggerThan}(y,x)$$</p>
+<div id="d" ><h6 class="">d)</h6><div class="text-center my-4 excalifont">\forall x\exists y\mathsf{BiggerThan}(y,x)\nvDash\exists y\forall x \mathsf{BiggerThan}(y,x)</div>
 <p><em>Hint</em>: A model can be <strong>infinite</strong>, which you indicate with &ldquo;&hellip;&rdquo; notation.</p>
 <p>In each case, justify your answer, by explaining why the premises are true in the model and the conclusion is false.</p>
 
 </div>
 <div id="counter-modelsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong>
-We need a set of swimmers $\mathsf{CanSwim}^M$ and a set of flyers $\mathsf{CanFly}^M$. We need one person/object that only belongs to the first set $a^M\in \mathsf{CanSwim}^M$ and $a^M\notin \mathsf{CanFly}^M$. Then we need another person/object that only belongs to the second set $b^M\notin \mathsf{CanSwim}^M$ and $b^M\in \mathsf{CanFly}^M$.</p>
+We need a set of swimmers <span class="excalifont">\mathsf{CanSwim}^M</span> and a set of flyers <span class="excalifont">\mathsf{CanFly}^M</span>. We need one person/object that only belongs to the first set <span class="excalifont">a^M\in \mathsf{CanSwim}^M</span> and <span class="excalifont">a^M\notin \mathsf{CanFly}^M</span>. Then we need another person/object that only belongs to the second set <span class="excalifont">b^M\notin \mathsf{CanSwim}^M</span> and <span class="excalifont">b^M\in \mathsf{CanFly}^M</span>.</p>
 <p><strong>b)</strong>
-We construct a model with a domain with just two animals in it $D={ \mathbf{a_1,a_2} }$. One animal swims $\mathbf{a_1}\in \mathsf{CanSwim}^M$ but can&rsquo;t fly $\mathbf{a_1}\notin \mathsf{CanFly}^M$. The other animal can&rsquo;t swim $\mathbf{a_2}\notin \mathsf{CanSwim}^M$ but does fly $\mathbf{a_2}\in \mathsf{CanFly}^M$. Let $\alpha$ be any assignment in this model.</p>
-<p>This universal formula is false in this model $\nu_\alpha(\forall x(\mathsf{CanSwim}(x))=\Pi_{\mathbf{o}\in D}\nu_\alpha(\mathsf{CanSwim}(\mathbf{o}))=0$ because of the properties of the second animal $\mathbf{a_2}\notin \mathsf{CanSwim}^M$. This universal formula is false in this model $\nu_\alpha(\forall x(\mathsf{CanFly}(x))=\Pi_{\mathbf{o}\in D}\nu_\alpha(\mathsf{CanSwim}(\mathbf{o}))=0$ because of the properties of the first animal $\mathbf{a_1}\notin \mathsf{CanFly}^M$. That means that $\nu_\alpha(\forall x(\mathsf{CanSwim}(x)\lor\forall x(\mathsf{CanFly}(x))=0$.</p>
-<p>However, we always get $\nu_\alpha(\mathsf{CanSwim}(\mathbf{o})\lor\mathsf{CanFly}(\mathbf{o}))=1$ no matter which object we test it on, so we have $\nu_\alpha(\forall x(\mathsf{CanSwim}(x)\lor\mathsf{CanFly}(x))=\Pi_{\mathbf{o}\in D}\nu_\alpha(\mathsf{CanSwim}(\mathbf{o})\lor\mathsf{CanSwim}(\mathbf{o}))=1$.
+We construct a model with a domain with just two animals in it <span class="excalifont">D={ \mathbf{a_1,a_2} }</span>. One animal swims <span class="excalifont">\mathbf{a_1}\in \mathsf{CanSwim}^M</span> but can&rsquo;t fly <span class="excalifont">\mathbf{a_1}\notin \mathsf{CanFly}^M</span>. The other animal can&rsquo;t swim <span class="excalifont">\mathbf{a_2}\notin \mathsf{CanSwim}^M</span> but does fly <span class="excalifont">\mathbf{a_2}\in \mathsf{CanFly}^M</span>. Let <span class="excalifont">\alpha</span> be any assignment in this model.</p>
+<p>This universal formula is false in this model <span class="excalifont">\nu_\alpha(\forall x(\mathsf{CanSwim}(x))=\Pi_{\mathbf{o}\in D}\nu_\alpha(\mathsf{CanSwim}(\mathbf{o}))=0</span> because of the properties of the second animal <span class="excalifont">\mathbf{a_2}\notin \mathsf{CanSwim}^M</span>. This universal formula is false in this model <span class="excalifont">\nu_\alpha(\forall x(\mathsf{CanFly}(x))=\Pi_{\mathbf{o}\in D}\nu_\alpha(\mathsf{CanSwim}(\mathbf{o}))=0</span> because of the properties of the first animal <span class="excalifont">\mathbf{a_1}\notin \mathsf{CanFly}^M</span>. That means that <span class="excalifont">\nu_\alpha(\forall x(\mathsf{CanSwim}(x)\lor\forall x(\mathsf{CanFly}(x))=0</span>.</p>
+<p>However, we always get <span class="excalifont">\nu_\alpha(\mathsf{CanSwim}(\mathbf{o})\lor\mathsf{CanFly}(\mathbf{o}))=1</span> no matter which object we test it on, so we have <span class="excalifont">\nu_\alpha(\forall x(\mathsf{CanSwim}(x)\lor\mathsf{CanFly}(x))=\Pi_{\mathbf{o}\in D}\nu_\alpha(\mathsf{CanSwim}(\mathbf{o})\lor\mathsf{CanSwim}(\mathbf{o}))=1</span>.
 This makes it a counter-model to the intended inference.</p>
 
 </div>
@@ -1057,7 +1054,7 @@ Research at least two kinds of claims that FOL can&rsquo;t formalize and explain
 </div>
 <div id="researchSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>Here are two phenomena that FOL can&rsquo;t handle well:</p>
 <ol>
-<li>Higher-order quantification: Statements like &ldquo;Ada has all the properties of a good student&rdquo;, which should be something like $$\forall F(\forall x(\mathsf{GoodStudent}(x)\to F(x))\to F(Ada)))$$</li>
+<li>Higher-order quantification: Statements like &ldquo;Ada has all the properties of a good student&rdquo;, which should be something like <div class="text-center my-4 excalifont">\forall F(\forall x(\mathsf{GoodStudent}(x)\to F(x))\to F(Ada)))</div></li>
 </ol>
 <p>But this formula is not proper FOL syntax. A system that can handle this is <i class="bi bi-box-arrow-up-right h-6"></i>
 <a href="https://en.wikipedia.org/wiki/Second-order_logic" class="link-dark" rel="external" target="_blank">second-order logic</a>
@@ -1065,7 +1062,7 @@ Research at least two kinds of claims that FOL can&rsquo;t formalize and explain
 <ol start="2">
 <li>FOL lacks devices to handle many natural language phenomena, such as adverbial constructions: John failed <em>badly</em>.</li>
 </ol>
-<p>We might be tempted to formalize this as $\mathsf{FailedBadly}(John)$, but then it doesn&rsquo;t follow that John failed since $\mathsf{FailedBadly}(John)\nvDash\mathsf{Failed}(John).$</p>
+<p>We might be tempted to formalize this as <span class="excalifont">\mathsf{FailedBadly}(John)</span>, but then it doesn&rsquo;t follow that John failed since <span class="excalifont">\mathsf{FailedBadly}(John)\nvDash\mathsf{Failed}(John).</span></p>
 <p><i class="bi bi-box-arrow-up-right h-6"></i>
 <a href="https://philarchive.org/archive/HAZFLW-3v4" class="link-dark" rel="external" target="_blank">This paper</a>
  develops an extension of FOL that can deal with adverbs.</p>
@@ -1077,6 +1074,7 @@ Research at least two kinds of claims that FOL can&rsquo;t formalize and explain
 </h5><p>When we use modern subsymbolic AIs, such as LLMs, for <i class="bi bi-box-arrow-up-right h-6"></i>
 <a href="https://arxiv.org/abs/2312.11562" class="link-dark" rel="external" target="_blank">reasoning</a>
 , these AIs turn out to be <em>inconsistent</em>: they sometimes say one thing and sometimes the opposite. Does this mean that the problem posed by Gödel&rsquo;s theorem for mathematical AIs doesn&rsquo;t affect subsymbolic AIs?</p>
+
 
   </div>
 </div>

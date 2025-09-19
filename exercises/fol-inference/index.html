@@ -473,11 +473,11 @@
             <li>
               <a class="dropdown-item 
                 
-                link-opacity-50
+                
                 "
-                href="javascript:;"
+                href="/exercises/boolean/"
               >4. 
-                <i class="bi bi-lock-fill"></i>
+                <i class="bi bi-unlock-fill"></i>
                  Boolean algebra
               </a>
             </li>
@@ -733,9 +733,6 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
 <hr>
 <div class="container exercises m-4">
   <div class="container-fluid">
-    
-    
-      
 </div>
 <div id="natural-deduction" class=" homework solved"><h5 class="homework solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Natural deduction
@@ -754,12 +751,12 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
 </h5><p><em>Exercises 2.,4.,6. are homework</em></p>
 <p>Show the following in natural deduction for FOL:</p>
 <ol>
-<li>$\forall x\mathsf{Happy}(x)\land \forall x\mathsf{Fulfilled}(x)\vdash \forall x(\mathsf{Happy}(x)\land \mathsf{Fulfilled}(x))$</li>
-<li>$\exists x(\mathsf{Happy}(x)\lor \mathsf{Fulfilled}(x))\vdash \exists x\mathsf{Happy}(x)\lor\exists x\mathsf{Fulfilled}(x)$</li>
-<li>$\forall x\neg\mathsf{Happy}(x)\vdash \neg \exists x\mathsf{Happy}(x)$</li>
-<li>$\exists x\forall y\mathsf{Friend}(x,y)\vdash \forall y\exists x\mathsf{Friend}(x,y)$</li>
-<li>$\neg\exists x\mathsf{Happy}(x)\vdash \forall x\neg \mathsf{Happy}(x)$</li>
-<li>$\neg\forall x\mathsf{Sad}(x)\vdash \exists x\neg \mathsf{Sad}(x)$</li>
+<li><span class="excalifont">\forall x\mathsf{Happy}(x)\land \forall x\mathsf{Fulfilled}(x)\vdash \forall x(\mathsf{Happy}(x)\land \mathsf{Fulfilled}(x))</span></li>
+<li><span class="excalifont">\exists x(\mathsf{Happy}(x)\lor \mathsf{Fulfilled}(x))\vdash \exists x\mathsf{Happy}(x)\lor\exists x\mathsf{Fulfilled}(x)</span></li>
+<li><span class="excalifont">\forall x\neg\mathsf{Happy}(x)\vdash \neg \exists x\mathsf{Happy}(x)</span></li>
+<li><span class="excalifont">\exists x\forall y\mathsf{Friend}(x,y)\vdash \forall y\exists x\mathsf{Friend}(x,y)</span></li>
+<li><span class="excalifont">\neg\exists x\mathsf{Happy}(x)\vdash \forall x\neg \mathsf{Happy}(x)</span></li>
+<li><span class="excalifont">\neg\forall x\mathsf{Sad}(x)\vdash \exists x\neg \mathsf{Sad}(x)</span></li>
 </ol>
 
 </div>
@@ -812,22 +809,22 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
 </h5><p>For the following pairs of formulas, determine whether there are unifications.
 If there is one, give it, if there is not explain why not.</p>
 <ol>
-<li>$\mathsf{Between}(Munich,y,z)$ and $\mathsf{Between}(x,Milan,Rome)$</li>
-<li>$\mathsf{Between}(x,Rome,Rome)$ and $\mathsf{Between}(Rome,y,x)$</li>
-<li>$\mathsf{Knows}(Mary,x)\land \neg\mathsf{Happy}(x)$ and $\mathsf{Knows}(x,x)\land\neg\mathsf{Happy}(Jane)$</li>
-<li>$\neg\mathsf{Happy}(x)\lor \mathsf{Knows}(Mary,x)$ and $\mathsf{Knows}(x,x)\land\neg\mathsf{Happy}(Mary)$</li>
+<li><span class="excalifont">\mathsf{Between}(Munich,y,z)</span> and <span class="excalifont">\mathsf{Between}(x,Milan,Rome)</span></li>
+<li><span class="excalifont">\mathsf{Between}(x,Rome,Rome)</span> and <span class="excalifont">\mathsf{Between}(Rome,y,x)</span></li>
+<li><span class="excalifont">\mathsf{Knows}(Mary,x)\land \neg\mathsf{Happy}(x)</span> and <span class="excalifont">\mathsf{Knows}(x,x)\land\neg\mathsf{Happy}(Jane)</span></li>
+<li><span class="excalifont">\neg\mathsf{Happy}(x)\lor \mathsf{Knows}(Mary,x)</span> and <span class="excalifont">\mathsf{Knows}(x,x)\land\neg\mathsf{Happy}(Mary)</span></li>
 </ol>
 
 </div>
 <div id="unificationSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>1.</strong></p>
-<p>$[x\mapsto Munich,y\mapsto Milan, z\mapsto Rome]$</p>
+<p><span class="excalifont">[x\mapsto Munich,y\mapsto Milan, z\mapsto Rome]</span></p>
 <p><strong>2.</strong></p>
-<p>$[x\mapsto Rome,y\mapsto Rome, z\mapsto Rome]$</p>
+<p><span class="excalifont">[x\mapsto Rome,y\mapsto Rome, z\mapsto Rome]</span></p>
 <p><strong>3.</strong></p>
-<p>Not possible. With $[x\mapsto Mary]$ we have $\neg\mathsf{Happy}(Mary)$ on one
-side and $\neg\mathsf{Happy}(Jane)$ on the other side. With $[x\mapsto Jane]$
-we have $\mathsf{Knows}(Mary, Jane)$ on one side and
-$\mathsf{Knows}(Jane,Jane)$ on the other side.</p>
+<p>Not possible. With <span class="excalifont">[x\mapsto Mary]</span> we have <span class="excalifont">\neg\mathsf{Happy}(Mary)</span> on one
+side and <span class="excalifont">\neg\mathsf{Happy}(Jane)</span> on the other side. With <span class="excalifont">[x\mapsto Jane]</span>
+we have <span class="excalifont">\mathsf{Knows}(Mary, Jane)</span> on one side and
+<span class="excalifont">\mathsf{Knows}(Jane,Jane)</span> on the other side.</p>
 <p><strong>4.</strong></p>
 <p>Not possible. The logical form of the two sentences would be different
 regardless of how we substitute terms. The main connective on the left is
@@ -853,77 +850,77 @@ disjunction and on the right is conjunction.</p>
 transformation (you may perform several similar transformations in a single
 step).</p>
 <ol>
-<li>$\forall x\exists y (\mathsf{Friend}(x,y)\to \exists z\neg (\mathsf{Happy}(z)\land\mathsf{Fulfilled}(z)))$</li>
-<li>$\forall x(\forall y \mathsf{Friend}(x,y)\to \forall z\neg (\mathsf{Happy}(z)\land\mathsf{Fulfilled}(z)))$</li>
-<li>$\mathsf{Happy}(x)\to \neg\forall x(\mathsf{Friend}(x,y)\land \neg\mathsf{Friend}(y,x))$</li>
-<li>$\neg \exists x(\mathsf{Happy}(x)\land(\neg\mathsf{Fulfilled}(x)\land\mathsf{Knows}(x,x)))$</li>
+<li><span class="excalifont">\forall x\exists y (\mathsf{Friend}(x,y)\to \exists z\neg (\mathsf{Happy}(z)\land\mathsf{Fulfilled}(z)))</span></li>
+<li><span class="excalifont">\forall x(\forall y \mathsf{Friend}(x,y)\to \forall z\neg (\mathsf{Happy}(z)\land\mathsf{Fulfilled}(z)))</span></li>
+<li><span class="excalifont">\mathsf{Happy}(x)\to \neg\forall x(\mathsf{Friend}(x,y)\land \neg\mathsf{Friend}(y,x))</span></li>
+<li><span class="excalifont">\neg \exists x(\mathsf{Happy}(x)\land(\neg\mathsf{Fulfilled}(x)\land\mathsf{Knows}(x,x)))</span></li>
 </ol>
 
 </div>
 <div id="cnfSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>1.</strong></p>
 <ul>
 <li>Start here:
-$\forall x\exists y(\mathsf{Friend}(x,y)\to\exists z\neg(\mathsf{Happy}(z)\land\mathsf{Fulfilled}(z)))$</li>
+<span class="excalifont">\forall x\exists y(\mathsf{Friend}(x,y)\to\exists z\neg(\mathsf{Happy}(z)\land\mathsf{Fulfilled}(z)))</span></li>
 <li>Convert the conditional:
-$\forall x\exists y(\neg\mathsf{Friend}(x,y)\lor\exists z\neg(\mathsf{Happy}(z)\land\mathsf{Fulfilled}(z)))$</li>
+<span class="excalifont">\forall x\exists y(\neg\mathsf{Friend}(x,y)\lor\exists z\neg(\mathsf{Happy}(z)\land\mathsf{Fulfilled}(z)))</span></li>
 <li>Use de Morgan rule on the right:
-$\forall x\exists y(\neg\mathsf{Friend}(x,y)\lor\exists z(\neg\mathsf{Happy}(z)\lor\neg\mathsf{Fulfilled}(z)))$</li>
+<span class="excalifont">\forall x\exists y(\neg\mathsf{Friend}(x,y)\lor\exists z(\neg\mathsf{Happy}(z)\lor\neg\mathsf{Fulfilled}(z)))</span></li>
 <li>Skolemize the inner existential:
-$\forall x\exists y(\neg\mathsf{Friend}(x,y)\lor(\neg\mathsf{Happy}(f(x))\lor\neg\mathsf{Fulfilled}(f(x))))$</li>
+<span class="excalifont">\forall x\exists y(\neg\mathsf{Friend}(x,y)\lor(\neg\mathsf{Happy}(f(x))\lor\neg\mathsf{Fulfilled}(f(x))))</span></li>
 <li>Skolemize the outer existential:
-$\forall x(\neg\mathsf{Friend}(x,g(x))\lor(\neg\mathsf{Happy}(f(x))\lor\neg\mathsf{Fulfilled}(f(x))))$</li>
+<span class="excalifont">\forall x(\neg\mathsf{Friend}(x,g(x))\lor(\neg\mathsf{Happy}(f(x))\lor\neg\mathsf{Fulfilled}(f(x))))</span></li>
 <li>Drop the universal:
-$\neg\mathsf{Friend}(x,g(x))\lor\neg\mathsf{Happy}(f(x))\lor\neg\mathsf{Fulfilled}(f(x))$</li>
+<span class="excalifont">\neg\mathsf{Friend}(x,g(x))\lor\neg\mathsf{Happy}(f(x))\lor\neg\mathsf{Fulfilled}(f(x))</span></li>
 </ul>
 <br>
 <p><strong>2.</strong></p>
 <ul>
 <li>Start here:
-$\forall x(\forall y\mathsf{Friend}(x,y)\to\forall z\neg(\mathsf{Happy}(z)\land\mathsf{Fulfilled}(z)))$</li>
+<span class="excalifont">\forall x(\forall y\mathsf{Friend}(x,y)\to\forall z\neg(\mathsf{Happy}(z)\land\mathsf{Fulfilled}(z)))</span></li>
 <li>Convert the conditional:
-$\forall x(\neg\forall y\mathsf{Friend}(x,y)\lor\forall z\neg(\mathsf{Happy}(z)\land\mathsf{Fulfilled}(z)))$</li>
+<span class="excalifont">\forall x(\neg\forall y\mathsf{Friend}(x,y)\lor\forall z\neg(\mathsf{Happy}(z)\land\mathsf{Fulfilled}(z)))</span></li>
 <li>Use de Morgan rule on the right:
-$\forall x(\neg\forall y\mathsf{Friend}(x,y)\lor\forall z(\neg\mathsf{Happy}(z)\lor\neg\mathsf{Fulfilled}(z)))$</li>
+<span class="excalifont">\forall x(\neg\forall y\mathsf{Friend}(x,y)\lor\forall z(\neg\mathsf{Happy}(z)\lor\neg\mathsf{Fulfilled}(z)))</span></li>
 <li>Convert negated universal on the left:
-$\forall x(\exists y\neg\mathsf{Friend}(x,y)\lor\forall z(\neg\mathsf{Happy}(z)\lor\neg\mathsf{Fulfilled}(z)))$</li>
+<span class="excalifont">\forall x(\exists y\neg\mathsf{Friend}(x,y)\lor\forall z(\neg\mathsf{Happy}(z)\lor\neg\mathsf{Fulfilled}(z)))</span></li>
 <li>Skolemize the existential:
-$\forall x(\neg\mathsf{Friend}(x,f(x))\lor\forall z(\neg\mathsf{Happy}(z)\lor\neg\mathsf{Fulfilled}(z)))$</li>
+<span class="excalifont">\forall x(\neg\mathsf{Friend}(x,f(x))\lor\forall z(\neg\mathsf{Happy}(z)\lor\neg\mathsf{Fulfilled}(z)))</span></li>
 <li>Drop the universal quantifiers:
-$\neg\mathsf{Friend}(x,f(x))\lor\neg\mathsf{Happy}(z)\lor\neg\mathsf{Fulfilled}(z)$</li>
+<span class="excalifont">\neg\mathsf{Friend}(x,f(x))\lor\neg\mathsf{Happy}(z)\lor\neg\mathsf{Fulfilled}(z)</span></li>
 </ul>
 <br>
 <p><strong>3.</strong></p>
 <ul>
 <li>Start here:
-$\mathsf{Happy}(x)\to\neg\forall x(\mathsf{Friend}(x,y)\land\neg\mathsf{Friend}(y,x))$</li>
+<span class="excalifont">\mathsf{Happy}(x)\to\neg\forall x(\mathsf{Friend}(x,y)\land\neg\mathsf{Friend}(y,x))</span></li>
 <li>Relabel variable on the left:
-$\mathsf{Happy}(z)\to\neg\forall x(\mathsf{Friend}(x,y)\land\neg\mathsf{Friend}(y,x))$</li>
+<span class="excalifont">\mathsf{Happy}(z)\to\neg\forall x(\mathsf{Friend}(x,y)\land\neg\mathsf{Friend}(y,x))</span></li>
 <li>Convert the conditional:
-$\neg\mathsf{Happy}(z)\lor\neg\forall x(\mathsf{Friend}(x,y)\land\neg\mathsf{Friend}(y,x))$</li>
+<span class="excalifont">\neg\mathsf{Happy}(z)\lor\neg\forall x(\mathsf{Friend}(x,y)\land\neg\mathsf{Friend}(y,x))</span></li>
 <li>Convert negated universal:
-$\neg\mathsf{Happy}(z)\lor\exists x\neg(\mathsf{Friend}(x,y)\land\neg\mathsf{Friend}(y,x))$</li>
+<span class="excalifont">\neg\mathsf{Happy}(z)\lor\exists x\neg(\mathsf{Friend}(x,y)\land\neg\mathsf{Friend}(y,x))</span></li>
 <li>Use de Morgan rule on the right:
-$\neg\mathsf{Happy}(z)\lor\exists x(\neg\mathsf{Friend}(x,y)\lor\neg\neg\mathsf{Friend}(y,x))$</li>
+<span class="excalifont">\neg\mathsf{Happy}(z)\lor\exists x(\neg\mathsf{Friend}(x,y)\lor\neg\neg\mathsf{Friend}(y,x))</span></li>
 <li>Remove double negation:
-$\neg\mathsf{Happy}(z)\lor\exists x(\neg\mathsf{Friend}(x,y)\lor\mathsf{Friend}(y,x))$</li>
+<span class="excalifont">\neg\mathsf{Happy}(z)\lor\exists x(\neg\mathsf{Friend}(x,y)\lor\mathsf{Friend}(y,x))</span></li>
 <li>Skolemize the existential:
-$\neg\mathsf{Happy}(z)\lor\neg\mathsf{Friend}(f,y)\lor\mathsf{Friend}(y,f)$</li>
+<span class="excalifont">\neg\mathsf{Happy}(z)\lor\neg\mathsf{Friend}(f,y)\lor\mathsf{Friend}(y,f)</span></li>
 </ul>
 <br>
 <p><strong>4.</strong></p>
 <ul>
 <li>Start here:
-$\neg\exists x(\mathsf{Happy}(x)\land(\neg\mathsf{Fulfilled}(x)\land\mathsf{Knows}(x,x)))$</li>
+<span class="excalifont">\neg\exists x(\mathsf{Happy}(x)\land(\neg\mathsf{Fulfilled}(x)\land\mathsf{Knows}(x,x)))</span></li>
 <li>Convert negated existential:
-$\forall x\neg(\mathsf{Happy}(x)\land(\neg\mathsf{Fulfilled}(x)\land\mathsf{Knows}(x,x)))$</li>
+<span class="excalifont">\forall x\neg(\mathsf{Happy}(x)\land(\neg\mathsf{Fulfilled}(x)\land\mathsf{Knows}(x,x)))</span></li>
 <li>Use de Morgan rule:
-$\forall x(\neg\mathsf{Happy}(x)\lor\neg(\neg\mathsf{Fulfilled}(x)\land\mathsf{Knows}(x,x)))$</li>
+<span class="excalifont">\forall x(\neg\mathsf{Happy}(x)\lor\neg(\neg\mathsf{Fulfilled}(x)\land\mathsf{Knows}(x,x)))</span></li>
 <li>Use de Morgan again:
-$\forall x(\neg\mathsf{Happy}(x)\lor(\neg\neg\mathsf{Fulfilled}(x)\lor\neg\mathsf{Knows}(x,x)))$</li>
+<span class="excalifont">\forall x(\neg\mathsf{Happy}(x)\lor(\neg\neg\mathsf{Fulfilled}(x)\lor\neg\mathsf{Knows}(x,x)))</span></li>
 <li>Remove double negation:
-$\forall x(\neg\mathsf{Happy}(x)\lor(\mathsf{Fulfilled}(x)\lor\neg\mathsf{Knows}(x,x)))$</li>
+<span class="excalifont">\forall x(\neg\mathsf{Happy}(x)\lor(\mathsf{Fulfilled}(x)\lor\neg\mathsf{Knows}(x,x)))</span></li>
 <li>Drop the universal quantifier:
-$\neg\mathsf{Happy}(x)\lor\mathsf{Fulfilled}(x)\lor\neg\mathsf{Knows}(x,x)$</li>
+<span class="excalifont">\neg\mathsf{Happy}(x)\lor\mathsf{Fulfilled}(x)\lor\neg\mathsf{Knows}(x,x)</span></li>
 </ul>
 
 </div>
@@ -943,8 +940,8 @@ $\neg\mathsf{Happy}(x)\lor\mathsf{Fulfilled}(x)\lor\neg\mathsf{Knows}(x,x)$</li>
     </div>
 </h5><p>Use the resolution rule to justify the following inferences:</p>
 <ol>
-<li>$\forall x(\mathsf{Lord}(x)\to \mathsf{Happy}(x)),\neg\mathsf{Happy}(Byron)\vDash \neg\mathsf{Lord}(Byron)$</li>
-<li>$\neg\exists x(\mathsf{Lord}(x)\land \mathsf{Happy}(x)),\forall x\exists y(\mathsf{Friend}(x,y)\to \mathsf{Happy}(x))\vDash \neg\exists x(\mathsf{Lord}(x)\land \exists y(\mathsf{Friend}(x,y)))$</li>
+<li><span class="excalifont">\forall x(\mathsf{Lord}(x)\to \mathsf{Happy}(x)),\neg\mathsf{Happy}(Byron)\vDash \neg\mathsf{Lord}(Byron)</span></li>
+<li><span class="excalifont">\neg\exists x(\mathsf{Lord}(x)\land \mathsf{Happy}(x)),\forall x\exists y(\mathsf{Friend}(x,y)\to \mathsf{Happy}(x))\vDash \neg\exists x(\mathsf{Lord}(x)\land \exists y(\mathsf{Friend}(x,y)))</span></li>
 </ol>
 
 </div>
@@ -965,7 +962,7 @@ $\neg\mathsf{Happy}(x)\lor\mathsf{Fulfilled}(x)\lor\neg\mathsf{Knows}(x,x)$</li>
     </div>
 </h5>
 </div>
-<div id="a" ><h6 class="">a)</h6><p>How can we handle the equality $=$ in natural deduction for FOL? Give an simple
+<div id="a" ><h6 class="">a)</h6><p>How can we handle the equality <span class="excalifont">=</span> in natural deduction for FOL? Give an simple
 sample derivation in the system, which shows how the rules work.</p>
 
 </div>
@@ -979,6 +976,7 @@ sample derivation in the system, which shows how the rules work.</p>
 logic, argue that resolution-based proof systems are not &ldquo;really&rdquo; proof systems
 because they don&rsquo;t directly model human-style reasoning. Do you agree or
 disagree? Substantiate your answer with an argument.</p>
+
 
   </div>
 </div>

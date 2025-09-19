@@ -473,11 +473,11 @@
             <li>
               <a class="dropdown-item 
                 
-                link-opacity-50
+                
                 "
-                href="javascript:;"
+                href="/exercises/boolean/"
               >4. 
-                <i class="bi bi-lock-fill"></i>
+                <i class="bi bi-unlock-fill"></i>
                  Boolean algebra
               </a>
             </li>
@@ -733,9 +733,6 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
 <hr>
 <div class="container exercises m-4">
   <div class="container-fluid">
-    
-    
-      
 </div>
 <div id="probability-functions" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Probability functions
@@ -752,19 +749,19 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
       
     </div>
 </h5><p>Suppose we&rsquo;re dealing with a coin-flip, which we analyze in a propositional
-language with $\neg,\land,\lor$ and propositional variables:</p>
-<p>$$\mathsf{HEADS}\mid \mathsf{TAILS}.$$</p>
-<p>Our aim is to define a probability for each formula $A\in\mathcal{L}$.
+language with <span class="excalifont">\neg,\land,\lor</span> and propositional variables:</p>
+<div class="text-center my-4 excalifont">\mathsf{HEADS}\mid \mathsf{TAILS}.</div>
+<p>Our aim is to define a probability for each formula <span class="excalifont">A\in\mathcal{L}</span>.
 We&rsquo;re wondering whether a given set of conditions is sufficient for this
 purpose.</p>
 <p>Since the general question whether a given condition defines a total probability
 function is a bit too complicated at this point, we&rsquo;ll work with the following
 four formulas as our test cases:</p>
 <ol>
-<li>$\neg\mathsf{HEADS}$</li>
-<li>$\neg\mathsf{TAILS}$</li>
-<li>$\mathsf{HEADS}\lor \mathsf{TAILS}$</li>
-<li>$\mathsf{HEADS}\land\mathsf{TAILS}$</li>
+<li><span class="excalifont">\neg\mathsf{HEADS}</span></li>
+<li><span class="excalifont">\neg\mathsf{TAILS}</span></li>
+<li><span class="excalifont">\mathsf{HEADS}\lor \mathsf{TAILS}</span></li>
+<li><span class="excalifont">\mathsf{HEADS}\land\mathsf{TAILS}</span></li>
 </ol>
 <p>For each of the following sets of conditions, check whether they determine the
 probabilities of all of the above formulas by calculating them using the
@@ -773,36 +770,36 @@ information is missing and why you can&rsquo;t calculate the value of the given
 formula.</p>
 
 </div>
-<div id="a" ><h6 class="">a)</h6><p>$$Pr(\mathsf{HEADS})=\frac{1}{2}\quad Pr(\mathsf{TAILS})=\frac{1}{2}$$</p>
+<div id="a" ><h6 class="">a)</h6><div class="text-center my-4 excalifont">Pr(\mathsf{HEADS})=\frac{1}{2}\quad Pr(\mathsf{TAILS})=\frac{1}{2}</div>
 
 </div>
-<div id="b" ><h6 class="">b)</h6><p>$$Pr(\mathsf{HEADS}\lor\mathsf{TAILS})=\frac{1}{2} \qquad Pr(\mathsf{HEADS}\land\mathsf{TAILS})=\frac{1}{2}$$</p>
+<div id="b" ><h6 class="">b)</h6><div class="text-center my-4 excalifont">Pr(\mathsf{HEADS}\lor\mathsf{TAILS})=\frac{1}{2} \qquad Pr(\mathsf{HEADS}\land\mathsf{TAILS})=\frac{1}{2}</div>
 
 </div>
-<div id="c" class=" homework"><h6 class=" homework">c)</h6><p>$$Pr(\mathsf{HEADS})=0.7\quad Pr(\mathsf{TAILS})=0.3\qquad
-Pr(\mathsf{HEADS}\land\mathsf{TAILS})=0$$</p>
+<div id="c" class=" homework"><h6 class=" homework">c)</h6><div class="text-center my-4 excalifont">Pr(\mathsf{HEADS})=0.7\quad Pr(\mathsf{TAILS})=0.3\qquad
+Pr(\mathsf{HEADS}\land\mathsf{TAILS})=0</div>
 
 </div>
-<div id="d" ><h6 class="">d)</h6><p>$$Pr(\mathsf{HEADS}\land\mathsf{TAILS})=1$$</p>
+<div id="d" ><h6 class="">d)</h6><div class="text-center my-4 excalifont">Pr(\mathsf{HEADS}\land\mathsf{TAILS})=1</div>
 
 </div>
-<div id="e" class=" homework"><h6 class=" homework">e)</h6><p>$$Pr(\mathsf{HEADS})=0\qquad Pr(\mathsf{HEADS}\land\mathsf{TAILS})=0$$</p>
+<div id="e" class=" homework"><h6 class=" homework">e)</h6><div class="text-center my-4 excalifont">Pr(\mathsf{HEADS})=0\qquad Pr(\mathsf{HEADS}\land\mathsf{TAILS})=0</div>
 
 </div>
 <div id="probability-functionsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>(a)</strong></p>
 <p>Solutions:</p>
 <ol>
-<li>$Pr(\neg H) = 1-Pr(H) = 0.5$</li>
-<li>$Pr(\neg T) = 1-Pr(T) = 0.5$</li>
+<li><span class="excalifont">Pr(\neg H) = 1-Pr(H) = 0.5</span></li>
+<li><span class="excalifont">Pr(\neg T) = 1-Pr(T) = 0.5</span></li>
 <li>We could solve this if we could solve 4, but&hellip;</li>
-<li>We don&rsquo;t have enough information to determine $Pr(H\land B)$.</li>
+<li>We don&rsquo;t have enough information to determine <span class="excalifont">Pr(H\land B)</span>.</li>
 </ol>
 <br>
 <p><strong>(b)</strong></p>
-<p>Using inclusion-exclusion we have $Pr(H\lor T)=Pr(H)+Pr(T)-Pr(H\land T)$, plugging in the two values given in this case $0.5=Pr(H)+Pr(T)-0.5$ and so we have $1=Pr(H)+Pr(T)$.</p>
+<p>Using inclusion-exclusion we have <span class="excalifont">Pr(H\lor T)=Pr(H)+Pr(T)-Pr(H\land T)</span>, plugging in the two values given in this case <span class="excalifont">0.5=Pr(H)+Pr(T)-0.5</span> and so we have <span class="excalifont">1=Pr(H)+Pr(T)</span>.</p>
 <ol>
-<li>$Pr(\neg H) = 1-Pr(H)$. From above $1-Pr(H)=Pr(T)$. So we can say $Pr(\neg H) = Pr(T)$ but that&rsquo;s about the best we can do.</li>
-<li>$Pr(\neg T) = 1-Pr(T)$. From above $1-Pr(T)=Pr(H)$. So we can say $Pr(\neg T) = Pr(H)$ but that&rsquo;s about the best we can do.</li>
+<li><span class="excalifont">Pr(\neg H) = 1-Pr(H)</span>. From above <span class="excalifont">1-Pr(H)=Pr(T)</span>. So we can say <span class="excalifont">Pr(\neg H) = Pr(T)</span> but that&rsquo;s about the best we can do.</li>
+<li><span class="excalifont">Pr(\neg T) = 1-Pr(T)</span>. From above <span class="excalifont">1-Pr(T)=Pr(H)</span>. So we can say <span class="excalifont">Pr(\neg T) = Pr(H)</span> but that&rsquo;s about the best we can do.</li>
 <li>The answer was given in the exercise.</li>
 <li>The answer was given in the exercise.</li>
 </ol>
@@ -810,27 +807,27 @@ Pr(\mathsf{HEADS}\land\mathsf{TAILS})=0$$</p>
 <p><strong>(c)</strong>
 Solutions:</p>
 <ol>
-<li>$Pr(\neg H) = 1-Pr(H) = 0.3$</li>
-<li>$Pr(\neg T) = 1-Pr(T) = 0.7$</li>
-<li>Since $Pr(H\land T)=0$, we have $Pr(H\lor T)=Pr(H)+Pr(T)=1$ by the third axiom.</li>
+<li><span class="excalifont">Pr(\neg H) = 1-Pr(H) = 0.3</span></li>
+<li><span class="excalifont">Pr(\neg T) = 1-Pr(T) = 0.7</span></li>
+<li>Since <span class="excalifont">Pr(H\land T)=0</span>, we have <span class="excalifont">Pr(H\lor T)=Pr(H)+Pr(T)=1</span> by the third axiom.</li>
 <li>The answer was given in the exercise.</li>
 </ol>
 <br>
 <p><strong>(d)</strong>
 Solutions:</p>
 <ol>
-<li>We don&rsquo;t have enough information to determine $Pr(H)$ or $Pr(\neg H)$.</li>
-<li>We don&rsquo;t have enough information to determine $Pr(T)$ or $Pr(\neg T)$.</li>
-<li>$Pr(H\lor T)=Pr(H)+Pr(T)-1$ using inclusion-exclusion but that is all we can say.</li>
+<li>We don&rsquo;t have enough information to determine <span class="excalifont">Pr(H)</span> or <span class="excalifont">Pr(\neg H)</span>.</li>
+<li>We don&rsquo;t have enough information to determine <span class="excalifont">Pr(T)</span> or <span class="excalifont">Pr(\neg T)</span>.</li>
+<li><span class="excalifont">Pr(H\lor T)=Pr(H)+Pr(T)-1</span> using inclusion-exclusion but that is all we can say.</li>
 <li>The answer was given in the exercise.</li>
 </ol>
 <br>
 <p><strong>(e)</strong></p>
 <p>Solutions:</p>
 <ol>
-<li>$Pr(\neg H) = 1-Pr(H) = 1$</li>
-<li>We don&rsquo;t have enough information to determine $Pr(T)$ or $Pr(\neg T)$.</li>
-<li>Since $Pr(H\land T)=0$, we have $Pr(H\lor T)=Pr(H)+Pr(T)=0+Pr(T)$ by the third axiom, but that is all we can say.</li>
+<li><span class="excalifont">Pr(\neg H) = 1-Pr(H) = 1</span></li>
+<li>We don&rsquo;t have enough information to determine <span class="excalifont">Pr(T)</span> or <span class="excalifont">Pr(\neg T)</span>.</li>
+<li>Since <span class="excalifont">Pr(H\land T)=0</span>, we have <span class="excalifont">Pr(H\lor T)=Pr(H)+Pr(T)=0+Pr(T)</span> by the third axiom, but that is all we can say.</li>
 <li>The answer was given in the exercise.</li>
 </ol>
 <br>
@@ -853,81 +850,81 @@ Solutions:</p>
 </h5><p>Derive the following laws for probabilities from the axioms:</p>
 
 </div>
-<div id="a-1" ><h6 class="">a)</h6><p>$$Pr(A)\leq 1,\text{ for all }A\in\mathcal{L}$$</p>
+<div id="a-1" ><h6 class="">a)</h6><div class="text-center my-4 excalifont">Pr(A)\leq 1,\text{ for all }A\in\mathcal{L}</div>
 
 </div>
-<div id="b-1" ><h6 class="">b)</h6><p>If $A\vDash B$, then $Pr(A)\leq Pr(B)$</p>
-<p><em>Hint</em>: Remember that if $A\vDash B$, then $\vDash\neg(A\land \neg B)$ and $B$
-is equivalent to $A\lor B$.</p>
+<div id="b-1" ><h6 class="">b)</h6><p>If <span class="excalifont">A\vDash B</span>, then <span class="excalifont">Pr(A)\leq Pr(B)</span></p>
+<p><em>Hint</em>: Remember that if <span class="excalifont">A\vDash B</span>, then <span class="excalifont">\vDash\neg(A\land \neg B)</span> and <span class="excalifont">B</span>
+is equivalent to <span class="excalifont">A\lor B</span>.</p>
 
 </div>
-<div id="c-1" ><h6 class="">c)</h6><p>$$Pr(A\lor B)=Pr(A)+Pr(B)-Pr(A\land B)$$</p>
+<div id="c-1" ><h6 class="">c)</h6><div class="text-center my-4 excalifont">Pr(A\lor B)=Pr(A)+Pr(B)-Pr(A\land B)</div>
 
 </div>
 <div id="probability-lawsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>(a)</strong></p>
 <p>Solution:</p>
 <ul>
-<li>Take any $A$. Consider its negation $\neg A$.</li>
-<li>$0\leq Pr(\neg A)$ by the first axiom.</li>
-<li>We know that $Pr(\neg A)= 1-Pr(A)$.</li>
-<li>$0\leq 1-Pr(A)$ by substitution.</li>
-<li>$Pr(A)\leq 1$ by adding $Pr(A)$ to each side.</li>
+<li>Take any <span class="excalifont">A</span>. Consider its negation <span class="excalifont">\neg A</span>.</li>
+<li><span class="excalifont">0\leq Pr(\neg A)</span> by the first axiom.</li>
+<li>We know that <span class="excalifont">Pr(\neg A)= 1-Pr(A)</span>.</li>
+<li><span class="excalifont">0\leq 1-Pr(A)</span> by substitution.</li>
+<li><span class="excalifont">Pr(A)\leq 1</span> by adding <span class="excalifont">Pr(A)</span> to each side.</li>
 </ul>
 <br>
 <p><strong>(b)</strong>
 Solution:</p>
 <ul>
-<li>Assume that $A\vDash B$.</li>
-<li>Our assumption implies that $\vDash\neg(A\land\neg B)$</li>
-<li>So we have $Pr(A\lor\neg B)=Pr(A)+Pr(\neg B)$ by the third axiom.</li>
-<li>We know that $Pr(\neg B)= 1-Pr(B)$.</li>
-<li>So we have $Pr(A\lor\neg B)=Pr(A)+1-Pr(B)$.</li>
-<li>We just proved that $Pr(A\lor\neg B)\leq 1$ holds for any formula.</li>
-<li>So in this case we must have $Pr(A)+1-Pr(B)\leq 1$.</li>
-<li>$Pr(A)+1\leq Pr(B)+1$ by adding $Pr(B)$ to each side.</li>
-<li>$Pr(A)\leq Pr(B)$ by subtracting $1$ from each side.</li>
+<li>Assume that <span class="excalifont">A\vDash B</span>.</li>
+<li>Our assumption implies that <span class="excalifont">\vDash\neg(A\land\neg B)</span></li>
+<li>So we have <span class="excalifont">Pr(A\lor\neg B)=Pr(A)+Pr(\neg B)</span> by the third axiom.</li>
+<li>We know that <span class="excalifont">Pr(\neg B)= 1-Pr(B)</span>.</li>
+<li>So we have <span class="excalifont">Pr(A\lor\neg B)=Pr(A)+1-Pr(B)</span>.</li>
+<li>We just proved that <span class="excalifont">Pr(A\lor\neg B)\leq 1</span> holds for any formula.</li>
+<li>So in this case we must have <span class="excalifont">Pr(A)+1-Pr(B)\leq 1</span>.</li>
+<li><span class="excalifont">Pr(A)+1\leq Pr(B)+1</span> by adding <span class="excalifont">Pr(B)</span> to each side.</li>
+<li><span class="excalifont">Pr(A)\leq Pr(B)</span> by subtracting <span class="excalifont">1</span> from each side.</li>
 </ul>
 <br>
 <p><strong>(c)</strong>
 This one is complicated.</p>
 <p>Fact 1.</p>
 <ul>
-<li>$A\lor(B\land\neg A)\vDash A\lor B$ and $A\lor B\vDash A\lor(B\land\neg A)$</li>
+<li><span class="excalifont">A\lor(B\land\neg A)\vDash A\lor B</span> and <span class="excalifont">A\lor B\vDash A\lor(B\land\neg A)</span></li>
 <li>You can check this with truth tables or natural deduction proofs</li>
 <li>By exercise (b) these formulas must have the same probability</li>
-<li>$Pr(A\lor B)=Pr(A\lor(B\land\neg A))$</li>
+<li><span class="excalifont">Pr(A\lor B)=Pr(A\lor(B\land\neg A))</span></li>
 </ul>
 <p>Fact 2.</p>
 <ul>
-<li>$\vDash\neg(A\land(B\land\neg A))$</li>
+<li><span class="excalifont">\vDash\neg(A\land(B\land\neg A))</span></li>
 <li>That means we have independence of these events,</li>
 <li>Using axiom three we calculate the disjunction as follows</li>
-<li>$Pr(A\lor(B\land\neg A))=Pr(A)+Pr(B\land\neg A)$</li>
+<li><span class="excalifont">Pr(A\lor(B\land\neg A))=Pr(A)+Pr(B\land\neg A)</span></li>
 </ul>
 <p>Fact 3.</p>
 <ul>
-<li>$Pr(A\land B)-Pr(A\land B)=0$</li>
+<li><span class="excalifont">Pr(A\land B)-Pr(A\land B)=0</span></li>
 <li>That means we can &ldquo;add this&rdquo; to any quantity</li>
-<li>$Pr(A)+Pr(B\land\neg A)=Pr(A)+Pr(B\land\neg A)+Pr(A\land B)-Pr(A\land B)$</li>
+<li><span class="excalifont">Pr(A)+Pr(B\land\neg A)=Pr(A)+Pr(B\land\neg A)+Pr(A\land B)-Pr(A\land B)</span></li>
 </ul>
 <p>Fact 4.</p>
 <ul>
-<li>$\vDash\neg((B\land\neg A)\land(A\land B))$</li>
+<li><span class="excalifont">\vDash\neg((B\land\neg A)\land(A\land B))</span></li>
 <li>That means we have independence of our two middle quantities</li>
-<li>$Pr(B\land\neg A)$ and $Pr(A\land B)$ determine the disjunction $Pr((B\land\neg A)\lor(A\land B))$</li>
-<li>$Pr(A)+Pr(B\land\neg A)+Pr(A\land B)-Pr(A\land B)=Pr(A)+Pr((B\land\neg A)\lor(A\land B))-Pr(A\land B)$</li>
+<li><span class="excalifont">Pr(B\land\neg A)</span> and <span class="excalifont">Pr(A\land B)</span> determine the disjunction <span class="excalifont">Pr((B\land\neg A)\lor(A\land B))</span></li>
+<li><span class="excalifont">Pr(A)+Pr(B\land\neg A)+Pr(A\land B)-Pr(A\land B)=Pr(A)+Pr((B\land\neg A)\lor(A\land B))-Pr(A\land B)</span></li>
 </ul>
 <p>Fact 5.</p>
 <ul>
-<li>$B\vDash (B\land A)\lor(B\land\neg A)$ and $(B\land A)\lor(B\land\neg A)\vDash B$</li>
+<li><span class="excalifont">B\vDash (B\land A)\lor(B\land\neg A)</span> and <span class="excalifont">(B\land A)\lor(B\land\neg A)\vDash B</span></li>
 <li>You can check this with truth tables or natural deduction proofs</li>
 <li>By exercise (b) these formulas must have the same probability</li>
-<li>$Pr(B)=Pr((B\land A)\lor(B\land\neg A))$</li>
+<li><span class="excalifont">Pr(B)=Pr((B\land A)\lor(B\land\neg A))</span></li>
 </ul>
 <p>Fact 6.</p>
 <ul>
 <li>By combining the results from Fact 4 and 5 we get this</li>
-<li>$Pr(A)+Pr((B\land\neg A)\lor(A\land B))-Pr(A\land B)=Pr(A)+Pr(B)-Pr(A\land B)$</li>
+<li><span class="excalifont">Pr(A)+Pr((B\land\neg A)\lor(A\land B))-Pr(A\land B)=Pr(A)+Pr(B)-Pr(A\land B)</span></li>
 <li>And if we string together Facts 1-6 we have the inclusion-exclusion equation</li>
 </ul>
 <br>
@@ -948,10 +945,10 @@ This one is complicated.</p>
       
     </div>
 </h5><p>Remember our probability function for the fair die:</p>
-<p>$$Pr_{\text{fair}}(\mathsf{RESULT}_i)=\frac{1}{6}\text{, for }i=1,\dots,6$$
-$$Pr_{\text{fair}}(\mathsf{RESULT}_i\land \mathsf{RESULT}_j)=0\text{, for all }i\neq
-j$$
-$$Pr_{\text{fair}}(\neg\mathsf{RESULT}_1\land \dots\land\neg\mathsf{RESULT}_6)=0$$</p>
+<div class="text-center my-4 excalifont">Pr_{\text{fair}}(\mathsf{RESULT}_i)=\frac{1}{6}\text{, for }i=1,\dots,6</div>
+<div class="text-center my-4 excalifont">Pr\_{\text{fair}}(\mathsf{RESULT}_i\land \mathsf{RESULT}_j)=0\text{, for all }i\neq
+j</div>
+<div class="text-center my-4 excalifont">Pr\_{\text{fair}}(\neg\mathsf{RESULT}_1\land \dots\land\neg\mathsf{RESULT}_6)=0</div>
 <p><em>Note</em>: I had forgotten the third rule in the textbook, but it&rsquo;s necessary and
 added there now, too.</p>
 
@@ -1010,16 +1007,16 @@ are (weakly) inductively valid:</p>
 
 </div>
 <div id="inductive-validitySolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>(a)</strong></p>
-<p>The premise is $\mathsf{ODD}$ and we have $Pr(\mathsf{ODD})=\frac{3}{7}$. The conclusion is $\mathsf{RES}_3\lor\mathsf{RES}_5$ and we have $Pr(\mathsf{RES}_3\lor\mathsf{RES}_5)=\frac{2}{7}$. We also need the information $Pr(\mathsf{ODD}\land(\mathsf{RES}_3\lor\mathsf{RES}_5))=\frac{2}{7}$. Then we calculate conditional probability $Pr(\mathsf{RES}_3\lor\mathsf{RES}_5|\mathsf{ODD})=\frac{2}{7}/\frac{3}{7}=\frac{2}{3}$. Since this is higher than the conclusion by itself, the inference is (weakly) inductively valid.</p>
+<p>The premise is <span class="excalifont">\mathsf{ODD}</span> and we have <span class="excalifont">Pr(\mathsf{ODD})=\frac{3}{7}</span>. The conclusion is <span class="excalifont">\mathsf{RES}_3\lor\mathsf{RES}_5</span> and we have <span class="excalifont">Pr(\mathsf{RES}_3\lor\mathsf{RES}_5)=\frac{2}{7}</span>. We also need the information <span class="excalifont">Pr(\mathsf{ODD}\land(\mathsf{RES}_3\lor\mathsf{RES}_5))=\frac{2}{7}</span>. Then we calculate conditional probability <span class="excalifont">Pr(\mathsf{RES}_3\lor\mathsf{RES}_5|\mathsf{ODD})=\frac{2}{7}/\frac{3}{7}=\frac{2}{3}</span>. Since this is higher than the conclusion by itself, the inference is (weakly) inductively valid.</p>
 <br>
 <p><strong>(b)</strong></p>
-<p>The premise is $\mathsf{ODD}$ and we have $Pr(\mathsf{ODD})=\frac{3}{7}$. The conclusion is $\mathsf{RES}_6$ and we have $Pr(\mathsf{RES}_6)=\frac{2}{7}$. We also need the information $Pr(\mathsf{ODD}\land\mathsf{RES}_3)=0$. Then we calculate conditional probability $Pr(\mathsf{RES}_6|\mathsf{ODD})=0/\frac{3}{7}=0$. This is lower than the conclusion probability by itself. The inference is invalid.</p>
+<p>The premise is <span class="excalifont">\mathsf{ODD}</span> and we have <span class="excalifont">Pr(\mathsf{ODD})=\frac{3}{7}</span>. The conclusion is <span class="excalifont">\mathsf{RES}_6</span> and we have <span class="excalifont">Pr(\mathsf{RES}_6)=\frac{2}{7}</span>. We also need the information <span class="excalifont">Pr(\mathsf{ODD}\land\mathsf{RES}_3)=0</span>. Then we calculate conditional probability <span class="excalifont">Pr(\mathsf{RES}_6|\mathsf{ODD})=0/\frac{3}{7}=0</span>. This is lower than the conclusion probability by itself. The inference is invalid.</p>
 <br>
 <p><strong>(c)</strong></p>
-<p>The premise is $\mathsf{EVEN}$ and we have $Pr(\mathsf{EVEN})=\frac{4}{7}$. The conclusion is $\mathsf{RES}_2$ and we have $Pr(\mathsf{RES}_2)=\frac{1}{7}$. We also need the information $Pr(\mathsf{EVEN}\land\mathsf{RES}_2)=\frac{1}{7}$. Then we calculate conditional probability $Pr(\mathsf{RES}_2|\mathsf{EVEN})=\frac{1}{7}/\frac{4}{7}=\frac{1}{4}$. Since this is higher than the conclusion by itself, the inference is ((weakly) inductively valid.</p>
+<p>The premise is <span class="excalifont">\mathsf{EVEN}</span> and we have <span class="excalifont">Pr(\mathsf{EVEN})=\frac{4}{7}</span>. The conclusion is <span class="excalifont">\mathsf{RES}_2</span> and we have <span class="excalifont">Pr(\mathsf{RES}_2)=\frac{1}{7}</span>. We also need the information <span class="excalifont">Pr(\mathsf{EVEN}\land\mathsf{RES}_2)=\frac{1}{7}</span>. Then we calculate conditional probability <span class="excalifont">Pr(\mathsf{RES}_2|\mathsf{EVEN})=\frac{1}{7}/\frac{4}{7}=\frac{1}{4}</span>. Since this is higher than the conclusion by itself, the inference is ((weakly) inductively valid.</p>
 <br>
 <p><strong>(d)</strong></p>
-<p>The premise is $\mathsf{EVEN}$ and we have $Pr(\mathsf{EVEN})=\frac{4}{7}$. The conclusion is $\mathsf{RES}_6$ and we have $Pr(\mathsf{RES}_6)=\frac{2}{7}$. We also need the information $Pr(\mathsf{EVEN}\land\mathsf{RES}_6)=\frac{2}{7}$. Then we calculate conditional probability $Pr(\mathsf{RES}_6|\mathsf{EVEN})=\frac{2}{7}/\frac{4}{7}=\frac{1}{2}$. Since this is higher than the conclusion by itself, the inference is (weakly) inductively valid.</p>
+<p>The premise is <span class="excalifont">\mathsf{EVEN}</span> and we have <span class="excalifont">Pr(\mathsf{EVEN})=\frac{4}{7}</span>. The conclusion is <span class="excalifont">\mathsf{RES}_6</span> and we have <span class="excalifont">Pr(\mathsf{RES}_6)=\frac{2}{7}</span>. We also need the information <span class="excalifont">Pr(\mathsf{EVEN}\land\mathsf{RES}_6)=\frac{2}{7}</span>. Then we calculate conditional probability <span class="excalifont">Pr(\mathsf{RES}_6|\mathsf{EVEN})=\frac{2}{7}/\frac{4}{7}=\frac{1}{2}</span>. Since this is higher than the conclusion by itself, the inference is (weakly) inductively valid.</p>
 <br>
 
 </div>
@@ -1040,36 +1037,37 @@ are (weakly) inductively valid:</p>
 </h5><p>Inductive logicians have proposed different measures of the inductive strength
 of an argument.</p>
 <p>We&rsquo;ve effectively seen:</p>
-<p>$$Pr(C|P_1\land P_2\land\dots)-Pr(C)$$</p>
+<div class="text-center my-4 excalifont">Pr(C|P_1\land P_2\land\dots)-Pr(C)</div>
 <p>A popular alternative measure is:</p>
-<p>$$\log\frac{Pr(C|P_1\land P_2\land\dots)}{Pr(C)}$$</p>
-<p>Here $\log$ is the <i class="bi bi-box-arrow-up-right h-6"></i>
+<div class="text-center my-4 excalifont">\log\frac{Pr(C|P_1\land P_2\land\dots)}{Pr(C)}</div>
+<p>Here <span class="excalifont">\log</span> is the <i class="bi bi-box-arrow-up-right h-6"></i>
 <a href="https://en.wikipedia.org/wiki/Logarithm" class="link-dark" rel="external" target="_blank">logarithm
 function</a>
- with basis $2$.</p>
-<p>Using a suitable computer (for calculating the $\log$&rsquo;s), compare the two
-measures by plugging in values for:
-$$Pr(C)$$
-$$Pr(C|P_1\land P_2\land\dots)$$</p>
+ with basis <span class="excalifont">2</span>.</p>
+<p>Using a suitable computer (for calculating the <span class="excalifont">\log</span>&rsquo;s), compare the two
+measures by plugging in values for:</p>
+<div class="text-center my-4 excalifont">Pr(C)</div>
+<div class="text-center my-4 excalifont">Pr(C|P_1\land P_2\land\dots)</div> 
 <p>What are the differences between the two measures, where do they work better,
 where worse?</p>
 
 </div>
-<div id="measures-of-inductive-strengthSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>Consider the last two inferences we studied $\mathsf{EVEN} \mid\overset{!}{\approx} \mathsf{RES}_2$ and $\mathsf{EVEN} \mid\overset{!}{\approx} \mathsf{RES}_6$ about the unfair die. Just based on informal thinking, do you think one inference is stronger?</p>
+<div id="measures-of-inductive-strengthSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>Consider the last two inferences we studied <span class="excalifont">\mathsf{EVEN} \mid\overset{!}{\approx} \mathsf{RES}_2</span> and <span class="excalifont">\mathsf{EVEN} \mid\overset{!}{\approx} \mathsf{RES}_6</span> about the unfair die. Just based on informal thinking, do you think one inference is stronger?</p>
 <p>Let&rsquo;s compare two formal measures of strength.</p>
-<p>According to the measure we have been assuming, the strength of the first inference $\mathsf{EVEN} \mid\overset{!}{\approx} \mathsf{RES}_2$ is calculated by $Pr(\mathsf{RES}_2|\mathsf{EVEN})-Pr(\mathsf{RES}_2)=\frac{1}{4}-\frac{1}{7}\approx 0,107$. The strength of the second inference $\mathsf{EVEN} \mid\overset{!}{\approx} \mathsf{RES}_6$ is calculated by $Pr(\mathsf{RES}_6|\mathsf{EVEN})-Pr(\mathsf{RES}_6)=\frac{1}{2}-\frac{2}{7}\approx 0,214$. Neither inference is extremely strong but there is a big difference between them.</p>
-<p>According to the logarithmic measure, the strength of the first inference $\mathsf{EVEN} \mid\overset{!}{\approx} \mathsf{RES}_2$ is calculated by $\mathrm{log}(Pr(\mathsf{RES}_2|\mathsf{EVEN})/Pr(\mathsf{RES}_2))=\mathrm{log}(\frac{1}{4}/\frac{1}{7})\approx 0.807$. The strength of the second inference $\mathsf{EVEN} \mid\overset{!}{\approx} \mathsf{RES}_6$ is calculated by $\mathrm{log}(Pr(\mathsf{RES}_6|\mathsf{EVEN})/Pr(\mathsf{RES}_6))=\mathrm{log}(\frac{1}{2}/\frac{2}{7})\approx 0.807$. This theory says that the strength is the same. Do you think that is the right way to model strength of reasoning? Or is the other measurement better?</p>
+<p>According to the measure we have been assuming, the strength of the first inference <span class="excalifont">\mathsf{EVEN} \mid\overset{!}{\approx} \mathsf{RES}_2</span> is calculated by <span class="excalifont">Pr(\mathsf{RES}_2|\mathsf{EVEN})-Pr(\mathsf{RES}_2)=\frac{1}{4}-\frac{1}{7}\approx 0,107</span>. The strength of the second inference <span class="excalifont">\mathsf{EVEN} \mid\overset{!}{\approx} \mathsf{RES}_6</span> is calculated by <span class="excalifont">Pr(\mathsf{RES}_6|\mathsf{EVEN})-Pr(\mathsf{RES}_6)=\frac{1}{2}-\frac{2}{7}\approx 0,214</span>. Neither inference is extremely strong but there is a big difference between them.</p>
+<p>According to the logarithmic measure, the strength of the first inference <span class="excalifont">\mathsf{EVEN} \mid\overset{!}{\approx} \mathsf{RES}_2</span> is calculated by <span class="excalifont">\mathrm{log}(Pr(\mathsf{RES}_2|\mathsf{EVEN})/Pr(\mathsf{RES}_2))=\mathrm{log}(\frac{1}{4}/\frac{1}{7})\approx 0.807</span>. The strength of the second inference <span class="excalifont">\mathsf{EVEN} \mid\overset{!}{\approx} \mathsf{RES}_6</span> is calculated by <span class="excalifont">\mathrm{log}(Pr(\mathsf{RES}_6|\mathsf{EVEN})/Pr(\mathsf{RES}_6))=\mathrm{log}(\frac{1}{2}/\frac{2}{7})\approx 0.807</span>. This theory says that the strength is the same. Do you think that is the right way to model strength of reasoning? Or is the other measurement better?</p>
 
 </div>
 <div id="discussion" class=" homework"><h5 class="homework">
     <div class="d-inline-flex flex-row m-0 p-0 ">Discussion
     </div>
-</h5><p>Our notion of valid inductive inference has as a consequence that if
-$$P_1,P_2,\dots\mid\approx C,$$ then $$P_1,P_2,\dots\mid\approx C\land D,$$ for
-arbitrary $D$ (check you understand why!!). Some authors think that this is a
-problem, because the $D$ might be completely irrelevant to the inference at
+</h5><p>Our notion of valid inductive inference has as a consequence that if</p>
+<div class="text-center my-4 excalifont">P_1,P_2,\dots\mid\approx C,</div> then <div class="text-center my-4 excalifont">P_1,P_2,\dots\mid\approx C\land D,</div> for
+arbitrary <span class="excalifont">D</span> (check you understand why!!). Some authors think that this is a
+problem, because the <span class="excalifont">D</span> might be completely irrelevant to the inference at
 hand. Do you think this is a problem? Justify your answer in one or two
-paragraphs, making use of an example.</p>
+paragraphs, making use of an example.
+
 
   </div>
 </div>

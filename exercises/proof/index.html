@@ -473,11 +473,11 @@
             <li>
               <a class="dropdown-item 
                 
-                link-opacity-50
+                
                 "
-                href="javascript:;"
+                href="/exercises/boolean/"
               >4. 
-                <i class="bi bi-lock-fill"></i>
+                <i class="bi bi-unlock-fill"></i>
                  Boolean algebra
               </a>
             </li>
@@ -733,9 +733,6 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
 <hr>
 <div class="container exercises m-4">
   <div class="container-fluid">
-    
-    
-      
 </div>
 <div id="hilbert-systems" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Hilbert systems
@@ -755,102 +752,102 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
 
 </div>
 <div id="a-easier" ><h6 class="">a) Easier</h6><ol>
-<li>$\neg p\to (p\to p)$</li>
-<li>$\vdash q\to (p\lor q)$</li>
-<li>$p\to q,q\to r\vdash p\to r$</li>
+<li><span class="excalifont">\neg p\to (p\to p)</span></li>
+<li><span class="excalifont">\vdash q\to (p\lor q)</span></li>
+<li><span class="excalifont">p\to q,q\to r\vdash p\to r</span></li>
 </ol>
 
 </div>
 <div id="b-harder" ><h6 class="">b) Harder</h6><ol>
-<li>$\vdash \neg\neg p\to p$</li>
-<li>$\vdash p\to (p\lor q)$</li>
-<li>$\vdash (p\land q)\to p$</li>
+<li><span class="excalifont">\vdash \neg\neg p\to p</span></li>
+<li><span class="excalifont">\vdash p\to (p\lor q)</span></li>
+<li><span class="excalifont">\vdash (p\land q)\to p</span></li>
 </ol>
 <p><em>Hint</em>: It&rsquo;s generally advisable to derive auxiliary laws along the way. You may
-always use claims proved earlier, such as $\vdash p\to p$ in a derivation.</p>
+always use claims proved earlier, such as <span class="excalifont">\vdash p\to p</span> in a derivation.</p>
 <p><em>Advice</em>: These can be really hard, but perseverance is the key. If you can&rsquo;t
 get them all, don&rsquo;t worry. We won&rsquo;t test your expertise with the Hilbert system.</p>
 
 </div>
 <div id="hilbert-systemsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong>
 Easier</p>
-<p><strong>Proof:</strong> $\vdash\neg p\to(p\to p)$</p>
+<p><strong>Proof:</strong> <span class="excalifont">\vdash\neg p\to(p\to p)</span></p>
 <ol>
-<li>$p\to p\quad$ <strong>(Use proof strategy for $\vdash\phi\to\phi$)</strong></li>
-<li>$(p\to p)\to(\neg p\to(p\to p))\quad$ <strong>(Axiom 1)</strong></li>
-<li>$\neg p\to(p\to p)\quad$ <strong>(MP, 5, 6)</strong></li>
+<li><span class="excalifont">p\to p\quad</span> <strong>(Use proof strategy for <span class="excalifont">\vdash\phi\to\phi</span>)</strong></li>
+<li><span class="excalifont">(p\to p)\to(\neg p\to(p\to p))\quad</span> <strong>(Axiom 1)</strong></li>
+<li><span class="excalifont">\neg p\to(p\to p)\quad</span> <strong>(MP, 5, 6)</strong></li>
 </ol>
 <br>
-<p><strong>Proof:</strong> $\vdash q\to(p\lor q)$</p>
+<p><strong>Proof:</strong> <span class="excalifont">\vdash q\to(p\lor q)</span></p>
 <ol>
-<li>$q\to(\neg p\to q)\quad$ <strong>(Axiom 1)</strong></li>
-<li>$q\to(p\lor q)\quad$ <strong>(Rewriting $(\neg p\to q)$ as $(p\lor q)$)</strong></li>
+<li><span class="excalifont">q\to(\neg p\to q)\quad</span> <strong>(Axiom 1)</strong></li>
+<li><span class="excalifont">q\to(p\lor q)\quad</span> <strong>(Rewriting <span class="excalifont">(\neg p\to q)</span> as <span class="excalifont">(p\lor q)</span>)</strong></li>
 </ol>
 <br>
-<p><strong>Proof:</strong> $p\to q,q\to r\vdash p\to r$</p>
+<p><strong>Proof:</strong> <span class="excalifont">p\to q,q\to r\vdash p\to r</span></p>
 <ol>
-<li>$p\to q\quad$ <strong>(Assumption)</strong></li>
-<li>$q\to r\quad$ <strong>(Assumption)</strong></li>
-<li>$(q\to r)\to(p\to(q\to r))\quad$ <strong>(Axiom 1)</strong></li>
-<li>$p\to(q\to r)\quad$ <strong>(MP, 3, 4)</strong></li>
-<li>$(p\to(q\to r))\to((p\to q)\to(p\to r))\quad$ <strong>(Axiom 2)</strong></li>
-<li>$(p\to q)\to(p\to r)\quad$ <strong>(MP, 4, 5)</strong></li>
-<li>$p\to r\quad$ <strong>(MP, 1, 6)</strong></li>
+<li><span class="excalifont">p\to q\quad</span> <strong>(Assumption)</strong></li>
+<li><span class="excalifont">q\to r\quad</span> <strong>(Assumption)</strong></li>
+<li><span class="excalifont">(q\to r)\to(p\to(q\to r))\quad</span> <strong>(Axiom 1)</strong></li>
+<li><span class="excalifont">p\to(q\to r)\quad</span> <strong>(MP, 3, 4)</strong></li>
+<li><span class="excalifont">(p\to(q\to r))\to((p\to q)\to(p\to r))\quad</span> <strong>(Axiom 2)</strong></li>
+<li><span class="excalifont">(p\to q)\to(p\to r)\quad</span> <strong>(MP, 4, 5)</strong></li>
+<li><span class="excalifont">p\to r\quad</span> <strong>(MP, 1, 6)</strong></li>
 </ol>
 <br>
 <p><strong>b)</strong>
 Harder</p>
-<p><strong>Proof:</strong> $\vdash\neg\neg p\to p$</p>
+<p><strong>Proof:</strong> <span class="excalifont">\vdash\neg\neg p\to p</span></p>
 <ol>
-<li>$\neg\neg p\to \neg\neg p\quad$ <strong>(Use proof strategy for $\vdash\phi\to\phi$)</strong></li>
-<li>$\neg\neg p\to(\neg\neg\neg\neg p\to\neg\neg p)\quad$ <strong>(Axiom 1)</strong></li>
-<li>$(\neg\neg\neg\neg p\to\neg\neg p)\to(\neg p\to\neg\neg\neg p)\quad$ <strong>(Axiom 3)</strong></li>
-<li>$\neg\neg p\to(\neg p\to\neg\neg\neg p)\quad$ <strong>(Use proof strategy for $\phi\to\psi,\psi\to\chi\vdash\phi\to\chi$ on 2,3)</strong></li>
-<li>$(\neg p\to\neg\neg\neg p)\to(\neg\neg p\to p)\quad$ <strong>(Axiom 3)</strong></li>
-<li>$\neg\neg p\to(\neg\neg p\to p)\quad$ <strong>(Use proof strategy for $\phi\to\psi,\psi\to\chi\vdash\phi\to\chi$ on 4,5)</strong></li>
-<li>$(\neg\neg p\to(\neg\neg p\to p))\to((\neg\neg p\to\neg\neg p)\to(\neg\neg p\to p))\quad$ <strong>(Axiom 2)</strong></li>
-<li>$(\neg\neg p\to\neg\neg p)\to(\neg\neg p\to p)\quad$ <strong>(MP, 6, 7)</strong></li>
-<li>$\neg\neg p\to p\quad$ <strong>(MP, 1, 8)</strong></li>
+<li><span class="excalifont">\neg\neg p\to \neg\neg p\quad</span> <strong>(Use proof strategy for <span class="excalifont">\vdash\phi\to\phi</span>)</strong></li>
+<li><span class="excalifont">\neg\neg p\to(\neg\neg\neg\neg p\to\neg\neg p)\quad</span> <strong>(Axiom 1)</strong></li>
+<li><span class="excalifont">(\neg\neg\neg\neg p\to\neg\neg p)\to(\neg p\to\neg\neg\neg p)\quad</span> <strong>(Axiom 3)</strong></li>
+<li><span class="excalifont">\neg\neg p\to(\neg p\to\neg\neg\neg p)\quad</span> <strong>(Use proof strategy for <span class="excalifont">\phi\to\psi,\psi\to\chi\vdash\phi\to\chi</span> on 2,3)</strong></li>
+<li><span class="excalifont">(\neg p\to\neg\neg\neg p)\to(\neg\neg p\to p)\quad</span> <strong>(Axiom 3)</strong></li>
+<li><span class="excalifont">\neg\neg p\to(\neg\neg p\to p)\quad</span> <strong>(Use proof strategy for <span class="excalifont">\phi\to\psi,\psi\to\chi\vdash\phi\to\chi</span> on 4,5)</strong></li>
+<li><span class="excalifont">(\neg\neg p\to(\neg\neg p\to p))\to((\neg\neg p\to\neg\neg p)\to(\neg\neg p\to p))\quad</span> <strong>(Axiom 2)</strong></li>
+<li><span class="excalifont">(\neg\neg p\to\neg\neg p)\to(\neg\neg p\to p)\quad</span> <strong>(MP, 6, 7)</strong></li>
+<li><span class="excalifont">\neg\neg p\to p\quad</span> <strong>(MP, 1, 8)</strong></li>
 </ol>
 <br>
-<p><strong>Proof:</strong> $\vdash p\to(p\lor q)$</p>
+<p><strong>Proof:</strong> <span class="excalifont">\vdash p\to(p\lor q)</span></p>
 <ol>
-<li>$p\to(\neg q\to p)\quad$ <strong>(Axiom 1)</strong></li>
-<li>$\neg\neg\neg p\to\neg p\quad$ <strong>(Use proof strategy for $\vdash\neg\neg\phi\to\phi$)</strong></li>
-<li>$(\neg\neg\neg p\to\neg p)\to(p\to\neg\neg p)\quad$ <strong>(Axiom 3)</strong></li>
-<li>$p\to\neg\neg p\quad$ <strong>(MP, 2, 3)</strong></li>
-<li>$(p\to\neg\neg p)\to(\neg q\to(p\to\neg\neg p))\quad$ <strong>(Axiom 1)</strong></li>
-<li>$\neg q\to(p\to\neg\neg p)\quad$ <strong>(MP, 4, 5)</strong></li>
-<li>$(\neg q\to(p\to\neg\neg p))\to((\neg q\to p)\to(\neg q\to\neg\neg p))\quad$ <strong>(Axiom 2)</strong></li>
-<li>$(\neg q\to p)\to(\neg q\to\neg\neg p)\quad$  <strong>(MP, 6, 7)</strong></li>
-<li>$p\to(\neg q\to\neg\neg p)\quad$ <strong>(Use proof strategy for $\phi\to\psi,\psi\to\chi\vdash\phi\to\chi$ on 1,8)</strong></li>
-<li>$(\neg q\to\neg\neg p)\to(\neg p\to q)\quad$ <strong>(Axiom 3)</strong></li>
-<li>$p\to(\neg p\to q)\quad$  <strong>(Use proof strategy for $\phi\to\psi,\psi\to\chi\vdash\phi\to\chi$ on 9,10)</strong></li>
-<li>$p\to(p\lor q)\quad$ <strong>(Rewriting $(\neg p\to q)$ as $(p\lor q)$)</strong></li>
+<li><span class="excalifont">p\to(\neg q\to p)\quad</span> <strong>(Axiom 1)</strong></li>
+<li><span class="excalifont">\neg\neg\neg p\to\neg p\quad</span> <strong>(Use proof strategy for <span class="excalifont">\vdash\neg\neg\phi\to\phi</span>)</strong></li>
+<li><span class="excalifont">(\neg\neg\neg p\to\neg p)\to(p\to\neg\neg p)\quad</span> <strong>(Axiom 3)</strong></li>
+<li><span class="excalifont">p\to\neg\neg p\quad</span> <strong>(MP, 2, 3)</strong></li>
+<li><span class="excalifont">(p\to\neg\neg p)\to(\neg q\to(p\to\neg\neg p))\quad</span> <strong>(Axiom 1)</strong></li>
+<li><span class="excalifont">\neg q\to(p\to\neg\neg p)\quad</span> <strong>(MP, 4, 5)</strong></li>
+<li><span class="excalifont">(\neg q\to(p\to\neg\neg p))\to((\neg q\to p)\to(\neg q\to\neg\neg p))\quad</span> <strong>(Axiom 2)</strong></li>
+<li><span class="excalifont">(\neg q\to p)\to(\neg q\to\neg\neg p)\quad</span>  <strong>(MP, 6, 7)</strong></li>
+<li><span class="excalifont">p\to(\neg q\to\neg\neg p)\quad</span> <strong>(Use proof strategy for <span class="excalifont">\phi\to\psi,\psi\to\chi\vdash\phi\to\chi</span> on 1,8)</strong></li>
+<li><span class="excalifont">(\neg q\to\neg\neg p)\to(\neg p\to q)\quad</span> <strong>(Axiom 3)</strong></li>
+<li><span class="excalifont">p\to(\neg p\to q)\quad</span>  <strong>(Use proof strategy for <span class="excalifont">\phi\to\psi,\psi\to\chi\vdash\phi\to\chi</span> on 9,10)</strong></li>
+<li><span class="excalifont">p\to(p\lor q)\quad</span> <strong>(Rewriting <span class="excalifont">(\neg p\to q)</span> as <span class="excalifont">(p\lor q)</span>)</strong></li>
 </ol>
 <br>
-<p><strong>Proof:</strong> $\vdash(p\land q)\to p$</p>
+<p><strong>Proof:</strong> <span class="excalifont">\vdash(p\land q)\to p</span></p>
 <ol>
-<li>$\neg p\to(q\to\neg p)\quad$ <strong>(Axiom 1)</strong></li>
-<li>$\neg\neg q\to q\quad$ <strong>(Use proof strategy for $\vdash\neg\neg\phi\to\phi$)</strong></li>
-<li>$(\neg\neg q\to q)\to(\neg p\to(\neg\neg q\to q))\quad$ <strong>(Axiom 1)</strong></li>
-<li>$\neg p\to(\neg\neg q\to q)\quad$ <strong>(MP, 2, 3)</strong></li>
-<li>$(q\to\neg p)\to(\neg\neg q\to(q\to\neg p))\quad$  <strong>(Axiom 1)</strong></li>
-<li>$\neg p\to(\neg\neg q\to(q\to\neg p))\quad$ <strong>(Use proof strategy for $\phi\to\psi,\psi\to\chi\vdash\phi\to\chi$ on 1,5)</strong></li>
-<li>$(\neg\neg q\to(q\to\neg p))\to((\neg\neg q\to q)\to(\neg\neg q\to\neg p))\quad$ <strong>(Axiom 2)</strong></li>
-<li>$\neg p\to((\neg\neg q\to q)\to(\neg\neg q\to\neg p))\quad$ <strong>(Use proof strategy for $\phi\to\psi,\psi\to\chi\vdash\phi\to\chi$ on 6,7)</strong></li>
-<li>$(\neg p\to((\neg\neg q\to q)\to(\neg\neg q\to\neg p)))\to((\neg p\to(\neg\neg q\to q))\to(\neg p\to(\neg\neg q\to\neg p)))\quad$  <strong>(Axiom 2)</strong></li>
-<li>$(\neg p\to(\neg\neg q\to q))\to(\neg p\to(\neg\neg q\to\neg p))\quad$ <strong>(Use proof strategy for $\phi\to\psi,\psi\to\chi\vdash\phi\to\chi$ on 8,9)</strong></li>
-<li>$\neg p\to(\neg\neg q\to\neg p)\quad$ <strong>(MP, 4, 10)</strong></li>
-<li>$(\neg\neg q\to\neg p)\to(p\to\neg q)\quad$ <strong>(Axiom 3)</strong></li>
-<li>$\neg p\to(p\to\neg q)\quad$ <strong>(Use proof strategy for $\phi\to\psi,\psi\to\chi\vdash\phi\to\chi$ on 11,12)</strong></li>
-<li>$\neg\neg\neg(p\to\neg q)\to\neg(p\to\neg q)\quad$ <strong>(Use proof strategy for $\vdash\neg\neg\phi\to\phi$)</strong></li>
-<li>$(\neg\neg\neg(p\to\neg q)\to\neg(p\to\neg q))\to((p\to\neg q)\to\neg\neg(p\to\neg q))\quad$ <strong>(Axiom 3)</strong></li>
-<li>$(p\to\neg q)\to\neg\neg(p\to\neg q)\quad$ <strong>(MP, 15, 16)</strong></li>
-<li>$\neg p\to\neg\neg(p\to\neg q)\quad$ <strong>(Use proof strategy for $\phi\to\psi,\psi\to\chi\vdash\phi\to\chi$ on 13,16)</strong></li>
-<li>$(\neg p\to\neg\neg(p\to\neg q))\to(\neg(p\to\neg q)\to p)\quad$ <strong>(Axiom 2)</strong></li>
-<li>$\neg(p\to\neg q)\to p\quad$ <strong>(MP, 17, 18)</strong></li>
-<li>$(p\land q)\to p\quad$  <strong>(Rewriting $(\neg(p\to\neg q))$ as $(p\land q)$)</strong></li>
+<li><span class="excalifont">\neg p\to(q\to\neg p)\quad</span> <strong>(Axiom 1)</strong></li>
+<li><span class="excalifont">\neg\neg q\to q\quad</span> <strong>(Use proof strategy for <span class="excalifont">\vdash\neg\neg\phi\to\phi</span>)</strong></li>
+<li><span class="excalifont">(\neg\neg q\to q)\to(\neg p\to(\neg\neg q\to q))\quad</span> <strong>(Axiom 1)</strong></li>
+<li><span class="excalifont">\neg p\to(\neg\neg q\to q)\quad</span> <strong>(MP, 2, 3)</strong></li>
+<li><span class="excalifont">(q\to\neg p)\to(\neg\neg q\to(q\to\neg p))\quad</span>  <strong>(Axiom 1)</strong></li>
+<li><span class="excalifont">\neg p\to(\neg\neg q\to(q\to\neg p))\quad</span> <strong>(Use proof strategy for <span class="excalifont">\phi\to\psi,\psi\to\chi\vdash\phi\to\chi</span> on 1,5)</strong></li>
+<li><span class="excalifont">(\neg\neg q\to(q\to\neg p))\to((\neg\neg q\to q)\to(\neg\neg q\to\neg p))\quad</span> <strong>(Axiom 2)</strong></li>
+<li><span class="excalifont">\neg p\to((\neg\neg q\to q)\to(\neg\neg q\to\neg p))\quad</span> <strong>(Use proof strategy for <span class="excalifont">\phi\to\psi,\psi\to\chi\vdash\phi\to\chi</span> on 6,7)</strong></li>
+<li><span class="excalifont">(\neg p\to((\neg\neg q\to q)\to(\neg\neg q\to\neg p)))\to((\neg p\to(\neg\neg q\to q))\to(\neg p\to(\neg\neg q\to\neg p)))\quad</span>  <strong>(Axiom 2)</strong></li>
+<li><span class="excalifont">(\neg p\to(\neg\neg q\to q))\to(\neg p\to(\neg\neg q\to\neg p))\quad</span> <strong>(Use proof strategy for <span class="excalifont">\phi\to\psi,\psi\to\chi\vdash\phi\to\chi</span> on 8,9)</strong></li>
+<li><span class="excalifont">\neg p\to(\neg\neg q\to\neg p)\quad</span> <strong>(MP, 4, 10)</strong></li>
+<li><span class="excalifont">(\neg\neg q\to\neg p)\to(p\to\neg q)\quad</span> <strong>(Axiom 3)</strong></li>
+<li><span class="excalifont">\neg p\to(p\to\neg q)\quad</span> <strong>(Use proof strategy for <span class="excalifont">\phi\to\psi,\psi\to\chi\vdash\phi\to\chi</span> on 11,12)</strong></li>
+<li><span class="excalifont">\neg\neg\neg(p\to\neg q)\to\neg(p\to\neg q)\quad</span> <strong>(Use proof strategy for <span class="excalifont">\vdash\neg\neg\phi\to\phi</span>)</strong></li>
+<li><span class="excalifont">(\neg\neg\neg(p\to\neg q)\to\neg(p\to\neg q))\to((p\to\neg q)\to\neg\neg(p\to\neg q))\quad</span> <strong>(Axiom 3)</strong></li>
+<li><span class="excalifont">(p\to\neg q)\to\neg\neg(p\to\neg q)\quad</span> <strong>(MP, 15, 16)</strong></li>
+<li><span class="excalifont">\neg p\to\neg\neg(p\to\neg q)\quad</span> <strong>(Use proof strategy for <span class="excalifont">\phi\to\psi,\psi\to\chi\vdash\phi\to\chi</span> on 13,16)</strong></li>
+<li><span class="excalifont">(\neg p\to\neg\neg(p\to\neg q))\to(\neg(p\to\neg q)\to p)\quad</span> <strong>(Axiom 2)</strong></li>
+<li><span class="excalifont">\neg(p\to\neg q)\to p\quad</span> <strong>(MP, 17, 18)</strong></li>
+<li><span class="excalifont">(p\land q)\to p\quad</span>  <strong>(Rewriting <span class="excalifont">(\neg(p\to\neg q))</span> as <span class="excalifont">(p\land q)</span>)</strong></li>
 </ol>
 <br>
 
@@ -874,19 +871,19 @@ Harder</p>
 </div>
 <div id="a-easier-1" class=" homework"><h6 class=" homework">a) Easier</h6><p>Only 3.,5., and  6. as homework.</p>
 <ol>
-<li>$p\vdash p\lor (p\land q)$</li>
-<li>$p\lor (p\land q)\vdash p$</li>
-<li>$p\lor q\vdash q\lor p$</li>
-<li>$p\land q\vdash q\land p$</li>
-<li>$\neg p,p\lor q\vdash q$</li>
-<li>$\neg p\lor \neg q\vdash \neg(p\land q)$</li>
+<li><span class="excalifont">p\vdash p\lor (p\land q)</span></li>
+<li><span class="excalifont">p\lor (p\land q)\vdash p</span></li>
+<li><span class="excalifont">p\lor q\vdash q\lor p</span></li>
+<li><span class="excalifont">p\land q\vdash q\land p</span></li>
+<li><span class="excalifont">\neg p,p\lor q\vdash q</span></li>
+<li><span class="excalifont">\neg p\lor \neg q\vdash \neg(p\land q)</span></li>
 </ol>
 
 </div>
 <div id="b-harder-1" ><h6 class="">b) Harder</h6><ol>
-<li>$\vdash p\lor\neg p$</li>
-<li>$p\to q\vdash \neg p\lor q$</li>
-<li>$\neg(p\land q)\vdash \neg p\lor\neg q$</li>
+<li><span class="excalifont">\vdash p\lor\neg p</span></li>
+<li><span class="excalifont">p\to q\vdash \neg p\lor q</span></li>
+<li><span class="excalifont">\neg(p\land q)\vdash \neg p\lor\neg q</span></li>
 </ol>
 
 </div>
@@ -971,7 +968,7 @@ especially <i class="bi bi-box-arrow-up-right h-6"></i>
 .</p>
 <p>Before we begin a bit of explanation. In the following, we&rsquo;ll provide
 copy-paste-able code that you can run directly in the environment.</p>
-<p>Here is the first snippet, which declares $p,q,r$ as variables for propositions:</p>
+<p>Here is the first snippet, which declares <span class="excalifont">p,q,r</span> as variables for propositions:</p>
 
 
 
@@ -998,16 +995,16 @@ simplified version of Lean that makes Lean-proofs work more like natural
 deduction proofs.</p>
 <p>This is easiest shown with an example. Consider the following natural deduction
 proof showing that</p>
-<p>$$\vdash p\to p\land (p\lor q)$$</p>
+<div class="text-center my-4 excalifont">\vdash p\to p\land (p\lor q)</div>
 <p>which is known as an absorption law:</p>
 
 
 <img src="https://logicalmethods.ai/exercises/proof/img/nd-absorption.png" class="img-thumbnail"    alt="" >
 
 
-<p>Effectively, we assume $p$ (twice) for $\to I$ and then we derive $p\lor q$ from
-one assumption via $\lor I$ and then from this and the second assumption that
-$p$ that $p\land (p\lor q)$ via $\land I$.</p>
+<p>Effectively, we assume <span class="excalifont">p</span> (twice) for <span class="excalifont">\to I</span> and then we derive <span class="excalifont">p\lor q</span> from
+one assumption via <span class="excalifont">\lor I</span> and then from this and the second assumption that
+<span class="excalifont">p</span> that <span class="excalifont">p\land (p\lor q)</span> via <span class="excalifont">\land I</span>.</p>
 <p>Here&rsquo;s how this proof in Lean:</p>
 
 
@@ -1031,30 +1028,36 @@ theorem absorption_conj : p → (p ∧ (p ∨ q)) := by
 </div>
 <hr>
 
-<p>We first declare that we&rsquo;re proving a <code>theorem</code> and we call it
-<code>absorption_conj</code>. Then comes the statement of the theorem. To obtain
-$\to,\land,\lor$ in Lean, you can write <code>\to</code>, <code>\and</code>, <code>\or</code>,
-respectively.</p>
+<p>We first declare that we&rsquo;re proving a <div class="customBlock text-center my-4"><code class="customCode">theorem</code></div> and we call it</p>
+<div class="customBlock text-center my-4"><code class="customCode">absorption_conj</code></div>. Then comes the statement of the theorem. To obtain
+<span class="excalifont">\to,\land,\lor</span> in Lean, you can write <div class="customBlock text-center my-4"><code class="customCode">\to</code></div>, <div class="customBlock text-center my-4"><code class="customCode">\and</code></div>, <div class="customBlock text-center my-4"><code class="customCode">\or</code></div>,
+respectively.
 <p>We then apply the tactics:</p>
 <ul>
 <li>
-<p><code>intro</code> introduces an assumption for conditional proof ($\to I$), and we
-call it <code>hypothesis_p</code>.</p>
-</li>
-<li>
-<p><code>And.intro</code> is essentially $\land I$.  <code>apply And.intro</code> applies the
-rule to the next two complete proofs.</p>
-</li>
-<li>
-<p><code>exact hypothesis_p</code> means to precisely apply the hypothesis that $p$,
-which is the first input for the <code>And.intro</code>.</p>
-</li>
-<li>
-<p><code>Or.inl</code> is the rule $p\vdash p\lor q$ and <code>Or.inr</code> the rule $q\vdash
-p\lor q$. Here we apply the rule to the assumption that $p$
-<code>hypothesis_p</code>, which gives us what we need, viz. $p\lor q$.</p>
+<div class="customBlock text-center my-4"><code class="customCode">intro</code></div> introduces an assumption for conditional proof (<span class="excalifont">\to I</span>), and we
 </li>
 </ul>
+<p>call it <div class="customBlock text-center my-4"><code class="customCode">hypothesis_p</code></div>.</p>
+<ul>
+<li>
+<div class="customBlock text-center my-4"><code class="customCode">And.intro</code></div> is essentially <span class="excalifont">\land I</span>.  <div class="customBlock text-center my-4"><code class="customCode">apply And.intro</code></div> applies the
+</li>
+</ul>
+<p>rule to the next two complete proofs.</p>
+<ul>
+<li>
+<div class="customBlock text-center my-4"><code class="customCode">exact hypothesis_p</code></div> means to precisely apply the hypothesis that <span class="excalifont">p</span>,
+</li>
+</ul>
+<p>which is the first input for the <div class="customBlock text-center my-4"><code class="customCode">And.intro</code></div>.</p>
+<ul>
+<li>
+<div class="customBlock text-center my-4"><code class="customCode">Or.inl</code></div> is the rule <span class="excalifont">p\vdash p\lor q</span> and <div class="customBlock text-center my-4"><code class="customCode">Or.inr</code></div> the rule <span class="excalifont">q\vdash
+p\lor q</span>. Here we apply the rule to the assumption that <span class="excalifont">p</span>
+</li>
+</ul>
+<div class="customBlock text-center my-4"><code class="customCode">hypothesis_p</code></div>, which gives us what we need, viz. <span class="excalifont">p\lor q</span>.
 <p>This completes our proof. The result should look something like this in your
 browser:</p>
 
@@ -1094,23 +1097,37 @@ theorem commutativity_or : (p ∨ q) → (q ∨ p) := by
 <img src="https://logicalmethods.ai/exercises/proof/img/commutativity.png" class="img-thumbnail"    alt="" >
 
 
-<p>The $\bullet$ mark the two sub-proofs for the $\lor E$, where we derive $q\lor
-p$ from the two assumptions $p$ and $q$. Note that each proof after
-<code>Or.elim</code> is a conditional proof: we first show that $p\to q\lor p$ and then
-we show that $q\to q\lor p$. This allows us to infer $q\lor p$ from $p\lor q$.
-You can write the bullet points in Lean as <code>\.</code>.</p>
+<p>The <span class="excalifont">\bullet</span> mark the two sub-proofs for the <span class="excalifont">\lor E</span>, where we derive <span class="excalifont">q\lor
+p</span> from the two assumptions <span class="excalifont">p</span> and <span class="excalifont">q</span>. Note that each proof after</p>
+<div class="customBlock text-center my-4"><code class="customCode">Or.elim</code></div> is a conditional proof: we first show that <span class="excalifont">p\to q\lor p</span> and then
+we show that <span class="excalifont">q\to q\lor p</span>. This allows us to infer <span class="excalifont">q\lor p</span> from <span class="excalifont">p\lor q</span>.
+You can write the bullet points in Lean as <div class="customBlock text-center my-4"><code class="customCode">\.</code></div>.
 <p>Let&rsquo;s see if this is enough. It&rsquo;s your turn:</p>
 <p>The basic tactics are:</p>
 <ul>
-<li><code>intro</code> (followed by hypothesis name)</li>
-<li><code>And.intro</code> (followed by two proofs for the conjuncts)</li>
-<li><code>And.left</code> (infers the left conjunct from the conjunction)</li>
-<li><code>And.right</code> (infers the right conjunct from the conjunction)</li>
-<li><code>Or.inl</code> (infers the disjunction from the left disjunct)</li>
-<li><code>Or.inr</code> (infers the disjunction from the right disjunct)</li>
-<li><code>Or.elim</code> (disjunction elimination is followed by two conditional proofs,
-one for each disjunct)</li>
+<li>
+<div class="customBlock text-center my-4"><code class="customCode">intro</code></div> (followed by hypothesis name)
+</li>
+<li>
+<div class="customBlock text-center my-4"><code class="customCode">And.intro</code></div> (followed by two proofs for the conjuncts)
+</li>
+<li>
+<div class="customBlock text-center my-4"><code class="customCode">And.left</code></div> (infers the left conjunct from the conjunction)
+</li>
+<li>
+<div class="customBlock text-center my-4"><code class="customCode">And.right</code></div> (infers the right conjunct from the conjunction)
+</li>
+<li>
+<div class="customBlock text-center my-4"><code class="customCode">Or.inl</code></div> (infers the disjunction from the left disjunct)
+</li>
+<li>
+<div class="customBlock text-center my-4"><code class="customCode">Or.inr</code></div> (infers the disjunction from the right disjunct)
+</li>
+<li>
+<div class="customBlock text-center my-4"><code class="customCode">Or.elim</code></div> (disjunction elimination is followed by two conditional proofs,
+</li>
 </ul>
+<p>one for each disjunct)</p>
 
 </div>
 <div id="a" ><h6 class="">a)</h6><p>Translate the following LEAN proof into natural deduction:</p>
@@ -1137,7 +1154,7 @@ theorem some_law : (p ∧ q) → (p ∨ q) := by
 
 
 </div>
-<div id="b" ><h6 class="">b)</h6><p>Which tactics should be used where I wrote <code>???</code>?</p>
+<div id="b" ><h6 class="">b)</h6><p>Which tactics should be used where I wrote <div class="customBlock text-center my-4"><code class="customCode">???</code></div>?</p>
 
 
 
@@ -1170,23 +1187,23 @@ example (p q r : Prop) : p ∧ (q ∨ r) → (p ∧ q) ∨ (p ∧ r) := by
 
 
 </div>
-<div id="c" ><h6 class="">c)</h6><p>Give a Lean proof for $\vdash p\lor (p\land q)\to p$ (<code>absorption_disj</code>).</p>
+<div id="c" ><h6 class="">c)</h6><p>Give a Lean proof for <span class="excalifont">\vdash p\lor (p\land q)\to p</span> (<div class="customBlock text-center my-4"><code class="customCode">absorption_disj</code></div>).</p>
 
 </div>
 <div id="leanSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong>
 translating into natural deduction (you get the idea)</p>
-<table class="table">
+<table>
   <thead>
       <tr>
-          <th>$p\land q$</th>
+          <th><span class="excalifont">p\land q</span></th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td>$p$</td>
+          <td><span class="excalifont">p</span></td>
       </tr>
       <tr>
-          <td>$p\lor q$</td>
+          <td><span class="excalifont">p\lor q</span></td>
       </tr>
   </tbody>
 </table>
@@ -1259,16 +1276,17 @@ theorem absorption_disj : (p ∨ (p ∧ q)) → p := by
 <div id="research" ><h5 class="">
     <div class="d-inline-flex flex-row m-0 p-0 ">Research
     </div>
-</h5><p>Are the basic tactics enough to prove classical laws, like $\vdash p\lor \neg
-p$?</p>
+</h5><p>Are the basic tactics enough to prove classical laws, like <span class="excalifont">\vdash p\lor \neg
+p</span>?</p>
 
 </div>
 <div id="discussion" ><h5 class="">
     <div class="d-inline-flex flex-row m-0 p-0 ">Discussion
     </div>
-</h5><p>Recent LLM-technologies, like <code>ChatGTP o1-preview</code>, have impressive
+</h5><p>Recent LLM-technologies, like <div class="customBlock text-center my-4"><code class="customCode">ChatGTP o1-preview</code></div>, have impressive
 reasoning capabilities. So, these LLMs can directly produce mathematical proofs.
 Does this show that neural theorem proving using tools like Lean is unnecessary?</p>
+
 
   </div>
 </div>

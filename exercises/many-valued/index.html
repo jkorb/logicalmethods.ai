@@ -473,11 +473,11 @@
             <li>
               <a class="dropdown-item 
                 
-                link-opacity-50
+                
                 "
-                href="javascript:;"
+                href="/exercises/boolean/"
               >4. 
-                <i class="bi bi-lock-fill"></i>
+                <i class="bi bi-unlock-fill"></i>
                  Boolean algebra
               </a>
             </li>
@@ -733,9 +733,6 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
 <hr>
 <div class="container exercises m-4">
   <div class="container-fluid">
-    
-    
-      
 </div>
 <div id="3-valued-truth-tables" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">3-valued truth-tables
@@ -763,38 +760,38 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
    > Ch. 5. Boolean satisfiability</a>
 
 , we&rsquo;ve described a truth-table method to test for valid
-inference $P_1,P_2,\dots\vDash C$, which worked by testing whether $P_1\land
-P_2\land \dots\to C$ is a logical truth in classical logic.</p>
+inference <span class="excalifont">P_1,P_2,\dots\vDash C</span>, which worked by testing whether <span class="excalifont">P_1\land
+P_2\land \dots\to C</span> is a logical truth in classical logic.</p>
 <p>This method doesn&rsquo;t work in Kleene logic because there are <em>no</em> logical truths
 but there <em>are</em> valid inferences. But there is an <em>adjusted</em> truth-table method
 that works for both Kleene and Łukasciewicz.</p>
 <p>For this method, we need to have one row for each possible assignment of the
-truth-values $0,i,1$ to the variables in the formula (for $2$ propositional
-variables that already gives us $3\times 3=9$ rows). Then we recursively
-calculate the truth-values of both $P_1\land P_2\land \dots$ and $C$ for each
-row, and we check if in every row where $P_1\land P_2\land \dots$ has value 1,
-$C$ also has value $1$. If so, the inference is valid, if not it isn&rsquo;t.</p>
+truth-values <span class="excalifont">0,i,1</span> to the variables in the formula (for <span class="excalifont">2</span> propositional
+variables that already gives us <span class="excalifont">3\times 3=9</span> rows). Then we recursively
+calculate the truth-values of both <span class="excalifont">P_1\land P_2\land \dots</span> and <span class="excalifont">C</span> for each
+row, and we check if in every row where <span class="excalifont">P_1\land P_2\land \dots</span> has value 1,
+<span class="excalifont">C</span> also has value <span class="excalifont">1</span>. If so, the inference is valid, if not it isn&rsquo;t.</p>
 <p>Use this adjusted truth-table method to to determine whether the following
 inferences are valid in both Kleene and Łukasciewicz logic.</p>
 
 </div>
-<div id="a" ><h6 class="">a)</h6><p>$\mathsf{HOT},\mathsf{HOT}\to \mathsf{HUMID}\vDash \mathsf{HUMID}$</p>
+<div id="a" ><h6 class="">a)</h6><p><span class="excalifont">\mathsf{HOT},\mathsf{HOT}\to \mathsf{HUMID}\vDash \mathsf{HUMID}</span></p>
 
 </div>
-<div id="b" class=" homework"><h6 class=" homework">b)</h6><p>$\mathsf{HOT}\vDash \mathsf{RAIN}\to \mathsf{HOT}$</p>
+<div id="b" class=" homework"><h6 class=" homework">b)</h6><p><span class="excalifont">\mathsf{HOT}\vDash \mathsf{RAIN}\to \mathsf{HOT}</span></p>
 
 </div>
-<div id="c" ><h6 class="">c)</h6><p>$\mathsf{HOT}\lor \neg \mathsf{HUMID},\mathsf{HUMID}\lor \mathsf{DRY}\vDash
-\mathsf{HOT}\lor\mathsf{DRY}$</p>
+<div id="c" ><h6 class="">c)</h6><p><span class="excalifont">\mathsf{HOT}\lor \neg \mathsf{HUMID},\mathsf{HUMID}\lor \mathsf{DRY}\vDash
+\mathsf{HOT}\lor\mathsf{DRY}</span></p>
 
 </div>
-<div id="d" class=" homework"><h6 class=" homework">d)</h6><p>$\mathsf{HOT}\land \neg \mathsf{HOT}\vDash \mathsf{COLD}$</p>
+<div id="d" class=" homework"><h6 class=" homework">d)</h6><p><span class="excalifont">\mathsf{HOT}\land \neg \mathsf{HOT}\vDash \mathsf{COLD}</span></p>
 
 </div>
-<div id="e" ><h6 class="">e)</h6><p>$\mathsf{HOT}\vDash \mathsf{HUMID}\to\mathsf{HUMID}$</p>
+<div id="e" ><h6 class="">e)</h6><p><span class="excalifont">\mathsf{HOT}\vDash \mathsf{HUMID}\to\mathsf{HUMID}</span></p>
 
 </div>
-<div id="f" class=" homework"><h6 class=" homework">f)</h6><p>$\neg\mathsf{HOT}\vDash \mathsf{HOT}\to\mathsf{HOT}$</p>
+<div id="f" class=" homework"><h6 class=" homework">f)</h6><p><span class="excalifont">\neg\mathsf{HOT}\vDash \mathsf{HOT}\to\mathsf{HOT}</span></p>
 
 </div>
 <div id="3-valued-truth-tablesSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solutions</h6><p>
@@ -848,52 +845,52 @@ logic Ł. If the inference is valid, provide an argument, if the inference is
 invalid provide a countermodel.</p>
 
 </div>
-<div id="a-1" class=" homework"><h6 class=" homework">a)</h6><p>$\mathsf{RAIN}\land\neg\mathsf{RAIN}\vDash \mathsf{HOT}$</p>
+<div id="a-1" class=" homework"><h6 class=" homework">a)</h6><p><span class="excalifont">\mathsf{RAIN}\land\neg\mathsf{RAIN}\vDash \mathsf{HOT}</span></p>
 
 </div>
-<div id="b-1" ><h6 class="">b)</h6><p>$\mathsf{HOT}\vDash \mathsf{HOT}\lor(\mathsf{RAIN}\land \mathsf{HOT})$</p>
+<div id="b-1" ><h6 class="">b)</h6><p><span class="excalifont">\mathsf{HOT}\vDash \mathsf{HOT}\lor(\mathsf{RAIN}\land \mathsf{HOT})</span></p>
 
 </div>
-<div id="c-1" class=" homework"><h6 class=" homework">c) </h6><p>$\mathsf{HOT}\lor \neg \mathsf{HUMID},\mathsf{HUMID}\lor \mathsf{DRY}\vDash
-\mathsf{HOT}\lor\mathsf{DRY}$</p>
+<div id="c-1" class=" homework"><h6 class=" homework">c) </h6><p><span class="excalifont">\mathsf{HOT}\lor \neg \mathsf{HUMID},\mathsf{HUMID}\lor \mathsf{DRY}\vDash
+\mathsf{HOT}\lor\mathsf{DRY}</span></p>
 
 </div>
-<div id="d-1" ><h6 class="">d)</h6><p>$\mathsf{HOT}\land \neg \mathsf{HOT}\vDash \mathsf{HOT}$</p>
+<div id="d-1" ><h6 class="">d)</h6><p><span class="excalifont">\mathsf{HOT}\land \neg \mathsf{HOT}\vDash \mathsf{HOT}</span></p>
 
 </div>
-<div id="e-1" class=" homework"><h6 class=" homework">e)</h6><p>$\mathsf{HOT}\vDash \mathsf{HUMID}\lor\neg\mathsf{HUMID}$</p>
+<div id="e-1" class=" homework"><h6 class=" homework">e)</h6><p><span class="excalifont">\mathsf{HOT}\vDash \mathsf{HUMID}\lor\neg\mathsf{HUMID}</span></p>
 
 </div>
 <div id="fuzzy-logicSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solutions</h6><p>For fuzzy-logic-consequence we check all valuations to see if the smallest premise value will always be lower than the conclusion value.
-The idea is that this shows us that whenever the premises get &lsquo;closer&rsquo; to $1$, the conclusion does too, so there is a truth-strengthening connection between them.</p>
+The idea is that this shows us that whenever the premises get &lsquo;closer&rsquo; to <span class="excalifont">1</span>, the conclusion does too, so there is a truth-strengthening connection between them.</p>
 <br>
 <p><strong>(a)</strong>
-This is invalid. Consider a valuation where $R$ is fuzzy or vague, $v(R)=0.5$, but the conclusion is definitely false $v(H)=0$.
-Then we have $v(\neg R)=0.5$ and $v(R\land\neg R)=0.5$ which is greater than the conclusion value.</p>
+This is invalid. Consider a valuation where <span class="excalifont">R</span> is fuzzy or vague, <span class="excalifont">v(R)=0.5</span>, but the conclusion is definitely false <span class="excalifont">v(H)=0</span>.
+Then we have <span class="excalifont">v(\neg R)=0.5</span> and <span class="excalifont">v(R\land\neg R)=0.5</span> which is greater than the conclusion value.</p>
 <br>
 <p><strong>(b)</strong>
-This is valid. We want to show that we always get: $v(H)\leq v(H\lor(R\land H))$.</p>
+This is valid. We want to show that we always get: <span class="excalifont">v(H)\leq v(H\lor(R\land H))</span>.</p>
 <ul>
-<li>Break down the calculation $v(H\lor(R\land H))=\mathrm{max}(v(H),\mathrm{min}(v(R),v(H)))$.</li>
+<li>Break down the calculation <span class="excalifont">v(H\lor(R\land H))=\mathrm{max}(v(H),\mathrm{min}(v(R),v(H)))</span>.</li>
 <li>Consider two ways the atomic parts might be interpreted:
-$v(H)\leq v(R)$ or $v(H)&gt;v(R)$. Every valuation has to be one of these types. We will show that the result holds on either type.</li>
-<li>If we are looking at the first type of valuation, we have $\mathrm{min}(v(R),v(H))=v(H)$, but that makes $\mathrm{max}(v(H),\mathrm{min}(v(R),v(H)))=\mathrm{max}(v(H),v(H))=v(H)$. So we have $\mathrm{max}(v(H),\mathrm{min}(v(R),v(H)))\leq v(H)$ as desired.</li>
-<li>If we are looking at the second type of valuation, we have $\mathrm{min}(v(R),v(H))=v(R)$, but that makes $\mathrm{max}(v(H),\mathrm{min}(v(R),v(H)))=\mathrm{max}(v(H),v(R))=v(H)$.
-Again, we have $\mathrm{max}(v(H),\mathrm{min}(v(R),v(H)))\leq v(H)$ as desired.</li>
+<span class="excalifont">v(H)\leq v(R)</span> or <span class="excalifont">v(H)&gt;v(R)</span>. Every valuation has to be one of these types. We will show that the result holds on either type.</li>
+<li>If we are looking at the first type of valuation, we have <span class="excalifont">\mathrm{min}(v(R),v(H))=v(H)</span>, but that makes <span class="excalifont">\mathrm{max}(v(H),\mathrm{min}(v(R),v(H)))=\mathrm{max}(v(H),v(H))=v(H)</span>. So we have <span class="excalifont">\mathrm{max}(v(H),\mathrm{min}(v(R),v(H)))\leq v(H)</span> as desired.</li>
+<li>If we are looking at the second type of valuation, we have <span class="excalifont">\mathrm{min}(v(R),v(H))=v(R)</span>, but that makes <span class="excalifont">\mathrm{max}(v(H),\mathrm{min}(v(R),v(H)))=\mathrm{max}(v(H),v(R))=v(H)</span>.
+Again, we have <span class="excalifont">\mathrm{max}(v(H),\mathrm{min}(v(R),v(H)))\leq v(H)</span> as desired.</li>
 </ul>
 <br>
 <p><strong>(c)</strong>
-This is invalid. Consider a valuation where $U$ is fuzzy or vague, $v(U)=0.5$, but the other statements are definitely false $v(H)=0$ and $v(D)=0$.  Then we have $v(H\lor\neg U)=\mathrm{max}(v(H),1-v(U))=0.5$. We also have $v(U\lor D)=\mathrm{max}(v(U),v(D))=0.5$. Take the minimum $\mathrm{min}(\mathrm{max}(v(H),v(\neg U)),\mathrm{max}(v(U),v(D)))=0.5$. But this value is greater than the conclusion value $v(H\lor D)=\mathrm{max}(v(H),v(D))=0$, so we have a counter-model.</p>
+This is invalid. Consider a valuation where <span class="excalifont">U</span> is fuzzy or vague, <span class="excalifont">v(U)=0.5</span>, but the other statements are definitely false <span class="excalifont">v(H)=0</span> and <span class="excalifont">v(D)=0</span>.  Then we have <span class="excalifont">v(H\lor\neg U)=\mathrm{max}(v(H),1-v(U))=0.5</span>. We also have <span class="excalifont">v(U\lor D)=\mathrm{max}(v(U),v(D))=0.5</span>. Take the minimum <span class="excalifont">\mathrm{min}(\mathrm{max}(v(H),v(\neg U)),\mathrm{max}(v(U),v(D)))=0.5</span>. But this value is greater than the conclusion value <span class="excalifont">v(H\lor D)=\mathrm{max}(v(H),v(D))=0</span>, so we have a counter-model.</p>
 <br>
 <p><strong>(d)</strong>
-This is valid. We want to show that we always get: $v(H\land\neg H)\leq v(H)$. It&rsquo;s immediate from $v(H\land\neg H)=\mathrm{min}(v(H),1-v(H))$.
+This is valid. We want to show that we always get: <span class="excalifont">v(H\land\neg H)\leq v(H)</span>. It&rsquo;s immediate from <span class="excalifont">v(H\land\neg H)=\mathrm{min}(v(H),1-v(H))</span>.
 This guarantees that the premises cannot exceed the value of H itself.</p>
 <ul>
-<li>To illustrate, suppose that $v(H)=0$ then we get $v(H\land\neg H)= 0$.</li>
-<li>Suppose that $v(H)=0.1$ then we get $v(H\land\neg H)= 0.1$.</li>
-<li>Suppose that $v(H)=0.5$ then we get $v(H\land\neg H)= 0.5$.</li>
-<li>Suppose that $v(H)=0.9$ then we get $v(H\land\neg H)= 0.1$.</li>
-<li>Suppose that $v(H)=1$ then we get $v(H\land\neg H)= 0$.</li>
+<li>To illustrate, suppose that <span class="excalifont">v(H)=0</span> then we get <span class="excalifont">v(H\land\neg H)= 0</span>.</li>
+<li>Suppose that <span class="excalifont">v(H)=0.1</span> then we get <span class="excalifont">v(H\land\neg H)= 0.1</span>.</li>
+<li>Suppose that <span class="excalifont">v(H)=0.5</span> then we get <span class="excalifont">v(H\land\neg H)= 0.5</span>.</li>
+<li>Suppose that <span class="excalifont">v(H)=0.9</span> then we get <span class="excalifont">v(H\land\neg H)= 0.1</span>.</li>
+<li>Suppose that <span class="excalifont">v(H)=1</span> then we get <span class="excalifont">v(H\land\neg H)= 0</span>.</li>
 </ul>
 
 </div>
@@ -911,8 +908,8 @@ This guarantees that the premises cannot exceed the value of H itself.</p>
       
       
     </div>
-</h5><p>Remember that a fuzzy rule $$\textbf{IF } A \textbf{ THEN } B$$ means that $B$ holds
-to the extend that $A$.</p>
+</h5><p>Remember that a fuzzy rule <div class="text-center my-4 excalifont">\textbf{IF } A \textbf{ THEN } B</div> means that <span class="excalifont">B</span> holds
+to the extend that <span class="excalifont">A</span>.</p>
 <p>Imagine an
 <i class="bi bi-box-arrow-up-right h-6"></i>
 <a href="https://en.wikipedia.org/wiki/Heating,_ventilation,_and_air_conditioning" class="link-dark" rel="external" target="_blank">HVAC</a>
@@ -927,7 +924,7 @@ with a fuzzy control unit. We want the system to behave as follows:</p>
 
 </div>
 <div id="a-2" ><h6 class="">a)</h6><p>Using only the propositional variables</p>
-<p>$$\mathsf{HOT},\mathsf{HUMID},\mathsf{AC},\mathsf{HEAT}$$</p>
+<div class="text-center my-4 excalifont">\mathsf{HOT},\mathsf{HUMID},\mathsf{AC},\mathsf{HEAT}</div>
 <p>formule fuzzy rules that represent our fuzzy control rules from above.</p>
 
 </div>
@@ -950,23 +947,23 @@ some concrete numerical values representing:</p>
 <div id="fuzzy-rulesSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solutions</h6><p><strong>(a)</strong>
 Here is the best way to write the rules in our limited formal language.
 Remember, we want to interpret these like fuzzy-logic-consequence:
-whenever the antecedent side gets &lsquo;closer&rsquo; to $1$, we want the conclusion to do the same.</p>
-<p>IF HOT$\lor$HUMID, THEN AC</p>
-<p>IF $\neg$HOT$\lor$HUMID, THEN HEATER</p>
-<p>IF AC, THEN $\neg$HEATER</p>
-<p>IF HEATER, THEN $\neg$AC</p>
+whenever the antecedent side gets &lsquo;closer&rsquo; to <span class="excalifont">1</span>, we want the conclusion to do the same.</p>
+<p>IF HOT<span class="excalifont">\lor</span>HUMID, THEN AC</p>
+<p>IF <span class="excalifont">\neg</span>HOT<span class="excalifont">\lor</span>HUMID, THEN HEATER</p>
+<p>IF AC, THEN <span class="excalifont">\neg</span>HEATER</p>
+<p>IF HEATER, THEN <span class="excalifont">\neg</span>AC</p>
 <br>
 <p><strong>(b)</strong>
 One example of a problem for these rules: situations with low heat and high humidity.
-To be precise, consider a valuation where $v(\mathsf{HOT})=0.2$ and $v(\mathsf{HUMID})=0.8$.
-This makes $v(\neg\mathsf{HOT})=1-v(\mathsf{HOT})=0.8$.</p>
-<p>We calculate $v(\mathsf{HOT}\lor\mathsf{HUMID})=0.8$.</p>
-<p>So the first rule requires $0.8\leq v(\mathsf{AC})$.</p>
-<p>We also calculate $v(\neg\mathsf{HOT}\lor\mathsf{HUMID})=0.8$.</p>
-<p>So the second rule requires $0.8\leq v(\mathsf{HEATER})$.</p>
+To be precise, consider a valuation where <span class="excalifont">v(\mathsf{HOT})=0.2</span> and <span class="excalifont">v(\mathsf{HUMID})=0.8</span>.
+This makes <span class="excalifont">v(\neg\mathsf{HOT})=1-v(\mathsf{HOT})=0.8</span>.</p>
+<p>We calculate <span class="excalifont">v(\mathsf{HOT}\lor\mathsf{HUMID})=0.8</span>.</p>
+<p>So the first rule requires <span class="excalifont">0.8\leq v(\mathsf{AC})</span>.</p>
+<p>We also calculate <span class="excalifont">v(\neg\mathsf{HOT}\lor\mathsf{HUMID})=0.8</span>.</p>
+<p>So the second rule requires <span class="excalifont">0.8\leq v(\mathsf{HEATER})</span>.</p>
 <p>This is okay so far, but the final rules create a problem.</p>
-<p>For instance, the last rule requires $0.8\leq 1-v(\mathsf{AC})$.</p>
-<p>There is no value that gives $0.8\leq v(\mathsf{AC})$ and $0.8\leq 1-v(\mathsf{AC})$.</p>
+<p>For instance, the last rule requires <span class="excalifont">0.8\leq 1-v(\mathsf{AC})</span>.</p>
+<p>There is no value that gives <span class="excalifont">0.8\leq v(\mathsf{AC})</span> and <span class="excalifont">0.8\leq 1-v(\mathsf{AC})</span>.</p>
 <p>So these rules do not &lsquo;work&rsquo; as intended in all possible fuzzy valuations.</p>
 <br>
 
@@ -998,30 +995,30 @@ rather focus on what the t-norm for Łukasiewicz fuzzy logic.</p>
 
 </div>
 <div id="a-strong-conjunction" ><h6 class="">a) Strong conjunction</h6><p>The t-norm for fuzzy logic can be expressed by introducing an extra connective
-$\otimes$ (&ldquo;strong conjunction&rdquo;) to the language with $\neg,\land,\lor$. This
-connective uses the fuzzy truth-function: $$f_\otimes(x,y)=\max(0,x+y-1).$$
-That is the recursive truth-values for $A\otimes B$ are calculated as follows:</p>
-<p>$$\nu(A\otimes B)=\max(0,\nu(A)+\nu(B)-1).$$</p>
-<p>Check that the following characteristic properties hold for the operation $f_\otimes$:</p>
+<span class="excalifont">\otimes</span> (&ldquo;strong conjunction&rdquo;) to the language with <span class="excalifont">\neg,\land,\lor</span>. This
+connective uses the fuzzy truth-function: <div class="text-center my-4 excalifont">f_\otimes(x,y)=\max(0,x+y-1).</div>
+That is the recursive truth-values for <span class="excalifont">A\otimes B</span> are calculated as follows:</p>
+<div class="text-center my-4 excalifont">\nu(A\otimes B)=\max(0,\nu(A)+\nu(B)-1).</div>
+<p>Check that the following characteristic properties hold for the operation <span class="excalifont">f_\otimes</span>:</p>
 <ol>
-<li>$f_\otimes(x,y)=f_\otimes(y,x)$</li>
-<li>If $x\leq x&rsquo;$ and $y\leq y&rsquo;$, then $f_\otimes(x,y)\leq f_\otimes(x&rsquo;,y&rsquo;)$</li>
-<li>$f_\otimes(x,f_\otimes(y,z))=f_\otimes(f_\otimes(x,y),z)$</li>
-<li>$f_\otimes(x,1)=x$</li>
+<li><span class="excalifont">f_\otimes(x,y)=f_\otimes(y,x)</span></li>
+<li>If <span class="excalifont">x\leq x&rsquo;</span> and <span class="excalifont">y\leq y&rsquo;</span>, then <span class="excalifont">f_\otimes(x,y)\leq f_\otimes(x&rsquo;,y&rsquo;)</span></li>
+<li><span class="excalifont">f_\otimes(x,f_\otimes(y,z))=f_\otimes(f_\otimes(x,y),z)</span></li>
+<li><span class="excalifont">f_\otimes(x,1)=x</span></li>
 </ol>
-<p><em>Hint</em>: Here you cannot check all possible cases, since $x,y,z\in\mathbb{R}$ can
+<p><em>Hint</em>: Here you cannot check all possible cases, since <span class="excalifont">x,y,z\in\mathbb{R}</span> can
 take infinitely many values. Instead, you need to reason &ldquo;algebraically&rdquo; about
 how the values hang together. Here are some tips on what to use:</p>
 <ul>
 <li>
-<p>For the first, you need to use the mathematical fact that $x+y=y+x$.</p>
+<p>For the first, you need to use the mathematical fact that <span class="excalifont">x+y=y+x</span>.</p>
 </li>
 <li>
-<p>For the second, you need to consider the cases where $f_\otimes(x,y)$ can be
-$0$ and the mathematical fact that sums of bigger numbers are bigger.</p>
+<p>For the second, you need to consider the cases where <span class="excalifont">f_\otimes(x,y)</span> can be
+<span class="excalifont">0</span> and the mathematical fact that sums of bigger numbers are bigger.</p>
 </li>
 <li>
-<p>For the third, you need to use the fact that $x+(y+z)=(x+y)+z$.</p>
+<p>For the third, you need to use the fact that <span class="excalifont">x+(y+z)=(x+y)+z</span>.</p>
 </li>
 <li>
 <p>For the fourth, you&rsquo;re on your own 😃</p>
@@ -1029,29 +1026,29 @@ $0$ and the mathematical fact that sums of bigger numbers are bigger.</p>
 </ul>
 
 </div>
-<div id="b-fuzzy-logical-conditional" class=" homework"><h6 class=" homework">b) Fuzzy logical conditional</h6><p>In Łukasiewicz&rsquo;s logic, the logical conditional $\to$ is interpreted by the
+<div id="b-fuzzy-logical-conditional" class=" homework"><h6 class=" homework">b) Fuzzy logical conditional</h6><p>In Łukasiewicz&rsquo;s logic, the logical conditional <span class="excalifont">\to</span> is interpreted by the
 following truth-function:</p>
-<p>$$f_\to(x,y)=\min(x,1-x+y)$$</p>
+<div class="text-center my-4 excalifont">f_\to(x,y)=\min(x,1-x+y)</div>
 <p>That means that:</p>
-<p>$$\nu(A\to B)=\min(x,1-\nu(A)+\nu(B))$$</p>
+<div class="text-center my-4 excalifont">\nu(A\to B)=\min(x,1-\nu(A)+\nu(B))</div>
 <p>Check that the following holds in Łukasiewicz&rsquo;s logic:</p>
-<p>$$\mathsf{RAIN}\otimes (\mathsf{RAIN}\to \mathsf{WET})\vDash \mathsf{WET}$$</p>
+<div class="text-center my-4 excalifont">\mathsf{RAIN}\otimes (\mathsf{RAIN}\to \mathsf{WET})\vDash \mathsf{WET}</div>
 
 </div>
 <div id="t-normsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>(a)</strong>
 Strong Conjunction.</p>
-<p>The $f_\otimes$ function calculates its output in two different ways, depending on the input values.
-We get a default value $f_\otimes(x,y)=0$ when $x+y\leq 1$, but we get $f_\otimes(x,y)=x+y-1$ when $1&lt;x+y$.
+<p>The <span class="excalifont">f_\otimes</span> function calculates its output in two different ways, depending on the input values.
+We get a default value <span class="excalifont">f_\otimes(x,y)=0</span> when <span class="excalifont">x+y\leq 1</span>, but we get <span class="excalifont">f_\otimes(x,y)=x+y-1</span> when <span class="excalifont">1&lt;x+y</span>.
 For these exercises we prove both cases separately.</p>
 <br>
 <p><strong>(1)</strong>
-We prove the goal in two cases using $x+y=y+x$.</p>
+We prove the goal in two cases using <span class="excalifont">x+y=y+x</span>.</p>
 <ol>
 <li>
-<p>If $f_\otimes(x,y)=0$ then $x+y\leq 1$. This implies that $y+x\leq 1$ and so $f_\otimes(y,x)=0$.</p>
+<p>If <span class="excalifont">f_\otimes(x,y)=0</span> then <span class="excalifont">x+y\leq 1</span>. This implies that <span class="excalifont">y+x\leq 1</span> and so <span class="excalifont">f_\otimes(y,x)=0</span>.</p>
 </li>
 <li>
-<p>If $f_\otimes(x,y)\neq 0$ then $f_\otimes(x,y)=x+y-1=y+x-1=f_\otimes(y,x)$.</p>
+<p>If <span class="excalifont">f_\otimes(x,y)\neq 0</span> then <span class="excalifont">f_\otimes(x,y)=x+y-1=y+x-1=f_\otimes(y,x)</span>.</p>
 </li>
 </ol>
 <br>
@@ -1059,27 +1056,27 @@ We prove the goal in two cases using $x+y=y+x$.</p>
 We prove the goal in two cases.</p>
 <ol>
 <li>
-<p>If $f_\otimes(x,y)=0$ then obviously $f_\otimes(x,y)\leq f_\otimes(x&rsquo;,y&rsquo;)$.</p>
+<p>If <span class="excalifont">f_\otimes(x,y)=0</span> then obviously <span class="excalifont">f_\otimes(x,y)\leq f_\otimes(x&rsquo;,y&rsquo;)</span>.</p>
 </li>
 <li>
-<p>If $f_\otimes(x,y)\neq 0$ then we reason:</p>
+<p>If <span class="excalifont">f_\otimes(x,y)\neq 0</span> then we reason:</p>
 </li>
 </ol>
 <ul>
-<li>$x\leq x&rsquo;$ and $y\leq y&rsquo;$</li>
-<li>so we have $x+y\leq x&rsquo;+y&rsquo;$</li>
-<li>so we have $x+y-1\leq x&rsquo;+y&rsquo;-1$</li>
-<li>therefore $f_\otimes(x,y)\leq f_{\oplus}(x&rsquo;,y&rsquo;)$</li>
+<li><span class="excalifont">x\leq x&rsquo;</span> and <span class="excalifont">y\leq y&rsquo;</span></li>
+<li>so we have <span class="excalifont">x+y\leq x&rsquo;+y&rsquo;</span></li>
+<li>so we have <span class="excalifont">x+y-1\leq x&rsquo;+y&rsquo;-1</span></li>
+<li>therefore <span class="excalifont">f_\otimes(x,y)\leq f_{\oplus}(x&rsquo;,y&rsquo;)</span></li>
 </ul>
 <br>
 <p><strong>(3)</strong>
-We prove the goal in two cases using $x+(y+z)=(x+y)+z$.</p>
+We prove the goal in two cases using <span class="excalifont">x+(y+z)=(x+y)+z</span>.</p>
 <ol>
 <li>
-<p>If $f_\otimes(x,f_\otimes(y,z))=0$ then SOMETHING</p>
+<p>If <span class="excalifont">f_\otimes(x,f_\otimes(y,z))=0</span> then SOMETHING</p>
 </li>
 <li>
-<p>If $f_\otimes(x,y)\neq 0$ then we reason: SOMETHING</p>
+<p>If <span class="excalifont">f_\otimes(x,y)\neq 0</span> then we reason: SOMETHING</p>
 </li>
 </ol>
 <br>
@@ -1087,30 +1084,30 @@ We prove the goal in two cases using $x+(y+z)=(x+y)+z$.</p>
 We prove the goal in two cases.</p>
 <ol>
 <li>
-<p>If $f_\otimes(x,1)=0$ this means that $x+1\leq 1$ and so $0=x$.</p>
+<p>If <span class="excalifont">f_\otimes(x,1)=0</span> this means that <span class="excalifont">x+1\leq 1</span> and so <span class="excalifont">0=x</span>.</p>
 </li>
 <li>
-<p>If $f_\otimes(x,1)\neq 0$ then $f_\otimes(x,1)= x+1-1 = x$.</p>
+<p>If <span class="excalifont">f_\otimes(x,1)\neq 0</span> then <span class="excalifont">f_\otimes(x,1)= x+1-1 = x</span>.</p>
 </li>
 </ol>
 <br>
 <p><strong>(b)</strong>
 Fuzzy Conditional.</p>
-<p>The $f_\to$ function calculates its output in two different ways, depending on the input values.
-We default to the antecedent value $f_\to(x,y)=x$ when $2x-y\leq 1$, but we get $f_\to(x,y)=1-x+y$ when $1&lt;2x-y$.</p>
+<p>The <span class="excalifont">f_\to</span> function calculates its output in two different ways, depending on the input values.
+We default to the antecedent value <span class="excalifont">f_\to(x,y)=x</span> when <span class="excalifont">2x-y\leq 1</span>, but we get <span class="excalifont">f_\to(x,y)=1-x+y</span> when <span class="excalifont">1&lt;2x-y</span>.</p>
 <p>For fuzzy-logic-consequence we check all valuations to see if the smallest premise value will always be lower than the conclusion value.
-So we want to show that we always get: $v(R\otimes (R\to W))\leq v(W)$.</p>
-<p>Break down the calculation $v(R\otimes (R\to W))=f_\otimes(v(R),v(R\to W))=f_\otimes(v(R),f_\to(v(R),v(W)))$.</p>
-<p>We can think about how $f_\otimes(v(R),f_\to(v(R),v(W)))$ is calculated in two ways.</p>
+So we want to show that we always get: <span class="excalifont">v(R\otimes (R\to W))\leq v(W)</span>.</p>
+<p>Break down the calculation <span class="excalifont">v(R\otimes (R\to W))=f_\otimes(v(R),v(R\to W))=f_\otimes(v(R),f_\to(v(R),v(W)))</span>.</p>
+<p>We can think about how <span class="excalifont">f_\otimes(v(R),f_\to(v(R),v(W)))</span> is calculated in two ways.</p>
 <ol>
-<li>The first possibility is quick: If $f_\otimes(v(R),f_\to(v(R),v(W)))=0$ then obviously $v(R\otimes (R\to W))\leq v(W)$.</li>
-<li>The second possibility requires more thinking: suppose that $f_\otimes(v(R),f_\to(v(R),v(W)))\neq 0$.</li>
+<li>The first possibility is quick: If <span class="excalifont">f_\otimes(v(R),f_\to(v(R),v(W)))=0</span> then obviously <span class="excalifont">v(R\otimes (R\to W))\leq v(W)</span>.</li>
+<li>The second possibility requires more thinking: suppose that <span class="excalifont">f_\otimes(v(R),f_\to(v(R),v(W)))\neq 0</span>.</li>
 </ol>
 <ul>
-<li>That means $f_\otimes(v(R),f_\to(v(R),v(W)))=v(R)+f_\to(v(R),v(W))-1$.</li>
-<li>We now think about how $f_\to(v(R),v(W))$ is calculated in two ways.</li>
-<li>First, if $2v(R)-v(W)\leq 1$ that gives us two pieces of information.  We have $f_\to(v(R),v(W))=v(R)$ which plugs into our original calculation to give us $f_\otimes(v(R),f_\to(v(R),v(W)))=2v(R)-1$ and we also have $2v(R)-1\leq v(W)$.  It follows that $f_\otimes(v(R),f_\to(v(R),v(W)))\leq v(W)$.</li>
-<li>Second, if $1&lt;2v(R)-v(W)$, then $f_\to(v(R),v(W))=1-v(R)+v(W)$ and $f_\otimes(v(R),f_\to(v(R),v(W)))=v(R)+(1-v(R)+v(W))-1=v(W)$. It follows that $f_\otimes(v(R),f_\to(v(R),v(W)))\leq v(W)$.</li>
+<li>That means <span class="excalifont">f_\otimes(v(R),f_\to(v(R),v(W)))=v(R)+f_\to(v(R),v(W))-1</span>.</li>
+<li>We now think about how <span class="excalifont">f_\to(v(R),v(W))</span> is calculated in two ways.</li>
+<li>First, if <span class="excalifont">2v(R)-v(W)\leq 1</span> that gives us two pieces of information.  We have <span class="excalifont">f_\to(v(R),v(W))=v(R)</span> which plugs into our original calculation to give us <span class="excalifont">f_\otimes(v(R),f_\to(v(R),v(W)))=2v(R)-1</span> and we also have <span class="excalifont">2v(R)-1\leq v(W)</span>.  It follows that <span class="excalifont">f_\otimes(v(R),f_\to(v(R),v(W)))\leq v(W)</span>.</li>
+<li>Second, if <span class="excalifont">1&lt;2v(R)-v(W)</span>, then <span class="excalifont">f_\to(v(R),v(W))=1-v(R)+v(W)</span> and <span class="excalifont">f_\otimes(v(R),f_\to(v(R),v(W)))=v(R)+(1-v(R)+v(W))-1=v(W)</span>. It follows that <span class="excalifont">f_\otimes(v(R),f_\to(v(R),v(W)))\leq v(W)</span>.</li>
 </ul>
 
 </div>
@@ -1130,13 +1127,14 @@ So we want to show that we always get: $v(R\otimes (R\to W))\leq v(W)$.</p>
     <div class="d-inline-flex flex-row m-0 p-0 ">Discussion
     </div>
 </h5><p>Kleene logic has no logical laws/tautologies, as discussed in class. For
-example, if we don&rsquo;t know whether it&rsquo;ll rain or now and model this by
-$$\nu(\mathsf{RAIN})=i,$$ in Kleene&rsquo;s logic, we&rsquo;ll get the consequence that
-$$\nu(\mathsf{RAIN}\lor\neg\mathsf{RAIN})=i.$$ In a sense, this is what we want
-(we don&rsquo;t know whether it&rsquo;ll rain or not), but in a sense this is also
-unsatisfactory: we know that <em>one</em> of the two will happen, we just don&rsquo;t know
+example, if we don&rsquo;t know whether it&rsquo;ll rain or now and model this by</p>
+<div class="text-center my-4 excalifont">\nu(\mathsf{RAIN})=i,</div> in Kleene's logic, we'll get the consequence that
+<div class="text-center my-4 excalifont">\nu(\mathsf{RAIN}\lor\neg\mathsf{RAIN})=i.</div> In a sense, this is what we want
+(we don't know whether it'll rain or not), but in a sense this is also
+unsatisfactory: we know that _one_ of the two will happen, we just don't know
 which. Is this a problem for applications of Kleene logic in AI-decision making
-systems? Argue your answer in one or two paragraphs.</p>
+systems? Argue your answer in one or two paragraphs.
+
 
   </div>
 </div>

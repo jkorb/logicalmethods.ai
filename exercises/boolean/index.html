@@ -473,11 +473,11 @@
             <li>
               <a class="dropdown-item 
                 fw-bold active
-                link-opacity-50
+                
                 "
-                href="javascript:;"
+                href="/exercises/boolean/"
               >4. 
-                <i class="bi bi-lock-fill"></i>
+                <i class="bi bi-unlock-fill"></i>
                  Boolean algebra
               </a>
             </li>
@@ -733,324 +733,233 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
 <hr>
 <div class="container exercises m-4">
   <div class="container-fluid">
-    
-    
-      <p>$\LaTeX$: The solutions for exercises marked with this symbol need to be typed
-up using the latex typesetting system. If the exercise is homework, you need to
-digitally submit the solution as a PDF. Ask your TA to find out how.</p>
-<p>If you don&rsquo;t know what $\LaTeX$ is and how it works, you can learn it in 30
-minutes by following this
-<i class="bi bi-box-arrow-up-right h-6"></i>
-<a href="https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes" class="link-dark" rel="external" target="_blank">link</a>
-.</p>
-<p>For convenience, there are copy-paste-able $\LaTeX$-snippets included at the end
-of each question (click to expand).</p>
-
 </div>
-<div id="recursion" class=" latex solved"><h5 class="latex solved">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Recursion
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="recursionSolution"
-        onclick="showPasswordModal('recursionSolution', 'exc-bool')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="relay-logic" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Relay logic
     </div>
-</h5><p>For this exercise, use a propositional language with the following variables:</p>
-<ul>
-<li>$MARS$, which stands for &ldquo;Mars is red&rdquo;,</li>
-<li>$VENUS$, which stands for &ldquo;Venus is green&rdquo;,</li>
-<li>$PLUTO$, which stands for &ldquo;Pluto is black&rdquo;.</li>
-</ul>
-<p>Take a model where:</p>
-<ul>
-<li>$\nu(MARS)=1$,</li>
-<li>$\nu(VENUS)=1$,</li>
-<li>$\nu(PLUTO)=0$.</li>
-</ul>
-<p>Show the recursive calculation in this model for the truth-value of each formula below.</p>
+</h5><p>In the chapter you&rsquo;ve learned about <strong>relay logic</strong>, that is the implementation
+of the Boolean functions using the <span class="excalifont">default &ldquo;off&rdquo;</span> and <span class="excalifont">default &ldquo;on&rdquo;</span> relay:</p>
+
+
+<img src="https://logicalmethods.ai/exercises/boolean/img/relays.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="400px"  alt="" >
+
+
+<p>We showed how to make circuits which behave just like <span class="Boolean">NOT</span> and <span class="Boolean">AND</span> using these relays. As a reminder, here are the concrete implementations:</p>
+<div class="text-center">
+
+
+<img src="https://logicalmethods.ai/exercises/boolean/img/conjunction_impl.png" class="rounded mx-auto inert-img img-fluid my-4"  width="400px"  alt="" >
+
+
+
+
+<img src="https://logicalmethods.ai/exercises/boolean/img/negation_impl.png" class="rounded mx-auto inert-img img-fluid my-4"  width="400px"  alt="" >
+
+
+</div>
+<p>Note that we&rsquo;ve depicted all possible configurations of the relay to
+demonstrate that the circuit behaves &ldquo;according to spec&rdquo;, that is: just like
+the corresponding Boolean truth-function.</p>
+<p>For this exercise, you&rsquo;ll implement some more Boolean truth-functions using
+relays. You can draw the diagrams in whatever way works and clearly illustrates
+the idea. To show what I mean, here&rsquo;s one way to simplify the diagram for the
+<span class="Boolean">AND</span>-circuit (in the configuration for both inputs being <span class="excalifont">1</span>):</p>
+
+
+<img src="https://logicalmethods.ai/exercises/boolean/img/simplified_circuit.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="200px"  alt="" >
+
+
+<p>Make sure that to verify that your circuit is according to spec! Note that you may need both kinds of relays for the implementations.</p>
 <ol>
-<li>$\nu(\neg PLUTO)=$ ?</li>
-<li>$\nu(MARS\land VENUS)=$ ?</li>
-<li>$\nu(PLUTO\lor\neg MARS)=$ ?</li>
-<li>$\nu(MARS\land\neg PLUTO)=$ ?</li>
-<li>$\nu(\neg(VENUS\land\neg\neg (PLUTO\lor MARS)))=$ ?</li>
+<li>Implement <span class="Boolean">OR</span>.</li>
 </ol>
 
 
+<img src="https://logicalmethods.ai/exercises/boolean/img/or_table.png" class="rounded mx-auto d-block inert-img img-fluid "  width="200px"  alt="" >
 
 
-
-
-<hr>
-<a class="btn btn-sm btn-link link-dark link-underline-opacity-0" href="#95536a4e72d6e2890b4f5f2618fffc530cf9dc5788069857841cc5b9e70169e9" type="button" data-bs-toggle="collapse" data-bs-target="#95536a4e72d6e2890b4f5f2618fffc530cf9dc5788069857841cc5b9e70169e9" aria-expanded="false" aria-controls="95536a4e72d6e2890b4f5f2618fffc530cf9dc5788069857841cc5b9e70169e9" >
-$\LaTeX$ answer template <i class="bi bi-chevron-left toggle-icon"></i>
-</a>
-<div id="95536a4e72d6e2890b4f5f2618fffc530cf9dc5788069857841cc5b9e70169e9" class="collapse bg-black rounded m-2 p-2 " style="position:relative;">
-  <button class="btn btn-primary shadow" style="position:absolute; top:10px;right:10px" onclick="copyContent('95536a4e72d6e2890b4f5f2618fffc530cf9dc5788069857841cc5b9e70169e9-inner')"><i class="bi bi-clipboard"></i> Copy!</button>
-  <pre><code class="text-white" id="95536a4e72d6e2890b4f5f2618fffc530cf9dc5788069857841cc5b9e70169e9-inner">
-\begin{enumerate}
-  \item  $\nu(\neg PLUTO)=$ 
-  \item  $\nu(MARS\land VENUS)=$ 
-  \item  $\nu(PLUTO\lor\neg MARS)=$ 
-  \item  $\nu(MARS\land\neg PLUTO)=$ 
-  \item  $\nu(\neg(VENUS\land\neg\neg (PLUTO\lor MARS)))=$ 
-\end{enumerate}
-</code></pre>
-</div>
-<hr>
-
-
-</div>
-<div id="recursionSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><ol>
-<li>Answer:</li>
-</ol>
-<ul>
-<li>$\nu(\neg PLUTO)$</li>
-<li>$=-\nu(PLUTO)$</li>
-<li>$=-0$</li>
-<li>$=1$</li>
-</ul>
 <ol start="2">
-<li>Answer:</li>
+<li>Implement <span class="Boolean">XOR</span></li>
 </ol>
-<ul>
-<li>$\nu(MARS\land VENUS)$</li>
-<li>$=\nu(MARS)\times\nu(VENUS)$</li>
-<li>$=1\times 1$</li>
-<li>$=1$</li>
-</ul>
+
+
+<img src="https://logicalmethods.ai/exercises/boolean/img/xor_table.png" class="rounded mx-auto d-block inert-img img-fluid "  width="200px"  alt="" >
+
+
 <ol start="3">
-<li>Answer:</li>
+<li>Implement <span class="Boolean">NAND</span></li>
 </ol>
-<ul>
-<li>$\nu(PLUTO\lor\neg MARS)$</li>
-<li>$=\nu(PLUTO)+\nu(\neg MARS)$</li>
-<li>$=\nu(PLUTO)+(-\nu(MARS))$</li>
-<li>$=0+(-1)$</li>
-<li>$=0+0$</li>
-<li>$=0$</li>
-</ul>
-<ol start="4">
-<li>Answer:</li>
-</ol>
-<ul>
-<li>$\nu(MARS\land\neg PLUTO)$</li>
-<li>$=\nu(MARS)\times\nu(\neg PLUTO)$</li>
-<li>$=\nu(MARS)\times(-\nu(PLUTO))$</li>
-<li>$=1\times(-0)$</li>
-<li>$=1\times 1$</li>
-<li>$=1$</li>
-</ul>
-<ol start="5">
-<li>Answer:</li>
-</ol>
-<ul>
-<li>$\nu(\neg(VENUS\land\neg\neg (PLUTO\lor MARS)))$</li>
-<li>$=-\nu(VENUS\land\neg\neg (PLUTO\lor MARS))$</li>
-<li>$=-(\nu(VENUS)\times\nu(\neg\neg (PLUTO\lor MARS)))$</li>
-<li>$=-(\nu(VENUS)\times &ndash;\nu(PLUTO\lor MARS))$</li>
-<li>$=-(\nu(VENUS)\times&ndash;(\nu(PLUTO)+\nu(MARS)))$</li>
-<li>$=-(1\times&ndash;(0+1))$</li>
-<li>$=-(1\times&ndash;1)$</li>
-<li>$=-(1\times-0)$</li>
-<li>$=-(1\times 1)$</li>
-<li>$=- 1$</li>
-<li>$= 0$</li>
-</ul>
+
+
+<img src="https://logicalmethods.ai/exercises/boolean/img/nand_table.png" class="rounded mx-auto d-block inert-img img-fluid "  width="200px"  alt="" >
+
+
 
 </div>
-<div id="boolean-laws" class=" latex solved"><h5 class="latex solved">
+<div id="defining-functions" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Defining functions
+    </div>
+</h5><p>We&rsquo;ve mentioned the idea of truth-functional completeness: we can express <em>all</em>
+truth-functions purely in terms of <span class="Boolean">NOT</span>, <span class="Boolean">AND</span>, and <span class="Boolean">OR</span>.</p>
+<p>To illustrate what this means, here&rsquo;s how we express <span class="Boolean">OR</span> in terms of <span class="Boolean">NOT</span> and <span class="Boolean">AND</span>. First, we write <span class="Boolean">OR</span> as a Boolean expression with two variables, which represent the two inputs:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+<p></code></div></p>
+<p>Using the function table for <span class="Boolean">OR</span>, we can calculate the value of this expression for all values of <code class="customCode">X</code> and <code class="customCode">Y</code>. The representation of <span class="Boolean">OR</span> in terms of <span class="Boolean">NOT</span> and <span class="Boolean">AND</span> is, then, the following Boolean expression:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+<span class="Boolean">NOT</span> ((<span class="Boolean">NOT</span> X) <span class="Boolean">AND</span> (<span class="Boolean">NOT</span> Y))
+</code></div>
+<p>We (by which I mean you 😉), we can verify this by going through the possible values for <code class="customCode">X</code> and <code class="customCode">Y</code> and check that for each such value, we have that:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+X <span class="Boolean">OR</span> Y = <span class="Boolean">NOT</span> ((<span class="Boolean">NOT</span> X) <span class="Boolean">AND</span> (<span class="Boolean">NOT</span> Y))
+</code></div>
+<ol>
+<li>
+<p>Verify this equation for all values of <code class="customCode">X</code> and <code class="customCode">Y</code>.</p>
+</li>
+<li>
+<p>Represent <span class="Boolean">XOR</span> in terms of <span class="Boolean">NOT</span>, <span class="Boolean">AND</span>, and <span class="Boolean">OR</span>.</p>
+</li>
+<li>
+<p>Represent <span class="Boolean">NAND</span> in terms of <span class="Boolean">NOT</span> and <span class="Boolean">AND</span>.</p>
+</li>
+<li>
+<p>Here&rsquo;s an interesting one: represent <span class="Boolean">NOT</span> in terms of <span class="Boolean">XOR</span>.</p>
+</li>
+</ol>
+
+</div>
+<div id="boolean-laws" ><h5 class="">
     <div class="d-inline-flex flex-row m-0 p-0 ">Boolean laws
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="boolean-lawsSolution"
-        onclick="showPasswordModal('boolean-lawsSolution', 'exc-bool')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
     </div>
-</h5><p>Use the Boolean laws in section 4.6 to explain why these equations are correct.</p>
+</h5><p>Use the laws of Boolean algebra to derive the following equation:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+X <span class="Boolean">AND</span> (Y <span class="Boolean">OR</span> Z) = X <span class="Boolean">OR</span> (Y <span class="Boolean">AND</span> Z)
+</code></div>
 
 </div>
-<div id="a" ><h6 class="">a)</h6><p>$x\times (x+y) =  x+(x\times y)$</p>
-
-</div>
-<div id="b" ><h6 class="">b)</h6><p>$y\times z = y\times (z\times y)$</p>
-
-</div>
-<div id="c" ><h6 class="">c)</h6><p>$(x + (y\times z))+x=(x+y)\times(x+z)$</p>
-
-
-
-
-
-
-<hr>
-<a class="btn btn-sm btn-link link-dark link-underline-opacity-0" href="#66b6eb50f1d38159914e1dbe41091836e0c4c3d8876fb54b477b0da0aa41c556" type="button" data-bs-toggle="collapse" data-bs-target="#66b6eb50f1d38159914e1dbe41091836e0c4c3d8876fb54b477b0da0aa41c556" aria-expanded="false" aria-controls="66b6eb50f1d38159914e1dbe41091836e0c4c3d8876fb54b477b0da0aa41c556" >
-$\LaTeX$ answer template <i class="bi bi-chevron-left toggle-icon"></i>
-</a>
-<div id="66b6eb50f1d38159914e1dbe41091836e0c4c3d8876fb54b477b0da0aa41c556" class="collapse bg-black rounded m-2 p-2 " style="position:relative;">
-  <button class="btn btn-primary shadow" style="position:absolute; top:10px;right:10px" onclick="copyContent('66b6eb50f1d38159914e1dbe41091836e0c4c3d8876fb54b477b0da0aa41c556-inner')"><i class="bi bi-clipboard"></i> Copy!</button>
-  <pre><code class="text-white" id="66b6eb50f1d38159914e1dbe41091836e0c4c3d8876fb54b477b0da0aa41c556-inner">
-
-% For reference: the laws
-
-\begin{tabular}{ c c }
-  Conjunction laws          &                                          \\[2ex]
-  
-  Idempotence of $\times$   & $x\times x=x$                            \\
-  Commutativity of $\times$ & $x\times y=y\times x$                    \\
-  Associativity of $\times$ & $x\times(y\times z)=(x\times y)\times z$ \\
-  Identity for $\times$     & $x\times 1=x$                            \\
-  Annihilation for $\times$ & $x\times 0=0$                            \\[2ex]
-  
-  Disjunction laws          &                                          \\[2ex]
-  
-  Idempotence of $+$        & $x+x=x$                                  \\
-  Commutativity of $+$      & $x+y=y+x$                                \\
-  Associativity of $+$      & $x+(y+z)=(x+y)+z$                        \\
-  Identity for $+$          & $x+0=x$                                  \\
-  Annihilation for $+$      & $x+ 1=1$                                 \\[2ex]
-  
-  Interaction laws          &                                          \\[2ex]
-  
-  Distributivity $\times$/$+$ & $x\times(y+z)=(x\times y)+(x\times z)$ \\
-  Distributivity $+$/$\times$ & $x+(y\times z)=(x+y)\times(x+ z)$      \\
-  Absorption 1                & $x+(x\times y)=x$                      \\
-  Absorption 2                & $x\times(x+ y)=x$                      \\[2ex]
-  
-  Negation laws               &                                        \\[2ex]
-  
-  Complementation 1           & $x\times -x=0$                         \\
-  Complementation 2           & $x+ -x=1$                              \\
-  Involution                  & $\-\-x=x$                              \\
-  De Morgan 1                 & $-(x+y)=-x\times -y$                   \\
-  De Morgan 2                 & $-(x\times y)=-x+-y$                   \\
-\end{tabular}
-
-% An item for each identity
-
-\begin{itemize}
-  \item  $x\times (x+y) =  x+(x\times y)$
-  \item  $y\times z = y\times (z\times y)$
-  \item  $(x+(y\times z))+x = (x+y)\times(x+z)$
-\end{itemize}
-
-</code></pre>
-</div>
-<hr>
-
-
-</div>
-<div id="boolean-lawsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong></p>
+<div id="addition" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Addition
+    </div>
+</h5><p>We&rsquo;ve studied how you can add two numbers in binary. We&rsquo;ll use this to verify the equation: <div class="text-center my-4 excalifont">5 + 7 = 12.</div></p>
 <ol>
-<li>$x\times (x+y) ,=,  x \qquad$ <strong>[absorption]</strong></li>
-<li>$x ,=,  x + (x\times y)\qquad$ <strong>[absorption]</strong></li>
-<li>$x\times (x+y) ,=,  x\times (x+y) \qquad$ <strong>[1,2]</strong></li>
-</ol>
-<p><strong>b)</strong></p>
-<ol>
-<li>$y ,=, y\times y \qquad$ <strong>[idempotence]</strong></li>
-<li>$y\times z ,=, (y\times y)\times z \qquad$ <strong>[1]</strong></li>
-<li>$(y\times y)\times z ,=, y\times(y\times z) \qquad$ <strong>[associativity]</strong></li>
-<li>$y\times z ,=, z\times y \qquad$ <strong>[commutativity]</strong></li>
-<li>$y\times(y\times z),=, y\times(z\times y) \qquad$ <strong>[4]</strong></li>
-<li>$y\times z ,=, y\times (z\times y) \qquad$ <strong>[2,3,5]</strong></li>
-</ol>
-<p><strong>c)</strong></p>
-<ol>
-<li>$(x + (y\times z)) + x ,=, x+(x + (y\times z)) \qquad$ <strong>[commutativity]</strong></li>
-<li>$x+(x + (y\times z)) ,=, (x+x) + (y\times z) \qquad$ <strong>[associativity]</strong></li>
-<li>$x+x ,=, x \qquad$ <strong>[idempotence]</strong></li>
-<li>$(x+x) + (y\times z) ,=, x+(y\times z) \qquad$ <strong>[3]</strong></li>
-<li>$x+(y\times z) ,=, (x+y)\times(x+z) \qquad$ <strong>[idempotence]</strong></li>
-<li>$(x + (y\times z)) + x ,=, (x+y)\times(x+z) \qquad$ <strong>[1,2,4,5]</strong></li>
+<li>
+<p>Transform the summands 5 and 7 into binary notation. The result will be 3-bit
+binary numbers.</p>
+</li>
+<li>
+<p>Calculate each bit of the sum step by step using the Boolean functions for
+the full adder (note that you must initialize the carry to <code class="customCode">0</code> for the first
+calculation to work).</p>
+</li>
 </ol>
 
 </div>
-<div id="validity" class=" latex solved"><h5 class="latex solved">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Validity
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="validitySolution"
-        onclick="showPasswordModal('validitySolution', 'exc-bool')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="models" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Models
     </div>
-</h5><p>a) Use the definition of a Boolean model to show that $[A\lor A]=[A]$ for any formula $A$.</p>
-<p>b) Use the previous fact to explain why $A\lor A\vDash A$ and $A\vDash A\lor A$</p>
-
-
-
-
-
-
-<hr>
-<a class="btn btn-sm btn-link link-dark link-underline-opacity-0" href="#1cdf1be8cba17837963f08f4ed45bdc6b6d029717afd091f711dfe9a9ff1cfa2" type="button" data-bs-toggle="collapse" data-bs-target="#1cdf1be8cba17837963f08f4ed45bdc6b6d029717afd091f711dfe9a9ff1cfa2" aria-expanded="false" aria-controls="1cdf1be8cba17837963f08f4ed45bdc6b6d029717afd091f711dfe9a9ff1cfa2" >
-$\LaTeX$ answer template <i class="bi bi-chevron-left toggle-icon"></i>
-</a>
-<div id="1cdf1be8cba17837963f08f4ed45bdc6b6d029717afd091f711dfe9a9ff1cfa2" class="collapse bg-black rounded m-2 p-2 " style="position:relative;">
-  <button class="btn btn-primary shadow" style="position:absolute; top:10px;right:10px" onclick="copyContent('1cdf1be8cba17837963f08f4ed45bdc6b6d029717afd091f711dfe9a9ff1cfa2-inner')"><i class="bi bi-clipboard"></i> Copy!</button>
-  <pre><code class="text-white" id="1cdf1be8cba17837963f08f4ed45bdc6b6d029717afd091f711dfe9a9ff1cfa2-inner">
-\begin{itemize}
-  \item Use the definition of a Boolean model to show that $[A\lor A]=[A]$ for any formula $A$. 
-  \item Use the previous fact to explain why $A\lor A\vDash A$ and $A\vDash A\lor A$
-\end{itemize}
-</code></pre>
-</div>
-<hr>
-
+</h5><p>Suppose that we have a language <span class="excalifont">L</span> with three propositional variables <span class="excalifont">RED</span>, <span class="excalifont">BLUE</span>, and <span class="excalifont">GREEN</span>, which we use to reason about the color of a pixel in the <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/RGB_color_model" class="link-dark" rel="external" target="_blank">RGB color model</a>
+.</p>
+<ol>
+<li>
+<p>Determine all the valuations for that language.</p>
+</li>
+<li>
+<p>If we change our language <span class="excalifont">RED₁</span>, <span class="excalifont">BLUE₁</span>, and <span class="excalifont">GREEN₁</span> to talk about the
+color of a first pixel, and <span class="excalifont">RED₂</span>, <span class="excalifont">BLUE₂</span>, and <span class="excalifont">GREEN₂</span> to talk about the
+color of a second pixel, what happens to the number of valuations?</p>
+</li>
+<li>
+<p>How many valuations are there in the language that has a propositional variable for each RGB-value of each pixel on a <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/4K_resolution" class="link-dark" rel="external" target="_blank">4K-resolution screen</a>
+. (You can&rsquo;t actually calculate that value, but you can write an expression that represents it.)</p>
+</li>
+</ol>
 
 </div>
-<div id="validitySolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong></p>
-<p>The set of models $[A\lor A]={ \nu : \nu(A\lor A)=1}$. Since $\nu(A\lor A)=\nu(A)+\nu(A)$ we know by idempotence that we always have the equivlance $\nu(A\lor A)=\nu(A)$. This shows that $[A\lor A]=[A]$.</p>
-<p><strong>b)</strong></p>
-<p>It follows from above that $[A\lor A]\subseteq[A]$ which is the definition of $A\lor A\vDash A$. It also follows that $[A]\subseteq[A\lor A]$ which is the definition of $A\vDash A\lor A$.</p>
-
-</div>
-<div id="research" ><h5 class="">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Research
+<div id="deductive-inference" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Deductive inference
     </div>
-</h5><p><em>This one went up late, but if you have the time, it&rsquo;s a good exercise</em></p>
-<p><i class="bi bi-box-arrow-up-right h-6"></i>
-<a href="https://en.wikipedia.org/wiki/Logic_gate" class="link-dark" rel="external" target="_blank">Logic gates</a>
- are a different way
-of thinking about Boolean truth-function. Familiarize yourself with what
-they are and</p>
+</h5>
+
+<img src="https://logicalmethods.ai/exercises/boolean/img/jimmy_inference.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="600px"  alt="" >
+
+
+<ol>
+<li>
+<p>Translate the inference into a suitable formal language.</p>
+</li>
+<li>
+<p>Determine whether the formal inference is valid using Boolean logic.</p>
+</li>
+</ol>
 
 </div>
-<div id="a-1" ><h6 class="">a)</h6><p>Write the following Boolean truth-functions using the logic gates
-for $NOT,AND,OR$</p>
-<ul>
-<li>
-<p>$(x+y)\times -(x\times y)$</p>
-</li>
-<li>
-<p>$-(x+y)$</p>
-</li>
-<li>
-<p>$-((x\times y)+z)$</p>
-</li>
-</ul>
+<div id="logical-laws" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Logical laws
+    </div>
+</h5><p>So far, we&rsquo;ve only shown of <em>particular</em> inferences (about the weather or
+little Jimmy) that they are valid or invalid. For this exercise, you&rsquo;ll show
+that <em>all</em> inferences of a certain form are valid, regardless what they&rsquo;re
+about.</p>
+<p>For this, we&rsquo;ll focus on <em>disjunctive syllogism</em>, which we take to be the
+following inference schema, where <span class="excalifont">A</span> and <span class="excalifont">B</span> can be <em>any</em> two formulas whatsoever:</p>
 
-</div>
-<div id="b-1" ><h6 class="">b)</h6><p>It&rsquo;s a mathematical fact that all logic gates can be implemented using
-$NOR$ gates. Find the $NOR$-only gates for the functions above.</p>
+
+<img src="https://logicalmethods.ai/exercises/boolean/img/disjunctive_syllogism.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="175px"  alt="" >
+
+
+<p>To show that this inference is valid, following the definition of deductive
+validity, we need to show that:</p>
+
+
+<img src="https://logicalmethods.ai/exercises/boolean/img/ds_validity_condition.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="200px"  alt="" >
+
+
+<p>This means, according to the definition of <span class="excalifont">⊆</span>, that we need to show that any
+valuation <span class="excalifont">v</span>:</p>
+
+
+<img src="https://logicalmethods.ai/exercises/boolean/img/ds_if_then.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="400px"  alt="" >
+
+
+<p>This is the claim, we&rsquo;ll set out to show:</p>
+<ol>
+<li>
+<p>Assume that <span class="excalifont">v</span> is an arbitrary valuation, meaning you don&rsquo;t know anything
+about, such as which values it assigns to which formula. Assume further that 
+
+<img src="https://logicalmethods.ai/exercises/boolean/img/in_set_inline.png" class="inert-img" height="38px"  style="ZgotmplZ" alt="" >
+
+. Apply the definition of</p>
+<div class="text-center my-4 excalifont">[A] = { v : v(A) = 1},</div> 
+as well as the definition of intersection as 
+
+   
+   <img src="https://logicalmethods.ai/exercises/boolean/img/intersection_definition.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="300px"  alt="" >
+   
+
+<p>to infer what this means for the values of <span class="excalifont">A v B</span> and <span class="excalifont">¬A</span> under <span class="excalifont">v</span>.</p>
+</li>
+<li>
+<p>Using the general clauses for calculating the values under an assignment,</p>
+
+   
+   <img src="https://logicalmethods.ai/exercises/boolean/img/clauses.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="300px"  alt="" >
+   
+
+<p>to transform the result of a last step into two Boolean equations.</p>
+</li>
+<li>
+<p>&ldquo;Solve&rdquo; this Boolean equation for the value <span class="excalifont">v(B)</span> of <span class="excalifont">B</span>, that is infer
+what that value must be. Conclude from this that 
+
+<img src="https://logicalmethods.ai/exercises/boolean/img/ds_then.png" class="inert-img" height="38px"  style="ZgotmplZ" alt="" >
+
+ and the inference is valid.</p>
+</li>
+</ol>
+
 
   </div>
 </div>
