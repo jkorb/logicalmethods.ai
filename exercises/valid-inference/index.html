@@ -734,8 +734,19 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
 <div class="container exercises m-4">
   <div class="container-fluid">
 </div>
-<div id="material-and-logical-validity" ><h5 class="">
+<div id="material-and-logical-validity" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Material and logical validity
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="material-and-logical-validitySolution"
+        onclick="showPasswordModal('material-and-logical-validitySolution', 'exc-val')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>For each of the following inferences, determine whether it is logically or only materially valid:</p>
 <ol>
@@ -762,8 +773,45 @@ inference and check whether there are invalid inferences of this form.</p>
 the inference into a logically valid inference.</p>
 
 </div>
-<div id="reasoning-mistakes" ><h5 class="">
+<div id="material-and-logical-validitySolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solutions</h6><ol>
+<li>
+<p>This inference is only materially valid. It&rsquo;s form is something like: <div class="text-center my-4 excalifont">c&rsquo;s P&rsquo;s are Q, so c is Q.</div> But suppose that <span class="excalifont">c</span> is little Jimmy, his <span class="excalifont">P</span>&rsquo;s are his favorite socks, and <span class="excalifont">Q</span> is being blue. Then the inference becomes clearly invalid: <span class="excalifont">Little Jimmy&rsquo;s favorite socks are blue, so Jimmy is blue</span>.</p>
+<p>If you add the premise that children of U.S. citizens are also U.S. citizens, the inference becomes deductively valid.</p>
+</li>
+<li>
+<p>This inference is logically valid. As it has the same form as the Socrates inference.</p>
+</li>
+<li>
+<p>This inference is only materially valid. It&rsquo;s form is something like:</p>
+<div class="text-center my-4 excalifont">c is not P. Thus c is Q</div>
+<p>But if <span class="excalifont">c</span> is little Jimmy, P is hungry, and <span class="excalifont">Q</span> thirsty, the inference becomes: <span class="excalifont">Little Jimmy is not hungry. So, Little Jimmy is thirsty</span>, which is clearly invalid.</p>
+<p>We need to add the premise that a sentence is false if and only if it&rsquo;s not
+true as a further premise to make this inference valid. This premise is
+false, for example, in many-valued logic.</p>
+</li>
+<li>
+<p>This inference is only materially valid, as it has the form <span class="excalifont">c is P. Therefore c is Q</span>. Most <span class="excalifont">c</span>&rsquo;s, <span class="excalifont">P</span>s and <span class="excalifont">Q</span>s are counterexamples, but let&rsquo;s take <span class="excalifont">c</span> to be little Jimmy, <span class="excalifont">P</span> having a blue hat, and <span class="excalifont">Q</span> being an adult. The inference becomes: <span class="excalifont">Little Jimmy has a blue hat. Therefore, he&rsquo;s an adult</span>.</p>
+<p>We need to add the premise that only thinking things exist.</p>
+</li>
+<li>
+<p>This inference is (interestingly) deductively valid. It is an instance of <span class="excalifont">&ldquo;modus tolens&rdquo;</span>: <span class="excalifont">All A&rsquo;s are B&rsquo;s and you&rsquo;re not a B. Therefore, you&rsquo;re not an A</span>.</p>
+</li>
+</ol>
+
+</div>
+<div id="reasoning-mistakes" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Reasoning mistakes
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="reasoning-mistakesSolution"
+        onclick="showPasswordModal('reasoning-mistakesSolution', 'exc-val')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>The following inferences contain reasoning mistakes.</p>
 <ol>
@@ -797,6 +845,38 @@ showing that there&rsquo;s a hypothetical reasoning situation where the premises
 true and the conclusion isn&rsquo;t.</p>
 <p>Does it make a difference whether we take the inference in question to be
 inductive or deductive?</p>
+
+</div>
+<div id="reasoning-mistakesSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><ol>
+<li>
+<p>The mistake is to forget that there are other unis in the UK that Mr. Sir
+could have gone to, such as St Andrews for example. In the possibility that
+he did, the premise is true (he neither went to Oxford nor Cambridge, but the
+conclusion isn&rsquo;t—St Andrews is in Scotland, thus the U.K.).</p>
+</li>
+<li>
+<p>The mistake is to miss that there could be New Yorkers, like little Jimmy, who aren&rsquo;t Yankees fans. So, if we assume that he is from NY but not a Yankees fan, it could still be the case that only New Yorkers are Yankees fans.</p>
+</li>
+<li>
+<p>The inference only ever has a chance of being inductively valid, its not even that. The mistake is that the sampling size, though large, is biased. It could be that East Coast burger joints are biased against vegetarians, while the East Coast ones are more open minded. In such a possible situation, the truth of the premise doesn&rsquo;t make the conclusion likely at all.</p>
+</li>
+<li>
+<p>The mistake is to forget that systems could be hybrid, that is both
+statistics-based and logic-based. So, in a possible situation, where there
+are only the two paradigms (statistics and logic-based), but <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+ is a
+hybrid AI system, the premise is true but the conclusion isn&rsquo;t.</p>
+</li>
+<li>
+<p>This is another inductive fallacy, known as the <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/Gambler%27s_fallacy" class="link-dark" rel="external" target="_blank">Gambler&rsquo;s
+fallacy</a>
+. The mistake is
+to forget that each spin of the wheel is an independent event, the outcome of
+any former spin: the chance remains untouched, it still is 1/2 even in
+situations, where the wheel has spun black many, many times.</p>
+</li>
+</ol>
 
 </div>
 <div id="inferences-in-llms" ><h5 class="">
@@ -904,8 +984,19 @@ on what the relevant standards are.</p>
 .</p>
 
 </div>
-<div id="sets" ><h5 class="">
+<div id="sets" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Sets
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="setsSolution"
+        onclick="showPasswordModal('setsSolution', 'exc-val')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>Calculate the results of the following set theoretic operations:</p>
 <ol>
@@ -964,6 +1055,69 @@ definition of the subset relation:</p>
 <li>
 
 <img src="https://logicalmethods.ai/exercises/valid-inference/img/set_ex.png" class="inert-img" height="100px"  style="ZgotmplZ" alt="" >
+
+</li>
+</ol>
+
+</div>
+<div id="setsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solutions</h6><ol>
+<li>
+
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/set_solution_1.png" class="inert-img" height="50px"  style="ZgotmplZ" alt="" >
+
+
+</li>
+<li>
+
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/set_solution_2.png" class="inert-img" height="50px"  style="ZgotmplZ" alt="" >
+
+
+</li>
+<li>
+<p><span class="excalifont">{2, 4, 6, 8 }</span> or simply <span class="excalifont">{ n : n is an even integer between 1 and 10 }</span></p>
+</li>
+<li>
+<p><span class="excalifont">{ }</span>. This is the <em>empty</em> set again, which has no members, whatsoever.</p>
+</li>
+<li>
+
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/set_solution_5.png" class="inert-img" height="80px"  style="ZgotmplZ" alt="" >
+
+
+</li>
+<li>
+<p>This claim is false. In fact, we have that 
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/set_solution_6.png" class="inert-img" height="50px"  style="ZgotmplZ" alt="" >
+
+ since the only members of the first set, Mr. Sir and little Jimmy, are both members of the second set as well.</p>
+</li>
+<li>
+<p>This claim is true, since both members of the first set—my beer and the number one—are members of the second set. In fact, both sets are the same!</p>
+</li>
+<li>
+<p>This claim is very importantly <strong>false</strong>. The empty set, <span class="excalifont">{ }</span>, cannot fail to be a subset of 
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/set_solution_8.png" class="inert-img" height="40px"  style="ZgotmplZ" alt="" >
+
+ or any set for that matter. Because for that to be the case, there would have to be a member of <span class="excalifont">{ }</span>, which fails to be a member of 
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/set_solution_8.png" class="inert-img" height="40px"  style="ZgotmplZ" alt="" >
+
+. But which member of <span class="excalifont">{ }</span> could that be, as there are none.</p>
+</li>
+<li>
+<p>Since both the soda and the beer are sparkling beverages, they are members of the set <span class="excalifont">{ x : x is a sparkling beverage }</span></p>
+</li>
+<li>
+<p>There is a total of 8 subsets. Note that the empty set, <span class="excalifont">{  }</span>, is among them, according to number 8.:</p>
+
+    
+    <img src="https://logicalmethods.ai/exercises/valid-inference/img/set_solution_10.png" class="rounded mx-auto my-4 d-block inert-img img-fluid"  width="350px"  alt="" >
+    
 
 </li>
 </ol>
