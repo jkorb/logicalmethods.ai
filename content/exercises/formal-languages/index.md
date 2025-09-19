@@ -255,7 +255,7 @@ a propositional variable. But this formula starts with a propositional variable 
 
     If we wanted to give it "the other" reading, we would need to write $KNpq$.
 
-# Knowledge representation
+# Knowledge representation {.solved}
 
 {{< logo >}}&nbsp; has taken up {{< abbr title="state-sanctioned piracy, nothing illegal going on here...">}}privateering{{</abbr>}}. Now, he's got a treasure of numerous Bitcoin, rare computer chips, and Alan Turing's old {{< abbr title="knowledge base">}}KB{{< /abbr >}}.
 
@@ -269,7 +269,7 @@ First, he divided the disk-world into 4 quadrants, indicating in the following c
 
 {{< img src="img/map.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="550px">}}
 
-He then devised a formal language with propositional variables {{< excalifont >}}T(i,j){{</excalifont>}} to say that the treasure is at coordinate {{< excalifont >}}(i,j){{</excalifont>}} with the first component being the {{<excalifont>}}x{{</excalifont>}}-axis and the second the {{<excalifont>}}y{{</excalifont>}}-axis.
+He then devised a formal language with propositional variables {{< excalifont >}}T(i,j){{</excalifont>}} to say that the treasure is at coordinate {{< excalifont >}}(<span style="color: #2f9e44;">i</span>,<span style="color: #e03131;">j</span>){{</excalifont>}} with the first component being the {{<excalifont>}}<span style="color: #2f9e44;">x</span>{{</excalifont>}}-axis and the second the {{<excalifont>}}<span style="color: #e03131;">y</span>{{</excalifont>}}-axis.
 
 Correspondingly, the BNF of his language is:
 
@@ -301,7 +301,23 @@ Help {{< logo >}}&nbsp; to represent the following hints about the treasure's lo
 8. The treasure is everywhere on the disk-world.
 
 
-# Knowledge extraction 
+## Solution {.solution #knowledge-representationSolution}
+
+1. A straight-forward representation is {{< img src="img/representation1.png" class="inert-img" height="38px" style="vertical-align: middle;" >}}. But an equally valid alternative is: {{< img src="img/representation1a.png" class="inert-img" height="32px" style="vertical-align: middle;" >}}.
+2. This one is trickier than it might seem at first. I've attached a paraphrase to facilitate reading:
+
+  {{< img src="img/representation2.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="750px">}}
+
+3. This one has at least two readings in natural language. The most straight-forwardly intended one is {{< img src="img/representation3.png" class="inert-img" height="38px" style="vertical-align: middle;" >}}, which reads as if the treasure is not in the lower right and not in the lower left, then it's in the upper left. But if we take the "only if" parlance seriously, and read the statement as "if the treasure is not in the lower right, then it's only in the upper left, if it's not in the lower left," we get this formula: {{< img src="img/representation3a.png" class="inert-img" height="38px" style="vertical-align: middle;" >}}.
+4. This is then just the consequence of the second reading from 3.: {{< img src="img/representation4.png" class="inert-img" height="38px" style="vertical-align: middle;" >}}
+5. {{< img src="img/representation5.png" class="inert-img" height="38px" style="vertical-align: middle;" >}}
+6. {{< img src="img/representation6.png" class="inert-img" height="38px" style="vertical-align: middle;" >}}
+7. A very straight-forward reading is this: {{< img src="img/representation7.png" class="inert-img" height="38px" style="vertical-align: middle;" >}} ("the treasure is not here, not here, not here, and not here"), but an equivalent statement is just the negation of 6.: {{< img src="img/representation7a.png" class="inert-img" height="38px" style="vertical-align: middle;" >}}. 
+8. {{< img src="img/representation8.png" class="inert-img" height="38px" style="vertical-align: middle;" >}}
+
+As you can see, in knowledge representation, we have to handle natural language ambiguity, there are often more than one solution, and things that sound easy in natural language, can be hard to formalize.
+
+# Knowledge extraction  {.solved}
 
 You arrive at an uninhabited planet and find an old space rover that some
 ancient civilization, which still used expert systems for AI, used to explore
@@ -316,6 +332,25 @@ following:
 
 Explain these instructions in natural language. Can you tell why the robot shut
 down?
+
+## Solution 
+
+1. If you detect rain, then seek cover.
+
+2. If your battery level is low and you detect sun, then charge your batteries.
+
+3. You detect rain just in case you don't detect sun.
+
+4. If you're charging your batteries and your battery is not charging, then request assistance.
+
+5. If you either detect rain and the battery is low or you detect sun and the battery is not charging, then shut down.
+
+The robot shut down because it's both sunny and rainy, so what its sensors are
+telling it is in contradiction to 3., which says that the robot can only ever
+detect one of the two. Introducing hidden or unexpected contradictions is a
+grave danger in knowledge representation and great care must be taken to avoid
+it. This is because in propositional logic, from a contradiction _everything_
+follows, which is an issue we'll discuss more later.
 
 # Research
 
