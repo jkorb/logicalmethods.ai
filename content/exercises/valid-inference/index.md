@@ -8,7 +8,7 @@ params:
   math: true
 ---
 
-# Material and logical validity
+# Material and logical validity {.solved}
 
 For each of the following inferences, determine whether it is logically or only materially valid:
 
@@ -29,7 +29,32 @@ inference and check whether there are invalid inferences of this form.
 For the materially valid inferences, identify a premise you could add to turn
 the inference into a logically valid inference.
 
-# Reasoning mistakes
+## Solutions {.solution #material-and-logical-validitySolution}
+
+1. This inference is only materially valid. It's form is something like: $$c's P's are Q, so c is Q.$$ But suppose that $c$ is little Jimmy, his $P$'s are his favorite socks, and $Q$ is being blue. Then the inference becomes clearly invalid: $Little Jimmy's favorite socks are blue, so Jimmy is blue$.
+
+    If you add the premise that children of U.S. citizens are also U.S. citizens, the inference becomes deductively valid.
+
+2. This inference is logically valid. As it has the same form as the Socrates inference.
+
+3. This inference is only materially valid. It's form is something like:
+
+   $$c is not P. Thus c is Q$$
+
+   But if $c$ is little Jimmy, P is hungry, and $Q$ thirsty, the inference becomes: $Little Jimmy is not hungry. So, Little Jimmy is thirsty$, which is clearly invalid.
+
+
+   We need to add the premise that a sentence is false if and only if it's not
+   true as a further premise to make this inference valid. This premise is
+   false, for example, in many-valued logic.
+
+4. This inference is only materially valid, as it has the form $c is P. Therefore c is Q$. Most $c$'s, $P$s and $Q$s are counterexamples, but let's take $c$ to be little Jimmy, $P$ having a blue hat, and $Q$ being an adult. The inference becomes: $Little Jimmy has a blue hat. Therefore, he's an adult$.
+
+    We need to add the premise that only thinking things exist.
+
+5. This inference is (interestingly) deductively valid. It is an instance of $"modus tolens"$: $All A's are B's and you're not a B. Therefore, you're not an A$.
+
+# Reasoning mistakes {.solved}
 
 The following inferences contain reasoning mistakes.
 
@@ -56,6 +81,28 @@ true and the conclusion isn't.
 
 Does it make a difference whether we take the inference in question to be
 inductive or deductive?
+
+## Solution {.solution #reasoning-mistakesSolution}
+
+1. The mistake is to forget that there are other unis in the UK that Mr. Sir
+   could have gone to, such as St Andrews for example. In the possibility that
+he did, the premise is true (he neither went to Oxford nor Cambridge, but the
+conclusion isn't—St Andrews is in Scotland, thus the U.K.).
+
+2. The mistake is to miss that there could be New Yorkers, like little Jimmy, who aren't Yankees fans. So, if we assume that he is from NY but not a Yankees fan, it could still be the case that only New Yorkers are Yankees fans.
+
+3. The inference only ever has a chance of being inductively valid, its not even that. The mistake is that the sampling size, though large, is biased. It could be that East Coast burger joints are biased against vegetarians, while the East Coast ones are more open minded. In such a possible situation, the truth of the premise doesn't make the conclusion likely at all.
+
+4. The mistake is to forget that systems could be hybrid, that is both
+   statistics-based and logic-based. So, in a possible situation, where there
+are only the two paradigms (statistics and logic-based), but {{<logo>}} is a
+hybrid AI system, the premise is true but the conclusion isn't.
+
+5. This is another inductive fallacy, known as the [Gambler's
+   fallacy](https://en.wikipedia.org/wiki/Gambler%27s_fallacy). The mistake is
+to forget that each spin of the wheel is an independent event, the outcome of
+any former spin: the chance remains untouched, it still is 1/2 even in
+situations, where the wheel has spun black many, many times. 
 
 # Inferences in LLMs
 
@@ -132,7 +179,7 @@ like. This is a question of academic integrity.
 
 If want to know more about prompt engineering, you can check out [Lee Boonstra's](https://www.leeboonstra.dev/) amazing whitepaper, [here](https://www.kaggle.com/whitepaper-prompt-engineering).
 
-# Sets
+# Sets {.solved}
 
 Calculate the results of the following set theoretic operations:
 
@@ -153,6 +200,22 @@ definition of the subset relation:
 Find all the subsets of the following set:
 
 10. {{< img src="img/set_ex.png" class="inert-img" height="100px" style="vertical-align: middle;" >}}
+
+## Solutions {.solution #setsSolution}
+
+1. {{< img src="img/set_solution_1.png" class="inert-img" height="50px" style="vertical-align: middle;" >}}
+2. {{< img src="img/set_solution_2.png" class="inert-img" height="50px" style="vertical-align: middle;" >}} 
+3. ${2, 4, 6, 8 }$ or simply ${ n : n is an even integer between 1 and 10 }$
+4. ${ }$. This is the _empty_ set again, which has no members, whatsoever.
+5. {{< img src="img/set_solution_5.png" class="inert-img" height="80px" style="vertical-align: middle;" >}} 
+6. This claim is false. In fact, we have that {{< img src="img/set_solution_6.png" class="inert-img" height="50px" style="vertical-align: middle;" >}} since the only members of the first set, Mr. Sir and little Jimmy, are both members of the second set as well.
+7. This claim is true, since both members of the first set—my beer and the number one—are members of the second set. In fact, both sets are the same!
+8. This claim is very importantly **false**. The empty set, ${ }$, cannot fail to be a subset of {{< img src="img/set_solution_8.png" class="inert-img" height="40px" style="vertical-align: middle;" >}} or any set for that matter. Because for that to be the case, there would have to be a member of ${ }$, which fails to be a member of {{< img src="img/set_solution_8.png" class="inert-img" height="40px" style="vertical-align: middle;" >}}. But which member of ${ }$ could that be, as there are none.
+9. Since both the soda and the beer are sparkling beverages, they are members of the set ${ x : x is a sparkling beverage }$
+10. There is a total of 8 subsets. Note that the empty set, ${  }$, is among them, according to number 8.:
+
+    {{< img src="img/set_solution_10.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="350px">}}
+
 
 # Monotonicity of deductive inference
 
