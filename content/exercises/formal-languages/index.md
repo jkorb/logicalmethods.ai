@@ -8,7 +8,7 @@ params:
   math: true
 ---
 
-# Ambiguity
+# Ambiguity {.solved}
 
 Which of the following statements in natural language are 
 {{< abbr title="i.e. has two or more readings" >}}ambiguous{{< /abbr >}}? If
@@ -37,7 +37,76 @@ other.
 
 10. They fed her dog food.
 
-# Over-expressiveness
+## Solution {.solution #ambiguitySolution}
+
+1. This statement is (relatively) unambiguous.
+
+2. There are at least two ways of reading this: 
+
+    - I see her perform the action of ducking (lowering the head or body quickly).
+
+    - I see an animal of the species [duck](https://en.wikipedia.org/wiki/Duck), which belongs to her.
+
+    On the first reading, you might for example infer (deductively) that she is
+    now in a crouching position or (inductively) that she tried to avoid getting
+    hit by something. On the second reading, you could infer (deductively) that
+    she owns an animal. Neither inference is valid on the other reading.
+
+3. Many people consider this ambiguous between:
+
+    - He thanked her two children, called "Alan" and "Ada".
+
+    - He thanked her children, whoever they are, and two people called "Alan" and "Ada".
+
+    On the first reading, you can infer that Alan is her child, while you cannot n the second reading.
+
+4. This statement instead uses the [serial
+   comma](https://en.wikipedia.org/wiki/Serial_comma) to avoid the previous
+ambiguity.
+
+5. This statement is ambiguous between:
+
+    - I see a man who has my binoculars.
+
+    - I see a man through my binoculars.
+
+    On the first reading, you can infer that the speaker does not currently have their binoculars in their possession, while on the second reading you can.
+
+ 6. This statement is (relatively) unambiguous.
+
+ 7. This phrase has the following two readings:
+
+    - Someone who walks dogs and is friendly.
+
+    - Someone who walks (only?) friendly dogs.
+
+    On the first reading, you can infer that the person is friendly, on the second you can't.
+
+ 8. There are two readings:
+
+    - I am happy that I am here and she is happy that I'm here.
+
+    - I am happy that I'm here and she is also here.
+
+    On the second reading you can, for example, infer that she is here, while on the second one you can't.
+
+ 9. This statement is ambiguous between:
+
+    - The priest officiated my uncle's wedding.
+
+    - The priest got married to my uncle.
+
+    On the second reading, you can infer that the priest is now the speakers uncle in law, while on the first one you can't.
+
+ 10. Also this statement is ambiguous:
+
+   - They fed her food for dogs
+
+   - They fed food to her dog.
+
+   On the second reading, you can infer that she owns a dog, while on the first one you can't.
+
+# Over-expressiveness {.solved}
 
 Consider the following inference:
 
@@ -48,7 +117,20 @@ the premise is true and the conclusion isn't. Explain how the
 over-expressiveness of natural language is responsible for the inference seeming
 to be valid.
 
-# Sets 
+## Solution {.solution #over-expressivenessSolution}
+
+We don't know whether John smokes or not, but we can consider a situation,
+where he never smoked. In such a situation, he never stopped smoking, so the
+premise is true. But he's not a smoker, so the conclusion isn't true. This makes the inference invalid.
+
+In natural language, we often convey meaning that goes beyond the literal
+meaning of statements, for example by means of
+[implicature](https://en.wikipedia.org/wiki/Implicature). In this case, we're
+dealing with a seeming
+[presupposition](https://en.wikipedia.org/wiki/Presupposition), where the first
+statement seems to have the implicit presupposition that John did smoke. This might make the inference seem valid, even though it isn't. 
+
+# Sets {.solved}
 
 Describe the following sets using set notation:
 
@@ -63,20 +145,53 @@ Describe the following sets using set notation:
 
 5. the set of all non-empty sets that contain only the numbers 1, 2, and 3
 
-# Parsing
+## Solution {.solution #setsSolution}
+
+1. ${ }$, with nothing written between the curly brackets. There is also the set-theoretic symbol $∅$.
+
+2. ${ {{< logo >}}, UU, {{{< logo >}}} }$
+
+3. ${ 2, 4, 6, 8 }$ or ${ n : n is an even number between 1 and 10}$
+
+4. ${ n : n is an even natural number }$
+
+5. ${ {1}, {2}, {3}, {1,2}, {1,3}, {2,3}, {1,2,3} }$ or: $${ x : x is a non-empty set with only member from {1, 2, 3} }$$
+
+# Parsing {.solved}
 
 Parse the following formulas according to the grammar of propositional logic.
 You can either do this by giving the rewrite sequence or the parsing tree.
 
-+ $(\neg p\to \neg p)$
+1. {{< img src="img/neg_p_to_neg_q.png" class="inert-img" height="38px" style="vertical-align: middle;" >}}
 
-+ $(p\leftrightarrow (\neg r\land q))$
+2. {{< img src="img/fml_2.png" class="inert-img" height="38px" style="vertical-align: middle;" >}}
 
-+ $((q\land s)\to (p\lor r))$
 
-+ $(((p\land q)\lor (r\land s))\land \neg ((p\land q\land r\land s)))$
+3. {{< img src="img/fml_3.png" class="inert-img" height="38px" style="vertical-align: middle;" >}}
 
-# Polish notation
+4. {{< img src="img/fml_4.png" class="inert-img" height="38px" style="vertical-align: middle;" >}}
+
+
+## Solutions {.solution #parsingSolution}
+
+1. Here's the parse tree:
+
+    {{< img src="img/parsing_tree_1.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="350px">}}
+
+2. Here's the parse tree:
+
+    {{< img src="img/tree_2.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="350px">}}
+
+3. Here's the parse tree:
+
+    {{< img src="img/tree_3.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="350px">}}
+
+4. Here's the parse tree:
+
+    {{< img src="img/tree_4.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="450px">}}
+
+
+# Polish notation {.solved}
 
 In the lesson on formal languages, we explained the need for parentheses in
 order to avoid ambiguity in the language for propositional logic. 
@@ -113,6 +228,32 @@ notation. That is, instead of writing {{< img src="img/formula.png" class="inert
    parentheses when using infix notation and write the corresponding formulas in
    Polish notation. Explain with the example why we no longer need parentheses
 in Polish notation.
+
+## Solution {.solution #polish-notationSolution}
+
+1. I'm using $ϕ$ as the variable in the form, rather than $A$ as before to avoid confusion with the symbol for disjunction:
+
+  $$φ ::= p | q | Nφ | Kφφ | Aφφ | Cφφ | Bφφ$$
+
+2. Here are the rewrite rules:
+
+  {{< img src="img/polish_rewrite.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="350px">}}
+
+  And here's the tree:
+
+  {{< img src="img/polish_tree.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="350px">}}
+
+3. $pCpqNqCpr$ can't be a formula in Polish notation since there are only two
+   options: either a formula starts with an operator from $N,K,A,C,B$ or it is
+a propositional variable. But this formula starts with a propositional variable and then continues. There is no rule, which can generate such a formula, so it isn't one.
+
+
+4. The formula was {{< img src="img/neg_p_and_q.png" class="inert-img" height="38px" style="vertical-align: middle;" >}}. If we write this in Polish notation, it becomes $NKpq$. But this formula now has a unique reading, given by the following parse tree:
+
+
+    {{< img src="img/parse_ambi.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="250px">}}
+
+    If we wanted to give it "the other" reading, we would need to write $KNpq$.
 
 # Knowledge representation
 
