@@ -13,10 +13,8 @@
 {{ .Content }}
 {{end}}
 
-
-<hr>
-<div class="container exercises m-4">
-  <div class="container-fluid">
+<div class="container exercises">
+  <div class="m-4">
 
     {{- $patternMathBlock := `(?s)\$\$(.*?)\$\$` -}}
     {{- $replacementMathBlock := `<div class="text-center my-4 excalifont">${1}</div>` -}}
