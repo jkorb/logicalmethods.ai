@@ -136,7 +136,7 @@ X !!OR!! Y = !!NOT!! ((!!NOT!! X) !!AND!! (!!NOT!! Y))
     - `X = 1`: &emsp; `1 !!NAND!! 1 = 0`
     - `X = 0`: &emsp; `0 !!NAND!! 0 = 1`
 
-# Boolean laws 
+# Boolean laws {.solved}
 
 Use the laws of Boolean algebra to derive the following equation:
 
@@ -144,7 +144,11 @@ Use the laws of Boolean algebra to derive the following equation:
 X !!AND!! (X !!OR!! Y) = X !!OR!! (X !!AND!! Y)
 ```
 
-# Addition
+## Solution {.solution #boolean-lawsSolution}
+
+This is rather straight-forward: just note that both sides are equal to `X` by the law of $"Absorption"$. 
+
+# Addition {.solved}
 
 We've studied how you can add two numbers in binary. We'll use this to verify the equation: $$5 + 7 = 12.$$
 
@@ -155,7 +159,33 @@ We've studied how you can add two numbers in binary. We'll use this to verify th
    the full adder (note that you must initialize the carry to `0` for the first
 calculation to work). 
 
-# Models
+## Solution {.solution #additionSolution}
+
+1. Here are the two numbers in binary:
+
+    - $5$ in binary is $0101$ since $(0 x 2³) + (1 x 2²) + (0 x 2¹) + (1 x 2⁰) = 0 + 4 + 0 + 1 = 5$
+  
+    - $7$ in binary is $0111$ since $(0 x 2³) + (1 x 2²) + (1 x 2¹) + (1 x 2⁰) = 0 + 4 + 2 + 1 = 7$
+
+2. Here are the calculations, where `dᵢ` is the $i$-th digit of $5$ in binary, and `eᵢ` is the $i$-th digit of $7$ in binary, and $cᵢ$ is the $i$-th carry bit:
+
+    - $0$-th bit:
+      - sum bit: `(d₀ !!XOR!! e₀) !!XOR!! 0 = (0 !!XOR!! 0) !!XOR!! 0 = 0 !!XOR!! 0 = 0`
+      - carry bit =`(d₀ !!AND!! e₀ ) !!OR!! (0 !!AND!! (d₀ !!XOR!! e₀)) = (1 !!AND!! 1) !!OR!! (0 !!AND!! (1 !!XOR!! 1) = 1 !!OR!! (0 !!AND!! 0) = 1 !!OR!! 0 = 1` 
+    - $1$-th bit:
+      - sum bit: `(d₁ !!XOR!! e₁) !!XOR!! c₀ = (0 !!XOR!! 1) !!XOR!! 1 = 1 !!XOR!! 1 = 0`
+
+      - carry bit = `(d₁ !!AND!! e₁ ) !!OR!! (c₁ !!AND!! (d₁ !!XOR!! e₁)) = (0 !!AND!! 1) !!OR!! (1 !!AND!! (0 !!XOR!! 1) = 0 !!OR!! (1 !!AND!! 1) = 0 !!OR!! 1 = 1`
+    - $2$-th bit:
+      - sum bit: `(d₂ !!XOR!! e₂) !!XOR!! c₁ = (1 !!XOR!! 1) !!XOR!! 1 = 0 !!XOR!! 1 = 1`
+      - carry bit = `(d₂ !!AND!! e₂ ) !!OR!! (c₁ !!AND!! (d₂ !!XOR!! e₂)) = (1 !!AND!! 1) !!OR!! (1 !!AND!! (1 !!XOR!! 1)) = 1 !!OR!! (1 !!AND!! 0) = 1 !!OR!! 0 = 1`
+    - $3$-th bit:
+      - sum bit: `(d₃ !!XOR!! e₃) !!XOR!! c₂ = (0 !!XOR!! 0) !!XOR!! 1 = 0 !!XOR!! 1 = 1`
+      - carry bit = `(d₃ !!AND!! e₃) !!OR!! (c₂ !!AND!! (d₃ !!XOR!! e₃)) =  (0 !!AND!! 0) !!OR!! (1 !!AND!! (0 !!XOR!! 0) = 0 !!OR!! (1 !!AND!! 0) = 0 !!OR!! 0 = 0`
+
+      So the result is $1100$, which is $12$ since $(1 x 2³) + (1 x 2²) + (0 x 2¹) + (0 x 2⁰) = 8 + 4 + 0 + 0 = 12$.
+
+# Models {.solved}
 
 Suppose that we have a language $L$ with three propositional variables $RED$, $BLUE$, and $GREEN$, which we use to reason about the color of a pixel in the [RGB color model](https://en.wikipedia.org/wiki/RGB_color_model).
 
@@ -163,9 +193,33 @@ Suppose that we have a language $L$ with three propositional variables $RED$, $B
 
 2. If we change our language $RED₁$, $BLUE₁$, and $GREEN₁$ to talk about the
    color of a first pixel, and $RED₂$, $BLUE₂$, and $GREEN₂$ to talk about the
-color of a second pixel, what happens to the number of valuations?
+color of a second pixel, what happens to the number of valuations? Don't determine them all, just think about what happens.
 
 3. How many valuations are there in the language that has a propositional variable for each RGB-value of each pixel on a [4K-resolution screen](https://en.wikipedia.org/wiki/4K_resolution). (You can't actually calculate that value, but you can write an expression that represents it.)
+
+## Solution {#modelsSolution .solution}
+
+1. There are $2⁴ = 8$ total valuations for that language. We can give them in the following table:
+
+    &nbsp;
+    
+     |    | $RED$   | $GREEN$   | $BLUE$   |
+     | ----- | ------- | --------- | -------- |
+     |  $v₁: $ &emsp;     | 1       | 1         | 1        |
+     |  $v₂: $     | 1       | 1         | 0        |
+     |  $v₃: $     | 1       | 0         | 1        |
+     |  $v₄: $     | 1       | 0         | 0        |
+     |  $v₅: $     | 0       | 1         | 1        |
+     |  $v₆: $     | 0       | 1         | 0        |
+     |  $v₇: $     | 0       | 0         | 1        |
+     |  $v₈: $     | 0       | 0         | 0        |
+
+2. We now have $2⁶ = 64$ valuations. One way of seeing this is that there are $8$ ways of distributing the truth-values over $3$ propositional variables. That means that if we double the number of variables to $6$, we can combine each of the original assignments with one of the new ones, which means we have $8 x 8 = 64$ assignments.
+
+3. This would give us $2$ to the power of $3 x 8,294,400$ many valuations. This
+   number is huge enough so that we can't write it down. Ever.
+
+   Each such valuation would correspond to an image on a 4K-screen. So that's the total number of possible images on a 4K-screen 😃.
 
 # Deductive inference
 
@@ -174,6 +228,37 @@ color of a second pixel, what happens to the number of valuations?
 1. Translate the inference into a suitable formal language.
 
 2. Determine whether the formal inference is valid using Boolean logic.
+
+## Solution {#deductive-inferenceSolution .solution}
+
+1. Here's a formal representation of the inference in the propositional language with propositional variables $SCHOOL$ and $HOME$ to say that little Jimmy is at school and home, respectively:
+
+    {{< img src="img/jimmy_inference_2.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="450px">}}
+
+2. To see check whether the inference is valid, we need to go through all possible valuations of the language and see if whenever the premises are true, so is the conclusion. There are four possible valuations, given by the following table:
+
+   {{< img src="img/jimmy_valuations.png" class="rounded mx-auto d-block inert-img img-fluid my-2" width="900px">}}
+
+    The value of the formulas involved are calculated as follows:
+
+   {{< img src="img/jimmy_clauses.png" class="rounded mx-auto d-block inert-img img-fluid my-2" width="800px">}}
+
+    So, for each possible $v$, we can calculate the values of the premises using Boolean algebra:
+
+   {{< img src="img/jimmy_distributions.png" class="rounded mx-auto d-block inert-img img-fluid my-2" width="900px">}}
+
+    Inspecting the possible values, we can find a valuation where both premises
+    are true and the conclusion is false, viz. $v₄$, where Jimmy is neither at
+    school nor at home. 
+
+    But that means that the set of valuations where both premises are true is _not_ a subset of the set of valuations where the conclusion is true:
+
+    {{< img src="img/jimmy_set.png" class="rounded mx-auto d-block inert-img img-fluid my-2" width="500px">}}
+
+    In other words, the inference is invalid:
+
+    {{< img src="img/jimmy_invalid.png" class="rounded mx-auto d-block inert-img img-fluid my-2" width="500px">}}
+
 
 # Logical laws
 
