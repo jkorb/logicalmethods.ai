@@ -64,7 +64,7 @@ Here are _some_ implementations. They re not the only ones, they illustrate diff
 
 {{< img src="img/xor_impl.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="900px">}}
 
-# Defining functions
+# Defining functions {.solved}
 
 We've mentioned the idea of truth-functional completeness: we can express _all_
 truth-functions purely in terms of !!NOT!!, !!AND!!, and !!OR!!. 
@@ -93,7 +93,48 @@ X !!OR!! Y = !!NOT!! ((!!NOT!! X) !!AND!! (!!NOT!! Y))
 
 3. Represent !!NAND!! in terms of !!NOT!! and !!AND!!.
 
-4. Here's an interesting one: represent !!NOT!! in terms of !!XOR!!.
+4. Here's an interesting one: represent !!NOT!! in terms of !!NAND!!.
+
+## Solution {.solution #defining-functionsSolution}
+
+1. Here are the calculations for all values:
+
+    - `X = 1, Y = 1`: &emsp; `!!NOT!! ((!!NOT!! 1) !!AND!! (!!NOT!! 1)) = !!NOT!! (0 !!AND!! 0) = !!NOT!! 0 = 1`
+
+    - `X = 0, Y = 1`: &emsp; `!!NOT!! ((!!NOT!! 0) !!AND!! (!!NOT!! 1)) = !!NOT!! (1 !!AND!! 0) = !!NOT!! 0 = 1`
+
+    - `X = 1, Y = 0`: &emsp; `!!NOT!! ((!!NOT!! 1) !!AND!! (!!NOT!! 0)) = !!NOT!! (0 !!AND!! 1) = !!NOT!! 0 = 1`
+
+    - `X = 0, Y = 0`: &emsp; `!!NOT!! ((!!NOT!! 0) !!AND!! (!!NOT!! 0)) = !!NOT!! (1 !!AND!! 1) = !!NOT!! 1 = 0`
+
+    This is exactly the distribution of !!OR!!.
+
+2. Here's a representation: `(X !!OR!! Y) !!AND!! !!NOT!! (X !!AND!! Y)`
+
+    - `X = 1, Y = 1`: &emsp; `(1 !!OR!! 1) !!AND!! !!NOT!! (1 !!AND!! 1) = 1 !!AND!! (!!NOT!! 1) = 1 !!AND!! 0 = 1`
+
+    - `X = 0, Y = 1`: &emsp; `(0 !!OR!! 1) !!AND!! !!NOT!! (0 !!AND!! 1) = 1 !!AND!! (!!NOT!! 0) = 1 !!AND!! 1 = 1`
+
+    - `X = 1, Y = 0`: &emsp; `(1 !!OR!! 0) !!AND!! !!NOT!! (1 !!AND!! 0) = 1 !!AND!! (!!NOT!! 0) = 1 !!AND!! 1 = 1`
+                                        
+    - `X = 0, Y = 0`: &emsp; `(0 !!OR!! 0) !!AND!! !!NOT!! (0 !!AND!! 0) = 0 !!AND!! (!!NOT!! 0) = 0 !!AND!! 1 = 0`
+
+
+3. Here's a representation: `!!NOT!! (X !!AND!! Y)!!`
+
+    - `X = 1, Y = 1`: &emsp; `!!NOT!! (1 !!AND!! 1)!! = !!NOT!! 1 = 0`
+                             
+    - `X = 0, Y = 1`: &emsp; `!!NOT!! (0 !!AND!! 1)!! = !!NOT!! 0 = 1`
+                            
+    - `X = 1, Y = 0`: &emsp; `!!NOT!! (1 !!AND!! 0)!! = !!NOT!! 0 = 1`
+                           
+    - `X = 0, Y = 0`: &emsp; `!!NOT!! (0 !!AND!! 0)!! = !!NOT!! 0 = 1`
+
+
+4. You can just use: $$X !!NAND!! X$$ because
+
+    - `X = 1`: &emsp; `1 !!NAND!! 1 = 0`
+    - `X = 0`: &emsp; `0 !!NAND!! 0 = 1`
 
 # Boolean laws 
 
