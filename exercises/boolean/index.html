@@ -941,8 +941,19 @@ X <span class="Boolean">OR</span> Y = <span class="Boolean">NOT</span> ((<span c
 </ol>
 
 </div>
-<div id="boolean-laws" ><h5 class="">
+<div id="boolean-laws" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Boolean laws
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="boolean-lawsSolution"
+        onclick="showPasswordModal('boolean-lawsSolution', 'exc-bool')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>Use the laws of Boolean algebra to derive the following equation:</p>
 <div class="customBlock text-center my-4"><code class="customCode">
@@ -950,8 +961,22 @@ X <span class="Boolean">AND</span> (X <span class="Boolean">OR</span> Y) = X <sp
 </code></div>
 
 </div>
-<div id="addition" ><h5 class="">
+<div id="boolean-lawsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>This is rather straight-forward: just note that both sides are equal to <code class="customCode">X</code> by the law of <span class="excalifont">&ldquo;Absorption&rdquo;</span>.</p>
+
+</div>
+<div id="addition" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Addition
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="additionSolution"
+        onclick="showPasswordModal('additionSolution', 'exc-bool')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>We&rsquo;ve studied how you can add two numbers in binary. We&rsquo;ll use this to verify the equation: <div class="text-center my-4 excalifont">5 + 7 = 12.</div></p>
 <ol>
@@ -967,8 +992,72 @@ calculation to work).</p>
 </ol>
 
 </div>
-<div id="models" ><h5 class="">
+<div id="additionSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><ol>
+<li>
+<p>Here are the two numbers in binary:</p>
+<ul>
+<li>
+<p><span class="excalifont">5</span> in binary is <span class="excalifont">0101</span> since <span class="excalifont">(0 x 2³) + (1 x 2²) + (0 x 2¹) + (1 x 2⁰) = 0 + 4 + 0 + 1 = 5</span></p>
+</li>
+<li>
+<p><span class="excalifont">7</span> in binary is <span class="excalifont">0111</span> since <span class="excalifont">(0 x 2³) + (1 x 2²) + (1 x 2¹) + (1 x 2⁰) = 0 + 4 + 2 + 1 = 7</span></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Here are the calculations, where <code class="customCode">dᵢ</code> is the <span class="excalifont">i</span>-th digit of <span class="excalifont">5</span> in binary, and <code class="customCode">eᵢ</code> is the <span class="excalifont">i</span>-th digit of <span class="excalifont">7</span> in binary, and <span class="excalifont">cᵢ</span> is the <span class="excalifont">i</span>-th carry bit:</p>
+<ul>
+<li>
+<p><span class="excalifont">0</span>-th bit:</p>
+<ul>
+<li>sum bit: <code class="customCode">(d₀ <span class="Boolean">XOR</span> e₀) <span class="Boolean">XOR</span> 0 = (0 <span class="Boolean">XOR</span> 0) <span class="Boolean">XOR</span> 0 = 0 <span class="Boolean">XOR</span> 0 = 0</code></li>
+<li>carry bit =<code class="customCode">(d₀ <span class="Boolean">AND</span> e₀ ) <span class="Boolean">OR</span> (0 <span class="Boolean">AND</span> (d₀ <span class="Boolean">XOR</span> e₀)) = (1 <span class="Boolean">AND</span> 1) <span class="Boolean">OR</span> (0 <span class="Boolean">AND</span> (1 <span class="Boolean">XOR</span> 1) = 1 <span class="Boolean">OR</span> (0 <span class="Boolean">AND</span> 0) = 1 <span class="Boolean">OR</span> 0 = 1</code></li>
+</ul>
+</li>
+<li>
+<p><span class="excalifont">1</span>-th bit:</p>
+<ul>
+<li>
+<p>sum bit: <code class="customCode">(d₁ <span class="Boolean">XOR</span> e₁) <span class="Boolean">XOR</span> c₀ = (0 <span class="Boolean">XOR</span> 1) <span class="Boolean">XOR</span> 1 = 1 <span class="Boolean">XOR</span> 1 = 0</code></p>
+</li>
+<li>
+<p>carry bit = <code class="customCode">(d₁ <span class="Boolean">AND</span> e₁ ) <span class="Boolean">OR</span> (c₁ <span class="Boolean">AND</span> (d₁ <span class="Boolean">XOR</span> e₁)) = (0 <span class="Boolean">AND</span> 1) <span class="Boolean">OR</span> (1 <span class="Boolean">AND</span> (0 <span class="Boolean">XOR</span> 1) = 0 <span class="Boolean">OR</span> (1 <span class="Boolean">AND</span> 1) = 0 <span class="Boolean">OR</span> 1 = 1</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p><span class="excalifont">2</span>-th bit:</p>
+<ul>
+<li>sum bit: <code class="customCode">(d₂ <span class="Boolean">XOR</span> e₂) <span class="Boolean">XOR</span> c₁ = (1 <span class="Boolean">XOR</span> 1) <span class="Boolean">XOR</span> 1 = 0 <span class="Boolean">XOR</span> 1 = 1</code></li>
+<li>carry bit = <code class="customCode">(d₂ <span class="Boolean">AND</span> e₂ ) <span class="Boolean">OR</span> (c₁ <span class="Boolean">AND</span> (d₂ <span class="Boolean">XOR</span> e₂)) = (1 <span class="Boolean">AND</span> 1) <span class="Boolean">OR</span> (1 <span class="Boolean">AND</span> (1 <span class="Boolean">XOR</span> 1)) = 1 <span class="Boolean">OR</span> (1 <span class="Boolean">AND</span> 0) = 1 <span class="Boolean">OR</span> 0 = 1</code></li>
+</ul>
+</li>
+<li>
+<p><span class="excalifont">3</span>-th bit:</p>
+<ul>
+<li>sum bit: <code class="customCode">(d₃ <span class="Boolean">XOR</span> e₃) <span class="Boolean">XOR</span> c₂ = (0 <span class="Boolean">XOR</span> 0) <span class="Boolean">XOR</span> 1 = 0 <span class="Boolean">XOR</span> 1 = 1</code></li>
+<li>carry bit = <code class="customCode">(d₃ <span class="Boolean">AND</span> e₃) <span class="Boolean">OR</span> (c₂ <span class="Boolean">AND</span> (d₃ <span class="Boolean">XOR</span> e₃)) =  (0 <span class="Boolean">AND</span> 0) <span class="Boolean">OR</span> (1 <span class="Boolean">AND</span> (0 <span class="Boolean">XOR</span> 0) = 0 <span class="Boolean">OR</span> (1 <span class="Boolean">AND</span> 0) = 0 <span class="Boolean">OR</span> 0 = 0</code></li>
+</ul>
+<p>So the result is <span class="excalifont">1100</span>, which is <span class="excalifont">12</span> since <span class="excalifont">(1 x 2³) + (1 x 2²) + (0 x 2¹) + (0 x 2⁰) = 8 + 4 + 0 + 0 = 12</span>.</p>
+</li>
+</ul>
+</li>
+</ol>
+
+</div>
+<div id="models" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Models
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="modelsSolution"
+        onclick="showPasswordModal('modelsSolution', 'exc-bool')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>Suppose that we have a language <span class="excalifont">L</span> with three propositional variables <span class="excalifont">RED</span>, <span class="excalifont">BLUE</span>, and <span class="excalifont">GREEN</span>, which we use to reason about the color of a pixel in the <i class="bi bi-box-arrow-up-right h-6"></i>
 <a href="https://en.wikipedia.org/wiki/RGB_color_model" class="link-dark" rel="external" target="_blank">RGB color model</a>
@@ -980,12 +1069,88 @@ calculation to work).</p>
 <li>
 <p>If we change our language <span class="excalifont">RED₁</span>, <span class="excalifont">BLUE₁</span>, and <span class="excalifont">GREEN₁</span> to talk about the
 color of a first pixel, and <span class="excalifont">RED₂</span>, <span class="excalifont">BLUE₂</span>, and <span class="excalifont">GREEN₂</span> to talk about the
-color of a second pixel, what happens to the number of valuations?</p>
+color of a second pixel, what happens to the number of valuations? Don&rsquo;t determine them all, just think about what happens.</p>
 </li>
 <li>
 <p>How many valuations are there in the language that has a propositional variable for each RGB-value of each pixel on a <i class="bi bi-box-arrow-up-right h-6"></i>
 <a href="https://en.wikipedia.org/wiki/4K_resolution" class="link-dark" rel="external" target="_blank">4K-resolution screen</a>
 . (You can&rsquo;t actually calculate that value, but you can write an expression that represents it.)</p>
+</li>
+</ol>
+
+</div>
+<div id="modelsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><ol>
+<li>
+<p>There are <span class="excalifont">2⁴ = 8</span> total valuations for that language. We can give them in the following table:</p>
+<p> </p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th><span class="excalifont">RED</span></th>
+          <th><span class="excalifont">GREEN</span></th>
+          <th><span class="excalifont">BLUE</span></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><span class="excalifont">v₁: </span>  </td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td><span class="excalifont">v₂: </span></td>
+          <td>1</td>
+          <td>1</td>
+          <td>0</td>
+      </tr>
+      <tr>
+          <td><span class="excalifont">v₃: </span></td>
+          <td>1</td>
+          <td>0</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td><span class="excalifont">v₄: </span></td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+      </tr>
+      <tr>
+          <td><span class="excalifont">v₅: </span></td>
+          <td>0</td>
+          <td>1</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td><span class="excalifont">v₆: </span></td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+      </tr>
+      <tr>
+          <td><span class="excalifont">v₇: </span></td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td><span class="excalifont">v₈: </span></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+      </tr>
+  </tbody>
+</table>
+</li>
+<li>
+<p>We now have <span class="excalifont">2⁶ = 64</span> valuations. One way of seeing this is that there are <span class="excalifont">8</span> ways of distributing the truth-values over <span class="excalifont">3</span> propositional variables. That means that if we double the number of variables to <span class="excalifont">6</span>, we can combine each of the original assignments with one of the new ones, which means we have <span class="excalifont">8 x 8 = 64</span> assignments.</p>
+</li>
+<li>
+<p>This would give us <span class="excalifont">2</span> to the power of <span class="excalifont">3 x 8,294,400</span> many valuations. This
+number is huge enough so that we can&rsquo;t write it down. Ever.</p>
+<p>Each such valuation would correspond to an image on a 4K-screen. So that&rsquo;s the total number of possible images on a 4K-screen 😃.</p>
 </li>
 </ol>
 
@@ -1004,6 +1169,53 @@ color of a second pixel, what happens to the number of valuations?</p>
 </li>
 <li>
 <p>Determine whether the formal inference is valid using Boolean logic.</p>
+</li>
+</ol>
+
+</div>
+<div id="deductive-inferenceSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><ol>
+<li>
+<p>Here&rsquo;s a formal representation of the inference in the propositional language with propositional variables <span class="excalifont">SCHOOL</span> and <span class="excalifont">HOME</span> to say that little Jimmy is at school and home, respectively:</p>
+
+    
+    <img src="https://logicalmethods.ai/exercises/boolean/img/jimmy_inference_2.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="450px"  alt="" >
+    
+
+</li>
+<li>
+<p>To see check whether the inference is valid, we need to go through all possible valuations of the language and see if whenever the premises are true, so is the conclusion. There are four possible valuations, given by the following table:</p>
+
+   
+   <img src="https://logicalmethods.ai/exercises/boolean/img/jimmy_valuations.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="900px"  alt="" >
+   
+
+<p>The value of the formulas involved are calculated as follows:</p>
+
+   
+   <img src="https://logicalmethods.ai/exercises/boolean/img/jimmy_clauses.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="800px"  alt="" >
+   
+
+<p>So, for each possible <span class="excalifont">v</span>, we can calculate the values of the premises using Boolean algebra:</p>
+
+   
+   <img src="https://logicalmethods.ai/exercises/boolean/img/jimmy_distributions.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="900px"  alt="" >
+   
+
+<p>Inspecting the possible values, we can find a valuation where both premises
+are true and the conclusion is false, viz. <span class="excalifont">v₄</span>, where Jimmy is neither at
+school nor at home.</p>
+<p>But that means that the set of valuations where both premises are true is <em>not</em> a subset of the set of valuations where the conclusion is true:</p>
+
+    
+    <img src="https://logicalmethods.ai/exercises/boolean/img/jimmy_set.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="500px"  alt="" >
+    
+
+<p>In other words, the inference is invalid:</p>
+
+    
+    <img src="https://logicalmethods.ai/exercises/boolean/img/jimmy_invalid.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="500px"  alt="" >
+    
+
 </li>
 </ol>
 
