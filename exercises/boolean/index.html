@@ -835,8 +835,19 @@ the idea. To show what I mean, here&rsquo;s one way to simplify the diagram for 
 
 
 </div>
-<div id="defining-functions" ><h5 class="">
+<div id="defining-functions" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Defining functions
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="defining-functionsSolution"
+        onclick="showPasswordModal('defining-functionsSolution', 'exc-bool')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>We&rsquo;ve mentioned the idea of truth-functional completeness: we can express <em>all</em>
 truth-functions purely in terms of <span class="Boolean">NOT</span>, <span class="Boolean">AND</span>, and <span class="Boolean">OR</span>.</p>
@@ -862,7 +873,70 @@ X <span class="Boolean">OR</span> Y = <span class="Boolean">NOT</span> ((<span c
 <p>Represent <span class="Boolean">NAND</span> in terms of <span class="Boolean">NOT</span> and <span class="Boolean">AND</span>.</p>
 </li>
 <li>
-<p>Here&rsquo;s an interesting one: represent <span class="Boolean">NOT</span> in terms of <span class="Boolean">XOR</span>.</p>
+<p>Here&rsquo;s an interesting one: represent <span class="Boolean">NOT</span> in terms of <span class="Boolean">NAND</span>.</p>
+</li>
+</ol>
+
+</div>
+<div id="defining-functionsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><ol>
+<li>
+<p>Here are the calculations for all values:</p>
+<ul>
+<li>
+<p><code class="customCode">X = 1, Y = 1</code>:   <code class="customCode"><span class="Boolean">NOT</span> ((<span class="Boolean">NOT</span> 1) <span class="Boolean">AND</span> (<span class="Boolean">NOT</span> 1)) = <span class="Boolean">NOT</span> (0 <span class="Boolean">AND</span> 0) = <span class="Boolean">NOT</span> 0 = 1</code></p>
+</li>
+<li>
+<p><code class="customCode">X = 0, Y = 1</code>:   <code class="customCode"><span class="Boolean">NOT</span> ((<span class="Boolean">NOT</span> 0) <span class="Boolean">AND</span> (<span class="Boolean">NOT</span> 1)) = <span class="Boolean">NOT</span> (1 <span class="Boolean">AND</span> 0) = <span class="Boolean">NOT</span> 0 = 1</code></p>
+</li>
+<li>
+<p><code class="customCode">X = 1, Y = 0</code>:   <code class="customCode"><span class="Boolean">NOT</span> ((<span class="Boolean">NOT</span> 1) <span class="Boolean">AND</span> (<span class="Boolean">NOT</span> 0)) = <span class="Boolean">NOT</span> (0 <span class="Boolean">AND</span> 1) = <span class="Boolean">NOT</span> 0 = 1</code></p>
+</li>
+<li>
+<p><code class="customCode">X = 0, Y = 0</code>:   <code class="customCode"><span class="Boolean">NOT</span> ((<span class="Boolean">NOT</span> 0) <span class="Boolean">AND</span> (<span class="Boolean">NOT</span> 0)) = <span class="Boolean">NOT</span> (1 <span class="Boolean">AND</span> 1) = <span class="Boolean">NOT</span> 1 = 0</code></p>
+</li>
+</ul>
+<p>This is exactly the distribution of <span class="Boolean">OR</span>.</p>
+</li>
+<li>
+<p>Here&rsquo;s a representation: <code class="customCode">(X <span class="Boolean">OR</span> Y) <span class="Boolean">AND</span> <span class="Boolean">NOT</span> (X <span class="Boolean">AND</span> Y)</code></p>
+<ul>
+<li>
+<p><code class="customCode">X = 1, Y = 1</code>:   <code class="customCode">(1 <span class="Boolean">OR</span> 1) <span class="Boolean">AND</span> <span class="Boolean">NOT</span> (1 <span class="Boolean">AND</span> 1) = 1 <span class="Boolean">AND</span> (<span class="Boolean">NOT</span> 1) = 1 <span class="Boolean">AND</span> 0 = 1</code></p>
+</li>
+<li>
+<p><code class="customCode">X = 0, Y = 1</code>:   <code class="customCode">(0 <span class="Boolean">OR</span> 1) <span class="Boolean">AND</span> <span class="Boolean">NOT</span> (0 <span class="Boolean">AND</span> 1) = 1 <span class="Boolean">AND</span> (<span class="Boolean">NOT</span> 0) = 1 <span class="Boolean">AND</span> 1 = 1</code></p>
+</li>
+<li>
+<p><code class="customCode">X = 1, Y = 0</code>:   <code class="customCode">(1 <span class="Boolean">OR</span> 0) <span class="Boolean">AND</span> <span class="Boolean">NOT</span> (1 <span class="Boolean">AND</span> 0) = 1 <span class="Boolean">AND</span> (<span class="Boolean">NOT</span> 0) = 1 <span class="Boolean">AND</span> 1 = 1</code></p>
+</li>
+<li>
+<p><code class="customCode">X = 0, Y = 0</code>:   <code class="customCode">(0 <span class="Boolean">OR</span> 0) <span class="Boolean">AND</span> <span class="Boolean">NOT</span> (0 <span class="Boolean">AND</span> 0) = 0 <span class="Boolean">AND</span> (<span class="Boolean">NOT</span> 0) = 0 <span class="Boolean">AND</span> 1 = 0</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Here&rsquo;s a representation: <code class="customCode"><span class="Boolean">NOT</span> (X <span class="Boolean">AND</span> Y)!!</code></p>
+<ul>
+<li>
+<p><code class="customCode">X = 1, Y = 1</code>:   <code class="customCode"><span class="Boolean">NOT</span> (1 <span class="Boolean">AND</span> 1)<span class="Boolean"> = </span>NOT!! 1 = 0</code></p>
+</li>
+<li>
+<p><code class="customCode">X = 0, Y = 1</code>:   <code class="customCode"><span class="Boolean">NOT</span> (0 <span class="Boolean">AND</span> 1)<span class="Boolean"> = </span>NOT!! 0 = 1</code></p>
+</li>
+<li>
+<p><code class="customCode">X = 1, Y = 0</code>:   <code class="customCode"><span class="Boolean">NOT</span> (1 <span class="Boolean">AND</span> 0)<span class="Boolean"> = </span>NOT!! 0 = 1</code></p>
+</li>
+<li>
+<p><code class="customCode">X = 0, Y = 0</code>:   <code class="customCode"><span class="Boolean">NOT</span> (0 <span class="Boolean">AND</span> 0)<span class="Boolean"> = </span>NOT!! 0 = 1</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p>You can just use: <div class="text-center my-4 excalifont">X <span class="Boolean">NAND</span> X</div> because</p>
+<ul>
+<li><code class="customCode">X = 1</code>:   <code class="customCode">1 <span class="Boolean">NAND</span> 1 = 0</code></li>
+<li><code class="customCode">X = 0</code>:   <code class="customCode">0 <span class="Boolean">NAND</span> 0 = 1</code></li>
+</ul>
 </li>
 </ol>
 
