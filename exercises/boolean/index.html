@@ -734,8 +734,19 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
 <div class="container exercises m-4">
   <div class="container-fluid">
 </div>
-<div id="relay-logic" ><h5 class="">
+<div id="relay-logic" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Relay logic
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="relay-logicSolution"
+        onclick="showPasswordModal('relay-logicSolution', 'exc-bool')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>In the chapter you&rsquo;ve learned about <strong>relay logic</strong>, that is the implementation
 of the Boolean functions using the <span class="excalifont">default &ldquo;off&rdquo;</span> and <span class="excalifont">default &ldquo;on&rdquo;</span> relay:</p>
@@ -771,7 +782,7 @@ the idea. To show what I mean, here&rsquo;s one way to simplify the diagram for 
 
 <p>Make sure that to verify that your circuit is according to spec! Note that you may need both kinds of relays for the implementations.</p>
 <ol>
-<li>Implement <span class="Boolean">OR</span>.</li>
+<li>Implement <span class="Boolean">OR</span></li>
 </ol>
 
 
@@ -779,6 +790,14 @@ the idea. To show what I mean, here&rsquo;s one way to simplify the diagram for 
 
 
 <ol start="2">
+<li>Implement <span class="Boolean">NAND</span></li>
+</ol>
+
+
+<img src="https://logicalmethods.ai/exercises/boolean/img/nand_table.png" class="rounded mx-auto d-block inert-img img-fluid "  width="200px"  alt="" >
+
+
+<ol start="3">
 <li>Implement <span class="Boolean">XOR</span></li>
 </ol>
 
@@ -786,12 +805,32 @@ the idea. To show what I mean, here&rsquo;s one way to simplify the diagram for 
 <img src="https://logicalmethods.ai/exercises/boolean/img/xor_table.png" class="rounded mx-auto d-block inert-img img-fluid "  width="200px"  alt="" >
 
 
-<ol start="3">
-<li>Implement <span class="Boolean">NAND</span></li>
+
+</div>
+<div id="relay-logicSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>Here are <em>some</em> implementations. They re not the only ones, they illustrate different ideas. What matters is that your circuit works:</p>
+<ol>
+<li>An <span class="Boolean">OR</span> implementation, which uses the idea that <code class="customCode">X <span class="Boolean">OR</span> Y</code> is <code class="customCode"><span class="Boolean">NOT</span> ((<span class="Boolean">NOT</span> X) <span class="Boolean">AND</span> (<span class="Boolean">NOT</span> Y))</code>:</li>
 </ol>
 
 
-<img src="https://logicalmethods.ai/exercises/boolean/img/nand_table.png" class="rounded mx-auto d-block inert-img img-fluid "  width="200px"  alt="" >
+<img src="https://logicalmethods.ai/exercises/boolean/img/or_impl.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="500px"  alt="" >
+
+
+<ol start="2">
+<li>A <span class="Boolean">NAND</span> implementation, which is based on the observation that <span class="excalifont">default
+&ldquo;off&rdquo;</span> is essentially <span class="Boolean">AND</span> and <span class="excalifont">default &ldquo;on&rdquo;</span> essentially <span class="Boolean">NOT</span>:</li>
+</ol>
+
+
+<img src="https://logicalmethods.ai/exercises/boolean/img/nand_impl.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="500px"  alt="" >
+
+
+<ol start="3">
+<li>An <span class="Boolean">XOR</span> implementation, based on the idea that <code class="customCode">X <span class="Boolean">XOR</span> Y</code> is <code class="customCode">(X <span class="Boolean">OR</span> Y) <span class="Boolean">AND</span> (X <span class="Boolean">NAND</span> Y)</code>:</li>
+</ol>
+
+
+<img src="https://logicalmethods.ai/exercises/boolean/img/xor_impl.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="900px"  alt="" >
 
 
 

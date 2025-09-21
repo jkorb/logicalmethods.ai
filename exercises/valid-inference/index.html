@@ -1123,8 +1123,19 @@ definition of the subset relation:</p>
 </ol>
 
 </div>
-<div id="monotonicity-of-deductive-inference" ><h5 class="">
+<div id="monotonicity-of-deductive-inference" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Monotonicity of deductive inference
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="monotonicity-of-deductive-inferenceSolution"
+        onclick="showPasswordModal('monotonicity-of-deductive-inferenceSolution', 'exc-val')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>An important fact about deductive inference is that it&rsquo;s <em>monotone</em>, which means
 that adding further premises to a deductively valid inference can never turn
@@ -1259,8 +1270,129 @@ inference is still deductively valid.</p>
 </ol>
 
 </div>
-<div id="failure-of-inductive-monotonicity" ><h5 class="">
+<div id="monotonicity-of-deductive-inferenceSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solutions</h6><ol>
+<li>
+<p>Formally, we can state the claim as follows:</p>
+
+   
+   <img src="https://logicalmethods.ai/exercises/valid-inference/img/monotonicity_claim.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="400px"  alt="" >
+   
+
+</li>
+<li>
+<p>Applying the definition of deductive consequence in terms of subset and intersection, gives us:</p>
+
+   
+   <img src="https://logicalmethods.ai/exercises/valid-inference/img/monotonicity_set_theory.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="600px"  alt="" >
+   
+
+</li>
+<li>
+<p>To show the theorem, we can proceed as follows:</p>
+<ul>
+<li>
+<p>We assume that 
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/s_subseteq_t.png" class="inert-img" height="24px"  style="ZgotmplZ" alt="" >
+
+, since we want to show
+that if this is true, then 
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/ss_subseteq_t.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+
+ is true.</p>
+</li>
+<li>
+<p>To show that 
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/ss_subseteq_t.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+
+, we think about what a member of 
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/intersection_s_sprime.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+
+ can look like. As we&rsquo;ll see, just by looking at the definition of 
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/intersection_s_sprime.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+
+, we can see that all elements of this set need to be in <span class="excalifont">T</span>.</p>
+</li>
+<li>
+<p>By definition, 
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/def_cap.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+
+. That means that any
+member of 
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/intersection_s_sprime.png" class="inert-img" height="20px"  style="ZgotmplZ" alt="" >
+
+ is both a member of <span class="excalifont">S</span> and of <span class="excalifont">S&rsquo;</span>.</p>
+</li>
+<li>
+<p>But we&rsquo;ve assumed that 
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/s_subseteq_t.png" class="inert-img" height="24px"  style="ZgotmplZ" alt="" >
+
+, which
+means that every member of <span class="excalifont">S</span> is a member of <span class="excalifont">T</span>. And any member of 
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/intersection_s_sprime.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+
+ is a member of <span class="excalifont">S</span>. <em>So</em>, every member of 
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/intersection_s_sprime.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
+
+ is a member of <span class="excalifont">T</span>.</p>
+</li>
+<li>
+<p>But that just means that 
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/ss_subseteq_t.png" class="inert-img" height="25px"  style="ZgotmplZ" alt="" >
+
+. So, if
+we assume that 
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/s_subseteq_t.png" class="inert-img" height="25px"  style="ZgotmplZ" alt="" >
+
+, 
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/s_subseteq_t.png" class="inert-img" height="25px"  style="ZgotmplZ" alt="" >
+
+, get 
+
+<img src="https://logicalmethods.ai/exercises/valid-inference/img/ss_subseteq_t.png" class="inert-img" height="25px"  style="ZgotmplZ" alt="" >
+
+, which is the content of our theorem.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>The monotonicity of deductive inference is a <abbr title="consequence of, typically easy or straight-forward to derive"><a  class="link-underline-opacity-0 link-body-emphasis"> corollary</a></abbr> of our
+theorem. Just interpret <span class="excalifont">S,S&rsquo;,</span> and <span class="excalifont">T</span> as follows:</p>
+
+   
+   <img src="https://logicalmethods.ai/exercises/valid-inference/img/application.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="600px"  alt="" >
+   
+
+<p>From this observation, our main claim directly follows.</p>
+</li>
+</ol>
+
+</div>
+<div id="failure-of-inductive-monotonicity" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Failure of inductive monotonicity
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="failure-of-inductive-monotonicitySolution"
+        onclick="showPasswordModal('failure-of-inductive-monotonicitySolution', 'exc-val')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>In contrast to deductive inference, <em>in</em>ductive inference is not monotonic. That
 is, we can have an inference with premises 
@@ -1342,6 +1474,43 @@ formulas
 . Can you generalize this example
 to other inductively valid inferences? Take at least one example and add a
 premise following the pattern, such that the inference becomes invalid.</p>
+</li>
+</ol>
+
+</div>
+<div id="failure-of-inductive-monotonicitySolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><ol>
+<li>
+<p>Here&rsquo;s the calculation:</p>
+
+    
+    <img src="https://logicalmethods.ai/exercises/valid-inference/img/confirmation_calculation_1.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="600px"  alt="" >
+    
+
+</li>
+<li>
+<p>In this case, something interesting happens:</p>
+
+    
+    <img src="https://logicalmethods.ai/exercises/valid-inference/img/failure_prob.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="900px"  alt="" >
+    
+
+<p>Note that the intersection of <span class="excalifont">[2]</span> and <span class="excalifont">[EVEN] ∩ [&gt;3]</span> is <em>empty</em>: the result being two is incompatible with being an even result bigger than <span class="excalifont">3</span>. This is why the result of the calculation is <span class="excalifont">0</span>.</p>
+</li>
+<li>
+<p>The definition of inductive validity requires that for each assignment of
+probabilities, the probability of the conclusion to go <em>up</em> conditional on
+the premises. But here&rsquo;s a probability assignment, where the probability of the
+conclusion goes <em>down</em>: <span class="excalifont">Pr([2] | [EVEN] ∩ [&gt;3]) = 0</span>, which is less than
+<span class="excalifont">Pr([2]) = 1/6</span>. So the inference is inductively invalid.</p>
+</li>
+<li>
+<p>What&rsquo;s going on here is that we&rsquo;ve added additional information that
+contradicts our conclusion. That this can happen is characteristic of
+inductive inference: we can have evidence, which makes our conclusion more
+likely but is not conclusive, in the sense it still allows for the conclusion
+to be false.</p>
+<p>This generalizes to all inductively valid inferences, which are not also
+deductively valid. We can always take information that contradicts our conclusion—if you&rsquo;re hard pressed to find something contradictory, just take the negation of the conclusion—and add it to the premises, and we&rsquo;ll have lowered the conditional probability of the conclusion given these premises to <span class="excalifont">0</span>. Whatever the probability of the conclusion was before, if it was at all possible (meaning <span class="excalifont">≥ 0</span>), it&rsquo;s now smaller.</p>
 </li>
 </ol>
 

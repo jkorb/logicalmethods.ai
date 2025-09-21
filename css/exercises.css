@@ -1,7 +1,10 @@
 .exercises {
   counter-reset : h5;
-  max-width: 1000px
+  width:90vw;
+  max-width:1140px;
+  /* font-size: 18pt; */
 }
+
 h5 {
 font-size: 20pt;
 margin-top: 1.5rem;
