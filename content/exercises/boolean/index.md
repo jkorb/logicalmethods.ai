@@ -221,7 +221,7 @@ color of a second pixel, what happens to the number of valuations? Don't determi
 
    Each such valuation would correspond to an image on a 4K-screen. So that's the total number of possible images on a 4K-screen 😃.
 
-# Deductive inference
+# Deductive inference {.solved}
 
 {{< img src="img/jimmy_inference.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}}
 
