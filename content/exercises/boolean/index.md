@@ -8,7 +8,7 @@ params:
   math: true
 ---
 
-# Relay logic
+# Relay logic {.solved}
 
 In the chapter you've learned about **relay logic**, that is the implementation
 of the Boolean functions using the $default "off"$ and $default "on"$ relay:
@@ -35,19 +35,34 @@ the idea. To show what I mean, here's one way to simplify the diagram for the
 
 Make sure that to verify that your circuit is according to spec! Note that you may need both kinds of relays for the implementations.
 
-1. Implement !!OR!!. 
+1. Implement !!OR!!
 
 {{< img src="img/or_table.png" class="rounded mx-auto d-block inert-img img-fluid " width="200px">}}
 
-2. Implement !!XOR!!
-
-{{< img src="img/xor_table.png" class="rounded mx-auto d-block inert-img img-fluid " width="200px">}}
-
-3. Implement !!NAND!!
+2. Implement !!NAND!!
 
 {{< img src="img/nand_table.png" class="rounded mx-auto d-block inert-img img-fluid " width="200px">}}
 
+3. Implement !!XOR!!
 
+{{< img src="img/xor_table.png" class="rounded mx-auto d-block inert-img img-fluid " width="200px">}}
+
+## Solution {.solution #relay-logicSolution }
+
+Here are _some_ implementations. They re not the only ones, they illustrate different ideas. What matters is that your circuit works:
+
+1. An !!OR!! implementation, which uses the idea that `X !!OR!! Y` is `!!NOT!! ((!!NOT!! X) !!AND!! (!!NOT!! Y))`:
+
+{{< img src="img/or_impl.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="500px">}}
+
+2. A !!NAND!! implementation, which is based on the observation that $default
+   "off"$ is essentially !!AND!! and $default "on"$ essentially !!NOT!!:
+
+{{< img src="img/nand_impl.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="500px">}}
+
+3. An !!XOR!! implementation, based on the idea that `X !!XOR!! Y` is `(X !!OR!! Y) !!AND!! (X !!NAND!! Y)`:
+
+{{< img src="img/xor_impl.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="900px">}}
 
 # Defining functions
 
