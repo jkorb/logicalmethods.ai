@@ -217,7 +217,7 @@ Find all the subsets of the following set:
     {{< img src="img/set_solution_10.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="350px">}}
 
 
-# Monotonicity of deductive inference
+# Monotonicity of deductive inference {.solved }
 
 An important fact about deductive inference is that it's *monotone*, which means
 that adding further premises to a deductively valid inference can never turn
@@ -268,7 +268,57 @@ is a single set.
    arbitrary new premise. In natural language, go through the reasoning, which shows that the new
 inference is still deductively valid.
 
-# Failure of inductive monotonicity
+## Solutions {.solution #monotonicity-of-deductive-inferenceSolution}
+
+1. Formally, we can state the claim as follows:
+
+   {{< img src="img/monotonicity_claim.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="400px">}}
+
+2. Applying the definition of deductive consequence in terms of subset and intersection, gives us:
+
+   {{< img src="img/monotonicity_set_theory.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}}
+
+3. To show the theorem, we can proceed as follows:
+
+    - We assume that {{< img src="img/s_subseteq_t.png" class="inert-img"
+    height="24px" style="vertical-align: middle;" >}}, since we want to show
+    that if this is true, then {{< img src="img/ss_subseteq_t.png"
+    class="inert-img" height="30px" style="vertical-align: middle;" >}} is true.
+
+    - To show that {{< img src="img/ss_subseteq_t.png"
+    class="inert-img" height="30px" style="vertical-align: middle;" >}}, we think about what a member of {{< img src="img/intersection_s_sprime.png"
+    class="inert-img" height="30px" style="vertical-align: middle;" >}} can look like. As we'll see, just by looking at the definition of {{< img src="img/intersection_s_sprime.png"
+    class="inert-img" height="30px" style="vertical-align: middle;" >}}, we can see that all elements of this set need to be in $T$.
+
+    - By definition, {{< img src="img/def_cap.png" class="inert-img"
+    height="30px" style="vertical-align: middle;" >}}. That means that any
+    member of {{< img src="img/intersection_s_sprime.png" class="inert-img"
+    height="20px" style="vertical-align: middle;" >}} is both a member of $S$ and of $S'$.
+
+    - But we've assumed that {{< img src="img/s_subseteq_t.png"
+    class="inert-img" height="24px" style="vertical-align: middle;" >}}, which
+    means that every member of $S$ is a member of $T$. And any member of {{<
+    img src="img/intersection_s_sprime.png" class="inert-img" height="30px"
+    style="vertical-align: middle;" >}} is a member of $S$. _So_, every member of {{< img src="img/intersection_s_sprime.png"
+    class="inert-img" height="30px" style="vertical-align: middle;" >}} is a member of $T$.
+
+    - But that just means that {{< img src="img/ss_subseteq_t.png"
+    class="inert-img" height="25px" style="vertical-align: middle;" >}}. So, if
+    we assume that {{< img src="img/s_subseteq_t.png" class="inert-img"
+    height="25px" style="vertical-align: middle;" >}}, {{< img
+    src="img/s_subseteq_t.png" class="inert-img" height="25px"
+    style="vertical-align: middle;" >}}, get {{< img
+    src="img/ss_subseteq_t.png" class="inert-img" height="25px"
+    style="vertical-align: middle;" >}}, which is the content of our theorem.
+
+4. The monotonicity of deductive inference is a {{< abbr title="consequence of, typically easy or straight-forward to derive" >}}corollary{{</abbr>}} of our
+theorem. Just interpret $S,S',$ and $T$ as follows:
+
+   {{< img src="img/application.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}}
+
+   From this observation, our main claim directly follows.
+
+# Failure of inductive monotonicity {.solved}
 
 In contrast to deductive inference, *in*ductive inference is not monotonic. That
 is, we can have an inference with premises {{< img src="img/pi_premises.png"
@@ -310,3 +360,31 @@ to the monotonicity of inductive inference:
 formulas {{<excalifont>}}A,B,C{{</excalifont>}}. Can you generalize this example
 to other inductively valid inferences? Take at least one example and add a
 premise following the pattern, such that the inference becomes invalid.
+
+## Solution {#failure-of-inductive-monotonicitySolution .solution}
+
+1. Here's the calculation:
+  
+    {{< img src="img/confirmation_calculation_1.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}}
+
+2. In this case, something interesting happens:
+
+    {{< img src="img/failure_prob.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="900px">}}
+
+    Note that the intersection of $[2]$ and $[EVEN] ∩ [>3]$ is _empty_: the result being two is incompatible with being an even result bigger than $3$. This is why the result of the calculation is $0$.
+
+
+3. The definition of inductive validity requires that for each assignment of
+   probabilities, the probability of the conclusion to go _up_ conditional on
+the premises. But here's a probability assignment, where the probability of the
+conclusion goes _down_: $Pr([2] | [EVEN] ∩ [>3]) = 0$, which is less than
+$Pr([2]) = 1/6$. So the inference is inductively invalid.
+
+4. What's going on here is that we've added additional information that
+   contradicts our conclusion. That this can happen is characteristic of
+inductive inference: we can have evidence, which makes our conclusion more
+likely but is not conclusive, in the sense it still allows for the conclusion
+to be false. 
+
+    This generalizes to all inductively valid inferences, which are not also
+    deductively valid. We can always take information that contradicts our conclusion—if you're hard pressed to find something contradictory, just take the negation of the conclusion—and add it to the premises, and we'll have lowered the conditional probability of the conclusion given these premises to $0$. Whatever the probability of the conclusion was before, if it was at all possible (meaning $≥ 0$), it's now smaller.
