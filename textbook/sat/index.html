@@ -126,11 +126,11 @@
             <li>
               <a class="dropdown-item 
                 fw-bold active
-                link-opacity-50
+                
                 "
-                href="javascript:;"
+                href="/textbook/sat/"
               >5. 
-                <i class="bi bi-lock-fill"></i>
+                <i class="bi bi-unlock-fill"></i>
                  Boolean satisfiability
               </a>
             </li>
@@ -663,39 +663,74 @@
 </h1>
 <hr>
 
-<p>In the last chapter, you learned about 
+<p>We&rsquo;ve seen that Boolean logic is at the heart of computation and deductive
+reasoning. But when it comes to automated reasoning, our approach has so-far
+been limited to pre-programmed circuits, like the <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Logic_gate"
+  target="_blank">logic
+gates</a> and
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Adder_%28electronics%29"
+  target="_blank">adders</a> we&rsquo;ve discussed.
+While these circuits are great at carrying out specific deductive reasoning
+tasks, like adding two numbers or calculating truth-values, they are not very
+flexible. Each circuit carries out one specific task.</p>
+<p>
+
+<img src="https://logicalmethods.ai/textbook/sat/img/ai_boolean.png" class="rounded  float-start inert-img img-fluid m-2"  width="200px"  alt="" >
 
 
-<a href="https://logicalmethods.ai/textbook/boolean/"
-   
-   
-   
-   
-   
-   >
-Boolean algebra</a>
+But in AI, we don&rsquo;t only want to implement specific inference patters using
+specific cirucits, like adding two bits using an adder circuit or inferring <span class="excalifont">(A
 
- and its role as fundamental laws of
-reasoning and computation. In this chapter, we&rsquo;ll further explore the
-applications of Boolean algebra in AI.</p>
-<p>In particular, you&rsquo;ll learn about how to efficiently test for valid inference in
-Boolean algebra. First, we&rsquo;ll discuss the &ldquo;naive&rdquo; 
-<a class="link-dark" href="#truth-tables">truth-table
-method</a>, which suffers from the problem of <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Combinatorial_explosion"
-  target="_blank">combinatorial
-explosion</a>. Then you&rsquo;ll
-learn about a more efficient method for validity checking, which is known as the
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B)</span> from <span class="excalifont">A</span> and <span class="excalifont">B</span> using <span class="Boolean">AND</span>. We want to implement deductive
+reasoning <em>in general</em>.</p>
+<p>We did already discuss an implementation of deductive inference in Boolean
+logic, but the approach still required human intervention. To determine whether
+a certain inference is valid, like whether <span class="excalifont">(SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN), 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+SUN
 
-<a class="link-dark" href="#dpll">Davis–Putnam–Logemann–Loveland (DPLL)</a> algorithm. This methods requires
-you to know about 
-<a class="link-dark" href="#normal-forms">normal forms</a>, so we&rsquo;ll cover those, too.</p>
-<p>The <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/DPLL_algorithm"
-  target="_blank">DPLL algorithm</a> is the basis
-for many modern AI applications, especially in planning and diagnosis. You&rsquo;ll
-explore some of these applications in the exercises.</p>
-<h2 id="validity-and-satisfiability">Validity and Satisfiability<button class="btn btn-back-to-top">
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN</span>, we manually needed to check all possible valuations to see
+whether there is one that makes the premises true and the conclusion false.</p>
+<p><strong>Satisfiability solving</strong> is a powerful approach to automated reasoning using
+Boolean logic, which is popular in research and industry alike. The observation
+that motivates the approach is that we can reduce the question whether a given
+inference is valid to the question whether certain truth-value assignment is
+possible. <code class="customCode">SAT</code>-solving algorithms are instructions for systematically—and
+ideally efficiently—testing for the existence of specific truth-value
+assignments.</p>
+<p>The applications of this powerful logical method for AI reasoning range from
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Formal_verification"
+  target="_blank">formal hardware
+verification</a> to <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Automated_reasoning"
+  target="_blank">automated
+reasoning</a> in propositional
+languages and beyond.</p>
+<p>At the end of this chapter you&rsquo;ll be able to:</p>
+<ul>
+<li>
+<p>define the <code class="customCode">SAT</code> problem for Boolean formulas and explain its relevance to
+logic and artificial reasoning</p>
+</li>
+<li>
+<p>apply the truth-table method for satisfiability checking</p>
+</li>
+<li>
+<p>convert formulas into disjunctive and conjunctive normal form</p>
+</li>
+<li>
+<p>apply the resolution algorithm and explain its advantages over the truth-table
+method</p>
+</li>
+</ul>
+<h2 id="sat"><code class="customCode">SAT</code><button class="btn btn-back-to-top">
     
     <i class="bi bi-chevron-double-up"></i>
     
@@ -703,138 +738,580 @@ explore some of these applications in the exercises.</p>
 </h2>
 <hr>
 
-<p>The problem that we&rsquo;re tackling is how to <strong>computationally and efficiently</strong>
-test for valid inference. Why is this a problem?</p>
-<p>Remember from 
-
-
-<a href="https://logicalmethods.ai/textbook/valid-inference//#semantic-methods-for-deduction"
-   
-   
-   
-   
-   
-   > Chapter 2. Valid inference </a>
-
- that valid inference is truth-preservation from premises to
-conclusion:</p>
-<div class="text-center my-4 excalifont">P_1,P_2,\dots\vDash C\Leftrightarrow [P_1]\cap [P_2]\cap \dots\subseteq [C]</div>
-<p>In 
-
-
-<a href="https://logicalmethods.ai/textbook/boolean//#validity"
-   
-   
-   
-   
-   
-   >
-Chapter 4.5 </a>
-
-, we implemented this definition in the context of
-Boolean algebras. In this setting, the above condition is equivalent to saying
-that:</p>
-<div class="text-center my-4 excalifont">P_1,P_2,\dots\vDash C\Leftrightarrow \text{ for all }\nu,\text{ if
-}\nu(P_1)=1, \nu(P_2)=1\dots\text{, then }\nu(C)=1.</div>
-<p>In words, this means that the inference is valid iff for all Boolean valuations,
-where the premises are all true (have value 1), the conclusion is also true
-(has value 1). Using this definition, we could formally calculate the validity
-of an inference.</p>
-<p>In 
-
-
-<a href="https://logicalmethods.ai/textbook/boolean//#validity"
-   
-   
-   
-   
-   
-   > Chapter 4.5 </a>
-
-, we went through an example calculation to show that:</p>
-<div class="text-center my-4 excalifont">\mathsf{RAIN}\lor \mathsf{BIKE},\neg\mathsf{RAIN}\vDash\mathsf{BIKE}</div>
-<p>The problem is that this was a &ldquo;human-style&rdquo; calculation. How can we teach a
-(non-intelligent) computer system the necessary skills to test for valid
-inference itself?</p>
-<p>It turns out that for this purpose, it&rsquo;s useful to reformulate the question in
-yet another, equivalent way using the concept of <strong>Boolean satisfiability</strong>.
-Consider a set of (propositional) formulas <span class="excalifont">\Gamma\subseteq \mathcal{L}</span>. We say
-that <span class="excalifont">\Gamma</span> is <em>satisfiable</em> just in case there exists a Boolean valuation
-<span class="excalifont">\nu</span> that makes all members of <span class="excalifont">\Gamma</span> true, i.e. <span class="excalifont">\nu(A)=1</span> for all <span class="excalifont">A\in
-\Gamma</span>.</p>
-<p>Take the set <span class="excalifont">\Gamma=\Set{\mathsf{RAIN}\lor \mathsf{SUN},\neg \mathsf{BIKE}}</span>, for example. If we set <span class="excalifont">\nu</span> such that:</p>
-<ul>
-<li><span class="excalifont">\nu(\mathsf{RAIN})=1</span></li>
-<li><span class="excalifont">\nu(\mathsf{SUN})=0</span></li>
-<li><span class="excalifont">\nu(\mathsf{BIKE})=0</span></li>
-</ul>
-<p>We have:</p>
-<ul>
-<li><span class="excalifont">\nu(\mathsf{RAIN}\lor \mathsf{SUN})=\nu(\mathsf{RAIN})+\nu(\mathsf{SUN})=1+0=1</span></li>
-<li><span class="excalifont">\nu(\neg \mathsf{BIKE})=-\nu(\mathsf{BIKE})=-0=1</span></li>
-</ul>
-<p>This valuation shows that the set <span class="excalifont">\Set{\mathsf{RAIN}\lor \mathsf{SUN},\neg BIKE}</span> is
-satisfiable.</p>
-<p>A set that&rsquo;s <em>not</em> satisfiable is called <strong>unsatisfiable</strong>. What does an
-unsatisfiable set look like? Consider <span class="excalifont">\Gamma=\Set{\mathsf{RAIN},\neg \mathsf{RAIN},
-\mathsf{SUN}\land\neg \mathsf{BIKE}}</span>. Any valuation that makes all members of <span class="excalifont">\Gamma</span> true
-will be such that:</p>
-<ul>
-<li><span class="excalifont">\nu(\mathsf{RAIN})=1</span></li>
-<li><span class="excalifont">\nu(\neg \mathsf{RAIN})=1</span></li>
-</ul>
-<p>This is because both <span class="excalifont">\mathsf{RAIN},\neg \mathsf{RAIN}\in \Gamma</span>.</p>
-<p>But if <span class="excalifont">\nu(\neg \mathsf{RAIN})=-\nu(\mathsf{RAIN})=1</span>, this means that <span class="excalifont">\nu(\mathsf{RAIN})=0</span>. So our
-conditions give us that <span class="excalifont">\nu(\mathsf{RAIN})=1</span> and <em>at the same time</em> <span class="excalifont">\nu(\mathsf{RAIN})=0</span>. But
-that&rsquo;s impossible, meaning that the set is unsatisfiable.</p>
-<p>The reason why we&rsquo;re talking about satisfiability is that there&rsquo;s a test for
-valid inference in terms of satisfiability, which looks as follows:</p>
-<div class="text-center my-4 excalifont">P_1,P_2,\dots\vDash C\Leftrightarrow \Set{P_1,P_2,\dots, \neg C}\text{ is
-\emph{un}satisfiable}</div>
-<p>The idea is simply that <span class="excalifont">\Set{P_1,P_2,\dots, \neg C}</span> is
-satisfiable just in case its possible to make all the premises <span class="excalifont">P_1,P_2,\dots</span>
-true and <em>at the same time</em> the conclusion <span class="excalifont">C</span> false (since <span class="excalifont">\nu(\neg
-C)=-\nu(C)=1</span> just in case <span class="excalifont">\nu(C)=0</span>). To say that this is <em>not</em> possible is to
-say that we can&rsquo;t make the premises true and the conclusion false, which is just
-another way of saying that whenever the premises are true, the conclusion is
-false.</p>
-<p>Take our example from 
-
-
-<a href="https://logicalmethods.ai/textbook/boolean//#validity"
-   
-   
-   
-   
-   
-   > Chapter
-4.5 </a>
-
- again:</p>
-<div class="text-center my-4 excalifont">\mathsf{RAIN}\lor \mathsf{BIKE},\neg\mathsf{RAIN}\vDash\mathsf{BIKE}</div>
-<p>We can show this using the previous test by checking whether the following set
-is satisfiable:</p>
-<div class="text-center my-4 excalifont">\Set{\mathsf{RAIN}\lor \mathsf{BIKE},\neg\mathsf{RAIN},\neg \mathsf{BIKE}}</div>
-<p><em>We</em> can quickly see that this set is unsatisfiable:</p>
+<p>There are both algebraic and logical ways of thinking about the <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Boolean_satisfiability_problem"
+  target="_blank">Boolean
+satisfiability
+problem</a> or <code class="customCode">SAT</code>.</p>
+<p>We&rsquo;ll start thinking algebraically, where <code class="customCode">SAT</code> asks whether for a given Boolean
+expression, like:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+X <span class="Boolean">AND</span> (<span class="Boolean">NOT</span> (0 <span class="Boolean">AND</span> Y)),
+</code></div>
+<p>whether there exists an assignment of values to <code class="customCode">X</code> and <code class="customCode">Y</code>, such that the
+expression evaluates to <code class="customCode">1</code>. In this case, the answer is <span class="excalifont">yes</span>, since for <code class="customCode">X =
+1</code> and <code class="customCode">Y = 1</code>, we get the calculation:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+1 <span class="Boolean">AND</span> (<span class="Boolean">NOT</span> (0 <span class="Boolean">AND</span> 1)) = 1 <span class="Boolean">AND</span> (<span class="Boolean">NOT</span> 0) = 1 <span class="Boolean">AND</span> 1 = 1
+</code></div>
+<p>We say that the expression is <em>satisfiable</em>.</p>
+<p>If we take the following Boolean expression, instead:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+X <span class="Boolean">AND</span> <span class="Boolean">NOT</span> (X <span class="Boolean">OR</span> 1),
+</code></div>
+<p>we find that no matter the value for <code class="customCode">X</code>, the formula evaluates to <code class="customCode">0</code>:</p>
 <ul>
 <li>
-<p>To make all formulas true, we need <span class="excalifont">\nu(\neg
-\mathsf{RAIN})=-\nu(\mathsf{RAIN})=1</span> and <span class="excalifont">\nu(\neg
-\mathsf{BIKE})=-\nu(\mathsf{BIKE})=1</span>.</p>
+<p>If <code class="customCode">X = 1</code>, then <code class="customCode">1 <span class="Boolean">AND</span> <span class="Boolean">NOT</span> (1 <span class="Boolean">OR</span> 1) = 1 <span class="Boolean">AND</span> <span class="Boolean">NOT</span> 1 = 1
+<span class="Boolean">AND</span> 0 = 0</code></p>
 </li>
 <li>
-<p>That just means that <span class="excalifont">\nu(\mathsf{RAIN})=0</span> and <span class="excalifont">\nu(\mathsf{BIKE})=0</span>.</p>
-</li>
-<li>
-<p>But we also need <span class="excalifont">\nu(\mathsf{RAIN}\lor \mathsf{BIKE})=</span>. Which means:</p>
-<div class="text-center my-4 excalifont">\nu(\mathsf{RAIN}\lor \mathsf{BIKE})=\nu(\mathsf{RAIN})+\nu(\mathsf{BIKE})=1</div>
-<p>Since we know that <span class="excalifont">\nu(\mathsf{RAIN})=0</span> and <span class="excalifont">\nu(\mathsf{BIKE})=0</span>, this is
-impossible (<span class="excalifont">0+0=1</span>) and so the set is unsatisfiable.</p>
+<p>If <code class="customCode">X = 0</code>, then <code class="customCode">0 <span class="Boolean">AND</span> <span class="Boolean">NOT</span> (0 <span class="Boolean">OR</span> 1) = 0 <span class="Boolean">AND</span> <span class="Boolean">NOT</span> 1 = 0
+<span class="Boolean">AND</span> 0 = 0</code></p>
 </li>
 </ul>
-<p>But that was again &ldquo;human-style&rdquo; thinking. How can we <em>computationally</em>
-implement this in a step-by-step procedure that a computer could follow? That&rsquo;s
-what the rest of the chapter is about.</p>
+<p>This Boolean expression is <em>unsatisfiable</em>.</p>
+<p>The idea of satisfiability can be extended to <em>sets</em> of Boolean expressions in a
+natural way: we say that a set of Boolean expressions is satisfiable just in
+case there is an assignment to its variables that makes <em>all</em> the members of the
+set true.</p>
+<p>Here&rsquo;s an example of a satisfiable set of Boolean expressions:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+{ (<span class="Boolean">NOT</span> X) <span class="Boolean">AND</span> (Y <span class="Boolean">OR</span> Z), X <span class="Boolean">OR</span> (<span class="Boolean">NOT</span> Y), Z <span class="Boolean">OR</span> (<span class="Boolean">NOT</span> Z) }
+</code></div>
+<p>This is because for the values <code class="customCode">X = 0, Y = 0, Z = 1</code>, we get:</p>
+<ul>
+<li>
+<p><code class="customCode">(<span class="Boolean">NOT</span> X) <span class="Boolean">AND</span> (Y <span class="Boolean">OR</span> Z) = (<span class="Boolean">NOT</span> 0) <span class="Boolean">AND</span> (0 <span class="Boolean">OR</span> 1) = 1
+<span class="Boolean">AND</span> 1 = 1</code></p>
+</li>
+<li>
+<p><code class="customCode">X <span class="Boolean">OR</span> (<span class="Boolean">NOT</span> Y) = 0 <span class="Boolean">OR</span> (<span class="Boolean">NOT</span> 0) = 0 <span class="Boolean">OR</span> 1 = 1</code></p>
+</li>
+<li>
+<p><code class="customCode">Z <span class="Boolean">OR</span> (<span class="Boolean">NOT</span> Z) = 1 <span class="Boolean">OR</span> (<span class="Boolean">NOT</span> 1) = 1 <span class="Boolean">OR</span> 0 = 1</code></p>
+</li>
+</ul>
+<p>Here&rsquo;s an example of an unsatisfiable set:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+{ X <span class="Boolean">OR</span> 0, (<span class="Boolean">NOT</span> X) <span class="Boolean">AND</span> 1}
+</code></div>
+<p>No matter what the value of <code class="customCode">X</code>, at least one formula evaluates to <code class="customCode">0</code>:</p>
+<ul>
+<li>
+<p>If <code class="customCode">X = 1</code>, then <code class="customCode">X <span class="Boolean">OR</span> 0 = 1 <span class="Boolean">OR</span> 0 = 1</code>, but <code class="customCode">(<span class="Boolean">NOT</span> X) <span class="Boolean">AND</span> 1 =
+(<span class="Boolean">NOT</span> 1) <span class="Boolean">AND</span> 1 = 0 <span class="Boolean">AND</span> 1 = 0</code>.</p>
+</li>
+<li>
+<p>If <code class="customCode">X = 0</code>, then <code class="customCode">(<span class="Boolean">NOT</span> X) <span class="Boolean">AND</span> 1 = (<span class="Boolean">NOT</span> 0) <span class="Boolean">AND</span> 1 = 1 <span class="Boolean">AND</span> 1
+= 1</code>, but <code class="customCode">X <span class="Boolean">OR</span> 0 = 0 <span class="Boolean">OR</span> 0 = 0</code>.</p>
+</li>
+</ul>
+<p>It turns out that many important problems can be reduced to questions of
+satisfiability. One important example is <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Formal_verification"
+  target="_blank">(formal) hardware verification</a>.
+
+
+<img src="https://logicalmethods.ai/textbook/sat/img/ai_verification.png" class="rounded  float-start inert-img img-fluid m-2"  width="400px"  alt="" >
+
+
+To discuss the idea in a simplified example, let&rsquo;s go back to relay
+logic.</p>
+<p>We implemented different truth-functions using relays. One example (from the
+exercises) is the <span class="Boolean">NAND</span> function, which has the following function table:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/sat/img/nand_table.png" class="rounded mx-auto d-block inert-img img-fluid"  width="150px"  alt="" >
+
+
+<p>We can implement this with the following relay circuit (spoiler alert, if you
+didn&rsquo;t do the exercises yet 😉):</p>
+
+
+<img src="https://logicalmethods.ai/textbook/sat/img/nand_impl.png" class="rounded mx-auto d-block inert-img img-fluid"  width="450px"  alt="" >
+
+
+<p>To check that this implementation is according to the specification given by the
+function table, we need to go through all the possible inputs and check that the
+circuit gives the same outputs for the same inputs as the table says.</p>
+<p>This is a bit tedious, but doable for smaller circuits with few inputs and
+outputs and rather simple specifications, like our <span class="Boolean">NAND</span> table. But in
+practice, circuits get much, <em>much</em> larger. A modern CPU, for example, contains
+in the order of hundreds of millions to billions of logic circuits, which
+implement a specification like the <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/X86"
+  target="_blank">X86 instruction
+set</a> or <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/ARM_architecture_family"
+  target="_blank">ARM
+instructions</a>. Here, we
+simply cannot go through all the possible input configurations and check whether
+the outputs are correct. We need a more efficient method.</p>
+<p><code class="customCode">SAT</code>-solving provides one popular approach for this, which is, in effect,
+industry standard. We cannot discuss the full details, but we can illustrate the
+idea using our <span class="Boolean">NAND</span> circuit.</p>
+<p>For the approach, we need to translate both our specification (the <span class="Boolean">NAND</span>
+table) and our circuit into Boolean expressions. For the circuit, this is rather
+straight-forward, once we realize that a <span class="excalifont">default &ldquo;off&rdquo;</span> relay is essentially
+a Boolean <span class="Boolean">AND</span> and a <span class="excalifont">default &ldquo;on&rdquo;</span> relay is a Boolean <span class="Boolean">NOT</span>. Inspecting
+our circuit, we see that we just chain the <span class="excalifont">default &ldquo;off&rdquo;</span> and <span class="excalifont">default &ldquo;on&rdquo;</span>
+relays with the inputs. This means that the Boolean expression that corresponds
+to our circuit is:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+<span class="Boolean">NOT</span> (X <span class="Boolean">AND</span> Y)
+</code></div>
+<p>This is the origin of the term &ldquo;<span class="Boolean">NAND</span>&rdquo;, by the way: <span class="Boolean">NOT</span> applied to
+<span class="Boolean">AND</span> …  <span class="Boolean">NAND</span>.</p>
+<p>Formalizing the specification is a bit more involved, but it turns out that
+there&rsquo;s a powerful method for expressing truth-functional tables using the Boolean
+operators <span class="Boolean">NOT</span>, <span class="Boolean">AND</span>, and <span class="Boolean">OR</span>.</p>
+<p>If you have a binary truth-function, like <span class="Boolean">NAND</span>, the expression that we&rsquo;ll
+generate by our method involves two variables <code class="customCode">X</code> and <code class="customCode">Y</code>. The first, <code class="customCode">X</code>, represents
+the first input (the first column of the function table), and <code class="customCode">Y</code> represents the
+second input. We write a Boolean expression in <code class="customCode">X</code> and <code class="customCode">Y</code>, which represents the
+output. For this, we first identify all the input configurations, which give
+output <code class="customCode">1</code>, which in this case are:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/sat/img/nand_representation.png" class="rounded mx-auto d-block inert-img img-fluid"  width="450px"  alt="" >
+
+
+<p>Now, each of these configurations will turn into a <em>clause</em> in our Boolean
+representation, which joins these clauses using <span class="Boolean">OR</span>. To obtain these clauses,
+we represent the input configuration <code class="customCode">X = 1</code> by writing simply <code class="customCode">X</code>, and the
+input configuration <code class="customCode">X = 0</code> by writing <code class="customCode"><span class="Boolean">NOT</span> X</code>. Then we do likewise for <code class="customCode">Y</code>
+and combine the corresponding representations for <code class="customCode">X</code> and <code class="customCode">Y</code> using <span class="Boolean">AND</span>.
+This gives us:</p>
+<ul>
+<li>
+<p>for the <span class="dark-green">first  configuration</span>, the clause: <code class="customCode">(<span class="Boolean">NOT</span> X) <span class="Boolean">AND</span> (<span class="Boolean">NOT</span> Y)</code></p>
+</li>
+<li>
+<p>for the <span class="dark-blue">second configuration</span>, the clause: <code class="customCode">(<span class="Boolean">NOT</span> X) <span class="Boolean">AND</span> Y</code></p>
+</li>
+<li>
+<p>for the <span class="dark-red">third configuration</span>, the clause: <code class="customCode">X <span class="Boolean">AND</span> (<span class="Boolean">NOT</span> Y)</code></p>
+</li>
+</ul>
+<p>The final Boolean expression joins the clauses using <span class="Boolean">OR</span>, giving us:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+((<span class="Boolean">NOT</span> X) <span class="Boolean">AND</span> (<span class="Boolean">NOT</span> Y)) <span class="Boolean">OR</span> ((<span class="Boolean">NOT</span> X) <span class="Boolean">AND</span> Y) <span class="Boolean">OR</span> (X <span class="Boolean">AND</span> (<span class="Boolean">NOT</span> Y))
+</code></div>
+<p>This method is guaranteed to generate a Boolean expression that describes the
+truth-table it was generated from. In fact, we can use this method to prove that
+every truth-function can be represented using <span class="Boolean">NOT</span>, <span class="Boolean">AND</span>, and <span class="Boolean">OR</span>, but
+that&rsquo;s for another time. The resulting formula is also called the <em>full</em> or
+<em>maximal</em>  <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Disjunctive_normal_form"
+  target="_blank">Disjunctive Normal Form
+(DNF)</a> representation of
+the truth-table—these kind of normal forms we&rsquo;ll return to later.</p>
+<p>Now, we&rsquo;ve got two formulas:</p>
+<ul>
+<li>
+<p>a specification: <code class="customCode">((<span class="Boolean">NOT</span> X) <span class="Boolean">AND</span> (<span class="Boolean">NOT</span> Y)) <span class="Boolean">OR</span> ((<span class="Boolean">NOT</span> X) <span class="Boolean">AND</span> Y) <span class="Boolean">OR</span> (X <span class="Boolean">AND</span> (<span class="Boolean">NOT</span> Y))</code></p>
+</li>
+<li>
+<p>and a circuit representation: <code class="customCode"><span class="Boolean">NOT</span> (X <span class="Boolean">AND</span> Y)</code></p>
+</li>
+</ul>
+<p>The question is whether the circuit implements the specification, that is
+whether the two expressions always have evaluate to the same truth-values. That
+is:</p>
+<ul>
+<li>
+<p>If the specification evaluates to <code class="customCode">1</code>, does the representation evaluate to
+<code class="customCode">1</code>?</p>
+</li>
+<li>
+<p>If the representation evaluates to <code class="customCode">1</code>, does the specification evaluate to <code class="customCode">1</code>
+as well.</p>
+</li>
+</ul>
+<p>We can, of course, check this by going through the possible values for <code class="customCode">X</code> and
+<code class="customCode">Y</code> again, but the point here is that we can reduce this problem to a <code class="customCode">SAT</code>
+problem.</p>
+<p>For this, the trick is to check whether it&rsquo;s possible that the two expression
+evaluate to <em>different</em> values. That is, is it possible that:</p>
+<ul>
+<li>
+<p>The specification evaluates to <code class="customCode">1</code> and the representation to <code class="customCode">0</code>.</p>
+</li>
+<li>
+<p>The representation evaluates to <code class="customCode">1</code> and the specification to <code class="customCode">0</code>.</p>
+</li>
+</ul>
+<p>The last ingredient is to note that an expression evaluates to <code class="customCode">0</code> just in case
+<span class="Boolean">NOT</span> applied to the expression evaluates to <code class="customCode">1</code>—this is just the function
+table for <span class="Boolean">NOT</span>. But then, we can reduce our question to the <code class="customCode">SAT</code> problem for
+the following two sets:</p>
+<div class="text-center my-4 excalifont">{ specification, <span class="Boolean">NOT</span> representation }&emsp; &emsp;{ representation, <span class="Boolean">NOT</span> specification }</div>
+<p>In our example, the question is whether any of the following two sets is satisfiable:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+{ ((<span class="Boolean">NOT</span> X) <span class="Boolean">AND</span> (<span class="Boolean">NOT</span> Y)) <span class="Boolean">OR</span> ((<span class="Boolean">NOT</span> X) <span class="Boolean">AND</span> Y) <span class="Boolean">OR</span> (X <span class="Boolean">AND</span> (<span class="Boolean">NOT</span> Y)), <span class="Boolean">NOT</span>(<span class="Boolean">NOT</span> (X <span class="Boolean">AND</span> Y))}
+</code></div>
+<div class="customBlock text-center my-4"><code class="customCode">
+{ (<span class="Boolean">NOT</span> (X <span class="Boolean">AND</span> Y)), <span class="Boolean">NOT</span>[((<span class="Boolean">NOT</span> X) <span class="Boolean">AND</span> (<span class="Boolean">NOT</span> Y)) <span class="Boolean">OR</span> ((<span class="Boolean">NOT</span> X) <span class="Boolean">AND</span> Y) <span class="Boolean">OR</span> (X <span class="Boolean">AND</span> (<span class="Boolean">NOT</span> Y))]}
+</code></div>
+<p>If any of the two sets is satisfiable, our circuit implementation does not
+follow the specification. If neither of them is satisfiable, our circuit is
+correct.—We&rsquo;ve reduced the verification of the circuit to a <code class="customCode">SAT</code> problem.</p>
+<p>While it may look like we&rsquo;ve made things worse—the Boolean expressions we wrote
+down are not <em>per se</em> easier to understand than the initial problem—we&rsquo;ve
+actually massively improved our situation. We&rsquo;ve figured out a way of
+<em>mechanically</em> translate the question whether our circuit functions according to
+specification into a <code class="customCode">SAT</code>-problem. And as we&rsquo;ll see, the <code class="customCode">SAT</code> problem itself
+allows for algorithmic approaches. This is the foundation for automated circuit
+verification. Similar ideas are used for software verification</p>
+<p>
+
+<img src="https://logicalmethods.ai/textbook/sat/img/cpu_bug.png" class="rounded  float-start inert-img img-fluid m-2"  width="200px"  alt="" >
+
+
+In industry practice, the setup is, of course, <em>much</em> more complicated. There
+we&rsquo;re dealing with <em>huge</em> circuits and highly complex specifications, much more
+complicated than our simple function table and relay circuit. To deal with this,
+we use advanced technologies, like  <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Hardware_verification_language"
+  target="_blank">hardware specification
+languages</a> and
+dedicated <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/SAT_solver"
+  target="_blank"><code class="customCode">SAT</code> solvers</a>. But the
+ultimate ideas are still the same.</p>
+<p>The importance of these technologies is illustrated by the <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Pentium_FDIV_bug"
+  target="_blank">Pentium
+bug</a>, where an implementation
+mistake lead to calculation errors in in certain division operations. Not only
+was this catastrophic for Intel&rsquo;s bottom line, but imagine what could have
+happened if the chips had been used in critical infrastructure setups where
+high-level accuracy is crucial…</p>
+<p>From a logical perspective, instead, <code class="customCode">SAT</code> is the foundation of an important
+approach to automated deductive inference. Look again at our inference about the
+weather from last chapter, again:</p>
+<div class="text-center my-4 excalifont">(SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN), 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN 
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN.</div> 
+<p>According to the Boolean implementation of propositional logic, the validity of
+this inference boils down to the following fact about valuations:</p>
+<div class="text-center my-4 excalifont">[(SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN)] 
+<img src="/img/cap.png" alt="Intersection" class="inline-icon" style="height:1em;width:auto;"/>
+ [
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN]
+<img src="/img/subseteq.png" alt="Subseteq" class="inline-icon" style="height:1em;width:auto;"/>
+ [RAIN],</div>
+<p>where:</p>
+<ul>
+<li><span class="excalifont">[(SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN)] = { v : v(SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN) = 1 }</span>,</li>
+<li><span class="excalifont">[
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN] = { v : v(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+SUN) = 1 }</span>, and</li>
+<li><span class="excalifont">[RAIN] = { v : v(RAIN) = 1 }</span></li>
+</ul>
+<p>To verify that the inference is deductively valid, we checked that for each
+valuation <span class="excalifont">v 
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+ [(SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN)] 
+<img src="/img/cap.png" alt="Intersection" class="inline-icon" style="height:1em;width:auto;"/>
+ [
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN]</span>, we also have that <span class="excalifont">v 
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+ [RAIN]</span>. We did this by calculating the propositions <span class="excalifont">[(SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN)], [
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+SUN], </span> and <span class="excalifont">[RAIN]</span> and inspecting logical space:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/sat/img/ds_validity.png" class="rounded my-4 mx-auto d-block inert-img img-fluid"  width="350px"  alt="" >
+
+
+<p>We found that indeed, the only member of<br>
+<span class="excalifont">[(SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN)] 
+<img src="/img/cap.png" alt="Intersection" class="inline-icon" style="height:1em;width:auto;"/>
+ [
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN]</span>, viz. the assignment
+with <span class="excalifont">v(SUN) = 0</span> and <span class="excalifont">v(RAIN) = 0</span>, is also a member of <span class="excalifont">[RAIN].</span> This shows to
+us that every valuation where the premises are true is one where the conclusion
+is true, i.e. <div class="text-center my-4 excalifont">(SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN), 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+SUN 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN.</div></p>
+<p>But we could have asked the question slightly differently and would have gotten
+the same answer. We could have asked whether there exists a valuation
+<span class="excalifont">v 
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+ [(SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN)] 
+<img src="/img/cap.png" alt="Intersection" class="inline-icon" style="height:1em;width:auto;"/>
+ [
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN]</span> such that <span class="excalifont">v 
+<img src="/img/notin.png" alt="Not-element" class="inline-icon" style="height:1em;width:auto;"/>
+[RAIN]</span>. The answer to <em>this</em> question gives us the same information as
+the answer to the previous question:</p>
+<ul>
+<li>
+<p>If there <em>is</em> such a valuation <span class="excalifont">v</span>, it is a
+<abbr title="model where the premises are true and the conclusion isn&#39;t"><a  class="link-underline-opacity-0 link-body-emphasis"> countermodel</a></abbr>, which makes the premises true but not the conclusion.</p>
+</li>
+<li>
+<p>If there <em>isn&rsquo;t</em> such a valuation <span class="excalifont">v</span>, then every valuation that makes the
+premises true must make the conclusion true as well.</p>
+</li>
+</ul>
+<p>Just check logical space to help see this: is there any model which is in <span class="excalifont">[(SUN
+
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN)] 
+<img src="/img/cap.png" alt="Intersection" class="inline-icon" style="height:1em;width:auto;"/>
+ [
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN]</span> but not in <span class="excalifont">[RAIN]</span>? <em>Of course</em>
+not! Every element in the former is in the latter.</p>
+<p>In the case of an invalid inference, such as our previous example:</p>
+<div class="text-center my-4 excalifont">(SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN), SUN 
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN,</div> 
+<p>this works as well. Working out the relevant propositions gave us the following
+picture of logical space:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/sat/img/aff_countermodel.png" class="rounded my-4 mx-auto d-block inert-img img-fluid"  width="350px"  alt="" >
+
+
+<p>Here we have a valuation <span class="excalifont">v</span>—the one with <span class="excalifont">v(SUN) = 1</span> and <span class="excalifont">v(RAIN) = 0</span>—such that <span class="excalifont">v</span> makes the premises true—<span class="excalifont">v 
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+ ([SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN] 
+<img src="/img/cap.png" alt="Intersection" class="inline-icon" style="height:1em;width:auto;"/>
+ [SUN])</span>—but the conclusion is not—<span class="excalifont">v 
+<img src="/img/notin.png" alt="Not-element" class="inline-icon" style="height:1em;width:auto;"/>
+ [
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN]</span>. The inference is invalid:</p>
+<div class="text-center my-4 excalifont">(SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN), SUN 
+<img src="/img/nvDash.png" alt="nvDash" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN.</div> 
+<p>Now we just need to make one observation to connect the validity test to <code class="customCode">SAT</code>,
+which is that for every formula <span class="excalifont">A</span>, we have that <div class="text-center my-4 excalifont">v 
+<img src="/img/notin.png" alt="Not-element" class="inline-icon" style="height:1em;width:auto;"/>
+ [A] if and
+only if v 
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+[
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ A]</div>
+This mathematical fact derives from the general equation for the values of
+negations: <div class="text-center my-4 excalifont">v(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A) = <span class="Boolean">NOT</span> v(A)</div>
+Combining this with the fact that <div class="text-center my-4 excalifont"><span class="Boolean">NOT</span> 1 = 0     <span class="Boolean">NOT</span> 0 = 1</div>
+allows us to see that:</p>
+<div class="text-center my-4 excalifont">v 
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+[
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A] = { v : v(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ A) = <span class="Boolean">NOT</span> v(A) = 1 } = { v
+: v(A) = 0 }</div>
+<div class="text-center my-4 excalifont">if and only if</div>
+<div class="text-center my-4 excalifont">v
+<img src="/img/notin.png" alt="Not-element" class="inline-icon" style="height:1em;width:auto;"/>
+[A] = { v : v( A) = 1 }</div>
+<p>Because no <span class="excalifont">v</span> can be both such that <span class="excalifont">v(A) = 0</span> <em>and</em> <span class="excalifont">v(A) = 1</span> at the same
+time.</p>
+<p>So, what we&rsquo;ve seen now is that to determine whether <span class="excalifont">(SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN),
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN 
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN</span> is valid, we can ask whether there is a
+valuation <span class="excalifont">v</span>, such that <span class="excalifont">v 
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+ [(SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN)] 
+<img src="/img/cap.png" alt="Intersection" class="inline-icon" style="height:1em;width:auto;"/>
+ [
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN]</span> such that <span class="excalifont">v 
+<img src="/img/notin.png" alt="Not-element" class="inline-icon" style="height:1em;width:auto;"/>
+[RAIN]</span> (&quot;<span class="excalifont">v</span> makes the premises true and the conclusion false&quot;). And by the last observation about the propositions expressed by negations,
+<span class="excalifont">v 
+<img src="/img/notin.png" alt="Not-element" class="inline-icon" style="height:1em;width:auto;"/>
+[RAIN]</span> means the same as <span class="excalifont">v 
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+[
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN]</span>. So <div class="text-center my-4 excalifont">v 
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+ [(SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN)] 
+<img src="/img/cap.png" alt="Intersection" class="inline-icon" style="height:1em;width:auto;"/>
+ [
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN] and v 
+<img src="/img/notin.png" alt="Not-element" class="inline-icon" style="height:1em;width:auto;"/>
+[RAIN]</div> is the same as <div class="text-center my-4 excalifont">v 
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+ [(SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN)] 
+<img src="/img/cap.png" alt="Intersection" class="inline-icon" style="height:1em;width:auto;"/>
+ [
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN] and v 
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+[
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A]</div>
+applying the definition of 
+<img src="/img/cap.png" alt="Intersection" class="inline-icon" style="height:1em;width:auto;"/>
+, we can say this even
+simpler: <div class="text-center my-4 excalifont">v 
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+[(SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN)] 
+<img src="/img/cap.png" alt="Intersection" class="inline-icon" style="height:1em;width:auto;"/>
+ [
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN] 
+<img src="/img/cap.png" alt="Intersection" class="inline-icon" style="height:1em;width:auto;"/>
+[
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN]</div>. So what we&rsquo;re really asking is whether there&rsquo;s a <span class="excalifont">v</span>, such that:</p>
+<div class="text-center my-4 excalifont">v((SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN)) = 1, v(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN) = 1, and v(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN) = 1</div>
+<p>If such a <span class="excalifont">v</span> exists, then it is a countermodel to the inference—a model where
+the premises are true and the conclusion isn&rsquo;t. The inference is invalid. If no such <span class="excalifont">v</span> exists, the inference is valid, instead.</p>
+<p>Now you can hopefully see how the question is related to satisfiability. In
+logical contexts, we say that a set of propositional formulas is <em>satisfiable</em>
+just in case there exists a valuation <span class="excalifont">v</span>, which makes all the members of the set
+true. That is, the validity of</p>
+<div class="text-center my-4 excalifont">(SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN), 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN 
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN</div>
+boils down to the satisfiability of 
+<div class="text-center my-4 excalifont">{ (SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN), 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+SUN, 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN }.</div>
+<p>
+
+<img src="https://logicalmethods.ai/textbook/sat/img/ai_two_sides.png" class="rounded  float-end inert-img img-fluid m-2"  width="250px"  alt="" >
+
+
+And since this set is unsatisfiable in the logical sense, we can conclude that
+the inference is valid.</p>
+<p>The other inference,</p>
+<div class="text-center my-4 excalifont">(SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN), SUN 
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN,</div> 
+<p>is invalid, instead, since the set</p>
+<div class="text-center my-4 excalifont">{ (SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN), SUN, 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN }</div>
+<p><em>is</em> satisfiable.—In other words, deductive validity and <code class="customCode">SAT</code> a are two sides of the same coin.</p>
+<p>One interesting observation is that the algebraic and the logical interpretation
+of <code class="customCode">SAT</code> boil down to, essentially, the same thing. To see this, let&rsquo;s look at
+the satisfiability of:</p>
+<div class="text-center my-4 excalifont">{ (SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN), 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+SUN, 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN }.</div>
+<p>A satisfying valuation <span class="excalifont">v</span> would need to be such that:</p>
+<div class="text-center my-4 excalifont">v(SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN) = 1, v(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN) = 1, and v(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN) = 1</div>
+<p>But if we apply to this the implementation of the logical operators 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+and 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ in terms of <span class="Boolean">OR</span> and <span class="Boolean">NOT</span>, respectively, we get a Boolean
+expression, where the only remnants of logic is the use of <span class="excalifont">v</span> applied to the
+propositional variables <span class="excalifont">SUN</span> and <span class="excalifont">RAIN</span>:</p>
+<div class="text-center my-4 excalifont">(v(SUN) <span class="Boolean">OR</span> v(RAIN)) = 1, <span class="Boolean">NOT</span> v(SUN) = 1, and <span class="Boolean">NOT</span> v(RAIN) = 1</div>
+<p>In fact, if we say <code class="customCode">X = v(SUN)</code> and <code class="customCode">Y = v(RAIN)</code>, the condition becomes:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+(X <span class="Boolean">OR</span> Y) = 1, (<span class="Boolean">NOT</span> X) = 1, and (<span class="Boolean">NOT</span> Y) = 1
+</code></div>
+<p>That that just asks whether the set</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+{ (X <span class="Boolean">OR</span> Y), (<span class="Boolean">NOT</span> X), (<span class="Boolean">NOT</span> Y) }
+</code></div>
+<p>is satisfiable in the algebraic sense, which it isn&rsquo;t, of course. This is, by
+the way, why we call <span class="excalifont">SUN,RAIN</span> &ldquo;propositional variables&rdquo; in propositional
+logic.</p>
+<p>To sum up, what we&rsquo;ve achieved so far is to reduce two important
+problems—hardware verification and deductive inference—to <code class="customCode">SAT</code> problems. Now,
+in the next step, we&rsquo;ll look at how we can automate the search for satisfying
+assignments. We&rsquo;ll look at <strong><code class="customCode">SAT</code> solving</strong>.</p>
 <h2 id="truth-tables">Truth-tables<button class="btn btn-back-to-top">
     
     <i class="bi bi-chevron-double-up"></i>
@@ -843,181 +1320,271 @@ what the rest of the chapter is about.</p>
 </h2>
 <hr>
 
-<p>The first method, we&rsquo;ll discuss is the &ldquo;naive&rdquo; way of simply going through all
-relevant valuations by <i class="bi bi-box-arrow-up-right h-6"></i>
+<p>The naive approach to <code class="customCode">SAT</code>-solving is <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Brute-force_search"
   target="_blank">brute
-force</a>.</p>
-<p>Take our example from before:</p>
-<p><span class="excalifont">\Set{\mathsf{RAIN}\lor \mathsf{BIKE},\neg\mathsf{RAIN},\neg \mathsf{BIKE}}</span></p>
-<p>Since there are 2 propositional variables, there are <span class="excalifont">2^2=4</span> relevant
-valuations.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> They are:</p>
-<ul>
-<li><span class="excalifont">\nu_1(\mathsf{RAIN})=1</span> and <span class="excalifont">\nu_1(\mathsf{BIKE})=1</span></li>
-<li><span class="excalifont">\nu_2(\mathsf{RAIN})=1</span> and <span class="excalifont">\nu_2(\mathsf{BIKE})=0</span></li>
-<li><span class="excalifont">\nu_3(\mathsf{RAIN})=0</span> and <span class="excalifont">\nu_3(\mathsf{BIKE})=1</span></li>
-<li><span class="excalifont">\nu_4(\mathsf{RAIN})=0</span> and <span class="excalifont">\nu_4(\mathsf{BIKE})=0</span></li>
-</ul>
-<p>Now, using the recursion rules from 
+force</a>: to literally go
+through all possible valuations and check in each case for the satisfaction of
+the relevant expression(s).</p>
+<p>
+
+<img src="https://logicalmethods.ai/textbook/sat/img/exponential.png" class="rounded  float-start inert-img img-fluid m-2"  width="400px"  alt="" >
 
 
-<a href="https://logicalmethods.ai/textbook/boolean//#truth-functions"
-   
-   
-   
-   
-   
-   > Chapter 4.4 </a>
-
-, we can simply
-calculate the truth-values of all formulas in our set. We get:</p>
-<ul>
-<li><span class="excalifont">\nu_1(\neg\mathsf{RAIN})=0,\nu_1(\neg\mathsf{BIKE})=0,</span> and <span class="excalifont">\nu_1(\mathsf{RAIN}\lor\mathsf{BIKE})=1</span></li>
-<li><span class="excalifont">\nu_2(\neg\mathsf{RAIN})=0,\nu_2(\neg\mathsf{BIKE})=1,</span> and <span class="excalifont">\nu_2(\mathsf{RAIN}\lor\mathsf{BIKE})=1</span></li>
-<li><span class="excalifont">\nu_3(\neg\mathsf{RAIN})=1,\nu_3(\neg\mathsf{BIKE})=0,</span> and <span class="excalifont">\nu_3(\mathsf{RAIN}\lor\mathsf{BIKE})=1</span></li>
-<li><span class="excalifont">\nu_4(\neg\mathsf{RAIN})=1,\nu_4(\neg\mathsf{BIKE})=1,</span> and <span class="excalifont">\nu_4(\mathsf{RAIN}\lor\mathsf{BIKE})=0</span></li>
-</ul>
-<p>A simple inspection shows that in none of these cases, we have all formulas of
-our set true. Since we&rsquo;ve inspected <em>all</em> valuations, we can conclude that the
-set is unsatisfiable.</p>
-<p>A <strong>truth-table</strong> is a way to write down all the truth-values that a formula can
-take. Here&rsquo;s how this works:</p>
-<ul>
-<li>
-<p>We determine all the propositional variables.</p>
-</li>
-<li>
-<p>We determine all the possible valuations.</p>
-</li>
-<li>
-<p>We parse the formula.</p>
-</li>
-<li>
-<p>We recursively calculate the value of the full-formula, keeping track of all
-steps in a table.</p>
-</li>
-</ul>
-<p>Here&rsquo;s how this looks for the formula <span class="excalifont">(\mathsf{RAIN}\lor(\neg\mathsf{RAIN}\land
-\mathsf{BIKE}))</span>:</p>
-<ul>
-<li>
-<p>The propositional variables are <span class="excalifont">\mathsf{RAIN}</span> and <span class="excalifont">\mathsf{BIKE}</span>.</p>
-</li>
-<li>
-<p>The possible valuations are:</p>
-<ul>
-<li><span class="excalifont">\nu_1(\mathsf{RAIN})=1</span> and <span class="excalifont">\nu_1(\mathsf{BIKE})=1</span></li>
-<li><span class="excalifont">\nu_2(\mathsf{RAIN})=1</span> and <span class="excalifont">\nu_2(\mathsf{BIKE})=0</span></li>
-<li><span class="excalifont">\nu_3(\mathsf{RAIN})=0</span> and <span class="excalifont">\nu_3(\mathsf{BIKE})=1</span></li>
-<li><span class="excalifont">\nu_4(\mathsf{RAIN})=0</span> and <span class="excalifont">\nu_4(\mathsf{BIKE})=0</span></li>
-</ul>
-</li>
-<li>
-<p>The parsing tree for the formula is:</p>
-</li>
-</ul>
-
-
-<img src="https://logicalmethods.ai/textbook/sat/img/parsing-tree-1.png" class="img-thumbnail"    alt="" >
-
-
-<ul>
-<li>The calculation leads to the following truth-table:</li>
-</ul>
-
-
-<img src="https://logicalmethods.ai/textbook/sat/img/tt-1.png" class="img-thumbnail"    alt="" >
-
-
-<p>The <strong>truth-table method</strong> for validity checking is to use the truth-table for
-the formula: <div class="text-center my-4 excalifont">(((P_1\land P_2)\land \dots )\land \neg C)</div></p>
-<ul>
-<li>If there is a row  with value <span class="excalifont">1</span>, the inference is invalid.</li>
-<li>If all rows have value <span class="excalifont">0</span>, the inference is valid.</li>
-</ul>
-<p>For our example inference, we get:</p>
-<ul>
-<li>
-<p>The propositional variables are <span class="excalifont">\mathsf{RAIN}</span> and <span class="excalifont">\mathsf{BIKE}</span>.</p>
-</li>
-<li>
-<p>The possible valuations are:</p>
-<ul>
-<li><span class="excalifont">\nu_1(\mathsf{RAIN})=1</span> and <span class="excalifont">\nu_1(\mathsf{BIKE})=1</span></li>
-<li><span class="excalifont">\nu_2(\mathsf{RAIN})=1</span> and <span class="excalifont">\nu_2(\mathsf{BIKE})=0</span></li>
-<li><span class="excalifont">\nu_3(\mathsf{RAIN})=0</span> and <span class="excalifont">\nu_3(\mathsf{BIKE})=1</span></li>
-<li><span class="excalifont">\nu_4(\mathsf{RAIN})=0</span> and <span class="excalifont">\nu_4(\mathsf{BIKE})=0</span></li>
-</ul>
-</li>
-<li>
-<p>The parsing tree for the relevant formula is:</p>
-</li>
-</ul>
-
-
-<img src="https://logicalmethods.ai/textbook/sat/img/parsing-tree-2.png" class="img-thumbnail"    alt="" >
-
-
-<ul>
-<li>The calculation leads to the following truth-table:</li>
-</ul>
-
-
-<img src="https://logicalmethods.ai/textbook/sat/img/tt-2.png" class="img-thumbnail"    alt="" >
-
-
-<p>This shows that the formula in question is unsatisfiable and thus the
-<em>inference</em> is valid.</p>
-<p>The truth-table method is a working method for computationally determining the
-validity of inferences. So why doesn&rsquo;t the chapter end here?</p>
-<p>The <strong>problem</strong> is that truth-tables suffer from what&rsquo;s known as <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Combinatorial_explosion"
-  target="_blank">combinatorial
-explosion</a>. The problem
-is that the size of the necessary truth-table grows
+Since there can only be finitely many variables (propositional or Boolean) in a
+given expression, the list of possible valuations is finite: by the <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Rule_of_product"
+  target="_blank">rule of
+products</a>, if there are
+<span class="excalifont">n</span>-variables, which can take two values each (<span class="excalifont">0</span> or <span class="excalifont">1</span>), then there <span class="excalifont">2ⁿ</span>-many
+combinations of such values—each being a different valuation. This number grows
+quickly, in fact
 <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Exponential_growth"
-  target="_blank">exponentially</a> with the
-number of propositional variables in the formula, as in the following table:</p>
+  target="_blank">exponentially</a>, but it will
+<em>always</em> be finite. This means that we can go through it. And since a Boolean
+expression will only ever contain finitely many operations (from <span class="Boolean">NOT</span>,
+<span class="Boolean">AND</span>, and <span class="Boolean">OR</span>), for each valuation, we only have to carry out finitely
+many calculations for each formula who&rsquo;s truth-value we want to know. What this
+means is that if we have a finite set of Boolean expressions, we can check
+whether it&rsquo;s satisfiable in finitely many steps—possibly a large finite number,
+but finite nevertheless.</p>
+<p>A direct consequence of this is that the <code class="customCode">SAT</code> problem is <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Decision_problem"
+  target="_blank">decidable
+problem</a>: there exists an
+effective method, which after finitely many steps generates a correct
+<span class="excalifont">yes/no</span>-answer to the question whether a given set of Boolean expressions is
+satisfiable. Since deductive validity in propositional logic can be reduced to a
+<code class="customCode">SAT</code> problem, this means that propositional logic is a <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Decidability_%28logic%29"
+  target="_blank">decidable
+logic</a>—we can
+algorithmically automate checking for valid inference in propositional logic.</p>
+<p>A procedure for deciding a problem—that is, giving a correct <span class="excalifont">yes/no</span>-answer in
+finitely many steps—is called a <strong>decision procedure</strong>. The truth-table method
+is such a decision procedure, which implements the naive approach described
+above is an algorithmic fashion.</p>
+<p>We can present the method in an algebraic or in a logical fashion. Here we chose
+the logical flavor, but it will hopefully be clear how to carry out the method
+in an algebraic fashion.</p>
+<p>To describe the method, let&rsquo;s suppose that we have a set of formulas, of which
+we want to know whether it is satisfiable. For concreteness sake, we take our
+running example again and check for the satisfiability of:</p>
+<div class="text-center my-4 excalifont">{ (SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN), 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+SUN, 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN }.</div>
+<p>The first thing we need to do is to determine all the possible valuations. By
+what we said above, all we need to do is to count the number of different propositional variables in our set. In our case, <span class="excalifont">#variables = 2</span>. This means that there are <span class="excalifont">2² = 4</span> different valuations to consider.</p>
+<p>We need to write these valuations down in some order. We typically do this as
+follows:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/sat/img/truth_table_0.png" class="rounded mx-auto d-block inert-img img-fluid"  width="250px"  alt="" >
+
+
+<p>The idea is that each row is a function table for one possible valuation. The
+red little numbers are not part of the official table, but they illustrate a
+nice little trick: if you want to determine all the valuations for <span class="excalifont">n</span>
+propositional variables, just count the rows from <span class="excalifont">0</span> to <span class="excalifont">n-1</span> in binary. In our
+case, we counted from <span class="excalifont">0</span> to <span class="excalifont">3</span>, which gives us our four rows. But if you have
+three variables, say <span class="excalifont">SUN, RAIN, WIND</span>, you count from <span class="excalifont">0</span> to <span class="excalifont">7</span> in binary, and
+get the following table:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/sat/img/truth-table-3var.png" class="rounded mx-auto d-block inert-img img-fluid"  width="350px"  alt="" >
+
+
+<p>But back to our example with two variables. Next, we need to parse the formulas
+in our set. This is necessary for an algorithmic calculation of their
+truth-values. Our case is rather simple. We get:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/sat/img/parse_trees_valid.png" class="rounded mx-auto d-block inert-img img-fluid"  width="450px"  alt="" >
+
+
+<p>In the next step, we calculate the truth-values of the formulas under each
+possible distribution of truth-values. For this, we use the general rules, known
+as the <strong>recursive clauses</strong> for the truth-values under a Boolean valuation:</p>
 <table>
   <thead>
       <tr>
-          <th>Propositional variables</th>
-          <th>Rows</th>
+          <th></th>
+          <th></th>
+          <th></th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td>1</td>
-          <td>2</td>
+          <td>v(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ A)     </td>
+          <td>=</td>
+          <td>  <span class="Boolean">NOT</span> v(A)</td>
       </tr>
       <tr>
-          <td>2</td>
-          <td>4</td>
+          <td> </td>
+          <td></td>
+          <td></td>
       </tr>
       <tr>
-          <td>3</td>
-          <td>8</td>
+          <td>v(A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B)  </td>
+          <td>=</td>
+          <td>  v(A) <span class="Boolean">AND</span> v(B)</td>
       </tr>
       <tr>
-          <td>4</td>
-          <td>16</td>
+          <td> </td>
+          <td></td>
+          <td></td>
       </tr>
       <tr>
-          <td>5</td>
-          <td>32</td>
-      </tr>
-      <tr>
-          <td>6</td>
-          <td>64</td>
+          <td>v(A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B)   </td>
+          <td>=</td>
+          <td>  v(A) <span class="Boolean">OR</span> v(B)</td>
       </tr>
   </tbody>
 </table>
-<p>Then, for each formula in the parsing tree, we need to calculate the truth-value
-in a given row. This quickly becomes painfully slow, even with modern hardware
-and for <em>relatively</em> simple, but real world applications.</p>
-<p>We need a more efficient method.</p>
-<h2 id="normal-forms">Normal forms<button class="btn btn-back-to-top">
+<p>We apply these clauses by tracing the parsing tree backwards and calculating the
+value of the formula generated in the next step by applying the corresponding
+recursive rule. We don&rsquo;t worry too much about the concrete implementation of
+this recursive procedure here, but for this step, the correct parsing of the
+formula is crucial.</p>
+<p>We then document the resulting truth-values in our table like so:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/sat/img/truth_table_valid_complete.png" class="rounded mx-auto d-block inert-img img-fluid"  width="850px"  alt="" >
+
+
+<p>In the last step, we inspect our truth-table and see if we can find a row in
+which each formula get&rsquo;s the value <code class="customCode">1</code>. If there is one, the set is satisfiable;
+if there isn&rsquo;t—like in our case—the set isn&rsquo;t satisfiable.</p>
+<p>This truth-table doubles as the proof of the validity of our inference:</p>
+<div class="text-center my-4 excalifont">(SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN), 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN 
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+  RAIN,</div> 
+<p>since it shows that the set <div class="text-center my-4 excalifont">{ (SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN), 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN, 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+  RAIN}</div> is unsatisfiable and the inference thus valid. Note very
+crucially that the set has an extra 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ where the conclusion occurs—we&rsquo;re checking whether it&rsquo;s possible for the premises to be true and the conclusion <em>not</em> true.</p>
+<p>For an example of a satisfiable set, let&rsquo;s take a set with <span class="excalifont">#variables = 3</span> and some more complex formulas to illustrate a few helpful methods:</p>
+<div class="text-center my-4 excalifont">{ (SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ (
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ WIND)), SUN, 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ WIND }</div>
+<p>The satisfiability of this set corresponds to the <em>in</em>validity of the inference:</p>
+<div class="text-center my-4 excalifont"> (SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ (
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ WIND)), SUN 
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+ WIND </div>
+<p>I hope you can see that this is just a more complicated instance of <em>affirming a disjunct</em>*, a fallacy which we&rsquo;ve mentioned a couple of times before.</p>
+<p>The possible valuations, we&rsquo;ve determined already above. So let&rsquo;s skip to
+parsing. The relevant parse trees are as follows:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/sat/img/parsing_three.png" class="rounded mx-auto d-block inert-img img-fluid"  width="850px"  alt="" >
+
+
+<p>Now in this case, a more complex formula is involved, viz. <span class="excalifont">(SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ (
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ WIND))</span>. When we&rsquo;re calculating it&rsquo;s value under a given valuation, the parse tree comes in handy. It tells us in which order to apply the Boolean operations <span class="Boolean">NOT</span>, <span class="Boolean">AND</span>, and <span class="Boolean">OR</span> to calculate the truth-values. We can document the calculation in our truth-table as follows:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/sat/img/truth_table_three_full.png" class="rounded mx-auto d-block inert-img img-fluid"  width="1100px"  alt="" >
+
+
+<p>Here, I used color coding and arrows to indicate which recursive step yields
+which truth-value, but you don&rsquo;t have to do that every time. You also don&rsquo;t <em>have</em> to write down the intermediate values, like that of <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN</span> or <span class="excalifont">(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+WIND)</span>, but it can be helpful.</p>
+<p>What remains to be done is to check whether there&rsquo;s a valuation (&ldquo;row&rdquo;), where all formulas in the set get value <code class="customCode">1</code>. And indeed:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/sat/img/truth-table-highlight.png" class="rounded mx-auto d-block inert-img img-fluid"  width="900px"  alt="" >
+
+
+<p>There are indeed <em>two</em> valuations that make all formulas true. But that&rsquo;s alright, the more the merrier. Either row is enough to show that:</p>
+<div class="text-center my-4 excalifont"> (SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ (
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ WIND)), SUN 
+<img src="/img/nvDash.png" alt="nvDash" class="inline-icon" style="height:1em;width:auto;"/>
+ WIND </div>
+<p>This is, in a nutshell, the method of truth-tables. The method is brute force,
+but it&rsquo;s guaranteed to work. The main problem with the method is that how long
+it takes grows <em>exponentially</em> with the number of inputs. In algorithmic terms,
+the algorithm has exponential  <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Time_complexity"
+  target="_blank">time
+complexity</a>, which is about as
+bad as it gets. Using <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Big_O_notation"
+  target="_blank">big O
+notation</a>, the time complexity of
+the truth-table method is <span class="excalifont">O(2ⁿ)</span>, where <span class="excalifont">n</span> is the number of variables
+involved. Worse even, the way we&rsquo;ve described the algorithm, we <em>always</em> run
+for <span class="excalifont">O(2ⁿ)</span>-many steps, since we begin with the computationally most complex
+step: enumerating the valuations. In this way, truth-tables suffer from what&rsquo;s
+called  <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Combinatorial_explosion"
+  target="_blank">combinatorial
+explosion</a>.</p>
+<p>The aim of other algorithms for <code class="customCode">SAT</code>-solving is to do better, at least in some
+cases. It turns out that <code class="customCode">SAT</code> is connected to very deep problems in computer
+science and the theory of computation. Finding an algorithm that solves all
+<code class="customCode">SAT</code> problems in &ldquo;significantly less&rdquo; than exponential run-time would solve one of the most important open problems in theoretical computer science <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/P_versus_NP_problem"
+  target="_blank">P vs. NP</a>. But the details are out of scope for us.</p>
+<!-- The [Cook-Levin theorem](https://en.wikipedia.org/wiki/Cook%E2%80%93Levin_theorem) states that <code class="customCode">SAT</code> is [NP-complete](https://en.wikipedia.org/wiki/NP-completeness).  -->
+<h2 id="normal-forms">Normal Forms<button class="btn btn-back-to-top">
     
     <i class="bi bi-chevron-double-up"></i>
     
@@ -1025,120 +1592,425 @@ and for <em>relatively</em> simple, but real world applications.</p>
 </h2>
 <hr>
 
-<p>The method we&rsquo;ll be working with uses <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Canonical_normal_form"
-  target="_blank">normal
-forms</a>. Generally speaking,
-a <strong>normal form</strong> is a special way of writing formulas such that every formula
-can be re-written in this way. This is much better illustrated concretely, so
-let&rsquo;s talk about <strong>Conjunctive Normal Forms (CNF)</strong>, which are what we&rsquo;re
-ultimately interested in.</p>
-<p>A formula <span class="excalifont">A</span> is in CNF just in case it is a conjunction (<span class="excalifont">\land</span>) of
-disjunctions (<span class="excalifont">\lor</span>) of propositional variables (<span class="excalifont">p,q,r,\dots</span>) or their
-negations (<span class="excalifont">\neg p,\neg q, \neg r,\dots</span>). This is
-still quite abstract, but we can work with that using some examples.</p>
-<p>The following formulas <em>are</em> in CNF:</p>
-<ul>
-<li><span class="excalifont">\mathsf{RAIN}</span></li>
-<li><span class="excalifont">\mathsf{RAIN}\land\neg\mathsf{BIKE}</span></li>
-<li><span class="excalifont">\mathsf{RAIN}\lor\neg\mathsf{BIKE}</span></li>
-<li><span class="excalifont">(\mathsf{RAIN}\lor\neg\mathsf{BIKE})\land
-(\mathsf{SUN}\lor\mathsf{BIKE})</span></li>
-</ul>
-<p>The following formulas are <em>not</em> in CNF:</p>
-<ul>
-<li><span class="excalifont">\neg\neg\mathsf{RAIN}</span></li>
-<li><span class="excalifont">\mathsf{RAIN}\lor \neg(\mathsf{SUN}\land \neg \mathsf{BIKE})</span></li>
-<li><span class="excalifont">\neg(\mathsf{RAIN}\land\neg\mathsf{BIKE})</span></li>
-<li><span class="excalifont">\neg(\mathsf{RAIN}\lor\neg\mathsf{BIKE})</span></li>
-<li><span class="excalifont">(\mathsf{RAIN}\land\neg\mathsf{BIKE})\lor
-\mathsf{SUN}</span></li>
-</ul>
-<p>So, some formulas are and some formulas aren&rsquo;t in CNF. The crucial thing about
-CNFs, though, which is what make them a normal form, is that <em>every</em> formula can
-equivalently be re-written in CNF. What we mean by that is that for each formula
-<span class="excalifont">A</span>, there exists a formula <span class="excalifont">A_{CNF}</span> such that for each valuation:</p>
-<div class="text-center my-4 excalifont">\nu(A)=\nu(A_{CNF}).</div> A formula that's equivalent in this way is equivalent
-for all (logical and AI) intents and purposes.
-<p>Here are the equivalent formulas for the non-CNF formulas:</p>
-<ul>
-<li><span class="excalifont">\neg\neg\mathsf{RAIN}\leadsto\mathsf{RAIN}</span></li>
-<li><span class="excalifont">\mathsf{RAIN}\lor \neg(\mathsf{SUN}\land \neg \mathsf{BIKE})\leadsto
-\mathsf{RAIN}\lor (\neg \mathsf{SUN}\lor \mathsf{BIKE})</span></li>
-<li><span class="excalifont">\neg(\mathsf{RAIN}\land\neg\mathsf{BIKE})\leadsto \neg \mathsf{RAIN}\lor
-\mathsf{BIKE}</span></li>
-<li><span class="excalifont">\neg(\mathsf{RAIN}\lor\neg\mathsf{BIKE})\leadsto
-\neg\mathsf{RAIN}\land\mathsf{BIKE}</span></li>
-<li><span class="excalifont">(\mathsf{RAIN}\land\neg\mathsf{BIKE})\lor \mathsf{SUN}\leadsto
-(\mathsf{SUN}\lor\mathsf{RAIN})\land (\mathsf{SUN}\lor\neg\mathsf{BIKE})</span></li>
-</ul>
-<p>These are easily verified using a truth-table for the two formulas and checking
-that they always have the same values.</p>
-<p>Here&rsquo;s one case:</p>
-<ul>
-<li><span class="excalifont">(\mathsf{RAIN}\land\neg\mathsf{BIKE})\lor \mathsf{SUN}</span></li>
-</ul>
+<p>
+
+<img src="https://logicalmethods.ai/textbook/sat/img/ai_in_love.png" class="rounded  float-start inert-img img-fluid m-2"  width="200px"  alt="" >
 
 
-<img src="https://logicalmethods.ai/textbook/sat/img/tt-3.png" class="img-thumbnail"    alt="" >
-
-
+Many algorithms for <code class="customCode">SAT</code>-solving make use of so-called <strong>normal forms</strong>, which
+are, in a sense, standardized ways of writing formulas or expressions. We can
+think of it as our &ldquo;favorite&rdquo; way of writing a formula in a given context.</p>
+<p>The two most important normal forms in logical theory are <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Conjunctive_normal_form"
+  target="_blank">Disjunctive Normal
+Forms (DNFs)</a> and
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Disjunctive_normal_form"
+  target="_blank">Conjunctive Normal Forms
+(CNFs)</a>. Both kinds of
+normal forms are characterized by a very specific <em>syntactic form</em>. Both Boolean
+expressions (with variables and operators), as well as logical formulas have
+normal forms.</p>
+<p>We&rsquo;ve already encountered DNFs when we transformed the truth-table for <span class="Boolean">NAND</span>
+into a Boolean expression. The result was the expression:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+((<span class="Boolean">NOT</span> X) <span class="Boolean">AND</span> (<span class="Boolean">NOT</span> Y)) <span class="Boolean">OR</span> ((<span class="Boolean">NOT</span> X) <span class="Boolean">AND</span> Y) <span class="Boolean">OR</span> (X <span class="Boolean">AND</span> (<span class="Boolean">NOT</span> Y))
+</code></div>
+<p>Crucially, this expression was <strong>equivalent</strong> to the following expression, which
+we&rsquo;ve derived from the circuit implementation:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+<span class="Boolean">NOT</span> (X <span class="Boolean">AND</span> Y)
+</code></div>
+<p>We&rsquo;ve seen that the two expressions are <em>equivalent</em> in the sense that they
+always evaluate to the same truth-value for all values for <code class="customCode">X</code> and <code class="customCode">Y</code>.</p>
+<p>Generally speaking, a Boolean expression in <em>DNF</em> is</p>
 <ul>
-<li><span class="excalifont">(\mathsf{SUN}\lor\mathsf{RAIN})\land (\mathsf{SUN}\lor\neg\mathsf{BIKE})</span></li>
+<li>
+<p>a _disjunction (&ldquo;chain of <span class="Boolean">OR</span>&rsquo;s&rdquo;) of</p>
+</li>
+<li>
+<p><em>conjunctions</em> (&ldquo;chains of <span class="Boolean">AND</span>&rsquo;s&rdquo;) of</p>
+</li>
+<li>
+<p><em>literals</em> (&ldquo;variables or <span class="Boolean">NOT</span>&rsquo;s of variables&rdquo;).</p>
+</li>
 </ul>
+<p>Each chain in this definition can be just have a single element. So, for
+example:</p>
+<table>
+  <thead>
+      <tr>
+          <th>
 
+<img src="https://logicalmethods.ai/textbook/sat/img/dnf.png" class="inert-img" height="40px"  style="ZgotmplZ" alt="" >
 
-<img src="https://logicalmethods.ai/textbook/sat/img/tt-4.png" class="img-thumbnail"    alt="" >
+</th>
+          <th>     </th>
+          <th>
 
+<img src="https://logicalmethods.ai/textbook/sat/img/no_dnf.png" class="inert-img" height="40px"  style="ZgotmplZ" alt="" >
 
-<p>As you can see in these two truth-tables: under each possible valuation, the two
-formulas have exactly the same truth-table.</p>
-<p>The fact that each formula can be re-written in CNF is known as the <strong>CNF
-theorem</strong>. You&rsquo;ll not learn the details of the proof, but you&rsquo;ll learn <em>how</em> to
-transform formulas into CNFs.</p>
-<p>Basically, all you need to do is to apply the following rules as many times as
-needed until your formula is in CNF:</p>
+</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td>     </td>
+          <td></td>
+      </tr>
+      <tr>
+          <td><span class="excalifont">X, <span class="Boolean">NOT</span> X</span></td>
+          <td></td>
+          <td><span class="excalifont"><span class="Boolean">NOT</span> <span class="Boolean">NOT</span>  X</span></td>
+      </tr>
+      <tr>
+          <td><span class="excalifont">X <span class="Boolean">AND</span>  <span class="Boolean">NOT</span> Y</span></td>
+          <td></td>
+          <td><span class="excalifont"><span class="Boolean">NOT</span> (X <span class="Boolean">AND</span>  Y)</span></td>
+      </tr>
+      <tr>
+          <td><span class="excalifont">X <span class="Boolean">OR</span>  <span class="Boolean">NOT</span> Y</span></td>
+          <td></td>
+          <td><span class="excalifont"><span class="Boolean">NOT</span> (X <span class="Boolean">OR</span>  Y)</span></td>
+      </tr>
+      <tr>
+          <td><span class="excalifont"><span class="Boolean">NOT</span> X <span class="Boolean">OR</span>  ( X <span class="Boolean">AND</span>  <span class="Boolean">NOT</span> Y )</span></td>
+          <td></td>
+          <td><span class="excalifont">X <span class="Boolean">AND</span>  ( <span class="Boolean">NOT</span> X <span class="Boolean">OR</span>  Y )</span></td>
+      </tr>
+      <tr>
+          <td><span class="excalifont">(Z <span class="Boolean">AND</span> <span class="Boolean">NOT</span> X) <span class="Boolean">OR</span>  ( X <span class="Boolean">AND</span>  <span class="Boolean">NOT</span> Y )</span></td>
+          <td></td>
+          <td><span class="excalifont">X <span class="Boolean">AND</span>  ( <span class="Boolean">NOT</span> X <span class="Boolean">OR</span>  Y )</span></td>
+      </tr>
+      <tr>
+          <td>⋮</td>
+          <td></td>
+          <td>⋮</td>
+      </tr>
+  </tbody>
+</table>
+<p>DNFs are intimately connected with truth-tables.  If we have a Boolean
+expression in DNF, we can &ldquo;read off&rdquo; its truth-value distribution from the
+logical form of the expression:</p>
 <ul>
-<li><span class="excalifont">\neg\neg A\leadsto A</span></li>
-<li><span class="excalifont">\neg (A\lor B)\leadsto \neg A\land \neg B</span></li>
-<li><span class="excalifont">\neg (A\land B)\leadsto \neg A\lor \neg B</span></li>
-<li><span class="excalifont">A\lor(B\land C)\leadsto (A\lor B)\land (A\lor C)</span></li>
-<li><span class="excalifont">(A\land B)\lor C\leadsto (A\lor C)\land (B\lor C)</span></li>
+<li>
+<p>Each disjunct, that is each chain of <span class="Boolean">AND</span>&rsquo;s in the chain of !!OR!&rsquo;s,
+corresponds to one way the expression can evaluate to <code class="customCode">1</code>.</p>
+</li>
+<li>
+<p>To obtain this way, we read an occurrence of a variable as that variable
+having value <code class="customCode">1</code> and an occurrence of the <span class="Boolean">NOT</span> of a variable as that variable
+having value <code class="customCode">0</code>.</p>
+</li>
 </ul>
-<p>The way to read these rules is that if you come across any of the left formulas
-within a non-CNF formula, replace the occurrence with the right formula.</p>
-<p>Here&rsquo;s how the procedure looks like in practice:</p>
-<div class="text-center my-4 excalifont">\mathsf{RAIN}\lor \neg(\mathsf{SUN}\lor \neg \mathsf{BIKE})</div>
-<div class="text-center my-4 excalifont">\leadsto\mathsf{RAIN}\lor (\neg\mathsf{SUN}\land \neg\neg \mathsf{BIKE})</div>
-<div class="text-center my-4 excalifont">\leadsto(\mathsf{RAIN}\lor \neg\mathsf{SUN})\land (\mathsf{RAIN}\lor \neg\neg \mathsf{BIKE})</div>
-<div class="text-center my-4 excalifont">\leadsto(\mathsf{RAIN}\lor \neg\mathsf{SUN})\land (\mathsf{RAIN}\lor \mathsf{BIKE})</div>
-<p>Before we move to the DPLL algorithm, we need to talk about what CNF formulas
-look like <em>in general</em>. Above, we defined a CNF as a conjunction of disjunctions
-of propositional variables or their negations. First, some terminology:</p>
+<p>In this way, we can see that</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+((<span class="Boolean">NOT</span> X) <span class="Boolean">AND</span> (<span class="Boolean">NOT</span> Y)) <span class="Boolean">OR</span> ((<span class="Boolean">NOT</span> X) <span class="Boolean">AND</span> Y) <span class="Boolean">OR</span> (X <span class="Boolean">AND</span> (<span class="Boolean">NOT</span> Y))
+</code></div>
+<p>has three ways of evaluating to <code class="customCode">1</code>:</p>
 <ul>
-<li>A <em>literal</em> is a propositional variable or its negation. In BNF:</li>
+<li>
+<p><code class="customCode">X</code> and <code class="customCode">Y</code> are both <code class="customCode">0</code>, given by the first disjunct <code class="customCode">((<span class="Boolean">NOT</span> X) <span class="Boolean">AND</span> (<span class="Boolean">NOT</span> Y))</code>,</p>
+</li>
+<li>
+<p><code class="customCode">X</code> is <code class="customCode">0</code> and <code class="customCode">Y</code> is <code class="customCode">1</code>, given by the second disjunct <code class="customCode">((<span class="Boolean">NOT</span> X) <span class="Boolean">AND</span> Y</code>, or</p>
+</li>
+<li>
+<p><code class="customCode">X</code> is <code class="customCode">1</code> and <code class="customCode">Y</code> is <code class="customCode">0</code> given by the third disjunct <code class="customCode">(X <span class="Boolean">AND</span> (<span class="Boolean">NOT</span> Y))</code>.</p>
+</li>
 </ul>
-<div class="text-center my-4 excalifont">\langle lit\rangle ::= \langle prop\rangle\mid \neg\langle prop\rangle</div>
+<p>In fact, we used this idea &ldquo;the other way around&rdquo; to generate the expression: we
+directly &ldquo;read it off&rdquo; off the function table for <code class="customCode">(X <span class="Boolean">NAND</span> Y)</code>.</p>
+<p>But the connection between truth-tables and DNFs is very deep. In fact, evidence
+suggests that working with DNFs doesn&rsquo;t provide much of an advantage over
+truth-tables in the context of automated <code class="customCode">SAT</code>-solving. It turns out that the
+whether they do once more turns on deep issues like <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/P_versus_NP_problem"
+  target="_blank">P vs.
+NP</a>, but from a practical
+perspective the other kind of normal form, CNFs, have historically been much
+more fruitful in <code class="customCode">SAT</code> research.</p>
+<p>We&rsquo;ve described DNFs for Boolean expressions, but we&rsquo;ll present CNFs for logical
+formulas. As usual, the notion can be defined for both, but the algorithm we&rsquo;ll
+discuss later is more naturally presented in logical terms than directly in
+Boolean terms.</p>
+<p>So, in logical terms, a formula in CNF is a formula which is the:</p>
 <ul>
-<li>A <em>clause</em> is a set of literals. That is, a clause is: <div class="text-center my-4 excalifont">\Set{l_1,\dots,
-l_n},</div> where <span class="excalifont">l_1, \dots, l_n</span> are literals.</li>
+<li>
+<p><em>conjunction</em> (&ldquo;chain of 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+&rsquo;s&rdquo;) of</p>
+</li>
+<li>
+<p><em>disjunctions</em> (&ldquo;chain of 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+&rsquo;s&rdquo;) of</p>
+</li>
+<li>
+<p><em>literals</em> (&ldquo;variables or their 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+&rsquo;s&rdquo;)</p>
+</li>
 </ul>
-<p>A convenient way of talking about CNFs is simply as sets of sets of literals. So
-we write: <div class="text-center my-4 excalifont">\Set{\Set{l_1^1,\dots,l_{n_1}^1},\dots \Set{l_1^k,\dots,l_{n_k}^k}}</div>
-instead of <div class="text-center my-4 excalifont">(l_1^1\lor\dots\lor l_{n_1}^1)\land\dots\land(l_1^k\lor\dots\lor
-l_{n_k}^k).</div></p>
-<p>That is, there are <span class="excalifont">1,\dots,k</span> clauses:</p>
-<div class="text-center my-4 excalifont">\Set{l_1^1,\dots,l_{n_1}^1}</div>
-<div class="text-center my-4 excalifont">\vdots</div>
-<div class="text-center my-4 excalifont">\Set{l_1^k,\dots,l_{n_k}^k}.</div>
-<p>The first clause has length <span class="excalifont">n_1</span>, the second one length <span class="excalifont">n_2</span>&hellip;, and the last,
-the <span class="excalifont">k</span>-th one has length <span class="excalifont">n_k</span>.</p>
-<p>This is obviously criminally abstract (though unfortunately necessary), but
-looking at a concrete example hopefully helps understand this quicker. The idea
-is simply that instead of instead of  <div class="text-center my-4 excalifont">(\mathsf{RAIN}\lor
-\neg\mathsf{SUN})\land (\mathsf{RAIN}\lor \mathsf{BIKE}),</div> we just write:</p>
-<div class="text-center my-4 excalifont">\Set{\Set{\mathsf{RAIN},\neg\mathsf{SUN}},\Set{\mathsf{RAIN},\mathsf{BIKE}}}</div>
-<h2 id="dpll">DPLL<button class="btn btn-back-to-top">
+<p>Again, each &ldquo;chain&rdquo; in this definition can be just a single formula. So, for example:</p>
+<table>
+  <thead>
+      <tr>
+          <th>
+
+<img src="https://logicalmethods.ai/textbook/sat/img/cnf.png" class="inert-img" height="40px"  style="ZgotmplZ" alt="" >
+
+</th>
+          <th>     </th>
+          <th>
+
+<img src="https://logicalmethods.ai/textbook/sat/img/no_cnf.png" class="inert-img" height="40px"  style="ZgotmplZ" alt="" >
+
+</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td>     </td>
+          <td></td>
+      </tr>
+      <tr>
+          <td><span class="excalifont">RAIN, 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN</span></td>
+          <td></td>
+          <td>
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN</td>
+      </tr>
+      <tr>
+          <td><span class="excalifont">RAIN 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+WIND</span></td>
+          <td></td>
+          <td><span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+(RAIN 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ WIND)</span></td>
+      </tr>
+      <tr>
+          <td><span class="excalifont">RAIN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+WIND</span></td>
+          <td></td>
+          <td><span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+(RAIN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ WIND)</span></td>
+      </tr>
+      <tr>
+          <td><span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ ( RAIN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+WIND )</span></td>
+          <td></td>
+          <td><span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ ( RAIN 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+WIND )</span></td>
+      </tr>
+      <tr>
+          <td><span class="excalifont">(SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN) 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ ( RAIN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+WIND )</span></td>
+          <td></td>
+          <td><span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+( RAIN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+WIND )</span></td>
+      </tr>
+      <tr>
+          <td>⋮</td>
+          <td></td>
+          <td>⋮</td>
+      </tr>
+  </tbody>
+</table>
+<p>While in a formula in DNF, each disjunct (from &ldquo;the chain of <span class="Boolean">OR</span>s&rdquo;)
+represents one way for the formula to be true, the conjuncts of a CNF are more
+like a &ldquo;menu&rdquo; to pick from. To make a formula in DNF true, one picks one
+disjunct (that is one literal, a propositional variable or its negation) from
+each conjunct in the long chain of 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+&rsquo;s. Take the following formula,
+for example:</p>
+<div class="text-center my-4 excalifont">(SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN) 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ ( RAIN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+WIND )</div>
+<p>One way of making it true is to pick <span class="excalifont">SUN</span> from the first conjunct and <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+WIND</span>
+from the second. That is, the formula is true if the sun shines and it&rsquo;s not
+windy. Another way of making it true is to pick <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN</span> from the first
+and <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+WIND</span> from the second. That is, the formula is true if it&rsquo;s
+neither rainy nor windy. Obviously, we can&rsquo;t pick <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN</span> from the
+first and <span class="excalifont">RAIN</span> from the second. This is not a way to make the formula true,
+since its not a real possibility in Boolean logic that it both rains and it
+doesn&rsquo;t. Excluding these kinds of possibilities from the search space in a
+systematic fashion is what many <code class="customCode">SAT</code>-solving algorithms are designed to do.</p>
+<p>But before we look at these kinds of algorithms, we need to talk about a
+fundamental fact about normal forms: there are algorithms for transforming any
+given expression or formula into an equivalent expression or formula in DNF or
+CNF respectively. This mathematical fact is known as the <strong>DNF/CNF theorem</strong> for
+Boolean logic. In this context, by &ldquo;equivalent&rdquo; we mean that for any assignment
+of values, the original expression/formula always evaluates to the same value as
+the formula in normal form. Typically, the normal form of an expression is not
+<em>unique</em>: there is more than one expression in normal form, which is equivalent
+to a given formula. We can obtain a uniqueness by putting additional
+constraints, but for now we shall not occupy ourselves with such subtleties.</p>
+<p>
+
+<img src="https://logicalmethods.ai/textbook/sat/img/naive_approach.png" class="rounded  float-end inert-img img-fluid m-2"  width="400px"  alt="" >
+
+
+There are different algorithms for finding an equivalent formula for a given
+formula. In practice, we&rsquo;re interested in transforming a given input as quickly
+and efficiently as possible, but for now we&rsquo;ll focus on the <em>naive</em> approach,
+which though not efficient is straight-forward. When we&rsquo;re implementing
+efficient <code class="customCode">SAT</code>-solvers, we&rsquo;ll rather use something like the <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Tseytin_transformation"
+  target="_blank">Tseytin
+transformation</a>, for
+example, which transforms a formula into a formula that is not necessarily
+equivalent but at least <em>equi-satisfiable</em> with the original formula: the two
+formulas can have different truth-values under some assignments, but the
+original formula is satisfiable if and only if the normal form formula is.</p>
+<p>We describe the algorithm for transforming a formula into normal form using
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Rewriting"
+  target="_blank">rewrite rules</a>, which are similar to
+the ones we used in our definitions of grammars for formal languages. But rather
+than rewriting basic expressions into complex formulas, our new rules apply
+transformations to existing formulas to change them step-by-step from into
+normal form.</p>
+<p>The algorithms for transforming into CNF and DNF both start with the same three
+rules:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/sat/img/negation_transformations.png" class="rounded mx-auto d-block inert-img img-fluid"  width="450px"  alt="" >
+
+
+<p>These rules are applied <em>recursively</em>, which means they are not only applied to
+a full formula, but repeatedly to all subformulas during the entire
+transformation.</p>
+<p>This idea is illustrate in the following re-write sequence:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/sat/img/rewrite_negation.png" class="rounded mx-auto d-block inert-img img-fluid"  width="900px"  alt="" >
+
+
+<p>These rules &ldquo;push&rdquo; the negation &ldquo;inwards&rdquo;: formulas which begin with a negation
+are replaced with equivalent formulas where the negation is &ldquo;closer to&rdquo; the
+variables. Note that by the Boolean laws of &ldquo;Double Negation&rdquo; and the &ldquo;De Morgan
+Identities&rdquo; the formulas we&rsquo;re replacing the originals with are indeed
+equivalent.</p>
+<p>Both for converting into DNF and for CNF, we apply these rules until we can&rsquo;t
+anymore. The next step is different for the two:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/sat/img/cnf_v_dnf.png" class="rounded mx-auto d-block inert-img img-fluid"  width="900px"  alt="" >
+
+
+<p>Let&rsquo;s look at the CNF rule and leave the DNF rule as an exercise. With <span class="excalifont">r₄</span>, we
+can continue our example as follows:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/sat/img/cnf_distribution.png" class="rounded mx-auto d-block inert-img img-fluid"  width="900px"  alt="" >
+
+
+<p>The resulting formula <span class="excalifont">(SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN ) 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ (SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN)</span> is in CNF: it&rsquo;s a conjunction of disjunction of literals.</p>
+<p>For what we want to do next, we could stop our transformation at this point. The
+only thing you might find odd is that we have <span class="excalifont">(SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN)</span> as our
+second conjunct in this CNF. This is harmless, but we could further simplify
+using rewrite rules like the following:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/sat/img/idempotence_rewrite.png" class="rounded mx-auto d-block inert-img img-fluid"  width="600px"  alt="" >
+
+
+<p>With these rules, we continue as follows:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/sat/img/final_rewrite.png" class="rounded mx-auto d-block inert-img img-fluid"  width="800px"  alt="" >
+
+
+<p>In this way, we can obtain what&rsquo;s called a <strong>canonical</strong> normal form, which is unique. Although, there&rsquo;s one idea missing, which we&rsquo;ll discuss in the exercises…</p>
+<p>We&rsquo;re now in a place to convert formulas into CNF, which is the starting point
+of many <code class="customCode">SAT</code>-solving algorithms. As we mentioned, in industry applications,
+we&rsquo;d typically use more efficient algorithms, like Tseytin transformations. But
+the naive recursive re-write method gets the job done. It&rsquo;s worth pointing out,
+however, where the inefficiency lies with this method. Note that in the step
+where we applied <span class="excalifont">r₄</span>, our formula got <em>longer</em>. In the worst case, this can
+happen multiple times during a transformation, leading to every growing
+formulas, where the CNF <em>or</em> DNF is significantly longer than the original,
+non-canonical formula. This &ldquo;exponential blowout&rdquo; is a main roadblock for
+practical applications.</p>
+<h2 id="resolution">Resolution<button class="btn btn-back-to-top">
     
     <i class="bi bi-chevron-double-up"></i>
     
@@ -1146,220 +2018,185 @@ is simply that instead of instead of  <div class="text-center my-4 excalifont">(
 </h2>
 <hr>
 
-<p>The DPLL algorithm determines whether a given formula in CNF is satisfiable,
-i.e. whether there&rsquo;s a Boolean valuation that makes the entire formula true.</p>
-<p>Using the notation from before, we assume that our formula looks as follows:</p>
-<div class="text-center my-4 excalifont">\Set{\Set{l_1^1,\dots,l_{n_1}^1},\dots \Set{l_1^k,\dots,l_{n_k}^k}}</div>
-<p>The crucial thing to understand is that in order to make the corresponding
-formula true, it&rsquo;s sufficient to make one literal from each clause true.</p>
-<p>Let&rsquo;s start with the &ldquo;criminally abstract&rdquo; way of saying what that means: we
-simply need to find a sequence:</p>
-<div class="text-center my-4 excalifont">l_{i_1}^1\in \Set{l_1^1m\dots, l_{n_1}^1}</div>
-<div class="text-center my-4 excalifont">\vdots</div>
-<div class="text-center my-4 excalifont">l_{i_k}^1\in \Set{l_k^1m\dots, l_{n_k}^k}</div>
-of literals with a valuation <span class="excalifont">\nu</span> such that 
-<div class="text-center my-4 excalifont">\nu(l_{i_1})=1</div>
-<div class="text-center my-4 excalifont">\vdots</div>
-<div class="text-center my-4 excalifont">\nu(l_{i_k})=1</div>
-<p>The DPLL algorithm is, essentially, a smart way of making this search easier
-than just going &ldquo;brute force&rdquo; through all the possibilities. In some cases, we
-still need to search through some possibilities, but by thinking about the
-problem, we can often cut down the search space significantly.</p>
-<p>We do so, with the following <strong>rules</strong>, which we&rsquo;ll introduce using less
-abstract examples:</p>
-<ul>
-<li>
-<p><strong>Pure literal elimination</strong>. Take the following CNF</p>
-<div class="text-center my-4 excalifont">\Set{\Set{\mathsf{RAIN},\neg\mathsf{SUN}},\Set{\mathsf{RAIN},\mathsf{BIKE}},
-\Set{\neg \mathsf{SUN},\mathsf{BIKE}},\Set{\neg\mathsf{SUN},\neg\mathsf{BIKE}}}</div>
-<p>Note that <span class="excalifont">\mathsf{RAIN}</span> only occurs &ldquo;positively&rdquo; in the formula, we never
-have <span class="excalifont">\neg\mathsf{RAIN}</span> anywhere. This means that if we set
-<span class="excalifont">\nu(\mathsf{RAIN})=1</span>, we automagically make any clause that contains
-<span class="excalifont">\mathsf{RAIN}</span> true and we can focus on the others (remember that clauses are
-just disjunctions).</p>
-<p>So, realizing this, we can just focus on satisfying</p>
-<div class="text-center my-4 excalifont">\Set{\Set{\neg \mathsf{SUN},\mathsf{BIKE}},\Set{\neg\mathsf{SUN},\neg\mathsf{BIKE}}}</div>
-<p>But here both <span class="excalifont">\neg\mathsf{SUN}</span> has a similar property as <span class="excalifont">\mathsf{RAIN}</span>
-before: it only &ldquo;negatively&rdquo; (there&rsquo;s never <span class="excalifont">\mathsf{SUN}</span>).</p>
-<p>So, we can just set <span class="excalifont">\nu(\mathsf{SUN})=0</span> to get <span class="excalifont">\nu(\neg \mathsf{SUN})=1</span> as
-desired, and we satisfy both  <span class="excalifont">\Set{\neg \mathsf{SUN},\mathsf{BIKE}}</span> and
-<span class="excalifont">\Set{\neg\mathsf{SUN},\neg\mathsf{BIKE}}</span> at the same time.</p>
-<p>At this stage, what remains after eliminating all the clauses we&rsquo;ve satisfied
-is the empty set <div class="text-center my-4 excalifont">\Set{},</div> as we&rsquo;ve found a &ldquo;truthmaker&rdquo; for each clause.</p>
-<p>Now, it&rsquo;s easy to check that our valuation <span class="excalifont">\nu</span> with</p>
-<div class="text-center my-4 excalifont">\nu(\mathsf{RAIN})=1</div>
-<div class="text-center my-4 excalifont">\nu(\mathsf{SUN})=0</div> 
-<p>indeed makes the formula</p>
-<div class="text-center my-4 excalifont">(\mathsf{RAIN}\lor\neg\mathsf{SUN})\land(\mathsf{RAIN}\lor\mathsf{BIKE})\land
-(\neg \mathsf{SUN}\lor\mathsf{BIKE})\land(\neg\mathsf{SUN}\lor\neg\mathsf{BIKE})</div>
-<p>true, no matter what the value of
-<span class="excalifont">\nu(\mathsf{BIKE})</span> is.</p>
-<p>The rule of <strong>pure literal elimination</strong> says that whenever a literal occurs only
-positively or negatively, we can set its truth-value as desired and eliminate
-every clause that contains the literal from the search altogether.</p>
-<p>Note that instead of <span class="excalifont">2^3=8</span> rows of a truth-table with several formulas
-involved, it only took us 2 applications of pure literal elimination to find a
-satisfying valuation.</p>
-</li>
-<li>
-<p><strong>Unit propagation</strong>. Another insight concerns so-called <em>unit clauses</em>, which
-are clauses that contain only a single literal, such as the clause
-<span class="excalifont">\Set{\mathsf{BIKE}}</span> in</p>
-</li>
-</ul>
-<div class="text-center my-4 excalifont">\Set{\Set{\mathsf{RAIN},\neg\mathsf{SUN}},\Set{\mathsf{RAIN},\neg\mathsf{BIKE}},
-\Set{\neg \mathsf{SUN}},\Set{\mathsf{BIKE}}}</div> The point is that the _only_ way
-to make a member of <span class="excalifont">\Set{\mathsf{BIKE}}</span> true is to make <span class="excalifont">\mathsf{BIKE}</span> true.
-We thus need to set <span class="excalifont">\nu(\mathsf{BIKE})=1</span> and can eliminate
-<span class="excalifont">\Set{\mathsf{BIKE}}</span> from the search.
-<p>This also means that we <em>can&rsquo;t</em> make <div class="text-center my-4 excalifont">\Set{\mathsf{RAIN},\neg
-\mathsf{BIKE}}</div> true by making <span class="excalifont">\neg\mathsf{BIKE}</span> true. That would require
-<span class="excalifont">\mathsf{BIKE}</span> to be false. As a result, we need to satisfy the following
-modified formula:</p>
-  <div class="text-center my-4 excalifont">\Set{\Set{\mathsf{RAIN},\neg\mathsf{SUN}},\Set{\mathsf{RAIN}},
-  \Set{\neg \mathsf{SUN}}}</div>
-<p>At this point, we can continue with the same reasoning and unit clause
-<span class="excalifont">\Set{\mathsf{RAIN}}</span>. We infer that <span class="excalifont">\nu(\mathsf{RAIN})=1</span> and get:<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
-  <div class="text-center my-4 excalifont">\Set{\Set{\neg \mathsf{SUN}}}</div>
-<p>A last application of the same principle gives us <span class="excalifont">\nu(\mathsf{SUN})=0</span> and we
-have a solution with the valuation:</p>
-  <div class="text-center my-4 excalifont">\nu(\mathsf{BIKE})=1</div>
-  <div class="text-center my-4 excalifont">\nu(\mathsf{RAIN})=1</div>
-  <div class="text-center my-4 excalifont">\nu(\mathsf{SUN})=0</div> 
-<p>In general, the rule of <strong>unit propagation</strong> says that when there&rsquo;s a unit clause
-<span class="excalifont">\Set{l}</span> in the CNF, we need to set the truth-value accordingly and can
-ignore that clause in further search, <em>and</em> we need to eliminate any
-&ldquo;complement&rdquo; clause of <span class="excalifont">l</span> (i.e. <span class="excalifont">\neg p</span> if <span class="excalifont">l</span> is <span class="excalifont">p</span>, and <span class="excalifont">p</span> if <span class="excalifont">l</span> is
-<span class="excalifont">p</span>) from any other clause.</p>
-<p>An important thing to note here is that applying unit propagation, we can end
-up with an <strong>empty clause</strong>. For example, applying unit propagation to:</p>
-  <div class="text-center my-4 excalifont">\Set{\Set{\mathsf{RAIN}},\Set{\neg\mathsf{RAIN}}}</div>
-  gives us <div class="text-center my-4 excalifont">\Set{\Set{}}.</div> If this happens, it tells us that the CNF is
-  **unsatisfiable**. This is because we still need to find a way of making the
-  remaining clause true and there are no options. 
-<p>In this case, this makes a lot of sense, since the CNF
-<span class="excalifont">\Set{\Set{\mathsf{RAIN}},\Set{\neg\mathsf{RAIN}}}</span> corresponds to the formula</p>
-  <div class="text-center my-4 excalifont">\mathsf{RAIN}\land \neg\mathsf{RAIN},</div> which is obviously unsatisfiable.
-<ul>
-<li><strong>Splitting rule</strong>. The two previous rules, <strong>unit propagation</strong> and <strong>pure
-literal elimination</strong> don&rsquo;t cover all the possibilities. There are situations,
-where we can&rsquo;t apply either, such as the following CNF:</li>
-</ul>
-<div class="text-center my-4 excalifont">\Set{\Set{\mathsf{RAIN},\mathsf{BIKE}},\Set{\neg\mathsf{RAIN},\neg\mathsf{BIKE}}}.</div>
-<p>At this point, we have to <strong>guess</strong>. Simply pick a literal and test if you can
-make it true. We pick <span class="excalifont">\mathsf{RAIN}</span> and assume <span class="excalifont">\nu(\mathsf{RAIN})=1</span>. This
-will make the first clause true and what remains to be checked is</p>
-  <div class="text-center my-4 excalifont">\Set{\Set{\neg\mathsf{BIKE}}}.</div> Note that <span class="excalifont">\neg\mathsf{RAIN}</span> has
-  disappeared from the clause since we can no longer make that true.
-<p>Now, we can apply unit propagation to give us <span class="excalifont">\nu(\mathsf{BIKE})=0</span> and we
-have the satisfying valuation: <div class="text-center my-4 excalifont">\nu(\mathsf{RAIN})=1</div></p>
-  <div class="text-center my-4 excalifont">\nu(\mathsf{BIKE})=0</div>
-<p>Sometimes the first guess doesn&rsquo;t work. Consider:</p>
-  <div class="text-center my-4 excalifont">\Set{\Set{\mathsf{RAIN},\neg\mathsf{BIKE}},\Set{\neg\mathsf{RAIN},\neg\mathsf{BIKE}},\Set{\neg\mathsf{RAIN},\mathsf{BIKE}}}.</div>
-<p>If we guess <span class="excalifont">\nu(\mathsf{RAIN})=1</span> in order to make the first clause true,
-what we end up with is:</p>
-  <div class="text-center my-4 excalifont">\Set{\Set{\neg\mathsf{BIKE}},\Set{\mathsf{BIKE}}}.</div>
-<p>By unit propagation, this results in <div class="text-center my-4 excalifont">\Set{\Set{}}</div> meaning the procedure
-fails.</p>
-<p>But fear not! We haven&rsquo;t tried <span class="excalifont">\nu(\mathsf{RAIN})=0</span>. What we do now, is we
-<strong>backtrack</strong> to the last choice and try the opposite choice. That is we go
-back to the CNF</p>
-  <div class="text-center my-4 excalifont">\Set{\Set{\mathsf{RAIN},\neg\mathsf{BIKE}},\Set{\neg\mathsf{RAIN},\neg\mathsf{BIKE}},\Set{\neg\mathsf{RAIN},\mathsf{BIKE}}}</div>
-  and see if we can proceed with the assumption that <span class="excalifont">\nu(\mathsf{RAIN})=0</span>. 
-<p>What we end up with then, is</p>
-  <div class="text-center my-4 excalifont">\Set{\Set{\neg\mathsf{BIKE}}}.</div> But now we get our satisfying valuation via
-  unit propagation and <span class="excalifont">\nu(\mathsf{BIKE})=0</span>. 
-<p>So, the final outcome is</p>
-  <div class="text-center my-4 excalifont">\nu(\mathsf{RAIN})=0</div>
-  <div class="text-center my-4 excalifont">\nu(\mathsf{BIKE})=0</div>
-  which clearly satisfies the corresponding formula
-  <div class="text-center my-4 excalifont">(\mathsf{RAIN}\lor\neg\mathsf{BIKE})\land(\neg\mathsf{RAIN}\lor\neg\mathsf{BIKE})\land(\neg\mathsf{RAIN}\lor\mathsf{BIKE})</div>
-<p>The <strong>splitting rule</strong>, in general, says that we should pick the first
-unassigned literal and try all unit propagation and pure literal elimination
-for  both possible truth-values of our picked literal. This means that we try
-the rules on two, simpler CNFs:</p>
-<ul>
-<li>
-<p>one where we eliminate all clauses containing our picked literal and
-removing all its complements,</p>
-</li>
-<li>
-<p>one where eliminate all clauses containing the negation of our picked
-literal and removing the literal from all remaining clauses.</p>
-</li>
-</ul>
-<p>Applying unit propagation and pure literal elimination in both cases could
-lead to a solution: if one gives us a valuation, we&rsquo;re done and the formula is
-satisfiable; if both fail, we know the formula is unsatisfiable.</p>
-<p>There&rsquo;s just one remaining possibility: at some stage, we might have to pick
-<em>again</em> because neither unit propagation nor pure literal elimination work.
-The crucial point here is that the splitting rule is a <strong>recursive rule</strong>. It
-basically breaks down the problem into simpler problems <em>which we try to solve
-with the same procedure</em>. But this can be repeated until we&rsquo;ve got such a
-simple problem that we easily get a solution. So, we simply guess again, apply
-our rules, backtrack if necessary, until we&rsquo;ve tried all the possibilities.</p>
-<p>Now we have all the ingredients to describe the DPLL algorithm in general:</p>
-<ul>
-<li>
-<p>The <strong>input</strong> is a CNF and we&rsquo;re trying to determine whether its satisfiable.</p>
-</li>
-<li>
-<p>First, we apply <strong>unit propagation</strong> and <strong>pure literal elimination</strong> as many times
-as possible.</p>
-</li>
-<li>
-<p>We check the <strong>termination conditions</strong>:</p>
-<ul>
-<li>If we end up with an empty CNF <span class="excalifont">\Set{}</span>, we&rsquo;ve satisfied the formula</li>
-<li>If we end up with an empty clause somewhere among our clauses <span class="excalifont">C_1,\dots, C_n</span>,
-<div class="text-center my-4 excalifont">\Set{C_1,\dots,\Set{},\dots C_n},</div> the CNF is unsatisfiable.
-</li>
-</ul>
-</li>
-<li>
-<p><strong>Recursion</strong>: If we can apply neither unit propagation nor pure literal
-elimination, we use the <strong>splitting rule</strong>, which applies the whole algorithm to
-the two CNFs that result setting the value of the first literal as true and
-false respectively.</p>
-</li>
-<li>
-<p><strong>Output</strong>: The output is a yes/no answer about the satisfiability of the
-formula, and if we keep track of the valuation along the way, we also get the
-satisfying valuation in case of satisfiability.</p>
-</li>
-</ul>
-<p>It&rsquo;s a mathematical fact that this algorithm always terminates and gives the
-correct answer: a valuation that satisfies the formula (we find an empty CNF
-along the way) or the answer that its unsatisfiable (all CNFs along the way end
-up with an empty clause).</p>
-<h2 id="applications">Applications<button class="btn btn-back-to-top">
-    
-    <i class="bi bi-chevron-double-up"></i>
-    
-  </button>
-</h2>
-<hr>
+<p>
 
-<p>The <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Boolean_satisfiability_problem"
-  target="_blank">Boolean satisfiability problem
-(SAT)</a> is one of
-the most important technical concepts in AI. It&rsquo;s lies at the core of <strong>automated
-reasoning techniques</strong> (&ldquo;theorem proving&rdquo;), as well as things like <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Automated_planning_and_scheduling"
-  target="_blank">automated planning
-and
-scheduling</a>.</p>
-<p>You&rsquo;ve effectively already seen how automated reasoning can work:</p>
-<ul>
-<li>If you wonder whether <span class="excalifont">P_1,P_2,\dots\vDash C</span>, transform it into a SAT problem
-for <span class="excalifont">\Set{P_1,P_2,\dots,\neg C}</span>.</li>
-<li>Apply a SAT solving algorithm, like DPLL, to get the answer to the SAT problem.</li>
-</ul>
-<p>This is, at the very core, how many <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Automated_theorem_proving"
-  target="_blank">automated reasoning
-programs</a>, like
+<img src="https://logicalmethods.ai/textbook/sat/img/ai_resolution.png" class="rounded  float-start inert-img img-fluid m-2"  width="400px"  alt="" >
+
+
+One of the main algorithms for <code class="customCode">SAT</code>-solving in logic-based context is based on
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Resolution_%28logic%29"
+  target="_blank">resolution</a>, which is a rule
+of inference that operates on CNFs to determine whether a given set of formulas
+is satisfiable. We shall now describe how it works.</p>
+<p>The starting point for the algorithm is a set of formulas that we want to test
+for satisfiability, and the <span class="excalifont">0</span>th step of the algorithm is to transform all of
+the formulas in the set into CNF. In the following, we assume that this step has
+been carried out.</p>
+<p>For concreteness sake, let&rsquo;s start with our very simple example of the
+inference:</p>
+<div class="text-center my-4 excalifont">(SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN), 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN 
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN.</div> 
+<p>We know that this inference is valid just in case the set</p>
+<div class="text-center my-4 excalifont">{ (SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN), 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN,  
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN }</div> 
+<p>is unsatisfiable. As luck will have it, all the formulas in our set are already
+in CNF, so we don&rsquo;t have to do anything for the <span class="excalifont">0</span>th step.</p>
+<p>To begin the algorithm, we first transform all the formulas inside the set
+themselves into sets. It is possible to define the algorithm purely on formulas,
+but it is easier to work with sets. In our case, the resulting sets are:</p>
+<div class="text-center my-4 excalifont">{ SUN , RAIN } &emsp; { 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN } &emsp; {
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN }</div> 
+<p>The idea is that we turn each conjunct of each formula into a set—the set of
+its disjuncts and we consider all these sets as the starting points.</p>
+<p>If our set would have contained <div class="text-center my-4 excalifont">(SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN ) 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN,</div> as well, we&rsquo;d have to add the following two sets:</p>
+<div class="text-center my-4 excalifont">{ (SUN , 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN } &emsp; { SUN }</div> 
+<p>The <strong>resolution rule</strong> is a <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Rule_of_inference"
+  target="_blank">rule of
+inference</a>, which allows us to
+derive new sets from the sets we already have in our collection. For example,
+the rule allows us to reason as follows:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/sat/img/resolution_application.png" class="rounded mx-auto d-block inert-img img-fluid"  width="300px"  alt="" >
+
+
+<p>What is going on here is that we have to <strong>complementary</strong> literals in the two
+sets: <span class="excalifont">SUN</span> and <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+SUN</span>. The resolution rule removes this pair and
+infers the set that contains the remaining literals from both sets.</p>
+<p>That is, if our sets had been <span class="excalifont">{ SUN, RAIN }</span> and <span class="excalifont">{ 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+SUN, 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+WIND }</span>, respectively, the result would have been <span class="excalifont">{ RAIN, 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+WIND }</span>.</p>
+<p>The idea behind the resolution rule is that to make each formula in our initial
+set true, we need to make at least one disjunct of each conjunction of each CNF
+true. In our case, we need to make at least one formula from <span class="excalifont">{ SUN, RAIN }</span> and
+one formula from <span class="excalifont">{
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+SUN }</span> true. But that formula can&rsquo;t be <span class="excalifont">SUN</span>, nor
+can it be <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+SUN</span>—because making the one true makes the other false and
+vice versa. So, we can eliminate the pair <span class="excalifont">SUN, 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+SUN</span> from
+consideration and leave the others as live candidates, which is what the
+resolution rule does.</p>
+<p>This inference is also called &ldquo;<strong>clausal resolution</strong>&rdquo;. The resolution method
+consists in repeatedly resolving, while adding the results to our initial set.
+If we ever get across a set of like <div class="text-center my-4 excalifont">{ SUN, 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN, RAIN },</div> we can
+kick it out from our search, since it is trivially satisfied and doesn&rsquo;t
+constrain our search (keeping it around might get us into loops, but that&rsquo;s
+another story). We keep doing this until one of two things happens:</p>
+<ol>
+<li>
+<p>We end up with an empty set <span class="excalifont">{ }</span> of clauses.</p>
+</li>
+<li>
+<p>We cannot resolve any further.</p>
+</li>
+</ol>
+<p>If the former happens, we infer the initial set is unsatisfiable. This is
+reasonable because we have arrived at the conclusion that we need to make at
+least one formula from <span class="excalifont">{ }</span> true to make the whole set true, but this is
+impossible. If, instead, the latter happens, we <em>can</em> pick a member from each
+set to make true and we infer that the original set is satisfiable. The way in
+which we do this is something we&rsquo;ll discuss at another occasion, but for now we
+leave it at that.</p>
+<p>If we continue applying the rule in our case, resolution yields the expected
+result:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/sat/img/resolution_final.png" class="rounded mx-auto d-block inert-img img-fluid"  width="500px"  alt="" >
+
+
+<p>We can derive the empty set <span class="excalifont">{ }</span> to witness the unsatisfiability of:</p>
+<div class="text-center my-4 excalifont">{ SUN , RAIN } &emsp; { 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN } &emsp; {
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN },</div> 
+<p>and corresponding validity of the inference in question:</p>
+<div class="text-center my-4 excalifont">(SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN), 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN.</div> 
+<p>Let&rsquo;s apply the method to our <em>invalid</em> inference, instead:</p>
+<div class="text-center my-4 excalifont">(SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN),  SUN 
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN.</div> 
+<p>Since everything is already in CNF, we get the sets:</p>
+<div class="text-center my-4 excalifont">{ SUN,  RAIN } &emsp; { SUN } &emsp; { 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN }.</div> 
+<p>We can apply resolution once as follows:</p>
+
+
+<img src="https://logicalmethods.ai/textbook/sat/img/resolution_invalid.png" class="rounded mx-auto d-block inert-img img-fluid"  width="400px"  alt="" >
+
+
+<p>Which leaves us with the following collection of sets to which no further
+resolutions can be applied:</p>
+<div class="text-center my-4 excalifont">{ SUN,  RAIN } &emsp; { SUN } &emsp; { 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN } &emsp; {SUN} </div> 
+<p>If we inspect this list, we can see that there&rsquo;s precisely one way of picking a
+member of each set: pick <span class="excalifont">SUN</span> from <span class="excalifont">{ SUN,  RAIN }</span> and <span class="excalifont">{ SUN }</span>, as well as
+<span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN</span> from <span class="excalifont">{
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN }</span>. This gives us our final countermodel
+<span class="excalifont">v</span> with <span class="excalifont">v(SUN) = 1</span> and <span class="excalifont">v(RAIN) = 0</span>—but we found it in a</p>
+<p>The resolution method described like this is a <strong>sound and complete</strong> decision
+procedure for satisfiability in the sense that for <em>any</em> set of formulas it
+correctly determines in finitely many steps <em>whether</em> the set is satisfiable. In
+many cases, it does so much quicker than the truth-table method. For example, in
+our valid inference, two applications of resolution where enough, even though we
+needed to check four valuations using truth-tables.</p>
+<p>Worst-case the method performs as bad as truth-tables. One bottle-neck is the
+translation into CNF, which we&rsquo;ve seen can have exponential blowout. But even if
+we use smart methods, like Tseytin transformations, resolution might still need
+many applications of the resolution rule to get the desired result: especially
+when it comes to satisfiable sets, where we need to go through every case.</p>
+<p>In any case, resolution is one of the main methods of <code class="customCode">SAT</code>-solving, which is
+the basis for state-of-the art automated reasoning technologies, like
 <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Prover9"
   target="_blank">Prover9</a>,
@@ -1367,37 +2204,17 @@ programs</a>, like
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Z3_Theorem_Prover"
   target="_blank">Z3</a>, and
 <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Vampire_theorem_prover"
-  target="_blank">Vampire</a>, work.</p>
-<p>In the exercises for this chapter, you&rsquo;ll learn a bit more about the &ldquo;planning&rdquo;
-applications.</p>
-<h2 id="further-readings">Further readings<button class="btn btn-back-to-top">
-    
-    <i class="bi bi-chevron-double-up"></i>
-    
-  </button>
-</h2>
-<hr>
-
-<p><strong>To be added</strong></p>
-<p><strong>Notes:</strong></p>
-<div class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn:1">
-<p>In general, if there are <span class="excalifont">n</span> propositional variables, there are
-<span class="excalifont">2^n</span> possible Boolean valuations.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:2">
-<p>Note that <span class="excalifont">\Set{\Set{\neg
-\mathsf{SUN}},\Set{\neg\mathsf{SUN}}}=\Set{\Set{\neg \mathsf{SUN}}}</span>.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-</ol>
-</div>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Vampire_%28theorem_prover%29"
+  target="_blank">Vampire</a>. These systems
+are regularly used for hardware verification and automated inference. But once
+we&rsquo;ve enriched our language with conditionals, we can even use it for activities
+such as AI <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Satplan"
+  target="_blank">planning</a>.</p>
 
 
   </div>
-   <p><em>Last edited: </em>24/09/2024</p>
+   <p><em>Last edited: </em>21/09/2025</p>
 </div>
 
 
