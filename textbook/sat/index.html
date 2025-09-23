@@ -2161,29 +2161,26 @@ RAIN },</div>
  
  <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
 RAIN.</div> 
-<p>Since everything is already in CNF, we get the sets:</p>
-<div class="text-center my-4 excalifont">{ SUN,  RAIN } &emsp; { SUN } &emsp; { 
+<p>To check for validity, we need to check the following set for <code class="customCode">SAT</code>:</p>
+<div class="text-center my-4 excalifont">{(SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN),  SUN, 
 <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
-RAIN }.</div> 
-<p>We can apply resolution once as follows:</p>
-
-
-<img src="https://logicalmethods.ai/textbook/sat/img/resolution_invalid.png" class="rounded mx-auto d-block inert-img img-fluid"  width="400px"  alt="" >
-
-
-<p>Which leaves us with the following collection of sets to which no further
-resolutions can be applied:</p>
-<div class="text-center my-4 excalifont">{ SUN,  RAIN } &emsp; { SUN } &emsp; { 
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN}</div> 
+<p>We need to do a simple application of <span class="excalifont">r₁</span> to transform <span class="excalifont">
 <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
-RAIN } &emsp; {SUN} </div> 
-<p>If we inspect this list, we can see that there&rsquo;s precisely one way of picking a
-member of each set: pick <span class="excalifont">SUN</span> from <span class="excalifont">{ SUN,  RAIN }</span> and <span class="excalifont">{ SUN }</span>, as well as
-<span class="excalifont">
-<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
-RAIN</span> from <span class="excalifont">{
-<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
-RAIN }</span>. This gives us our final countermodel
-<span class="excalifont">v</span> with <span class="excalifont">v(SUN) = 1</span> and <span class="excalifont">v(RAIN) = 0</span>—but we found it in a</p>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN</span> into its CNF <span class="excalifont">RAIN</span>, and transforming to sets, we get:</p>
+<div class="text-center my-4 excalifont">{ SUN,  RAIN } &emsp; { SUN } &emsp; { RAIN }.</div> 
+<p>But to this collection of sets no resolutions can be applied.</p>
+<p>In fact, if we inspect this list, we can see that there&rsquo;s precisely one way of
+picking a member of each set: pick <span class="excalifont">SUN</span> from <span class="excalifont">{ SUN,  RAIN }</span> and <span class="excalifont">{ SUN }</span>,
+as well as <span class="excalifont">RAIN</span> from <span class="excalifont">{RAIN }</span>. This gives us our final countermodel <span class="excalifont">v</span> with
+<span class="excalifont">v(SUN) = 1</span> and <span class="excalifont">v(RAIN) = 1</span>—the same as before, but now we found it in a
+mechanized fashion.</p>
 <p>The resolution method described like this is a <strong>sound and complete</strong> decision
 procedure for satisfiability in the sense that for <em>any</em> set of formulas it
 correctly determines in finitely many steps <em>whether</em> the set is satisfiable. In
