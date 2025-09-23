@@ -913,23 +913,22 @@ Let's apply the method to our _invalid_ inference, instead:
 
 $$(SUN {{< lor >}} RAIN),  SUN {{< therefore >}} {{< neg >}}RAIN.$$ 
 
-Since everything is already in CNF, we get the sets: 
+To check for validity, we need to check the following set for `SAT`:
 
-$${ SUN,  RAIN } &emsp; { SUN } &emsp; { {{< neg >}}RAIN }.$$ 
+$${(SUN {{< lor >}} RAIN),  SUN, {{< neg >}} {{< neg >}}RAIN}$$ 
 
-We can apply resolution once as follows:
+We need to do a simple application of $r₁$ to transform ${{< neg >}} {{< neg >}}RAIN$ into its CNF $RAIN$, and transforming to sets, we get:
 
-{{< img src="img/resolution_invalid.png" class="rounded mx-auto d-block inert-img img-fluid" width="400px">}}
+$${ SUN,  RAIN } &emsp; { SUN } &emsp; { RAIN }.$$ 
 
-Which leaves us with the following collection of sets to which no further
-resolutions can be applied:
 
-$${ SUN,  RAIN } &emsp; { SUN } &emsp; { {{< neg >}}RAIN } &emsp; {SUN} $$ 
+But to this collection of sets no resolutions can be applied.
 
-If we inspect this list, we can see that there's precisely one way of picking a
-member of each set: pick $SUN$ from ${ SUN,  RAIN }$ and ${ SUN }$, as well as
-${{<neg>}}RAIN$ from ${{{<neg>}}RAIN }$. This gives us our final countermodel
-$v$ with $v(SUN) = 1$ and $v(RAIN) = 0$—but we found it in a 
+In fact, if we inspect this list, we can see that there's precisely one way of
+picking a member of each set: pick $SUN$ from ${ SUN,  RAIN }$ and ${ SUN }$,
+as well as $RAIN$ from ${RAIN }$. This gives us our final countermodel $v$ with
+$v(SUN) = 1$ and $v(RAIN) = 1$—the same as before, but now we found it in a
+mechanized fashion.
 
 The resolution method described like this is a **sound and complete** decision
 procedure for satisfiability in the sense that for _any_ set of formulas it
