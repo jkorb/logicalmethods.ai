@@ -485,11 +485,11 @@
             <li>
               <a class="dropdown-item 
                 fw-bold active
-                link-opacity-50
+                
                 "
-                href="javascript:;"
+                href="/exercises/sat/"
               >5. 
-                <i class="bi bi-lock-fill"></i>
+                <i class="bi bi-unlock-fill"></i>
                  Boolean satisfiability
               </a>
             </li>
@@ -732,464 +732,277 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
 <div class="container exercises">
   <div class="m-4">
 </div>
-<div id="truth-tables" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Truth tables
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="truth-tablesSolution"
-        onclick="showPasswordModal('truth-tablesSolution', 'exc-sat')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="truth-function-representations" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Truth-function representations
     </div>
-</h5><p>Use the truth-table method to determine the validity of the following
-inferences:</p>
+</h5><p>We looked at how to read off a Boolean expression from a truth-table. Apply the
+method to the following:</p>
+<div class="text-center">
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>
+
+<img src="https://logicalmethods.ai/exercises/sat/img/and_table.png" class="rounded inert-img img-fluid"  width="300px"  alt="" >
+
+</td>
+          <td></td>
+          <td>
+
+<img src="https://logicalmethods.ai/exercises/sat/img/xor_table.png" class="rounded inert-img img-fluid"  width="300px"  alt="" >
+
+</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>
+
+<img src="https://logicalmethods.ai/exercises/sat/img/xnor_table.png" class="mx-auto d-block rounded inert-img img-fluid"  width="300px"  alt="" >
+
+</td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+</div>
+<p>Inspect the resulting Boolean expressions. Can you simplify them while
+remaining in DNF?</p>
 
 </div>
-<div id="a" class=" homework"><h6 class=" homework">a)</h6><div class="text-center my-4 excalifont">\neg\mathsf{RAIN}\lor\mathsf{BIKE}, \mathsf{BIKE}\vDash\neg\mathsf{RAIN}</div>
-
-</div>
-<div id="b" ><h6 class="">b)</h6><div class="text-center my-4 excalifont">\neg\mathsf{RAIN}\lor\mathsf{BIKE}, \mathsf{RAIN}\vDash\mathsf{RAIN}</div>
-
-</div>
-<div id="c" ><h6 class="">c)</h6><div class="text-center my-4 excalifont">\neg\mathsf{RAIN}\vDash\mathsf{RAIN}\lor (\neg\mathsf{RAIN}\land
-\mathsf{BIKE})</div>
-
-</div>
-<div id="d" class=" homework"><h6 class=" homework">d)</h6><div class="text-center my-4 excalifont">\mathsf{RAIN}\lor (\mathsf{BIKE}\land \mathsf{SUN})\vDash
-\mathsf{RAIN}\lor\mathsf{BIKE}</div>
-
-</div>
-<div id="truth-tablesSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>
-
-<img src="https://logicalmethods.ai/exercises/sat/img/1a.png" class="img-thumbnail"    alt="" >
-
-
-
-
-<img src="https://logicalmethods.ai/exercises/sat/img/1b.png" class="img-thumbnail"    alt="" >
-
-
-
-
-<img src="https://logicalmethods.ai/exercises/sat/img/1c.png" class="img-thumbnail"    alt="" >
-
-
-
-
-<img src="https://logicalmethods.ai/exercises/sat/img/1d.png" class="img-thumbnail"    alt="" >
-
-</p>
-
-</div>
-<div id="cnfs" class=" latex solved"><h5 class="latex solved">
-    <div class="d-inline-flex flex-row m-0 p-0 ">CNFs
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="cnfsSolution"
-        onclick="showPasswordModal('cnfsSolution', 'exc-sat')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="circuit-representations" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Circuit representations
     </div>
-</h5><p>Transform the following formulas into CNF.</p>
+</h5><p>We&rsquo;ve observed that our relay circuits are essentially build up from relay
+implementations of <span class="Boolean">NOT</span> (<span class="excalifont">default &ldquo;on&rdquo;</span>) and <span class="Boolean">AND</span> (<span class="excalifont">default &ldquo;off&rdquo;</span>). Use
+the idea to represent the following circuits as Boolean expressions:</p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>
+
+<img src="https://logicalmethods.ai/exercises/sat/img/or_impl.png" class="rounded inert-img img-fluid"  width="300px"  alt="" >
+
+</td>
+          <td>   </td>
+          <td>
+
+<img src="https://logicalmethods.ai/exercises/sat/img/xor_impl.png" class="rounded inert-img img-fluid"  width="400px"  alt="" >
+
+</td>
+      </tr>
+  </tbody>
+</table>
+<p>Are the resulting formulas in normal form (CNF or DNF)?</p>
 
 </div>
-<div id="a-1" ><h6 class="">a)</h6><div class="text-center my-4 excalifont">\neg(\mathsf{RAIN}\lor \mathsf{SUN})\land
-\neg\neg(\mathsf{SUN}\lor\neg\mathsf{RAIN})</div>
-
-</div>
-<div id="b-1" ><h6 class="">b)</h6><div class="text-center my-4 excalifont">(\mathsf{RAIN})\land (\mathsf{SUN}\lor\neg\mathsf{BIKE})</div>
-
-</div>
-<div id="c-1" class=" homework"><h6 class=" homework">c)</h6><div class="text-center my-4 excalifont">(\mathsf{RAIN}\land \mathsf{SUN}\land \neg\mathsf{SUN})\lor
-(\neg\mathsf{RAIN}\land \neg\mathsf{SUN}\land \mathsf{SUN})</div>
-
-</div>
-<div id="d-1" ><h6 class="">d)</h6><div class="text-center my-4 excalifont">\neg(\mathsf{RAIN}\lor (\mathsf{SUN}\lor \neg\mathsf{SUN}))\land
-\neg((\neg\mathsf{RAIN}\lor \neg\mathsf{SUN})\lor \mathsf{SUN})</div>
-
-
-
-
-
-
-<hr>
-<a class="btn btn-sm btn-link link-dark link-underline-opacity-0" href="#dd0ae4de9545bb12f166a0d0ab3358dc1df213997952239b9767a344a5a7accf" type="button" data-bs-toggle="collapse" data-bs-target="#dd0ae4de9545bb12f166a0d0ab3358dc1df213997952239b9767a344a5a7accf" aria-expanded="false" aria-controls="dd0ae4de9545bb12f166a0d0ab3358dc1df213997952239b9767a344a5a7accf" >
-$\LaTeX$ answer template <i class="bi bi-chevron-left toggle-icon"></i>
-</a>
-<div id="dd0ae4de9545bb12f166a0d0ab3358dc1df213997952239b9767a344a5a7accf" class="collapse bg-black rounded m-2 p-2 " style="position:relative;">
-  <button class="btn btn-primary shadow" style="position:absolute; top:10px;right:10px" onclick="copyContent('dd0ae4de9545bb12f166a0d0ab3358dc1df213997952239b9767a344a5a7accf-inner')"><i class="bi bi-clipboard"></i> Copy!</button>
-  <pre><code class="text-white" id="dd0ae4de9545bb12f166a0d0ab3358dc1df213997952239b9767a344a5a7accf-inner">
-
-\begin{itemize}
-  \item  <span class="excalifont">\neg(\mathsf{RAIN}\lor \mathsf{SUN})\land
-\neg\neg(\mathsf{SUN}\lor\neg\mathsf{RAIN})\leadsto</span>
-  \item <span class="excalifont">(\mathsf{RAIN})\land (\mathsf{SUN}\lor\neg\mathsf{BIKE})</span>
-  \item <span class="excalifont">(\mathsf{RAIN}\land \mathsf{SUN}\land \neg\mathsf{SUN})\lor
-(\neg\mathsf{RAIN}\land \neg\mathsf{SUN}\land \mathsf{SUN})</span>
-  \item <span class="excalifont">\neg(\mathsf{RAIN}\lor (\mathsf{SUN}\lor \neg\mathsf{SUN})\land
-\neg((\neg\mathsf{RAIN}\lor \neg\mathsf{SUN})\lor \mathsf{SUN})</span>
-\end{itemize}
-
-</code></pre>
-</div>
-<hr>
-
-
-</div>
-<div id="cnfsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong></p>
-<p>Conversion steps:</p>
-<div class="text-center my-4 excalifont">\neg(\mathsf{RAIN}\lor\mathsf{SUN})\land\neg\neg(\mathsf{SUN}\lor\neg\mathsf{RAIN})</div>
-<div class="text-center my-4 excalifont">\leadsto(\neg\mathsf{RAIN}\land\neg\mathsf{SUN})\land(\mathsf{SUN}\lor\neg\mathsf{RAIN})</div>
-<p><strong>b)</strong></p>
-<p>This is already in CNF, we don&rsquo;t have to convert anything.</p>
-<div class="text-center my-4 excalifont">\mathsf{RAIN}\land(\mathsf{SUN}\lor\neg\mathsf{BIKE})</div>
-<p><strong>c)</strong></p>
-<p>Conversion steps:</p>
-<div class="text-center my-4 excalifont">(\mathsf{RAIN}\land\mathsf{SUN}\land\neg\mathsf{SUN})\lor(\neg\mathsf{RAIN}\land
-\neg\mathsf{SUN}\land\mathsf{SUN})</div>
-<div class="text-center my-4 excalifont">\leadsto((\mathsf{RAIN}\land\mathsf{SUN}\land\neg\mathsf{SUN})\lor
-\neg\mathsf{RAIN})\land((\mathsf{RAIN}\land\mathsf{SUN}\land\neg\mathsf{SUN})\lor
-\neg\mathsf{SUN})</div>
-<div class="text-center my-4 excalifont">\qquad \land(\mathsf{RAIN}\land\mathsf{SUN}\land\neg\mathsf{SUN})\lor\mathsf{SUN})</div>
-<div class="text-center my-4 excalifont">\leadsto(\mathsf{RAIN}\lor\neg\mathsf{RAIN})\land(\mathsf{SUN}\lor\neg\mathsf{RAIN})\land(\neg\mathsf{SUN}\lor\neg\mathsf{RAIN})\land(\mathsf{RAIN}\lor\neg\mathsf{SUN})</div>
-<div class="text-center my-4 excalifont">\qquad\land(\mathsf{SUN}\lor\neg\mathsf{SUN})\land(\neg\mathsf{SUN}\lor\neg\mathsf{SUN})\land(\mathsf{RAIN}\lor\mathsf{SUN})</div>
-<div class="text-center my-4 excalifont">\qquad\land(\mathsf{SUN}\lor\mathsf{SUN})\land(\neg\mathsf{SUN}\lor\mathsf{SUN})</div>
-<p><strong>d)</strong></p>
-<p>Conversion steps:</p>
-<div class="text-center my-4 excalifont">\neg(\mathsf{RAIN}\lor(\mathsf{SUN}\lor\neg\mathsf{SUN}))\land\neg((\neg\mathsf{RAIN}\lor\neg\mathsf{SUN})\lor\mathsf{SUN})</div>
-<div class="text-center my-4 excalifont">\leadsto(\neg\mathsf{RAIN}\land\neg(\mathsf{SUN}\lor\neg\mathsf{SUN}))\land(\neg(\neg\mathsf{RAIN}\lor\neg\mathsf{SUN})\land\neg\mathsf{SUN})</div>
-<div class="text-center my-4 excalifont">\leadsto(\neg\mathsf{RAIN}\land\neg\mathsf{SUN}\land\neg\neg\mathsf{SUN})\land(\neg\neg\mathsf{RAIN}\land\neg\neg\mathsf{SUN}\land\neg\mathsf{SUN})</div>
-<div class="text-center my-4 excalifont">\leadsto(\neg\mathsf{RAIN}\land\neg\mathsf{SUN}\land\mathsf{SUN})\land(\mathsf{RAIN}\land\mathsf{SUN}\land\neg\mathsf{SUN})</div>
-
-</div>
-<div id="dpll" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0 p-0 ">DPLL
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="dpllSolution"
-        onclick="showPasswordModal('dpllSolution', 'exc-sat')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="equivalence" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Equivalence
     </div>
-</h5>
-</div>
-<div id="a-2" ><h6 class="">a)</h6><p>Redo exercise 1 using the DPLL algorithm instead of truth-tables.</p>
-
-</div>
-<div id="b-2" ><h6 class="">b)</h6><p>Use the DPLL algorithm to determine whether the following formulas are
-satisfiable. If necessary, first bring the formula into CNF.</p>
+</h5><p>The <span class="Boolean">XNOR</span> function is special: it expresses that <code class="customCode">X</code> and <code class="customCode">Y</code> have the same value—just check the table!</p>
 <ol>
 <li>
-<p><span class="excalifont">(p\lor q\lor \neg r)\land (p\lor\neg q\lor \neg r)</span></p>
+<p>Find the simplest representation of <span class="Boolean">XNOR</span> in terms of <span class="Boolean">NOT</span> and <span class="Boolean">XOR</span>.</p>
+<p><em>Hint</em>: Inspect <span class="Boolean">XNOR</span> and <span class="Boolean">XOR</span>&rsquo;s function tables, how are they related?</p>
 </li>
 <li>
-<p><span class="excalifont">\neg(p\land q)\lor (r\land \neg r)</span></p>
-</li>
-<li>
-<p><span class="excalifont">(p\lor q)\land (p\lor \neg q)\land (\neg p\lor q)\land (\neg p\lor \neg q)</span></p>
-</li>
-<li>
-<p><span class="excalifont">(p\land (p\lor q))\land (q\land (q\lor p))</span></p>
+<p>Use this implementation to reduce the verification problem for a relay circuit from two <code class="customCode">SAT</code> problems for different sets (as in the text) to a single <code class="customCode">SAT</code> problem for a single expression.</p>
+<p><em>Hint</em>: Think about when <code class="customCode">X <span class="Boolean">XNOR</span> Y</code> is true and when <code class="customCode">X <span class="Boolean">XOR</span> Y</code> is true.</p>
 </li>
 </ol>
 
 </div>
-<div id="dpllSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>Exercise 1(a)</strong></p>
-<ul>
-<li>CNF formula:
-<span class="excalifont">(\neg\mathsf{RAIN}\lor\mathsf{BIKE})\land(\mathsf{BIKE}\land\mathsf{RAIN})</span></li>
-<li>CNF set:
-<span class="excalifont">\Set{\Set{\neg\mathsf{RAIN},\mathsf{BIKE}},\Set{\mathsf{BIKE}},\Set{\mathsf{RAIN}}}</span></li>
-<li>By pure literal elimination on <span class="excalifont">\mathsf{BIKE}</span> we get
-<span class="excalifont">\Set{\Set{\mathsf{RAIN}}}</span> and <span class="excalifont">\nu(\mathsf{BIKE})=1</span>.</li>
-<li>By unit propogation on <span class="excalifont">\mathsf{RAIN}</span> we get <span class="excalifont">\Set{}</span> and
-<span class="excalifont">\nu(\mathsf{BIKE})=1</span> and <span class="excalifont">\nu(\mathsf{RAIN})=1</span>.</li>
-<li>This valuation does satisfy the CNF formula.</li>
-</ul>
-<p><strong>Exercise 1(b)</strong></p>
-<ul>
-<li>CNF formula: <span class="excalifont">(\neg\mathsf{RAIN}\lor\mathsf{BIKE})\land(\mathsf{RAIN}\land\neg\mathsf{RAIN})</span></li>
-<li>CNF set: <span class="excalifont">\Set{\Set{\neg\mathsf{RAIN},\mathsf{BIKE}},\Set{\mathsf{RAIN}},\Set{\neg\mathsf{RAIN}}}</span></li>
-<li>By pure literal elimination on <span class="excalifont">\mathsf{BIKE}</span> we get
-<span class="excalifont">\Set{\Set{\mathsf{RAIN}},\Set{\neg\mathsf{RAIN}}}</span> and <span class="excalifont">\nu(\mathsf{BIKE})=1</span>.</li>
-<li>By unit propogation on <span class="excalifont">\mathsf{RAIN}</span> we get <span class="excalifont">\Set{\Set{}}</span>, which shows that
-the set is unsatisfiable.</li>
-</ul>
-<p><strong>Exercise 1(c)</strong></p>
-<ul>
-<li>CNF formula:
-<span class="excalifont">(\neg\text{RAIN}\land\neg\text{RAIN})\land(\text{RAIN}\lor\neg\text{BIKE})</span></li>
-<li>CNF set: <span class="excalifont">\Set{\Set{\neg\text{RAIN}},\Set{\text{RAIN},\neg\text{BIKE}}}</span></li>
-<li>By pure literal elimination on <span class="excalifont">\neg\mathsf{BIKE}</span> we get
-<span class="excalifont">\Set{\Set{\neg\text{RAIN}}}</span> and <span class="excalifont">\nu(\mathsf{BIKE})=0</span>.</li>
-<li>By pure literal elimination on <span class="excalifont">\neg\mathsf{RAIN}</span> we get <span class="excalifont">\Set{}</span> and
-<span class="excalifont">\nu(\mathsf{BIKE})=0</span> and <span class="excalifont">\nu(\mathsf{RAIN})=0</span>.</li>
-<li>This valuation does satisfy the CNF formula.</li>
-</ul>
-<p><strong>Exercise 1(d)</strong></p>
-<ul>
-<li>CNF formula:
-<span class="excalifont">((\text{RAIN}\lor\text{BIKE})\land(\text{RAIN}\lor\text{SUN}))\land(\neg\text{RAIN}\land\neg\text{BIKE})</span></li>
-<li>CNF set:
-<span class="excalifont">\Set{\Set{\text{RAIN},\text{BIKE}},\Set{\text{RAIN},\text{SUN}},\Set{\neg\text{RAIN}},\Set{\neg\text{BIKE}}}</span></li>
-<li>By pure literal elimination on <span class="excalifont">\mathsf{SUN}</span> we get
-<span class="excalifont">\Set{\Set{\text{RAIN},\text{BIKE}},\Set{\neg\text{RAIN}},\Set{\neg\text{BIKE}}}</span>  and <span class="excalifont">\nu(\mathsf{SUN})=1</span>.</li>
-<li>By unit propogation on <span class="excalifont">\neg\mathsf{BIKE}</span> we get <span class="excalifont">\Set{\Set{\text{RAIN}},\Set{\neg\text{RAIN}}}</span> and <span class="excalifont">\nu(\mathsf{BIKE})=0</span> and <span class="excalifont">\nu(\mathsf{SUN})=1</span>.</li>
-<li>By unit propogation on <span class="excalifont">\mathsf{RAIN}</span> we get <span class="excalifont">\Set{\Set{}}</span>, which shows that the set is unsatisfiable.</li>
-</ul>
-
-</div>
-<div id="planning" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Planning
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="planningSolution"
-        onclick="showPasswordModal('planningSolution', 'exc-sat')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="truth-tables" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Truth tables
     </div>
-</h5><p>One of the main applications of SAT-solving (via truth-tables, DPLL, or
-otherwise) is <em>automated planning</em>. This exercise goes through a simplified example to
-show how this works.</p>
-<p><strong>Setup</strong>: We&rsquo;ve got a robot that sits in front of two switches, one on the left
-and one on the right. Each switch controls a lamp, the left switch controls the
-left lamp and the right switch the right lamp. The switches work as follows:</p>
-<ul>
-<li>If a lamp is on and you operate the switch, the lamp turns off.</li>
-<li>If a lamp is off and you operate the switch, the lamp turns on.</li>
-</ul>
-<p>The left lamp is currently on and the right one is off. The robot can operate
-the switches and has the following goal:</p>
-<ul>
-<li>Turn the left lamp off and the right one on.</li>
-</ul>
-<p>It needs to devise a simple <strong>plan</strong> to achieve that.</p>
-<p>The <strong>idea</strong> is to use SAT solving to devise such a plan. For that, we need to
-first translate the problem into propositional logic.</p>
+</h5><p>Use the truth-table method to check whether the following claims are true:</p>
+<ol>
+<li>
+<p>The set of expressions <code class="customCode">((<span class="Boolean">NOT</span> X) <span class="Boolean">OR</span> (<span class="Boolean">NOT</span> Y))</code> and <code class="customCode">(X <span class="Boolean">AND</span> Y)</code> is <code class="customCode">SAT</code>.</p>
+</li>
+<li>
+<p>The set formulas <span class="excalifont">{ 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN, (RAIN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ (
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+WIND 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN) }</span> is <code class="customCode">SAT</code>.</p>
+</li>
+</ol>
 
 </div>
-<div id="a-translation" ><h6 class="">a) Translation</h6><p>Our first step is to devise an appropriate language. Here&rsquo;s the idea:</p>
-<ul>
-<li>
-<p>We think of the situation as made up of
-<i class="bi bi-box-arrow-up-right h-6"></i>
-<a href="https://en.wikipedia.org/wiki/Discrete" class="link-dark" rel="external" target="_blank">discrete</a>
- time points, <span class="excalifont">1,2,\dots,n</span>.
-For simplicity, we only assume times <span class="excalifont">1</span> and <span class="excalifont">2</span>.</p>
-</li>
-<li>
-<p>For each state that our setup can be in at a given time, we devise a
-propositional variable that describes the state. For example, we could have
-<span class="excalifont">L\_Lamp\_1</span> to say that the left lamp is on at time <span class="excalifont">1</span>, and <span class="excalifont">\neg
-L\_Lamp\_2</span>
-to say that the lamp at <span class="excalifont">2</span> is off.</p>
-</li>
-<li>
-<p>For each action the robot can perform, we also have a propositional variable.
-For example, we have <span class="excalifont">L\_SWITCH\_1</span> to say that the robot switches the left
-switch at time <span class="excalifont">1</span>, etc.</p>
-</li>
-<li>
-<p>We have the usual Boolean connectives <span class="excalifont">\neg,\land,\lor</span>.</p>
-</li>
-</ul>
-<p><strong>Task</strong>: Determine the BNF of the language.</p>
-
-</div>
-<div id="b-formalize" ><h6 class="">b) Formalize</h6><p>Once we have a suitable language, we need to translate the setup into formulas:</p>
-<ul>
-<li>
-<p>We need to describe the set-up:</p>
-<ul>
-<li>the left lamp is on at time <span class="excalifont">1</span></li>
-<li>the right lamp is off at time <span class="excalifont">1</span>.</li>
-</ul>
-</li>
-<li>
-<p>We need to formalize the system rules:<span class="excalifont">^\dagger</span></p>
-<ul>
-<li>If a lamp is on at a given time and the corresponding switch is flipped, the
-lamp is off at the next time.</li>
-<li>If a lamp is off at a given time and the corresponding switch is flipped, the
-lamp is on at the next time.</li>
-</ul>
-</li>
-<li>
-<p>We need to formalize the goals:</p>
-<ul>
-<li>the left lamp is off at time <span class="excalifont">2</span></li>
-<li>the right lamp is on at time <span class="excalifont">2</span>.</li>
-</ul>
-</li>
-<li>
-<p>We need to formalize <i class="bi bi-box-arrow-up-right h-6"></i>
-<a href="https://en.wikipedia.org/wiki/Frame_problem" class="link-dark" rel="external" target="_blank">frame
-conditions</a>
- to avoid &ldquo;weird&rdquo;
-behavior like lamps switching on/off by themselves:</p>
-<ul>
-<li>
-<p>If a lamp is on at a given time and the corresponding switch is <em>not</em>
-flipped, the light is still on at the ext time.</p>
-</li>
-<li>
-<p>If a lamp is off at a given time and the corresponding switch is <em>not</em>
-flipped, the light is still off at the next time.</p>
-</li>
-</ul>
-</li>
-</ul>
-<p><span class="excalifont">\dagger</span>: We don&rsquo;t have <span class="excalifont">A\to B</span> in our language, because we haven&rsquo;t dealt with
-conditionals yet. Instead of <span class="excalifont">(A\land B)\to C</span> you can, equivalently, write
-<span class="excalifont">\neg (A\land B)\lor C</span>. This we&rsquo;ll discuss in more detail in the next chapter.</p>
-<p><strong>Task</strong>: Formalize the setup.</p>
-
-</div>
-<div id="c-planning" ><h6 class="">c) Planning</h6><p>The planning problem reduces to the question whether the set containing:</p>
-<ul>
-<li>the setup</li>
-<li>the rules and frame conditions</li>
-<li>the goals</li>
-</ul>
-<p>is satisfiable. A valuation that makes all of these true will tell the robot
-which actions to carry out. If there&rsquo;s more than one, it can chose.</p>
-<p><strong>Task</strong>: Use the DPLL algorithm to find a course of action for the robot.</p>
-
-</div>
-<div id="planningSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>Task:</strong> BNF, using &ldquo;LL&rdquo; to say the left lamp is on, &ldquo;LS&rdquo; to describe moving the left switch, etc.</p>
-<div class="text-center my-4 excalifont"> \langle{var}\rangle ::= LL1 \mid LL2 \mid LS1 \mid RL1 \mid RL2 \mid RS1 </div>
-<div class="text-center my-4 excalifont"> \langle{unop}\rangle ::= \neg </div>
-<div class="text-center my-4 excalifont"> \langle{binop}\rangle ::= \land \mid \lor </div>
-<div class="text-center my-4 excalifont"> \langle{fml}\rangle ::= \langle{unop}\rangle\langle{fml}\rangle \mid (\langle{fml}\rangle\langle{binop}\rangle\langle{fml}\rangle) </div>
-<br/>
-<p><strong>Task:</strong> Formalization</p>
-<p>Setup</p>
-<ul>
-<li><span class="excalifont">LL1</span></li>
-<li><span class="excalifont">\neg RL1</span></li>
-</ul>
-<p>Goals</p>
-<ul>
-<li><span class="excalifont">\neg LL2</span></li>
-<li><span class="excalifont">RL2</span></li>
-</ul>
-<p>Rules</p>
-<ul>
-<li><span class="excalifont">\neg(LL1\land LS1)\lor\neg LL2</span></li>
-<li><span class="excalifont">\neg(\neg LL1\land LS1)\lor LL2</span></li>
-<li><span class="excalifont">\neg(RL1\land RS1)\lor\neg RL2</span></li>
-<li><span class="excalifont">\neg(\neg RL1\land RS1)\lor RL2</span></li>
-</ul>
-<p>Frames</p>
-<ul>
-<li><span class="excalifont">\neg(LL1\land\neg LS1)\lor LL2</span></li>
-<li><span class="excalifont">\neg(\neg LL1\land\neg LS1)\lor\neg LL2</span></li>
-<li><span class="excalifont">\neg(RL1\land\neg RS1)\lor RL2</span></li>
-<li><span class="excalifont">\neg(\neg RL1\land\neg RS1)\lor\neg RL2</span></li>
-</ul>
-<br/>
-<p><strong>Task:</strong> DPLL</p>
-<p>Convert the rules into CNF.</p>
-<ul>
-<li><span class="excalifont">\neg LL1\lor\neg LS1\lor\neg LL2</span></li>
-<li><span class="excalifont">LL1\lor\neg LS1\lor LL2</span></li>
-<li><span class="excalifont">\neg RL1\lor\neg RS1\lor\neg RL2</span></li>
-<li><span class="excalifont">RL1\lor\neg RS1\lor RL2</span></li>
-</ul>
-<p>Convert the frames into CNF.</p>
-<ul>
-<li><span class="excalifont">\neg LL1\lor LS1\lor LL2</span></li>
-<li><span class="excalifont">LL1\lor LS1\lor\neg LL2</span></li>
-<li><span class="excalifont">\neg RL1\lor RS1\lor RL2</span></li>
-<li><span class="excalifont">RL1\lor RS1\lor\neg RL2</span></li>
-</ul>
-<br/>
-<p>Combine with the setup and goal formulas to get the following set of conditions.</p>
-<div class="text-center my-4 excalifont">\lbrace\Set{ LL1 } , \Set{ \neg RL1 } , \Set{ \neg LL2 } , \Set{ RL2 } ,</div>
-<div class="text-center my-4 excalifont">\Set{ \neg LL1 , \neg LS1 , \neg LL2 } , \Set{ LL1 , \neg LS1 , LL2 } , \Set{
-\neg RL1 , \neg RS1 , \neg RL2 } ,</div>
-<div class="text-center my-4 excalifont">\Set{ RL1 , \neg RS1 , RL2 } ,</div>
-<div class="text-center my-4 excalifont">\Set{ \neg LL1 , LS1 , LL2 } , \Set{ LL1 , LS1 , \neg LL2 } , \Set{ \neg RL1 ,
-RS1 , RL2 }, </div>
-<div class="text-center my-4 excalifont">\Set{ RL1 , RS1 , \neg RL2 }\rbrace</div>
-<br/>
-<p>By unit propogation, first on <span class="excalifont">LL1</span> and then on <span class="excalifont">RL2</span>, we get:</p>
-<div class="text-center my-4 excalifont">\lbrace\Set{ \neg RL1 } , \Set{ \neg LL2 } , \Set{ \neg LS1 , \neg LL2 } , \Set{ \neg
-RL1 , \neg RS1 } ,</div>
-<div class="text-center my-4 excalifont">\Set{ LS1 , LL2 } , \Set{ RL1 , RS1 }\rbrace</div>
-<br/>
-<p>By unit propogation, next on <span class="excalifont">\neg RL1</span> and then on <span class="excalifont">\neg LL2</span>, we get:</p>
-<div class="text-center my-4 excalifont">\Set{\Set{ LS1 } , \Set{ RS1 }}</div>
-<br/>
-<p>By unit propogation on <span class="excalifont">LS1</span> and <span class="excalifont">RS1</span> we get a solution.</p>
-<p><span class="excalifont">\nu(LL1)=1, \nu(LL2)=0, \nu(RL1)=0,\nu(RL2)=1, \nu(LS1)=1, \nu(RS1)=1</span></p>
-
-</div>
-<div id="research" class=" homework"><h5 class="homework">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Research
+<div id="mystery-formula" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Mystery formula
     </div>
-</h5><p>Find out about <i class="bi bi-box-arrow-up-right h-6"></i>
-<a href="https://en.wikipedia.org/wiki/Disjunctive_normal_form" class="link-dark" rel="external" target="_blank">Disjunctive Normal
-Forms (DNFs)</a>
-.</p>
+</h5><p>Determine the following <span class="excalifont">&ldquo;mystery formula&rdquo;</span> form its truth-table:</p>
+
+
+<img src="https://logicalmethods.ai/exercises/sat/img/mystery_table.png" class="mx-auto d-block rounded inert-img img-fluid"  width="400px"  alt="" >
+
+
+<p>What&rsquo;s the shortest representation of the formula you can find?</p>
 
 </div>
-<div id="a-3" ><h6 class="">a)</h6><p>Determine the algorithm for rewriting formulas equivalently in DNF.</p>
-<p><em>Hint</em>: The algorithm is <em>very</em> similar to the rewriting into CNF, there&rsquo;s just
-two minor differences.</p>
-
-</div>
-<div id="b-3" ><h6 class="">b)</h6><p>Does the DPLL algorithm work to solve the SAT problem for formulas in DNF?</p>
-
-</div>
-<div id="discussion" class=" latex"><h5 class="latex">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Discussion
+<div id="normal-forms" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Normal Forms
     </div>
-</h5><p>As a motivation for discussing DPLL, we&rsquo;ve mentioned combinatorial explosion.
-Doesn&rsquo;t DPLL suffer from the same problem? Transforming a formula into CNF can
-be very resource intensive. Also: what if I cannot apply unit propagation and
-pure literal elimination efficiently?</p>
+</h5><p>Transform the following formulas into DNF and CNF:</p>
+<ol>
+<li><span class="excalifont">(RAIN
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+(SUN
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN))</span></li>
+<li><span class="excalifont">(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+WIND))</span></li>
+<li><span class="excalifont">(RAIN
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+SUN)
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ (
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+SUN)</span></li>
+</ol>
 
-
-
-
-
-<hr>
-<a class="btn btn-sm btn-link link-dark link-underline-opacity-0" href="#bec3ecb2510dc6fda71571aab01f35673eb33f37cbf674f2118bb96bc75fcd42" type="button" data-bs-toggle="collapse" data-bs-target="#bec3ecb2510dc6fda71571aab01f35673eb33f37cbf674f2118bb96bc75fcd42" aria-expanded="false" aria-controls="bec3ecb2510dc6fda71571aab01f35673eb33f37cbf674f2118bb96bc75fcd42" >
-$\LaTeX$ answer template <i class="bi bi-chevron-left toggle-icon"></i>
-</a>
-<div id="bec3ecb2510dc6fda71571aab01f35673eb33f37cbf674f2118bb96bc75fcd42" class="collapse bg-black rounded m-2 p-2 " style="position:relative;">
-  <button class="btn btn-primary shadow" style="position:absolute; top:10px;right:10px" onclick="copyContent('bec3ecb2510dc6fda71571aab01f35673eb33f37cbf674f2118bb96bc75fcd42-inner')"><i class="bi bi-clipboard"></i> Copy!</button>
-  <pre><code class="text-white" id="bec3ecb2510dc6fda71571aab01f35673eb33f37cbf674f2118bb96bc75fcd42-inner">
-
-% Just write your answer text in \LaTeX. It's a good exercise to write even
-normal, non-formal text here.
-
-</code></pre>
 </div>
-<hr>
+<div id="resolution" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Resolution
+    </div>
+</h5><p>Use the resolution method to determine whether the following formulas are
+satisfiable:</p>
+<ol>
+<li><span class="excalifont">(SUN
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ WIND)
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ (SUN
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ WIND)</span></li>
+<li><span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+(SUN
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN)
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ (WIND
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ WIND)</span></li>
+<li><span class="excalifont">(SUN
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN)
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ (SUN
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN)
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ (
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN)
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ (
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN)</span></li>
+<li><span class="excalifont">(SUN
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ (SUN
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN))
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ (RAIN
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ (RAIN
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN))</span></li>
+</ol>
+
+</div>
+<div id="valid-inference" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Valid inference
+    </div>
+</h5><p>Determine whether the following inferences are valid using both the truth-table and the resolution method. Which one is faster?</p>
+<ol>
+<li>
+<p><span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ (
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+SUN)</span></p>
+</li>
+<li>
+<p><span class="excalifont">RAIN
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ (RAIN
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ WIND)
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+
+RAIN
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+SUN</span></p>
+</li>
+</ol>
 
 
   </div>
