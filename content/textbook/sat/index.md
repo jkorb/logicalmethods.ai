@@ -294,7 +294,7 @@ happened if the chips had been used in critical infrastructure setups where
 high-level accuracy is crucial…
 
 From a logical perspective, instead, `SAT` is the foundation of an important
-approach to automated deductive inference. Look again at our inference about the
+approach to artificial deductive inference. Look again at our inference about the
 weather from last chapter, again: 
 
 $$(SUN {{< lor >}} RAIN), {{< neg >}} SUN {{< therefore >}} RAIN.$$ 
@@ -944,11 +944,11 @@ many applications of the resolution rule to get the desired result: especially
 when it comes to satisfiable sets, where we need to go through every case.
 
 In any case, resolution is one of the main methods of `SAT`-solving, which is
-the basis for state-of-the art automated reasoning technologies, like
+the basis for state-of-the art artificial reasoning technologies, like
 [Prover9](https://en.wikipedia.org/wiki/Prover9),
 [Z3](https://en.wikipedia.org/wiki/Z3_Theorem_Prover), and
 [Vampire](https://en.wikipedia.org/wiki/Vampire_(theorem_prover)). These systems
-are regularly used for hardware verification and automated inference. But once
+are regularly used for hardware verification and artificial inference. But once
 we've enriched our language with conditionals, we can even use it for activities
 such as AI [planning](https://en.wikipedia.org/wiki/Satplan).
 
