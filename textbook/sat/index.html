@@ -138,11 +138,11 @@
             <li>
               <a class="dropdown-item 
                 
-                link-opacity-50
+                
                 "
-                href="javascript:;"
+                href="/textbook/conditionals/"
               >6. 
-                <i class="bi bi-lock-fill"></i>
+                <i class="bi bi-unlock-fill"></i>
                  Logical conditionals
               </a>
             </li>
@@ -676,9 +676,7 @@ While these circuits are great at carrying out specific deductive reasoning
 tasks, like adding two numbers or calculating truth-values, they are not very
 flexible. Each circuit carries out one specific task.</p>
 <p>
-
 <img src="https://logicalmethods.ai/textbook/sat/img/ai_boolean.png" class="rounded  float-start inert-img img-fluid m-2"  width="200px"  alt="" >
-
 
 But in AI, we don&rsquo;t only want to implement specific inference patters using
 specific cirucits, like adding two bits using an adder circuit or inferring <span class="excalifont">(A
@@ -812,25 +810,19 @@ satisfiability. One important example is <i class="bi bi-box-arrow-up-right h-6"
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Formal_verification"
   target="_blank">(formal) hardware verification</a>.
 
-
 <img src="https://logicalmethods.ai/textbook/sat/img/ai_verification.png" class="rounded  float-start inert-img img-fluid m-2"  width="400px"  alt="" >
-
 
 To discuss the idea in a simplified example, let&rsquo;s go back to relay
 logic.</p>
 <p>We implemented different truth-functions using relays. One example (from the
 exercises) is the <span class="Boolean">NAND</span> function, which has the following function table:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/sat/img/nand_table.png" class="rounded mx-auto d-block inert-img img-fluid"  width="150px"  alt="" >
-
 
 <p>We can implement this with the following relay circuit (spoiler alert, if you
 didn&rsquo;t do the exercises yet 😉):</p>
 
-
 <img src="https://logicalmethods.ai/textbook/sat/img/nand_impl.png" class="rounded mx-auto d-block inert-img img-fluid"  width="450px"  alt="" >
-
 
 <p>To check that this implementation is according to the specification given by the
 function table, we need to go through all the possible inputs and check that the
@@ -873,9 +865,7 @@ second input. We write a Boolean expression in <code class="customCode">X</code>
 output. For this, we first identify all the input configurations, which give
 output <code class="customCode">1</code>, which in this case are:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/sat/img/nand_representation.png" class="rounded mx-auto d-block inert-img img-fluid"  width="450px"  alt="" >
-
 
 <p>Now, each of these configurations will turn into a <em>clause</em> in our Boolean
 representation, which joins these clauses using <span class="Boolean">OR</span>. To obtain these clauses,
@@ -965,9 +955,7 @@ specification into a <code class="customCode">SAT</code>-problem. And as we&rsqu
 allows for algorithmic approaches. This is the foundation for automated circuit
 verification. Similar ideas are used for software verification</p>
 <p>
-
 <img src="https://logicalmethods.ai/textbook/sat/img/cpu_bug.png" class="rounded  float-start inert-img img-fluid m-2"  width="200px"  alt="" >
-
 
 In industry practice, the setup is, of course, <em>much</em> more complicated. There
 we&rsquo;re dealing with <em>huge</em> circuits and highly complex specifications, much more
@@ -989,7 +977,7 @@ was this catastrophic for Intel&rsquo;s bottom line, but imagine what could have
 happened if the chips had been used in critical infrastructure setups where
 high-level accuracy is crucial…</p>
 <p>From a logical perspective, instead, <code class="customCode">SAT</code> is the foundation of an important
-approach to automated deductive inference. Look again at our inference about the
+approach to artificial deductive inference. Look again at our inference about the
 weather from last chapter, again:</p>
 <div class="text-center my-4 excalifont">(SUN 
 <img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
@@ -1040,9 +1028,7 @@ valuation <span class="excalifont">v
 <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
 SUN], </span> and <span class="excalifont">[RAIN]</span> and inspecting logical space:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/sat/img/ds_validity.png" class="rounded my-4 mx-auto d-block inert-img img-fluid"  width="350px"  alt="" >
-
 
 <p>We found that indeed, the only member of<br>
 <span class="excalifont">[(SUN 
@@ -1105,9 +1091,7 @@ not! Every element in the former is in the latter.</p>
 <p>this works as well. Working out the relevant propositions gave us the following
 picture of logical space:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/sat/img/aff_countermodel.png" class="rounded my-4 mx-auto d-block inert-img img-fluid"  width="350px"  alt="" >
-
 
 <p>Here we have a valuation <span class="excalifont">v</span>—the one with <span class="excalifont">v(SUN) = 1</span> and <span class="excalifont">v(RAIN) = 0</span>—such that <span class="excalifont">v</span> makes the premises true—<span class="excalifont">v 
 <img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
@@ -1249,9 +1233,7 @@ SUN,
 <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
 RAIN }.</div>
 <p>
-
 <img src="https://logicalmethods.ai/textbook/sat/img/ai_two_sides.png" class="rounded  float-end inert-img img-fluid m-2"  width="250px"  alt="" >
-
 
 And since this set is unsatisfiable in the logical sense, we can conclude that
 the inference is valid.</p>
@@ -1327,9 +1309,7 @@ force</a>: to literally go
 through all possible valuations and check in each case for the satisfaction of
 the relevant expression(s).</p>
 <p>
-
 <img src="https://logicalmethods.ai/textbook/sat/img/exponential.png" class="rounded  float-start inert-img img-fluid m-2"  width="400px"  alt="" >
-
 
 Since there can only be finitely many variables (propositional or Boolean) in a
 given expression, the list of possible valuations is finite: by the <i class="bi bi-box-arrow-up-right h-6"></i>
@@ -1383,9 +1363,7 @@ what we said above, all we need to do is to count the number of different propos
 <p>We need to write these valuations down in some order. We typically do this as
 follows:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/sat/img/truth_table_0.png" class="rounded mx-auto d-block inert-img img-fluid"  width="250px"  alt="" >
-
 
 <p>The idea is that each row is a function table for one possible valuation. The
 red little numbers are not part of the official table, but they illustrate a
@@ -1395,17 +1373,13 @@ case, we counted from <span class="excalifont">0</span> to <span class="excalifo
 three variables, say <span class="excalifont">SUN, RAIN, WIND</span>, you count from <span class="excalifont">0</span> to <span class="excalifont">7</span> in binary, and
 get the following table:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/sat/img/truth-table-3var.png" class="rounded mx-auto d-block inert-img img-fluid"  width="350px"  alt="" >
-
 
 <p>But back to our example with two variables. Next, we need to parse the formulas
 in our set. This is necessary for an algorithmic calculation of their
 truth-values. Our case is rather simple. We get:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/sat/img/parse_trees_valid.png" class="rounded mx-auto d-block inert-img img-fluid"  width="450px"  alt="" >
-
 
 <p>In the next step, we calculate the truth-values of the formulas under each
 possible distribution of truth-values. For this, we use the general rules, known
@@ -1459,9 +1433,7 @@ this recursive procedure here, but for this step, the correct parsing of the
 formula is crucial.</p>
 <p>We then document the resulting truth-values in our table like so:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/sat/img/truth_table_valid_complete.png" class="rounded mx-auto d-block inert-img img-fluid"  width="850px"  alt="" >
-
 
 <p>In the last step, we inspect our truth-table and see if we can find a row in
 which each formula get&rsquo;s the value <code class="customCode">1</code>. If there is one, the set is satisfiable;
@@ -1512,9 +1484,7 @@ crucially that the set has an extra
 <p>The possible valuations, we&rsquo;ve determined already above. So let&rsquo;s skip to
 parsing. The relevant parse trees are as follows:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/sat/img/parsing_three.png" class="rounded mx-auto d-block inert-img img-fluid"  width="850px"  alt="" >
-
 
 <p>Now in this case, a more complex formula is involved, viz. <span class="excalifont">(SUN 
 <img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
@@ -1526,9 +1496,7 @@ parsing. The relevant parse trees are as follows:</p>
  <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
  WIND))</span>. When we&rsquo;re calculating it&rsquo;s value under a given valuation, the parse tree comes in handy. It tells us in which order to apply the Boolean operations <span class="Boolean">NOT</span>, <span class="Boolean">AND</span>, and <span class="Boolean">OR</span> to calculate the truth-values. We can document the calculation in our truth-table as follows:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/sat/img/truth_table_three_full.png" class="rounded mx-auto d-block inert-img img-fluid"  width="1100px"  alt="" >
-
 
 <p>Here, I used color coding and arrows to indicate which recursive step yields
 which truth-value, but you don&rsquo;t have to do that every time. You also don&rsquo;t <em>have</em> to write down the intermediate values, like that of <span class="excalifont">
@@ -1542,9 +1510,7 @@ RAIN
 WIND)</span>, but it can be helpful.</p>
 <p>What remains to be done is to check whether there&rsquo;s a valuation (&ldquo;row&rdquo;), where all formulas in the set get value <code class="customCode">1</code>. And indeed:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/sat/img/truth-table-highlight.png" class="rounded mx-auto d-block inert-img img-fluid"  width="900px"  alt="" >
-
 
 <p>There are indeed <em>two</em> valuations that make all formulas true. But that&rsquo;s alright, the more the merrier. Either row is enough to show that:</p>
 <div class="text-center my-4 excalifont"> (SUN 
@@ -1593,9 +1559,7 @@ science and the theory of computation. Finding an algorithm that solves all
 <hr>
 
 <p>
-
 <img src="https://logicalmethods.ai/textbook/sat/img/ai_in_love.png" class="rounded  float-start inert-img img-fluid m-2"  width="200px"  alt="" >
-
 
 Many algorithms for <code class="customCode">SAT</code>-solving make use of so-called <strong>normal forms</strong>, which
 are, in a sense, standardized ways of writing formulas or expressions. We can
@@ -1641,15 +1605,11 @@ example:</p>
   <thead>
       <tr>
           <th>
-
 <img src="https://logicalmethods.ai/textbook/sat/img/dnf.png" class="inert-img" height="40px"  style="ZgotmplZ" alt="" >
-
 </th>
           <th>     </th>
           <th>
-
 <img src="https://logicalmethods.ai/textbook/sat/img/no_dnf.png" class="inert-img" height="40px"  style="ZgotmplZ" alt="" >
-
 </th>
       </tr>
   </thead>
@@ -1759,15 +1719,11 @@ Boolean terms.</p>
   <thead>
       <tr>
           <th>
-
 <img src="https://logicalmethods.ai/textbook/sat/img/cnf.png" class="inert-img" height="40px"  style="ZgotmplZ" alt="" >
-
 </th>
           <th>     </th>
           <th>
-
 <img src="https://logicalmethods.ai/textbook/sat/img/no_cnf.png" class="inert-img" height="40px"  style="ZgotmplZ" alt="" >
-
 </th>
       </tr>
   </thead>
@@ -1914,9 +1870,7 @@ the formula in normal form. Typically, the normal form of an expression is not
 to a given formula. We can obtain a uniqueness by putting additional
 constraints, but for now we shall not occupy ourselves with such subtleties.</p>
 <p>
-
 <img src="https://logicalmethods.ai/textbook/sat/img/naive_approach.png" class="rounded  float-end inert-img img-fluid m-2"  width="400px"  alt="" >
-
 
 There are different algorithms for finding an equivalent formula for a given
 formula. In practice, we&rsquo;re interested in transforming a given input as quickly
@@ -1941,18 +1895,14 @@ normal form.</p>
 <p>The algorithms for transforming into CNF and DNF both start with the same three
 rules:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/sat/img/negation_transformations.png" class="rounded mx-auto d-block inert-img img-fluid"  width="450px"  alt="" >
-
 
 <p>These rules are applied <em>recursively</em>, which means they are not only applied to
 a full formula, but repeatedly to all subformulas during the entire
 transformation.</p>
 <p>This idea is illustrate in the following re-write sequence:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/sat/img/rewrite_negation.png" class="rounded mx-auto d-block inert-img img-fluid"  width="900px"  alt="" >
-
 
 <p>These rules &ldquo;push&rdquo; the negation &ldquo;inwards&rdquo;: formulas which begin with a negation
 are replaced with equivalent formulas where the negation is &ldquo;closer to&rdquo; the
@@ -1962,16 +1912,12 @@ equivalent.</p>
 <p>Both for converting into DNF and for CNF, we apply these rules until we can&rsquo;t
 anymore. The next step is different for the two:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/sat/img/cnf_v_dnf.png" class="rounded mx-auto d-block inert-img img-fluid"  width="900px"  alt="" >
-
 
 <p>Let&rsquo;s look at the CNF rule and leave the DNF rule as an exercise. With <span class="excalifont">r₄</span>, we
 can continue our example as follows:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/sat/img/cnf_distribution.png" class="rounded mx-auto d-block inert-img img-fluid"  width="900px"  alt="" >
-
 
 <p>The resulting formula <span class="excalifont">(SUN 
 <img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
@@ -1989,15 +1935,11 @@ only thing you might find odd is that we have <span class="excalifont">(SUN
 second conjunct in this CNF. This is harmless, but we could further simplify
 using rewrite rules like the following:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/sat/img/idempotence_rewrite.png" class="rounded mx-auto d-block inert-img img-fluid"  width="600px"  alt="" >
-
 
 <p>With these rules, we continue as follows:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/sat/img/final_rewrite.png" class="rounded mx-auto d-block inert-img img-fluid"  width="800px"  alt="" >
-
 
 <p>In this way, we can obtain what&rsquo;s called a <strong>canonical</strong> normal form, which is unique. Although, there&rsquo;s one idea missing, which we&rsquo;ll discuss in the exercises…</p>
 <p>We&rsquo;re now in a place to convert formulas into CNF, which is the starting point
@@ -2019,9 +1961,7 @@ practical applications.</p>
 <hr>
 
 <p>
-
 <img src="https://logicalmethods.ai/textbook/sat/img/ai_resolution.png" class="rounded  float-start inert-img img-fluid m-2"  width="400px"  alt="" >
-
 
 One of the main algorithms for <code class="customCode">SAT</code>-solving in logic-based context is based on
 <i class="bi bi-box-arrow-up-right h-6"></i>
@@ -2079,9 +2019,7 @@ inference</a>, which allows us to
 derive new sets from the sets we already have in our collection. For example,
 the rule allows us to reason as follows:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/sat/img/resolution_application.png" class="rounded mx-auto d-block inert-img img-fluid"  width="300px"  alt="" >
-
 
 <p>What is going on here is that we have to <strong>complementary</strong> literals in the two
 sets: <span class="excalifont">SUN</span> and <span class="excalifont">
@@ -2135,9 +2073,7 @@ leave it at that.</p>
 <p>If we continue applying the rule in our case, resolution yields the expected
 result:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/sat/img/resolution_final.png" class="rounded mx-auto d-block inert-img img-fluid"  width="500px"  alt="" >
-
 
 <p>We can derive the empty set <span class="excalifont">{ }</span> to witness the unsatisfiability of:</p>
 <div class="text-center my-4 excalifont">{ SUN , RAIN } &emsp; { 
@@ -2193,7 +2129,7 @@ we use smart methods, like Tseytin transformations, resolution might still need
 many applications of the resolution rule to get the desired result: especially
 when it comes to satisfiable sets, where we need to go through every case.</p>
 <p>In any case, resolution is one of the main methods of <code class="customCode">SAT</code>-solving, which is
-the basis for state-of-the art automated reasoning technologies, like
+the basis for state-of-the art artificial reasoning technologies, like
 <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Prover9"
   target="_blank">Prover9</a>,
@@ -2203,7 +2139,7 @@ the basis for state-of-the art automated reasoning technologies, like
 <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Vampire_%28theorem_prover%29"
   target="_blank">Vampire</a>. These systems
-are regularly used for hardware verification and automated inference. But once
+are regularly used for hardware verification and artificial inference. But once
 we&rsquo;ve enriched our language with conditionals, we can even use it for activities
 such as AI <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Satplan"

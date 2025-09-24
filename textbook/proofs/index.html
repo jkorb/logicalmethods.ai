@@ -138,11 +138,11 @@
             <li>
               <a class="dropdown-item 
                 
-                link-opacity-50
+                
                 "
-                href="javascript:;"
+                href="/textbook/conditionals/"
               >6. 
-                <i class="bi bi-lock-fill"></i>
+                <i class="bi bi-unlock-fill"></i>
                  Logical conditionals
               </a>
             </li>
@@ -770,9 +770,7 @@ the <span class="excalifont">\vdash</span> like so: <div class="text-center my-4
 <div class="text-center my-4 excalifont">\mathsf{STUDY}\lor\mathsf{WALK},\mathsf{WALK}\to\mathsf{MATH},\neg\mathsf{STUDY}\vdash\mathsf{MATH}</div>
 <p>We can visually represent the corresponding proof as follows:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/proofs/img/inference1.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
 
 <p>Next, we&rsquo;ll go through the most important examples of different kinds of proof
 systems.</p>
@@ -901,9 +899,7 @@ humans. They are intended to mimic the actual step-by-step derivations we make
 The standard system for classical propositional logic, for example, looks like
 this:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/proofs/img/nd.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
 
 <p>These rules need some explanation:</p>
 <p>The symbol <span class="excalifont">\bot</span> is a logical symbol that stands for a logical contradiction.
@@ -918,16 +914,12 @@ rules of natural deduction, you can treat the assumption <span class="excalifont
 <p>This is, for example, how we would derive the logical truth
 <span class="excalifont">\neg(\mathsf{RAIN}\land\neg\mathsf{RAIN})</span> (it&rsquo;s not both raining and not raining):</p>
 
-
 <img src="https://logicalmethods.ai/textbook/proofs/img/non-contradiction.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
 
 <p>So, we get <span class="excalifont">\vdash\neg(\mathsf{RAIN}\land\neg\mathsf{RAIN})</span> Note that there are no assumptions in this claim. The assumption that we made (twice!) that <span class="excalifont">\mathsf{RAIN}\land\neg\mathsf{RAIN}</span> was discharged by the application of <span class="excalifont">\neg I</span> at the end.</p>
 <p>Here&rsquo;s the derivation to for our running example:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/proofs/img/inference1-nd.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
 
 <p>Note that while there are two assumptions that aren&rsquo;t among our premises, <span class="excalifont">\mathsf{STUDY}</span> and <span class="excalifont">\mathsf{WALK}</span>, both are discharged. So, this shows that:</p>
 <div class="text-center my-4 excalifont">\mathsf{STUDY}\lor\mathsf{WALK},\mathsf{WALK}\to\mathsf{MATH},\neg\mathsf{STUDY}\vdash\mathsf{MATH}</div>
@@ -989,9 +981,7 @@ running example:</p>
 First, we need to use CNF re-writing and equivalently rewrite
 <span class="excalifont">\mathsf{WALK}\to\mathsf{MATH}</span> as <span class="excalifont">\neg\mathsf{WALK}\lor\mathsf{MATH}</span>. Then we can apply resolution as follows:
 
-
 <img src="https://logicalmethods.ai/textbook/proofs/img/resolution.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
 
 <p>But the resolution rule <em>alone</em> doesn&rsquo;t give us an adequate proof system. To
 see this, note that we can never derive a <em>more complex</em> formula from a simpler
@@ -1099,9 +1089,7 @@ interactive theorem prover <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Lean_%28proof_assistant%29"
   target="_blank">Lean</a>:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/proofs/img/lean.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
 
 <p>As you can see, Lean works very much like a programming language with an
 <i class="bi bi-box-arrow-up-right h-6"></i>

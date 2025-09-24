@@ -84,3 +84,13 @@ code {
 .dark-red {
   color: #e03131;
 }
+
+.dark-orange {
+  color: #f08c00;
+}
+
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+}

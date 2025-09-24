@@ -138,11 +138,11 @@
             <li>
               <a class="dropdown-item 
                 
-                link-opacity-50
+                
                 "
-                href="javascript:;"
+                href="/textbook/conditionals/"
               >6. 
-                <i class="bi bi-lock-fill"></i>
+                <i class="bi bi-unlock-fill"></i>
                  Logical conditionals
               </a>
             </li>
@@ -923,16 +923,12 @@ truth-tables.</p>
  that in a truth-table, each line corresponds to a
 valuation:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/probability/img/prob-table-basis.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
 
 <p>This means that in the table, we can conveniently give the information of our
 measure as follows:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/probability/img/prob-table-weight.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
 
 <p>So far, so good. What makes this method really powerful is that it allows us to
 calculate the probability of a formula: simply calculate the values of the
@@ -941,9 +937,7 @@ row where the formula gets value <span class="excalifont">1</span>.</p>
 <p>So, in our example, if we want to know the probability of
 <span class="excalifont">\mathsf{RAIN}\lor\neg\mathsf{SUN}</span>, we&rsquo;d proceed as follows:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/probability/img/prob-table-full.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
 
 <p>Then, we can see that:</p>
 <div class="text-center my-4 excalifont">Pr(\mathsf{RAIN}\lor\neg\mathsf{SUN})=m(\nu_1)+m(\nu_2)+m(\nu_4)=0.5+0.3+0=0.8</div>
@@ -956,9 +950,7 @@ efficiently. In this example, we can use the fact that every row where more than
 one <span class="excalifont">\mathsf{RESULT}_i</span> gets value <span class="excalifont">1</span> will have <span class="excalifont">m</span>-value <span class="excalifont">0</span>, so we can leave
 it out of the table:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/probability/img/prob-table-die.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
 
 <p>Unfortunately, computationally efficient implementations of probabilities are
 beyond what we can discuss in this setting.</p>
@@ -1001,9 +993,7 @@ the probability is that it rains given that the sun is shining:</li>
 <div class="text-center my-4 excalifont">\mathsf{Pr}(\mathsf{RAIN}\mid\mathsf{SUN})=\frac{Pr(\mathsf{SUN}\land\mathsf{RAIN})}{Pr(\mathsf{SUN})}</div> 
 <p>For this calculation, we need to know <span class="excalifont">Pr(\mathsf{RAIN}\land\mathsf{SUN}),Pr(\mathsf{SUN})</span>. We get them from the following table:</p>
 
-  
   <img src="https://logicalmethods.ai/textbook/probability/img/prob-table-rain.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-  
 
 <p>We get <span class="excalifont">Pr(\mathsf{RAIN}\land\mathsf{SUN})=0.5</span> and
 <span class="excalifont">Pr(\mathsf{SUN})=0.5+0.2=0.7</span>. We get:</p>
@@ -1020,9 +1010,7 @@ even number with the formula <div class="text-center my-4 excalifont">\mathsf{R}
 <div class="text-center my-4 excalifont">Pr(\mathsf{R}_2\mid \mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 )=\frac{Pr(\mathsf{R}_2\land (\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6))}{Pr(\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6)}</div>
 <p>We use the following simplified truth-table for the calculation:</p>
 
-  
   <img src="https://logicalmethods.ai/textbook/probability/img/prob-table-even.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-  
 
 <p>We get:</p>
 <div class="text-center my-4 excalifont">Pr(\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6)=\frac{1}{6}+\frac{1}{6}+\frac{1}{6}=\frac{1}{2}</div>
@@ -1043,9 +1031,7 @@ matter&rdquo; for whether <span class="excalifont">A</span> occurs.</p>
 <p>For example, in the following example, we have that whether it rains and the sun
 is shining are independent:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/probability/img/prob-table-indep.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
 
 <p>To see this, consider:</p>
 <div class="text-center my-4 excalifont">Pr(\mathsf{SUN}\mid
@@ -1063,9 +1049,7 @@ calculate the probability of <span class="excalifont">A\land B</span> from the p
 <p>But it&rsquo;s important to note that this <em>doesn&rsquo;t</em> hold in general. In the original
 table:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/probability/img/prob-table-rain.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
 
 <p>We have:</p>
 <div class="text-center my-4 excalifont">Pr(\mathsf{RAIN})=0.5+0.3=0.8</div>

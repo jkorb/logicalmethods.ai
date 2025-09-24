@@ -138,11 +138,11 @@
             <li>
               <a class="dropdown-item 
                 
-                link-opacity-50
+                
                 "
-                href="javascript:;"
+                href="/textbook/conditionals/"
               >6. 
-                <i class="bi bi-lock-fill"></i>
+                <i class="bi bi-unlock-fill"></i>
                  Logical conditionals
               </a>
             </li>
@@ -664,9 +664,7 @@
 <hr>
 
 <p>
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/low_level.png" class="rounded  float-end inert-img img-fluid mx-3"  width="300px"  alt="" >
-
 
 Boolean algebra—the logic of 0&rsquo;s, 1&rsquo;s, not, and, or, …—is the ultimate logical
 foundation of modern computers, and by extension <em>all</em> AI systems. The study of
@@ -699,9 +697,7 @@ Propositional reasoning on all levels follows the laws of Boolean algebra.
 in most programming languages, such as C, Python, or Java, rely on Boolean
 connectives:
 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/python_snippet.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="400px"  alt="" >
-
 
 To write good conditionals and understand code that others have written, you
 need a solid understanding of Boolean logic.</p>
@@ -709,9 +705,7 @@ need a solid understanding of Boolean logic.</p>
 <abbr title="knowledge bases"><a  class="link-underline-opacity-0 link-body-emphasis"> KBs</a></abbr> follows the laws of Boolean
 algebra:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/mp_kb.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="400px"  alt="" >
-
 
 <p>In short, the importance of Boolean logic for AI can hardly be overstated.</p>
 <p>At the end of this chapter, you&rsquo;ll be able to:</p>
@@ -751,9 +745,7 @@ with a propositional language that has a propositional letter
 assigning it the value 1 means that the sun is indeed shining, while assigning
 <span class="excalifont">SUN</span> the value 0 means that it is not.</p>
 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/sun_boolean.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="400px"  alt="" >
-
 
 <p>In Boolean logic, there is no <em>third</em> truth-value for facts that are undecided,
 unknown, indeterminate. From a logical perspective, this is a <strong>modelling
@@ -787,9 +779,7 @@ first input is in the first column and the second input in the first row. In the
 case of the binary functions—the ones with two inputs—the output is read-off by
 intersecting the two input columns:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/function_tables.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="900px"  alt="" >
-
 
 <p>So, for example, <span class="excalifont"><span class="Boolean">NOT</span> 0 = 1</span> and
 <span class="excalifont">1 <span class="Boolean">OR</span> 0 = 1</span>.</p>
@@ -809,9 +799,7 @@ an implementation using
 Shannon&rsquo;s ideas. A relay is, essentially, an electronically operated switch. For
 our purposes, we&rsquo;ll work with the following two kinds of relays:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/relays.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="900px"  alt="" >
-
 
 <p>Both relays have two inputs and one output. One input leads to an electromagnet,
 which if it receives power exerts a magnetic force on the switch connected to
@@ -829,18 +817,14 @@ circuit.</p>
 constant power to the right circuit, this is how turning the power to the magnet
 off and on affects the behavior of the circuit:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/relay_behavior.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="900px"  alt="" >
-
 
 <p>The <span class="excalifont">default  &ldquo;on&rdquo;</span> relay, of course, behaves
 dually.</p>
 <p>We can use these two relays to implement our three Boolean truth-functions. For
 this, we assume that following set-up:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/implementation_setup.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="600px"  alt="" >
-
 
 <p>We have:</p>
 <ul>
@@ -862,9 +846,7 @@ for the first and second input both being <span class="excalifont">0</span>. Sin
 anything yet, the output is also <span class="excalifont">0</span>.</p>
 <p>We can implement the <span class="excalifont"><span class="Boolean">NOT</span></span> function with a single <span class="excalifont">default &ldquo;on&rdquo;</span> relay:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/negation_impl.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="900px"  alt="" >
-
 
 <p>Depicted are both states of the circuit: if the first input is <span class="excalifont">0</span> (<span class="excalifont">X</span> is
 <span class="excalifont">off</span>), the output is <span class="excalifont">1</span> (the lamp is <span class="excalifont">on</span>); and if the first input is <span class="excalifont">1</span> (<span class="excalifont">X</span>
@@ -872,9 +854,7 @@ is <span class="excalifont">on</span>), the output is <span class="excalifont">0
 matter, of course.</p>
 <p>We can implement <span class="excalifont"><span class="Boolean">AND</span></span> using the other kind of relay as follows:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/conjunction_impl.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="900px"  alt="" >
-
 
 <p>There are four possible states of the circuits, but as you can see: only if both
 inputs are <span class="excalifont">1</span> the output is
@@ -896,9 +876,7 @@ computer &ldquo;by hand&rdquo;.</p>
 <hr>
 
 <p>
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/laws_of_logic.png" class="rounded  float-end inert-img img-fluid mx-3"  width="300px"  alt="" >
-
 
 The behavior of the Boolean truth-functions is
 governed by a series of <strong>algebraic laws</strong>, that is <em>identities</em> describing
@@ -1161,9 +1139,7 @@ down to
   </code></div>
 <p>which by <span class="excalifont">&ldquo;Identity&rdquo;</span> is just <code class="customCode">X</code>.</p>
 <p>
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/ai_tools.png" class="rounded  float-end inert-img img-fluid mx-3"  width="100px"  alt="" >
-
 
 The derivation also illustrates an important point: the above laws of Boolean
 algebra allow us to derive further laws that don&rsquo;t look like they&rsquo;re covered by
@@ -1202,9 +1178,7 @@ application: the implementation of addition via
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Adder_%28electronics%29"
   target="_blank">adders</a>.</p>
 <p>
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/ai_calculating.png" class="rounded  float-end inert-img img-fluid mx-3"  width="250px"  alt="" >
-
 
 An <strong>adder</strong> is a circuit that performs addition on numbers. We can implement
 adders using Boolean truth-functions, but first, we need to translate the
@@ -1218,9 +1192,7 @@ any natural number as a sequence of <span class="excalifont">0</span>&rsquo;s an
 the string <div class="text-center my-4 excalifont">1101,</div> for example. This string is the binary representation of
 the number <span class="excalifont">13</span>. Here&rsquo;s how this works:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/binary_example.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="600px"  alt="" >
-
 
 <p>The <span class="excalifont">0</span>&rsquo;s and <span class="excalifont">1</span>&rsquo;s are also called
 <i class="bi bi-box-arrow-up-right h-6"></i>
@@ -1231,9 +1203,7 @@ backwards from the end of the string (right-to-left rather than left-to-right).
 You&rsquo;ll see in a second why. We also start counting at <span class="excalifont">0</span>, which might be
 unusual at first, but is also common in computer science. So, the first bit of <span class="excalifont">1101</span>, for example, is what would normally be called &ldquo;the second digit from the end&rdquo;, i.e. <span class="excalifont">0</span>:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/bits_example.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="200px"  alt="" >
-
 
 <p>To calculate the number represented by a string, you go through the digits one.
 Let&rsquo;s call the <span class="excalifont">n</span>th bit <span class="excalifont">dₙ</span>. So, in our example, we have: <div class="text-center my-4 excalifont">d₀ = 1, d₁ = 0,
@@ -1246,9 +1216,7 @@ This is the general formula for calculating the number represented by a binary
 string. In our case of <span class="excalifont">1101</span>, this formula gives us precisely the calculation
 from above. In more general mathematical notation, we can write this as:
 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/representation_formula.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="200px"  alt="" >
-
 
 <p>But this is just &ldquo;fancy notation&rdquo;&quot; to say exactly the same thing we just said.</p>
 <p>The number <span class="excalifont">1101</span> is what&rsquo;s called a <span class="excalifont">4</span>-bit number, since it represents a
@@ -1263,9 +1231,7 @@ chip. This is why we have <i class="bi bi-box-arrow-up-right h-6"></i>
 if we have two binary numbers of the same length, they are incredibly easy to
 add. Here&rsquo;s an example of how this works:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/addition_example.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="500px"  alt="" >
-
 
 <p>Essentially, what we do here is to add the two numbers by adding their binary
 components one by one, taking care along the way to &ldquo;carry over&rdquo; any overspill.
@@ -1287,9 +1253,7 @@ The way this works is that you start from the end again and you add the two
 <p>If both digits are a <span class="excalifont">1</span>, then the result is <span class="excalifont">0</span> with a <strong>carry</strong> of <span class="excalifont">1</span> (this
 is the little red number in the next column), since</p>
 
-    
     <img src="https://logicalmethods.ai/textbook/boolean/img/half_adder_rule.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="500px"  alt="" >
-    
 
 </li>
 </ul>
@@ -1305,9 +1269,7 @@ either <span class="excalifont">d₀ = e₀ = 0</span> or <span class="excalifon
 truth-function, which is known as <span class="excalifont"><span class="Boolean">XOR</span></span> (&ldquo;exclusive or&rdquo;), which has the
 following function table:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/xor_table.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="500px"  alt="" >
-
 
 <p>We can actually express this function using only <span class="excalifont"><span class="Boolean">NOT</span>, <span class="Boolean">AND</span>, <span class="Boolean">OR</span></span>, but
 using <span class="excalifont"><span class="Boolean">XOR</span></span> directly it&rsquo;s much easier.</p>
@@ -1326,14 +1288,10 @@ rule as follows using Boolean truth-functions:</p>
 the ideas sketched above, we can implement this rule using the following
 circuit known as a <strong>half-adder</strong>:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/half_adder.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="500px"  alt="" >
 
-
 <p>
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/ai_half_adder.png" class="rounded  float-start inert-img img-fluid mx-3"  width="100px"  alt="" >
-
 
 The idea is that the blue boxes are implementations of <span class="excalifont"><span class="Boolean">XOR</span></span> and <span class="excalifont"><span class="Boolean">AND</span></span>
 respectively, which take two inputs and give two outputs. The input switches
@@ -1345,9 +1303,7 @@ depicted here is the configuration that corresponds to our example, i.e. <span c
 <p>Now, let&rsquo;s return to the <span class="excalifont">1</span>st (meaning second from the end) digit of our
 result:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/calculation_focus.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="300px"  alt="" >
-
 
 <p>You might notice that here, we no longer have just two inputs, but <em>three</em>: the
 <span class="excalifont">1</span>st digit of the first
@@ -1365,9 +1321,7 @@ reasoning is like in the two input case from before:</p>
 <p>If there&rsquo;s no <span class="excalifont">1</span>, we get:</p>
   <div class="text-center my-4 excalifont">(0 x 2¹) + (0 x 2¹) + (0 x 2¹)</div>
   
-    
     <img src="https://logicalmethods.ai/textbook/boolean/img/addition_full_0.png" class="rounded mx-auto d-block inert-img img-fluid "  width="150px"  alt="" >
-    
 
 </li>
 <li>
@@ -1376,9 +1330,7 @@ reasoning is like in the two input case from before:</p>
   <div class="text-center my-4 excalifont">= (0 x 2¹) + (1 x 2¹) + (0 x 2¹)</div>
   <div class="text-center my-4 excalifont">= (0 x 2¹) + (0 x 2¹) + (1 x 2¹)</div>
   
-    
     <img src="https://logicalmethods.ai/textbook/boolean/img/addition_full_1.png" class="rounded mx-auto d-block inert-img img-fluid "  width="150px"  alt="" >
-    
 
 </li>
 <li>
@@ -1387,18 +1339,14 @@ reasoning is like in the two input case from before:</p>
   <div class="text-center my-4 excalifont">= (1 x 2¹) + (0 x 2¹) + (1 x 2¹)</div>
   <div class="text-center my-4 excalifont">= (0 x 2¹) + (1 x 2¹) + (1 x 2¹)</div>
   
-    
     <img src="https://logicalmethods.ai/textbook/boolean/img/addition_full_2.png" class="rounded mx-auto d-block inert-img img-fluid"  width="300px"  alt="" >
-    
 
 </li>
 <li>
 <p>And if there&rsquo;s three <span class="excalifont">1</span>&rsquo;s, we have:</p>
   <div class="text-center my-4 excalifont">= (1 x 2¹) + (1 x 2¹) + (1 x 2¹)</div>
   
-    
     <img src="https://logicalmethods.ai/textbook/boolean/img/addition_full_3.png" class="rounded mx-auto d-block inert-img img-fluid"  width="300px"  alt="" >
-    
 
 </li>
 </ul>
@@ -1418,16 +1366,12 @@ should!—verify that this works.</p>
 <p>It&rsquo;s a bit more tedious to implement this using circuits, but of course it can
 be done:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/full_adder.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="600px"  alt="" >
-
 
 <p>This circuit, here depicted in the configuration from our example, is called a
 <strong>full adder</strong>, and can also be implemented using two half adders.
 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/ai_two_half.png" class="rounded  float-start inert-img img-fluid mx-3"  width="600px"  alt="" >
-
 </p>
 <p>We can use full adders to implement full addition on fixed-bit integers: just
 chain full adders to calculate the individual output bits, ensuring to always
@@ -1452,15 +1396,11 @@ programming languages, but also in automated inference with
 systems. It is common in everyday reasoning, as well, when we make inferences
 like:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/ai_key.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="600px"  alt="" >
-
 
 <p>We can use Boolean algebra to define the notion of a <em>model</em> for a propositional language. This will give us the notion of deductively valid inference using the schema:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/deductive_inference.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="600px"  alt="" >
-
 
 <p>In essence what we need to do is very similar to the case of addition above:
 before we could implement addition using Boolean algebra, we needed to
@@ -1490,9 +1430,7 @@ language. It could be:</p>
 </ol>
 <p>That is, our logical space should look something like this:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/logical_space.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="600px"  alt="" >
-
 
 <p>Our aim is to implement a definition of a model for <span class="excalifont">L</span> that adequately
 reflects this idea. To achieve this goal, we&rsquo;ll use the thought mentioned
@@ -1501,9 +1439,7 @@ assigning the value <span class="excalifont">1</span> to <span class="excalifont
 and assigning it the value <span class="excalifont">0</span> means that <span class="excalifont">SUN</span> is not true (it&rsquo;s not sunny).</p>
 <p>Mathematically, we typically express such an assignment of values using the function symbol <span class="excalifont">v</span>, like so:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/assignments.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="900px"  alt="" >
-
 
 <p>When more than one assignment viewed as a model is under consideration at the
 same time, we disambiguate with the use of subscripts. So, for example, there
@@ -1531,17 +1467,13 @@ corresponding scenarios are:</p>
   <tbody>
       <tr>
           <td><span class="excalifont">M₁</span>: 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/m1.png" class="inert-img" height="48px"  style="ZgotmplZ" alt="" >
-
 </td>
           <td>  </td>
           <td><span class="excalifont">v₁(RAIN) = 1</span> and <span class="excalifont">v₁(SUN) = 1</span></td>
           <td>  </td>
           <td><span class="excalifont">M₃</span>: 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/m3.png" class="inert-img" height="48px"  style="ZgotmplZ" alt="" >
-
 </td>
           <td>  </td>
           <td><span class="excalifont">v₃(RAIN) = 0</span> and <span class="excalifont">v₃(SUN) = 1</span></td>
@@ -1557,17 +1489,13 @@ corresponding scenarios are:</p>
       </tr>
       <tr>
           <td><span class="excalifont">M₂</span>: 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/m2.png" class="inert-img" height="48px"  style="ZgotmplZ" alt="" >
-
 </td>
           <td>  </td>
           <td><span class="excalifont">v₂(RAIN) = 1</span> and <span class="excalifont">v₂(SUN) = 0</span></td>
           <td></td>
           <td><span class="excalifont">M₄</span>: 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/m4.png" class="inert-img" height="48px"  style="ZgotmplZ" alt="" >
-
 </td>
           <td>  </td>
           <td><span class="excalifont">v₄(RAIN) = 1</span> and <span class="excalifont">v₄(SUN) = 1</span></td>
@@ -1590,126 +1518,80 @@ variables. In short: <div class="text-center my-4 excalifont">Mᵢ = vᵢ</div><
 <p>Each model tells us what the truth-values for the propositional variables are.
 This allows as, for example, to determine the proposition <span class="excalifont">[SUN]</span> as follows:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/prop_sun.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="900px"  alt="" >
-
 
 <p>But to determine the truth-values of complex formulas, such as <span class="excalifont">SUN v
 RAIN</span>, we first need to think about the connectives. For now, we&rsquo;ll focus on the connectives
 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/negation.png" class="inert-img" height="20px"  style="ZgotmplZ" alt="" >
-
  (&ldquo;negation&rdquo;), 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/conjunction.png" class="inert-img" height="20px"  style="ZgotmplZ" alt="" >
-
  (&ldquo;conjunction&rdquo;), and 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/disjunction.png" class="inert-img" height="20px"  style="ZgotmplZ" alt="" >
-
 .</p>
 <p>Let&rsquo;s start with negation. In which models should we say that
 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/neg_sun.png" class="inert-img" height="28px"  style="ZgotmplZ" alt="" >
-
 , say, is true? A straight-forward answer
 is: 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/neg_sun.png" class="inert-img" height="28px"  style="ZgotmplZ" alt="" >
-
  says that it&rsquo;s not sunny, so the formula
 should be true in precisely those models, where <span class="excalifont">SUN</span> is <em>not</em> true: <div class="text-center my-4 excalifont">v(
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/neg_sun.png" class="inert-img" height="34px"  style="ZgotmplZ" alt="" >
-
 ) = 1 just in case v(SUN) = 0.</div></p>
 <p>But do you recognize it? This is exactly what the Boolean truth-function <span class="excalifont"><span class="Boolean">NOT</span></span>
 does! That is, we can implement the proposal using <span class="excalifont"><span class="Boolean">NOT</span></span> as follows: <div class="text-center my-4 excalifont">v(
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/neg_sun.png" class="inert-img" height="34px"  style="ZgotmplZ" alt="" >
-
 ) = <span class="Boolean">NOT</span> v(SUN)</div></p>
 <p>This means that 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/neg_sun.png" class="inert-img" height="34px"  style="ZgotmplZ" alt="" >
-
  gets the following semantic content:</p>
-
 
 <img src="https://logicalmethods.ai/textbook/boolean/img/prop_neg_sun.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="900px"  alt="" >
 
-
 <p>Turning to conjunction, in which models is 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/sun_and_rain.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
-
  true? Since
 the formula says that it&rsquo;s both sunny and raining, the answer is: precisely in
 those models where both <span class="excalifont">SUN</span> and <span class="excalifont">RAIN</span> are true. In all other models, 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/sun_and_rain.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
-
  is false. That is:</p>
-
 
 <img src="https://logicalmethods.ai/textbook/boolean/img/condition_sun_and_rain.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="850px"  alt="" >
 
-
 <p>But that&rsquo;s just what <span class="excalifont"><span class="Boolean">AND</span></span> does! So, we can implement this by saying:</p>
-
 
 <img src="https://logicalmethods.ai/textbook/boolean/img/clause_and.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="600px"  alt="" >
 
-
 <p>Completely analogously, we can handle the case of disjunction. 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/sun_and_rain.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
-
  says that it&rsquo;s either sunny or rainy. So it should be true in all and only those models where at least one of them is the case.</p>
-
 
 <img src="https://logicalmethods.ai/textbook/boolean/img/condition_sun_or_rain.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="800px"  alt="" >
 
-
 <p>This we can implement using the Boolean <span class="excalifont"><span class="Boolean">OR</span></span> by saying that:</p>
-
 
 <img src="https://logicalmethods.ai/textbook/boolean/img/clause_or.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="600px"  alt="" >
 
-
 <p>In sum, 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/sun_and_rain.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
-
  and 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/sun_or_rain.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
-
  get the following semantic content:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/prop_sun_and_or_rain.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="900px"  alt="" >
-
 
 <p>Using this idea, we can calculate the proposition <span class="excalifont">[A]</span> expressed by any
 formula <span class="excalifont">A</span> of our language. Just apply the following clauses to calculate the
 truth-values under an assignment:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/clauses.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="600px"  alt="" >
 
-
 <p>For example, we can calculate the proposition expressed by 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/complex_fml.png" class="inert-img" height="24px"  style="ZgotmplZ" alt="" >
-
  as follows:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/complex_proposition.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="900px"  alt="" >
-
 
 <p>The most difficult part to work out in this example is, as you might have
 noticed, for which <span class="excalifont">v</span> we have <span class="excalifont">v(SUN) <span class="Boolean">OR</span> (v(RAIN) <span class="Boolean">AND</span> (<span class="Boolean">NOT</span> v(SUN))) =
@@ -1723,24 +1605,16 @@ for propositional logic. Let&rsquo;s use it to check some inferences for deducti
 <ul>
 <li>
 <p>We&rsquo;ll show that 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/ds_inf.png" class="inert-img" height="38px"  style="ZgotmplZ" alt="" >
-
  is deductively valid, i.e. 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/ds_val.png" class="inert-img" height="38px"  style="ZgotmplZ" alt="" >
-
 </p>
 </li>
 <li>
 <p>We&rsquo;ll show that 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/aff_inf.png" class="inert-img" height="38px"  style="ZgotmplZ" alt="" >
-
  is deductively invalid, i.e. 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/aff_val.png" class="inert-img" height="38px"  style="ZgotmplZ" alt="" >
-
 </p>
 </li>
 </ul>
@@ -1750,63 +1624,41 @@ the concrete instance is valid. In the exercises, you&rsquo;ll show that the gen
 <em>schema</em> is valid for all instances.</p>
 <p>To test the inference for validity, what we need to do is to check whether the following condition is satisfied:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/ds_condition.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="600px"  alt="" >
-
 
 <p>So, let&rsquo;s check in logical space:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/ds_validity.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="800px"  alt="" >
 
-
 <p>Indeed! Once we&rsquo;ve worked out the relevant propositions, we can see that the only member of 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/proposition_intersection.png" class="inert-img" height="32px"  style="ZgotmplZ" alt="" >
-
  is <span class="excalifont">M₄</span>, in which it is raining, i.e. <span class="excalifont">v₄(RAIN) = 1 </span> and so <span class="excalifont">M₄ ∈ [RAIN]</span>. But that just means that our condition is satisfied:</p>
-
 
 <img src="https://logicalmethods.ai/textbook/boolean/img/ds_condition.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="500px"  alt="" >
 
-
 <p>We can conclude that, indeed, 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/ds_val.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="500px"  alt="" >
-
 </p>
 <p>The second inference is an instance of <span class="excalifont">Affirming a Disjunct</span>, which we&rsquo;ve
 identified as a traditional fallacy. Let&rsquo;s see. For the inference to be valid, the following would need to be the case:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/aff_condition.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="600px"  alt="" >
-
 
 <p>When we check logical space, we find the following:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/aff_countermodel.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="800px"  alt="" >
 
-
 <p>Once we&rsquo;ve worked out the propositions, we can see that 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/countermodel.png" class="inert-img" height="40px"  style="ZgotmplZ" alt="" >
-
 . This makes <span class="excalifont">M₁</span> a <strong>countermodel</strong> for the inference, which shows that</p>
-
 
 <img src="https://logicalmethods.ai/textbook/boolean/img/aff_inval.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="500px"  alt="" >
 
-
 <p>This means that, indeed: 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/aff_val.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="500px"  alt="" >
-
 </p>
 <p>Note, however, that the invalidity crucially depends on us interpreting 
-
 <img src="https://logicalmethods.ai/textbook/boolean/img/disjunction.png" class="inert-img" height="32px"  style="ZgotmplZ" alt="" >
-
  using <span class="excalifont"><span class="Boolean">OR</span></span>. If we read the operation as an <span class="excalifont"><span class="Boolean">XOR</span></span>, the story changes—which you&rsquo;ll see in the exercises.</p>
 <h2 id="further-readings">Further readings<button class="btn btn-back-to-top">
     

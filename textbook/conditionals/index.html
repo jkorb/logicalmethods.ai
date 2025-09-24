@@ -138,11 +138,11 @@
             <li>
               <a class="dropdown-item 
                 fw-bold active
-                link-opacity-50
+                
                 "
-                href="javascript:;"
+                href="/textbook/conditionals/"
               >6. 
-                <i class="bi bi-lock-fill"></i>
+                <i class="bi bi-unlock-fill"></i>
                  Logical conditionals
               </a>
             </li>
@@ -663,40 +663,42 @@
 </h1>
 <hr>
 
-<p>In our discussion of 
+<p>
+<img src="https://logicalmethods.ai/textbook/conditionals/img/ai_wondering.png" class="rounded  float-start inert-img img-fluid m-2"  width="200px"  alt="" >
 
+The <abbr title="if-then"><a  class="link-underline-opacity-0 link-body-emphasis"> conditional</a></abbr> is the backbone of valid
+inference. We&rsquo;ve said that valid inference is based on hypothetical reasoning:
+valid inference requires that the conclusion be true under the hypothesis that
+the premises are—<em>if</em> the premises are. This applies to both deductive and
+inductive inference, but in this chapter, we&rsquo;ll focus on deductive inference.</p>
+<p>The conditional of deductive logic, which we formalize as 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+, is the
+basis for many artificial reasoning techniques, especially in logic-based AI.
+It turns out that conditional reasoning is crucial to many AI-related tasks.
+Think for example of computer code like this:
 
-<a href="https://logicalmethods.ai/textbook/boolean/"
-   
-   
-   
-   
-   
-   >
-Boolean algebra</a>
+<img src="https://logicalmethods.ai/textbook/conditionals/img/python-if-then.png" class="rounded mx-auto d-block inert-img img-fluid"  width="450px"  alt="" >
 
- so far, we&rsquo;ve avoided dealing with
-<strong>conditionals</strong>: &ldquo;<em>if</em> &hellip;, <em>then</em> &hellip;&quot;-statements which we formalize as <div class="text-center my-4 excalifont">A\to
-B.</div> In this chapter, you&rsquo;ll learn about how conditionals are defined and used
-in propositional logic.</p>
-<p>First, you&rsquo;ll learn about the truth-functional way of thinking about if-then
-statements, the so-called</p>
+Both to evaluate and understand this code, we need to understand basic
+conditional reasoning.</p>
+<p>Or, imagine a very simple meteorology <abbr title="knowledge base"><a  class="link-underline-opacity-0 link-body-emphasis"> KB</a></abbr>, which might contain the following information:
+
+<img src="https://logicalmethods.ai/textbook/conditionals/img/kb-if-then.png" class="rounded mx-auto d-block inert-img img-fluid"  width="450px"  alt="" >
+
+If we want to use this information for automated weather forecasting, we need to think about artificial conditional inference. That&rsquo;s the topic of this chapter.</p>
+<p>At the end of it chapter, you will be able to:</p>
 <ul>
-<li>
-<a class="link-dark" href="#the-material-conditional">material conditional</a>.</li>
+<li>explain the relationship between deductive reasoning and conditionals</li>
+<li>outline the basic theory of the Boolean material conditional and the theory of
+Horn formulas</li>
+<li>apply basic algorithms for conditional reasoning, such as backward and forward
+chaining</li>
+<li>use conditionals to formalize rules in knowledge representation scenarios</li>
+<li>explain the limitations of Horn formulas in knowledge representation and
+reasoning</li>
 </ul>
-<p>Then, we move on to inference patterns that are important for AI applications,
-in particular:</p>
-<ul>
-<li>
-<a class="link-dark" href="#forward-chaining">forward chaining</a>,</li>
-<li>
-<a class="link-dark" href="#backward-chaining">backward chaining</a>.</li>
-</ul>
-<p>We conclude with an outlook and remarks on 
-<a class="link-dark" href="#non-material-conditionals">non-material
-conditionals</a>.</p>
-<h2 id="the-material-conditional">The material conditional<button class="btn btn-back-to-top">
+<h2 id="boolean-if-then">Boolean If-then<button class="btn btn-back-to-top">
     
     <i class="bi bi-chevron-double-up"></i>
     
@@ -704,361 +706,284 @@ conditionals</a>.</p>
 </h2>
 <hr>
 
-<p>How should we treat statements like <div class="text-center my-4 excalifont">\mathsf{RAIN}\to \mathsf{WET}</div> in Boolean
-algebra? This, it turns out, is not an easy question.</p>
-<p>The easy part is this:</p>
+<p>The most characteristic inference involving 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ is the principle of
+<em>Modus Ponens (MP)</em>:</p>
+<div class="text-center my-4 excalifont">A, (A 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ B) 
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+ B</div>
+<p>How can we develop a theory of conditional logic which validates this principle?</p>
+<p>It turns out that Boolean algebra already has the resources to interpret
+
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ in a way that aligns with many of our expectations about if-then
+statements. The idea is that we can interpret 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ using the Boolean functions
+<span class="Boolean">NOT</span> and <span class="Boolean">OR</span> in combination:</p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>
+<img src="https://logicalmethods.ai/textbook/conditionals/img/not_table.png" class="rounded inert-img img-fluid"  width="200px"  alt="" >
+</td>
+          <td>   </td>
+          <td>
+<img src="https://logicalmethods.ai/textbook/conditionals/img/or_table.png" class="rounded inert-img img-fluid"  width="300px"  alt="" >
+</td>
+      </tr>
+  </tbody>
+</table>
+<p>The way this works is by saying:</p>
+<div class="text-center my-4 excalifont">v( A 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ B) = (<span class="Boolean">NOT</span> v(A)) <span class="Boolean">OR</span> v(B)</div>
+<p>Using this clause, the truth-table for <span class="excalifont">(RAIN 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ WIND)</span>,
+for example, works out to:</p>
+
+<img src="https://logicalmethods.ai/textbook/conditionals/img/to_table.png" class="mx-auto d-block rounded inert-img img-fluid"  width="900px"  alt="" >
+
+<p>The rows that represent models where its raining, that is <span class="excalifont">v(SUN) = 1</span>, are in
+line with expectations:</p>
 <ul>
 <li>
-<p>If <span class="excalifont">\nu(\mathsf{RAIN})=1</span> and <span class="excalifont">\nu(\mathsf{WET})=1</span>, we want <span class="excalifont">\nu(\mathsf{RAIN}\to
-\mathsf{WET})=1</span>.</p>
+<p>If the it&rsquo;s raining and it&rsquo;s not windy, that is <span class="excalifont">v(RAIN) = 1</span> and <span class="excalifont">v(WIND) = 0</span>,
+the situation contradicts the conditional so it is not true, that is
+<span class="excalifont">v(RAIN 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ WIND) = 0</span>.</p>
 </li>
 <li>
-<p>If <span class="excalifont">\nu(\mathsf{RAIN})=1</span> and <span class="excalifont">\nu(\mathsf{WET})=0</span>, we want, <span class="excalifont">\nu(\mathsf{RAIN}\to \mathsf{WET})=0</span>.</p>
+<p>If it&rsquo;s raining and windy, that is <span class="excalifont">v(RAIN) = 1</span> and <span class="excalifont">v(WIND) = 1</span>, then everything is like the conditional says, so it is true, meaning <span class="excalifont">v(RAIN 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ WIND) = 1</span>.</p>
 </li>
 </ul>
-<p>But this only gives us a partial table for the truth-function
-<span class="excalifont">\Rightarrow:\Set{0,1}^2\to \Set{0,1}</span> which interprets
-<span class="excalifont">\to</span>:</p>
+<p>More curious are the other rows that represent models where it&rsquo;s <em>not</em> raining,
+that is <span class="excalifont">v(RAIN) = 0</span>. In all those situations, the conditional <span class="excalifont">RAIN 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+WIND</span>, according to the table, is <em>true</em>.</p>
+<p>One way to make sense of this is by thinking about conditionals in programming
+languages. Take the following snippet, which assigns the day named <code class="customCode"><span
+class="dark-green">&ldquo;monday&rdquo;</span></code>, the number <code class="customCode"><span class="dark-orange">1</span></code>:</p>
 
+<img src="https://logicalmethods.ai/textbook/conditionals/img/python_ex.png" class="mx-auto d-block rounded inert-img img-fluid"  width="300px"  alt="" >
 
-<img src="https://logicalmethods.ai/textbook/conditionals/img/tt-partial.png" class="img-thumbnail"    alt="" >
+<p>If a computer executing this code comes across an object that satisfies the
+if-clause, a day with the name-attribute set to <code class="customCode"><span
+class="dark-green">&ldquo;monday&rdquo;</span></code>, and it does indeed assign the number <code class="customCode"><span
+class="dark-orange">1</span></code>, what the computer did is correct. We assign this
+the truth-value <code class="customCode">1</code>. If the computer <em>doesn&rsquo;t</em> assign to this object the number
+<code class="customCode"><span class="dark-orange">1</span></code>, it made a mistake. We assign this the
+truth-value <code class="customCode">0</code>.</p>
+<p>But the conditional doesn&rsquo;t say anything about what to do with objects whose
+name isn&rsquo;t <code class="customCode"><span class="dark-green">&ldquo;monday&rdquo;</span></code>. So, if the computer comes
+across an object that <em>doesn&rsquo;t</em> satisfy the if-clause, say an object with the
+name <code class="customCode"><span class="dark-green">&ldquo;tuesday&rdquo;</span></code>, and it assigns this the number
+<code class="customCode"><span class="dark-orange">2</span></code>, did it make a mistake? What it it assigns
+the Tuesday-object also the number <code class="customCode"><span class="dark-orange">1</span></code>? Is that
+a mistake?—Clearly, neither is a mistake. Both behaviors could be implemented by
+adding additional conditionals, like:</p>
 
+<img src="https://logicalmethods.ai/textbook/conditionals/img/python_ex_1.png" class="mx-auto d-block rounded inert-img img-fluid"  width="700px"  alt="" >
 
-<p>So, what do we do if <span class="excalifont">\nu(\mathsf{RAIN})=0</span>? It turns out that we want to say
-<span class="excalifont">\nu(\mathsf{RAIN}\to \mathsf{WET})=1</span> <em>regardless</em> of the truth-value of
-<span class="excalifont">\mathsf{WET}</span>.</p>
-<p>One of the reasons for this is the connection between valid inference and the
-conditional. To understand, we need the concept of a <strong>tautology</strong> or <strong>logical
-truth</strong>.</p>
-<p>In Boolean algebra, a <em>tautology</em> is any formula that is true under all
-valuations. Consider, for example, <span class="excalifont">\mathsf{RAIN}\lor\mathsf{SUN}</span>—it&rsquo;s
-either raining or not raining. No matter the value <span class="excalifont">\nu(\mathsf{RAIN})</span> of
-<span class="excalifont">\mathsf{RAIN}</span>, we have <span class="excalifont">\nu(\mathsf{RAIN}\lor\mathsf{SUN})=1</span>:</p>
-<ul>
-<li>If <span class="excalifont">\nu(\mathsf{RAIN})=1</span>, then <span class="excalifont">\nu(\mathsf{RAIN}\lor\mathsf{SUN})=1+0=1</span></li>
-<li>If <span class="excalifont">\nu(\mathsf{RAIN})=0</span>, then <span class="excalifont">\nu(\mathsf{RAIN}\lor\mathsf{SUN})=0+1=1</span></li>
-</ul>
-<p>If a formula <span class="excalifont">A</span>, like <span class="excalifont">\mathsf{RAIN}\lor\mathsf{SUN}</span>, is a logical truth
-we write <span class="excalifont">\vDash A</span> to indicate this. So, what we&rsquo;ve just shown is that</p>
-<div class="text-center my-4 excalifont">\vDash\mathsf{RAIN}\lor\mathsf{SUN}.</div>
-<p>Now the thing is that if we say that that <span class="excalifont">\nu(A\to B)=1</span> whenever <span class="excalifont">\nu(A)=0</span>,
-we get the following beautiful connection between validity and the conditional:</p>
-<div class="text-center my-4 excalifont">P_1, P_2, \dots\vDash C\Leftrightarrow\ \vDash (P_1\land P_2\land \dots)\to
-C</div> In words, an inference is valid if and only if the conditional formed from
-taking the conjunction of the premises as the if-part and the conclusion as the
-then-part is logically valid.
-<p>The truth-function that&rsquo;s given by the following table is known as the
-<strong>material conditional</strong>:</p>
+<p>And this wouldn&rsquo;t conflict with our initial conditional. A straight-forward way
+of interpreting this situation n Boolean algebra is to assign it the truth-value
+<code class="customCode">1</code>. The computer <em>didn&rsquo;t</em> make a mistake, so <code class="customCode">0</code> is out. That means that <code class="customCode">1</code> is
+the only live option.</p>
+<p>Note that if non-Boolean contexts, such as the <strong>many-valued logics</strong> we&rsquo;ll be
+looking at later in this course, this is no longer necessarily the best option.
+If we have, for example, a third truth-value <span class="excalifont">i</span> for &ldquo;indeterminate&rdquo; sentences,
+we could use that in the case of the antecedent being untrue.</p>
+<p>This is the <strong>default-true interpretation</strong> of the conditional: the default
+truth-value of the conditional is <code class="customCode">1</code>, only a clear counterexample changes it to
+<code class="customCode">0</code>. In logical theory, we call this way of interpreting 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ the
+<strong>material conditional</strong>.</p>
+<p>A major application of the material conditional in AI is to formalize
+<code class="customCode">if-then</code>-rules in knowledge representation contexts, for example when we&rsquo;re
+building a <abbr title="knowledge base"><a  class="link-underline-opacity-0 link-body-emphasis"> KB</a></abbr> for an expert
+system—especially, when we want to express a particularly strong relationship
+between the antecedent (the if-part) and the consequent (the then-part).
+This is because the interpretation of 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ validates
+<abbr title="modus ponens"><a  class="link-underline-opacity-0 link-body-emphasis"> MP</a></abbr> as a deductively valid
+principle:</p>
+<div class="text-center my-4 excalifont">A, (A 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ B) 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+ B</div>
+<p>If we know the if-part of an <code class="customCode">if-then</code>-rule expressed with 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+, we can
+infer the then-part with deductive certainty.</p>
+<p>To verify this, we can use our well-trusted tools for Boolean reasoning, such as
+the <code class="customCode">SAT</code>-solving using truth-tables or resolution. This is because we&rsquo;ve
+interpreted 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ in terms of <span class="Boolean">NOT</span> and <span class="Boolean">OR</span>, whose behavior is already
+covered by our previous techniques.</p>
+<p>To handle 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ in logical formulas, we introduce a rewrite rule, which
+allows us to transform formulas with 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ into equivalent formulas
+without the operator:</p>
 
+<img src="https://logicalmethods.ai/textbook/conditionals/img/rewrite_conditional.png" class="mx-auto d-block rounded inert-img img-fluid"  width="300px"  alt="" >
 
-<img src="https://logicalmethods.ai/textbook/conditionals/img/tt.png" class="img-thumbnail"    alt="" >
-
-
-<p>Our first motivation for treating <span class="excalifont">\to</span> as a material conditional is the above
-connection between valid inference and the conditional, which is also known as
-the <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Deduction_theorem"
-  target="_blank">deduction theorem</a>. One
-interesting implication of the deduction theorem is that it gives us an
-interesting variant of the truth-table method.</p>
-<p>The idea is that in order to test whether <span class="excalifont">P_1,P_2, \dots\vDash C</span> we can also
-just test whether the formula <span class="excalifont">(P_1\land P_2\land \dots)\to C</span> gets value 1
-under each valuation. Take our example from the 
-
-
-<a href="https://logicalmethods.ai/textbook/sat//#validity-and-satisfiability"
-   
-   
-   
-   
-   
-   >
-previous chapter</a>
-
- again:</p>
-<div class="text-center my-4 excalifont">(\mathsf{RAIN}\lor \mathsf{BIKE}),\neg\mathsf{RAIN}\vDash\mathsf{BIKE}</div>
-We can test this inference by doing the truth-table for the following formula:
-<div class="text-center my-4 excalifont">(\mathsf{RAIN}\lor \mathsf{BIKE})\land\neg\mathsf{RAIN}\to\mathsf{BIKE}</div>
-
-
-<img src="https://logicalmethods.ai/textbook/conditionals/img/tt-2.png" class="img-thumbnail"    alt="" >
-
-
-<p>Since the formula in question receives value 1 under all valuations, it is a
-logical truth. This means that the inference in question is valid. The deduction
-theorem has many further logical implications, but we won&rsquo;t focus on those here.</p>
-<p>An additional justification comes from the foundations of programming, which is
-a foundational topic for AI, as we&rsquo;ve seen in 
-
-
-<a href="https://logicalmethods.ai/textbook/formal-languages/"
-   
-   
-   
-   
-   
-   >
-Chapter 3. Formal languages</a>
-
-. Consider the following <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Pseudocode"
-  target="_blank">pseudo
-code</a>:</p>
+<p>We use this rule to recursively eliminate all conditionals before we apply
+techniques like resolution. In fact, we can use this rule to transform a
+formula containing any number of 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+&rsquo;s into a formula in normal form,
+both <abbr title="disjunctive normal form"><a  class="link-underline-opacity-0 link-body-emphasis"> DNF</a></abbr> and <abbr title="conjunctive normal form"><a  class="link-underline-opacity-0 link-body-emphasis"> CNF</a></abbr>. Since the re-write rule introduces new negations
+symbols 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+, we apply <span class="excalifont">r₀</span> recursively before the negation rules, but
+that&rsquo;s all we need to change. The rest is business as usual.</p>
+<p>Here&rsquo;s how this works in practice. Take the following instance of <abbr title="modus ponens"><a  class="link-underline-opacity-0 link-body-emphasis"> MP</a></abbr>, for example:</p>
+<div class="text-center my-4 excalifont">RAIN, (RAIN 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+WIND)
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+WIND</div>
+<p>We know that the validity of this inference reduces to:</p>
 <div class="customBlock text-center my-4"><code class="customCode">
-  for n in range(1,10)
-    if n is divisible by 2:
-      print "Even!"
+SAT{<span class="excalifont">RAIN</span>, <span class="excalifont">(RAIN
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+WIND)</span>, <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+WIND</span>}
 </code></div>
-<p>This program loops through all the numbers from 0 to 10 and for the even ones
-(2,4,6,8,10) it prints even.  How should we think about happens &ldquo;under the hood&rdquo;
-when the program evaluates the following expression?</p>
-<div class="customBlock text-center my-4"><code class="customCode">
-  if 1 is divisible by 2:
-      print "Even!"
-</code></div>
-<p>While we don&rsquo;t want the computer to print &ldquo;Even!&rdquo;, we also don&rsquo;t want to think
-of the whole expression as <em>false</em> or <em>erroneous</em>.</p>
-<p>Next, you&rsquo;ll learn about inference patterns involving conditionals which are
-important in AI applications.</p>
-<h2 id="forward-chaining">Forward chaining<button class="btn btn-back-to-top">
-    
-    <i class="bi bi-chevron-double-up"></i>
-    
-  </button>
-</h2>
-<hr>
+<p>To check this using resolution, we first transform the formulas into <abbr title="conjunctive normal form"><a  class="link-underline-opacity-0 link-body-emphasis"> CNF</a></abbr>. The only formula that needs
+rewriting is <span class="excalifont">(RAIN
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+WIND)</span>, which by one application of <span class="excalifont">r₀</span> becomes <span class="excalifont">(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+WIND)</span>. This gives us the following sets for resolution:</p>
+<div class="text-center my-4 excalifont">{ RAIN } &emsp;&emsp;&emsp;{
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN, WIND }&emsp;&emsp;&emsp;{ 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+WIND }</div>
+<p>Two applications of resolution take care of business:</p>
 
-<p>The <strong>forward chaining</strong> method is, essentially, a series of applications of the
-reasoning pattern known in logical theory as <strong>modus ponens (MP)</strong>. It&rsquo;s an
-important method for <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Automated_theorem_proving"
-  target="_blank">automated theorem
-proving</a>, which deals
-with automating valid inference.</p>
-<p>MP is following inference pattern: <div class="text-center my-4 excalifont">A,A\to B\vDash B</div> So, for example,</p>
-<div class="text-center my-4 excalifont">\mathsf{RAIN},\mathsf{RAIN}\to\mathsf{WET}\vDash \mathsf{WET}</div> This pattern
-is perhaps the most paradigmatic _logical_ reasoning pattern out there. 
-<p>There are different ways in which we can justify the pattern, but let&rsquo;s use a
-truth-table for a particularly comprehensive explanation:</p>
+<img src="https://logicalmethods.ai/textbook/conditionals/img/resolution_conditional.png" class="mx-auto d-block rounded inert-img img-fluid"  width="700px"  alt="" >
 
+<p>Since we can derive the empty set <span class="excalifont">{ }</span>, we know that the set is <code class="customCode">not-SAT</code> and
+so the corresponding inference is valid.</p>
+<p>But we can say even more. Not only can we use resolution to see that <abbr title="modus ponens"><a  class="link-underline-opacity-0 link-body-emphasis"> MP</a></abbr> is valid, in fact, we can see that, in
+many cases, <abbr title="modus ponens"><a  class="link-underline-opacity-0 link-body-emphasis"> MP</a></abbr>-style reasoning and
+resolution reasoning are, at bottom, the same thing. Take the first application
+of resolution in the derivation and look at which formulas the sets involved
+represent:</p>
 
-<img src="https://logicalmethods.ai/textbook/conditionals/img/tt-3.png" class="img-thumbnail"    alt="" >
+<img src="https://logicalmethods.ai/textbook/conditionals/img/resolution_as_mp.png" class="mx-auto d-block rounded inert-img img-fluid"  width="700px"  alt="" >
 
+<p>The application of the resolution in this case <em>is</em> an application
+of <abbr title="modus ponens"><a  class="link-underline-opacity-0 link-body-emphasis"> MP</a></abbr> in disguise.</p>
+<p>Crucially, this works only in the case of Horn formulas and their CNFs. If we&rsquo;re
+applying the resolution rule to sets with more than one unnegated literal in
+them, the interpretation is no longer as straight-forward. <em>Something</em> can still
+be said about it, but that brings us too far afield.</p>
+<p>To bring the point home, as you may have noticed, the interpretation of
+<span class="excalifont">(A 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+B)</span> as <span class="excalifont">(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A
 
-<p>Having established that MP works, let&rsquo;s talk about forward chaining. The idea of
-forward chaining is to repeatedly use MP</p>
-<p>Let&rsquo;s look at a toy example to illustrate. We&rsquo;re at home it&rsquo;s rainy and not warm
-(logician for: cold) outside. We&rsquo;re wondering what to do. Our setup is as
-follows:</p>
-<ul>
-<li>
-<p>We have a <em>knowledge base</em> that contains a series of conditional rules:</p>
-<ol>
-<li><span class="excalifont">\mathsf{SUN}\to \mathsf{BIKE}</span></li>
-<li><span class="excalifont">\mathsf{RAIN}\to \mathsf{CAR}</span></li>
-<li><span class="excalifont">\mathsf{WARM}\to \mathsf{SHIRT}</span></li>
-<li><span class="excalifont">\mathsf{COLD}\to \mathsf{COAT}</span></li>
-<li><span class="excalifont">\mathsf{BIKE}\to \mathsf{HELMET}</span></li>
-<li><span class="excalifont">\mathsf{CAR}\to \mathsf{KEYS}</span></li>
-</ol>
-</li>
-<li>
-<p>Additionally, we have some <em>known facts</em>:</p>
-<ul>
-<li><span class="excalifont">\mathsf{RAIN}</span></li>
-<li><span class="excalifont">\mathsf{COLD}</span></li>
-</ul>
-</li>
-</ul>
-<p>The forward chaining method checks through our knowledge base to see whether the
-antecedents (if-part) of any of our conditional rules contains a known fact.</p>
-<p>We find for example, the rule:</p>
-<ol start="2">
-<li><span class="excalifont">\mathsf{RAIN}\to \mathsf{CAR}</span></li>
-</ol>
-<p>Since <span class="excalifont">\mathsf{RAIN}</span> is among our known facts, we can reason as follows:</p>
-<div class="text-center my-4 excalifont">\mathsf{RAIN},\mathsf{RAIN}\to \mathsf{CAR}\vDash\mathsf{CAR}</div>
-<p>As a result, we add <span class="excalifont">\mathsf{CAR}</span> to our known facts. This makes the following
-rule applicable:</p>
-<ol start="6">
-<li><span class="excalifont">\mathsf{CAR}\to \mathsf{KEYS}</span></li>
-</ol>
-<p>Again, using MP-style reasoning, we proceed:</p>
-<div class="text-center my-4 excalifont">\mathsf{CAR},\mathsf{CAR}\to \mathsf{KEYS}\vDash\mathsf{KEYS}</div>
-<p>We thus add <span class="excalifont">\mathsf{KEYS}</span> to our known facts. In a similar fashion, we add
-<span class="excalifont">\mathsf{COAT}</span> to our known facts arriving at the
-final known facts:</p>
-<ul>
-<li><span class="excalifont">\mathsf{RAIN}</span></li>
-<li><span class="excalifont">\mathsf{COLD}</span></li>
-<li><span class="excalifont">\mathsf{CAR}</span></li>
-<li><span class="excalifont">\mathsf{KEYS}</span></li>
-<li><span class="excalifont">\mathsf{COAT}</span></li>
-</ul>
-<p>This is all we can get &ldquo;out&rdquo; of our known facts using our knowledge base.
-AI researchers typically think of forward-chaining as a <strong>data driven</strong>
-inference method: we start with some known facts and try to see what else we can
-derive from the known facts. We don&rsquo;t have <strong>goal</strong> in mind. This is different
-with the following method.</p>
-<h2 id="backward-chaining">Backward chaining<button class="btn btn-back-to-top">
-    
-    <i class="bi bi-chevron-double-up"></i>
-    
-  </button>
-</h2>
-<hr>
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B)</span> essentially makes <abbr title="modus ponens"><a  class="link-underline-opacity-0 link-body-emphasis"> MP</a></abbr>
+a variant of <span class="excalifont">Disjunctive Syllogism</span> <div class="text-center my-4 excalifont">A, (A 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+B) 
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+ B</div>
+becomes <div class="text-center my-4 excalifont">A, 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B 
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+B.</div> In fact, using the
+equivalence of <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
 
-<p>The <strong>backward chaining</strong> method is, as the name suggests, forward chaining &ldquo;the
-other way around&rdquo;. Instead of starting from the data and extracting new
-information from it, backward chaining starts with a goal, a question we&rsquo;re
-trying to answer. This makes backward chaining a <strong>goal directed</strong> method.</p>
-<p>We can explain how backward chaining works using our same example as above:</p>
-<ul>
-<li>
-<p>Our <em>knowledge base</em> contains:</p>
-<ol>
-<li><span class="excalifont">\mathsf{SUN}\to \mathsf{BIKE}</span></li>
-<li><span class="excalifont">\mathsf{RAIN}\to \mathsf{CAR}</span></li>
-<li><span class="excalifont">\mathsf{WARM}\to \mathsf{SHIRT}</span></li>
-<li><span class="excalifont">\mathsf{COLD}\to \mathsf{COAT}</span></li>
-<li><span class="excalifont">\mathsf{BIKE}\to \mathsf{HELMET}</span></li>
-<li><span class="excalifont">\mathsf{CAR}\to \mathsf{KEYS}</span></li>
-</ol>
-</li>
-<li>
-<p>Our <em>known facts</em> are:</p>
-<ul>
-<li><span class="excalifont">\mathsf{RAIN}</span></li>
-<li><span class="excalifont">\mathsf{COLD}</span></li>
-</ul>
-</li>
-</ul>
-<p>But instead of just wondering what we can derive, we&rsquo;re specifically asking the
-question whether we should take our helmet. That is, we have a set of <strong>goals</strong>
-that contains: <div class="text-center my-4 excalifont">\mathsf{HELMET}</div></p>
-<p>With this specific question in mind, we go through the rules and see whether
-there&rsquo;s a rule that would allow us to infer <span class="excalifont">\mathsf{HELMET}</span>. We find:</p>
-<ol start="5">
-<li><span class="excalifont">\mathsf{BIKE}\to \mathsf{HELMET}</span></li>
-</ol>
-<p>If we would know that <span class="excalifont">\mathsf{BIKE}</span>, we could infer <span class="excalifont">\mathsf{HELMET}</span>. So we
-temporarily add <span class="excalifont">\mathsf{BIKE}</span> to our goals. Again, we check whether we find a
-corresponding rule:</p>
-<ol>
-<li><span class="excalifont">\mathsf{SUN}\to \mathsf{BIKE}</span></li>
-</ol>
-<p>We now add <span class="excalifont">\mathsf{SUN}</span> to our temporary goals. But at this point our
-search terminates. We can&rsquo;t find any rule that gives us <span class="excalifont">\mathsf{SUN}</span>. We
-couldn&rsquo;t reach our goals</p>
-<p>Now suppose, instead, we ask whether we should take our keys and add
-<span class="excalifont">\mathsf{KEYS}</span> to our goals. We can then backwards chain the rules:</p>
-<ol start="2">
-<li><span class="excalifont">\mathsf{RAIN}\to \mathsf{CAR}</span></li>
-<li><span class="excalifont">\mathsf{CAR}\to \mathsf{KEYS}</span></li>
-</ol>
-<p>We arrive at a goal that&rsquo;s among our known facts, viz. <span class="excalifont">\mathsf{RAIN}</span>. This
-means that using a series of MP&rsquo;s and rules 2 and 6, we can derive our ultimate
-goal: <span class="excalifont">\mathsf{KEYS}</span>. Our KB has settled the question.</p>
-<p>But wait a moment, have we established yet that we <em>shouldn&rsquo;t</em> take a helmet?
-It turns out that this is not such an easy question. We&rsquo;ve shown that our
-knowledge base doesn&rsquo;t settle the question. But there a lot of questions it
-doesn&rsquo;t settle, should we treat them all as false?</p>
-<p>The so-called <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Closed-world_assumption"
-  target="_blank">closed-world assumption
-(CWA)</a> in AI says yes. In
-short, the CWA tells us to treat non-derivable statements as false, meaning we&rsquo;d
-conclude <span class="excalifont">\neg\mathsf{HELMET}</span> from the fact that we can&rsquo;t derive
-<span class="excalifont">\mathsf{HELMET}</span>. The CWA plays a fundamental role in knowledge representation.</p>
-<h2 id="conditionals-in-programming">Conditionals in programming<button class="btn btn-back-to-top">
-    
-    <i class="bi bi-chevron-double-up"></i>
-    
-  </button>
-</h2>
-<hr>
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ A</span> and <span class="excalifont">A</span>, we can derive the one rule
+from the other: by replacing the first <span class="excalifont">A</span> with <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
 
-<p>Before we move to the limitations of the logical conditional, let&rsquo;s briefly talk
-about conditionals in programming.</p>
-<p>If you&rsquo;ve ever written a computer program, you&rsquo;ve very likely written something
-like this:</p>
-<div class="customBlock text-center my-4"><code class="customCode">
-  if CONDITION:
-    EFFECT-1
-  elif: 
-    EFFECT-2
-  else:
-    EFFECT-3
-</code></div>
-<p>For example, a solution to the  famous <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Fizz_buzz"
-  target="_blank">fizz
-buzz</a> programming exercise looks
-something like this:</p>
-<div class="customBlock text-center my-4"><code class="customCode">
-  for n in range(1,101):
-    if n is divisible by 3 and n is divisible by 5:
-      print("FizzBuzz")
-    elif n is divisible by 3:
-      print("Fizz")
-    elif n is divisble by 5:
-      print("Buzz")
-    else:
-      print(n)
-</code></div>
-This program loops through all the numbers from 1 to 100 and tests for each
-number whether it's divisible by both 3 and 5, in which case it prints
-"FizzBuzz", if that's not the case but the number is divisible by 3, the program
-prints "Fizz", if that's also not the case but the number is divisible by 5, the
-program prints "Buzz", and if all else fails, it prints the number.
-<p>This results in a sequence that begins like this:</p>
-<div class="text-center my-4 excalifont">1,2,Fizz,4,Buzz,Fizz,7,8,Fizz,Buzz,\dots</div>
-<p>The material conditional can help us understand what&rsquo;s going on here. Each of
-the conditions is a Boolean condition: it evaluates either to true false. The
-&ldquo;if-then-else&rdquo; statements can therefore be modelled by the following material
-conditionals:</p>
-<ul>
-<li><span class="excalifont">\mathsf{DIV\_3}\land \mathsf{DIV\_5}\to \mathsf{PRINT\_FIZZBUZZ}</span></li>
-<li><span class="excalifont">\mathsf{DIV\_3}\land \neg\mathsf{DIV\_5}\to \mathsf{PRINT\_FIZZ}</span></li>
-<li><span class="excalifont">\neg\mathsf{DIV\_3}\land \mathsf{DIV\_5}\to \mathsf{PRINT\_BUZZ}</span></li>
-<li><span class="excalifont">\neg\mathsf{DIV\_3}\land \neg\mathsf{DIV\_5}\to \mathsf{PRINT\_NUMBER}</span></li>
-</ul>
-<p>These are, essentially, a knowledge base. If we change the known facts
-corresponding to the actual divisibility facts of the number, we can derive what
-to print using standard inference techniques, such as forward/backward chaining.</p>
-<p><i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Conditional_%28computer_programming%29"
-  target="_blank">Conditionals</a>
-are a fundamental reason for the expressive power of programming languages and
-at their very heart lies the behavior of the material conditional.</p>
-<h2 id="non-material-conditionals">Non-material conditionals<button class="btn btn-back-to-top">
-    
-    <i class="bi bi-chevron-double-up"></i>
-    
-  </button>
-</h2>
-<hr>
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ A</span> using this equivalence, <abbr title="modus ponens"><a  class="link-underline-opacity-0 link-body-emphasis"> MP</a></abbr> finally becomes  <div class="text-center my-4 excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
 
-<p>Before we conclude the chapter, we should talk about the <strong>limitations</strong> of the
-logical conditional.</p>
-<p>The most important limitation is that <span class="excalifont">\Rightarrow</span> is not a good model of many
-uses of the phrase &ldquo;if &hellip;, then &hellip;&rdquo; in natural language. For example,
-typically, people think that conditionals like &ldquo;If the moon is made of cheese,
-then pigs can fly&rdquo; are false. The reason is, arguably, that the material of the
-moon has nothing to do with the abilities of pigs. But if we treat if-then as
-the truth-function <span class="excalifont">\Rightarrow</span>, since the moon is <em>not</em> made of green cheese,
-the conditional would need to get the value <span class="excalifont">0\Rightarrow 0=1</span>.</p>
-<p>This and similar phenomena have lead to the development of various <strong>conditional
-logics</strong>, which aim to provide a more adequate formalization of various if-then
-clauses. Of these logics, especially the logic of <i class="bi bi-box-arrow-up-right h-6"></i>
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A, 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B 
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+B,</div> which is an instance of <span class="excalifont">Disjunctive Syllogism</span>.</p>
+<p>Alternatively, we can—of course—verify the validity of
+<abbr title="modus ponens"><a  class="link-underline-opacity-0 link-body-emphasis"> MP</a></abbr> by inspecting the truth-table:</p>
+
+<img src="https://logicalmethods.ai/textbook/conditionals/img/mp_truth_table.png" class="mx-auto d-block rounded inert-img img-fluid"  width="700px"  alt="" >
+
+<p>
+<img src="https://logicalmethods.ai/textbook/conditionals/img/ai_counterfactual.png" class="rounded  float-end inert-img img-fluid m-2"  width="300px"  alt="" >
+
+Importantly, the material conditional is not the only way to interpret
+
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ or to formalize natural language &ldquo;if …, then …&rdquo; statements. In fact,
+in many contexts, it is not even an adequate interpretation. Consider, for
+example, the statement &ldquo;if you&rsquo;d throw the ball through the window, then it
+would break&rdquo; said to <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
+ standing in front the window with his ball.
+Such a conditional statement is called a <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Counterfactual_conditional"
   target="_blank">counterfactual
-conditionals</a>, which
-are conditionals that talk about what <em>would have been</em>, play an important role
-in the representation of causal knowledge and in <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Explainable_artificial_intelligence"
-  target="_blank">XAI</a>.</p>
-<h2 id="further-readings">Further readings<button class="btn btn-back-to-top">
+conditionals</a>.
+Clearly, the material interpretation of 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ is inadequate to describe the
+meaning of this conditional: if <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
+ (responsibly) doesn&rsquo;t throw the
+ball, this doesn&rsquo;t mean that the conditional is automagically true—the ball
+might be a soft, foam ball and the window double glazed. The counterfactual might be
+false. If the ball is, instead, a hard PVC ball and the window single glazed,
+the statement might very well be true.</p>
+<p>The point is, just because the if-part is false, doesn&rsquo;t mean the whole &ldquo;if …,
+then …&quot;-statement is true, as predicted by the material interpretation. This is
+mainly a <abbr title="warning"><a  class="link-underline-opacity-0 link-body-emphasis"> caveat</a></abbr> about the use of
+material conditionals in <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Knowledge_engineering"
+  target="_blank">knowledge engineering</a> and <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Knowledge_representation_and_reasoning"
+  target="_blank">knowledge representation</a>. To make sure that your system behaves like expected, you need to make sure that you only treat conditionals as material conditionals when it&rsquo;s adequate—not, for example, when you&rsquo;re dealing with counterfactuals.</p>
+<h2 id="conditional-reasoning">Conditional reasoning<button class="btn btn-back-to-top">
     
     <i class="bi bi-chevron-double-up"></i>
     
@@ -1066,25 +991,582 @@ in the representation of causal knowledge and in <i class="bi bi-box-arrow-up-ri
 </h2>
 <hr>
 
-<p>You can find a more detailed discussion of algorithmic implementations of forward and
-backward chaining in Ch. 7.5 of Russel and Norvig&rsquo;s &ldquo;Artificial Intelligence. A
-Modern Approach.&rdquo; (see the detailed reference in 
+<p>Using the reduction of <span class="excalifont">A 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+B</span> to <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B</span>, we can
+apply all the artificial reasoning methods for Boolean inference we know to
+conditional reasoning. This is great, of course, but applying these methods
+means we also incur all the drawbacks we&rsquo;ve discussed, especially the risk of
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Combinatorial_explosion"
+  target="_blank">exponential blow-up</a>.</p>
+<p>But it turns out that in many contexts of reasoning with material conditionals,
+we can do much better. One traditionally important class of conditionals for
+which artificial reasoning becomes more <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Computational_complexity_theory#tractable_problem"
+  target="_blank">tractable</a> are the so-called <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Horn_clause"
+  target="_blank">Horn clauses</a>.</p>
+<p>
+<img src="https://logicalmethods.ai/textbook/conditionals/img/ai_horn.png" class="rounded  float-end inert-img img-fluid m-2"  width="200px"  alt="" >
 
+Simply speaking a <strong>Horn clause</strong> is a disjunction of <abbr title="propositional variable or the negation of one"><a  class="link-underline-opacity-0 link-body-emphasis"> literals</a></abbr>,
+which contains at most one <em>un</em>-negated literal, that is propositional variable.
+Here&rsquo;s an example: <div class="text-center my-4 excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+WIND</div>
+Off the bat, you might not think that this is a conditional, but a disjunction.
+But look at it this way: using the <span class="excalifont">&ldquo;De Morgan Identities&rdquo;</span>, we can see that
+<span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
 
-<a href="https://logicalmethods.ai/textbook/boolean//#further-readings"
-   
-   
-   
-   
-   
-   >Chapter 1. Logic and AI</a>
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN</span> is equivalent to <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+(SUN
 
-).</p>
-<p><strong>Notes:</strong></p>
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN)</span>, which means that our example Horn clause can be written as:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+(SUN 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN) 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+WIND</div>
+<p>But of we now apply the reduction of <span class="excalifont">A 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+B</span> to <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B</span> &ldquo;backwards&rdquo;, we get:</p>
+<div class="text-center my-4 excalifont">(SUN 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN) 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+WIND</div>
+<p>This means that if we have a Horn clause like in our example, we can equivalently
+re-write it as a simple conditional, where the <abbr title="if-part"><a  class="link-underline-opacity-0 link-body-emphasis"> antecedent</a></abbr> consists of the conjunction of the
+negated literals and the <abbr title="then-part"><a  class="link-underline-opacity-0 link-body-emphasis"> consequent</a></abbr> is
+the unnegated literal.</p>
+<p>Horn clauses are named after <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Alfred_Horn"
+  target="_blank">Alfred
+Hresolutionorn</a> (nothing to do with horns) and
+they are the theoretical basis for <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Logic_programming"
+  target="_blank">logic
+programming</a>, which is used,
+for example, to write efficient expert systems, but also find other industry
+applications.</p>
+<p>The definition of Horn clauses allows for two special cases:</p>
+<ul>
+<li>
+<p>A clause that consists of a single propositional variable, like <span class="excalifont">SUN, RAIN,</span>
+or <span class="excalifont">WIND</span>. Such a clause is called a <strong>fact</strong>.</p>
+</li>
+<li>
+<p>A clause that&rsquo;s the disjunction <em>only</em> of negated propositional variables,
+that is without any unnegated propositional variable, like</p>
+  <div class="text-center my-4 excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN.</div>
+<p>Such a clause is called a <strong>goal (clause)</strong>. Note that by the <span class="excalifont">&ldquo;De Morgan
+Identities&rdquo;</span>, goal clauses are simply negated conjunctions of propositional
+variables—in our case:</p>
+  <div class="text-center my-4 excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+(SUN 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN).</div>
+<p>The special case of a single negated propositional variable, like
+<span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+SUN</span>, is explicitly included.</p>
+</li>
+</ul>
+<p>The Horn clause in our example has both: negated and unnegated propositional
+variables. It is what&rsquo;s called a <strong>strict Horn clause</strong>.</p>
+<p>These names derive from the way we reason with Horn clauses. Suppose, for
+example, that <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
+ has downloaded a simple meteorological <abbr title="knowledge base"><a  class="link-underline-opacity-0 link-body-emphasis"> <span class="excalifont">KB</span></a></abbr>,
+that contains the following strict Horn clauses:
+
+<img src="https://logicalmethods.ai/textbook/conditionals/img/kb_rainbow.png" class="mx-auto d-block rounded inert-img img-fluid"  width="500px"  alt="" >
+</p>
+<p>Suppose further that <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
+ observes that it&rsquo;s morning, the
+skies are (partially) clear, and its starting to rain. This gives
+<span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
+ the following two <em>facts</em> in the terminology of Horn
+clauses: <div class="text-center my-4 excalifont">MORNING, CLEAR, RAIN</div>
+Now <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
+ is wondering if there&rsquo;ll be a rainbow.</p>
+<p>To determine this, <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
+ can use resolution based reasoning
+with its new KB! We know that <span class="excalifont">RAINBOW</span> follows just in case <span class="excalifont">KB</span> together with
+the facts, and <span class="excalifont"><nobr>
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAINBOW</nobr></span> is <code class="customCode">not-SAT</code>. Note that
+<span class="excalifont"><nobr>
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAINBOW</nobr></span> is a <em>goal</em> clause in Horn terminology.</p>
+<p>So, what we do is to add the facts <span class="excalifont">MORNING, CLEAR,RAIN</span> and goal clause
+<span class="excalifont"><nobr>
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAINBOW</nobr></span> to the <span class="excalifont">KB</span> and apply resolution to see
+whether we can derive <span class="excalifont">{ }</span>. If so, we can conclude that there will be rainbow.</p>
+<p>Here we go:</p>
+<ol>
+<li>
+<p>First, <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
+ re-writes the <span class="excalifont">KB</span> in CNF using <span class="excalifont">r₀</span> (an industry level KB would
+already be written in CNF):</p>
+
+   <img src="https://logicalmethods.ai/textbook/conditionals/img/kb-rewrite.png" class="rounded mx-auto d-block inert-img img-fluid"  width="850px"  alt="" >
+
+</li>
+<li>
+<p>Next, <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
+ transforms the CNFs into sets (again, this could be done in pre-processing) and add the facts and goal clause as <abbr title="sets with one element"><a  class="link-underline-opacity-0 link-body-emphasis"> singletons</a></abbr>:</p>
+
+   <img src="https://logicalmethods.ai/textbook/conditionals/img/kb-sets.png" class="rounded d-block inert-img img-fluid"  width="400px"  alt="" >
+
+</li>
+<li>
+<p>Finally, <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
+ recursively applies the resolution rule
+until it can derive <span class="excalifont">{ }</span> or cannot resolve anymore. Here&rsquo;s the derivation
+that <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
+ finds in the search:</p>
+
+   <img src="https://logicalmethods.ai/textbook/conditionals/img/resolution_rainbow.png" class="mx-auto rounded d-block inert-img img-fluid"  width="700px"  alt="" >
+
+</li>
+</ol>
+<p>All the hard work paid of, <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
+ derived <span class="excalifont">{ }</span>, so <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
+ knows there will be a rainbow:</p>
+
+<img src="https://logicalmethods.ai/textbook/conditionals/img/ai_rainbow.png" class="mx-auto rounded d-block inert-img img-fluid"  width="300px"  alt="" >
+
+<p>So far, so standard. To see what&rsquo;s going on here, we analyze the inferences
+using <abbr title="modus ponens"><a  class="link-underline-opacity-0 link-body-emphasis"> MP</a></abbr>-style reasoning. For this
+purpose, we use the following more generalized version of MP, which we call
+<strong>gen-MP</strong>:</p>
+<div class="text-center my-4 excalifont">A₁, A₂, …, (A₁ 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ A₂
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ …) 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ B 
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+ B</div>
+<p>This inference allows us, for example, to infer <span class="excalifont">SUN</span> from <span class="excalifont">CLEAR, DAY,</span> and
+<span class="excalifont">(SUN
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+CLEAR)
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+DAY</span>. We let gen-MP subsume MP with the special
+case that the conjunction in the antecedent is of length one.</p>
+<p>We&rsquo;ve already pointed out that resolution-style inferences are, at heart,
+<abbr title="modus ponens"><a  class="link-underline-opacity-0 link-body-emphasis"> MP</a></abbr>-style inferences. This point, we
+can use to analyze the resolution above as a <strong>chain</strong> of
+<abbr title="modus ponens"><a  class="link-underline-opacity-0 link-body-emphasis"> gen-MPs</a></abbr>:</p>
+
+<img src="https://logicalmethods.ai/textbook/conditionals/img/horn_chaining.png" class="mx-auto rounded d-block inert-img img-fluid"  width="600px"  alt="" >
+
+<p>Essentially, we&rsquo;re taking our initial facts and apply gen-MP to infer as many
+new facts as we can from the conditionals in our KB. We add these facts to our
+KB and again derive as many new facts as we can. Lather-rinse-repeat, we apply
+this method <em>recursively</em> until at some point we derive the desired formula.
+This is, in a nutshell, the algorithm of <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Forward_chaining"
+  target="_blank"><strong>forward
+chaining</strong></a>, which is one of the
+two main algorithms for artificial conditional reasoning—the other being
+backward chaining, which we discuss below.</p>
+<p>More generally, if we have a set of <em>facts</em> represented by propositional
+variables, a <em>rule base</em> of strict Horn formulas represented by conditionals,
+and a <em>goal</em> represented by a single propositional variable,  the
+forward-chaining algorithm works by:</p>
+<ol>
+<li>
+<p>Applying gen-MP as many times as possible using the known facts and the rule
+base and adding the results to the known facts.</p>
+</li>
+<li>
+<p>Recursively repeat 1. until one of two possible things happen:</p>
+<ul>
+<li>
+<p>The goal formula is derived.</p>
+</li>
+<li>
+<p>No new applications of gen-MP are possible and the goal formula is not
+derived.</p>
+</li>
+</ul>
+<p>In the former case conclude that the formula is derivable. In
+the latter case, conclude that it is not derivable .</p>
+</li>
+</ol>
+<p>What we&rsquo;ve seen in our example is, in essence, that we can interpret the
+resolution algorithm with Horn formulas as an instance of the forward-chaining
+algorithm. The fact that this works crucially depends on the fact that we only
+have strict Horn formulas in our rule base and so the applications of gen-MP can
+only ever get us new <em>facts</em>—that is unnegated propositional variables.</p>
+<p>In fact, the simple forward chaining algorithm will always give the correct
+answer to the question whether we can derive a goal formula in a finite amount
+of time. More so, the time it takes to determine the answer only grows linearly
+with the number of Horn clauses (disguised as conditionals) involved. Each new
+conditional makes possible only a bounded number of new gen-MP applications.</p>
+<p><i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Duality_%28mathematics%29"
+  target="_blank">Dually</a>, the same point
+carries over to resolution with Horn clauses: in contrast to the general
+<code class="customCode">SAT</code>-problem for arbitrary formulas, the
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Horn-satisfiability"
+  target="_blank"><code class="customCode">HORN-SAT</code></a> problem—the
+question whether a given set of Horn formulas is satisfiable—is solvable in
+linear <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Time_complexity"
+  target="_blank">time complexity</a>.</p>
+<p>This is one of the main reasons why we try to use Horn clauses as much as
+possible in <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Knowledge_engineering"
+  target="_blank">knowledge
+engineering</a>, but,
+unfortunately, using non-Horn clauses cannot always be avoided. And an example
+in the next section will illustrate why.</p>
+<p>But before we discuss this example, let&rsquo;s briefly talk about the other main
+algorithm for reasoning with conditionals in artificial inference <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Backward_chaining"
+  target="_blank">backward
+chaining</a>. This algorithm is
+basically backward chaining in reverse. Here&rsquo;s how <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
+ would
+apply the algo in our example:</p>
+<ul>
+<li>
+<p><span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
+ <em>wants</em> to know whether the goal, <span class="excalifont">RAINBOW</span>, follows
+from the known facts <span class="excalifont">MORNING, CLEAR,</span> and <span class="excalifont">RAIN</span> and the KB.</p>
+</li>
+<li>
+<p><span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
+ inspects the KB and sees that there is
+<span class="excalifont">(RAIN 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ LOW_SUN)
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ RAINBOW</span> in there. That means that if
+<span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
+ could derive <span class="excalifont">RAIN</span> and <span class="excalifont">LOW_SUN</span>, it could derive <span class="excalifont">RAINBOW</span> via
+gen-MP. So,  <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
+ <em>replaces</em> the goal <span class="excalifont">RAINBOW</span> with <span class="excalifont">RAIN</span>
+and <span class="excalifont">LOW_SUN</span> as the two <em>new</em> goals. But since <span class="excalifont">RAIN</span> is already one of the known facts, we
+delete it from the goals.</p>
+</li>
+<li>
+<p><span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
+ recursively repeats this procedure, updating the goals
+along the way, until in the last step, the goal will be <span class="excalifont">DAY</span>, we have
+<span class="excalifont">MORNING
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+DAY</span> in the KB and <span class="excalifont">MORNING</span> among the facts. This deletes the
+last goal and the backward search is complete. If <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
+ diligently
+kept track of the conditionals involved in the backward search, it can easily
+construct the gen-MP derivation we found above from it.</p>
+</li>
+</ul>
+<p>Here&rsquo;s how the algorithm works in general: Again, we start with a set of <em>facts</em>
+represented by propositional variables, a <em>rule base</em> of strict Horn formulas
+represented by conditionals, and a <em>goal</em> represented by a single propositional
+variable.</p>
+<ol>
+<li>
+<p>We search through the rule base to find any conditionals with a goal fact in
+the <abbr title="then-part"><a  class="link-underline-opacity-0 link-body-emphasis"> consequent</a></abbr>. If that happens, we
+update our goals by adding the conjuncts of the <abbr title="if-part"><a  class="link-underline-opacity-0 link-body-emphasis"> antecedent</a></abbr>—which we know to be a conjunction
+since we&rsquo;re dealing with Horn clauses—to our goal facts. Then we eliminate any
+goals that are known facts.</p>
+</li>
+<li>
+<p>We recursively repeat this procedure until one of two things happens:</p>
+<ul>
+<li>
+<p>We have no goals anymore, from which we conclude that the initial goal is
+derivable. Keeping track of the search generates the derivation using
+gen-MP.</p>
+</li>
+<li>
+<p>We have a non-empty list of goals but no longer find conditionals that
+have them in their consequent. We conclude the initial goal is not
+derivable.</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>Forward and backward chaining are two different approaches to the same problem:
+finding a derivation using gen-MP. Forward-chaining is, essentially, what&rsquo;s
+known as a <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Breadth-first_search"
+  target="_blank">breadth-first
+search</a>, while
+backward-chaining is a <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Depth-first_search"
+  target="_blank">depth-first
+search</a>. The two approaches
+have different advantages and drawbacks. For example, forward-chaining will find
+the shortest solution possible, but implementing it requires a lot of computer
+memory to keep track of all the derived facts, many of which may not be helpful
+in the final derivation. Backward-chaining, instead, can be implemented in a
+memory-efficient way, but the derivations it finds may not be optimal in terms
+of length. Ultimately, it&rsquo;s the requirements of the concrete artificial
+reasoning scenario that determine which algorithm is better suited to the
+problem at hand.</p>
+<p>You might be wondering: What if we couldn&rsquo;t have derived <span class="excalifont">RAINBOW</span>? For example,
+because we neither had <span class="excalifont">MORNING</span> nor <span class="excalifont">EVENING</span> as known facts. Would that have
+meant we <em>don&rsquo;t</em> see a rainbow according to the <span class="excalifont">KB</span>? It turns out that&rsquo;s a
+subtle question about the difference between being true and provable, or dually,
+false and unprovable. We&rsquo;ll return to this question much later in the course,
+when we discuss <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Many-valued_logic"
+  target="_blank">many-valued
+logics</a> and their motivations
+in AI.</p>
+
+<img src="https://logicalmethods.ai/textbook/conditionals/img/ai_night_rainbow.png" class="mx-auto rounded d-block inert-img img-fluid"  width="600px"  alt="" >
+
+<h2 id="planning">Planning<button class="btn btn-back-to-top">
+    
+    <i class="bi bi-chevron-double-up"></i>
+    
+  </button>
+</h2>
+<hr>
+
+<p>We&rsquo;ve seen that conditionals are useful for formulating rules in <strong>Knowledge
+Representation and Reasoning (KKR)</strong> contexts. In the final section of this
+chapter, we&rsquo;ll look at a concrete application of this, which serves two
+interrelated purposes: on the one hand, it&rsquo;s a concrete application of the
+different techniques we&rsquo;ve studied in the last couple of chapters; on the other
+hand, it illustrates the limitations of Horn clauses in <abbr title="knowledge representation and reasoning"><a  class="link-underline-opacity-0 link-body-emphasis"> KKR</a></abbr> contexts.</p>
+<p>We begin by describing a very simple set-up: <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
+ stands in
+front of a table, on which there are two blocks, a red one and a green one. The
+green block is stacked on top of the red one. There are instructions on the
+wall, telling <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
+ to invert the stacking:</p>
+<pre><code>
+    <img src="https://logicalmethods.ai/textbook/conditionals/img/ai_plan_setup.png" class="mx-auto rounded d-block inert-img img-fluid"  width="600px"  alt="" >
+
+</code></pre>
+<p>It seems that <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
+ needs to make a <strong>plan</strong>.</p>
+<p>There is an AI approach to planning involves <code class="customCode">SAT</code>-solving and knowledge
+representation using conditionals. The approach is known as <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Satplan"
+  target="_blank"><code class="customCode">Satplan</code></a> or &ldquo;Planning as satisfaction.&rdquo;</p>
+<p>The idea is to describe the planning situation using a suitable propositional
+language. Here&rsquo;s the basic components of such a language for our problem:</p>
+<ul>
+<li>
+<p>The <strong>fluents</strong> are propositional variables that describe possibly changing
+states of the world. For each combination of <span class="excalifont">X,Y 
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+ { R, G}</span> and for
+each <span class="excalifont">t</span> a time-stamp in <span class="excalifont">0, 1, 2, …</span>, we have a different (!)
+propositional variable: <div class="text-center my-4 excalifont">On(X,Y,t),</div> which states that block <span class="excalifont">X</span> is on top of
+block <span class="excalifont">Y</span> at point <span class="excalifont">t</span>.</p>
+<p>That is, we have a propositional variable <span class="excalifont">On(R,G,1)</span>, which says that the
+red block is on top of the green block at the first time-stamp. But we also
+have a <em>different</em> propositional variable <span class="excalifont">On(G,R,1)</span>, which says that the
+<em>green</em> block is on top of the <em>red</em> one at the first time-stamp. Of course,
+in a realistic model, only one of the two can be true at the same time, more
+on that later.</p>
+</li>
+<li>
+<p>The <strong>actions</strong> are propositional variables whose truth expresses that <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
+ carries out a specific action. Again for each combination of
+<span class="excalifont">X,Y 
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+ { R, G}</span> and for each <span class="excalifont">t</span> a time-stamp in <span class="excalifont">0, 1, 2, …</span>, we have
+the variable <div class="text-center my-4 excalifont">Stack(X,Y,t),</div> which expresses the action of stacking <span class="excalifont">X</span> on top
+of <span class="excalifont">Y</span> at time-stamp <span class="excalifont">t</span>.</p>
+<p>Similarly, we have for each <span class="excalifont">X,Y</span> and each <span class="excalifont">t</span> the action <div class="text-center my-4 excalifont">Unstack(X,Y,t),</div> which
+removes the block <span class="excalifont">X</span> from the block <span class="excalifont">Y</span> at time <span class="excalifont">t</span>.</p>
+</li>
+</ul>
+<p>Otherwise, our language is an ordinary propositional language with 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+,
+
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+, 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+, and 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ as operators.</p>
+<p>For now, the variables are just ordinary propositional variables, nothing
+constraints our models from assigning them &ldquo;weird&rdquo; values that don&rsquo;t align with
+our intended interpretation. For example, an assignment may very well assign
+<span class="excalifont">On(R,G,1)</span> and <span class="excalifont">On(G,R,1)</span> both the value <code class="customCode">1</code>, even though in the &ldquo;real world&rdquo; of
+course they can&rsquo;t both be true.</p>
+<p>We tackle this problem by implementing a <abbr title="knowledge base"><a  class="link-underline-opacity-0 link-body-emphasis"> KB</a></abbr>,
+which at a minimum contain the following formulas:</p>
+<ul>
+<li>
+<p>Principles about the way the world works &ldquo;(meta-)physically&rdquo;, such as: <div class="text-center my-4 excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+On(X,X,t)    On(X,Y,t)
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+On(Y,X,t),</div> for all <span class="excalifont">t</span>. These guarantee, for example, that no block can be on top of itself in a model or both one on top of the other and the other on top of the one, in some weird &ldquo;wormhole&rdquo;-style model.</p>
+</li>
+<li>
+<p>Principles that guarantee that our actions work like indented, like: <div class="text-center my-4 excalifont">Stack(X,Y,t)
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+On(X,Y,t+1)   Unstack(X,Y,t)
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+On(X,Y,t+1),</div> for all <span class="excalifont">X,Y,t</span> as before. These express action principles like that if you stack at one time-stamp in the model, the action will succeed and the blocks will be indeed on top of each other at the next time-stamp.</p>
+<p>These action principles also need some plausibility rules, like</p>
+  <div class="text-center my-4 excalifont">Unstack(X,Y,t)
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+On(X,Y,t),</div> for all <span class="excalifont">X,Y,t</span> as before, which
+  states that you can only unstack blocks that are actually stacked.
+</li>
+</ul>
+<p>We can now interpret a model for our language that makes all the principles in
+the KB true as a &ldquo;real world&rdquo; scenario. The principles guarantee that things
+behave as expected. Note that each model contains a &ldquo;full history,&rdquo; by telling
+us which statements are true at time-stamp <span class="excalifont">0,1,2, …</span>.</p>
+<p>In this language, we can express our planning problem as follows:</p>
+<ul>
+<li>
+<p>We take an <strong>initial state</strong> of our system, which is <div class="text-center my-4 excalifont">On(G,R,0).</div> We couple
+it with a <strong>goal state</strong>, which is <div class="text-center my-4 excalifont">On(R,G,2).</div></p>
+</li>
+<li>
+<p>If we can find a model for the KB—that is a &ldquo;real world&rdquo; model—which makes the
+initial state and goal state true, we can read off a <em>plan</em> from the model: it
+will tell us which actions are true by assigning them value <span class="excalifont">1</span>, such as
+<span class="excalifont">v(Unstack(G,R,0) = 1</span>, to say first, unstack green from red.</p>
+</li>
+<li>
+<p>To carry out the plan, we just &ldquo;do&rdquo; the corresponding actions in the real
+world.</p>
+</li>
+</ul>
+<p>But that means that we can find a plan—we can <em>plan</em>— by <code class="customCode">SAT</code>-solving. For
+this, we can use any of the techniques we&rsquo;ve developed before. Even more, if you
+check carefully, you can see that all the formulas involved are Horn formulas,
+which means we can find a model in linear time. Of course, this
+language is already large enough that linear might still be too long to do by
+hand, but in practice, we can easily use a AI program to solve this.</p>
+<p>One model the system might find for our language is given by this diagram, where
+the depicted formulas are the ones that are true (i.e. assigned value <code class="customCode">1</code>):</p>
+
+<img src="https://logicalmethods.ai/textbook/conditionals/img/ai_plan.png" class="mx-auto rounded d-block inert-img img-fluid"  width="900px"  alt="" >
+
+<p>You can verify, that these assignments correspond with the above described
+rules. Of course, the diagram only shows the relevant parts of the model, more
+things are true, like <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+On(R,R,0), 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+On(G,G,0), …</span>.</p>
+<p>The plan we can read off is the one where we first unstack the green from the
+red block, and then just stack the red on the green. Of course, you could have
+found that plan by yourself without any logic, but planning situations can get
+quite complex.</p>
+<p>Planning problems involving <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Blocks_world"
+  target="_blank">blocks</a>
+are a mainstay in AI research. Another famous example involves <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Monkey_and_banana_problem"
+  target="_blank">monkeys and
+bananas</a>. Of course,
+real world planning situations are much more complex. But the principles remain
+the same, and <code class="customCode">Satplan</code> has <em>many</em> real world, industry applications, ranging
+from scheduling shifts to warehouse stocking. These applications easy involve
+hundreds to thousands of variables. They <em>really</em> need AI to automatically plan.</p>
+<p>There is one hiccup, however. Also the following model is a model of our KB
+so-far:</p>
+
+<img src="https://logicalmethods.ai/textbook/conditionals/img/ai_miracle.png" class="mx-auto rounded d-block inert-img img-fluid"  width="900px"  alt="" >
+
+<p>In this model, which you can easily verify validates all our principles so far,
+<span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
+ hesitates for a second and doesn&rsquo;t carry out any actions at
+the first and second time-stamp, but the problem solves itself: the blocks
+magically re-arrange themselves into the desired configuration.</p>
+<p>Of course, this is a non-sense model, but how do we exclude it? It turns out
+that the obvious solution has some undesirable properties. What we really want
+to do is postulate this for all <span class="excalifont">X,Y,t</span>:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+On(X,Y,t)
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+Unstack(X,Y,t)
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+On(X,Y,t+1)</div>
+<div class="text-center my-4 excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+On(X,Y,t)
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+Stack(X,Y,t)
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+On(X,Y,t+1)</div>
+<p>This would exclude the &ldquo;miracle model&rdquo;, but at a cost: these conditionals are no
+longer Horn clauses. Which puts our planning with them square into the territory
+of exponential time <code class="customCode">SAT</code>-solving. While modern computers are sufficiently
+powerful that they can tackle even very time-complex <code class="customCode">SAT</code>-problems in
+reasonable time-frames, this is not good. It presents a fundamental challenge to
+scaling planing.</p>
+<p>The underlying problem is known as the <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Frame_problem"
+  target="_blank">frame
+problem</a>, which is one of the most
+fundamental issues of logic-based AI. The question is how to adequately
+represent the conditions on our model that guarantee that it behaves like the
+&ldquo;real world,&rdquo; while at the same time remaining computationally tractable. This
+is an issue we won&rsquo;t solve today.</p>
 
 
   </div>
-   <p><em>Last edited: </em>24/09/2024</p>
+  
 </div>
 
 

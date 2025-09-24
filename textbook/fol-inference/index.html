@@ -138,11 +138,11 @@
             <li>
               <a class="dropdown-item 
                 
-                link-opacity-50
+                
                 "
-                href="javascript:;"
+                href="/textbook/conditionals/"
               >6. 
-                <i class="bi bi-lock-fill"></i>
+                <i class="bi bi-unlock-fill"></i>
                  Logical conditionals
               </a>
             </li>
@@ -724,17 +724,13 @@ for the propositional connectives, two for each of the quantifiers
 <p>Let&rsquo;s begin with the <strong>universal quantifier</strong> <span class="excalifont">\forall</span>. Here&rsquo;s a straight-forward
 inference:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/fol-inference/img/ex-ue.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
 
 <p>If everybody has a parent, then Ada does.</p>
 <p>This inference is what lies behind the standard elimination rule for the
 universal quantifier:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/fol-inference/img/ue.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
 
 <p>Here <span class="excalifont">A(t)</span> stands for the result of replacing the variable <span class="excalifont">x</span> with the term
 <span class="excalifont">t</span> everywhere where <span class="excalifont">x</span> is not &ldquo;captured by&rdquo; another quantifier:</p>
@@ -786,15 +782,11 @@ without having assumed anything else about who they are,  we&rsquo;ve effectivel
 established for an arbitrary person that they have a parent. If we can show
 something like this, then we may infer that <em>every</em> person has a parent:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/fol-inference/img/ex-ui.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
 
 <p>Expressed as a general inference rule, this becomes:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/fol-inference/img/ui.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
 
 <p>Here the <span class="excalifont">\alpha</span> stands for an arbitrary variable <span class="excalifont">x,y,z,\dots</span> subject to the
 following <strong>extremely important</strong> side-condition <span class="excalifont">\dagger</span>:</p>
@@ -813,9 +805,7 @@ does.</p>
 <p>The point is that we can only apply <span class="excalifont">\forall I</span> if the variable doesn&rsquo;t depend
 on anything else, so what would be OK, would be the following inference:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/fol-inference/img/condition-ue-example.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
 
 <p>If everybody has a friend, then everybody either has a friend or is their own
 enemy.</p>
@@ -824,17 +814,13 @@ universal quantifier <span class="excalifont">\forall</span>, there is a straigh
 motivates our first inference rule.</p>
 <p>Consider the following inference:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/fol-inference/img/ex-ei.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
 
 <p>If Ada is on the <em>Philosopher&rsquo;s Walk</em>, then <em>somebody</em> is on the philosophers
 walk.</p>
 <p>If we abstract this to a general inference rule, we get:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/fol-inference/img/ei.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
 
 <p>No side-conditions, not <em>ifs and buts</em>, that&rsquo;s it 😃</p>
 <p>This inference rule allows us to &ldquo;introduce&rdquo; an existential quantifier. But what
@@ -843,41 +829,31 @@ can we infer <em>from</em> one?</p>
 someone has a property is that some person, we don&rsquo;t know who, has the property.
 Here&rsquo;s how this work &ldquo;in action&rdquo;:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/fol-inference/img/ex-ee.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
 
 <p>We&rsquo;re just introducing a new constant <span class="excalifont">c</span> for the person who&rsquo;s on the Walk. It&rsquo;s
 important that this constant doesn&rsquo;t appear anywhere else in our derivation (or
 background knowledge base) to avoid serious mistakes.</p>
 <p>For example, the following inference is (obviously) problematic:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/fol-inference/img/condition-ee-example.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
 
 <p>From Ada not being on the Walk but <em>somebody</em> being on the walk, we can&rsquo;t infer
 that Ada is both on the walk and not.</p>
 <p>The general rule, then, is the following:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/fol-inference/img/ee.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
 
 <p>Here the side-condition <span class="excalifont">\ddagger</span> says that the constant <span class="excalifont">c</span> must be new to the
 inference (and knowledge base or any other background facts).</p>
 <p>In a more complex reasoning setting, we would apply this rule as follows:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/fol-inference/img/full-example.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
 
 <p>By adding the 4 rules we&rsquo;ve just discussed to the rules for propositional logic,
 we obtain a proof system for FOL:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/fol-inference/img/four-rules.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
 
 <p>This system works™️, in the sense that it is sound and complete (with the
 definition from the 
@@ -998,26 +974,20 @@ what this determines:</p>
 <div class="text-center my-4 excalifont">Switch(L,1)</div>
 We can then reason as follows (here in natural deduction):
 
-
 <img src="https://logicalmethods.ai/textbook/fol-inference/img/gmp-example.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
 
 <p>In this way, in two steps using <span class="excalifont">\land I</span> and <span class="excalifont">\forall E</span>, we can infer that the
 left light will be off at time point <span class="excalifont">1+1=2</span>.</p>
 <p>Once we recognize the pattern, we might want to be able to apply it directly as
 in the following:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/fol-inference/img/gmp-example-2.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
 
 <p>This can be achieved by adding the following <strong>generalized MP</strong> rule to our
 calculus (with the justification of being able to derive it using <span class="excalifont">\land I</span> and
 <span class="excalifont">\forall E</span>):</p>
 
-
 <img src="https://logicalmethods.ai/textbook/fol-inference/img/gmp.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
 
 <p>Here <span class="excalifont">\vec{t}=t_1,t_2,\dots</span> and <span class="excalifont">\vec{x}=x_1,x_2\dots</span> are abbreviations.</p>
 <p>The generalized MP rule puts the focus a key questions for efficient FOL
@@ -1064,9 +1034,7 @@ that gives us for two formulas <span class="excalifont">A,B</span> a substitutio
 <div class="text-center my-4 excalifont">A[A,B]_{U}=B[A,B]\_{U}.</div>
 <p>Using unification, we can write the generalized MP rule as follows:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/fol-inference/img/gmp-u.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
 
 <p>Using generalized MP, one can develop FOL versions of forwards and backwards
 chaining <em>directly</em>, side-stepping a search through all possible instantiations.</p>
@@ -1103,9 +1071,7 @@ negations, like:</p>
 <p>Using these, we can, for example, formulate valid, resolution-style inferences
 like the following:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/fol-inference/img/example-resolution.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
 
 <p>If we have complex FOL formulas, which are just build up from atoms using
 <span class="excalifont">\neg,\land,\lor,\to</span>, we can straight-forwardly generalize the propositional
@@ -1141,9 +1107,7 @@ illustrate, consider the following example.</p>
 <div class="text-center my-4 excalifont">\forall x\forall y(\mathsf{Parent}(x,y)\to \mathsf{Before}(\mathsf{BirthdayOf}(x),\mathsf{BirthdayOf}(y)))</div>
 We do this with the following application of the resolution rule:
 
-
 <img src="https://logicalmethods.ai/textbook/fol-inference/img/resolution-universal.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
 
 <p>Several things have happened here:</p>
 <ol>
@@ -1172,9 +1136,7 @@ most general form of the <strong>FOL resolution rule</strong>:</p>
 <p>Assuming that <span class="excalifont">[m, n]_U</span> does indeed exist.</p>
 <p>This is the resolution rule we&rsquo;ve applied in the inference:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/fol-inference/img/resolution-universal.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
 
 <p>To make this a general inference rule, we allow the <span class="excalifont">m,\neg m</span> pair to occur
 anywhere within <span class="excalifont">l_1\lor l_2\lor \dots\lor m, \neg n\lor k_1\lor k_2\lor\dots</span>

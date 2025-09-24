@@ -137,11 +137,11 @@
             <li>
               <a class="dropdown-item 
                 
-                link-opacity-50
+                
                 "
-                href="javascript:;"
+                href="/textbook/conditionals/"
               >6. 
-                <i class="bi bi-lock-fill"></i>
+                <i class="bi bi-unlock-fill"></i>
                  Logical conditionals
               </a>
             </li>
@@ -887,50 +887,32 @@ Harder</p>
 </div>
 <div id="natural-deduction-systemsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong></p>
 <p>
-
 <img src="https://logicalmethods.ai/exercises/proof/img/nd-a1.png" class="img-thumbnail"    alt="" >
-
-
 
 
 <img src="https://logicalmethods.ai/exercises/proof/img/nd-a2.png" class="img-thumbnail"    alt="" >
 
 
-
-
 <img src="https://logicalmethods.ai/exercises/proof/img/nd-a3.png" class="img-thumbnail"    alt="" >
-
-
 
 
 <img src="https://logicalmethods.ai/exercises/proof/img/nd-a4.png" class="img-thumbnail"    alt="" >
 
 
-
-
 <img src="https://logicalmethods.ai/exercises/proof/img/nd-a5.png" class="img-thumbnail"    alt="" >
 
 
-
-
 <img src="https://logicalmethods.ai/exercises/proof/img/nd-a6.png" class="img-thumbnail"    alt="" >
-
 </p>
 <p><strong>b)</strong></p>
 <p>
-
 <img src="https://logicalmethods.ai/exercises/proof/img/nd-b1.png" class="img-thumbnail"    alt="" >
-
-
 
 
 <img src="https://logicalmethods.ai/exercises/proof/img/nd-b2.png" class="img-thumbnail"    alt="" >
 
 
-
-
 <img src="https://logicalmethods.ai/exercises/proof/img/nd-b3.png" class="img-thumbnail"    alt="" >
-
 </p>
 
 </div>
@@ -996,9 +978,7 @@ proof showing that</p>
 <div class="text-center my-4 excalifont">\vdash p\to p\land (p\lor q)</div>
 <p>which is known as an absorption law:</p>
 
-
 <img src="https://logicalmethods.ai/exercises/proof/img/nd-absorption.png" class="img-thumbnail"    alt="" >
-
 
 <p>Effectively, we assume <span class="excalifont">p</span> (twice) for <span class="excalifont">\to I</span> and then we derive <span class="excalifont">p\lor q</span> from
 one assumption via <span class="excalifont">\lor I</span> and then from this and the second assumption that
@@ -1059,9 +1039,7 @@ p\lor q</span>. Here we apply the rule to the assumption that <span class="excal
 <p>This completes our proof. The result should look something like this in your
 browser:</p>
 
-
 <img src="https://logicalmethods.ai/exercises/proof/img/lean-absorption.png" class="img-thumbnail"    alt="" >
-
 
 <p>No errors means we&rsquo;re good!</p>
 <p>One more example for an important concept:</p>
@@ -1091,9 +1069,7 @@ theorem commutativity_or : (p ∨ q) → (q ∨ p) := by
 
 <p>This is the following natural deduction proof:</p>
 
-
 <img src="https://logicalmethods.ai/exercises/proof/img/commutativity.png" class="img-thumbnail"    alt="" >
-
 
 <p>The <span class="excalifont">\bullet</span> mark the two sub-proofs for the <span class="excalifont">\lor E</span>, where we derive <span class="excalifont">q\lor
 p</span> from the two assumptions <span class="excalifont">p</span> and <span class="excalifont">q</span>. Note that each proof after</p>

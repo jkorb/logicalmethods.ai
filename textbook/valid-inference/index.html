@@ -138,11 +138,11 @@
             <li>
               <a class="dropdown-item 
                 
-                link-opacity-50
+                
                 "
-                href="javascript:;"
+                href="/textbook/conditionals/"
               >6. 
-                <i class="bi bi-lock-fill"></i>
+                <i class="bi bi-unlock-fill"></i>
                  Logical conditionals
               </a>
             </li>
@@ -672,9 +672,7 @@ use a form of inductive inference to predict pieces of text, and, of course, any
 (AGI)</a> would need
 to be able perform valid inferences, like our first example:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/socrates_inference.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="400px"  alt="" >
-
 
 <p>So what precisely makes an inference valid? What distinguishes good from bad
 inferences, both in deductive and inductive reasoning?—In this chapter, we&rsquo;ll
@@ -708,14 +706,10 @@ that something went wrong. The inference made a <em>mistake</em>. Some of these 
 mistakes or <strong>fallacies</strong> are so famous that they have their own names.</p>
 <p>Here is an example of a fallacy called <em>affirming the consequent</em>:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/cycling_invalid.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="500px"  alt="" >
 
-
 <p>
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/ai_cycling_rain.png" class="rounded  float-end inert-img img-fluid"  width="400px"  alt="" >
-
 
 The mistake should be clear. The
 <abbr title="&#39;if  ..., then ...&#39; statement"><a  class="link-underline-opacity-0 link-body-emphasis"> conditional</a></abbr> premise says that sun leads
@@ -724,18 +718,14 @@ weather, so those two premises don&rsquo;t really &ldquo;add up&rdquo; to anythi
 certainly do not support the conclusion that it is sunny today.</p>
 <p>Contrast this with the following valid inference:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/cycling_valid.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="500px"  alt="" >
-
 
 <p>This inference involves a premise about sunny weather, which connects with the
 conditional premise in the right way. This inference is valid because it uses
 all of its premises correctly. These two examples show that it can be easy to
 confuse valid and invalid inferences if we don&rsquo;t pay attention to the details.
 At a glance, the two inferences look pretty similar.
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/ai_cycling_sun.png" class="rounded  float-start inert-img img-fluid"  width="400px"  alt="" >
-
 </p>
 <p>This is why logic aims for a <em>systematic</em> definition of validity. This notion
 should be applicable not only to humans but to any information-processing
@@ -758,9 +748,7 @@ question does not require us to know that the premises really <em>are</em> true.
 fact, we can make a stronger point: it is possible to have an inference that is
 valid even though it has false premises. Here is an example.</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/ei_can_fly.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="500px"  alt="" >
-
 
 <p>The <em>reasoning</em> behind this inference is perfectly correct. The conclusion
 follows from the premises. That makes the inference valid. But we obviously know
@@ -797,9 +785,7 @@ these questions take us in two directions: deductive and inductive logic.</p>
 
 <p>Take our first example again:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/socrates_inference.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="400px"  alt="" >
-
 
 <p>This is, of course, a valid inference: under the assumption that the premises
 are true, so is the conclusion. But note that for this, it doesn&rsquo;t matter that
@@ -822,9 +808,7 @@ to, say,
 ,
 we&rsquo;d get the following inference, which is also valid:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/turing_inference.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="500px"  alt="" >
-
 
 <p>Also our example from above about <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IE</span>
  being able to fly is the
@@ -832,9 +816,7 @@ result of changing
 <span class="excalifont ">Socrates</span>
  to
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/there_is.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
-
 ,
 
 <span class="excalifont ">human</span>
@@ -849,9 +831,7 @@ result of changing
 form</em>. We can express the shared <strong>logical form</strong> of the inferences in question
 as follows:
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/syllogism_inference.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="800px"  alt="" >
-
 
 Here, the 
 <span class="excalifont ">A</span>
@@ -879,16 +859,12 @@ yet that is expressive enough to represent our inference about Socrates, but we
 can illustrate the point with relation to <abbr title="modus ponens"><a  class="link-underline-opacity-0 link-body-emphasis"> MP</a></abbr>, which is the following inference schema, introduced in the previous
 chapter:
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/modus_ponens.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="500px"  alt="" >
-
 
 In the language of propositional logic, we can express this logical form more
 precisely using the logical operators we&rsquo;ve introduced in the previous chapter.
 Remember that 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/conditional.png" class="inert-img" height="18px"  style="ZgotmplZ" alt="" >
-
  represents the natural language &ldquo;if …, then …&rdquo;. In formal
 languages, we let letters like 
 <span class="excalifont ">A,B</span>
@@ -896,9 +872,7 @@ languages, we let letters like
 arbitrary formulas, like in the schema we wrote before. So, in purely formal
 terms, we can write the inference as:
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/mp_schematic.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="200px"  alt="" >
-
 
 To be able to write this in one line, we also use the symbol 
 <span class="excalifont ">∴</span>
@@ -931,20 +905,14 @@ consequence</strong>. But, importantly, not <em>all</em> valid inferences are lo
 valid—valid in virtue of their logical form. Consider the following inference,
 for example:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/uncle_inference.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="500px"  alt="" >
-
 
 <p>Following the truth-preservation criterion, this inference is certainly valid.
 Under the assumption that 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/sigma_premise.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
 
-
 it&rsquo;s true that 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/sigma_conclusion.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
-
 
 since an uncle is, by definition, a parent&rsquo;s male sibling.</p>
 <p>But if we replace 
@@ -953,24 +921,20 @@ since an uncle is, by definition, a parent&rsquo;s male sibling.</p>
 <span class="excalifont ">sister</span>
 , for example, we get the following <em>in</em>valid inference:
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/sigma_aunt.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="500px"  alt="" >
-
 
 If we assume that 
 <span class="excalifont ">Σ</span>
- is <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+ is <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
 &rsquo;s mother&rsquo;s
 sister, 
 <span class="excalifont ">Σ</span>
- is <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+ is <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
 &rsquo;s aunt and not their
 uncle. This shows that the inference is not valid in virtue of its form, which
 is something like:
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/form_uncle.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="500px"  alt="" >
-
 </p>
 <p>But the inference <em>is</em> valid … in a sense. The validity of the inference depends
 on the concrete predicates involved—the
@@ -988,15 +952,13 @@ inferences like this, which are valid, but not in virtue of their logical form,
 form—is is <strong>domain-general</strong>, material validity is <strong>domain-specific</strong>. As
 we&rsquo;ve seen, for the validity of our inference about Socrates it doesn&rsquo;t matter
 that we&rsquo;re talking about Socrates, being human, or being mortal, but for the
-validity of our inference about <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+validity of our inference about <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
 &rsquo;s uncle, it does matter that we&rsquo;re
 talking about his mother&rsquo;s brother and not sister.</p>
 <p>This means that the classification of valid inferences we&rsquo;ve discussed before
 needs to be further qualified on the deductive side:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/logical_material.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="700px"  alt="" >
-
 
 <p>The distinction between domain-general and domain-specific inference is crucial
 to understand some recent advances in AI research: while <abbr title="large language models"><a  class="link-underline-opacity-0 link-body-emphasis"> LLMs</a></abbr> are getting better and better at
@@ -1011,13 +973,11 @@ logician&rsquo;s, like <i class="bi bi-box-arrow-up-right h-6"></i>
 have suggested that we can <em>reduce</em> material validity to a special case of
 logical validity under additional assumptions, so-called &ldquo;meaning postulates&rdquo;.
 His idea is based on the observation that the material validity of the inference
-about <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+about <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
 &rsquo;s uncle can be expressed in the <em>logical</em> validity of the
 following inference:
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/valid_uncle.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="700px"  alt="" >
-
 
 Here the statement 
 <span class="excalifont ">the brother of a person's mother is their
@@ -1045,9 +1005,7 @@ isn&rsquo;t, the inference is deductively <em>in</em>valid. This is a high stand
 asking for but it is very useful when we can identify this kind of air-tight
 reasoning.</p>
 <p>
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/ai_asteroid.png" class="rounded  float-start inert-img img-fluid mx-3"  width="400px"  alt="" >
-
 
 Deductive reasoning is characteristic of <strong>mathematical inference</strong>, which we
 encounter not only in pure math, but also in applications of mathematics in
@@ -1063,9 +1021,7 @@ is that the assumptions—the laws or observations—are wrong.</p>
 require special justification. There is nothing that can make these rules fail.
 Nothing can defeat a deductively valid inference.</p>
 <p>
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/fox.png" class="rounded  float-end inert-img img-fluid mx-3"  width="300px"  alt="" >
-
 
 The optimal way of using deduction is to take a set of existing beliefs (or
 knowledge) and then add more beliefs (or knowledge) by applying logical rules.
@@ -1088,9 +1044,7 @@ deductive rules. This is a perfect way to apply logical methods. Consider the
 code snippet below. This simple Python snipped is supposed to take an input
 that is a whole number and identify whether it is a positive number or not:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/python.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="600px"  alt="" >
-
 
 <p>Imagine what would happen if the computer did, effectively, not obey deductive
 rules like &ldquo;modus ponens&rdquo;. We would have no idea what to expect when we run this
@@ -1104,24 +1058,18 @@ the one concerning Socrates&rsquo; mortality. Here are some further examples of
 inference <em>schemas</em>, which are often considered to be deductively valid in
 propositional logic:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/inference_patterns.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="700px"  alt="" >
-
 
 <p>Similarly, we&rsquo;ve seen some inference patterns that may seem deductively valid,
 but are generally agreed to be <strong>fallacies</strong>:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/propositional_fallacies.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="700px"  alt="" >
-
 
 <p>One of the central aims of deductive logic is to provide a <strong>theory of
 deductively valid inference</strong> which can account for the apparent deductive
 validity and invalidity of the above inference schemas.</p>
 <p>
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/there_is_wants.png" class="rounded  float-end inert-img img-fluid mx-3"  width="300px"  alt="" >
-
 
 The standard approach to developing such an account is the <strong>semantic
 approach</strong>. The basic tool it uses is that of a <strong>semantic model</strong>. A semantic
@@ -1134,9 +1082,7 @@ at a model, we can ask whether a specific sentence
  is true or not in that model. Every model
 gives an answer. It assigns a definite truth-value to each sentence. If we take
 the sentence 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/there_is.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
-
 
 <span class="excalifont "> can fly</span>
 
@@ -1201,9 +1147,7 @@ In the diagram below, we assume that every model
 <span class="excalifont ">[A]</span>
 :</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/logical_space.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="900px"  alt="" >
-
 
 <p>The set 
 <span class="excalifont ">[A]</span>
@@ -1231,9 +1175,7 @@ that the set
  is a <strong>subset</strong> of 
 <span class="excalifont ">T</span>
 . Symbolically, we write: 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/subset.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
-
 . When there is at least one member in 
 <span class="excalifont ">S</span>
  that is not in 
@@ -1243,46 +1185,32 @@ that the set
  is not a subset of 
 <span class="excalifont ">T</span>
 , symbolically: 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/nsubset.png" class="inert-img" height="38px"  style="ZgotmplZ" alt="" >
-
 .</p>
 <p>Take, for example, the set that contains little Jimmy, the set
 that contains the number one and my beer, as well as Mr. Sir:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/set_big.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="400px"  alt="" >
-
 
 <p>Then consider the set that contains only little Jimmy and Mr. Sir:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/set_small.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="200px"  alt="" >
-
 
 <p>Then the latter set is a subset of the former, since both elements of the latter set—little Jimmy and Mr. Sir—are also members of the latter set:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/set_subset.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="600px"  alt="" >
-
 
 <p>The set that contains Mr. Sir and my beer, in contrast, is not a subset:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/big_set_nsubset.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="600px"  alt="" >
-
 
 <p>This is because the set contains my beer, which is not a member of the bigger set:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/nsubset_ex.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="800px"  alt="" >
-
 
 <p>Graphically, the subset-relation amounts to one set being &ldquo;enclosed by&rdquo; another:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/sub_vs_nsub.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="800px"  alt="" >
-
 
 <p>In the case of a simple inference (in a formal language), with just one premise
 
@@ -1306,9 +1234,7 @@ conclusion C must be true as well.
 
 <p>But in set-theoretic terms that just means that the set of models of the premise
 is a <em>subset</em> of the set of models of the conclusion: 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/single_premise_validity.png" class="inert-img" height="38px"  style="ZgotmplZ" alt="" >
-
 .</p>
 <p>That is, for the inference from 
 <span class="excalifont ">P</span>
@@ -1317,9 +1243,7 @@ is a <em>subset</em> of the set of models of the conclusion:
  to be valid, the situation needs to be like the
 one depicted here:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/p_entails_c.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="800px"  alt="" >
-
 
 <p>If, instead, there is a model where 
 <span class="excalifont ">P</span>
@@ -1329,9 +1253,7 @@ true but
  is not, if there is a
 <strong>countermodel</strong> as depicted here, the inference is deductively invalid:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/p_nentails_c.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="800px"  alt="" >
-
 
 <p>To generalize this idea to arguments with multiple premises, we need one final
 set-theoretic concept. The <strong>intersection</strong> of two sets
@@ -1355,17 +1277,13 @@ diagram, where the intersection of
 
 is indicated by the shaded area:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/intersection_img.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="800px"  alt="" >
-
 
 <p>So, for example, the intersection of the set containing little Jimmy and Mr. Sir
 and the set containing little Jimmy and the number one is the set containing
 just little Jimmy:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/intersection_calc.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="600px"  alt="" >
-
 
 <p>When we have an inference with multiple premises
 
@@ -1401,15 +1319,11 @@ C must be true as well.
 , …,
 where each individual formula is true:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/premise_intersection.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="600px"  alt="" >
-
 
 <p>This gives us the final definition deductively valid inference:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/validity_general.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="600px"  alt="" >
-
 
 <p>So, for an inference with two premises 
 <span class="excalifont ">P,Q</span>
@@ -1419,9 +1333,7 @@ conclusion
  to be valid, the situation needs
 to like the one depicted here:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/valid_multi_premise.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="900px"  alt="" >
-
 
 <p>An example of a set-up, where the inference from 
 <span class="excalifont ">P,Q</span>
@@ -1429,9 +1341,7 @@ to like the one depicted here:</p>
 <span class="excalifont ">C</span>
  is <em>in</em>valid is depicted here:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/invalid_multi_premise.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="900px"  alt="" >
-
 
 <p>This is, in abstract terms, the standard logical theory of deductive inference.
 But it is <em>truly</em> abstract: we haven&rsquo;t defined yet what a model really is. To
@@ -1444,39 +1354,25 @@ deductively valid inference in that language.</p>
 <p>So, if we want to show that disjunctive syllogism is deductively valid in
 propositional logic, for example, we need to show that:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/valid_ds.png" class="rounded mx-auto d-block inert-img img-fluid my-5"  width="500px"  alt="" >
 
-
 <p>That is, we need to show that in all models where 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/a_or_b.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
-
  and 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/neg_a.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
-
  are both true, 
 <span class="excalifont ">B</span>
  is true as well.</p>
 <p>Similarly, if we want to show that denying the antecedent is</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/invalid_dc.png" class="rounded mx-auto d-block inert-img img-fluid my-5"  width="500px"  alt="" >
 
-
 <p>That is we need to show that there&rsquo;s a model where 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/a_to_b.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
-
  and 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/neg_a.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
-
  are true, but 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/neg_b.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
-
  is not.</p>
 <p>To be able to do this, we need the notion of a model for the language of
 propositional logic and conditions when negations, disjunctions, conditionals,
@@ -1528,9 +1424,7 @@ true. Inductive inference is not air-tight. There is a chance of going from
 truth to falsity, but that is a risk we have to take when we are dealing with
 uncertain information.</p>
 <p>
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/smoke_fire.png" class="rounded mx-2 float-start inert-img img-fluid"  width="400px"  alt="" >
-
 
 The study of induction also has roots in ancient philosophy and psychology. The
 Buddhist scholars, and brothers, <i class="bi bi-box-arrow-up-right h-6"></i>
@@ -1559,15 +1453,13 @@ complete story is, of course, much more complicated (how <em>do</em> we guarante
 we sample well, what does &ldquo;significantly better&rdquo; mean, …), but at the heart of
 this lies inductive inference.</p>
 <p>
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/ai_rct.png" class="rounded mx-2 float-end inert-img img-fluid"  width="400px"  alt="" >
-
  Since inductive reasoning is <strong>defeasible</strong>—it can be
 overturned by further evidence—it is well-suited to <strong>belief modulation</strong>: to
 change our beliefs in light of new evidence. Take the case of smoke means fire,
-for example. If <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+for example. If <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
  sees smoke coming up behind the trees, it might
-think that there&rsquo;s an illegal open camp-fire burning in the woods. But if <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+think that there&rsquo;s an illegal open camp-fire burning in the woods. But if <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
  learns that that Mr. Sir often smokes his pipe in the forest, he might
 change his conclusions. Even though the original evidence didn&rsquo;t go away, it&rsquo;s
 been further supplemented by additional information, which changes the
@@ -1579,42 +1471,32 @@ stock market will look like tomorrow, and so on. In fact, we&rsquo;ve already
 discussed how next-word-prediction is essentially the core concept underlying
 recent AI <abbr ><a  class="link-underline-opacity-0 link-body-emphasis"> LLMs</a></abbr></p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/text_prediction.png" class="rounded mx-auto d-block inert-img img-fluid my-5"  width="700px"  alt="" >
-
 
 <p>The examples we used to motivate the idea of logical form where all deductive
 inferences. But also <em>in</em>ductive logic, deals with logic form. Let&rsquo;s revisit
 some examples. First, take the inference about swans, perhaps the most
 traditional example of an inductive inference:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/swans_inference.png" class="rounded mx-auto d-block inert-img img-fluid my-5"  width="700px"  alt="" >
 
-
 <p>In light of the well-known fact that there are black swan&rsquo;s we&rsquo;ve slightly
-modified the example to a case where <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IA</span>
+modified the example to a case where <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
  draws marbles from a jar:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/marbles_inference.png" class="rounded mx-auto d-block inert-img img-fluid my-5"  width="700px"  alt="" >
-
 
 <p>Note that there&rsquo;s the same kind of pattern going on that we&rsquo;ve observed in the
 case of the inference about Socrates&rsquo; mortality: we can replace one predicate
 with another and get what looks like another inductively valid inference.</p>
 <p>The underlying pattern of this inference is known as <strong>enumerative induction</strong>:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/enumerative_induction_1.png" class="rounded mx-auto d-block inert-img img-fluid my-5"  width="700px"  alt="" >
-
 
 <p>There are different ways in which enumerative induction is represented. Here&rsquo;s
 another:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/enumerative_induction_2.png" class="rounded mx-auto d-block inert-img img-fluid my-5"  width="350px"  alt="" >
-
 
 <p>The assumption here is, of course, that 
 <span class="excalifont ">a</span>
@@ -1632,15 +1514,11 @@ propositional logic, so this will have to wait. But what we <em>can</em> talk ab
 now, is how inductive validity is defined in formal languages <em>in general</em>, just
 like we did for deductive validity.</p>
 <p>In inductive logic, we use the symbol 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/inductive_validity.png" class="inert-img" height="26px"  style="ZgotmplZ" alt="" >
-
  to stand for
 an inductively valid inference, writing
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/inductively_valid_inference.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="200px"  alt="" >
-
 
 to say that the inference from the premises
 
@@ -1655,9 +1533,7 @@ inductively valid. To say that an inference is inductively <em>strong</em>, we w
 
 <span class="excalifont ">!</span>
  on top, like so 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/inductively_strong_validity.png" class="inert-img" height="40px"  style="ZgotmplZ" alt="" >
-
 . So if we have a inductively
 strong inference going from premises 
 <span class="excalifont ">P₁</span>
@@ -1669,9 +1545,7 @@ to conclusion
  we can
 abbreviate this with symbols:
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/inductively_strong_inference.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="200px"  alt="" >
-
 </p>
 <p>There are different approaches to obtain a semantic definition of inductive
 validity, but the most prominent approach involves <strong>probability theory</strong>, which we
@@ -1690,9 +1564,7 @@ be. If we roll a 6-sided die, for example, there are six ways the world could
 turn out to be: it can come up 1, 2, 3, 4, 5, or 6. Each of these corresponds to
 a model:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/dice_worlds.png" class="rounded mx-auto d-block inert-img img-fluid my-5"  width="700px"  alt="" >
-
 
 <p>If in our language we have a formulas 
 <span class="excalifont ">EVEN</span>
@@ -1700,9 +1572,7 @@ a model:</p>
 <span class="excalifont ">ODD</span>
 , for example, to say that the outcome will be even or odd, then these would correspond to the following <abbr title="set of models"><a  class="link-underline-opacity-0 link-body-emphasis"> propositions</a></abbr>:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/even_odd_prop.png" class="rounded mx-auto d-block inert-img img-fluid my-5"  width="700px"  alt="" >
-
 
 <p>In standard <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Probability_space"
@@ -1723,9 +1593,7 @@ details.</p>
 <p>In our toy example of a die role, here&rsquo;s one way the probabilities could work
 out:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/fair_die.png" class="rounded mx-auto d-block inert-img img-fluid my-5"  width="700px"  alt="" >
-
 
 <p>This probability distribution corresponds to the assumption that our die is
 <em>fair</em>.</p>
@@ -1733,9 +1601,7 @@ out:</p>
 we assume that the die we&rsquo;re dealing with is <em>loaded</em>, for example to be much
 more likely to roll a six, the probabilities could look like this:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/loaded_die.png" class="rounded mx-auto d-block inert-img img-fluid my-5"  width="700px"  alt="" >
-
 
 <p>We can use probabilities to mathematically spell out the idea that a conclusion
 is <em>likely</em> true on the hypothesis that the premises are. For this, we use the
@@ -1751,9 +1617,7 @@ true under the hypothesis that
  is true. The
 standard definition of this is given by the following formula:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/conditional_probability.png" class="rounded mx-auto d-block inert-img img-fluid my-5"  width="700px"  alt="" >
-
 
 <p>Here, we crucially need to assume that 
 <span class="excalifont ">Pr([B]) ≠ 0</span>
@@ -1780,9 +1644,7 @@ is the &ldquo;part&rdquo; of
 what&rsquo;s the probability of the role being a two given that/under the hypothesis
 that it&rsquo;s even:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/two_given_even.png" class="rounded mx-auto d-block inert-img img-fluid my-5"  width="900px"  alt="" >
-
 
 <p>What we can see here is that the probability of the roll being a two <em>goes up</em>
 under the hypothesis that it&rsquo;s even: from  
@@ -1802,9 +1664,7 @@ mathematically coherent probabilities the hypothesis that the roll is even will
 raise the probability of the roll being a two. This gives us a clear sense of
 inductively valid inference:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/final_definition_single.png" class="rounded mx-auto d-block inert-img img-fluid my-5"  width="500px"  alt="" >
-
 
 <p>The <strong>strength</strong> of the inference can be determined in different ways, but the
 most straight-forward one is to look at the absolute increase of probability.
@@ -1851,9 +1711,7 @@ with more than one premise
 But given what we know now about intersection from the study of deductive
 inference, this is pretty straight-forward. The obvious definition is:</p>
 
-
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/final_definition_multiple.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="500px"  alt="" >
-
 
 <p>Similarly, one straight-forward way of calculating the strength of the inference
 is:

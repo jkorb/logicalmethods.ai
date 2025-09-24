@@ -137,11 +137,11 @@
             <li>
               <a class="dropdown-item 
                 
-                link-opacity-50
+                
                 "
-                href="javascript:;"
+                href="/textbook/conditionals/"
               >6. 
-                <i class="bi bi-lock-fill"></i>
+                <i class="bi bi-unlock-fill"></i>
                  Logical conditionals
               </a>
             </li>
@@ -749,21 +749,15 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
 </h5><p>In the chapter you&rsquo;ve learned about <strong>relay logic</strong>, that is the implementation
 of the Boolean functions using the <span class="excalifont">default &ldquo;off&rdquo;</span> and <span class="excalifont">default &ldquo;on&rdquo;</span> relay:</p>
 
-
 <img src="https://logicalmethods.ai/exercises/boolean/img/relays.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="400px"  alt="" >
-
 
 <p>We showed how to make circuits which behave just like <span class="Boolean">NOT</span> and <span class="Boolean">AND</span> using these relays. As a reminder, here are the concrete implementations:</p>
 <div class="text-center">
 
-
 <img src="https://logicalmethods.ai/exercises/boolean/img/conjunction_impl.png" class="rounded mx-auto inert-img img-fluid my-4"  width="400px"  alt="" >
 
 
-
-
 <img src="https://logicalmethods.ai/exercises/boolean/img/negation_impl.png" class="rounded mx-auto inert-img img-fluid my-4"  width="400px"  alt="" >
-
 
 </div>
 <p>Note that we&rsquo;ve depicted all possible configurations of the relay to
@@ -774,34 +768,26 @@ relays. You can draw the diagrams in whatever way works and clearly illustrates
 the idea. To show what I mean, here&rsquo;s one way to simplify the diagram for the
 <span class="Boolean">AND</span>-circuit (in the configuration for both inputs being <span class="excalifont">1</span>):</p>
 
-
 <img src="https://logicalmethods.ai/exercises/boolean/img/simplified_circuit.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="200px"  alt="" >
-
 
 <p>Make sure that to verify that your circuit is according to spec! Note that you may need both kinds of relays for the implementations.</p>
 <ol>
 <li>Implement <span class="Boolean">OR</span></li>
 </ol>
 
-
 <img src="https://logicalmethods.ai/exercises/boolean/img/or_table.png" class="rounded mx-auto d-block inert-img img-fluid "  width="200px"  alt="" >
-
 
 <ol start="2">
 <li>Implement <span class="Boolean">NAND</span></li>
 </ol>
 
-
 <img src="https://logicalmethods.ai/exercises/boolean/img/nand_table.png" class="rounded mx-auto d-block inert-img img-fluid "  width="200px"  alt="" >
-
 
 <ol start="3">
 <li>Implement <span class="Boolean">XOR</span></li>
 </ol>
 
-
 <img src="https://logicalmethods.ai/exercises/boolean/img/xor_table.png" class="rounded mx-auto d-block inert-img img-fluid "  width="200px"  alt="" >
-
 
 
 </div>
@@ -810,26 +796,20 @@ the idea. To show what I mean, here&rsquo;s one way to simplify the diagram for 
 <li>An <span class="Boolean">OR</span> implementation, which uses the idea that <code class="customCode">X <span class="Boolean">OR</span> Y</code> is <code class="customCode"><span class="Boolean">NOT</span> ((<span class="Boolean">NOT</span> X) <span class="Boolean">AND</span> (<span class="Boolean">NOT</span> Y))</code>:</li>
 </ol>
 
-
 <img src="https://logicalmethods.ai/exercises/boolean/img/or_impl.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="500px"  alt="" >
-
 
 <ol start="2">
 <li>A <span class="Boolean">NAND</span> implementation, which is based on the observation that <span class="excalifont">default
 &ldquo;off&rdquo;</span> is essentially <span class="Boolean">AND</span> and <span class="excalifont">default &ldquo;on&rdquo;</span> essentially <span class="Boolean">NOT</span>:</li>
 </ol>
 
-
 <img src="https://logicalmethods.ai/exercises/boolean/img/nand_impl.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="500px"  alt="" >
-
 
 <ol start="3">
 <li>An <span class="Boolean">XOR</span> implementation, based on the idea that <code class="customCode">X <span class="Boolean">XOR</span> Y</code> is <code class="customCode">(X <span class="Boolean">OR</span> Y) <span class="Boolean">AND</span> (X <span class="Boolean">NAND</span> Y)</code>:</li>
 </ol>
 
-
 <img src="https://logicalmethods.ai/exercises/boolean/img/xor_impl.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="900px"  alt="" >
-
 
 
 </div>
@@ -1168,9 +1148,7 @@ number is huge enough so that we can&rsquo;t write it down. Ever.</p>
       
     </div>
 </h5>
-
 <img src="https://logicalmethods.ai/exercises/boolean/img/jimmy_inference.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="600px"  alt="" >
-
 
 <ol>
 <li>
@@ -1186,44 +1164,32 @@ number is huge enough so that we can&rsquo;t write it down. Ever.</p>
 <li>
 <p>Here&rsquo;s a formal representation of the inference in the propositional language with propositional variables <span class="excalifont">SCHOOL</span> and <span class="excalifont">HOME</span> to say that little Jimmy is at school and home, respectively:</p>
 
-    
     <img src="https://logicalmethods.ai/exercises/boolean/img/jimmy_inference_2.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="450px"  alt="" >
-    
 
 </li>
 <li>
 <p>To see check whether the inference is valid, we need to go through all possible valuations of the language and see if whenever the premises are true, so is the conclusion. There are four possible valuations, given by the following table:</p>
 
-   
    <img src="https://logicalmethods.ai/exercises/boolean/img/jimmy_valuations.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="900px"  alt="" >
-   
 
 <p>The value of the formulas involved are calculated as follows:</p>
 
-   
    <img src="https://logicalmethods.ai/exercises/boolean/img/jimmy_clauses.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="800px"  alt="" >
-   
 
 <p>So, for each possible <span class="excalifont">v</span>, we can calculate the values of the premises using Boolean algebra:</p>
 
-   
    <img src="https://logicalmethods.ai/exercises/boolean/img/jimmy_distributions.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="900px"  alt="" >
-   
 
 <p>Inspecting the possible values, we can find a valuation where both premises
 are true and the conclusion is false, viz. <span class="excalifont">v₄</span>, where Jimmy is neither at
 school nor at home.</p>
 <p>But that means that the set of valuations where both premises are true is <em>not</em> a subset of the set of valuations where the conclusion is true:</p>
 
-    
     <img src="https://logicalmethods.ai/exercises/boolean/img/jimmy_set.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="500px"  alt="" >
-    
 
 <p>In other words, the inference is invalid:</p>
 
-    
     <img src="https://logicalmethods.ai/exercises/boolean/img/jimmy_invalid.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="500px"  alt="" >
-    
 
 </li>
 </ol>
@@ -1239,57 +1205,43 @@ about.</p>
 <p>For this, we&rsquo;ll focus on <em>disjunctive syllogism</em>, which we take to be the
 following inference schema, where <span class="excalifont">A</span> and <span class="excalifont">B</span> can be <em>any</em> two formulas whatsoever:</p>
 
-
 <img src="https://logicalmethods.ai/exercises/boolean/img/disjunctive_syllogism.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="175px"  alt="" >
-
 
 <p>To show that this inference is valid, following the definition of deductive
 validity, we need to show that:</p>
 
-
 <img src="https://logicalmethods.ai/exercises/boolean/img/ds_validity_condition.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="200px"  alt="" >
-
 
 <p>This means, according to the definition of <span class="excalifont">⊆</span>, that we need to show that any
 valuation <span class="excalifont">v</span>:</p>
 
-
 <img src="https://logicalmethods.ai/exercises/boolean/img/ds_if_then.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="400px"  alt="" >
-
 
 <p>This is the claim, we&rsquo;ll set out to show:</p>
 <ol>
 <li>
 <p>Assume that <span class="excalifont">v</span> is an arbitrary valuation, meaning you don&rsquo;t know anything
 about, such as which values it assigns to which formula. Assume further that 
-
 <img src="https://logicalmethods.ai/exercises/boolean/img/in_set_inline.png" class="inert-img" height="38px"  style="ZgotmplZ" alt="" >
-
 . Apply the definition of</p>
 <div class="text-center my-4 excalifont">[A] = { v : v(A) = 1},</div> 
 as well as the definition of intersection as 
 
-   
    <img src="https://logicalmethods.ai/exercises/boolean/img/intersection_definition.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="300px"  alt="" >
-   
 
 <p>to infer what this means for the values of <span class="excalifont">A v B</span> and <span class="excalifont">¬A</span> under <span class="excalifont">v</span>.</p>
 </li>
 <li>
 <p>Using the general clauses for calculating the values under an assignment,</p>
 
-   
    <img src="https://logicalmethods.ai/exercises/boolean/img/clauses.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="300px"  alt="" >
-   
 
 <p>to transform the result of a last step into two Boolean equations.</p>
 </li>
 <li>
 <p>&ldquo;Solve&rdquo; this Boolean equation for the value <span class="excalifont">v(B)</span> of <span class="excalifont">B</span>, that is infer
 what that value must be. Conclude from this that 
-
 <img src="https://logicalmethods.ai/exercises/boolean/img/ds_then.png" class="inert-img" height="38px"  style="ZgotmplZ" alt="" >
-
  and the inference is valid.</p>
 </li>
 </ol>
