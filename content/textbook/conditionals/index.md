@@ -1,357 +1,621 @@
 ---
 title: Logical conditionals
 author: Johannes Korbmacher
-locked: true
+locked: false
 weight: 60
 params: 
-  date: 24/09/2024
-  last_edited: 24/09/2024
+  date: 25/09/2025
   id: txt-if
   math: true
 ---
 
 # Logical conditionals
 
-In our discussion of {{< chapter_ref chapter="boolean" >}}
-Boolean algebra{{< /chapter_ref >}} so far, we've avoided dealing with
-**conditionals**: "_if_ ..., _then_ ..."-statements which we formalize as $$A\to
-B.$$ In this chapter, you'll learn about how conditionals are defined and used
-in propositional logic. 
 
-First, you'll learn about the truth-functional way of thinking about if-then
-statements, the so-called 
+{{< img src="img/ai_wondering.png" class="rounded  float-start inert-img img-fluid m-2" width="200px" >}}
+The {{< abbr title="if-then">}}conditional{{< /abbr >}} is the backbone of valid
+inference. We've said that valid inference is based on hypothetical reasoning:
+valid inference requires that the conclusion be true under the hypothesis that
+the premises are—*if* the premises are. This applies to both deductive and
+inductive inference, but in this chapter, we'll focus on deductive inference. 
 
-+ [material conditional](#the-material-conditional). 
+The conditional of deductive logic, which we formalize as {{< to >}}, is the
+basis for many artificial reasoning techniques, especially in logic-based AI. 
+It turns out that conditional reasoning is crucial to many AI-related tasks.
+Think for example of computer code like this:
+{{< img src="img/python-if-then.png" class="rounded mx-auto d-block inert-img img-fluid" width="450px">}}
+Both to evaluate and understand this code, we need to understand basic
+conditional reasoning.
 
-Then, we move on to inference patterns that are important for AI applications,
-in particular:
+Or, imagine a very simple meteorology {{< abbr title="knowledge base">}}KB{{< /abbr >}}, which might contain the following information:
+{{< img src="img/kb-if-then.png" class="rounded mx-auto d-block inert-img img-fluid" width="450px">}}
+If we want to use this information for automated weather forecasting, we need to think about artificial conditional inference. That's the topic of this chapter.
 
-+ [forward chaining](#forward-chaining),
-+ [backward chaining](#backward-chaining).
+At the end of it chapter, you will be able to:
 
-We conclude with an outlook and remarks on [non-material
-conditionals](#non-material-conditionals).
+- explain the relationship between deductive reasoning and conditionals
+- outline the basic theory of the Boolean material conditional and the theory of
+  Horn formulas
+- apply basic algorithms for conditional reasoning, such as backward and forward
+  chaining
+- use conditionals to formalize rules in knowledge representation scenarios
+- explain the limitations of Horn formulas in knowledge representation and
+reasoning
 
-## The material conditional
+## Boolean If-then
 
-How should we treat statements like $$\mathsf{RAIN}\to \mathsf{WET}$$ in Boolean
-algebra? This, it turns out, is not an easy question. 
+The most characteristic inference involving {{< to >}} is the principle of
+_Modus Ponens (MP)_:
 
-The easy part is this:
+$$A, (A {{< to >}} B) {{< therefore >}} B$$
 
-+ If $\nu(\mathsf{RAIN})=1$ and $\nu(\mathsf{WET})=1$, we want $\nu(\mathsf{RAIN}\to
-\mathsf{WET})=1$.
+How can we develop a theory of conditional logic which validates this principle?
 
-+ If $\nu(\mathsf{RAIN})=1$ and $\nu(\mathsf{WET})=0$, we want, $\nu(\mathsf{RAIN}\to \mathsf{WET})=0$.
+It turns out that Boolean algebra already has the resources to interpret 
+{{< to >}} in a way that aligns with many of our expectations about if-then
+statements. The idea is that we can interpret {{< to >}} using the Boolean functions
+!!NOT!! and !!OR!! in combination:
 
-But this only gives us a partial table for the truth-function
-$\Rightarrow:\Set{0,1}^2\to \Set{0,1}$ which interprets
-$\to$:
+| | | |
+|-|-|-|
+| {{< img src="img/not_table.png" class="rounded inert-img img-fluid" width="200px">}} | &emsp;&emsp;&emsp; |{{< img src="img/or_table.png" class="rounded inert-img img-fluid" width="300px">}} |
 
-{{< img src="img/tt-partial.png" class="img-thumbnail" >}}
+The way this works is by saying:
 
-So, what do we do if $\nu(\mathsf{RAIN})=0$? It turns out that we want to say
-$\nu(\mathsf{RAIN}\to \mathsf{WET})=1$ _regardless_ of the truth-value of
-$\mathsf{WET}$. 
+$$v( A {{< to >}} B) = (!!NOT!! v(A)) !!OR!! v(B)$$
 
-One of the reasons for this is the connection between valid inference and the
-conditional. To understand, we need the concept of a **tautology** or **logical
-truth**. 
+Using this clause, the truth-table for $(RAIN {{< to >}} WIND)$,
+for example, works out to:
 
-In Boolean algebra, a _tautology_ is any formula that is true under all
-valuations. Consider, for example, $\mathsf{RAIN}\lor\mathsf{SUN}$—it's
-either raining or not raining. No matter the value $\nu(\mathsf{RAIN})$ of
-$\mathsf{RAIN}$, we have $\nu(\mathsf{RAIN}\lor\mathsf{SUN})=1$:
+{{< img src="img/to_table.png" class="mx-auto d-block rounded inert-img img-fluid" width="900px">}}
 
-+ If $\nu(\mathsf{RAIN})=1$, then $\nu(\mathsf{RAIN}\lor\mathsf{SUN})=1+0=1$
-+ If $\nu(\mathsf{RAIN})=0$, then $\nu(\mathsf{RAIN}\lor\mathsf{SUN})=0+1=1$
+The rows that represent models where its raining, that is $v(SUN) = 1$, are in
+line with expectations:
 
-If a formula $A$, like $\mathsf{RAIN}\lor\mathsf{SUN}$, is a logical truth
-we write $\vDash A$ to indicate this. So, what we've just shown is that
-$$\vDash\mathsf{RAIN}\lor\mathsf{SUN}.$$
+- If the it's raining and it's not windy, that is $v(RAIN) = 1$ and $v(WIND) = 0$,
+the situation contradicts the conditional so it is not true, that is
+$v(RAIN {{< to >}} WIND) = 0$.
 
-Now the thing is that if we say that that $\nu(A\to B)=1$ whenever $\nu(A)=0$,
-we get the following beautiful connection between validity and the conditional:
-$$P_1, P_2, \dots\vDash C\Leftrightarrow\ \vDash (P_1\land P_2\land \dots)\to
-C$$ In words, an inference is valid if and only if the conditional formed from
-taking the conjunction of the premises as the if-part and the conclusion as the
-then-part is logically valid.
+- If it's raining and windy, that is $v(RAIN) = 1$ and $v(WIND) = 1$, then everything is like the conditional says, so it is true, meaning $v(RAIN {{< to >}} WIND) = 1$.
 
-The truth-function that's given by the following table is known as the
-**material conditional**:
+More curious are the other rows that represent models where it's _not_ raining,
+that is $v(RAIN) = 0$. In all those situations, the conditional $RAIN {{< to >}}WIND$, according to the table, is _true_. 
 
-{{< img src="img/tt.png" class="img-thumbnail" >}}
+One way to make sense of this is by thinking about conditionals in programming
+languages. Take the following snippet, which assigns the day named `<span
+  class="dark-green">"monday"</span>`, the number `<span class="dark-orange">1</span>`:
 
-Our first motivation for treating $\to$ as a material conditional is the above
-connection between valid inference and the conditional, which is also known as
-the [deduction theorem](https://en.wikipedia.org/wiki/Deduction_theorem). One
-interesting implication of the deduction theorem is that it gives us an
-interesting variant of the truth-table method. 
+{{< img src="img/python_ex.png" class="mx-auto d-block rounded inert-img img-fluid" width="300px">}}
 
-The idea is that in order to test whether $P_1,P_2, \dots\vDash C$ we can also
-just test whether the formula $(P_1\land P_2\land \dots)\to C$ gets value 1
-under each valuation. Take our example from the {{< chapter_ref chapter="sat" id="validity-and-satisfiability" >}}
-previous chapter{{< /chapter_ref >}} again:
-$$(\mathsf{RAIN}\lor \mathsf{BIKE}),\neg\mathsf{RAIN}\vDash\mathsf{BIKE}$$
-We can test this inference by doing the truth-table for the following formula:
-$$(\mathsf{RAIN}\lor \mathsf{BIKE})\land\neg\mathsf{RAIN}\to\mathsf{BIKE}$$
+If a computer executing this code comes across an object that satisfies the
+if-clause, a day with the name-attribute set to `<span
+class="dark-green">"monday"</span>`, and it does indeed assign the number `<span
+class="dark-orange">1</span>`, what the computer did is correct. We assign this
+the truth-value `1`. If the computer _doesn't_ assign to this object the number
+`<span class="dark-orange">1</span>`, it made a mistake. We assign this the
+truth-value `0`. 
 
-{{< img src="img/tt-2.png" class="img-thumbnail" >}}
+But the conditional doesn't say anything about what to do with objects whose
+name isn't `<span class="dark-green">"monday"</span>`. So, if the computer comes
+across an object that _doesn't_ satisfy the if-clause, say an object with the
+name `<span class="dark-green">"tuesday"</span>`, and it assigns this the number
+`<span class="dark-orange">2</span>`, did it make a mistake? What it it assigns
+the Tuesday-object also the number `<span class="dark-orange">1</span>`? Is that
+a mistake?—Clearly, neither is a mistake. Both behaviors could be implemented by
+adding additional conditionals, like:
 
-Since the formula in question receives value 1 under all valuations, it is a
-logical truth. This means that the inference in question is valid. The deduction
-theorem has many further logical implications, but we won't focus on those here.
+{{< img src="img/python_ex_1.png" class="mx-auto d-block rounded inert-img img-fluid" width="700px">}}
 
+And this wouldn't conflict with our initial conditional. A straight-forward way
+of interpreting this situation n Boolean algebra is to assign it the truth-value
+`1`. The computer _didn't_ make a mistake, so `0` is out. That means that `1` is
+the only live option.
 
+Note that if non-Boolean contexts, such as the **many-valued logics** we'll be
+looking at later in this course, this is no longer necessarily the best option.
+If we have, for example, a third truth-value $i$ for "indeterminate" sentences,
+we could use that in the case of the antecedent being untrue.
 
-An additional justification comes from the foundations of programming, which is
-a foundational topic for AI, as we've seen in {{< chapter_ref
-chapter="formal-languages" >}}
-Chapter 3. Formal languages{{< /chapter_ref >}}. Consider the following [pseudo
-code](https://en.wikipedia.org/wiki/Pseudocode):
+This is the **default-true interpretation** of the conditional: the default
+truth-value of the conditional is `1`, only a clear counterexample changes it to
+`0`. In logical theory, we call this way of interpreting {{< to >}} the
+**material conditional**. 
+
+A major application of the material conditional in AI is to formalize
+`if-then`-rules in knowledge representation contexts, for example when we're
+building a {{< abbr title="knowledge base">}}KB{{< /abbr >}} for an expert
+system—especially, when we want to express a particularly strong relationship
+between the antecedent (the if-part) and the consequent (the then-part).
+This is because the interpretation of {{< to >}} validates 
+{{< abbr title="modus ponens">}}MP{{< /abbr >}} as a deductively valid
+principle:
+
+$$A, (A {{< to >}} B) {{< vDash >}} B$$
+
+If we know the if-part of an `if-then`-rule expressed with {{< to >}}, we can
+infer the then-part with deductive certainty.
+
+To verify this, we can use our well-trusted tools for Boolean reasoning, such as
+the `SAT`-solving using truth-tables or resolution. This is because we've
+interpreted {{< to >}} in terms of !!NOT!! and !!OR!!, whose behavior is already
+covered by our previous techniques. 
+
+To handle {{< to >}} in logical formulas, we introduce a rewrite rule, which
+allows us to transform formulas with {{< to >}} into equivalent formulas
+without the operator:
+
+{{< img src="img/rewrite_conditional.png" class="mx-auto d-block rounded inert-img img-fluid" width="300px">}}
+
+We use this rule to recursively eliminate all conditionals before we apply
+techniques like resolution. In fact, we can use this rule to transform a
+formula containing any number of {{< to >}}'s into a formula in normal form,
+both {{< abbr
+title="disjunctive normal form">}}DNF{{< /abbr >}} and {{< abbr
+title="conjunctive normal form">}}CNF{{< /abbr >}}. Since the re-write rule introduces new negations
+symbols {{< neg >}}, we apply $r₀$ recursively before the negation rules, but
+that's all we need to change. The rest is business as usual.
+
+Here's how this works in practice. Take the following instance of {{< abbr
+title="modus ponens">}}MP{{< /abbr >}}, for example:
+
+$$RAIN, (RAIN {{< to >}}WIND){{< therefore >}}WIND$$
+
+We know that the validity of this inference reduces to:
 
 ```
-  for n in range(1,10)
-    if n is divisible by 2:
-      print "Even!"
+SAT{$RAIN$, $(RAIN{{< to >}}WIND)$, ${{< neg >}}WIND$}
 ```
 
-This program loops through all the numbers from 0 to 10 and for the even ones
-(2,4,6,8,10) it prints even.  How should we think about happens "under the hood"
-when the program evaluates the following expression?
+To check this using resolution, we first transform the formulas into {{< abbr
+title="conjunctive normal form">}}CNF{{< /abbr >}}. The only formula that needs
+rewriting is $(RAIN{{< to >}}WIND)$, which by one application of $r₀$ becomes $({{< neg >}}RAIN{{< lor >}}WIND)$. This gives us the following sets for resolution:
 
-```
-  if 1 is divisible by 2:
-      print "Even!"
-```
+$${ RAIN } &emsp;&emsp;&emsp;{{{< neg >}}RAIN, WIND }&emsp;&emsp;&emsp;{ {{< neg >}}WIND }$$
 
-While we don't want the computer to print "Even!", we also don't want to think
-of the whole expression as _false_ or _erroneous_. 
+Two applications of resolution take care of business:
 
-Next, you'll learn about inference patterns involving conditionals which are
-important in AI applications.
+{{< img src="img/resolution_conditional.png" class="mx-auto d-block rounded inert-img img-fluid" width="700px">}}
 
-## Forward chaining
+Since we can derive the empty set ${ }$, we know that the set is `not-SAT` and
+so the corresponding inference is valid.
 
-The **forward chaining** method is, essentially, a series of applications of the
-reasoning pattern known in logical theory as **modus ponens (MP)**. It's an
-important method for [automated theorem
-proving](https://en.wikipedia.org/wiki/Automated_theorem_proving), which deals
-with automating valid inference.
+But we can say even more. Not only can we use resolution to see that {{< abbr
+title="modus ponens">}}MP{{< /abbr >}} is valid, in fact, we can see that, in
+many cases, {{< abbr title="modus ponens">}}MP{{< /abbr >}}-style reasoning and
+resolution reasoning are, at bottom, the same thing. Take the first application
+of resolution in the derivation and look at which formulas the sets involved
+represent:
 
-MP is following inference pattern: $$A,A\to B\vDash B$$ So, for example,
-$$\mathsf{RAIN},\mathsf{RAIN}\to\mathsf{WET}\vDash \mathsf{WET}$$ This pattern
-is perhaps the most paradigmatic _logical_ reasoning pattern out there. 
+{{< img src="img/resolution_as_mp.png" class="mx-auto d-block rounded inert-img img-fluid" width="700px">}}
 
-There are different ways in which we can justify the pattern, but let's use a
-truth-table for a particularly comprehensive explanation:
+The application of the resolution in this case _is_ an application
+of {{< abbr title="modus ponens">}}MP{{< /abbr >}} in disguise.
 
-{{< img src="img/tt-3.png" class="img-thumbnail" >}}
+Crucially, this works only in the case of Horn formulas and their CNFs. If we're
+applying the resolution rule to sets with more than one unnegated literal in
+them, the interpretation is no longer as straight-forward. _Something_ can still
+be said about it, but that brings us too far afield.
 
-Having established that MP works, let's talk about forward chaining. The idea of
-forward chaining is to repeatedly use MP 
+To bring the point home, as you may have noticed, the interpretation of 
+$(A {{< to >}}B)$ as $({{< neg >}}A
+{{< lor >}}B)$ essentially makes {{< abbr title="modus ponens">}}MP{{< /abbr >}}
+a variant of $Disjunctive Syllogism$ $$A, (A {{< to >}}B) {{< therefore >}} B$$
+becomes $$A, {{< neg >}}A {{< lor >}}B {{< therefore >}}B.$$ In fact, using the
+equivalence of ${{< neg >}}{{< neg >}} A$ and $A$, we can derive the one rule
+from the other: by replacing the first $A$ with ${{< neg >}}{{< neg >}} A$ using this equivalence, {{< abbr title="modus ponens">}}MP{{< /abbr >}} finally becomes  $${{< neg >}}{{< neg >}}A, {{< neg >}}A {{< lor >}}B {{< therefore >}}B,$$ which is an instance of $Disjunctive Syllogism$.
 
-Let's look at a toy example to illustrate. We're at home it's rainy and not warm
-(logician for: cold) outside. We're wondering what to do. Our setup is as
-follows:
+Alternatively, we can—of course—verify the validity of 
+{{< abbr title="modus ponens">}}MP{{< /abbr >}} by inspecting the truth-table:
 
-+ We have a _knowledge base_ that contains a series of conditional rules:
-  1. $\mathsf{SUN}\to \mathsf{BIKE}$
-  2. $\mathsf{RAIN}\to \mathsf{CAR}$
-  3. $\mathsf{WARM}\to \mathsf{SHIRT}$
-  4. $\mathsf{COLD}\to \mathsf{COAT}$
-  5. $\mathsf{BIKE}\to \mathsf{HELMET}$
-  6. $\mathsf{CAR}\to \mathsf{KEYS}$
+{{< img src="img/mp_truth_table.png" class="mx-auto d-block rounded inert-img img-fluid" width="700px">}}
 
-+ Additionally, we have some _known facts_:
-  + $\mathsf{RAIN}$
-  + $\mathsf{COLD}$
+{{< img src="img/ai_counterfactual.png" class="rounded  float-end inert-img img-fluid m-2" width="300px" >}}
+Importantly, the material conditional is not the only way to interpret 
+{{< to >}} or to formalize natural language "if …, then …" statements. In fact,
+in many contexts, it is not even an adequate interpretation. Consider, for
+example, the statement "if you'd throw the ball through the window, then it
+would break" said to {{< logo >}}&ThinSpace;standing in front the window with his ball.
+Such a conditional statement is called a [counterfactual
+conditionals](https://en.wikipedia.org/wiki/Counterfactual_conditional).
+Clearly, the material interpretation of {{< to >}} is inadequate to describe the
+meaning of this conditional: if {{< logo >}}&ThinSpace;(responsibly) doesn't throw the
+ball, this doesn't mean that the conditional is automagically true—the ball
+might be a soft, foam ball and the window double glazed. The counterfactual might be
+false. If the ball is, instead, a hard PVC ball and the window single glazed,
+the statement might very well be true. 
 
-The forward chaining method checks through our knowledge base to see whether the
-antecedents (if-part) of any of our conditional rules contains a known fact.
+The point is, just because the if-part is false, doesn't mean the whole "if …,
+then …"-statement is true, as predicted by the material interpretation. This is
+mainly a {{< abbr title="warning">}}caveat{{< /abbr >}} about the use of
+material conditionals in [knowledge engineering](https://en.wikipedia.org/wiki/Knowledge_engineering) and [knowledge representation](https://en.wikipedia.org/wiki/Knowledge_representation_and_reasoning). To make sure that your system behaves like expected, you need to make sure that you only treat conditionals as material conditionals when it's adequate—not, for example, when you're dealing with counterfactuals.
 
-We find for example, the rule:
+## Conditional reasoning
 
-  2. $\mathsf{RAIN}\to \mathsf{CAR}$
+Using the reduction of $A {{< to >}}B$ to ${{< neg >}}A {{< lor >}}B$, we can
+apply all the artificial reasoning methods for Boolean inference we know to
+conditional reasoning. This is great, of course, but applying these methods
+means we also incur all the drawbacks we've discussed, especially the risk of
+[exponential blow-up](https://en.wikipedia.org/wiki/Combinatorial_explosion).
 
-Since $\mathsf{RAIN}$ is among our known facts, we can reason as follows:
+But it turns out that in many contexts of reasoning with material conditionals,
+we can do much better. One traditionally important class of conditionals for
+which artificial reasoning becomes more [tractable](https://en.wikipedia.org/wiki/Computational_complexity_theory#tractable_problem) are the so-called [Horn clauses](https://en.wikipedia.org/wiki/Horn_clause).
 
-$$\mathsf{RAIN},\mathsf{RAIN}\to \mathsf{CAR}\vDash\mathsf{CAR}$$
+{{< img src="img/ai_horn.png" class="rounded  float-end inert-img img-fluid m-2" width="200px" >}}
+Simply speaking a **Horn clause** is a disjunction of {{< abbr
+title="propositional variable or the negation of one">}}literals{{< /abbr >}},
+which contains at most one *un*-negated literal, that is propositional variable.
+Here's an example: $${{<neg>}}SUN {{< lor >}} {{<neg>}}RAIN {{< lor >}}WIND$$
+Off the bat, you might not think that this is a conditional, but a disjunction.
+But look at it this way: using the $"De Morgan Identities"$, we can see that
+${{< neg >}}SUN {{< lor >}}{{< neg >}}RAIN$ is equivalent to ${{< neg >}}(SUN
+{{< land >}}RAIN)$, which means that our example Horn clause can be written as:
 
-As a result, we add $\mathsf{CAR}$ to our known facts. This makes the following
-rule applicable:
+$${{<neg>}}(SUN {{< land >}} RAIN) {{< lor >}}WIND$$
 
-  6. $\mathsf{CAR}\to \mathsf{KEYS}$
+But of we now apply the reduction of $A {{< to >}}B$ to ${{< neg >}}A {{< lor >}}B$ "backwards", we get:
 
-Again, using MP-style reasoning, we proceed:
+$$(SUN {{< land >}} RAIN) {{< to >}}WIND$$
 
-$$\mathsf{CAR},\mathsf{CAR}\to \mathsf{KEYS}\vDash\mathsf{KEYS}$$
+This means that if we have a Horn clause like in our example, we can equivalently
+re-write it as a simple conditional, where the {{< abbr
+title="if-part">}}antecedent{{< /abbr >}} consists of the conjunction of the
+negated literals and the {{< abbr title="then-part">}}consequent{{< /abbr>}} is
+the unnegated literal. 
 
-We thus add $\mathsf{KEYS}$ to our known facts. In a similar fashion, we add
-$\mathsf{COAT}$ to our known facts arriving at the
-final known facts:
-  + $\mathsf{RAIN}$
-  + $\mathsf{COLD}$
-  + $\mathsf{CAR}$
-  + $\mathsf{KEYS}$
-  + $\mathsf{COAT}$
+Horn clauses are named after [Alfred
+Hresolutionorn](https://en.wikipedia.org/wiki/Alfred_Horn) (nothing to do with horns) and
+they are the theoretical basis for [logic
+programming](https://en.wikipedia.org/wiki/Logic_programming), which is used,
+for example, to write efficient expert systems, but also find other industry
+applications.
 
-This is all we can get "out" of our known facts using our knowledge base.
-AI researchers typically think of forward-chaining as a **data driven**
-inference method: we start with some known facts and try to see what else we can
-derive from the known facts. We don't have **goal** in mind. This is different
-with the following method.
+The definition of Horn clauses allows for two special cases:
 
-## Backward chaining
+- A clause that consists of a single propositional variable, like $SUN, RAIN,$
+or $WIND$. Such a clause is called a **fact**.
 
-The **backward chaining** method is, as the name suggests, forward chaining "the
-other way around". Instead of starting from the data and extracting new
-information from it, backward chaining starts with a goal, a question we're
-trying to answer. This makes backward chaining a **goal directed** method.
+- A clause that's the disjunction _only_ of negated propositional variables,
+that is without any unnegated propositional variable, like 
 
-We can explain how backward chaining works using our same example as above:
+    $${{< neg >}}SUN {{< lor >}}{{< neg >}}RAIN.$$
 
-+ Our _knowledge base_ contains:
-  1. $\mathsf{SUN}\to \mathsf{BIKE}$
-  2. $\mathsf{RAIN}\to \mathsf{CAR}$
-  3. $\mathsf{WARM}\to \mathsf{SHIRT}$
-  4. $\mathsf{COLD}\to \mathsf{COAT}$
-  5. $\mathsf{BIKE}\to \mathsf{HELMET}$
-  6. $\mathsf{CAR}\to \mathsf{KEYS}$
+    Such a clause is called a **goal (clause)**. Note that by the $"De Morgan
+    Identities"$, goal clauses are simply negated conjunctions of propositional
+    variables—in our case:
 
-+ Our _known facts_ are:
-  + $\mathsf{RAIN}$
-  + $\mathsf{COLD}$
+    $${{< neg >}}(SUN {{< land >}}RAIN).$$
 
-But instead of just wondering what we can derive, we're specifically asking the
-question whether we should take our helmet. That is, we have a set of **goals**
-that contains: $$\mathsf{HELMET}$$
+    The special case of a single negated propositional variable, like 
+    ${{< neg >}}SUN$, is explicitly included.
 
-With this specific question in mind, we go through the rules and see whether
-there's a rule that would allow us to infer $\mathsf{HELMET}$. We find:
+The Horn clause in our example has both: negated and unnegated propositional
+variables. It is what's called a **strict Horn clause**. 
 
-  5. $\mathsf{BIKE}\to \mathsf{HELMET}$
+These names derive from the way we reason with Horn clauses. Suppose, for
+example, that {{<logo>}}&ThinSpace;has downloaded a simple meteorological {{<
+abbr title="knowledge base">}}$KB${{</abbr>}},
+that contains the following strict Horn clauses:
+{{< img src="img/kb_rainbow.png" class="mx-auto d-block rounded inert-img img-fluid" width="500px">}}
 
-If we would know that $\mathsf{BIKE}$, we could infer $\mathsf{HELMET}$. So we
-temporarily add $\mathsf{BIKE}$ to our goals. Again, we check whether we find a
-corresponding rule:
+Suppose further that {{< logo >}}&ThinSpace;observes that it's morning, the
+skies are (partially) clear, and its starting to rain. This gives 
+{{< logo >}}&ThinSpace;the following two _facts_ in the terminology of Horn
+clauses: $$MORNING, CLEAR, RAIN$$
+Now {{< logo >}}&ThinSpace;is wondering if there'll be a rainbow. 
 
-  1. $\mathsf{SUN}\to \mathsf{BIKE}$
+To determine this, {{< logo >}}&ThinSpace;can use resolution based reasoning
+with its new KB! We know that $RAINBOW$ follows just in case $KB$ together with
+the facts, and $<nobr>{{< neg >}}RAINBOW</nobr>$ is `not-SAT`. Note that
+$<nobr>{{< neg >}}RAINBOW</nobr>$ is a _goal_ clause in Horn terminology. 
 
-We now add $\mathsf{SUN}$ to our temporary goals. But at this point our
-search terminates. We can't find any rule that gives us $\mathsf{SUN}$. We
-couldn't reach our goals
+So, what we do is to add the facts $MORNING, CLEAR,RAIN$ and goal clause
+$<nobr>{{< neg >}}RAINBOW</nobr>$ to the $KB$ and apply resolution to see
+whether we can derive ${ }$. If so, we can conclude that there will be rainbow.
 
-Now suppose, instead, we ask whether we should take our keys and add
-$\mathsf{KEYS}$ to our goals. We can then backwards chain the rules:
+Here we go:
 
-  2. $\mathsf{RAIN}\to \mathsf{CAR}$
-  6. $\mathsf{CAR}\to \mathsf{KEYS}$
+1. First, {{< logo >}}&ThinSpace;re-writes the $KB$ in CNF using $r₀$ (an industry level KB would
+   already be written in CNF):
 
-We arrive at a goal that's among our known facts, viz. $\mathsf{RAIN}$. This
-means that using a series of MP's and rules 2 and 6, we can derive our ultimate
-goal: $\mathsf{KEYS}$. Our KB has settled the question.
+   {{< img src="img/kb-rewrite.png" class="rounded mx-auto d-block inert-img img-fluid" width="850px">}}
 
-But wait a moment, have we established yet that we _shouldn't_ take a helmet?
-It turns out that this is not such an easy question. We've shown that our
-knowledge base doesn't settle the question. But there a lot of questions it
-doesn't settle, should we treat them all as false?
+2. Next, {{< logo >}}&ThinSpace;transforms the CNFs into sets (again, this could be done in pre-processing) and add the facts and goal clause as {{< abbr title="sets with one element">}}singletons{{< /abbr >}}:
 
-The so-called [closed-world assumption
-(CWA)](https://en.wikipedia.org/wiki/Closed-world_assumption) in AI says yes. In
-short, the CWA tells us to treat non-derivable statements as false, meaning we'd
-conclude $\neg\mathsf{HELMET}$ from the fact that we can't derive
-$\mathsf{HELMET}$. The CWA plays a fundamental role in knowledge representation.
+   {{< img src="img/kb-sets.png" class="rounded d-block inert-img img-fluid" width="400px">}}
 
-## Conditionals in programming
+3. Finally, {{< logo >}}&ThinSpace;recursively applies the resolution rule
+   until it can derive ${ }$ or cannot resolve anymore. Here's the derivation
+that {{< logo >}}&ThinSpace;finds in the search:
 
-Before we move to the limitations of the logical conditional, let's briefly talk
-about conditionals in programming. 
+   {{< img src="img/resolution_rainbow.png" class="mx-auto rounded d-block inert-img img-fluid" width="700px">}}
 
-If you've ever written a computer program, you've very likely written something
-like this:
+All the hard work paid of, {{< logo >}}&ThinSpace;derived ${ }$, so {{< logo >}}&ThinSpace;knows there will be a rainbow:
 
-```
-  if CONDITION:
-    EFFECT-1
-  elif: 
-    EFFECT-2
-  else:
-    EFFECT-3
-```
+{{< img src="img/ai_rainbow.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
 
-For example, a solution to the  famous [fizz
-buzz](https://en.wikipedia.org/wiki/Fizz_buzz) programming exercise looks
-something like this:
+So far, so standard. To see what's going on here, we analyze the inferences
+using {{< abbr title="modus ponens">}}MP{{< /abbr >}}-style reasoning. For this
+purpose, we use the following more generalized version of MP, which we call
+**gen-MP**:
 
-```
-  for n in range(1,101):
-    if n is divisible by 3 and n is divisible by 5:
-      print("FizzBuzz")
-    elif n is divisible by 3:
-      print("Fizz")
-    elif n is divisble by 5:
-      print("Buzz")
-    else:
-      print(n)
-```
-This program loops through all the numbers from 1 to 100 and tests for each
-number whether it's divisible by both 3 and 5, in which case it prints
-"FizzBuzz", if that's not the case but the number is divisible by 3, the program
-prints "Fizz", if that's also not the case but the number is divisible by 5, the
-program prints "Buzz", and if all else fails, it prints the number.
+$$A₁, A₂, …, (A₁ {{<land>}} A₂{{<land>}} …) {{<to>}} B {{< therefore >}} B$$
 
-This results in a sequence that begins like this:
+This inference allows us, for example, to infer $SUN$ from $CLEAR, DAY,$ and
+$(SUN{{< land >}}CLEAR){{< to >}}DAY$. We let gen-MP subsume MP with the special
+case that the conjunction in the antecedent is of length one.
 
-$$1,2,Fizz,4,Buzz,Fizz,7,8,Fizz,Buzz,\dots$$
+We've already pointed out that resolution-style inferences are, at heart,
+{{< abbr title="modus ponens">}}MP{{< /abbr >}}-style inferences. This point, we
+can use to analyze the resolution above as a **chain** of
+{{< abbr title="modus ponens">}}gen-MPs{{< /abbr >}}:
 
-The material conditional can help us understand what's going on here. Each of
-the conditions is a Boolean condition: it evaluates either to true false. The
-"if-then-else" statements can therefore be modelled by the following material
-conditionals:
+{{< img src="img/horn_chaining.png" class="mx-auto rounded d-block inert-img img-fluid" width="600px">}}
 
-+ $\mathsf{DIV\\\_3}\land \mathsf{DIV\\\_5}\to \mathsf{PRINT\\_FIZZBUZZ}$
-+ $\mathsf{DIV\\\_3}\land \neg\mathsf{DIV\\\_5}\to \mathsf{PRINT\\_FIZZ}$
-+ $\neg\mathsf{DIV\\\_3}\land \mathsf{DIV\\\_5}\to \mathsf{PRINT\\_BUZZ}$
-+ $\neg\mathsf{DIV\\\_3}\land \neg\mathsf{DIV\\\_5}\to \mathsf{PRINT\\_NUMBER}$
+Essentially, we're taking our initial facts and apply gen-MP to infer as many
+new facts as we can from the conditionals in our KB. We add these facts to our
+KB and again derive as many new facts as we can. Lather-rinse-repeat, we apply
+this method _recursively_ until at some point we derive the desired formula.
+This is, in a nutshell, the algorithm of [**forward
+chaining**](https://en.wikipedia.org/wiki/Forward_chaining), which is one of the
+two main algorithms for artificial conditional reasoning—the other being
+backward chaining, which we discuss below.
 
-These are, essentially, a knowledge base. If we change the known facts
-corresponding to the actual divisibility facts of the number, we can derive what
-to print using standard inference techniques, such as forward/backward chaining.
+More generally, if we have a set of _facts_ represented by propositional
+variables, a _rule base_ of strict Horn formulas represented by conditionals,
+and a _goal_ represented by a single propositional variable,  the
+forward-chaining algorithm works by:
 
-[Conditionals](https://en.wikipedia.org/wiki/Conditional_(computer_programming))
-are a fundamental reason for the expressive power of programming languages and
-at their very heart lies the behavior of the material conditional.
+1. Applying gen-MP as many times as possible using the known facts and the rule
+base and adding the results to the known facts. 
 
-## Non-material conditionals
+2. Recursively repeat 1. until one of two possible things happen:
 
-Before we conclude the chapter, we should talk about the **limitations** of the
-logical conditional. 
+    - The goal formula is derived.
 
-The most important limitation is that $\Rightarrow$ is not a good model of many
-uses of the phrase "if ..., then ..." in natural language. For example,
-typically, people think that conditionals like "If the moon is made of cheese,
-then pigs can fly" are false. The reason is, arguably, that the material of the
-moon has nothing to do with the abilities of pigs. But if we treat if-then as
-the truth-function $\Rightarrow$, since the moon is _not_ made of green cheese,
-the conditional would need to get the value $0\Rightarrow 0=1$.
+    - No new applications of gen-MP are possible and the goal formula is not
+    derived.
 
-This and similar phenomena have lead to the development of various **conditional
-logics**, which aim to provide a more adequate formalization of various if-then
-clauses. Of these logics, especially the logic of [counterfactual
-conditionals](https://en.wikipedia.org/wiki/Counterfactual_conditional), which
-are conditionals that talk about what _would have been_, play an important role
-in the representation of causal knowledge and in [XAI](https://en.wikipedia.org/wiki/Explainable_artificial_intelligence).
+    In the former case conclude that the formula is derivable. In
+    the latter case, conclude that it is not derivable .
 
-## Further readings
+What we've seen in our example is, in essence, that we can interpret the
+resolution algorithm with Horn formulas as an instance of the forward-chaining
+algorithm. The fact that this works crucially depends on the fact that we only
+have strict Horn formulas in our rule base and so the applications of gen-MP can
+only ever get us new *facts*—that is unnegated propositional variables.
 
-You can find a more detailed discussion of algorithmic implementations of forward and
-backward chaining in Ch. 7.5 of Russel and Norvig's "Artificial Intelligence. A
-Modern Approach." (see the detailed reference in {{< chapter_ref
-chapter="boolean" id="further-readings">}}Chapter 1. Logic and AI{{<
-/chapter_ref >}}). 
+In fact, the simple forward chaining algorithm will always give the correct
+answer to the question whether we can derive a goal formula in a finite amount
+of time. More so, the time it takes to determine the answer only grows linearly
+with the number of Horn clauses (disguised as conditionals) involved. Each new
+conditional makes possible only a bounded number of new gen-MP applications. 
 
-**Notes:**
+[Dually](https://en.wikipedia.org/wiki/Duality_(mathematics)), the same point
+carries over to resolution with Horn clauses: in contrast to the general
+`SAT`-problem for arbitrary formulas, the
+[`HORN-SAT`](https://en.wikipedia.org/wiki/Horn-satisfiability) problem—the
+question whether a given set of Horn formulas is satisfiable—is solvable in
+linear [time complexity](https://en.wikipedia.org/wiki/Time_complexity). 
 
-[^tertium]: Historically, this assumption is known as _tertium non datur_, which
-is Latin for "a third (truth-value) is not given".
+This is one of the main reasons why we try to use Horn clauses as much as
+possible in [knowledge
+engineering](https://en.wikipedia.org/wiki/Knowledge_engineering), but,
+unfortunately, using non-Horn clauses cannot always be avoided. And an example
+in the next section will illustrate why.
+
+But before we discuss this example, let's briefly talk about the other main
+algorithm for reasoning with conditionals in artificial inference [backward
+chaining](https://en.wikipedia.org/wiki/Backward_chaining). This algorithm is
+basically backward chaining in reverse. Here's how {{< logo >}}&ThinSpace;would
+apply the algo in our example:
+
+- {{< logo >}}&ThinSpace;_wants_ to know whether the goal, $RAINBOW$, follows
+from the known facts $MORNING, CLEAR,$ and $RAIN$ and the KB.
+
+- {{< logo >}}&ThinSpace;inspects the KB and sees that there is 
+$(RAIN {{< land >}} LOW_SUN){{< to >}} RAINBOW$ in there. That means that if 
+ {{< logo >}}&ThinSpace;could derive $RAIN$ and $LOW_SUN$, it could derive $RAINBOW$ via
+gen-MP. So,  {{< logo >}}&ThinSpace;*replaces* the goal $RAINBOW$ with $RAIN$
+and $LOW_SUN$ as the two *new* goals. But since $RAIN$ is already one of the known facts, we
+delete it from the goals.
+
+- {{< logo >}}&ThinSpace;recursively repeats this procedure, updating the goals
+  along the way, until in the last step, the goal will be $DAY$, we have
+$MORNING{{< to >}}DAY$ in the KB and $MORNING$ among the facts. This deletes the
+last goal and the backward search is complete. If {{< logo >}}&ThinSpace;diligently 
+kept track of the conditionals involved in the backward search, it can easily
+construct the gen-MP derivation we found above from it.
+
+Here's how the algorithm works in general: Again, we start with a set of _facts_
+represented by propositional variables, a _rule base_ of strict Horn formulas
+represented by conditionals, and a _goal_ represented by a single propositional
+variable. 
+
+1. We search through the rule base to find any conditionals with a goal fact in
+   the {{< abbr title="then-part">}}consequent{{< /abbr >}}. If that happens, we
+update our goals by adding the conjuncts of the {{< abbr
+title="if-part">}}antecedent{{< /abbr >}}—which we know to be a conjunction
+since we're dealing with Horn clauses—to our goal facts. Then we eliminate any
+goals that are known facts.
+
+2. We recursively repeat this procedure until one of two things happens:
+
+    - We have no goals anymore, from which we conclude that the initial goal is
+      derivable. Keeping track of the search generates the derivation using
+    gen-MP.
+
+    - We have a non-empty list of goals but no longer find conditionals that
+    have them in their consequent. We conclude the initial goal is not
+    derivable.
+
+Forward and backward chaining are two different approaches to the same problem:
+finding a derivation using gen-MP. Forward-chaining is, essentially, what's
+known as a [breadth-first
+search](https://en.wikipedia.org/wiki/Breadth-first_search), while
+backward-chaining is a [depth-first
+search](https://en.wikipedia.org/wiki/Depth-first_search). The two approaches
+have different advantages and drawbacks. For example, forward-chaining will find
+the shortest solution possible, but implementing it requires a lot of computer
+memory to keep track of all the derived facts, many of which may not be helpful
+in the final derivation. Backward-chaining, instead, can be implemented in a
+memory-efficient way, but the derivations it finds may not be optimal in terms
+of length. Ultimately, it's the requirements of the concrete artificial
+reasoning scenario that determine which algorithm is better suited to the
+problem at hand.
+
+You might be wondering: What if we couldn't have derived $RAINBOW$? For example,
+because we neither had $MORNING$ nor $EVENING$ as known facts. Would that have
+meant we _don't_ see a rainbow according to the $KB$? It turns out that's a
+subtle question about the difference between being true and provable, or dually,
+false and unprovable. We'll return to this question much later in the course,
+when we discuss [many-valued
+logics](https://en.wikipedia.org/wiki/Many-valued_logic) and their motivations
+in AI.
+
+{{< img src="img/ai_night_rainbow.png" class="mx-auto rounded d-block inert-img img-fluid" width="600px">}}
+
+## Planning 
+
+We've seen that conditionals are useful for formulating rules in **Knowledge
+Representation and Reasoning (KKR)** contexts. In the final section of this
+chapter, we'll look at a concrete application of this, which serves two
+interrelated purposes: on the one hand, it's a concrete application of the
+different techniques we've studied in the last couple of chapters; on the other
+hand, it illustrates the limitations of Horn clauses in {{< abbr
+title="knowledge representation and reasoning">}}KKR{{< /abbr>}} contexts.
+
+We begin by describing a very simple set-up: {{< logo >}}&ThinSpace;stands in
+front of a table, on which there are two blocks, a red one and a green one. The
+green block is stacked on top of the red one. There are instructions on the
+wall, telling {{< logo >}}&ThinSpace;to invert the stacking:
+
+    {{< img src="img/ai_plan_setup.png" class="mx-auto rounded d-block inert-img img-fluid" width="600px">}}
+
+It seems that {{< logo >}}&ThinSpace;needs to make a **plan**.
+
+There is an AI approach to planning involves `SAT`-solving and knowledge
+representation using conditionals. The approach is known as [`Satplan`](https://en.wikipedia.org/wiki/Satplan) or "Planning as satisfaction."
+
+The idea is to describe the planning situation using a suitable propositional
+language. Here's the basic components of such a language for our problem:
+
+- The **fluents** are propositional variables that describe possibly changing
+states of the world. For each combination of $X,Y {{< in >}} { R, G}$ and for
+each $t$ a time-stamp in $0, 1, 2, …$, we have a different (!)
+propositional variable: $$On(X,Y,t),$$ which states that block $X$ is on top of
+block $Y$ at point $t$.
+
+    That is, we have a propositional variable $On(R,G,1)$, which says that the
+    red block is on top of the green block at the first time-stamp. But we also
+    have a _different_ propositional variable $On(G,R,1)$, which says that the
+    _green_ block is on top of the _red_ one at the first time-stamp. Of course,
+    in a realistic model, only one of the two can be true at the same time, more
+    on that later.
+
+- The **actions** are propositional variables whose truth expresses that {{<
+logo >}}&ThinSpace;carries out a specific action. Again for each combination of
+$X,Y {{< in >}} { R, G}$ and for each $t$ a time-stamp in $0, 1, 2, …$, we have
+the variable $$Stack(X,Y,t),$$ which expresses the action of stacking $X$ on top
+of $Y$ at time-stamp $t$. 
+
+    Similarly, we have for each $X,Y$ and each $t$ the action $$Unstack(X,Y,t),$$ which 
+    removes the block $X$ from the block $Y$ at time $t$.
+
+Otherwise, our language is an ordinary propositional language with {{< neg >}},
+{{< land >}}, {{< lor >}}, and {{< to >}} as operators.
+
+For now, the variables are just ordinary propositional variables, nothing
+constraints our models from assigning them "weird" values that don't align with
+our intended interpretation. For example, an assignment may very well assign
+$On(R,G,1)$ and $On(G,R,1)$ both the value `1`, even though in the "real world" of
+course they can't both be true.
+
+We tackle this problem by implementing a {{< abbr title="knowledge base">}}KB{{</abbr>}}, 
+which at a minimum contain the following formulas:
+
+- Principles about the way the world works "(meta-)physically", such as: $${{< neg >}}On(X,X,t)&emsp;&emsp;&emsp; On(X,Y,t){{< to >}}{{< neg >}}On(Y,X,t),$$ for all $t$. These guarantee, for example, that no block can be on top of itself in a model or both one on top of the other and the other on top of the one, in some weird "wormhole"-style model.
+
+- Principles that guarantee that our actions work like indented, like: $$Stack(X,Y,t){{< to >}}On(X,Y,t+1)&emsp;&emsp;&emsp;Unstack(X,Y,t){{< to >}}{{< neg >}}On(X,Y,t+1),$$ for all $X,Y,t$ as before. These express action principles like that if you stack at one time-stamp in the model, the action will succeed and the blocks will be indeed on top of each other at the next time-stamp.
+
+    These action principles also need some plausibility rules, like
+    $$Unstack(X,Y,t){{< to >}}On(X,Y,t),$$ for all $X,Y,t$ as before, which
+    states that you can only unstack blocks that are actually stacked.
+
+We can now interpret a model for our language that makes all the principles in
+the KB true as a "real world" scenario. The principles guarantee that things
+behave as expected. Note that each model contains a "full history," by telling
+us which statements are true at time-stamp $0,1,2, …$. 
+
+In this language, we can express our planning problem as follows:
+
+- We take an **initial state** of our system, which is $$On(G,R,0).$$ We couple
+  it with a **goal state**, which is $$On(R,G,2).$$
+
+- If we can find a model for the KB—that is a "real world" model—which makes the
+  initial state and goal state true, we can read off a _plan_ from the model: it
+will tell us which actions are true by assigning them value $1$, such as
+$v(Unstack(G,R,0) = 1$, to say first, unstack green from red.
+
+- To carry out the plan, we just "do" the corresponding actions in the real
+world.
+
+But that means that we can find a plan—we can *plan*— by `SAT`-solving. For
+this, we can use any of the techniques we've developed before. Even more, if you
+check carefully, you can see that all the formulas involved are Horn formulas,
+which means we can find a model in linear time. Of course, this
+language is already large enough that linear might still be too long to do by
+hand, but in practice, we can easily use a AI program to solve this.
+
+One model the system might find for our language is given by this diagram, where
+the depicted formulas are the ones that are true (i.e. assigned value `1`):
+
+{{< img src="img/ai_plan.png" class="mx-auto rounded d-block inert-img img-fluid" width="900px">}}
+
+You can verify, that these assignments correspond with the above described
+rules. Of course, the diagram only shows the relevant parts of the model, more
+things are true, like ${{< neg >}}On(R,R,0), {{< neg >}}On(G,G,0), …$.
+
+The plan we can read off is the one where we first unstack the green from the
+red block, and then just stack the red on the green. Of course, you could have
+found that plan by yourself without any logic, but planning situations can get
+quite complex.
+
+Planning problems involving [blocks](https://en.wikipedia.org/wiki/Blocks_world)
+are a mainstay in AI research. Another famous example involves [monkeys and
+bananas](https://en.wikipedia.org/wiki/Monkey_and_banana_problem). Of course,
+real world planning situations are much more complex. But the principles remain
+the same, and `Satplan` has _many_ real world, industry applications, ranging
+from scheduling shifts to warehouse stocking. These applications easy involve
+hundreds to thousands of variables. They _really_ need AI to automatically plan.
+
+There is one hiccup, however. Also the following model is a model of our KB
+so-far:
+ 
+{{< img src="img/ai_miracle.png" class="mx-auto rounded d-block inert-img img-fluid" width="900px">}}
+
+In this model, which you can easily verify validates all our principles so far,
+{{<logo>}}&ThinSpace;hesitates for a second and doesn't carry out any actions at
+the first and second time-stamp, but the problem solves itself: the blocks
+magically re-arrange themselves into the desired configuration.
+
+Of course, this is a non-sense model, but how do we exclude it? It turns out
+that the obvious solution has some undesirable properties. What we really want
+to do is postulate this for all $X,Y,t$:
+
+$${{< neg >}}On(X,Y,t){{< land >}}{{< neg >}}Unstack(X,Y,t){{< to >}}On(X,Y,t+1)$$
+$${{< neg >}}{{< neg >}}On(X,Y,t){{< land >}}{{< neg >}}Stack(X,Y,t){{< to >}}{{< neg >}}On(X,Y,t+1)$$
+
+This would exclude the "miracle model", but at a cost: these conditionals are no
+longer Horn clauses. Which puts our planning with them square into the territory
+of exponential time `SAT`-solving. While modern computers are sufficiently
+powerful that they can tackle even very time-complex `SAT`-problems in
+reasonable time-frames, this is not good. It presents a fundamental challenge to
+scaling planing.
+
+The underlying problem is known as the [frame
+problem](https://en.wikipedia.org/wiki/Frame_problem), which is one of the most
+fundamental issues of logic-based AI. The question is how to adequately
+represent the conditions on our model that guarantee that it behaves like the
+"real world," while at the same time remaining computationally tractable. This
+is an issue we won't solve today.
