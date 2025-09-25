@@ -213,7 +213,7 @@ Alternatively, we can—of course—verify the validity of
 Importantly, the material conditional is not the only way to interpret 
 {{< to >}} or to formalize natural language "if …, then …" statements. In fact,
 in many contexts, it is not even an adequate interpretation. Consider, for
-example, the statement "if you'd throw the ball through the window, then it
+example, the statement "if you'd throw the ball at the window, then it
 would break" said to {{< logo >}}&ThinSpace;standing in front the window with his ball.
 Such a conditional statement is called a [counterfactual
 conditionals](https://en.wikipedia.org/wiki/Counterfactual_conditional).
