@@ -497,11 +497,11 @@
             <li>
               <a class="dropdown-item 
                 fw-bold active
-                link-opacity-50
+                
                 "
-                href="javascript:;"
+                href="/exercises/conditionals/"
               >6. 
-                <i class="bi bi-lock-fill"></i>
+                <i class="bi bi-unlock-fill"></i>
                  Logical conditionals
               </a>
             </li>
@@ -732,418 +732,235 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
 <div class="container exercises">
   <div class="m-4">
 </div>
-<div id="equivalences" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Equivalences
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="equivalencesSolution"
-        onclick="showPasswordModal('equivalencesSolution', 'exc-if')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="boolean-conditional" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Boolean conditional
     </div>
-</h5><p>For each of the following pairs of formulas, show that they are <em>equivalent</em> in
-the sense that they have the same truth-value under each valuation.</p>
+</h5><p>We&rsquo;ve interpreted the conditional symbol 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ using the Booleans <span class="Boolean">NOT</span>
+and <span class="Boolean">OR</span>. But we could also have directly defined a Boolean function <span class="Boolean">IF</span>
+with the following truth-table:</p>
+
+<img src="https://logicalmethods.ai/exercises/conditionals/img/if_table.png" class="mx-auto d-block rounded inert-img img-fluid"  width="200px"  alt="" >
+
+<p>Note that <code class="customCode"></code>X <span class="Boolean">IF</span> Y<code class="customCode"></code> is the conditional from the value of <code class="customCode">X</code> to the value
+of <code class="customCode">Y</code> to make the reading of the Boolean align with its natural reading.</p>
+<p>Find a representation of this Boolean function using only <span class="Boolean">NOT</span> and <span class="Boolean">AND</span>. That is find a Boolean expression <code class="customCode">exp</code> in the two variables <code class="customCode">X</code> and <code class="customCode">Y</code>, which contains only the Boolean functions <span class="Boolean">NOT</span> and <span class="Boolean">AND</span>, and which meets the specification that for all values of <code class="customCode">X</code> and <code class="customCode">Y</code>, we have:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+exp = X <span class="Boolean">IF</span> Y.
+</code></div>
+<p>Verify your work! That is don&rsquo;t just provide an expression, but show that for all values of <code class="customCode">X</code> and <code class="customCode">Y</code> the above equation holds.</p>
 
 </div>
-<div id="a" ><h6 class="">a)</h6><p><span class="excalifont">A\to B</span> and <span class="excalifont">\neg A\lor B</span></p>
-
-</div>
-<div id="b" class=" homework"><h6 class=" homework">b)</h6><p><span class="excalifont">A\to B</span> and <span class="excalifont">\neg(A\land\neg B)</span></p>
-
-</div>
-<div id="c" ><h6 class="">c)</h6><p><span class="excalifont">A</span> and <span class="excalifont">\neg A\to A</span>
-(<i class="bi bi-box-arrow-up-right h-6"></i>
-<a href="https://en.wikipedia.org/wiki/Christopher_Clavius" class="link-dark" rel="external" target="_blank">Clavius</a>
-&rsquo;s law)</p>
-
-</div>
-<div id="d" class=" homework"><h6 class=" homework">d)</h6><p><span class="excalifont">A\to B</span> and <span class="excalifont">\neg B\to \neg A</span> (the law of contraposition)</p>
-
-</div>
-<div id="e" ><h6 class="">e)</h6><p><span class="excalifont">A\to (B\to C)</span> and <span class="excalifont">(A\land B)\to C</span></p>
-
-</div>
-<div id="equivalencesSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>You can solve these in various ways. Here I provide some different styles of
-solutions.</p>
-<p><strong>a)</strong></p>
-<p>We do this with a truth-table, which goes through all possible values:</p>
-
-<img src="https://logicalmethods.ai/exercises/conditionals/img/disjunction.png" class="img-thumbnail"    alt="" >
-
-<p><strong>b)</strong></p>
-<p>Also here, truth-tables is a good method:</p>
-
-<img src="https://logicalmethods.ai/exercises/conditionals/img/conjunction.png" class="img-thumbnail"    alt="" >
-
-<p><strong>c)</strong></p>
-<p>Here we can give a rather simple argument:</p>
-<p><span class="excalifont">\nu(A)</span> is either 0 or 1. If <span class="excalifont">\nu(A)=0</span>, then <span class="excalifont">\nu(\neg A)=1</span>. But then <span class="excalifont">v(\neg
-A\to A)=1\Rightarrow 0=0</span>. If, instead, <span class="excalifont">\nu(A)=1</span>, then <span class="excalifont">\nu(\neg A)=0</span> and
-so <span class="excalifont">\nu(\neg A\to A)=0\Rightarrow \nu(A)=1</span>.</p>
-<p><strong>d)</strong></p>
-<p>We do a truth-table:</p>
-
-<img src="https://logicalmethods.ai/exercises/conditionals/img/contraposition.png" class="img-thumbnail"    alt="" >
-
-<p><strong>e)</strong></p>
-<p>Here we can give a more sophisticated argument:</p>
-<p>The only way in which we can have <span class="excalifont">\nu(A\to(B\to C))=0</span> is if <span class="excalifont">\nu(A)=1</span>,
-<span class="excalifont">\nu(B\to C)=0</span>. The latter can only be if <span class="excalifont">\nu(B)=1</span> and <span class="excalifont">\nu(C)=0</span>. But then,
-<span class="excalifont">\nu(A\land B)=1</span> and <span class="excalifont">\nu(C)=0</span> and so <span class="excalifont">\nu((A\land B)\to C)=\nu(A\land
-B)\Rightarrow \nu(C)=1\Rightarrow 0=0</span>.</p>
-<p>Similarly, the only way in which <span class="excalifont">\nu((A\land B)\to C)=0</span> is if <span class="excalifont">\nu(A\land B)=1</span>
-and <span class="excalifont">\nu(C)=0</span>. But then <span class="excalifont">\nu(A)=1</span> and <span class="excalifont">\nu(B)=1</span>, since <span class="excalifont">\nu(A\land
-B)=\nu(A)\times\nu(B)=1</span>. But then <span class="excalifont">\nu(B\to C)=0</span> since <span class="excalifont">\nu(B\to
-C)=\nu(B)\Rightarrow\nu(C)=1\Rightarrow 0</span> and so <span class="excalifont">\nu(A\to (B\to
-C)=\nu(A)\Rightarrow \nu(B\to C)=1\Rightarrow 0=0</span>.</p>
-<p>So the two formulas are false in the exact same cases, which means in all other
-cases they must both be true.</p>
-<p>Alternatively, you can do an 8-row truth-table:</p>
-
-<img src="https://logicalmethods.ai/exercises/conditionals/img/three.png" class="img-thumbnail"    alt="" >
-
-
-</div>
-<div id="boolean-laws" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Boolean laws
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="boolean-lawsSolution"
-        onclick="showPasswordModal('boolean-lawsSolution', 'exc-if')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="equivalence" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Equivalence
     </div>
-</h5><p>Formulate the equivalences from Exercise 1 as Boolean laws. For example, a)
-becomes <div class="text-center my-4 excalifont">x\Rightarrow y=-x+y.</div></p>
+</h5><p>Remember the truth-table for <span class="excalifont">XNOR</span> from the last exercises set:</p>
+
+<img src="https://logicalmethods.ai/exercises/conditionals/img/xnor_table.png" class="mx-auto d-block rounded inert-img img-fluid"  width="200px"  alt="" >
+
+<p>Find a formula representation of this Boolean truth-function using only the
+propositional variables <span class="excalifont">p</span> and <span class="excalifont">q</span> and the connectives <span class="excalifont">
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+</span> and <span class="excalifont">
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+</span>! That is, find such formula satisfying these constraints, which meets
+the assignments <span class="excalifont">v</span> of truth-values to <span class="excalifont">p</span> and <span class="excalifont">q</span>, we have:</p>
+<div class="text-center my-4 excalifont">v(A) = v(p) <span class="Boolean">XNOR</span> v(q).</div>
+<p>Verify your work! That is don&rsquo;t just provide a
+formula, but show that for each assignment the above
+equation holds.</p>
 
 </div>
-<div id="boolean-lawsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong></p>
-<div class="text-center my-4 excalifont">x\Rightarrow y=-x+y.</div>
-<p><strong>b)</strong></p>
-<div class="text-center my-4 excalifont">x\Rightarrow y=-(x\times -y)</div>
-<p><strong>c)</strong></p>
-<div class="text-center my-4 excalifont">x=-x\Rightarrow x</div>
-<p><strong>d)</strong></p>
-<div class="text-center my-4 excalifont">x\Rightarrow y=-y\Rightarrow -x</div>
-<p><strong>e)</strong></p>
-<div class="text-center my-4 excalifont">x\Rightarrow(y\Rightarrow z)=(x\times y)\Rightarrow z</div>
-
-</div>
-<div id="validities" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Validities
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="validitiesSolution"
-        onclick="showPasswordModal('validitiesSolution', 'exc-if')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="conditional-inferences" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Conditional inferences
     </div>
-</h5><p>Check the validity of the following inferences using a suitable method
-(DPLL, truth-tables, &hellip;).</p>
+</h5>
+<img src="https://logicalmethods.ai/exercises/conditionals/img/sun.png" class="rounded  float-start inert-img img-fluid m-2"  width="100px"  alt="" >
 
-</div>
-<div id="a-1" ><h6 class="">a)</h6><p><span class="excalifont">\mathsf{RAIN}\to \mathsf{CAR}\vDash (\mathsf{RAIN}\land \mathsf{WARM})\to
-\mathsf{CAR}</span></p>
-
-</div>
-<div id="b-1" ><h6 class="">b)</h6><p><span class="excalifont">\mathsf{RAIN}\to \mathsf{CAR}, \mathsf{CAR}\to \mathsf{KEYS}\vDash \mathsf{RAIN}\to
-\mathsf{KEYS}</span></p>
-
-</div>
-<div id="c-1" ><h6 class="">c)</h6><p><span class="excalifont">\mathsf{RAIN}\to \mathsf{CAR},\mathsf{CAR}\vDash \mathsf{RAIN}</span></p>
-
-</div>
-<div id="d-1" class=" homework"><h6 class=" homework">d)</h6><p><span class="excalifont">\mathsf{SUN}\to \mathsf{BIKE},\neg\mathsf{SUN}\vDash \neg \mathsf{BIKE}</span></p>
-
-</div>
-<div id="validitiesSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>There are many different options, we sample to show the variety:</p>
-<p><strong>a)</strong></p>
-<p><span class="excalifont">\mathsf{RAIN}\to \mathsf{CAR}\vDash (\mathsf{RAIN}\land \mathsf{WARM})\to
-\mathsf{CAR}</span></p>
-<p>Here we use a semantic argument: Suppose that
-<span class="excalifont">\nu(\mathsf{RAIN}\to\mathsf{CAR})=1</span>. The only way in which
-<span class="excalifont">\nu((\mathsf{RAIN}\land \mathsf{WARM})\to \mathsf{CAR})=0</span> is if
-<span class="excalifont">\nu(\mathsf{RAIN}\land \mathsf{WARM})=1</span> and <span class="excalifont">\nu(\mathsf{CAR})=0</span>. But if
-<span class="excalifont">\nu(\mathsf{RAIN}\land \mathsf{WARM})=1</span>, then <span class="excalifont">\nu(\mathsf{RAIN})=1</span>. Since
-<span class="excalifont">\nu(\mathsf{RAIN}\to\mathsf{CAR})=1</span>, this means that <span class="excalifont">\mathsf{CAR}=1</span> (since
-otherwise <span class="excalifont">\nu(\mathsf{RAIN}\to\mathsf{CAR})=0</span>). So, for
-<span class="excalifont">\nu((\mathsf{RAIN}\land \mathsf{WARM})\to \mathsf{CAR})=0</span> we have to both have
-<span class="excalifont">\nu(\mathsf{CAR})=1</span> and <span class="excalifont">\nu(\mathsf{CAR})=0</span>, which is impossible.
-Consequently, <span class="excalifont">\nu((\mathsf{RAIN}\land \mathsf{WARM})\to \mathsf{CAR})=0</span>
-is impossible if <span class="excalifont">\nu(\mathsf{RAIN}\to\mathsf{CAR})=1</span>.</p>
-<p>This means the inference is valid.</p>
-<p><strong>b)</strong></p>
-<p>Let&rsquo;s do a <em>big</em> truthtable:</p>
-
-<img src="https://logicalmethods.ai/exercises/conditionals/img/big-table.png" class="img-thumbnail"    alt="" >
-
-<p>Since the relevant conditional is a logical truth, the inference is valid.</p>
-<p><strong>c)</strong></p>
-<p>This inference is _in_valid. We can see this, for example, using a
-truth-table:</p>
-
-<img src="https://logicalmethods.ai/exercises/conditionals/img/fallacy-1.png" class="img-thumbnail"    alt="" >
-
-<p>As you can see, if you set <span class="excalifont">\nu(\mathsf{CAR})=1</span> and
-<span class="excalifont">\nu(\mathsf{RAIN})=0</span>, we have both premises true, but the conclusion false.</p>
-<p><strong>d)</strong></p>
-<p>Also here a truth-table gives a quick answer:</p>
-
-<img src="https://logicalmethods.ai/exercises/conditionals/img/fallacy-2.png" class="img-thumbnail"    alt="" >
-
-<p>We see that if we set <span class="excalifont">\mathsf{BIKE}=1</span> and <span class="excalifont">\mathsf{SUN}=0</span>, the premises
-are true and the conclusion false.</p>
-
-</div>
-<div id="horn-clauses" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Horn clauses
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="horn-clausesSolution"
-        onclick="showPasswordModal('horn-clausesSolution', 'exc-if')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
-    </div>
-</h5><p>Remember that a <em>literal</em> is a propositional variable or its negation. A <i class="bi bi-box-arrow-up-right h-6"></i>
-<a href="https://en.wikipedia.org/wiki/Horn_clause" class="link-dark" rel="external" target="_blank">Horn
-clause</a>
- is a disjunction of literals,
-where <em>at most</em> one literal is <em>positive</em> meaning it doesn&rsquo;t contain a negation.
-This means that a Horn clause has the form: <div class="text-center my-4 excalifont">\neg p_1\lor \neg p_2\lor
-\dots\lor q,</div> where <span class="excalifont">p_1,p_2,\dots,q</span> are propositional variables.</p>
-
-</div>
-<div id="a-2" class=" homework"><h6 class=" homework">a)</h6><p>Provide an argument that every Horn clause is equivalent to (=always has the same
-truth-value as) a conditional of the
-form: <div class="text-center my-4 excalifont">p_1\land p_2\land\dots \to q.</div></p>
-<p><em>Hint</em>: There are different routes to this result, but you&rsquo;ll need to use
-Boolean laws/corresponding logical equivalences. Here are some candidates to use
-in your argument:</p>
-<div class="text-center my-4 excalifont">x\Rightarrow y = -x+y</div>
-<div class="text-center my-4 excalifont">x\Rightarrow (y\Rightarrow z)=(x\times y)\Rightarrow z</div>
-<div class="text-center my-4 excalifont">-x+-y+\dots=-(x\times y\times \dots)</div>
-
-</div>
-<div id="b-2" ><h6 class="">b)</h6><p>Can every formula equivalently be written as a Horn clause?</p>
-
-</div>
-<div id="horn-clausesSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong></p>
-<p>Pick an arbitrary Horn clause.</p>
-<div class="text-center my-4 excalifont">\neg p_1\lor\ldots\lor\neg p_n\lor q</div>
-<p>This is the boolean algebra truth-conditions:</p>
-<div class="text-center my-4 excalifont">- p_1 + \ldots + - p_n+q</div>
-<p>By DeMorgan principles this is equivalent to:</p>
-<div class="text-center my-4 excalifont">-(p_1 \times \ldots \times p_n)+q</div>
-<p>By conditional laws (from exercise 2) we get:</p>
-<div class="text-center my-4 excalifont">(p_1 \times \ldots \times p_n)\Rightarrow q</div>
-<p>Which is the truth-condition of the following formula:</p>
-<div class="text-center my-4 excalifont">(p_1 \land \ldots \land p_n)\rightarrow q</div>
-<br>
-<p><strong>b)</strong></p>
-<p>No. Example: <span class="excalifont">p\land q</span> does not have an equivalent Horn form.</p>
-<p>Consider an arbitrary Horn clause <span class="excalifont">\neg r_1\lor\neg r_2\lor\ldots\lor s</span>. Call it <span class="excalifont">A</span>. Since <span class="excalifont">A</span> has at most one positive part <span class="excalifont">s</span> by definition, the following thing must happen in all valuations:  <span class="excalifont">\nu(A)=1</span> if and only if <span class="excalifont">\nu(r_i)=0</span> for one of its negative parts or <span class="excalifont">\nu(s)=1</span> for its positive part. This gives us a general idea of the format of truth-conditions for any Horn clause.</p>
-<p>Now, pick a Horn clause <span class="excalifont">B</span> that involves the literals <span class="excalifont">p</span> and <span class="excalifont">q</span> as parts. Could this be equivalent to the conjunction <span class="excalifont">p\land q</span>? We will show that it cannot be. There are only three possibilities for the shape of this Horn clause:</p>
+<p>Check the following conditional inferences for deductive validity using
+<code class="customCode">SAT</code>-solving. You can use truth-tables or resolution, as you prefer.</p>
 <ol>
-<li><span class="excalifont">p</span> is a positive part of <span class="excalifont">B</span></li>
-<li><span class="excalifont">q</span> is a positive part of <span class="excalifont">B</span></li>
-<li>neither <span class="excalifont">p</span> nor <span class="excalifont">q</span> is positive in <span class="excalifont">B</span></li>
+<li>
+<p><span class="excalifont">(RAIN
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+WIND), 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN 
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+ ()
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+WIND</span></p>
+</li>
+<li>
+<p><span class="excalifont">(RAIN
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+WIND)  
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+WIND 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN)</span></p>
+</li>
+<li>
+<p><span class="excalifont">(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN)  
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN</span></p>
+</li>
+<li>
+<p><span class="excalifont">(RAIN 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+( SUN 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ RAINBOW)) 
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+ ((RAIN 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN) 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ RAINBOW)</span></p>
+</li>
+<li>
+<p><span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ (RAIN 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ WIND) 
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN </span></p>
+</li>
 </ol>
-<p>In situation 1. the literal <span class="excalifont">q</span> must be a negative part of <span class="excalifont">B</span>, so whenever <span class="excalifont">\nu(B)=1</span>, then <span class="excalifont">\nu(q)=0</span>. Obviously that means <span class="excalifont">B</span> is not equivalent to <span class="excalifont">p\land q</span>. In situation 2. the literal <span class="excalifont">p</span> must be negative in <span class="excalifont">B</span>, so whenever <span class="excalifont">\nu(B)=1</span>, then <span class="excalifont">\nu(p)=0</span>. Obviously that means <span class="excalifont">B</span> is not equivalent to <span class="excalifont">p\land q</span>. In situation 3. both <span class="excalifont">p</span> and <span class="excalifont">q</span> would be negative parts of <span class="excalifont">B</span> so we get an even worse result.</p>
+<p>
+<img src="https://logicalmethods.ai/exercises/conditionals/img/rain_wind.png" class="rounded  float-end inert-img img-fluid m-2"  width="100px"  alt="" >
+
+Document your work carefully, that is explain each step you&rsquo;re carrying out,
+and why the work you did shows that the inference in question is valid or invalid.</p>
 
 </div>
-<div id="resolution" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Resolution
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="resolutionSolution"
-        onclick="showPasswordModal('resolutionSolution', 'exc-if')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="valid-inference-and-conditionals" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Valid inference and conditionals
     </div>
-</h5><p>A disjunction of literals, we call a <em>(disjunctive) clause</em>.</p>
-<p>The resolution rule says that if you have two clauses (<span class="excalifont">l_i,k_j</span> are literals)</p>
-<div class="text-center my-4 excalifont">l_1\lor l_2\lor \dots\lor p \qquad \qquad \neg p\lor k_1\lor k_2\lor\dots</div>
-<p>you can infer:</p>
-<div class="text-center my-4 excalifont">l_1\lor l_2\lor \dots k_1\lor k_2\lor\dots</div>
-<p>So, for example, from</p>
-<div class="text-center my-4 excalifont">\neg\mathsf{RAIN}\lor\neg\mathsf{SUN}\lor\mathsf{BIKE}\qquad
-\neg\mathsf{BIKE}\lor\mathsf{HELMET}</div>
-you can infer
-<div class="text-center my-4 excalifont">\neg\mathsf{RAIN}\lor\neg\mathsf{SUN}\lor\mathsf{HELMET}</div>
+</h5><p>There&rsquo;s a deep connection between deductively valid inference in Boolean logic
+and material conditionals, which is given by the following important
+equivalence:</p>
+<div class="text-center my-4 excalifont">P₁, P₂, … 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+ C&emsp; if and only if &emsp; <span class="dark-red shanns">not-SAT</span>{(P₁
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ P₂ 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+… )
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ C}</div>
+<ol>
+<li>
+<p>A logical formula <span class="excalifont">A</span> is called a <strong>logical truth</strong> iff for all assignments <span class="excalifont">v</span> of truth-values to its propositional variables, the formula is true, i.e. <span class="excalifont">v(A) = 1</span>. Verify that the simple formula <div class="text-center my-4 excalifont">(RAIN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN)</div> is a logical truth in this sense.</p>
+</li>
+<li>
+<p>Rephrase the right-hand side of above equivalence in terms of the logical truth rather than unsatisfiability.</p>
+</li>
+<li>
+<p>Give an argument that the above equivalence is true.</p>
+<p><em>Hint</em>: To do so, you need to use the general form of the reduction of valid inference to unsatisfiability, which we&rsquo;ve discussed in the lecture <div class="text-center my-4 excalifont">P₁, P₂, … 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+ C  if and only if   <span class="dark-red shanns">not-SAT</span> { P₁, P₂, … , 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+C }</div> Think about what the latter condition means for the truth of the corresponding conditional.</p>
+</li>
+</ol>
 
 </div>
-<div id="a-3" class=" homework"><h6 class=" homework">a)</h6><p>Show that the example inference is valid using a suitable method (truth-tables,
-DPLL, &hellip;).</p>
-
-</div>
-<div id="b-3" ><h6 class="">b)</h6><p>Use the resolution rule to show that the following inference is valid:</p>
-<div class="text-center my-4 excalifont">\mathsf{RAIN}\lor\mathsf{BIKE},\neg\mathsf{RAIN}\vDash \mathsf{BIKE}</div>
-<p>Which rule of the DPLL algorithm does this correspond to?</p>
-
-</div>
-<div id="c-2" ><h6 class="">c)</h6><p>We can use the resolution to define a general inference method:</p>
+<div id="chaining" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Chaining
+    </div>
+</h5><p>Consider the following <abbr title="knowledge base"><a  class="link-underline-opacity-0 link-body-emphasis"> KB</a></abbr>:</p>
 <ul>
-<li>
-<p>To test whether <span class="excalifont">P_1,P_2,\dots\vDash C</span> we bring <span class="excalifont">P_1\land P_2\land \dots\land
-\neg C</span> into CNF (see 
-
-
-<a href="https://logicalmethods.ai/textbook/sat//#normal-forms"
-   
-   
-   
-   
-   
-   >
-Chapter 5.3</a>
-
-).</p>
-</li>
-<li>
-<p>We then recursively apply the resolution rule to all possible combinations of
-clauses (and the results of those applications, the results of the results, &hellip;).</p>
-</li>
-<li>
-<p>Outcome:</p>
-<ul>
-<li>
-<p>If any application of the resolution rule results in an empty clause
-<span class="excalifont">\Set{}</span>, the inference is valid.</p>
-</li>
-<li>
-<p>If we arrive at a point where no more applications are possible and no empty
-clause has been derived, the inference is <em>in</em>valid.</p>
-</li>
+<li><span class="excalifont">RAIN 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ CLOUDS</span></li>
+<li><span class="excalifont">(CLOUDS 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ SNOW) 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ STORM</span></li>
+<li><span class="excalifont">RAIN 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ PUDDLES</span></li>
+<li><span class="excalifont">PUDDLES 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ HUMID</span></li>
+<li><span class="excalifont">HUMID 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ CLOUDS</span></li>
+<li><span class="excalifont">SUN 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ DRY</span></li>
+<li><span class="excalifont">(WIND 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ SNOW) 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ DRIFTING</span></li>
 </ul>
+<p>We add to this <abbr title="knowledge base"><a  class="link-underline-opacity-0 link-body-emphasis"> KB</a></abbr> the following two facts:</p>
+<div class="text-center my-4 excalifont">RAIN, SNOW</div>
+<ol>
+<li>
+<p>Run the forward-chaining and the backward-chaining algorithm to show that we can derive <span class="excalifont">STORM</span> from the KB. That is, describe the steps you&rsquo;d take for each algorithm one-by-one, and why at some point you hit the termination condition.</p>
 </li>
-</ul>
-<p>Use this method to show that the following inference is valid:</p>
-<div class="text-center my-4 excalifont">\mathsf{RAIN}\vDash \mathsf{RAIN}\land (\mathsf{RAIN}\lor \mathsf{SUN})</div>
+<li>
+<p>Use the example to illustrate how forward-chaining can find shorter derivations than backward-chaining.</p>
+</li>
+<li>
+<p>Use both forward and backward-chaining to show that we can&rsquo;t derive <span class="excalifont">DRIFTING</span> from the KB using the facts. Does one algorithm outperform the other?</p>
+</li>
+</ol>
 
 </div>
-<div id="d-2" class=" homework"><h6 class=" homework">d)</h6><p>The result of applying the resolution rule to two Horn clauses always results in a
-Horn clause. Why?</p>
+<div id="planning" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Planning
+    </div>
+</h5><p>We&rsquo;ve made things a more difficult for <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
+  by introducing a third block into the puzzle:</p>
 
-</div>
-<div id="e-1" ><h6 class="">e)</h6><p>Use the resolution rule (together with Exercise 1 a)) to show that the following
-inference is valid:</p>
-<div class="text-center my-4 excalifont">\mathsf{RAIN}\to \mathsf{CAR}, \mathsf{CAR}\to \mathsf{KEYS}\vDash \mathsf{RAIN}\to
-\mathsf{KEYS}</div>
+<img src="https://logicalmethods.ai/exercises/conditionals/img/planning_3.png" class="mx-auto d-block rounded inert-img img-fluid"  width="400px"  alt="" >
 
-</div>
-<div id="f" ><h6 class="">f)</h6><p>The inference pattern <div class="text-center my-4 excalifont">A\to B,B\to C\vDash A\to C</div> is known as &ldquo;transitivity&rdquo;
-for the logical conditional.</p>
-<p>Use the reasoning from e) together with Exercise 4 a) to show that the
-application of the resolution rule to Horn clauses is essentially just an
-application of the transitivity principle.</p>
-<p>What does this have to do with the forward and backward chaining methods?</p>
-
-</div>
-<div id="resolutionSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong></p>
-<p>We want to show that this is valid:</p>
-<div class="text-center my-4 excalifont">l_1\lor l_2\lor\ldots\lor p ,\; \neg p\lor k_1\lor k_2\lor\ldots \vDash l_1\lor l_2\lor\ldots\lor k_1\lor k_2\lor\ldots </div>
-<p>To do this, we will think about the premises combined with the negation of the conclusion. This is what the negation of the conclusion looks like.</p>
-<p><span class="excalifont">\neg(l_1\lor l_2\lor\ldots\lor k_1\lor k_2\lor\ldots)</span></p>
-<p>Convert the negated conclusion into CNF.</p>
-<p><span class="excalifont">\neg l_1\land\neg l_2\land\ldots\land\neg k_1\land\neg k_2\land\ldots</span></p>
-<p>Together with the premises, this gives us a set of conditions.</p>
-<p><span class="excalifont">\Set{ \Set{l_1, l_2,\ldots p },\Set{\neg p, k_1, k_2,\ldots },\Set{\neg l_1 }, \Set{\neg l_2 }, \ldots, \Set{\neg k_1 }, \Set{\neg k_2 }, \ldots, </span></p>
-<p>By unit propogation on <span class="excalifont">\neg l_1</span> we get:</p>
-<p><span class="excalifont">\Set{ \Set{ l_2,\ldots p },\Set{ \neg p, k_1, k_2,\ldots },\Set{ \neg l_2 }, \ldots, \Set{ \neg k_1 }, \Set{ \neg k_2 }, \ldots, }</span></p>
-<p>Continue unit propogation with each <span class="excalifont">\neg l_i</span> to get:</p>
-<p><span class="excalifont">\Set{ \Set{ p }, \Set{ \neg p, k_1, k_2,\ldots }, \Set{ \neg k_1 }, \Set{ \neg k_2 }, \ldots,  }</span></p>
-<p>By unit propogation on <span class="excalifont">\neg k_1</span> we get:</p>
-<p><span class="excalifont">\Set{ \Set{ p }, \Set{ \neg p, k_2,\ldots }, \Set{ \neg k_2 }, \ldots, }</span></p>
-<p>Continue unit propogation with each <span class="excalifont">\neg k_j</span> to get:</p>
-<p><span class="excalifont">\Set{ \Set{ p }, \Set{ \neg p } }</span></p>
-<p>A final step of unit propogation on <span class="excalifont">p</span> shows us that the set is unsatisfiable.</p>
-<p><span class="excalifont">\Set{ \Set{ } }</span></p>
-<p>This means that it is impossible to make the premises and negation of the conclusion true. Which means that the inference is valid.</p>
-<br>
-<p><strong>b)</strong></p>
-<p>This inference, called the <em>Disjunctive Syllogism</em> (DS), is just an application of the Resolution Rule. We just showed in part (a) that the Resolution Rule always leads to valid reasoning. So this gives us a new way to see why DS is valid. The reasoning we use for resolution is just like the Splitting rule of the DPLL algorithm.</p>
-<br>
-<p><strong>c)</strong></p>
-<p>We take the premises combined with the negation of the conclusion and convert into a single CNF formula:</p>
-<p><span class="excalifont">\mathsf{RAIN}\land(\neg\mathsf{RAIN}\lor\neg\mathsf{RAIN})\land(\neg\mathsf{RAIN}\lor\neg\mathsf{SUN})</span></p>
-<p>So we have this set of conditions.</p>
-<p><span class="excalifont">\Set{ \Set{ \mathsf{RAIN} }, \Set{ \neg\mathsf{RAIN},\neg\mathsf{RAIN} }, \Set{ \neg\mathsf{RAIN},\neg\mathsf{SUN} } }</span></p>
-<p>Equivalent to this set of conditions.</p>
-<p><span class="excalifont">\Set{ \Set{ \mathsf{RAIN} }, \Set{ \neg\mathsf{RAIN} }, \Set{ \neg\mathsf{RAIN},\neg\mathsf{SUN} } }</span></p>
-<p>By applying the Resolution Rule on the first two clauses we get:</p>
-<p><span class="excalifont">\Set{  \Set{  }, \Set{ \neg\mathsf{RAIN},\neg\mathsf{SUN} } }</span></p>
-<p>Since there is an empty set, this shows that the inference is valid.</p>
-<br>
-<p><strong>d)</strong></p>
-<p>The only time we <em>can</em> apply the Resolution Rule to two Horn clauses is when the same literal occurs as a positive part in one Horn clause and a negative part in the other Horn clause. Like the literal <span class="excalifont">q</span> in these two formulas:</p>
-<div class="text-center my-4 excalifont">\neg p_1\lor\ldots\lor\neg p_n\lor q</div>
-<div class="text-center my-4 excalifont">\neg q\lor\neg r_1\lor\ldots\lor\neg r_m\lor s</div>
-<p>When we apply the Resolution Rule we get this:</p>
-<div class="text-center my-4 excalifont">\neg p_1\lor\ldots\lor\neg p_n\lor\neg r_1\lor\ldots\lor\neg r_m\lor s</div>
-<p>Since the original two formulas had only one positive part, and the positive <span class="excalifont">q</span> was eliminated by Resolution, this means that the final formula also has only one positive part. Which means that it still qualifies as a Horn clause.</p>
-<br>
-<p><strong>e)</strong>
-We take the premises combined with the negation of the conclusion and convert into a single CNF formula:</p>
-<p><span class="excalifont">(\neg\mathsf{RAIN}\lor\mathsf{CAR})\land(\neg\mathsf{CAR}\lor\mathsf{KEYS})\land\mathsf{RAIN}\land\neg\mathsf{KEYS}</span></p>
-<p>So we have this set of conditions.</p>
-<p><span class="excalifont">\Set{ \Set{ \neg\mathsf{RAIN},\mathsf{CAR} }, \Set{ \neg\mathsf{CAR},\mathsf{KEYS} }, \Set{ \mathsf{RAIN} }, \Set{ \neg\mathsf{KEYS} } }</span></p>
-<p>Apply the Resolution Rule on <span class="excalifont">\mathsf{RAIN}</span>.</p>
-<p><span class="excalifont">\Set{ \Set{ \mathsf{CAR} }, \Set{ \neg\mathsf{CAR},\mathsf{KEYS} }, \Set{ \neg\mathsf{KEYS} } }</span></p>
-<p>Apply the Resolution Rule on <span class="excalifont">\mathsf{CAR}</span>.</p>
-<p><span class="excalifont">\Set{ \Set{ \mathsf{KEYS} }, \Set{ \neg\mathsf{KEYS} } }</span></p>
-<p>Apply the Resolution Rule on <span class="excalifont">\mathsf{KEYS}</span>.</p>
-<p><span class="excalifont">\Set{ \Set{ } }</span></p>
-<p>Since there is an empty set, this shows that the inference is valid.</p>
-<br>
-<p><strong>f)</strong></p>
-<p>If we have two simply Horn clauses that are eligible for Resolution, they look like this.</p>
-<div class="text-center my-4 excalifont">\neg p_1\lor\ldots\lor\neg p_n\lor q</div>
-<div class="text-center my-4 excalifont">\neg q\lor\neg r_1\lor\ldots\lor\neg r_m\lor s</div>
-<p>These are equivalent to:</p>
-<div class="text-center my-4 excalifont">(p_1\land\ldots\land p_n)\rightarrow q</div>
-<div class="text-center my-4 excalifont">q\rightarrow((r_1\ldots\land r_m)\rightarrow s)</div>
-<p>Generalizing from exercise (5e) we can see how these premises validly imply the formula below, by using the Resolution rule.</p>
-<div class="text-center my-4 excalifont">(p_1\land\ldots\land p_n)\rightarrow((r_1\ldots\land r_m)\rightarrow s)</div>
-<p>Notice this is just an instance of Transitivity, but the result that it gives us is equivalent to the formula we reached in exericse (5d).</p>
-<div class="text-center my-4 excalifont">\neg p_1\lor\ldots\lor\neg p_n\lor\neg r_1\lor\ldots\lor\neg r_m\lor s</div>
+<p>Adjust our planning solution to accommodate the more complicated setup. That is:</p>
+<ol>
+<li>
+<p>Determine how we need to adjust the language to accommodate the third block.</p>
+</li>
+<li>
+<p>Which rules do we need to add to our a KB to accommodate the third block.</p>
+</li>
+<li>
+<p>Represent the initial setup state and the goal state in the language.</p>
+</li>
+<li>
+<p>Find a model that satisfies the KB, as well as the setup and goal state. Then read off a course o action. You don&rsquo;t need to do this formally—using resolution or chaining—but just find such a model using <em>human</em> intelligence.</p>
+</li>
+</ol>
 
 </div>
 <div id="discussion" ><h5 class="">
     <div class="d-inline-flex flex-row m-0 p-0 ">Discussion
     </div>
-</h5><p>Remember the <i class="bi bi-box-arrow-up-right h-6"></i>
+</h5><p>Check out the <i class="bi bi-box-arrow-up-right h-6"></i>
 <a href="https://en.wikipedia.org/wiki/Wason_selection_task" class="link-dark" rel="external" target="_blank">Wason selection
 task</a>
- from the teaser
-lecture (if you&rsquo;re not a first-year AI student or missed the intro day lecture,
-check out the description on Wikipedia).</p>
+ on Wikipedia.</p>
 <p>Some researchers have argued that the experiment shows that people don&rsquo;t reason with
-the material/logical conditional in this case. Do you agree? Why?</p>
+the material conditional in this case. Do you agree? Why?</p>
 
 
   </div>
