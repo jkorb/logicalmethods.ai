@@ -52,7 +52,7 @@ equation holds.
 Check the following conditional inferences for deductive validity using
 `SAT`-solving. You can use truth-tables or resolution, as you prefer.
 
-1. $(RAIN{{< to >}}WIND), {{< neg >}}RAIN {{< therefore >}} (){{< neg >}}WIND$ 
+1. $(RAIN{{< to >}}WIND), {{< neg >}}RAIN {{< therefore >}} {{< neg >}}WIND$ 
 
 2. $(RAIN{{< to >}}WIND)  {{< therefore >}}({{< neg >}}WIND {{< to >}} {{< neg >}}RAIN)$
 
