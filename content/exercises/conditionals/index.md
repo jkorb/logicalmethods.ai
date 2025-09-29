@@ -72,7 +72,7 @@ There's a deep connection between deductively valid inference in Boolean logic
 and material conditionals, which is given by the following important
 equivalence:
 
-$$P₁, P₂, … {{< vDash >}} C&emsp; if and only if &emsp; <span class="dark-red shanns">not-SAT</span>{{{< neg >}}(P₁{{< land >}} P₂ {{< land >}}… ){{< to >}} C}$$
+$$P₁, P₂, … {{< vDash >}} C&emsp; if and only if &emsp; <span class="dark-red shanns">not-SAT</span>{{{< neg >}}((P₁{{< land >}} P₂ {{< land >}}… ){{< to >}} C)}$$
 
 1. A logical formula $A$ is called a **logical truth** iff for all assignments $v$ of truth-values to its propositional variables, the formula is true, i.e. $v(A) = 1$. Verify that the simple formula $$(RAIN {{< lor >}} {{< neg >}}RAIN)$$ is a logical truth in this sense.
 
