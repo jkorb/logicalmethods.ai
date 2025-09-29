@@ -12,9 +12,31 @@
 <hr>
 <div class="container exercises m-4">
   <div class="container-fluid">
-    {{ $content := .Content }}
-    {{ $content = replaceRE "<table>" "<table class=\"table\">" $content }}
-      {{ $content | safeHTML }}
+
+    {{- $patternMathBlock := `(?s)\$\$(.*?)\$\$` -}}
+    {{- $replacementMathBlock := `<div class="text-center my-4 excalifont">${1}</div>` -}}
+  
+    {{- $patternMathInline := `(?s)\$(.*?)\$` -}}
+    {{- $replacementMathInline := `<span class="excalifont">${1}</span>` -}}
+  
+    {{- $patternCodeBlock := "```([^`]*)```" -}}
+    {{- $replacementCodeBlock := `<div class="customBlock text-center my-4"><code class="customCode">${1}</code></div>` -}}
+  
+    {{- $patternCodeInline := "`([^`]*)`" -}}
+    {{- $replacementCodeInline := `<code class="customCode">${1}</code>` -}}
+  
+    {{- $patternBoolean := "!!(.*?)!!" -}}
+    {{- $replacementBoolean := `<span class="Boolean">${1}</span>` -}}
+    
+    {{- $processed := .RawContent 
+        | replaceRE $patternMathBlock $replacementMathBlock 
+        | replaceRE $patternMathInline $replacementMathInline 
+        | replaceRE $patternCodeBlock $replacementCodeBlock 
+        | replaceRE $patternCodeInline $replacementCodeInline 
+        | replaceRE $patternBoolean $replacementBoolean 
+      -}}
+    
+    {{ $processed | .RenderString }}
   </div>
 </div>
 
