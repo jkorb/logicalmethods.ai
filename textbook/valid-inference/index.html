@@ -845,21 +845,11 @@ as follows:
 
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/syllogism_inference.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="800px"  alt="" >
 
-Here, the 
-<span class="excalifont ">A</span>
- and
-
-<span class="excalifont ">B</span>
- are placeholders for arbitrary predicates,
-and the lower-case 
-<span class="excalifont ">c</span>
- is an arbitrary term. The
+Here, the <span class="excalifont">A</span> and
+<span class="excalifont">B</span> are placeholders for arbitrary predicates,
+and the lower-case <span class="excalifont">c</span> is an arbitrary term. The
 idea is that whichever expressions we put in for
-
-<span class="excalifont ">A,B</span>
- and 
-<span class="excalifont ">c</span>
-, as
+<span class="excalifont">A,B</span> and <span class="excalifont">c</span>, as
 long as they&rsquo;re of the right grammatical category, we&rsquo;ll get a valid inference.
 By representing the logical form of our inference in this way, we&rsquo;re
 <em>abstracting away</em> from the logically irrelevant predicates and terms and obtain
@@ -878,39 +868,55 @@ precisely using the logical operators we&rsquo;ve introduced in the previous cha
 Remember that 
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/conditional.png" class="inert-img" height="18px"  style="ZgotmplZ" alt="" >
  represents the natural language &ldquo;if …, then …&rdquo;. In formal
-languages, we let letters like 
-<span class="excalifont ">A,B</span>
- represent
+languages, we let letters like <span class="excalifont">A,B</span> represent
 arbitrary formulas, like in the schema we wrote before. So, in purely formal
 terms, we can write the inference as:
 
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/mp_schematic.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="200px"  alt="" >
 
 To be able to write this in one line, we also use the symbol 
-<span class="excalifont ">∴</span>
+<span class="excalifont ">
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+</span>
  (read &ldquo;therefore&rdquo;) in place of the inference line like so: 
-<span class="excalifont ">A, (A → B) ∴ C</span>
+<span class="excalifont ">A, (A 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ B) 
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+ C</span>
 .</p>
 <p>To express the logical claim that <abbr title="modus ponens"><a  class="link-underline-opacity-0 link-body-emphasis"> MP</a></abbr>
-is valid we use the logical symbol 
-<span class="excalifont ">⊨</span>
-, which is
+is valid we use the logical symbol <span class="excalifont">⊨</span>, which is
 called the &ldquo;double turnstile&rdquo; or &ldquo;models&rdquo; (for reasons we&rsquo;ll get into later).
 So, we write the validity of MP in purely formal notation as 
-<span class="excalifont ">A, (A → B) ⊨ B</span>
+<span class="excalifont ">A, (A 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ B) ⊨ B</span>
 .</p>
 <p>By the way, it&rsquo;s important to distinguish between the inference
 
-<span class="excalifont ">A, (A → B) ∴ C</span>
+<span class="excalifont ">A, (A 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ B) 
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+ B</span>
  and its validity
 
-<span class="excalifont ">A, (A → B) ⊨ B</span>
+<span class="excalifont ">A, (A 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ B) ⊨ B</span>
 : there are logical systems where
 MP is <em>not</em> valid. In those contexts, an AI system might
 still—fallaciously—reason according to MP, i.e. it might apply 
-<span class="excalifont ">A, (A → B) ∴ C</span>
+<span class="excalifont ">A, (A 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ B) 
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+ C</span>
  even though, in this context, 
-<span class="excalifont ">A, (A → B) ⊭ B</span>
+<span class="excalifont ">A, (A 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ B) ⊭ B</span>
 .</p>
 <p>Validity in virtue of logical form, as just discussed, is known as <strong>logical
 consequence</strong>. But, importantly, not <em>all</em> valid inferences are logically
@@ -927,21 +933,13 @@ it&rsquo;s true that
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/sigma_conclusion.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
 
 since an uncle is, by definition, a parent&rsquo;s male sibling.</p>
-<p>But if we replace 
-<span class="excalifont ">brother</span>
- with 
-<span class="excalifont ">sister</span>
-, for example, we get the following <em>in</em>valid inference:
+<p>But if we replace <span class="excalifont">brother</span> with <span class="excalifont">sister</span>, for example, we get the following <em>in</em>valid inference:
 
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/sigma_aunt.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="500px"  alt="" >
 
-If we assume that 
-<span class="excalifont ">Σ</span>
- is <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
+If we assume that <span class="excalifont">Σ</span> is <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
 &rsquo;s mother&rsquo;s
-sister, 
-<span class="excalifont ">Σ</span>
- is <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
+sister, <span class="excalifont">Σ</span> is <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
 &rsquo;s aunt and not their
 uncle. This shows that the inference is not valid in virtue of its form, which
 is something like:
@@ -950,15 +948,9 @@ is something like:
 </p>
 <p>But the inference <em>is</em> valid … in a sense. The validity of the inference depends
 on the concrete predicates involved—the
-meanings of 
-<span class="excalifont ">brother</span>
-,
-
-<span class="excalifont ">mother</span>
-, and
-
-<span class="excalifont ">uncle</span>
-. In logical theory, we also call
+meanings of <span class="excalifont">brother</span>,
+<span class="excalifont">mother</span>, and
+<span class="excalifont">uncle</span>. In logical theory, we also call
 inferences like this, which are valid, but not in virtue of their logical form,
 <strong>materially valid</strong>. While logical validity—validity in virtue of logical
 form—is is <strong>domain-general</strong>, material validity is <strong>domain-specific</strong>. As
@@ -1089,15 +1081,11 @@ model is like a picture of a possible reasoning scenario. Think for example of
 the scenario we considered above, where all cats—and thus <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IE</span>
 —could fly. If we look
 at a model, we can ask whether a specific sentence
-
-<span class="excalifont ">A</span>
- is true or not in that model. Every model
+<span class="excalifont">A</span> is true or not in that model. Every model
 gives an answer. It assigns a definite truth-value to each sentence. If we take
 the sentence 
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/there_is.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
-
-<span class="excalifont "> can fly</span>
-
+<span class="excalifont"> can fly</span>
 and consider the scenario, where cats can fly, we get the answer that the
 sentence is <em>true</em>. But if we evaluate the sentence relative to the way things
 actually are, the answer is that it&rsquo;s not <em>true</em>.</p>
@@ -1337,21 +1325,13 @@ where each individual formula is true:</p>
 
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/validity_general.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="600px"  alt="" >
 
-<p>So, for an inference with two premises 
-<span class="excalifont ">P,Q</span>
- and
-conclusion 
-<span class="excalifont ">C</span>
- to be valid, the situation needs
+<p>So, for an inference with two premises <span class="excalifont">P,Q</span> and
+conclusion <span class="excalifont">C</span> to be valid, the situation needs
 to like the one depicted here:</p>
 
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/valid_multi_premise.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="900px"  alt="" >
 
-<p>An example of a set-up, where the inference from 
-<span class="excalifont ">P,Q</span>
-  to 
-<span class="excalifont ">C</span>
- is <em>in</em>valid is depicted here:</p>
+<p>An example of a set-up, where the inference from <span class="excalifont">P,Q</span>  to <span class="excalifont">C</span> is <em>in</em>valid is depicted here:</p>
 
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/invalid_multi_premise.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="900px"  alt="" >
 
@@ -1372,9 +1352,7 @@ propositional logic, for example, we need to show that:</p>
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/a_or_b.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
  and 
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/neg_a.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
- are both true, 
-<span class="excalifont ">B</span>
- is true as well.</p>
+ are both true, <span class="excalifont">B</span> is true as well.</p>
 <p>Similarly, if we want to show that denying the antecedent is</p>
 
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/invalid_dc.png" class="rounded mx-auto d-block inert-img img-fluid my-5"  width="500px"  alt="" >
@@ -1565,12 +1543,8 @@ use to spell out the idea of the premises making the conclusion more likely.</p>
 <p>A straight-forward way for implementing probabilities for the formal languages
 of logic &ldquo;piggy-backs&rdquo; on the notion of a model, which we&rsquo;ve used in deductive
 logic to define validity. So, we&rsquo;ll be working with a logical space, in which
-each formula 
-<span class="excalifont ">A</span>
- has an associated set
-
-<span class="excalifont ">[A]</span>
- of models where it is true.</p>
+each formula <span class="excalifont">A</span> has an associated set
+<span class="excalifont">[A]</span> of models where it is true.</p>
 <p>In inductive logic, we think of these models as ways the world could turn out to
 be. If we roll a 6-sided die, for example, there are six ways the world could
 turn out to be: it can come up 1, 2, 3, 4, 5, or 6. Each of these corresponds to
@@ -1578,11 +1552,7 @@ a model:</p>
 
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/dice_worlds.png" class="rounded mx-auto d-block inert-img img-fluid my-5"  width="700px"  alt="" >
 
-<p>If in our language we have a formulas 
-<span class="excalifont ">EVEN</span>
- and 
-<span class="excalifont ">ODD</span>
-, for example, to say that the outcome will be even or odd, then these would correspond to the following <abbr title="set of models"><a  class="link-underline-opacity-0 link-body-emphasis"> propositions</a></abbr>:</p>
+<p>If in our language we have a formulas <span class="excalifont">EVEN</span> and <span class="excalifont">ODD</span>, for example, to say that the outcome will be even or odd, then these would correspond to the following <abbr title="set of models"><a  class="link-underline-opacity-0 link-body-emphasis"> propositions</a></abbr>:</p>
 
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/even_odd_prop.png" class="rounded mx-auto d-block inert-img img-fluid my-5"  width="700px"  alt="" >
 
@@ -1618,40 +1588,18 @@ more likely to roll a six, the probabilities could look like this:</p>
 <p>We can use probabilities to mathematically spell out the idea that a conclusion
 is <em>likely</em> true on the hypothesis that the premises are. For this, we use the
 concept of <strong>conditional probabilities</strong>.</p>
-<p>We write 
-<span class="excalifont ">Pr([A] | [B])</span>
- to
-denote the conditional probability of 
-<span class="excalifont ">A</span>
- being
-true under the hypothesis that 
-<span class="excalifont ">B</span>
- is true. The
+<p>We write <span class="excalifont">Pr([A] | [B])</span> to
+denote the conditional probability of <span class="excalifont">A</span> being
+true under the hypothesis that <span class="excalifont">B</span> is true. The
 standard definition of this is given by the following formula:</p>
 
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/conditional_probability.png" class="rounded mx-auto d-block inert-img img-fluid my-5"  width="700px"  alt="" >
 
-<p>Here, we crucially need to assume that 
-<span class="excalifont ">Pr([B]) ≠ 0</span>
- to avoid <i class="bi bi-box-arrow-up-right h-6"></i>
+<p>Here, we crucially need to assume that <span class="excalifont">Pr([B]) ≠ 0</span> to avoid <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Division_by_zero"
   target="_blank">division by zero</a>.
-What this formula says is that the conditional probability  
-<span class="excalifont ">Pr([A] | [B])</span>
- of 
-<span class="excalifont ">A</span>
- given 
-<span class="excalifont ">B</span>
-
-is the &ldquo;part&rdquo; of 
-<span class="excalifont ">B</span>
-&rsquo;s probability that is an 
-<span class="excalifont ">A</span>
--probability—a measaure of the proportion of 
-<span class="excalifont ">A</span>
- scenarios that are 
-<span class="excalifont ">B</span>
- scenarios.</p>
+What this formula says is that the conditional probability  <span class="excalifont">Pr([A] | [B])</span> of <span class="excalifont">A</span> given <span class="excalifont">B</span>
+is the &ldquo;part&rdquo; of <span class="excalifont">B</span>&rsquo;s probability that is an <span class="excalifont">A</span>-probability—a measaure of the proportion of <span class="excalifont">A</span> scenarios that are <span class="excalifont">B</span> scenarios.</p>
 <p>Here&rsquo;s how this plays out in our previous two distributions if we ask ourselves
 what&rsquo;s the probability of the role being a two given that/under the hypothesis
 that it&rsquo;s even:</p>
@@ -1659,16 +1607,8 @@ that it&rsquo;s even:</p>
 <img src="https://logicalmethods.ai/textbook/valid-inference/img/two_given_even.png" class="rounded mx-auto d-block inert-img img-fluid my-5"  width="900px"  alt="" >
 
 <p>What we can see here is that the probability of the roll being a two <em>goes up</em>
-under the hypothesis that it&rsquo;s even: from  
-<span class="excalifont ">1/3</span>
-
-to 
-<span class="excalifont ">1/2</span>
- in the case of the fair die, and from 
-<span class="excalifont ">1/10</span>
- to 
-<span class="excalifont ">1/7</span>
- in the case of the loaded die. In this sense, the hypothesis that the roll is even <em>supports</em> the conclusion.</p>
+under the hypothesis that it&rsquo;s even: from  <span class="excalifont">1/3</span>
+to <span class="excalifont">1/2</span> in the case of the fair die, and from <span class="excalifont">1/10</span> to <span class="excalifont">1/7</span> in the case of the loaded die. In this sense, the hypothesis that the roll is even <em>supports</em> the conclusion.</p>
 <p>You might be worried about this increase of probabilities depending on the
 concrete numbers, but in fact, it doesn&rsquo;t. Once we&rsquo;ve introduced the laws of
 probability theory, we&rsquo;ll be able to show that for <em>any</em> assignments of
@@ -1681,27 +1621,13 @@ inductively valid inference:</p>
 <p>The <strong>strength</strong> of the inference can be determined in different ways, but the
 most straight-forward one is to look at the absolute increase of probability.
 That is, we measure the strength of an inductive inference by:</p>
-<p class="text-center">
-<span class="excalifont ">strength = | Pr([C] | [P]) - Pr([C]) |</span>
-
-<p>By the way: here the notation 
-<span class="excalifont ">| number |</span>
- stands for the <em>absolute value</em>  of 
-<span class="excalifont "> number </span>
-, where, for example, 
-<span class="excalifont ">| -2 | = | 2 | = 2</span>
-.</p>
+<div class="text-center my-4 excalifont">strength = | Pr([C] | [P]) - Pr([C]) |</div>
+<p>By the way: here the notation <span class="excalifont">| number |</span> stands for the <em>absolute value</em>  of <span class="excalifont"> number </span>, where, for example, <span class="excalifont">| -2 | = | 2 | = 2</span>.</p>
 <p>In general, the strength of an inductive inference is going to depend on concrete probabilities. For example, the strength of the inference from even to two assuming a fair die is:</p>
-<p class="text-center">
-<span class="excalifont ">| 1/3 - 1/6 | = 1/6</span>
-
+<div class="text-center my-4 excalifont">| 1/3 - 1/6 | = 1/6</div>
 <p>Instead assuming the loaded die it&rsquo;s</p>
-<p class="text-center">
-<span class="excalifont ">| 1/10 - 1/7 | = 3/70</span>
-
-<p>Since 
-<span class="excalifont ">1/6 > 3/70</span>
-, the inference is (much)
+<div class="text-center my-4 excalifont">| 1/10 - 1/7 | = 3/70</div>
+<p>Since <span class="excalifont">1/6 &gt; 3/70</span>, the inference is (much)
 stronger assuming a fair die (which makes sense, given that assuming a loaded
 die, a six becomes <em>much</em> more likely given that the outcome is even, while
 assuming a fair die, all even results go up &ldquo;to the same degree&rdquo;).</p>
