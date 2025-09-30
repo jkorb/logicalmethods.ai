@@ -744,8 +744,19 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
 <div class="container exercises">
   <div class="m-4">
 </div>
-<div id="boolean-conditional" ><h5 class="">
+<div id="boolean-conditional" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Boolean conditional
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="boolean-conditionalSolution"
+        onclick="showPasswordModal('boolean-conditionalSolution', 'exc-if')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>We&rsquo;ve interpreted the conditional symbol 
 <img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
@@ -764,8 +775,29 @@ exp = X <span class="Boolean">IF</span> Y.
 <p>Verify your work! That is don&rsquo;t just provide an expression, but show that for all values of <code class="customCode">X</code> and <code class="customCode">Y</code> the above equation holds.</p>
 
 </div>
-<div id="equivalence" ><h5 class="">
+<div id="boolean-conditionalSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>The most straight-forward solution is:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+<span class="Boolean">NOT</span>(Y <span class="Boolean">AND</span> (<span class="Boolean">NOT</span> X))
+</code></div>
+<p>Here&rsquo;s a truth-table to show that <code class="customCode"><span class="Boolean">NOT</span>(Y <span class="Boolean">AND</span> (<span class="Boolean">NOT</span> X)) = X <span class="Boolean">IF</span> Y</code>:</p>
+
+<img src="https://logicalmethods.ai/exercises/conditionals/img/table_solution.png" class="mx-auto d-block rounded inert-img img-fluid"  width="400px"  alt="" >
+
+
+</div>
+<div id="equivalence" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Equivalence
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="equivalenceSolution"
+        onclick="showPasswordModal('equivalenceSolution', 'exc-if')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>Remember the truth-table for <span class="excalifont">XNOR</span> from the last exercises set:</p>
 
@@ -784,8 +816,35 @@ formula, but show that for each assignment the above
 equation holds.</p>
 
 </div>
-<div id="conditional-inferences" ><h5 class="">
+<div id="equivalenceSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>One of the conceptually clearest solutions is the formula:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+(p 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ q) 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ (q 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ p)
+</code></div>
+<p>Here&rsquo;s a truth-table to verify our work:</p>
+
+<img src="https://logicalmethods.ai/exercises/conditionals/img/table_solution_2.png" class="mx-auto d-block rounded inert-img img-fluid"  width="300px"  alt="" >
+
+
+</div>
+<div id="conditional-inferences" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Conditional inferences
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="conditional-inferencesSolution"
+        onclick="showPasswordModal('conditional-inferencesSolution', 'exc-if')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5>
 <img src="https://logicalmethods.ai/exercises/conditionals/img/sun.png" class="rounded  float-start inert-img img-fluid m-2"  width="100px"  alt="" >
@@ -856,8 +915,290 @@ Document your work carefully, that is explain each step you&rsquo;re carrying ou
 and why the work you did shows that the inference in question is valid or invalid.</p>
 
 </div>
-<div id="valid-inference-and-conditionals" ><h5 class="">
+<div id="conditional-inferencesSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><ol>
+<li>
+<p><span class="excalifont">(RAIN
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+WIND), 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN 
+<img src="/img/nvDash.png" alt="nvDash" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+WIND</span>. We show this using resolution.</p>
+<p>The aim is to show that <span class="excalifont">{(RAIN
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+WIND), 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN , 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+WIND }</span> is satisfiable.</p>
+<p>First, we transform into CNF. The conditional becomes <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN
+
+    <img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ WIND</span> using <span class="excalifont">r₀</span>, and <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+WIND }</span> becomes <span class="excalifont">WIND</span> using <span class="excalifont">r₁</span>.</p>
+<p>This leaves us with the sets <div class="text-center my-4 excalifont">{ 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN, WIND }  { 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+
+RAIN }   { WIND }.</div> No resolution is possible, and we can read off a
+counter-model where <span class="excalifont">v(RAIN) = 0</span> and <span class="excalifont">v(WIND) = 1</span>.</p>
+</li>
+<li>
+<p><span class="excalifont">(RAIN
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+WIND)  
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+WIND 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN)</span>. We show this using resolution.</p>
+<p>The aim is to show that <span class="excalifont">{ (RAIN
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+WIND), 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+WIND 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN) }</span> is unsatisfiable.</p>
+<p>First, we transform into CNF, beginning by transforming the conditionals
+using <span class="excalifont">r₀</span>, giving us <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+WIND</span>
+and <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+WIND 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN)</span>.</p>
+<p>Applying <span class="excalifont">r₁</span> and <span class="excalifont">r₃</span> recursively to the latter, we obtain <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+WIND
+
+    <img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN</span>. This gives us the sets: <div class="text-center my-4 excalifont">{ 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN, WIND } 
+{ 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ WIND }  { RAIN }</div>.</p>
+<p>We derive the empty set <span class="excalifont">{ }</span> in two steps:</p>
+<ul>
+<li>
+<p>With <span class="excalifont">{ 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN, WIND }</span> and <span class="excalifont">{ 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ WIND }</span>, we resolve
+to <span class="excalifont">{ 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN}</span>.</p>
+</li>
+<li>
+<p>With <span class="excalifont">{ 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN}</span> and <span class="excalifont">{ RAIN }</span>, we resolve to the empty set <span class="excalifont">{
+}</span> proving the unsatisfiability of the set.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><span class="excalifont">(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN)  
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN</span>. We show this using
+truth-tables.</p>
+<p>The aim is to show that <span class="excalifont">{(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN),  
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN }</span> is
+unsatisfiable. Here&rsquo;s the truth-table to the effect:</p>
+
+   <img src="https://logicalmethods.ai/exercises/conditionals/img/tt_neg.png" class="mx-auto d-block rounded inert-img img-fluid"  width="400px"  alt="" >
+
+<p>In fact, you can see that <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN</span> is equivalent to
+<span class="excalifont">RAIN</span>. In logical theory, this is called <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/Consequentia_mirabilis" class="link-dark" rel="external" target="_blank">Clavius'
+Law</a>
+.</p>
+</li>
+<li>
+<p><span class="excalifont">(RAIN 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+( SUN 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ RAINBOW)) 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+ ((RAIN 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN) 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ RAINBOW)</span>. We use resolution.</p>
+<p>The task is to show that <div class="text-center my-4 excalifont">{ (RAIN 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+( SUN 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ RAINBOW)), 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ ((RAIN 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN) 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ RAINBOW) }</div> is not satisfiable.</p>
+<p>First, we trans form to CNF. Recursively applying <span class="excalifont">r₀</span>, we get <div class="text-center my-4 excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ RAINBOW</div> from <div class="text-center my-4 excalifont">RAIN 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+( SUN 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ RAINBOW).</div></p>
+<p>For the second formula, <div class="text-center my-4 excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ ((RAIN 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN) 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+
+RAINBOW),</div> we get <div class="text-center my-4 excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ (
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+(RAIN 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN) 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+RAINBOW)</div> using <span class="excalifont">r₀</span> and then <div class="text-center my-4 excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+(RAIN 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN) 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+
+    <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAINBOW)</div> using <span class="excalifont">r₂</span> Finally, <span class="excalifont">r₁</span> give us:</p>
+ <div class="text-center my-4 excalifont">RAIN 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAINBOW</div>
+<p>This give us the sets: <div class="text-center my-4 excalifont">{
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN, 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN, RAINBOW }  { RAIN }   { SUN }  {
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAINBOW }</div></p>
+<p>The derivation of <span class="excalifont">{ }</span> using resolution is a simple, three-step affair:</p>
+<ul>
+<li>
+<p><span class="excalifont">{
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN, 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN, RAINBOW}</span> and <span class="excalifont">{ RAIN }</span> give us <span class="excalifont">{
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN, RAINBOW}</span>.</p>
+</li>
+<li>
+<p><span class="excalifont">{
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ SUN, RAINBOW}</span> and <span class="excalifont">{ SUN }</span> give us <span class="excalifont">{ RAINBOW }</span></p>
+</li>
+<li>
+<p><span class="excalifont">{ RAINBOW }</span> and <span class="excalifont">{
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAINBOW }</span> give us <span class="excalifont">{ }</span>.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ (RAIN 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ WIND) 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN</span>, which we show using
+truth-tables.</p>
+<p>The aim is to show that <span class="excalifont">{
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ (RAIN 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ WIND), 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN }</span> is unsatisfiable.</p>
+<p>Here&rsquo;s the table:</p>
+
+   <img src="https://logicalmethods.ai/exercises/conditionals/img/tt_something.png" class="mx-auto d-block rounded inert-img img-fluid"  width="400px"  alt="" >
+
+<p>Since there&rsquo;s no row where both <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ (RAIN 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ WIND)</span> and <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN</span> are <code class="customCode">1</code>, the set is unsatisfiable.</p>
+</li>
+</ol>
+
+</div>
+<div id="valid-inference-and-conditionals" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Valid inference and conditionals
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="valid-inference-and-conditionalsSolution"
+        onclick="showPasswordModal('valid-inference-and-conditionalsSolution', 'exc-if')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>There&rsquo;s a deep connection between deductively valid inference in Boolean logic
 and material conditionals, which is given by the following important
@@ -895,8 +1236,212 @@ C }</div> Think about what the latter condition means for the truth of the corre
 </ol>
 
 </div>
-<div id="chaining" ><h5 class="">
+<div id="valid-inference-and-conditionalsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><ol>
+<li>
+<p>We <em>could</em> do a truth-table, but let&rsquo;s do a step-by step calculation,
+instead, where we go through the two possibilities: <span class="excalifont">v(RAIN) = 1</span> or <span class="excalifont">v(RAIN)
+= 0</span>:</p>
+<ul>
+<li>If <span class="excalifont">v(RAIN) = 1</span>, then <div class="text-center my-4 excalifont">v(RAIN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN) = v(RAIN) <span class="Boolean">OR</span>
+v(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN)= &hellip;</div></li>
+</ul>
+<div class="text-center my-4 excalifont"> ... = v(RAIN) <span class="Boolean">OR</span> (<span class="Boolean">NOT</span> v(RAIN)) = 1 <span class="Boolean">OR</span> (<span class="Boolean">NOT</span> 1)
+  = 1 <span class="Boolean">OR</span> 0 = 1</div>.
+<ul>
+<li>If <span class="excalifont">v(RAIN) = 0</span>, then <div class="text-center my-4 excalifont">v(RAIN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN) = v(RAIN) <span class="Boolean">OR</span>
+v(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN)= &hellip;</div></li>
+</ul>
+<div class="text-center my-4 excalifont"> ... = v(RAIN) <span class="Boolean">OR</span> (<span class="Boolean">NOT</span> v(RAIN)) = 0 <span class="Boolean">OR</span> (<span class="Boolean">NOT</span> 0)
+  = 0 <span class="Boolean">OR</span> 1 = 1</div>.
+<p>So, in all possible cases, we have <span class="excalifont">v(RAIN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN) = 1</span>.</p>
+</li>
+<li>
+<p>First, note that <span class="excalifont"><span class="dark-red shanns">not-SAT</span>{
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+((P₁
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ P₂ 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+… )
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ C)}</span> means that the formula
+<span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+((P₁
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ P₂ 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+… )
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ C)</span> is
+unsatisfiable, meaning it has value <code class="customCode">0</code> under every valuation. But the
+formula starts with a <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+</span> and so <div class="text-center my-4 excalifont">v(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+((P₁
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ P₂
+
+   <img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+… )
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ C)) = <span class="Boolean">NOT</span> v((P₁
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ P₂ 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+…)
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ C)</div> But if we know that this expression evaluates to <code class="customCode">0</code>
+under each valuation, this means that <span class="excalifont">v((P₁
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ P₂ 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+…
+)
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ C) = 1</span> under each valuation. In other words, <div class="text-center my-4 excalifont">(P₁
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ P₂ 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+… )
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ C</div> is a logical truth. This gives us an alternative
+criterion for valid inference according to which: <div class="text-center my-4 excalifont">P₁, P₂, … 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+
+C  if and only if (P₁
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ P₂ 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+… )
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ C is a
+logical truth</div> This criterion shows the particularly deep connection between
+valid inference and conditionals.</p>
+</li>
+<li>
+<p>This is the hardest part and more advanced logical reasoning. One way to
+proceed is to start from the known criterion that <div class="text-center my-4 excalifont">P₁, P₂, … 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+
+C  if and only if   <span class="dark-red shanns">not-SAT</span> {
+P₁, P₂, … , 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+C }.</div> Let&rsquo;s think about <span class="excalifont"><span class="dark-red
+shanns">not-SAT</span> { P₁, P₂, … , 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+C }</span>. This means that for
+each valuation, either <span class="excalifont">v(P₁) = 0, v(P₂) = 0, … ,</span> or  <span class="excalifont">v(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+C) = 0</span>.
+Using transformations, we can see that <span class="excalifont">(P₁
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ P₂ 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+…)
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ C</span> is equivalent to <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+P₁ 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+P₂ 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ … 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+C.</span> That is: <div class="text-center my-4 excalifont">v((P₁
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ P₂ 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+… )
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ C) = v(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+P₁ 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+P₂ 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ … 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+C).</div> Using the recursive rules, we get: <div class="text-center my-4 excalifont">v(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+P₁ 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+P₂ 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ … 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+C) = (<span class="Boolean">NOT</span> v(P₁)) <span class="Boolean">OR</span> (<span class="Boolean">NOT</span> v(P₂)) <span class="Boolean">OR</span> … <span class="Boolean">OR</span> v(C)</div>
+But if <span class="excalifont">v(P₁) = 0</span>, then <div class="text-center my-4 excalifont">(<span class="Boolean">NOT</span> v(P₁)) <span class="Boolean">OR</span> (<span class="Boolean">NOT</span> v(P₂)) <span class="Boolean">OR</span> … <span class="Boolean">OR</span> v(C) = … </div> <div class="text-center my-4 excalifont">… =  (<span class="Boolean">NOT</span> 0) <span class="Boolean">OR</span> (<span class="Boolean">NOT</span> v(P₂)) <span class="Boolean">OR</span> … <span class="Boolean">OR</span> v(C) = …</div> <div class="text-center my-4 excalifont">… = 1 <span class="Boolean">OR</span> <span class="Boolean">OR</span> (<span class="Boolean">NOT</span> v(P₂)) <span class="Boolean">OR</span> … <span class="Boolean">OR</span> v(C) = 1</div> Similarly, if <span class="excalifont">v(P₂) = 0</span>, then <div class="text-center my-4 excalifont">(<span class="Boolean">NOT</span> v(P₁)) <span class="Boolean">OR</span> (<span class="Boolean">NOT</span> v(P₂)) <span class="Boolean">OR</span> … <span class="Boolean">OR</span> v(C) = … </div> <div class="text-center my-4 excalifont">… = (<span class="Boolean">NOT</span> v(P₂)) <span class="Boolean">OR</span> (<span class="Boolean">NOT</span> 0) <span class="Boolean">OR</span>  … <span class="Boolean">OR</span> v(C) = …</div> <div class="text-center my-4 excalifont">… = 1 <span class="Boolean">OR</span> <span class="Boolean">OR</span> (<span class="Boolean">NOT</span> v(P₂)) <span class="Boolean">OR</span> … <span class="Boolean">OR</span> v(C) = 1</div> And so on. Finally, if <span class="excalifont">v(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+C) = 0</span>, then <span class="excalifont">v(C) = 1</span> and so <div class="text-center my-4 excalifont">(<span class="Boolean">NOT</span> v(P₁)) <span class="Boolean">OR</span> (<span class="Boolean">NOT</span> v(P₂)) <span class="Boolean">OR</span> … <span class="Boolean">OR</span> v(C) = … </div> <div class="text-center my-4 excalifont">… =  (<span class="Boolean">NOT</span> v(P₁)) <span class="Boolean">OR</span> (<span class="Boolean">NOT</span> v(P₂)) <span class="Boolean">OR</span> … <span class="Boolean">OR</span> 1 = 1.</div>
+Since these are all the possibilities if <span class="excalifont"><span
+class="dark-red shanns">not-SAT</span> { P₁, P₂, … , 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+C }</span>, we know
+that <span class="excalifont">v((P₁
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ P₂ 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+… )
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ C) = 1</span> for all valuations.
+By similar reasoning, we can see that if <span class="excalifont">v((P₁
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ P₂ 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+… )
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ C) = 1</span> for all valuations, then <span class="excalifont"><span
+class="dark-red shanns">not-SAT</span> { P₁, P₂, … , 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+C }</span> since
+otherwise, there would be a valuation <span class="excalifont">v</span> with <span class="excalifont">v((P₁
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ P₂ 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+… )
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ C) = 0</span>.</p>
+</li>
+</ol>
+
+</div>
+<div id="chaining" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Chaining
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="chainingSolution"
+        onclick="showPasswordModal('chainingSolution', 'exc-if')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>Consider the following <abbr title="knowledge base"><a  class="link-underline-opacity-0 link-body-emphasis"> KB</a></abbr>:</p>
 <ul>
@@ -941,15 +1486,99 @@ C }</div> Think about what the latter condition means for the truth of the corre
 </ol>
 
 </div>
+<div id="chainingSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><ol>
+<li>
+<p>Our goal is derive <span class="excalifont">STORM</span>. The facts are <span class="excalifont">RAIN</span> and <span class="excalifont">SNOW</span>. First, we use forward chaining:</p>
+<ul>
+<li>
+<p>So, in the first iteration, we run through all the conditionals and
+see if we can derive anything from those facts using <span class="excalifont">genMP</span>. We come
+across the two conditionals <span class="excalifont">RAIN 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+CLOUDS</span> and <span class="excalifont">RAIN
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+PUDDLES</span>. We derive <span class="excalifont">CLOUDS</span> and <span class="excalifont">PUDDLES</span> and add them two our facts. But our goal is not reached.</p>
+</li>
+<li>
+<p>So, in the second step, the facts are <span class="excalifont">RAIN, SNOW, CLOUDS,</span> and
+<span class="excalifont">PUDDLES</span>. Again, we check the conditionals for possible <span class="excalifont">MP</span>
+applications and find <span class="excalifont">(CLOUDS 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ SNOW) 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ STORM</span>
+and <span class="excalifont">PUDDLES 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ HUMID</span>. We derive both <span class="excalifont">STORM</span> and <span class="excalifont">HUMID</span>. Our
+goal is reached and we terminate the search.</p>
+</li>
+</ul>
+<p>Next, we use backward chaining:</p>
+<ul>
+<li>
+<p>Our goal is <span class="excalifont">STORM</span>, so we inspect the conditionals until we find
+one that contains <span class="excalifont">STORM</span> as the consequent. We find <span class="excalifont">(CLOUDS
+
+    <img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ SNOW)
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+STORM</span>. We recognize that <span class="excalifont">SNOW</span> is
+already among our facts, so we replace the goal <span class="excalifont">STORM</span> temporarily
+with <span class="excalifont">CLOUDS</span>. Since we still have goals, we continue.</p>
+</li>
+<li>
+<p>We inspect the rules for one with <span class="excalifont">CLOUDS</span> in the consequent
+and find <span class="excalifont">RAIN 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ CLOUDS</span>. Since <span class="excalifont">RAIN</span> is among our facts, we
+have no goals left and terminate the search.</p>
+</li>
+</ul>
+<p>Both algorithms lead to the same result and, in fact, give the same
+derivation.</p>
+</li>
+<li>
+<p>In the forward-chaining algorithm, there were no choices involved and we
+simply looked through all chainings of <span class="excalifont">MP</span> by length until we found one.
+Since we went through the derivations by length starting with the
+shortest derivations, we were guaranteed to come across the shortest
+derivation first (if there is one).</p>
+<p>For backward-chaining, finding this particular derivation depended on
+the order in which we looked through the rules. If, for some
+implementation reason, we would have first come across <span class="excalifont">HUMID 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ CLOUDS</span> in the second step, we would have added <span class="excalifont">HUMID</span> to our goals rather than <span class="excalifont">RAIN</span>. Then, we&rsquo;d have continued two more iterations going through <span class="excalifont">PUDDLES
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+HUMID</span> and <span class="excalifont">RAIN
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+PUDDLES</span> until we hit a known fact. This would have lead to a much longer derivation. This means that with backward-chaining, whether we come across the shortest derivation first, highly depends on external factors, like the ordering of the conditionals in our <span class="excalifont">KB</span>.</p>
+</li>
+<li>
+<p>To test this with forward-chaining, we go through all possible derivations. We&rsquo;ve described the first two steps above, which gave us <span class="excalifont">STORM</span> and <span class="excalifont">PUDDLES</span>. Continuing further, we derive <span class="excalifont">HUMID</span> using <span class="excalifont">PUDDLES</span> and <span class="excalifont">PUDDLES 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+HUMID</span> and then <span class="excalifont">CLOUDS</span> from <span class="excalifont">HUMID</span> and <span class="excalifont">HUMID
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+CLOUDS</span>. At this point, we have <span class="excalifont">RAIN, SNOW, STORM, PUDDLES, HUMID,</span> and <span class="excalifont">CLOUDS</span> among our facts and can&rsquo;t apply <span class="excalifont">genMP</span> anymore. Since <span class="excalifont">DRIFTING</span> isn&rsquo;t among these facts, we conclude it can&rsquo;t be derived.</p>
+<p>With backward-chaining, instead, we check for conditionals involving <span class="excalifont">DRIFTING</span> in the consequent and only find <span class="excalifont">(WIND 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+SNOW 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ DRIFTING)</span>. This adds <span class="excalifont">WIND</span> to our goals, since <span class="excalifont">SNOW</span> is already a fact. In the second iteration, we can&rsquo;t find a conditional that has <span class="excalifont">WIND</span> in the consequent, so we terminate our search and conclude that <span class="excalifont">DRIFTING</span> can&rsquo;t be derived.</p>
+<p>Here, backward-chaining was way more efficient. This is because forward-chaining needs to go through <em>all</em> possible derivations to determine whether there is one, which derives our desired goal. Backward-chaining is more &ldquo;surgical&rdquo; in that it only looks through promising candidates and terminates earlier because there are none.</p>
+</li>
+</ol>
+
+</div>
 <div id="planning" ><h5 class="">
     <div class="d-inline-flex flex-row m-0 p-0 ">Planning
     </div>
 </h5><p>We&rsquo;ve made things a more difficult for <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
   by introducing a third block into the puzzle:</p>
-
+<p>
 <img src="https://logicalmethods.ai/exercises/conditionals/img/planning_3.png" class="mx-auto d-block rounded inert-img img-fluid"  width="400px"  alt="" >
 
-<p>Adjust our planning solution to accommodate the more complicated setup. That is:</p>
+le
+Adjust our planning solution to accommodate the more complicated setup. That is:</p>
 <ol>
 <li>
 <p>Determine how we need to adjust the language to accommodate the third block.</p>
