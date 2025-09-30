@@ -603,8 +603,8 @@ Of course, this is a non-sense model, but how do we exclude it? It turns out
 that the obvious solution has some undesirable properties. What we really want
 to do is postulate this for all $X,Y,t$:
 
-$${{< neg >}}On(X,Y,t){{< land >}}{{< neg >}}Unstack(X,Y,t){{< to >}}On(X,Y,t+1)$$
-$${{< neg >}}{{< neg >}}On(X,Y,t){{< land >}}{{< neg >}}Stack(X,Y,t){{< to >}}{{< neg >}}On(X,Y,t+1)$$
+$$On(X,Y,t){{< land >}}{{< neg >}}Unstack(X,Y,t){{< to >}}On(X,Y,t+1)$$
+$${{< neg >}}On(X,Y,t){{< land >}}{{< neg >}}Stack(X,Y,t){{< to >}}{{< neg >}}On(X,Y,t+1)$$
 
 This would exclude the "miracle model", but at a cost: these conditionals are no
 longer Horn clauses. Which puts our planning with them square into the territory
