@@ -144,11 +144,11 @@ In logical theory, we say that the argument is valid _in virtue of its logical
 form_. We can express the shared **logical form** of the inferences in question
 as follows:
 {{< img src="img/syllogism_inference.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="800px">}}
-Here, the {{<excalifont>}}A{{</excalifont>}} and
-{{<excalifont>}}B{{</excalifont>}} are placeholders for arbitrary predicates,
-and the lower-case {{<excalifont>}}c{{</excalifont>}} is an arbitrary term. The
+Here, the $A$ and
+$B$ are placeholders for arbitrary predicates,
+and the lower-case $c$ is an arbitrary term. The
 idea is that whichever expressions we put in for
-{{<excalifont>}}A,B{{</excalifont>}} and {{<excalifont>}}c{{</excalifont>}}, as
+$A,B$ and $c$, as
 long as they're of the right grammatical category, we'll get a valid inference.
 By representing the logical form of our inference in this way, we're
 _abstracting away_ from the logically irrelevant predicates and terms and obtain
@@ -166,22 +166,22 @@ In the language of propositional logic, we can express this logical form more
 precisely using the logical operators we've introduced in the previous chapter.
 Remember that {{< img
 src="img/conditional.png" class="inert-img" height="18px" style="vertical-align: middle;" >}} represents the natural language "if …, then …". In formal
-languages, we let letters like {{<excalifont>}}A,B{{</excalifont>}} represent
+languages, we let letters like $A,B$ represent
 arbitrary formulas, like in the schema we wrote before. So, in purely formal
 terms, we can write the inference as:
 {{< img src="img/mp_schematic.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="200px">}}
-To be able to write this in one line, we also use the symbol {{<excalifont>}}∴{{</excalifont>}} (read "therefore") in place of the inference line like so: {{<excalifont>}}A, (A → B) ∴ C{{</excalifont>}}.
+To be able to write this in one line, we also use the symbol {{<excalifont>}}{{< therefore >}}{{</excalifont>}} (read "therefore") in place of the inference line like so: {{<excalifont>}}A, (A {{< to >}} B) {{< therefore >}} C{{</excalifont>}}.
 
 To express the logical claim that {{< abbr title="modus ponens">}}MP{{< /abbr>}}
-is valid we use the logical symbol {{<excalifont>}}⊨{{</excalifont>}}, which is
+is valid we use the logical symbol $⊨$, which is
 called the "double turnstile" or "models" (for reasons we'll get into later).
-So, we write the validity of MP in purely formal notation as {{<excalifont>}}A, (A → B) ⊨ B{{</excalifont>}}.
+So, we write the validity of MP in purely formal notation as {{<excalifont>}}A, (A {{< to >}} B) ⊨ B{{</excalifont>}}.
 
 By the way, it's important to distinguish between the inference
-{{<excalifont>}}A, (A → B) ∴ C{{</excalifont>}} and its validity
-{{<excalifont>}}A, (A → B) ⊨ B{{</excalifont>}}: there are logical systems where
+{{<excalifont>}}A, (A {{< to >}} B) {{< therefore >}} B{{</excalifont>}} and its validity
+{{<excalifont>}}A, (A {{< to >}} B) ⊨ B{{</excalifont>}}: there are logical systems where
 MP is _not_ valid. In those contexts, an AI system might
-still—fallaciously—reason according to MP, i.e. it might apply {{<excalifont>}}A, (A → B) ∴ C{{</excalifont>}} even though, in this context, {{<excalifont>}}A, (A → B) ⊭ B{{</excalifont>}}.
+still—fallaciously—reason according to MP, i.e. it might apply {{<excalifont>}}A, (A {{< to >}} B) {{< therefore >}} C{{</excalifont>}} even though, in this context, {{<excalifont>}}A, (A {{< to >}} B) ⊭ B{{</excalifont>}}.
 
 Validity in virtue of logical form, as just discussed, is known as **logical
 consequence**. But, importantly, not *all* valid inferences are logically
@@ -197,19 +197,19 @@ it's true that {{< img
 src="img/sigma_conclusion.png" class="inert-img" height="30px" style="vertical-align: middle;" >}} 
 since an uncle is, by definition, a parent's male sibling.
 
-But if we replace {{<excalifont>}}brother{{</excalifont>}} with {{<excalifont>}}sister{{</excalifont>}}, for example, we get the following *in*valid inference:
+But if we replace $brother$ with $sister$, for example, we get the following *in*valid inference:
 {{< img src="img/sigma_aunt.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="500px">}}
-If we assume that {{<excalifont>}}Σ{{</excalifont>}} is {{< logo >}}'s mother's
-sister, {{<excalifont>}}Σ{{</excalifont>}} is {{< logo >}}'s aunt and not their
+If we assume that $Σ$ is {{< logo >}}'s mother's
+sister, $Σ$ is {{< logo >}}'s aunt and not their
 uncle. This shows that the inference is not valid in virtue of its form, which
 is something like:
 {{< img src="img/form_uncle.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="500px">}}
 
 But the inference _is_ valid … in a sense. The validity of the inference depends
 on the concrete predicates involved—the
-meanings of {{<excalifont>}}brother{{</excalifont>}},
-{{<excalifont>}}mother{{</excalifont>}}, and
-{{<excalifont>}}uncle{{</excalifont>}}. In logical theory, we also call
+meanings of $brother$,
+$mother$, and
+$uncle$. In logical theory, we also call
 inferences like this, which are valid, but not in virtue of their logical form,
 **materially valid**. While logical validity—validity in virtue of logical
 form—is is **domain-general**, material validity is **domain-specific**. As
@@ -320,10 +320,10 @@ approach**. The basic tool it uses is that of a **semantic model**. A semantic
 model is like a picture of a possible reasoning scenario. Think for example of
 the scenario we considered above, where all cats—and thus {{< there_is >}}—could fly. If we look
 at a model, we can ask whether a specific sentence
-{{<excalifont>}}A{{</excalifont>}} is true or not in that model. Every model
+$A$ is true or not in that model. Every model
 gives an answer. It assigns a definite truth-value to each sentence. If we take
 the sentence {{< img src="img/there_is.png" class="inert-img" height="30px"
-style="vertical-align: middle;" >}}{{<excalifont>}} can fly{{</excalifont>}}
+style="vertical-align: middle;" >}}$ can fly$
 and consider the scenario, where cats can fly, we get the answer that the
 sentence is _true_. But if we evaluate the sentence relative to the way things
 actually are, the answer is that it's not _true_.
@@ -489,13 +489,13 @@ This gives us the final definition deductively valid inference:
 
 {{< img src="img/validity_general.png" class="rounded mx-auto d-block inert-img img-fluid my-2" width="600px">}}
 
-So, for an inference with two premises {{<excalifont>}}P,Q{{</excalifont>}} and
-conclusion {{<excalifont>}}C{{</excalifont>}} to be valid, the situation needs
+So, for an inference with two premises $P,Q$ and
+conclusion $C$ to be valid, the situation needs
 to like the one depicted here:
 
 {{< img src="img/valid_multi_premise.png" class="rounded mx-auto d-block inert-img img-fluid my-2" width="900px">}}
 
-An example of a set-up, where the inference from {{<excalifont>}}P,Q{{</excalifont>}}  to {{<excalifont>}}C{{</excalifont>}} is *in*valid is depicted here:
+An example of a set-up, where the inference from $P,Q$  to $C$ is *in*valid is depicted here:
 
 {{< img src="img/invalid_multi_premise.png" class="rounded mx-auto d-block inert-img img-fluid my-2" width="900px">}}
 
@@ -513,7 +513,7 @@ propositional logic, for example, we need to show that:
 
 {{< img src="img/valid_ds.png" class="rounded mx-auto d-block inert-img img-fluid my-5" width="500px">}}
 
-That is, we need to show that in all models where {{< img src="img/a_or_b.png" class="inert-img" height="30px" style="vertical-align: middle;" >}} and {{< img src="img/neg_a.png" class="inert-img" height="30px" style="vertical-align: middle;" >}} are both true, {{<excalifont>}}B{{</excalifont>}} is true as well.
+That is, we need to show that in all models where {{< img src="img/a_or_b.png" class="inert-img" height="30px" style="vertical-align: middle;" >}} and {{< img src="img/neg_a.png" class="inert-img" height="30px" style="vertical-align: middle;" >}} are both true, $B$ is true as well.
 
 Similarly, if we want to show that denying the antecedent is 
 
@@ -660,8 +660,8 @@ use to spell out the idea of the premises making the conclusion more likely.
 A straight-forward way for implementing probabilities for the formal languages
 of logic "piggy-backs" on the notion of a model, which we've used in deductive
 logic to define validity. So, we'll be working with a logical space, in which
-each formula {{<excalifont>}}A{{</excalifont>}} has an associated set
-{{<excalifont>}}[A]{{</excalifont>}} of models where it is true. 
+each formula $A$ has an associated set
+$[A]$ of models where it is true. 
 
 In inductive logic, we think of these models as ways the world could turn out to
 be. If we roll a 6-sided die, for example, there are six ways the world could
@@ -670,7 +670,7 @@ a model:
 
 {{< img src="img/dice_worlds.png" class="rounded mx-auto d-block inert-img img-fluid my-5" width="700px">}}
 
-If in our language we have a formulas {{<excalifont>}}EVEN{{</excalifont>}} and {{<excalifont>}}ODD{{</excalifont>}}, for example, to say that the outcome will be even or odd, then these would correspond to the following {{<abbr title="set of models">}}propositions{{</abbr>}}:
+If in our language we have a formulas $EVEN$ and $ODD$, for example, to say that the outcome will be even or odd, then these would correspond to the following {{<abbr title="set of models">}}propositions{{</abbr>}}:
 
 {{< img src="img/even_odd_prop.png" class="rounded mx-auto d-block inert-img img-fluid my-5" width="700px">}}
 
@@ -708,16 +708,16 @@ We can use probabilities to mathematically spell out the idea that a conclusion
 is _likely_ true on the hypothesis that the premises are. For this, we use the
 concept of **conditional probabilities**.
 
-We write {{<excalifont>}}Pr([A] | [B]){{</excalifont>}} to
-denote the conditional probability of {{<excalifont>}}A{{</excalifont>}} being
-true under the hypothesis that {{<excalifont>}}B{{</excalifont>}} is true. The
+We write $Pr([A] | [B])$ to
+denote the conditional probability of $A$ being
+true under the hypothesis that $B$ is true. The
 standard definition of this is given by the following formula:
 
 {{< img src="img/conditional_probability.png" class="rounded mx-auto d-block inert-img img-fluid my-5" width="700px">}}
 
-Here, we crucially need to assume that {{<excalifont>}}Pr([B]) ≠ 0{{</excalifont>}} to avoid [division by zero](https://en.wikipedia.org/wiki/Division_by_zero).
-What this formula says is that the conditional probability  {{<excalifont>}}Pr([A] | [B]){{</excalifont>}} of {{<excalifont>}}A{{</excalifont>}} given {{<excalifont>}}B{{</excalifont>}}
-is the "part" of {{<excalifont>}}B{{</excalifont>}}'s probability that is an {{<excalifont>}}A{{</excalifont>}}-probability—a measaure of the proportion of {{<excalifont>}}A{{</excalifont>}} scenarios that are {{<excalifont>}}B{{</excalifont>}} scenarios.
+Here, we crucially need to assume that $Pr([B]) ≠ 0$ to avoid [division by zero](https://en.wikipedia.org/wiki/Division_by_zero).
+What this formula says is that the conditional probability  $Pr([A] | [B])$ of $A$ given $B$
+is the "part" of $B$'s probability that is an $A$-probability—a measaure of the proportion of $A$ scenarios that are $B$ scenarios.
 
 Here's how this plays out in our previous two distributions if we ask ourselves
 what's the probability of the role being a two given that/under the hypothesis
@@ -726,8 +726,8 @@ that it's even:
 {{< img src="img/two_given_even.png" class="rounded mx-auto d-block inert-img img-fluid my-5" width="900px">}}
 
 What we can see here is that the probability of the roll being a two _goes up_
-under the hypothesis that it's even: from  {{<excalifont>}}1/3{{</excalifont>}}
-to {{<excalifont>}}1/2{{</excalifont>}} in the case of the fair die, and from {{<excalifont>}}1/10{{</excalifont>}} to {{<excalifont>}}1/7{{</excalifont>}} in the case of the loaded die. In this sense, the hypothesis that the roll is even *supports* the conclusion.
+under the hypothesis that it's even: from  $1/3$
+to $1/2$ in the case of the fair die, and from $1/10$ to $1/7$ in the case of the loaded die. In this sense, the hypothesis that the roll is even *supports* the conclusion.
 
 You might be worried about this increase of probabilities depending on the
 concrete numbers, but in fact, it doesn't. Once we've introduced the laws of
@@ -742,19 +742,19 @@ The **strength** of the inference can be determined in different ways, but the
 most straight-forward one is to look at the absolute increase of probability.
 That is, we measure the strength of an inductive inference by:
 
-{{<excalifont display=true >}}strength = | Pr([C] | [P]) - Pr([C]) |{{</excalifont>}}
+$$strength = | Pr([C] | [P]) - Pr([C]) |$$
 
-By the way: here the notation {{<excalifont >}}| number |{{</excalifont>}} stands for the *absolute value*  of {{<excalifont >}} number {{</excalifont>}}, where, for example, {{<excalifont >}}| -2 | = | 2 | = 2{{</excalifont>}}.
+By the way: here the notation $| number |$ stands for the *absolute value*  of $ number $, where, for example, $| -2 | = | 2 | = 2$.
 
 In general, the strength of an inductive inference is going to depend on concrete probabilities. For example, the strength of the inference from even to two assuming a fair die is: 
 
-{{<excalifont display=true >}}| 1/3 - 1/6 | = 1/6{{</excalifont>}}
+$$| 1/3 - 1/6 | = 1/6$$
 
 Instead assuming the loaded die it's
 
-{{<excalifont display=true >}}| 1/10 - 1/7 | = 3/70{{</excalifont>}}
+$$| 1/10 - 1/7 | = 3/70$$
 
-Since {{<excalifont >}}1/6 > 3/70{{</excalifont>}}, the inference is (much)
+Since $1/6 > 3/70$, the inference is (much)
 stronger assuming a fair die (which makes sense, given that assuming a loaded
 die, a six becomes _much_ more likely given that the outcome is even, while
 assuming a fair die, all even results go up "to the same degree"). 
