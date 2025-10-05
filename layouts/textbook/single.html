@@ -28,13 +28,17 @@
 
   {{- $patternBoolean := "!!(.*?)!!" -}}
   {{- $replacementBoolean := `<span class="Boolean">${1}</span>` -}}
-  
+
+  {{- $patternMDCode := "~~~(.*?)~~~" -}}
+  {{- $replacementMDCode := "```${1}```" -}}
+
   {{- $processed := .RawContent 
       | replaceRE $patternMathBlock $replacementMathBlock 
       | replaceRE $patternMathInline $replacementMathInline 
       | replaceRE $patternCodeBlock $replacementCodeBlock 
       | replaceRE $patternCodeInline $replacementCodeInline 
       | replaceRE $patternBoolean $replacementBoolean 
+      | replaceRE $patternMDCode $replacementMDCode 
     -}}
   
   {{ $processed | .RenderString }}
