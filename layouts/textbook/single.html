@@ -32,6 +32,10 @@
   {{- $patternMDCode := "~~~(.*?)~~~" -}}
   {{- $replacementMDCode := "```${1}```" -}}
 
+  {{- $patternMDInline := "%(.*?)%" -}}
+  {{- $replacementMDInline := "`${1}`" -}}
+
+
   {{- $processed := .RawContent 
       | replaceRE $patternMathBlock $replacementMathBlock 
       | replaceRE $patternMathInline $replacementMathInline 
@@ -39,6 +43,7 @@
       | replaceRE $patternCodeInline $replacementCodeInline 
       | replaceRE $patternBoolean $replacementBoolean 
       | replaceRE $patternMDCode $replacementMDCode 
+      | replaceRE $patternMDInline $replacementMDInline 
     -}}
   
   {{ $processed | .RenderString }}
