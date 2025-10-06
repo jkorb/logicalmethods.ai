@@ -510,11 +510,11 @@
             <li>
               <a class="dropdown-item 
                 fw-bold active
-                link-opacity-50
+                
                 "
-                href="javascript:;"
+                href="/exercises/proof/"
               >7. 
-                <i class="bi bi-lock-fill"></i>
+                <i class="bi bi-unlock-fill"></i>
                  Logical proofs
               </a>
             </li>
@@ -745,534 +745,452 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
 <div class="container exercises">
   <div class="m-4">
 </div>
-<div id="hilbert-systems" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Hilbert systems
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="hilbert-systemsSolution"
-        onclick="showPasswordModal('hilbert-systemsSolution', 'exc-proof')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="proof-systems" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Proof systems
     </div>
-</h5><p>Provide derivations in our Hilbert system for the following provability claims:</p>
+</h5><p>Let&rsquo;s trial run the different proof systems. For each of the following, provide
+a logical proof in our Hilbert calculus, sequent calculus, and tableaux.</p>
+<ol>
+<li>
+<p><span class="excalifont">A 
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+ A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(A
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B)</span></p>
+</li>
+<li>
+<p><span class="excalifont">A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(A
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B) 
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+A</span></p>
+</li>
+</ol>
 
 </div>
-<div id="a-easier" ><h6 class="">a) Easier</h6><ol>
-<li><span class="excalifont">\neg p\to (p\to p)</span></li>
-<li><span class="excalifont">\vdash q\to (p\lor q)</span></li>
-<li><span class="excalifont">p\to q,q\to r\vdash p\to r</span></li>
-</ol>
-
-</div>
-<div id="b-harder" ><h6 class="">b) Harder</h6><ol>
-<li><span class="excalifont">\vdash \neg\neg p\to p</span></li>
-<li><span class="excalifont">\vdash p\to (p\lor q)</span></li>
-<li><span class="excalifont">\vdash (p\land q)\to p</span></li>
-</ol>
-<p><em>Hint</em>: It&rsquo;s generally advisable to derive auxiliary laws along the way. You may
-always use claims proved earlier, such as <span class="excalifont">\vdash p\to p</span> in a derivation.</p>
-<p><em>Advice</em>: These can be really hard, but perseverance is the key. If you can&rsquo;t
-get them all, don&rsquo;t worry. We won&rsquo;t test your expertise with the Hilbert system.</p>
-
-</div>
-<div id="hilbert-systemsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong>
-Easier</p>
-<p><strong>Proof:</strong> <span class="excalifont">\vdash\neg p\to(p\to p)</span></p>
-<ol>
-<li><span class="excalifont">p\to p\quad</span> <strong>(Use proof strategy for <span class="excalifont">\vdash\phi\to\phi</span>)</strong></li>
-<li><span class="excalifont">(p\to p)\to(\neg p\to(p\to p))\quad</span> <strong>(Axiom 1)</strong></li>
-<li><span class="excalifont">\neg p\to(p\to p)\quad</span> <strong>(MP, 5, 6)</strong></li>
-</ol>
-<br>
-<p><strong>Proof:</strong> <span class="excalifont">\vdash q\to(p\lor q)</span></p>
-<ol>
-<li><span class="excalifont">q\to(\neg p\to q)\quad</span> <strong>(Axiom 1)</strong></li>
-<li><span class="excalifont">q\to(p\lor q)\quad</span> <strong>(Rewriting <span class="excalifont">(\neg p\to q)</span> as <span class="excalifont">(p\lor q)</span>)</strong></li>
-</ol>
-<br>
-<p><strong>Proof:</strong> <span class="excalifont">p\to q,q\to r\vdash p\to r</span></p>
-<ol>
-<li><span class="excalifont">p\to q\quad</span> <strong>(Assumption)</strong></li>
-<li><span class="excalifont">q\to r\quad</span> <strong>(Assumption)</strong></li>
-<li><span class="excalifont">(q\to r)\to(p\to(q\to r))\quad</span> <strong>(Axiom 1)</strong></li>
-<li><span class="excalifont">p\to(q\to r)\quad</span> <strong>(MP, 3, 4)</strong></li>
-<li><span class="excalifont">(p\to(q\to r))\to((p\to q)\to(p\to r))\quad</span> <strong>(Axiom 2)</strong></li>
-<li><span class="excalifont">(p\to q)\to(p\to r)\quad</span> <strong>(MP, 4, 5)</strong></li>
-<li><span class="excalifont">p\to r\quad</span> <strong>(MP, 1, 6)</strong></li>
-</ol>
-<br>
-<p><strong>b)</strong>
-Harder</p>
-<p><strong>Proof:</strong> <span class="excalifont">\vdash\neg\neg p\to p</span></p>
-<ol>
-<li><span class="excalifont">\neg\neg p\to \neg\neg p\quad</span> <strong>(Use proof strategy for <span class="excalifont">\vdash\phi\to\phi</span>)</strong></li>
-<li><span class="excalifont">\neg\neg p\to(\neg\neg\neg\neg p\to\neg\neg p)\quad</span> <strong>(Axiom 1)</strong></li>
-<li><span class="excalifont">(\neg\neg\neg\neg p\to\neg\neg p)\to(\neg p\to\neg\neg\neg p)\quad</span> <strong>(Axiom 3)</strong></li>
-<li><span class="excalifont">\neg\neg p\to(\neg p\to\neg\neg\neg p)\quad</span> <strong>(Use proof strategy for <span class="excalifont">\phi\to\psi,\psi\to\chi\vdash\phi\to\chi</span> on 2,3)</strong></li>
-<li><span class="excalifont">(\neg p\to\neg\neg\neg p)\to(\neg\neg p\to p)\quad</span> <strong>(Axiom 3)</strong></li>
-<li><span class="excalifont">\neg\neg p\to(\neg\neg p\to p)\quad</span> <strong>(Use proof strategy for <span class="excalifont">\phi\to\psi,\psi\to\chi\vdash\phi\to\chi</span> on 4,5)</strong></li>
-<li><span class="excalifont">(\neg\neg p\to(\neg\neg p\to p))\to((\neg\neg p\to\neg\neg p)\to(\neg\neg p\to p))\quad</span> <strong>(Axiom 2)</strong></li>
-<li><span class="excalifont">(\neg\neg p\to\neg\neg p)\to(\neg\neg p\to p)\quad</span> <strong>(MP, 6, 7)</strong></li>
-<li><span class="excalifont">\neg\neg p\to p\quad</span> <strong>(MP, 1, 8)</strong></li>
-</ol>
-<br>
-<p><strong>Proof:</strong> <span class="excalifont">\vdash p\to(p\lor q)</span></p>
-<ol>
-<li><span class="excalifont">p\to(\neg q\to p)\quad</span> <strong>(Axiom 1)</strong></li>
-<li><span class="excalifont">\neg\neg\neg p\to\neg p\quad</span> <strong>(Use proof strategy for <span class="excalifont">\vdash\neg\neg\phi\to\phi</span>)</strong></li>
-<li><span class="excalifont">(\neg\neg\neg p\to\neg p)\to(p\to\neg\neg p)\quad</span> <strong>(Axiom 3)</strong></li>
-<li><span class="excalifont">p\to\neg\neg p\quad</span> <strong>(MP, 2, 3)</strong></li>
-<li><span class="excalifont">(p\to\neg\neg p)\to(\neg q\to(p\to\neg\neg p))\quad</span> <strong>(Axiom 1)</strong></li>
-<li><span class="excalifont">\neg q\to(p\to\neg\neg p)\quad</span> <strong>(MP, 4, 5)</strong></li>
-<li><span class="excalifont">(\neg q\to(p\to\neg\neg p))\to((\neg q\to p)\to(\neg q\to\neg\neg p))\quad</span> <strong>(Axiom 2)</strong></li>
-<li><span class="excalifont">(\neg q\to p)\to(\neg q\to\neg\neg p)\quad</span>  <strong>(MP, 6, 7)</strong></li>
-<li><span class="excalifont">p\to(\neg q\to\neg\neg p)\quad</span> <strong>(Use proof strategy for <span class="excalifont">\phi\to\psi,\psi\to\chi\vdash\phi\to\chi</span> on 1,8)</strong></li>
-<li><span class="excalifont">(\neg q\to\neg\neg p)\to(\neg p\to q)\quad</span> <strong>(Axiom 3)</strong></li>
-<li><span class="excalifont">p\to(\neg p\to q)\quad</span>  <strong>(Use proof strategy for <span class="excalifont">\phi\to\psi,\psi\to\chi\vdash\phi\to\chi</span> on 9,10)</strong></li>
-<li><span class="excalifont">p\to(p\lor q)\quad</span> <strong>(Rewriting <span class="excalifont">(\neg p\to q)</span> as <span class="excalifont">(p\lor q)</span>)</strong></li>
-</ol>
-<br>
-<p><strong>Proof:</strong> <span class="excalifont">\vdash(p\land q)\to p</span></p>
-<ol>
-<li><span class="excalifont">\neg p\to(q\to\neg p)\quad</span> <strong>(Axiom 1)</strong></li>
-<li><span class="excalifont">\neg\neg q\to q\quad</span> <strong>(Use proof strategy for <span class="excalifont">\vdash\neg\neg\phi\to\phi</span>)</strong></li>
-<li><span class="excalifont">(\neg\neg q\to q)\to(\neg p\to(\neg\neg q\to q))\quad</span> <strong>(Axiom 1)</strong></li>
-<li><span class="excalifont">\neg p\to(\neg\neg q\to q)\quad</span> <strong>(MP, 2, 3)</strong></li>
-<li><span class="excalifont">(q\to\neg p)\to(\neg\neg q\to(q\to\neg p))\quad</span>  <strong>(Axiom 1)</strong></li>
-<li><span class="excalifont">\neg p\to(\neg\neg q\to(q\to\neg p))\quad</span> <strong>(Use proof strategy for <span class="excalifont">\phi\to\psi,\psi\to\chi\vdash\phi\to\chi</span> on 1,5)</strong></li>
-<li><span class="excalifont">(\neg\neg q\to(q\to\neg p))\to((\neg\neg q\to q)\to(\neg\neg q\to\neg p))\quad</span> <strong>(Axiom 2)</strong></li>
-<li><span class="excalifont">\neg p\to((\neg\neg q\to q)\to(\neg\neg q\to\neg p))\quad</span> <strong>(Use proof strategy for <span class="excalifont">\phi\to\psi,\psi\to\chi\vdash\phi\to\chi</span> on 6,7)</strong></li>
-<li><span class="excalifont">(\neg p\to((\neg\neg q\to q)\to(\neg\neg q\to\neg p)))\to((\neg p\to(\neg\neg q\to q))\to(\neg p\to(\neg\neg q\to\neg p)))\quad</span>  <strong>(Axiom 2)</strong></li>
-<li><span class="excalifont">(\neg p\to(\neg\neg q\to q))\to(\neg p\to(\neg\neg q\to\neg p))\quad</span> <strong>(Use proof strategy for <span class="excalifont">\phi\to\psi,\psi\to\chi\vdash\phi\to\chi</span> on 8,9)</strong></li>
-<li><span class="excalifont">\neg p\to(\neg\neg q\to\neg p)\quad</span> <strong>(MP, 4, 10)</strong></li>
-<li><span class="excalifont">(\neg\neg q\to\neg p)\to(p\to\neg q)\quad</span> <strong>(Axiom 3)</strong></li>
-<li><span class="excalifont">\neg p\to(p\to\neg q)\quad</span> <strong>(Use proof strategy for <span class="excalifont">\phi\to\psi,\psi\to\chi\vdash\phi\to\chi</span> on 11,12)</strong></li>
-<li><span class="excalifont">\neg\neg\neg(p\to\neg q)\to\neg(p\to\neg q)\quad</span> <strong>(Use proof strategy for <span class="excalifont">\vdash\neg\neg\phi\to\phi</span>)</strong></li>
-<li><span class="excalifont">(\neg\neg\neg(p\to\neg q)\to\neg(p\to\neg q))\to((p\to\neg q)\to\neg\neg(p\to\neg q))\quad</span> <strong>(Axiom 3)</strong></li>
-<li><span class="excalifont">(p\to\neg q)\to\neg\neg(p\to\neg q)\quad</span> <strong>(MP, 15, 16)</strong></li>
-<li><span class="excalifont">\neg p\to\neg\neg(p\to\neg q)\quad</span> <strong>(Use proof strategy for <span class="excalifont">\phi\to\psi,\psi\to\chi\vdash\phi\to\chi</span> on 13,16)</strong></li>
-<li><span class="excalifont">(\neg p\to\neg\neg(p\to\neg q))\to(\neg(p\to\neg q)\to p)\quad</span> <strong>(Axiom 2)</strong></li>
-<li><span class="excalifont">\neg(p\to\neg q)\to p\quad</span> <strong>(MP, 17, 18)</strong></li>
-<li><span class="excalifont">(p\land q)\to p\quad</span>  <strong>(Rewriting <span class="excalifont">(\neg(p\to\neg q))</span> as <span class="excalifont">(p\land q)</span>)</strong></li>
-</ol>
-<br>
-
-</div>
-<div id="natural-deduction-systems" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Natural deduction systems
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="natural-deduction-systemsSolution"
-        onclick="showPasswordModal('natural-deduction-systemsSolution', 'exc-proof')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="natural-deduction" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Natural deduction
     </div>
-</h5><p>Provide derivations in our natural system for the following provability claims:</p>
+</h5><p>For this exercise, you do a deep dive into natural deduction: below are a series
+of laws to prove for arbitrary formulas <span class="excalifont">A,B,C</span>. Some require the rule
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/bot.png" alt="Falsum" class="inline-icon" style="height:1em;width:auto;"/>
+, take note of which ones.</p>
 
 </div>
-<div id="a-easier-1" class=" homework"><h6 class=" homework">a) Easier</h6><p>Only 3.,5., and  6. as homework.</p>
-<ol>
-<li><span class="excalifont">p\vdash p\lor (p\land q)</span></li>
-<li><span class="excalifont">p\lor (p\land q)\vdash p</span></li>
-<li><span class="excalifont">p\lor q\vdash q\lor p</span></li>
-<li><span class="excalifont">p\land q\vdash q\land p</span></li>
-<li><span class="excalifont">\neg p,p\lor q\vdash q</span></li>
-<li><span class="excalifont">\neg p\lor \neg q\vdash \neg(p\land q)</span></li>
+<div id="conjunction-and-disjunction" ><h6 class="">Conjunction and Disjunction</h6><ol>
+<li>
+<p><span class="excalifont">A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ (B 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ C) 
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+ (A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B)
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ C)</span></p>
+</li>
+<li>
+<p><span class="excalifont">(A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B)
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ C)
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+ A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ (B 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ C) </span></p>
+</li>
+<li>
+<p><span class="excalifont">A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ (B 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ C) 
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+ (A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B)
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ C)</span></p>
+</li>
+<li>
+<p><span class="excalifont">(A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B)
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ C)
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+  A
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ (B 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ C) </span></p>
+</li>
 </ol>
 
 </div>
-<div id="b-harder-1" ><h6 class="">b) Harder</h6><ol>
-<li><span class="excalifont">\vdash p\lor\neg p</span></li>
-<li><span class="excalifont">p\to q\vdash \neg p\lor q</span></li>
-<li><span class="excalifont">\neg(p\land q)\vdash \neg p\lor\neg q</span></li>
+<div id="negation" ><h6 class="">Negation</h6><ol>
+<li>
+<p><span class="excalifont">A 
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ A</span></p>
+</li>
+<li>
+<p><span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ A
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+ A</span></p>
+</li>
+<li>
+<p><span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+(A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B) 
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+B</span></p>
+</li>
+<li>
+<p><span class="excalifont"> 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+B 
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+  
+  <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+(A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B)</span></p>
+</li>
+<li>
+<p><span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+(A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B) 
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+B</span></p>
+</li>
+<li>
+<p><span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+B 
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+(A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B)</span></p>
+</li>
 </ol>
 
 </div>
-<div id="natural-deduction-systemsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong></p>
-<p>
-<img src="https://logicalmethods.ai/exercises/proof/img/nd-a1.png" class="img-thumbnail"    alt="" >
+<div id="conditionals" ><h6 class="">Conditionals</h6><ol>
+<li>
+<p><span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+A
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+B</span></p>
+</li>
+<li>
+<p><span class="excalifont">A 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ B 
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B</span></p>
+</li>
+<li>
+<p><span class="excalifont">(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ A) 
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+ A</span></p>
+</li>
+<li>
+<p><span class="excalifont">(A
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+B)
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+B 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
 
-<img src="https://logicalmethods.ai/exercises/proof/img/nd-a2.png" class="img-thumbnail"    alt="" >
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A)</span></p>
+</li>
+<li>
+<p>(<span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+B 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
 
-
-<img src="https://logicalmethods.ai/exercises/proof/img/nd-a3.png" class="img-thumbnail"    alt="" >
-
-
-<img src="https://logicalmethods.ai/exercises/proof/img/nd-a4.png" class="img-thumbnail"    alt="" >
-
-
-<img src="https://logicalmethods.ai/exercises/proof/img/nd-a5.png" class="img-thumbnail"    alt="" >
-
-
-<img src="https://logicalmethods.ai/exercises/proof/img/nd-a6.png" class="img-thumbnail"    alt="" >
-</p>
-<p><strong>b)</strong></p>
-<p>
-<img src="https://logicalmethods.ai/exercises/proof/img/nd-b1.png" class="img-thumbnail"    alt="" >
-
-
-<img src="https://logicalmethods.ai/exercises/proof/img/nd-b2.png" class="img-thumbnail"    alt="" >
-
-
-<img src="https://logicalmethods.ai/exercises/proof/img/nd-b3.png" class="img-thumbnail"    alt="" >
-</p>
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A)
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+(A 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ B)</span></p>
+</li>
+</ol>
 
 </div>
-<div id="lean" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Lean
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="leanSolution"
-        onclick="showPasswordModal('leanSolution', 'exc-proof')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="lean-verification" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Lean verification
     </div>
-</h5><p>For this exercise, you can use the live Lean 4 environment, which is available
-onlien <i class="bi bi-box-arrow-up-right h-6"></i>
-<a href="https://live.lean-lang.org/" class="link-dark" rel="external" target="_blank">here</a>
-.</p>
-<p>Lean is a full fledged programming language, so we can&rsquo;t reasonably learn it
-completely in just one session. What I&rsquo;d like you to do, though is to experiment
-a bit with it. If you want to learn more and have some time, you can read more
-details in <i class="bi bi-box-arrow-up-right h-6"></i>
-<a href="https://leanprover.github.io/theorem_proving_in_lean4/title_page.html" class="link-dark" rel="external" target="_blank">this fantastic
-book</a>
-,
-especially <i class="bi bi-box-arrow-up-right h-6"></i>
-<a href="https://leanprover.github.io/theorem_proving_in_lean4/propositions_and_proofs.html" class="link-dark" rel="external" target="_blank">chapter 3</a>
- and <i class="bi bi-box-arrow-up-right h-6"></i>
-<a href="https://leanprover.github.io/theorem_proving_in_lean4/tactics.html" class="link-dark" rel="external" target="_blank">chapter 5</a>
-.</p>
-<p>Before we begin a bit of explanation. In the following, we&rsquo;ll provide
-copy-paste-able code that you can run directly in the environment.</p>
-<p>Here is the first snippet, which declares <span class="excalifont">p,q,r</span> as variables for propositions:</p>
-
-
-
-
-
-
-<hr>
-<a class="btn btn-sm btn-link link-dark link-underline-opacity-0" href="#4e5b225308c09653a3b7caa5a6276a53539b0501a75677adc955f131e9389d46" type="button" data-bs-toggle="collapse" data-bs-target="#4e5b225308c09653a3b7caa5a6276a53539b0501a75677adc955f131e9389d46" aria-expanded="false" aria-controls="4e5b225308c09653a3b7caa5a6276a53539b0501a75677adc955f131e9389d46" >
-  $\mathsf{L}\exists\forall \mathsf{N}$  snippet (click to expand) <i class="bi bi-chevron-left toggle-icon"></i>
-</a>
-<div id="4e5b225308c09653a3b7caa5a6276a53539b0501a75677adc955f131e9389d46" class="collapse bg-black rounded m-2 p-2 " style="position:relative;">
-  <button class="btn btn-primary shadow" style="position:absolute; top:10px;right:10px" onclick="copyContent('4e5b225308c09653a3b7caa5a6276a53539b0501a75677adc955f131e9389d46-inner')"><i class="bi bi-clipboard"></i> Copy!</button>
-  <pre><code class="text-white" id="4e5b225308c09653a3b7caa5a6276a53539b0501a75677adc955f131e9389d46-inner">
-variable {p : Prop}
-variable {q : Prop}
-variable {r : Prop}
-</code></pre>
-</div>
-<hr>
-
-<p>This should be at the beginning of any piece of code you run from below.</p>
-<p>Lean has several <em>modes</em>. We will only use the so-called &ldquo;tactic&rdquo; mode. It&rsquo;s a
-simplified version of Lean that makes Lean-proofs work more like natural
-deduction proofs.</p>
-<p>This is easiest shown with an example. Consider the following natural deduction
-proof showing that</p>
-<div class="text-center my-4 excalifont">\vdash p\to p\land (p\lor q)</div>
-<p>which is known as an absorption law:</p>
-
-<img src="https://logicalmethods.ai/exercises/proof/img/nd-absorption.png" class="img-thumbnail"    alt="" >
-
-<p>Effectively, we assume <span class="excalifont">p</span> (twice) for <span class="excalifont">\to I</span> and then we derive <span class="excalifont">p\lor q</span> from
-one assumption via <span class="excalifont">\lor I</span> and then from this and the second assumption that
-<span class="excalifont">p</span> that <span class="excalifont">p\land (p\lor q)</span> via <span class="excalifont">\land I</span>.</p>
-<p>Here&rsquo;s how this proof in Lean:</p>
-
-
-
-
-
-
-<hr>
-<a class="btn btn-sm btn-link link-dark link-underline-opacity-0" href="#4c2101b9c47e1de4c1ebf085dcd2ba1e76af6ecfb865bc82de9774236a93fc18" type="button" data-bs-toggle="collapse" data-bs-target="#4c2101b9c47e1de4c1ebf085dcd2ba1e76af6ecfb865bc82de9774236a93fc18" aria-expanded="false" aria-controls="4c2101b9c47e1de4c1ebf085dcd2ba1e76af6ecfb865bc82de9774236a93fc18" >
-  $\mathsf{L}\exists\forall \mathsf{N}$  snippet (click to expand) <i class="bi bi-chevron-left toggle-icon"></i>
-</a>
-<div id="4c2101b9c47e1de4c1ebf085dcd2ba1e76af6ecfb865bc82de9774236a93fc18" class="collapse bg-black rounded m-2 p-2 " style="position:relative;">
-  <button class="btn btn-primary shadow" style="position:absolute; top:10px;right:10px" onclick="copyContent('4c2101b9c47e1de4c1ebf085dcd2ba1e76af6ecfb865bc82de9774236a93fc18-inner')"><i class="bi bi-clipboard"></i> Copy!</button>
-  <pre><code class="text-white" id="4c2101b9c47e1de4c1ebf085dcd2ba1e76af6ecfb865bc82de9774236a93fc18-inner">
-theorem absorption_conj : p → (p ∧ (p ∨ q)) := by
-  intro hypothesis_p -- Hypothesis for conditional proof
-  apply And.intro -- When this completes we have proven (p ∧ (p ∨ q))
-  exact hypothesis_p -- This is (trivial proof of) p
-  apply Or.inl hypothesis_p -- Here we prove (p ∨ q)
-</code></pre>
-</div>
-<hr>
-
-<p>We first declare that we&rsquo;re proving a <div class="customBlock text-center my-4"><code class="customCode">theorem</code></div> and we call it</p>
-<div class="customBlock text-center my-4"><code class="customCode">absorption_conj</code></div>. Then comes the statement of the theorem. To obtain
-<span class="excalifont">\to,\land,\lor</span> in Lean, you can write <div class="customBlock text-center my-4"><code class="customCode">\to</code></div>, <div class="customBlock text-center my-4"><code class="customCode">\and</code></div>, <div class="customBlock text-center my-4"><code class="customCode">\or</code></div>,
-respectively.
-<p>We then apply the tactics:</p>
-<ul>
-<li>
-<div class="customBlock text-center my-4"><code class="customCode">intro</code></div> introduces an assumption for conditional proof (<span class="excalifont">\to I</span>), and we
-</li>
-</ul>
-<p>call it <div class="customBlock text-center my-4"><code class="customCode">hypothesis_p</code></div>.</p>
-<ul>
-<li>
-<div class="customBlock text-center my-4"><code class="customCode">And.intro</code></div> is essentially <span class="excalifont">\land I</span>.  <div class="customBlock text-center my-4"><code class="customCode">apply And.intro</code></div> applies the
-</li>
-</ul>
-<p>rule to the next two complete proofs.</p>
-<ul>
-<li>
-<div class="customBlock text-center my-4"><code class="customCode">exact hypothesis_p</code></div> means to precisely apply the hypothesis that <span class="excalifont">p</span>,
-</li>
-</ul>
-<p>which is the first input for the <div class="customBlock text-center my-4"><code class="customCode">And.intro</code></div>.</p>
-<ul>
-<li>
-<div class="customBlock text-center my-4"><code class="customCode">Or.inl</code></div> is the rule <span class="excalifont">p\vdash p\lor q</span> and <div class="customBlock text-center my-4"><code class="customCode">Or.inr</code></div> the rule <span class="excalifont">q\vdash
-p\lor q</span>. Here we apply the rule to the assumption that <span class="excalifont">p</span>
-</li>
-</ul>
-<div class="customBlock text-center my-4"><code class="customCode">hypothesis_p</code></div>, which gives us what we need, viz. <span class="excalifont">p\lor q</span>.
-<p>This completes our proof. The result should look something like this in your
-browser:</p>
-
-<img src="https://logicalmethods.ai/exercises/proof/img/lean-absorption.png" class="img-thumbnail"    alt="" >
-
-<p>No errors means we&rsquo;re good!</p>
-<p>One more example for an important concept:</p>
-
-
-
-
-
-
-<hr>
-<a class="btn btn-sm btn-link link-dark link-underline-opacity-0" href="#4e286f087777e7f3d7ddd1fb2328608b3e480d5c137cfc74a513d9e11a883eef" type="button" data-bs-toggle="collapse" data-bs-target="#4e286f087777e7f3d7ddd1fb2328608b3e480d5c137cfc74a513d9e11a883eef" aria-expanded="false" aria-controls="4e286f087777e7f3d7ddd1fb2328608b3e480d5c137cfc74a513d9e11a883eef" >
-  $\mathsf{L}\exists\forall \mathsf{N}$  snippet (click to expand) <i class="bi bi-chevron-left toggle-icon"></i>
-</a>
-<div id="4e286f087777e7f3d7ddd1fb2328608b3e480d5c137cfc74a513d9e11a883eef" class="collapse bg-black rounded m-2 p-2 " style="position:relative;">
-  <button class="btn btn-primary shadow" style="position:absolute; top:10px;right:10px" onclick="copyContent('4e286f087777e7f3d7ddd1fb2328608b3e480d5c137cfc74a513d9e11a883eef-inner')"><i class="bi bi-clipboard"></i> Copy!</button>
-  <pre><code class="text-white" id="4e286f087777e7f3d7ddd1fb2328608b3e480d5c137cfc74a513d9e11a883eef-inner">
-theorem commutativity_or : (p ∨ q) → (q ∨ p) := by
-  intro hypothesis_pORq
-  apply Or.elim hypothesis_pORq
-  · intro hypothesis_p
-    apply Or.inr hypothesis_p
-  · intro hypothesis_q
-    apply Or.inl hypothesis_q
-</code></pre>
-</div>
-<hr>
-
-<p>This is the following natural deduction proof:</p>
-
-<img src="https://logicalmethods.ai/exercises/proof/img/commutativity.png" class="img-thumbnail"    alt="" >
-
-<p>The <span class="excalifont">\bullet</span> mark the two sub-proofs for the <span class="excalifont">\lor E</span>, where we derive <span class="excalifont">q\lor
-p</span> from the two assumptions <span class="excalifont">p</span> and <span class="excalifont">q</span>. Note that each proof after</p>
-<div class="customBlock text-center my-4"><code class="customCode">Or.elim</code></div> is a conditional proof: we first show that <span class="excalifont">p\to q\lor p</span> and then
-we show that <span class="excalifont">q\to q\lor p</span>. This allows us to infer <span class="excalifont">q\lor p</span> from <span class="excalifont">p\lor q</span>.
-You can write the bullet points in Lean as <div class="customBlock text-center my-4"><code class="customCode">\.</code></div>.
-<p>Let&rsquo;s see if this is enough. It&rsquo;s your turn:</p>
-<p>The basic tactics are:</p>
-<ul>
-<li>
-<div class="customBlock text-center my-4"><code class="customCode">intro</code></div> (followed by hypothesis name)
-</li>
-<li>
-<div class="customBlock text-center my-4"><code class="customCode">And.intro</code></div> (followed by two proofs for the conjuncts)
-</li>
-<li>
-<div class="customBlock text-center my-4"><code class="customCode">And.left</code></div> (infers the left conjunct from the conjunction)
-</li>
-<li>
-<div class="customBlock text-center my-4"><code class="customCode">And.right</code></div> (infers the right conjunct from the conjunction)
-</li>
-<li>
-<div class="customBlock text-center my-4"><code class="customCode">Or.inl</code></div> (infers the disjunction from the left disjunct)
-</li>
-<li>
-<div class="customBlock text-center my-4"><code class="customCode">Or.inr</code></div> (infers the disjunction from the right disjunct)
-</li>
-<li>
-<div class="customBlock text-center my-4"><code class="customCode">Or.elim</code></div> (disjunction elimination is followed by two conditional proofs,
-</li>
-</ul>
-<p>one for each disjunct)</p>
+</h5><p>For this exercise, you verify your natural deduction inferences using Lean.
+Below are templates for the code to use. The proofs are replaced by <code class="customCode"><span
+class="dark-red">sorry</span></code>, which makes Lean not complain about the missing
+proof. The <code class="customCode">sorry</code>-tactic is very useful when writing a proof, because it makes
+Lean &ldquo;shut up&rdquo;, while allowing you to type your proof. You need to replace each
+<code class="customCode"><span class="dark-red">sorry</span></code> with the correct proof, of course.</p>
+<p>Note that some of the proofs below require <code class="customCode"><span class="dark-blue">open</span>
+Classical</code>. Which ones?</p>
+<p>In your proofs, you can use previous theorems using <code class="customCode">apply</code>. Note that theorem&rsquo;s
+like <code class="customCode">distribution_one_rtl</code> require to be passed a proof term <code class="customCode">h</code>.</p>
 
 </div>
-<div id="a" ><h6 class="">a)</h6><p>Translate the following LEAN proof into natural deduction:</p>
+<div id="conjunction-and-disjunction-1" ><h6 class="">Conjunction and Disjunction</h6>
+<img src="/img/lean_logo.png" alt="Lean_Logo" class="float-start" style="height:1em;width:auto;"/>
 
-
-
-
-
-
-<hr>
-<a class="btn btn-sm btn-link link-dark link-underline-opacity-0" href="#37ae1a67245be1e723b8fb91150ca0709559eb7b8951b9c655e4d232791db9a7" type="button" data-bs-toggle="collapse" data-bs-target="#37ae1a67245be1e723b8fb91150ca0709559eb7b8951b9c655e4d232791db9a7" aria-expanded="false" aria-controls="37ae1a67245be1e723b8fb91150ca0709559eb7b8951b9c655e4d232791db9a7" >
-  $\mathsf{L}\exists\forall \mathsf{N}$  snippet (click to expand) <i class="bi bi-chevron-left toggle-icon"></i>
-</a>
-<div id="37ae1a67245be1e723b8fb91150ca0709559eb7b8951b9c655e4d232791db9a7" class="collapse bg-black rounded m-2 p-2 " style="position:relative;">
-  <button class="btn btn-primary shadow" style="position:absolute; top:10px;right:10px" onclick="copyContent('37ae1a67245be1e723b8fb91150ca0709559eb7b8951b9c655e4d232791db9a7-inner')"><i class="bi bi-clipboard"></i> Copy!</button>
-  <pre><code class="text-white" id="37ae1a67245be1e723b8fb91150ca0709559eb7b8951b9c655e4d232791db9a7-inner">
-theorem some_law : (p ∧ q) → (p ∨ q) := by
-  intro h
-  apply Or.inl
-  exact And.left h
-</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lean4" data-lang="lean4"><span class="line"><span class="cl"><span class="w">  </span><span class="kn">variable</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Prop</span><span class="o">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kn">theorem</span><span class="w"> </span><span class="n">distribution_one_ltr</span><span class="w"> </span><span class="o">(</span><span class="n">h</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="bp">∧</span><span class="w"> </span><span class="o">(</span><span class="n">B</span><span class="w"> </span><span class="bp">∨</span><span class="w"> </span><span class="n">C</span><span class="o">)))</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="bp">∧</span><span class="w"> </span><span class="n">B</span><span class="o">)</span><span class="w"> </span><span class="bp">∨</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="bp">∧</span><span class="w"> </span><span class="n">C</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="gr">sorry</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kn">theorem</span><span class="w"> </span><span class="n">distribution_one_rtl</span><span class="w"> </span><span class="o">(</span><span class="n">h</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="bp">∧</span><span class="w"> </span><span class="n">B</span><span class="o">)</span><span class="w"> </span><span class="bp">∨</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="bp">∧</span><span class="w"> </span><span class="n">C</span><span class="o">)</span><span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="bp">∧</span><span class="w"> </span><span class="o">(</span><span class="n">B</span><span class="w"> </span><span class="bp">∨</span><span class="w"> </span><span class="n">C</span><span class="o">))</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="gr">sorry</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kn">theorem</span><span class="w"> </span><span class="n">distribution_two_ltr</span><span class="w"> </span><span class="o">(</span><span class="n">h</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="bp">∨</span><span class="w"> </span><span class="o">(</span><span class="n">B</span><span class="w"> </span><span class="bp">∧</span><span class="w"> </span><span class="n">C</span><span class="o">)))</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="bp">∨</span><span class="w"> </span><span class="n">B</span><span class="o">)</span><span class="w"> </span><span class="bp">∧</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="bp">∨</span><span class="w"> </span><span class="n">C</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="gr">sorry</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kn">theorem</span><span class="w"> </span><span class="n">distribution_two_rtl</span><span class="w"> </span><span class="o">(</span><span class="n">h</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="bp">∨</span><span class="w"> </span><span class="n">B</span><span class="o">)</span><span class="w"> </span><span class="bp">∧</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="bp">∨</span><span class="w"> </span><span class="n">C</span><span class="o">)</span><span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="bp">∨</span><span class="w"> </span><span class="o">(</span><span class="n">B</span><span class="w"> </span><span class="bp">∧</span><span class="w"> </span><span class="n">C</span><span class="o">))</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="gr">sorry</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
-<hr>
+</div><p>Click this
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://live.lean-lang.org/#codez=ATBuEMCcEtwIwDYFNgAoCCwBCwDCwAuYABUgHsAHASgCgaQAXACyTMiQFtgATaAZwYw4AVwbQyAOwD6kpFISC0TQmkyByIjQ5AFER4qelRmAasVYDsMbcpggF5gcAJ70QwPm0hPnzVuy68BQqLi0rJSkAwISgbq2KbmMVbA1qpGmma61naOziBukB50jCxsnDz8gtAiYpJSDADuZPKKqMpEhuY4lnrJ7bGpvYm29k4uru6eRT6l/hVVwbUNYRFRbZg6Jv1ruknR6aidGYRZIy55HkA" class="link-dark" rel="external" target="_blank">link</a>
 
-
-</div>
-<div id="b" ><h6 class="">b)</h6><p>Which tactics should be used where I wrote <div class="customBlock text-center my-4"><code class="customCode">???</code></div>?</p>
-
-
-
-
-
-
-<hr>
-<a class="btn btn-sm btn-link link-dark link-underline-opacity-0" href="#63fa9c77f1d78a58e17e4b091d001e4f80ac0f6e1c784dbfb09a9d143ca9b9f2" type="button" data-bs-toggle="collapse" data-bs-target="#63fa9c77f1d78a58e17e4b091d001e4f80ac0f6e1c784dbfb09a9d143ca9b9f2" aria-expanded="false" aria-controls="63fa9c77f1d78a58e17e4b091d001e4f80ac0f6e1c784dbfb09a9d143ca9b9f2" >
-  $\mathsf{L}\exists\forall \mathsf{N}$  snippet (click to expand) <i class="bi bi-chevron-left toggle-icon"></i>
-</a>
-<div id="63fa9c77f1d78a58e17e4b091d001e4f80ac0f6e1c784dbfb09a9d143ca9b9f2" class="collapse bg-black rounded m-2 p-2 " style="position:relative;">
-  <button class="btn btn-primary shadow" style="position:absolute; top:10px;right:10px" onclick="copyContent('63fa9c77f1d78a58e17e4b091d001e4f80ac0f6e1c784dbfb09a9d143ca9b9f2-inner')"><i class="bi bi-clipboard"></i> Copy!</button>
-  <pre><code class="text-white" id="63fa9c77f1d78a58e17e4b091d001e4f80ac0f6e1c784dbfb09a9d143ca9b9f2-inner">
-example (p q r : Prop) : p ∧ (q ∨ r) → (p ∧ q) ∨ (p ∧ r) := by
-  ??? h
-  apply Or.elim (And.right h)
-  . intro hq
-    apply Or.inl
-    apply And.intro
-    . exact ??? h
-    . exact hq
-  . intro hr
-    apply Or.inr
-    apply ??? 
-    . exact And.left h
-    . exact hr
-</code></pre>
-</div>
-<hr>
-
+to open the browser playground.</p>
 
 </div>
-<div id="c" ><h6 class="">c)</h6><p>Give a Lean proof for <span class="excalifont">\vdash p\lor (p\land q)\to p</span> (<div class="customBlock text-center my-4"><code class="customCode">absorption_disj</code></div>).</p>
+<div id="negation-1" ><h6 class="">Negation:</h6>
+<img src="/img/lean_logo.png" alt="Lean_Logo" class="float-start" style="height:1em;width:auto;"/>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lean4" data-lang="lean4"><span class="line"><span class="cl"><span class="w">  </span><span class="kn">variable</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Prop</span><span class="o">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kn">theorem</span><span class="w"> </span><span class="n">double_negation_ltr</span><span class="w"> </span><span class="o">(</span><span class="n">h</span><span class="o">:</span><span class="w"> </span><span class="bp">¬¬</span><span class="w"> </span><span class="n">A</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="gr">sorry</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kn">theorem</span><span class="w"> </span><span class="n">double_negation_rtl</span><span class="w"> </span><span class="o">(</span><span class="n">h</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">A</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">¬¬</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="gr">sorry</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kn">theorem</span><span class="w"> </span><span class="n">de_morgan_one_ltr</span><span class="w"> </span><span class="o">(</span><span class="n">h</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">¬</span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="bp">∧</span><span class="w"> </span><span class="n">B</span><span class="o">))</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="o">(</span><span class="bp">¬</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="bp">∨</span><span class="w"> </span><span class="bp">¬</span><span class="w"> </span><span class="n">B</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="gr">sorry</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kn">theorem</span><span class="w"> </span><span class="n">de_morgan_one_rtl</span><span class="w"> </span><span class="o">(</span><span class="n">h</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="o">(</span><span class="bp">¬</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="bp">∨</span><span class="w"> </span><span class="bp">¬</span><span class="w"> </span><span class="n">B</span><span class="o">))</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">¬</span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="bp">∧</span><span class="w"> </span><span class="n">B</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="gr">sorry</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kn">theorem</span><span class="w"> </span><span class="n">de_morgan_two_ltr</span><span class="w"> </span><span class="o">(</span><span class="n">h</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">¬</span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="bp">∨</span><span class="w"> </span><span class="n">B</span><span class="o">))</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="o">(</span><span class="bp">¬</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="bp">∧</span><span class="w"> </span><span class="bp">¬</span><span class="w"> </span><span class="n">B</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="gr">sorry</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kn">theorem</span><span class="w"> </span><span class="n">de_morgan_two_rtl</span><span class="w"> </span><span class="o">(</span><span class="n">h</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="o">(</span><span class="bp">¬</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="bp">∧</span><span class="w"> </span><span class="bp">¬</span><span class="w"> </span><span class="n">B</span><span class="o">))</span><span class="w"> </span><span class="o">:</span><span class="w">  </span><span class="bp">¬</span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="bp">∨</span><span class="w"> </span><span class="n">B</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="gr">sorry</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Click this
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://live.lean-lang.org/#codez=ATBuEMCcEtwIwDYFNgAoCCwBCwBcwAFSAewAcBKAKEpABcALJYyJAW2ABNiBXRJAfQB2SAObha0YoP4JakNPXwAapcHTk8avAF5gcAJ40QwAM7NIhowyYt2XXsiGjxk6ZFoIFm9ZpVbcugZGIGaQFtR0jMxsnAKszGLSUgKy8qj0vhjAgORE2OQa&#43;KiqmIAURMCqWAWBhsam5paRNjEccQngScL87p7pmkVaZRX5mZi5lTp6Ncah4VZRtrH88ZCJ/LQA7sQycl7KWWWVBWjFOeV5E0G1Mw3A1tF2rSvta5tdHrvHWrlDR&#43;X75wFJsE6mF9EA" class="link-dark" rel="external" target="_blank">link</a>
+
+to open the browser playground.</p>
 
 </div>
-<div id="leanSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong>
-translating into natural deduction (you get the idea)</p>
-<table>
-  <thead>
-      <tr>
-          <th><span class="excalifont">p\land q</span></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><span class="excalifont">p</span></td>
-      </tr>
-      <tr>
-          <td><span class="excalifont">p\lor q</span></td>
-      </tr>
-  </tbody>
-</table>
-<br>
-<p><strong>b)</strong>
-finishing the proof</p>
+<div id="conditionals-1" ><h6 class="">Conditionals</h6>
+<img src="/img/lean_logo.png" alt="Lean_Logo" class="float-start" style="height:1em;width:auto;"/>
 
-
-
-
-
-
-<hr>
-<a class="btn btn-sm btn-link link-dark link-underline-opacity-0" href="#d07a1539b20fae2faa02fe01def7eaa62135eca71f9824362091b15e81413869" type="button" data-bs-toggle="collapse" data-bs-target="#d07a1539b20fae2faa02fe01def7eaa62135eca71f9824362091b15e81413869" aria-expanded="false" aria-controls="d07a1539b20fae2faa02fe01def7eaa62135eca71f9824362091b15e81413869" >
-  $\mathsf{L}\exists\forall \mathsf{N}$  snippet (click to expand) <i class="bi bi-chevron-left toggle-icon"></i>
-</a>
-<div id="d07a1539b20fae2faa02fe01def7eaa62135eca71f9824362091b15e81413869" class="collapse bg-black rounded m-2 p-2 " style="position:relative;">
-  <button class="btn btn-primary shadow" style="position:absolute; top:10px;right:10px" onclick="copyContent('d07a1539b20fae2faa02fe01def7eaa62135eca71f9824362091b15e81413869-inner')"><i class="bi bi-clipboard"></i> Copy!</button>
-  <pre><code class="text-white" id="d07a1539b20fae2faa02fe01def7eaa62135eca71f9824362091b15e81413869-inner">
-example (p q r : Prop) : p ∧ (q ∨ r) → (p ∧ q) ∨ (p ∧ r) := by
-intro h
-apply Or.elim (And.right h)
-. intro hq
-  apply Or.inl
-  apply And.intro
-  . exact And.left h
-  . exact hq
-. intro hr
-  apply Or.inr
-  apply And.intro
-  . exact And.left h
-  . exact hr
-</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lean4" data-lang="lean4"><span class="line"><span class="cl"><span class="w">  </span><span class="kn">variable</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Prop</span><span class="o">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kn">theorem</span><span class="w"> </span><span class="n">cond_def_ltr</span><span class="w"> </span><span class="o">(</span><span class="n">h</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">¬</span><span class="n">A</span><span class="w"> </span><span class="bp">∨</span><span class="w"> </span><span class="n">B</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="bp">→</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="gr">sorry</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kn">theorem</span><span class="w"> </span><span class="n">cond_def_rtl</span><span class="w"> </span><span class="o">(</span><span class="n">h</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="bp">→</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">¬</span><span class="n">A</span><span class="w"> </span><span class="bp">∨</span><span class="w"> </span><span class="n">B</span><span class="w">  </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="gr">sorry</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kn">theorem</span><span class="w"> </span><span class="n">consequentia_mirabilis</span><span class="w"> </span><span class="o">(</span><span class="n">h</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">¬</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="bp">→</span><span class="w"> </span><span class="n">A</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="gr">sorry</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kn">theorem</span><span class="w"> </span><span class="n">contrapos_ltr</span><span class="w"> </span><span class="o">(</span><span class="n">h</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="bp">→</span><span class="w"> </span><span class="n">B</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">¬</span><span class="n">B</span><span class="w"> </span><span class="bp">→</span><span class="w"> </span><span class="bp">¬</span><span class="n">A</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="gr">sorry</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kn">theorem</span><span class="w"> </span><span class="n">contrapos_rtl</span><span class="w"> </span><span class="o">(</span><span class="n">h</span><span class="o">:</span><span class="w"> </span><span class="bp">¬</span><span class="n">B</span><span class="w"> </span><span class="bp">→</span><span class="w"> </span><span class="bp">¬</span><span class="n">A</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="bp">→</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="gr">sorry</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
-<hr>
+</div><p>Click this
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://live.lean-lang.org/#codez=ATBuEMCcEtwIwDYFNgAoCCwBCwBcwAFSAewAcBKAKEpABcALJYyJAW2AGNiA7AEwH1eSAGb8EtSGnp5gAGsyAKImzkZmQEmE2PAF5gcAJ40QwAM7NIBwwyYt2XPoJH9ItBFNXANOFfnnAlObV0DIxMzCzpGZjZOHmMkAEcAVyRuWlh&#43;VmhIeGgEaGM3H2B1Yu9iwP1DEFNIc2oI62i7CXBSYmMxCULyzzLZHA1fXB1KkJq6y0ibGNTsto7nV1R6HwG5dDKSnGGgqtDavSA" class="link-dark" rel="external" target="_blank">link</a>
 
-<br>
-<p><strong>c)</strong>
-constructing a lean proof</p>
-
-
-
-
-
-
-<hr>
-<a class="btn btn-sm btn-link link-dark link-underline-opacity-0" href="#b263c6b4b535fa036132d2db74aa29821438e1247987e3ab29df37458ba94216" type="button" data-bs-toggle="collapse" data-bs-target="#b263c6b4b535fa036132d2db74aa29821438e1247987e3ab29df37458ba94216" aria-expanded="false" aria-controls="b263c6b4b535fa036132d2db74aa29821438e1247987e3ab29df37458ba94216" >
-  $\mathsf{L}\exists\forall \mathsf{N}$  snippet (click to expand) <i class="bi bi-chevron-left toggle-icon"></i>
-</a>
-<div id="b263c6b4b535fa036132d2db74aa29821438e1247987e3ab29df37458ba94216" class="collapse bg-black rounded m-2 p-2 " style="position:relative;">
-  <button class="btn btn-primary shadow" style="position:absolute; top:10px;right:10px" onclick="copyContent('b263c6b4b535fa036132d2db74aa29821438e1247987e3ab29df37458ba94216-inner')"><i class="bi bi-clipboard"></i> Copy!</button>
-  <pre><code class="text-white" id="b263c6b4b535fa036132d2db74aa29821438e1247987e3ab29df37458ba94216-inner">
-variable {p : Prop}
-variable {q : Prop}
-variable {r : Prop}
-
-theorem absorption_disj : (p ∨ (p ∧ q)) → p := by
-  intro hyp_disj
-  apply Or.elim hyp_disj
-  · intro hyp_p
-    exact hyp_p
-  · intro hyp_pnq
-    apply And.left hyp_pnq
-</code></pre>
-</div>
-<hr>
-
+to open the browser playground.</p>
 
 </div>
-<div id="research" ><h5 class="">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Research
+<div id="interpreting-lean" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Interpreting Lean
     </div>
-</h5><p>Are the basic tactics enough to prove classical laws, like <span class="excalifont">\vdash p\lor \neg
-p</span>?</p>
+</h5><p>Consider the following two Lean proofs. Translate them into natural deduction
+proofs:</p>
 
+<img src="/img/lean_logo.png" alt="Lean_Logo" class="float-start" style="height:1em;width:auto;"/>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lean4" data-lang="lean4"><span class="line"><span class="cl"><span class="w">  </span><span class="kn">variable</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Prop</span><span class="o">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kn">theorem</span><span class="w"> </span><span class="n">absorption_one_ltr</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="bp">∧</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="bp">∨</span><span class="w"> </span><span class="n">B</span><span class="o">))</span><span class="w"> </span><span class="bp">→</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">intro</span><span class="w"> </span><span class="n">h</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">exact</span><span class="w"> </span><span class="n">h</span><span class="bp">.</span><span class="n">left</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kn">theorem</span><span class="w"> </span><span class="n">absorption_one_rtl</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="bp">→</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="bp">∧</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="bp">∨</span><span class="w"> </span><span class="n">B</span><span class="o">))</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">intro</span><span class="w"> </span><span class="n">hA</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">apply</span><span class="w"> </span><span class="n">And</span><span class="bp">.</span><span class="n">intro</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="bp">·</span><span class="w"> </span><span class="n">exact</span><span class="w"> </span><span class="n">hA</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="bp">·</span><span class="w"> </span><span class="n">exact</span><span class="w"> </span><span class="n">Or</span><span class="bp">.</span><span class="n">inl</span><span class="w"> </span><span class="n">hA</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
-<div id="discussion" ><h5 class="">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Discussion
-    </div>
-</h5><p>Recent LLM-technologies, like <div class="customBlock text-center my-4"><code class="customCode">ChatGTP o1-preview</code></div>, have impressive
-reasoning capabilities. So, these LLMs can directly produce mathematical proofs.
-Does this show that neural theorem proving using tools like Lean is unnecessary?</p>
+</div><p>Click this
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://live.lean-lang.org/#codez=AQNwhgTglmBGA2BTYAKAgsAQsAXMAChAPYAOAlAFAXDAAuAFokRIgLbBwDOzJtURAOwD6gxEPi0IuVBkDkRDOCAKIixkywQEmEwDDgC8wWAE9qNYFAGSiwesZqIAHmADGtKwDokAM1pUaDJi3YuHj5BEQExCFp4aQxNdGB5eOVMVVw9QxtTc2IrNEywEhJ4Ay0BABNXMwtMgHbgeycXejyTYDqG52AAeQhKgWjmiiA" class="link-dark" rel="external" target="_blank">link</a>
+
+to open the browser playground.</p>
 
 
   </div>
