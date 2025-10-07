@@ -261,6 +261,10 @@ conditional is, of course, a logical truth: if it rains, then it rains. This
 should be easy to see work. But see for yourself:
 
 &nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
 1. $((RAIN {{< to >}} ((RAIN {{< to >}} RAIN) {{< to >}} RAIN)) {{< to >}} ((RAIN {{< to >}} (RAIN {{< to >}} RAIN)) {{< to >}} (RAIN {{< to >}} RAIN)))$ 
 
@@ -1181,7 +1185,7 @@ theorem double_negation_elim (A : Prop) : ¬¬A → A := by
   exact not_a
 ~~~
 Click this
-[link](https://live.lean-lang.org/#codez=C4Cwpg9gTmC2AEYAeB9AZgQwDYGcIoEcBXCAEywEsAjMYeACgEF4BheALngAUoIAHAJQcGzQORE8ADXxGQwEmErDgF54VAJ4AoePAoA7YL3gYUGHaRQ6wAc2ObDfPllXwAYthxgAdGEqxbGe47Sph5QFJYgdEYmZhbWGLbIGADGdIzBWGBokcam5lbGQA) to run this code in your browser. 
+[link](https://live.lean-lang.org/#codez=C4Cwpg9gTmC2AEATCBXARgGzAfQHZgHMBDYASwl2zA1IQAoBBeALngAUoIAHAShfgA1ApoCTCeE2YBeeGgCeAKHjxuYXPADCGIgGdtpAMZEMi+KVzBO8XBGB4b2IibnqKFoogNkKV+46VEuLgxZH1trWz94MAAPIn1gUIcgA) to run this code in your browser. 
 
 What's going on here is that by the line `<span class="dark-blue">open</span>
 Classical`, we make the new tactic `byContradiction` available, which allows us
