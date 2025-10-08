@@ -163,11 +163,11 @@
             <li>
               <a class="dropdown-item 
                 fw-bold active
-                link-opacity-50
+                
                 "
-                href="javascript:;"
+                href="/textbook/fol/"
               >8. 
-                <i class="bi bi-lock-fill"></i>
+                <i class="bi bi-unlock-fill"></i>
                  FOL
               </a>
             </li>
@@ -670,35 +670,135 @@
 </ul>
 <div class="container chapter">
   <p>By: <em>Johannes Korbmacher</em></p>
-  <div class="m-4"><h1 id="fol">FOL<button class="btn btn-back-to-top">
+  <div class="m-4"><h1 id="first-order-logic">First-Order Logic<button class="btn btn-back-to-top">
     
   </button>
 </h1>
 <hr>
 
-<p>In this chapter, you&rsquo;ll learn about <strong>first order logic (FOL)</strong>, which is the
-benchmark for logical systems. FOL is one of the most expressive logic systems
-in widespread use, and it finds applications from mathematics, the sciences, to
-AI research.</p>
-<p>In AI research, the main application of FOL is as a benchmark background system,
-in which &ldquo;everything&rsquo;s possible&rdquo;. The impressive expressive strength of FOL
-allows us to formalize almost any problem we might come across, which makes FOL
-a great tool for <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Knowledge_engineering"
-  target="_blank">knowledge
-engineering</a>. At the same
-time, FOL has important limitations that limits its direct use for AI applications.</p>
-<p>In this chapter, you&rsquo;ll learn about the:</p>
+<p>
+<img src="https://logicalmethods.ai/textbook/fol/img/ai_talking_fol.png" class="rounded  float-end inert-img img-fluid m-2"  width="200px"  alt="" >
+
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/First-order_logic"
+  target="_blank">First-order logic (FOL)</a> is
+one of the most powerful logical systems in common use today. Part of its
+strength derives from its <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Expressive_power_%28computer_science%29"
+  target="_blank">expressive
+power</a>: it&rsquo;s
+ability to express complex ideas in syntactically straightforward and logically
+tractable ways. In fact, FOL-style syntax is the effective paradigm in which
+most of modern mathematics, physics, economics, and other formal theories are
+formulated.</p>
+<p>This makes reasoning in FOL a natural target for AI research into automated
+reasoning techniques, proof verification, etc. And, in fact, we&rsquo;ll be looking at
+these topics in the <em>next</em> chapter. In this chapter, we&rsquo;ll explore an even
+deeper connection between FOL and AI, which has to do with the way we formalize
+and store knowledge. We&rsquo;ve already explored the idea of <abbr title="knowledge bases"><a  class="link-underline-opacity-0 link-body-emphasis"> KBs</a></abbr>, which are sets of formulas that we
+use to represent knowledge about the world. When we&rsquo;re using propositional
+logic, these representations are typically rather simplistic, which has to do
+with the lack of expressive power in propositional logic.</p>
+<p>For example, propositional logic doesn&rsquo;t have the expressive power to properly
+capture the content of &ldquo;all humans are mortal&rdquo; from our paradigmatic deductive
+inference:</p>
+<div class="text-center my-4 excalifont">All humans are mortal, Socrates is human 
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+ Socrates is
+mortal</div>
+<p>What we <em>can</em> write in propositional logic is something like</p>
+<div class="text-center my-4 excalifont">HUMAN 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+MORTAL</div> 
+<p>which expresses a rule-like connection between being human and being mortal.
+But what&rsquo;s lacking here is the idea that this is a connection that holds for
+<em>all</em> humans, and so Socrates in particular. FOL has syntactic devices to
+express this kind of generality, the so-called &ldquo;quantifiers&rdquo;,
+
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+  (read: &ldquo;for all&rdquo;) and
+
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+  (read &ldquo;exists&rdquo;).
+The standard way to represent the claim that all humans are mortal in FOL is
+something like the following formula:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x(Human x 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+Mortal x)</div>
+<p>This formula says that any arbitrary object, <span class="excalifont">x</span>, if it has the property of
+being human, then it has the property of being mortal. This general formula we
+can particularize to Socrates by taking it&rsquo;s instance:</p>
+<div class="text-center my-4 excalifont">Human(Socrates) 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+Mortal(Socrates)</div>
+<p>Then, adding the additional premise that <span class="excalifont">Mortal(Socrates)</span>, we can perform our
+desired inference using MP. Crucially, however, we can do this for <em>anything</em>
+whatsoever:</p>
 <ul>
-<li>
-<a class="link-dark" href="#syntax">syntax</a> and</li>
-<li>
-<a class="link-dark" href="#semantics">semantics</a></li>
+<li><span class="excalifont">All humans are mortal, Ada Lovelace is human 
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+Ada
+Lovelace is mortal</span></li>
+<li><span class="excalifont">All humans are mortal, Alan Turing is human 
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+Alan Turing is mortal</span></li>
+<li>…</li>
 </ul>
-<p>for FOL. After this, we&rsquo;ll briefly turn to the 
-<a class="link-dark" href="#limitations">limitations</a> of
-FOL. In the next chapter, we&rsquo;ll talk about the proof theory and inference
-strategies for FOL.</p>
+<p>When analyzed in FOL these inferences use the same representation of the fact
+that all humans are mortal, viz.: <span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x(Human x 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+Mortal x)</span>.</p>
+<p>
+<img src="https://logicalmethods.ai/textbook/fol/img/db_wisdom.png" class="rounded  float-start inert-img img-fluid m-2"  width="200px"  alt="" >
+
+The increase in expressive power from propositional logic to FOL is immense. In
+fact, FOL can express almost <em>any</em> kind of fact about the world we&rsquo;d want to
+include in our KB in a straight-forward and logically tractable fashion.
+Historically, the need for the expressive power was first noticed in
+mathematics, where it became apparent in the 19th century that the rigorous,
+axiomatic treatment of basic concepts like
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Continuous_function"
+  target="_blank">continuity</a> required
+quantifiers. But today, we make use of this expressive powers in virtually all
+contexts where we have to store information in databases. As it turns out, FOL
+is the logical foundation for <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Database_theory"
+  target="_blank">database theory</a>.</p>
+<p>That is, from a logical perspective, we can look at <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Database"
+  target="_blank">databases
+(DBs)</a> as a special form of FOL models,
+where <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Query_language"
+  target="_blank">querying</a> a
+database—automatically retrieving information from it—ultimately boils down to
+interpreting FOL formulas in DBs. This is, effectively, the content <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Codd%27s_theorem"
+  target="_blank">Codd&rsquo;s
+theorem</a>, which makes FOL one of
+the most important logical tools for AI: it&rsquo;s the way we interact with KBs and,
+more generally, DBs. And this is not only an academic curiosity. As you&rsquo;ll see
+in this chapter, FOL is the ultimate logical basis for some of the most
+important and widely used query languages, such as <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/SQL"
+  target="_blank">SQL</a>.</p>
+<p>At the end of this chapter, you will be able to:</p>
+<ul>
+<li>define FOL languages and parse FOL formulas</li>
+<li>explain the concept of an FOL model</li>
+<li>determine the objects satisfying a formula in an FOL model</li>
+<li>represent databases to FOL models</li>
+<li>query databases using FOL formulas</li>
+</ul>
 <h2 id="syntax">Syntax<button class="btn btn-back-to-top">
     
     <i class="bi bi-chevron-double-up"></i>
@@ -707,159 +807,475 @@ strategies for FOL.</p>
 </h2>
 <hr>
 
-<p>You&rsquo;ve already seen the syntax of FOL as an example in
+<p>The language of FOL is a formal language. So, we need to provide an alphabet and
+a grammar. As a motivating example, let&rsquo;s take our representation of &ldquo;all humans
+are mortal&rdquo;:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
 
+x(Human x 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+Mortal x)</div>
+<p>There are a few new kinds of symbols in this formula. The first is the
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Quantifier_%28logic%29"
+  target="_blank"><strong>quantifier</strong></a>
+<span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
 
+</span>, which we read simply as &ldquo;all&rdquo;. This quantifier
+is followed by the
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Variable_%28mathematics%29"
+  target="_blank"><strong>variable</strong></a> <span class="excalifont">x</span>, to
+indicate that we&rsquo;re saying something about all things <span class="excalifont">x</span>. In general, variables
+stand for unspecified objects. They are sometimes likened to
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Pronoun"
+  target="_blank">pronouns</a>, like &ldquo;he&rdquo;, &ldquo;she&rdquo;, &ldquo;it&rdquo;, or
+the singular &ldquo;they&rdquo;, which stand for concrete but unspecified (by the term)
+objects. What follows is a formula involving that variable <span class="excalifont">x</span>, which here takes
+the form: <div class="text-center my-4 excalifont">(Human x 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+Mortal x)</div> What this formula says is that if <span class="excalifont">x</span>
+is human, then <span class="excalifont">x</span> is mortal. The use of the conditional 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ should be
+clear, but what&rsquo;s crucial is the use of the two
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Predicate_%28logic%29"
+  target="_blank"><strong>predicates</strong></a> <span class="excalifont">Human x</span> and
+<span class="excalifont">Mortal x</span>. These are formal expressions that express properties: <span class="excalifont">Human x</span>
+says that the object <span class="excalifont">x</span> is human, and likewise <span class="excalifont">Mortal x</span> says that <span class="excalifont">x</span> is
+mortal. More generally, predicates can also express
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Relation_%28mathematics%29"
+  target="_blank">relations</a>, such as the
+relation of being bigger than. To say that <span class="excalifont">x</span> is bigger than <span class="excalifont">y</span>, for example,
+we might use the predicate <span class="excalifont">BiggerThan xy</span> or, in the case of numbers,
+sometimes expressions like <span class="excalifont">x ≥ y</span> (which uses <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Infix_notation"
+  target="_blank">infix
+notation</a>, rather than the <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Polish_notation"
+  target="_blank">prefix
+notation</a> of <span class="excalifont">BiggerThan xy</span>.</p>
+<p>There are a few other kinds of symbols worth discussing. If we want to say that
+Socrates is human, we use the formula <div class="text-center my-4 excalifont">Human(Socrates)</div> Here, <span class="excalifont">Socrates</span> is a
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Constant_%28mathematics%29"
+  target="_blank"><strong>constant</strong></a>, which is a
+term that stands for one concrete object, like a proper name. If we have an
+object (or a sequence of objects), and we want to talk about an object that&rsquo;s
+uniquely determined for this object (or group of objects), we use <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Function_symbol"
+  target="_blank"><strong>function
+symbols</strong></a>. For example, if we want
+to say that <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Xanthippe"
+  target="_blank">Socrates&rsquo; wife</a> is a
+midwife, we can use the formula: <div class="text-center my-4 excalifont">Midwife(wifeOf(Socrates))</div></p>
+<p>Having multiple objects be related to something is common in mathematics, where
+we want to talk, for example, about the
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Product_%28mathematics%29"
+  target="_blank">product</a> of two numbers,
+which we can do using infix notation and write <span class="excalifont">x × y</span> or prefix notation like
+<span class="excalifont">×(x, y)</span>.</p>
+<p>In FoL, there&rsquo;s also a special predicate <span class="excalifont">=</span> that allows us to say that two things
+are identical, such as: <div class="text-center my-4 excalifont">wifeOf(Socrates) = Xanthippe</div> Typically, this is used
+in infix notation, but we can also use prefix, as in: <div class="text-center my-4 excalifont">×(2,2) = 4</div></p>
+<p>We haven&rsquo;t mentioned yet the other quantifier <span class="excalifont">
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
 
-<a href="https://logicalmethods.ai/textbook/formal-languages//#examples"
-   
-   
-   
-   
-   
-   > 
-  Chapter 3. Formal languages </a>
+</span>, which we read as
+&ldquo;exists&rdquo; or &ldquo;there is&rdquo;. So, to say that for every number there&rsquo;s a bigger
+number, we might use the formula: <div class="text-center my-4 excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
 
-.</p>
-<p>As quick recap, the <strong>alphabet</strong> for FOL contains:</p>
-<p><strong>Non-logical symbols</strong></p>
-<ul>
-<li>
-<p><em>Individual constants</em>: Typically <span class="excalifont">a,b,c,\dots</span> but in KR also mnemonic, like
-<span class="excalifont">Alan</span> or <span class="excalifont">Ada</span>. These stand for proper names, like “Alan” or “Ada”.</p>
-</li>
-<li>
-<p><em>Function symbols</em>: Typically <span class="excalifont">f,g,h,\dots</span>, but in KR also mnemonic, like
-<span class="excalifont">MotherOf</span> or <span class="excalifont">BirthplaceOf</span>. These stand for functional/one-to-one relations between
-objects: everybody has a (biological) mother, everybody has a birthplace, &hellip;</p>
-</li>
-<li>
-<p><em>Predicates</em>: Typically, <span class="excalifont">P,Q,R,\dots</span> but also mnemonic, like <span class="excalifont">Blue</span> or
-<span class="excalifont">BiggerThan</span>. These stand for properties and relations, like something <em>being
-blue</em> or one thing <em>being bigger than</em> another.</p>
-</li>
-</ul>
-<p>Both function symbols and predicates have a so-called <em>arity</em>, which says how
-many arguments they take. For example, <span class="excalifont">BiggerThan</span> has arity 2, since two
-things stand in the relation of being bigger than: one is bigger than the other.</p>
-<p><strong>Logical symbols</strong></p>
-<ul>
-<li>
-<p><em>Variables</em>: Typically <span class="excalifont">x,y,z,\dots</span> but some authors use
-<span class="excalifont">\alpha,\beta,\delta,\dots</span> and other symbols. Variables stand for arbitrary but
-concrete objects and they play a fundamental role in quantification, which we&rsquo;ll
-discuss below.</p>
-</li>
-<li>
-<p><em>Sentential connectives</em>: We have the usual connectives
-<span class="excalifont">\neg,\land,\lor,\to,\leftrightarrow</span>. These work just like before.</p>
-</li>
-<li>
-<p><em>Quantifiers</em>: The universal quantifier <span class="excalifont">\forall</span>, which stands for the
-phrase &ldquo;for all&rdquo;, and the existential quantifier <span class="excalifont">\exists</span>, which stands for
-&ldquo;there is&rdquo;.</p>
-</li>
-</ul>
-<p><strong>Auxiliaries</strong></p>
-<ul>
-<li>We have the usual auxiliaries parentheses <span class="excalifont">(,)</span> and the comma <span class="excalifont">,</span>.</li>
-</ul>
-<p>These symbols construct formulas according to the following <strong>grammar</strong>:</p>
-<div class="text-center my-4 excalifont">\langle const\rangle ::= a \mid b\mid \dots </div>
-<div class="text-center my-4 excalifont">\langle var\rangle ::= x \mid y\mid \dots </div>
-<div class="text-center my-4 excalifont">\langle unop\rangle ::= \neg</div>
-<div class="text-center my-4 excalifont">\langle binop\rangle ::= \land\mid\lor\mid\to\mid\leftrightarrow</div>
-<div class="text-center my-4 excalifont">\langle quant\rangle ::= \forall\mid\exists</div>
-<div class="text-center my-4 excalifont">\langle fun^n\rangle ::= f^n\mid g^n\mid \dots </div>
-<div class="text-center my-4 excalifont">\langle term\rangle::= \langle const\rangle\mid\langle variable\rangle\mid
-\langle fun^n\rangle(\overbrace{\langle term\rangle,\dots,\langle term\rangle}^{n\text{ times}})</div>
-<div class="text-center my-4 excalifont">\langle pred^n\rangle ::= P^n\mid Q^n\mid \dots </div>
-<div class="text-center my-4 excalifont">\langle atom\rangle::= \langle pred^n\rangle(\underbrace{\langle term\rangle,\dots\langle term\rangle}_{n\text{ times}})</div>
-<div class="text-center my-4 excalifont">\langle fml\rangle::=\langle atom\rangle\mid\langle unop\rangle\langle fml\rangle\mid
-(\langle fml\rangle\langle binop\rangle \langle fml\rangle)\mid \langle quant\rangle \langle
-var\rangle\langle fml\rangle</div>
-<p>Let&rsquo;s talk for a second about what this rather complex syntax means, informally
-and how it can be used to express knowledge claims for the purpose of KR.</p>
-<p>The traditional approach to natural language grammar highlights the
-<strong>term-predicate</strong> structure of simple sentences. A sentence like:</p>
-<ul>
-<li>The robot is smart.</li>
-</ul>
-<p>says of a thing, <em>the robot</em>, that it has a property, <em>being smart</em>. The sentence
-talks about the robot via the <em>singular term</em> &ldquo;the robot&rsquo;&rsquo; and it talks about
-being smart using the <em>predicate</em> &ldquo;&hellip; is smart.''</p>
-<p><strong>Atomic formulas</strong>, <span class="excalifont">\langle atom\rangle</span> in the grammar, model the term-predicate
-structure of simple sentences. Their main purpose in AI is to formalize simple
-pieces knowledge, like:</p>
-<ul>
-<li><span class="excalifont">\mathsf{LLM}(ChatGPT)</span> to say that ChatGPT is a large language model.</li>
-<li><span class="excalifont">\mathsf{Sister}(Ada,Clara)</span> to say that Ada and Clara are sisters.</li>
-<li><span class="excalifont">\mathsf{Between}(Munich,Hamburg,Rome)</span> to say that Munich is between Hamburg
-and Rome.</li>
-</ul>
-<p>Using these formulas, we can directly input most basic facts into a given
-knowledge base.</p>
-<p>The expressions we use to refer to objects are called <strong>terms</strong>, <span class="excalifont">\langle
-term\rangle</span> in the formal grammar. When doing knowledge representation with
-FOL, we distinguish three different kinds of terms:</p>
-<ul>
-<li><em>proper names</em>, like &ldquo;Ada&rdquo; or &ldquo;Alan&rdquo;</li>
-<li><em>pronouns</em>, like &ldquo;he,&rdquo; &ldquo;she,&rdquo; and &ldquo;it&rdquo;</li>
-<li><em>functional terms</em>, like &ldquo;the birthplace of Ada Lovelace&rdquo;</li>
-</ul>
-<p>To each of these kinds of terms corresponds a syntactic category:</p>
-<ul>
-<li>The <strong>constants</strong>, <span class="excalifont">\langle const\rangle</span>, formalize proper names.</li>
-<li>The <strong>variables</strong>, <span class="excalifont">\langle var\rangle</span>, formalize pronouns.</li>
-<li>The <strong>function expressions</strong>, <span class="excalifont">\langle fun^n\rangle(\langle term\rangle,\dots,\langle
-term\rangle)</span>, formalize functional terms.</li>
-</ul>
-<p>Using these kinds of expressions, we can talk about most things we might want to
-put information about in our knowledge base:</p>
-<ul>
-<li><span class="excalifont">\mathsf{AI}(Hal_{9000})</span> says that Hal 9000 is an AI-system.</li>
-<li><span class="excalifont">\mathsf{Sister}(Ada,x)</span> says that <em>they</em> (person <span class="excalifont">x</span>) is Ada&rsquo;s sister.</li>
-<li><span class="excalifont">\mathsf{Lord}(\mathsf{FatherOf}(Ada))</span> says that the father of Ada Lovelace
-was a Lord (<i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Lord_Byron"
-  target="_blank">Byron</a>).</li>
-</ul>
-<p>The crucial addition in FOL, however, are the <strong>quantifiers</strong>, they are what
-gives the logic its expressive strength.</p>
-<p>In FOL we have the quantifiers <span class="excalifont">\forall</span> for &ldquo;for all&rdquo; and <span class="excalifont">\exists</span> for &ldquo;there
-is&rsquo;&rsquo; (and synonymous expressions like &ldquo;every,&rsquo;&rsquo; &ldquo;some,&rsquo;&rsquo; &hellip;).</p>
-<p>The quantifiers allow us to formalize <strong>general knowledge claims</strong>, such as:</p>
-<ul>
-<li>
-<p><span class="excalifont">\exists x(\mathsf{KB}(x)\land \mathsf{Trivial}(x))</span> to say that there is a
-trivial knowledge base.</p>
-</li>
-<li>
-<p><span class="excalifont">\forall x(\mathsf{LLM}(x)\to \mathsf{StatsBased}(x))</span> to say that (all) LLMs
-are statistic based.</p>
-</li>
-</ul>
-<p>The variables play a crucial role in making this work. Here&rsquo;s how. Take the
-claim that there&rsquo;s a trivial knowledge base. What underlies our formalization</p>
-<div class="text-center my-4 excalifont">\exists x(\mathsf{KB}(x)\land \mathsf{Trivial}(x))</div> is the reading:
-<ul>
-<li>There is a thing and it is a knowledge base and it is trivial.</li>
-</ul>
-<p>Here &ldquo;it&rdquo; is an indefinite term that stands for an arbitrary but fixed object
-which we say exists and is a trivial knowledge base. This indefinite term is,
-logically speaking, a variable, which is why in our formalization &ldquo;it&rdquo; becomes
-<span class="excalifont">x</span>.</p>
-<p>In many contexts, we add a <strong>distinguished identity predicate</strong> to our language
-<span class="excalifont">=</span>. Syntactically, <span class="excalifont">=</span> works just like any other binary predicate: flanked by
-two terms it forms a formula <div class="text-center my-4 excalifont">t_1=t_2</div> to say that the terms <span class="excalifont">t_1,t_2</span> denote
-the same object. When we have <span class="excalifont">=</span>, we often use <div class="text-center my-4 excalifont">t_1\neq t_2</div> to abbreviate
-the formula <div class="text-center my-4 excalifont">\neg t_1=t_2.</div></p>
-<p>Parsing in FOL works just like in any other language. But note that the parsing
-tree for a formula also parses the terms involved. Here&rsquo;s an example:</p>
+x 
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
 
-<img src="https://logicalmethods.ai/textbook/fol/img/parsing-tree.png" class="img-thumbnail"    alt="" >
+y
+BiggerThan yx</div></p>
+<p>The ability to have these kind of <strong>nested</strong> quantifiers is one of the strengths
+of FOL, and the need for them in mathematics—for example in the definition of
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Continuous_function"
+  target="_blank">continuity</a>—was one of the
+reasons FOL was discovered.</p>
+<p>Oh, and the usual propositional connectives 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+, 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+,
 
-<h2 id="semantics">Semantics<button class="btn btn-back-to-top">
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+, and 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ are also part of FOL, of course.</p>
+<p>So, in general, the alphabet of FOL looks something like this:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol/img/alphabet.png" class="mx-auto rounded d-block inert-img img-fluid"  width="900px"  alt="" >
+
+<p>Here, we use abstract placeholders or
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Metavariable"
+  target="_blank">metavariables</a> to talk about
+variables, constants, function symbols, and predicates. In concrete knowledge
+engineering situations, however, these expressions will typically be mnemonic,
+like <span class="excalifont">fatherOf x</span>, <span class="excalifont">distanceBetween xy</span>, <span class="excalifont">Human</span>, <span class="excalifont">BiggerThan</span>, etc.</p>
+<p>For the function symbols and predicates, especially when using metavariables, we
+need to indicate their <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Arity"
+  target="_blank"><strong>arity</strong></a>, that is,
+how many terms can &ldquo;legally&rdquo; follow them. For example, <span class="excalifont">fatherOf</span> function
+symbol is <em>unary</em>, since we can write <span class="excalifont">fatherOf Socrates</span> but <span class="excalifont">fatherOf x y</span>
+makes no sense if <span class="excalifont">x</span> and <span class="excalifont">y</span> aren&rsquo;t related. The function <span class="excalifont">distanceBetween xy</span>,
+instead, is <em>binary</em> since distance is defined between two points. Etc.
+Similarly, for predicates, we can write <span class="excalifont">Human x</span>,  but not <span class="excalifont">Human xy</span>.</p>
+<p>We sometimes indicate a terms arity using superscripts, like <span class="excalifont">fatherOf¹</span>,
+<span class="excalifont">distanceBetween²</span>, <span class="excalifont">Human¹</span>, <span class="excalifont">BiggerThan²</span>, etc. But often, the arity of a term
+is clear from the context, and then we leave it out.</p>
+<p>Defining a grammar which generates all the formulas we&rsquo;ve mentioned so-far in a
+precise, recursive fashion is more difficult than, for example, in the case of
+propositional logic.</p>
+<p>First, we need to define the notion of a
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Term_%28logic%29"
+  target="_blank"><strong>term</strong></a>, which is a possibly
+complex expression for an object. Examples of terms are the variable <span class="excalifont">x</span>, the
+constant <span class="excalifont">Socrates</span>, but also complex expressions like</p>
+<div class="text-center my-4 excalifont">fatherOf motherOf Xanthippe</div>
+<p>The following <abbr title="Backus-Naur-Form"><a  class="link-underline-opacity-0 link-body-emphasis"> BNF</a></abbr> covers all
+these cases:</p>
+<div class="text-center my-4 excalifont">t ::= a ∣ x ∣ fⁿ t₁…tₙ</div>
+<p>That is, a term is a constant, a variable, or an <span class="excalifont">n</span>-ary function symbol
+followed by <span class="excalifont">n</span> terms. Even though our syntax doesn&rsquo;t officially require
+parentheses in function symbol applications, we sometimes include them to
+increase legibility. For example, instead of</p>
+<div class="text-center my-4 excalifont">distanceBetween birthplaceOf Socrates capitalOf x</div>
+<p>we also write something like</p>
+<div class="text-center my-4 excalifont">distanceBetween(birthplaceOf (Socrates), capitalOf(x))</div>
+<p>This grammar gives us the following rewrite rules:</p>
+<ul>
+<li><span class="excalifont">r₀: t 
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+ c</span></li>
+<li><span class="excalifont">r₁: t 
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+ x</span></li>
+<li><span class="excalifont">r₂: t 
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+ ft₁…tₙ</span></li>
+</ul>
+<p>Let&rsquo;s apply these rules to generate the parsing tree for our term
+These rules generate the following parsing tree for the term:</p>
+<div class="text-center my-4 excalifont">distanceBetween(birthplaceOf (Socrates), capitalOf(x))</div>
+<p>We get:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol/img/term-parsing.png" class="mx-auto rounded d-block inert-img img-fluid"  width="400px"  alt="" >
+
+<p>There exists a special class of terms that will be important later, which are
+called <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Ground_expression"
+  target="_blank"><strong>ground terms</strong></a>.
+These are basically terms without variables, such as:</p>
+<div class="text-center my-4 excalifont">distanceBetween(birthplaceOf (Socrates), capitalOf(Greece))</div>
+<p>Their grammar, however, is easy: we just drop variables from the general
+grammar and obtain the BNF:</p>
+<div class="text-center my-4 excalifont">t ::= a ∣ fⁿ t₁…tₙ</div>
+<p>with corresponding re-write rules <span class="excalifont">r₀</span> and <span class="excalifont">r₂</span>.</p>
+<p>This gives us the grammar for terms, which can fill the argument places of
+function symbols and predicates. We use the notion of a term in the
+specification of the grammar for FOL formulas. In BNF, the grammar is:</p>
+<div class="text-center my-4 excalifont"> A::= Pⁿt₁…tₙ ∣ t₁ = t₂ ∣  
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A ∣ (A
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+A) ∣ (A
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+A)∣ (A
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+A) ∣ 
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+xA ∣ 
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+xA</div>
+<p>Formulas of the form <span class="excalifont">Pⁿt₁…tₙ</span> and <span class="excalifont">t₁ = t₂</span> are also called <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Atomic_formula"
+  target="_blank">atomic
+formulas</a>, which express basic
+facts like <span class="excalifont">Human(Socrates)</span>, <span class="excalifont">Mortal(fatherOf(x))</span>. The grammar, then,
+generates the FOL formulas much like in propositional logic, just with more
+operations.</p>
+<p>We obtain the following re-write rules:</p>
+<ul>
+<li><span class="excalifont">r₃: A 
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+ Pⁿt₁…tₙ</span></li>
+<li><span class="excalifont">r₄: A 
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+ t₁ = t₂</span></li>
+<li><span class="excalifont">r₅: A 
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A</span></li>
+<li><span class="excalifont">r₆: A 
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+ (A
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+A)</span></li>
+<li><span class="excalifont">r₇: A 
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+ (A
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+A)</span></li>
+<li><span class="excalifont">r₈: A 
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+ (A
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+A)</span></li>
+<li><span class="excalifont">r₉: A 
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+x A</span></li>
+<li><span class="excalifont">r₁₀: A 
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+x A</span></li>
+</ul>
+<p>We can combine these rules with the term rewriting rules to parse an entire
+formula and its terms at the same time. For example, for the formula,</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+ x (Human x 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+y (Human y 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ motherOf x = y))</div>
+<p>we get:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol/img/formula-parsing.png" class="mx-auto rounded d-block inert-img img-fluid"  width="400px"  alt="" >
+
+<p>As you can see, the grammar of FOL formulas can get rather complex.</p>
+<p>Before we move on to working with FOL formulas, we need to discuss one important
+syntactic issue. To illustrate the idea, consider the following formula</p>
+<div class="text-center my-4 excalifont">Human x</div>
+<p>So far, we&rsquo;ve paraphrased it as saying that <span class="excalifont">x</span> is human. But what is <span class="excalifont">x</span>? Well,
+we don&rsquo;t know. If there would be a quantifier at the beginning of the formula,
+as in</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x Human x</div>
+<p>We&rsquo;d be saying that there is a human or, a bit closer to the surface syntax of
+the formula, there exists an object such that it is human. But without the
+quantifier expression to &ldquo;act&rdquo; on the variable, the <span class="excalifont">x</span> is a term that stands
+for a some unspecified object.</p>
+<p>A formula like <span class="excalifont">Human(x)</span>, where some variable isn&rsquo;t &ldquo;captured&rdquo; by any
+quantifier— where some variable is
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Free_variables_and_bound_variables"
+  target="_blank"><strong>free</strong></a>—is
+called an <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Open_formula"
+  target="_blank"><strong>open formula</strong></a>. In
+contrast, a formula like <span class="excalifont">
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x Human x</span>, where all variables are
+captured by some quantifier expression is called a <strong>closed formula</strong> or
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Sentence_%28mathematical_logic%29"
+  target="_blank"><strong>sentence</strong></a>.
+Open formulas play a crucial role in database theory, so let&rsquo;s look at them a
+bit more closely.</p>
+<p>It turns out that saying <em>precisely</em> and rigorously under which condition a
+variable is free and under which condition it is bound (in such a way that a
+computer could answer the question by parsing) is a rather subtle logical issue.
+We won&rsquo;t go into the full details, but it&rsquo;s important to be aware of the
+stumbling blocks.</p>
+<p>At first glance, the way variable binding works might seem rather obvious. Take
+our formula from above, for example:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+ x (Human x 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+y (Human y 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ motherOf x = y))</div>
+<p>Here it seems rather clear which variable quantifier pairs belong together. We
+can illustrate this, for example, in the following &ldquo;wire diagram&rdquo;:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol/img/binding.png" class="mx-auto rounded d-block inert-img img-fluid"  width="400px"  alt="" >
+
+<p>The idea is, roughly, that a variable is bound by a quantifier just in case the
+variable &ldquo;comes after&rdquo; the quantifier in the formula and the variable is the
+same as the one that directly follows the quantifier—we say that its the
+variable that the quantifier <em>ranges</em> over.</p>
+<p>
+<img src="https://logicalmethods.ai/textbook/fol/img/scope.png" class="rounded  float-start inert-img img-fluid m-2"  width="150px"  alt="" >
+
+In logical terminology, the idea that a variable &ldquo;comes after&rdquo; a quantifier in a
+formula is expressed by saying that the variable is in the quantifier&rsquo;s
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Scope_%28logic%29"
+  target="_blank"><strong>scope</strong></a>. More generally, the
+scope of a quantifier is the formula that directly follows it in the recursive
+parsing of the expression. That is, in our example, the scope of the
+<span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x</span> is the open (!) formula:</p>
+<div class="text-center my-4 excalifont">Human x 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+y (Human y 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ motherOf x = y)</div>
+<p>We might be tempted to think that that&rsquo;s all there is to say about binding: a
+variable is bound by a quantifier just in case the variable is the one the
+quantifier ranges over and the variable is in the quantifier&rsquo;s scope. But look
+at the following FOL formula:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x (Human x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+x (Human x 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+
+Mortal x))</div>
+<p>This is a perfectly fine FOL formula. It parses and has the content that there
+exists a human such that all humans are mortal. <em>But</em> we&rsquo;ve used the same
+variable twice in nested quantifications. While this is not illegal, it creates
+issues when we think about binding.</p>
+<p>The following diagram indicates the correct bindings in the formula:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol/img/capture.png" class="mx-auto rounded d-block inert-img img-fluid"  width="400px"  alt="" >
+
+<p>That is, even though the red <span class="excalifont"><span class="dark-red">x</span></span>&rsquo;s are in the
+scope of the existential <span class="excalifont">
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x</span>, they are not bound by it. They are
+bound by the later universal <span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x</span>, which is &ldquo;closer&rdquo; to them and
+binds them &ldquo;first&rdquo;. It&rsquo;s possible to formulate a mathematically precise
+condition to exclude such cases, but for us the bottom line is that we&rsquo;ve got to
+be careful: variables bind to the <em>first</em> quantifier that scopes them.</p>
+<p>Open formulas are at the center of database theory. We can think of them as
+expressing properties of objects. They can be simple, like <span class="excalifont">Human(x)</span>, which
+expresses the property of being human. Or they can be complex, like</p>
+<div class="text-center my-4 excalifont">Human x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+y (Human y 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ motherOf x = y)</div>
+which expresses the property of being a human that has a human mother.
+<p>We can also &ldquo;apply&rdquo; open formulas to terms, as it were. For example, to apply
+the open formula</p>
+<div class="text-center my-4 excalifont">Human x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+y (Human y 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ motherOf x = y)</div>
+<p>to the term <span class="excalifont">Socrates</span>, for example, we simply replace the unbound <span class="excalifont">x</span>&rsquo;s with
+<span class="excalifont">Socrates</span> to obtain</p>
+<div class="text-center my-4 excalifont">Human Socrates 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+y (Human y 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ motherOf Socrates = y)</div>
+<p>This sentence then says that Socrates is human, as is his mother.</p>
+<p>The operation that we&rsquo;ve applied here is called
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Substitution_%28logic%29#First-order_logic"
+  target="_blank"><strong>substitution</strong></a>:
+we&rsquo;ve substituted the free variable <span class="excalifont">x</span> with the constant <span class="excalifont">Socrates</span>. For an
+arbitrary formula <span class="excalifont">A</span>, free variable <span class="excalifont">x</span>, and term <span class="excalifont">t</span>, we denote this operation by
+writing <span class="excalifont">A[x/t]</span>. That is:</p>
+<div class="text-center my-4 excalifont">(Human x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+y (Human y 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ motherOf x =
+y))[x/Socrates]</div>
+<div class="text-center my-4 excalifont">=</div>
+<div class="text-center my-4 excalifont">Human Socrates 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+y (Human y 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ motherOf Socrates = y)</div>
+<p>As you&rsquo;ll see, substitution plays a crucial role in FOL reasoning. The only very
+important caveat here is that the operation does not apply to bound variables.
+That is, for example:</p>
+<div class="text-center my-4 excalifont">(Human x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+x (Human x 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+
+Mortal x))[x/Socrates]</div>
+<div class="text-center my-4 excalifont">=</div>
+<div class="text-center my-4 excalifont">Human Socrates 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+x (Human x 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ Mortal x)</div>
+And not:
+<div class="text-center my-4 excalifont">Human Socrates 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+x (Human <span class="dark-red">Socrates</span> 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ Mortal <span class="dark-red">Socrates</span>)</div>
+<h2 id="models">Models<button class="btn btn-back-to-top">
     
     <i class="bi bi-chevron-double-up"></i>
     
@@ -867,266 +1283,604 @@ tree for a formula also parses the terms involved. Here&rsquo;s an example:</p>
 </h2>
 <hr>
 
-<p>There are different ways to interpret FOL in AI. Here, we&rsquo;ll discuss the
-standard <strong>set-theoretic semantics</strong>. It&rsquo;s the most general form of semantics
-for FOL, which summarizes other approaches, like database semantics or
+<p>A model for a formal language, remember, is a representation of a possible
+reasoning scenario. In propositional logic, we could identify models with simple
+0/1 assignments to the basic propositional formulas, the propositional
+variables. From this, we could determine all the other truth-values using
+Boolean functions. While Boolean functions still play a role in the semantics
+for FOL, the simple approach no longer works here.</p>
+<p>When we consider a formula like <span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x (Human x 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ Mortal x)</span>,
+we&rsquo;re saying something about <em>all things</em>. To determine whether such a statement
+is true in a given reasoning scenario, we need to know which things exist in the
+scenario. This is determined by providing what&rsquo;s called a <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Domain_of_discourse"
+  target="_blank"><strong>domain of
+discourse</strong></a> or simply
+<strong>domain</strong> for our language.</p>
+<p>A domain is simply put just a (non-empty) set of objects. So, it could be, for
+example:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol/img/domain_big.png" class="mx-auto rounded d-block inert-img img-fluid"  width="900px"  alt="" >
+
+<p>This domain is very populated, it contains many of our old friends: little
+Jimmy, Mr Sir, and Granny Smith, but also the numbers <span class="excalifont">1,2,3</span> and the Mighty Box
+from when <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
+ tried magic in chapter 2. And many other
+things. Specifying a domain is the first step towards providing a model for FOL.
+We typically denote the domain of a model by <span class="excalifont">D</span>.</p>
+<p>But simply knowing what&rsquo;s in the domain is not enough to determine the
+truth-values of our formula. We also need to know what the constants, function
+symbols, and predicates of our language express over this domain. We indicate
+the interpretation of a term over a model using so-called <strong>semantic brackets</strong>
+<span class="excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+</span> and <span class="excalifont">
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</span>. That is <span class="excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+a
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</span> is the interpretation of the constant <span class="excalifont">a</span>, also
+called its <strong>denotation</strong>, <span class="excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+f
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</span> is the
+interpretation of the function symbol <span class="excalifont">f</span>, and <span class="excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+R
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</span> is the interpretation of the predicate symbol <span class="excalifont">R</span>, also called its
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Extension_%28predicate_logic%29"
+  target="_blank"><strong>extension</strong></a>.</p>
+<p>Let&rsquo;s look at the constants first. These are expressions like <span class="excalifont">Socrates</span> and
+<span class="excalifont">Xanthippe</span>, or, depending on our language, names like <span class="excalifont">littleJimmy</span> and
+<span class="excalifont">MrSir</span>. The idea is that constants are proper names, that is, they denote
+objects. So, <span class="excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+Socrates
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</span> is simply going to be
+a member of the domain, the thing that is called <span class="excalifont">Socrates</span> in that model. So in
+the model that corresponds to reality, we would have, for example:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol/img/socrates_name.png" class="mx-auto rounded d-block inert-img img-fluid"  width="200px"  alt="" >
+
+<p>But there are, of course, reasoning scenarios where <span class="excalifont">Socrates</span> denotes little Jimmy:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol/img/socrates_jimmy.png" class="mx-auto rounded d-block inert-img img-fluid"  width="200px"  alt="" >
+
+<p>We might even call the light bulb <span class="excalifont">Socrates</span>:
+
+<img src="https://logicalmethods.ai/textbook/fol/img/socrates_bulb.png" class="mx-auto rounded d-block inert-img img-fluid"  width="200px"  alt="" >
+</p>
+<p>Next, there are function symbols, like <span class="excalifont">fatherOf</span>, <span class="excalifont">birthplaceOf</span>,
+<span class="excalifont">distanceBetween</span>, etc. While the idea for how to interpret them is
+straightforward, they also present some difficulties. Function symbols stand for
+functions, so we interpret them as such: as <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Function_%28mathematics%29"
+  target="_blank">mathematical
+functions</a> which are
+defined on the domain.</p>
+<p>The easiest way of specifying such an interpretation is by means of a function
+table, like we used for the truth-functions in Boolean algebra. In the case of a
+unary function symbol, like <span class="excalifont">fatherOf</span>, we could have:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol/img/fatherOf.png" class="mx-auto rounded d-block inert-img img-fluid"  width="250px"  alt="" >
+
+<p>That is, we say that Mr Sir is the father of both little Jimmy and Linus,
+Mad Man is the father of Mr Sir, Socrates is the father of Granny Smith, and so
+on.</p>
+<p>
+<img src="https://logicalmethods.ai/textbook/fol/img/ai_father.png" class="rounded  float-start inert-img img-fluid m-2"  width="200px"  alt="" >
+
+But now the issues begin. In classical FOL, the function symbols need to denote
+<strong>total</strong> functions, that is, functions which give an output for <em>every</em> input.
+This creates some obvious problems with <span class="excalifont">fatherOf</span>. Which value should we assign
+to the light bulb, to the Mighty Box, or to the number one? In fact, if our
+domain only contains finitely many things there will be a family &ldquo;loop&rdquo;, where
+someone is their own grandⁿ-father.</p>
+<p>We could use <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Function_%28mathematics%29"
+  target="_blank">partial
+functions</a>—functions that
+are sometimes <em>undefined</em>—to solve the issue, but that would mean we&rsquo;d move out
+of the realm of classical logic. If the father of Socrates would be undefined,
+which truth-value should we assign to the claim that his father is human?
+Neither <span class="excalifont">0</span> nor <span class="excalifont">1</span> are good options, so we seem to want to say that it&rsquo;s
+<em>undefined</em> as well. But handling undefined truth-values requires different
+techniques, so we&rsquo;ll postpone that to later.</p>
+<p>For now, we basically treat these resulting oddities as a side-effect of our
+modeling: they are simplifying assumptions, which we know not to be adequate,
+but which we can handle if we are aware of them. For example, we use a function
+symbol like <span class="excalifont">fatherOf</span> only in a language that talks exclusively about humans,
+perhaps we introduce an idealized first human who&rsquo;s their own father, and so on.</p>
+<p>In fact, these kind of issues persist on various levels. For example, the
+following is, from a logical perspective, a perfectly valid interpretation of
+the <span class="excalifont">distanceBetween</span> function symbol:
+
+<img src="https://logicalmethods.ai/textbook/fol/img/distanceBetween.png" class="mx-auto rounded d-block inert-img img-fluid"  width="700px"  alt="" >
+</p>
+<p><em>Any</em> object in the domain is a valid output for the function. What it means to
+say that the distance between little Jimmy and himself is a soda I don&rsquo;t know—
+but it <em>can</em> happen in an FOL model. You need to be aware of such issues when
+you&rsquo;re knowledge engineering with FOL.</p>
+<p>One thing that will be important is that once we&rsquo;ve interpreted the constants
+and function symbols, we can recursively calculate the denotation of
+all—possibly complex—<abbr title="terms without variables"><a  class="link-underline-opacity-0 link-body-emphasis"> ground terms
+</a></abbr>. Take the term</p>
+<div class="text-center my-4 excalifont">distanceBetween(birthplaceOf (Socrates), capitalOf(Greece))</div>
+for example. It's denotation is given by the following simple calculation:
+<div class="text-center my-4 excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+distanceBetween(birthplaceOf (Socrates), capitalOf(Greece))
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</div>
+<div class="text-center my-4 excalifont">=</div>
+<div class="text-center my-4 excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+distanceBetween
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+(
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+birthplaceOf
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+(
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+Socrates
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+), 
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+capitalOf
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+(
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+Greece
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+))
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</div>
+That is, to calculate the distance between Socrates' birthplace and the capital
+of Greece in a model, we check which functions <span class="excalifont">distanceBetween</span>, <span class="excalifont">birthplaceOf</span>, and
+<span class="excalifont">capitalOf</span> express in the model and what the denotation of the constants
+<span class="excalifont">Socrates</span> and <span class="excalifont">Greece</span> is and then we just apply these functions to find out
+the value. More generally, we have the following recursive equation:
+<div class="text-center my-4 excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+f t₁…tₙ
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ = 
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+f
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+(
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+t₁
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+, …, 
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+tₙ
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+)</div>
+<p>This leaves only the predicates uninterpreted. We begin with <em>unary</em>
+predicates—that is, predicates with one place, like <span class="excalifont">Human</span> and <span class="excalifont">Mortal</span> from
+our formula <span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x (Human x 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ Mortal x)</span>. The idea is that we
+the interpretation in a model is simply the set of objects from the domain,
+which, according to the model, have the property expressed by the predicate.
+Here&rsquo;s an example of what such an interpretation could work out:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol/img/extensions_1.png" class="mx-auto rounded d-block inert-img img-fluid"  width="800px"  alt="" >
+
+<p>This is, in a sense, the most natural interpretation of the predicates: <span class="excalifont">Human</span>
+applies to all the things that we normally think of as humans, and <span class="excalifont">Mortal</span> to
+all the things we normally take to be mortal. Humans and animals are mortal,
+boxes, numbers, and beers are not. As you can probably tell already, in this
+model <span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x (Human x 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ Mortal x)</span> will turn out to be true.</p>
+<p>It&rsquo;s important to remark, though, that other interpretations are possible. We&rsquo;re
+modeling possible reasoning situations—hypotheticals. So, we could have a model
+where, for example, little Jimmy, Mr Sir, and <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IE</span>
+ aren&rsquo;t
+mortal, but the rabbit and lamp are human:
+
+<img src="https://logicalmethods.ai/textbook/fol/img/extensions_weird.png" class="mx-auto rounded d-block inert-img img-fluid"  width="800px"  alt="" >
+</p>
+<p>This is a perfectly valid FOL model. And as you can probably tell already, in
+this model <span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x (Human x 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ Mortal x)</span> will turn out to be
+false since little Jimmy is human but immortal.</p>
+<p>To generalize this idea to predicates with more than one place, like the binary
+<span class="excalifont">BiggerThan</span> or the ternary <span class="excalifont">LiesBetween</span>. In order to interpret them, we use
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Tuple"
+  target="_blank"><strong>tuples</strong></a> of objects in the domain. A
+tuple is essentially an ordered
+[list](<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/List_%28abstract_data_type%29"
+  target="_blank">https://en.wikipedia.org/wiki/List_(abstract_data_type)</a> of objects of
+finite length. Here are a few examples of tuples over our domain with their
+respective lengths using Python-style list notation: 
+<img src="https://logicalmethods.ai/textbook/fol/img/lists.png" class="mx-auto rounded d-block inert-img img-fluid"  width="700px"  alt="" >
+</p>
+<p>Note that with lists, order and multiplicity matters: although both lists have
+length 2, the list with Granny Smith in first and Linus in second place is
+different from the list with Linus in first and Granny Smith in second place.
+And the list with the Ace of Spades in place 1 and 3 still has length 3.</p>
+<p>The idea is that we can interpret predicates <em>in general</em> as sets of lists:
+the lists of objects that satisfy the predicate. So, for example, the
+interpretation of <span class="excalifont">BiggerThan</span>, will be the set of lists of length 2 such that
+the first element of any list is bigger than the second thing in the list.
+Here&rsquo;s an example of how this could work over our domain:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol/img/BiggerThan.png" class="mx-auto rounded d-block inert-img img-fluid"  width="700px"  alt="" >
+
+<p>This would mean that Linus is bigger than little Jimmy, Mr Sir is bigger than
+Linus and little Jimmy, little Jimmy is bigger than the Mighty Box, and so on.
+As in the unary case, the interpretation of <span class="excalifont">BiggerThan</span> can be natural as in
+the example, or &ldquo;weird&rdquo; as in the following:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol/img/BiggerThan_weird.png" class="mx-auto rounded d-block inert-img img-fluid"  width="700px"  alt="" >
+
+<p>Here the Mighty Box is bigger than <em>everything</em>—including itself.</p>
+<p>Note that, in contrast to function symbols, the interpretations of predicates
+don&rsquo;t need to be <em>total</em>: not everything needs to be related to everything. For
+example, if we have the binary predicate <span class="excalifont">Sibling</span> to say that two things are
+siblings, the following is a perfectly fine interpretation:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol/img/Siblings.png" class="mx-auto rounded d-block inert-img img-fluid"  width="500px"  alt="" >
+
+<p>That is, it&rsquo;s fine to say that Linus and little Jimmy are each other&rsquo;s siblings
+and no one else in the domain is thusly related. Note that this doesn&rsquo;t create
+<em>undefined</em> values, as any pair that&rsquo;s not in the set is simply <em>not</em> related,
+which means <span class="excalifont">0</span> and not <em>undefined</em>.</p>
+<p>This idea, then, generalizes to ternary predicates like <span class="excalifont">LiesBetween</span>, where
+<span class="excalifont">[LiesBetween]</span> will be a set of lists of length 3, where the first item in
+every list lies between the second and the third item.</p>
+<p>In fact, the idea generalizes to <em>all</em> predicates. We can say, in general, that
+the interpretation of an <span class="excalifont">n</span>-ary predicate—a predicate with <span class="excalifont">n</span> places—is a set
+of lists of length <span class="excalifont">n</span>. Note that this even works in the case of unary
+predicates, like <span class="excalifont">Human</span> and <span class="excalifont">Mortal</span>. We can just think of sets of objects
+equivalently as sets of lists of length 1. That is, we don&rsquo;t really need to
+distinguish:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol/img/set_of_objects.png" class="mx-auto rounded d-block inert-img img-fluid"  width="500px"  alt="" >
+
+<div class="text-center my-4 excalifont">vs.</div>
+
+<img src="https://logicalmethods.ai/textbook/fol/img/set_of_lists.png" class="mx-auto rounded d-block inert-img img-fluid"  width="600px"  alt="" >
+
+<p>There are two ways of representing the interpretations of the predicates that
+are very common in computer science and AI contexts. First, if we&rsquo;re dealing
+with unary and binary predicates only, we can straightforwardly represent the
+interpretation of using
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Graph_%28discrete_mathematics%29"
+  target="_blank"><strong>graphs</strong></a>. Here&rsquo;s
+how this works:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol/img/knowledge_graph.png" class="mx-auto rounded d-block inert-img img-fluid"  width="900px"  alt="" >
+
+<p>What&rsquo;s going on here is that we interpretations of unary predicates are
+represented as sets and we&rsquo;re using arrows to indicate that a relation holds
+between two objects with the arrow pointing from the first
+<abbr title="thing that is related"><a  class="link-underline-opacity-0 link-body-emphasis"> relatum</a></abbr> to the second.</p>
+<p>This way of representing models makes them special cases of so-called
 <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Knowledge_graph"
-  target="_blank">knowledge graphs</a>.</p>
+  target="_blank"><strong>knowledge graphs</strong></a>, which are
+an important technology that&rsquo;s been used by search engines like
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://www.google.com"
+  target="_blank">Google</a> and others to structure data.</p>
+<p>The other way of representing the information in a model is crucial for
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Database_theory"
+  target="_blank">database theory</a>. The idea is
+that we can alternatively write a set of lists as a
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Table_%28information%29"
+  target="_blank">table</a>. Here&rsquo;s how this
+plays out with our interpretations for <span class="excalifont">Human</span>, <span class="excalifont">BiggerThan</span>, and <span class="excalifont">Sibling</span> from
+before:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol/img/tables.png" class="mx-auto rounded d-block inert-img img-fluid"  width="900px"  alt="" >
+
+<p>In these tables, each row corresponds to a list and in this way represents a
+basic relational fact. The first table is basically just a list of humans. The
+second table gives us the interpretation of <span class="excalifont">BiggerThan</span> with the bigger thing
+occupying the first column and the smaller object the second, as suggested by
+their headers. The <code class="customCode">bigger</code> and <code class="customCode">smaller</code> in the header go by different names:
+&ldquo;attributes&rdquo;, &ldquo;identifiers&rdquo;, &hellip; but what&rsquo;s important here is that this naming
+is &ldquo;internal&rdquo; to the table and not officially part of the interpretation. It
+just clarifies what the table does.</p>
+<p>This gives us the basic ingredients for an FOL model:</p>
+<ul>
+<li>
+<p>a (non-empty) <strong>domain</strong> <span class="excalifont">D</span>,</p>
+</li>
+<li>
+<p>a <strong>denotation</strong> <span class="excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+a
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ 
+ <img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+ D</span> for each constant <span class="excalifont">a</span>,</p>
+</li>
+<li>
+<p>a <strong>mathmetical function</strong> <span class="excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+f
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</span> for each function symbol <span class="excalifont">f</span>, which maps
+inputs from the domain to outputs from the domain,</p>
+</li>
+<li>
+<p>an <strong>extension</strong> <span class="excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+R
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</span> for each predicate symbol.</p>
+</li>
+</ul>
+<p>When we&rsquo;re dealing with different models, we often name them, like <span class="excalifont">M</span> and <span class="excalifont">N</span>
+or <span class="excalifont">M₁</span> and <span class="excalifont">M₂</span> etc., and we superscript the domains and interpretations by
+that name. So <span class="excalifont">Dᴹ</span> is the domain of model <span class="excalifont">M</span> and <span class="excalifont">Dᴺ</span> the domain of model <span class="excalifont">N</span>,
+<span class="excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+Socrates
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ᴹ</span> is the denotation of <span class="excalifont">Socrates</span> in
+model <span class="excalifont">M</span> and <span class="excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+Socrates
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ᴺ</span> is the denotation of
+<span class="excalifont">Socrates</span> in model <span class="excalifont">N</span>, and so on.</p>
+<h2 id="truth-and-satisfaction">Truth and Satisfaction<button class="btn btn-back-to-top">
+    
+    <i class="bi bi-chevron-double-up"></i>
+    
+  </button>
+</h2>
+<hr>
+
+<p>It&rsquo;s time to turn to <em>truth</em>. The information provided by an FOL model is enough
+to calculate the truth-values for all the formulas in its language. Let&rsquo;s figure
+out how.</p>
+<p>In FOL, we typically write</p>
+<div class="text-center my-4 excalifont">M
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+ A</div>
+<p>to say that the formula <span class="excalifont">A</span> is true according to the model <span class="excalifont">M</span>. If we want to
+directly talk about the truth-value of a formula, we denote it by  <span class="excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+A
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</span>. Since we&rsquo;re working in classical logic, we&rsquo;ll
+assume that <span class="excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+A
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+{ 0, 1}</span>. The two
+notations are related by the following equivalence:</p>
+<div class="text-center my-4 excalifont">M
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+ A &emsp; if and only if &emsp; 
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+A
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ = 1</div>
+<p>Our aim right now is to define <span class="excalifont">M
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+ A</span> for all formulas <span class="excalifont">A</span>.</p>
+<p>The simplest case are the so-called <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Ground_expression"
+  target="_blank">ground
+formulas</a>, which are atomic
+formulas—a predicate applied to terms—without any variables in them. Take the
+ground formula <span class="excalifont">Human LittleJimmy</span>, for example. The natural thought is that
+this sentence ought to be true in a model just in case the denotation of
+<span class="excalifont">LittleJimmy</span> is in the extension of <span class="excalifont">Human</span> in that model. This gives us the
+first basic truth-condition:</p>
+<div class="text-center my-4 excalifont">M
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+ Human LittleJimmy &emsp; if and only if &emsp; 
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+LittleJimmy
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ 
+ <img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+Human
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</div>
 <p>
+<img src="https://logicalmethods.ai/textbook/fol/img/SirSocrates.png" class="rounded  float-end inert-img img-fluid m-2"  width="100px"  alt="" >
 
+This idea generalizes quite straightforwardly to binary predicates and ground
+expressions involving complex ground terms. For the formula <div class="text-center my-4 excalifont">BiggerThan
+Socrates fatherOf LittleJimmy</div> which says that Socrates is bigger than little
+Jimmy&rsquo;s father, we get:</p>
+<div class="text-center my-4 excalifont">M
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+ BiggerThan Socrates fatherOf LittleJimmy</div>
+<div class="text-center my-4 excalifont">if and only if</div>
+<div class="text-center my-4 excalifont">[ 
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+ Socrates
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+, 
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+fatherOf
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+(
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+LittleJimmy 
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+)] 
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+BiggerThan
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</div>
+That is, the formula is true if the list containing the value of <span class="excalifont">Socrates</span> in first place and the value of <span class="excalifont">fatherOf
+LittleJimmy</span> in second place is part of the lists of objects such that the first
+is bigger than the second according to the model.
+<p>As a general formula, we get:</p>
+<div class="text-center my-4 excalifont">M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+ P t₁…tₙ &emsp; if and only if &emsp;  [ 
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+t₁
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+, … , 
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+tₙ
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+] 
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+P
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</div>
+<p>
+<img src="https://logicalmethods.ai/textbook/fol/img/jimmySir.png" class="rounded  float-start inert-img img-fluid m-2"  width="100px"  alt="" >
 
-<a href="https://logicalmethods.ai/textbook/boolean/"
-   
-   
-   
-   
-   
-   > Boolean algebra </a>
-
- is not
-enough to interpret FOL. Even though Boolean truth-values and truth-function
-will  we need more expressive structures to interpret FOL. What we need to
-interpret the language of FOL are the <em>objects</em> that our language talks about.</p>
-<p>These object together make up the <strong>domain (of discourse)</strong>. In a model for FOL,
-typically denoted <span class="excalifont">\mathcal{M}</span>, we denote the domain by <span class="excalifont">\mathcal{D}</span>. The
-domain can contain all sorts of things, but in KR-settings usually are just
-representations of the objects our KB talks about. In a knowledge graph, for
-example, we&rsquo;d represent the individuals as nodes in a graph. When we&rsquo;re using a
-database as a model for FOL, we&rsquo;d use data to model the objects.</p>
-<p>Given a domain, we need to say what our terms and predicates stand for. For the
-terms, that&rsquo;s <em>relatively</em> straight-forward. For each constant, <span class="excalifont">c</span>, we assign a
-<strong>denotation</strong> from among the objects of our model:</p>
-<div class="text-center my-4 excalifont">c^\mathcal{M}\in\mathcal{D}</div>. So, we'd have, for example, a denotation
-<span class="excalifont">Ada^\mathcal{M}</span> which is our model's representation of Ada Lovelace. Depending
-on what our domain looks like, this would be a node in a graph, an entry in a
-database, or perhaps even a real person.
-<p>For function symbols, the denotation is simply a <strong>(mathematical) function</strong>
-over the domain. That means that if <span class="excalifont">f</span> is an <span class="excalifont">n</span>-ary function symbol, then</p>
-<div class="text-center my-4 excalifont">f^\mathcal{M}:\mathcal{D}^n\to \mathcal{D}</div> is an <span class="excalifont">n</span>-ary function, which
-takes <span class="excalifont">n</span> inputs from the domain and assigns an output to them. For example,
-<span class="excalifont">Father^\mathcal{M}</span> would be a function which assigns to the representation of
-each object in our model the representation of their father. We should have, for
-example, <div class="text-center my-4 excalifont">\mathsf{Father}^\mathcal{M}(Ada^\mathcal{M})=Byron^\mathcal{M}</div> In
-other words, the function <span class="excalifont">\mathsf{Father}^\mathcal{M}</span> assigns to our
-representation of Ada Lovelace the representation of Lord Byron, her father.
-<p>Variables are a bit trickier to deal with. For them, we need an <strong>assignment</strong>,
-which tells us what they stand for. An <strong>assigment</strong> in a model with domain
-<span class="excalifont">\mathcal{D}</span> is a function <div class="text-center my-4 excalifont">\alpha:\Set{x,y,z,\dots}\to\mathcal{D}</div>, which says
-for each variable what it stands for. For example, we might have</p>
-<div class="text-center my-4 excalifont">\alpha(x)=Ada^\mathcal{M},</div> which would mean that <span class="excalifont">x</span> stands for the
-representation of Ada. Assignments play an important role in FOL inference,
-which we'll talk about more later. 
-<p>Once we&rsquo;ve interpreted all our term-forming expressions over a domain, we can
-assign denotations to arbitrary terms using recursion:</p>
-<div class="text-center my-4 excalifont">t^\mathcal{M}_\alpha::=\\begin{cases} c^\mathcal{M} & \\text{if }t=c\\\\
-\alpha(x) & \\text{if }t=x \\\\ f^\mathcal{M}(t_1^\mathcal{M}, \dots
-t_n^\mathcal{M}) & \\text{if }t=f(t_1,\dots,t_n)\\end{cases}</div>
-In this way, we get a denotation for each term <span class="excalifont">\langle term\rangle</span> given a
-model <span class="excalifont">\mathcal{M}</span> and assignment <span class="excalifont">\alpha</span>.
-<p>The only thing that we haven&rsquo;t interpreted yet are the predicates. How does this
-work? Let&rsquo;s look at unary predicates like <span class="excalifont">\mathsf{Red}</span> first.
-The idea is that for each predicate <span class="excalifont">P</span>, we need to say which of the
-things in the domain <span class="excalifont">\mathcal{D}</span> have the property &ldquo;being <span class="excalifont">P</span>&rdquo;. We do this
-directly by assigning a set <span class="excalifont">P^\mathcal{M}\subseteq \mathcal{D}</span> to the predicate
-<span class="excalifont">P</span>. This set is called the <strong>extension</strong> of the predicate. In the case of
-<span class="excalifont">\mathsf{Red}</span>, for example, we&rsquo;d set <span class="excalifont">\mathsf{Red}^\mathcal{M}</span> to be the set
-of all things our model represents as red.</p>
-<p>This generalizes to <span class="excalifont">n</span>-ary predicates. If we have <span class="excalifont">\mathsf{BiggerThan}</span>, for
-example, we&rsquo;d assign the set
-<span class="excalifont">\mathsf{BiggerThan}^\mathcal{M}\subseteq\mathcal{D}\times\mathcal{D}</span>, which
-contains pairs of the form <span class="excalifont">\langle object_1,object_2\rangle</span>, where <span class="excalifont">object_1</span>
-is bigger than <span class="excalifont">object_2</span>. Here we use the standard set-theoretic notation
-<span class="excalifont">\mathcal{D}^n</span> to denote all the sequences of <span class="excalifont">n</span> objects from the domain.</p>
-<p>In sum, the basic concept concept of FOL semantics is that of a <strong>model</strong>,
-typically <span class="excalifont">\mathcal{M}</span>, which consists of:</p>
-<ul>
-<li>A <strong>domain</strong> <span class="excalifont">\mathcal{D}</span>, which contains all the individuals that we talk
-about.</li>
-<li>A <strong>denotation</strong> <span class="excalifont">a^\mathcal{M}\in \mathcal{D}</span> for each constant <span class="excalifont">a</span>.</li>
-<li>A <strong>function</strong> <span class="excalifont">f^\mathcal{M}:\mathcal{D}^n\to \mathcal{D}</span> for each function
-symbol.</li>
-<li>An <strong>extension</strong> <span class="excalifont">P^\mathcal{M}\subseteq \mathcal{D}^n</span> for each
-<span class="excalifont">n</span>-ary predicate.</li>
-</ul>
-<p>Additionally, we have assignments <span class="excalifont">\alpha: \Set{x,y,z,\dots}\to\mathcal{D}</span>.</p>
-<p>With all of this setup, we can re-introduce truth-values into the semantics. For
-FOL, our setting remains classical meaning we have the two truth-values
-<span class="excalifont">\Set{0,1}</span> for false and true respectively.</p>
-<p>Our aim is to assign a truth-value <span class="excalifont">\nu(A)\in\Set{0,1}</span> to each FOL-formula. We
-do this by recursion. Once we look at how we interpreted our language, the base
-case is pretty clear. Take <span class="excalifont">\mathsf{Sister}(Ada,Clara)</span> for example. Our model
-gives us:</p>
-<ul>
-<li><span class="excalifont">Ada^\mathcal{M}</span>, which is a representation of Ada.</li>
-<li><span class="excalifont">Clara^\mathcal{M}</span>, which is a representation of Clara.</li>
-<li><span class="excalifont">\mathsf{Sister}^\mathcal{M}</span>, which is a set of pairs <span class="excalifont">\langle
-object_1,object_2\rangle</span> where <span class="excalifont">object_1</span> represents the sister of <span class="excalifont">object_2</span>.</li>
-</ul>
-<p>Given this reading, we should set:</p>
-<div class="text-center my-4 excalifont">\nu(\mathsf{Sister}(Ada^\mathcal{M},Clara^\mathcal{M}))=1\Leftrightarrow
-\langle Ada^\mathcal{M},Clara^\mathcal{M}\rangle\in\mathsf{Sister}^\mathcal{M}</div>
-<p>That is, in our model, the formula which says that Ada and Clara are sisters
-should be true just in case the pair is a member of the set of things that
-represent sisters.</p>
-<p>What if variables are involved? Well, then we need assignments and our
-truth-value becomes relative to an assignment. So, for example, we&rsquo;d have</p>
-<div class="text-center my-4 excalifont">\nu_\alpha(\mathsf{Blue}(x))=1\Leftrightarrow \alpha(x)\in\mathsf{Blue}^\mathcal{M}</div>
-<p>So, in general, then, the definition should be:</p>
-<div class="text-center my-4 excalifont">\nu_\alpha(P(t_1,\dots,t_n))=1\Leftrightarrow \langle
-(t_1)^\mathcal{M}\_\alpha,\dots,(t_n)^\mathcal{M}_\alpha\rangle\in P^\mathcal{M}</div>
-<p>At this point it might be important to mention that in a model, we can represent
-things in different ways. Of course, we should also allow models where Ada and
-Clara aren&rsquo;t sisters, even if in reality they are.</p>
-<p>An important exception to this is the identity predicate <span class="excalifont">=</span> around. We are not allowed to freely re-interpret this predicate, it always stands for identity. That means that it&rsquo;s subject to a special clause, which is:</p>
-<div class="text-center my-4 excalifont">\nu_\alpha(t_1=t_2)=1\Leftrightarrow t_1^\mathcal{M}=t_2^\mathcal{M}</div>
-<p>Now, when it comes to the connectives <span class="excalifont">\neg,\land,\lor,\to,\dots</span>, we
-can fall back to the usual 
-
-
-<a href="https://logicalmethods.ai/textbook/boolean//#truth-functions"
-   
-   
-   
-   
-   
-   >
-Boolean truth-functions </a>
-
-:</p>
-<div class="text-center my-4 excalifont">\nu_\alpha(\neg A)=-\nu_\alpha(A)</div>
-<div class="text-center my-4 excalifont">\nu_\alpha(A\land B)=\nu_\alpha(A)\times \nu_\alpha(B)</div>
-<div class="text-center my-4 excalifont">\nu_\alpha(A\lor B)=\nu_\alpha(A)+\nu_\alpha(B)</div>
-<div class="text-center my-4 excalifont">\nu_\alpha(A\to B)=\nu_\alpha(A)\Rightarrow\nu_\alpha(B)</div>
-<p>It gets interesting when it comes to the quantifiers. In addition to the Boolean
-truth-functions , we&rsquo;ll need to find corresponding truth-functions
-<span class="excalifont">f_\forall,f_\exists</span> for the quantifiers <span class="excalifont">\forall,\exists</span>.</p>
-<p>How does this work? Let&rsquo;s start with <span class="excalifont">\forall</span> and take <span class="excalifont">\forall
-x\mathsf{Blue}(x)</span>, for example. What we want is to say that <span class="excalifont">\forall
-x\mathsf{Blue}(x)</span> is true just in case all the things in our model are blue. To
-formally represent this, let&rsquo;s introduce for each object <span class="excalifont">o\in\mathcal{D}</span> an
-ad-hoc name <span class="excalifont">\mathbf{o}</span> into our language with the stipulation that</p>
-<div class="text-center my-4 excalifont">\mathbf{o}^\mathcal{M}=o.</div> This constant, then, allows us to consider the
-truth-value sequence
-<div class="text-center my-4 excalifont">\nu_\alpha(\mathsf{Blue}(\mathbf{o_1})),\nu_\alpha(\mathsf{Blue}(\mathbf{o_2})),\dots</div>
-for _all_ the objects <span class="excalifont">o_1,o_2,\dots</span> in the domain.
-<p>When do we want to say that <span class="excalifont">\forall x\mathsf{Blue}(x)</span> is true? The answer
-seems to be when the sequence above just is <div class="text-center my-4 excalifont">1,1,1,\dots.</div> In other words,
-when <span class="excalifont">\nu_\alpha(\mathsf{Blue}(\mathbf{o}))=1</span> for all objects <span class="excalifont">o\in\mathcal{D}</span></p>
-<p>Think about a product <div class="text-center my-4 excalifont">x\times y\times z\times\dots</div> where
-<span class="excalifont">x,y,z\in\Set{0,1}</span>. This number is <span class="excalifont">1</span> precisely when the sequence</p>
-<div class="text-center my-4 excalifont">x,y,z,\dots</div> is the sequence <div class="text-center my-4 excalifont">1,1,1,\dots.</div> This means we can give the
-following truth-functional analysis of the quantifiers:
-<div class="text-center my-4 excalifont">\nu\_\alpha(\forall x\mathsf{Blue}(x))=\nu_\alpha(\mathsf{Blue}(\mathbf{o}_1))\times\nu\_\alpha(\mathsf{Blue}(\mathbf{o}_2)\times\dots</div>
-where <span class="excalifont">o_1,o_2,\dots</span> are all the objects in <span class="excalifont">\mathcal{D}</span>
-<p>We can write this in a more concise form using the mathematical notation for
-&ldquo;long&rdquo; products:</p>
-<div class="text-center my-4 excalifont">\nu\_\alpha(\forall
-x\mathsf{Blue}(x))=\nu_\alpha(\mathsf{Blue}(\mathbf{o}_1))\times\nu\_\alpha(\mathsf{Blue}(\mathbf{o}\_2))\times\dots=\prod\_{o\in\mathcal{D}}\nu\_\alpha(\mathsf{Blue}(\mathbf{o}))</div>
-<p>Similar reasoning works for <span class="excalifont">\exists</span>. In order for <span class="excalifont">\nu_\alpha(\exists x\mathsf{Blue}(x))=1</span>, we would want to have at least one <span class="excalifont">1</span> in the sequence:</p>
-<div class="text-center my-4 excalifont">\nu\_\alpha(\mathsf{Blue}(\mathbf{o}\_1)),\nu_\alpha(\mathsf{Blue}(\mathbf{o}_2)),\dots</div>
-<p>We can express this using the Boolean <span class="excalifont">+</span> by saying that:</p>
-<div class="text-center my-4 excalifont">\nu_\alpha(\exists x\mathsf{Blue}(x))=\nu_\alpha(\mathsf{Blue}(\mathbf{o}\_1))+\nu\_\alpha(\mathsf{Blue}(\mathbf{o}\_2)+\dots</div>
-<p>Mathematically, we can write this:</p>
-<div class="text-center my-4 excalifont">\nu_\alpha(\exists x\mathsf{Blue}(x))=\nu\_\alpha(\mathsf{Blue}(\mathbf{o}_1))+\nu\_\alpha(\mathsf{Blue}(\mathbf{o}_2))+\dots=\sum\_{o\in\mathcal{D}}\nu\_\alpha(\mathsf{Blue}(\mathbf{o}))</div>
-<p>The only thing left to do is to generalize this from the formulas <span class="excalifont">\forall
-x\mathsf{Blue}(x),\exists x\mathsf{Blue}(x)</span> to arbitrary formulas of the form
-<span class="excalifont">\forall xA</span> and <span class="excalifont">\exists xA</span>. For this, we just need a piece of notation: we
-write <span class="excalifont">\forall xA(x)</span> to indicate that <span class="excalifont">A</span> contains the variable <span class="excalifont">x</span> that we
-quantify &ldquo;over&rdquo; and then write <span class="excalifont">A(\mathbf{o})</span> for the result of replacing all
-the occurrences of <span class="excalifont">x</span> in <span class="excalifont">A</span>, which are not involved in another quantifier with
-<span class="excalifont">\mathbf{o}</span>.</p>
-<p>So, for example, if <span class="excalifont">\forall xA(x)</span> is <div class="text-center my-4 excalifont">\forall x(\mathsf{Student}(x)\to
-\mathsf{OlderThan}(x,18))</div> then <div class="text-center my-4 excalifont">A(x)=\mathsf{Student}(x)\to
-\mathsf{OlderThan}(x,18))</div> and <div class="text-center my-4 excalifont">A(\mathbf{o})=\mathsf{Student}(\mathbf{o})\to
-\mathsf{OlderThan}(\mathbf{o},18)).</div></p>
-<p>Using this notation, we can finally give the full recursive clauses for
-<span class="excalifont">\forall,\exists</span>:</p>
-<div class="text-center my-4 excalifont">\nu_\alpha(\forall xA(x))=\prod_{o\in\mathcal{D}}\nu_\alpha(A(\mathbf{o}))</div>
-<div class="text-center my-4 excalifont">\nu_\alpha(\exists xA(x))=\sum_{o\in\mathcal{D}}\nu_\alpha(A(\mathbf{o}))</div>
-<p>This completes the rather long definition of a model for FOL, variable
-assignments <span class="excalifont">\alpha</span>, of  and the associated valuation function <span class="excalifont">\nu</span>.</p>
-<p>One way of looking at the <strong>aim of knowledge representation in FOL</strong> is to
-describe an adequate model of the way we know/think the world is like using
-FOL-formulas.</p>
-<p>At this stage, we can give a definition of valid inference in FOL. We simply use
-the idea from 
-
-
-<a href="https://logicalmethods.ai/textbook/valid-inference//#examples"
-   
-   
-   
-   
-   
-   > Chapter
-2. Valid inference </a>
-
- of modeling deductively valid inference
-as truth-preservation from premises to conclusion in all models:</p>
-<div class="text-center my-4 excalifont">P_1,P_2,\dots \vDash C\Leftrightarrow \text{ for all
-}\mathcal{M},\nu,\alpha,\text{ if
-}\nu_\alpha(P_1)=1,\nu_\alpha(P_2)=1,\dots\text{, then }\nu_\alpha(C)=1.</div>
-<p>This definition gives rise to a series of <strong>FOL laws</strong>. The following
-<strong>quantifier laws</strong> are especially important:</p>
+The case of identity claims with ground terms is equally straight-forward. Take,
+for example, the formula: <div class="text-center my-4 excalifont">MrSir = fatherOf LittleJimmy</div> This formula should
+be true just in case the denotation of <span class="excalifont">MrSir</span> in the model <em>is</em> the value of
+the <span class="excalifont">fatherOf</span>-function applied to the denotation of <span class="excalifont">LittleJimmy</span>—in other
+words: if <em>according to the model</em> Mr Sir is the father of Little Jimmy.
+Expressed formally, this becomes:</p>
+<div class="text-center my-4 excalifont">M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+ Socrates = fatherOf LittleJimmy</div>
+<div class="text-center my-4 excalifont">if and only if</div>
+<div class="text-center my-4 excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+Socrates
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ <code class="customCode">=</code> 
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+fatherOf
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+(
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+LittleJimmy
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+)</div>
+<p>Note that the <span class="excalifont">=</span> in the formula and the <code class="customCode">=</code> in the condition are different uses
+of =: the first is a formal symbol, which we interpret using the &ldquo;real&rdquo; identity
+relation <code class="customCode">=</code>.</p>
+<p>Once we&rsquo;ve calculated the truth-values of the basic formulas, we can calculate
+the truth-values of their truth-functional combinations—formulas constructed
+using <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+, 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+, 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+, 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+</span>—in the familiar recursive
+fashion we know from Boolean logic:</p>
 <table>
   <thead>
       <tr>
           <th></th>
-          <th>   </th>
+          <th></th>
           <th></th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td>Duality of <span class="excalifont">\exists/\forall</span></td>
-          <td></td>
-          <td><span class="excalifont">\exists xA\vDash \neg\forall x\neg A\qquad \neg\forall x\neg A\vDash \exists xA</span></td>
+          <td><span class="excalifont">M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A</span></td>
+          <td>    if and only if    </td>
+          <td><span class="excalifont"><span class="Boolean">NOT</span> 
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+A
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ = 1</span></td>
       </tr>
       <tr>
-          <td>Duality of <span class="excalifont">\forall/\exists</span></td>
-          <td></td>
-          <td><span class="excalifont">\forall xA\vDash \neg\exists x\neg A\qquad \neg\exists x\neg A\vDash \forall xA</span></td>
+          <td><span class="excalifont">M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+(A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B )</span></td>
+          <td>    if and only if    </td>
+          <td><span class="excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+A
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ <span class="Boolean">AND</span> 
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+B
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ = 1</span></td>
       </tr>
       <tr>
-          <td> </td>
-          <td></td>
-          <td></td>
+          <td><span class="excalifont">M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+(A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B )</span></td>
+          <td>    if and only if    </td>
+          <td><span class="excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+A
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ <span class="Boolean">OR</span> 
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+B
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ = 1</span></td>
       </tr>
       <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-      </tr>
-      <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>Distribution <span class="excalifont">\forall/\land</span></td>
-          <td></td>
-          <td><span class="excalifont">\forall x(A\land B)\vDash \forall xA\land \forall xB\qquad \forall x A\land \forall x B\vDash \forall x(A\land B)</span></td>
-      </tr>
-      <tr>
-          <td>Distribution <span class="excalifont">\exists/\lor</span></td>
-          <td></td>
-          <td><span class="excalifont">\exists x(A\lor B)\vDash \exists xA\lor \exists xB\qquad \exists x A\lor \exists x B\vDash \exists x(A\lor B)</span></td>
-      </tr>
-      <tr>
-          <td> </td>
-          <td></td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>Commutativity <span class="excalifont">\forall</span></td>
-          <td></td>
-          <td><span class="excalifont">\forall x\forall yA\vDash \forall y\forall xA</span></td>
-      </tr>
-      <tr>
-          <td>Commutativity <span class="excalifont">\exists</span></td>
-          <td></td>
-          <td><span class="excalifont">\exists x\exists yA\vDash \exists y\exists xA</span></td>
+          <td><span class="excalifont">M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+(A 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ B )</span></td>
+          <td>    if and only if    </td>
+          <td><span class="excalifont">((<span class="Boolean">NOT</span> 
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+A
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+) <span class="Boolean">OR</span> 
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+B
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+) = 1</span></td>
       </tr>
       <tr>
           <td> </td>
@@ -1135,8 +1889,478 @@ as truth-preservation from premises to conclusion in all models:</p>
       </tr>
   </tbody>
 </table>
-<p>There are more quantifier laws, some of which you&rsquo;ll explore in the exercises.</p>
-<h2 id="limitations">Limitations<button class="btn btn-back-to-top">
+<p>In fact, by some simple Boolean reasoning, we can directly give a recursive
+definition of <span class="excalifont">M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+A</span> as follows:</p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><span class="excalifont">M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A</span></td>
+          <td>    if and only if    </td>
+          <td><span class="excalifont">M 
+<img src="/img/nvDash.png" alt="nvDash" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A</span></td>
+      </tr>
+      <tr>
+          <td><span class="excalifont">M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+(A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B )</span></td>
+          <td>    if and only if    </td>
+          <td><span class="excalifont">M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+A</span> and <span class="excalifont">M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+B</span></td>
+      </tr>
+      <tr>
+          <td><span class="excalifont">M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+(A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B )</span></td>
+          <td>    if and only if    </td>
+          <td><span class="excalifont">M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+A</span> or <span class="excalifont">M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+B</span></td>
+      </tr>
+      <tr>
+          <td><span class="excalifont">M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+(A 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ B )</span></td>
+          <td>    if and only if    </td>
+          <td><span class="excalifont">M 
+<img src="/img/nvDash.png" alt="nvDash" class="inline-icon" style="height:1em;width:auto;"/>
+A</span> or <span class="excalifont">M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+B</span></td>
+      </tr>
+      <tr>
+          <td> </td>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<p>In this sense, what we&rsquo;re doing in FOL is an <em>extension</em> of the framework of
+Boolean algebra.</p>
+<p>The main question is how to interpret quantifiers <span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+</span> and <span class="excalifont">
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+</span>. But before we can do that, we need to talk about variables the  <span class="excalifont">x,
+y, z, …</span>. Logical theory knows different ways of handling the variables of FOL.
+There are approaches that take them to be denoting terms, which requires the use
+of so-called <strong>variable assignments</strong>. These work in a similar way as variable
+assignments in programming language, where you can set the values of <code class="customCode">x, y, z</code>
+to something like so:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="n">socrates</span>
+</span></span><span class="line"><span class="cl"><span class="n">Y</span> <span class="o">=</span> <span class="n">little_jimmy</span>
+</span></span><span class="line"><span class="cl"><span class="n">z</span> <span class="o">=</span> <span class="n">mr_sir</span>
+</span></span></code></pre></div><p>And then, later, you can set the values to something else:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="n">little_jimmy</span>
+</span></span><span class="line"><span class="cl"><span class="n">Y</span> <span class="o">=</span> <span class="n">little_jimmy</span>
+</span></span><span class="line"><span class="cl"><span class="n">z</span> <span class="o">=</span> <span class="n">little_jimmy</span>
+</span></span></code></pre></div><p>Working with assignments has a series of advantages from a logical perspective.
+Most importantly, it allows us to assign truth-values to open formulas like</p>
+<div class="text-center my-4 excalifont">(Human x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ Mortal x)</div> and directly involve them in deductive reasoning. But from an
+algorithmic AI perspective, assignments are not great to work with, which is why
+we'll work with an alternative approach that uses specialized constants instead
+to interpret the quantifiers.
+<p>Here&rsquo;s how this works. We&rsquo;ve already mentioned the idea that an open formula
+like <span class="excalifont">(Human x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ Mortal x)</span> expresses a property—in this case the
+complex property of being human and mortal. Another way of putting the idea is
+to say that open formulas express <strong>conditions</strong> that objects can satisfy: any
+object in our domain either is or isn&rsquo;t a mortal human.</p>
+<p>A natural idea, therefore, is that the semantic value
+<span class="excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+(Human x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ Mortal x)
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</span>
+of the open formula <span class="excalifont">(Human x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ Mortal x)</span> is not a truth-value but a
+<em>set of objects</em>: those objects that satisfy in the model the condition
+expressed by it. Let&rsquo;s work this idea out in some more detail.</p>
+<p>Suppose we have some object <span class="excalifont">d 
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+D</span>, which lives in our domain. To check
+whether the object satisfies <span class="excalifont">(Human x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ Mortal x)</span> what we can do is
+to add a new constant <code class="customCode">d</code> to our language with the stipulation that:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+ <code class="customCode">d</code>
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ = 1</div> 
+<p>
+<img src="https://logicalmethods.ai/textbook/fol/img/immortal_jimmy.png" class="rounded  float-start inert-img img-fluid m-2"  width="100px"  alt="" >
+
+That is, we give the object an <em>ad hoc</em> name, which makes it possible for us to
+talk about <span class="excalifont">d</span> in our formulas. Then, we can say that <span class="excalifont">d</span> <em>satisfies</em> the open
+formula <span class="excalifont">(Human x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ Mortal x)</span> just in case replacing <span class="excalifont">x</span> with the
+new term for <span class="excalifont">d</span> gives us a true formula, that is:</p>
+<div class="text-center my-4 excalifont">M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+(Human x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ Mortal x)[x/<code class="customCode">d</code>]</div>
+<p>The <em>crucial</em> point here is that if we replace the <span class="excalifont">x</span> with <code class="customCode">d</code>, we obtain a
+<strong>ground formula</strong>—here <span class="excalifont">(Human <code class="customCode">d</code> 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+Mortal <code class="customCode">d</code>)</span>— whose truth we can
+determine using the methods we&rsquo;re already familiar with.</p>
+<p>In practice, we sometimes use the object itself as a constant that denotes
+itself. So, we write things like:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol/img/constant_jimmy.png" class="mx-auto rounded d-block inert-img img-fluid"  width="300px"  alt="" >
+
+<p>The truth-conditions then work out to:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol/img/valuation_jimmy.png" class="mx-auto rounded d-block inert-img img-fluid"  width="300px"  alt="" >
+
+<p>That is, in our normal model, where all humans are mortal, little Jimmy
+satisfies the open formula, in the model with immortal Jimmy, he doesn&rsquo;t.</p>
+<p>It&rsquo;s worth remarking that this approach, though common in AI practice, is on
+shaky logical footing and requires a lot of technical care to be worked out
+rigorously—it can be done, but we won&rsquo;t go into the logical details. When it
+comes to DB&rsquo;s, however, we&rsquo;ll see a non-shaky version of it.</p>
+<p>The idea of satisfaction allows us also to define the very useful notion of the
+<strong>extension</strong> of an open formula: the set of objects satisfying a predicate. In
+the case of <span class="excalifont">(Human x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ Mortal x)</span>, for example, this works out to:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+(Human x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ Mortal x)
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ = { d 
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+ D | M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+ (Human x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ Mortal x)[x / <code class="customCode">d</code>] } </div>
+<p>More generally, if <span class="excalifont">A(x)</span> is <em>any</em> open formula with exactly one free variable, we can define:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+A(x)
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ = { d 
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+ D | M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+ A[x / <code class="customCode">d</code>] } </div>
+<p>This approach can also be generalized to open formulas with more than one
+free variable. Take the following formula, for example:</p>
+<div class="text-center my-4 excalifont">BiggerThan x y 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+Human x</div>
+<p>This formula is not satisfied by a single object, but by a <em>list</em> of objects
+from the domain <span class="excalifont">[d, e]</span> satisfies the formula just in case</p>
+<div class="text-center my-4 excalifont">M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+(BiggerThan x y 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+Human x)[x /<code class="customCode">d</code>, y /<code class="customCode">e</code>]</div>
+<div class="text-center my-4 excalifont"> if and only if </div>
+<div class="text-center my-4 excalifont">M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+(BiggerThan <code class="customCode">d</code> <code class="customCode">e</code> 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+Human <code class="customCode">d</code>)</div>
+<p>where we give <em>ad hoc</em> names to both <span class="excalifont">d</span> and <span class="excalifont">e</span> and substitute them in for <span class="excalifont">x</span>
+and <span class="excalifont">y</span> in our free formula. This gives us the notion of an extension for this
+formula as well:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+(BiggerThan x y 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+Human x)
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</div>
+<div class="text-center my-4 excalifont">=</div>
+<div class="text-center my-4 excalifont">{ [d, e] | M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+(BiggerThan x y 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+Human x)[x / <code class="customCode">d</code>, y / <code class="customCode">e</code>]}</div>
+<p>A crucial observation that we&rsquo;ll refer back to later is that just like the
+interpretations of predicates, we can represent the extensions of open formulas
+as tables. The extension of open formulas with one variable is just a table with
+one column, like this table, which gives the extension of
+<span class="excalifont">Human x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+Mortal x</span> in the model with immortal Jimmy:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol/img/extension_mortal_human.png" class="mx-auto rounded d-block inert-img img-fluid"  width="200px"  alt="" >
+
+<p>Note that little Jimmy is immortal in this model and thus not in the extension
+of the predicate.</p>
+<p>And for binary predicates, we get tables with multiple columns. Here&rsquo;s (part of)
+the table for <span class="excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+(BiggerThan x y 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+Human x)
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</span> in the model we&rsquo;ve described earlier:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol/img/extension_BiggerThan_Human.png" class="mx-auto rounded d-block inert-img img-fluid"  width="300px"  alt="" >
+
+<p>What&rsquo;s going on here is that we&rsquo;ve eliminated all the rows where the first
+column had a non-human in it, like Mighty Box.</p>
+<p>This notion of <strong>satisfaction</strong> of an open formula by objects in a model is a
+core notion in database theory and is what ultimately underpins database
+queries.</p>
+<p>But before we go into this, we need to talk about the truth-conditions for
+quantifiers. But the notion of satisfaction makes quick work of this. Let&rsquo;s take
+again our formula: <div class="text-center my-4 excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x (Human x 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ Mortal x)</div> The idea is that
+this formula is true in a model just in case <em>all</em> objects in the domain satisfy
+the open formula  <span class="excalifont">(Human x 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ Mortal x)</span>. In other words:</p>
+<div class="text-center my-4 excalifont">M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x (Human x 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ Mortal x) &emsp;
+if and only if &emsp;
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+(Human x 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ Mortal x)
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ = D</div>
+<p>This idea generalizes rather nicely. If <span class="excalifont">A</span> is a formula with precisely one free
+variable, we can also write <span class="excalifont">A(x)</span> to indicate this. We can then write our
+clause as follows:</p>
+<div class="text-center my-4 excalifont">M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x A(x) &emsp;
+if and only if &emsp; 
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+A(x)
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ = { d 
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+ D | M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+ (A(x))[x/<code class="customCode">d</code>] } = D</div>
+<p>This works exactly analogously for the existential quantifier 
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+ .
+Take the formula <div class="text-center my-4 excalifont">
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x (Human x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ Mortal x)</div>
+This formula says that there is some immortal human. So, it should be true just
+in case the extension <span class="excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+(Human x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ Mortal
+x)
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</span> of the open formula <span class="excalifont">(Human x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ Mortal
+x)</span> has at least one element, just in case it&rsquo;s <em>non-empty</em>, that is:</p>
+<div class="text-center my-4 excalifont">M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x (Human x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ Mortal
+x)</div> 
+<div class="text-center my-4 excalifont">if and only if</div>
+<div class="text-center my-4 excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+(Human x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ Mortal
+x)
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ <code class="customCode">≠ </code> { }</div>
+We can generalize this to the case of a formula <span class="excalifont">
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x A(x)</span>, where
+<span class="excalifont">A(x)</span> has precisely one free variable just like in the case of the universal
+quantifier. We get:
+<div class="text-center my-4 excalifont">M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x A(x) &emsp;
+if and only if &emsp; 
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+A(x)
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ <code class="customCode">≠</code> { }</div>
+<p>For the recursive evaluation of formulas, it&rsquo;s helpful to slightly rewrite the
+resulting clauses. To see how this works, think about under which conditions we
+have that <span class="excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+A(x)
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ = D</span>, and under which <span class="excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+A(x)
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ <code class="customCode">≠</code> { }</span>. For concreteness sake, let&rsquo;s take
+the formula <span class="excalifont">Mortal x</span> as <span class="excalifont">A(x)</span>. For <span class="excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+Mortal x
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ =
+D</span>, what needs to be the case is that for <em>all</em> objects <span class="excalifont">d
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+D</span>, we have
+that <span class="excalifont">M
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+Mortal <code class="customCode">d</code></span>, that is, we have to have:</p>
+<div class="text-center my-4 excalifont">M
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+Mortal 
+<img src="/img/little_jimmy.png" alt="Jimmy!" class="inline-icon" style="height:1.75em;width:auto;vertical-align: bottom;"/>
+ and M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+Mortal
+<img src="/img/mr_sir.png" alt="Mr Sir!" class="inline-icon" style="height:1.75em;width:auto;vertical-align: bottom;"/>
+ and …</div>
+Analogously, <span class="excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+Mortal x
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ <code class="customCode">≠</code> { }</span> means that
+there exists _some_ <span class="excalifont">d
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+D</span>, such that <span class="excalifont">M
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+Mortal <code class="customCode">d</code></span>, that
+is:<div class="text-center my-4 excalifont">M
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+Mortal 
+<img src="/img/little_jimmy.png" alt="Jimmy!" class="inline-icon" style="height:1.75em;width:auto;vertical-align: bottom;"/>
+ or M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+Mortal
+<img src="/img/mr_sir.png" alt="Mr Sir!" class="inline-icon" style="height:1.75em;width:auto;vertical-align: bottom;"/>
+ or …</div>
+<p>This gives us two very clearly recursive clauses for the truth of quantified sentences:</p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><span class="excalifont">M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+x A</span></td>
+          <td>    if and only if    </td>
+          <td>for some <span class="excalifont">d
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+D</span>, <span class="excalifont">M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+ A[x/d]</span></td>
+      </tr>
+      <tr>
+          <td><span class="excalifont">M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+x A</span></td>
+          <td>    if and only if    </td>
+          <td>for every <span class="excalifont">d
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+D</span>, <span class="excalifont">M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+ A[x/d]</span></td>
+      </tr>
+      <tr>
+          <td> </td>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<p>This gives us the concepts of a model and truth in a model for FOL. We are now
+in a position to investigate how valid inference in FOL works. But given its
+unique combination of practical importance—in math, science, and AI—with
+technical … trickiness, we dedicate an entire chapter to this. What we&rsquo;ll look
+at now is a connection of FOL models to AI research that is on a much lower
+level: the relation to databases—the way we store knowledge and <em>any</em> kind of
+data in complex computer systems.</p>
+<h2 id="databases-and-fol">Databases and FOL<button class="btn btn-back-to-top">
     
     <i class="bi bi-chevron-double-up"></i>
     
@@ -1144,93 +2368,262 @@ as truth-preservation from premises to conclusion in all models:</p>
 </h2>
 <hr>
 
-<p>While <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/G%60C3%60B6del%27s_completeness_theorem"
-  target="_blank">Gödel&rsquo;s original completeness theorem</a> showed that the Hilbert system for FOL is sound and complete, i.e. we have <div class="text-center my-4 excalifont">P_1,P_2,\dots\vDash C\Leftrightarrow P_1,P_2,\dots\vdash C</div> in FOL, there are two important limiting results about FOL with severe implications for AI.</p>
-<p>We&rsquo;ve already mentioned these results in 
+<p>
+<img src="https://logicalmethods.ai/textbook/fol/img/db_proceed.png" class="rounded  float-start inert-img img-fluid m-2"  width="200px"  alt="" >
 
+Roughly speaking a <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Database"
+  target="_blank"><strong>database (DB)</strong></a>
+is an organized collection of
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Data_%28computer_science%29"
+  target="_blank">data</a>. Data can be
+essentially be <em>any</em> sequence of symbols, but we&rsquo;ll look at data that is a bit
+more structured. Our running example will involve information about the capitals
+of different countries, in which part of the world they are located, which
+language are spoken there.</p>
+<p>We&rsquo;ll store this data as plain text in a
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/SQL"
+  target="_blank">SQL</a> database, which is by far the most
+widely used database system. If you&rsquo;ve ever heard of someone professionally
+using a database, chances are it was some form of a SQL database. SQL is a
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Domain-specific_language"
+  target="_blank">domain-specific programming
+language</a>, which in
+contrast to general purpose programming languages, is used for one specific
+purpose: to interact with data.</p>
+<p>In SQL, data is stored in <strong>tables</strong>. Before we can put data in those tables, we
+need to <code class="customCode"><span class="dark-blue">CREATE</span></code> them. Here&rsquo;s some SQL code that
+sets up three tables, one for storing information about the capitals of
+countries, one for storing information about where those countries are located,
+and one for the language spoken in the country:</p>
 
-<a href="https://logicalmethods.ai/textbook/logic-and-ai//#as-a-foundation"
-   
-   
-   
-   
-   
-   > Chapter 1. Logic and AI </a>
+<img src="/img/sql_logo.png" alt="SQL_Logo" class="float-start" style="height:1em;width:auto;"/>
 
-:</p>
-<ul>
-<li>
-<p>Gödel&rsquo;s <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/G%60C3%60B6del%27s_incompleteness_theorems"
-  target="_blank"><strong>(first) incompleteness
-theorem</strong></a>,
-which implies that for every logical system that is free of internal
-contradictions and models basic mathematical reasoning, there is a mathematical
-statement that is <em>undecidable</em> in the system, meaning that the statement can
-neither be proven nor refuted in that system.</p>
-</li>
-<li>
-<p>Turing&rsquo;s <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Decidability_%28logic%29"
-  target="_blank"><strong>undecidability
-theorem</strong></a>, which states
-that validity in the standard system of predicate logic is <em>(algorithmically)
-undecidable</em>, meaning that  there is no algorithm and there can never be an
-algorithm that correctly determines in finitely many steps whether any given
-inference in the system of predicate logic is valid.</p>
-<p>This result seems to show directly that we cannot &ldquo;fully automate&rdquo; validity
-checking using AI and maintain absolute reliability.</p>
-</li>
-</ul>
-<p>These two results are explicitly <strong>about FOL</strong>. Gödel&rsquo;s incompleteness theorem
-is concerns possible extensions of FOL axiomatizations of arithmetic, the theory
-of natural numbers.</p>
-<p>While the proof of the incompleteness theorem is out of scope for this book, the
-result involves an impressive illustration of the expressive power of FOL:</p>
-<ul>
-<li>
-<p>The standard theory of the natural numbers, which is the basis for <em>all</em>
-modern number theory is <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Peano_axioms"
-  target="_blank">Peano arithmetic</a> is a FOL-theory.</p>
-</li>
-<li>
-<p>The proof of Gödel&rsquo;s result involves showing that FOL can develop a theory of
-syntax <em>in general</em>. That is, the theory of formal languages we&rsquo;ve covered in 
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">CapitalOf</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">country</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">capital</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">LocatedIn</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">country</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">continent</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">Language</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">country</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">language</span><span class="w"> </span><span class="nb">TEXT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Don&rsquo;t worry, you don&rsquo;t need to install anything. In the moment, there will be a
+link that allows you to interactively execute the code in the browser.</p>
+<p>In any case, running this code doesn&rsquo;t do much, it just sets up the three
+tables. Next, we need to populate them, we need to <code class="customCode"><span
+class="dark-blue">INSERT</span></code> data <code class="customCode"><span class="dark-blue">INTO</span></code> the
+tables. Here&rsquo;s how that goes:</p>
 
+<img src="/img/sql_logo.png" alt="SQL_Logo" class="float-start" style="height:1em;width:auto;"/>
 
-<a href="https://logicalmethods.ai/textbook/formal-languages/"
-   
-   
-   
-   
-   
-   > Chapter 3. Formal languages </a>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">CapitalOf</span><span class="w"> </span><span class="k">VALUES</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">(</span><span class="s1">&#39;United States&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Washington D.C.&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">(</span><span class="s1">&#39;Netherlands&#39;</span><span class="p">,</span><span class="w">   </span><span class="s1">&#39;Amsterdam&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">(</span><span class="s1">&#39;Germany&#39;</span><span class="p">,</span><span class="w">       </span><span class="s1">&#39;Berlin&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">(</span><span class="s1">&#39;Italy&#39;</span><span class="p">,</span><span class="w">         </span><span class="s1">&#39;Rome&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">(</span><span class="s1">&#39;Japan&#39;</span><span class="p">,</span><span class="w">         </span><span class="s1">&#39;Tokyo&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">LocatedIn</span><span class="w"> </span><span class="k">VALUES</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">(</span><span class="s1">&#39;United States&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;North America&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">(</span><span class="s1">&#39;Netherlands&#39;</span><span class="p">,</span><span class="w">   </span><span class="s1">&#39;Europe&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">(</span><span class="s1">&#39;Germany&#39;</span><span class="p">,</span><span class="w">       </span><span class="s1">&#39;Europe&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">(</span><span class="s1">&#39;Italy&#39;</span><span class="p">,</span><span class="w">         </span><span class="s1">&#39;Europe&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">(</span><span class="s1">&#39;Japan&#39;</span><span class="p">,</span><span class="w">         </span><span class="s1">&#39;Asia&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">LanguageOf</span><span class="w"> </span><span class="k">VALUES</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">(</span><span class="s1">&#39;United States&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;English&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">(</span><span class="s1">&#39;Netherlands&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Dutch&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">(</span><span class="s1">&#39;Germany&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;German&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">(</span><span class="s1">&#39;Italy&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Italian&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">(</span><span class="s1">&#39;Japan&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Japanese&#39;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Running <em>this</em> code also doesn&rsquo;t return anything (other than some success
+message), it just populates our tables with data. This data is now ready to be
+interacted with: we can store it, update it, or <em>query</em> it, which is to ask the
+DB for information.</p>
+<p>Here&rsquo;s a very simple <code class="customCode"><span class="dark-blue">QUERY</span></code>, which returns
+all the data in our table:</p>
 
- is itself a FOL-theory.</p>
-</li>
-</ul>
-<p>On the other hand, Gödel&rsquo;s result shows that we <em>cannot</em>, not matter how hard we
-try, develop an expert system involving a consistent knowledge bank that
-contains <em>all</em> mathematical truths. In other words, we cannot develop a
-consistent, mathematically omniscient AI.</p>
-<p>Turing&rsquo;s result is also about FOL. It concerns the perhaps surprising fact that
-while our best proof systems for FOL are sound and complete, there&rsquo;s no
-algorithm for determining whether any given inference is valid or not. This
-makes inference in FOL a <em>hard</em> topic, which we&rsquo;ll look into in the next
-chapter.</p>
-<p>Just like with Gödel&rsquo;s theorem, the proof of Turing&rsquo;s theorem is out of scope.
-But what we&rsquo;ll be able to appreciate are the pitfalls that naive inference
-algorithms in FOL can fall into, such as <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Infinite_loop"
-  target="_blank">infinite
-loops</a> in proof search, for
-example.</p>
+<img src="/img/sql_logo.png" alt="SQL_Logo" class="float-start" style="height:1em;width:auto;"/>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">CapitalOf</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">LocatedIn</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">LanguageOf</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>To run this code click <code class="customCode">RUN</code> after following this <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://www.db-fiddle.com/f/bTqC7rED8PrABxDyhN766d/2"
+  target="_blank">link</a>.</p>
+<p>The output looks something like this:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol/img/db_tables.png" class="mx-auto rounded d-block inert-img img-fluid"  width="900px"  alt="" >
+
+<p>But wait a second, that looks suspiciously like the specification of an FOL
+model using tables! In fact, it <em>is</em> a model for language with three binary
+predicates:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+CapitalOf², LocatedIn², LanguageOf²
+</code></div>
+<p>It turns out that this is not by chance. On the low level, there is a very deep
+correspondence between FOL syntax and models and the way SQL databases work. In
+fact, SQL was originally developed on the basis of <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Relational_algebra"
+  target="_blank">relational
+algebra</a>, which <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Codd%27s_theorem"
+  target="_blank">Codd&rsquo;s
+theorem</a> proves to be
+&ldquo;essentially equivalent&rdquo; to FOL. This result is analogous to the relationship
+between logical proofs and computer programs, which we&rsquo;ve observed in the <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Curry%60E2%6080%93Howard_correspondence"
+  target="_blank">Curry
+Howard
+Correspondence</a>
+and which is the basis for proof assistants like Lean. In an analogous way, FOL
+is the basis for DB theory. Let&rsquo;s explore this idea a bit further by looking at
+a more complicated query:</p>
+
+<img src="/img/sql_logo.png" alt="SQL_Logo" class="float-start" style="height:1em;width:auto;"/>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">country</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">LocatedIn</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">continent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Europe&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>If you copy-paste this code into the Query field of our
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://www.db-fiddle.com/f/bTqC7rED8PrABxDyhN766d/2"
+  target="_blank">db-fiddle</a>, you&rsquo;ll get a
+table like this:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol/img/db_query_1.png" class="mx-auto rounded d-block inert-img img-fluid"  width="300px"  alt="" >
+
+<p>But hang on, the similarities continue. Suppose that our language had constants
+for the countries (<code class="customCode">UnitedStates, Netherlands, Germany, Italy,Japan</code>),
+continents (<code class="customCode">NorthAmerica, Europe, Asia</code>), and languages (<code class="customCode">English, Dutch,
+German, Italian, and Japanese</code>), with the stipulation that these constants
+indeed denote the corresponding countries, this table gives the extension of the
+open formula:</p>
+<div class="customBlock text-center my-4"><code class="customCode">sql
+LocatedIn(x, Europe)
+</code></div>
+<p>We can carry this idea <em>much</em> further:
+
+ <img src="/img/sql_logo.png" alt="SQL_Logo" class="float-start" style="height:1em;width:auto;"/>
+</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">CapitalOf</span><span class="p">.</span><span class="n">capital</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">CapitalOf</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">JOIN</span><span class="w"> </span><span class="n">LocatedIn</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">CapitalOf</span><span class="p">.</span><span class="n">country</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LocatedIn</span><span class="p">.</span><span class="n">country</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">LocatedIn</span><span class="p">.</span><span class="n">continent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Europe&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>This returns:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol/img/db_query_2.png" class="mx-auto rounded d-block inert-img img-fluid"  width="300px"  alt="" >
+
+<p>But this is just the extension of</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x (CapitalOf(x,y) 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ LocatedIn(x,Europe))
+</code></div>
+<p>If we systematically explore these observations, we find that there is a direct
+correspondence between SQL queries and open FOL formulas: this is a core idea of
+Codd&rsquo;s theorem. This correspondence carries on to a very low level: the
+algorithms SQL implementations use to return data for queries <em>are</em> algorithms
+for FOL model checking. Much more could be said about this, but that&rsquo;s the
+content of a course on DB theory. What the take home message is for today is
+that the way we store knowledge in computer systems and query that knowledge is
+intimately related to FOL, making it one of the core logical methods for AI.</p>
 
 
   </div>
-   <p><em>Last edited: </em>09/10/2024</p>
+   <p><em>Last edited: </em>08/10/2025</p>
 </div>
 
 
