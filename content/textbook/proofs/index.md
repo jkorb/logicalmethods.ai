@@ -992,7 +992,7 @@ example : RAIN ∧ (WIND ∨ SUN) → (RAIN ∧ WIND) ∨ (RAIN ∧ SUN) := by
     · exact sun
 ~~~
 Click this
-[link](https://live.lean-lang.org/#codez=G4QwTgliBGA2CmACAFAJQIIEkByiDqOAIogMoCquAXIgApgD2ADgJQBQr8AHiALaMKJqGHIkDkRCgLZigCiJSFZokBJhCmG5xkwgtlosaudgWUAvImgBPVokQQAdgBcGiMCFsB9EDYAmrgO63v9GCuAM4ArjaWiAAWIMBIzraCJuheAHQIAGZ2Ti427l6+/q6BIeGRMXGIfgUlYTZJiCmeqZAA5lHZCXke3tUBQXWRIIz8ZogA8mCp8LAQPFVFtWVWAO3W9o59kVbDoxNTtrDbiLuwY02ptg70x2tcIADGnbm3iPdPC16Ra1eOg1Y7EZnfaXGxgY6nc5pX43AGIO7cD5dV7vbKDIA) to run this code in your browser. 
+[link](https://live.lean-lang.org/#codez=G4QwTgliBGA2CmACAFAJQIIEkByiDqOAIogMoCquAXIgApgD2ADgJQBQr8AHiALaMKJqGHIkDkRCgLZigCiJSFZokBJhCmG5xkwgtlosaudgWUAvImgBPVokQQAdgBcGiMCFsB9EDYAmrgO63v9GCuAM4ArjaWiCCM/GaIAPJgAHTwsBA8KOheSZAA5gAWdk4uNu5evv6ugSHhbFYA7db2jn5ekVbRsQnJtrDtUTGwcVmeSbYO9P2NXCAAxkUjSQgAZkXObh7erQFBYRFWDYgz84jbkY3jjnv9nUPdYzZgN4PD2ZeTB4jT3CeLK2slMpbSrVa6fb5zIp7IA) to run this code in your browser. 
 
 This code corresponds to the following derivation in natural deduction:
 
