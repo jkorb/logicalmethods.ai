@@ -1078,6 +1078,7 @@ LocatedIn(x, Europe)
 ```
 
 We can carry this idea _much_ further:
+
  {{< sql_logo >}}
 ~~~sql
 SELECT CapitalOf.capital
