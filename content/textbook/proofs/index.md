@@ -1177,15 +1177,15 @@ derive the law of double negation elimination:
 
 {{< lean_logo >}}
 ~~~lean4
+open Classical
+
 theorem double_negation_elim (A : Prop) : ¬¬A → A := by
-  open Classical
   intro not_not_a
-  byContradiction not_a
+  apply byContradiction
   apply not_not_a
-  exact not_a
 ~~~
 Click this
-[link](https://live.lean-lang.org/#codez=C4Cwpg9gTmC2AEATCBXARgGzAfQHZgHMBDYASwl2zA1IQAoBBeALngAUoIAHAShfgA1ApoCTCeE2YBeeGgCeAKHjxuYXPADCGIgGdtpAMZEMi+KVzBO8XBGB4b2IibnqKFoogNkKV+46VEuLgxZH1trWz94MAAPIn1gUIcgA) to run this code in your browser. 
+[link](https://live.lean-lang.org/#codez=PYBwpgdgBAwgNgQwM5IJYGMFwFDYC4AWYwATmALZQAmwArgEZxgD6EYA5gnqsBM2HFSUAFAEEoALigAFEqACUkqABrl4wEmEUcRIC8UegE9sUKKgh45UCMDysbzBMagIQIOAf0GYvCwioZuXicXNw9rW3CHIA) to run this code in your browser. 
 
 What's going on here is that by the line `<span class="dark-blue">open</span>
 Classical`, we make the new tactic `byContradiction` available, which allows us
