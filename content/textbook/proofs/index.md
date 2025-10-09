@@ -1193,9 +1193,9 @@ to derive `A` from a proof of `⊥` from the assumption that `<span
 class="dark-green">¬</span>A`. This is precisely what's going on here:
 
 ~~~lean4 {linenostart=4}
-  byContradiction not_a
+  intro not_not_a
+  apply byContradiction
   apply not_not_a
-  exact not_a
 ~~~
 
 The tactic `byContradiction` introduces the hypothesis `not_a`, which is a proof
