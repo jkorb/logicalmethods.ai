@@ -2607,9 +2607,9 @@ class="dark-green">¬</span>A</code>. This is precisely what&rsquo;s going on he
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-lean4" data-lang="lean4"><span class="line"><span class="cl"><span class="w">  </span><span class="n">byContradiction</span><span class="w"> </span><span class="n">not_a</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-lean4" data-lang="lean4"><span class="line"><span class="cl"><span class="w">  </span><span class="n">intro</span><span class="w"> </span><span class="n">not_not_a</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">apply</span><span class="w"> </span><span class="n">byContradiction</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">apply</span><span class="w"> </span><span class="n">not_not_a</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">exact</span><span class="w"> </span><span class="n">not_a</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>The tactic <code class="customCode">byContradiction</code> introduces the hypothesis <code class="customCode">not_a</code>, which is a proof
