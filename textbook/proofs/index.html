@@ -2584,17 +2584,17 @@ derive the law of double negation elimination:</p>
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-lean4" data-lang="lean4"><span class="line"><span class="cl"><span class="kn">theorem</span><span class="w"> </span><span class="n">double_negation_elim</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Prop</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">¬¬</span><span class="n">A</span><span class="w"> </span><span class="bp">→</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kn">open</span><span class="w"> </span><span class="n">Classical</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-lean4" data-lang="lean4"><span class="line"><span class="cl"><span class="kn">open</span><span class="w"> </span><span class="n">Classical</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">theorem</span><span class="w"> </span><span class="n">double_negation_elim</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Prop</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">¬¬</span><span class="n">A</span><span class="w"> </span><span class="bp">→</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">intro</span><span class="w"> </span><span class="n">not_not_a</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">byContradiction</span><span class="w"> </span><span class="n">not_a</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">apply</span><span class="w"> </span><span class="n">byContradiction</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">apply</span><span class="w"> </span><span class="n">not_not_a</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">exact</span><span class="w"> </span><span class="n">not_a</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>Click this
 <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://live.lean-lang.org/#codez=C4Cwpg9gTmC2AEATCBXARgGzAfQHZgHMBDYASwl2zA1IQAoBBeALngAUoIAHAShfgA1ApoCTCeE2YBeeGgCeAKHjxuYXPADCGIgGdtpAMZEMi&#43;KVzBO8XBGB4b2IibnqKFoogNkKV&#43;46VEuLgxZH1trWz94MAAPIn1gUIcgA"
+<a class="link-dark" href="https://live.lean-lang.org/#codez=PYBwpgdgBAwgNgQwM5IJYGMFwFDYC4AWYwATmALZQAmwArgEZxgD6EYA5gnqsBM2HFSUAFAEEoALigAFEqACUkqABrl4wEmEUcRIC8UegE9sUKKgh45UCMDysbzBMagIQIOAf0GYvCwioZuXicXNw9rW3CHIA"
   target="_blank">link</a> to run this code in your browser.</p>
 <p>What&rsquo;s going on here is that by the line <code class="customCode"><span class="dark-blue">open</span>
 Classical</code>, we make the new tactic <code class="customCode">byContradiction</code> available, which allows us
