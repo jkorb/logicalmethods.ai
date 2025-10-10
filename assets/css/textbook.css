@@ -1,5 +1,7 @@
 .chapter {
-  max-width:720px;
+  width:90vw;
+  max-width:1140px;
+  /* font-size: 18pt; */
 }
 
 .chapter {
@@ -55,3 +57,14 @@ h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.n
   content : "";
   counter-increment : none;
 }
+
+table {
+  margin-left: auto;
+  margin-right: auto; /* centers the whole table */
+}
+
+table th,
+table td {
+  text-align: center; /* centers text in cells */
+}
+

@@ -1,7 +1,8 @@
 ---
 title: Logic and probability
 author: Johannes Korbmacher
-weight: 11
+weight: 110
+locked: true
 params: 
   date: 21/10/2024
   last_edited: 21/10/2024

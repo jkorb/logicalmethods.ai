@@ -1,5 +1,8 @@
 Here you can find the lecture slides. 
 
+Slides that are currently under development are locked. They will be unlocked
+in time for class.
+
 You can use them to follow along during the lecture and to go through the
 material again after.
 

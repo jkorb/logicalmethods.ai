@@ -1,7 +1,8 @@
 ---
 title: Logic-based learning
 author: Johannes Korbmacher
-weight: 12
+locked: true
+weight: 120
 params: 
   date: 23/10/2024
   last_edited: 23/10/2024

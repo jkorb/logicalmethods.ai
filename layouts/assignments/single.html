@@ -1,0 +1,50 @@
+{{ define "head" }}
+<link rel="stylesheet" href="{{ (resources.Get "css/assignments.css").Permalink }}"></link>
+{{ end }}
+
+{{ define "main" }}
+  {{ partial "exercises/password-modal" . }}
+  {{ partial "single/nav-top" . }}
+  {{ partial "single/title" . }}
+
+{{ partial "shared/info" . }}
+
+<hr>
+<div class="container exercises m-4">
+  <div class="container-fluid">
+
+    {{- $patternMathBlock := `(?s)\$\$(.*?)\$\$` -}}
+    {{- $replacementMathBlock := `<div class="text-center my-4 excalifont">${1}</div>` -}}
+  
+    {{- $patternMathInline := `(?s)\$(.*?)\$` -}}
+    {{- $replacementMathInline := `<span class="excalifont">${1}</span>` -}}
+  
+    {{- $patternCodeBlock := "```([^`]*)```" -}}
+    {{- $replacementCodeBlock := `<div class="customBlock text-center my-4"><code class="customCode">${1}</code></div>` -}}
+  
+    {{- $patternCodeInline := "`([^`]*)`" -}}
+    {{- $replacementCodeInline := `<code class="customCode">${1}</code>` -}}
+  
+    {{- $patternBoolean := "!!(.*?)!!" -}}
+    {{- $replacementBoolean := `<span class="Boolean">${1}</span>` -}}
+    
+    {{- $processed := .RawContent 
+        | replaceRE $patternMathBlock $replacementMathBlock 
+        | replaceRE $patternMathInline $replacementMathInline 
+        | replaceRE $patternCodeBlock $replacementCodeBlock 
+        | replaceRE $patternCodeInline $replacementCodeInline 
+        | replaceRE $patternBoolean $replacementBoolean 
+      -}}
+    
+    {{ $processed | .RenderString }}
+  </div>
+</div>
+
+{{ partial "single/nav-bot" . }}
+
+{{ end }}
+
+
+{{ define "footer" }}
+<script src="{{ (resources.Get "js/exercises.js").Permalink}}"></script>
+{{ end }}

@@ -4,7 +4,7 @@
 
 {{ define "style"}}
     :root {
-      --chapter: "{{ .Weight}}";
+      --chapter: "{{ math.Div .Weight 10}}";
     }
 {{end}}
 
@@ -13,7 +13,42 @@
 
 <div class="container chapter">
   {{ with .Params.author }}<p>By: <em>{{.}}</em></p>{{end}}
-  {{- .Content -}}
+  <div class="m-4">
+  {{- $patternMathBlock := `(?s)\$\$(.*?)\$\$` -}}
+  {{- $replacementMathBlock := `<div class="text-center my-4 excalifont">${1}</div>` -}}
+
+  {{- $patternMathInline := `(?s)\$(.*?)\$` -}}
+  {{- $replacementMathInline := `<span class="excalifont">${1}</span>` -}}
+
+  {{- $patternCodeBlock := "```([^`]*)```" -}}
+  {{- $replacementCodeBlock := `<div class="customBlock text-center my-4"><code class="customCode">${1}</code></div>` -}}
+
+  {{- $patternCodeInline := "`([^`]*)`" -}}
+  {{- $replacementCodeInline := `<code class="customCode">${1}</code>` -}}
+
+  {{- $patternBoolean := "!!(.*?)!!" -}}
+  {{- $replacementBoolean := `<span class="Boolean">${1}</span>` -}}
+
+  {{- $patternMDCode := "~~~(.*?)~~~" -}}
+  {{- $replacementMDCode := "```${1}```" -}}
+
+  {{- $patternMDInline := "%(.*?)%" -}}
+  {{- $replacementMDInline := "`${1}`" -}}
+
+
+  {{- $processed := .RawContent 
+      | replaceRE $patternMathBlock $replacementMathBlock 
+      | replaceRE $patternMathInline $replacementMathInline 
+      | replaceRE $patternCodeBlock $replacementCodeBlock 
+      | replaceRE $patternCodeInline $replacementCodeInline 
+      | replaceRE $patternBoolean $replacementBoolean 
+      | replaceRE $patternMDCode $replacementMDCode 
+      | replaceRE $patternMDInline $replacementMDInline 
+    -}}
+  
+  {{ $processed | .RenderString }}
+
+  </div>
   {{ with .Params.last_edited }} <p><em>Last edited: </em>{{.}}</p>{{ end }}
 </div>
 

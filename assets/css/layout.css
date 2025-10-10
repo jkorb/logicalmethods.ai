@@ -1,10 +1,11 @@
 body {
   min-height: 100vh; 
+  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.2rem);
 }
 
 header, footer, main, .alert, .element {
   width:100vw;
-  max-width:720px;
+  max-width:1140px;
 }
 
 main, .element {
@@ -23,4 +24,95 @@ main, .element {
   transform: rotate(90deg);
 }
 
+.inert-img {
+  user-select: none;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none;
+  -ms-user-select: none;
 
+  -webkit-user-drag: none;   /* Safari/old WebKit */
+  -khtml-user-drag: none;
+
+  -webkit-touch-callout: none; /* no long-press menu on iOS */
+  pointer-events: none;        /* if you don't want it clickable */
+}
+
+@font-face {
+  font-family: 'Excalifont';
+  src: url('/fonts/Excalifont.woff2') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Comic Shanns';
+  src: url('/fonts/Comic Shanns/comic shanns.otf') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.customBlock {
+  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);
+}
+
+.excalifont 
+{
+  font-family: 'Excalifont', sans-serif;
+  /* font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem); */
+}
+
+.shanns 
+{
+  font-family: 'Comic Shanns', monospace;
+  /* font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem); */
+}
+
+
+code {
+  font-family: "Comic Shanns", monospace;
+  /* white-space: nowrap; */
+  color: #000; /* force black text */
+  /* font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem); */
+  /* font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem); /* a bit larger than normal */ */
+}
+
+.Boolean {
+  font-family: "Comic Shanns", monospace;
+  color: #1971c2; 
+}
+
+.dark-green {
+  color: #2f9e44;
+}
+
+.dark-blue {
+  color: #1971c2;
+}
+
+.dark-red {
+  color: #e03131;
+}
+
+.dark-orange {
+  color: #f08c00;
+}
+
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.right-justified {
+  float: right;       /* pushes it to the right edge */
+  margin-right: 20vw;   /* small gap so it doesn’t crowd the formula */
+}
+
+/* pre code { */
+/*   font-family: "Comic Shanns", monospace; */
+/*   margin: 10pt; */
+/*   /* white-space: nowrap; */ */
+/*   /* color: #000; /* force black text */ */ */
+/*   /* font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem); */ */
+/*   /* font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem); /* a bit larger than normal */ */ */
+/* } */

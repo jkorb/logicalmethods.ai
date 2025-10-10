@@ -1,486 +1,331 @@
 ---
 title: Logical conditionals
 author: Johannes Korbmacher
-weight: 6
+locked: false
+weight: 60
 params: 
   id: exc-if
   math: true
 ---
 
-# Equivalences {.solved}
+# Boolean conditional {.solved}
 
-For each of the following pairs of formulas, show that they are _equivalent_ in
-the sense that they have the same truth-value under each valuation.
+We've interpreted the conditional symbol {{< to >}} using the Booleans !!NOT!!
+and !!OR!!. But we could also have directly defined a Boolean function !!IF!!
+with the following truth-table:
 
-## a)
+{{< img src="img/if_table.png" class="mx-auto d-block rounded inert-img img-fluid" width="200px">}}
 
-$A\to B$ and $\neg A\lor B$
+Note that ``X !!IF!! Y`` is the conditional from the value of `X` to the value
+of `Y` to make the reading of the Boolean align with its natural reading.
 
-## b) {.homework}
+Find a representation of this Boolean function using only !!NOT!! and !!AND!!. That is find a Boolean expression `exp` in the two variables `X` and `Y`, which contains only the Boolean functions !!NOT!! and !!AND!!, and which meets the specification that for all values of `X` and `Y`, we have:
 
-$A\to B$ and $\neg(A\land\neg B)$
+```
+exp = X !!IF!! Y.
+```
 
-## c) 
+Verify your work! That is don't just provide an expression, but show that for all values of `X` and `Y` the above equation holds.
 
-$A$ and $\neg A\to A$
-([Clavius](https://en.wikipedia.org/wiki/Christopher_Clavius)'s law)
+## Solution {.solution #boolean-conditionalSolution}
 
-## d) {.homework}
+The most straight-forward solution is:
 
-$A\to B$ and $\neg B\to \neg A$ (the law of contraposition)
+```
+!!NOT!!(Y !!AND!! (!!NOT!! X))
+```
 
-## e) 
+Here's a truth-table to show that `!!NOT!!(Y !!AND!! (!!NOT!! X)) = X !!IF!! Y`:
 
-$A\to (B\to C)$ and $(A\land B)\to C$
 
-## Solution {.solution #equivalencesSolution}
+{{< img src="img/table_solution.png" class="mx-auto d-block rounded inert-img img-fluid" width="400px">}}
 
-You can solve these in various ways. Here I provide some different styles of
-solutions.
+# Equivalence {.solved}
 
-**a)** 
+Remember the truth-table for $XNOR$ from the last exercises set:
 
-We do this with a truth-table, which goes through all possible values:
+{{< img src="img/xnor_table.png" class="mx-auto d-block rounded inert-img img-fluid" width="200px">}}
 
-{{< img src="img/disjunction.png" class="img-thumbnail" >}}
+Find a formula representation of this Boolean truth-function using only the
+propositional variables $p$ and $q$ and the connectives ${{< land >}}$ and ${{<
+to >}}$! That is, find such formula satisfying these constraints, which meets
+the assignments $v$ of truth-values to $p$ and $q$, we have:
 
-**b)**
+$$v(A) = v(p) !!XNOR!! v(q).$$
 
-Also here, truth-tables is a good method:
+Verify your work! That is don't just provide a
+formula, but show that for each assignment the above
+equation holds.
 
-{{< img src="img/conjunction.png" class="img-thumbnail" >}}
+## Solution {#equivalenceSolution .solution}
 
-**c)**
+One of the conceptually clearest solutions is the formula:
 
-Here we can give a rather simple argument:
+```
+(p {{< to >}} q) {{< land >}} (q {{< to >}} p)
+```
 
-$\nu(A)$ is either 0 or 1. If $\nu(A)=0$, then $\nu(\neg A)=1$. But then $v(\neg
-A\to A)=1\Rightarrow 0=0$. If, instead, $\nu(A)=1$, then $\nu(\neg A)=0$ and
-so $\nu(\neg A\to A)=0\Rightarrow \nu(A)=1$. 
+Here's a truth-table to verify our work:
 
-**d)**
+{{< img src="img/table_solution_2.png" class="mx-auto d-block rounded inert-img img-fluid" width="300px">}}
 
-We do a truth-table:
+# Conditional inferences {.solved}
 
+{{< img src="img/sun.png" class="rounded  float-start inert-img img-fluid m-2" width="100px" >}} 
 
-{{< img src="img/contraposition.png" class="img-thumbnail" >}}
+Check the following conditional inferences for deductive validity using
+`SAT`-solving. You can use truth-tables or resolution, as you prefer.
 
-**e)**
+1. $(RAIN{{< to >}}WIND), {{< neg >}}RAIN {{< therefore >}} {{< neg >}}WIND$ 
 
-Here we can give a more sophisticated argument:
+2. $(RAIN{{< to >}}WIND)  {{< therefore >}}({{< neg >}}WIND {{< to >}} {{< neg >}}RAIN)$
 
-The only way in which we can have $\nu(A\to(B\to C))=0$ is if $\nu(A)=1$,
-$\nu(B\to C)=0$. The latter can only be if $\nu(B)=1$ and $\nu(C)=0$. But then,
-$\nu(A\land B)=1$ and $\nu(C)=0$ and so $\nu((A\land B)\to C)=\nu(A\land
-B)\Rightarrow \nu(C)=1\Rightarrow 0=0$.
+3. $({{< neg >}} RAIN{{< to >}} RAIN)  {{< therefore >}}RAIN$
 
-Similarly, the only way in which $\nu((A\land B)\to C)=0$ is if $\nu(A\land B)=1$
-and $\nu(C)=0$. But then $\nu(A)=1$ and $\nu(B)=1$, since $\nu(A\land
-B)=\nu(A)\times\nu(B)=1$. But then $\nu(B\to C)=0$ since $\nu(B\to
-C)=\nu(B)\Rightarrow\nu(C)=1\Rightarrow 0$ and so $\nu(A\to (B\to
-C)=\nu(A)\Rightarrow \nu(B\to C)=1\Rightarrow 0=0$. 
+4. $(RAIN {{< to >}}( SUN {{< to >}} RAINBOW)) {{< therefore >}} ((RAIN {{< land >}} SUN) {{< to >}} RAINBOW)$
 
-So the two formulas are false in the exact same cases, which means in all other
-cases they must both be true.
+5. ${{< neg >}} (RAIN {{< to >}} WIND) {{< therefore >}} RAIN $
 
-Alternatively, you can do an 8-row truth-table:
+{{< img src="img/rain_wind.png" class="rounded  float-end inert-img img-fluid m-2" width="100px" >}} 
+Document your work carefully, that is explain each step you're carrying out,
+and why the work you did shows that the inference in question is valid or invalid.
 
+## Solution {#conditional-inferencesSolution .solution}
 
-{{< img src="img/three.png" class="img-thumbnail" >}}
+1. $(RAIN{{< to >}}WIND), {{< neg >}}RAIN {{< nvDash >}} {{< neg >}}WIND$. We show this using resolution.
 
-# Boolean laws {.solved}
+    The aim is to show that ${(RAIN{{< to >}}WIND), {{< neg >}}RAIN , {{< neg >}}{{< neg >}}WIND }$ is satisfiable.
 
-Formulate the equivalences from Exercise 1 as Boolean laws. For example, a)
-becomes $$x\Rightarrow y=-x+y.$$
+    First, we transform into CNF. The conditional becomes ${{< neg >}} RAIN 
+    {{< lor >}} WIND$ using $r₀$, and ${{< neg >}}{{< neg >}}WIND }$ becomes $WIND$ using $r₁$.
 
-## Solution {.solution #boolean-lawsSolution}
+    This leaves us with the sets $${ {{< neg >}}RAIN, WIND }&emsp; { {{< neg >}}
+    RAIN } &emsp; { WIND }.$$ No resolution is possible, and we can read off a
+    counter-model where $v(RAIN) = 0$ and $v(WIND) = 1$.
 
-**a)**
+2. $(RAIN{{< to >}}WIND)  {{< vDash >}}({{< neg >}}WIND {{< to >}} {{< neg >}}RAIN)$. We show this using resolution.
 
-$$x\Rightarrow y=-x+y.$$
+    The aim is to show that ${ (RAIN{{< to >}}WIND), {{< neg >}}({{< neg >}}WIND {{< to >}} {{< neg >}}RAIN) }$ is unsatisfiable.
 
-**b)**
+    First, we transform into CNF, beginning by transforming the conditionals
+    using $r₀$, giving us ${{< neg >}}RAIN{{< lor >}}WIND$ 
+    and ${{< neg >}}({{< neg >}}{{< neg >}}WIND {{< lor >}} {{< neg >}}RAIN)$.
 
-$$x\Rightarrow y=-(x\times -y)$$
+    Applying $r₁$ and $r₃$ recursively to the latter, we obtain ${{< neg >}}WIND
+    {{< land >}} RAIN$. This gives us the sets: $${ {{< neg >}} RAIN, WIND }&emsp;
+    { {{< neg >}} WIND }&emsp; { RAIN }$$.
 
-**c)**
+    We derive the empty set ${ }$ in two steps:
 
-$$x=-x\Rightarrow x$$
+    - With ${ {{< neg >}} RAIN, WIND }$ and ${ {{< neg >}} WIND }$, we resolve
+    to ${ {{< neg >}} RAIN}$.
 
-**d)**
+    - With ${ {{< neg >}} RAIN}$ and ${ RAIN }$, we resolve to the empty set ${
+    }$ proving the unsatisfiability of the set.
 
-$$x\Rightarrow y=-y\Rightarrow -x$$
+3. $({{< neg >}} RAIN{{< to >}} RAIN)  {{< vDash >}}RAIN$. We show this using
+   truth-tables.
 
-**e)**
+   The aim is to show that ${({{< neg >}} RAIN{{< to >}} RAIN),  {{< neg >}}RAIN }$ is
+   unsatisfiable. Here's the truth-table to the effect:
 
-$$x\Rightarrow(y\Rightarrow z)=(x\times y)\Rightarrow z$$
+   {{< img src="img/tt_neg.png" class="mx-auto d-block rounded inert-img img-fluid" width="400px">}}
 
-# Validities {.solved}
+    In fact, you can see that ${{< neg >}}RAIN {{< to >}} RAIN$ is equivalent to
+    $RAIN$. In logical theory, this is called [Clavius'
+    Law](https://en.wikipedia.org/wiki/Consequentia_mirabilis).
 
-Check the validity of the following inferences using a suitable method
-(DPLL, truth-tables, ...).
+4. $(RAIN {{< to >}}( SUN {{< to >}} RAINBOW)) {{< vDash >}} ((RAIN {{< land >}} SUN) {{< to >}} RAINBOW)$. We use resolution.
 
-## a)
+    The task is to show that $${ (RAIN {{< to >}}( SUN {{< to >}} RAINBOW)), {{< neg >}} ((RAIN {{< land >}} SUN) {{< to >}} RAINBOW) }$$ is not satisfiable.
 
-$\mathsf{RAIN}\to \mathsf{CAR}\vDash (\mathsf{RAIN}\land \mathsf{WARM})\to
-\mathsf{CAR}$
+    First, we trans form to CNF. Recursively applying $r₀$, we get $${{< neg >}}RAIN {{< lor >}} {{< neg >}} SUN {{< lor >}} RAINBOW$$ from $$RAIN {{< to >}}( SUN {{< to >}} RAINBOW).$$
 
-## b) 
+    For the second formula, $${{< neg >}} ((RAIN {{< land >}} SUN) {{< to >}}
+    RAINBOW),$$ we get $${{< neg >}} ({{< neg >}}(RAIN {{< land >}} SUN) {{< lor >}}
+    RAINBOW)$$ using $r₀$ and then $${{< neg >}}{{< neg >}}(RAIN {{< land >}} SUN) {{< land >}}
+    {{< neg >}}RAINBOW)$$ using $r₂$ Finally, $r₁$ give us:
+    $$RAIN {{< land >}} SUN {{< land >}}{{< neg >}}RAINBOW$$
 
-$\mathsf{RAIN}\to \mathsf{CAR}, \mathsf{CAR}\to \mathsf{KEYS}\vDash \mathsf{RAIN}\to
-\mathsf{KEYS}$
+    This give us the sets: $${{{< neg >}}RAIN, {{< neg >}} SUN, RAINBOW }&emsp; { RAIN } &emsp; { SUN } &emsp;{{{< neg >}}RAINBOW }$$
 
-## c) 
+    The derivation of ${ }$ using resolution is a simple, three-step affair:
 
-$\mathsf{RAIN}\to \mathsf{CAR},\mathsf{CAR}\vDash \mathsf{RAIN}$
+    - ${{{< neg >}}RAIN, {{< neg >}} SUN, RAINBOW}$ and ${ RAIN }$ give us ${{{<
+    neg >}} SUN, RAINBOW}$.
 
-## d) {.homework}
+    - ${{{< neg >}} SUN, RAINBOW}$ and ${ SUN }$ give us ${ RAINBOW }$
 
-$\mathsf{SUN}\to \mathsf{BIKE},\neg\mathsf{SUN}\vDash \neg \mathsf{BIKE}$
+    - ${ RAINBOW }$ and ${{{< neg >}}RAINBOW }$ give us ${ }$.
 
-## Solution {.solution #validitiesSolution}
+5. ${{< neg >}} (RAIN {{< to >}} WIND) {{< vDash >}} RAIN$, which we show using
+   truth-tables.
 
-There are many different options, we sample to show the variety:
+   The aim is to show that ${{{< neg >}} (RAIN {{< to >}} WIND), {{< neg >}} RAIN }$ is unsatisfiable.
 
-**a)**
+   Here's the table:
 
-$\mathsf{RAIN}\to \mathsf{CAR}\vDash (\mathsf{RAIN}\land \mathsf{WARM})\to
-\mathsf{CAR}$
+   {{< img src="img/tt_something.png" class="mx-auto d-block rounded inert-img img-fluid" width="400px">}}
 
-Here we use a semantic argument: Suppose that
-$\nu(\mathsf{RAIN}\to\mathsf{CAR})=1$. The only way in which
-$\nu((\mathsf{RAIN}\land \mathsf{WARM})\to \mathsf{CAR})=0$ is if
-$\nu(\mathsf{RAIN}\land \mathsf{WARM})=1$ and $\nu(\mathsf{CAR})=0$. But if
-$\nu(\mathsf{RAIN}\land \mathsf{WARM})=1$, then $\nu(\mathsf{RAIN})=1$. Since
-$\nu(\mathsf{RAIN}\to\mathsf{CAR})=1$, this means that $\mathsf{CAR}=1$ (since
-otherwise $\nu(\mathsf{RAIN}\to\mathsf{CAR})=0$). So, for
-$\nu((\mathsf{RAIN}\land \mathsf{WARM})\to \mathsf{CAR})=0$ we have to both have
-$\nu(\mathsf{CAR})=1$ and $\nu(\mathsf{CAR})=0$, which is impossible.
-Consequently, $\nu((\mathsf{RAIN}\land \mathsf{WARM})\to \mathsf{CAR})=0$
-is impossible if $\nu(\mathsf{RAIN}\to\mathsf{CAR})=1$.
+   Since there's no row where both ${{< neg >}} (RAIN {{< to >}} WIND)$ and ${{< neg >}} RAIN$ are `1`, the set is unsatisfiable.
+ 
 
-This means the inference is valid.
+# Valid inference and conditionals {.solved}
 
-**b)**
+There's a deep connection between deductively valid inference in Boolean logic
+and material conditionals, which is given by the following important
+equivalence:
 
-Let's do a _big_ truthtable:
+$$P₁, P₂, … {{< vDash >}} C&emsp; if and only if &emsp; <span class="dark-red shanns">not-SAT</span>{{{< neg >}}((P₁{{< land >}} P₂ {{< land >}}… ){{< to >}} C)}$$
 
-{{< img src="img/big-table.png" class="img-thumbnail" >}}
+1. A logical formula $A$ is called a **logical truth** iff for all assignments $v$ of truth-values to its propositional variables, the formula is true, i.e. $v(A) = 1$. Verify that the simple formula $$(RAIN {{< lor >}} {{< neg >}}RAIN)$$ is a logical truth in this sense.
 
-Since the relevant conditional is a logical truth, the inference is valid.
+2. Rephrase the right-hand side of above equivalence in terms of the logical truth rather than unsatisfiability.
 
-**c)**
+3. Give an argument that the above equivalence is true. 
 
-This inference is _in_valid. We can see this, for example, using a
-truth-table:
+    _Hint_: To do so, you need to use the general form of the reduction of valid inference to unsatisfiability, which we've discussed in the lecture $$P₁, P₂, … {{< vDash >}} C&emsp; if and only if &emsp; <span class="dark-red shanns">not-SAT</span> { P₁, P₂, … , {{< neg >}}C }$$ Think about what the latter condition means for the truth of the corresponding conditional.
 
-{{< img src="img/fallacy-1.png" class="img-thumbnail" >}}
+## Solution {#valid-inference-and-conditionalsSolution .solution}
 
-As you can see, if you set $\nu(\mathsf{CAR})=1$ and
-$\nu(\mathsf{RAIN})=0$, we have both premises true, but the conclusion false.
+1. We _could_ do a truth-table, but let's do a step-by step calculation,
+   instead, where we go through the two possibilities: $v(RAIN) = 1$ or $v(RAIN)
+   = 0$:
 
-**d)**
+   - If $v(RAIN) = 1$, then $$v(RAIN {{< lor >}}{{< neg >}}RAIN) = v(RAIN) !!OR!!
+     v({{< neg >}}RAIN)= ...$$
+   $$ ... = v(RAIN) !!OR!! (!!NOT!! v(RAIN)) = 1 !!OR!! (!!NOT!! 1)
+     = 1 !!OR!! 0 = 1$$.
 
-Also here a truth-table gives a quick answer:
+   - If $v(RAIN) = 0$, then $$v(RAIN {{< lor >}}{{< neg >}}RAIN) = v(RAIN) !!OR!!
+     v({{< neg >}}RAIN)= ...$$
+   $$ ... = v(RAIN) !!OR!! (!!NOT!! v(RAIN)) = 0 !!OR!! (!!NOT!! 0)
+     = 0 !!OR!! 1 = 1$$.
 
-{{< img src="img/fallacy-2.png" class="img-thumbnail" >}}
+    So, in all possible cases, we have $v(RAIN {{< lor >}}{{< neg >}}RAIN) = 1$.
 
-We see that if we set $\mathsf{BIKE}=1$ and $\mathsf{SUN}=0$, the premises
-are true and the conclusion false.
+2. First, note that $<span class="dark-red shanns">not-SAT</span>{{{< neg
+   >}}((P₁{{< land >}} P₂ {{< land >}}… ){{< to >}} C)}$ means that the formula
+   ${{< neg >}}((P₁{{< land >}} P₂ {{< land >}}… ){{< to >}} C)$ is
+   unsatisfiable, meaning it has value `0` under every valuation. But the
+   formula starts with a ${{< neg >}}$ and so $$v({{< neg >}}((P₁{{< land >}} P₂
+   {{< land >}}… ){{< to >}} C)) = !!NOT!! v((P₁{{< land >}} P₂ {{< land
+   >}}…){{< to >}} C)$$ But if we know that this expression evaluates to `0`
+   under each valuation, this means that $v((P₁{{< land >}} P₂ {{< land >}}…
+   ){{< to
+   >}} C) = 1$ under each valuation. In other words, $$(P₁{{< land >}} P₂ {{<
+   land >}}… ){{< to >}} C$$ is a logical truth. This gives us an alternative
+   criterion for valid inference according to which: $$P₁, P₂, … {{< vDash >}}
+   C&emsp; if and only if (P₁{{< land >}} P₂ {{< land >}}… ){{< to >}} C is a
+   logical truth$$ This criterion shows the particularly deep connection between
+   valid inference and conditionals.
 
-# Horn clauses {.solved}
+3. This is the hardest part and more advanced logical reasoning. One way to
+   proceed is to start from the known criterion that $$P₁, P₂, … {{< vDash >}}
+   C&emsp; if and only if &emsp; <span class="dark-red shanns">not-SAT</span> {
+   P₁, P₂, … , {{< neg >}}C }.$$ Let's think about $<span class="dark-red
+   shanns">not-SAT</span> { P₁, P₂, … , {{< neg >}}C }$. This means that for
+each valuation, either $v(P₁) = 0, v(P₂) = 0, … ,$ or  $v({{< neg >}}C) = 0$.
+Using transformations, we can see that $(P₁{{< land >}} P₂ {{< land >}}…){{< to
+>}} C$ is equivalent to ${{< neg >}}P₁ {{< lor >}}{{< neg >}}P₂ {{< lor >}} … {{< lor >}}C.$ That is: $$v((P₁{{<
+land >}} P₂ {{< land >}}… ){{< to >}} C) = v({{< neg >}}P₁ {{< lor >}}{{< neg
+>}}P₂ {{< lor >}} … {{< lor >}}C).$$ Using the recursive rules, we get: $$v({{< neg >}}P₁ {{< lor >}}{{< neg
+>}}P₂ {{< lor >}} … {{< lor >}}C) = (!!NOT!! v(P₁)) !!OR!! (!!NOT!! v(P₂)) !!OR!! … !!OR!! v(C)$$
+But if $v(P₁) = 0$, then $$(!!NOT!! v(P₁)) !!OR!! (!!NOT!! v(P₂)) !!OR!! … !!OR!! v(C) = … $$ $$… =  (!!NOT!! 0) !!OR!! (!!NOT!! v(P₂)) !!OR!! … !!OR!! v(C) = …$$ $$… = 1 !!OR!! !!OR!! (!!NOT!! v(P₂)) !!OR!! … !!OR!! v(C) = 1$$ Similarly, if $v(P₂) = 0$, then $$(!!NOT!! v(P₁)) !!OR!! (!!NOT!! v(P₂)) !!OR!! … !!OR!! v(C) = … $$ $$… = (!!NOT!! v(P₂)) !!OR!! (!!NOT!! 0) !!OR!!  … !!OR!! v(C) = …$$ $$… = 1 !!OR!! !!OR!! (!!NOT!! v(P₂)) !!OR!! … !!OR!! v(C) = 1$$ And so on. Finally, if $v({{< neg >}}C) = 0$, then $v(C) = 1$ and so $$(!!NOT!! v(P₁)) !!OR!! (!!NOT!! v(P₂)) !!OR!! … !!OR!! v(C) = … $$ $$… =  (!!NOT!! v(P₁)) !!OR!! (!!NOT!! v(P₂)) !!OR!! … !!OR!! 1 = 1.$$
+Since these are all the possibilities if $<span
+class="dark-red shanns">not-SAT</span> { P₁, P₂, … , {{< neg >}}C }$, we know
+that $v((P₁{{< land >}} P₂ {{< land >}}… ){{< to >}} C) = 1$ for all valuations.
+By similar reasoning, we can see that if $v((P₁{{< land >}} P₂ {{< land >}}… ){{< to >}} C) = 1$ for all valuations, then $<span
+class="dark-red shanns">not-SAT</span> { P₁, P₂, … , {{< neg >}}C }$ since
+otherwise, there would be a valuation $v$ with $v((P₁{{< land >}} P₂ {{< land >}}… ){{< to >}} C) = 0$.
 
-Remember that a _literal_ is a propositional variable or its negation. A [Horn
-clause](https://en.wikipedia.org/wiki/Horn_clause) is a disjunction of literals,
-where _at most_ one literal is _positive_ meaning it doesn't contain a negation.
-This means that a Horn clause has the form: $$\neg p_1\lor \neg p_2\lor
-\dots\lor q,$$ where $p_1,p_2,\dots,q$ are propositional variables.
+# Chaining {.solved}
 
-## a) {.homework}
+Consider the following {{< abbr title="knowledge base">}}KB{{< /abbr>}}:
 
-Provide an argument that every Horn clause is equivalent to (=always has the same
-truth-value as) a conditional of the
-form: $$p_1\land p_2\land\dots \to q.$$ 
+- $RAIN {{< to >}} CLOUDS$
+- $(CLOUDS {{< land >}} SNOW) {{< to >}} STORM$
+- $RAIN {{< to >}} PUDDLES$
+- $PUDDLES {{< to >}} HUMID$
+- $HUMID {{< to >}} CLOUDS$
+- $SUN {{< to >}} DRY$
+- $(WIND {{< land >}} SNOW) {{< to >}} DRIFTING$
 
-_Hint_: There are different routes to this result, but you'll need to use
-Boolean laws/corresponding logical equivalences. Here are some candidates to use
-in your argument:
+We add to this {{< abbr title="knowledge base">}}KB{{< /abbr>}} the following two facts:
 
-$$x\Rightarrow y = -x+y$$
+$$RAIN, SNOW$$
 
-$$x\Rightarrow (y\Rightarrow z)=(x\times y)\Rightarrow z$$
+1. Run the forward-chaining and the backward-chaining algorithm to show that we can derive $STORM$ from the KB. That is, describe the steps you'd take for each algorithm one-by-one, and why at some point you hit the termination condition.
 
-$$-x+-y+\dots=-(x\times y\times \dots)$$
+2. Use the example to illustrate how forward-chaining can find shorter derivations than backward-chaining. 
 
-## b)
+3. Use both forward and backward-chaining to show that we can't derive $DRIFTING$ from the KB using the facts. Does one algorithm outperform the other?
 
-Can every formula equivalently be written as a Horn clause?
+## Solution {#chainingSolution .solution}
 
-## Solution { .solution #horn-clausesSolution }
+1. Our goal is derive $STORM$. The facts are $RAIN$ and $SNOW$. First, we use forward chaining:
 
-**a)**
+    -  So, in the first iteration, we run through all the conditionals and
+    see if we can derive anything from those facts using $genMP$. We come
+    across the two conditionals $RAIN {{< to >}}CLOUDS$ and $RAIN{{< to >}}PUDDLES$. We derive $CLOUDS$ and $PUDDLES$ and add them two our facts. But our goal is not reached.
 
-Pick an arbitrary Horn clause.
+    - So, in the second step, the facts are $RAIN, SNOW, CLOUDS,$ and
+      $PUDDLES$. Again, we check the conditionals for possible $MP$
+    applications and find $(CLOUDS {{< land >}} SNOW) {{< to >}} STORM$
+    and $PUDDLES {{< to >}} HUMID$. We derive both $STORM$ and $HUMID$. Our
+    goal is reached and we terminate the search.
 
-$$\neg p_1\lor\ldots\lor\neg p_n\lor q$$
+    Next, we use backward chaining:
 
-This is the boolean algebra truth-conditions: 
+    - Our goal is $STORM$, so we inspect the conditionals until we find
+      one that contains $STORM$ as the consequent. We find $(CLOUDS
+    {{< land >}} SNOW){{< to >}}STORM$. We recognize that $SNOW$ is
+    already among our facts, so we replace the goal $STORM$ temporarily
+    with $CLOUDS$. Since we still have goals, we continue.
 
-$$- p_1 + \ldots + - p_n+q$$
+    - We inspect the rules for one with $CLOUDS$ in the consequent
+    and find $RAIN {{< to >}} CLOUDS$. Since $RAIN$ is among our facts, we
+    have no goals left and terminate the search.
 
-By DeMorgan principles this is equivalent to:
+    Both algorithms lead to the same result and, in fact, give the same
+    derivation.
 
-$$-(p_1 \times \ldots \times p_n)+q$$
+2. In the forward-chaining algorithm, there were no choices involved and we
+   simply looked through all chainings of $MP$ by length until we found one.
+   Since we went through the derivations by length starting with the
+shortest derivations, we were guaranteed to come across the shortest
+derivation first (if there is one).
 
-By conditional laws (from exercise 2) we get:
+    For backward-chaining, finding this particular derivation depended on
+    the order in which we looked through the rules. If, for some
+    implementation reason, we would have first come across $HUMID {{< to >}} CLOUDS$ in the second step, we would have added $HUMID$ to our goals rather than $RAIN$. Then, we'd have continued two more iterations going through $PUDDLES{{< to>}}HUMID$ and $RAIN{{<to>}}PUDDLES$ until we hit a known fact. This would have lead to a much longer derivation. This means that with backward-chaining, whether we come across the shortest derivation first, highly depends on external factors, like the ordering of the conditionals in our $KB$.
 
-$$(p_1 \times \ldots \times p_n)\Rightarrow q$$
+3. To test this with forward-chaining, we go through all possible derivations. We've described the first two steps above, which gave us $STORM$ and $PUDDLES$. Continuing further, we derive $HUMID$ using $PUDDLES$ and $PUDDLES {{< to >}}HUMID$ and then $CLOUDS$ from $HUMID$ and $HUMID{{< to >}}CLOUDS$. At this point, we have $RAIN, SNOW, STORM, PUDDLES, HUMID,$ and $CLOUDS$ among our facts and can't apply $genMP$ anymore. Since $DRIFTING$ isn't among these facts, we conclude it can't be derived.
 
-Which is the truth-condition of the following formula:
+    With backward-chaining, instead, we check for conditionals involving $DRIFTING$ in the consequent and only find $(WIND {{< land >}}SNOW {{< to >}} DRIFTING)$. This adds $WIND$ to our goals, since $SNOW$ is already a fact. In the second iteration, we can't find a conditional that has $WIND$ in the consequent, so we terminate our search and conclude that $DRIFTING$ can't be derived. 
 
-$$(p_1 \land \ldots \land p_n)\rightarrow q$$
+    Here, backward-chaining was way more efficient. This is because forward-chaining needs to go through _all_ possible derivations to determine whether there is one, which derives our desired goal. Backward-chaining is more "surgical" in that it only looks through promising candidates and terminates earlier because there are none. 
 
+# Planning
 
-<br>
+We've made things a more difficult for {{< logo >}}&ThinSpace; by introducing a third block into the puzzle:
 
-**b)** 
+{{< img src="img/planning_3.png" class="mx-auto d-block rounded inert-img img-fluid" width="400px">}}
+                                                               le
+Adjust our planning solution to accommodate the more complicated setup. That is:
 
-No. Example: $p\land q$ does not have an equivalent Horn form.
+1. Determine how we need to adjust the language to accommodate the third block.
 
-Consider an arbitrary Horn clause $\neg r_1\lor\neg r_2\lor\ldots\lor s$. Call it $A$. Since $A$ has at most one positive part $s$ by definition, the following thing must happen in all valuations:  $\nu(A)=1$ if and only if $\nu(r_i)=0$ for one of its negative parts or $\nu(s)=1$ for its positive part. This gives us a general idea of the format of truth-conditions for any Horn clause.
+2. Which rules do we need to add to our a KB to accommodate the third block.
 
-Now, pick a Horn clause $B$ that involves the literals $p$ and $q$ as parts. Could this be equivalent to the conjunction $p\land q$? We will show that it cannot be. There are only three possibilities for the shape of this Horn clause:
+3. Represent the initial setup state and the goal state in the language.
 
-1. $p$ is a positive part of $B$
-2. $q$ is a positive part of $B$
-3. neither $p$ nor $q$ is positive in $B$
-
-In situation 1. the literal $q$ must be a negative part of $B$, so whenever $\nu(B)=1$, then $\nu(q)=0$. Obviously that means $B$ is not equivalent to $p\land q$. In situation 2. the literal $p$ must be negative in $B$, so whenever $\nu(B)=1$, then $\nu(p)=0$. Obviously that means $B$ is not equivalent to $p\land q$. In situation 3. both $p$ and $q$ would be negative parts of $B$ so we get an even worse result.
-
-# Resolution {.solved}
-
-A disjunction of literals, we call a _(disjunctive) clause_. 
-
-The resolution rule says that if you have two clauses ($l_i,k_j$ are literals)
-
-$$l_1\lor l_2\lor \dots\lor p \qquad \qquad \neg p\lor k_1\lor k_2\lor\dots$$
-
-you can infer: 
-
-$$l_1\lor l_2\lor \dots k_1\lor k_2\lor\dots$$
-
-So, for example, from
-
-$$\neg\mathsf{RAIN}\lor\neg\mathsf{SUN}\lor\mathsf{BIKE}\qquad
-\neg\mathsf{BIKE}\lor\mathsf{HELMET}$$
-you can infer
-$$\neg\mathsf{RAIN}\lor\neg\mathsf{SUN}\lor\mathsf{HELMET}$$
-
-## a) {.homework}
-
-Show that the example inference is valid using a suitable method (truth-tables,
-DPLL, ...).
-
-## b)
-
-Use the resolution rule to show that the following inference is valid:
-
-$$\mathsf{RAIN}\lor\mathsf{BIKE},\neg\mathsf{RAIN}\vDash \mathsf{BIKE}$$
-
-Which rule of the DPLL algorithm does this correspond to?
-
-## c)
-
-We can use the resolution to define a general inference method:
-
-+ To test whether $P_1,P_2,\dots\vDash C$ we bring $P_1\land P_2\land \dots\land
-\neg C$ into CNF (see {{< chapter_ref chapter="sat" id="normal-forms">}}
-Chapter 5.3{{< /chapter_ref >}}).
-
-+ We then recursively apply the resolution rule to all possible combinations of
-clauses (and the results of those applications, the results of the results, ...).
-
-+ Outcome:
-
-  + If any application of the resolution rule results in an empty clause
-  $\Set{}$, the inference is valid.
-
-  + If we arrive at a point where no more applications are possible and no empty
-  clause has been derived, the inference is *in*valid.
-
-Use this method to show that the following inference is valid:
-
-$$\mathsf{RAIN}\vDash \mathsf{RAIN}\land (\mathsf{RAIN}\lor \mathsf{SUN})$$
-
-
-
-## d) {.homework}
-
-The result of applying the resolution rule to two Horn clauses always results in a
-Horn clause. Why?
-
-## e)
-
-Use the resolution rule (together with Exercise 1 a)) to show that the following
-inference is valid:
-
-$$\mathsf{RAIN}\to \mathsf{CAR}, \mathsf{CAR}\to \mathsf{KEYS}\vDash \mathsf{RAIN}\to
-\mathsf{KEYS}$$
-
-## f)
-
-The inference pattern $$A\to B,B\to C\vDash A\to C$$ is known as "transitivity"
-for the logical conditional. 
-
-Use the reasoning from e) together with Exercise 4 a) to show that the
-application of the resolution rule to Horn clauses is essentially just an
-application of the transitivity principle.
-
-What does this have to do with the forward and backward chaining methods?
-
-## Solution { .solution #resolutionSolution }
-
-**a)**
-
-We want to show that this is valid:
-
-$$l_1\lor l_2\lor\ldots\lor p ,\; \neg p\lor k_1\lor k_2\lor\ldots \vDash l_1\lor l_2\lor\ldots\lor k_1\lor k_2\lor\ldots $$
-
-To do this, we will think about the premises combined with the negation of the conclusion. This is what the negation of the conclusion looks like.
-
-$\neg(l_1\lor l_2\lor\ldots\lor k_1\lor k_2\lor\ldots)$
-
-Convert the negated conclusion into CNF.
-
-$\neg l_1\land\neg l_2\land\ldots\land\neg k_1\land\neg k_2\land\ldots$
-
-Together with the premises, this gives us a set of conditions.
-
-$\Set{ \Set{l_1, l_2,\ldots p },\Set{\neg p, k_1, k_2,\ldots },\Set{\neg l_1 }, \Set{\neg l_2 }, \ldots, \Set{\neg k_1 }, \Set{\neg k_2 }, \ldots, $
-
-By unit propogation on $\neg l_1$ we get:
-
-$\Set{ \Set{ l_2,\ldots p },\Set{ \neg p, k_1, k_2,\ldots },\Set{ \neg l_2 }, \ldots, \Set{ \neg k_1 }, \Set{ \neg k_2 }, \ldots, }$
-
-Continue unit propogation with each $\neg l_i$ to get:
-
-$\Set{ \Set{ p }, \Set{ \neg p, k_1, k_2,\ldots }, \Set{ \neg k_1 }, \Set{ \neg k_2 }, \ldots,  }$
-
-By unit propogation on $\neg k_1$ we get:
-
-$\Set{ \Set{ p }, \Set{ \neg p, k_2,\ldots }, \Set{ \neg k_2 }, \ldots, }$
-
-Continue unit propogation with each $\neg k_j$ to get:
-
-$\Set{ \Set{ p }, \Set{ \neg p } }$
-
-A final step of unit propogation on $p$ shows us that the set is unsatisfiable.
-
-$\Set{ \Set{ } }$
-
-This means that it is impossible to make the premises and negation of the conclusion true. Which means that the inference is valid.
-
-<br>
-
-**b)**
-
-This inference, called the *Disjunctive Syllogism* (DS), is just an application of the Resolution Rule. We just showed in part (a) that the Resolution Rule always leads to valid reasoning. So this gives us a new way to see why DS is valid. The reasoning we use for resolution is just like the Splitting rule of the DPLL algorithm.
-
-
-<br>
-
-**c)** 
-
-We take the premises combined with the negation of the conclusion and convert into a single CNF formula:
-
-$\mathsf{RAIN}\land(\neg\mathsf{RAIN}\lor\neg\mathsf{RAIN})\land(\neg\mathsf{RAIN}\lor\neg\mathsf{SUN})$
-
-So we have this set of conditions.
-
-$\Set{ \Set{ \mathsf{RAIN} }, \Set{ \neg\mathsf{RAIN},\neg\mathsf{RAIN} }, \Set{ \neg\mathsf{RAIN},\neg\mathsf{SUN} } }$
-
-Equivalent to this set of conditions.
-
-$\Set{ \Set{ \mathsf{RAIN} }, \Set{ \neg\mathsf{RAIN} }, \Set{ \neg\mathsf{RAIN},\neg\mathsf{SUN} } }$
-
-By applying the Resolution Rule on the first two clauses we get:
-
-$\Set{  \Set{  }, \Set{ \neg\mathsf{RAIN},\neg\mathsf{SUN} } }$
-
-Since there is an empty set, this shows that the inference is valid.
-
-<br>
-
-**d)** 
-
-The only time we *can* apply the Resolution Rule to two Horn clauses is when the same literal occurs as a positive part in one Horn clause and a negative part in the other Horn clause. Like the literal $q$ in these two formulas:
-
-$$\neg p_1\lor\ldots\lor\neg p_n\lor q$$
-
-$$\neg q\lor\neg r_1\lor\ldots\lor\neg r_m\lor s$$
-
-When we apply the Resolution Rule we get this:
-
-$$\neg p_1\lor\ldots\lor\neg p_n\lor\neg r_1\lor\ldots\lor\neg r_m\lor s$$
-
-Since the original two formulas had only one positive part, and the positive $q$ was eliminated by Resolution, this means that the final formula also has only one positive part. Which means that it still qualifies as a Horn clause.
-
-
-<br>
-
-**e)** 
-We take the premises combined with the negation of the conclusion and convert into a single CNF formula:
-
-$(\neg\mathsf{RAIN}\lor\mathsf{CAR})\land(\neg\mathsf{CAR}\lor\mathsf{KEYS})\land\mathsf{RAIN}\land\neg\mathsf{KEYS}$
-
-So we have this set of conditions.
-
-$\Set{ \Set{ \neg\mathsf{RAIN},\mathsf{CAR} }, \Set{ \neg\mathsf{CAR},\mathsf{KEYS} }, \Set{ \mathsf{RAIN} }, \Set{ \neg\mathsf{KEYS} } }$
-
-Apply the Resolution Rule on $\mathsf{RAIN}$.
-
-$\Set{ \Set{ \mathsf{CAR} }, \Set{ \neg\mathsf{CAR},\mathsf{KEYS} }, \Set{ \neg\mathsf{KEYS} } }$
-
-Apply the Resolution Rule on $\mathsf{CAR}$.
-
-$\Set{ \Set{ \mathsf{KEYS} }, \Set{ \neg\mathsf{KEYS} } }$
-
-Apply the Resolution Rule on $\mathsf{KEYS}$.
-
-$\Set{ \Set{ } }$
-
-Since there is an empty set, this shows that the inference is valid.
-
-<br>
-
-**f)** 
-
-If we have two simply Horn clauses that are eligible for Resolution, they look like this.
-
-$$\neg p_1\lor\ldots\lor\neg p_n\lor q$$
-
-$$\neg q\lor\neg r_1\lor\ldots\lor\neg r_m\lor s$$
-
-These are equivalent to:
-
-$$(p_1\land\ldots\land p_n)\rightarrow q$$
-
-$$q\rightarrow((r_1\ldots\land r_m)\rightarrow s)$$
-
-Generalizing from exercise (5e) we can see how these premises validly imply the formula below, by using the Resolution rule.
-
-$$(p_1\land\ldots\land p_n)\rightarrow((r_1\ldots\land r_m)\rightarrow s)$$
-
-Notice this is just an instance of Transitivity, but the result that it gives us is equivalent to the formula we reached in exericse (5d).
-
-$$\neg p_1\lor\ldots\lor\neg p_n\lor\neg r_1\lor\ldots\lor\neg r_m\lor s$$
+4. Find a model that satisfies the KB, as well as the setup and goal state. Then read off a course o action. You don't need to do this formally—using resolution or chaining—but just find such a model using _human_ intelligence.
 
 # Discussion
 
-Remember the [Wason selection
-task](https://en.wikipedia.org/wiki/Wason_selection_task) from the teaser
-lecture (if you're not a first-year AI student or missed the intro day lecture,
-check out the description on Wikipedia).
+Check out the [Wason selection
+task](https://en.wikipedia.org/wiki/Wason_selection_task) on Wikipedia.
 
 Some researchers have argued that the experiment shows that people don't reason with
-the material/logical conditional in this case. Do you agree? Why?
+the material conditional in this case. Do you agree? Why?
