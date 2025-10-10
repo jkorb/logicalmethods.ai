@@ -1094,7 +1094,7 @@ This returns:
 But this is just the extension of 
 
 ```
-{{< exists >}}x (CapitalOf(x,y) {{< land >}} LocatedIn(x,Europe))
+{{< exists >}}y (CapitalOf(x,y) {{< land >}} LocatedIn(y,Europe))
 ```
 
 If we systematically explore these observations, we find that there is a direct
