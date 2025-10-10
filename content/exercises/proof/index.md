@@ -8,7 +8,7 @@ params:
   math: true
 ---
 
-# Proof systems
+# Proof systems 
 
 Let's trial run the different proof systems. For each of the following, provide
 a logical proof in our Hilbert calculus, sequent calculus, and tableaux.
@@ -17,7 +17,7 @@ a logical proof in our Hilbert calculus, sequent calculus, and tableaux.
 
 2. $A {{< lor >}}(A{{< land >}}B) {{< v_dash >}}A$
 
-# Natural deduction
+# Natural deduction { .solved }
 
 For this exercise, you do a deep dive into natural deduction: below are a series
 of laws to prove for arbitrary formulas $A,B,C$. Some require the rule 
@@ -59,6 +59,89 @@ of laws to prove for arbitrary formulas $A,B,C$. Some require the rule
 
 5. (${{< neg >}}B {{< to >}}{{< neg >}}A){{< v_dash >}}(A {{< to >}} B)$
 
+## Solution {#natural-deductionSolution .solution}
+
+*Conjunction and Disjunction*
+
+1. $A {{< lor >}} (B {{< land >}} C) {{< v_dash >}} (A {{< lor >}} B){{< land >}}(A {{< lor >}} C)$
+
+    This solution is interactive! Click through the slides to get an explanation of how to find the derivation:
+
+    {{<iframe src="https://link.excalidraw.com/p/readonly/foQADbq8hXxQlzw0Qznf" >}}
+
+2. $(A {{< lor >}} B){{< land >}}(A {{< lor >}} C){{< v_dash >}} A {{< lor >}} (B {{< land >}} C) $
+
+    {{< img src="img/distribution_two_rtl.png" class="mx-auto rounded d-block inert-img img-fluid" width="700px">}}
+
+3. $A {{< land >}} (B {{< lor >}} C) {{< v_dash >}} (A {{< land >}} B){{< lor >}}(A {{< land >}} C)$
+
+    This solution is interactive! Click through the slides to get an explanation of how to find the derivation:
+
+    {{<iframe src="https://link.excalidraw.com/p/readonly/bI3TWrMYvvnheKW6gr2i" >}}
+
+
+4. $(A {{< land >}} B){{< lor >}}(A {{< land >}} C){{< v_dash >}}  A{{< land >}} (B {{< lor >}} C) $
+
+    {{< img src="img/distribution_one_rtl.png" class="mx-auto rounded d-block inert-img img-fluid" width="700px">}}
+
+*Negation*
+
+1. $A {{< v_dash >}}{{< neg >}}{{< neg >}} A$
+
+    This solution is interactive! Click through the slides to get an explanation of how to find the derivation:
+
+    {{<iframe src="https://link.excalidraw.com/p/readonly/zIdmhCzAWfvGW2H619CA" >}}
+
+    This is perhaps the most difficult one of this set.
+
+
+2. ${{< neg >}}{{< neg >}} A{{< v_dash >}} A$
+
+    {{< img src="img/double_negation_rtl.png" class="mx-auto rounded d-block inert-img img-fluid" width="200px">}}
+
+    Note that this derivation requires classicality.
+
+3. ${{< neg >}}(A {{< land >}}B) {{< v_dash >}} {{< neg >}}A {{< lor >}}{{< neg >}}B$
+
+    {{< img src="img/de_morgan_one_ltr.png" class="mx-auto rounded d-block inert-img img-fluid" width="500px">}}
+
+4. $ {{< neg >}}A {{< lor >}}{{< neg >}}B {{< v_dash >}}  {{< neg >}}(A {{< land >}}B)$
+
+    {{< img src="img/de_morgan_one_rtl.png" class="mx-auto rounded d-block inert-img img-fluid" width="500px">}}
+
+5. ${{< neg >}}(A {{< lor >}}B) {{< v_dash >}} {{< neg >}}A {{< land >}}{{< neg >}}B$
+
+    {{< img src="img/de_morgan_two_ltr.png" class="mx-auto rounded d-block inert-img img-fluid" width="500px">}}
+
+6. ${{< neg >}}A {{< land >}}{{< neg >}}B {{< v_dash >}} {{< neg >}}(A {{< lor >}}B)$
+
+    {{< img src="img/de_morgan_two_rtl.png" class="mx-auto rounded d-block inert-img img-fluid" width="500px">}}
+
+*Conditionals*
+
+
+1. ${{< neg >}}A {{< lor >}} B{{< v_dash >}}A{{< to >}}B$
+
+    This solution is interactive! Click through the slides to get an explanation of how to find the derivation:
+
+    {{<iframe src="https://link.excalidraw.com/p/readonly/kYgz1Qljtf4yMChwYvTk" >}}
+
+
+2. $A {{< to >}} B {{< v_dash >}}{{< neg >}}A {{< lor >}} B$
+
+    {{< img src="img/cond_def_rtl.png" class="mx-auto rounded d-block inert-img img-fluid" width="500px">}}
+
+3. $({{< neg >}}A{{< to >}} A) {{< v_dash >}} A$
+
+    {{< img src="img/consequentia_mirabilis.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
+
+4. $(A{{< to >}}B){{< v_dash >}}({{< neg >}}B {{< to >}}{{< neg >}}A)$
+
+    {{< img src="img/contrapos_ltr.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
+
+5. (${{< neg >}}B {{< to >}}{{< neg >}}A){{< v_dash >}}(A {{< to >}} B)$
+
+    {{< img src="img/contrapos_rtl.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
 
 # Lean verification
 
