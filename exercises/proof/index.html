@@ -745,8 +745,19 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
 <div class="container exercises">
   <div class="m-4">
 </div>
-<div id="proof-systems" ><h5 class="">
+<div id="proof-systems" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Proof systems
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="proof-systemsSolution"
+        onclick="showPasswordModal('proof-systemsSolution', 'exc-proof')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>Let&rsquo;s trial run the different proof systems. For each of the following, provide
 a logical proof in our Hilbert calculus, sequent calculus, and tableaux.</p>
@@ -772,8 +783,147 @@ A</span></p>
 </ol>
 
 </div>
-<div id="natural-deduction" ><h5 class="">
+<div id="proof-systemsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><ol>
+<li>
+<p>Here we go:</p>
+<ul>
+<li>
+<p>Hilbert:</p>
+<ol>
+<li><span class="excalifont">A</span> <span class="right-justified">(Premise)</span></li>
+<li><span class="excalifont">A 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ (A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ (A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B))</span> <span class="right-justified">(Axiom 6 with <span class="excalifont">B = A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B</span>)</span></li>
+<li><span class="excalifont">(A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ (A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B))</span> <span class="right-justified">(1., 2., MP)</span></li>
+</ol>
+</li>
+<li>
+<p>Sequent:</p>
+
+      <img src="https://logicalmethods.ai/exercises/proof/img/sequent_1.png" class="mx-auto rounded d-block inert-img img-fluid"  width="300px"  alt="" >
+
+</li>
+<li>
+<p>Tableaux:</p>
+
+      <img src="https://logicalmethods.ai/exercises/proof/img/tableaux_1.png" class="mx-auto rounded d-block inert-img img-fluid"  width="300px"  alt="" >
+
+</li>
+</ul>
+</li>
+<li>
+<p>Here we go:</p>
+<ul>
+<li>
+<p>Hilbert:</p>
+<ol>
+<li>
+<p><span class="excalifont">A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B)</span> <span class="right-justified">(Premise)</span></p>
+</li>
+<li>
+<p><span class="excalifont">(A 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+A) 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ (((A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B) 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ A)
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+((A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B))
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ A))</span> <span class="right-justified">(Axiom 7.)</span></p>
+</li>
+<li>
+<p><span class="excalifont">(A 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+A)</span> <span class="right-justified">(Theorem from textbook)</span></p>
+</li>
+<li>
+<p><span class="excalifont">((A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B) 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ A)
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+((A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B))
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ A)</span><span class="right-justified">(2., 3., MP)</span></p>
+</li>
+<li>
+<p><span class="excalifont">(A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B) 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ A)</span> <span class="right-justified">(Axiom 5.)</span></p>
+</li>
+<li>
+<p><span class="excalifont">((A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B))
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ A)</span><span class="right-justified">(4., 5., MP)</span></p>
+</li>
+<li>
+<p><span class="excalifont">A</span> <span class="right-justified">(1., 6., MP)</span></p>
+</li>
+</ol>
+</li>
+<li>
+<p>Sequent:</p>
+
+      <img src="https://logicalmethods.ai/exercises/proof/img/sequent_2.png" class="mx-auto rounded d-block inert-img img-fluid"  width="300px"  alt="" >
+
+</li>
+<li>
+<p>Tableaux:</p>
+
+      <img src="https://logicalmethods.ai/exercises/proof/img/tableaux_2.png" class="mx-auto rounded d-block inert-img img-fluid"  width="300px"  alt="" >
+
+</li>
+</ul>
+</li>
+</ol>
+
+</div>
+<div id="natural-deduction" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Natural deduction
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="natural-deductionSolution"
+        onclick="showPasswordModal('natural-deductionSolution', 'exc-proof')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>For this exercise, you do a deep dive into natural deduction: below are a series
 of laws to prove for arbitrary formulas <span class="excalifont">A,B,C</span>. Some require the rule
@@ -991,6 +1141,275 @@ A)
 </ol>
 
 </div>
+<div id="natural-deductionSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><em>Conjunction and Disjunction</em></p>
+<ol>
+<li>
+<p><span class="excalifont">A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ (B 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ C) 
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+ (A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B)
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ C)</span></p>
+<p>This solution is interactive! Click through the slides to get an explanation of how to find the derivation:</p>
+<iframe 
+      src="https://link.excalidraw.com/p/readonly/foQADbq8hXxQlzw0Qznf"
+      width="100%" height="460px" allowFullScreen="true" style="border: 10px;"
+      >
+    </iframe>
+
+</li>
+<li>
+<p><span class="excalifont">(A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B)
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ C)
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+ A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ (B 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ C) </span></p>
+
+    <img src="https://logicalmethods.ai/exercises/proof/img/distribution_two_rtl.png" class="mx-auto rounded d-block inert-img img-fluid"  width="700px"  alt="" >
+
+</li>
+<li>
+<p><span class="excalifont">A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ (B 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ C) 
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+ (A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B)
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ C)</span></p>
+<p>This solution is interactive! Click through the slides to get an explanation of how to find the derivation:</p>
+<iframe 
+      src="https://link.excalidraw.com/p/readonly/bI3TWrMYvvnheKW6gr2i"
+      width="100%" height="460px" allowFullScreen="true" style="border: 10px;"
+      >
+    </iframe>
+
+</li>
+<li>
+<p><span class="excalifont">(A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B)
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ C)
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+  A
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ (B 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ C) </span></p>
+
+    <img src="https://logicalmethods.ai/exercises/proof/img/distribution_one_rtl.png" class="mx-auto rounded d-block inert-img img-fluid"  width="700px"  alt="" >
+
+</li>
+</ol>
+<p><em>Negation</em></p>
+<ol>
+<li>
+<p><span class="excalifont">A 
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ A</span></p>
+<p>This solution is interactive! Click through the slides to get an explanation of how to find the derivation:</p>
+<iframe 
+      src="https://link.excalidraw.com/p/readonly/zIdmhCzAWfvGW2H619CA"
+      width="100%" height="460px" allowFullScreen="true" style="border: 10px;"
+      >
+    </iframe>
+
+<p>This is perhaps the most difficult one of this set.</p>
+</li>
+<li>
+<p><span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ A
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+ A</span></p>
+
+    <img src="https://logicalmethods.ai/exercises/proof/img/double_negation_rtl.png" class="mx-auto rounded d-block inert-img img-fluid"  width="200px"  alt="" >
+
+<p>Note that this derivation requires classicality.</p>
+</li>
+<li>
+<p><span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+(A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B) 
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+B</span></p>
+
+    <img src="https://logicalmethods.ai/exercises/proof/img/de_morgan_one_ltr.png" class="mx-auto rounded d-block inert-img img-fluid"  width="500px"  alt="" >
+
+</li>
+<li>
+<p><span class="excalifont"> 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+B 
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+  
+  <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+(A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B)</span></p>
+
+    <img src="https://logicalmethods.ai/exercises/proof/img/de_morgan_one_rtl.png" class="mx-auto rounded d-block inert-img img-fluid"  width="500px"  alt="" >
+
+</li>
+<li>
+<p><span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+(A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B) 
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+B</span></p>
+
+    <img src="https://logicalmethods.ai/exercises/proof/img/de_morgan_two_ltr.png" class="mx-auto rounded d-block inert-img img-fluid"  width="500px"  alt="" >
+
+</li>
+<li>
+<p><span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+B 
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+(A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B)</span></p>
+
+    <img src="https://logicalmethods.ai/exercises/proof/img/de_morgan_two_rtl.png" class="mx-auto rounded d-block inert-img img-fluid"  width="500px"  alt="" >
+
+</li>
+</ol>
+<p><em>Conditionals</em></p>
+<ol>
+<li>
+<p><span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+A
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+B</span></p>
+<p>This solution is interactive! Click through the slides to get an explanation of how to find the derivation:</p>
+<iframe 
+      src="https://link.excalidraw.com/p/readonly/kYgz1Qljtf4yMChwYvTk"
+      width="100%" height="460px" allowFullScreen="true" style="border: 10px;"
+      >
+    </iframe>
+
+</li>
+<li>
+<p><span class="excalifont">A 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ B 
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B</span></p>
+
+    <img src="https://logicalmethods.ai/exercises/proof/img/cond_def_rtl.png" class="mx-auto rounded d-block inert-img img-fluid"  width="500px"  alt="" >
+
+</li>
+<li>
+<p><span class="excalifont">(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ A) 
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+ A</span></p>
+
+    <img src="https://logicalmethods.ai/exercises/proof/img/consequentia_mirabilis.png" class="mx-auto rounded d-block inert-img img-fluid"  width="300px"  alt="" >
+
+</li>
+<li>
+<p><span class="excalifont">(A
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+B)
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+B 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A)</span></p>
+
+    <img src="https://logicalmethods.ai/exercises/proof/img/contrapos_ltr.png" class="mx-auto rounded d-block inert-img img-fluid"  width="300px"  alt="" >
+
+</li>
+<li>
+<p>(<span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+B 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A)
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+(A 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ B)</span></p>
+
+    <img src="https://logicalmethods.ai/exercises/proof/img/contrapos_rtl.png" class="mx-auto rounded d-block inert-img img-fluid"  width="300px"  alt="" >
+
+</li>
+</ol>
+
+</div>
 <div id="lean-verification" ><h5 class="">
     <div class="d-inline-flex flex-row m-0 p-0 ">Lean verification
     </div>
@@ -1150,8 +1569,19 @@ to open the browser playground.</p>
 to open the browser playground.</p>
 
 </div>
-<div id="interpreting-lean" ><h5 class="">
+<div id="interpreting-lean" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Interpreting Lean
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="interpreting-leanSolution"
+        onclick="showPasswordModal('interpreting-leanSolution', 'exc-proof')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>Consider the following two Lean proofs. Translate them into natural deduction
 proofs:</p>
@@ -1171,13 +1601,15 @@ proofs:</p>
 </span><span class="lnt"> 9
 </span><span class="lnt">10
 </span><span class="lnt">11
+</span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-lean4" data-lang="lean4"><span class="line"><span class="cl"><span class="w">  </span><span class="kn">variable</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Prop</span><span class="o">)</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kn">theorem</span><span class="w"> </span><span class="n">absorption_one_ltr</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="bp">∧</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="bp">∨</span><span class="w"> </span><span class="n">B</span><span class="o">))</span><span class="w"> </span><span class="bp">→</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">intro</span><span class="w"> </span><span class="n">h</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">exact</span><span class="w"> </span><span class="n">h</span><span class="bp">.</span><span class="n">left</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">apply</span><span class="w"> </span><span class="n">And</span><span class="bp">.</span><span class="n">left</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">exact</span><span class="w"> </span><span class="n">h</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kn">theorem</span><span class="w"> </span><span class="n">absorption_one_rtl</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="bp">→</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="bp">∧</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="bp">∨</span><span class="w"> </span><span class="n">B</span><span class="o">))</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">intro</span><span class="w"> </span><span class="n">hA</span><span class="w">
@@ -1188,9 +1620,14 @@ proofs:</p>
 </div>
 </div><p>Click this
 <i class="bi bi-box-arrow-up-right h-6"></i>
-<a href="https://live.lean-lang.org/#codez=AQNwhgTglmBGA2BTYAKAgsAQsAXMAChAPYAOAlAFAXDAAuAFokRIgLbBwDOzJtURAOwD6gxEPi0IuVBkDkRDOCAKIixkywQEmEwDDgC8wWAE9qNYFAGSiwesZqIAHmADGtKwDokAM1pUaDJi3YuHj5BEQExCFp4aQxNdGB5eOVMVVw9QxtTc2IrNEywEhJ4Ay0BABNXMwtMgHbgeycXejyTYDqG52AAeQhKgWjmiiA" class="link-dark" rel="external" target="_blank">link</a>
+<a href="https://live.lean-lang.org/#codez=ATBuEMCcEtwIwDYFNgAoCCwBCwBcwAFSAewAcBKAKEpABcALJYyJAW2HgGdnTbpiAdgH1BSIQlqQ8aTIHIiGcEAURNnLlggJMJgmXAF5gcAJ40QwaAMnFg9YyHClSCA1oEATAHTIAZrWA3gSAA9wAGMfa2MGJhZ2Lh4&#43;QREBMUhaBGlMTQxgeSzlLFU8PUM/MwsrdD87Byd0VzdSkj8Adv8g0PLm1pCfAHlIeoE0&#43;nQgA" class="link-dark" rel="external" target="_blank">link</a>
 
 to open the browser playground.</p>
+
+</div>
+<div id="interpreting-leanSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6>
+<img src="https://logicalmethods.ai/exercises/proof/img/lean_correspondence.png" class="mx-auto rounded d-block inert-img img-fluid"  width="700px"  alt="" >
+
 
 
   </div>
