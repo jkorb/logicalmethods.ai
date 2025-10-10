@@ -741,23 +741,38 @@ understand AI research.
 
 ## Further readings
 
-A good first introduction into the world of logic is [Graham
-Priest's](https://en.wikipedia.org/wiki/Graham_Priest) 2017 book:
+This textbook is what might be called a _didactic_ textbook. The aim is to
+familiarize the reader with the basic concepts of logical theory and their role
+in AI research. The focus lies on teaching with examples and to illustrate
+bigger ideas. In contrast, an _encyclopedic_ textbook focuses more on
+providing an exhaustive discussion of the most important concepts in the field.
 
-+ [Logic. A Very Short Introduction. Oxford University
-Press.](https://global.oup.com/academic/product/logic-a-very-short-introduction-9780198811701).
+The distinction between didactic and encyclopedic textbooks is not strict and
+not exhaustive, but the present textbook clearly falls into the former category.
+This is why it's a good idea to supplement it with more encyclopedic textbooks.
 
-The present textbook is neither a standard logic textbook nor a general AI
-textbook. It might be advisable—though is by no means necessary—to consult one
-of each from time to time. I recommend:
+I recommend two:
 
-+ [Halbach. 2010. _The Logic Manual_. Oxford University Press.](https://global.oup.com/ushe/product/the-logic-manual-9780199587841?cc=us&lang=en&) 
++ The [Open Logic Project](https://openlogicproject.org/) provides a quite
+encyclopedic overview of most topics in logical theory. You can download and
+read online in their [builds section](https://builds.openlogicproject.org/).
 
 + [Russel and Norvig. 2021. Artificial Intelligence: A Modern Approach. 4th
-Edition. Pearson](https://elibrary.pearson.de/book/99.150005/9781292401171).
+Edition. Pearson](https://elibrary.pearson.de/book/99.150005/9781292401171) is a
+standard introduction to AI as a field of academic research.
+
+I will recommend specific sections from these two textbooks in different places
+for readers who'd like to go deeper into specific topics.
 
 In general, I recommend to use the internet to keep up to date on logic and AI
-developments. Read, Learn, Improve!
+developments. I'll include references to relevant
+[Wikipedia](https://www.wikipedia.org/) articles. Don't listen to your
+high-school teacher, wikipedia is
+[great](https://link.springer.com/article/10.1007/s11423-025-10505-x)—you just
+have to learn [how to use
+it](https://repository.isls.org/bitstream/1/6367/1/1565-1568.pdf). You can also
+subscribe to newsletter, such as [tl;dr -- AI](https://tldr.tech/ai) or the
+[Superhuman AI newsletter](https://www.superhuman.ai/). Read, Learn, Improve!
 
 **Notes:**
 
