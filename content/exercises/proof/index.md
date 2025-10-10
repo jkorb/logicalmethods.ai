@@ -275,7 +275,7 @@ Click this
 [link](https://live.lean-lang.org/#codez=ATBuEMCcEtwIwDYFNgAoCCwBCwBcwAFSAewAcBKAKEpABcALJYyJAW2AGNiA7AEwH1eSAGb8EtSGnp5gAGsyAKImzkZmQEmE2PAF5gcAJ40QwAM7NIBwwyYt2XPoJH9ItBFNXANOFfnnAlObV0DIxMzCzpGZjZOHmMkAEcAVyRuWlh+VmhIeGgEaGM3H2B1Yu9iwP1DEFNIc2oI62i7CXBSYmMxCULyzzLZHA1fXB1KkJq6y0ibGNTsto7nV1R6HwG5dDKSnGGgqtDavSA)
 to open the browser playground. 
 
-# Interpreting Lean
+# Interpreting Lean {.solved}
 
 Consider the following two Lean proofs. Translate them into natural deduction
 proofs:
@@ -286,7 +286,8 @@ proofs:
 
   theorem absorption_one_ltr : (A ∧ (A ∨ B)) → A := by
     intro h
-    exact h.left
+    apply And.left 
+    exact h
 
   theorem absorption_one_rtl : A → (A ∧ (A ∨ B)) := by
     intro hA
@@ -296,5 +297,9 @@ proofs:
 
 ~~~
 Click this
-[link](https://live.lean-lang.org/#codez=AQNwhgTglmBGA2BTYAKAgsAQsAXMAChAPYAOAlAFAXDAAuAFokRIgLbBwDOzJtURAOwD6gxEPi0IuVBkDkRDOCAKIixkywQEmEwDDgC8wWAE9qNYFAGSiwesZqIAHmADGtKwDokAM1pUaDJi3YuHj5BEQExCFp4aQxNdGB5eOVMVVw9QxtTc2IrNEywEhJ4Ay0BABNXMwtMgHbgeycXejyTYDqG52AAeQhKgWjmiiA)
+[link](https://live.lean-lang.org/#codez=ATBuEMCcEtwIwDYFNgAoCCwBCwBcwAFSAewAcBKAKEpABcALJYyJAW2HgGdnTbpiAdgH1BSIQlqQ8aTIHIiGcEAURNnLlggJMJgmXAF5gcAJ40QwaAMnFg9YyHClSCA1oEATAHTIAZrWA3gSAA9wAGMfa2MGJhZ2Lh4+QREBMUhaBGlMTQxgeSzlLFU8PUM/MwsrdD87Byd0VzdSkj8Adv8g0PLm1pCfAHlIeoE0+nQgA)
 to open the browser playground. 
+
+## Solution {#interpreting-leanSolution .solution}
+
+{{< img src="img/lean_correspondence.png" class="mx-auto rounded d-block inert-img img-fluid" width="700px">}}
