@@ -522,11 +522,11 @@
             <li>
               <a class="dropdown-item 
                 fw-bold active
-                link-opacity-50
+                
                 "
-                href="javascript:;"
+                href="/exercises/fol/"
               >8. 
-                <i class="bi bi-lock-fill"></i>
+                <i class="bi bi-unlock-fill"></i>
                  FOL
               </a>
             </li>
@@ -745,344 +745,315 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
 <div class="container exercises">
   <div class="m-4">
 </div>
-<div id="models" class=" homework solved"><h5 class="homework solved">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Models
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="modelsSolution"
-        onclick="showPasswordModal('modelsSolution', 'exc-fol')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="decoding-fol" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Decoding FOL
     </div>
-</h5><p><em>Only 3. and 6. are homework</em></p>
-<p>Suppose we&rsquo;re dealing with a FOL language with:</p>
-<ul>
-<li>constants <span class="excalifont">a,b</span></li>
-<li>a unary predicate <span class="excalifont">P</span></li>
-<li>a binary predicate <span class="excalifont">R</span></li>
-</ul>
-<p>Consider the model given by the following diagram:</p>
-
-<img src="https://logicalmethods.ai/exercises/fol/img/model.jpeg" class="img-thumbnail"    alt="" >
-
-<p>To be clear:</p>
-<ul>
-<li>the objects may be called <span class="excalifont">o_1,o_2,o_3</span> (from left to right)</li>
-<li>the denotations <span class="excalifont">a^\mathcal{M}, b^\mathcal{M}</span> are given by the subscripts</li>
-<li>the interpretation of <span class="excalifont">P^\mathcal{M}</span> is given by the red square</li>
-<li>the interpretation of <span class="excalifont">R^\mathcal{M}</span> is given by the arrows (an arrow from
-one node to another means that the first node stands in the relation to the
-other in the model).</li>
-</ul>
-<p>Determine the truth-value of the following formulas in the model:</p>
+</h5><p>Paraphrase the following FOL formulas in natural language:</p>
 <ol>
-<li><span class="excalifont">P(a)\land P(b)</span></li>
-<li><span class="excalifont">\forall x P(x)</span></li>
-<li><span class="excalifont">\exists x P(x)\land \exists x\neg P(x)</span></li>
-<li><span class="excalifont">\forall x\exists yR(x,y)</span></li>
-<li><span class="excalifont">\forall x\forall y((P(x)\land R(x,y))\to P(y))</span></li>
-<li><span class="excalifont">\forall x\exists y(R(y,x)\land P(y))</span></li>
+<li>
+<p><code class="customCode">
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x (FatherOf x brotherOf jimmy 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+
+FatherOf x jimmy)</code></p>
+</li>
+<li>
+<p><code class="customCode">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x ( Fish x 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+y (Fish y 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+BiggerThan y x ))</code></p>
+</li>
+<li>
+<p><code class="customCode">
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+ x SiblingOf jimmy x 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+ x( SiblingOf
+jimmy x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+y ( Sibling x y 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ YoungerThan y
+x))</code></p>
+</li>
+<li>
+<p><code class="customCode">
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+y (Thief x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ Thief y 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ x = y)</code></p>
+</li>
 </ol>
-<p>Don&rsquo;t just give the truth-value but provide a justification with reference to
-the recursive clauses. Ideally but not necessarily, this would be a
-calculation.</p>
 
 </div>
-<div id="modelsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>1.</strong>
-<span class="excalifont">a^M\in P^M</span> so <span class="excalifont">\nu(P(a))=1</span> and <span class="excalifont">b^M\in P^M</span> so <span class="excalifont">\nu(P(b))=1</span>.
-Then for the full formula we have <span class="excalifont">\nu(P(a)\land P(b))=\nu(P(a))\times\nu(P(b))=1\times 1=1</span></p>
-<p><strong>2.</strong>
-On any assignment <span class="excalifont">\alpha</span> we have <span class="excalifont">\nu_\alpha(P(\mathbf{o_3}))=0</span>.
-Then for the full formula we have <span class="excalifont">\nu_\alpha(\forall xP(x))=\Pi_{\mathbf{o}\in D}(P(\mathbf{o}))=0</span></p>
-<p><strong>3.</strong>
-On any assignment <span class="excalifont">\alpha</span> we have <span class="excalifont">\nu_\alpha(P(\mathbf{o_1}))=1</span> and so for the quantified formula <span class="excalifont">\nu_\alpha(\exists xP(x))=\Sigma_{\mathbf{o}\in D}(P(\mathbf{o}))=1</span>. Similarly we have <span class="excalifont">\nu_\alpha(\neg P(\mathbf{o_3}))=-\nu_\alpha(P(\mathbf{o_3}))=-0=1</span> and so for the quantified formula <span class="excalifont">\nu_\alpha(\exists x\neg P(x))=\Sigma_{\mathbf{o}\in D}(\neg P(\mathbf{o}))=1</span>.
-Then for the full formula we have <span class="excalifont">\nu_\alpha(\exists xP(x)\land \exists x\neg P(x)=1)</span></p>
-<p><strong>4.</strong>
-<span class="excalifont">\forall x\exists yR(x,y)</span></p>
-<p>The formula is true.</p>
-<p>Here&rsquo;s the calculation:</p>
-<p>We know:</p>
-<div class="text-center my-4 excalifont">\nu(\forall x\exists yR(x,y))=
-\nu(\exists yR(\mathbf{o_1},y))
-\times
-\nu(\exists yR(\mathbf{o_2},y))
-\times
-\nu(\exists yR(\mathbf{o_3},y))</div>
-<p>For each <span class="excalifont">i=1,2,3</span>, we have:
-<span class="excalifont">\nu(\exists yR(\mathbf{o_i},y))=
-\nu(R(\mathbf{o_i},{o_1}))
-+\nu(R(\mathbf{o_i},{o_2}))
-+\nu(R(\mathbf{o_i},{o_3}))</span></p>
-<p>And for each <span class="excalifont">i</span>, one of the summands here is true: for <span class="excalifont">i=1</span>, we have
-<span class="excalifont">\nu(R(\mathbf{o_1},\mathbf{o_2})=1</span>, for <span class="excalifont">i=2</span>, we have <span class="excalifont">\nu(R(\mathbf{o_2},\mathbf{o_3})=1</span>, and for <span class="excalifont">i=3</span>, we have <span class="excalifont">\nu(R(\mathbf{o_3},\mathbf{o_3})=1</span>. Hence:
-<span class="excalifont">\nu(\exists yR(\mathbf{o_i},y))=
-\nu(R(\mathbf{o_i},{o_1}))
-+\nu(R(\mathbf{o_i},{o_2}))
-+\nu(R(\mathbf{o_i},{o_3}))=1</span>.</p>
-<p>And so the big product is <span class="excalifont">1</span>, too.</p>
-<p><strong>5.</strong>
-<span class="excalifont">\forall x\forall y((P(x)\land R(x,y))\to P(y))</span></p>
-<p>The formula is false: <span class="excalifont">\mathbf{o_2}</span> and <span class="excalifont">\mathbf{o_3}</span> provide the counterexample:</p>
-<div class="text-center my-4 excalifont">\nu(P(\mathbf{o_2}))=1</div>
-<div class="text-center my-4 excalifont">\nu(R(\mathbf{o_2},\mathbf{o_3}))=1</div>
-<div class="text-center my-4 excalifont">\nu(\mathsf{P}(\mathbf{o_3}))=0</div>
-<p>Hence <div class="text-center my-4 excalifont">\nu(P(\mathbf{o_2})\land R(\mathbf{o_2},\mathbf{o_3})\to P(\mathbf{o_3}))=0</div></p>
-<p>This makes any <span class="excalifont">\prod</span>-product involving this value <span class="excalifont">0</span> as well.</p>
-<p><strong>6.</strong>
-We will observe a fact about the left object <span class="excalifont">\mathbf{o_1}</span>. On any assignment, if we choose any object <span class="excalifont">\mathbf{o}</span> at all, we have <span class="excalifont">\nu_\alpha(R(\mathbf{o},\mathbf{o_1})=0</span> and so <span class="excalifont">\nu_\alpha(R(\mathbf{o},\mathbf{o_1}\times P(\mathbf{o}))=0</span>. That means, if we sum over all objects in the <span class="excalifont">\mathbf{o}</span> position we have <span class="excalifont">\Sigma_{\mathbf{o}\in D}(\nu_\alpha(R(\mathbf{o},\mathbf{o_1}))\times\nu_\alpha(P(\mathbf{o})))=0</span>. Since this sum comes out false for the particular object <span class="excalifont">\mathbf{o_1}</span>, if we then do a product calculation over all objects <span class="excalifont">\mathbf{o&rsquo;}</span> in that same position we get <span class="excalifont">\Pi_{\mathbf{o&rsquo;}\in D}\Sigma_{\mathbf{o}\in D}(\nu_\alpha(R(\mathbf{o},\mathbf{o&rsquo;}))\times\nu_\alpha(P(\mathbf{o})))=0</span>.
-And that is precisely how to calculate the value of our formula <span class="excalifont">\nu_\alpha(\forall x\exists y(R(y,x)\land P(y)))=0</span>.</p>
-
-</div>
-<div id="knowledge-engineering" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Knowledge engineering
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="knowledge-engineeringSolution"
-        onclick="showPasswordModal('knowledge-engineeringSolution', 'exc-fol')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="knowledge-engineering-in-fol" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Knowledge Engineering in FOL
     </div>
 </h5><p><i class="bi bi-box-arrow-up-right h-6"></i>
-<a href="https://elibrary.pearson.de/book/99.150005/9781292401171" class="link-dark" rel="external" target="_blank">Russel and Norvig</a>
-
-(p. 290) define a 7-step process of <strong>knowledge engineering</strong> in FOL. We&rsquo;ll only
-focus on a part of this, viz.:</p>
-<ul>
-<li>
-<p>Deciding on a suitable vocabulary (constants, function symbols, and
-predicates)</p>
-</li>
-<li>
-<p>Encoding general knowledge about the domain.</p>
-</li>
-</ul>
-<p>We&rsquo;ll practice the idea by doing. Remember our setup from Exercise 4 for Chapter
-5 (the planning exercise):</p>
-<blockquote>
-<p><strong>Setup</strong>: We&rsquo;ve got a robot that sits in front of two switches, one on the
-left and one on the right. Each switch controls a lamp, the left switch
-controls the left lamp and the right switch the right lamp. The switches work
-as follows:</p>
-<ul>
-<li>If a lamp is on and you operate the switch, the lamp turns off.</li>
-<li>If a lamp is off and you operate the switch, the lamp turns on.</li>
-</ul>
-<p>The left lamp is currently on and the right one is off. The robot can operate
-the switches and has the following goal:</p>
-<ul>
-<li>
-<p>Turn the left lamp off and the right one on.</p>
-</li>
-<li>
-<p>We think of the situation as made up of
+<a href="https://en.wikipedia.org/wiki/Knowledge_engineering" class="link-dark" rel="external" target="_blank">Knowledge engineering</a>
+ is
+the complex process of developing a framework in which to encode knowledge about
+a specific domain. There are different approaches to this problem, but here
+we&rsquo;ll try out an FOL-based approach.</p>
+<p>The problem we&rsquo;re tackling is to represent information about a given setup using
+FOL formulas. The first step on the approach is to decide on a suitable
+vocabulary. Since we&rsquo;re working with FOL languages, this means that we need to
+pick suitable constants, function symbols, and predicates to represent the
+information. Picking the right vocabulary is crucial for success when dealing
+with a knowledge engineering problem: choosing the wrong vocabulary can make
+representations clunky and hard to work with, even if—in some sense—still
+correct.</p>
+<p>Picking the right language is closely related to finding a suitable
 <i class="bi bi-box-arrow-up-right h-6"></i>
-<a href="https://en.wikipedia.org/wiki/Discrete" class="link-dark" rel="external" target="_blank">discrete</a>
- time points,
-<span class="excalifont">1,2,\dots,n</span>.</p>
-</li>
-</ul>
-<p>We include the  <i class="bi bi-box-arrow-up-right h-6"></i>
-<a href="https://en.wikipedia.org/wiki/Frame_problem" class="link-dark" rel="external" target="_blank">frame
-conditions</a>
- to avoid &ldquo;weird&rdquo;
-behavior like lamps switching on/off by themselves:</p>
-<ul>
-<li>
-<p>If a lamp is on at a given time and the corresponding switch is <em>not</em>
-flipped, the light is still on at the ext time.</p>
-</li>
-<li>
-<p>If a lamp is off at a given time and the corresponding switch is <em>not</em>
-flipped, the light is still off at the next time.</p>
-</li>
-</ul></blockquote>
-<p><strong>Choose an appropriate FOL vocabulary and encode our knowledge about the
-domain.</strong></p>
+<a href="https://en.wikipedia.org/wiki/Ontology_%28information_science%29" class="link-dark" rel="external" target="_blank">ontology</a>
+ for the
+problem. That is, we need to say which objects exist in the information, which
+functions and properties are at play. We also need to answer questions like
+whether we can reduce some properties to others do have a simpler language. For
+example, should we have a separate predicate for <code class="customCode">Uncle²</code> or should we define it
+using <code class="customCode">Male¹</code>, <code class="customCode">Sibling²</code>, and <code class="customCode">Parent²</code>, where rather than <code class="customCode">Uncle x y</code> we use:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+Male y 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+z (Parent z x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ Sibling y z)
+</code></div>
+<p><code class="customCode">Uncle x y</code> is much simpler, but the previous formula contains more information.
+There is a trade-off that needs to be weighed carefully for every proposed
+knowledge engineering solution.</p>
+<p>The second step in FOL knowledge engineering is to take the given information
+and to encode it with FOL formulas. Here, the main challenge is adequacy: we
+need to find formulas whose FOL truth-conditions resemble the given information
+as closely as possible, while remaining within the confines of FOL.</p>
+<p>For a concrete knowledge engineering problem, lets consider the following
+marketing information about <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
+  provided by its developer:</p>
+<p>
+<img src="https://logicalmethods.ai/exercises/fol/img/competition.png" class="rounded  float-start inert-img img-fluid m-2"  width="200px"  alt="" >
 
-</div>
-<div id="knowledge-engineeringSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>BNF:</strong> We use &rsquo;left&rsquo; and &lsquo;right&rsquo; as names of the lamps on each side, and use numeric terms as names of infinitely many points in time going forward. This comes with a built-in operation of &lsquo;+1&rsquo; to refer to the next moment in time. Notice that predicates are restricted. They can only be combined with a lamp term in the first position and a time term in the second position.</p>
-<div class="text-center my-4 excalifont"> \langle{var}\rangle ::= x \mid y \mid z </div>
-<div class="text-center my-4 excalifont"> \langle{const\_side}\rangle ::= \mathsf{left} \mid \mathsf{right} </div>
-<div class="text-center my-4 excalifont"> \langle{const\_time}\rangle ::= n\in\mathbb{N} </div>
-<div class="text-center my-4 excalifont"> \langle{term\_side}\rangle ::= \langle{var}\rangle \mid \langle{const\_side}\rangle </div>
-<div class="text-center my-4 excalifont"> \langle{term\_time}\rangle ::= \langle{var}\rangle \mid \langle{const\_time}\rangle </div>
-<div class="text-center my-4 excalifont"> \langle{unop}\rangle ::= \neg </div>
-<div class="text-center my-4 excalifont"> \langle{binop}\rangle ::= \land \mid \lor \mid \rightarrow \mid \leftrightarrow </div>
-<div class="text-center my-4 excalifont"> \langle{quant}\rangle ::= \forall \mid \exists </div>
-<div class="text-center my-4 excalifont"> \langle{pred}\rangle^2 ::= \mathsf{On} \mid \mathsf{Off} \mid \mathsf{Switch} </div>
-<div class="text-center my-4 excalifont"> \langle{atom}\rangle ::= \langle{pred}\rangle^2(\langle{term\_side}\rangle,\langle{term\_time}\rangle) </div>
-<div class="text-center my-4 excalifont"> \langle{fml}\rangle ::= \langle{atom}\rangle \mid \langle{unop}\rangle\langle{fml}\rangle \mid (\langle{fml}\rangle\langle{binop}\rangle\langle{fml}\rangle) \mid \langle{quant}\rangle\langle{var}\rangle\langle{fml}\rangle </div>
-<br>
-<p><strong>Task:</strong> Formalization</p>
-<p>Setup</p>
-<ul>
-<li><span class="excalifont">\mathsf{On}(\mathsf{left},1)</span></li>
-<li><span class="excalifont">\mathsf{Off}(\mathsf{right},1)</span></li>
-</ul>
-<p>Goals</p>
-<ul>
-<li><span class="excalifont">\exists x\mathsf{Off}(\mathsf{left},x)</span></li>
-<li><span class="excalifont">\exists x\mathsf{On}(\mathsf{right},x)</span></li>
-</ul>
-<p>Rules</p>
-<ul>
-<li><span class="excalifont">\forall x\forall y(\mathsf{Off}(x,y)\leftrightarrow\neg\mathsf{On}(x,y))</span></li>
-<li><span class="excalifont">\forall x\forall y((\mathsf{On}(x,y)\land\mathsf{Switch}(x,y))\to\mathsf{Off}(x,y+1))</span></li>
-<li><span class="excalifont">\forall x\forall y((\mathsf{Off}(x,y)\land\mathsf{Switch}(x,y))\to\mathsf{On}(x,y+1))</span></li>
-</ul>
-<p>Frames</p>
-<ul>
-<li><span class="excalifont">\forall x\forall y((\mathsf{On}(x,y)\land\neg\mathsf{Switch}(x,y))\to\mathsf{On}(x,y+1))</span></li>
-<li><span class="excalifont">\forall x\forall y((\mathsf{Off}(x,y)\land\neg\mathsf{Switch}(x,y))\to\mathsf{Off}(x,y+1))</span></li>
-</ul>
-
-</div>
-<div id="consequence" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Consequence
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="consequenceSolution"
-        onclick="showPasswordModal('consequenceSolution', 'exc-fol')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
-    </div>
-</h5><p>This exercise is about how logical laws follow from Boolean laws. Each of the
-following two parts contains a Boolean law and a corresponding logical law/valid
-inference that follows from it. In both cases: first, (i) provide an argument that
-the Boolean law holds and then, (ii) show that the logical law follows from
-that.</p>
-
-</div>
-<div id="a" ><h6 class="">a)</h6><div class="text-center my-4 excalifont">\text{Boolean law}: x+(y_1\times y_2\times \dots)=(x+y_1)\times (x+y_2)\times \dots</div>
-<div class="text-center my-4 excalifont">\text{Logical law}: \mathsf{Blue}(a)\lor \forall x \mathsf{Round}(x)\vDash \forall x(\mathsf{Blue}(a) \lor\mathsf{Round}(x))</div>
-
-</div>
-<div id="b" class=" homework"><h6 class=" homework">b)</h6><div class="text-center my-4 excalifont">\text{Boolean law}: x\times (y_1+ y_2+ \dots)=(x\times y_1)+ (x\times y_2)+ \dots</div>
-<div class="text-center my-4 excalifont">\text{Logical law}: \mathsf{Blue}(a)\land \exists x \mathsf{Round}(x)\vDash
-\exists x(\mathsf{Blue}(a)\land \mathsf{Round}(x)) </div>
-
-</div>
-<div id="consequenceSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong>
-<span class="excalifont">x+(y_1\times y_2\times\ldots)=(x+ y_1)\times(x+ y_2)\times\ldots</span> follows from n-many applications of the Boolean law of absorption</p>
-<p>relation to logical law???</p>
-<p><strong>b)</strong>
-First of all, this principle follows from repeated applications of the Boolean law of distributivity:
-<span class="excalifont">x\times(y_1+ y_2+\ldots)=(x\times y_1)+(x\times y_2)+\ldots</span></p>
-<p>Now, we can use this to verify the following inference.</p>
-<div class="text-center my-4 excalifont">\mathsf{Blue}(a)\land\exists x\mathsf{Round}(x)\vDash \exists x(\mathsf{Blue}(a)\land \mathsf{Round}(x))</div>
-<p>Consider any model with assignment <span class="excalifont">\alpha</span> where the premise is true:</p>
-<div class="text-center my-4 excalifont">\nu_\alpha(\mathsf{Blue}(a)\land\exists x\mathsf{Round}(x))=1</div>
-<p>If we break down this calculation it is equivalent to:</p>
-<div class="text-center my-4 excalifont">\nu_\alpha(\mathsf{Blue}(a))\times\Sigma_{\mathbf{o}\in D} \nu_\alpha(\mathsf{Round}(\mathbf{o}))=1</div>
-<p>The &lsquo;big&rsquo; summation over all objects in the domain is equivalent to a list of individual sums over each object <span class="excalifont">\mathbf{o_i}</span> in the domain:</p>
-<div class="text-center my-4 excalifont">\nu_\alpha(\mathsf{Blue}(a))\times(\nu_\alpha(\mathsf{Round}(\mathbf{o_1})+\nu_\alpha(\mathsf{Round}(\mathbf{o_2})+\ldots)=1</div>
-<p>If we apply the Boolean principle that we started with, we get:</p>
-<div class="text-center my-4 excalifont">(\nu_\alpha(\mathsf{Blue}(a))\times\nu_\alpha(\mathsf{Round}(\mathbf{o_1}))+(\nu_\alpha(\mathsf{Blue}(a))\times\nu_\alpha(\mathsf{Round}(\mathbf{o_2}))+\ldots=1</div>
-<p>This is equivalent to the following &lsquo;big&rsquo; summation over all objects:</p>
-<div class="text-center my-4 excalifont">\Sigma_{\mathbf{o}\in D}(\nu_\alpha(\mathsf{Blue}(a))\times\nu_\alpha(\mathsf{Round}(\mathbf{o}))=1</div>
-<p>Finally, the calculation above is the truth-value of our conclusion formula:</p>
-<div class="text-center my-4 excalifont">\nu_\alpha(\exists x(\mathsf{Blue}(a)\land\mathsf{Round}(x)))=1</div>
-<p>We have shown that <span class="excalifont">[\mathsf{Blue}(a)\land\exists x\mathsf{Round}(x)]\subseteq[\exists x(\mathsf{Blue}(a)\land \mathsf{Round}(x))]</span>.</p>
-
-</div>
-<div id="counter-models" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Counter-models
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="counter-modelsSolution"
-        onclick="showPasswordModal('counter-modelsSolution', 'exc-fol')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
-    </div>
-</h5><p>The following inferences are _in_valid in FOL. For each, describe a
-<strong>counter-model</strong>, where the premises are true but the conclusion is false. You
-may use a diagram as in Exercise 1 to give your model.</p>
-
-</div>
-<div id="a-1" ><h6 class="">a)</h6><div class="text-center my-4 excalifont">\exists x\mathsf{CanSwim}(x)\land \exists y\mathsf{CanFly}(y)\nvDash \exists x(\mathsf{CanSwim}(x)\land\mathsf{CanFly}(x))</div>
-
-</div>
-<div id="b-1" class=" homework"><h6 class=" homework">b)</h6><div class="text-center my-4 excalifont">\forall x(\mathsf{CanSwim}(x)\lor \mathsf{CanFly}(x))\nvDash \forall x\mathsf{CanSwim}(x)\lor\forall y\mathsf{CanFly}(y)</div>
-
-</div>
-<div id="c" ><h6 class="">c)</h6><div class="text-center my-4 excalifont">\forall x(\mathsf{Tresspasses}(x)\to \mathsf{IsProsecuted}(x))\nvDash \exists x(\mathsf{Tresspasses}(x)\land \mathsf{IsProsecuted}(x)</div>
-
-</div>
-<div id="d" ><h6 class="">d)</h6><div class="text-center my-4 excalifont">\forall x\exists y\mathsf{BiggerThan}(y,x)\nvDash\exists y\forall x \mathsf{BiggerThan}(y,x)</div>
-<p><em>Hint</em>: A model can be <strong>infinite</strong>, which you indicate with &ldquo;&hellip;&rdquo; notation.</p>
-<p>In each case, justify your answer, by explaining why the premises are true in the model and the conclusion is false.</p>
-
-</div>
-<div id="counter-modelsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>a)</strong>
-We need a set of swimmers <span class="excalifont">\mathsf{CanSwim}^M</span> and a set of flyers <span class="excalifont">\mathsf{CanFly}^M</span>. We need one person/object that only belongs to the first set <span class="excalifont">a^M\in \mathsf{CanSwim}^M</span> and <span class="excalifont">a^M\notin \mathsf{CanFly}^M</span>. Then we need another person/object that only belongs to the second set <span class="excalifont">b^M\notin \mathsf{CanSwim}^M</span> and <span class="excalifont">b^M\in \mathsf{CanFly}^M</span>.</p>
-<p><strong>b)</strong>
-We construct a model with a domain with just two animals in it <span class="excalifont">D={ \mathbf{a_1,a_2} }</span>. One animal swims <span class="excalifont">\mathbf{a_1}\in \mathsf{CanSwim}^M</span> but can&rsquo;t fly <span class="excalifont">\mathbf{a_1}\notin \mathsf{CanFly}^M</span>. The other animal can&rsquo;t swim <span class="excalifont">\mathbf{a_2}\notin \mathsf{CanSwim}^M</span> but does fly <span class="excalifont">\mathbf{a_2}\in \mathsf{CanFly}^M</span>. Let <span class="excalifont">\alpha</span> be any assignment in this model.</p>
-<p>This universal formula is false in this model <span class="excalifont">\nu_\alpha(\forall x(\mathsf{CanSwim}(x))=\Pi_{\mathbf{o}\in D}\nu_\alpha(\mathsf{CanSwim}(\mathbf{o}))=0</span> because of the properties of the second animal <span class="excalifont">\mathbf{a_2}\notin \mathsf{CanSwim}^M</span>. This universal formula is false in this model <span class="excalifont">\nu_\alpha(\forall x(\mathsf{CanFly}(x))=\Pi_{\mathbf{o}\in D}\nu_\alpha(\mathsf{CanSwim}(\mathbf{o}))=0</span> because of the properties of the first animal <span class="excalifont">\mathbf{a_1}\notin \mathsf{CanFly}^M</span>. That means that <span class="excalifont">\nu_\alpha(\forall x(\mathsf{CanSwim}(x)\lor\forall x(\mathsf{CanFly}(x))=0</span>.</p>
-<p>However, we always get <span class="excalifont">\nu_\alpha(\mathsf{CanSwim}(\mathbf{o})\lor\mathsf{CanFly}(\mathbf{o}))=1</span> no matter which object we test it on, so we have <span class="excalifont">\nu_\alpha(\forall x(\mathsf{CanSwim}(x)\lor\mathsf{CanFly}(x))=\Pi_{\mathbf{o}\in D}\nu_\alpha(\mathsf{CanSwim}(\mathbf{o})\lor\mathsf{CanSwim}(\mathbf{o}))=1</span>.
-This makes it a counter-model to the intended inference.</p>
-
-</div>
-<div id="research" class=" homework solved"><h5 class="homework solved">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Research
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="researchSolution"
-        onclick="showPasswordModal('researchSolution', 'exc-fol')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
-    </div>
-</h5><p>In class, we said that FOL is <em>very</em> expressive. But there are several
-limitations of FOL, which are things that you <em>can&rsquo;t</em> formalize in FOL.
-Research at least two kinds of claims that FOL can&rsquo;t formalize and explain why.</p>
-
-</div>
-<div id="researchSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>Here are two phenomena that FOL can&rsquo;t handle well:</p>
+<em>Our <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
+ is the top-of-the-line AI system from AI-Labs. It is
+a hybrid system that has both symbolic and sub-symbolic sub-routines. This means
+that <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
+ is both capable of carrying out all traditional
+reasoning tasks, such as natural deduction or <code class="customCode">SAT</code> solving, as well as
+different learned tasks, such as image and voice recognition. This is in
+contrast to its predecessor model <code class="customCode">KnowIt∀</code>, which only had symbolic routines
+and could only carry out reasoning tasks. It also makes <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
+ superior to
+the competition&rsquo;s model, <code class="customCode">DeepL</code>, which is a purely sub-symbolic AI-system and
+while able to carry out all learned tasks, can only carry out some simple
+reasoning tasks.</em></p>
 <ol>
-<li>Higher-order quantification: Statements like &ldquo;Ada has all the properties of a good student&rdquo;, which should be something like <div class="text-center my-4 excalifont">\forall F(\forall x(\mathsf{GoodStudent}(x)\to F(x))\to F(Ada)))</div></li>
+<li>
+<p>Devise a suitable FOL language for encoding the information about the three
+AI-systems. Justify your design choices.</p>
+</li>
+<li>
+<p>Encode as much information as possible from the advert as FOL formulas. Is
+there information you chose not to include? If so, why?</p>
+</li>
+<li>
+<p>It&rsquo;s a bad idea to include a function symbol <code class="customCode">makerOf</code> in this language.
+Explain why.</p>
+</li>
 </ol>
-<p>But this formula is not proper FOL syntax. A system that can handle this is <i class="bi bi-box-arrow-up-right h-6"></i>
-<a href="https://en.wikipedia.org/wiki/Second-order_logic" class="link-dark" rel="external" target="_blank">second-order logic</a>
-.</p>
-<ol start="2">
-<li>FOL lacks devices to handle many natural language phenomena, such as adverbial constructions: John failed <em>badly</em>.</li>
-</ol>
-<p>We might be tempted to formalize this as <span class="excalifont">\mathsf{FailedBadly}(John)</span>, but then it doesn&rsquo;t follow that John failed since <span class="excalifont">\mathsf{FailedBadly}(John)\nvDash\mathsf{Failed}(John).</span></p>
-<p><i class="bi bi-box-arrow-up-right h-6"></i>
-<a href="https://philarchive.org/archive/HAZFLW-3v4" class="link-dark" rel="external" target="_blank">This paper</a>
- develops an extension of FOL that can deal with adverbs.</p>
 
 </div>
-<div id="discussion" ><h5 class="">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Discussion
+<div id="knowledge-representation-with-fol-models" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Knowledge Representation with FOL Models
     </div>
-</h5><p>When we use modern subsymbolic AIs, such as LLMs, for <i class="bi bi-box-arrow-up-right h-6"></i>
-<a href="https://arxiv.org/abs/2312.11562" class="link-dark" rel="external" target="_blank">reasoning</a>
-, these AIs turn out to be <em>inconsistent</em>: they sometimes say one thing and sometimes the opposite. Does this mean that the problem posed by Gödel&rsquo;s theorem for mathematical AIs doesn&rsquo;t affect subsymbolic AIs?</p>
+</h5><p>For this exercise, we are working with an FOL language with the following vocabulary:</p>
+<ul>
+<li>
+<p>Constants: <code class="customCode">jimmy</code>, <code class="customCode">linus</code>, <code class="customCode">sir</code>, <code class="customCode">sir</code>,<code class="customCode">lady</code>, <code class="customCode">gran</code>, <code class="customCode">ny</code>, <code class="customCode">london</code>, <code class="customCode">soccer</code></p>
+</li>
+<li>
+<p>Predicates: <code class="customCode">Loves²</code>, <code class="customCode">IsFrom²</code>, <code class="customCode">ParentOf²</code>, <code class="customCode">LivesIn²</code></p>
+</li>
+</ul>
+<p>Now consider the following facts about our protagonist, little Jimmy:</p>
+<p><em>Little Jimmy and his brother, Linus, are the children of Mr Sir and Lady Dame.
+They family lives in New York, where Lady Dame is from. But both Jimmy and his
+brother were born in London, where their father is from. The children&rsquo;s paternal
+grandmother is Granny Smith, who still lives in London, where she was born. The
+children and their grandmother love soccer, unlike their parents.</em></p>
+<ol>
+<li>
+<p>Represent the information as a FOL model. Specify the model in set-theoretic
+terms, as a knowledge graph, and in table form. Make sure to include the
+information about which constant denotes which object.</p>
+</li>
+<li>
+<p>Go to <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://www.db-fiddle.com/" class="link-dark" rel="external" target="_blank">https://www.db-fiddle.com/</a>
+ and, taking
+the code from the textbook as a template, create a SQL database that
+contains the information about the model. Make sure to select <code class="customCode">SQLite v3.46</code> on
+the top left for the language, otherwise the code won&rsquo;t run. Verify your code by running a query that prints all tables.</p>
+</li>
+<li>
+<p>In logic, there is the concept of a
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/Diagram_%28mathematical_logic%29" class="link-dark" rel="external" target="_blank">diagram</a>
+, which
+is, essentially, the idea of collecting all the true atomic sentences and true
+negations of atomic sentences in the model. The <em>positive</em> diagram is the set of
+only the true atomic sentences, without the true negated ones. Determine the
+positive diagram of the model we&rsquo;ve just described. Is this essentially
+different from any of the other methods of representing the model?</p>
+</li>
+</ol>
+
+</div>
+<div id="denotation" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Denotation
+    </div>
+</h5><p>Suppose that we&rsquo;re working with an FOL language that has the single constant
+<code class="customCode">null</code>, as well as the function symbols <code class="customCode">succ¹</code> and <code class="customCode">prod²</code>.</p>
+<p>Consider the model whose domain <span class="excalifont">D = { 0, 1, 2, &hellip; }</span> is the set of natural
+numbers and where:</p>
+<ul>
+<li><code class="customCode">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+null
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ = 0</code></li>
+<li><code class="customCode">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+succ
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</code> is defined by the equation <code class="customCode">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+succ
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+(n) = n + 1</code> for all <code class="customCode">n 
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+ { 0 , 1, 2, &hellip; }</code>.</li>
+<li><code class="customCode">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+prod  
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</code> is defined by the equation <code class="customCode">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+prod
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+(n,m) = n × m</code> for all <code class="customCode">n, m 
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+ { 0 , 1, 2, &hellip; }</code>.</li>
+</ul>
+<p>In this model, determine:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+ prod succ null  prod succ succ 0 succ 0
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+
+</code></div>
+<p>For this purpose:</p>
+<ol>
+<li>
+<p>Parse the expression according to the grammar for FOL terms.</p>
+</li>
+<li>
+<p>Recursively calculate the values of each term, following the terms parsing
+tree.</p>
+</li>
+</ol>
+
+</div>
+<div id="satisfaction" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Satisfaction
+    </div>
+</h5><p>In the model you&rsquo;ve characterized in exercise 3, determine the extensions of the
+following open formulas. Give them in table form:</p>
+<ol>
+<li>
+<p><code class="customCode">Loves x soccer 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ IsFrom x ny</code></p>
+</li>
+<li>
+<p><code class="customCode">IsFrom x y 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ ParentOf x sir</code></p>
+</li>
+<li>
+<p><code class="customCode">
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+y ParentOf y x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+ z ParentOf z y</code></p>
+</li>
+<li>
+<p><code class="customCode">IsFrom x y 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ LivesIn x y</code></p>
+</li>
+</ol>
+
+</div>
+<div id="sql-queries" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">SQL Queries
+    </div>
+</h5><p><strong>Will you go online Friday afternoon</strong></p>
+<!-- We've mentioned that there is a one-to-one correspondence between SQL queries. -->
+<!-- In this exercise, we'll explore this connection a bit more, by looking at how -->
+<!-- the connectives 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ and 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ are reflected in SQL queries. -->
+<!---->
+<!-- We return to our country DB from the textbook examples. You can open it on -->
+<!-- [db-fiddle](https://www.db-fiddle.com/f/bTqC7rED8PrABxDyhN766d/2) again. -->
+<!---->
+<!-- Here's a query that asks for  -->
+<!---->
+<!-- 
+<img src="/img/sql_logo.png" alt="SQL_Logo" class="float-start" style="height:1em;width:auto;"/>
+ -->
+<!-- ~~~sql -->
+<!-- SELECT CapitalOf.country, CapitalOf.capital -->
+<!-- FROM CapitalOf -->
+<!-- JOIN LocatedIn ON CapitalOf.country = LocatedIn.country -->
+<!-- WHERE LocatedIn.continent = 'Europe'; -->
+<!-- ~~~ -->
 
 
   </div>
