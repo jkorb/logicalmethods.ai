@@ -8,7 +8,7 @@ params:
   math: true
 ---
 
-# Proof systems 
+# Proof systems {.solved}
 
 Let's trial run the different proof systems. For each of the following, provide
 a logical proof in our Hilbert calculus, sequent calculus, and tableaux.
@@ -16,6 +16,45 @@ a logical proof in our Hilbert calculus, sequent calculus, and tableaux.
 1. $A {{< v_dash >}} A {{< lor >}}(A{{< land >}}B)$
 
 2. $A {{< lor >}}(A{{< land >}}B) {{< v_dash >}}A$
+
+## Solution {.solution #proof-systemsSolution}
+
+1. Here we go:
+
+    - Hilbert:
+  
+      1. $A$ <span class="right-justified">(Premise)</span>
+      2. $A {{< to >}} (A {{< lor >}} (A {{< land >}} B))$ <span class="right-justified">(Axiom 6 with $B = A {{< land >}} B$)</span>
+      3. $(A {{< lor >}} (A {{< land >}} B))$ <span class="right-justified">(1., 2., MP)</span>
+
+    - Sequent:
+
+      {{< img src="img/sequent_1.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
+
+    - Tableaux:
+
+      {{< img src="img/tableaux_1.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
+
+2. Here we go:
+
+    - Hilbert:
+
+      1. $A {{< lor >}}(A {{< land >}} B)$ <span class="right-justified">(Premise)</span>
+      2. $(A {{< to >}}A) {{< to >}} (((A {{< land >}} B) {{< to >}} A){{< to >}}((A {{< lor >}}(A {{< land >}} B)){{< to >}} A))$ <span class="right-justified">(Axiom 7.)</span>
+
+      3. $(A {{< to >}}A)$ <span class="right-justified">(Theorem from textbook)</span>
+      4. $((A {{< land >}} B) {{< to >}} A){{< to >}}((A {{< lor >}}(A {{< land >}} B)){{< to >}} A)$<span class="right-justified">(2., 3., MP)</span>
+      5. $(A {{< land >}} B) {{< to >}} A)$ <span class="right-justified">(Axiom 5.)</span>
+      6. $((A {{< lor >}}(A {{< land >}} B)){{< to >}} A)$<span class="right-justified">(4., 5., MP)</span>
+      7. $A$ <span class="right-justified">(1., 6., MP)</span>
+
+    - Sequent:
+
+      {{< img src="img/sequent_2.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
+
+    - Tableaux:
+
+      {{< img src="img/tableaux_2.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
 
 # Natural deduction { .solved }
 
