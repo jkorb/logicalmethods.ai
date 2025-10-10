@@ -60,7 +60,7 @@ of laws to prove for arbitrary formulas $A,B,C$. Some require the rule
 5. (${{< neg >}}B {{< to >}}{{< neg >}}A){{< v_dash >}}(A {{< to >}} B)$
 
 
-# Lean verification
+# Lean verification {.solved}
 
 For this exercise, you verify your natural deduction inferences using Lean.
 Below are templates for the code to use. The proofs are replaced by `<span
@@ -152,6 +152,177 @@ to open the browser playground.
 Click this
 [link](https://live.lean-lang.org/#codez=ATBuEMCcEtwIwDYFNgAoCCwBCwBcwAFSAewAcBKAKEpABcALJYyJAW2AGNiA7AEwH1eSAGb8EtSGnp5gAGsyAKImzkZmQEmE2PAF5gcAJ40QwAM7NIBwwyYt2XPoJH9ItBFNXANOFfnnAlObV0DIxMzCzpGZjZOHmMkAEcAVyRuWlh+VmhIeGgEaGM3H2B1Yu9iwP1DEFNIc2oI62i7CXBSYmMxCULyzzLZHA1fXB1KkJq6y0ibGNTsto7nV1R6HwG5dDKSnGGgqtDavSA)
 to open the browser playground. 
+
+## Solution {.solution #lean-verificationSolution}
+
+Credit: Alexander Apers
+
+{{<lean_logo>}}
+~~~~lean4
+  variable (A B C : Prop)
+
+  theorem distribution_one_ltr (h : (A ∧ (B ∨ C))) : (A ∧ B) ∨ (A ∧ C) := by
+    apply Or.elim (And.right h)
+    · intro b
+      apply Or.inl
+      apply And.intro
+      · exact And.left h
+      · exact b
+    · intro c
+      apply Or.inr
+      apply And.intro
+      · exact And.left h
+      · exact c
+
+  theorem distribution_one_rtl (h : (A ∧ B) ∨ (A ∧ C) ) : (A ∧ (B ∨ C)) := by
+    apply And.intro
+    apply Or.elim h
+    · intro a_and_b
+      apply And.left a_and_b
+    · intro a_and_c
+      apply And.left a_and_c
+    apply Or.elim h
+    · intro a_and_b
+      apply Or.inl
+      apply And.right a_and_b
+    · intro a_and_c
+      apply Or.inr
+      apply And.right a_and_c
+
+  theorem distribution_two_ltr (h : (A ∨ (B ∧ C))) : (A ∨ B) ∧ (A ∨ C) := by
+    apply And.intro
+    apply Or.elim h
+    · intro a
+      apply Or.inl a
+    · intro b_and_c
+      apply Or.inr
+      · exact And.left b_and_c
+    apply Or.elim h
+    · intro a
+      apply Or.inl a
+    · intro b_and_c
+      apply Or.inr
+      · exact And.right b_and_c
+
+  theorem distribution_two_rtl (h : (A ∨ B) ∧ (A ∨ C) ) : (A ∨ (B ∧ C)) := by
+    apply Or.elim (And.left h)
+    · intro a
+      apply Or.inl a
+    · intro b
+      apply Or.elim (And.right h)
+      · intro a
+        apply Or.inl a
+      · intro c
+        apply Or.inr
+        apply And.intro
+        · exact b
+        · exact c
+
+  open Classical
+
+  variable (A B : Prop)
+
+  theorem double_negation_ltr (h: ¬¬ A) : A := by
+    apply byContradiction
+    apply h
+
+  theorem double_negation_rtl (h : A) : ¬¬ A := by
+    intro a
+    apply a
+    exact h
+
+  theorem de_morgan_one_ltr (h : ¬(A ∧ B)) : (¬ A ∨ ¬ B) := by
+    apply byContradiction
+    intro neg_goal
+    apply h
+    apply And.intro
+    apply byContradiction
+    intro neg_a
+    apply neg_goal
+    apply Or.inl neg_a
+    apply byContradiction
+    intro neg_b
+    apply neg_goal
+    apply Or.inr neg_b
+
+  theorem de_morgan_one_rtl (h : (¬ A ∨ ¬ B)) : ¬(A ∧ B) := by
+    apply Or.elim h
+    · intro neg_a
+      · intro a_and_b
+        apply neg_a
+        apply And.left a_and_b
+    · intro neg_b
+      · intro a_and_b
+        apply neg_b
+        apply And.right a_and_b
+
+  theorem de_morgan_two_ltr (h : ¬(A ∨ B)) : (¬ A ∧ ¬ B) := by
+    apply And.intro
+    · intro a
+      apply h
+      apply Or.inl a
+    · intro b
+      apply h
+      apply Or.inr b
+
+  theorem de_morgan_two_rtl (h : (¬ A ∧ ¬ B)) :  ¬(A ∨ B) := by
+    intro a_or_b
+    apply Or.elim a_or_b
+    · intro a
+      apply And.left h
+      exact a
+    · intro b
+      apply And.right h
+      exact b
+
+  variable (A B : Prop)
+
+  theorem cond_def_ltr (h : ¬A ∨ B) : A → B := by
+    intro a
+    apply Or.elim h
+    · intro neg_a
+      apply False.elim
+      apply neg_a
+      exact a
+    · intro b
+      exact b
+
+  theorem cond_def_rtl (h : A → B ) : ¬A ∨ B  := by
+    apply byContradiction
+    intro neg_goal
+    · apply neg_goal
+      apply Or.inl
+      · intro a
+        apply neg_goal
+        apply Or.inr
+        apply h
+        exact a
+
+  theorem consequentia_mirabilis (h : ¬ A → A) : A := by
+    apply byContradiction
+    intro neg_a
+    apply neg_a
+    apply h
+    apply neg_a
+
+  theorem contrapos_ltr (h : A → B) : ¬B → ¬A := by
+    intro neg_b
+    · intro a
+      apply neg_b
+      apply h
+      exact a
+
+  theorem contrapos_rtl (h: ¬B → ¬A) : A → B := by
+    intro a
+    apply byContradiction
+    · intro neg_b
+      apply h
+      apply neg_b
+      exact a 
+~~~~
+
+You can review the code in the lean plaground by following this [link](https://live.lean-lang.org/#codez=AQNwhgTglmBGA2BTYAKAgsAQsAwsAXMAAoQD2ADgJQBQ1wwALgBaKkSIC2wAJlAM4NosAK4MopAHYB9SYinxBqJgVQZA5ESpsgCiJclPSvTANmSsB2GNOU/gC8wWAE869YGHLl4D4AHkIAOkR4KC50CW4/aABzJgZgJhoXYAB24CgJQVJ7Z0S3Dy9fPzT4bJdcz2A0MML0smAS+hTEAA8wAGNYyvCkADNY5Xrk4Ga22NgSlLSM4FaBsvz/NIhZ93LO6oyBxpb2iqqevs2h7diZ52ZWdi5eASFRcWlZKQgGeCUDdSxTcw+rYGtVIyaMy6ax2RwlOa7cKTMgQlbzAJBLhMcapGqZMBSMBhKRjRL0SFrfauLE4vEuCboknY7hSGb41zwqF+YmYml0uF5Hz+QLBOKomEY0m08k5JkFIrLLlrKIxalkgVUtk4+n4yESiRLBmEqqy2LK2mnejnNicHj8QRQERiSRSBgAd1I8kUKGUhEM5mwlj0/w9n0Bft+tnsTjF0qqgs55QKvORiqmYCl0YWEleicSlKmsGFHO14pTEDqDK2I2ZxOz7NVBPziL5KIzaITSYRRVc8dqFZVze51ULh2GOxlUGioxzRsYLFNVwttxt0gdTuer1d72BJgDGB0v19m6B3tBIajCNjqj2iF6cQSFMbtXTaprrbvDRvmVFpRrJ9C4T1l8OgrbDLVlyGppn+VJVvewEFgMQGrBGVIwYMA6jIhJY7BB9DOBQiASLg8BgHwfBQK0YDFIkzjgNAcBIAC2CECQFA0Gck6XDwpDCAgcgSIgkRgHOzqFq6hAADXCRU/wYMG4JhuUjg4JIghgLw7T3Ee/LMRcZrcOxnFSNxvH8UubyEGg/yiRUBBgqGLj/k+jJcnZyHqcaLFaXIHBsLxDzcQJxnAMJFifL6Ym7mJ65SdZsFeHJCkQEpxFziU/76VIkSkKRan1u+4bQghMnRQ48k1PFKmSElVIpXZkIpWlGX5T2raVWpMXFcpiWJMlPG4mpNXpWR2XJr2wApWMtAuZpVzuZ52IyD5Rkru6IXAmF+giYF4VWWpMZIvyDadZEWJgQmOZvvVTWAfZcFdOe+one2mQjUdt53Rd1VdadA1eEOI7yiKY0ThNPBTRAXl2o6vkLf5fomMFFkaCtlmHvVayRntSrdll9UgQB17/h9kKY59DWalk/0mqx3DA6DC5PC8fkoEt8NBSoUO7htSM2UqMgQN1WM8jtmJsLzuPo3mOUsjdu34k5dmZh23bfXKhP0E5o30JRMCcbRKgMVQZOuVwrSSLSlPdBDbr+WzEnAIASYRYIj0mc02fO1nGaNTOdkHlAAYqRfCIK7RZe14nuJDL91ZAyqu0BpU7TMbUim7Ty4WxgdvYGZbP0BFzWFbFJXtU7tS9XV15vQdtX9S7rZPRiiHl6lfX1w+JPN1yysuOHsesUbEj+wAjsIOFiJiHBQHFsBQEEfB+UtdumSokmbfVLWKW1qkdRVXVVUyoeXV4hMN4m3dmr3inkKQfDm4vtv+iJ2B28JS8c/Q+3C8+tndo9YvlB3XfjXHM+cUL5X3mkwe+t8n7W3Tg7SKL4cZRRDEVNeCUN4iw9u9DGQczqYKjscVwQA).
+
 
 # Interpreting Lean
 
