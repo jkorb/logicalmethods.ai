@@ -170,7 +170,7 @@ calculation to work).
 2. Here are the calculations, where `dᵢ` is the $i$-th digit of $5$ in binary, and `eᵢ` is the $i$-th digit of $7$ in binary, and $cᵢ$ is the $i$-th carry bit:
 
     - $0$-th bit:
-      - sum bit: `(d₀ !!XOR!! e₀) !!XOR!! 0 = (0 !!XOR!! 0) !!XOR!! 0 = 0 !!XOR!! 0 = 0`
+      - sum bit: `(d₀ !!XOR!! e₀) !!XOR!! 0 = (1 !!XOR!! 1) !!XOR!! 0 = 0 !!XOR!! 0 = 0`
       - carry bit =`(d₀ !!AND!! e₀ ) !!OR!! (0 !!AND!! (d₀ !!XOR!! e₀)) = (1 !!AND!! 1) !!OR!! (0 !!AND!! (1 !!XOR!! 1) = 1 !!OR!! (0 !!AND!! 0) = 1 !!OR!! 0 = 1` 
     - $1$-th bit:
       - sum bit: `(d₁ !!XOR!! e₁) !!XOR!! c₀ = (0 !!XOR!! 1) !!XOR!! 1 = 1 !!XOR!! 1 = 0`
