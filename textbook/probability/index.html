@@ -1191,7 +1191,7 @@ C</span>.</p>
 <p>This follows from the fact that if <span class="excalifont">A\vDash B</span>, then <span class="excalifont">Pr(A)\leq Pr(B)</span>, we
 observed above. Because from this it follows that if <span class="excalifont">C\vDash P_1\land P_2\land \dots</span>, then <span class="excalifont">Pr(C)\leq Pr(P_1\land P_2\land \dots)</span>. Further, as before we have that <span class="excalifont">C\land P_1\land P_2\land \dots</span> is equivalent to <span class="excalifont">C</span> and so, we can reason as follows:</p>
 <div class="text-center my-4 excalifont">Pr(C\mid P_1\land P_2\land \dots)=\frac{Pr(C\land P_1\land
-P_2\land\dots)}{Pr(P_1\land P_2\land)}</div>
+P_2\land\dots)}{Pr(P_1\land P_2\land\dots)}</div>
 <div class="text-center my-4 excalifont">=\frac{Pr(C)}{Pr(P_1\land P_2\land\dots)}\overset{Pr(C)\leq Pr(P_1\land P_2\land \dots)}\geq Pr(C)</div>
 </li>
 </ul>
@@ -1225,7 +1225,7 @@ concrete examples of inductive inference, one valid, one invalid.</p>
 from sufficiently many and well-chosen instances <span class="excalifont">P(a_1), P(a_2),\dots</span>. In our
 simple setting, we can express this as: <div class="text-center my-4 excalifont">P(a_1),P(a_2),\dots\mid\approx \forall
 xP(x).</div> The simple, standard example of this inference is that all observed
-swans, sampled well and wide, were wide, so all swans are white. Of course, this
+swans, sampled well and wide, were white, so all swans are white. Of course, this
 inference is deductively invalid—it can always happen that there&rsquo;s a non-white
 swan somewhere—but we can show, mathematically, that the inference is
 inductively valid in the (weak) increase of firmness sense.</p>
