@@ -157,25 +157,302 @@ following open formulas. Give them in table form:
 
 4. `IsFrom x y {{< land >}} LivesIn x y`
 
-# SQL Queries
+# SQL Queries {.solved}
 
-**Will you go online Friday afternoon**
+We've mentioned that there is a one-to-one correspondence between SQL queries.
+In this exercise, we'll explore this connection a bit more. 
 
-<!-- We've mentioned that there is a one-to-one correspondence between SQL queries. -->
-<!-- In this exercise, we'll explore this connection a bit more, by looking at how -->
-<!-- the connectives {{< land >}} and {{< neg >}} are reflected in SQL queries. -->
-<!---->
-<!-- We return to our country DB from the textbook examples. You can open it on -->
-<!-- [db-fiddle](https://www.db-fiddle.com/f/bTqC7rED8PrABxDyhN766d/2) again. -->
-<!---->
-<!-- Here's a query that asks for  -->
-<!---->
-<!-- {{< sql_logo >}} -->
-<!-- ~~~sql -->
-<!-- SELECT CapitalOf.country, CapitalOf.capital -->
-<!-- FROM CapitalOf -->
-<!-- JOIN LocatedIn ON CapitalOf.country = LocatedIn.country -->
-<!-- WHERE LocatedIn.continent = 'Europe'; -->
-<!-- ~~~ -->
+We return to our country DB from the textbook. You can open it again under
+[db-fiddle](https://www.db-fiddle.com/f/bTqC7rED8PrABxDyhN766d/2).
 
+I should preface this that what we're doing here is _not_ great SQL practice.
+We're writing code that might seem unnatural in SQL and there certainly are
+better ways to code the queries. The point here is to get the idea of the
+correspondence across and then worry about learning to code "clean" SQL later
+(if you want to). 
 
+So: SQL is a rich and powerful language of domain-specific languages, and there are
+much easier ways to make some of these queries.
+
+With this disclaimer out of the way, the starting point for our discussion of
+the relation between DB queries and open FOL formulas was the observation the
+SQL query
+
+{{< sql_logo >}}
+~~~sql
+SELECT country
+FROM LocatedIn
+WHERE continent = 'Europe';
+~~~
+
+directly corresponds to the open formula:
+
+```
+LocatedIn x Europe
+```
+
+This correspondence consists in the fact that the table returned by the query is
+precisely the extension of the formula. To begin with, let's see if you can
+formula queries that correspond to other atoms:
+
+1. Write SQL queries that correspond to to the following atomic open formulas:
+    
+    - `LanguageOf UnitedStates x`
+    - `LocatedIn Japan x`
+    - `LocatedIn x x`
+
+Verify your results using the df-fiddle.
+
+We form complex formulas using the logical operators. These syntactic operations
+are mirrored by operations on the queries. 
+
+Let's talk about the negation operator {{< neg >}} first. To negate our atomic
+query for `LocatedIn(x,Europe)`, we'd use the `<span class="dark-blue">WHERE
+NOT EXISTS</span>` sub-query, such that
+
+{{< sql_logo >}}
+~~~sql
+SELECT country
+FROM LocatedIn
+WHERE continent = 'Europe';
+~~~
+
+becomes
+
+{{< sql_logo >}}
+~~~sql
+SELECT country
+FROM CapitalOf
+WHERE NOT EXISTS (
+  SELECT *
+  FROM LocatedIn
+  WHERE LocatedIn.country = CapitalOf.country
+    AND continent = 'Europe'
+);
+~~~
+
+So, the idea is that we can look for the countries from the `CapitalOf` table,
+for which the query corresponding to our unnegated query _doesn't return any
+value_. Note that this assumes that all countries occur in the `CapitalOf` and
+in the `LocatedIn` table. If that's not the case, we'd need a domain table, but
+that's another story.
+
+To test the understanding of this:
+
+2. Write SQL queries that correspond to to the following negations:
+    
+    - `{{< neg >}}LanguageOf UnitedStates x`
+    - `{{< neg >}}LocatedIn Japan x`
+    - `{{< neg >}}LocatedIn x x`
+
+To conclude our little journey into queries as FOL formulas, let's
+talk about conjunction. One approach to form the conjunction is to make
+sub-queries for each conjunct as follows:
+
+{{< sql_logo >}}
+~~~sql
+SELECT country
+FROM CapitalOf AS c
+WHERE EXISTS (
+  SELECT *
+  FROM LocatedIn
+  WHERE LocatedIn.country = c.country
+    AND continent = 'Europe'
+)
+AND EXISTS (
+  SELECT *
+  FROM CapitalOf
+  WHERE CapitalOf.country = c.country
+    AND capital = 'Amsterdam'
+);
+~~~
+
+The only thing to watch out for here is that we need to coordinate the variables
+across the sub-queries. This is what the `<span class="dark-blue">FROM</span>
+CapitalOf AS c` and later `c.country` syntax does. Let's see if you can apply
+this:
+
+3. Write SQL queries that correspond to to the following conjunctions:
+
+    - `LocatedIn x Europe {{< land >}} {{< neg >}}LanguageOf x Dutch`
+    - `{{< neg >}}LocatedIn Japan x {{< land >}} {{< neg >}}CaptailOf x WashingtonDC`
+
+We can go on from here and cover disjunction, conditionals, and existentials,
+but I hope that the sub-pattern strategy pattern has become clear. This is one
+way to obtain SQL queries for ever FOL formula. There is much more to be said
+about this, but let's leave it here.
+
+As a final brain teaser:
+
+4. Write SQL queries that corresponds to `LocatedIn x Europe {{< lor >}}
+   LanguageOf x English` using _only_ the patterns for {{< neg >}} and {{< land >}} we've already discussed.
+
+## Solution {#sql-queriesSolution .solution}
+
+1. Here's a list of queries that work:
+
+    - `LanguageOf UnitedStates x`
+        
+        {{< sql_logo >}}
+        ~~~sql
+        SELECT language
+        FROM LanguageOf
+        WHERE country = 'United States';
+        ~~~
+
+    - `LocatedIn Japan x`
+
+        {{< sql_logo >}}
+        ~~~sql
+        SELECT continent
+        FROM LocatedIn
+        WHERE country = 'Japan';
+        ~~~
+
+    - `LocatedIn x x`
+
+        {{< sql_logo >}}
+        ~~~sql
+        SELECT country, continent
+        FROM LocatedIn
+        WHERE country = continent;
+        ~~~
+
+2. Here we go:
+
+    - `{{< neg >}}LanguageOf UnitedStates x`
+        
+        {{< sql_logo >}}
+        ~~~sql
+        SELECT language
+        FROM Language
+        WHERE NOT EXISTS (
+          SELECT *
+          FROM Language
+          WHERE country = 'United States'
+            AND Language.language = language
+        );
+        ~~~
+
+    - `{{< neg >}} LocatedIn Japan x`
+
+        {{< sql_logo >}}
+        ~~~sql
+        SELECT DISTINCT continent
+        FROM LocatedIn
+        WHERE NOT EXISTS (
+          SELECT *
+          FROM LocatedIn
+          WHERE country = 'Japan'
+            AND LocatedIn.continent = continent
+        );
+        ~~~
+
+    - `{{< neg >}} LocatedIn x x`
+
+        {{< sql_logo >}}
+        ~~~sql
+        SELECT continent
+        FROM LocatedIn
+        WHERE NOT EXISTS (
+          SELECT *
+          FROM LocatedIn
+          WHERE country = 'Japan'
+            AND LocatedIn.continent = continent
+        );
+        ~~~
+
+3. And the last
+
+    - `LocatedIn x Europe {{< land >}} {{< neg >}}LanguageOf x Dutch`
+
+        {{< sql_logo >}}
+        ~~~sql
+        SELECT country
+        FROM CapitalOf AS outer
+        WHERE
+          -- LocatedIn(x, 'Europe')
+          EXISTS (
+            SELECT *
+            FROM LocatedIn
+            WHERE country = outer.country
+              AND continent = 'Europe'
+          )
+          -- ¬Language(x, 'Dutch')
+          AND NOT EXISTS (
+            SELECT *
+            FROM LanguageOf
+            WHERE country = outer.country
+              AND language = 'Dutch'
+          );
+         ~~~
+
+    - `{{< neg >}}LocatedIn Japan x {{< land >}} {{< neg >}}CaptailOf x WashingtonDC`
+
+        {{< sql_logo >}}
+        ~~~sql
+        SELECT country
+        FROM CapitalOf AS outer
+        WHERE
+          -- ¬ LocatedIn Japan x
+          NOT EXISTS (
+            SELECT *
+            FROM LocatedIn
+            WHERE country = 'Japan'
+              AND continent = outer.country     
+          )
+          -- ¬CapitalOf x Washington D.C.
+          AND NOT EXISTS (
+            SELECT *
+            FROM CapitalOf
+            WHERE country = outer.country
+              AND capital = 'Washington D.C.'
+          );
+         ~~~
+
+4. Here we go:
+
+{{< sql_logo >}}
+~~~sql
+SELECT country
+FROM CapitalOf AS outer
+WHERE NOT (
+    NOT EXISTS (
+      SELECT *
+      FROM LocatedIn
+      WHERE country = outer.country
+        AND continent = 'Europe'
+    )
+    AND
+    NOT EXISTS (
+      SELECT *
+      FROM LanguageOf
+      WHERE country = outer.country
+        AND language = 'English'
+    )
+);
+~~~
+
+A much simpler code uses `<span class="dark-red">OR</span>`, but that wasn't the
+question:
+
+{{< sql_logo >}}
+~~~sql
+
+SELECT country
+FROM CapitalOf AS outer
+WHERE
+  EXISTS (
+    SELECT *
+    FROM LocatedIn
+    WHERE country = outer.country
+      AND continent = 'Europe'
+  )
+  OR
+  EXISTS (
+    SELECT *
+    FROM LanguageOf
+    WHERE country = outer.country
+      AND language = 'English'
+  );
+~~~
