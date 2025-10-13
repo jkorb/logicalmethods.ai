@@ -894,7 +894,7 @@ two propositions yields a proof of their conjunction.
 + ${{<land>}}-Elim$ corresponds to the two tactics `And<span class="dark-green">.</span>left` and `And<span class="dark-green">.</span>right`,
 which when `applied` to proofs of a conjunction yield proofs of the left or right
 conjunct respectively.
-+ ${{<lor>}}-Intro$ correspond to `Or<span class="dark-green"><span class="dark-green">.</span></span>inl` and `Or<span class="dark-green">.</span>inr`, which when `applied` to
++ ${{<lor>}}-Intro$ correspond to `Or<span class="dark-green">.</span></span>inl` and `Or<span class="dark-green">.</span>inr`, which when `applied` to
 proofs of a proposition yield the disjunction with _some_ other formula on the
 left or on the right (Lean figures out which one you mean).
 + ${{<lor>}}-Elim$ corresponds  `Or<span class="dark-green">.</span>elim`, which when `applied` to two proofs of a
