@@ -175,11 +175,11 @@
             <li>
               <a class="dropdown-item 
                 fw-bold active
-                link-opacity-50
+                
                 "
-                href="javascript:;"
+                href="/textbook/fol-inference/"
               >9. 
-                <i class="bi bi-lock-fill"></i>
+                <i class="bi bi-unlock-fill"></i>
                  FOL Inference
               </a>
             </li>
@@ -676,668 +676,1606 @@
 </h1>
 <hr>
 
-<p>Having discussed the syntactic and semantic framework of FOL in 
+<p>It turns out that automating inference in FOL is a <em>hard</em> problem.</p>
+<p>Take our standard inference, for example:</p>
 
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/socrates_inference.png" class="mx-auto rounded d-block inert-img img-fluid"  width="400px"  alt="" >
 
-<a href="https://logicalmethods.ai/textbook/fol/"
-   
-   
-   
-   
-   
-   > Chapter 9. FOL</a>
-
-, we&rsquo;ll now turn to methods
-for step-wise <strong>inference</strong> in FOL.</p>
-<p>As you&rsquo;ll see, FOL inference packs a bit more of a punch than propositional
-inference: not only are the rules more complicated, but we have to be careful
-about how we apply them. The problem is that, because of <strong>undecidability</strong>, we
-can run into &ldquo;loops&rdquo; and &ldquo;infinite regresses&rdquo;. This problem is ultimately
-unavoidable, but there are methods and techniques to mitigate its consequences.</p>
-<p>In this chapter, we&rsquo;ll build on 
-
-
-<a href="https://logicalmethods.ai/textbook/proofs/"
-   
-   
-   
-   
-   
-   > Section 7.
-Logical proofs</a>
-
-, especially 
-
-
-<a href="https://logicalmethods.ai/textbook/proofs//#natural-deduction"
-   
-   
-   
-   
-   
-   > natural deduction </a>
-
-. So if you&rsquo;re
-not completely clear on the ideas from that chapter, go back and have another
-look.</p>
-<h2 id="natural-deduction">Natural Deduction<button class="btn btn-back-to-top">
-    
-    <i class="bi bi-chevron-double-up"></i>
-    
-  </button>
-</h2>
-<hr>
-
-<p>Remember that <strong>natural deduction</strong> aims to mimic human-style step-by-step
-reasoning. This makes it a good starting point for our exploration of FOL
-inference.</p>
-<p>The natural deduction system for FOL has four new rules in addition to the rules
-for the propositional connectives, two for each of the quantifiers
-<span class="excalifont">\forall,\exists</span>.</p>
-<p>Let&rsquo;s begin with the <strong>universal quantifier</strong> <span class="excalifont">\forall</span>. Here&rsquo;s a straight-forward
-inference:</p>
-
-<img src="https://logicalmethods.ai/textbook/fol-inference/img/ex-ue.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-<p>If everybody has a parent, then Ada does.</p>
-<p>This inference is what lies behind the standard elimination rule for the
-universal quantifier:</p>
-
-<img src="https://logicalmethods.ai/textbook/fol-inference/img/ue.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-<p>Here <span class="excalifont">A(t)</span> stands for the result of replacing the variable <span class="excalifont">x</span> with the term
-<span class="excalifont">t</span> everywhere where <span class="excalifont">x</span> is not &ldquo;captured by&rdquo; another quantifier:</p>
+<p>It&rsquo;s actually rather straight-forward to see that this inference is deductively
+valid in FOL. Suppose, we&rsquo;ve got a model, <span class="excalifont">M</span>, where both premises are true,
+that is:</p>
 <ul>
-<li>
-<p>Suppose <span class="excalifont">\forall xA(x)</span> is <span class="excalifont">\forall x\exists y\mathsf{Parent}(x,y)</span>.</p>
-</li>
-<li>
-<p>Then <span class="excalifont">A(x)</span> is <span class="excalifont">\exists y\mathsf{Parent}(x,y)</span>.</p>
-</li>
-<li>
-<p>If <span class="excalifont">t</span> is <span class="excalifont">Ada</span>, then <span class="excalifont">A(t)</span> is <span class="excalifont">\exists y\mathsf{Parent}(Ada,y)</span>.</p>
-</li>
-<li>
-<p><strong>NB</strong>: If <span class="excalifont">A(x)</span> is</p>
-<div class="text-center my-4 excalifont">\exists y\mathsf{Parent}(x,y)\land \forall x\mathsf{Human}(x)</div> 
-<p>and <span class="excalifont">t</span> is Ada, then <span class="excalifont">A(t)</span> is</p>
-<div class="text-center my-4 excalifont">\exists y\mathsf{Parent}(Ada,y)\land \forall x\mathsf{Human}(x)</div> 
-<p>and <em>not</em></p>
-<div class="text-center my-4 excalifont">\exists y\mathsf{Parent}(Ada,y)\land \forall x\mathsf{Human}(Ada)</div>
-</li>
+<li><span class="excalifont">M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x (Human x 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ Mortal x)</span></li>
+<li><span class="excalifont">M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+ Human Socrates</span></li>
 </ul>
-<p>This rule is also called <strong>universal instantiation</strong>, it formalizes the
-idea that if everything is so and so, then any thing you may pick is also so and
-so.</p>
-<p>There is a small <strong>caveat</strong>: We may not chose <span class="excalifont">t</span> <em>completely</em> freely in
-<span class="excalifont">\forall E</span>. The thing is that <span class="excalifont">t</span> may not contain a variable <span class="excalifont">x</span>, which would
-be &ldquo;captured&rdquo; by another quantifier after. So, we may not, for example, infer:</p>
-<div class="text-center my-4 excalifont">\exists y\mathsf{Parent}(y,y)</div> 
-<p>from</p>
-<div class="text-center my-4 excalifont">\forall x\exists y \mathsf{Parent}(x,y).</div>
-<p>We cannot infer from everyone having a parent that there&rsquo;s somebody who&rsquo;s their
-own parent.</p>
-<p>This may seem &ldquo;obvious&rdquo;, but it&rsquo;s important to keep in mind. The term <span class="excalifont">t</span> may be
-a variable, but if may not be &ldquo;captured&rdquo; by another quantifier.</p>
-<p>These kinds of side-conditions are <em>par for the course</em> in FOL.</p>
-<p>This tells us what we can infer <em>from</em> a universally quantified claim, but from
-what can we infer a universally quantified claim itself?</p>
-<p>The idea in natural deduction and much of the following is that we can use <em>free
-variables</em> for that, which are variables that are not &ldquo;captured&rdquo; by any
-quantifier. Take the statement:</p>
-<div class="text-center my-4 excalifont">\exists y\mathsf{Parent}(x,y)</div>
-<p>In line with the reading of variables as pronouns, this says something like
-<i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Singular_they"
-  target="_blank">they</a> have a parent, without
-specifying who &ldquo;they&rdquo; are. If we have established that <em>they</em> have a parent
-without having assumed anything else about who they are,  we&rsquo;ve effectively
-established for an arbitrary person that they have a parent. If we can show
-something like this, then we may infer that <em>every</em> person has a parent:</p>
-
-<img src="https://logicalmethods.ai/textbook/fol-inference/img/ex-ui.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-<p>Expressed as a general inference rule, this becomes:</p>
-
-<img src="https://logicalmethods.ai/textbook/fol-inference/img/ui.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-<p>Here the <span class="excalifont">\alpha</span> stands for an arbitrary variable <span class="excalifont">x,y,z,\dots</span> subject to the
-following <strong>extremely important</strong> side-condition <span class="excalifont">\dagger</span>:</p>
+<p>If we unfold the former using the truth-conditions in models, we get:</p>
 <ul>
-<li>We may <em>only</em> infer <span class="excalifont">\forall xA(x)</span> from <span class="excalifont">A(\alpha)</span> if the variable <span class="excalifont">\alpha</span>
-is <em>really</em> arbitrary. We ensure this by demanding that in no assumption, which
-occurs in the derivation before <span class="excalifont">A(\alpha)</span> we may have <span class="excalifont">\alpha</span> occurring
-unless its &ldquo;captured&rdquo; by a quantifier.</li>
+<li>For all <span class="excalifont">d 
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+D</span>, <span class="excalifont">M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+Human <code class="customCode">d</code> 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ Mortal <code class="customCode">d</code></span>.</li>
 </ul>
-<p>If we wouldn&rsquo;t have this condition, we&rsquo;d be saying that the following inference
-is valid:</p>
-<div class="text-center my-4 excalifont">\exists y\mathsf{Friend}(x,y)\vDash \forall x\exists y\mathsf{Friend}(x,y)</div>
-<p>If <em>they</em> have a friend, then <em>everybody</em> has a friend. This is, of course, not
-a good inference: just because some person has friends, doesn&rsquo;t mean everybody
-does.</p>
-<p>The point is that we can only apply <span class="excalifont">\forall I</span> if the variable doesn&rsquo;t depend
-on anything else, so what would be OK, would be the following inference:</p>
+<p>But <span class="excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+Socrates
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
 
-<img src="https://logicalmethods.ai/textbook/fol-inference/img/condition-ue-example.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+D</span>. Since <span class="excalifont">Socrates</span> is
+a name for <span class="excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+Socrates
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</span>—by definition—we know
+that:</p>
+<ul>
+<li><span class="excalifont">M
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+Human Socrates 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+Mortal Socrates</span></li>
+</ul>
+<p>But the second premise was that <span class="excalifont">M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+Human Socrates</span>. So by simple
+Boolean reasoning—essentially just MP—we know that:</p>
+<ul>
+<li><span class="excalifont">M 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+Human Socrates</span>.</li>
+</ul>
+<p>For this line of reasoning, we didn&rsquo;t need to think about what our domain looks
+like, what the extensions of <span class="excalifont">Socrates</span>, <span class="excalifont">Human</span>, and <span class="excalifont">Mortal</span> are. What we&rsquo;ve
+seen is that regardless of all these things: the truth of the premises in any
+FOL model is sufficient for the truth of the conclusion. In other words, the
+inference is deductively valid:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
 
-<p>If everybody has a friend, then everybody either has a friend or is their own
-enemy.</p>
-<p>Let&rsquo;s turn to the <strong>existential quantifier</strong> <span class="excalifont">\exists</span>. As in the case of the
-universal quantifier <span class="excalifont">\forall</span>, there is a straight-forward inference that
-motivates our first inference rule.</p>
-<p>Consider the following inference:</p>
+x (Human x 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ Mortal x), Human Socrates 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+Mortal Socrates</div>
+<p>The relative ease with which we showed the inference&rsquo;s validity might spark the
+hope for a relatively straight-forward theory of mechanized FOL inference. We&rsquo;ve
+developed a series of inference techniques for Boolean and propositional
+reasoning, such as truth-tables, <code class="customCode">SAT</code>-solving, and natural deduction. We might
+hope, at this point, that they just carry over to FOL <em>modulo</em> some adjustments
+for the more complicated syntax and semantics.</p>
+<p>But appearances are deceiving. First, note that we needed to think in a very
+<em>human</em> way through the truth-conditions to see that the inference is valid. For
+example, we realized that the denotation of <span class="excalifont">Socrates</span> lives in our domain, and
+therefore satisfies the open formula <span class="excalifont">Human x
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+Mortal x</span>. But how could
+a machine do that? Or, put differently, how can we <em>algorithmically</em> check for
+the validity of an FOL inference?</p>
+<p>
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/model_tower.png" class="rounded  float-start inert-img img-fluid m-2"  width="200px"  alt="" >
 
-<img src="https://logicalmethods.ai/textbook/fol-inference/img/ex-ei.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
+This is where the trouble begins. In propositional logic, we could just <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Brute-force_search"
+  target="_blank">brute
+force search</a> through all the
+models of the premises using the truth-tables. But this doesn&rsquo;t work in FOL.
+While in propositional logic, all that mattered for the truth of a formula is
+which of its propositional variables are true, in FOL, we need to know more:
+which objects there are, what the terms denote, and what the properties express.
+But that means that not only do we need to search through all distributions of
+truth-values over the atoms, we need to search through all through possible
+<em>domains</em> and interpretations of vocabularies across them.</p>
+<p>But there are <em>many</em> possible domains. <em>Every</em> set of objects could be the
+domain of a model. And the <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Von_Neumann_universe"
+  target="_blank">universe of
+sets</a> is &hellip; enormous to put
+it mildly. At the very least, it&rsquo;s infinite, so we simply can&rsquo;t search through
+it in finite time complexity.</p>
+<p>That rules out brute force, but perhaps there could be <em>some</em> smart algorithm,
+some <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Effective_method"
+  target="_blank">effective method</a> that
+solves the problem for us, that can figure out for any given FOL inference, in a
+finite amount of time whether the inference is valid.—It turns out that the
+answer is: there can&rsquo;t be!</p>
+<p>
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/halting_problem.png" class="rounded  float-end inert-img img-fluid m-2"  width="300px"  alt="" >
 
-<p>If Ada is on the <em>Philosopher&rsquo;s Walk</em>, then <em>somebody</em> is on the philosophers
-walk.</p>
-<p>If we abstract this to a general inference rule, we get:</p>
-
-<img src="https://logicalmethods.ai/textbook/fol-inference/img/ei.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-<p>No side-conditions, not <em>ifs and buts</em>, that&rsquo;s it 😃</p>
-<p>This inference rule allows us to &ldquo;introduce&rdquo; an existential quantifier. But what
-can we infer <em>from</em> one?</p>
-<p>The idea of natural deduction is to say that what follows from the claim that
-someone has a property is that some person, we don&rsquo;t know who, has the property.
-Here&rsquo;s how this work &ldquo;in action&rdquo;:</p>
-
-<img src="https://logicalmethods.ai/textbook/fol-inference/img/ex-ee.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-<p>We&rsquo;re just introducing a new constant <span class="excalifont">c</span> for the person who&rsquo;s on the Walk. It&rsquo;s
-important that this constant doesn&rsquo;t appear anywhere else in our derivation (or
-background knowledge base) to avoid serious mistakes.</p>
-<p>For example, the following inference is (obviously) problematic:</p>
-
-<img src="https://logicalmethods.ai/textbook/fol-inference/img/condition-ee-example.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-<p>From Ada not being on the Walk but <em>somebody</em> being on the walk, we can&rsquo;t infer
-that Ada is both on the walk and not.</p>
-<p>The general rule, then, is the following:</p>
-
-<img src="https://logicalmethods.ai/textbook/fol-inference/img/ee.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-<p>Here the side-condition <span class="excalifont">\ddagger</span> says that the constant <span class="excalifont">c</span> must be new to the
-inference (and knowledge base or any other background facts).</p>
-<p>In a more complex reasoning setting, we would apply this rule as follows:</p>
-
-<img src="https://logicalmethods.ai/textbook/fol-inference/img/full-example.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-<p>By adding the 4 rules we&rsquo;ve just discussed to the rules for propositional logic,
-we obtain a proof system for FOL:</p>
-
-<img src="https://logicalmethods.ai/textbook/fol-inference/img/four-rules.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-<p>This system works™️, in the sense that it is sound and complete (with the
-definition from the 
-
-
-<a href="https://logicalmethods.ai/textbook/fol/"
-   
-   
-   
-   
-   
-   >previous chapter</a>
-
-).</p>
-<p>Like any proof system for FOL, however, the systems is subject to
-undecidability: there <em>cannot</em> be <em>any</em> algorithm that in finite time correctly
-determines for arbitrary input inferences whether they&rsquo;re valid.</p>
-<p>This means, in particular, we can&rsquo;t algorithmically search for proofs from a
-given premise set to a given conclusion and expect a yes/no answer (there is a
-proof/there isn&rsquo;t a proof) after some finite time.</p>
-<p>This is a <strong>fundamental problem for automated FOL inference</strong>, of course: any
-inference engine will need to be <em>smart</em> to be an effective reasoner, it can&rsquo;t
-just brute force the problem. And even a smart algorithm may sometimes never
-find the answer.</p>
-<p>The mathematical proof of this fundamental fact about reasoning is out of reach
-in this course, but we can illustrate <em>why</em> this happens. In fact, showing this
-is a great setup for the next 
-<a class="link-dark" href="#generalized-mp-and-unification">topic</a>:</p>
-<p>Suppose that our premises contain a premise of the form:</p>
-<div class="text-center my-4 excalifont">\forall x\exists y\mathsf{BiggerThan}(x,y)</div>
-<p>We want to know whether some conclusion follows from this. It doesn&rsquo;t really
-matter what the potential conclusion is, since the problem already occurs if we
-automatically draw inferences from <div class="text-center my-4 excalifont">\forall x\exists
-y\mathsf{BiggerThan}(x,y)</div> in an unfortunate way.</p>
-<p>Suppose we already have a constant in our knowledge base, say <span class="excalifont">0</span> for the number
-zero. A natural thing to do is to instantiate any universal quantifier we come
-across with all the constants we know to see if we get the result. So, we infer</p>
-<div class="text-center my-4 excalifont">\exists y\mathsf{BiggerThan}(0,y)</div>
-So far so good. Now, we don't have any other constants, so we don't draw any
-further inferences using <span class="excalifont">\forall E</span>. Since we've got nothing else we can do, we
-try the rule <span class="excalifont">\exists E</span> and introduce a new constant: <span class="excalifont">c_1</span> (you'll see in a
-second why there's an index):
-<div class="text-center my-4 excalifont">\exists y\mathsf{BiggerThan}(0,c_1)</div>
-<p>But wait, we&rsquo;ve got a new constant, so we should infer:</p>
-<div class="text-center my-4 excalifont">\exists y\mathsf{BiggerThan}(c_1,y)</div>
-<p>from</p>
-<div class="text-center my-4 excalifont">\forall x\exists y\mathsf{BiggerThan}(x,y)</div>
-<p>Again, we&rsquo;ve instantiated the <span class="excalifont">\forall</span> with all our constants, so we try
-<span class="excalifont">\exists E</span> again. Since our constant must be new, we choose <span class="excalifont">c_2</span>. Ah, a new
-constant, so we need to use <span class="excalifont">\forall E</span> for our premise again, giving us:</p>
-<div class="text-center my-4 excalifont">\exists y\mathsf{BiggerThan}(c_1,c_2)</div>
-<p>Now you quickly see that we&rsquo;re caught in a <i class="bi bi-box-arrow-up-right h-6"></i>
+This is a consequence of Church and <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Turing%27s_proof"
+  target="_blank">Turing&rsquo;s
+answer</a> to the <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Halting_problem"
+  target="_blank">halting
+problem</a>. Without going into too
+much detail, Curry and Turing independently showed that there can&rsquo;t be a single
+algorithm that determines in a finite amount of time whether any given computer
+program &ldquo;halts&rdquo;—meaning it doesn&rsquo;t get stuck in an &ldquo;<i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Infinite_loop"
   target="_blank">infinite
-loop</a>. Every time we instantiate
-the universal quantifier, the existential quantifier gives us a new constant to
-instantiate the universal quantifier for. This procedure gives us a bunch of
-proofs, but never the one we&rsquo;re looking for.</p>
-<p>Of course, we could avoid hitting the infinite loop &ldquo;immediately&rdquo; by first
-applying some other rules after we&rsquo;ve introduced <span class="excalifont">c_1</span>. This would give us some
-more inferences, which is good of course. The problem, however, is that we can
-never <em>completely</em> avoid infinite loops like this. That&rsquo;s the consequence of
-undecidability.</p>
-<p>The <em>moral</em> of the story is that we need to be &ldquo;smart&rdquo; when we&rsquo;re instantiating
-universal quantifiers: we need to instantiate them with the right terms and at
-the right time–otherwise we might get &ldquo;stuck&rdquo; in an infinite loop.</p>
-<p>Making smart choices in this context is the topic of the next section.</p>
-<h2 id="generalized-mp-and-unification">Generalized MP and Unification<button class="btn btn-back-to-top">
-    
-    <i class="bi bi-chevron-double-up"></i>
-    
-  </button>
-</h2>
-<hr>
-
-<p>A standard setup we find ourselves in when it comes to automated FOL inference
-is that we have a KB with a bunch of rules of the form:</p>
-<div class="text-center my-4 excalifont">\forall x\forall y\dots((P_1(x,y,\dots)\land P_2(x,y,\dots))\land \dots \to
-C(x,y,\dots))</div>
-<p>These are simple if-then rules (which correspond to <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Horn_clause"
-  target="_blank">Horn
-clauses</a>).</p>
-<p>Take, for example, the FOL version of the rules for our robot planning example:</p>
-<div class="text-center my-4 excalifont">\forall x\forall n((On(x, n) \land Switch(x, n)) \to Off(x, n + 1))</div>
-<div class="text-center my-4 excalifont">\forall x\forall n((Off(x, n) \land Switch(x, n)) \to On(x, n + 1))</div>
-<p>A straight-forward inference strategy to extract information from these clauses
-is to instantiate them and try to use <em>modus ponens</em>, effectively applying the
-
-
-
-<a href="https://logicalmethods.ai/textbook/conditionals//#forward-chaining"
-   
-   
-   
-   
-   
-   > forward
-chaining</a>
-
-
-
-
-
-<a href="https://logicalmethods.ai/textbook/conditionals//#backward-chaining"
-   
-   
-   
-   
-   
-   > backward
-chaining</a>
-
- techniques.</p>
-<p>Suppose, for example, that we have the following information and want to know
-what this determines:</p>
-<div class="text-center my-4 excalifont">On(L,1)</div>
-<div class="text-center my-4 excalifont">Switch(L,1)</div>
-We can then reason as follows (here in natural deduction):
-
-<img src="https://logicalmethods.ai/textbook/fol-inference/img/gmp-example.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-<p>In this way, in two steps using <span class="excalifont">\land I</span> and <span class="excalifont">\forall E</span>, we can infer that the
-left light will be off at time point <span class="excalifont">1+1=2</span>.</p>
-<p>Once we recognize the pattern, we might want to be able to apply it directly as
-in the following:</p>
-
-<img src="https://logicalmethods.ai/textbook/fol-inference/img/gmp-example-2.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-<p>This can be achieved by adding the following <strong>generalized MP</strong> rule to our
-calculus (with the justification of being able to derive it using <span class="excalifont">\land I</span> and
-<span class="excalifont">\forall E</span>):</p>
-
-<img src="https://logicalmethods.ai/textbook/fol-inference/img/gmp.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-<p>Here <span class="excalifont">\vec{t}=t_1,t_2,\dots</span> and <span class="excalifont">\vec{x}=x_1,x_2\dots</span> are abbreviations.</p>
-<p>The generalized MP rule puts the focus a key questions for efficient FOL
-inference: choosing the right variables to instantiate universal quantifiers.</p>
-<p>The point of inference pattern is to avoid unnecessary (but valid)
-instantiations when trying to apply universal instantiation.</p>
-<p>To see whether we can apply generalized MP, we need to find an instantiation for
-the variables</p>
-<div class="text-center my-4 excalifont">x_1,x_2,\dots</div>
-<p>such that applying it to</p>
-<div class="text-center my-4 excalifont">P_1(x_1,x_2,\dots)\land P_2(x_1,x_2,\dots)\land\dots</div>
-<p>gives us</p>
-<div class="text-center my-4 excalifont">P_1(t_1,t_2,\dots)\land P_2(t_1,t_2,\dots)\land\dots</div>
-<p>Here, it is clear what the answer is, viz:</p>
-<div class="text-center my-4 excalifont">x_1\mapsto t_1,x_2\mapsto t_2,\dots</div>
-<p>But this example allows us to explain a key concept in FOL inference, which
-underlies most FOL inference algorithm. This concept is known as <strong>unification</strong>.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
-<p>A unification procedure takes as input two formulas and gives as output a
-substitution of terms that makes the two formulas identical.</p>
-<p>So, for example, if the input are the two formulas:</p>
-<div class="text-center my-4 excalifont">On(L,1)\land Switch(L,1)\qquad \text{ and } \qquad On(x,y)\land Switch(x,y)</div>
-<p>the unification procedure would give as output:</p>
-<div class="text-center my-4 excalifont">x\mapsto L, y\mapsto 1</div>
-<p>since substituting <span class="excalifont">L</span> for <span class="excalifont">x</span> and <span class="excalifont">1</span> for <span class="excalifont">y</span> everywhere, will turn the second
-input into the first.</p>
-<p>Note that unification can be applied to two formulas where both need
-substitutions. Take, for example, the following two formulas as input:</p>
-<div class="text-center my-4 excalifont">\mathsf{YoungerThan}(x,Ada)\qquad \text{ and }\mathsf{YoungerThan}(Alan,y)</div>
-<p>If we replace <span class="excalifont">x</span> with <span class="excalifont">Alan</span> in the first input and <span class="excalifont">y</span> with <span class="excalifont">Ada</span> in the
-second input, we obtain the unified clause</p>
-<div class="text-center my-4 excalifont">\mathsf{YoungerThan}(Alan,Ada)</div>
-<p>Note also that there can be pairs of formulas that are <strong>not unifiable</strong>. Take,
-for example, the formulas</p>
-<div class="text-center my-4 excalifont">\mathsf{OlderThan}(x,Alan)\qquad\mathsf{OlderThan}(Ada,x)</div>
-To unify the two formulas, we'd need to have both <span class="excalifont">x\mapsto Ada</span> and <span class="excalifont">x\mapsto
-Alan</span>, which is impossible.
-<p>We use the notation <span class="excalifont">A[x_1\mapsto t_1,x_2\mapsto t_2,\dots]</span> to denote the
-result of replacing <span class="excalifont">x_1</span> with <span class="excalifont">t_1</span>, <span class="excalifont">x_2</span> with <span class="excalifont">t_2</span>, and so forth everywhere
-those variables aren&rsquo;t captured by quantifiers. This procedure is known
-<strong>substitution</strong>. We call the rule <span class="excalifont">x_1\mapsto t_1,x_2\mapsto t_2,\dots</span> <em>a</em>
-substitution.</p>
-<p>Using this notation, we can formulate the unification procedure as a procedure
-that gives us for two formulas <span class="excalifont">A,B</span> a substitution <div class="text-center my-4 excalifont">[A,B]_{U}</div> such that</p>
-<div class="text-center my-4 excalifont">A[A,B]_{U}=B[A,B]\_{U}.</div>
-<p>Using unification, we can write the generalized MP rule as follows:</p>
-
-<img src="https://logicalmethods.ai/textbook/fol-inference/img/gmp-u.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-<p>Using generalized MP, one can develop FOL versions of forwards and backwards
-chaining <em>directly</em>, side-stepping a search through all possible instantiations.</p>
-<h2 id="fol-resolution">FOL resolution<button class="btn btn-back-to-top">
-    
-    <i class="bi bi-chevron-double-up"></i>
-    
-  </button>
-</h2>
-<hr>
-
-<p>A main limitation of the generalized MP rule is that it works only with
-universal conditions of the form we discussed above:</p>
-<div class="text-center my-4 excalifont">\forall x\forall y\dots((P_1(x,y,\dots)\land P_2(x,y,\dots))\land \dots \to
-C(x,y,\dots))</div>
-<p>While these are <em>very</em> common in KBs, we often come across situations, where
-we&rsquo;d like to apply FOL inference to <em>arbitrary</em> formulas.</p>
-<p>A very effective and widely used technique for that is the generalization of the
-<strong>resolution method for FOL</strong>.</p>
-<p>Remember that the <strong>resolution rule</strong> says that if you have two clauses</p>
-<div class="text-center my-4 excalifont">l_1\lor l_2\lor \dots\lor p \qquad \qquad \neg p\lor k_1\lor k_2\lor\dots</div>
-<p>you can infer:</p>
-<div class="text-center my-4 excalifont">l_1\lor l_2\lor \dots k_1\lor k_2\lor\dots</div>
-<p>In this rule <span class="excalifont">l_i,k_j</span> are literals, meaning either propositional variables or
-their negations. How can we generalize this rule to the FOL case?</p>
-<p>First, note that literals correspond to basic facts in propositional logic:
-<span class="excalifont">\mathsf{RAIN}</span> is the basic fact that it rains, and <span class="excalifont">\neg\mathsf{RAIN}</span> is the
-basic fact that it doesn&rsquo;t. In fact, these basic facts directly correspond to
-the basic <em>modeling</em> facts <span class="excalifont">\nu(\mathsf{RAIN})=1</span> and <span class="excalifont">\nu(\mathsf{RAIN})=0</span>.
-What are the corresponding basic facts in FOL?</p>
-<p>The straight-forward answer is that they are atomic formulas and their
-negations, like:</p>
-<div class="text-center my-4 excalifont">\mathsf{OlderThan}(\mathsf{FatherOf}(Ada),Ada)\qquad \neg\mathsf{OlderThan}(\mathsf{FatherOf}(Ada),Ada)</div>
-<p>Using these, we can, for example, formulate valid, resolution-style inferences
-like the following:</p>
-
-<img src="https://logicalmethods.ai/textbook/fol-inference/img/example-resolution.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-<p>If we have complex FOL formulas, which are just build up from atoms using
-<span class="excalifont">\neg,\land,\lor,\to</span>, we can straight-forwardly generalize the propositional
-procedure to the FOL case: simply re-write the formula in CNF (following the
-procedure laid out in  
-
-
-<a href="https://logicalmethods.ai/textbook/sat//#normal-forms"
-   
-   
-   
-   
-   
-   >
-chapter 5.3</a>
-
-), and we can apply the resolution rule.</p>
-<p>For example, the above application of the resolution rule shows the validity of
-the following FOL inference:</p>
-<div class="text-center my-4 excalifont">\mathsf{Parent}(\mathsf{FatherOf}(Ada),Ada)\to
-\mathsf{OlderThan}(\mathsf{FatherOf}(Ada),Ada),</div>
-<div class="text-center my-4 excalifont">\mathsf{OlderThan}(\mathsf{FatherOf}(Ada),Ada)\to</div>
-<div class="text-center my-4 excalifont">\mathsf{Before}(\mathsf{BirthdayOf}(\mathsf{FatherOf}(Ada)),\mathsf{BirthdayOf}(Ada))\vDash</div>
-<div class="text-center my-4 excalifont">\mathsf{Parent}(\mathsf{FatherOf}(Ada),Ada)\to</div>
-<div class="text-center my-4 excalifont">\mathsf{Before}(\mathsf{BirthdayOf}(\mathsf{FatherOf}(Ada)),\mathsf{BirthdayOf}(Ada))</div>
-<p>It turns out that universal quantifiers are relatively easy to handle using a
-simple &ldquo;trick&rdquo;. We simply treat &ldquo;free&rdquo; variables, that is variables which are
-not captured by a corresponding quantifier, as <em>implicitly quantified</em>. To
-illustrate, consider the following example.</p>
-<p>We want to check the validity of the following inference:</p>
-<div class="text-center my-4 excalifont">\forall x\forall y(\mathsf{Parent}(x,y)\to \mathsf{OlderThan}(x,y)),</div>
-<div class="text-center my-4 excalifont">\forall x\forall y(\mathsf{OlderThan}(x,y)\to \mathsf{Before}(\mathsf{BirthdayOf}(x),\mathsf{BirthdayOf}(y)))\vDash</div>
-<div class="text-center my-4 excalifont">\forall x\forall y(\mathsf{Parent}(x,y)\to \mathsf{Before}(\mathsf{BirthdayOf}(x),\mathsf{BirthdayOf}(y)))</div>
-We do this with the following application of the resolution rule:
-
-<img src="https://logicalmethods.ai/textbook/fol-inference/img/resolution-universal.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-<p>Several things have happened here:</p>
-<ol>
-<li>We&rsquo;ve dropped all the universal quantifiers. Along the way, we made sure to
-rename all variables in such a way that every formula has unique variables.</li>
-<li>We re-wrote the resulting quantifier free formulas in using the re-writing
-rules.</li>
-<li>We applied the resolution rule using a substitution where <span class="excalifont">u\mapsto x</span> and
-<span class="excalifont">v\mapsto y</span>.
-The first and third steps are the crucial things to focus on here: we allow a
-resolution application with atoms <div class="text-center my-4 excalifont">\mathsf{OlderThan}(u,v)</div> and</li>
-</ol>
-<div class="text-center my-4 excalifont">\neg\mathsf{OlderThan}(x,y).</div> This is the way in which we treat the free
-variables <span class="excalifont">x,y,u,v</span> as "implicitly quantified". We think of them as being able
-to assume different values, in particular <span class="excalifont">x</span> and <span class="excalifont">u</span> and <span class="excalifont">y</span> and <span class="excalifont">v</span> _can_
-assume the same values, which makes this an ordinary case of resolution. 
-<p>But when doing so, we must respect the new assignment of variables. That is, we
-apply the substitution <span class="excalifont">u\mapsto x,v\mapsto y</span> to the entire formula, giving us
-the conclusion.</p>
-<p>Note that <span class="excalifont">[u\mapsto x,v\mapsto y]</span> is a unification for the formulas
-<span class="excalifont">\mathsf{OlderThan}(u,v)</span> and <span class="excalifont">\neg\mathsf{OlderThan}(x,y).</span> This gives us the
-most general form of the <strong>FOL resolution rule</strong>:</p>
-<div class="text-center my-4 excalifont">l_1\lor l_2\lor \dots\lor m \qquad \qquad \neg n\lor k_1\lor k_2\lor\dots</div>
-<p>you can infer:</p>
-<div class="text-center my-4 excalifont">(l_1\lor l_2\lor \dots k_1\lor k_2\lor\dots)[m, n]_U</div>
-<p>Assuming that <span class="excalifont">[m, n]_U</span> does indeed exist.</p>
-<p>This is the resolution rule we&rsquo;ve applied in the inference:</p>
-
-<img src="https://logicalmethods.ai/textbook/fol-inference/img/resolution-universal.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-<p>To make this a general inference rule, we allow the <span class="excalifont">m,\neg m</span> pair to occur
-anywhere within <span class="excalifont">l_1\lor l_2\lor \dots\lor m, \neg n\lor k_1\lor k_2\lor\dots</span>
-respectively (not only at the end/beginning).</p>
-<p>It turns out that we can describe a general FOL inference procedure using
-resolution. This involves FOL variant of the CNF from 
-
-
-<a href="https://logicalmethods.ai/textbook/sat//#normal-forms"
-   
-   
-   
-   
-   
-   > chapter 5.3</a>
-
-.</p>
-<p>We first describe the procedure. To transform an arbitrary formula into
-<strong>FO-CNF</strong>:</p>
-<ol>
-<li>
-<p>Re-write all conditionals using the rule: <span class="excalifont">A\to B\leadsto \neg A\lor B</span></p>
-</li>
-<li>
-<p>Use the de Morgan rules to move all negations inwards, i.e. apply the rules:</p>
-<ul>
-<li><span class="excalifont">\neg\neg A\leadsto A</span></li>
-<li><span class="excalifont">\neg(A\land B)\leadsto \neg A\lor\neg B</span></li>
-<li><span class="excalifont">\neg(A\lor B)\leadsto \neg A\land\neg B</span>.</li>
-</ul>
-</li>
-<li>
-<p>Use the quantifier negation rules to move negations inwards via the following rules:</p>
-<ul>
-<li><span class="excalifont">\neg\forall xA\leadsto \exists x\neg A</span></li>
-<li><span class="excalifont">\neg\exists xA\leadsto \forall x\neg A</span></li>
-</ul>
-</li>
-<li>
-<p>Re-name the variables such that each quantifier has its own variable, so
-that, e.g. <span class="excalifont">\forall xA\land \exists xB\leadsto \forall x_1A\land \forall
-x_2B</span>.</p>
-</li>
-<li>
-<p>For each quantifier, apply the following procedure known as <strong>Skolemization</strong>:<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
-<ul>
-<li>Eliminate any existential quantifier from the formula and replace the variable it
-quantifiers over with a new function symbol <span class="excalifont">f_i(x_j,x_k,\dots)</span>, where: <span class="excalifont">x_i</span>
-is the variable the universal quantifier used and <span class="excalifont">x_j,x_k,\dots</span> are all
-the universally quantified variables that come before <span class="excalifont">x_i</span> in the formula. If no variables occur before use a fresh constant <span class="excalifont">c_i</span>.</li>
-</ul>
-<p>For example:</p>
+loop</a>&rdquo;. The model of computation
+that they used in this proof—the <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Lambda_calculus"
+  target="_blank">lambda
+calculus</a> in Church&rsquo;s case and
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Turing_machine"
+  target="_blank">Turing machines</a> in Turing&rsquo;s
+case—is so general in nature that it encompasses any reasonable form of AI
+algorithm we can think of. The details of the proof are out of scope for us, but
+roughly the idea is that we can reduce the halting problem to a validity problem
+in FOL. This proof is one of the great intellectual achievements of the
+twentieth century and one of the ways in which research in pure logical theory
+is highly relevant to current AI-research: we know that we shouldn&rsquo;t even try to
+fully automate FOL inference.</p>
+<p>What we <em>can</em> do is to deal with the consequences: we can tackle the question
+what, given that we can&rsquo;t fully automate FOL inference, we can still achieve.
+And it turns out that there&rsquo;s quite something. AI research has yielded a
+toolbox of techniques for FOL reasoning, partially and fully automated, theorem
+proving and checking. These tools are the basis for many recent advances in
+domain-specific reasoning.</p>
+<p>At the end of this chapter, you will be able to:</p>
 <ul>
 <li>
-<p><span class="excalifont">\forall x\exists y(P(x)\to R(x,y))</span> becomes <span class="excalifont">\forall
-x(P(x)\to R(x,f(x)))</span>.</p>
-</li>
-<li>
-<p><span class="excalifont">\exists x(P(x)\to \forall yR(y,x))</span> becomes <span class="excalifont">P(c)\to \forall yR(y,c)</span>.</p>
-</li>
-<li>
-<p><span class="excalifont">\forall x(\exists yR(x,y)\land \exists zP(x,z))</span> becomes <span class="excalifont">\forall x(R(x,f(x))\land R(x,g(x))</span>.</p>
-</li>
-</ul>
-</li>
-<li>
-<p>Drop all the remaining universal quantifiers.</p>
-</li>
-<li>
-<p>Apply the distribution law:</p>
-<ul>
-<li><span class="excalifont">A\lor (B\land C)\leadsto (A\lor B)\land (A\lor C)</span></li>
-</ul>
-</li>
-</ol>
-<p>We apply all these steps recursively until we&rsquo;ve got a formula in CNF.</p>
-<p>For example, here&rsquo;s what the procedure does to the formula <div class="text-center my-4 excalifont">\forall x\forall
-y(\mathsf{Parent}(x,y)\to \neg \forall z (\mathsf{Parent}(z,y)\to x=z))</div></p>
-<ul>
-<li>
-<p><span class="excalifont">\forall x\forall
-y(\neg \mathsf{Parent}(x,y)\lor \neg\forall z(\neg \mathsf{Parent}(z,y)\lor x= z))</span> (Re-write conditionals)</p>
-</li>
-<li>
-<p><span class="excalifont">\forall x\forall
-y(\neg \mathsf{Parent}(x,y)\lor \exists z\neg (\mathsf{Parent}(z,y)\land x= z))</span></p>
-</li>
-<li>
-<p><span class="excalifont">\forall x\forall
-y(\neg \mathsf{Parent}(x,y)\lor \exists z\neg (\neg\mathsf{Parent}(z,y)\lor x= z))</span></p>
-</li>
-<li>
-<p><span class="excalifont">\forall x\forall
-y(\neg \mathsf{Parent}(x,y)\lor \exists z(\neg \neg\mathsf{Parent}(z,y)\land x\neq z))</span></p>
-</li>
-<li>
-<p><span class="excalifont">\forall x\forall
-y(\neg \mathsf{Parent}(x,y)\lor \exists z(\mathsf{Parent}(z,y)\land x\neq z))</span></p>
-</li>
-<li>
-<p><span class="excalifont">\forall x\forall
-y(\neg \mathsf{Parent}(x,y)\lor (\mathsf{Parent}(f(x,y),y)\land x\neq f(x,y)))</span></p>
-</li>
-<li>
-<p><span class="excalifont">\neg \mathsf{Parent}(x,y)\lor (\mathsf{Parent}(f(x,y),y)\land x\neq f(x,y))</span></p>
-</li>
-<li>
-<p><span class="excalifont">(\neg \mathsf{Parent}(x,y)\lor \mathsf{Parent}(f(x,y),y))\land (\neg \mathsf{Parent}(x,y)\lor x\neq f(x,y)))</span></p>
-</li>
-</ul>
-<p>The CNF procedure always leads to a formula that is in CNF from the perspective
-of propositional logic. Crucially, however, the formula is <strong>not necessarily
-equivalent</strong> to the original formula in FOL. It is what&rsquo;s called
-<strong>equi-satisfiable</strong>: the re-written formula is satisfiable (has a model) if and
-only if the original formula has a model.</p>
-<p>This is because of the <strong>Skolemization</strong> involved, but we won&rsquo;t go into the
-mathematical details here. The crucial thing is that the procedure gives us a
-formula, which is in CNF and doesn&rsquo;t involve quantifiers. For <span class="excalifont">A</span> a formula, we
-denote the result of applying the above procedure by <span class="excalifont">CNF(A)</span>.</p>
-<p>Since the formula <span class="excalifont">CNF(A)</span> is equi-satisfiable with the original formula <span class="excalifont">A</span>, we
-can apply the resolution technique to determine the transformed formula&rsquo;s
-satisfiability and infer the satisfiability status of the original formula.
-This, it turns out, gives us a sound and complete inference system.</p>
-<p>From here on out the ideas are actually just what we know from propositional
-logic (compare 
-
-
-<a href="https://logicalmethods.ai/textbook/proofs//#resolution-based-systems"
-   
-   
-   
-   
-   
-   >
-Chapter 7.2.3</a>
-
-):</p>
-<ul>
-<li>
-<p>To test an inference <div class="text-center my-4 excalifont">P_1,P_2,\dots\vDash C</div> for validity, we test whether the
-formula <div class="text-center my-4 excalifont">P_1\land P_2\land \dots\land \neg C</div> is satisfiability.</p>
-</li>
-<li>
-<p>We do this by
-applying the resolution rule as many times as possible to the clauses of</p>
-</li>
-</ul>
-<div class="text-center my-4 excalifont">CNF(P_1\land P_2\land \dots\land \neg C).</div>
-<ul>
-<li>If we can derive <span class="excalifont">\bot</span>, the inference is valid, if we cannot, the inference
-is invalid.</li>
-</ul>
-<p>The procedure we&rsquo;ve just sketched leads to a very effective way of automated
-reasoning, which provides the basis for many ATPs.</p>
-<h2 id="further-readings">Further readings<button class="btn btn-back-to-top">
-    
-    <i class="bi bi-chevron-double-up"></i>
-    
-  </button>
-</h2>
-<hr>
-
-<p>An excellent overview of FOL inference with more concrete discussion of the
-implementations of forward and backward chaining in FOL can be found in <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://elibrary.pearson.de/book/99.150005/9781292401171"
-  target="_blank">Russel and Norvig. 2021. Artificial Intelligence: A Modern Approach. 4th
-Edition. Pearson</a>,
-chapter 9.</p>
-<p><strong>Notes</strong></p>
-<div class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn:1">
-<p><i class="bi bi-box-arrow-up-right h-6"></i>
+<p>use the method of
+<i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Unification_%28computer_science%29"
-  target="_blank">Unification</a> as a
-general procedure can be used to solve equations of various kinds. Using it for
-FOL formulas is just a special case.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+  target="_blank">unification</a> to
+find applications of FOL inference rules to quantified FOL formulas</p>
 </li>
-<li id="fn:2">
-<p>This procedure is perhaps difficult to intuitively understand.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li>
+<p>transform FOL formulas into CNF and apply the resolution method to search for
+countermodels</p>
+</li>
+<li>
+<p>use natural deduction rules for the quantifiers to find logical proofs in FOL</p>
+</li>
+<li>
+<p>verify such proofs in Lean</p>
+</li>
+</ul>
+<h2 id="unification">Unification<button class="btn btn-back-to-top">
+    
+    <i class="bi bi-chevron-double-up"></i>
+    
+  </button>
+</h2>
+<hr>
+
+<p>Let&rsquo;s begin by looking at our example inference again:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x (Human x 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ Mortal x), Human Socrates 
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+Mortal Socrates</div>
+<p>We&rsquo;ve seen that the inference is valid using semantic reasoning, but now we&rsquo;ll
+investigate how to show this using inference rules.</p>
+<p>The aim is to apply <em>something like</em> MP to obtain the desired result. The idea
+is to focus on the reasoning that if <span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x (Human x 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ Mortal
+x)</span> is true, then <span class="excalifont">Human x 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+Mortal x</span> is true for all values of <span class="excalifont">x</span>. So
+if we set the value of <span class="excalifont">x</span> to the denotation of <span class="excalifont">Socrates</span>, we can use this to
+infer that <span class="excalifont">Human Socrates 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+Mortal Socrates</span> is true. Then, since <span class="excalifont">Human
+Socrates</span> is true, we can use MP to infer that <span class="excalifont">Mortal Socrates</span> is true as well.</p>
+<p>To cash this out, we need to think about how to reason with universally
+quantified variables, like the <span class="excalifont">x</span> in this case. The powerful idea we&rsquo;ll be
+developing throughout this chapter is that we can drop the quantifier
+
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+  and reason with the open formula</p>
+<div class="text-center my-4 excalifont">Human x 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+Mortal x</div> instead. That is, our inference becomes:
+<div class="text-center my-4 excalifont">(Human x 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ Mortal x), Human Socrates 
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+Mortal Socrates</div>
+<p>What remains to be done is to find a mechanizable way of determining that we
+should set the value of <span class="excalifont">x</span> to Socrates. The way this works, formally, is using
+the method of <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Unification_%28computer_science%29"
+  target="_blank">unification</a>.</p>
+<p>What we need to do in order to be able to apply <span class="excalifont">MP</span>, what we need to do is to
+set the value of <span class="excalifont">x</span> in such a way that the <span class="excalifont">Human x</span> in
+<span class="excalifont">Human x 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+Mortal x</span> becomes <span class="excalifont">Human Socrates</span>. The obvious way of doing
+this is to replace the <span class="excalifont">x</span> with the constant <span class="excalifont">Socrates</span> to obtain <span class="excalifont">Human
+Socrates 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+Mortal Socrates</span>. Formally, this happens with the operation
+of <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Substitution_%28logic%29"
+  target="_blank">term substitution</a>,
+which we looked at in the syntax of FOL. That is the substitution <span class="excalifont">[x /
+Socrates]</span> gives us:</p>
+<div class="text-center my-4 excalifont">(Human x 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ Mortal x)[x / Socrates] = Human Socrates 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+Mortal
+Socrates</div>
+<p>where our premise <span class="excalifont">Human Socrates</span> is <em>syntactically identical</em> to—not only
+equivalent, but <em>literally identical</em> to—the antecedent of the conditional. A
+substitution that has this property is called a <strong>unifier</strong> of the two
+formulas with the <strong>unification partners</strong> <span class="excalifont">[Human Socrates, Human x]</span>.</p>
+<p>That is, we can understand our inference as an instance of a special MP
+variant for FOL:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/unified_mp.png" class="mx-auto rounded d-block inert-img img-fluid"  width="400px"  alt="" >
+
+<p>That is, FOL allows us to infer the consequent of an open conditional with free
+variable <span class="excalifont">x</span> from a
+<abbr title="closed formula without free variables"><a  class="link-underline-opacity-0 link-body-emphasis"> sentence</a></abbr>
+if there is a unifier which makes the antecedent of the conditional and the
+sentence syntactically identical.</p>
+<p>It&rsquo;s rather straight-forward to generalize this rule to antecedents with
+multiple variables in the premise and antecedent. Take the following deductively
+valid inference, for example:
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/ai_brothers.png" class="mx-auto rounded d-block inert-img img-fluid"  width="600px"  alt="" >
+</p>
+<p>To apply the method we&rsquo;ve just described, we&rsquo;d simply drop both universals and
+use the unifier</p>
+<div class="text-center my-4 excalifont">[x / 
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+I, y / <code class="customCode">KnowIt<span style="margin-left:-0.5em"></span>
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+&ThinSpace;</code>]</div>
+which is a "double substitution", where both <span class="excalifont">x</span> and <span class="excalifont">y</span> are simultaneously
+replaced, to apply the rule as follows:
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/ai_brothers_inf.png" class="mx-auto rounded d-block inert-img img-fluid"  width="400px"  alt="" >
+
+<p>This gives us a first shot at FOL inference: we can generalize MP to inferences
+with universally quantified conditionals using unification. It turns out that
+unification is an extremely powerful method for automated inference. It is, for
+example, also the method that underpins how
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://leanprover-community.github.io/"
+  target="_blank">Lean</a> figures out &ldquo;under the hood&rdquo;
+which disjunction you wanted to use in an application of <code class="customCode">Or<span
+class="dark-green">.</span></span>inl</code>, for example.</p>
+<p>Remember that the natural deduction inference from <span class="excalifont">A</span> to <span class="excalifont">A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B</span> using
+<span class="excalifont">
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ Intro</span> corresponds to the lean <code class="customCode">apply Or<span
+class="dark-green">.</span></span>inl h</code>, where <code class="customCode">h : A</code> is a proof of <span class="excalifont">A</span>. Note
+that you don&rsquo;t need to tell Lean here that you&rsquo;re other disjunct is supposed to
+be <span class="excalifont">B</span>. If you later want to <code class="customCode">apply</code> MP-style reasoning with some premise <code class="customCode">g : (A <span
+class="dark-green">∨</span> B) <span class="dark-green">→</span> C</code> to obtain a
+proof of <span class="excalifont">C</span>, you do this with code like this:</p>
+
+<img src="/img/lean_logo.png" alt="Lean_Logo" class="float-start" style="height:1em;width:auto;"/>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lean" data-lang="lean"><span class="line"><span class="cl"><span class="n">apply</span><span class="w"> </span><span class="n">g</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">apply</span><span class="w"> </span><span class="n">Or</span><span class="bp">.</span><span class="n">inl</span><span class="w"> </span><span class="n">h</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Lean figures out that the other disjunct in your application of <code class="customCode">Or<span
+class="dark-green">.</span></span>inl</code> must have been <span class="excalifont">B</span> using unification.
+Under the hood, when you apply the rule, it infers a proof of <code class="customCode">A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ X</code>
+for a meta-variable <code class="customCode">X</code>. Then, when you tell it to apply the proof of the
+conditional <code class="customCode">(A <span class="dark-green">∨</span> B) <span
+class="dark-green">→</span> C</code>, lean uses a unification algorithm to infer that
+if <code class="customCode">X</code> is <code class="customCode">B</code>, the application is valid, and so it applies the unification and
+continues. This is just one of the ways, in which unification-based algorithms
+make our lives a little bit easier in artificial inference. It also allows us to
+use the <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Backward_chaining"
+  target="_blank">backward chaining</a> and
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Forward_chaining"
+  target="_blank">forward chaining</a> algorithms
+when our KB contains suitable conditionals.</p>
+<p>In practice, there are different algorithms for efficiently search for unifiers
+for two first-order terms. The most basic one, due to
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/John_Alan_Robinson"
+  target="_blank">Robinson</a>, you will explore
+in the exercises. Importantly, the unifiability of two terms is a <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Decidability_%28logic%29"
+  target="_blank">decidable
+problem</a>: we can correctly
+tell with a single algorithm in finitely many steps whether any two terms can be
+unified or not.</p>
+<p>But just like with propositional chaining, there are limitations to this method.
+In propositional logic, we looked at conditionals with disjunctive antecedents
+as an example, like in the inference:</p>
+<div class="text-center my-4 excalifont">((RAIN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ WIND) 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ COLD)&emsp; (COLD 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+HEATING)&emsp; RAIN</div>
+<p>In FOL, we also have 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+, so we have these kinds of inferences, but
+there are also problems with quantifiers in conditionals. Consider the following
+inference, for example:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/giant_inference.png" class="mx-auto rounded d-block inert-img img-fluid"  width="400px"  alt="" >
+
+<p>This inference is straight-forwardly seen to be valid: If it&rsquo;s true that anyone
+bigger than everyone is a giant, and <span class="excalifont">PolyphemOS</span> is bigger than everybody, then
+<span class="excalifont">PolyphemOS</span> is a giant. In fact, applying our strategy of dropping all the
+universals 
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+, we might think we could do the following:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/giant_unification.png" class="mx-auto rounded d-block inert-img img-fluid"  width="400px"  alt="" >
+
+<p>This <em>looks</em> like a logical proof of the validity of the inference, but actually
+something went wrong. To see this, consider the following inference:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/there_is_inference.png" class="mx-auto rounded d-block inert-img img-fluid"  width="400px"  alt="" >
+
+<p>This inference is clearly deductively invalid: Even if it&rsquo;s true that anyone
+bigger than everyone is a giant, the fact that <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IE</span>
+  is
+bigger than <span class="excalifont">tinymouse</span> doesn&rsquo;t mean that <span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IE</span>
+ is a giant.
+It&rsquo;s rather simple to find a formal FOL countermodel to the inference.</p>
+<p>But if we could just drop all universals like we just did for the inference
+involving <span class="excalifont">PolyphemOS</span>, the following would seem to show that the inference is
+valid:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/there_is_unification.png" class="mx-auto rounded d-block inert-img img-fluid"  width="400px"  alt="" >
+
+<p>What went wrong here is that the <span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+y</span> was nested in the conditional
+antecedent and doesn&rsquo;t really work like a &ldquo;real&rdquo; universal. To see this, we
+transform the premise using the equivalence of <span class="excalifont">A
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+B</span> and <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A
+
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B</span>, which also holds in FOL:</p>
+<ul>
+<li><span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x (
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+y BiggerThan x y 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ Giant x)</span> is
+equivalent to <span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+ x Bigger Than x y 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ Giant x)</span>.</li>
+</ul>
+<p>That is, the premise says that everything is either <em>not</em> bigger than everything
+or a giant. In fact, we can use the following FOL equivalence to transform this
+even further:</p>
+<ul>
+<li><span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+y BiggerThan x y</span> is equivalent to <span class="excalifont">
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+y
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ BiggerThan xy</span></li>
+</ul>
+<p>To say that <span class="excalifont">x</span> is not bigger than everything is to say that there&rsquo;s something
+that <span class="excalifont">x</span> is not bigger than. Using this equivalence:</p>
+<ul>
+<li><span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+ x Bigger Than x y 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ Giant x)</span>, and thus <span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x (
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+y BiggerThan x y 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ Giant x)</span>, is
+equivalent to <span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x(
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+y
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ Bigger Than x y 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ Giant x)</span>.</li>
+</ul>
+<p>Either there exists something that <span class="excalifont">x</span> is not bigger than, or <span class="excalifont">x</span> is a giant.</p>
+<p>Writing the premise in this form explains why the simple unification-based
+FOL-MP cannot be applied here, since there&rsquo;s an existential is involved. To
+handle such more general inferences, we need to move to a more powerful system.</p>
+<h2 id="fol-resolution">FOL Resolution<button class="btn btn-back-to-top">
+    
+    <i class="bi bi-chevron-double-up"></i>
+    
+  </button>
+</h2>
+<hr>
+
+<p>While there is no brute force, truth-table-style method for FOL, we <em>can</em> use
+resolution to check for satisfiability and thus consequence—although there are
+some caveats.</p>
+<p>Note that once we&rsquo;ve defined the notion of a model and truth in a model for FOL,
+we get the same relation between deductively valid inference and satisfiability
+that we had in propositional logic:</p>
+<div class="text-center my-4 excalifont">P₁, P₂, … 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+C &emsp; if and only if &emsp; not <code class="customCode">SAT</code>{P₁, P₂, …, 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+C }</div>
+<p>Here, <span class="excalifont">P₁, P₂, …, C</span> can be any FOL formulas and the notion of a set being
+satisfiable (or <code class="customCode">SAT</code>) is simply that there&rsquo;s a model, in which all the formulas
+are true.—FOL resolution is a method for checking for <code class="customCode">SAT</code> in this sense.</p>
+<p>
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/derivation_search.png" class="rounded  float-start inert-img img-fluid m-2"  width="200px"  alt="" >
+
+So, just like in propositional logic, we can check for satisfiability to check
+whether an inference is valid. And that&rsquo;s what FOL resolution does. The only
+caveat here is that while in propositional logic, resolution is a decision
+procedure—that is, it correctly tells us in finitely many steps <em>whether</em> a set
+is satisfiable/an inference is valid—in FOL, the method is &ldquo;only&rdquo; sound and
+complete: <em>if</em> we can derive an empty sequent or contradiction from a set using
+resolution, we know its unsatisfiable, and for each unsatisfiable set <em>there is</em>
+such a derivation. But crucially, as a consequence of Church and Turing&rsquo;s
+theorem, there is no algorithm that in general is guaranteed to find the this
+derivation—even if it exists. We still need to be &ldquo;smart&rdquo; about it. This puts a
+damper on the ambition of fully automating FOL reasoning, but it also presents
+an opportunity to develop smart algorithms that perform imitate human-level
+skills—or even achieve <em>super</em>human abilities—at finding FOL derivations.</p>
+<p>So, here&rsquo;s how FOL resolution works. In the simplest cases, we&rsquo;ve actually
+already seen resolution at work in the FOL-MP with modus ponens: just like in
+propositional logic, the simplest applications of resolution are just cases of
+MP. The first step for implementing this involves re-writing. If we take our
+inferences involving Socrates, after dropping the universal, we can transform
+the conditional into a disjunction using the well-established equivalence
+between <span class="excalifont">A
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+B</span> and <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B</span>. We get:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+Human x
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+Mortal x</div>
+<p>The other premise and negation are already of the right form:</p>
+<div class="text-center my-4 excalifont">Human Socrates &emsp; 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+Mortal Socrates</div>
+<p>With these transformations in place, we can move to sets like in the
+propositional case and apply resolution rules to derive the empty set <span class="excalifont">{ }</span>:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/socrates_resolution.png" class="mx-auto rounded d-block inert-img img-fluid"  width="500px"  alt="" >
+
+<p>The idea here is that we can resolve <em>on</em> two formulas just in case the can
+be unified using a substitution such that the one becomes the negation of the
+other. Here, we resolve on <span class="excalifont">Human Socrates</span> and <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+Human x</span> using the
+substitution <span class="excalifont">[x/Socrates]</span>. This substitution needs to be applied to all the
+remaining formulas in the two sets that we&rsquo;re resolving, which is why we retain
+<span class="excalifont">Mortal Socrates</span> from <span class="excalifont">(Mortal x)[x/Socrates]</span>. Sometimes, there is no
+substantial unification necessary, since the formulas are already resolved, as
+in the last inference. The formulas we&rsquo;re eliminating in the resolution is also
+called the <strong>pivot</strong> of the application.</p>
+<p>For the general form of resolution, we need to talk about CNFs for FOL. Remember
+that the resolution system assumes that all formulas are in <abbr title="conjunctive normal form"><a  class="link-underline-opacity-0 link-body-emphasis"> CNF</a></abbr>, which means that they are
+conjunctions of disjunctions of literals. To carry this notion over to FOL, we
+just need to adjust the notion of a
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Literal_%28mathematical_logic%29"
+  target="_blank">literal</a>. In
+propositional logic, a literal is a propositional vairable or its negation. In
+FOL, it&rsquo;s simply an atomic formula or its negation. That is <div class="text-center my-4 excalifont">Human x, 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+x = Socrates, BiggerThan Socrates fatherOf(y), &hellip; </div> are all
+literals in the sense of FOL. That&rsquo;s it, this gives us the notion of a CNF for
+FOL.</p>
+<p>There is also a corresponding notion of a
+<abbr title="disjunctive normal form"><a  class="link-underline-opacity-0 link-body-emphasis"> DNF</a></abbr>,
+which in AI and automated inference is not as important as the CNF. This is
+mainly because there is no truth-table style method for <code class="customCode">SAT</code>-solving in FOL,
+which is one of the main things that DNF&rsquo;s are good for in propositional logic.
+So, we&rsquo;ll focus on CNFs.</p>
+<p>Just like in propositional logic, there&rsquo;s an re-write algorithm for transforming
+any formula into CNF. Crucially, this transformation doesn&rsquo;t give us an
+<em>equivalent</em> formula, but an
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Equisatisfiability"
+  target="_blank"><strong>equi-satisfiable</strong></a>
+formula, meaning that the CNF is satisfiable if and only if the original formula
+is. The reason why we don&rsquo;t get full equivalence has to do with quantifiers.</p>
+<p>
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/ai_quantifier_elimination.png" class="rounded  float-start inert-img img-fluid m-2"  width="200px"  alt="" >
+
+Note that CNFs are, by definition, free of quantifiers. This means, we need when
+we transform a formula into CNF, we need to <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Quantifier_elimination"
+  target="_blank">eliminate the
+quantifiers</a>—and this
+cannot, in general, be done in such a way as to preserve strict equivalence. But
+we <em>can</em> preserve satisfiability, which is all we need for our <code class="customCode">SAT</code>-based
+approach.</p>
+<p>Enough theory, let&rsquo;s look at how this works in practice. The algorithm is a
+recursive re-writing with rules, just like before. In fact, all the re-write
+rules from the propositional algorithm are also rules in FOL, we just add to
+them. To remind ourselves, here&rsquo;s how the rewriting works in propositional
+logic:</p>
+<ol>
+<li>
+<p>We recursively rewrite all conditionals into disjunctions using:</p>
+ <div class="text-center my-4 excalifont">r₀: A 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+B 
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B</div>
+</li>
+<li>
+<p>We recursively push all negations inward using:</p>
+ <div class="text-center my-4 excalifont">r₁: 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+ A</div>
+ <div class="text-center my-4 excalifont">r₂: 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+(A
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B)
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+B</div>
+ <div class="text-center my-4 excalifont">r₃: 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+(A
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B)
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+B</div>
+</li>
+<li>
+<p>We transform disjunctions of conjunctions into conjunctions of disjunctions
+using:</p>
+ <div class="text-center my-4 excalifont">r₄: A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(B 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+C)
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+(A
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B)
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(A
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+C)</div>
+ <div class="text-center my-4 excalifont">r₄': (A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B)
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+C
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+(A
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+C)
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(B
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+C)</div>
 </li>
 </ol>
+<p>To handle the quantifiers, we need to add new re-write rules. We discuss them in
+turn. The conditional re-writing step, 1., stays the same. For the second step,
+we add two quantifier rules:</p>
+<ol start="2">
+<li>
+<p>We recursively push negations inward using <span class="excalifont">r₁—r₃</span> plus:</p>
+<div class="text-center my-4 excalifont">r₆: 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x A
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+x 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A</div>
+<div class="text-center my-4 excalifont">r₇: 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x A
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+x 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A</div>
+</li>
+</ol>
+<p>Now, before we can go on, we need to make sure that there cannot be any
+confusion about quantifier binding. Remember that formulas like the following
+are valid FOL expressions:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x (Human x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+x(Human x 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+Mortal x))</div>
+<p>That is, different quantifiers can use the same variable. This can lead to
+confusion when we drop quantifiers and needs to be avoided. The solution is to
+re-formulate all formulas (equivalently) in such a way that each quantifier
+occurrence in the formula uses a unique variable. So, for example, instead of
+the previous formula, we write:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x (Human x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+y(Human y 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+Mortal y))</div>
+<p>This sort of variable renaming is called <strong>α-renaming</strong> and happens in its own
+step. In order to implement this, we first create two
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Stack_%28abstract_data_type%29"
+  target="_blank">stack</a> of pairwise
+distinct variables</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+varx = [x₁, x₂, x₃, …]
+vary = [y₁, y₂, y₃, …]
+</code></div>
+<p>In practice, we just need for every quantifier occurrence in the formula a
+separate variable, but for simplicity, we just assume that there&rsquo;s an infinite
+stack. We use the operation called <code class="customCode">pop</code> to remove the first element from the
+stack and return it. That is, <code class="customCode">pop [x₁, x₂, x₃, …]</code> returns <code class="customCode">x₁</code> and leaves the
+stack as <code class="customCode">[x₂, x₃, …]</code>. Using this machinery, we implement the following re-write step:</p>
+<ol start="3">
+<li>
+<p>We recursively re-name the variables using:</p>
+ <div class="text-center my-4 excalifont">r₈: 
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x A
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+α A[x / α]<span class="excalifont">, where <code class="customCode">α = pop varx</code></div>
+ <div class="text-center my-4 excalifont">r₉: 
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x A
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+α A[x / α]</span>, where <code class="customCode">α = pop vary</code></div>
+</li>
+</ol>
+<p>That is, if at some point we come across a quantifier expression, we replace the
+variable quantified over with the first variable from our stack and replace all
+free occurrences of the variable originally quantified over with that variable
+as well.</p>
+<p>This re-write step gives us, for example:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x (Human x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+x(Human x 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+Mortal x))
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+y₁ (Human y₁ 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+x₁(Human x₁ 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+Mortal y₁))</div> 
+<p>If there are more variables involved, the variable naming get&rsquo;s more complex,
+but every quantifier get&rsquo;s its own variable:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x( Human x
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+y (
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+z(ParentOf x
+z 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ ParentOf y z))) …</div>
+<div class="text-center my-4 excalifont">…
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+…</div>
+<div class="text-center my-4 excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x₁( Human x₁
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+y₁ (
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x₂(ParentOf x₁
+x₂ 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ ParentOf y₁ x₂)))</div>
+<p>There is a small complication, when we apply this step in resolution
+<code class="customCode">SAT</code>-solving. We need the variables to be unique not only <em>within</em> a formula,
+as in our example, but also <em>across</em> formulas. That is, when we have in our set
+<span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x Human x</span> and <span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x Mortal x</span> as separate formulas,
+we need to transform them into something like <span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x₁ Human x₁</span> and
+<span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x₂ Mortal x₂</span> (results may vary depending on how many other
+variables occur in other formulas &ldquo;in between&rdquo;).</p>
+<p>We solve this by applying the entire algorithm to all formulas in our
+simultaneously, moving through the steps in unison and then sharing the variable
+stack across the different formulas. The use of <code class="customCode">pop</code> prevents us from ever
+using the same variable twice in the transformation.</p>
+<p>So far, all our transformations where equivalent transformations in the sense
+that the formula that comes out the other end is deductively equivalent to the
+original formula—it always has the same truth-value in all models. This changes
+in the next step, where we <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Quantifier_elimination"
+  target="_blank">eliminate the
+quantifiers</a>.</p>
+<p>The process for eliminating universals <span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+xᵢ</span> will be simple: we&rsquo;ll
+just drop them. But first, we have to deal with the existentials using a
+procedure known as
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Skolem_normal_form"
+  target="_blank">Skolemization</a>, after the
+logician <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Thoralf_Skolem"
+  target="_blank">Thoralf Skolem</a>. This
+procedure is rather complex and in practice, you&rsquo;ll typically &ldquo;play it by ear&rdquo;
+and not apply the recursive algorithm we&rsquo;ll describe now. At the same time, it&rsquo;s
+important to understand how the algorithm works to understand what happens in
+resolution-based <code class="customCode">SAT</code>-solvers for FOL.</p>
+<p>To illustrate the idea, let&rsquo;s take our formula from earlier:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x (
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+y BiggerThan x y 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ Giant x)</div>
+<p>After running through the transformation steps up to α-renaming, we arrive at
+the formula:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x₁(
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x₂
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ Bigger Than x₁ x₂ 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ Giant x₁)</div>
+<p>What this formula says is that for each <span class="excalifont">x₁</span> either there exists an <span class="excalifont">x₂</span> which
+<span class="excalifont">x₁</span> is not bigger than or, otherwise, <span class="excalifont">x₁</span> is a giant. We want to re-write this
+fact—if not equivalently, at least
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Equisatisfiability"
+  target="_blank">equi-satisfiably</a>—without
+without using existential quantifiers. The crucial insight of Skolem&rsquo;s that
+makes this possible is that all we need to do is to pick <em>some</em> object for each
+<span class="excalifont">x₁</span>. That is, dependent on any value for <span class="excalifont">x₁</span>, we need to get an object that
+behaves according to the formula. In mathematical terms, this means that there&rsquo;s
+a <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Function_%28mathematics%29"
+  target="_blank">function</a>, which picks
+for every value of <span class="excalifont">x₁</span> such an object. This function, we can represent using a
+so-called <strong>Skolem-function</strong>, which we shall write (in this case) as <code class="customCode">skolem¹</code>.
+That is, we can write the formula as:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x₁(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ Bigger Than x₁ <code class="customCode">skolem</code>(x₁) 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ Giant x₁)</div>
+<p>While this formula is not equivalent to our original formula, it is
+equi-satisfiable—there exists a model where the one is true iff there is one
+where the other is. And if we now drop the universal quantifier, we&rsquo;re left with
+a completely quantifier free formula:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ Bigger Than x₁ <code class="customCode">skolem</code>(x₁) 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ Giant x₁</div>
+<p>This is the formula we can use for FOL resolution.</p>
+<p>But in the more general case, a few things can happen that we need to discuss.
+First, when there&rsquo;s more than one existential quantifier in a formula, then we
+need have different <code class="customCode">skolem</code>-functions for each of them to guarantee
+equi-satisfiability. Take the following, for example:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x₁(
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+y₁ BrotherOf x₁ y₁ 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+y₂ SisterOf x₁ y₂)</div>
+<p>This formula says that everybody either has a brother or a sister.
+After Skolemization, the formula becomes:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x₁(SiblingOf x₁ <code class="customCode">skolem₁</code> x₁ 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+y₂ SisterOf x₁ <code class="customCode">skolem₂</code> x₁)</div>
+<p>The use of different <code class="customCode">skolem</code>-functions is necessary since if we&rsquo;d use the same
+function, we&rsquo;d get:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x₁(SiblingOf x₁ <code class="customCode">skolem</code> x₁ 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+y₂ SisterOf x₁ <code class="customCode">skolem</code> x₁)</div>
+<p>This would make the brother and sister the same person, since—obviously—<span class="excalifont"><code class="customCode">skolem</code> x₁ = <code class="customCode">skolem</code> x₁</span>.</p>
+<p>And then, there&rsquo;s dependence on more than one universally quantified variable:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x₁
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x₂
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+y₁ CommonAncestor x₁ x₂ y₁</div>
+<p>Every two people have a common ancestor. The Skolemization of this formula is:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x₁
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x₂ CommonAncestor x₁ x₂ (<code class="customCode">skolem</code> x₁ x₂)</div>
+<p>Note: The parentheses are added for readability only.</p>
+<p>We can now describe the general re-write rule of Skolemization. Watch out, this
+will be rather complex. As I said, in practice, you mostly won&rsquo;t work through
+the complex algorithm but transform directly. We assume that
+for each arity <span class="excalifont">n</span>, we have a list of Skolem functions:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+skolemⁿ = [skolemⁿ₁, skolemⁿ₂, ...]
+</code></div>
+<p>Further, for the purpose of the recursion, we need to keep track of the
+universally quantified variables that an existential depends on. We denote the
+list of these variables (in order) by <code class="customCode">deps</code>. That is, in</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x₁(
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x₂
+FriendOf x₁ x₂ 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+x₃
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+y₁ CommonEnemyOf x₁₃
+x₃ y₁)</div>
+once we get to the existential <span class="excalifont">
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+y₁</span>, we have <code class="customCode">deps = [ x₁, x₃ ]</code>.
+<p> </p>
+<ol start="4">
+<li>We Skolemize the existential quantifiers using:</li>
+</ol>
+  <div class="text-center my-4 excalifont">r₁₀: 
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+yᵢ A
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+ A[ yᵢ / <code class="customCode">skolemᵢdeps</code>]</div>
+<p>As we said, this re-write rule is rather complex, in practice relatively
+straight-forward to work out.</p>
+<p>Now that we&rsquo;ve eliminated the existentials, we can drop all the universal:</p>
+<ol start="5">
+<li>We drop the universal quantifiers using:</li>
+</ol>
+  <div class="text-center my-4 excalifont">r₁₁: 
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+xᵢ A
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+ A</div>
+<p>In the very last step, we distribute if necessary:</p>
+<ol start="6">
+<li>
+<p>We transform disjunctions of conjunctions into conjunctions of disjunctions
+using:</p>
+ <div class="text-center my-4 excalifont">r₄: A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(B 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+C)
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+(A
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B)
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(A
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+C)</div>
+ <div class="text-center my-4 excalifont">r₄': (A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B)
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+C
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+(A
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+C)
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(B
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+C)</div>
+</li>
+</ol>
+<p>Applying rules 1—6 of this algorithm simultaneously for all formulas in a set,
+yields a set of CNF formulas. These we can transform into sets of clauses and
+like before and start apply resolution.</p>
+<p>Take, for example, in our inference about <span class="excalifont">PolyphemOS</span>:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x(
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+y BiggerThan x y 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ Giant x), 
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x BiggerThan PolyphemOS x
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+Giant PolyphemOS</div>
+<p>In order to check this inference for validity, we check the following set for
+satisfiability using FOL-resolution:</p>
+<div class="text-center my-4 excalifont">{ 
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x(
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+y BiggerThan x y 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ Giant x), 
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x BiggerThan PolyphemOS x, 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+Giant PolyphemOS }</div>
+<p>We get the following CNF formulas:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+BiggerThan x₁ <code class="customCode">skolem</code> x₁ 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ Giant x₁</div>
+<div class="text-center my-4 excalifont">BiggerThan PolyphemOS x₂</div>
+<div class="text-center my-4 excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+Giant PolyphemOS</div>
+<p>Using FOL-resolution, we derive the empty sequent in two steps:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/polyphemOS_resolution.png" class="mx-auto rounded d-block inert-img img-fluid"  width="600px"  alt="" >
+
+<p>If, instead, the second premise would have been <span class="excalifont">BiggerThan <code class="customCode"><span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IE</span>
+</code>
+tinymouse</span>, we&rsquo;d have ended up with:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+BiggerThan x₁ <code class="customCode">skolem</code> x₁ 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ Giant x₁</div>
+<div class="text-center my-4 excalifont">BiggerThan <code class="customCode"><span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IE</span>
+</code> tinymouse</div>
+<div class="text-center my-4 excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+Giant <code class="customCode"><span style="margin-right:-4px;vertical-align: middle;transform-origin: 50%  49%;transform:rotate(180deg);display:inline-block">IE</span>
+</code></div>
+<p>And the resolution algorithm would have stopped after one application:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/failure_resolution.png" class="mx-auto rounded d-block inert-img img-fluid"  width="600px"  alt="" >
+
+<p>Thus, we can prove that the inference is invalid, as desired.</p>
+<p>To conclude the discussion, here&rsquo;s how FOL resolution can be formalized as a
+general FOL inference rule:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/resolution.png" class="mx-auto rounded d-block inert-img img-fluid"  width="600px"  alt="" >
+
+<p>Here <span class="excalifont">σ = [ x₁ / t₁ , x₂ / t₂ , &hellip;]</span> is a substitution, which unifies <span class="excalifont">B</span> and
+<span class="excalifont">C</span>, that is: <div class="text-center my-4 excalifont">B σ = C σ</div></p>
+<p>These are the basics of FOL resolution. Before we conclude our discussion, it&rsquo;s
+worth remarking that FOL resolution is a sound and complete proof system for
+FOL. That is, there is a derivation of the empty sequent from the CNFs of the
+premises and the CNF of the negation of the conclusion if and only the inference
+is valid. But in contrast to propositional logic, the system is <em>not</em> a decision
+procedure: we cannot fully automate it as an algorithm and trust that it will
+return the correct answer—valid or invalid—for any given inference. Let&rsquo;s try to
+understand what can go wrong.</p>
+<p>The problem is with inferences where the countermodel is necessarily infinite.
+Take the following FOL formulas written in infix notation using the binary
+predicate ≤, for example:</p>
+<ol>
+<li><span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+y x ≤ y</span></li>
+<li><span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ (x ≤ x)</span></li>
+<li><span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+y
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+z((x ≤ y 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ y ≤ z) 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+x ≤ z)</span></li>
+</ol>
+<p>If you think about what a model of these formulas looks like, you  notice that
+it must contain an infinite sequence of objects, which successively get bigger
+and bigger. The following is a graph-representation of such a model, where the
+domain consists of the natural numbers <span class="excalifont">{0, 1, 2, &hellip;}</span> and <span class="excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+≤
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</span> is simply the &ldquo;real&rdquo; smaller than relation on the</p>
+<blockquote>
+<p>numbers:</p></blockquote>
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/inf_model.png" class="mx-auto rounded d-block inert-img img-fluid"  width="300px"  alt="" >
+
+<p>Now, add any statement to 1.—3. that <em>doesn&rsquo;t</em> follow from them. For example,
+<span class="excalifont">1 ≤ 0</span>. It really doesn&rsquo;t matter what this statement is, since if we apply
+the resolution algorithm to the set containing 1., 2., 3., and <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+Prime
+3</span>, it will never terminate. To see this, let&rsquo;s first transform the statements
+into CNF set form. We get:</p>
+<div class="text-center my-4 excalifont">{
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ (1 ≤ 0) }</div>
+<div class="text-center my-4 excalifont">{ x₁ ≤ (<code class="customCode">skolem</code> x₁) } &emsp; { 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+( x₂ ≤ x₂) }</div>
+<div class="text-center my-4 excalifont">{ 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ (x₃ ≤ x₄), 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ ( x₄ ≤ x₅), x₃ ≤ x₅ }</div>
+<p>Now suppose we implement our algorithm such that it always first tries to resolve on  <span class="excalifont">{ x₁ ≤ (<code class="customCode">skolem</code> x₁) } </span> and it begins with <span class="excalifont">{ 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ (x₃ ≤ x₄), 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ ( x₄ ≤ x₅), x₃ ≤ x₅ }</span>. The following happens:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/infinite_loop.png" class="mx-auto rounded d-block inert-img img-fluid"  width="600px"  alt="" >
+
+<p>We got stuck in an <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Infinite_loop"
+  target="_blank">infinite loop</a>, which
+means the algorithm never terminates and we never get the answer that the
+conclusion doesn&rsquo;t follow. This doesn&rsquo;t mean that it <em>does</em> follow, we can easily
+construct a countermodel, such as the one we&rsquo;ve just described above. But the
+algorithm doesn&rsquo;t find it. Of course, with our superior human-intelligence™️, we
+can see that this loop will occur and try to avoid it, but the bottom line of
+the Church-Turing theorem is that we can&rsquo;t find a systematic, algorithmic way of
+excluding such loops.</p>
+<p>As you can see, the resolution algorithm gets quite involved and complex, even
+at the general, example-driven level of description we&rsquo;ve used here. This is why
+it&rsquo;s best left to computers. There are various industry-level implementations,
+with various optimizations, which perform well at the tasks involved—much better
+than humans could. For example, the method of validity checking we&rsquo;ve just
+described is the basis for <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Prover9"
+  target="_blank">Prover9</a>,
+which is oftern used as a
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Benchmark_%28computing%29"
+  target="_blank">benchmark</a> for FOL
+automated theorem provers.</p>
+<h2 id="natural-deduction-and-lean">Natural deduction and Lean<button class="btn btn-back-to-top">
+    
+    <i class="bi bi-chevron-double-up"></i>
+    
+  </button>
+</h2>
+<hr>
+
+<p>While FOL resolution is useful for computer implementations, it&rsquo;s not the most
+straight-forward to work with when trying to write logical proofs for in a
+human-readable way. For this, we need to look to natural deduction. There are
+also sound and complete Hilbert calculi, sequent calculi, and tableaux systems
+for FOL, but natural deduction is the system that most closely resembles
+human-style inference. As such, it is the system that is most frequently used in
+AI applications, such as <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Formal_verification"
+  target="_blank">proof verification in
+mathematics</a> or the more
+recent advances in artificial mathematical reasoning using hybrid LLM-proof
+assistant systems.</p>
+<p>The natural deduction system for FOL extends the system for propositional logic
+with four new rules:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/natural_deduction_rules.png" class="mx-auto rounded d-block inert-img img-fluid"  width="300px"  alt="" >
+
+<p>Each of these rules has some special side-conditions, which require some
+explanation. Let&rsquo;s discuss them in turn.</p>
+<p>The first rule, <span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+ Intro</span>, has the side-condition that
+the variable <span class="excalifont">x</span> may not occur free in any undischarged assumption the we&rsquo;ve
+used to derive <span class="excalifont">A(x)</span>. The idea is that if we can derive <span class="excalifont">A(x)</span> without making any
+assumptions about <span class="excalifont">x</span>, this means that the argument holds for <em>any</em> <span class="excalifont">x</span>. Here&rsquo;s
+an example of the rule at work:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/forall_intro.png" class="mx-auto rounded d-block inert-img img-fluid"  width="300px"  alt="" >
+
+<p>This is a rather trivial inference, but it illustrates the idea well. We can
+show that if <span class="excalifont">x</span> is human, then <span class="excalifont">x</span> is human without any open assumptions left
+using <span class="excalifont">
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+Intro</span>. Since this proof doesn&rsquo;t assume anything about <span class="excalifont">x</span>, we
+conclude that it holds for <em>all</em> <span class="excalifont">x</span>. Every human is human is a logical truth,
+we can proof without any undischarged assumptions.</p>
+<p>For a slightly more interesting application, we first need to talk about <span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+ Elim</span>. This rule is perhaps the most straight-forward one: it allows
+us to infer from a universal statement that holds for all <span class="excalifont">x</span>, that it holds for
+any specific object, designated by any term <span class="excalifont">t</span>. For example, it gives us the
+inference:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/forall_elim.png" class="mx-auto rounded d-block inert-img img-fluid"  width="400px"  alt="" >
+
+<p>There is a side-condition with this rule as well: we can use any term <span class="excalifont">t</span> <em>as
+long as</em> it is not bound after the substitution. This blocks, for example, the
+following invalid inference from being an instance of <span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+ Elim</span>:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/variable_capture.png" class="mx-auto rounded d-block inert-img img-fluid"  width="300px"  alt="" >
+
+<p>From everyone being the child of someone, it doesn&rsquo;t follow that someone is their own child. The side-condition blocks this invalid rule application.</p>
+<p>In combination, <span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+ Intro</span> and <span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+ Elim</span> can be used to
+prove some more interesting logical laws of FOL, such as the following:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x(Black x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ White x)
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x Black x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+x White x</div>
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/and_distribution.png" class="mx-auto rounded d-block inert-img img-fluid"  width="800px"  alt="" >
+
+<p>The rule <span class="excalifont">
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+ Intro</span> is also relatively straight-forward:
+it allows us to infer that there exists an object satisfying a property from
+any concrete object instantiating that property. For example, we have:</p>
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/existential_intro.png" class="mx-auto rounded d-block inert-img img-fluid"  width="500px"  alt="" >
+
+<p>There are no side-conditions for this rule. There <em>are</em> conditions for the <span class="excalifont">
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+Elim</span> rule. This rule captures the idea that what we can infer from an
+existential claim is what we can infer from some arbitrary instance of the
+existential. All we know is that <em>some</em> object satisfies the property. If from
+this assumption, without assuming anything else about that object, we can derive
+a conclusion, we can infer that conclusion from the existential. This idea is
+captured in the side-condition that the constant <span class="excalifont">c</span> in the assumption, may not
+be used anywhere else in the derivation.</p>
+<p>Here&rsquo;s a valid inference using the rule:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x Black x
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x (Black x 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+White x)</div>
+
+<img src="https://logicalmethods.ai/textbook/fol-inference/img/existential_elim.png" class="mx-auto rounded d-block inert-img img-fluid"  width="400px"  alt="" >
+
+<p>If there&rsquo;s a black object, then there&rsquo;s an object that is black or white—namely
+that unspecified object that is black.</p>
+<p>The introduction and elimination rules for 
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+ and 
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+ are
+together sound and complete for FOL: <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/G%60C3%60B6del%27s_completeness_theorem"
+  target="_blank">Gödel&rsquo;s completeness
+theorem</a>
+entails that for every deductively valid inference there exists a corresponding
+natural deduction derivation and <em>vice versa</em>. Of course, there cannot be a
+sure-fire way of finding such a derivation as this would contradict the
+Church-Turing theorem.</p>
+<p>To conclude our discussion of FOL—and classical deductive logic in general—let&rsquo;s
+look at how we can verify FOL inference in Lean. The <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Curry%60E2%6080%93Howard_correspondence"
+  target="_blank">Curry-Howard
+Correspondence</a>,
+which we&rsquo;ve taken as the starting point for our ventures into proof verification
+in propositional logic, extends in a natural way to FOL.</p>
+<p>Remember that in propositional logic, we used the type <code class="customCode"><span
+class="dark-red">Prop</span></code> to model propositions that are true or false in
+Lean. In FOL, we need to extend this setting with terms and predicates that we
+apply to them. For this purpose, we introduce a new kind of type, the
+<code class="customCode">Term</code>-type, which contains all the objects that we talk about. A <em>(unary)
+predicate</em>, then, can be understood as a function from terms to propositions,
+formally an object of the type <code class="customCode">Term <span
+class="dark-green">→</span> <span class="dark-red">Prop</span></code>. The idea
+is if we apply a predicate, like <span class="excalifont">Human</span>, to a term, like <span class="excalifont">Socrates</span>, then we
+obtain a proposition, namely <span class="excalifont">Human Socrates</span>. Here is how we&rsquo;d declare <span class="excalifont">Black</span>
+and <span class="excalifont">White</span> as unary predicates in Lean.</p>
+
+<img src="/img/lean_logo.png" alt="Lean_Logo" class="float-start" style="height:1em;width:auto;"/>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lean" data-lang="lean"><span class="line"><span class="cl"><span class="w"> </span><span class="kn">variable</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="n">Term</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Type</span><span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="n">Black</span><span class="w"> </span><span class="n">White</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Term</span><span class="w"> </span><span class="bp">→</span><span class="w"> </span><span class="kt">Prop</span><span class="o">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
+</div><p>Just like for each intro and elim rule of natural deduction there was a
+corresponding pair of Lean rules, we have Lean rules for the introduction and
+elimination rules for the quantifiers.</p>
+<p>Let&rsquo;s begin with <span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+Intro</span>. Essentially, Lean treats the universal
+quantifier just like the existential: what we need to show is that from the
+assumption of an arbitrary <span class="excalifont">x</span>, we can derive a proof the proposition in
+question—then we can conclude that the property holds for all <span class="excalifont">x</span>. Here&rsquo;s the
+Lean proof that corresponds to our simple inference which shows that all humans
+are human:</p>
+
+<img src="/img/lean_logo.png" alt="Lean_Logo" class="float-start" style="height:1em;width:auto;"/>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lean" data-lang="lean"><span class="line"><span class="cl"><span class="kn">variable</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="n">Term</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Type</span><span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="n">Human</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Term</span><span class="w"> </span><span class="bp">→</span><span class="w"> </span><span class="kt">Prop</span><span class="o">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">example</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">∀</span><span class="w"> </span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="n">Human</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">→</span><span class="w"> </span><span class="n">Human</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">intro</span><span class="w"> </span><span class="n">x</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">intro</span><span class="w"> </span><span class="n">human_x</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">exact</span><span class="w"> </span><span class="n">human_x</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Click this
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://live.lean-lang.org/#codez=G4QwTgliBGA2CmACAFIgKvMBbRAudAngA5ICUKAEgK5YgB2e6mOgSYSIAKYA9kaQFB94ADxBYiCRoAAiREIA0iarQZDEbRfRl4AvImgE&#43;iRBDoAXbjINHT5gBY16AfSGXhIAMYnEdpU6A"
+  target="_blank">link</a>
+to run this code in your browser.</p>
+<p>That is, Lean treats a proof of a universally quantified statement as a kind of
+conditional: if <span class="excalifont">x</span> is an arbitrary object, then <span class="excalifont">x</span> is human if it is human.</p>
+<p>Correspondingly, the rule of <span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+Elim</span> corresponds application: to
+infer an instance from a universal quantifier, we take</p>
+<p>Here, for example, is the Lean verification of our inference:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x(Human x
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+Mortal x)
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+Human Socrates
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ Mortal Socrates</div>
+
+<img src="/img/lean_logo.png" alt="Lean_Logo" class="float-start" style="height:1em;width:auto;"/>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lean" data-lang="lean"><span class="line"><span class="cl"><span class="kn">variable</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="n">Term</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Type</span><span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="n">Human</span><span class="w"> </span><span class="n">Mortal</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Term</span><span class="w"> </span><span class="bp">→</span><span class="w"> </span><span class="kt">Prop</span><span class="o">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">example</span><span class="w"> </span><span class="o">(</span><span class="n">Socrates</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Term</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="n">h</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">∀</span><span class="w"> </span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="n">Human</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">→</span><span class="w"> </span><span class="n">Mortal</span><span class="w"> </span><span class="n">x</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Human</span><span class="w"> </span><span class="n">Socrates</span><span class="w"> </span><span class="bp">→</span><span class="w"> </span><span class="n">Mortal</span><span class="w"> </span><span class="n">Socrates</span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">apply</span><span class="w"> </span><span class="n">h</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Click this
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://live.lean-lang.org/#codez=G4QwTgliBGA2CmACAFIgKvMBbRAudAngA5ICUKAEgK5YgB2iAsgPZgAuIse6mOgSYSIACmGZFSAKHHwAHiCxEEKAMrMAxmBBt4AZ24Zs5ZAAtugACJE0gDSJqtBtMQCW7ThfL5b9RCvWadjplYOLh8NLW1cAF5EaAJxREQQIgUCRCMgA"
+  target="_blank">link</a>
+to run this code in your browser.</p>
+<p>Our more complex proof of everything&rsquo;s black and everything&rsquo;s white from
+everything&rsquo;s black and white is verified like this:</p>
+
+<img src="/img/lean_logo.png" alt="Lean_Logo" class="float-start" style="height:1em;width:auto;"/>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lean" data-lang="lean"><span class="line"><span class="cl"><span class="kn">variable</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="n">Term</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Type</span><span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="n">Black</span><span class="w"> </span><span class="n">White</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Term</span><span class="w"> </span><span class="bp">→</span><span class="w"> </span><span class="kt">Prop</span><span class="o">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">example</span><span class="w"> </span><span class="o">(</span><span class="n">h</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">∀</span><span class="w"> </span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="n">Black</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">∧</span><span class="w"> </span><span class="n">White</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="o">(</span><span class="bp">∀</span><span class="w"> </span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="n">Black</span><span class="w"> </span><span class="n">x</span><span class="o">)</span><span class="w"> </span><span class="bp">∧</span><span class="w"> </span><span class="o">(</span><span class="bp">∀</span><span class="w"> </span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="n">White</span><span class="w"> </span><span class="n">x</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">apply</span><span class="w"> </span><span class="n">And</span><span class="bp">.</span><span class="n">intro</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="bp">·</span><span class="w"> </span><span class="n">intro</span><span class="w"> </span><span class="n">x</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">apply</span><span class="w"> </span><span class="n">And</span><span class="bp">.</span><span class="n">left</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">exact</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="n">x</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="bp">·</span><span class="w"> </span><span class="n">intro</span><span class="w"> </span><span class="n">x</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">apply</span><span class="w"> </span><span class="n">And</span><span class="bp">.</span><span class="n">right</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">exact</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="n">x</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Click this
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://live.lean-lang.org/#codez=G4QwTgliBGA2CmACAFIgKvMBbRAudAngA5ICUKAQrCAMYDWiA6gBYQAuS&#43;G2igSYSIAFMAHsipAFDj4ADxBYiCFMzyJAAESJpAGkRVaDaYkDkRE1YcNicvmTqtO6vQ3lj1jdpbsk0ywF5E0AuKIiCBECgSIAIIAdgAmAHQQUWwigYgA7YiJycIaqUEhYZGxcQgAZmyIeYgytBXK0qkZWSK5QfmhsOHR8ZAA5swVVTU0dRpAA"
+  target="_blank">link</a>
+to run this code in your browser.</p>
+<p>Finally, for the existential quantifier, we have the tactics <code class="customCode">Exists<span
+class="dark-green">.</span>intro</code> and <code class="customCode">Exists<span
+class="dark-green">.</span>elim</code>. The tactic <code class="customCode">Exists<span
+class="dark-green">.</span>elim</code> takes as arguments a proof of a disjunction and
+a proof of a conclusion from the assumption that an arbitrary object (which
+needs to be <code class="customCode">intro</code>&lsquo;ed) has the property in question. <code class="customCode">Exists<span
+class="dark-green">.</span>elim</code> just requires a proof of an instance.</p>
+<p>Here&rsquo;s how they work in action in our combined inference to show that if there&rsquo;s
+a black thing, there&rsquo;s a black or white thing:</p>
+
+<img src="/img/lean_logo.png" alt="Lean_Logo" class="float-start" style="height:1em;width:auto;"/>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lean" data-lang="lean"><span class="line"><span class="cl"><span class="kn">variable</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="n">Term</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Type</span><span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="n">Black</span><span class="w"> </span><span class="n">White</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Term</span><span class="w"> </span><span class="bp">→</span><span class="w"> </span><span class="kt">Prop</span><span class="o">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">example</span><span class="w"> </span><span class="o">(</span><span class="n">h</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">∃</span><span class="w"> </span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="n">Black</span><span class="w"> </span><span class="n">x</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">∃</span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="n">Black</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">∨</span><span class="w"> </span><span class="n">White</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">apply</span><span class="w"> </span><span class="n">Exists</span><span class="bp">.</span><span class="n">elim</span><span class="w"> </span><span class="n">h</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="bp">·</span><span class="w"> </span><span class="n">intro</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="n">black_c</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">apply</span><span class="w"> </span><span class="n">Exists</span><span class="bp">.</span><span class="n">intro</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">apply</span><span class="w"> </span><span class="n">Or</span><span class="bp">.</span><span class="n">inl</span><span class="w"> </span><span class="n">black_c</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Click this
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://live.lean-lang.org/#codez=G4QwTgliBGA2CmACAFIgKvMBbRAudAngA5ICUKAQrCAMYDWiA6gBYQAuS&#43;G2igSYSIAFMAHsipAFDj4ADxBYiCFMzyJAwESJpAGkRVaDaeXyqtO6vQ2JAFERNWHC7gC8iaAXGJEIIgoKIAotIgAZzZAgDp4WAgcZjdEAHbECAA7NhFEGmczOgB9Glj3T28/AOCw5NThfI8vWB8AeTBQ5NhMvVygA"
+  target="_blank">link</a>
+to run this code in your browser.</p>
+<p>There is, of course, much more to know about the use of classical deductive
+logic in AI and its verification, but we&rsquo;ll leave it at that. Next, we turn to
+different realms—namely <em>non-classical</em> logic.</p>
 
 
   </div>
-   <p><em>Last edited: </em>15/10/2024</p>
+   <p><em>Last edited: </em>10/13/2025</p>
 </div>
 
 
