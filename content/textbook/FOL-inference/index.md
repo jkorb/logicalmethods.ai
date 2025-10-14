@@ -407,7 +407,7 @@ logic:
     $$r₂: {{< neg >}}(A{{<land>}}B){{< longrightarrow >}} {{< neg >}}A{{<lor>}}{{<neg>}}B$$
     $$r₃: {{< neg >}}(A{{<lor>}}B){{< longrightarrow >}} {{< neg >}}A{{<land>}}{{<neg>}}B$$
 
-3. We transform disjunctions of conjunctions into conjunctions of disjunctions
+3. We recursively transform disjunctions of conjunctions into conjunctions of disjunctions
    using:
 
     $$r₄: A {{< lor >}}(B {{< land >}}C){{< longrightarrow >}}(A{{< lor >}}B){{< land >}}(A{{< lor >}}C)$$
@@ -443,6 +443,7 @@ distinct variables
 
 ```
 varx = [x₁, x₂, x₃, …]
+
 vary = [y₁, y₂, y₃, …]
 ```
 
@@ -581,6 +582,8 @@ for each arity $n$, we have a list of Skolem functions:
 skolemⁿ = [skolemⁿ₁, skolemⁿ₂, ...]
 ```
 
+In the case where $n = 0$, we call them Skolem _constants_ and treat them as such.
+
 Further, for the purpose of the recursion, we need to keep track of the
 universally quantified variables that an existential depends on. We denote the
 list of these variables (in order) by `deps`. That is, in 
@@ -590,9 +593,11 @@ FriendOf x₁ x₂ {{< lor >}} {{< forall >}}x₃{{< exists >}}y₁ CommonEnemyO
 x₃ y₁)$$
 once we get to the existential ${{< exists >}}y₁$, we have `deps = [ x₁, x₃ ]`.
 
-&nbsp;
+Note that if `deps = [ ]`, then we use Skolem constants. For example, 
 
-4. We Skolemize the existential quantifiers using:
+$${{< exists >}}y₁ Human y₁ {{< land >}}{{< exists >}}y₂ Human y₂{{< longrightarrow >}} Human `skolem⁰₁` {{< land >}} Human `skolem⁰₂`$$
+
+4. We recursively Skolemize the existential quantifiers using:
 
   $$r₁₀: {{< exists >}}yᵢ A{{< longrightarrow >}} A[ yᵢ / `skolemᵢdeps`]$$
 
@@ -601,13 +606,13 @@ straight-forward to work out.
 
 Now that we've eliminated the existentials, we can drop all the universal:
 
-5. We drop the universal quantifiers using:
+5. We recursively drop the universal quantifiers using:
 
   $$r₁₁: {{< forall >}}xᵢ A{{< longrightarrow >}} A$$
 
 In the very last step, we distribute if necessary:
 
-6. We transform disjunctions of conjunctions into conjunctions of disjunctions
+6. We recursively transform disjunctions of conjunctions into conjunctions of disjunctions
    using:
 
     $$r₄: A {{< lor >}}(B {{< land >}}C){{< longrightarrow >}}(A{{< lor >}}B){{< land >}}(A{{< lor >}}C)$$
