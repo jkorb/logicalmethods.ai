@@ -1,182 +1,210 @@
 ---
 title: FOL inference
 author: Johannes Korbmacher
-locked: true
 weight: 90
 params: 
   id: exc-finf
   math: true
 ---
 
-# Natural deduction {.homework .solved}
+# Unification
 
-_Exercises 2.,4.,6. are homework_
+For each of the following pairs of terms determine whether they can be unified. If so, provide the unifier:
 
-Show the following in natural deduction for FOL:
+1. $LiesBetween Munich y z $ and $LiesBetween x Milan Rome $
+2. $SitsBeween Mary x x $ and $SitsBetween x Jane y$
+3. $Between x Rome Rome $ and ${{< neg >}}Between Rome y x $
+4. ${{< neg >}}BornIn fatherOf motherOf x London$ and ${{< neg >}}BornIn fatherOf y x$
+5. ${{< neg >}}Human x$ and ${{< neg >}}Human fatherOf x$
+6. $Human fatherOf y x$ and $Human x fatherOf y$
 
-1. $\forall x\mathsf{Happy}(x)\land \forall x\mathsf{Fulfilled}(x)\vdash \forall x(\mathsf{Happy}(x)\land \mathsf{Fulfilled}(x))$
-2. $\exists x(\mathsf{Happy}(x)\lor \mathsf{Fulfilled}(x))\vdash \exists x\mathsf{Happy}(x)\lor\exists x\mathsf{Fulfilled}(x)$
-3. $\forall x\neg\mathsf{Happy}(x)\vdash \neg \exists x\mathsf{Happy}(x)$
-4. $\exists x\forall y\mathsf{Friend}(x,y)\vdash \forall y\exists x\mathsf{Friend}(x,y)$
-5. $\neg\exists x\mathsf{Happy}(x)\vdash \forall x\neg \mathsf{Happy}(x)$
-6. $\neg\forall x\mathsf{Sad}(x)\vdash \exists x\neg \mathsf{Sad}(x)$
+# Robinson's Algorithm
 
-## Solution {.solution #natural-deductionSolution }
+The first algorithms for unification is due to [John Alan Robinson](https://en.wikipedia.org/wiki/John_Alan_Robinson), the father of resolution.
 
-{{< img src="img/nd-1.png" class="img-thumbnail mx-auto d-block my-4" >}}
-{{< img src="img/nd-2.png" class="img-thumbnail mx-auto d-block my-4" >}}
-{{< img src="img/nd-3.png" class="img-thumbnail mx-auto d-block my-4" >}}
-{{< img src="img/nd-4.png" class="img-thumbnail mx-auto d-block my-4" >}}
-{{< img src="img/nd-5.png" class="img-thumbnail mx-auto d-block my-4" >}}
-{{< img src="img/nd-6.png" class="img-thumbnail mx-auto d-block my-4" >}}
+To check whether two FOL literals can be unified, the algorithm proceeds as follows:
 
+1. Check if either both formulas begin with a negation or neither does. If so, proceed. Otherwise, the formulas are not unifiable.
 
+2. Check if the predicate in both formulas is the same. If it is, continue. If it is not, the formulas are not unifiable.
 
-# Unification {.solved}
+3. We can assume, at this point, that the form of the formulas is covered by one of the two cases:
 
-For the following pairs of formulas, determine whether there are unifications.
-If there is one, give it, if there is not explain why not.
+    + `Pⁿ s₁ ... sₙ` and `Pⁿ t₁ ... tₙ`
 
-1. $\mathsf{Between}(Munich,y,z)$ and $\mathsf{Between}(x,Milan,Rome)$
-2. $\mathsf{Between}(x,Rome,Rome)$ and $\mathsf{Between}(Rome,y,x)$
-3. $\mathsf{Knows}(Mary,x)\land \neg\mathsf{Happy}(x)$ and $\mathsf{Knows}(x,x)\land\neg\mathsf{Happy}(Jane)$
-4. $\neg\mathsf{Happy}(x)\lor \mathsf{Knows}(Mary,x)$ and $\mathsf{Knows}(x,x)\land\neg\mathsf{Happy}(Mary)$
+    + `{{< neg >}}Pⁿ s₁ ... sₙ` and `{{< neg >}}Pⁿ t₁ ... tₙ`
 
-## Solution {.solution #unificationSolution}
+    In both cases, to unify the formulas, we need to find a substitution
+    $σ$, such that $s₁σ = t₁σ$, ..., $sₙσ = tₙσ$, that is the result of
+    substituting within these terms must make each pair identical. 
 
-**1.**
+    To express this requirement, we make a list of these pairs:
 
-$[x\mapsto Munich,y\mapsto Milan, z\mapsto Rome]$
+    ```
+    Eq = [ [s₁, s₂], ..., [sₙ, tₙ] ]
+    ```
 
-**2.**
+    The algorithm aims to step-wise construct the desired substitution $σ$. We
+    start with the empty substitution `σ = [ ]`, and go through each pair `[sᵢ,
+    tᵢ]` of our list. We distinguish the following cases:
 
-$[x\mapsto Rome,y\mapsto Rome, z\mapsto Rome]$
+    - Case 1: `sᵢ = tᵢ`. The terms are already identical, we can remove them
+    from `Eq`.
 
+    - Case 2. `sᵢ ≠ tᵢ` and `sᵢ` is some variable, while `tᵢ` is not. First,
+    check if `sᵢ` occurs in `tᵢ`. If so, like when `sᵢ = x` and `tᵢ = fatherOf
+    x`, then we can stop the entire procedure since no unification is possible.
+    Otherwise, we apply the substitution `[sᵢ / tᵢ]` to all other pairs, add it to
+    `σ`, and remove the pair `[sᵢ, tᵢ]` from the set.
 
-**3.**
+    - Case 3. `sᵢ ≠ tᵢ` and `tᵢ` is some variable, while `sᵢ` is not. Again, we
+    first check if `tᵢ` occurs within `sᵢ` and terminate the entire algorithm
+    if it does. Otherwise, we apply the substitution `[tᵢ / sᵢ]` to all other
+    pairs, add it to `σ`, and remove the pair `[sᵢ, tᵢ]` from the set.
 
-Not possible. With $[x\mapsto Mary]$ we have $\neg\mathsf{Happy}(Mary)$ on one
-side and $\neg\mathsf{Happy}(Jane)$ on the other side. With $[x\mapsto Jane]$
-we have $\mathsf{Knows}(Mary, Jane)$ on one side and
-$\mathsf{Knows}(Jane,Jane)$ on the other side.
+    - Case 4. `sᵢ ≠ tᵢ` and neither  `sᵢ` nor `tᵢ` is a variable. Then we check
+    the form of `sᵢ` and `tᵢ`. Only if they are of the following forms, we
+    continue:
 
-**4.**
+    ```
+     sᵢ = fᵐ s₁' … sₘ'  &emsp; and &emsp; tᵢ = fᵐ t₁' … tₘ'
+    ```
 
-Not possible. The logical form of the two sentences would be different
-regardless of how we substitute terms. The main connective on the left is
-disjunction and on the right is conjunction.
+    That is, both terms are the result of applying the same function term to a
+    sequence of terms. If they are not, unification is impossible and we can
+    terminate the algorithm. If they _are_ of this form, we add all the
+    following corresponding pairs to `Eq`:
 
-# CNF {.homework .solved}
+    ```
+    [ [s₁', s₂'], ..., [sₙ', tₙ'] ]
+    ```
 
-_Exercises 2.,4. are homework_
+4. By going through all the pairs, deleting pairs when substitutions are
+   possible or trivial (Cases 1—3), and recursively adding new pairs (Case 4),
+one of two things will happen:
 
-Transform the following formulas into FOL CNF. Give your step-by-step
-transformation (you may perform several similar transformations in a single
-step).
+    - Either we hit a termination condition in one of the cases and conclude
+    that unification isn't possible.
 
-1. $\forall x\exists y (\mathsf{Friend}(x,y)\to \exists z\neg (\mathsf{Happy}(z)\land\mathsf{Fulfilled}(z)))$ 
-2. $\forall x(\forall y \mathsf{Friend}(x,y)\to \forall z\neg (\mathsf{Happy}(z)\land\mathsf{Fulfilled}(z)))$ 
-3. $\mathsf{Happy}(x)\to \neg\forall x(\mathsf{Friend}(x,y)\land \neg\mathsf{Friend}(y,x))$
-4. $\neg \exists x(\mathsf{Happy}(x)\land(\neg\mathsf{Fulfilled}(x)\land\mathsf{Knows}(x,x)))$
+    - Or we end up with an empty list and a full list of substitutions `σ` to
+    apply. In that case, `σ` is a unifier and the terms and thus literals are
+    indeed unifiable.
+    
+Apply this algorithm to check your work in Exercise 1.
 
-## Solution {.solution #cnfSolution}
+# Skolemization
 
-**1.**
+Skolemize the following formulas:
 
-+ Start here:
-$\forall x\exists y(\mathsf{Friend}(x,y)\to\exists z\neg(\mathsf{Happy}(z)\land\mathsf{Fulfilled}(z)))$
-+ Convert the conditional:
-$\forall x\exists y(\neg\mathsf{Friend}(x,y)\lor\exists z\neg(\mathsf{Happy}(z)\land\mathsf{Fulfilled}(z)))$
-+ Use de Morgan rule on the right:
-$\forall x\exists y(\neg\mathsf{Friend}(x,y)\lor\exists z(\neg\mathsf{Happy}(z)\lor\neg\mathsf{Fulfilled}(z)))$
-+ Skolemize the inner existential:
-$\forall x\exists y(\neg\mathsf{Friend}(x,y)\lor(\neg\mathsf{Happy}(f(x))\lor\neg\mathsf{Fulfilled}(f(x))))$
-+ Skolemize the outer existential:
-$\forall x(\neg\mathsf{Friend}(x,g(x))\lor(\neg\mathsf{Happy}(f(x))\lor\neg\mathsf{Fulfilled}(f(x))))$
-+ Drop the universal:
-$\neg\mathsf{Friend}(x,g(x))\lor\neg\mathsf{Happy}(f(x))\lor\neg\mathsf{Fulfilled}(f(x))$
+1. $({{< exists >}}y₁ Human y₁ {{< land >}} {{< forall >}}x₁ Mortal x₁)$
 
-<br>
+2. ${{< forall >}}x₁({{< forall >}}x₂{{< exists >}}y₁(IsFriendOf x₁ y₁ {{< land >}} IsFriendOf x₂ y₁) {{< lor >}} {{< exists >}}y₂{{< neg >}}IsFriendOf x₁ y₂)$
 
-**2.**
+3. ${{< exists >}}y₁{{< exists >}}y₂ IsFriendOf y₁ y₂$
 
-+ Start here:
-$\forall x(\forall y\mathsf{Friend}(x,y)\to\forall z\neg(\mathsf{Happy}(z)\land\mathsf{Fulfilled}(z)))$
-+ Convert the conditional:
-$\forall x(\neg\forall y\mathsf{Friend}(x,y)\lor\forall z\neg(\mathsf{Happy}(z)\land\mathsf{Fulfilled}(z)))$
-+ Use de Morgan rule on the right:
-$\forall x(\neg\forall y\mathsf{Friend}(x,y)\lor\forall z(\neg\mathsf{Happy}(z)\lor\neg\mathsf{Fulfilled}(z)))$
-+ Convert negated universal on the left:
-$\forall x(\exists y\neg\mathsf{Friend}(x,y)\lor\forall z(\neg\mathsf{Happy}(z)\lor\neg\mathsf{Fulfilled}(z)))$
-+ Skolemize the existential:
-$\forall x(\neg\mathsf{Friend}(x,f(x))\lor\forall z(\neg\mathsf{Happy}(z)\lor\neg\mathsf{Fulfilled}(z)))$
-+ Drop the universal quantifiers:
-$\neg\mathsf{Friend}(x,f(x))\lor\neg\mathsf{Happy}(z)\lor\neg\mathsf{Fulfilled}(z)$
+# Drinker Paradox
 
-<br>
+Consider the following inference:
 
-**3.**
+$${{< exists >}}x InPub x {{< therefore >}}{{< exists >}}x (InPub x {{< land >}}(IsDrinking x {{< to >}}{{< forall >}}x(InPub x{{< to >}}IsDrinking x)))$$
 
-+ Start here:
-$\mathsf{Happy}(x)\to\neg\forall x(\mathsf{Friend}(x,y)\land\neg\mathsf{Friend}(y,x))$
-+ Relabel variable on the left:
-$\mathsf{Happy}(z)\to\neg\forall x(\mathsf{Friend}(x,y)\land\neg\mathsf{Friend}(y,x))$
-+ Convert the conditional:
-$\neg\mathsf{Happy}(z)\lor\neg\forall x(\mathsf{Friend}(x,y)\land\neg\mathsf{Friend}(y,x))$
-+ Convert negated universal:
-$\neg\mathsf{Happy}(z)\lor\exists x\neg(\mathsf{Friend}(x,y)\land\neg\mathsf{Friend}(y,x))$
-+ Use de Morgan rule on the right:
-$\neg\mathsf{Happy}(z)\lor\exists x(\neg\mathsf{Friend}(x,y)\lor\neg\neg\mathsf{Friend}(y,x))$
-+ Remove double negation:
-$\neg\mathsf{Happy}(z)\lor\exists x(\neg\mathsf{Friend}(x,y)\lor\mathsf{Friend}(y,x))$
-+ Skolemize the existential:
-$\neg\mathsf{Happy}(z)\lor\neg\mathsf{Friend}(f,y)\lor\mathsf{Friend}(y,f)$
+In natural language: There's somebody in the pub, so there's somebody in the
+pub, such that if they are drinking, then everybody in the pub is drinking.
+This is known as the [drinker
+paradox](https://en.wikipedia.org/wiki/Drinker_paradox).
 
-<br>
+Use the method of resolution to show that this inference is deductively valid
+in FOL. That is:
 
-**4.**
+1. Form the set of the premise and negation of conclusion.
 
-+ Start here:
-$\neg\exists x(\mathsf{Happy}(x)\land(\neg\mathsf{Fulfilled}(x)\land\mathsf{Knows}(x,x)))$
-+ Convert negated existential:
-$\forall x\neg(\mathsf{Happy}(x)\land(\neg\mathsf{Fulfilled}(x)\land\mathsf{Knows}(x,x)))$
-+ Use de Morgan rule:
-$\forall x(\neg\mathsf{Happy}(x)\lor\neg(\neg\mathsf{Fulfilled}(x)\land\mathsf{Knows}(x,x)))$
-+ Use de Morgan again:
-$\forall x(\neg\mathsf{Happy}(x)\lor(\neg\neg\mathsf{Fulfilled}(x)\lor\neg\mathsf{Knows}(x,x)))$
-+ Remove double negation:
-$\forall x(\neg\mathsf{Happy}(x)\lor(\mathsf{Fulfilled}(x)\lor\neg\mathsf{Knows}(x,x)))$
-+ Drop the universal quantifier:
-$\neg\mathsf{Happy}(x)\lor\mathsf{Fulfilled}(x)\lor\neg\mathsf{Knows}(x,x)$
+2. Transform all formulas into
+   [equisatisfiable](https://en.wikipedia.org/wiki/Equisatisfiability) CNF.
+Note that the Skolemization of an existential that doesn't depend on any
+universals is just a constant `skolem`. It's important to document your work,
+which transformations you're applying, but you can apply several steps
+simultaneously.
 
+3. Apply resolution with unification to derive the empty sequent ${ }$. And
+   conclude that the initial set is unsatisfiable and the inference thus
+valid.
 
-# Resolution {.solved}
+# Natural deduction
 
-Use the resolution rule to justify the following inferences:
+Find logical proofs in FOL natural deduction for the following logical
+laws. Note that some of these require `<span class="dark-blue">open</span> Classical`.
 
-1. $\forall x(\mathsf{Lord}(x)\to \mathsf{Happy}(x)),\neg\mathsf{Happy}(Byron)\vDash \neg\mathsf{Lord}(Byron)$
-2. $\neg\exists x(\mathsf{Lord}(x)\land \mathsf{Happy}(x)),\forall x\exists y(\mathsf{Friend}(x,y)\to \mathsf{Happy}(x))\vDash \neg\exists x(\mathsf{Lord}(x)\land \exists y(\mathsf{Friend}(x,y)))$
+## Duality Laws
 
-## Solution {.solution #resolutionSolution }
+1. ${{< neg >}}{{< forall >}}xA(x){{< v_dash >}}{{< exists >}}x{{< neg >}}A(x)$
+2. ${{< exists >}}x{{< neg >}}A(x){{< v_dash >}}{{< neg >}}{{< forall >}}xA(x)$
+3. ${{< neg >}}{{< exists >}}xA(x){{< v_dash >}}{{< forall >}}x{{< neg >}}A(x)$
+4. ${{< forall >}}x{{< neg >}}A(x){{< v_dash >}}{{< neg >}}{{< exists >}}xA(x)$
 
-{{< img src="img/resolution-1.png" class="img-thumbnail mx-auto d-block my-4" >}}
-{{< img src="img/resolution-2.png" class="img-thumbnail mx-auto d-block my-4" >}}
+## Distribution Laws
 
+1. ${{< forall >}}x(A(x) {{< land >}} B(x)) {{< v_dash >}}{{< forall >}}xA(x) {{< land >}} {{< forall >}}xB(x)$
+2. ${{< forall >}}xA(x) {{< land >}} {{< forall >}}xB(x){{< v_dash >}} {{< forall >}}x (A(x) {{< land >}} B(x))$
+3. ${{< exists >}}x(A(x) {{< lor >}} B(x)) {{< v_dash >}}{{< forall >}}xA(x) {{< lor >}} {{< forall >}}xB(x)$
+4. ${{< exists >}}x A(x) {{< lor >}} {{< exists >}}x B(x) {{< v_dash >}}{{< exists >}}x(A(x) {{< lor >}} B(x))$
 
-# Research {.homework}
+## Interaction Laws
 
-## a)
+1. ${{< forall >}}xA(x){{< v_dash >}}{{< exists >}}xA(x)$
+2. ${{< exists >}}x{{< forall >}}yR(x,y){{< v_dash >}}{{< forall >}}y{{< exists >}}xR(x,y)$
+3. ${{< exists >}}xA(x){{< to >}}C{{< v_dash >}}{{< forall >}}x(A(x){{< to >}}C)$, assuming that $x$ is not free in $C$
+4. ${{< forall >}}xA(x){{< to >}}C{{< v_dash >}}{{< exists >}}x(A(x){{< to >}}C)$, assuming that $x$ is not free in $C$.
 
-How can we handle the equality $=$ in natural deduction for FOL? Give an simple
-sample derivation in the system, which shows how the rules work.
+# Lean
 
-## b)
+Verify your work from the previous exercise in Lean. Here's a template for the
+work. You can follow the link below to work in the interactive environment.
 
-What are the corresponding rules in resolution systems called? 
+{{< lean_logo >}}
+~~~lean4
+variable (Term : Type) (A B : Term → Prop) (R : Term → Term → Prop) (C : Prop)
 
-# Discussion
+/-! Duality Laws -/
 
-Some researchers, especially those interested in the conceptual foundations of
-logic, argue that resolution-based proof systems are not "really" proof systems
-because they don't directly model human-style reasoning. Do you agree or
-disagree? Substantiate your answer with an argument. 
+theorem duality_one_ltr (h : ¬∀x, A x) : ∃x, ¬A x := by
+  sorry
+
+theorem duality_one_rtl (h : ∃x, ¬A x) : ¬∀x, A x := by
+  sorry
+
+theorem duality_two_ltr (h : ¬∃x, A x) : ∀x, ¬A x := by
+  sorry
+
+theorem duality_two_rtl (h : ∀x, ¬A x) : ¬∃x, A x := by
+  sorry
+
+/-! Duality Laws -/
+
+theorem all_over_and_rtl (h: ∀x, A x ∧ B x) : ∀x, A x ∧ ∀x, B x := by
+  sorry
+
+theorem all_over_and_ltr (h: ∀x, A x ∧ ∀x, B x) : ∀x, A x ∧  B x := by
+  sorry
+
+theorem exists_over_or_rtl (h: ∃x, A x ∨ B x) : ∃x, A x ∨ ∃x, B x := by
+  sorry
+
+theorem exists_over_or_ltr (h: ∃x, A x ∨ ∃x, B x) : ∃x, A x ∨ Bx := by
+  sorry
+
+/-! Interaction Laws -/
+
+theorem existential_import (h: ∀x, A x) : ∃x, A x := by
+  sorry
+
+theorem switcheroo (h : ∃x, ∀y, R x y) : ∀y, ∃x, R x y := by
+  sorry
+
+theorem exists_to_forall (h: ∃x, A x → C) : ∀x, A x → C := by
+  sorry
+
+theorem forall_to_exists (h: ∀x, A x → C) : ∃x, A x → C := by
+  sorry
+~~~
+
+Follow this [link](https://live.lean-lang.org/#codez=G4QwTgliBGA2CmACAFAFXmAtogXI1AngA7wCUKAgogEK74baBJhIgApgD2R5yASnelkTMBTVhy4oAwnTadSAKHkB6ALQBCRABEAriFgQALgUQAZEAHcAzohVLFBgBbx2YeNgAmu/UYD67AHbwPrAGYCgOdAA1gABEAB4ANIhUseR4gMBECYiRybgAvIjQBPKIiJYuYEXyjs6uHl6GBH6BPmAGsOF0GYnZiClRcYk5OPmFxaXlldUuboieeg0+BubswaEdeJFdSb2piANZQyNFJWVgFfZO03Xzvksrre3IEXj7PX0bW4cFx+NnlaoaHQ3YxmKw2OxVS61RB6WB+YAYHwgfzuFptcIvTI5QDkRDQdnR9ji9plaLE8t8xqdzpCajNYfDEcjUSEwk9MYNeohcftSbtCZzcXiycMKScJhdadh4LEIJYDJYGWA/EqHhjEJ9OYAKIiFuw1ZO1W1J5NGYr+EquiGlsvliuVq1ZDnSWK16pJ+KdHP1NGFR0p4uU6kQAEl/AYMCAAMYGCABUwWay2c3Qq1y+ChqBwiCYIguAxq/nvV2e40/KmTKEzSzmQwRpwcdjrIt7AiJPhkgh8ltNtuIYwik2/alTZMyuUKgwrABmLlhar1QkQkj5zrJzGk/dL/uHM2nYHpE58Kfl+ZXC6XnVPa5Lfr+QA) to work in the digital playground.
