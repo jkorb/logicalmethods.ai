@@ -534,11 +534,11 @@
             <li>
               <a class="dropdown-item 
                 fw-bold active
-                link-opacity-50
+                
                 "
-                href="javascript:;"
+                href="/exercises/fol-inference/"
               >9. 
-                <i class="bi bi-lock-fill"></i>
+                <i class="bi bi-unlock-fill"></i>
                  FOL inference
               </a>
             </li>
@@ -745,232 +745,512 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
 <div class="container exercises">
   <div class="m-4">
 </div>
-<div id="natural-deduction" class=" homework solved"><h5 class="homework solved">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Natural deduction
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="natural-deductionSolution"
-        onclick="showPasswordModal('natural-deductionSolution', 'exc-finf')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
-    </div>
-</h5><p><em>Exercises 2.,4.,6. are homework</em></p>
-<p>Show the following in natural deduction for FOL:</p>
-<ol>
-<li><span class="excalifont">\forall x\mathsf{Happy}(x)\land \forall x\mathsf{Fulfilled}(x)\vdash \forall x(\mathsf{Happy}(x)\land \mathsf{Fulfilled}(x))</span></li>
-<li><span class="excalifont">\exists x(\mathsf{Happy}(x)\lor \mathsf{Fulfilled}(x))\vdash \exists x\mathsf{Happy}(x)\lor\exists x\mathsf{Fulfilled}(x)</span></li>
-<li><span class="excalifont">\forall x\neg\mathsf{Happy}(x)\vdash \neg \exists x\mathsf{Happy}(x)</span></li>
-<li><span class="excalifont">\exists x\forall y\mathsf{Friend}(x,y)\vdash \forall y\exists x\mathsf{Friend}(x,y)</span></li>
-<li><span class="excalifont">\neg\exists x\mathsf{Happy}(x)\vdash \forall x\neg \mathsf{Happy}(x)</span></li>
-<li><span class="excalifont">\neg\forall x\mathsf{Sad}(x)\vdash \exists x\neg \mathsf{Sad}(x)</span></li>
-</ol>
-
-</div>
-<div id="natural-deductionSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>
-<img src="https://logicalmethods.ai/exercises/fol-inference/img/nd-1.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-
-<img src="https://logicalmethods.ai/exercises/fol-inference/img/nd-2.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-
-<img src="https://logicalmethods.ai/exercises/fol-inference/img/nd-3.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-
-<img src="https://logicalmethods.ai/exercises/fol-inference/img/nd-4.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-
-<img src="https://logicalmethods.ai/exercises/fol-inference/img/nd-5.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-
-<img src="https://logicalmethods.ai/exercises/fol-inference/img/nd-6.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-</p>
-
-</div>
-<div id="unification" class=" solved"><h5 class="solved">
+<div id="unification" ><h5 class="">
     <div class="d-inline-flex flex-row m-0 p-0 ">Unification
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="unificationSolution"
-        onclick="showPasswordModal('unificationSolution', 'exc-finf')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
     </div>
-</h5><p>For the following pairs of formulas, determine whether there are unifications.
-If there is one, give it, if there is not explain why not.</p>
+</h5><p>For each of the following pairs of terms determine whether they can be unified. If so, provide the unifier:</p>
 <ol>
-<li><span class="excalifont">\mathsf{Between}(Munich,y,z)</span> and <span class="excalifont">\mathsf{Between}(x,Milan,Rome)</span></li>
-<li><span class="excalifont">\mathsf{Between}(x,Rome,Rome)</span> and <span class="excalifont">\mathsf{Between}(Rome,y,x)</span></li>
-<li><span class="excalifont">\mathsf{Knows}(Mary,x)\land \neg\mathsf{Happy}(x)</span> and <span class="excalifont">\mathsf{Knows}(x,x)\land\neg\mathsf{Happy}(Jane)</span></li>
-<li><span class="excalifont">\neg\mathsf{Happy}(x)\lor \mathsf{Knows}(Mary,x)</span> and <span class="excalifont">\mathsf{Knows}(x,x)\land\neg\mathsf{Happy}(Mary)</span></li>
+<li><span class="excalifont">LiesBetween Munich y z </span> and <span class="excalifont">LiesBetween x Milan Rome </span></li>
+<li><span class="excalifont">SitsBeween Mary x x </span> and <span class="excalifont">SitsBetween x Jane y</span></li>
+<li><span class="excalifont">Between x Rome Rome </span> and <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+Between Rome y x </span></li>
+<li><span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+BornIn fatherOf motherOf x London</span> and <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+BornIn fatherOf y x</span></li>
+<li><span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+Human x</span> and <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+Human fatherOf x</span></li>
+<li><span class="excalifont">Human fatherOf y x</span> and <span class="excalifont">Human x fatherOf y</span></li>
 </ol>
 
 </div>
-<div id="unificationSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>1.</strong></p>
-<p><span class="excalifont">[x\mapsto Munich,y\mapsto Milan, z\mapsto Rome]</span></p>
-<p><strong>2.</strong></p>
-<p><span class="excalifont">[x\mapsto Rome,y\mapsto Rome, z\mapsto Rome]</span></p>
-<p><strong>3.</strong></p>
-<p>Not possible. With <span class="excalifont">[x\mapsto Mary]</span> we have <span class="excalifont">\neg\mathsf{Happy}(Mary)</span> on one
-side and <span class="excalifont">\neg\mathsf{Happy}(Jane)</span> on the other side. With <span class="excalifont">[x\mapsto Jane]</span>
-we have <span class="excalifont">\mathsf{Knows}(Mary, Jane)</span> on one side and
-<span class="excalifont">\mathsf{Knows}(Jane,Jane)</span> on the other side.</p>
-<p><strong>4.</strong></p>
-<p>Not possible. The logical form of the two sentences would be different
-regardless of how we substitute terms. The main connective on the left is
-disjunction and on the right is conjunction.</p>
+<div id="robinsons-algorithm" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Robinson&rsquo;s Algorithm
+    </div>
+</h5><p>The first algorithms for unification is due to <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/John_Alan_Robinson" class="link-dark" rel="external" target="_blank">John Alan Robinson</a>
+, the father of resolution.</p>
+<p>To check whether two FOL literals can be unified, the algorithm proceeds as follows:</p>
+<ol>
+<li>
+<p>Check if either both formulas begin with a negation or neither does. If so, proceed. Otherwise, the formulas are not unifiable.</p>
+</li>
+<li>
+<p>Check if the predicate in both formulas is the same. If it is, continue. If it is not, the formulas are not unifiable.</p>
+</li>
+<li>
+<p>We can assume, at this point, that the form of the formulas is covered by one of the two cases:</p>
+<ul>
+<li>
+<p><code class="customCode">Pⁿ s₁ &hellip; sₙ</code> and <code class="customCode">Pⁿ t₁ &hellip; tₙ</code></p>
+</li>
+<li>
+<p><code class="customCode">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+Pⁿ s₁ &hellip; sₙ</code> and <code class="customCode">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+Pⁿ t₁ &hellip; tₙ</code></p>
+</li>
+</ul>
+<p>In both cases, to unify the formulas, we need to find a substitution
+<span class="excalifont">σ</span>, such that <span class="excalifont">s₁σ = t₁σ</span>, &hellip;, <span class="excalifont">sₙσ = tₙσ</span>, that is the result of
+substituting within these terms must make each pair identical.</p>
+<p>To express this requirement, we make a list of these pairs:</p>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ Eq = [ [s₁, s₂], ..., [sₙ, tₙ] ]
+ </code></div>
+<p>The algorithm aims to step-wise construct the desired substitution <span class="excalifont">σ</span>. We
+start with the empty substitution <code class="customCode">σ = [ ]</code>, and go through each pair <code class="customCode">[sᵢ,
+tᵢ]</code> of our list. We distinguish the following cases:</p>
+<ul>
+<li>
+<p>Case 1: <code class="customCode">sᵢ = tᵢ</code>. The terms are already identical, we can remove them
+from <code class="customCode">Eq</code>.</p>
+</li>
+<li>
+<p>Case 2. <code class="customCode">sᵢ ≠ tᵢ</code> and <code class="customCode">sᵢ</code> is some variable, while <code class="customCode">tᵢ</code> is not. First,
+check if <code class="customCode">sᵢ</code> occurs in <code class="customCode">tᵢ</code>. If so, like when <code class="customCode">sᵢ = x</code> and <code class="customCode">tᵢ = fatherOf
+x</code>, then we can stop the entire procedure since no unification is possible.
+Otherwise, we apply the substitution <code class="customCode">[sᵢ / tᵢ]</code> to all other pairs, add it to
+<code class="customCode">σ</code>, and remove the pair <code class="customCode">[sᵢ, tᵢ]</code> from the set.</p>
+</li>
+<li>
+<p>Case 3. <code class="customCode">sᵢ ≠ tᵢ</code> and <code class="customCode">tᵢ</code> is some variable, while <code class="customCode">sᵢ</code> is not. Again, we
+first check if <code class="customCode">tᵢ</code> occurs within <code class="customCode">sᵢ</code> and terminate the entire algorithm
+if it does. Otherwise, we apply the substitution <code class="customCode">[tᵢ / sᵢ]</code> to all other
+pairs, add it to <code class="customCode">σ</code>, and remove the pair <code class="customCode">[sᵢ, tᵢ]</code> from the set.</p>
+</li>
+<li>
+<p>Case 4. <code class="customCode">sᵢ ≠ tᵢ</code> and neither  <code class="customCode">sᵢ</code> nor <code class="customCode">tᵢ</code> is a variable. Then we check
+the form of <code class="customCode">sᵢ</code> and <code class="customCode">tᵢ</code>. Only if they are of the following forms, we
+continue:</p>
+</li>
+</ul>
+ <div class="customBlock text-center my-4"><code class="customCode">
+  sᵢ = fᵐ s₁' … sₘ'  &emsp; and &emsp; tᵢ = fᵐ t₁' … tₘ'
+ </code></div>
+<p>That is, both terms are the result of applying the same function term to a
+sequence of terms. If they are not, unification is impossible and we can
+terminate the algorithm. If they <em>are</em> of this form, we add all the
+following corresponding pairs to <code class="customCode">Eq</code>:</p>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ [ [s₁', s₂'], ..., [sₙ', tₙ'] ]
+ </code></div>
+</li>
+<li>
+<p>By going through all the pairs, deleting pairs when substitutions are
+possible or trivial (Cases 1—3), and recursively adding new pairs (Case 4),
+one of two things will happen:</p>
+<ul>
+<li>
+<p>Either we hit a termination condition in one of the cases and conclude
+that unification isn&rsquo;t possible.</p>
+</li>
+<li>
+<p>Or we end up with an empty list and a full list of substitutions <code class="customCode">σ</code> to
+apply. In that case, <code class="customCode">σ</code> is a unifier and the terms and thus literals are
+indeed unifiable.</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>Apply this algorithm to check your work in Exercise 1.</p>
 
 </div>
-<div id="cnf" class=" homework solved"><h5 class="homework solved">
-    <div class="d-inline-flex flex-row m-0 p-0 ">CNF
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="cnfSolution"
-        onclick="showPasswordModal('cnfSolution', 'exc-finf')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="skolemization" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Skolemization
     </div>
-</h5><p><em>Exercises 2.,4. are homework</em></p>
-<p>Transform the following formulas into FOL CNF. Give your step-by-step
-transformation (you may perform several similar transformations in a single
-step).</p>
+</h5><p>Skolemize the following formulas:</p>
 <ol>
-<li><span class="excalifont">\forall x\exists y (\mathsf{Friend}(x,y)\to \exists z\neg (\mathsf{Happy}(z)\land\mathsf{Fulfilled}(z)))</span></li>
-<li><span class="excalifont">\forall x(\forall y \mathsf{Friend}(x,y)\to \forall z\neg (\mathsf{Happy}(z)\land\mathsf{Fulfilled}(z)))</span></li>
-<li><span class="excalifont">\mathsf{Happy}(x)\to \neg\forall x(\mathsf{Friend}(x,y)\land \neg\mathsf{Friend}(y,x))</span></li>
-<li><span class="excalifont">\neg \exists x(\mathsf{Happy}(x)\land(\neg\mathsf{Fulfilled}(x)\land\mathsf{Knows}(x,x)))</span></li>
+<li>
+<p><span class="excalifont">(
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+y₁ Human y₁ 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+x₁ Mortal x₁)</span></p>
+</li>
+<li>
+<p><span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x₁(
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x₂
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+y₁(IsFriendOf x₁ y₁ 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ IsFriendOf x₂ y₁) 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+y₂
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+IsFriendOf x₁ y₂)</span></p>
+</li>
+<li>
+<p><span class="excalifont">
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+y₁
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+y₂ IsFriendOf y₁ y₂</span></p>
+</li>
 </ol>
 
 </div>
-<div id="cnfSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>1.</strong></p>
-<ul>
-<li>Start here:
-<span class="excalifont">\forall x\exists y(\mathsf{Friend}(x,y)\to\exists z\neg(\mathsf{Happy}(z)\land\mathsf{Fulfilled}(z)))</span></li>
-<li>Convert the conditional:
-<span class="excalifont">\forall x\exists y(\neg\mathsf{Friend}(x,y)\lor\exists z\neg(\mathsf{Happy}(z)\land\mathsf{Fulfilled}(z)))</span></li>
-<li>Use de Morgan rule on the right:
-<span class="excalifont">\forall x\exists y(\neg\mathsf{Friend}(x,y)\lor\exists z(\neg\mathsf{Happy}(z)\lor\neg\mathsf{Fulfilled}(z)))</span></li>
-<li>Skolemize the inner existential:
-<span class="excalifont">\forall x\exists y(\neg\mathsf{Friend}(x,y)\lor(\neg\mathsf{Happy}(f(x))\lor\neg\mathsf{Fulfilled}(f(x))))</span></li>
-<li>Skolemize the outer existential:
-<span class="excalifont">\forall x(\neg\mathsf{Friend}(x,g(x))\lor(\neg\mathsf{Happy}(f(x))\lor\neg\mathsf{Fulfilled}(f(x))))</span></li>
-<li>Drop the universal:
-<span class="excalifont">\neg\mathsf{Friend}(x,g(x))\lor\neg\mathsf{Happy}(f(x))\lor\neg\mathsf{Fulfilled}(f(x))</span></li>
-</ul>
-<br>
-<p><strong>2.</strong></p>
-<ul>
-<li>Start here:
-<span class="excalifont">\forall x(\forall y\mathsf{Friend}(x,y)\to\forall z\neg(\mathsf{Happy}(z)\land\mathsf{Fulfilled}(z)))</span></li>
-<li>Convert the conditional:
-<span class="excalifont">\forall x(\neg\forall y\mathsf{Friend}(x,y)\lor\forall z\neg(\mathsf{Happy}(z)\land\mathsf{Fulfilled}(z)))</span></li>
-<li>Use de Morgan rule on the right:
-<span class="excalifont">\forall x(\neg\forall y\mathsf{Friend}(x,y)\lor\forall z(\neg\mathsf{Happy}(z)\lor\neg\mathsf{Fulfilled}(z)))</span></li>
-<li>Convert negated universal on the left:
-<span class="excalifont">\forall x(\exists y\neg\mathsf{Friend}(x,y)\lor\forall z(\neg\mathsf{Happy}(z)\lor\neg\mathsf{Fulfilled}(z)))</span></li>
-<li>Skolemize the existential:
-<span class="excalifont">\forall x(\neg\mathsf{Friend}(x,f(x))\lor\forall z(\neg\mathsf{Happy}(z)\lor\neg\mathsf{Fulfilled}(z)))</span></li>
-<li>Drop the universal quantifiers:
-<span class="excalifont">\neg\mathsf{Friend}(x,f(x))\lor\neg\mathsf{Happy}(z)\lor\neg\mathsf{Fulfilled}(z)</span></li>
-</ul>
-<br>
-<p><strong>3.</strong></p>
-<ul>
-<li>Start here:
-<span class="excalifont">\mathsf{Happy}(x)\to\neg\forall x(\mathsf{Friend}(x,y)\land\neg\mathsf{Friend}(y,x))</span></li>
-<li>Relabel variable on the left:
-<span class="excalifont">\mathsf{Happy}(z)\to\neg\forall x(\mathsf{Friend}(x,y)\land\neg\mathsf{Friend}(y,x))</span></li>
-<li>Convert the conditional:
-<span class="excalifont">\neg\mathsf{Happy}(z)\lor\neg\forall x(\mathsf{Friend}(x,y)\land\neg\mathsf{Friend}(y,x))</span></li>
-<li>Convert negated universal:
-<span class="excalifont">\neg\mathsf{Happy}(z)\lor\exists x\neg(\mathsf{Friend}(x,y)\land\neg\mathsf{Friend}(y,x))</span></li>
-<li>Use de Morgan rule on the right:
-<span class="excalifont">\neg\mathsf{Happy}(z)\lor\exists x(\neg\mathsf{Friend}(x,y)\lor\neg\neg\mathsf{Friend}(y,x))</span></li>
-<li>Remove double negation:
-<span class="excalifont">\neg\mathsf{Happy}(z)\lor\exists x(\neg\mathsf{Friend}(x,y)\lor\mathsf{Friend}(y,x))</span></li>
-<li>Skolemize the existential:
-<span class="excalifont">\neg\mathsf{Happy}(z)\lor\neg\mathsf{Friend}(f,y)\lor\mathsf{Friend}(y,f)</span></li>
-</ul>
-<br>
-<p><strong>4.</strong></p>
-<ul>
-<li>Start here:
-<span class="excalifont">\neg\exists x(\mathsf{Happy}(x)\land(\neg\mathsf{Fulfilled}(x)\land\mathsf{Knows}(x,x)))</span></li>
-<li>Convert negated existential:
-<span class="excalifont">\forall x\neg(\mathsf{Happy}(x)\land(\neg\mathsf{Fulfilled}(x)\land\mathsf{Knows}(x,x)))</span></li>
-<li>Use de Morgan rule:
-<span class="excalifont">\forall x(\neg\mathsf{Happy}(x)\lor\neg(\neg\mathsf{Fulfilled}(x)\land\mathsf{Knows}(x,x)))</span></li>
-<li>Use de Morgan again:
-<span class="excalifont">\forall x(\neg\mathsf{Happy}(x)\lor(\neg\neg\mathsf{Fulfilled}(x)\lor\neg\mathsf{Knows}(x,x)))</span></li>
-<li>Remove double negation:
-<span class="excalifont">\forall x(\neg\mathsf{Happy}(x)\lor(\mathsf{Fulfilled}(x)\lor\neg\mathsf{Knows}(x,x)))</span></li>
-<li>Drop the universal quantifier:
-<span class="excalifont">\neg\mathsf{Happy}(x)\lor\mathsf{Fulfilled}(x)\lor\neg\mathsf{Knows}(x,x)</span></li>
-</ul>
-
-</div>
-<div id="resolution" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Resolution
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="resolutionSolution"
-        onclick="showPasswordModal('resolutionSolution', 'exc-finf')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="drinker-paradox" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Drinker Paradox
     </div>
-</h5><p>Use the resolution rule to justify the following inferences:</p>
+</h5><p>Consider the following inference:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x InPub x 
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x (InPub x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(IsDrinking x 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x(InPub x
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+IsDrinking x)))</div>
+<p>In natural language: There&rsquo;s somebody in the pub, so there&rsquo;s somebody in the
+pub, such that if they are drinking, then everybody in the pub is drinking.
+This is known as the <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/Drinker_paradox" class="link-dark" rel="external" target="_blank">drinker
+paradox</a>
+.</p>
+<p>Use the method of resolution to show that this inference is deductively valid
+in FOL. That is:</p>
 <ol>
-<li><span class="excalifont">\forall x(\mathsf{Lord}(x)\to \mathsf{Happy}(x)),\neg\mathsf{Happy}(Byron)\vDash \neg\mathsf{Lord}(Byron)</span></li>
-<li><span class="excalifont">\neg\exists x(\mathsf{Lord}(x)\land \mathsf{Happy}(x)),\forall x\exists y(\mathsf{Friend}(x,y)\to \mathsf{Happy}(x))\vDash \neg\exists x(\mathsf{Lord}(x)\land \exists y(\mathsf{Friend}(x,y)))</span></li>
+<li>
+<p>Form the set of the premise and negation of conclusion.</p>
+</li>
+<li>
+<p>Transform all formulas into
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/Equisatisfiability" class="link-dark" rel="external" target="_blank">equisatisfiable</a>
+ CNF.
+Note that the Skolemization of an existential that doesn&rsquo;t depend on any
+universals is just a constant <code class="customCode">skolem</code>. It&rsquo;s important to document your work,
+which transformations you&rsquo;re applying, but you can apply several steps
+simultaneously.</p>
+</li>
+<li>
+<p>Apply resolution with unification to derive the empty sequent <span class="excalifont">{ }</span>. And
+conclude that the initial set is unsatisfiable and the inference thus
+valid.</p>
+</li>
 </ol>
 
 </div>
-<div id="resolutionSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>
-<img src="https://logicalmethods.ai/exercises/fol-inference/img/resolution-1.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-
-<img src="https://logicalmethods.ai/exercises/fol-inference/img/resolution-2.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-</p>
-
-</div>
-<div id="research" class=" homework"><h5 class="homework">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Research
+<div id="natural-deduction" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Natural deduction
     </div>
-</h5>
-</div>
-<div id="a" ><h6 class="">a)</h6><p>How can we handle the equality <span class="excalifont">=</span> in natural deduction for FOL? Give an simple
-sample derivation in the system, which shows how the rules work.</p>
+</h5><p>Find logical proofs in FOL natural deduction for the following logical
+laws. Note that some of these require <code class="customCode"><span class="dark-blue">open</span> Classical</code>.</p>
 
 </div>
-<div id="b" ><h6 class="">b)</h6><p>What are the corresponding rules in resolution systems called?</p>
+<div id="duality-laws" ><h6 class="">Duality Laws</h6><ol>
+<li><span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+xA(x)
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A(x)</span></li>
+<li><span class="excalifont">
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A(x)
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+xA(x)</span></li>
+<li><span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+xA(x)
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A(x)</span></li>
+<li><span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A(x)
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+xA(x)</span></li>
+</ol>
 
 </div>
-<div id="discussion" ><h5 class="">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Discussion
+<div id="distribution-laws" ><h6 class="">Distribution Laws</h6><ol>
+<li><span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x(A(x) 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B(x)) 
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+xA(x) 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+xB(x)</span></li>
+<li><span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+xA(x) 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+xB(x)
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+x (A(x) 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B(x))</span></li>
+<li><span class="excalifont">
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x(A(x) 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B(x)) 
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+xA(x) 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+xB(x)</span></li>
+<li><span class="excalifont">
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x A(x) 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+x B(x) 
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x(A(x) 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B(x))</span></li>
+</ol>
+
+</div>
+<div id="interaction-laws" ><h6 class="">Interaction Laws</h6><ol>
+<li><span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+xA(x)
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+xA(x)</span></li>
+<li><span class="excalifont">
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+yR(x,y)
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+y
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+xR(x,y)</span></li>
+<li><span class="excalifont">
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+xA(x)
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+C
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x(A(x)
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+C)</span>, assuming that <span class="excalifont">x</span> is not free in <span class="excalifont">C</span></li>
+<li><span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+xA(x)
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+C
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x(A(x)
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+C)</span>, assuming that <span class="excalifont">x</span> is not free in <span class="excalifont">C</span>.</li>
+</ol>
+
+</div>
+<div id="lean" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Lean
     </div>
-</h5><p>Some researchers, especially those interested in the conceptual foundations of
-logic, argue that resolution-based proof systems are not &ldquo;really&rdquo; proof systems
-because they don&rsquo;t directly model human-style reasoning. Do you agree or
-disagree? Substantiate your answer with an argument.</p>
+</h5><p>Verify your work from the previous exercise in Lean. Here&rsquo;s a template for the
+work. You can follow the link below to work in the interactive environment.</p>
+
+<img src="/img/lean_logo.png" alt="Lean_Logo" class="float-start" style="height:1em;width:auto;"/>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lean4" data-lang="lean4"><span class="line"><span class="cl"><span class="kn">variable</span><span class="w"> </span><span class="o">(</span><span class="n">Term</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Type</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="n">A</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Term</span><span class="w"> </span><span class="bp">→</span><span class="w"> </span><span class="kt">Prop</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="n">R</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Term</span><span class="w"> </span><span class="bp">→</span><span class="w"> </span><span class="n">Term</span><span class="w"> </span><span class="bp">→</span><span class="w"> </span><span class="kt">Prop</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="n">C</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Prop</span><span class="o">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">/-</span><span class="cm">! Duality Laws -/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">theorem</span><span class="w"> </span><span class="n">duality_one_ltr</span><span class="w"> </span><span class="o">(</span><span class="n">h</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">¬∀</span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">x</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">∃</span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="bp">¬</span><span class="n">A</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="gr">sorry</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">theorem</span><span class="w"> </span><span class="n">duality_one_rtl</span><span class="w"> </span><span class="o">(</span><span class="n">h</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">∃</span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="bp">¬</span><span class="n">A</span><span class="w"> </span><span class="n">x</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">¬∀</span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="gr">sorry</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">theorem</span><span class="w"> </span><span class="n">duality_two_ltr</span><span class="w"> </span><span class="o">(</span><span class="n">h</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">¬∃</span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">x</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">∀</span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="bp">¬</span><span class="n">A</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="gr">sorry</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">theorem</span><span class="w"> </span><span class="n">duality_two_rtl</span><span class="w"> </span><span class="o">(</span><span class="n">h</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">∀</span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="bp">¬</span><span class="n">A</span><span class="w"> </span><span class="n">x</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">¬∃</span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="gr">sorry</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">/-</span><span class="cm">! Duality Laws -/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">theorem</span><span class="w"> </span><span class="n">all_over_and_rtl</span><span class="w"> </span><span class="o">(</span><span class="n">h</span><span class="o">:</span><span class="w"> </span><span class="bp">∀</span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">∧</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">x</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">∀</span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">∧</span><span class="w"> </span><span class="bp">∀</span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="gr">sorry</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">theorem</span><span class="w"> </span><span class="n">all_over_and_ltr</span><span class="w"> </span><span class="o">(</span><span class="n">h</span><span class="o">:</span><span class="w"> </span><span class="bp">∀</span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">∧</span><span class="w"> </span><span class="bp">∀</span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">x</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">∀</span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">∧</span><span class="w">  </span><span class="n">B</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="gr">sorry</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">theorem</span><span class="w"> </span><span class="n">exists_over_or_rtl</span><span class="w"> </span><span class="o">(</span><span class="n">h</span><span class="o">:</span><span class="w"> </span><span class="bp">∃</span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">∨</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">x</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">∃</span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">∨</span><span class="w"> </span><span class="bp">∃</span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="gr">sorry</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">theorem</span><span class="w"> </span><span class="n">exists_over_or_ltr</span><span class="w"> </span><span class="o">(</span><span class="n">h</span><span class="o">:</span><span class="w"> </span><span class="bp">∃</span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">∨</span><span class="w"> </span><span class="bp">∃</span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">x</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">∃</span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">∨</span><span class="w"> </span><span class="n">Bx</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="gr">sorry</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">/-</span><span class="cm">! Interaction Laws -/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">theorem</span><span class="w"> </span><span class="n">existential_import</span><span class="w"> </span><span class="o">(</span><span class="n">h</span><span class="o">:</span><span class="w"> </span><span class="bp">∀</span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">x</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">∃</span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="gr">sorry</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">theorem</span><span class="w"> </span><span class="n">switcheroo</span><span class="w"> </span><span class="o">(</span><span class="n">h</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">∃</span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="bp">∀</span><span class="n">y</span><span class="o">,</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">∀</span><span class="n">y</span><span class="o">,</span><span class="w"> </span><span class="bp">∃</span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="gr">sorry</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">theorem</span><span class="w"> </span><span class="n">exists_to_forall</span><span class="w"> </span><span class="o">(</span><span class="n">h</span><span class="o">:</span><span class="w"> </span><span class="bp">∃</span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">→</span><span class="w"> </span><span class="n">C</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">∀</span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">→</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="gr">sorry</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">theorem</span><span class="w"> </span><span class="n">forall_to_exists</span><span class="w"> </span><span class="o">(</span><span class="n">h</span><span class="o">:</span><span class="w"> </span><span class="bp">∀</span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">→</span><span class="w"> </span><span class="n">C</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="bp">∃</span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="bp">→</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="o">:</span><span class="bp">=</span><span class="w"> </span><span class="k">by</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="gr">sorry</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Follow this <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://live.lean-lang.org/#codez=G4QwTgliBGA2CmACAFAFXmAtogXI1AngA7wCUKAgogEK74baBJhIgApgD2R5yASnelkTMBTVhy4oAwnTadSAKHkB6ALQBCRABEAriFgQALgUQAZEAHcAzohVLFBgBbx2YeNgAmu/UYD67AHbwPrAGYCgOdAA1gABEAB4ANIhUseR4gMBECYiRybgAvIjQBPKIiJYuYEXyjs6uHl6GBH6BPmAGsOF0GYnZiClRcYk5OPmFxaXlldUuboieeg0&#43;BubswaEdeJFdSb2piANZQyNFJWVgFfZO03Xzvksrre3IEXj7PX0bW4cFx&#43;NnlaoaHQ3YxmKw2OxVS61RB6WB&#43;YAYHwgfzuFptcIvTI5QDkRDQdnR9ji9plaLE8t8xqdzpCajNYfDEcjUSEwk9MYNeohcftSbtCZzcXiycMKScJhdadh4LEIJYDJYGWA/EqHhjEJ9OYAKIiFuw1ZO1W1J5NGYr&#43;EquiGlsvliuVq1ZDnSWK16pJ&#43;KdHP1NGFR0p4uU6kQAEl/AYMCAAMYGCABUwWay2c3Qq1y&#43;ChqBwiCYIguAxq/nvV2e40/KmTKEzSzmQwRpwcdjrIt7AiJPhkgh8ltNtuIYwik2/alTZMyuUKgwrABmLlhar1QkQkj5zrJzGk/dL/uHM2nYHpE58Kfl&#43;ZXC6XnVPa5Lfr&#43;QA" class="link-dark" rel="external" target="_blank">link</a>
+ to work in the digital playground.</p>
 
 
   </div>
