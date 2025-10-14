@@ -1320,7 +1320,7 @@ A
 B</div>
 </li>
 <li>
-<p>We transform disjunctions of conjunctions into conjunctions of disjunctions
+<p>We recursively transform disjunctions of conjunctions into conjunctions of disjunctions
 using:</p>
  <div class="text-center my-4 excalifont">r₄: A 
 <img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
@@ -1422,8 +1422,8 @@ step. In order to implement this, we first create two
 distinct variables</p>
 <div class="customBlock text-center my-4"><code class="customCode">
 varx = [x₁, x₂, x₃, …]
-vary = [y₁, y₂, y₃, …]
-</code></div>
+<p>vary = [y₁, y₂, y₃, …]
+</code></div></p>
 <p>In practice, we just need for every quantifier occurrence in the formula a
 separate variable, but for simplicity, we just assume that there&rsquo;s an infinite
 stack. We use the operation called <code class="customCode">pop</code> to remove the first element from the
@@ -1690,6 +1690,7 @@ for each arity <span class="excalifont">n</span>, we have a list of Skolem funct
 <div class="customBlock text-center my-4"><code class="customCode">
 skolemⁿ = [skolemⁿ₁, skolemⁿ₂, ...]
 </code></div>
+<p>In the case where <span class="excalifont">n = 0</span>, we call them Skolem <em>constants</em> and treat them as such.</p>
 <p>Further, for the purpose of the recursion, we need to keep track of the
 universally quantified variables that an existential depends on. We denote the
 list of these variables (in order) by <code class="customCode">deps</code>. That is, in</p>
@@ -1714,9 +1715,22 @@ once we get to the existential <span class="excalifont">
 <img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
 
 y₁</span>, we have <code class="customCode">deps = [ x₁, x₃ ]</code>.
-<p> </p>
+<p>Note that if <code class="customCode">deps = [ ]</code>, then we use Skolem constants. For example,</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+y₁ Human y₁ 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+y₂ Human y₂
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+ Human <code class="customCode">skolem⁰₁</code> 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ Human <code class="customCode">skolem⁰₂</code></div>
 <ol start="4">
-<li>We Skolemize the existential quantifiers using:</li>
+<li>We recursively Skolemize the existential quantifiers using:</li>
 </ol>
   <div class="text-center my-4 excalifont">r₁₀: 
 <img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
@@ -1728,7 +1742,7 @@ yᵢ A
 straight-forward to work out.</p>
 <p>Now that we&rsquo;ve eliminated the existentials, we can drop all the universal:</p>
 <ol start="5">
-<li>We drop the universal quantifiers using:</li>
+<li>We recursively drop the universal quantifiers using:</li>
 </ol>
   <div class="text-center my-4 excalifont">r₁₁: 
 <img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
@@ -1739,7 +1753,7 @@ xᵢ A
 <p>In the very last step, we distribute if necessary:</p>
 <ol start="6">
 <li>
-<p>We transform disjunctions of conjunctions into conjunctions of disjunctions
+<p>We recursively transform disjunctions of conjunctions into conjunctions of disjunctions
 using:</p>
  <div class="text-center my-4 excalifont">r₄: A 
 <img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
