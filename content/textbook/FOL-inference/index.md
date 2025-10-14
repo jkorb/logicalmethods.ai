@@ -37,7 +37,7 @@ that:
 But the second premise was that $M {{< vDash >}}Human Socrates$. So by simple
 Boolean reasoning—essentially just MP—we know that:
 
-- $M {{< vDash >}}Human Socrates$.
+- $M {{< vDash >}}Mortal Socrates$.
 
 For this line of reasoning, we didn't need to think about what our domain looks
 like, what the extensions of $Socrates$, $Human$, and $Mortal$ are. What we've
