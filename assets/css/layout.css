@@ -71,6 +71,7 @@ main, .element {
 code {
   font-family: "Comic Shanns", monospace;
   /* white-space: nowrap; */
+  max-width:1140px;
   color: #000; /* force black text */
   /* font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem); */
   /* font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem); /* a bit larger than normal */ */
@@ -80,6 +81,12 @@ code {
   font-family: "Comic Shanns", monospace;
   color: #1971c2; 
 }
+
+.Kleene {
+  font-family: "Comic Shanns", monospace;
+  color: #e03131; 
+}
+
 
 .dark-green {
   color: #2f9e44;

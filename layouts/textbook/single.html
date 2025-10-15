@@ -29,6 +29,9 @@
   {{- $patternBoolean := "!!(.*?)!!" -}}
   {{- $replacementBoolean := `<span class="Boolean">${1}</span>` -}}
 
+  {{- $patternKleene := "~!(.*?)!~" -}}
+  {{- $replacementKleene := `<span class="Kleene">${1}</span>` -}}
+
   {{- $patternMDCode := "~~~(.*?)~~~" -}}
   {{- $replacementMDCode := "```${1}```" -}}
 
@@ -42,6 +45,7 @@
       | replaceRE $patternCodeBlock $replacementCodeBlock 
       | replaceRE $patternCodeInline $replacementCodeInline 
       | replaceRE $patternBoolean $replacementBoolean 
+      | replaceRE $patternKleene $replacementKleene 
       | replaceRE $patternMDCode $replacementMDCode 
       | replaceRE $patternMDInline $replacementMDInline 
     -}}
