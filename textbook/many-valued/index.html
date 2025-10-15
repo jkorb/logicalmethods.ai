@@ -187,11 +187,11 @@
             <li>
               <a class="dropdown-item 
                 fw-bold active
-                link-opacity-50
+                
                 "
-                href="javascript:;"
+                href="/textbook/many-valued/"
               >10. 
-                <i class="bi bi-lock-fill"></i>
+                <i class="bi bi-unlock-fill"></i>
                  Many-valued logics
               </a>
             </li>
@@ -676,446 +676,511 @@
 </h1>
 <hr>
 
-<p>In this chapter, you&rsquo;ll learn for the first time about some <em>non</em>-classical
-logics. Specifically, we&rsquo;ll leave behind the <strong>modelling assumption</strong> of
-classical logic that there are just the two truth-values <span class="excalifont">0,1</span>. In other words,
-in this chapter you&rsquo;ll learn about <strong>many-valued logics</strong>.</p>
-<p>After briefly talking about 
-<a class="link-dark" href="#syntax">syntax</a>, we&rsquo;ll discuss two different
-families of many-valued logics, with different motivations and applications in
-AI:</p>
+<p>
+<img src="https://logicalmethods.ai/textbook/many-valued/img/ai_warm.png" class="rounded  float-end inert-img img-fluid m-2"  width="200px"  alt="" >
+
+In classical logic, we assume that every formula is either true or false. This
+is known as the <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Principle_of_bivalence"
+  target="_blank">principle of
+bivalence</a>. While the
+assumption is valid in many contexts, it is clearly an
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Idealization_%28philosophy_of_science%29"
+  target="_blank">idealization</a>
+in others. Think of statements about the future, like &ldquo;it will rain tomorrow&rdquo;.
+Unless you&rsquo;re a die-hard <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Fatalism"
+  target="_blank">fatalist</a>, you
+probably don&rsquo;t think that statement is true or false <em>now</em>—its truth or falsity
+will be decided tomorrow. Or think about
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Vagueness"
+  target="_blank">vague</a> concepts, like <em>warmth</em>. Is
+25°C warm? What about 21, 20, 19°C? Is there a clear cut-off point? If so,
+where? Is it at 20°C, maybe? Does that then mean that 19.999°C is no longer
+warm?—It seems that warmth is something that comes in <em>degrees</em>: 25°C is <em>warmer
+than</em> 22°C is warmer than 19°C. Examples like these motivate the study of <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Many-valued_logic"
+  target="_blank"><strong>many-valued
+logics</strong></a>, which abandon
+bivalence.</p>
+<p>It turns out that non-bivalent reasoning is relevant in many different AI
+contexts. Just think of reasoning with incomplete
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Information"
+  target="_blank">information</a> or <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Robotic_sensing"
+  target="_blank">robotic
+sensing</a>. In this chapter, we&rsquo;ll
+explore two non-bivalent reasoning systems, which are particularly important in
+AI-research:</p>
 <ul>
-<li>the 3-valued 
-<a class="link-dark" href="#kleene-and-%c5%82ukasiewicz-logics">Kleene and Łukasiewicz logics</a>,</li>
-<li>the infinitely valued 
-<a class="link-dark" href="#fuzzy-logics">fuzzy logics</a>.</li>
-</ul>
-<p>The chapter mainly focuses on semantics to illustrate the underlying ideas and
-models of the world that motivate the relevant logics. Inference in many-valued
-logics will be a topic for the exercises.</p>
-<h2 id="syntax">Syntax<button class="btn btn-back-to-top">
-    
-    <i class="bi bi-chevron-double-up"></i>
-    
-  </button>
-</h2>
-<hr>
-
-<p>In this chapter, we&rsquo;ll be working in propositional contexts only.</p>
-<p>For much of the chapter, we&rsquo;ll assume that our language is a propositional
-language with <span class="excalifont">n</span> propositional variables, <span class="excalifont">p_1, \dots, p_n</span>, and only the
-connectives <span class="excalifont">\neg,\land,\lor</span>. That is, the BNF of our language is:</p>
-<div class="text-center my-4 excalifont">\langle prop\rangle::= p_1\mid \dots\mid p_n</div>
-<div class="text-center my-4 excalifont">\langle fml\rangle::=\langle prop\rangle\mid\neg\langle fml\rangle\mid
-(\langle fml\rangle\land \langle fml\rangle)\mid (\langle fml\rangle\lor
-\langle fml\rangle)</div>
-<p>For concreteness sake, we&rsquo;ll use concrete propositional constants, like
-<span class="excalifont">\mathsf{RAIN}</span> or <span class="excalifont">\mathsf{SUN}</span> like before.</p>
-<p>At points, we&rsquo;ll turn to the conditional <span class="excalifont">\to</span>, which will be important to
-formula <strong>rules</strong> for many-valued knowledge bases, for example.</p>
-<p>In fuzzy logics, in particular, it&rsquo;s common to introduce additional operators on
-top of the usual ones. In <strong>basic fuzzy logic (BL)</strong>, for example, which we
-won&rsquo;t cover in this chapter since—despite its name—is more complicated than
-other systems, we have <em>two</em> conjunction operators: <em>strong conjunction</em>
-<span class="excalifont">\otimes</span> and <em>weak conjunction</em> <span class="excalifont">\land</span>. In fact, in BL, we typically take
-<span class="excalifont">\otimes</span> to be the primitive operator and treat the &ldquo;normal&rdquo; <span class="excalifont">\land</span> as defined
-using <span class="excalifont">\otimes,\to</span> via the rule: <div class="text-center my-4 excalifont">A\land B=A\otimes (A\to B).</div></p>
-<p>It&rsquo;s an interesting exercise to check that in a classical, Boolean setting,</p>
-<div class="text-center my-4 excalifont">A\land B</div> and <div class="text-center my-4 excalifont">A\land (A\to B)</div> are logically equivalent. It is important to
-note, however, that in non-classical settings, the logical laws may be
-different.
-<p>In this chapter, however, we try to avoid non-classical syntax as much as
-possible in order to focus on non-classical, many-valued semantics.</p>
-<h2 id="kleene-and-łukasiewicz-logics">Kleene and Łukasiewicz logics<button class="btn btn-back-to-top">
-    
-    <i class="bi bi-chevron-double-up"></i>
-    
-  </button>
-</h2>
-<hr>
-
-<p>The logics of <i class="bi bi-box-arrow-up-right h-6"></i>
+<li>
+<p>the <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Three-valued_logic"
+  target="_blank">3-valued logic</a> of
+<i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Stephen_Cole_Kleene"
-  target="_blank">Kleene</a> and
+  target="_blank">Kleene</a>, and</p>
+</li>
+<li>
+<p>the infinitely many valued <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Fuzzy_logic"
+  target="_blank">fuzzy
+logic</a> of
 <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Jan_%60C5%6081ukasiewicz"
-  target="_blank">Łukasiewicz</a> which we&rsquo;ll
-look at in this section are examples of <strong>3-valued logics</strong>. That is, when it
-comes to semantics we&rsquo;ll not only have <span class="excalifont">0,1</span> as possible values, but an
-additional third truth-value.</p>
-<p>From a technical perspective, it doesn&rsquo;t matter which symbol we use to represent
-the third truth-value, but in this chapter, we&rsquo;ll use <span class="excalifont">i</span>. One reason for this
-choice is the motivation behind Kleene and Łukasiewicz&rsquo;s logics: the idea that
-some statements can have an <strong>indeterminate</strong> truth-value.</p>
-<p>Think, for example, about the claim that <span class="excalifont">\mathsf{RAIN\_TOMORROW}</span> it rains
-tomorrow. What truth-value does it have <em>now</em>? We might have evidence for or
-against it raining tomorrow: the forecast, the way the weather is today,
-information about air pressure, temperature, and so on. But ultimately, these
-only lead to a <em>probability</em> of rain tomorrow. Unless we&rsquo;re strong
-<i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Determinism"
-  target="_blank">determinists</a>, we may very well
-believe that the truth-value of <span class="excalifont">\mathsf{RAIN\_TOMORROW}</span> is not decided yet,
-it is <em>indeterminate</em>.</p>
-<p>This concept finds many important applications in AI. To begin with, any AI that
-reasons in the &ldquo;real world&rdquo; will encounter indeterminacy as in our example. But
-more concretely, we often encounter cases like this when querying databases or
-knowledge bases.</p>
-<p>What, for example, should happen when we query a KB and the KB doesn&rsquo;t contain the
-answer? We&rsquo;ve encountered this with backward chaining in 
+  target="_blank">Łukasciewicz</a>.</p>
+</li>
+</ul>
+<p>
+<img src="https://logicalmethods.ai/textbook/many-valued/img/db_understand.png" class="rounded  float-start inert-img img-fluid m-2"  width="200px"  alt="" >
 
-
-<a href="https://logicalmethods.ai/textbook/conditionals//#backward-chaining"
-   
-   
-   
-   
-   
-   > Chapter 6. Logical conditionals
-</a>
-
-. Back then, we applied the <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Closed-world_assumption"
-  target="_blank">closed-world assumption
-(CWA)</a>, which says that
-non-derivable statements as false.</p>
-<p>But in many situations that&rsquo;s not what we want: imagine an AI expert system for
-weather prediction, which doesn&rsquo;t have enough information to predict the weather
-tomorrow. We don&rsquo;t want to conclude from this that <span class="excalifont">\mathsf{RAIN\_TOMORROW}</span> is
-<em>false</em>. It may turn out true, it may turn out false&hellip; we don&rsquo;t know. It&rsquo;s
-current truth-value is indeterminate. The <strong>open-world assumption</strong> allows us to
-do just that.</p>
-<p>Another example of a similar kind is provided by the <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/SQL"
-  target="_blank">Structured Query Language
-(SQL)</a>, which is one of the standard
-languages for <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Relational_database_management_system"
-  target="_blank">relational database
-management</a>
-and behind much of the internet&rsquo;s
+As you will see, these systems figure in AI-technologies in different ways.
+We&rsquo;ll see how Kleene&rsquo;s logic, for example, is the basis for how <code class="customCode">SQL</code> handles
+incomplete information, while fuzzy logic is used in industry products such as
 <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Frontend_and_backend"
-  target="_blank">backend</a>. In SQL, when a
-query doesn&rsquo;t return a result because of the absence of data, it returns the
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Automatic_train_control"
+  target="_blank">Automatic Train
+Control</a>-systems for
 <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Sendai_Subway_1000_series"
+  target="_blank">subway trains</a>.
+Of course, we&rsquo;ll only be able to scratch the surface of the field of many-valued
+logics, but you&rsquo;ll add some very useful techniques and insights to your logical
+toolbox.</p>
+<p>At the end of the chapter, you will be able to:</p>
+<ul>
+<li>
+<p>explain the 3-valued Kleene truth-tables for negation, conjunction, and
+disjunction and their relevance to DBs</p>
+</li>
+<li>
+<p>test inferences for validity in Kleene&rsquo;s 3-valued logic using a truth-table
+method</p>
+</li>
+<li>
+<p>explain the infinitely-valued Zadeh-operators for interpreting the
+negations, conjunctions, and disjunctions of fuzzy propositional variables</p>
+</li>
+<li>
+<p>formulate <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Fuzzy_rule"
+  target="_blank">fuzzy rules</a> to describe
+the interaction of fuzzy propositional variables, and explain their relevance to
+AI-systems.</p>
+</li>
+</ul>
+<h2 id="kleene-algebra">Kleene Algebra<button class="btn btn-back-to-top">
+    
+    <i class="bi bi-chevron-double-up"></i>
+    
+  </button>
+</h2>
+<hr>
+
+<p>Recall our simply country DB from when we explored the relation between open FOL
+formulas and SQL queries. The content of the DB was given by the following
+tables:</p>
+
+<img src="https://logicalmethods.ai/textbook/many-valued/img/db_tables.png" class="mx-auto rounded d-block inert-img img-fluid"  width="900px"  alt="" >
+
+<p>Now suppose that we learn of a new country. Let&rsquo;s take Zimbabwe, for example,
+which is located in Africa and whose capital is Harare. But let&rsquo;s suppose we
+don&rsquo;t know which <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Languages_of_Zimbabwe"
+  target="_blank">language(s) are spoken in
+Zimbabwe</a>. In SQL, we can
+<code class="customCode"><span class="dark-blue">INSERT</span></code> this information into our DB using the
+special marker <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Null_%28SQL%29"
-  target="_blank">SQL null</a>, which is essentially our
-third truth-value <span class="excalifont">i</span>. Moreover, when <div class="customBlock text-center my-4"><code class="customCode">null</code></div> returns as part of a complex
-query, SQL applies what&rsquo;s effectively Kleene&rsquo;s 3-valued logic.</p>
-<h3 id="semantics">Semantics<button class="btn btn-back-to-top">
-    
-    <i class="bi bi-chevron-double-up"></i>
-    
-  </button>
-</h3>
-<hr>
+  target="_blank"><code class="customCode"><span
+class="dark-blue">NULL</span></code></a>
+represent the &ldquo;missing&rdquo; information like so:</p>
 
-<p>So how <em>can</em> we reason with 3 truth-values. We&rsquo;ll take the semantic perspective
-here and explain how to provide a 3-valued semantics for a propositional
-language <span class="excalifont">\mathcal{L}</span> with connectives <span class="excalifont">\neg,\land,\lor</span>. This gives as a
-notion of valid inference <span class="excalifont">\vDash</span> in 3-valued logic, which we can then use in
-AI applications.</p>
-<p>The logic we describe here first is what&rsquo;s known as <strong>(strong) Kleene
-logic</strong>.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
-<p>First, we need to adjust the notion of a <strong>valuation</strong>. In Boolean algebra, a
+<img src="/img/sql_logo.png" alt="SQL_Logo" class="float-start" style="height:1em;width:auto;"/>
 
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">CapitalOf</span><span class="w"> </span><span class="k">VALUES</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">(</span><span class="s1">&#39;Zimbabwe&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Harare&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">LocatedIn</span><span class="w"> </span><span class="k">VALUES</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">(</span><span class="s1">&#39;Zimbabwe&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Africa&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">LanguageOf</span><span class="w"> </span><span class="k">VALUES</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">(</span><span class="s1">&#39;Zimbabwe&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">NULL</span><span class="p">),</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Now, let&rsquo;s query the database and to ask for the countries which speak Dutch.
+Following the ideas we&rsquo;ve discussed before, we can do this with the following
+query:</p>
 
+<img src="/img/sql_logo.png" alt="SQL_Logo" class="float-start" style="height:1em;width:auto;"/>
 
-<a href="https://logicalmethods.ai/textbook/boolean//#models"
-   
-   
-   
-   
-   
-   > valuation  </a>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">country</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">LanguageOf</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="k">language</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Dutch&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>The return value is, as expected, the table with the single row <code class="customCode">Netherlands</code>:</p>
 
+<img src="https://logicalmethods.ai/textbook/many-valued/img/table_1.png" class="mx-auto rounded d-block inert-img img-fluid"  width="250px"  alt="" >
 
-valuation was a function <div class="text-center my-4 excalifont">\nu:\langle prop\rangle\to\Set{0,1}.</div> In this
-chapter, instead, a valuation will simply be a function <div class="text-center my-4 excalifont">\nu:\langle
-prop\rangle\to\Set{0,i,1}.</div></p>
-<p>Just like in Boolean algebra, we can think of a valuation as a model of a
-logically possible situation, where <div class="text-center my-4 excalifont">\nu(\mathsf{RAIN\_TOMORROW})=1</div> means
-that according to <span class="excalifont">\nu</span> it <em>will</em> rain tomorrow,</p>
-<div class="text-center my-4 excalifont">\nu(\mathsf{RAIN\\_TOMORROW})=0</div> means that according to <span class="excalifont">\nu</span> it _won't_
-rain tomorrow, and <div class="text-center my-4 excalifont">\nu(\mathsf{RAIN\\_TOMORROW})=i</div> means that according to
-<span class="excalifont">\nu</span> it's _indeterminate_ whether it will rain tomorrow.
-<p>Next, we generalize our <strong>truth-function</strong> to the 3-valued setting. Remember
-that a 
+<p>But now, let&rsquo;s query our DB for the countries that <em>dont</em> speak Dutch:</p>
 
+<img src="/img/sql_logo.png" alt="SQL_Logo" class="float-start" style="height:1em;width:auto;"/>
 
-<a href="https://logicalmethods.ai/textbook/boolean//#truth-functions"
-   
-   
-   
-   
-   
-   > Boolean
-truth-function  </a>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">country</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">LanguageOf</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">language</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Dutch&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>The return values are all the countries of which we know that they speak a
+language other than Dutch:</p>
 
- is simply a function from Boolean
-truth-values to Boolean truth-values. Correspondingly, a 3-valued truth-function
-is a function that takes any of our 3 truth-values as input and gives one of the
-3-values as output.</p>
-<p>Just like in Boolean algebra, we have 3 truth-functions that interpret the
-connectives:</p>
+<img src="https://logicalmethods.ai/textbook/many-valued/img/table_2.png" class="mx-auto rounded d-block inert-img img-fluid"  width="250px"  alt="" >
+
+<p>You can check this out yourself in our updated <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://www.db-fiddle.com/f/fEX1EKTFKf4areD64iYDst/0"
+  target="_blank">db-fiddle</a>.</p>
+<p>But what happened to Zimbabwe? It returns in none of the two queries and, in a
+sense, that&rsquo;s to be expected: our DB doesn&rsquo;t know whether they speak Dutch in
+Zimbabwe, so it neither returns the country as one where they do or where they
+don&rsquo;t. But if we look at this from a logical perspective, things get a bit less
+clear.</p>
+<p>Remember that SQL queries correspond to open FOL formulas and the return value
+for a query is the extensions of the extension of the corresponding formula in
+the model expressed by the DB. Now, in our toy example, <code class="customCode">QUERY #1</code> corresponds
+to the following formula:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+LanguageOf x dutch
+</code></div>
+<p>In fact, the table above gives the extension of this predicate in our DB model.</p>
+<p>A natural thought would be that the formula that corresponds to <code class="customCode">QUERY #2</code> is:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+¬ LanguageOf x dutch
+</code></div>
+<p>But something&rsquo;s off here! Assuming classical logic, the fact that Zimbabwe
+wasn&rsquo;t returned for <code class="customCode">Query #1</code> means that the truth-value of <code class="customCode">LanguageOf
+zimbabwe dutch</code> is <code class="customCode">0</code>. In fact, our table doesn&rsquo;t say that Dutch is the
+language of Zimbabwe. But since in classical logic, we interpret <code class="customCode">¬</code> via the
+Boolean <span class="Boolean">NOT</span>, we have that:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+¬ LanguageOf zimbabwe dutch = <span class="Boolean">NOT</span> v(LanguageOf zimbabwe dutch)
+</code></div>
+<p>That means that:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+¬ LanguageOf zimbabwe dutch = <span class="Boolean">NOT</span> v(LanguageOf zimbabwe dutch) = <span class="Boolean">NOT</span> 0
+= 1
+</code></div>
+<p>But <code class="customCode">QUERY #2</code> <em>didn&rsquo;t</em> return Zimbabwe. So we seem to have
+that <code class="customCode">Zimbabwe</code> is neither in the extension of <code class="customCode">LanguageOf x dutch</code> nor in the
+extension of <code class="customCode">¬ LanguageOf x dutch</code>. Something went wrong.</p>
+<p>What&rsquo;s going on is that the <code class="customCode"><span class="dark-blue">NOT</span></code> in our query is
+simply <em>not</em> the negation of classical logic. In fact, it is the negation of
+Kleene&rsquo;s 3-valued logic, which is also known as <span class="excalifont"><strong>K3</strong></span>.</p>
+<p>By the way, note that there isn&rsquo;t a contradiction here between the
+correspondence we established earlier between open formulas of classical FOL and
+SQL queries. In the construction we used in the exercises, we expressed negation
+using a <code class="customCode"><span class="dark-blue">WHERE NOT EXISTS</span></code> construction. In our
+case, this would be:</p>
+
+<img src="/img/sql_logo.png" alt="SQL_Logo" class="float-start" style="height:1em;width:auto;"/>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">country</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">LanguageOf</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">outer</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">LanguageOf</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">country</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">outer</span><span class="p">.</span><span class="n">country</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">AND</span><span class="w"> </span><span class="k">language</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Dutch&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>If you copy and paste this code into our
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://www.db-fiddle.com/f/fEX1EKTFKf4areD64iYDst/1"
+  target="_blank">db-fiddle</a>, you&rsquo;ll see
+that this query <em>does</em> return Zimbabwe as expected.</p>
+<p>So, let&rsquo;s explore the basic theory of <span class="excalifont">K3</span> from a logical perspective and look
+at some other applications. For the purpose of this chapter, we&rsquo;ll restrict
+ourselves to propositional <span class="excalifont">K3</span>. It&rsquo;s rather straight-forward to extend the
+ideas to FOL formulas and you&rsquo;ll explore some of these ideas in the exercises.</p>
+<p><span class="excalifont">K3</span> allows for three possibilities: a formula can be <em>true</em>, <em>false</em>, or
+<em>unknown</em>, where the <em>unknown</em> truth-value corresponds to the SQL-marker <code class="customCode"><span
+class="dark-blue">NULL</span></code>. The values <em>true</em> and <em>false</em> are represented as
+<code class="customCode">1</code> and <code class="customCode">0</code> as before. To represent the <em>unknown</em> value, we&rsquo;ll use <code class="customCode">ω</code>, which is
+how <code class="customCode"><span class="dark-blue">NULL</span></code> is typically represented in <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Database_theory"
+  target="_blank">database
+theory</a>. So, the Kleene
+truth-values are:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+{ 0, 1, ω }
+</code></div>
+<p>Just like in Boolean algebra, there are different interpretations of these
+values. The interpretation we&rsquo;ve been using so far is <em>informational</em>:</p>
 <ul>
-<li>
-<p>The <strong>3-valued negation</strong> function:</p>
-
-    <img src="https://logicalmethods.ai/textbook/many-valued/img/negation.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-</li>
-<li>
-<p>The <strong>3-valued conjunction</strong> function:</p>
-
-    <img src="https://logicalmethods.ai/textbook/many-valued/img/conjunction.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-</li>
-<li>
-<p>The <strong>3-valued disjunction</strong> function:</p>
-
-    <img src="https://logicalmethods.ai/textbook/many-valued/img/disjunction.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-</li>
+<li>the value <code class="customCode">1</code> represents the information that something is true,</li>
+<li>the value <code class="customCode">0</code> represents the information that something is false, and</li>
+<li>the value <code class="customCode">ω</code> represents the lack of information.</li>
 </ul>
-<p>These truth-tables are build on the idea that <span class="excalifont">i</span> stands for an &ldquo;unsettled&rdquo;
-classical truth-value. For example, <span class="excalifont">1\times i = i</span> because if <span class="excalifont">i</span> would turn
-out to be <span class="excalifont">1</span>, then we&rsquo;d have <span class="excalifont">1\times 1=1</span> but if <span class="excalifont">i</span> turns out to be <span class="excalifont">0</span>, then
-we&rsquo;d have <span class="excalifont">1\times 0=0</span>. So <span class="excalifont">1\times i</span> is unsettled itself.</p>
-<p>Instead, we have <span class="excalifont">0\times i=0</span> since the value of <span class="excalifont">i</span> doesn&rsquo;t matter to see that
-the conjunction must be false. If <span class="excalifont">i</span> turned out to be <span class="excalifont">1</span>, we&rsquo;d have <span class="excalifont">0\times
-1=0</span>, and if <span class="excalifont">i</span> turned out to be <span class="excalifont">0</span>, we&rsquo;d have <span class="excalifont">0\times 0=0</span>. Either way,
-we get <span class="excalifont">0</span>, which is why we say <span class="excalifont">0\times i=0</span>.</p>
-<p>We can now use these truth-functions to recursively define truth in a valuation
-in the same way we did it in Boolean algebra:</p>
-<div class="text-center my-4 excalifont">\nu(\neg A)=-\nu(A)</div>
-<div class="text-center my-4 excalifont">\nu(A\land B)=\nu(A)\times \nu(B)</div>
-<div class="text-center my-4 excalifont">\nu(A\lor B)=\nu(A)+\nu(B)</div>
-<p>Just that now the truth-functions <span class="excalifont">-,\times,+</span> are 3-valued.</p>
-<p>Somewhat surprisingly, even the definition of 
+<p>But other interpretations are possible, such as decided for, decided against,
+undecided or high voltage,  low voltage, intermediate voltage, etc. Even
+completely different interpretations, where <code class="customCode">ω</code> means both true and false are
+possible. This leads to <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Paraconsistent_logic"
+  target="_blank">paraconsistent
+logic</a>, which we won&rsquo;t go
+into the details of here.</p>
+<p>Also the notion of truth-function generalizes nicely from Boolean algebra to
+our Kleene algebra: Kleene truth-functions are functions that take our three
+values as inputs and outputs.</p>
+<p>The standard Kleene truth-functions are given by the following tables:</p>
 
+<img src="https://logicalmethods.ai/textbook/many-valued/img/kleene_tables.png" class="mx-auto rounded d-block inert-img img-fluid"  width="900px"  alt="" >
 
-<a href="https://logicalmethods.ai/textbook/boolean//#validity"
-   
-   
-   
-   
-   
-   > valid inference  </a>
+<p>We denote these functions using <span class="Kleene">NOT</span>, <span class="Kleene">AND</span>, <span class="Kleene">OR</span> (in <span
+class="dark-red">red</span>) rather than <span class="Boolean">NOT</span>, <span class="Boolean">AND</span>, <span class="Boolean">OR</span> (in <span
+class="dark-blue">blue</span>) to distinguish the Boolean from the Kleene
+truth-functions.</p>
+<p>To understand the functions, our informational interpretation is helpful. For
+example, if we have the information that a sentence is false, i.e. has value
+<code class="customCode">0</code>, this is enough information to know that it&rsquo;s negation is true, so we set
+<code class="customCode"><span class="Kleene">NOT</span> 0 = 1</code>. But if we have no information about the sentence, i.e. value
+<code class="customCode">ω</code>, then this is not enough information to determine what the negation of that
+sentence should be. In other words <code class="customCode"><span class="Kleene">NOT</span> ω = ω</code>. This interpretation works
+for all the other connectives: if the information about the inputs is enough to
+determine the classical truth-value of the output, this is returned, otherwise
+<code class="customCode">ω</code>. Note that, in particular, if the inputs are classical truth-values <code class="customCode">0</code> or
+<code class="customCode">1</code>, the output of any Kleene truth-function is the same as the output of the
+corresponding Boolean function.</p>
+<p>In contrast to Boolean algebra, in a Kleene setting, the functions <span class="Kleene">NOT</span>,
+<span class="Kleene">AND</span>, <span class="Kleene">OR</span> are <em>not</em> truth-functionally complete. To get a
+truth-functionally complete set, we need to add the following function, which is
+sometimes called the &ldquo;definedness&rdquo; function:</p>
 
- remains the same—we just
-applied in a 3-valued setting.</p>
-<p>First, we define the <span class="excalifont">[A]</span> of a formula <span class="excalifont">A</span> to be: <div class="text-center my-4 excalifont">[A]:=\Set{\nu:\nu(A)=1}.</div>
-Put in words, this means that the content of <span class="excalifont">A</span> is the set of
-valuations/models, which assign to <span class="excalifont">A</span> the truth-value <span class="excalifont">1</span>. We then say:</p>
-<div class="text-center my-4 excalifont">P_1,P_2,\dots\vDash C\Leftrightarrow [P_1]\cap [P_2]\cap \dots\subseteq [C]</div>
-<p>Many inference that are classically valid remain valid in Kleene logic.
-Remember, for example our proof of concept inference from
+<img src="https://logicalmethods.ai/textbook/many-valued/img/delta_table.png" class="mx-auto rounded d-block inert-img img-fluid"  width="150px"  alt="" >
 
+<p>This function doesn&rsquo;t play a huge practically role, but it cannot be expressed
+using <span class="Kleene">NOT</span>, <span class="Kleene">AND</span>, <span class="Kleene">OR</span> alone. But <span class="Kleene">Δ</span> together with <span class="Kleene">NOT</span>, <span class="Kleene">AND</span>,
+<span class="Kleene">OR</span> can express all possible Kleene truth-functions.</p>
+<p>In Boolean algebra, we provided implementations of the Boolean truth-functions
+using relay circuits. In Kleene logic, an implementation are SQL queries using
+the SQL operations <code class="customCode"><span class="dark-blue">NOT</span>, <span
+class="dark-blue">AND</span>, <span class="dark-blue">OR</span></code>. To show how
+this works, let&rsquo;s create a simple SQL DB that contains two tables, one for all
+the Kleene values and one for all pairs of Kleene values:</p>
 
+<img src="/img/sql_logo.png" alt="SQL_Logo" class="float-start" style="height:1em;width:auto;"/>
 
-<a href="https://logicalmethods.ai/textbook/boolean//#validity"
-   
-   
-   
-   
-   
-   > Chapter 4 </a>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">TruthValues</span><span class="w"> </span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">ValuePairs</span><span class="w"> </span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">TruthValues</span><span class="w"> </span><span class="k">VALUES</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">(</span><span class="k">NULL</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">ValuePairs</span><span class="w"> </span><span class="k">VALUES</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="k">NULL</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="k">NULL</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="k">NULL</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="k">NULL</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="k">NULL</span><span class="p">,</span><span class="k">NULL</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>In that DB, the following queries directly reproduce our Kleene truth-tables:</p>
 
-:</p>
-<div class="text-center my-4 excalifont">\mathsf{RAIN}\lor \mathsf{BIKE},\neg\mathsf{RAIN}\vDash\mathsf{BIKE}</div>
-<p>The reasoning to show that this inference is valid works <em>exactly like that</em> in
-Kleene logic.</p>
-<blockquote>
-<p>Let&rsquo;s check out the relevant valuations:</p>
-<ul>
-<li>
-<p>The members of <span class="excalifont">[\mathsf{RAIN}\lor \mathsf{BIKE}]</span> are:</p>
-<ul>
-<li>
-<p>all valuations <span class="excalifont">\nu</span> with <span class="excalifont">\nu(\mathsf{RAIN})=1</span></p>
-</li>
-<li>
-<p>all valuations <span class="excalifont">\nu</span> with <span class="excalifont">\nu(\mathsf{BIKE})=1</span></p>
-</li>
-</ul>
-</li>
-<li>
-<p>The members of <span class="excalifont">[\neg\mathsf{RAIN}]</span> are such that <span class="excalifont">\nu(\mathsf{RAIN})=0</span></p>
-</li>
-<li>
-<p>Since we can&rsquo;t have <span class="excalifont">\nu(\mathsf{RAIN})=0</span> and <span class="excalifont">\nu(\mathsf{RAIN})=1</span>, we know
-that the members of <span class="excalifont">[\mathsf{RAIN}\lor \mathsf{BIKE}]\cap [\neg\mathsf{RAIN}]</span>
-are only the ones that <span class="excalifont">\nu(\mathsf{BIKE})=1</span>.</p>
-</li>
-<li>
-<p>But that means that <div class="text-center my-4 excalifont">[\mathsf{RAIN}\lor \mathsf{BIKE}]\cap
-[\neg\mathsf{RAIN}]\subseteq [\mathsf{BIKE}],</div> as desired.</p>
-</li>
-</ul></blockquote>
-<p>So, what changes?</p>
-<h3 id="kleene-laws">Kleene laws<button class="btn btn-back-to-top">
-    
-    <i class="bi bi-chevron-double-up"></i>
-    
-  </button>
-</h3>
-<hr>
+<img src="/img/sql_logo.png" alt="SQL_Logo" class="float-start" style="height:1em;width:auto;"/>
 
-<p>It turns out that almost all the 
-
-
-<a href="https://logicalmethods.ai/textbook/boolean//#boolean-laws"
-   
-   
-   
-   
-   
-   > Boolean laws </a>
-
- also hold in Kleene
-logic. It&rsquo;s easier to say which ones <em>don&rsquo;t</em>.</p>
-<p>Of the one&rsquo;s we listed in 
-
-
-<a href="https://logicalmethods.ai/textbook/boolean//#boolean-laws"
-   
-   
-   
-   
-   
-   >
-chapter 4 </a>
-
-, it&rsquo;s just the following two which fail:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">(</span><span class="k">NOT</span><span class="w"> </span><span class="n">X</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">TruthValues</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">ValuePairs</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">ValuePairs</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>You can convince yourself by running the code in <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://www.db-fiddle.com/f/ixfKDFBJaxNfSSysEQvpgk/0"
+  target="_blank">db-fiddle</a>.</p>
+<p>A cool little side-effect of this is that you can use SQL as a <span class="excalifont">K3</span>
+<code class="customCode">SAT</code>-solver, which is an idea you&rsquo;ll explore in the exercises.</p>
+<p>Just like in Boolean algebra, there are laws of <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Kleene_algebra"
+  target="_blank">Kleene
+algebra</a>. Here&rsquo;s a
+straight-forward</p>
 <table>
   <thead>
       <tr>
-          <th>Negation laws</th>
-          <th>   </th>
+          <th></th>
+          <th></th>
           <th></th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td>Complementation 1</td>
-          <td></td>
-          <td><span class="excalifont">x\times -x=0</span></td>
+          <td><code class="customCode">(X <span class="Kleene">OR</span> (Y <span class="Kleene">OR</span> Z)) = ((X <span class="Kleene">OR</span> Y) <span class="Kleene">OR</span> Z)</code><br><code class="customCode">(X <span class="Kleene">AND</span> (Y <span class="Kleene">AND</span> Z)) = ((X <span class="Kleene">AND</span> Y) <span class="Kleene">AND</span> Z)</code></td>
+          <td>  </td>
+          <td><span class="excalifont">(&ldquo;Associativity&rdquo;)</span></td>
       </tr>
       <tr>
-          <td>Complementation 2</td>
+          <td> </td>
           <td></td>
-          <td><span class="excalifont">x+ -x=1</span></td>
+          <td></td>
       </tr>
       <tr>
-          <td> </td>
+          <td><code class="customCode">(X <span class="Kleene">OR</span> Y) = (Y <span class="Kleene">OR</span> X)</code><br><code class="customCode">(X <span class="Kleene">AND</span> Y) = (Y <span class="Kleene">AND</span> X)</code></td>
+          <td></td>
+          <td><span class="excalifont">(&ldquo;Commutativity&rdquo;)</span></td>
+      </tr>
+      <tr>
+          <td> </td>
           <td></td>
           <td></td>
+      </tr>
+      <tr>
+          <td><code class="customCode">(X <span class="Kleene">OR</span> (X <span class="Kleene">AND</span> Y)) = X</code><br><code class="customCode">(X <span class="Kleene">AND</span> (X <span class="Kleene">OR</span> Y)) = X</code></td>
+          <td></td>
+          <td><span class="excalifont">(&ldquo;Absorption&rdquo;)</span></td>
+      </tr>
+      <tr>
+          <td> </td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td><code class="customCode">(X <span class="Kleene">OR</span> (Y <span class="Kleene">AND</span> Z)) = ((X <span class="Kleene">OR</span> Y) <span class="Kleene">AND</span> (X <span class="Kleene">OR</span> Z))</code><br><code class="customCode">(X <span class="Kleene">AND</span> (Y <span class="Kleene">OR</span> Z)) = ((X <span class="Kleene">AND</span> Y) <span class="Kleene">OR</span> (X <span class="Kleene">AND</span> Z))</code></td>
+          <td></td>
+          <td><span class="excalifont">(&ldquo;Distributivity&rdquo;)</span></td>
+      </tr>
+      <tr>
+          <td> </td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td><code class="customCode">(X <span class="Kleene">OR</span> 0) = X</code><br><code class="customCode">(X <span class="Kleene">AND</span> 1) = X</code></td>
+          <td></td>
+          <td><span class="excalifont">(&ldquo;Identity&rdquo;)</span></td>
+      </tr>
+      <tr>
+          <td> </td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td><code class="customCode">(X <span class="Kleene">AND</span> 0) = 0</code><br><code class="customCode">(X <span class="Kleene">OR</span> 1) = 1</code></td>
+          <td></td>
+          <td><span class="excalifont">(&ldquo;Domination&rdquo;)</span></td>
+      </tr>
+      <tr>
+          <td> </td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td><code class="customCode"><span class="Kleene">NOT</span> (<span class="Kleene">NOT</span> X) = X</code></td>
+          <td></td>
+          <td><span class="excalifont">(&ldquo;Involution&rdquo;)</span></td>
+      </tr>
+      <tr>
+          <td> </td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td><code class="customCode"><span class="Kleene">NOT</span> (X <span class="Kleene">OR</span> Y) = (<span class="Kleene">NOT</span> X) <span class="Kleene">AND</span> (<span class="Kleene">NOT</span> Y)</code><br><code class="customCode"><span class="Kleene">NOT</span> (X <span class="Kleene">AND</span> Y) = (<span class="Kleene">NOT</span> X) <span class="Kleene">OR</span> (<span class="Kleene">NOT</span> Y)</code></td>
+          <td></td>
+          <td><span class="excalifont">(&ldquo;De Morgan laws&rdquo;)</span></td>
+      </tr>
+      <tr>
+          <td> </td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td><code class="customCode">(X <span class="Kleene">AND</span> <span class="Kleene">NOT</span> X) <span class="Kleene">AND</span> (Y <span class="Kleene">OR</span> <span class="Kleene">NOT</span> Y) = (X <span class="Kleene">AND</span> <span class="Kleene">NOT</span> X)</code></td>
+          <td></td>
+          <td><span class="excalifont">(&ldquo;Kleene condition&rdquo;)</span></td>
       </tr>
   </tbody>
 </table>
-<p>To see this, just plug in <span class="excalifont">i</span> for <span class="excalifont">x</span> in the equations:</p>
-<div class="text-center my-4 excalifont">i\times -i=i\times i=i</div>
-<div class="text-center my-4 excalifont">i+-i=i+i=i</div>
-<p>The main consequence of the failure of these two laws is that Kleene logic has
-<strong>no logical truth</strong>. In Boolean logic, we have, for example:</p>
-<div class="text-center my-4 excalifont">\vDash \mathsf{RAIN\\_TOMORROW}\lor\neg \mathsf{RAIN\\_TOMORROW}</div>
-<p>This means, of course, that the formula get&rsquo;s value <span class="excalifont">1</span> in all models, it&rsquo;s a
-logical truth—<em>of Boolean logic</em>. In Kleene logic, it&rsquo;s easy to find a
-valuation, where the formula is not true. Just assign:</p>
-<div class="text-center my-4 excalifont">\nu(\mathsf{RAIN\\_TOMORROW})=i</div>
-<p>We get:</p>
-<div class="text-center my-4 excalifont">\nu(\mathsf{RAIN\\_TOMORROW}\lor\neg \mathsf{RAIN\\_TOMORROW})=i</div>
-<p>Under the open world assumption, this is exactly as it should be: whether it
-rains tomorrow or not is an open question, it&rsquo;s not settled one way or the
-other.</p>
-<p>Whether the absence of logical truths is a problem or not is a matter of debate.
-But here&rsquo;s a reason for thinking why in many AI applications it&rsquo;s not:</p>
-<blockquote>
-<p>When we&rsquo;re developing an AI capable of
-<i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Machine_learning"
-  target="_blank">learning</a> the starting
-assumption is that there are things that it doesn&rsquo;t know. Correspondingly, the
-AI shouldn&rsquo;t make <em>any</em> assumptions about what the world is like with respect
-to the things it doesn&rsquo;t know, it should be a <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Tabula_rasa"
-  target="_blank">tabula
-rasa</a>. The failure of the Boolean
-laws is an example of just that: the AI doesn&rsquo;t know whether it rains tomorrow or
-not. That&rsquo;s the point!</p></blockquote>
-<h3 id="łukasiewicz-logic">Łukasiewicz logic<button class="btn btn-back-to-top">
-    
-    <i class="bi bi-chevron-double-up"></i>
-    
-  </button>
-</h3>
-<hr>
-
-<p>The difference between Kleene&rsquo;s and Łukasiewicz&rsquo;s logic just concerns the
-treatment of the  
-
-
-<a href="https://logicalmethods.ai/textbook/conditionals/"
-   
-   
-   
-   
-   
-   > logical conditional
-</a>
-
- in 3-valued logic.</p>
-<p>Remember the Boolean truth-table for the conditional:</p>
-
-<img src="https://logicalmethods.ai/textbook/many-valued/img/tt.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-<p>How should we generalize this to a 3-valued setting?</p>
-
-<img src="https://logicalmethods.ai/textbook/many-valued/img/cond_question.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-<p>Kleene uses the standard rationale of reading <span class="excalifont">i</span> as an unsettled classical
-truth-value, which gives us:</p>
-
-<img src="https://logicalmethods.ai/textbook/many-valued/img/cond_kleene.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-<p>This truth-table recovers the Boolean logical equivalence between <span class="excalifont">A\to B</span> and <span class="excalifont">\neg
-A\lor B</span> in our 3-valued setting. But it faces a problem.</p>
-<p>Consider the conditional:</p>
-<div class="text-center my-4 excalifont">\mathsf{RAIN\\_TOMORROW}\to \mathsf{RAIN\\_TOMORROW}</div>
-<p>This sounds plausible even if we think that it&rsquo;s not settled whether it rains
-tomorrow: if it does rain, it rains.</p>
-<p>But on Kleene&rsquo;s table for <span class="excalifont">\Rightarrow</span>, it&rsquo;s possible to give this formula the
-value <span class="excalifont">i</span>. Just set:</p>
-<div class="text-center my-4 excalifont">\nu(\mathsf{RAIN\\_TOMORROW})=i</div>
-<p>You get:</p>
-<div class="text-center my-4 excalifont">\nu(\mathsf{RAIN\\_TOMORROW}\to \mathsf{RAIN\\_TOMORROW})=i\Rightarrow_K i=i</div>
-<p>Łukasiewicz&rsquo;s thought is that this is unsatisfactory, treating <span class="excalifont">A\to A</span> as a
-logical law doesn&rsquo;t make any substantial assumptions about the world. So we
-should adjust our table to make it a law. It turns out that this is possible,
-without introducing additional problems by setting:</p>
-
-<img src="https://logicalmethods.ai/textbook/many-valued/img/cond_luk.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-<p>This table gives us:</p>
-<div class="text-center my-4 excalifont">\vDash\mathsf{RAIN\\_TOMORROW}\to \mathsf{RAIN\\_TOMORROW}</div>
-<p>It&rsquo;s easy to check this by considering the possible truth-values for <span class="excalifont">\mathsf{RAIN\_TOMORROW}</span>:</p>
-<ul>
-<li>
-<p>If <span class="excalifont">\nu(\mathsf{RAIN\_TOMORROW})=0</span>, then <span class="excalifont">\nu(\mathsf{RAIN\_TOMORROW}\to \mathsf{RAIN\_TOMORROW})=0\Rightarrow_{Ł} 0=1</span></p>
-</li>
-<li>
-<p>If <span class="excalifont">\nu(\mathsf{RAIN\_TOMORROW})=i</span>, then <span class="excalifont">\nu(\mathsf{RAIN\_TOMORROW}\to \mathsf{RAIN\_TOMORROW})=i\Rightarrow_{Ł} i=1</span></p>
-</li>
-<li>
-<p>If <span class="excalifont">\nu(\mathsf{RAIN\_TOMORROW})=1</span>, then <span class="excalifont">\nu(\mathsf{RAIN\_TOMORROW}\to \mathsf{RAIN\_TOMORROW})=1\Rightarrow_{Ł} 1=1</span></p>
-</li>
-</ul>
-<p>The table for <span class="excalifont">\Rightarrow</span> marks the only difference between Kleene&rsquo;s and
-Łukasiewicz&rsquo;s logics. These differences mainly play a role when we&rsquo;re trying to
-formula <em>rules</em> for 3-valued systems.</p>
-<h2 id="fuzzy-logics">Fuzzy logics<button class="btn btn-back-to-top">
+<p>This set of laws is a sound and complete axiomatization of Kleene algebras, that
+is we can derive all (and only) the laws of Kleene algebra from them.</p>
+<h2 id="kleene-logic--k3">Kleene Logic — K3<button class="btn btn-back-to-top">
     
     <i class="bi bi-chevron-double-up"></i>
     
@@ -1123,191 +1188,640 @@ formula <em>rules</em> for 3-valued systems.</p>
 </h2>
 <hr>
 
-<p>Having seen a fruitful approach to indeterminacy, we&rsquo;ll turn to a different
-issue that motivates abandoning the bivalence assumption: <em>vagueness</em>.</p>
-<p>Take, for example, the statement <div class="text-center my-4 excalifont">\mathsf{WARM}.</div> We might come across this in
-the context of a weather forecast system, as in the previous section. When
-should our system judge this statement as <em>true</em>?</p>
-<p>Clearly, at 0℃ , the statement is false. And at 30℃  the statement is clearly
-true. But what at 20℃ ? It doesn&rsquo;t seem to be clear where the cut-off
-point is. Suppose you think it needs to be at least 20℃  to be warm, but 20℃
-<em>is</em> warm. What about At 19.8℃ , then? There is almost no perceivable difference
-between the two temperatures, but we just said one is warm the other is cold.</p>
-<p>There doesn&rsquo;t seem to be a clear &ldquo;cutoff point&rdquo; between warm and not: the
-concept is <strong>vague</strong>.<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> Classical propositional logic cannot easily
-handle vague concepts: in classical logic <span class="excalifont">\mathsf{WARM}<div class="text-center my-4 excalifont">, for any given
-possible situation, it is either warm or not. In other words, there is a clear
-cut-off point across all possible situations.</p>
-<p><strong>Fuzzy logic</strong> is an approach to valid inference involving vague concepts,
-which models vagueness by using <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Real_number"
-  target="_blank">real
-numbers</a> between 0 and 1 (from the
-so-called <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Unit_interval"
-  target="_blank">unit interval</a>) instead
-of truth-values.</p>
-<p>For example, a fuzzy logician could assign to </span>\mathsf{WARM}<span class="excalifont">:</p>
-<ul>
-<li>
-<p>At 30℃  a value close to 1.</p>
-</li>
-<li>
-<p>At 20℃  a value around 0.7.</p>
-</li>
-<li>
-<p>At 18℃  a value around 0.6.</p>
-</li>
-<li>
-<p>At 10℃  a value around 0.2.</p>
-</li>
-<li>
-<p>At 0℃  the value 0.</p>
-</li>
-</ul>
-<p>This approach is then extended to handle complex vague concepts, like</p>
-</div>\mathsf{WARM}\land\mathsf{HUMID},<div class="text-center my-4 excalifont"> and the like. This is the topic we'll be
-looking into in this section.
-<p>Fuzzy logic has had a significant impact on AI. After <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Lotfi_A._Zadeh"
-  target="_blank">Lotfi
-Zadeh</a> introduced the AI/computer
-science community, the approach took off mainly in Japanese research and
-development, where many so-called <i class="bi bi-box-arrow-up-right h-6"></i>
+<p>So far, we&rsquo;ve been thinking about a low-level implementation of Kleene
+reasoning, viz. information retrieval from DB with incomplete information. But
+we can also use <span class="excalifont">K3</span> for high-level deductive inference in situations with
+partial information or events with unknown outcomes, such as tomorrow&rsquo;s weather.</p>
+<p>In order to do so, we need to define the notion of a <em>model</em> in <span class="excalifont">K3</span>. Remember
+that a model is just a possible reasoning scenario. Following along with the
+information idea, we can think of the different reasoning scenarios as
+information states. So, if we have, for example, two propositional variables
+<span class="excalifont">RAIN</span> to say that it rains tomorrow and <span class="excalifont">SUN</span> to say that tomorrow the sun will
+shine, there are now 9 scenarios:</p>
+<ol>
+<li>We have the information that the sun will shine and that it will rain</li>
+<li>We have the information that the sun will shine and it won&rsquo;t rain</li>
+<li>We have the information that the sun will shine but no information about rain</li>
+<li>We have the information that the sun won&rsquo;t shine and that it will rain</li>
+<li>We have the information that the sun won&rsquo;t shine and it won&rsquo;t rain</li>
+<li>We have the information that the sun won&rsquo;t shine but no information about rain</li>
+<li>We have no information about the sun but that it will rain</li>
+<li>We have no information about the sun but that it won&rsquo;t rain</li>
+<li>We have no information about either the sun or the rain</li>
+</ol>
+<p>That is, logical space looks something like this:</p>
+
+<img src="https://logicalmethods.ai/textbook/many-valued/img/kleene-space.png" class="mx-auto rounded d-block inert-img img-fluid"  width="400px"  alt="" >
+
+<p>Following essentially the same idea as in Boolean algebra, we can think of each
+of these scenarios as a function from the propositional variables into the
+Kleene truth-values. The information state 1., for example, corresponds to the
+function that assigns both <span class="excalifont">SUN</span> and <span class="excalifont">RAIN</span> the value <code class="customCode">1</code>, while state 3.
+assings <span class="excalifont">SUN</span> the value <code class="customCode">1</code> and <span class="excalifont">RAIN</span> the value <code class="customCode">ω</code>. So, we can write <code class="customCode">v(<span class="excalifont">A</span>)</code>
+just like before, just that <code class="customCode">v(<span class="excalifont">A</span>)
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+{ 0, 1, ω }</code> rather than just <code class="customCode">{0,
+1}</code>.</p>
+<p>The truth-values for complex formulas, then are calculated using the K3
+truth-functions in the obvious way:</p>
+<div class="text-center my-4 excalifont">v(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A) = <span class="Kleene">NOT</span> v(A)</div>
+<div class="text-center my-4 excalifont">v(A
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B) = v(A) <span class="Kleene">AND</span> v(A)</div>
+<div class="text-center my-4 excalifont">v(A
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B) = v(A) <span class="Kleene">OR</span> v(A)</div>
+<p>Correspondingly, we also get the notion of a proposition expressed by a formula.
+In fact, the following definition works just like before:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+<code class="customCode">A</code>
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ = { M : <code class="customCode">A</code> is true in M }</div>
+<p>These propositions are a bit &ldquo;bigger&rdquo; than the classical propositions, since
+there are now more models, but otherwise things work like in classical logic.
+Here are, for example, the propositions <span class="excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+SUN
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</span> and <span class="excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</span>:
+
+<img src="https://logicalmethods.ai/textbook/many-valued/img/k3-props.png" class="mx-auto rounded d-block inert-img img-fluid"  width="800px"  alt="" >
+</p>
+<p>In fact, we can also apply our general blueprint for the definition of logical
+consequence in <span class="excalifont">K3</span>:</p>
+<div class="text-center my-4 excalifont"><code class="customCode">P₁, P₂, … 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+ C</code> &emsp; if and only if &emsp; <code class="customCode">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+P₁
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+
+<img src="/img/cap.png" alt="Intersection" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+ P₂
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+
+<img src="/img/cap.png" alt="Intersection" class="inline-icon" style="height:1em;width:auto;"/>
+ … 
+<img src="/img/subseteq.png" alt="Subseteq" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+C
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</code></div>
+<p>We can use this definition, for example, to see that our disjunctive syllogism
+from before is <span class="excalifont">K3</span>-valid:</p>
+<div class="text-center my-4 excalifont">(SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN), 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+SUN 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+ RAIN</div>
+<p>We can check this by inspecting the following diagram:</p>
+
+<img src="https://logicalmethods.ai/textbook/many-valued/img/ds_k3.png" class="mx-auto rounded d-block inert-img img-fluid"  width="400px"  alt="" >
+
+<p>The shaded area is the intersection of <span class="excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+SUN
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+
+<img src="/img/cap.png" alt="Intersection" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</span> of
+<span class="excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+SUN
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</span> and <span class="excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+SUN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</span>. And
+the only model in that intersection is the one where we have the information
+that there&rsquo;s no sun but it will rains, which is a member of
+<span class="excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+RAIN
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</span>. So, the inference is valid: from the
+information that it will be rainy or sunny and that it will not be sunny, we can
+infer the information that it will be rainy.</p>
+<p>The fact that we get Disjunctive Syllogism in <span class="excalifont">K3</span> also means that if we
+interpret the conditional <div class="text-center my-4 excalifont">A 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ B</div> in the same way as in classical
+logic by saying that</p>
+<div class="text-center my-4 excalifont">v(A
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+B) = (<span class="Kleene">NOT</span> v(A)) <span class="Kleene">OR</span> v(B),</div>
+<p>we get a material conditional that satisfies MP. That means, in turn, that we
+can use forward chaining and backward chaining with Horn-clauses <em>also</em> in <span class="excalifont">K3</span>.
+That is, we can use <span class="excalifont">K3</span> to reason with
+<abbr title="knowledge bases"><a  class="link-underline-opacity-0 link-body-emphasis"> KBs</a></abbr> in the context of
+potentially incomplete information. Great!</p>
+<p>So, you might be wondering what&rsquo;s the difference to classical logic, then? It turns
+out that there <em>are</em> inferences that are classically valid but invalid in <span class="excalifont">K3</span>,
+but it&rsquo;s more instructive to think about
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Tautology_%28logic%29"
+  target="_blank">tautologies</a> first, which are
+the logical truths of propositional logic—formulas which have the value <code class="customCode">1</code> in
+every model. In classical logic, there are plenty of tautologies, such as any
+formula of the form <span class="excalifont">A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A</span>. But, as it turns out, there are
+<em>no</em> tautologies in <span class="excalifont">K3</span>. We won&rsquo;t prove this general fact, but we can check a
+simple counter-example of a formula, which is a classical tautology, but not
+true in some <span class="excalifont">K3</span> model.</p>
+<p>Take the following formula, for example: <div class="text-center my-4 excalifont">RAIN
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN</div>
+We&rsquo;ve already convinced ourselves that this formula gets value <code class="customCode">1</code> in every
+classical model. But consider any <span class="excalifont">K3</span> model, where we don&rsquo;t have any
+information about the rain, that is <span class="excalifont">v(RAIN) = ω</span>. In such a model, we have:</p>
+<div class="text-center my-4 excalifont">v(RAIN 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN) = ω <span class="Kleene">OR</span> (<span class="Kleene">NOT</span> ω) = ω <span class="Kleene">OR</span> ω = ω</div>
+<p>But <span class="excalifont">ω ≠ 1</span>, which means that in any such model, where <span class="excalifont">v(RAIN) = ω</span>, is a model
+where <span class="excalifont">RAIN
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN</span> doesn&rsquo;t have value <code class="customCode">1</code>. Under the
+information interpretation, this makes quite some sense: it&rsquo;s not the case that
+regardless of which information we have, we either have the information that it
+rains or the information that it doesn&rsquo;t. There are no things that we know
+<em>independent of</em> any information.</p>
+<p>There are classically valid inferences, which rely on the fact that statements
+like <span class="excalifont">RAIN
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN</span> are tautologies, and which fail in <span class="excalifont">K3</span>.
+For example, the somewhat random inference:</p>
+<div class="text-center my-4 excalifont">SUN 
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN</div>
+<p>If we take a model, where <span class="excalifont">v(SUN) = 1</span> and <span class="excalifont">v(RAIN) = <code class="customCode">ω</code></span>, we&rsquo;ve got a
+countermodel.</p>
+<p>Unfortunately, though, the connection between <code class="customCode">SAT</code> and logical consequence that
+we&rsquo;ve used in Boolean logic and classical FOL <strong>doesn&rsquo;t</strong> hold in <span class="excalifont">K3</span>:</p>
+<div class="text-center my-4 excalifont"><code class="customCode">P₁, P₂, … 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+ C</code> &emsp; if and only if &emsp; not-<code class="customCode">SAT </code> { <code class="customCode">P₁, P₂, …, 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ C</code> }</div>
+<p>The reason for this is that there in <span class="excalifont">K3</span>, there can be countermodels that don&rsquo;t
+satisfy <span class="excalifont">{ <code class="customCode">P₁, P₂, …, 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ C</code> }</span>. A <span class="excalifont">K3</span> countermodel is a model where
+all the premises are true, but the conclusion isn&rsquo;t. But that doesn&rsquo;t mean that
+the conclusion is <em>false</em>—it could also be a model where the conclusion is
+undetermined.</p>
+<p>The model which shows that <span class="excalifont">RAIN
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN</span> doesn&rsquo;t follow from
+<span class="excalifont">SUN</span> in <span class="excalifont">K3</span>, is a case in point: it&rsquo;s a model where <span class="excalifont">RAIN</span>, and thus
+<span class="excalifont">RAIN
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN</span> is <code class="customCode">ω</code>. But crucially, the negation of
+<span class="excalifont">RAIN
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN</span>, that is
+<span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+(RAIN
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN)</span>, is unsatisfiable—and so is every set that contains it, like</p>
+<div class="text-center my-4 excalifont">{ SUN, 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+(RAIN
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN) }</div>
+For to make  <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+(RAIN
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN)</span> have value <code class="customCode">1</code>, the formula 
+<span class="excalifont">RAIN
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN</span> would need to have value <code class="customCode">0</code>. But the only way
+that could happen, even in <span class="excalifont">K3</span>, is if both <span class="excalifont">RAIN</span> and <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN</span> have
+value <code class="customCode">0</code>, which in <span class="excalifont">K3</span> as in classical logic is excluded. So, 
+<div class="text-center my-4 excalifont">{ SUN, 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+(RAIN
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN) }</div>
+is unsatisfiable in <span class="excalifont">K3</span> but the inference isn't valid.
+<p>But that doesn&rsquo;t mean that we can&rsquo;t use a <code class="customCode">SAT</code>-solving <em>style</em> approach. For
+example, it&rsquo;s straight-forward to develop a brute-force truth-table method,
+where we generate all the relevant models and check if in the models where the
+premises are true, the conclusion is as well. In fact, we can easily illustrate
+the idea in <code class="customCode">SQL</code>.</p>
+<p>Take our truth-value DB and consider the following query:</p>
+
+<img src="/img/sql_logo.png" alt="SQL_Logo" class="float-start" style="height:1em;width:auto;"/>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">TruthValues</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="p">((</span><span class="n">X</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="p">(</span><span class="k">NOT</span><span class="w"> </span><span class="n">X</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="k">OR</span><span class="w"> </span><span class="p">((</span><span class="n">X</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="p">(</span><span class="k">NOT</span><span class="w"> </span><span class="n">X</span><span class="p">))</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="p">));</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>This query returns all the rows of the table where the Kleene expression</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+X <span class="Kleene">OR</span> (<span class="Kleene">NOT</span> X)
+</code></div>
+<p>either returns the value <code class="customCode">0</code> or <code class="customCode">ω</code>. But that&rsquo;s just the truth-condition for the
+formula <span class="excalifont">RAIN
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN</span> where we let <code class="customCode"><span class="excalifont">v(A)</span> = X</code>. In other
+words, the query searches for a countermodel to the formula <span class="excalifont">RAIN
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN</span>. It does find one, and so we can conclude that the formula is not a
+<span class="excalifont">K3</span> tautology.</p>
+<p>In a similar way, we can test the inference</p>
+<div class="text-center my-4 excalifont">SUN 
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN</div>
+<p>using the SQL code:</p>
+
+<img src="/img/sql_logo.png" alt="SQL_Logo" class="float-start" style="height:1em;width:auto;"/>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">ValuePairs</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w">               
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="k">NOT</span><span class="w"> </span><span class="n">X</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w">          
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">OR</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="k">NOT</span><span class="w"> </span><span class="n">X</span><span class="p">)</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>You can see for yourself in our <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://www.db-fiddle.com/f/ixfKDFBJaxNfSSysEQvpgk/1"
+  target="_blank">db-fiddle</a>.</p>
+<p>To conclude our discussion of <span class="excalifont">K3</span>, let&rsquo;s talk about why <span class="excalifont">K3</span> is a useful logic
+in AI-reasoning contexts. We&rsquo;ve seen that it is intimately connected to
+low-level information retrieval—queries—with incomplete DBs. But there&rsquo;s also a
+high-level connection to popular AI-reasoning methods we&rsquo;ve discussed before.</p>
+<p>Think about forward chaining and backward chaining with KBs containing
+Horn-clauses, for a moment. Remember our example of a KB for rainbow sightings:</p>
+
+<img src="https://logicalmethods.ai/textbook/many-valued/img/kb_rainbow.png" class="mx-auto d-block rounded inert-img img-fluid"  width="500px"  alt="" >
+
+<p>We managed to derive <span class="excalifont">RAINBOW</span> from this using the facts <span class="excalifont">RAIN</span>, <span class="excalifont">MORNING</span>, and
+<span class="excalifont">CLEAR</span>. In that situation, we concluded that <span class="excalifont">RAINBOW</span> is true—<span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
+ 
+will see a rainbow. But we also wondered what we should say if we <em>couldn&rsquo;t</em>
+derive <span class="excalifont">RAINBOW</span>—for example, because our facts only contain <span class="excalifont">RAIN</span>, <span class="excalifont">MORNING</span>.
+Does that mean that we <em>won&rsquo;t</em> see a rainbow <em>or</em> that we don&rsquo;t know whether we
+will?</p>
+<p>That depends on the way we interpret our KB: Is it a omniscient collection of
+all the laws and rules concerning the subject matter—say, all the ways a rainbow
+can occur? Then, we might be tempted to think that the fact that we can&rsquo;t derive
+<span class="excalifont">RAINBOW</span> means that <span class="excalifont">RAINBOW</span> is false. In AI, this is known as the
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Closed-world_assumption"
+  target="_blank">closed-world
+assumption</a>.</p>
+<p>But if our KB is more of a collection of our best understanding of the subject
+matter—which <em>may</em> be &ldquo;gappy&rdquo; and fail to contain <em>all</em> the true rules, then the
+story is different. We&rsquo;d be doing logical predication under partial uncertainty,
+and the fact that we can&rsquo;t derive <span class="excalifont">RAINBOW</span> would simply mean that we don&rsquo;t have
+enough information to affirm that <span class="excalifont">RAINBOW</span>. If we also can&rsquo;t derive
+<span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+RAINBOW</span>, this would be a very good reason to assign <span class="excalifont">RAINBOW</span> the
+value <code class="customCode">ω</code>—we don&rsquo;t know! This is closely related to the so-called <strong>open-world
+assumption</strong> in AI. And for reasoning with KBs—for example as in expert systems
+like ours—the logic <span class="excalifont">K3</span> is ideally suited.</p>
+<h2 id="fuzzy-predicates">Fuzzy Predicates<button class="btn btn-back-to-top">
+    
+    <i class="bi bi-chevron-double-up"></i>
+    
+  </button>
+</h2>
+<hr>
+
+<p><i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Vagueness"
+  target="_blank">Vagueness</a> is a very different
+motivation for dropping bivalence and is one of the main motivations for <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Fuzzy_logic"
+  target="_blank">fuzzy
+logic</a>. To illustrate the idea, think
+about which temperature means &ldquo;warm&rdquo; again. A standard and natural way of
+thinking about it is to say that warmth comes in degrees, which we can measure
+by a number between <code class="customCode">0</code>—meaning definitely not warm—and <code class="customCode">1</code>—meaning definitely
+warm. So, 0.75 warm means something like definitely more warm than cold, but not
+all the way there, while 0.1 warm means not freezing cold, but also barely warm.</p>
+<p>If we take this idea seriously and assume a language with three predicates
+<code class="customCode">IsCold</code>, <code class="customCode">IsWarm</code>, and <code class="customCode">IsHot</code>, we can assign those predicates values between
+<code class="customCode">0</code> and <code class="customCode">1</code> when applied to a temperature in order to represent the extend to
+which this temperature is considered cold, warm, or hot. One way of assigning
+such values is represented in the following diagram:</p>
+
+<img src="https://logicalmethods.ai/textbook/many-valued/img/fuzzy_predicates.png" class="mx-auto d-block rounded inert-img img-fluid"  width="500px"  alt="" >
+
+<p>This is the idea of <strong>fuzzy predicates</strong>: we&rsquo;ve treated <code class="customCode">IsCold</code>, <code class="customCode">IsWarm</code>, and
+<code class="customCode">IsHot</code> as fuzzy predicates of temperature. In contrast, the binary predicates
+of classical FOL are also called <strong>crisp</strong> predicates.</p>
+<p>Fuzzy logic deals with inference involving fuzzy concepts. While it is central
+for many AI-technologies, especially so-called <i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/Fuzzy_control_system"
   target="_blank">fuzzy control
-systems</a> were developed.
-These concerned logic-based AI systems, ranging from AC units over camera autofocus to the automated controls for <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Sendai_Subway_Namboku_Line"
-  target="_blank">subway lines</a>.</p>
-<p>These systems involve <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Fuzzy_rule"
-  target="_blank">fuzzy rules</a>
-which relate two vague concepts in the form of a (fuzzy) logical conditional.
-For example, an AC unit might involve the fuzzy rule:</p>
-<ul>
-<li><strong>IF</strong> </span>\mathsf{WARM}\lor\mathsf{HUMID}<span class="excalifont"> <strong>THEN</strong> </span>\mathsf{POWER}<span class="excalifont"></li>
-</ul>
-<p>That is, if it&rsquo;s either warm or humid, then the unit should power on. The
-crucial thing is that the connection between the concepts </span>\mathsf{WARM}<span class="excalifont"> and
-</span>\mathsf{HUMID}<span class="excalifont"> on the one side and </span>\mathsf{POWER}<span class="excalifont"> on the other side is
-itself fuzzy.</p>
-<p>There are many different ways of implementing this, but the most
-straight-forward and common way is to interpret the rule as saying that <em>to the
-extend</em> that the antecedent holds, the consequent should hold. That is the rule
-says that if </span>\mathsf{WARM}\lor\mathsf{HUMID}<span class="excalifont"> has value 0.7, then
-</span>\mathsf{POWER}<span class="excalifont"> should also have 0.7.</p>
-<p>These kinds of rules have lead to the development of extremely efficient
-automated systems, which outperform human-operated systems but also
-classical-logic based systems by large margins.</p>
-<p>Let&rsquo;s look at how this works.</p>
-<h3 id="ł">Ł<button class="btn btn-back-to-top">
-    
-    <i class="bi bi-chevron-double-up"></i>
-    
-  </button>
-</h3>
-<hr>
+systems</a>, which you find in
+automotive systems (trains, cars, plains, etc.) or self-regulating thermostats,
+it turns out to be rather difficult to formulate theory of high-level inference
+with fuzzy predicates—difficult, though not <em>impossible</em>. Accordingly, we&rsquo;ll
+only scratch the surface of fuzzy logic in this chapter, but we&rsquo;ll illustrate
+some basic ideas of working with fuzzy predicates, which will come in handy if
+you ever get your hands dirty with fuzzy AI systems.</p>
+<p>For this purpose, we&rsquo;ll work with the language of FOL but <em>without the
+quantifiers</em>. For simplicity, we&rsquo;ll also ban function symbols. That is, for us,
+the expression</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+IsWarm 10°C
+</code></div> 
+<p>is a well-formed formula, but</p>
+<div class="customBlock text-center my-4"><code class="customCode">
 
-<p>There are <em>many</em> different systems of fuzzy logic. In this section, we&rsquo;ll look
-at a system that has, in fact, for the first time been described by Łukasiewicz
-(even before the term &ldquo;fuzzy logic&rdquo; was introduced by Zadeh). Hence the systems
-is called Ł. It is one of the simpler systems that lines up nicely with the
-systems we&rsquo;ve discussed previously It is one of the simpler systems that lines
-up nicely with the systems we&rsquo;ve discussed previously.</p>
-<p>We&rsquo;ll focus on propositional logic with </span>\neg,\land,\lor<span class="excalifont">.</p>
-<p>First, let&rsquo;s introduce <strong>fuzzy valuations</strong>, that is functions</p>
-</div>\nu:\Set{p_1,p_2,\dots}\to [0,1],<div class="text-center my-4 excalifont">
-where </span>p_1,p_2,\dots<span class="excalifont"> are our propositional varibles and </span>[0,1]<span class="excalifont"> is the unit
-interval of numbers between 0 and 1.
-<p>The idea is, like before, that a valuation models a possible situation, now
-involving a fuzzy/vague concept. So, using the concept of warmth from before, we
-could say that</p>
-<ul>
-<li></span>\nu(\mathsf{WARM})=1<span class="excalifont"> describes the situations with over 30℃ .</li>
-<li></span>\nu(\mathsf{WARM})=0.7<span class="excalifont"> describes situations with 20℃</li>
-<li></span>\nu(\mathsf{WARM})=0.6<span class="excalifont"> describes situations with 18℃</li>
-<li></span>\nu(\mathsf{WARM})=0.2<span class="excalifont"> describes situations with 10℃</li>
-<li></span>\nu(\mathsf{WARM})=0<span class="excalifont">  describes situations with below 0℃</li>
-</ul>
-<p>The notion of a <strong>fuzzy truth-function</strong>, then, is just the notion of functions
-from fuzzy truth-values to fuzzy truth-values: from the unit interval to itself.</p>
-<p>How should the fuzzy truth-functions for our connectives behave? In Ł, we
-abandon the previous notation of </span>-,\times,+<span class="excalifont"> for the truth-functions, since
-they are no longer helpful mnemonics. We rather write </span>f_\neg,f_\land,f_\lor<span class="excalifont">
-for the truth-functions corresponding to </span>\neg,\land,\lor<span class="excalifont">.</p>
-<p>There are different possible answers to the question of how the fuzzy values of
-</span>\neg A, A\land B,A\lor B<span class="excalifont"> depend on the values of </span>A,B<span class="excalifont">. The most general
-theory involves so-called <i class="bi bi-box-arrow-up-right h-6"></i>
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x(x ≥ 10°C 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+ IsWarm x)
+</code></div>
+<p>is not.</p>
+<p>A <em>fuzzy valuation</em> for such a language is defined very similarly to an FOL
+model: we have a (non-empty) domain, <span class="excalifont">D</span>, and denotations <span class="excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+a
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+D</span> for all the constants. The main difference to an FOL
+model is that for the predicates, we don&rsquo;t assign <em>extensions</em> in the usual
+sense—that is sets of objects having the described property—but we associate
+with each predicate <code class="customCode">Pⁿ</code> a function <code class="customCode">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+Pⁿ
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</code>,
+which assigns to all <span class="excalifont">n</span> inputs from the domain a <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Real_number"
+  target="_blank">real
+number</a> between <span class="excalifont">0</span> and <span class="excalifont">1</span>
+(inclusive). This number measures the extend to which the predicate applies to
+these objects.</p>
+<p>That is, if our domain contains all the temperatures, then</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+IsWarm 
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ 10°C = 0.01</div> 
+<p>means that in our model 10°C is <em>barely</em> warm. In fact, we&rsquo;ll continue working
+with temperature examples, so we&rsquo;ll just assume that our domain <span class="excalifont">D</span> contains all
+the temperatures and our language has a name for each such temperature: <code class="customCode">10°C</code>
+for <span class="excalifont">10°C</span>, <code class="customCode">12.75°C</code> for <span class="excalifont">12.75°C</span>, and so on. That is, our models look like
+the diagram above. The extension of the predicates <code class="customCode">IsCold</code>, <code class="customCode">IsWarm</code>, and
+<code class="customCode">IsHot</code> in such a model, then, is given by curves like the colored ones
+depicted.</p>
+<p>The <em>value</em> of an atomic ground formula in such a model is easily defined. We
+say, for example, that:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+IsHot t
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ = 
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+IsHot 
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ 
+ <img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+t
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+
+</code></div>
+Here, <code class="customCode">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+t
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</code> is the denotation of the term <span class="excalifont">t</span>,
+defined just like in FOL.
+<p>The main question we&rsquo;ll be looking into now is how we can interpret <em>complex</em>
+fuzzy expresions in such models. What, for example, is the value of the
+following complex open formula:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+IsWarm x 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+IsCold x
+</code></div>
+<p>We want it to be a fuzzy function over the domain, but which one?</p>
+<p>The standard way of interpreting such expressions is using the so-called
+Zadeh-operators, which are named after <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Lotfi_A._Zadeh"
+  target="_blank">Lotfi
+Zadeh</a>, who introduced fuzzy logic
+to AI-research—even though their logic has already been studied by
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Jan_%60C5%6081ukasiewicz"
+  target="_blank">Łukasciewicz</a>.</p>
+<p>The idea is that we can say:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ = 1 - 
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+A
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</div>
+<div class="text-center my-4 excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ = min 
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+A
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ 
+ <img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+B
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</div>
+<div class="text-center my-4 excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+A 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ = max 
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+A
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ 
+ <img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+B
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</div>
+<p>Here, <span class="excalifont">min</span> and <span class="excalifont">max</span> are the <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Maximum_and_minimum"
+  target="_blank">minimum and maximum
+function</a> respectively, which
+return the biggest value among their inputs in the case of <span class="excalifont">maax</span> and the
+smallest input in the case of <span class="excalifont">min</span>.</p>
+<p>To see how these work, it might help to look at the outcomes of these operations
+in the fuzzy model we&rsquo;ve described above:</p>
+
+<img src="https://logicalmethods.ai/textbook/many-valued/img/fuzzy_negation.png" class="mx-auto d-block rounded inert-img img-fluid"  width="400px"  alt="" >
+
+
+<img src="https://logicalmethods.ai/textbook/many-valued/img/fuzzy_conjunction_disjunction.png" class="mx-auto d-block rounded inert-img img-fluid"  width="800px"  alt="" >
+
+<p>In these models, there is also a natural notion of deductive consequence, which
+has already been explored by Łukasciewicz in the 1920s. The idea is that, for
+example,  <code class="customCode">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+ IsCold  10°C
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</code> entails, in a sense,
+<code class="customCode">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+ IsCold  10°C 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ IsWarm 10°C
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</code> since
+the value of the latter is always at least as high as the value of the former.</p>
+<p>More generally, we say that a premise
+set <code class="customCode">P₁, P₂, …</code> fuzzy entails a conclusion <code class="customCode">C</code> just in case for every model, the minimum of the values
+<code class="customCode">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+P₁
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+, 
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+P₂
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+, …</code>
+is smaller than or equal to the value <code class="customCode">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+C
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</code>,
+that is:</p>
+<div class="text-center my-4 excalifont">
+<code class="customCode">P₁, P₂, … 
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+ C</code> &emsp; if and only if, in all models,  <code class="customCode">min {
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+P₁
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+, 
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+P₂
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+, …} ≤ 
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+C
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</code>
+</div>
+<p>At face value, this definition doesn&rsquo;t satisfy our blueprint for deductive
+validity, but using the concept of a
+<i class="bi bi-box-arrow-up-right h-6"></i>
 <a class="link-dark" href="https://en.wikipedia.org/wiki/T-norm"
-  target="_blank">t-norms</a>. The
-system Ł is just a special case of this, but it&rsquo;s particularly easy to
-understand.</p>
-<p>In Ł, we use the following truth-functions:</p>
-</div>f_\neg(x)=1-x<div class="text-center my-4 excalifont">
-</div>f_\land(x,y)=min(x,y)<div class="text-center my-4 excalifont">
-</div>f_\lor(x,y)=max(x,y)<div class="text-center my-4 excalifont">
-<p>Here the </span>min<span class="excalifont"> and </span>max<span class="excalifont"> functions pick the smaller or bigger of two numbers,
-respectively.</p>
-<p>These functions, then, recursively interpret the operators as usual:</p>
-</div>\nu(\neg A)=f_\neg(\nu(A))<div class="text-center my-4 excalifont">
-</div>\nu(A\land B)=f_\land(\nu(A),\nu(B))<div class="text-center my-4 excalifont">
-</div>\nu(A\lor B)=f_\lor(\nu(A),\nu(B))<div class="text-center my-4 excalifont">
-<p>So, if, for example, we have:</p>
-</div>\nu(\mathsf{WARM})=0.7<div class="text-center my-4 excalifont">
-</div>\nu(\mathsf{HUMID})=0.4<div class="text-center my-4 excalifont">
-That is, if it's somewhat warm and more dry than humid. Then, we'd get:
-</div>\nu(\mathsf{WARM}\lor\mathsf{HUMID})=0.7<div class="text-center my-4 excalifont">
-That is, it's somewhat warm or humid.
-<p>Why should we pick these fuzzy truth-functions and not some others? Here&rsquo;s one
-motivation (which may work in some situation but not in others). We <em>can</em> (but
-don&rsquo;t <em>have to</em>) interpret </span>\nu(\mathsf{WARM})=0.5<span class="excalifont"> as an <em>indeterminate</em> state
-with respect to warmth—it&rsquo;s neither warm nor not warm.</p>
-<p>It turns out that under this reading, the Ł truth-functions are just a
-generalization of the Kleene truth-functions: if we restrict the inputs of
-</span>f_\neg,f_\land,f_\lor<span class="excalifont"> to the set </span>\Set{0,0.5,1}<span class="excalifont">, they <em>are</em> the Kleene
-functions </span>-,\times,+<span class="excalifont"> from before.</p>
-<p><strong>Valid inference</strong>, in Ł, is modelled after the idea of fuzzy
-rules. We generalize the idea of truth preservation, which we&rsquo;ve used so-far to
-model valid inference and apply the idea of truth-<em>degree</em> preservation by
-saying that an inference </span>P_1,\dots,P_n\vDash C<span class="excalifont"> is valid just in case for every
-valuation </span>\nu<span class="excalifont">, the value </span>\nu(C)<span class="excalifont"> is bigger than the smallest value of
-</span>\nu(P_1),\dots,\nu(P_n)<span class="excalifont">. More mathematically, we say:</p>
-</div>P_1,P_2,\dots\vDash C<div class="text-center my-4 excalifont">
-</div>\Leftrightarrow<div class="text-center my-4 excalifont">
-</div>\text{for all }\nu, min(\nu(P_1),\dots,\nu(P_n))\leq \nu(C)<div class="text-center my-4 excalifont">
-<p>This definition gives us the validity of various inferences. For example, we
-have:</p>
-</div>\mathsf{WARM}\vDash\mathsf{WARM}\lor\mathsf{HUMID}<div class="text-center my-4 excalifont">
-<p>This is because </span>\nu(\mathsf{WARM}\lor\mathsf{HUMID})=max(\nu(\mathsf{WARM}),\nu(\mathsf{HUMID}))<span class="excalifont"> and  </div>\nu(\mathsf{WARM})\leq max(\nu(\mathsf{WARM}),\nu(\mathsf{HUMID})).<div class="text-center my-4 excalifont"></p>
-<p>Similarly, we get:</p>
-</div>\mathsf{WARM}\land\mathsf{HUMID}\vDash \mathsf{WARM}<div class="text-center my-4 excalifont">
-<p>This is because:</p>
-<p></span>\nu(\mathsf{WARM}\land\mathsf{HUMID})=min(\nu(\mathsf{WARM}),\nu(\mathsf{HUMID}))<span class="excalifont"> and </div> min(\nu(\mathsf{WARM}),\nu(\mathsf{HUMID}))\leq \nu(\mathsf{WARM}).<div class="text-center my-4 excalifont"></p>
-<p>We also get inference patterns like the double negation law: </div>\neg\neg A\vDash A\text{ and }A\vDash \neg\neg A<div class="text-center my-4 excalifont"> since </span>1-(1-x)=x<span class="excalifont">.</p>
-<p>But other familiar reasoning patterns fail! For example, our common example of
-disjunctive syllogism fails:</p>
-</div>\neg\mathsf{WARM},\mathsf{WARM}\lor \mathsf{HUMID}\nvDash \mathsf{HUMID}</span><span class="excalifont">
-<p>To see this, take the following values:</p>
-<ul>
-<li></span>\nu(\mathsf{WARM})=0.5<span class="excalifont"></li>
-<li></span>\nu(\mathsf{HUMID})=0.25<span class="excalifont"></li>
-</ul>
-<p>We get:</p>
-<ul>
-<li></span>\nu(\neg\mathsf{WARM})=0.5<span class="excalifont"></li>
-<li></span>\nu(\mathsf{WARM}\lor \mathsf{HUMID})=max(\nu(\mathsf{WARM}),\nu(\mathsf{HUMID}))=max(0.5,0.25)=0.5<span class="excalifont"></li>
-<li>So, </span>min(\nu(\neg\mathsf{WARM}), \nu(\mathsf{HUMID}\lor
-\mathsf{WARM}))=0.5\nleq \nu(\mathsf{HUMID})=0.25$</li>
-</ul>
-<p>This means that fuzzy reasoning is indeed very different from classical
-reasoning. Unfortunately, a full description of the logical laws as well as
-sound and complete inference system are beyond what we can discuss in this
-book—things get mathematically quite involved.</p>
-<p>At the same time, you have seen how fuzzy reasoning can be implemented and give
-its utility for developing efficient AI systems, this is certainly a logical
-tool to keep in one&rsquo;s toolbox.</p>
-<h2 id="more">More?<button class="btn btn-back-to-top">
+  target="_blank">T-norm</a> it can be brought much closer to
+that pattern. But for now, we focus on the above formulation since it gets us
+much closer to so-called <i class="bi bi-box-arrow-up-right h-6"></i>
+<a class="link-dark" href="https://en.wikipedia.org/wiki/Fuzzy_rule"
+  target="_blank">fuzzy
+rules</a>, which are the basic building
+block of fuzzy control systems.</p>
+<h2 id="fuzzy-rules">Fuzzy Rules<button class="btn btn-back-to-top">
     
     <i class="bi bi-chevron-double-up"></i>
     
@@ -1315,41 +1829,96 @@ tool to keep in one&rsquo;s toolbox.</p>
 </h2>
 <hr>
 
-<p>In this chapter, we&rsquo;ve only touched the surface of many-valued logics for AI. There
-are many different issues that require alternative approach. <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Paraconsistent_logic"
-  target="_blank">Paraconsistent
-logics</a>, for example,
-handle reasoning with <strong>inconsistent information</strong>. There are <em>many</em> different
-kinds of <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Fuzzy_logic"
-  target="_blank">fuzzy logics</a>, which are
-all over AI applications. The point of this chapter was to show <em>how</em> one
-approaches such an issue. At this point, you should be able to study different
-non-classical logics independently.</p>
-<p><strong>Notes</strong></p>
-<div class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn:1">
-<p>There also exists <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Many-valued_logic#Bochvar%27s_internal_three-valued_logic"
-  target="_blank"><em>weak</em> Kleene
-logic</a>,
-but it finds fewer applications that strong Kleene logic.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:2">
-<p>A traditional issue that illustrates the point very clearly but goes
-beyond our topic is the so-called <i class="bi bi-box-arrow-up-right h-6"></i>
-<a class="link-dark" href="https://en.wikipedia.org/wiki/Sorites_paradox"
-  target="_blank">sorites paradox</a>.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-</ol>
-</div>
+<p>A fuzzy rule is, in essence, a model constraint that enforces that some
+conditions—the <em>antecedent</em> of the rule—fuzzy imply (in the above sense) a
+conclusion. Typically, we formulate these fuzzy rules using open formulas of
+with appropriate free variables. For example, we write the fuzzy rule that
+<code class="customCode">IsHot</code> fuzzy entails <code class="customCode">AcOn</code>—where <code class="customCode">AcOn</code> is a fuzzy propositional variable which
+just gets a fuzzy value assigned—either as</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+<span class="Kleene">IF</span> IsHot x <span class="Kleene">THEN</span> AcOn
+</code></div>
+<p>or using arrow notation as</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+ IsHot x 
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+ AcOn
+</code></div>
+<p>We postulate that fuzzy rules have a kind of MP property where a model that
+<em>satisfies</em> a rule just in case for every object in the model, the value of the
+consequent of the rule applied to the object is at least as big as the value of
+the premise of the rule applied to it.</p>
+<p>Some rules, like</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+ IsHot x 
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+ IsHot x 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ IsWarm x
+</code></div>
+<p>hold with mathematical necessity—simply because of how the operators are
+interpreted.</p>
+<p>But other rules, we need to <em>enforce</em>. And that&rsquo;s the idea of fuzzy control
+systems. Think, for example, of a self-regulating heating system, which aims to
+keep the warm always warm and cozy, never too hot and never too cold. One way of
+implementing such a system is by means of a fuzzy rule.</p>
+<p>Suppose for the setup that we define our fuzzy predicate <code class="customCode">IsCold</code> is given by
+the above diagram. Then we can implement our fuzzy heater by means of the
+following rule:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+IsCold x 
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+ HeatingOn
+</code></div>
+<p>Here <code class="customCode">HeatingOn</code> is again a fuzzy propositional variable, which simply gets a
+value between <code class="customCode">0</code> and <code class="customCode">1</code> in every model and which represents the extend to
+which the heating is engaged.</p>
+<p>The idea is to enforce through some mechanism that this rule is satisfied by the
+temperature at any given point in time. That is, the system ensures that the
+extend to which <code class="customCode">HeatingOn</code> is true at any time coasts the line <code class="customCode">IsCold</code>:</p>
+
+<img src="https://logicalmethods.ai/textbook/many-valued/img/heating_on.png" class="mx-auto d-block rounded inert-img img-fluid"  width="400px"  alt="" >
+
+<p>These kinds of fuzzy control systems are industry standard in aviation,
+space-travel, train regulations, self-driving cars, heating systems, and many
+more places. One important advantage of such systems as compared to &ldquo;crisp&rdquo;
+systems is that they behave &ldquo;smoothly&rdquo;. A crisp thermostat just turns the
+heating on or off if the temperature falls below a certain threshold. This can
+be very uncomfortable if the temperature is set to 20°C, it falls to 19.9°C and
+all of a sudden the heating blasts on full power. A fuzzy control system will
+only turn the heating on a little bit at 19.9°C and then quickly off again. In
+this way, fuzzy systems can also be much more <em>efficient</em> than crisp control
+systems.</p>
+<p>This efficiency can be even more noticeable, if we can adjust what <code class="customCode">IsWarm</code>
+means for us. Suppose, for example, that we can set the curve for <code class="customCode">IsWarm</code> as
+follows, while leaving <code class="customCode">IsCold</code> unchanged:</p>
+
+<img src="https://logicalmethods.ai/textbook/many-valued/img/custom_warm.png" class="mx-auto d-block rounded inert-img img-fluid"  width="400px"  alt="" >
+
+<p>Now, the fuzzy following fuzzy rule</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+IsCold x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+IsWarm x
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+ HeatingOn
+</code></div>
+<p>will be more energy efficient than just:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+IsCold x 
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+ HeatingOn
+</code></div>
+<p>since the former rule will stop heating quicker.</p>
+<p>This is just a small teaser of the huger world of fuzzy logic, but I hope it
+became clear that there are excellent low-level applications of these core
+logical methods.</p>
 
 
   </div>
-   <p><em>Last edited: </em>16/10/2024</p>
+   <p><em>Last edited: </em>14/10/2025</p>
 </div>
 
 
