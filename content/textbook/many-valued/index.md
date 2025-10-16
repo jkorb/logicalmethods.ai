@@ -790,7 +790,9 @@ will be more energy efficient than just:
 IsCold x {{< longrightarrow >}} HeatingOn
 ```
 
-since the former rule will stop heating quicker.
+since the former rule will stop heating quicker. Just inspect the following diagram:
+
+{{< img src="img/optimized_heating.png" class="mx-auto d-block rounded inert-img img-fluid" width="400px">}}
 
 This is just a small teaser of the huger world of fuzzy logic, but I hope it
 became clear that there are excellent low-level applications of these core
