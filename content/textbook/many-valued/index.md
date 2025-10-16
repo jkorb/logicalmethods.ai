@@ -305,7 +305,7 @@ SELECT X, Y,
 FROM ValuePairs;
 ~~~
 
-You can convince yourself by running the code in [db-fiddle](https://www.db-fiddle.com/f/ixfKDFBJaxNfSSysEQvpgk/0).
+You can convince yourself by running the code in [db-fiddle](https://www.db-fiddle.com/f/ixfKDFBJaxNfSSysEQvpgk/5).
 
 A cool little side-effect of this is that you can use SQL as a $K3$
 `SAT`-solver, which is an idea you'll explore in the exercises.
