@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8"></meta>
     <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-    <title>logicalmethods.ai &ndash; Assignment 1 (due 09/19/2025) </title>
+    <title>logicalmethods.ai &ndash; Assignment 3 (due 24/10/2025) </title>
     <link rel="icon" type="image/x-icon" href="https://logicalmethods.ai/favicon.ico"></link>
     <link href="https://logicalmethods.ai/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"></link>
     <link rel="stylesheet" href="https://logicalmethods.ai/icons/font/bootstrap-icons.min.css"></link>
@@ -605,7 +605,7 @@
           <ul class="list-unstyled ms-3">
             <li>
               <a class="dropdown-item 
-                fw-bold active
+                
                 
                 "
                 href="/assignments/assignment_1/"
@@ -629,7 +629,7 @@
             
             <li>
               <a class="dropdown-item 
-                
+                fw-bold active
                 
                 "
                 href="/assignments/assignment_3/"
@@ -700,7 +700,7 @@
 
   <div class="container text-center">
   <h3>
-    Assignment 1 (due 09/19/2025)
+    Assignment 3 (due 24/10/2025)
   </h3>
   <em></em>
 </div>
@@ -717,201 +717,203 @@
 
 <hr>
 <div class="container exercises m-4">
-  <div class="container-fluid"><p>Submission via Brightspace in <span class="excalifont">\LaTeX</span> generated PDF. GenAI-use not allowed.</p>
+  <div class="container-fluid"><p>Submission via Brightspace in <span class="excalifont">LaTeX</span> generated PDF. GenAI-use not allowed.</p>
 
 </div>
-<div id="logic-and-ai" ><h5 class="">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Logic and AI
+<div id="natural-deduction-and-lean" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Natural deduction and Lean
     </div>
-</h5><ol>
+</h5><p>Pick one of the following two natural deduction facts:</p>
+<ul>
+<li><span class="excalifont">
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+ (p 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ p)</span> <span class="right-justified">(difficulty: medium)</span></li>
+<li><span class="excalifont">
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+ (p 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+q) 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(q 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+r)</span> <span class="right-justified">(difficulty: hard)</span></li>
+</ul>
+<p>Both formulas are provable without any assumptions.</p>
+<ol>
 <li>
-<p>Give an example of a materially valid deductive inference (which has not
-occurred anywhere in the course yet). Show how it can be transformed into a logically valid inference by adding a premise. (1 point)</p>
+<p>Provide a natural deduction derivation for your chosen fact. (2 points)</p>
 </li>
 <li>
-<p>Give an example of an inductively strong inference (again, not from anywhere
-in the course). Show that it is deductively invalid by describing a
-reasoning scenario, where its premises are true but the conclusion isn&rsquo;t. Then provide a (non-formal) argument that the premise nevertheless makes the conclusion (more) likely. (1 point)</p>
+<p>Verify your proof in Lean. (2 points)</p>
+</li>
+</ol>
+<p><strong>Notes</strong>:</p>
+<ul>
+<li>
+<p>Really try to do this by yourself, without the help of the internet or GenAI.
+It&rsquo;s easy to find solutions for this derivation online, but finding it yourself is not only incredibly rewarding, it&rsquo;s also an excellent way of learning natural deduction techniques.</p>
 </li>
 <li>
-<p>For each of your examples, explain in one to two paragraphs why
-understanding this kind of inference is important to AI research and
-development. (2 points)</p>
+<p>If you want to typeset your derivation in <span class="excalifont">LateX</span>, rather than including a picture, you can use the package
+<i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://www.logicmatters.net/resources/ndexamples/proofsty.html" class="link-dark" rel="external" target="_blank">proof.sty</a>
+. Simply include <code class="customCode">\usepackage{proof}</code> in the preamble of your document and follow the instructions from the link to typeset your proofs.</p>
+</li>
+<li>
+<p>For the Lean code, the easiest way of sharing it is to use the <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://live.lean-lang.org/" class="link-dark" rel="external" target="_blank">Lean
+playground</a>
+ to write your code and once your code
+works copy-paste the url into your document. This works because the URL will
+look like this <code class="customCode"><i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://live.lean-lang.org/#codez=" class="link-dark" rel="external" target="_blank">https://live.lean-lang.org/#codez=</a>
+<alphanumericstring></code>, where
+the alphanumeric string encodes your code.</p>
+</li>
+<li>
+<p>You can use the <code class="customCode">\url{<url>}</code> command in <span class="excalifont">LaTeX</span> to make your code &lsquo;clickable&rsquo; if you have <code class="customCode">\usepackage{hyperref}</code> in your preamble.</p>
+</li>
+</ul>
+
+</div>
+<div id="fol-models" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">FOL Models
+    </div>
+</h5><p>In class, we discussed that the following set of FOL formulas is satisfiable,
+but has no finite models:</p>
+<ul>
+<li><span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+y x ≤ y</span></li>
+<li><span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ (x ≤ x)</span></li>
+<li><span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+y
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+z((x ≤ y 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ y ≤ z) 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+x ≤ z)</span></li>
+</ul>
+<p>We&rsquo;ll work towards showing this fact in this question:</p>
+<ol>
+<li>
+<p>Show that there can&rsquo;t be model of the formulas with just one element. You do
+this by showing that if you had such a model, where the domain contains
+<span class="excalifont">d
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+D</span> as its one and only element, this would lead to a contradiction.
+The contradiction, you can derive from the truth-conditions for the formulas. (2 points)</p>
+<p><em>Hint</em>: For this case, you only need to think about the first two formulas.
+Think about what it means for <span class="excalifont">d₁</span> that the first formula is true, then
+involve the second.</p>
+</li>
+<li>
+<p>Next, consider a model with precisely two elements, <span class="excalifont">d₁, d₂
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+D</span>. You
+can arrive at a contradiction as well here, but you need to think about the
+third formula. The argument is more involved, though: It starts by thinking
+about what the first formula says about the first object and what that means
+for the relation between the first and the second object. Then you need to
+think about the second object and it&rsquo;s relation to the first. Then you need to
+think about the third formula and use the second to arrive at a contradiction.
+(2 points)</p>
+</li>
+<li>
+<p><strong>Bonus</strong>: Can you generalize this argument to a model with <span class="excalifont">n</span> elements
+<span class="excalifont">d₁, …, dₙ
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+D</span>? (2 bonus points)</p>
 </li>
 </ol>
 
 </div>
-<div id="reverse-polish-notation" ><h5 class="">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Reverse Polish notation
+<div id="fol-and-sql" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">FOL and SQL
     </div>
-</h5><p>In the exercises for the chapter on formal languages, you encountered <i class="bi bi-box-arrow-up-right h-6"></i>
-<a href="https://en.wikipedia.org/wiki/Polish_notation" class="link-dark" rel="external" target="_blank">Polish
-notation</a>
-, which gets achieves
-unique readability without parentheses.</p>
-<p>For this question, we&rsquo;ll consider a variant of Polish notation known as
-<i class="bi bi-box-arrow-up-right h-6"></i>
-<a href="https://en.wikipedia.org/wiki/Reverse_Polish_notation" class="link-dark" rel="external" target="_blank">reverse Polish
-notation</a>
-, which rather
-than writing logical operations before their operands in so-called &ldquo;prefix
-notation&rdquo; of the Polish system, reverse Polish notation writes the operators
-<em>after</em> in so-called &ldquo;postfix notation.&rdquo;</p>
-<p>For simplicity, we&rsquo;ll use the ordinary symbols 
-<img src="https://logicalmethods.ai/assignments/assignment_1/img/negation.png" class="inert-img" height="18px"  style="ZgotmplZ" alt="" >
-, 
-<img src="https://logicalmethods.ai/assignments/assignment_1/img/conjunction.png" class="inert-img" height="18px"  style="ZgotmplZ" alt="" >
-, 
-<img src="https://logicalmethods.ai/assignments/assignment_1/img/disjunction.png" class="inert-img" height="18px"  style="ZgotmplZ" alt="" >
-, 
-<img src="https://logicalmethods.ai/assignments/assignment_1/img/conditional.png" class="inert-img" height="18px"  style="ZgotmplZ" alt="" >
-,  
-<img src="https://logicalmethods.ai/assignments/assignment_1/img/bi-conditional.png" class="inert-img" height="18px"  style="ZgotmplZ" alt="" >
-
-rather than the Polish 
-<span class="excalifont ">N, K, A, C, B</span>
- for the logical operators.</p>
-<p>Our alphabet, thus is:</p>
-
-<img src="https://logicalmethods.ai/assignments/assignment_1/img/rpn_alphabet.png" class="rounded mx-auto my-4 d-block inert-img img-fluid"  width="550px"  alt="" >
-
-<p>Note the absence of parentheses.</p>
+</h5><p>We return to our country DB.</p>
 <ol>
 <li>
-<p>Determine the grammar of reverse Polish notation in BNF. (1 point)</p>
-</li>
-<li>
-<p>Determine the corresponding re-write rules and generate the parsing tree for the formula 
-<img src="https://logicalmethods.ai/assignments/assignment_1/img/rpn_formula.png" class="inert-img" height="38px"  style="ZgotmplZ" alt="" >
+<p>Which FOL formula corresponds to the following query?</p>
+
+    <img src="/img/sql_logo.png" alt="SQL_Logo" class="float-start" style="height:1em;width:auto;"/>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">L1</span><span class="p">.</span><span class="n">country</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">L2</span><span class="p">.</span><span class="n">country</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">y</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">LocatedIn</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">L1</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="n">LocatedIn</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">L2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">LocatedIn</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Z</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="k">SELECT</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="k">FROM</span><span class="w"> </span><span class="n">LocatedIn</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Zx</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Zx</span><span class="p">.</span><span class="n">country</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">L1</span><span class="p">.</span><span class="n">country</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">AND</span><span class="w"> </span><span class="n">Zx</span><span class="p">.</span><span class="n">continent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Z</span><span class="p">.</span><span class="n">continent</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">AND</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="k">SELECT</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="k">FROM</span><span class="w"> </span><span class="n">LocatedIn</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Zy</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Zy</span><span class="p">.</span><span class="n">country</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">L2</span><span class="p">.</span><span class="n">country</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">AND</span><span class="w"> </span><span class="n">Zy</span><span class="p">.</span><span class="n">continent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Z</span><span class="p">.</span><span class="n">continent</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>You can open it under <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://www.db-fiddle.com/f/bTqC7rED8PrABxDyhN766d/12" class="link-dark" rel="external" target="_blank">db-fiddle</a>
 . (2 points)</p>
 </li>
 <li>
-<p>Give an argument why 
-<img src="https://logicalmethods.ai/assignments/assignment_1/img/non_fml.png" class="inert-img" height="38px"  style="ZgotmplZ" alt="" >
- isn&rsquo;t a formula in reverse Polish notation. (1 point)</p>
-</li>
-<li>
-<p>A very important parsing algorithm is the so-called <i class="bi bi-box-arrow-up-right h-6"></i>
-<a href="https://en.wikipedia.org/wiki/Shunting_yard_algorithm" class="link-dark" rel="external" target="_blank">shunting yard
-algorithm</a>
-. This
-algorithm can be used to transform formulas from ordinary infix notation into
-reverse Polish notation. Here&rsquo;s a quick description of the algorithm:</p>
-<ul>
-<li>
-<p>We keep two separate areas, the <strong>output queue</strong> and the <strong>stack</strong>:</p>
-<ul>
-<li>The queue constructs our re-written formula, step-by-step.</li>
-<li>The <i class="bi bi-box-arrow-up-right h-6"></i>
-<a href="https://en.wikipedia.org/wiki/Stack_%28abstract_data_type%29" class="link-dark" rel="external" target="_blank">stack</a>
-
-is processed first-to-last (&ldquo;last in, first out&rdquo; or LIFO). Writing an
-expression at the beginning of the stack is called &ldquo;pushing onto&rdquo; the
-stack. Removing an expression from the start of the stack is &ldquo;pop&rdquo; it
-off the stack.</li>
-</ul>
-</li>
-<li>
-<p>We go through the symbols of our formula from left to right and apply the following rules to transform the expression:</p>
-<ol>
-<li>For a propositional variable, we write it directly to the output queue.</li>
-<li>For a left parenthesis 
-<span class="excalifont ">(</span>
-, we push it onto the stack.</li>
-<li>For a right parenthesis 
-<span class="excalifont ">)</span>
-, we pop operators from the stack to the queue until we either encounter a left parenthesis or the stack is empty. We discard the parenthesis pair.</li>
-<li>For a logical operator, we push it onto the stack.</li>
-<li>At the end, we pop any remaining operators to the output queue.</li>
-</ol>
-</li>
-</ul>
-<p>Apply this algorithm step-by-step to transform the infix formula 
-<img src="https://logicalmethods.ai/assignments/assignment_1/img/formula_convert.png" class="inert-img" height="40px"  style="ZgotmplZ" alt="" >
- into reverse Polish notation. Write step-by-step what the <div class="customBlock text-center my-4"><code class="customCode">QUEUE</code></div> is and what the <div class="customBlock text-center my-4"><code class="customCode">STACK</code></div> is. (2 points)</p>
-</li>
-</ol>
-
-</div>
-<div id="transitivity-of-deductive-inference" ><h5 class="">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Transitivity of deductive inference
-    </div>
-</h5><p>In the exercises for the chapter on valid inference, we showed that deductive
-inference is monotone, that is, adding additional premises preserves validity.</p>
-<p>For this question, you&rsquo;ll show that valid deductive inference is <em>transitive</em>.
-That is, you&rsquo;ll show that if the inference from
-
-<span class="excalifont ">P</span>
- to 
-<span class="excalifont ">Q</span>
- is
-deductively valid and the inference from 
-<span class="excalifont ">Q</span>
- to
-
-<span class="excalifont ">C</span>
- is valid, then the inference from
-
-<span class="excalifont ">P</span>
- to 
-<span class="excalifont ">C</span>
- is
-valid.</p>
-<ol>
-<li>
-<p>Formally state the property of transitivity using the symbol 
-<img src="https://logicalmethods.ai/assignments/assignment_1/img/models.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
-. (1 point)</p>
-</li>
-<li>
-<p>Apply the definition of 
-<img src="https://logicalmethods.ai/assignments/assignment_1/img/models.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
- in terms of the
-propositions 
-<span class="excalifont ">[P], [Q]</span>
-, and 
-<span class="excalifont ">[C]</span>
-, the operation 
-<img src="https://logicalmethods.ai/assignments/assignment_1/img/cap.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
-, and
-relation 
-<img src="https://logicalmethods.ai/assignments/assignment_1/img/subseteq.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
- to transform the claim it into a set
-theoretic claim. (1 point)</p>
-</li>
-<li>
-<p>Suppose that 
-<span class="excalifont ">S, T</span>
-, and 
-<span class="excalifont ">U</span>
- are arbitrary sets. Show
-the following set-theoretic 
-<span class="excalifont "><strong>Theorem</strong></span>
-:</p>
-
-   <img src="https://logicalmethods.ai/assignments/assignment_1/img/theorem.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="400px"  alt="" >
-
-<p><em>Hint</em>: Apply the definition of
-
-      <img src="https://logicalmethods.ai/assignments/assignment_1/img/subseteq.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
- and reason &ldquo;step-by-step&rdquo;:</p>
-<ul>
-<li>
-<img src="https://logicalmethods.ai/assignments/assignment_1/img/def_subseteq.png" class="inert-img" height="25px"  style="ZgotmplZ" alt="" >
-</li>
-<li>
-<img src="https://logicalmethods.ai/assignments/assignment_1/img/def_subseteq_1.png" class="inert-img" height="30px"  style="ZgotmplZ" alt="" >
-</li>
-<li>Assume you have an arbitrary member of 
-<span class="excalifont ">S</span>
-, why must it be a member of 
-<span class="excalifont ">U</span>
-?</li>
-</ul>
-<p>(2 points)</p>
-</li>
-<li>
-<p>Conclude that the transitivity property holds. (1 point)</p>
+<p>Formulate a SQL query for the following formula:</p>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ LanguageOf x dutch 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ LocatedIn y europe
+ </code></div>
+<p>Verify your work using db-fiddle. (2 points)</p>
 </li>
 </ol>
 
@@ -921,7 +923,8 @@ the following set-theoretic
 
 <ul class="navbar-nav flex-row justify-content-between mt-auto">
   
-    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
+  <li class="nav-item">
+    <a href="/assignments/assignment_2/" class="btn" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-left"></i>
     </a>
     
@@ -933,7 +936,7 @@ the following set-theoretic
   </li>
   <li class="nav-item">
     
-    <a href="/assignments/assignment_2/" class="btn" tabindex="-1" role="button" aria-disabled="true">
+    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
       <i class="bi bi-chevron-right"></i>
     </a>
     
