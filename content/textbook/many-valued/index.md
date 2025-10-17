@@ -496,8 +496,8 @@ Take our truth-value DB and consider the following query:
 ~~~sql
 SELECT *
 FROM TruthValues
-WHERE ((X OR (NOT X) = 0 )
-       OR ((X OR (NOT X)) IS NULL));
+WHERE ((X OR (NOT X)) = 0 )
+	  OR ((X OR (NOT X)) IS NULL ) ;
 ~~~
 
 This query returns all the rows of the table where the Kleene expression 
@@ -522,12 +522,12 @@ using the SQL code:
 ~~~sql
 SELECT *
 FROM ValuePairs
-WHERE Y = 1               
-  AND ( X OR ( (NOT X) ) = 0          
-        OR ( (NOT X) OR Y ) IS NULL );
+WHERE ( Y = 1 )
+	  AND (((X OR (NOT X)) = 0 )
+	  OR ((X OR (NOT X)) IS NULL )) ;
 ~~~
 
-You can see for yourself in our [db-fiddle](https://www.db-fiddle.com/f/ixfKDFBJaxNfSSysEQvpgk/1).
+You can see for yourself in our [db-fiddle](https://www.db-fiddle.com/f/ixfKDFBJaxNfSSysEQvpgk/6).
 
 To conclude our discussion of $K3$, let's talk about why $K3$ is a useful logic
 in AI-reasoning contexts. We've seen that it is intimately connected to
