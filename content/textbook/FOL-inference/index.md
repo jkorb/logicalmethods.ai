@@ -467,7 +467,7 @@ This re-write step gives us, for example:
 
 $${{< exists >}}x (Human x {{< land >}} {{<
 forall >}}x(Human x {{< to >}}Mortal x)){{< longrightarrow >}}{{< exists >}}y₁ (Human y₁ {{< land >}} {{<
-forall >}}x₁(Human x₁ {{< to >}}Mortal y₁))$$ 
+forall >}}x₁(Human x₁ {{< to >}}Mortal x₁))$$ 
 
 If there are more variables involved, the variable naming get's more complex,
 but every quantifier get's its own variable:
