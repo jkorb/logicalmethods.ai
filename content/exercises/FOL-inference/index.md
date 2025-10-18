@@ -145,7 +145,7 @@ laws. Note that some of these require `<span class="dark-blue">open</span> Class
 
 1. ${{< forall >}}x(A(x) {{< land >}} B(x)) {{< v_dash >}}{{< forall >}}xA(x) {{< land >}} {{< forall >}}xB(x)$
 2. ${{< forall >}}xA(x) {{< land >}} {{< forall >}}xB(x){{< v_dash >}} {{< forall >}}x (A(x) {{< land >}} B(x))$
-3. ${{< exists >}}x(A(x) {{< lor >}} B(x)) {{< v_dash >}}{{< forall >}}xA(x) {{< lor >}} {{< forall >}}xB(x)$
+3. ${{< exists >}}x(A(x) {{< lor >}} B(x)) {{< v_dash >}}{{< exists >}}xA(x) {{< lor >}} {{< exists >}}xB(x)$
 4. ${{< exists >}}x A(x) {{< lor >}} {{< exists >}}x B(x) {{< v_dash >}}{{< exists >}}x(A(x) {{< lor >}} B(x))$
 
 ## Interaction Laws
