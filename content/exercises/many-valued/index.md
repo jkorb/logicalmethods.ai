@@ -36,7 +36,7 @@ Here are, for example, the queries to verify the commutativity of ~!OR!~ and ~!A
  SELECT * 
  FROM ValuePairs
  WHERE
-	(X OR Y) != (Y OR X);
+	(X AND Y) != (Y AND X);
 ~~~
 
 Verify the remaining Kleene laws like this.
