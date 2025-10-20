@@ -1,8 +1,7 @@
 ---
-title: Logic and probability
+title: Probability and inductive logic
 author: Johannes Korbmacher
 weight: 110
-locked: true
 params: 
   date: 21/10/2024
   last_edited: 21/10/2024
@@ -10,569 +9,765 @@ params:
   math: true
 ---
 
-# Logic and probability
-
-In Chapters {{< chapter_ref chapter="logic-and-ai" >}} 1. Logic and AI{{<
-/chapter_ref >}} and {{< chapter_ref chapter="valid-inference" >}} 2. Valid
-inference{{< /chapter_ref >}}, we've distinguished between **deductive** inference
-(the truth of the premises guarantees the truth of the conclusion) and
-**inductive** inference (the truth of the premises makes the truth of the
-conclusion more likely). So far, we've only focused on models of deductive
-inference. In this chapter, you'll learn more about how to model inductive
-inference.
-
-We'll begin by looking at how to [model probabilities](#models-of-probability)
-in a logical setting. We'll then go through a useful method for calculating
-probabilities using [probability truth-tables](#probability-truth-tables). After
-this, we turn to [conditional probabilities](#conditional-probabilities), which
-then allow us to discuss a simple model of [inductive
-validity](#inductive-validity). To conclude the chapter, we look at some
-examples of valid and invalid inductive inferences in our model.
-
-## Models of probability
-
-The probability of an event describes the **how likely it is** that the event
-occurs. Think, for example, of how likely it is that you roll a 3 on a 6
-sided-die, or how likely it is that it rains tomorrow. 
-
-What this _really_ means is actually a matter of substantial debate. There
-different schools of thought on the interpretation of probability:
-
-+ Objectivists argue that the likelihood we're talking about here is an
-objective feature of reality, sometimes called _objective chance_. An example of
-this are [frequentist](https://en.wikipedia.org/wiki/Frequentist_probability)
-interpretations of probability, which think of probabilities as a measure of how
-often an event would occur if we repeated the circumstances.
-
-+ Subjectivists argue that the likelihood in question is a subjective, epistemic
-feature of world. An example of this are
-[Bayesian](https://en.wikipedia.org/wiki/Bayesian_probability) interpretations
-of probability, which think of probabilities as a measure of our _degree of
-belief_ in an event occurring.
-
-Here, we won't take sides in this debate. We'll work with a pre-theoretic notion
-of probability and focus on the formalism.
-
-Probabilities play many important roles in AI research. On the one hand, they
-are the basis for the statistical methods used in modern subsymbolic [machine
-learning](https://en.wikipedia.org/wiki/Machine_learning) methods.  On the other
-hand, probabilities are the main method for dealing with inductive inference and
-uncertainty in symbolic settings, such as expert systems.
-
-Different applications of probabilities in AI use different (though equivalent)
-ways of developing the formalism. Here, we'll develop a **symbolic approach to
-probabilities**, which models probabilities as real numbers assigned to formulas
-in formal languages. 
-
-But you should be aware of the fact that [mathematical probability
-theory](https://en.wikipedia.org/wiki/Probability_theory), in general, is a
-broader theory that can be applied in many different, symbolic and subsymbolic
-settings.
-
-For now, we work ({{< chapter_ref chapter="many-valued" id="syntax" >}}again{{<
-/chapter_ref >}}) with a propositional language $\mathcal{L}$ with variables
-$p_1,\dots,p_n$ and connectives $\neg,\land,\lor$.
-
-A **probability** for $\mathcal{L}$ is a function $Pr:\mathcal{L}\to\mathbb{R}$, which assigns [real numbers](https://en.wikipedia.org/wiki/Real_number) to formulas, subject to the following three conditions:
-
-1) $Pr(A)\geq 0$, for all $A\in\mathcal{L}$
-
-2) $Pr(A)=1$, whenever $\vDash A$ (i.e. $A$ is a classical logical truth)
-
-3) $Pr(A\lor B)=Pr(A)+Pr(B)$, whenever $\vDash \neg (A\land B)$ (i.e. $A\land B$ is unsatisfiable)
-
-These are the so-called [Kolmogorov axioms](https://en.wikipedia.org/wiki/Probability_axioms) for classical probability theory. Note that they use notions from classical logic (logical truth and satisfiability).[^classical]
-
-These are only the basic axioms, there are also **derived laws**. For example,
-it's easy to show that for all formulas $A$, we have: $$P(\neg A)=1-P(A).$$ 
-
-To see this, we can reason as follows:
-
-+ We know that $\vDash \neg(A\land \neg A)$ using Boolean logic.
-+ It follows that $Pr(A\lor \neg A)=Pr(A)+Pr(\neg A)$ by the third axiom.
-+ We further know that $\vDash A\lor \neg A$ using Boolean logic.
-+ It follows that $Pr(A\lor \neg A)=1$ from the second axiom.
-+ Putting it all together, it follows $1=Pr(A)+Pr(\neg A)$, which gives our
-claim by simple algebra (subtracting $Pr(A)$ on both sides).
-
-In a similar way, you can show rules like the following:
-
-+ $Pr(A)=0$, whenever $\vDash \neg A$
-+ $Pr(A\lor B)=Pr(A)+Pr(B)-Pr(A\land B)$ (the "inclusion-exclusion" principle)
-+ If $A\vDash B$, then $Pr(A)\leq Pr(B)$.
-+ If $A$ and $B$ are equivalent, then $Pr(A)=Pr(B)$.
- 
-These kinds of laws hold for _all_ probabilities. And importantly, there are
-many possible probability measures, which correspond to different modeling
-situations. But how do we give a concrete probability? Well, we have to give a
-rule that specifies the probability of every formula. Let's look at an example. 
-
-Suppose we're modeling the throw of a single, 6-sided die. Correspondingly, we
-have six propositional variables in our language:
-$$\mathsf{RESULT}_1,\mathsf{RESULT}_2,\mathsf{RESULT}_3,\mathsf{RESULT}_4,\mathsf{RESULT}_5,\mathsf{RESULT}_6,$$
-where $\mathsf{RESULT}_i$ means that the result of the die-roll is $i$.
-
-If we're dealing with a fair die, we can define a corresponding probability
-measure $Pr_{\text{fair}}$ as follows:
-
-$$Pr_{\text{fair}}(\mathsf{RESULT}_i)=\frac{1}{6}\text{, for }i=1,\dots,6$$
-$$Pr\_{\text{fair}}(\mathsf{RESULT}_i\land \mathsf{RESULT}_j)=0\text{, for all }i\neq
-j$$
-$$Pr\_{\text{fair}}(\neg\mathsf{RESULT}_1\land \dots\neg\mathsf{RESULT}_6)=0$$
-
-The third rule ensures that we have at least one result: it's impossible that
-the result isn't $1$, isn't $2$, $\dots$, isn't $6$.
-
-The second rule formalizes the fact that a die can't show two numbers at the
-same time, it's impossible that the result is both a $1$ and a $6$, say. In
-other words, we assume that the results are mutually exclusive.
-
-The first rule, then, captures the fact that each result is equally likely, i.e.
-the die is fair. Since there are $6$ mutually exclusive results, the only way to
-achieve this is by assigning $\frac{1}{6}$ to each.
-
-It turns out that these two rules are sufficient to define a value
-$Pr_\text{fair}(A)$ for each formula $A$. Showing this is not hard, but not
-trivial either.[^totality] Here we won't go into the details, but instead
-highlight that **probabilities are not recursive**. 
-
-That is, the first rule is _not_ sufficient to calculate the probabilities of all
-formulas. To calculate the probability of the die being 2 or 4, for example,
-
-$$Pr_\text{fair}(\mathsf{RESULT}_2\lor \mathsf{RESULT}_4),$$
-
-we need both rules:
-
-+ We know from the derived inclusion-exclusion principle that: $$Pr_\text{fair}(\mathsf{RESULT}\_2\lor \mathsf{RESULT}\_4)=$$
-$$Pr_\text{fair}(\mathsf{RESULT}\_2)+Pr\_\text{fair}(\mathsf{RESULT}\_4)-Pr(\mathsf{RESULT}\_2\land \mathsf{RESULT}\_4)$$
-+ We further know from the second rule that: $$Pr(\mathsf{RESULT}\_2\land \mathsf{RESULT}\_4) = 0.$$
-+ So we get that: $$Pr_\text{fair}(\mathsf{RESULT}\_2\lor \mathsf{RESULT}\_4)=Pr_\text{fair}(\mathsf{RESULT}\_2)+Pr\_\text{fair}(\mathsf{RESULT}\_4).$$
-+ Since by the first rule, we have $Pr_\text{fair}(\mathsf{RESULT}\_2)=\frac{1}{6}$ and $Pr_\text{fair}(\mathsf{RESULT}\_4)=\frac{1}{6}$, we know that:
-
-$$Pr_\text{fair}(\mathsf{RESULT}\_2\lor \mathsf{RESULT}\_4)=\frac{1}{6}+\frac{1}{6}=\frac{1}{3}$$
-
-But note that crucially, we needed **both rules** in this calculation. The
-probabilities of the propositional variables are not enough, we also need the
-values of their conjunctions.[^eg]
-
-In our simple example, this was easy: no conjunction could be true. But in more
-complex modeling scenarios, that makes specifying probabilities explicitly
-fairly difficult. This is why we'll now describe a method for defining
-probabilities that's easier to implement.
-
-## Probability truth-tables
-
-It turns out that we can use **truth-tables** to specify probabilities for a whole
-language.[^finite] To see how this works, let's discuss the abstract theory
-first, and then go through a concrete example.
-
-The basic idea is that we can specify probabilities by saying how likely
-different _valuations_ are. Here, we think of valuations again as logically
-possible scenarios and of the likelihood of a valuation as how likely it is that
-the things in the actual world turn out exactly like in the scenario.
-
-So, we have $\mathsf{RAIN}$ and $\mathsf{SUN}$ as our propositional variables,
-then we have 4 different valuations:
-
-  + $\nu_1(\mathsf{RAIN})=1$ and $\nu_1(\mathsf{SUN})=1$
-  + $\nu_2(\mathsf{RAIN})=1$ and $\nu_2(\mathsf{SUN})=0$
-  + $\nu_3(\mathsf{RAIN})=0$ and $\nu_3(\mathsf{SUN})=1$
-  + $\nu_4(\mathsf{RAIN})=0$ and $\nu_4(\mathsf{SUN})=0$
-
-These correspond to the "world" where it rains and the sun shines ($\nu_1$), it
-rains but the sun doesn't shine ($\nu_2$), and so forth. 
-
-We now measure with a **probability weight** $m$ how likely each of these
-scenarios is. For example, we could say:
-
-+ $m(\nu_1)=0.5$
-+ $m(\nu_2)=0.3$
-+ $m(\nu_3)=0.2$
-+ $m(\nu_4)=0$
-
-What this means is that the likelihood of it raining and the sun shining is 0.5,
-the likelihood of it raining and the sun not shining 0.3, and so forth.
-
-We could use any weight distribution here, as long as they sum up to $1$. This
-expresses the assumption that at least one of the different scenarios _will_
-happen.
-
-So, more generally, a **probability weight** for our language is a function $m$,
-which assigns to each valuation $\nu$ a positive value $0\leq m(\nu)$ such that
-these values sum up to one: $$\sum_{\nu}m(\nu)=1$$
-
-Once we have these values, we can calculate the probability of each formula by adding
-the probability weights of the worlds, where the formula is true:
-$$Pr_m(A)=\sum_{\nu(A)=1}m(\nu).$$
-
-So, in our example, to get the probability of $\mathsf{RAIN},$
-for example, we'd calculate 
-$$Pr(\mathsf{RAIN})=\sum_{\nu(\mathsf{RAIN})=1}
-m(\nu)=$$
-$$m(\nu_1)+m(\nu_2)=0.5+0.3=0.8$$
-
-That is, in our model, the probability of it raining is 0.8. This is because the
-only scenarios where it rains are $\nu_1$ and $\nu_2$ and they have a combined
-likelihood of 0.8.
-
-It turns out, as a matter of mathematical fact, that _every_ probability
-function $Pr$ can be expressed in this way. We shall not look into the proof of
-this, but rather how to use this fact as a convenient method for specifying
-probabilities. 
-
-The point is that it's much easier to specify a weight for each valuation than
-to assign a value to each formula: there are typically way fewer valuations than
-relevantly distinct formulas. Which brings us to the connection with
-truth-tables. 
-
-Remember from {{< chapter_ref chapter="sat" id="truth-tables" >}} Chapter 5.2
-{{< /chapter_ref >}} that in a truth-table, each line corresponds to a
-valuation:
-
-{{< img src="img/prob-table-basis.png" class="img-thumbnail mx-auto d-block my-4" >}}
-
-This means that in the table, we can conveniently give the information of our
-measure as follows:
-
-{{< img src="img/prob-table-weight.png" class="img-thumbnail mx-auto d-block my-4" >}}
-
-So far, so good. What makes this method really powerful is that it allows us to
-calculate the probability of a formula: simply calculate the values of the
-formula for each row in the usual way and then sum up the $m$-values for each
-row where the formula gets value $1$.
-
-So, in our example, if we want to know the probability of
-$\mathsf{RAIN}\lor\neg\mathsf{SUN}$, we'd proceed as follows:
-
-{{< img src="img/prob-table-full.png" class="img-thumbnail mx-auto d-block my-4" >}}
-
-Then, we can see that:
-$$Pr(\mathsf{RAIN}\lor\neg\mathsf{SUN})=m(\nu_1)+m(\nu_2)+m(\nu_4)=0.5+0.3+0=0.8$$
-
-This is a powerful method for representing and calculating probabilities. But it
-also has its limits. For example, it suffers from the same problem of
-**combinatorial explosion** as the truth-tables method for validity checking.
-For example, writing the full truth-table for our die example from above, we
-need $2^6=64$ rows. That means that we need to use "tricks" to handle them
-efficiently. In this example, we can use the fact that every row where more than
-one $\mathsf{RESULT}_i$ gets value $1$ will have $m$-value $0$, so we can leave
-it out of the table:
-
-{{< img src="img/prob-table-die.png" class="img-thumbnail mx-auto d-block my-4" >}}
-
-Unfortunately, computationally efficient implementations of probabilities are
-beyond what we can discuss in this setting.
-
-## Conditional probabilities
-
-Having outlined what probabilities are and how we can describe them, we now turn
-our attention to modeling inductive inference using probabilities. As we've
-discussed already in {{< chapter_ref chapter="valid-inference"
-id="semantic-methods-for-induction" >}} Chapter 2. Valid inference{{<
-/chapter_ref >}}, the idea is to use **conditional probabilities** for this
-purpose.
-
-The conditional probability of one formula $A$ _given_ another formula $B$ is,
-intuitively, a measure of how likely it is that $A$ is true assuming that  $B$
-is true. This idea is formally captured in the definition:
-
-$$Pr(A\mid B)=\frac{Pr(A\land B)}{Pr(B)}$$
-
-Here we need to assume that $Pr(B)\neq 0$ to avoid [division by
-0](https://en.wikipedia.org/wiki/Division_by_zero).
-
-Let's look at how this works in some examples:
-
-+ In the $\mathsf{RAIN},\mathsf{SUN}$ example, we could ask, for example, what
-the probability is that it rains given that the sun is shining:
-$$\mathsf{Pr}(\mathsf{RAIN}\mid\mathsf{SUN})=\frac{Pr(\mathsf{SUN}\land\mathsf{RAIN})}{Pr(\mathsf{SUN})}$$ 
-
-  For this calculation, we need to know $Pr(\mathsf{RAIN}\land\mathsf{SUN}),Pr(\mathsf{SUN})$. We get them from the following table:
-
-  {{< img src="img/prob-table-rain.png" class="img-thumbnail mx-auto d-block my-4" >}}
-
-  We get $Pr(\mathsf{RAIN}\land\mathsf{SUN})=0.5$ and
-  $Pr(\mathsf{SUN})=0.5+0.2=0.7$. We get:
-
-  $$\mathsf{Pr}(\mathsf{RAIN}\mid\mathsf{SUN})=\frac{0.5}{0.7}\approx 0.71$$
-
-  So, the answer is that the chance of it raining given that the sun is shining
-  is around 71%. 
-
-+ Let's do another example to drive the point home. In our die example, let's
-ask how likely it is to roll a 2 given that we roll an even number. Abbreviating
-$\mathsf{RESULT}_i$ to $\mathsf{R}_i$, we can represent  rolling an
-even number with the formula $$\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6.$$
-
-  Our question this is: 
-
-  $$Pr(\mathsf{R}_2\mid \mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 )=\frac{Pr(\mathsf{R}_2\land (\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6))}{Pr(\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6)}$$
-
-  We use the following simplified truth-table for the calculation:
-
-  {{< img src="img/prob-table-even.png" class="img-thumbnail mx-auto d-block my-4" >}}
-
-  We get:
-
-  $$Pr(\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6)=\frac{1}{6}+\frac{1}{6}+\frac{1}{6}=\frac{1}{2}$$
-
-  $$Pr(\mathsf{R}_2\land (\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6))=\frac{1}{6}$$
-
-  So:
- $$Pr(\mathsf{R}_2\mid \mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 )=\frac{\frac{1}{6}}{\frac{1}{2}}=\frac{1}{3}$$
-  That is, the chance of getting a 2 _given_ that you get an even number is
-  $\frac{1}{3}$.
-
-Besides helping us to define valid inductive inference, which we'll turn to in
-the next section, conditional probabilities have a lot of theoretical use. 
-
-One important application that underlies many practical applications is to
-define the notion of **probabilistic independence**. We say that two formulas
-$A,B$ are probabilistically independent iff $$Pr(A|B)=Pr(A).$$ 
-
-If $A,B$ are probabilistically independent, then whether $B$ occurs "doesn't
-matter" for whether $A$ occurs. 
-
-For example, in the following example, we have that whether it rains and the sun
-is shining are independent:
-
-{{< img src="img/prob-table-indep.png" class="img-thumbnail mx-auto d-block my-4" >}}
-
-To see this, consider:
-
-$$Pr(\mathsf{SUN}\mid
-\mathsf{RAIN})=\frac{Pr(\mathsf{SUN}\land\mathsf{RAIN})}{Pr(\mathsf{RAIN})}$$
-$$=\frac{0.5}{0.5+0.3=0.8}=0.625=0.5+0.125=Pr(\mathsf{SUN})$$
-
-It's worth noting that if $A,B$ are probabilistically independent, we can
-calculate the probability of $A\land B$ from the probabilities of $A,B$:
-
-+ If $Pr(A|B)=Pr(A)$, then $Pr(A\land B)=Pr(A)\times Pr(B)$.
-
-This holds in our example, since 
-$$Pr(\mathsf{RAIN})=0.5+0.3=0.8$$
-$$Pr(\mathsf{SUN})=0.5+0.125=0.625$$
-$$Pr(\mathsf{RAIN}\land\mathsf{SUN})=0.5=0.8\times 0.625$$
-
-But it's important to note that this _doesn't_ hold in general. In the original
-table:
-
-{{< img src="img/prob-table-rain.png" class="img-thumbnail mx-auto d-block my-4" >}}
-
-We have:
-
-$$Pr(\mathsf{RAIN})=0.5+0.3=0.8$$
-$$Pr(\mathsf{SUN})=0.5+0.2=0.7$$
-$$Pr(\mathsf{RAIN}\land\mathsf{SUN})=0.5\neq 0.8\times 0.7=0.56$$
-
-## Inductive validity
-
-It is now time to turn to **inductive validity**. But before we give an
-account, it is important to note that inductive logic is a _broad field_, which
-is closely related to [statistical
-inference](https://en.wikipedia.org/wiki/Statistical_inference). Given this, we
-should note that the account of inductive validity we present here is just
-_one_ view of valid inference in a narrow sense.
-
-The situation is similar to the one we face in deductive logic: Boolean logic,
-many-valued logic, fuzzy logic, etc. all give slightly different models of
-deductively valid inference, which are applicable in different circumstances,
-under different assumptions, etc. 
-
-Correspondingly, there are different models of inductive inference. The model
-we'll discuss in this section is a simple version of what's known as [Bayesian
-inference](https://en.wikipedia.org/wiki/Bayesian_inference). But we won't go
-into the details of **Bayesian statistics** and the difference to other paradigms.
-Instead, we'll focus on the idea of using conditional probability as a measure
-of inductive support, which is especially important in Bayesian statistics but
-on a general level, is characteristic of inductive inference.
-
-The basic idea we're pursuing is, as discussed in {{< chapter_ref
-chapter="valid-inference" >}} Chapter 2. Valid inference {{< /chapter_ref >}},
-the idea that an inference is inductively valid just in case the premises make
-the conclusion more likely. We interpret this "more likely" as: the conditional
-probability of the conclusion given the premises is higher than the
-unconditional probability of the conclusion. 
-
-Using the symbol $\mid\approx$ for inductive validity, the definition is:
-$$ P_1,P_2,\dots\mid\approx C \Leftrightarrow Pr(C|P_1\land P_2\land
-\dots)\geq Pr(C)$$
-This concept is essentially what [Rudolf
-Carnap](https://en.wikipedia.org/wiki/Rudolf_Carnap) calls the **increase of
-firmness** concept of evidential support: the premises, if we were to add them
-to our knowledge bank, would raise the degree with which our KB supports the
-conclusion.
-
-There are a few things to note about the definition, at this point:
-
-+ The right-hand side of this definition is only well-defined if $Pr(P_1\land
-P_2\land \dots)\neq 0$. That is, we need to assume that the premises are
-probabilistically consistent. What should we say if they are not? The natural
-answer would be that the inference should be inductively valid in the same way
-an inference with classically inconsistent premises is deductively valid.
-
-+ The concept of inductive validity depends on a background probability. That
-is, technically speaking, our concept of $\mid\approx$ is _relative_ to $Pr$ and
-should be written $\mid\approx_{Pr}$. In this sense, our notion of what
-constitutes a valid inductive inference depends on what we already know (or
-believe) about the world. This is an issue we'll be revising in the next
-chapter, when we'll explore logic-based learning. In practice, however, we often
-leave out the subscript $Pr$ and simply write $\mid\approx$.
-
-+ There are, however, **laws of inductive logic** which don't depend on the
-choice of $Pr$ and are therefore purely logical. We'll discuss some
-examples below.
-
-+ The notion of inductive support given by the above definition is _weak_. _Any_
-increase of firmness for the conclusion constitutes an inductively valid
-inference, not matter how small. This means that having an inductively valid
-inference for the conclusion from true premises is by itself not a reason to
-believe the conclusion. 
-
-  For this, we need **inductively strong** inferences. These are inferences,
-  where the conditional probability of the conclusion given the premises is
-  _high_. The simplest version of this idea is where we say that:
-  $$ P_1,P_2,\dots\mid\overset{!}{\approx} C \Leftrightarrow Pr(C|P_1\land P_2\land
-  \dots)\gg Pr(C),$$
-
-  where $x\gg y$ means that $x$ is "much" bigger than $y$. What "much bigger"
-  means can then depend on the context, such as, for example, what $Pr(C)$ is.
-  An inductively strong inference may push $Pr(C)$ from $0.9$ to $0.99$ or from
-  $0.5$ to $0.9$. What counts as a 
-  
-  But there are alternative notions as well: we could, for example, set a
-  **threshold** $\epsilon$, typically bigger than $0.5$, for how high the
-  probability of a conclusion needs to become in order for the inference to
-  count as strong:
-  $$ P_1,P_2,\dots\mid\overset{!}{\approx} C \Leftrightarrow Pr(C|P_1\land P_2\land
-  \dots)\geq \epsilon>0.5.$$ A good inductive inference is one which makes the
-  conclusion more likely than not.
-
-  The upshot is that in inductive logic, there is not as much uniformity as in
-  deductive logic: different notions are available and there's absolute
-  agreement on what the "standard" concept should be.
-
-We'll continue thinking about the simple increase of firmness concept of
-inductive validity $\mid\approx$. We can note the following **inductive laws**,
-which are independent of the choice of $Pr$:
-
-+ If $P_1,P_2,\dots\vDash C$, then $P_1,P_2,\dots\mid\approx C$.
-
-  This follows from the above observation that if $A,B$ are equivalent, then
-  $Pr(A)=Pr(B)$. Because if $P_1,P_2,\dots\vDash C$, then, as a matter of
-  mathematical fact we won't show in detail, $P_1\land P_2\land\dots \land C$ is
-  equivalent to $P_1\land P_2\land\dots$. This gives us: $$Pr(C\mid
-  P_1,P_2,\dots)=\frac{Pr(P_1\land P_2\land \dots\land C)}{Pr(P_1\land P_2\land
-  \dots)}=\frac{Pr(P_1\land P_2\land \dots)}{Pr(P_1\land P_2\land \dots)}=1$$
-
-  Since $1\geq Pr(C)$ for each $C$, this proves our claim.
-
-+ If $C\vDash P_1\land P_2\land \dots$, then $P_1\land P_2\land \dots\mid\approx
-C$. 
-
-  This follows from the fact that if $A\vDash B$, then $Pr(A)\leq Pr(B)$, we
-  observed above. Because from this it follows that if $C\vDash P_1\land P_2\land \dots$, then $Pr(C)\leq Pr(P_1\land P_2\land \dots)$. Further, as before we have that $C\land P_1\land P_2\land \dots$ is equivalent to $C$ and so, we can reason as follows:
-  $$Pr(C\mid P_1\land P_2\land \dots)=\frac{Pr(C\land P_1\land
-  P_2\land\dots)}{Pr(P_1\land P_2\land\dots)}$$
-  $$=\frac{Pr(C)}{Pr(P_1\land P_2\land\dots)}\overset{Pr(C)\leq Pr(P_1\land P_2\land \dots)}\geq Pr(C)$$
-
-The latter law will allow us to observe the inductive validity of some
-well-known principles, one of which we'll discuss on the following section.
-
-The law is a sort of mathematical proof of the so-called [deductive-nomological
-model](https://en.wikipedia.org/wiki/Deductive-nomological_model) of
-confirmation, which though not unproblematic has been hugely influential in
-thinking about what confirmation is.
-
-## Validities and fallacies
-
-To conclude our theoretical discussion of inductive inference, let's discuss two
-concrete examples of inductive inference, one valid, one invalid.
-
-### Enumerative induction
-
-**Enumerative induction** is the principle that we can infer $\forall x P(x)$
-from sufficiently many and well-chosen instances $P(a_1), P(a_2),\dots$. In our
-simple setting, we can express this as: $$P(a_1),P(a_2),\dots\mid\approx \forall
-xP(x).$$ The simple, standard example of this inference is that all observed
-swans, sampled well and wide, were white, so all swans are white. Of course, this
-inference is deductively invalid—it can always happen that there's a non-white
-swan somewhere—but we can show, mathematically, that the inference is
-inductively valid in the (weak) increase of firmness sense.
-
-This follows from the previous law that if the conclusion implies the premises,
-an inference is inductively valid. Let's suppose for a moment that we have
-extended our treatment of probabilities to a FOL language, which is rather
-straight-forward but takes a lot of space.[^fol] Assuming that we still get our
-theorem (which we do), we can infer the validity of enumerative induction from
-the simple fact that $$\forall xP(x)\vDash P(a_i),$$ for each $i$ following the
-law of universal instantiation.
-
-Even more so, given some reasonable assumptions, since the function
-$$Pr(\forall xP(x)\mid \dots)$$ grows monotonically, if we put every increasing
-numbers of instances in[^math]
-$$P(a_1)$$ 
-$$P(a_1)\land P(a_2)$$ 
-$$P(a_1)\land P(a_2)\land \dots$$ 
-we will eventually "crack" every threshold of $\epsilon\geq 0.5$ we could chose.
-
-This means that on our simple model of inductive validity, for sufficiently
-large $n$, $$P(a_1),\dots,P(a_n)\mid\overset{!}{\approx}\forall xP(x)$$
-
-## Conjunction fallacy
-
-Here's the original **Linda problem** from Tversky and Kahneman:
-
-_Linda is 31 years old, single, outspoken, and very bright. She majored in philosophy. As a student, she was deeply concerned with issues of discrimination and social justice, and also participated in anti-nuclear demonstrations._
-
-_Which is more probable?_
-
-1. _Linda is a bank teller._
-2. _Linda is a bank teller and is active in the feminist movement._
-
-In experimental surveys, people reliably judge option 2 more likely as option 1,
-which is a **probabilistic fallacy**.
-
-We can now see why: Since $$\mathsf{BANK}\land\mathsf{FEMINIST}\vDash
-\mathsf{BANK},$$ we can infer that $$Pr(\mathsf{BANK}\land\mathsf{FEMINIST})\leq
-Pr(\mathsf{BANK}),$$ for any $Pr$ we could chose.
-
-There is an extensive psychological literature that tries to explain _why_
-people make this and related fallacies. But for us, from a logical perspective,
-the crucial point is _that_ people do. In symbolic inductive reasoning, we have
-to be careful not fall into the trap of these fallacies, and the best way is to
-use logical methods to model inductive reasoning.
-
-## Further readings
-
-An excellent introduction to the formalism of Bayesian epistemology is:
-
-+ [Titelbaum, Michael. 2022. Fundamentals of Bayesian Epsitemology I. Oxford
-University Press](https://global.oup.com/ukhe/product/fundamentals-of-bayesian-epistemology-1-9780198707615?cc=gb&lang=en&). 
-
-Chapters 12 and 13 of [Russel and Norvig](https://elibrary.pearson.de/book/99.150005/9781292401171) are an excellent introduction to more detailed uses of probabilistic reasoning in AI.
-
-**Notes**:
-
-[^classical]: There are also _non_-classical probability theories, which build on alternative background logics. For example, there is strong Kleene probability theory. Check out [this paper](https://eprints.whiterose.ac.uk/104891/1/nonclassicalprobabilityfinal.pdf).
-
-[^totality]: The proof involves a different normal form than the CNFs we used in
-    {{< chapter_ref chapter="sat" id="normal-forms" >}} Chapter 5. Boolean
-satisfiability {{< /chapter_ref >}}, called [disjunctive normal forms
-(DNFs)](https://en.wikipedia.org/wiki/Disjunctive_normal_form). It also uses the
-facts that equivalent formulas have the same probability and that if one formula
-implies the other the probability of the one is lower than that of the other. 
-
-[^eg]: ... for example. There are other ways of specifying a probability, using
-    all probabilities of disjunctions, for example. But that's not the important
-point.
-
-[^finite]: The only constraint is that we only have finitely many propositional
-    variables $p_1,\dots,p_n$ and not infinitely many $p_1,p_2,\dots$. But in
-concrete, AI modeling situations, this isn't usually a practical problem.
-
-[^fol]: See the Titelbaum book in the suggested readings for how to do this
-    precisely.
-
-[^math]: This mathematical fact is easy to show but we omit it here for
-    brevity's sake. Can you fill the gap? 
+# Probability and inductive logic
+
+{{< img src="img/llm_example.png" class="rounded  float-start inert-img img-fluid m-2" width="350px">}}
+Inductive inference plays a crucial role in AI technologies both on the low
+level and on the high level. On the low level, inductive inference is, for
+example, the logical foundation for [large language models
+(LLMs)](https://en.wikipedia.org/wiki/Large_language_model), which in turn give
+us [chatbots](https://en.wikipedia.org/wiki/Chatbot) and other modern AI
+technologies. In essence, an LLM is (an approximation of) a [probability
+distribution](https://en.wikipedia.org/wiki/Probability_distribution) over
+[tokens](https://en.wikipedia.org/wiki/Large_language_model#Tokenization)—small-ish
+sequences of characters that make up words. The idea is that we can use the
+[conditional probability](https://en.wikipedia.org/wiki/Conditional_probability)
+of one token given a sequence of others to predict what the _next_
+token in the sequence should be. The perhaps surprising fact is, that this
+"next-token prediction" allows us to develop AI agents with human-like
+abilities.
+
+{{< img src="img/llm_inference.png" class="rounded  float-end inert-img img-fluid m-2" width="350px">}}
+LLMs, and the technologies that they are based on, are the state of the art of
+statistics-based AI: they are not based on hand-written if-then rules and
+automated deductive inference, but on statistical models of large-scale
+datasets, which are developed using advanced [machine learning
+methods](https://en.wikipedia.org/wiki/Machine_learning), such as [gradient
+descent](https://en.wikipedia.org/wiki/Gradient_descent). But the fact that LLMs
+aren't
+[logic-based](https://en.wikipedia.org/wiki/Symbolic_artificial_intelligence)
+doesn't mean that they have nothing to do with logic. In fact, next-token
+prediction is a form of _(inductive) inference_: `t₁, ..., tₙ` are the previous
+tokens, therefore `s` is the next token. If we want to have any hope at all
+of understanding how LLMs work on the low level, we need to study inductive
+logic.
+
+{{< img src="img/ai_spam.png" class="rounded  float-end inert-img img-fluid m-2" width="150px">}}
+In fact, inference that involves prediction is typically inductive—we can hardly
+ever make predictions with certainty. In this chapter, we'll focus on predictive
+inference on the higher, propositional level. As an example of an AI-technology
+that features inductive inference we'll look at [`SPAM`
+filters](https://en.wikipedia.org/wiki/Email_filtering).
+
+There are different approaches to inductive logic in AI-research. In the
+logic-based tradition, there are systems which aim to assimilate inductive logic
+to deductive logic:  they work just like the sytems we know from deductive logic
+in terms of syntax, semantics, and proof-theory, except that their consequence
+relation is inductive: it allows for the premises to be true and the conclusion
+to be false. The result are systems of [non-monotonic
+logic](https://en.wikipedia.org/wiki/Non-monotonic_logic), such as
+[autoepistemic logic](https://en.wikipedia.org/wiki/Autoepistemic_logic) and
+[default logic](https://en.wikipedia.org/wiki/Default_logic), which have a solid
+place in logic-based AI research.
+
+But in broader terms, [probability
+theory](https://en.wikipedia.org/wiki/Probability_theory) is the most widely
+used framework for inductive logic. In this chapter, we'll look at probability
+through the lens of logical theory. As you'll see, we can develop the standard
+theory of [finite, discrete probability
+distributions](https://en.wikipedia.org/wiki/Probability_distribution#Discrete_probability_distribution)
+using the truth-tables we're familiar with from Boolean logic. This allows us to
+develop the standard theory of inductive inference in the same setting as the
+standard theory of deductive inference—which in turn makes it possible to
+compare the two.
+
+At the end of the chapter, you'll be able to:
+
+- explain the basic concept of a probability distribution over a propositional
+language,
+- define probability distributions using classical truth-tables and probability
+  weights,
+- calculate conditional probabilities using Kolmogorov's definition and [Bayes
+formula](https://en.wikipedia.org/wiki/Bayes%27_theorem),
+- explain the relevance of probability to inductive inference and apply this in
+  examples, such as naive Bayes filters,
+- explain the logical relation between inductive and deductive inference.
+
+## Probabilities
+
+Lets think back to our example of a six-sided die. When we're rolling the die,
+we don't know what the outcome will be. A process that has different possible
+outcomes is called [random](https://en.wikipedia.org/wiki/Randomness) in
+probability theory. In our case, there are six possible outcomes: we could roll
+a 1, a 2, a 3, a 4, a 5, or a 6. Visually, we can represent these possible
+outcomes as: 
+{{< img src="img/die_space.png" class="rounded mx-auto d-block inert-img img-fluid" width="500px">}}
+In probability theory, the symbol $Ω$ stands for the so-called [sample
+space](https://en.wikipedia.org/wiki/Sample_space), from which our possible
+outcomes are recruited. Rolling the die is what's called a [random
+experiment](https://en.wikipedia.org/wiki/Experiment_(probability_theory)),
+which is a procedure that decides the random process by settling the outcome.
+
+Each outcome in our experiment has a chance of occurring, but what this chance
+is depends on the die. On a _fair_ die, each outcome is equally likely. On a
+[_loaded_ die](https://en.wikipedia.org/wiki/Dice#Loaded_dice), instead, some
+outcomes are more likely than others. So, there is no "intrinsic" chance that we
+must assign to the outcomes given our setup of rolling a 6-sided die. There are
+different possible ways of assigning chances, which correspond to different ways
+the world could be like.
+
+Formally, we model these different probabilities using what's called a
+[probability mass
+function](https://en.wikipedia.org/wiki/Probability_mass_function), which is
+often denoted `p`. This is a mathematical function that assigns a value between
+`0` and `1` (inclusive) to each of our outcomes to measure its chance of
+occurring. The value `0` means that it's impossible for the outcome to occur,
+and the value `1` means that it's absolutely certain. Intermediate values
+measure the chance with a higher value meaning a higher chance. 
+
+The only constraint on a probability mass function is that the sum of the values
+over all outcomes must be one, i.e.
+
+```
+p({{< die_1 >}}) + p({{< die_2 >}}) + p({{< die_3 >}}) +p({{< die_4 >}}) + p({{< die_4 >}}) + p({{< die_5 >}}) + p({{< die_6 >}}) = 1
+```
+
+This constraint captures the idea that at least one of the outcomes must obtain.
+And behind this way of mathematically expressing this constraint is the idea that
+the chance of one of sequence of mutually exclusive outcomes to occur is the sum
+of the chances of these outcomes. That is, what we're saying here is that: the
+chance of the roll either being a 1, a 2, a 3, a 4, a 5, or a 6 is 1—it's
+absolutely certain that at least one outcome will occur.
+
+Other than that, any distribution of masses over the outcomes defines a
+probability. That is, all of the following are perfectly fine probability
+mass distributions:
+{{< img src="img/mass_tables.png" class="rounded mx-auto d-block inert-img img-fluid" width="350px">}}
+
+Once we know the chances of the basic outcomes, we can calculate the
+probabilities of complex outcomes, like the die showing an even number or
+showing a number bigger than four. In the parlance of probability theory, these
+are called [events](https://en.wikipedia.org/wiki/Event_(probability_theory)).
+An event is a set of basic outcomes, the basic outcomes which correspond to the
+event. So, for example, the event that die shows an even number is:
+```
+{{{< die_2>}}, {{< die_4>}}, {{< die_6>}}}
+```
+Instead, the event that the roll is bigger than four (exclusive) is:
+```
+{{{< die_5>}}, {{< die_6>}}}
+```
+
+To calculate the probability of an event, we simply sum up the probability
+masses of its outcomes. So, for example,
+
+```
+Pr({{{< die_2>}}, {{< die_4>}}, {{< die_6>}}}) = p({{< die_2 >}}) + p({{<
+die_4 >}}) + p({{< die_6 >}})
+```
+
+This probability, then, will differ for each mass function. For our fair die,
+e.g., we get `Pr({{{< die_2>}}, {{< die_4>}}, {{< die_6>}}}) = 1/6 + 1/6 + 1/6 =
+3/6 = 1/2`. But for the unfair distribution, we get `Pr({{{< die_2>}}, {{<
+die_4>}}, {{< die_6>}}}) = 1/10 + 1/10 + 1/10 = 3/10`. Since each outcome $ω {{<
+in >}}Ω$ corresponds to a singleton event, viz. `{ω}`, we can also write things
+like `Pr({{< die_1>}})`, which technically would be `Pr({{{< die_1>}}}) = p({{<
+die_1>}})`. More generally, the formula for the probability of an arbitrary
+event `X {{< subseteq >}} Ω` is:
+{{< img src="img/probability.png" class="rounded mx-auto d-block inert-img img-fluid" width="200px">}}
+
+This is, in a nutshell, the standard model of [(finite) discrete
+probabilities](https://en.wikipedia.org/wiki/Probability_distribution#Discrete_probability_distribution).
+Things get a bit more complicated if we want to allow for non-discrete
+[continuous](https://en.wikipedia.org/wiki/Probability_distribution#Absolutely_continuous_probability_distribution)
+values: where the outcomes cannot be counted like 1, 2, 3, ... but are things
+like real-valued functions with values in an interval $[0, 1]$. But for the
+purposes of basic AI-applications, discrete probability theory is more than
+enough.
+
+There is a big debate on the foundations of probability theory concerning what
+probabilities _are_: 
+
+- for [Bayesians](https://en.wikipedia.org/wiki/Bayesian_probability) probabilities
+are a measure of one's degree of belief in something happening; 
+
+- for [frequentists](https://en.wikipedia.org/wiki/Frequentist_probability),
+probabilities measure how often an event would occur if we'd repeat the
+experiment infinitely many times;
+
+- for [objectivists](https://en.wikipedia.org/wiki/Propensity_probability)
+probability is something "in the world": just like there's the mass of an
+object, there's the chance of it behaving a certain way.
+
+For our purposes, however, the interpretation of probabilities is not crucial.
+To explore the relation between probabilities and inductive inference in AI, we
+can take a naive view of probabilities as chances or likelihoods of something
+happening.
+
+Note that the outcomes of a random experiment are nothing different than the
+reasoning scenarios we've discussed on logical semantics. Suppose, for example,
+that rather than a die roll, our random experiment is given by tomorrow's
+weather with respect to sun and rain. In this setup, there are four possible
+outcomes:
+{{< img src="img/weather_space.png" class="rounded mx-auto d-block inert-img img-fluid" width="500px">}}
+
+But these are just the models for the propositional language with $SUN$ and
+$RAIN$. In fact, we can think of a probability mass function as an assignment of
+values between `0` and `1` to the models of this language. A convenient way of
+displaying them is by means of a **probabilistic truth-table**, which next to
+the truth-values, gives the probability of a given row. Here's, for example, two
+probabilistic truth-tables: one table that represents a situation where we don't know
+what'll happen tomorrow, where each outcome is equally likely, and one table
+that represents a situation where we know that the sun will shine but it's
+uncertain whether it will rain or not:
+{{< img src="img/prob_tables.png" class="rounded mx-auto d-block inert-img img-fluid" width="700px">}}
+
+Given a probability mass function over the models of a language, we can
+calculate the probabilities of arbitrary formulas by calculating the probability
+of the proposition they express. Remember that the proposition 
+${{< llbracket >}}A{{< rrbracket >}}$ expressed by a formula $A$ is simply the 
+set of models where the formula is true:
+$${{< llbracket >}}A{{< rrbracket >}} = { v : v(A) = 1 }$$
+But in probabilistic terms, such a proposition is just an event over the sample
+space of valuations or models. So, the rules from before tell us that:
+
+{{< img src="img/prop_prob.png" class="rounded mx-auto d-block inert-img img-fluid" width="200px">}}
+
+That is, to determine the probability of a formula given a probability mass
+function, we sum up the masses of all the valuations under which the formula is
+true. 
+
+Truth-tables are of great help here: if you have a probabilistic
+truth-table—like the ones above—you can simply calculate the values of your
+formula in question for each row, and then sum up the weights of the rows where
+the outcome is `1`. Here's how this works out for our two examples and the
+formula $SUN{{< lor >}}{{< neg >}}RAIN$:
+{{< img src="img/prob_tables_calc.png" class="rounded mx-auto d-block inert-img img-fluid" width="700px">}}
+In this way, given a probability mass, we can calculate the probability of each
+formula. 
+
+There's a crucial difference between truth and probabilities, which is
+important to pay attention to. The truth-values of complex formulas are
+calculated
+[recursively](https://en.wikipedia.org/wiki/Recursion_(computer_science)),
+which means step-by-step from the values of their parts. The _probabilities_ of
+complex formulas, however, are _not_ (in general) recursive. Take, for example,
+the probability of $SUN{{< land >}}RAIN$ under the ignorance distribution and compare
+it to the probabilities of $SUN$ and $RAIN$:
+
+{{< img src="img/prob_conjunction_id.png" class="rounded mx-auto d-block inert-img img-fluid" width="500px">}}
+
+With this probability mass distribution, we have that $$Pr(SUN{{< land >}}RAIN) = PR(SUN) x Pr(RAIN)$$
+
+But this formula doesn't apply under all distributions. Look, for example, at
+the following table with the distribution $p*$:
+
+{{< img src="img/table_indie.png" class="rounded mx-auto d-block inert-img img-fluid" width="400px">}}
+
+This table represents a situation where it's more likely to be sunny than not. We have:
+
+$$Pr(SUN) = 1/2 + 1/4 = 3/4$$
+
+If we're looking at the situations where the sun shines, it's relatively
+unlikely that it will rain: the world where the sun shines and it's not raining
+has probability $1/2$ and the one where the sun shines and it's raining has
+probability $1/4$. 
+
+If instead, we look at the two situations where the sun
+isn't shining, we see that it's equally likely among those that it's raining:
+both scenarios, sun and rain as well as sun and no rain, have probability
+$1/8$. The probability that it's raining is therefore:
+
+$$Pr(RAIN) = 1/8 + 1/4 = 3/8$$
+
+But if we look at the probability of the conjunction, we get that:
+
+$$Pr(SUN{{< land >}}RAIN) = 1/4$$
+
+And clearly, $1/4$ is different from $3/4 x 3/8 = 9/32$. In fact, there is _no_
+formula that allows us to calculate the probability of a conjunction purely on
+the basis of the probabilities of its conjuncts.
+
+What's going on here has to do with probabilistic
+[independence](https://en.wikipedia.org/wiki/Independence_(probability_theory)).
+In the first distribution, the two facts that it's raining and that the sun is
+shining are _independent_ of each other: under the distribution, knowing that
+the sun is shining, this doesn't have any influence on the probability of it raining.
+
+To further illustrate this, we can use the concept of [conditional
+probabilities](https://en.wikipedia.org/wiki/Conditional_probability).
+We've already seen the definition of conditional probabilities in terms
+of propositions when discussing valid inference:
+
+{{< img src="img/cond_prob_sets.png" class="rounded mx-auto d-block inert-img img-fluid" width="300px">}}
+
+Here, the crucial condition that $Pr({{< llbracket >}}B{{< rrbracket >}}) ≠ 0$ applies. But using the following identity:
+$${{< llbracket >}}A{{< land >}}B {{< rrbracket >}} = {{< llbracket >}}A {{< rrbracket >}}{{< cap >}}{{< llbracket >}}B {{< rrbracket >}} $$
+we can also directly define conditional probabilities on formulas:
+
+{{< img src="img/conditional_prob.png" class="rounded mx-auto d-block inert-img img-fluid" width="300px">}}
+
+Now look at what happens in the case of our ignorance distribution, if we
+calculate $Pr(RAIN | SUN)$. First, we note that: $$Pr(RAIN) = 1/4 + 1/4 = 1/2
+&emsp; Pr(SUN) = 1/4 + 1/4 = 1/2$$
+$$Pr(SUN {{< land >}}RAIN) = 1/4$$
+Now, let's calculate $Pr(RAIN | SUN)$. We get:
+$$Pr(RAIN | SUN) = Pr(SUN {{< land >}}RAIN)/Pr(SUN) = (1/4)/(1/2) = 2/4 = 1/2$$
+That is, we have that $$Pr( RAIN | SUN ) = Pr(RAIN)$$
+In other words, the information that it's sunny doesn't tell us anything about the rain.
+
+If we look at the distribution $p*$, instead, we get:
+
+$$Pr(SUN) = 3/4 &emsp; Pr(RAIN) = 3/8$$
+$$Pr(SUN {{< land >}}RAIN) = 1/4$$
+
+And so, we have that: 
+$$Pr(RAIN | SUN) = Pr(SUN {{< land >}}RAIN)/Pr(SUN) = (1/4)/(3/4) = 4/12 = 1/3$$
+
+That means that under the hypothesis that it's sunny, the probability of rain
+*changes*—in fact, it goes down (since $1/3 < 3/8$).
+
+Two formulas $A$ and $B$ are said to be **probabilistically independent** just
+in case if they are like $SUN$ and $RAIN$ in our first distribution, that is
+just in case $$Pr(A | B) = Pr(A)$$
+
+In the case where $A$ and $B$ are probabilistically independent, we have
+the $$Pr( A {{< land >}}B ) = Pr(A) x Pr(B)$$ To see this, suppose that
+$Pr(A | B) = Pr(A)$. By the formula for conditional probabilities, we
+have that $Pr(A | B ) = Pr(A {{< land >}}B)/Pr(B)$. So, if we multiply
+by $Pr(B)$, we get $Pr(A | B) x Pr(B) = Pr(A {{< land >}}B)$. But since
+$Pr(A | B) = Pr(A)$ by assumption, we have that $Pr(A) x Pr(B) = Pr(A
+{{< land >}}B)$.
+
+In fact, this is a *test* for probabilistic independence as well: if
+$Pr(A {{< land >}}B) = Pr(A) x Pr(B)$, then  $Pr(A | B ) = Pr(A)$. This
+is simply because $Pr(A | B) = Pr(A {{< land >}}B)/Pr(B)$. So, if $Pr(A
+{{< land >}}B) = Pr(A) x Pr(B)$, we have that: $$Pr(A | B) = Pr(A {{<
+land >}}B)/Pr(B) = (Pr(A) x Pr(B))/Pr(B)= Pr(A)$$
+
+In the absence of independence, the best thing we can say about the probability
+of a conjunction is that: 
+
+{{< img src="img/conjunction.png" class="rounded mx-auto d-block inert-img img-fluid" width="400px">}}
+
+This covers conjunction. Disjunction is subject to similar considerations. Take
+our ignorance table and look at the disjunction $SUN {{< lor >}}RAIN$:
+
+{{< img src="img/disjunction_table.png" class="rounded mx-auto d-block inert-img img-fluid" width="300px">}}
+
+We get:
+
+$$Pr(SUN {{< lor >}}RAIN) = 1/4 + 1/4 + 1/4 = 3/4$$
+
+Looking at this calculation, you can note that we're adding $Pr(SUN), Pr(RAIN),$
+*and* $Pr(SUN{{< land >}}RAIN)$ to obtain the probability of $SUN{{< lor>}}
+RAIN$.
+
+In fact, this is the _general_ formula for calculating disjunctive
+probabilities:
+
+$$Pr(A {{< lor >}}B) = Pr(A) + Pr(B) + Pr(A {{< land >}}B)$$
+
+But that means that, in general, we cannot calculate the probability of a
+disjunction from the probabilities of it's disjuncts—we also need to know the
+probability of their conjunction.
+
+Only in the very special case where $Pr(A {{< land >}}B) = 0$, when $A$ and $B$
+are probabilistically _incompatible_, we get the recursive formula: $$Pr(A {{<
+lor >}}B) = Pr(A) + Pr(B)$$
+
+The only case where we have a full recursive rule is the case of negation. Under
+each distribution, we have $$Pr({{< neg >}}A) = 1 - Pr(A)$$ This follows from
+the simple fact that the rows where $A$ is true are precisely the rows where
+${{< neg >}}A$ is not, and the masses of the rows add up to $1$.
+
+## Probability Laws
+
+{{< img src="img/laws.png" class="rounded  float-start inert-img img-fluid m-2"
+width="250px">}} The fact that probabilities aren't recursive puts special
+emphasis on the _laws_ of probability. Moreover, in AI research, you're often
+dealing with situations where its practically
+[intractable](https://en.wikipedia.org/wiki/Computational_complexity_theory#tractable_problem)
+to go through all possible models of the premises and assign them probability masses.
+Instead, you'll be _estimating_ the relevant probabilities of the formulas
+directly. And when you do that, you have to make sure you're doing this in
+accordance with the laws of probability.
+
+The standard axiomatization of probability is due to [Andrey
+Komogorov](https://en.wikipedia.org/wiki/Andrey_Kolmogorov) and correspondingly
+known as the [Kolmogorov
+axioms](https://en.wikipedia.org/wiki/Probability_axioms). We can formula these
+axioms in logical terms and directly in terms of events. First, the logical
+axiomatization. It states that for each assignment of probabilities $Pr$ to
+formulas in a language, the following laws apply:
+
+1. $Pr(A) ≥ 0$, for all formulas $A$.
+2. $Pr(A) = 1$, if $A$ is a tautology, that is: ${{< vDash >}} A$.
+3. $Pr(A {{< lor >}} B) = Pr(A) + Pr(B)$, given that $A$ and $B$ are logically
+incompatible, that is: ${{< vDash >}} A{{< land >}}{{< neg >}} B$.
+
+As you can see, these axioms are rather minimal. But it turns out that they are
+_sound and complete_ with respect to the probabilities we've defined in terms of
+probability mass distributions over valuations. That is, every law about
+probabilities that holds for all probabilities $Pr$ defined in terms of
+probability mass distributions is derivable form these laws, and everything
+that's derivable holds for all distributions.
+
+For example, here's how we derive the law of negation:
+
+$$Pr({{< neg >}}A) = 1 - Pr(A) ("Negation")$$
+
+- $Pr(A {{< lor >}}{{< neg >}}A) = 1$, by axiom 1. since ${{< vDash >}}A{{< lor >}}{{< neg >}}A$.
+- $Pr(A {{< lor >}}{{< neg >}}A) = Pr(A) + Pr({{< neg >}}A)$ by axiom 3. since
+ ${{< vDash >}}{{< neg >}}(A {{< land >}}{{< neg >}}A)$.
+- It follows that $1 = Pr(A) + Pr({{< neg >}}A)$.
+- But that gives us: $Pr({{< neg >}}A) = 1 - Pr(A)$
+
+From this it immediately follows that $Pr(A) {{<leq>}} 1$ for all $A$, since $Pr(A) = 1
+- Pr({{< neg >}}A)$.
+
+Or, we can derive that if $A{{< vDash >}}B$, then $Pr(A) {{<leq>}} Pr(B)$:
+
+- $Pr(A {{< lor >}} {{< neg >}}B) = Pr(A) + Pr({{< neg >}}B)$, by axiom 3.,
+since from the assumption that $A{{< vDash >}}B$ it follows that 
+${{< vDash >}}{{<neg >}}A{{< land >}}{{< neg >}}B$—that is if $A$ and 
+${{< neg >}}B$ is unsatisfiable.
+- Since $Pr({{< neg >}}B) = 1 - Pr(B)$, we have $Pr(A {{< lor >}} {{< neg >}}B) = Pr(A) + (1 - Pr(B))$. 
+- So, we get that $Pr(B) = Pr(A) + (1 - Pr(A {{< lor >}}{{< neg >}} B))$.
+- But we know that $Pr(A{{< lor >}}{{< neg >}}B) {{<leq>}} 1$, so 
+$1 - Pr(A {{< lor  >}}{{< neg >}} B)$ is positive and so $Pr(B) = Pr(A) + x$,
+for some positive $x$. 
+- In other words, $Pr(A) {{<leq>}} Pr(B)$.
+
+We can give these axioms completely equivalently directly in terms
+
+1. $0{{< leq >}}Pr(X)$, for all events $X {{< subseteq >}} Ω$
+2. $Pr(Ω) = 1$
+3. $Pr(X {{< cup >}}Y) = Pr(X) + Pr(Y)$, given that $X{{< cap >}}Y = ∅$. 
+
+This axiomatization says precisely the same thing as the previous one once we
+realize that ${{< llbracket >}}A{{< rrbracket >}} = Ω$ means that $A$ is a
+logical truth and 
+
+$${{< llbracket >}}A {{< lor >}}B{{< rrbracket >}} = {{< llbracket >}}A {{< rrbracket >}}{{< cup >}}{{< llbracket >}}B {{< rrbracket >}}$$
+
+## Naive Bayes Classifiers
+
+To see how AI-technologies use probabilities for inductive inferences, let's
+look at an example: [spam
+filtering](https://en.wikipedia.org/wiki/Email_filtering) with [naive Bayes
+classifiers](https://en.wikipedia.org/wiki/Naive_Bayes_classifier).
+
+For our example, let's suppose that {{< logo >}}&ThinSpace;receives an
+email:
+
+{{< img src="img/spam_msg.png" class="rounded mx-auto d-block inert-img img-fluid" width="500px">}}
+
+How can {{< logo >}}&ThinSpace;tell that this is a `SPAM` email? 
+
+Since we're in a logic course, you might think that we'd try to develop an
+expert system for this task. We devise a propositional language with atoms like
+```
+UnknownSender, SubjectUrgent, ExclamationMarks, MoneyTalk, SPAM
+```
+
+In this language, we can formula conditional rules like:
+
+- `(SubjectUrgent{{< land >}}MoneyTalk) {{< to >}} SPAM`
+- `(ExlamationMarks{{< land >}}SubjectUrgent) {{< to >}} SPAM`
+- `...`
+
+Then we could run a filter through each email and check whether the propositions 
+`UnknownSender, SubjectUrgent, ExclamationMarks, MoneyTalk` are true and use the
+KB to see if we can derive `SPAM` using methods like forward chaining or
+backward chaining or resolution.
+
+But the problem with this approach is that none of these indicators are 100%
+reliable. We can have an email that satisfies all of them but is perfectly
+harmless:
+
+{{< img src="img/ai_non_spam.png" class="rounded mx-auto d-block inert-img img-fluid" width="500px">}}
+
+That is, using deductive inference will lead to a lot of [false
+positives](https://en.wikipedia.org/wiki/False_positives_and_false_negatives).
+In fact, the conditions that we've mentioned aren't [logically
+sufficient](https://en.wikipedia.org/wiki/Necessity_and_sufficiency) for an
+email being `SPAM`, they are fallible
+[_evidence_](https://en.wikipedia.org/wiki/Evidence) for it.
+
+A powerful approach to inductive inference uses probabilities and [Bayes'
+rule](https://en.wikipedia.org/wiki/Bayes%27_theorem). The basic idea is that we
+can say that a piece of propositional evidence, $E$, confirms a hypothesis, $H$,
+just in case: $$Pr(H | E) > Pr(H)$$ That is, the evidence confirms the hypothesis
+just in case the probability of the hypothesis goes up if we assume the
+evidence. In other words, evidence is a form of inductive inference.
+
+So, what we're looking for is $Pr(`SPAM` | `[MARKERS]`)$, where $`[MARKERS]`$
+is a combination of things like `UnknownSender, SubjectUrgent, ExclamationMarks,
+MoneyTalk`. That is see whether the present markers are evidence for the mail being
+`SPAM`, we need to calculate $Pr(`SPAM` | `[MARKERS]`)$ as well as $Pr(`SPAM`)$.
+
+Bayes rule is, in essence, a convenient way of calculating $Pr(`SPAM` | `[MARKERS]`)$:
+
+{{< img src="img/bayes_rule.png" class="rounded mx-auto d-block inert-img img-fluid" width="500px">}}
+
+This calculation is derived by simply substituting $P(H {{< land >}}E)$ with
+$Pr(H) x Pr(E | H)$ from the general rule for conjunction. The terms in the
+equation have suggestive names:
+
+- $Pr(H | E)$ is known as the [_posterior_ probability](https://en.wikipedia.org/wiki/Posterior_probability) of the hypothesis given the evidence.
+
+- $Pr(H)$ is called the [_prior_ probability](https://en.wikipedia.org/wiki/Prior_probability) of the hypothesis, independent of the
+  evidence.
+
+- $Pr(E | H)$ is known as the
+[_likelihood_](https://en.wikipedia.org/wiki/Likelihood_function) of the
+evidence given the hypothesis.
+
+- $Pr(E)$ is known as the [marginal
+likelihood](https://en.wikipedia.org/wiki/Marginal_likelihood) of the evidence.
+
+Plugging in `SPAM` and `[MARKERS]`, we obtain:
+
+{{< img src="img/bayes_applied.png" class="rounded mx-auto d-block inert-img img-fluid" width="500px">}}
+
+This is progress: the prior probability, $Pr(`SPAM`)$, we can estimate using the
+[frequency of SPAM](https://en.wikipedia.org/wiki/Email_spam). For this example,
+let's estimate it optimistically as 20%. In probabilistic terms:
+
+```
+Pr(SPAM) = 0.2
+```
+
+For individual markers, like `UnknownSender, SubjectUrgent, ExclamationMarks,
+MoneyTalk`, we have to estimate the marginal likelihood $Pr(`[Markers]`)$ and
+likelihood $Pr(`[Markers]` | `SPAM`)$. In practice, this happens on the basis of
+a frequency analysis of datasets of emails, especially the ones _you_ have
+received. For each marker, we can easily check how often it occurs in an email:
+how many emails are from unknown sender, how many emails have "urgent" in the
+subject line, and so on. Dividing these numbers by the total number of emails
+gives us a decent estimate of their respective probabilities. We might, for
+example, find:
+
+```
+Pr(UnknownSender)  = 0.3
+```
+```
+Pr(SubjectUrgent)  = 0.4
+```
+```
+Pr(ExclamationMarks) = 0.6
+```
+```
+Pr(MoneyTalk) = 0.3
+```
+
+The same procedure, we can use to estimate the likelihoods for the markers given
+in `SPAM` messages. What's the frequency of SPAM emails with an unknown sender,
+SPAM emails with urgent subject line, etc. For example, we might find:
+
+```
+Pr( UnknownSender | SPAM )  = 0.4
+```
+```
+Pr( SubjectUrgent | SPAM )  = 0.6
+```
+```
+Pr( ExclamationMarks | SPAM ) = 0.7
+```
+```
+Pr( MoneyTalk | SPAM) = 0.6
+```
+
+We can plug this data into Bayes rule and obtain estimates of how likely it is
+that an email is `SPAM` given that it comes from an unknown sender:
+
+{{< img src="img/unknown_sender.png" class="rounded mx-auto d-block inert-img img-fluid" width="500px">}}
+
+Since 
+
+```
+
+Pr(Spam | UnknownSender) = 0.26 > 0.2 = Pr(Spam)
+```
+
+receiving an email from an unknown sender _is_ evidence of it being `SPAM`—but
+not very _strong_ evidence. 
+
+What does this mean? Well, for one, the probability of the email being `SPAM`
+only went up by 0.06. This is the so-called **increase of firmness measure**
+
+```
+incOfFirmness(E, H) = |Pr(H | E) - Pr(H)|
+```
+
+In our case, the increase of firmness is not very strong.
+
+But note that the probability of the email being `SPAM` went up from $0.2$ to
+$0.26$, which is a 30% increase. This is known as the **the ratio measure**:
+
+```
+ratioStrength(E, H) = Pr(H | E)/Pr(H)
+```
+
+There are many more such confirmation measures. In fact, in industry
+implementations of naive Bayesian classifiers the co-called [log-likelihood
+ratio](https://en.wikipedia.org/wiki/Likelihood-ratio_test) is commonly used,
+but we won't go into the more involved mathematical details here.
+
+Different measures have different advantages: for example, the increase of
+firmness gives an intuitively clear and robust measure of strength of evidence,
+but it doesn't work very well with evidence and hypotheses close to 0 or 1.
+The ration measure, instead also works well close to extreme values, but it is
+not [normed](https://en.wikipedia.org/wiki/Norm_(mathematics))—in particular
+it's value can get arbitrarily high making comparisons difficult.
+
+But regardless of different measures of _how much_ weight the evidence carries,
+there's another fundamental question we've got to address: if the posterior
+probability is "only" 0.26, it's still more likely that this _isn't_ `SPAM` than
+that it is. What we need to do is to set a
+[threshold](https://en.wikipedia.org/wiki/Threshold_model) for classifying email
+as `SPAM`. A natural minimum is to say that $Pr(H | E)$ should _at least_ be
+0.5. But if [false
+positives](https://en.wikipedia.org/wiki/False_positives_and_false_negatives)
+are particularly bad—when classifying email as `SPAM` that isn't risks important
+messages to be missed—we should set the bar high. Perhaps we want to have 0.75?
+0.8? It ultimately depends on the stakes of the situation, but let's try to
+reach 0.5 in our `SPAM` filter.
+
+To achieve this, we need to _combine_ different markers. What we _want_ to
+do is to combine different `SPAM`-markers. In fact, our example mail had them
+all. So, we want to calculate:
+
+{{< img src="img/combined_markers.png" class="rounded mx-auto d-block inert-img img-fluid" width="900px">}}
+
+But now we have a new kind of probability to estimate: the conjunctive
+probabilities of the markers. In fact, if we want our classifier to not only
+work in this case, but also when one or more of the markers are absent. But
+since conjunctive probabilities are not recursively calculable from their
+conjunctions' probabilities, this leads to a problem of [combinatorial
+explosion](https://en.wikipedia.org/wiki/Combinatorial_explosion) In our
+example, we only have 4 markers, but that's already quite a large number of
+conjunctions to estimate: all 4 markers by themselves, their 6 binary
+conjunctions (up to re-ordering), their 3 ternary conjunctions, and the
+conjunction of all 4 makes 14 conjunctions we need to estimate. This quickly
+becomes intractable.
+
+This is where the "naive" in naive Bayes classifiers comes in. The defining
+assumption is that the different markers are probabilistically independent of
+each other, both given `SPAM` and not given `SPAM`. That is, we can calculate:
+
+```
+Pr( UnknownSender {{< land >}} SubjectUrgent {{< land >}} ExclamationMarks {{< land >}} MoneyTalk | SPAM)
+```
+```
+=
+```
+```
+Pr(UnknownSender | SPAM) x Pr(SubjectUrgent | SPAM) x ... 
+```
+```
+... x Pr(ExclamationMarks | SPAM) x Pr(MoneyTalk | SPAM)
+```
+
+And similarly, 
+
+```
+Pr( UnknownSender {{< land >}} SubjectUrgent {{< land >}} ExclamationMarks {{< land >}} MoneyTalk)
+```
+```
+=
+```
+```
+Pr(UnknownSender) x Pr(SubjectUrgent) x ... 
+```
+```
+... x Pr(ExclamationMarks) x Pr(MoneyTalk)
+```
+
+This, then is the **naive Bayes assumption**: that the different markers are
+conditionally independent. It is naive because it is clearly true in strict
+terms: whether urgent and exclamation points occur is not independent of each
+other. But it turns out that this gives us pretty good _classifications_ in
+practice. It gives us for our email:
+
+{{< img src="img/spam_calculation.png" class="rounded mx-auto d-block inert-img img-fluid" width="900px">}}
+
+A pretty clear verdict, which surpasses any reasonable threshold: we've got a
+strong inductive inference that this is spam, given the observed features.
+
+{{< img src="img/spam_verdict.png" class="rounded mx-auto d-block inert-img img-fluid" width="400px">}}
+
+But it also allows us to quickly estimate the `SPAM` likelihood of other emails.
+For example, if the exclamation marks are absent, the formula would still give a
+`0.8` probability of `SPAM` given that the other features are still present. But
+if money talk is eliminated, the probability drops down to `0.46`. Fine-tuning
+these values, checking them against real cases and learning from data is the
+topic of ongoing machine learning research.
+
+## Inductive logic
+
+`SPAM`-classification is a case of [_material_ inductive
+inference](https://en.wikipedia.org/wiki/Material_inference): what counts as a
+good inductive inference depends on the concrete (conditional) probabilities of the premises 
+and conclusion. Logically valid inductive inference is inductive inference that
+purely depends on their logical form. We can cash this out as probability
+raising under _all_ probabilities:
+
+```
+P₁, P₂, ... {{< approx >}} C if and only if for all Pr, we have
+Pr(C | P₁ {{< land >}} P₂{{< land >}} ) > P(C)
+```
+
+Inductive logic is concerned with the study of inductively valid inference patterns.
+Today, this is mainly done as statistics and probability theory, whose study
+goes beyond the scope of this course. But we can get a rough idea of some core
+ideas by returning to one of our first examples of inductive inference: [enumerative induction](https://en.wikipedia.org/wiki/Inductive_reasoning#Enumerative_induction).
+
+Take our inference about the marbles:
+
+$$All marbles we've observed so far were white{{< therefore >}}All marbles
+are white$$
+
+If we formalize this inference with a sufficient number of observations, we'll
+look at something like:
+
+```
+White m₁, ..., White mₙ {{< therefore >}}{{< forall >}}x White x
+```
+
+To assess the logically validity of this inference, we need to think about the
+conditional probability _independently_ of any concrete probability
+distribution:
+
+```
+Pr({{< forall >}}x White x | White m₁{{< land >}} ...{{< land >}} White mₙ)
+```
+
+For this purpose, we can make use of probabilistic theorems like the following:
+
+**Theorem**: If `C{{< vDash >}} P₁ {{< land >}} P₂...` (the conclusion
+deductively implies the premises), `Pr(P₁ {{< land >}} P₂) ≠ 1` (the premises
+aren't tautologies), and `Pr(C) ≠ 0` (the conclusion is not impossible), then
+`Pr(C | P₁ {{< land >}} P₂...) > Pr(C)`.
+
+To see that this must be true, we need observe the logical fact that: 
+
+```
+if C{{< vDash >}} P₁ {{< land >}} P₂, then {{< llbracket >}}C {{< land >}}P₁ {{< land >}} P₂{{< land >}}...{{< rrbracket >}} = {{< llbracket >}}C{{< rrbracket >}}
+```
+
+Using this, we can calculate:
+
+{{< img src="img/enum_calc.png" class="rounded mx-auto d-block inert-img img-fluid" width="500px">}}
+
+That is, since $Pr(P₁ {{< land >}} P₂{{< land >}}...) < 1$, we know that
+$1/Pr(P₁ {{< land >}} P₂{{< land >}}...) > 1$ and so $Pr(C | P₁ {{< land >}}
+P₂{{< land >}}...)$ is more than one times $Pr(C)$—in other words, $Pr(C | P₁
+{{< land >}} P₂{{< land >}}...)$ is strictly bigger than $Pr(C)$.
+
+This establishes that enumerative induction is at least weakly inductively
+valid: the premises will always raise the likelihood of the conclusion. 
+
+The strength of the inference depends on the probability of $P₁{{< land >}}
+P₂{{< land >}}...$—the less likely the premises the bigger the factor in the
+above equation and, correspondingly, the stronger the inference. This justifies
+the condition that we need to sample our premises well—it should be unlikely
+that they are jointly true. We can achieve this by finding many independent
+instances and calculate `Pr(P₁{{< land >}} P₂{{< land >}}...) = Pr(P₁) × Pr(P₂)
+× ...`, which will eventually bring us below any desired threshold. Or we 
+
+Inductive reasoning is the ultimate foundation for most machine learning
+techniques, but also for simple algorithms like "People who liked this
+show also liked ..."-style recommendation on streaming platforms, which makes
+inductive logic a fundamental tool in an AI-researchers toolbox.

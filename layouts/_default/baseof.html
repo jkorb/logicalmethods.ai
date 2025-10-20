@@ -37,8 +37,17 @@
     </main>
     <footer class="align-self-center d-flex flex-column mt-md-1 p-0" data-bs-theme="dark">
       {{ partial "baseof/footer" . }} 
+      <script src="{{ (resources.Get "js/apps/latexify.js").Permalink}}"></script>
       <script src="{{ (resources.Get "js/helpers.js").Permalink}}"></script>
       <script src="{{ (resources.Get "bootstrap/dist/js/bootstrap.bundle.min.js").Permalink}}"></script>
+      {{ if .Params.js }}
+        {{ range .Params.js }}
+          {{ $res := resources.Get . }}
+          {{ if $res }}
+            <script type="module" src="{{ $res.Permalink }}"></script>
+          {{ end }}
+        {{ end }}
+      {{ end }}
       {{ block "footer" . }}
       {{ end }}
     </footer>
