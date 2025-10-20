@@ -41,7 +41,7 @@ To check whether two FOL literals can be unified, the algorithm proceeds as foll
     To express this requirement, we make a list of these pairs:
 
     ```
-    Eq = [ [s₁, s₂], ..., [sₙ, tₙ] ]
+    Eq = [ [s₁, t₁], ..., [sₙ, tₙ] ]
     ```
 
     The algorithm aims to step-wise construct the desired substitution $σ$. We
