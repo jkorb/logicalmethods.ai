@@ -821,7 +821,7 @@ RAIN</span></li>
     <div class="d-inline-flex flex-row m-0 p-0 "><span class="excalifont">K3</span>-Laws
     </div>
 </h5><p>In fact, you can use a similar method to verify the laws of Kleene algebra using SQL.</p>
-<p>Here are, for example, the queries to verify the commutativity of <del>!OR!</del> and <del>!AND!</del>:</p>
+<p>Here are, for example, the queries to verify the commutativity of <span class="Kleene">OR</span> and <span class="Kleene">AND</span>:</p>
 
 <img src="/img/sql_logo.png" alt="SQL_Logo" class="float-start" style="height:1em;width:auto;"/>
 
@@ -846,7 +846,7 @@ RAIN</span></li>
 </span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> 
 </span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">ValuePairs</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="k">WHERE</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="p">(</span><span class="n">Y</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">X</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="p">(</span><span class="n">Y</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">X</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>Verify the remaining Kleene laws like this.</p>
@@ -858,7 +858,7 @@ RAIN</span></li>
     </div>
 </h5><p>In <span class="excalifont">K3</span>, we&rsquo;ve defined a semantics for conditionals by saying that <div class="text-center my-4 excalifont">v(A
 <img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
-B) = (<del>!NOT!</del> A) <del>!OR!</del> B</div></p>
+B) = (<span class="Kleene">NOT</span> A) <span class="Kleene">OR</span> B</div></p>
 <p>This gives rise to the Kleene logic <span class="excalifont">K3</span>. But interestingly, in this logic,
 it&rsquo;s not a logical law that <span class="excalifont">RAIN 
 <img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
@@ -873,7 +873,7 @@ the conditional:</p>
 <p>That is, in this system,</p>
 <div class="text-center my-4 excalifont">v(A
 <img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
-B) = A ~!Ł!~ B</div>
+B) = A <span class="Kleene">Ł</span> B</div>
 <p>This logic is called Łukasiewicz logic, <span class="excalifont">Ł</span>.</p>
 <ol>
 <li>
