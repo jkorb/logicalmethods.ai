@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8"></meta>
     <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-    <title>logicalmethods.ai &ndash; Logic and probability </title>
+    <title>logicalmethods.ai &ndash; Probability and inductive logic </title>
     <link rel="icon" type="image/x-icon" href="https://logicalmethods.ai/favicon.ico"></link>
     <link href="https://logicalmethods.ai/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"></link>
     <link rel="stylesheet" href="https://logicalmethods.ai/icons/font/bootstrap-icons.min.css"></link>
@@ -360,12 +360,12 @@
             <li>
               <a class="dropdown-item 
                 fw-bold active
-                link-opacity-50
+                
                 "
-                href="javascript:;"
+                href="/slides/probability/"
               >11. 
-                <i class="bi bi-lock-fill"></i>
-                 Logic and probability
+                <i class="bi bi-unlock-fill"></i>
+                 Probability and inductive logic
               </a>
             </li>
             
@@ -665,443 +665,24 @@
 
 <div class="container text-center">
   <h3>
-     Lecture 11. Logic and probability
+     Lecture 11. Probability and inductive logic
   </h3>
   <em>Slides</em>
 </div>
 
 
 
-  
-   
+
+<iframe 
+  src="https://link.excalidraw.com/p/readonly/D13NRlGRuJsL0S55Ir2Y"
+  width="100%" height="460px" allowFullScreen="true" style="border: 10px;"
+  >
+</iframe>
 
 
 
-<div class="modal fade" id="info" tabindex="-1" aria-labelledby="InfoLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="infolabel">Info</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-start">
-          <p>Here you can find the lecture slides.</p>
-<p>Slides that are currently under development are locked. They will be unlocked
-in time for class.</p>
-<p>You can use them to follow along during the lecture and to go through the
-material again after.</p>
-<p>Feel free to ask questions during the lecture!!</p>
-<p><strong>Technical info</strong></p>
-<p>You can use the arrow keys to navigate through the slides, or
-alternatively, click the little arrows on the slides themselves.</p>
-<p>Pressing the F-key while the slides are selected, puts them in
-fullscreen. You can quit fullscreen by pressing ESC.</p>
-<p>There are more the slides can do, find out under
-<i class="bi bi-box-arrow-up-right h-6"></i>
-<a href="https://revealjs.com/" class="link-dark" rel="external" target="_blank">https://revealjs.com/</a>
-.</p>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Got it!</button>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="container p-2 text-center">
-  <button type="button" class="btn btn-primary shadow" data-bs-toggle="modal" data-bs-target="#info">
-    <i class="bi bi-info-circle"></i>
-  </button>
-</div>
 
 
-<hr>
-
-<div class="d-flex flex-column">
-  <div class="align-self-center reveal border border-1 border-secondary border-opacity-50" style="aspect-ratio: 16 / 9; max-width: 710px">
-		<div class="slides" id="slides">
-			<section>
-				<h1>&forall;I</h1>
-        <p>Logical <strong>methods</strong> for AI</p>
-        <p>Lecture 110</p>
-        <p class="text-danger"><em>Logic and probability</em></p>
-        
-<div class="container text-center">
-  <p class="copyright" xmlns:cc="http://creativecommons.org/ns#" >
-    This work is licensed under 
-    CC BY 4.0
-    <i class="bi bi-cc-circle"></i> <i class="bi bi-universal-access-circle"></i>
-  </p> 
-</div>
-
-
-        
-</section>
-<section>
-    
-    <img src="https://logicalmethods.ai/slides/probability/img/qr-code.png" class="img-thumbnail"    alt="" >
-
-    <p><a href="https://forms.gle/JiXXM9eysAZaJMja9" target="_blank" style="font-size:1.5em">https://forms.gle/JiXXM9eysAZaJMja9</a></p>
-  </section>
-<section>
-  <section>
-    <dl class="row" >
-      <dd class="col">
-        <i class="bi bi-star-fill text-primary" style="font-size:100px;"></i> 
-        <h1>Logic and <span class="text-danger">probability</span></h1>
-      </dd>
-      <dt class="col"></dt>
-    </dl>
-  </section>
-  <section id="concept">
-    <h1>Concepts</h1>
-    <ul>
-      <li class="fragment fade-right">So far: <em>deductive</em> logic</li>
-      <li class="fragment fade-right">Deductive validity: premisses necessitate conclusion</li>
-      <li class="fragment fade-right">Now: <em>inductive</em> logic</li>
-      <li class="fragment fade-right">Inductive validity: premisses make conclusion (more) likely</li>
-    </ul>
-  </section>
-</section>
-<section>
-  <section>
-    <dl class="row" >
-      <dd class="col">
-        <i class="bi bi-person-bounding-box text-primary" style="font-size:100px;"></i> 
-        <h1>Models of <span class="text-danger">probability</span></h1>
-      </dd>
-      <dt class="col"></dt>
-    </dl>
-  </section>
-  <section>
-    <h1>Background</h1>
-    <ul>
-      <li class="fragment fade-right">Probability of $E$: how <em>likely</em> is $E$</li>
-      <li class="fragment fade-right">Interpretations of probability</li>
-      <ul>
-        <li class="fragment fade-right">Objectivists: objective chance</li>
-        <li class="fragment fade-right">Subjectivists: subjective degree of belief</li>
-      </ul>
-    </ul>
-  </section>
-  <section id="probability">
-    <h1>Probabilities</h1>
-    <p>A function $Pr:\mathcal{L}\to\mathbb{R}$, s.t.:</p>
-    <ol>
-        <li class="fragment fade-right">$Pr(A)\geq 0$</li>
-        <li class="fragment fade-right">$Pr(A)=1$, if $\vDash A$</li>
-        <li class="fragment fade-right">$Pr(A\lor B)=Pr(A)+Pr(B)$, whenever $\vDash\neg(A\land B)$</li>
-    </ol>
-  </section>
-  <section>
-    <h1>Laws</h1>
-      $$Pr(\neg A)=1-Pr(A)$$
-    <ol>
-        <li class="fragment fade-right">$\vDash \neg(A\land \neg A)$</li>
-        <li class="fragment fade-right">$Pr(A\lor\neg A)=Pr(A)+Pr(\neg A)$</li>
-        <li class="fragment fade-right">$\vDash A\lor\neg A$</li>
-        <li class="fragment fade-right">$Pr(A\lor\neg A)=1$</li>
-        <li class="fragment fade-right">$1=Pr(A)+Pr(\neg A)$ </li>
-    </ol>
-  </section>
-  <section>
-    <h1>Fair die</h1>
-    $$Pr(\mathsf{RESULT}_i)=\frac{1}{6}\text{, for }i=1,\dots,6$$
-    $$Pr(\mathsf{RESULT}_i\land \mathsf{RESULT}_j)=0\text{, for all }i\neqj$$
-  </section>
-  <section class="fs-3">
-    <h1>Calculation</h1>
-    $$Pr(\mathsf{R}_2\lor \mathsf{R}_4)=\frac{1}{3}$$
-    <ul>
-        <li class="fragment fade-right">Inclusion-exclusion
-
-        $$Pr(A\lor B)=Pr(A)+Pr(B)-Pr(A\land B)$$</li>
-        <li class="fragment fade-right">Calculation:
-        $$Pr(\mathsf{R}_2\lor \mathsf{R}_4)=Pr(\mathsf{R}_2)+Pr(\mathsf{R}_4)-Pr(\mathsf{R}_2\land \mathsf{R}_4)$$
-        $$=\frac{1}{6}+\frac{1}{6}-0$$
-      </li>
-        <li class="fragment fade-right">Probabilities are <strong>not recursive</strong>.</li>
-    </ul>
-  </section>
-</section>
-<section>
-  <section id="tables">
-    <dl class="row" >
-      <dd class="col">
-        <i class="bi bi-table text-primary" style="font-size:100px;"></i> 
-        <h1>Probability <span class="text-danger">truth-tables</span></h1>
-      </dd>
-      <dt class="col"></dt>
-    </dl>
-  </section>
-  <section>
-    <h1>Example</h1>
-    $$\langle prop\rangle::=\mathsf{RAIN}\mid\mathsf{SUN}$$
-    <ul>
-      <li class="fragment fade-right"> $\nu_1(\mathsf{RAIN})=1$ and $\nu_1(\mathsf{SUN})=1$</li>
-      <li class="fragment fade-right"> $\nu_2(\mathsf{RAIN})=1$ and $\nu_2(\mathsf{SUN})=0$</li>
-      <li class="fragment fade-right"> $\nu_3(\mathsf{RAIN})=0$ and $\nu_3(\mathsf{SUN})=1$</li>
-      <li class="fragment fade-right"> $\nu_4(\mathsf{RAIN})=0$ and $\nu_4(\mathsf{SUN})=0$</li>
-    </ul>
-  </section>
-  <section>
-    <h1>Weights</h1>
-    <ul class="fs-1">
-      <li class="fragment fade-right">$\nu_1(\mathsf{RAIN})=1$ and $\nu_1(\mathsf{SUN})=1$: $m(\nu_1)=0.5$</li>
-      <li class="fragment fade-right">$\nu_2(\mathsf{RAIN})=1$ and $\nu_2(\mathsf{SUN})=0$: $m(\nu_2)=0.3$</li>
-      <li class="fragment fade-right">$\nu_3(\mathsf{RAIN})=0$ and $\nu_3(\mathsf{SUN})=1$: $m(\nu_3)=0.2$</li>
-      <li class="fragment fade-right">$\nu_4(\mathsf{RAIN})=0$ and $\nu_4(\mathsf{SUN})=0$: $m(\nu_4)=0$</li>
-    </ul>
-    <span class="fragment fade-right">
-      $$Pr(\mathsf{RAIN})=\sum_{\nu(\mathsf{RAIN})=1}m(\nu)=$$
-      $$m(\nu_1)+m(\nu_2)=0.5+0.3=0.8$$
-    </span>
-  </section>
-  <section>
-    <h1>Tables</h1>
-    
-    <img src="https://logicalmethods.ai/slides/probability/img/prob-table-weight.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-  </section>
-  <section>
-    <h1>Example</h1>
-    
-    <img src="https://logicalmethods.ai/slides/probability/img/prob-table-full.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-
-    <span class="fragment fade-right fs-2">
-      $$Pr(\mathsf{RAIN}\lor\neg\mathsf{SUN})=m(\nu_1)+m(\nu_2)+m(\nu_4)=0.5+0.3+0=0.8$$
-    </span>
-  </section>
-  <section>
-    <h1>Dice</h1>
-    
-    <img src="https://logicalmethods.ai/slides/probability/img/prob-table-die.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-  </section>
-</section>
-<section>
-  <section>
-    <dl class="row" >
-      <dd class="col">
-        <i class="bi bi-arrow-down-square text-primary" style="font-size:100px;"></i> 
-        <h1><span class="text-danger">Conditional</span> probabilities</h1>
-      </dd>
-      <dt class="col"></dt>
-    </dl>
-  </section>
-  <section id="cond">
-    <h1>Formula</h1>
-    $$Pr(A\mid B)=\frac{Pr(A\land B)}{Pr(B)}$$
-  </section>
-  <section>
-    
-    <img src="https://logicalmethods.ai/slides/probability/img/prob-table-rain.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-    <span class="fragment right fs-2">
-      $$Pr(\mathsf{RAIN}\land\mathsf{SUN})=0.5\qquad Pr(\mathsf{SUN})=0.5+0.2=0.7$$
-      $$\mathsf{Pr}(\mathsf{RAIN}\mid\mathsf{SUN})=\frac{0.5}{0.7}\approx 0.71$$
-    </span>
-  </section>
-  <section>
-    
-    <img src="https://logicalmethods.ai/slides/probability/img/prob-table-even.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-    <span class="fragment right fs-2">
-      $$Pr(\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6)=\frac{1}{6}+\frac{1}{6}+\frac{1}{6}=\frac{1}{2}\quad Pr(\mathsf{R}_2\land (\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6))=\frac{1}{6}$$
-      $$Pr(\mathsf{R}_2\mid \mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 )=\frac{\frac{1}{6}}{\frac{1}{2}}=\frac{1}{3}$$
-    </span>
-  </section>
-  <section>
-    <h1>Conjunction</h1>
-    $$Pr(A\land B)=Pr(A\mid B)P(B)$$
-    <ul>
-      <li class="fragment fade-right">Still not recursive!</li>
-    </ul>
-  </section>
-  <section id="indep">
-    <h1>Independence</h1>
-      $$A,B\text{ are independent}\Leftrightarrow Pr(A\mid B)=Pr(A)$$
-    <ul>
-      <li class="fragment fade-right">For $A,B$ independent: $Pr(A\land B)=Pr(A)\times Pr(B)$</li>
-    </ul>
-  </section>
-  <section>
-    
-    <img src="https://logicalmethods.ai/slides/probability/img/prob-table-indep.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-    <span class="fragment right fs-2">
-      $$Pr(\mathsf{SUN}\mid\mathsf{RAIN})=\frac{Pr(\mathsf{SUN}\land\mathsf{RAIN})}{Pr(\mathsf{RAIN})}$$
-      $$=\frac{0.5}{0.5+0.3=0.8}=0.625=0.5+0.125=Pr(\mathsf{SUN})$$
-    </span>
-  </section>
-</section>
-<section>
-  <section>
-    <dl class="row" >
-      <dd class="col">
-        <i class="bi bi-hand-index text-primary" style="font-size:100px;"></i> 
-        <h1>Inductive <span class="text-danger">validity</span></h1>
-      </dd>
-      <dt class="col"></dt>
-    </dl>
-  </section>
-  <section>
-    <h1>Background</h1>
-    <ul>
-      <li class="fragment fade-right">Related to statistical inference.</li>
-      <li class="fragment fade-right">Not as standardized, much variety.</li>
-      <li class="fragment fade-right">Bayesian inference.</li>
-    </ul>
-
-  </section>
-  <section id="inc" class="fs-1">
-    <h1>Increase of firmness</h1>
-    $$ P_1,P_2,\dots\mid\approx_{Pr} C \Leftrightarrow Pr(C|P_1\land P_2\land \dots)\geq Pr(C)$$
-  </section>
-  <section id="inc" class="fs-1">
-    <h1>Strong inference</h1>
-    $$ P_1,P_2,\dots\mid\overset{!}{\approx} C \Leftrightarrow Pr(C|P_1\land P_2\land\dots)\gg Pr(C),$$
-  </section>
-  <section id="inc" class="fs-1">
-    <h1>Alt: Threshold view</h1>
-    $$ P_1,P_2,\dots\mid\overset{!}{\approx} C \Leftrightarrow Pr(C|P_1\land P_2\land
-    \dots)\geq \epsilon>0.5.$$
-  </section>
-  <section>
-    <h1>Explosion?</h1>
-    <ul>
-      $$Pr(A\mid B)=\frac{Pr(A\land B)}{Pr(B)}$$
-      <li class="fragment fade-right">Undefined if $Pr(B)=0$</li>
-      <li class="fragment fade-right">What to do?</li>
-      <li class="fragment fade-right">Options:</li>
-      <ul>
-        <li class="fragment fade-right">Explosion $\Rightarrow$ $Pr(A\mid B)=1$</li>
-        <li class="fragment fade-right">Caution $\Rightarrow$ $Pr(A\mid B)=0$</li>
-      </ul>
-    </ul>
-  </section>
-  <section>
-    <h1>Inductive Laws 1</h1>
-    <ul>
-      <li class="fragment fade-right">If $P_1,P_2,\dots\vDash C$, then
-        $P_1,P_2,\dots\mid\approx C$.</li>
-    </ul>
-  </section>
-  <section>
-    <h1>Inductive Laws 2</h1>
-    <ul>
-      <li class="fragment fade-right">$C\vDash P_1\land P_2\land \dots\Rightarrow P_1\land P_2\land \dots\mid\approx C$</li>
-      <li class="fragment fade-right">DN-model</li>
-      <li class="fragment fade-right">Important!!</li>
-    </ul>
-  </section>
-</section>
-<section>
-  <section>
-    <dl class="row" >
-      <dd class="col">
-        <i class="bi bi-arrow-right-square text-primary" style="font-size:100px;"></i> 
-        <h1><span class="text-danger">Inductive</span> (in)validities</h1>
-      </dd>
-      <dt class="col"></dt>
-    </dl>
-  </section>
-  <section id="enum">
-    <h1>Enumerative induction</h1>
-    <ul>
-      <li class="fragment fade-right">All observed swans are white. So all swans are white.</li>
-      <li class="fragment fade-right">$P(a_1),P(a_2),\dots\mid\overset{!}{\approx}\forall xP(x)$</li>
-      <li class="fragment fade-right">Theorem!</li>
-    </ul>
-  </section>
-  <section>
-    <h1>Linda</h1>
-    <blockquote class="fs-1">
-      Linda is 31 years old, single, outspoken, and very bright. She majored
-      in philosophy. As a student, she was deeply concerned with issues of
-      discrimination and social justice, and also participated in anti-nuclear
-      demonstrations.
-
-      Which is more probable?
-
-      <ol>
-      <li> Linda is a bank teller.</li>
-      <li>Linda is a bank teller and is active in the feminist movement.</li>
-      </ol>
-    </blockquote> 
-  </section>
-  <section id="fallacy">
-    $$\mathsf{BANK}\land\mathsf{FEMINIST}\vDash\mathsf{BANK}$$
-    $$\Rightarrow$$
-    $$Pr(\mathsf{BANK}\land\mathsf{FEMINIST})\leq Pr(\mathsf{BANK})$$
-  </section>
-</section>
-<section>
-  <h1>Thanks<span class="text-danger">!</span></h1>
-</section>
- 
-			</section>
-		</div>
-	</div>
-</div>
-
-
-<hr>
-
-<div class="container">
-  <h5>Highlights</h5>
-  <ul class="list-group">
-    
-    <a href="#/concept" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Probabilities</strong></a> 
-    
-    <a href="#/probability" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Probability assignments</strong></a> 
-    
-    <a href="#/tables" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Probability truth-tables</strong></a> 
-    
-    <a href="#/cond" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Conditional probabilities</strong></a> 
-    
-    <a href="#/indep" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Probabilistic independence</strong></a> 
-    
-    <a href="#/inc" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Inductive validity</strong></a> 
-    
-    <a href="#/enum" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Enumerative induction</strong></a> 
-    
-    <a href="#/fallacy" class="list-group-item">  <i class="bi bi-lightning-charge text-danger"></i> <strong>Conjunction fallacy (Linda)</strong></a> 
-    
-  </ul>
-</div>
-
-
-<div class="d-flex align-items-center justify-content-end me-1 mt-auto">
-  Powered by &nbsp;
-  <a class="icon-link" href="https://revealjs.com/" target="_blank">
-    <img src="https://logicalmethods.ai/img/revealjs-logo.png" style="max-width:150px" class="img-thumbnail" alt="reveail.js">
-  </a>
-</div>
-
-
-<ul class="navbar-nav flex-row justify-content-between mt-auto">
-  
-  <li class="nav-item">
-    <a href="/slides/many-valued/" class="btn" tabindex="-1" role="button" aria-disabled="true">
-      <i class="bi bi-chevron-left"></i>
-    </a>
-    
-  </li>
-  <li class="nav-item">
-    <button class="btn btn-back-to-top">
-    <i class="bi bi-chevron-double-up"></i>
-  </button>
-  </li>
-  <li class="nav-item">
-    
-    <a href="/slides/learning/" class="btn" tabindex="-1" role="button" aria-disabled="true">
-      <i class="bi bi-chevron-right"></i>
-    </a>
-    
-  </li>
-</ul>
 
 
     </main>
@@ -1121,18 +702,7 @@ fullscreen. You can quit fullscreen by pressing ESC.</p>
       <script src="https://logicalmethods.ai/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
       
       
-<script src="https://logicalmethods.ai/reveal.js/dist/reveal.js"></script>
-<script src="https://logicalmethods.ai/reveal.js/plugin/math/math.js"></script>
-<script>
-Reveal.initialize({
-  embedded: true, 
-  
-  plugins: [ RevealMath.KaTeX ],
-  hash: true
-  
-});
-</script>
-
+      
     </footer>
   </body>
 </html>
