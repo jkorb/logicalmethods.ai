@@ -757,337 +757,181 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
 <div class="container exercises">
   <div class="m-4">
 </div>
-<div id="probability-functions" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Probability functions
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="probability-functionsSolution"
-        onclick="showPasswordModal('probability-functionsSolution', 'exc-prob')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="coin-flips" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Coin flips
     </div>
-</h5><p>Suppose we&rsquo;re dealing with a coin-flip, which we analyze in a propositional
-language with <span class="excalifont">\neg,\land,\lor</span> and propositional variables:</p>
-<div class="text-center my-4 excalifont">\mathsf{HEADS}\mid \mathsf{TAILS}.</div>
-<p>Our aim is to define a probability for each formula <span class="excalifont">A\in\mathcal{L}</span>.
-We&rsquo;re wondering whether a given set of conditions is sufficient for this
-purpose.</p>
-<p>Since the general question whether a given condition defines a total probability
-function is a bit too complicated at this point, we&rsquo;ll work with the following
-four formulas as our test cases:</p>
+</h5><p>Suppose you&rsquo;re flipping two coins consecutively. You may assume that the
+outcome of the two coin-flips are independent of each other.</p>
 <ol>
-<li><span class="excalifont">\neg\mathsf{HEADS}</span></li>
-<li><span class="excalifont">\neg\mathsf{TAILS}</span></li>
-<li><span class="excalifont">\mathsf{HEADS}\lor \mathsf{TAILS}</span></li>
-<li><span class="excalifont">\mathsf{HEADS}\land\mathsf{TAILS}</span></li>
+<li>
+<p>Describe the outcome space <span class="excalifont">Ω</span> of the random experiment.</p>
+</li>
+<li>
+<p>Assign probability mass distributions over <span class="excalifont">Ω</span> which correspond to a) a fair
+coin-flip, where all outcomes are equally likely, and b) an unfair coin-flip
+where the outcome heads on either flip (the first or second) is twice as likely
+as tails.</p>
+</li>
+<li>
+<p>Calculate the probabilities of the following events under each of the two distributions:</p>
+<ul>
+<li>
+<p>at least one flip is heads</p>
+</li>
+<li>
+<p>both flips are tails</p>
+</li>
+<li>
+<p>the first flip is heads or the second is tails</p>
+</li>
+<li>
+<p>none of the two flips is heads.</p>
+</li>
+</ul>
+</li>
 </ol>
-<p>For each of the following sets of conditions, check whether they determine the
-probabilities of all of the above formulas by calculating them using the
-probabilistic laws. If there&rsquo;s information missing, say exactly which
-information is missing and why you can&rsquo;t calculate the value of the given
-formula.</p>
 
 </div>
-<div id="a" ><h6 class="">a)</h6><div class="text-center my-4 excalifont">Pr(\mathsf{HEADS})=\frac{1}{2}\quad Pr(\mathsf{TAILS})=\frac{1}{2}</div>
-
-</div>
-<div id="b" ><h6 class="">b)</h6><div class="text-center my-4 excalifont">Pr(\mathsf{HEADS}\lor\mathsf{TAILS})=\frac{1}{2} \qquad Pr(\mathsf{HEADS}\land\mathsf{TAILS})=\frac{1}{2}</div>
-
-</div>
-<div id="c" class=" homework"><h6 class=" homework">c)</h6><div class="text-center my-4 excalifont">Pr(\mathsf{HEADS})=0.7\quad Pr(\mathsf{TAILS})=0.3\qquad
-Pr(\mathsf{HEADS}\land\mathsf{TAILS})=0</div>
-
-</div>
-<div id="d" ><h6 class="">d)</h6><div class="text-center my-4 excalifont">Pr(\mathsf{HEADS}\land\mathsf{TAILS})=1</div>
-
-</div>
-<div id="e" class=" homework"><h6 class=" homework">e)</h6><div class="text-center my-4 excalifont">Pr(\mathsf{HEADS})=0\qquad Pr(\mathsf{HEADS}\land\mathsf{TAILS})=0</div>
-
-</div>
-<div id="probability-functionsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>(a)</strong></p>
-<p>Solutions:</p>
-<ol>
-<li><span class="excalifont">Pr(\neg H) = 1-Pr(H) = 0.5</span></li>
-<li><span class="excalifont">Pr(\neg T) = 1-Pr(T) = 0.5</span></li>
-<li>We could solve this if we could solve 4, but&hellip;</li>
-<li>We don&rsquo;t have enough information to determine <span class="excalifont">Pr(H\land B)</span>.</li>
-</ol>
-<br>
-<p><strong>(b)</strong></p>
-<p>Using inclusion-exclusion we have <span class="excalifont">Pr(H\lor T)=Pr(H)+Pr(T)-Pr(H\land T)</span>, plugging in the two values given in this case <span class="excalifont">0.5=Pr(H)+Pr(T)-0.5</span> and so we have <span class="excalifont">1=Pr(H)+Pr(T)</span>.</p>
-<ol>
-<li><span class="excalifont">Pr(\neg H) = 1-Pr(H)</span>. From above <span class="excalifont">1-Pr(H)=Pr(T)</span>. So we can say <span class="excalifont">Pr(\neg H) = Pr(T)</span> but that&rsquo;s about the best we can do.</li>
-<li><span class="excalifont">Pr(\neg T) = 1-Pr(T)</span>. From above <span class="excalifont">1-Pr(T)=Pr(H)</span>. So we can say <span class="excalifont">Pr(\neg T) = Pr(H)</span> but that&rsquo;s about the best we can do.</li>
-<li>The answer was given in the exercise.</li>
-<li>The answer was given in the exercise.</li>
-</ol>
-<br>
-<p><strong>(c)</strong>
-Solutions:</p>
-<ol>
-<li><span class="excalifont">Pr(\neg H) = 1-Pr(H) = 0.3</span></li>
-<li><span class="excalifont">Pr(\neg T) = 1-Pr(T) = 0.7</span></li>
-<li>Since <span class="excalifont">Pr(H\land T)=0</span>, we have <span class="excalifont">Pr(H\lor T)=Pr(H)+Pr(T)=1</span> by the third axiom.</li>
-<li>The answer was given in the exercise.</li>
-</ol>
-<br>
-<p><strong>(d)</strong>
-Solutions:</p>
-<ol>
-<li>We don&rsquo;t have enough information to determine <span class="excalifont">Pr(H)</span> or <span class="excalifont">Pr(\neg H)</span>.</li>
-<li>We don&rsquo;t have enough information to determine <span class="excalifont">Pr(T)</span> or <span class="excalifont">Pr(\neg T)</span>.</li>
-<li><span class="excalifont">Pr(H\lor T)=Pr(H)+Pr(T)-1</span> using inclusion-exclusion but that is all we can say.</li>
-<li>The answer was given in the exercise.</li>
-</ol>
-<br>
-<p><strong>(e)</strong></p>
-<p>Solutions:</p>
-<ol>
-<li><span class="excalifont">Pr(\neg H) = 1-Pr(H) = 1</span></li>
-<li>We don&rsquo;t have enough information to determine <span class="excalifont">Pr(T)</span> or <span class="excalifont">Pr(\neg T)</span>.</li>
-<li>Since <span class="excalifont">Pr(H\land T)=0</span>, we have <span class="excalifont">Pr(H\lor T)=Pr(H)+Pr(T)=0+Pr(T)</span> by the third axiom, but that is all we can say.</li>
-<li>The answer was given in the exercise.</li>
-</ol>
-<br>
-
-</div>
-<div id="probability-laws" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Probability laws
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="probability-lawsSolution"
-        onclick="showPasswordModal('probability-lawsSolution', 'exc-prob')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="law-of-total-probability" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Law of total probability
     </div>
-</h5><p>Derive the following laws for probabilities from the axioms:</p>
-
-</div>
-<div id="a-1" ><h6 class="">a)</h6><div class="text-center my-4 excalifont">Pr(A)\leq 1,\text{ for all }A\in\mathcal{L}</div>
-
-</div>
-<div id="b-1" ><h6 class="">b)</h6><p>If <span class="excalifont">A\vDash B</span>, then <span class="excalifont">Pr(A)\leq Pr(B)</span></p>
-<p><em>Hint</em>: Remember that if <span class="excalifont">A\vDash B</span>, then <span class="excalifont">\vDash\neg(A\land \neg B)</span> and <span class="excalifont">B</span>
-is equivalent to <span class="excalifont">A\lor B</span>.</p>
-
-</div>
-<div id="c-1" ><h6 class="">c)</h6><div class="text-center my-4 excalifont">Pr(A\lor B)=Pr(A)+Pr(B)-Pr(A\land B)</div>
-
-</div>
-<div id="probability-lawsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>(a)</strong></p>
-<p>Solution:</p>
-<ul>
-<li>Take any <span class="excalifont">A</span>. Consider its negation <span class="excalifont">\neg A</span>.</li>
-<li><span class="excalifont">0\leq Pr(\neg A)</span> by the first axiom.</li>
-<li>We know that <span class="excalifont">Pr(\neg A)= 1-Pr(A)</span>.</li>
-<li><span class="excalifont">0\leq 1-Pr(A)</span> by substitution.</li>
-<li><span class="excalifont">Pr(A)\leq 1</span> by adding <span class="excalifont">Pr(A)</span> to each side.</li>
-</ul>
-<br>
-<p><strong>(b)</strong>
-Solution:</p>
-<ul>
-<li>Assume that <span class="excalifont">A\vDash B</span>.</li>
-<li>Our assumption implies that <span class="excalifont">\vDash\neg(A\land\neg B)</span></li>
-<li>So we have <span class="excalifont">Pr(A\lor\neg B)=Pr(A)+Pr(\neg B)</span> by the third axiom.</li>
-<li>We know that <span class="excalifont">Pr(\neg B)= 1-Pr(B)</span>.</li>
-<li>So we have <span class="excalifont">Pr(A\lor\neg B)=Pr(A)+1-Pr(B)</span>.</li>
-<li>We just proved that <span class="excalifont">Pr(A\lor\neg B)\leq 1</span> holds for any formula.</li>
-<li>So in this case we must have <span class="excalifont">Pr(A)+1-Pr(B)\leq 1</span>.</li>
-<li><span class="excalifont">Pr(A)+1\leq Pr(B)+1</span> by adding <span class="excalifont">Pr(B)</span> to each side.</li>
-<li><span class="excalifont">Pr(A)\leq Pr(B)</span> by subtracting <span class="excalifont">1</span> from each side.</li>
-</ul>
-<br>
-<p><strong>(c)</strong>
-This one is complicated.</p>
-<p>Fact 1.</p>
-<ul>
-<li><span class="excalifont">A\lor(B\land\neg A)\vDash A\lor B</span> and <span class="excalifont">A\lor B\vDash A\lor(B\land\neg A)</span></li>
-<li>You can check this with truth tables or natural deduction proofs</li>
-<li>By exercise (b) these formulas must have the same probability</li>
-<li><span class="excalifont">Pr(A\lor B)=Pr(A\lor(B\land\neg A))</span></li>
-</ul>
-<p>Fact 2.</p>
-<ul>
-<li><span class="excalifont">\vDash\neg(A\land(B\land\neg A))</span></li>
-<li>That means we have independence of these events,</li>
-<li>Using axiom three we calculate the disjunction as follows</li>
-<li><span class="excalifont">Pr(A\lor(B\land\neg A))=Pr(A)+Pr(B\land\neg A)</span></li>
-</ul>
-<p>Fact 3.</p>
-<ul>
-<li><span class="excalifont">Pr(A\land B)-Pr(A\land B)=0</span></li>
-<li>That means we can &ldquo;add this&rdquo; to any quantity</li>
-<li><span class="excalifont">Pr(A)+Pr(B\land\neg A)=Pr(A)+Pr(B\land\neg A)+Pr(A\land B)-Pr(A\land B)</span></li>
-</ul>
-<p>Fact 4.</p>
-<ul>
-<li><span class="excalifont">\vDash\neg((B\land\neg A)\land(A\land B))</span></li>
-<li>That means we have independence of our two middle quantities</li>
-<li><span class="excalifont">Pr(B\land\neg A)</span> and <span class="excalifont">Pr(A\land B)</span> determine the disjunction <span class="excalifont">Pr((B\land\neg A)\lor(A\land B))</span></li>
-<li><span class="excalifont">Pr(A)+Pr(B\land\neg A)+Pr(A\land B)-Pr(A\land B)=Pr(A)+Pr((B\land\neg A)\lor(A\land B))-Pr(A\land B)</span></li>
-</ul>
-<p>Fact 5.</p>
-<ul>
-<li><span class="excalifont">B\vDash (B\land A)\lor(B\land\neg A)</span> and <span class="excalifont">(B\land A)\lor(B\land\neg A)\vDash B</span></li>
-<li>You can check this with truth tables or natural deduction proofs</li>
-<li>By exercise (b) these formulas must have the same probability</li>
-<li><span class="excalifont">Pr(B)=Pr((B\land A)\lor(B\land\neg A))</span></li>
-</ul>
-<p>Fact 6.</p>
-<ul>
-<li>By combining the results from Fact 4 and 5 we get this</li>
-<li><span class="excalifont">Pr(A)+Pr((B\land\neg A)\lor(A\land B))-Pr(A\land B)=Pr(A)+Pr(B)-Pr(A\land B)</span></li>
-<li>And if we string together Facts 1-6 we have the inclusion-exclusion equation</li>
-</ul>
-<br>
-
-</div>
-<div id="probability-truth-tables" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Probability truth-tables
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="probability-truth-tablesSolution"
-        onclick="showPasswordModal('probability-truth-tablesSolution', 'exc-prob')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
-    </div>
-</h5><p>Remember our probability function for the fair die:</p>
-<div class="text-center my-4 excalifont">Pr_{\text{fair}}(\mathsf{RESULT}_i)=\frac{1}{6}\text{, for }i=1,\dots,6</div>
-<div class="text-center my-4 excalifont">Pr\_{\text{fair}}(\mathsf{RESULT}_i\land \mathsf{RESULT}_j)=0\text{, for all }i\neq
-j</div>
-<div class="text-center my-4 excalifont">Pr\_{\text{fair}}(\neg\mathsf{RESULT}_1\land \dots\land\neg\mathsf{RESULT}_6)=0</div>
-<p><em>Note</em>: I had forgotten the third rule in the textbook, but it&rsquo;s necessary and
-added there now, too.</p>
-
-</div>
-<div id="a-2" ><h6 class="">a)</h6><p>Use the probability truth-table method to give a probability function for an
-_un_fair die, where it&rsquo;s twice as likely that 6 comes up than any other number,
-while still exactly one number comes up.</p>
-
-</div>
-<div id="b-2" ><h6 class="">b)</h6><p>Making use of appropriate formalizations, calculate the probabilities of the
-following claims according to the table:</p>
+</h5><p>The <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/Law_of_total_probability" class="link-dark" rel="external" target="_blank">law of total
+probability</a>
+ states
+that for every <span class="excalifont">A,B</span> and every probability <span class="excalifont">Pr</span>, we have:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+Pr(A) = Pr(A | B)Pr(B) + Pr(A | 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+B)Pr(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+B)
+</code></div>
+<p>Derive this law from the Kolmogorov axioms. You may use the following facts without further proof:</p>
 <ol>
-<li>The result is even.</li>
-<li>The result is odd.</li>
-<li>The result is neither even nor odd.</li>
-<li>The result is divisible by 3.</li>
+<li>
+<p>If two formulas are logically equivalent, then they have the same probability. That is, if <code class="customCode">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+A
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ = 
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+B
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</code>, then <code class="customCode">Pr(A) = Pr(B)</code>.</p>
+</li>
+<li>
+<p><code class="customCode">A</code> is logically equivalent to <code class="customCode">(A
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B)
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(A
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+B)</code></p>
+</li>
+<li>
+<p>The conjunction rule <code class="customCode">Pr(A 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B) = Pr(A | B)Pr(B)</code></p>
+</li>
 </ol>
 
 </div>
-<div id="probability-truth-tablesSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6>
-<img src="https://logicalmethods.ai/exercises/probability/img/prob-table.png" class="img-thumbnail mx-auto d-block my-4"    alt="" >
-
-
-</div>
-<div id="inductive-validity" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Inductive validity
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="inductive-validitySolution"
-        onclick="showPasswordModal('inductive-validitySolution', 'exc-prob')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="deductive-and-inductive-inference" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Deductive and inductive inference
     </div>
-</h5><p>Take the probability function for the unfair die in the previous exercise.
-Using appropriate formalizations, determine whether the following inferences
-are (weakly) inductively valid:</p>
+</h5><p>Show that if <span class="excalifont">A
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+B</span>, then <span class="excalifont">A
+<img src="/img/approx.png" alt="approxmodels" class="inline-icon" style="height:1em;width:auto;"/>
+B</span>. That is: every
+deductively valid inference is also inductively valid. You may use the fact
+that if <span class="excalifont">A
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+B</span>, then <span class="excalifont">A
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B</span> is logically equivalent to
+<span class="excalifont">A</span>.</p>
 
 </div>
-<div id="a-3" class=" homework"><h6 class=" homework">a)</h6><p>The die came up odd, so it&rsquo;s likely a 3 or 5.</p>
-
-</div>
-<div id="b-3" ><h6 class="">b)</h6><p>The die came up odd, so it&rsquo;s likely a 6.</p>
-
-</div>
-<div id="b-4" ><h6 class="">b)</h6><p>The die came up even, so it&rsquo;s likely a 2.</p>
-
-</div>
-<div id="c-2" class=" homework"><h6 class=" homework">c)</h6><p>The die came up even, so it&rsquo;s likely a 6.</p>
-
-</div>
-<div id="inductive-validitySolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>(a)</strong></p>
-<p>The premise is <span class="excalifont">\mathsf{ODD}</span> and we have <span class="excalifont">Pr(\mathsf{ODD})=\frac{3}{7}</span>. The conclusion is <span class="excalifont">\mathsf{RES}_3\lor\mathsf{RES}_5</span> and we have <span class="excalifont">Pr(\mathsf{RES}_3\lor\mathsf{RES}_5)=\frac{2}{7}</span>. We also need the information <span class="excalifont">Pr(\mathsf{ODD}\land(\mathsf{RES}_3\lor\mathsf{RES}_5))=\frac{2}{7}</span>. Then we calculate conditional probability <span class="excalifont">Pr(\mathsf{RES}_3\lor\mathsf{RES}_5|\mathsf{ODD})=\frac{2}{7}/\frac{3}{7}=\frac{2}{3}</span>. Since this is higher than the conclusion by itself, the inference is (weakly) inductively valid.</p>
-<br>
-<p><strong>(b)</strong></p>
-<p>The premise is <span class="excalifont">\mathsf{ODD}</span> and we have <span class="excalifont">Pr(\mathsf{ODD})=\frac{3}{7}</span>. The conclusion is <span class="excalifont">\mathsf{RES}_6</span> and we have <span class="excalifont">Pr(\mathsf{RES}_6)=\frac{2}{7}</span>. We also need the information <span class="excalifont">Pr(\mathsf{ODD}\land\mathsf{RES}_3)=0</span>. Then we calculate conditional probability <span class="excalifont">Pr(\mathsf{RES}_6|\mathsf{ODD})=0/\frac{3}{7}=0</span>. This is lower than the conclusion probability by itself. The inference is invalid.</p>
-<br>
-<p><strong>(c)</strong></p>
-<p>The premise is <span class="excalifont">\mathsf{EVEN}</span> and we have <span class="excalifont">Pr(\mathsf{EVEN})=\frac{4}{7}</span>. The conclusion is <span class="excalifont">\mathsf{RES}_2</span> and we have <span class="excalifont">Pr(\mathsf{RES}_2)=\frac{1}{7}</span>. We also need the information <span class="excalifont">Pr(\mathsf{EVEN}\land\mathsf{RES}_2)=\frac{1}{7}</span>. Then we calculate conditional probability <span class="excalifont">Pr(\mathsf{RES}_2|\mathsf{EVEN})=\frac{1}{7}/\frac{4}{7}=\frac{1}{4}</span>. Since this is higher than the conclusion by itself, the inference is ((weakly) inductively valid.</p>
-<br>
-<p><strong>(d)</strong></p>
-<p>The premise is <span class="excalifont">\mathsf{EVEN}</span> and we have <span class="excalifont">Pr(\mathsf{EVEN})=\frac{4}{7}</span>. The conclusion is <span class="excalifont">\mathsf{RES}_6</span> and we have <span class="excalifont">Pr(\mathsf{RES}_6)=\frac{2}{7}</span>. We also need the information <span class="excalifont">Pr(\mathsf{EVEN}\land\mathsf{RES}_6)=\frac{2}{7}</span>. Then we calculate conditional probability <span class="excalifont">Pr(\mathsf{RES}_6|\mathsf{EVEN})=\frac{2}{7}/\frac{4}{7}=\frac{1}{2}</span>. Since this is higher than the conclusion by itself, the inference is (weakly) inductively valid.</p>
-<br>
-
-</div>
-<div id="measures-of-inductive-strength" class=" solved"><h5 class="solved">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Measures of inductive strength
-      
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="measures-of-inductive-strengthSolution"
-        onclick="showPasswordModal('measures-of-inductive-strengthSolution', 'exc-prob')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      
-      
+<div id="base-rate-fallacy" ><h5 class="">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Base-rate fallacy
     </div>
-</h5><p>Inductive logicians have proposed different measures of the inductive strength
-of an argument.</p>
-<p>We&rsquo;ve effectively seen:</p>
-<div class="text-center my-4 excalifont">Pr(C|P_1\land P_2\land\dots)-Pr(C)</div>
-<p>A popular alternative measure is:</p>
-<div class="text-center my-4 excalifont">\log\frac{Pr(C|P_1\land P_2\land\dots)}{Pr(C)}</div>
-<p>Here <span class="excalifont">\log</span> is the <i class="bi bi-box-arrow-up-right h-6"></i>
-<a href="https://en.wikipedia.org/wiki/Logarithm" class="link-dark" rel="external" target="_blank">logarithm
-function</a>
- with basis <span class="excalifont">2</span>.</p>
-<p>Using a suitable computer (for calculating the <span class="excalifont">\log</span>&rsquo;s), compare the two
-measures by plugging in values for:</p>
-<div class="text-center my-4 excalifont">Pr(C)</div>
-<div class="text-center my-4 excalifont">Pr(C|P_1\land P_2\land\dots)</div> 
-<p>What are the differences between the two measures, where do they work better,
-where worse?</p>
-
-</div>
-<div id="measures-of-inductive-strengthSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>Consider the last two inferences we studied <span class="excalifont">\mathsf{EVEN} \mid\overset{!}{\approx} \mathsf{RES}_2</span> and <span class="excalifont">\mathsf{EVEN} \mid\overset{!}{\approx} \mathsf{RES}_6</span> about the unfair die. Just based on informal thinking, do you think one inference is stronger?</p>
-<p>Let&rsquo;s compare two formal measures of strength.</p>
-<p>According to the measure we have been assuming, the strength of the first inference <span class="excalifont">\mathsf{EVEN} \mid\overset{!}{\approx} \mathsf{RES}_2</span> is calculated by <span class="excalifont">Pr(\mathsf{RES}_2|\mathsf{EVEN})-Pr(\mathsf{RES}_2)=\frac{1}{4}-\frac{1}{7}\approx 0,107</span>. The strength of the second inference <span class="excalifont">\mathsf{EVEN} \mid\overset{!}{\approx} \mathsf{RES}_6</span> is calculated by <span class="excalifont">Pr(\mathsf{RES}_6|\mathsf{EVEN})-Pr(\mathsf{RES}_6)=\frac{1}{2}-\frac{2}{7}\approx 0,214</span>. Neither inference is extremely strong but there is a big difference between them.</p>
-<p>According to the logarithmic measure, the strength of the first inference <span class="excalifont">\mathsf{EVEN} \mid\overset{!}{\approx} \mathsf{RES}_2</span> is calculated by <span class="excalifont">\mathrm{log}(Pr(\mathsf{RES}_2|\mathsf{EVEN})/Pr(\mathsf{RES}_2))=\mathrm{log}(\frac{1}{4}/\frac{1}{7})\approx 0.807</span>. The strength of the second inference <span class="excalifont">\mathsf{EVEN} \mid\overset{!}{\approx} \mathsf{RES}_6</span> is calculated by <span class="excalifont">\mathrm{log}(Pr(\mathsf{RES}_6|\mathsf{EVEN})/Pr(\mathsf{RES}_6))=\mathrm{log}(\frac{1}{2}/\frac{2}{7})\approx 0.807</span>. This theory says that the strength is the same. Do you think that is the right way to model strength of reasoning? Or is the other measurement better?</p>
-
-</div>
-<div id="discussion" class=" homework"><h5 class="homework">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Discussion
-    </div>
-</h5><p>Our notion of valid inductive inference has as a consequence that if</p>
-<div class="text-center my-4 excalifont">P_1,P_2,\dots\mid\approx C,</div> then <div class="text-center my-4 excalifont">P_1,P_2,\dots\mid\approx C\land D,</div> for
-arbitrary <span class="excalifont">D</span> (check you understand why!!). Some authors think that this is a
-problem, because the <span class="excalifont">D</span> might be completely irrelevant to the inference at
-hand. Do you think this is a problem? Justify your answer in one or two
-paragraphs, making use of an example.
+</h5><p>The <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/Base_rate_fallacy" class="link-dark" rel="external" target="_blank">base-rate fallacy</a>
+ is
+about a common probabilistic fallacy involving conditional probabilities, which
+has to do with common overestimation of probabilities given information about conditional probabilities.</p>
+<p>A simple example concerns diagnostic tests for rare diseases. Suppose
+that a certain disease has a prevalence of 1% in the population. This is
+already quite high, most &ldquo;serious&rdquo; infectious diseases have a way lower
+prevalence in the general population.</p>
+<p>Now suppose that we have a test for the disease, which is 90% accurate in the
+following sense:</p>
+<ul>
+<li>
+<p>If you have the disease, the test is positive with 0.90 probability. This is
+called the 
+<a href="Sensitivity_and_specificity" class="link-dark">test sensitivity</a>
+.</p>
+</li>
+<li>
+<p>If you don&rsquo;t have the disease, the test is negative with 0.90 probability. This is
+called the 
+<a href="Sensitivity_and_specificity" class="link-dark">test specificity</a>
+.</p>
+</li>
+</ul>
+<p>Note that test sensitivity and specificity can differ, but we assume both are
+the same for simplicity.</p>
+<ol>
+<li>
+<p>Express the above information as a probability assignment for the
+propositional variables <code class="customCode">HasDisease</code> and <code class="customCode">TestPositive</code>.</p>
+<p><em>Hint</em>: You can estimate the unconditional probability of the person having
+the disease as the prevalence of the disease in the population.</p>
+</li>
+<li>
+<p>Suppose we&rsquo;re administering the test to a randomly selected person from the
+population. The test results positive. What is the probability that the
+person has the disease given this outcome? What do you notice?</p>
+<p><em>Hints</em>:</p>
+<ul>
+<li>
+<p>Use Bayes rule applied to determine <code class="customCode">Pr(HasDisease | TestPositive)</code></p>
+</li>
+<li>
+<p>You can calculate the marginal probability <code class="customCode">Pr(TestPositive)</code> using the law of total probability from information you already have.</p>
+</li>
+<li>
+<p>You need to use that <code class="customCode">Pr(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+HasDisease) = 1 - Pr(HasDisease)</code> and <code class="customCode">Pr(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+HasDisease | 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+TestPositive) = 1 - Pr(HasDisease | 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+TestPositive)</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p>When you have a positive result, you can re-set the probability of
+<code class="customCode">P(HasDisease)</code> to <code class="customCode">Pr(HasDisease | TestPositive)</code>. This is called <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://en.wikipedia.org/wiki/Bayesian_inference" class="link-dark" rel="external" target="_blank">Bayesian
+updating</a>
+. Suppose that
+there&rsquo;s a treatment for the rare disease, which has adverse side-effects if you
+give it to somebody who doesn&rsquo;t have the disease. So we only want to give the
+medicine to a patient where we&rsquo;re more certain than not that they have the
+disease. How many times do you need to get a positive result before you should
+administer the medicine if you apply Bayesian updating after each positive
+result.</p>
+</li>
+</ol>
 
 
   </div>
