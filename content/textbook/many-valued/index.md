@@ -40,7 +40,7 @@ AI-research:
 
 - the infinitely many valued [fuzzy
 logic](https://en.wikipedia.org/wiki/Fuzzy_logic) of
-[Łukasciewicz](https://en.wikipedia.org/wiki/Jan_%C5%81ukasiewicz).
+[Łukasiewicz](https://en.wikipedia.org/wiki/Jan_%C5%81ukasiewicz).
 
 {{< img src="img/db_understand.png" class="rounded  float-start inert-img img-fluid m-2" width="200px" >}} 
 As you will see, these systems figure in AI-technologies in different ways.
@@ -658,7 +658,7 @@ The standard way of interpreting such expressions is using the so-called
 Zadeh-operators, which are named after [Lotfi
 Zadeh](https://en.wikipedia.org/wiki/Lotfi_A._Zadeh), who introduced fuzzy logic
 to AI-research—even though their logic has already been studied by
-[Łukasciewicz](https://en.wikipedia.org/wiki/Jan_%C5%81ukasiewicz).
+[Łukasiewicz](https://en.wikipedia.org/wiki/Jan_%C5%81ukasiewicz).
 
 The idea is that we can say:
 
@@ -682,7 +682,7 @@ in the fuzzy model we've described above:
 {{< img src="img/fuzzy_conjunction_disjunction.png" class="mx-auto d-block rounded inert-img img-fluid" width="800px">}}
 
 In these models, there is also a natural notion of deductive consequence, which
-has already been explored by Łukasciewicz in the 1920s. The idea is that, for
+has already been explored by Łukasiewicz in the 1920s. The idea is that, for
 example,  `{{< llbracket >}} IsCold  10°C{{< rrbracket >}}` entails, in a sense,
 `{{< llbracket >}} IsCold  10°C {{< lor >}} IsWarm 10°C{{< rrbracket >}}` since
 the value of the latter is always at least as high as the value of the former.

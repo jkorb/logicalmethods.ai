@@ -43,7 +43,7 @@ Verify the remaining Kleene laws like this.
 
 Note that for the laws with 3 variables, you need to create a table `ValueTriples` for the method to work.
 
-# Łukasciwicz conditionals
+# Łukasiewicz conditionals
 
 In $K3$, we've defined a semantics for conditionals by saying that $$v(A{{< to
 >}}B) = (~!NOT!~ A) ~!OR!~ B$$
