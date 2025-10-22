@@ -111,7 +111,7 @@ X !!OR!! Y = !!NOT!! ((!!NOT!! X) !!AND!! (!!NOT!! Y))
 
 2. Here's a representation: `(X !!OR!! Y) !!AND!! !!NOT!! (X !!AND!! Y)`
 
-    - `X = 1, Y = 1`: &emsp; `(1 !!OR!! 1) !!AND!! !!NOT!! (1 !!AND!! 1) = 1 !!AND!! (!!NOT!! 1) = 1 !!AND!! 0 = 1`
+    - `X = 1, Y = 1`: &emsp; `(1 !!OR!! 1) !!AND!! !!NOT!! (1 !!AND!! 1) = 1 !!AND!! (!!NOT!! 1) = 1 !!AND!! 0 = 0`
 
     - `X = 0, Y = 1`: &emsp; `(0 !!OR!! 1) !!AND!! !!NOT!! (0 !!AND!! 1) = 1 !!AND!! (!!NOT!! 0) = 1 !!AND!! 1 = 1`
 
