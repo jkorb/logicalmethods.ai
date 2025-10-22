@@ -706,7 +706,7 @@ raising under _all_ probabilities:
 
 ```
 P₁, P₂, ... {{< approx >}} C if and only if for all Pr, we have
-Pr(C | P₁ {{< land >}} P₂{{< land >}} ) > P(C)
+Pr(C | P₁ {{< land >}} P₂{{< land >}} ) ≥ P(C)
 ```
 
 Inductive logic is concerned with the study of inductively valid inference patterns.

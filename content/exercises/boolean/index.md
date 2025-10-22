@@ -260,7 +260,7 @@ color of a second pixel, what happens to the number of valuations? Don't determi
     {{< img src="img/jimmy_invalid.png" class="rounded mx-auto d-block inert-img img-fluid my-2" width="500px">}}
 
 
-# Logical laws
+# Logical laws {.solved}
 
 So far, we've only shown of _particular_ inferences (about the weather or
 little Jimmy) that they are valid or invalid. For this exercise, you'll show
@@ -270,33 +270,61 @@ about.
 For this, we'll focus on _disjunctive syllogism_, which we take to be the
 following inference schema, where $A$ and $B$ can be _any_ two formulas whatsoever:
 
-{{< img src="img/disjunctive_syllogism.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="175px">}}
+$$A{{< lor >}}B, {{< neg >}}A {{< therefore >}}B$$
 
 To show that this inference is valid, following the definition of deductive
 validity, we need to show that:
 
-{{< img src="img/ds_validity_condition.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="200px">}}
+$${{< llbracket >}}A{{< lor >}}B{{< rrbracket >}}{{< cap >}}{{< llbracket >}}{{< neg >}}A{{< rrbracket >}}{{< subseteq >}}{{< llbracket >}}B{{< rrbracket >}}$$
 
 This means, according to the definition of $⊆$, that we need to show that any
 valuation $v$:
 
-{{< img src="img/ds_if_then.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="400px">}}
+$$If v{{< in >}}{{< llbracket >}}A{{< lor >}}B{{< rrbracket >}}{{< cap >}}{{< llbracket >}}{{< neg >}}A{{< rrbracket >}}, then v{{< in >}}{{< llbracket >}}B{{< rrbracket >}}$$
 
 This is the claim, we'll set out to show:
 
-1. Assume that $v$ is an arbitrary valuation, meaning you don't know anything
-   about, such as which values it assigns to which formula. Assume further that {{< img src="img/in_set_inline.png" class="inert-img" height="38px" style="vertical-align: middle;" >}}. Apply the definition of 
-   $$[A] = { v : v(A) = 1},$$ 
-   as well as the definition of intersection as 
-   {{< img src="img/intersection_definition.png" class="rounded mx-auto d-block inert-img img-fluid my-2" width="300px">}}
+1. Assume that $v$ is an arbitrary valuation, meaning you don't know
+   anything about, such as which values it assigns to which formula.
+Assume further that $v{{< in >}}{{< llbracket >}}A{{< lor >}}B{{<
+rrbracket >}}{{< cap >}}{{< llbracket >}}{{< neg >}}A{{< rrbracket >}}$.
+Apply the definition of $${{< llbracket >}}A{{< rrbracket>}} = { v :
+v(A) = 1},$$ as well as the definition of intersection as 
+
+    $$S {{< cap >}}T = { x : x {{< in >}} S and x {{< in >}} T}$$
 
    to infer what this means for the values of $A v B$ and $¬A$ under $v$.
 
 2. Using the general clauses for calculating the values under an assignment,
 
-   {{< img src="img/clauses.png" class="rounded mx-auto d-block inert-img img-fluid my-2" width="300px">}}
-
+   $$v({{< neg >}}A) = !!NOT!! v(A)$$
+   $$v(A{{< land >}}B) = v(B) !!AND!! v(A)$$
+   $$v(A{{< lor >}}B) = v(A) !!OR!! v(A)$$
+   
    to transform the result of a last step into two Boolean equations.
 
-3. "Solve" this Boolean equation for the value $v(B)$ of $B$, that is infer
-   what that value must be. Conclude from this that {{< img src="img/ds_then.png" class="inert-img" height="38px" style="vertical-align: middle;" >}} and the inference is valid.
+3. "Solve" this Boolean equation for the value $v(B)$ of $B$, that is
+   infer what that value must be. Conclude from this that $v{{< in
+   >}}{{< llbracket >}}B{{< rrbracket >}}$ and the inference is
+   valid.
+
+## Solution {#logical-lawsSolution .solution}
+
+1. Let $v$ be a valuation such that $v{{< in >}}{{< llbracket >}}A{{< lor >}}B{{< rrbracket >}}{{< cap >}}{{< llbracket >}}{{< neg >}}A{{< rrbracket >}}$. By the definition of ${{< cap >}}$, this means that $v{{< in >}}{{< llbracket >}}A{{< lor >}}B{{< rrbracket >}}$ and $v{{< in >}}{{< llbracket >}}{{< neg >}}A{{< rrbracket >}}$. And by the definition of ${{< llbracket >}}&nbsp;{{< rrbracket >}}$, this means that $v(A{{< lor >}}B) = 1$ and $v({{< neg >}}A) = 1$.
+
+2. Applying the clauses, we get:
+
+    - $v(A) !!OR!! v(B) = 1$
+
+    - $!!NOT!! v(A) = 1$
+
+
+3. From $!!NOT!! v(A) = 1$, we can infer that $v(A) = 0$. So, the first
+   equation becomes $0 !!OR!! v(B) = 1$. The only value for $v(B)$
+for which this is true is $v(B) = 1$. And if $v(B) = 1$, then $v{{< in >}}{{< llbracket >}}B{{< rrbracket >}}$. 
+
+    So, what we've seen is that for all valuations $v$, if $v{{< in >}}{{< llbracket >}}A{{< lor >}}B{{< rrbracket >}}{{< cap >}}{{< llbracket >}}{{< neg >}}A{{< rrbracket >}}$, then $v{{< in >}}{{< llbracket >}}B{{< rrbracket >}}$. In other words, 
+
+    $${{< llbracket >}}A{{< lor >}}B{{< rrbracket >}}{{< cap >}}{{< llbracket >}}{{< neg >}}A{{< rrbracket >}}{{< subseteq >}}{{< llbracket >}}B{{< rrbracket >}}$$
+
+
