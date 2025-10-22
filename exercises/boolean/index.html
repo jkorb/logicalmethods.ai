@@ -1220,8 +1220,19 @@ school nor at home.</p>
 </ol>
 
 </div>
-<div id="logical-laws" ><h5 class="">
+<div id="logical-laws" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Logical laws
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="logical-lawsSolution"
+        onclick="showPasswordModal('logical-lawsSolution', 'exc-bool')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>So far, we&rsquo;ve only shown of <em>particular</em> inferences (about the weather or
 little Jimmy) that they are valid or invalid. For this exercise, you&rsquo;ll show
@@ -1229,45 +1240,236 @@ that <em>all</em> inferences of a certain form are valid, regardless what they&r
 about.</p>
 <p>For this, we&rsquo;ll focus on <em>disjunctive syllogism</em>, which we take to be the
 following inference schema, where <span class="excalifont">A</span> and <span class="excalifont">B</span> can be <em>any</em> two formulas whatsoever:</p>
-
-<img src="https://logicalmethods.ai/exercises/boolean/img/disjunctive_syllogism.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="175px"  alt="" >
-
+<div class="text-center my-4 excalifont">A
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B, 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A 
+<img src="/img/therefore.png" alt="Therefore" class="inline-icon" style="height:1em;width:auto;"/>
+B</div>
 <p>To show that this inference is valid, following the definition of deductive
 validity, we need to show that:</p>
+<div class="text-center my-4 excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+A
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
 
-<img src="https://logicalmethods.ai/exercises/boolean/img/ds_validity_condition.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="200px"  alt="" >
+<img src="/img/cap.png" alt="Intersection" class="inline-icon" style="height:1em;width:auto;"/>
 
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+
+<img src="/img/subseteq.png" alt="Subseteq" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+B
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</div>
 <p>This means, according to the definition of <span class="excalifont">⊆</span>, that we need to show that any
 valuation <span class="excalifont">v</span>:</p>
+<div class="text-center my-4 excalifont">If v
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
 
-<img src="https://logicalmethods.ai/exercises/boolean/img/ds_if_then.png" class="rounded mx-auto d-block inert-img img-fluid my-4"  width="400px"  alt="" >
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+A
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
 
+<img src="/img/cap.png" alt="Intersection" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+, then v
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+B
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</div>
 <p>This is the claim, we&rsquo;ll set out to show:</p>
 <ol>
 <li>
-<p>Assume that <span class="excalifont">v</span> is an arbitrary valuation, meaning you don&rsquo;t know anything
-about, such as which values it assigns to which formula. Assume further that 
-<img src="https://logicalmethods.ai/exercises/boolean/img/in_set_inline.png" class="inert-img" height="38px"  style="ZgotmplZ" alt="" >
-. Apply the definition of</p>
-<div class="text-center my-4 excalifont">[A] = { v : v(A) = 1},</div> 
-as well as the definition of intersection as 
+<p>Assume that <span class="excalifont">v</span> is an arbitrary valuation, meaning you don&rsquo;t know
+anything about, such as which values it assigns to which formula.
+Assume further that <span class="excalifont">v
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
 
-   <img src="https://logicalmethods.ai/exercises/boolean/img/intersection_definition.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="300px"  alt="" >
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+A
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
 
+<img src="/img/cap.png" alt="Intersection" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</span>.
+Apply the definition of <div class="text-center my-4 excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+A
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ = { v :
+v(A) = 1},</div> as well as the definition of intersection as</p>
+ <div class="text-center my-4 excalifont">S 
+<img src="/img/cap.png" alt="Intersection" class="inline-icon" style="height:1em;width:auto;"/>
+T = { x : x 
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+ S and x 
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+ T}</div>
 <p>to infer what this means for the values of <span class="excalifont">A v B</span> and <span class="excalifont">¬A</span> under <span class="excalifont">v</span>.</p>
 </li>
 <li>
 <p>Using the general clauses for calculating the values under an assignment,</p>
-
-   <img src="https://logicalmethods.ai/exercises/boolean/img/clauses.png" class="rounded mx-auto d-block inert-img img-fluid my-2"  width="300px"  alt="" >
-
+<div class="text-center my-4 excalifont">v(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A) = <span class="Boolean">NOT</span> v(A)</div>
+<div class="text-center my-4 excalifont">v(A
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B) = v(B) <span class="Boolean">AND</span> v(A)</div>
+<div class="text-center my-4 excalifont">v(A
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B) = v(A) <span class="Boolean">OR</span> v(A)</div>
 <p>to transform the result of a last step into two Boolean equations.</p>
 </li>
 <li>
-<p>&ldquo;Solve&rdquo; this Boolean equation for the value <span class="excalifont">v(B)</span> of <span class="excalifont">B</span>, that is infer
-what that value must be. Conclude from this that 
-<img src="https://logicalmethods.ai/exercises/boolean/img/ds_then.png" class="inert-img" height="38px"  style="ZgotmplZ" alt="" >
- and the inference is valid.</p>
+<p>&ldquo;Solve&rdquo; this Boolean equation for the value <span class="excalifont">v(B)</span> of <span class="excalifont">B</span>, that is
+infer what that value must be. Conclude from this that <span class="excalifont">v
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+B
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</span> and the inference is
+valid.</p>
+</li>
+</ol>
+
+</div>
+<div id="logical-lawsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><ol>
+<li>
+<p>Let <span class="excalifont">v</span> be a valuation such that <span class="excalifont">v
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+A
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+
+<img src="/img/cap.png" alt="Intersection" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</span>. By the definition of <span class="excalifont">
+<img src="/img/cap.png" alt="Intersection" class="inline-icon" style="height:1em;width:auto;"/>
+</span>, this means that <span class="excalifont">v
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+A
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</span> and <span class="excalifont">v
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</span>. And by the definition of <span class="excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+ 
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</span>, this means that <span class="excalifont">v(A
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B) = 1</span> and <span class="excalifont">v(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A) = 1</span>.</p>
+</li>
+<li>
+<p>Applying the clauses, we get:</p>
+<ul>
+<li>
+<p><span class="excalifont">v(A) <span class="Boolean">OR</span> v(B) = 1</span></p>
+</li>
+<li>
+<p><span class="excalifont"><span class="Boolean">NOT</span> v(A) = 1</span></p>
+</li>
+</ul>
+</li>
+<li>
+<p>From <span class="excalifont"><span class="Boolean">NOT</span> v(A) = 1</span>, we can infer that <span class="excalifont">v(A) = 0</span>. So, the first
+equation becomes <span class="excalifont">0 <span class="Boolean">OR</span> v(B) = 1</span>. The only value for <span class="excalifont">v(B)</span>
+for which this is true is <span class="excalifont">v(B) = 1</span>. And if <span class="excalifont">v(B) = 1</span>, then <span class="excalifont">v
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+B
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</span>.</p>
+<p>So, what we&rsquo;ve seen is that for all valuations <span class="excalifont">v</span>, if <span class="excalifont">v
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+A
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+
+<img src="/img/cap.png" alt="Intersection" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</span>, then <span class="excalifont">v
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+B
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</span>. In other words,</p>
+ <div class="text-center my-4 excalifont">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+A
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+
+<img src="/img/cap.png" alt="Intersection" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+
+<img src="/img/subseteq.png" alt="Subseteq" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+B
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+</div>
 </li>
 </ol>
 
