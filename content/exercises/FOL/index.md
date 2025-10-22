@@ -7,7 +7,7 @@ params:
   math: true
 ---
 
-# Decoding FOL
+# Decoding FOL {.solved}
 
 Paraphrase the following FOL formulas in natural language:
 
@@ -24,7 +24,17 @@ x))`
 4. `{{< exists >}}x{{< exists >}}y (Thief x {{< land >}} Thief y {{< land >}} {{<
    neg >}} x = y)`
 
-# Knowledge Engineering in FOL
+## Solution { #decoding-folSolution }
+
+1. There is a person who's the father of Jimmy's brother but not Jimmy's father.
+
+2. For each fish, there's a bigger fish.
+
+3. If Jimmy has a sibling at all, then one of Jimmy's siblings is older than all of their siblings.
+
+4. There are at least two different thieves.
+
+# Knowledge Engineering in FOL {.solved}
 
 [Knowledge engineering](https://en.wikipedia.org/wiki/Knowledge_engineering) is
 the complex process of developing a framework in which to encode knowledge about
@@ -86,7 +96,46 @@ reasoning tasks.*
 3. It's a bad idea to include a function symbol `makerOf` in this language.
    Explain why.
 
-# Knowledge Representation with FOL Models
+## Solution {#knowledge-engineering-in-folSolution .solution}
+
+1. There are different ways of doing this. One way to go is this:
+
+    - Constants: `∀I`, `KnowIt∀`, `DeepL`, `image_recognition`, `voice_recognition`, `natural_deduction`, `sat_solving`
+
+    - Predicates: `IsSymbolic²`, `IsSubSymbolic²`, `IsReasoningTask¹`, `IsLearnedTask¹`, `IsCapableOf²`
+
+    This language has _names_ for certain tasks, like voice recognition or
+    natural deduction, which means that it includes them in its ontology. This
+    means, for example, that in models of that language these tasks will be
+    objects in the domain. An alternative approach would be to include
+    corresponding properties, like `IsCapableOfNaturalDeduction¹`, which however
+    leads to a proliferation of predicates.
+
+2. At a minimum, the following information should be included:
+
+    - `IsSymbolic ∀I {{< land >}} IsSubSymbolic ∀I`
+    - `{{< forall >}}x (IsReasoningTask x {{< to >}} IsCapableOf ∀I x)`
+    - `{{< exists >}}x (IsLearnedTask x {{< land >}} IsCapableOf ∀I x)`
+    - `IsCapableOf ∀I natural_deduction`, `IsCapableOf ∀I sat_solving`
+    - `IsCapableOf ∀I voice_recognition`, `IsCapableOf ∀I image_recognition`
+    - `IsSymbolic KnowIt∀ {{< land >}} {{< neg >}}IsSubSymbolic KnowIt∀`
+    - `{{< forall >}}x (IsCabaleOf KnowIt∀ x {{< to >}} IsReasoningTask x)`
+    - `{{< neg >}}IsSymbolic DeepL {{< land >}} IsSubSymbolic DeepL`
+    - `{{< forall >}}x (IsLearnedTask x {{< to >}} IsCapableOf ∀I x)`
+    - `{{< exists >}}x (IsReasoningTask x {{< land >}} IsCapableOf ∀I x)`
+    
+    Implied but not explicitly stated is: `{{< exists >}}x (IsReasoningTask x {{< land >}} {{< neg >}}IsCapableOf ∀I x)`
+
+3. We might add a constant `ai_labs` and a predicate `IsMakerOf²` to the
+   language to say that:
+
+    - `IsMakerOf ai_labs ∀I`
+
+    The alternative of adding a function symbol `makerOf` and writing `makerOf
+    ∀I = ai_labs` is a bad idea since then we'd have to account for the meaning
+    of terms like `makerOf ai_labs`, which have unclear meaning.
+
+# Knowledge Representation with FOL Models {.solved}
 
 For this exercise, we are working with an FOL language with the following vocabulary:
 
@@ -119,7 +168,43 @@ only the true atomic sentences, without the true negated ones. Determine the
 positive diagram of the model we've just described. Is this essentially
 different from any of the other methods of representing the model?
 
-# Denotation
+## Solution {#knowledge-representation-with-fol-modelsSolution .solution}
+
+1. Here are three representations of the model:
+
+    {{< img src="img/model_sets.png" class="mx-auto rounded d-block inert-img img-fluid" width="600px">}}
+    {{< img src="img/model_graph.png" class="mx-auto rounded d-block inert-img img-fluid" width="600px">}}
+    {{< img src="img/model_tables.png" class="mx-auto rounded d-block inert-img img-fluid" width="600px">}}
+
+2. Here's a [db-fiddle](https://www.db-fiddle.com/f/9dB7kAjwcypFWLSgEiSS7E/0) with the corresponding tables.
+
+3. It's not really different from any of the previous methods. Here's what we
+   get:
+
+    - `Loves jimmy soccer`
+    - `Loves linus soccer`
+    - `Loves gran soccer`
+    - `IsFrom jimmy london`
+    - `IsFrom linus london`
+    - `IsFrom sir london`
+    - `IsFrom lady ny`
+    - `IsFrom gran london`
+    - `LivesIn jimmy ny`
+    - `LivesIn linus ny`
+    - `LivesIn sr ny`
+    - `LivesIn lady ny`
+    - `LivesIn gran london`
+    - `ParentOf sir jimmy`
+    - `ParentOf sir linus`
+    - `ParentOf lady jimmy`
+    - `ParentOf lady linus`
+    - `ParentOf gran sir`
+
+    The full atomic diagram, however, is much larger, since there are
+    plenty of false atoms, like `ParentOf soccer ny`, so their negations
+    are all true, including `{{< neg >}}ParentOf soccer ny`.
+
+# Denotation {.solved}
 
 Suppose that we're working with an FOL language that has the single constant
 `null`, as well as the function symbols `succ¹` and `prod²`.
@@ -134,7 +219,7 @@ numbers and where:
 In this model, determine: 
 
 ```
-{{< llbracket >}} prod succ null  prod succ succ 0 succ 0{{< rrbracket >}}
+{{< llbracket >}} prod succ null  prod succ succ null succ null {{< rrbracket >}}
 ```
 
 For this purpose:
@@ -144,7 +229,22 @@ For this purpose:
 2. Recursively calculate the values of each term, following the terms parsing
    tree.
 
-# Satisfaction
+## Solution {#denotationSolution .solution}
+
+1. Here's the parse tree:
+
+    {{< img src="img/term_tree.png" class="mx-auto rounded d-block inert-img img-fluid" width="600px">}}
+
+2. Here's the calculation:
+
+    - ${{< llbracket >}}null{{< rrbracket >}} = 0$
+    - ${{< llbracket >}}suc null{{< rrbracket >}} = {{< llbracket >}}suc {{< rrbracket >}}({{< llbracket >}}null{{< rrbracket >}}) = 0 + 1 = 1$
+    - ${{< llbracket >}}succ suc null{{< rrbracket >}} = {{< llbracket >}}suc {{< rrbracket >}}({{< llbracket >}}succ null{{< rrbracket >}}) = 1 + 1 = 2$
+    - ${{< llbracket >}}prod succ suc null succ null{{< rrbracket >}} = {{< llbracket >}}prod {{< rrbracket >}}({{< llbracket >}}succ succ null{{< rrbracket >}}, {{< llbracket >}}succ null{{< rrbracket >}}) = 2 x 1 = 2$
+    - ${{< llbracket >}}prod succ null prod succ suc null succ null{{< rrbracket >}} = {{< llbracket >}}prod {{< rrbracket >}}({{< llbracket >}}succ null{{< rrbracket >}}, {{< llbracket >}}prod succ suc null succ null{{< rrbracket >}}) = 1 x 2 = 2$
+
+
+# Satisfaction {.solved}
 
 In the model you've characterized in exercise 3, determine the extensions of the
 following open formulas. Give them in table form:
@@ -156,6 +256,13 @@ following open formulas. Give them in table form:
 3. `{{< exists >}}y ParentOf y x {{< land >}} {{< exists >}} z ParentOf z y`
 
 4. `IsFrom x y {{< land >}} LivesIn x y`
+
+## Solution {#satisfactionSolution .solution}
+
+1. {{< img src="img/table_1.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
+1. {{< img src="img/table_2.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
+1. {{< img src="img/table_3.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
+1. {{< img src="img/table_4.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
 
 # SQL Queries {.solved}
 
