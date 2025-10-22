@@ -1582,8 +1582,19 @@ SNOW
 </ol>
 
 </div>
-<div id="planning" ><h5 class="">
+<div id="planning" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Planning
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="planningSolution"
+        onclick="showPasswordModal('planningSolution', 'exc-if')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>We&rsquo;ve made things a more difficult for <span class="code" style="margin-right:-4px;vertical-align: text-top;transform-origin: 50%  50%;transform:rotate(180deg);display:inline-block">IA</span>
   by introducing a third block into the puzzle:</p>
@@ -1606,6 +1617,157 @@ Adjust our planning solution to accommodate the more complicated setup. That is:
 <p>Find a model that satisfies the KB, as well as the setup and goal state. Then read off a course o action. You don&rsquo;t need to do this formally—using resolution or chaining—but just find such a model using <em>human</em> intelligence.</p>
 </li>
 </ol>
+
+</div>
+<div id="planningSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><ol>
+<li>
+<p>On the language side, we need to add all the instances of the schemata
+<span class="excalifont">On(X,Y,t), Stack(X,Y,t), Unstack(X,Y,t)</span> for <span class="excalifont">X,Y
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+{R,G,B}</span> and
+<span class="excalifont">t
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+{0, 1, 2, &hellip;}</span>, where the statements involving <span class="excalifont">B</span> represent the
+facts involving the new blue block.</p>
+</li>
+<li>
+<p>In terms of the rules, all previous rules can remain the same just involving
+<span class="excalifont">B</span>, so <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+On(X,X)</span> for <span class="excalifont">X
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+{R,B,G}</span>, and so on. We do need
+to add principles that exclude new weird configurations that are logically
+possible, such as <span class="excalifont">On(R,G,t)
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+On(G, B,t)
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+On(B,R,t)</span> for
+some time <span class="excalifont">t</span>. On previous rules only excluded 2-step loops, like <span class="excalifont">On(R,G,t)
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+On(G,R,t)</span>, but not 3-step loops like the one above. We <em>could</em> just add the schema:</p>
+ <div class="text-center my-4 excalifont">On(X,Y,t)
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+On(Y, Z,t)
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+On(Z,X,t)</div>
+<p>There is one kind of rule that we would need to include concerning the
+actions that wasn&rsquo;t relevant before. Now that there are three blocks, we
+should watch out that we can only unstack one block from another if there&rsquo;s
+no other block on the top. That is, we need to postulate,</p>
+ <div class="text-center my-4 excalifont">Unstack(R,G,t)
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+On(B,R,t)</div>
+ <div class="text-center my-4 excalifont">Unstack(R,B,t)
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+On(G,R,t)</div>
+ <div class="text-center my-4 excalifont">Unstack(G,B,t)
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+On(R,G,t)</div>
+ <div class="text-center my-4 excalifont">...</div>
+<p>Similarly, we can only stack one block on top of another, if there&rsquo;s no
+other block on top yet:</p>
+ <div class="text-center my-4 excalifont">Stack(R,G,t)
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+On(B,G,t)</div>
+ <div class="text-center my-4 excalifont">Stack(R,B,t)
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+On(G,B,t)</div>
+ <div class="text-center my-4 excalifont">...</div>
+<p>The persistence conditions remain the same.</p>
+</li>
+<li>
+<p>Our set-up, then is:</p>
+ <div class="text-center my-4 excalifont">On(G,B,0)
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+On(B,R,0)</div>
+<p>And the goal state is:</p>
+ <div class="text-center my-4 excalifont">On(B,G,t)
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+On(G,R,t)</div>
+<p>for some suitable <span class="excalifont">t</span>. As you can see, we can achieve this for <span class="excalifont">t=4</span> (five steps).</p>
+</li>
+<li>
+<p>Here&rsquo;s one strategy. I only note the relevant formulas, all unnamed formulas are assumed to be false:</p>
+<ul>
+<li>
+<p>First step:</p>
+<ul>
+<li>
+<p>State: <span class="excalifont">On(G,B,0), On(B,R,0)</span></p>
+</li>
+<li>
+<p>Action: <span class="excalifont">Unstack(G,B,0)</span> (possible because neither <span class="excalifont">On(R,G,0)</span> nor <span class="excalifont">On(B,G,0)</span>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Second step:</p>
+<ul>
+<li>
+<p>State: <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+On(G,B,1), On(B,R,1)</span></p>
+</li>
+<li>
+<p>Action: <span class="excalifont">Unstack(B,R,1)</span> (possible because now <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+On(G,B,1)</span>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Third step:</p>
+<ul>
+<li>
+<p>State: <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+On(G,B,2), 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+On(B,R,2)</span></p>
+</li>
+<li>
+<p>Action: <span class="excalifont">Stack(B,R,2)</span> (possible because at this point neither <span class="excalifont">On(G,R,2)</span> nor <span class="excalifont">On(B,R,2)</span>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Fourth step:</p>
+<ul>
+<li>
+<p>State: <span class="excalifont">On(B,R,3), 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+On(B,R,3)</span></p>
+</li>
+<li>
+<p>Action: <span class="excalifont">Stack(G,B,3)</span></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Fifth step:</p>
+<ul>
+<li>State: <span class="excalifont">On(G,B,4), 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+On(B,R,4)</span></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>You can straight-forwardly check that all conditions are satisfied.</p>
 
 </div>
 <div id="discussion" ><h5 class="">
