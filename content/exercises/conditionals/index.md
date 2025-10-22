@@ -306,7 +306,7 @@ derivation first (if there is one).
 
     Here, backward-chaining was way more efficient. This is because forward-chaining needs to go through _all_ possible derivations to determine whether there is one, which derives our desired goal. Backward-chaining is more "surgical" in that it only looks through promising candidates and terminates earlier because there are none. 
 
-# Planning
+# Planning {.solved}
 
 We've made things a more difficult for {{< logo >}}&ThinSpace; by introducing a third block into the puzzle:
 
@@ -321,6 +321,84 @@ Adjust our planning solution to accommodate the more complicated setup. That is:
 3. Represent the initial setup state and the goal state in the language.
 
 4. Find a model that satisfies the KB, as well as the setup and goal state. Then read off a course o action. You don't need to do this formally—using resolution or chaining—but just find such a model using _human_ intelligence.
+
+## Solution {#planningSolution .solution}
+
+1. On the language side, we need to add all the instances of the schemata
+   $On(X,Y,t), Stack(X,Y,t), Unstack(X,Y,t)$ for $X,Y{{< in >}}{R,G,B}$ and
+$t{{< in >}}{0, 1, 2, ...}$, where the statements involving $B$ represent the
+facts involving the new blue block.
+
+2. In terms of the rules, all previous rules can remain the same just involving
+   $B$, so ${{< neg >}}On(X,X)$ for $X{{< in >}}{R,B,G}$, and so on. We do need
+to add principles that exclude new weird configurations that are logically
+possible, such as $On(R,G,t){{< land >}}On(G, B,t){{< land >}}On(B,R,t)$ for
+some time $t$. On previous rules only excluded 2-step loops, like $On(R,G,t){{<
+land >}}On(G,R,t)$, but not 3-step loops like the one above. We _could_ just add the schema:
+
+    $$On(X,Y,t){{< land >}}On(Y, Z,t){{< to >}}{{< neg >}}On(Z,X,t)$$
+
+    There is one kind of rule that we would need to include concerning the
+    actions that wasn't relevant before. Now that there are three blocks, we
+    should watch out that we can only unstack one block from another if there's
+    no other block on the top. That is, we need to postulate, 
+
+    $$Unstack(R,G,t){{< to >}}{{< neg >}}On(B,R,t)$$
+    $$Unstack(R,B,t){{< to >}}{{< neg >}}On(G,R,t)$$
+    $$Unstack(G,B,t){{< to >}}{{< neg >}}On(R,G,t)$$
+    $$...$$
+
+    Similarly, we can only stack one block on top of another, if there's no
+    other block on top yet:
+
+    $$Stack(R,G,t){{< to >}}{{< neg >}}On(B,G,t)$$
+    $$Stack(R,B,t){{< to >}}{{< neg >}}On(G,B,t)$$
+    $$...$$
+
+    The persistence conditions remain the same.
+
+3. Our set-up, then is:
+
+    $$On(G,B,0){{< land >}}On(B,R,0)$$
+
+    And the goal state is:
+
+    $$On(B,G,t){{< land >}}On(G,R,t)$$
+
+    for some suitable $t$. As you can see, we can achieve this for $t=4$ (five steps).
+
+4. Here's one strategy. I only note the relevant formulas, all unnamed formulas are assumed to be false:
+
+    - First step: 
+
+        - State: $On(G,B,0), On(B,R,0)$
+
+        - Action: $Unstack(G,B,0)$ (possible because neither $On(R,G,0)$ nor $On(B,G,0)$)
+
+    - Second step: 
+
+        - State: ${{< neg >}}On(G,B,1), On(B,R,1)$
+
+        - Action: $Unstack(B,R,1)$ (possible because now ${{< neg >}}On(G,B,1)$)
+
+    - Third step:
+
+        - State: ${{< neg >}}On(G,B,2), {{< neg >}}On(B,R,2)$
+
+        - Action: $Stack(B,R,2)$ (possible because at this point neither $On(G,R,2)$ nor $On(B,R,2)$)
+
+    - Fourth step:
+
+        - State: $On(B,R,3), {{< neg >}}On(B,R,3)$
+
+        - Action: $Stack(G,B,3)$ 
+
+    - Fifth step:
+
+        - State: $On(G,B,4), {{< neg >}}On(B,R,4)$
+
+
+You can straight-forwardly check that all conditions are satisfied.
 
 # Discussion
 
