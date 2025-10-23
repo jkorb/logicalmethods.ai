@@ -25,7 +25,7 @@ For each of the following pairs of terms determine whether they can be unified. 
 3. Not unifiable since one formula is a negation and the other isn't.
 4. Unifiable with `[x / London, y / motherOf London]`
 5. Not unifiable since whatever `x` would be it can't give you `fatherOf x`.
-6. Also not unifiable for analogous reasons.
+6. Unifiable by `[x / fatherOf y]`
 
 # Robinson's Algorithm {.solved}
 
@@ -149,6 +149,21 @@ Apply this algorithm to check your work in Exercise 1.
     ```
 
     which unifies the two formulas.
+
+6. Steps 1. & 2. of the algorithm all succeed with no difficulty. So, we check the pairs:
+
+    ```
+    E = { [fatherOf y, x], [x, fatherOf y]}
+    ```
+
+    which gives us by rule 3 the set
+
+    ```
+    E = { [fatherOf y, fatherOf y] }
+    ```
+    
+    with substitution `[x / fatherOf y]`, which terminates the algorithm.
+
 
 # Skolemization {.solved}
 
