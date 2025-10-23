@@ -394,7 +394,7 @@ formulas in a language, the following laws apply:
 1. $Pr(A) ≥ 0$, for all formulas $A$.
 2. $Pr(A) = 1$, if $A$ is a tautology, that is: ${{< vDash >}} A$.
 3. $Pr(A {{< lor >}} B) = Pr(A) + Pr(B)$, given that $A$ and $B$ are logically
-incompatible, that is: ${{< vDash >}} A{{< land >}}{{< neg >}} B$.
+incompatible, that is: ${{< vDash >}} {{< neg>}}(A{{< land >}}B)$.
 
 As you can see, these axioms are rather minimal. But it turns out that they are
 _sound and complete_ with respect to the probabilities we've defined in terms of
