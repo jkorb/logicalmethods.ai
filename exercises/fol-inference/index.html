@@ -757,32 +757,64 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
 <div class="container exercises">
   <div class="m-4">
 </div>
-<div id="unification" ><h5 class="">
+<div id="unification" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Unification
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="unificationSolution"
+        onclick="showPasswordModal('unificationSolution', 'exc-finf')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>For each of the following pairs of terms determine whether they can be unified. If so, provide the unifier:</p>
 <ol>
-<li><span class="excalifont">LiesBetween Munich y z </span> and <span class="excalifont">LiesBetween x Milan Rome </span></li>
-<li><span class="excalifont">SitsBeween Mary x x </span> and <span class="excalifont">SitsBetween x Jane y</span></li>
-<li><span class="excalifont">Between x Rome Rome </span> and <span class="excalifont">
+<li><code class="customCode">LiesBetween Munich y z </code> and <code class="customCode">LiesBetween x Milan Rome </code></li>
+<li><code class="customCode">SitsBeween Mary x x </code> and <code class="customCode">SitsBetween x Jane y</code></li>
+<li><code class="customCode">Between x Rome Rome </code> and <code class="customCode">
 <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
-Between Rome y x </span></li>
-<li><span class="excalifont">
+Between Rome y x </code></li>
+<li><code class="customCode">
 <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
-BornIn fatherOf motherOf x London</span> and <span class="excalifont">
+BornIn fatherOf motherOf x London</code> and <code class="customCode">
 <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
-BornIn fatherOf y x</span></li>
-<li><span class="excalifont">
+BornIn fatherOf y x</code></li>
+<li><code class="customCode">
 <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
-Human x</span> and <span class="excalifont">
+Human x</code> and <code class="customCode">
 <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
-Human fatherOf x</span></li>
-<li><span class="excalifont">Human fatherOf y x</span> and <span class="excalifont">Human x fatherOf y</span></li>
+Human fatherOf x</code></li>
+<li><code class="customCode">Human fatherOf y x</code> and <code class="customCode">Human x fatherOf y</code></li>
 </ol>
 
 </div>
-<div id="robinsons-algorithm" ><h5 class="">
+<div id="unificationSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><ol>
+<li>Unifiable with <code class="customCode">[x / Munich, y / Milan, z / Rome]</code>.</li>
+<li>Not unifiable since <code class="customCode">x</code> would need to be both <code class="customCode">Mary</code> and <code class="customCode">Jane</code>, which is impossible.</li>
+<li>Not unifiable since one formula is a negation and the other isn&rsquo;t.</li>
+<li>Unifiable with <code class="customCode">[x / London, y / motherOf London]</code></li>
+<li>Not unifiable since whatever <code class="customCode">x</code> would be it can&rsquo;t give you <code class="customCode">fatherOf x</code>.</li>
+<li>Also not unifiable for analogous reasons.</li>
+</ol>
+
+</div>
+<div id="robinsons-algorithm" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Robinson&rsquo;s Algorithm
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="robinsons-algorithmSolution"
+        onclick="showPasswordModal('robinsons-algorithmSolution', 'exc-finf')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>The first algorithms for unification is due to <i class="bi bi-box-arrow-up-right h-6"></i>
 <a href="https://en.wikipedia.org/wiki/John_Alan_Robinson" class="link-dark" rel="external" target="_blank">John Alan Robinson</a>
@@ -874,8 +906,62 @@ indeed unifiable.</p>
 <p>Apply this algorithm to check your work in Exercise 1.</p>
 
 </div>
-<div id="skolemization" ><h5 class="">
+<div id="robinsons-algorithmSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><ol>
+<li>
+<p>Steps 1. &amp; 2. of the algorithm all succeed with no difficulty. So, we check the pairs:</p>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ E = {[Munich, y],[y, Milan], [z, Rome]
+ </code></div>
+<p>Applying cases 2. and 3. gives us the substitution:</p>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ [x / Munich, y / Milan, z / Rome]
+ </code></div>
+</li>
+<li>
+<p>Steps 1. &amp; 2. of the algorithm all succeed with no difficulty. So, we check the pairs:</p>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ E = {[Mary, x], [x, Jane], [x, y]}
+ </code></div>
+<p>Applying Case 3. with <code class="customCode">[Mary, x]</code> gives us:</p>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ {[Mary, Jane], [Mary, y]}
+ </code></div>
+<p>Case 4. tells us to stop when we reach <code class="customCode">[Mary, Jane]</code>. There is no substitution possible.</p>
+</li>
+<li>
+<p>Check 1. already fails, the two aren&rsquo;t unifiable.</p>
+</li>
+<li>
+<p>Steps 1. &amp; 2. of the algorithm all succeed with no difficulty. So, we check the pairs:</p>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ E = {[fatherOf motherOf x, fatherOf y], [London, x]}
+ </code></div>
+<p>Step 4 gives us for <code class="customCode">[fatherOf motherOf x, fatherOf y]</code>:</p>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ E = {[motherOf x, y], [London, x]}
+ </code></div>
+<p>Applying rule 3. and 4. gives us the substitution:</p>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ [x / London, y / motherOf x]
+ </code></div>
+<p>which unifies the two formulas.</p>
+</li>
+</ol>
+
+</div>
+<div id="skolemization" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Skolemization
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="skolemizationSolution"
+        onclick="showPasswordModal('skolemizationSolution', 'exc-finf')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>Skolemize the following formulas:</p>
 <ol>
@@ -923,8 +1009,49 @@ y₂ IsFriendOf y₁ y₂</span></p>
 </ol>
 
 </div>
-<div id="drinker-paradox" ><h5 class="">
+<div id="skolemizationSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><ol>
+<li>
+<p><span class="excalifont">(Human <code class="customCode">skolem₁</code> 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+x₁ Mortal x₁)</span></p>
+</li>
+<li>
+<p><span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x₁(
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x₂(IsFriendOf x₁ <code class="customCode">skolem₁</code> x₁ x₂ 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ IsFriendOf x₂ <code class="customCode">skolem₁</code> x₁ x₂) 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+IsFriendOf x₁ <code class="customCode">skolem₂</code> x₁)</span></p>
+</li>
+<li>
+<p><span class="excalifont"> IsFriendOf <code class="customCode">skolem₁</code> <code class="customCode">skolem₂</code></span></p>
+</li>
+</ol>
+
+</div>
+<div id="drinker-paradox" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Drinker Paradox
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="drinker-paradoxSolution"
+        onclick="showPasswordModal('drinker-paradoxSolution', 'exc-finf')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>Consider the following inference:</p>
 <div class="text-center my-4 excalifont">
@@ -971,6 +1098,197 @@ simultaneously.</p>
 <p>Apply resolution with unification to derive the empty sequent <span class="excalifont">{ }</span>. And
 conclude that the initial set is unsatisfiable and the inference thus
 valid.</p>
+</li>
+</ol>
+
+</div>
+<div id="drinker-paradoxSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><ol>
+<li>
+<p>The set is:</p>
+ <div class="text-center my-4 excalifont">{
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x InPub x, 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x (InPub x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(IsDrinking x 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x(InPub x
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+IsDrinking x)))}</div>
+</li>
+<li>
+<p>Here are the results of the procedure:</p>
+<ul>
+<li>
+<p>The transformation of <span class="excalifont">
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x InPub x</span> just involves one step (Skolemization), which immediately gives us:</p>
+  <div class="text-center my-4 excalifont">InPub <code class="customCode">skolem₁</code></div>
+</li>
+<li>
+<p>The other formula requires some more steps:</p>
+<ul>
+<li>
+<p><span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x (InPub x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(IsDrinking x 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x(InPub x
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+IsDrinking x)))}</span></p>
+</li>
+<li>
+<p>Two applications of <span class="excalifont">r₀</span> give:</p>
+  <div class="text-center my-4 excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x (InPub x 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ IsDrinking x 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+ InPub x
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+IsDrinking x)))</div>
+</li>
+<li>
+<p>Then we push negations inwards with <span class="excalifont">r₁-r₃</span> and <span class="excalifont">r₆</span>:</p>
+  <div class="text-center my-4 excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x (
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+InPub x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(IsDrinking x 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x (InPub x
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+IsDrinking x)))</div>
+</li>
+<li>
+<p>Next we make the variables unique:</p>
+  <div class="text-center my-4 excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x₁ (
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+InPub x₁ 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(IsDrinking x₁ 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+y₁ (InPub y₁
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+IsDrinking y₁)))</div>
+</li>
+<li>
+<p>Then we Skolemize:</p>
+  <div class="text-center my-4 excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x₁ (
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+InPub x₁ 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(IsDrinking x₁ 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ (InPub <code class="customCode">skolem₂</code> x₁
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+IsDrinking <code class="customCode">skolem₂</code> x₁)))</div>
+</li>
+<li>
+<p>And drop the universal:</p>
+  <div class="text-center my-4 excalifont">(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+InPub x₁ 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(IsDrinking x₁ 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ (InPub <code class="customCode">skolem₂</code> x₁
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+IsDrinking <code class="customCode">skolem₂</code> x₁)))</div>
+</li>
+<li>
+<p>Finally, repeated distribution gives us:</p>
+ <div class="text-center my-4 excalifont">(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+InPub x₁ 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+IsDrinking x) 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+InPub x
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+InPub <code class="customCode">skolem₂ x</code>)
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+InPub x
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+IsDrinking <code class="customCode">skolem₂ x</code>))</div>
+</li>
+</ul>
+</li>
+<li>
+<p>For the resolution, we therefore work with the sets:</p>
+  <div class="text-center my-4 excalifont">{InPub <code class="customCode">skolem₁</code>} &emsp; {
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+InPub x₁ , IsDrinking x₁}</div>
+  <div class="text-center my-4 excalifont">{
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+InPub x₁, InPub <code class="customCode">skolem₂ x</code>} &emsp; {
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+InPub x₁, 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+IsDrinking <code class="customCode">skolem₂ x₁</code>}</div>
+<p>Here&rsquo;s a derivation of <span class="excalifont">{ }</span> from this using resolution:</p>
+
+        <img src="https://logicalmethods.ai/exercises/fol-inference/img/resolution.png" class="mx-auto rounded d-block inert-img img-fluid"  width="800px"  alt="" >
+
+</li>
+</ul>
 </li>
 </ol>
 
