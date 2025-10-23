@@ -7,7 +7,7 @@ params:
   math: true
 ---
 
-# $K3$-Sat Solving
+# $K3$-Sat Solving {.solved}
 
 In class, we've implemented a counter-model searcher for $K3$ inferences using
 SQL in [db-fiddle](https://www.db-fiddle.com/f/ixfKDFBJaxNfSSysEQvpgk/6). Use
@@ -20,7 +20,11 @@ the machinery to check whether the following inferences are $K3$ valid or not:
 1. $WIND {{< therefore >}} {{< neg >}}(RAIN {{< land >}} {{< neg >}}RAIN)$
 1. $RAIN {{< therefore >}} RAIN {{< lor >}} {{< neg >}}RAIN$
 
-# $K3$-Laws
+## Solution {#k3-sat-solvingSolution .solution}
+
+The following [db-fiddle](https://www.db-fiddle.com/f/ixfKDFBJaxNfSSysEQvpgk/12) contains queries for each of the above inferences. The ones that return non-empty tables have countermodels, which are given by the return values. The annotations explain how to interpret the tables.
+
+# $K3$-Laws {.solved}
 
 In fact, you can use a similar method to verify the laws of Kleene algebra using SQL.
 
@@ -31,17 +35,23 @@ Here are, for example, the queries to verify the commutativity of ~!OR!~ and ~!A
  SELECT * 
  FROM ValuePairs
  WHERE
-	(X OR Y) != (Y OR X);
-    
- SELECT * 
- FROM ValuePairs
- WHERE
+	(X OR Y) != (Y OR X)
+  OR
 	(X AND Y) != (Y AND X);
 ~~~
 
 Verify the remaining Kleene laws like this.
 
 Note that for the laws with 3 variables, you need to create a table `ValueTriples` for the method to work.
+
+## Solution {#k3-lawsSolution .solution}
+
+The following [db-fiddle](https://www.db-fiddle.com/f/wawYXVNo3K6QWMyQYHkHeB/0)
+contains code that verifies all laws. There are three queries, one for the laws
+with one variables, one for laws with two variables, and one for laws with
+three variables. The queries are structured such that it would return a
+valuation iff at least one of the laws fails. They don't return anything so the
+laws hold.
 
 # Łukasiewicz conditionals
 
