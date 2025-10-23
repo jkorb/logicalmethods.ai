@@ -670,7 +670,7 @@ $${{< llbracket >}}A {{< lor >}}B{{< rrbracket >}} = max {{< llbracket >}}A{{< r
 
 Here, $min$ and $max$ are the [minimum and maximum
 function](https://en.wikipedia.org/wiki/Maximum_and_minimum) respectively, which
-return the biggest value among their inputs in the case of $maax$ and the
+return the biggest value among their inputs in the case of $max$ and the
 smallest input in the case of $min$.
 
 To see how these work, it might help to look at the outcomes of these operations
