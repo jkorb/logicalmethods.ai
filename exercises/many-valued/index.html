@@ -757,8 +757,19 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
 <div class="container exercises">
   <div class="m-4">
 </div>
-<div id="k3-sat-solving" ><h5 class="">
+<div id="k3-sat-solving" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 "><span class="excalifont">K3</span>-Sat Solving
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="k3-sat-solvingSolution"
+        onclick="showPasswordModal('k3-sat-solvingSolution', 'exc-mv')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>In class, we&rsquo;ve implemented a counter-model searcher for <span class="excalifont">K3</span> inferences using
 SQL in <i class="bi bi-box-arrow-up-right h-6"></i>
@@ -817,8 +828,24 @@ RAIN</span></li>
 </ol>
 
 </div>
-<div id="k3-laws" ><h5 class="">
+<div id="k3-sat-solvingSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>The following <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://www.db-fiddle.com/f/ixfKDFBJaxNfSSysEQvpgk/12" class="link-dark" rel="external" target="_blank">db-fiddle</a>
+ contains queries for each of the above inferences. The ones that return non-empty tables have countermodels, which are given by the return values. The annotations explain how to interpret the tables.</p>
+
+</div>
+<div id="k3-laws" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 "><span class="excalifont">K3</span>-Laws
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="k3-lawsSolution"
+        onclick="showPasswordModal('k3-lawsSolution', 'exc-mv')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>In fact, you can use a similar method to verify the laws of Kleene algebra using SQL.</p>
 <p>Here are, for example, the queries to verify the commutativity of <span class="Kleene">OR</span> and <span class="Kleene">AND</span>:</p>
@@ -833,24 +860,28 @@ RAIN</span></li>
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> 
 </span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">ValuePairs</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="k">WHERE</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="p">(</span><span class="n">Y</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">X</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    
-</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">ValuePairs</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="k">WHERE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="p">(</span><span class="n">Y</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">X</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">OR</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="p">(</span><span class="n">Y</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">X</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>Verify the remaining Kleene laws like this.</p>
 <p>Note that for the laws with 3 variables, you need to create a table <code class="customCode">ValueTriples</code> for the method to work.</p>
+
+</div>
+<div id="k3-lawsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>The following <i class="bi bi-box-arrow-up-right h-6"></i>
+<a href="https://www.db-fiddle.com/f/wawYXVNo3K6QWMyQYHkHeB/0" class="link-dark" rel="external" target="_blank">db-fiddle</a>
+
+contains code that verifies all laws. There are three queries, one for the laws
+with one variables, one for laws with two variables, and one for laws with
+three variables. The queries are structured such that it would return a
+valuation iff at least one of the laws fails. They don&rsquo;t return anything so the
+laws hold.</p>
 
 </div>
 <div id="łukasiewicz-conditionals" ><h5 class="">
