@@ -798,7 +798,7 @@ Human fatherOf x</code></li>
 <li>Not unifiable since one formula is a negation and the other isn&rsquo;t.</li>
 <li>Unifiable with <code class="customCode">[x / London, y / motherOf London]</code></li>
 <li>Not unifiable since whatever <code class="customCode">x</code> would be it can&rsquo;t give you <code class="customCode">fatherOf x</code>.</li>
-<li>Also not unifiable for analogous reasons.</li>
+<li>Unifiable by <code class="customCode">[x / fatherOf y]</code></li>
 </ol>
 
 </div>
@@ -945,6 +945,17 @@ indeed unifiable.</p>
  [x / London, y / motherOf x]
  </code></div>
 <p>which unifies the two formulas.</p>
+</li>
+<li>
+<p>Steps 1. &amp; 2. of the algorithm all succeed with no difficulty. So, we check the pairs:</p>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ E = { [fatherOf y, x], [x, fatherOf y]}
+ </code></div>
+<p>which gives us by rule 3 the set</p>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ E = { [fatherOf y, fatherOf y] }
+ </code></div>
+<p>with substitution <code class="customCode">[x / fatherOf y]</code>, which terminates the algorithm.</p>
 </li>
 </ol>
 
