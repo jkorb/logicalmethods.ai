@@ -3,14 +3,16 @@
   <head>
     <meta charset="utf-8"></meta>
     <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-    <title>logicalmethods.ai &ndash; Exercises </title>
+    <title>logicalmethods.ai &ndash; Logic and Neural Networks </title>
     <link rel="icon" type="image/x-icon" href="https://logicalmethods.ai/favicon.ico"></link>
     <link href="https://logicalmethods.ai/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"></link>
     <link rel="stylesheet" href="https://logicalmethods.ai/icons/font/bootstrap-icons.min.css"></link>
     <link rel="stylesheet" href="https://logicalmethods.ai/css/layout.css"></link>
     <link rel="stylesheet" href="https://logicalmethods.ai/css/syntax_hl.css"></link>
     
-    
+<link rel="stylesheet" href="https://logicalmethods.ai/reveal.js/dist/reveal.css">
+<link rel="stylesheet" href="https://logicalmethods.ai/css/slides.css">
+
     <style>
       
       
@@ -209,19 +211,19 @@
       <li class="nav-item">
         <div class="d-flex flex-row">
           <div class="container">
-            <a class="nav-link " href="/slides/"><i class="bi bi-rocket-takeoff-fill"></i> &nbsp;&nbsp; Slides</a>
+            <a class="nav-link fw-bold active" href="/slides/"><i class="bi bi-rocket-takeoff-fill"></i> &nbsp;&nbsp; Slides</a>
           </div>
           <button 
             class="btn btn-sm btn-dark" 
             href="/slides/"
             id="navbarSectionsli-home" data-bs-toggle="collapse"
             data-bs-target="#collapsesli-home"  
-            aria-expanded="aria-expanded=false"
+            aria-expanded="true"
             aria-controls="collapsesli-home">
             <i class="bi bi-caret-left-fill toggle-icon"></i>
           </button>
         </div>
-        <div class="collapse " id="collapsesli-home">
+        <div class="collapse show" id="collapsesli-home">
           <ul class="list-unstyled ms-3">
             <li>
               <a class="dropdown-item 
@@ -369,7 +371,7 @@
             
             <li>
               <a class="dropdown-item 
-                
+                fw-bold active
                 
                 "
                 href="/slides/anns/"
@@ -401,19 +403,19 @@
       <li class="nav-item">
         <div class="d-flex flex-row">
           <div class="container">
-            <a class="nav-link fw-bold active" href="/exercises/"><i class="bi-gear-fill"></i> &nbsp;&nbsp; Exercises</a>
+            <a class="nav-link " href="/exercises/"><i class="bi-gear-fill"></i> &nbsp;&nbsp; Exercises</a>
           </div>
           <button 
             class="btn btn-sm btn-dark" 
             href="/exercises/"
             id="navbarSectionexe-home" data-bs-toggle="collapse"
             data-bs-target="#collapseexe-home"  
-            aria-expanded="true"
+            aria-expanded="aria-expanded=false"
             aria-controls="collapseexe-home">
             <i class="bi bi-caret-left-fill toggle-icon"></i>
           </button>
         </div>
-        <div class="collapse show" id="collapseexe-home">
+        <div class="collapse " id="collapseexe-home">
           <ul class="list-unstyled ms-3">
             <li>
               <a class="dropdown-item 
@@ -664,344 +666,35 @@
     
     <main class="align-self-center d-flex flex-column flex-fill bg-white m-md-1 p-0" data-bs-theme="light">
       
-  <div class="container p-3 text-center">
-  
-    
-       <img src="https://logicalmethods.ai/img/exercises_title.png" draggable="false" width="660px" class="inert-img img-fluid">
-    
-  
-  
+<ul class="navbar-nav flex-row justify-content-center mt-2">
+
+  <li class="nav-item">
+    <a href="/slides/" class="btn" style="font-size: 20pt;" tabindex="-1" role="button" aria-disabled="false">
+      <i class="bi bi-house-up"></i>
+    </a>
+  </li>
+</ul>
+
+<div class="container text-center">
+  <h3>
+     Lecture 12. Logic and Neural Networks
+  </h3>
+  <em>Slides</em>
 </div>
 
-  
-  
-  
-  
-  
-<div class="d-flex justify-content-center mb-5">
-  
-  
-  
-  <ul class="list-group shadow">
-    
-    <li class="list-group-item list-group-item-action">
-      <a class="link-dark link-underline-light d-none d-sm-block 
-        
-        " 
-        href="/exercises/preamble/"
-        >
-        
-          <i class="bi bi-unlock-fill"></i>
-        
-        Tutorial 0.
-         Preamble 
-      </a> 
-      <a class="link-dark link-underline-light d-block d-sm-none
-        
-        " 
-        href="/exercises/preamble/"
-      >
-        
-          <i class="bi bi-unlock-fill"></i>
-        
-        Tutorial 0. Preamble 
-      </a>
-    </li>
-    
-    <li class="list-group-item list-group-item-action">
-      <a class="link-dark link-underline-light d-none d-sm-block 
-        
-        " 
-        href="/exercises/logic-and-ai/"
-        >
-        
-          <i class="bi bi-unlock-fill"></i>
-        
-        Tutorial 1.
-         Logic and AI 
-      </a> 
-      <a class="link-dark link-underline-light d-block d-sm-none
-        
-        " 
-        href="/exercises/logic-and-ai/"
-      >
-        
-          <i class="bi bi-unlock-fill"></i>
-        
-        Tutorial 1. Logic and AI 
-      </a>
-    </li>
-    
-    <li class="list-group-item list-group-item-action">
-      <a class="link-dark link-underline-light d-none d-sm-block 
-        
-        " 
-        href="/exercises/formal-languages/"
-        >
-        
-          <i class="bi bi-unlock-fill"></i>
-        
-        Tutorial 2.
-         Formal languages 
-      </a> 
-      <a class="link-dark link-underline-light d-block d-sm-none
-        
-        " 
-        href="/exercises/formal-languages/"
-      >
-        
-          <i class="bi bi-unlock-fill"></i>
-        
-        Tutorial 2. Formal languages 
-      </a>
-    </li>
-    
-    <li class="list-group-item list-group-item-action">
-      <a class="link-dark link-underline-light d-none d-sm-block 
-        
-        " 
-        href="/exercises/valid-inference/"
-        >
-        
-          <i class="bi bi-unlock-fill"></i>
-        
-        Tutorial 3.
-         Valid inference 
-      </a> 
-      <a class="link-dark link-underline-light d-block d-sm-none
-        
-        " 
-        href="/exercises/valid-inference/"
-      >
-        
-          <i class="bi bi-unlock-fill"></i>
-        
-        Tutorial 3. Valid inference 
-      </a>
-    </li>
-    
-    <li class="list-group-item list-group-item-action">
-      <a class="link-dark link-underline-light d-none d-sm-block 
-        
-        " 
-        href="/exercises/boolean/"
-        >
-        
-          <i class="bi bi-unlock-fill"></i>
-        
-        Tutorial 4.
-         Boolean algebra 
-      </a> 
-      <a class="link-dark link-underline-light d-block d-sm-none
-        
-        " 
-        href="/exercises/boolean/"
-      >
-        
-          <i class="bi bi-unlock-fill"></i>
-        
-        Tutorial 4. Boolean algebra 
-      </a>
-    </li>
-    
-    <li class="list-group-item list-group-item-action">
-      <a class="link-dark link-underline-light d-none d-sm-block 
-        
-        " 
-        href="/exercises/sat/"
-        >
-        
-          <i class="bi bi-unlock-fill"></i>
-        
-        Tutorial 5.
-         Boolean satisfiability 
-      </a> 
-      <a class="link-dark link-underline-light d-block d-sm-none
-        
-        " 
-        href="/exercises/sat/"
-      >
-        
-          <i class="bi bi-unlock-fill"></i>
-        
-        Tutorial 5. Boolean satisfiability 
-      </a>
-    </li>
-    
-    <li class="list-group-item list-group-item-action">
-      <a class="link-dark link-underline-light d-none d-sm-block 
-        
-        " 
-        href="/exercises/conditionals/"
-        >
-        
-          <i class="bi bi-unlock-fill"></i>
-        
-        Tutorial 6.
-         Logical conditionals 
-      </a> 
-      <a class="link-dark link-underline-light d-block d-sm-none
-        
-        " 
-        href="/exercises/conditionals/"
-      >
-        
-          <i class="bi bi-unlock-fill"></i>
-        
-        Tutorial 6. Logical conditionals 
-      </a>
-    </li>
-    
-    <li class="list-group-item list-group-item-action">
-      <a class="link-dark link-underline-light d-none d-sm-block 
-        
-        " 
-        href="/exercises/proof/"
-        >
-        
-          <i class="bi bi-unlock-fill"></i>
-        
-        Tutorial 7.
-         Logical proofs 
-      </a> 
-      <a class="link-dark link-underline-light d-block d-sm-none
-        
-        " 
-        href="/exercises/proof/"
-      >
-        
-          <i class="bi bi-unlock-fill"></i>
-        
-        Tutorial 7. Logical proofs 
-      </a>
-    </li>
-    
-    <li class="list-group-item list-group-item-action">
-      <a class="link-dark link-underline-light d-none d-sm-block 
-        
-        " 
-        href="/exercises/fol/"
-        >
-        
-          <i class="bi bi-unlock-fill"></i>
-        
-        Tutorial 8.
-         FOL 
-      </a> 
-      <a class="link-dark link-underline-light d-block d-sm-none
-        
-        " 
-        href="/exercises/fol/"
-      >
-        
-          <i class="bi bi-unlock-fill"></i>
-        
-        Tutorial 8. FOL 
-      </a>
-    </li>
-    
-    <li class="list-group-item list-group-item-action">
-      <a class="link-dark link-underline-light d-none d-sm-block 
-        
-        " 
-        href="/exercises/fol-inference/"
-        >
-        
-          <i class="bi bi-unlock-fill"></i>
-        
-        Tutorial 9.
-         FOL inference 
-      </a> 
-      <a class="link-dark link-underline-light d-block d-sm-none
-        
-        " 
-        href="/exercises/fol-inference/"
-      >
-        
-          <i class="bi bi-unlock-fill"></i>
-        
-        Tutorial 9. FOL inference 
-      </a>
-    </li>
-    
-    <li class="list-group-item list-group-item-action">
-      <a class="link-dark link-underline-light d-none d-sm-block 
-        
-        " 
-        href="/exercises/many-valued/"
-        >
-        
-          <i class="bi bi-unlock-fill"></i>
-        
-        Tutorial 10.
-         Many-valued logics 
-      </a> 
-      <a class="link-dark link-underline-light d-block d-sm-none
-        
-        " 
-        href="/exercises/many-valued/"
-      >
-        
-          <i class="bi bi-unlock-fill"></i>
-        
-        Tutorial 10. Many-valued logics 
-      </a>
-    </li>
-    
-    <li class="list-group-item list-group-item-action">
-      <a class="link-dark link-underline-light d-none d-sm-block 
-        
-        " 
-        href="/exercises/probability/"
-        >
-        
-          <i class="bi bi-unlock-fill"></i>
-        
-        Tutorial 11.
-         Logic and probability 
-      </a> 
-      <a class="link-dark link-underline-light d-block d-sm-none
-        
-        " 
-        href="/exercises/probability/"
-      >
-        
-          <i class="bi bi-unlock-fill"></i>
-        
-        Tutorial 11. Logic and probability 
-      </a>
-    </li>
-    
-    <li class="list-group-item list-group-item-action">
-      <a class="link-dark link-underline-light d-none d-sm-block 
-        
-        link-opacity-50
-        
-        " 
-        href="javascript:;"
-        >
-        
-          <i class="bi bi-lock-fill"></i>
-        
-        Tutorial 12.
-         Logical learning 
-      </a> 
-      <a class="link-dark link-underline-light d-block d-sm-none
-        
-        link-opacity-50
-        
-        " 
-        href="javascript:;"
-      >
-        
-          <i class="bi bi-lock-fill"></i>
-        
-        Tutorial 12. Logical learning 
-      </a>
-    </li>
-    
-  </ul>
-</div>
+
+
+
+<iframe 
+  src="https://link.excalidraw.com/p/readonly/T7SlnuKxajvwK4QdWxA6"
+  width="100%" height="460px" allowFullScreen="true" style="border: 10px;"
+  >
+</iframe>
+
+
+
+
+
 
 
     </main>
