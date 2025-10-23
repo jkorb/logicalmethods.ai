@@ -113,7 +113,7 @@ km/h`).
    a system of fuzzy rules that keep the car in the gray area between fast and
 slow, while avoiding breaking and accelerating simultaneously.
 
-# Fuzzy Logic
+# Fuzzy Logic {.solved}
 
 In class, we've seen that in fuzzy logic, disjunctive syllogism fails:
 there are formulas $A,B$, such that $${{< neg >}}A, A{{< lor >}}B{{<
@@ -121,4 +121,24 @@ nvDash >}}B$$
 
 Modify the example to show that in fuzzy logic, also the [principle of explosion](https://en.wikipedia.org/wiki/Principle_of_explosion) fails, that is there are formulas $A,B$, such that $$A,{{< neg >}}A{{<
 nvDash >}}B$$
+
+## Soltution {#fuzzy-logicSolution .solution}
+
+Let's take for $A$ a statement which, in a suitable model, is both "half-true",
+that is, has value 0.5. For example, `Fast 45km/h` could be such that `{{<
+llbracket >}}Fast 45km/h{{< rrbracket>}} = 0.5`. It follows by the semantics
+for ${{< neg >}}$ that also `{{< llbracket >}}{{< neg >}}Fast 45km/h{{<
+rrbracket>}} = 0.5`. That means that 
+
+```
+min({{< llbracket >}}Fast 45km/h{{< rrbracket>}}, {{< llbracket >}}{{< neg >}}Fast 45km/h{{< rrbracket>}}) = 0.5
+```
+
+If we then take a statement for $B$, which is certainly false, such as `Fast 0kmh`, meaning `{{< llbracket >}}Fast 0km/h{{< rrbracket>}} = 0`, we have a clear countermodel:
+
+```
+min({{< llbracket >}}Fast 45km/h{{< rrbracket>}}, {{< llbracket >}}{{< neg >}}Fast 45km/h{{< rrbracket>}}) = 0.5 ≥ 0 = {{< llbracket >}}Fast 0km/h{{< rrbracket>}}
+```
+
+So the inference $$A,{{< neg >}}A{{< nvDash >}}B$$ is invalid.
 
