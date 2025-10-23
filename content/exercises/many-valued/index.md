@@ -53,7 +53,7 @@ three variables. The queries are structured such that it would return a
 valuation iff at least one of the laws fails. They don't return anything so the
 laws hold.
 
-# Łukasiewicz conditionals
+# Łukasiewicz conditionals {.solved}
 
 In $K3$, we've defined a semantics for conditionals by saying that $$v(A{{< to
 >}}B) = (~!NOT!~ A) ~!OR!~ B$$
@@ -79,6 +79,26 @@ This logic is called Łukasiewicz logic, $Ł$.
 2. Verify that there $RAIN{{< to >}}RAIN$ is true in all $Ł$ models.
 
 3. Is MP valid in $Ł$-logic?
+
+## Solution {#łukasiewicz-conditionalsSolution .solution}
+
+1. Consider the $K3$-model where $v(RAIN) = ω$. In this model, we have 
+
+    $$v(RAIN {{< to >}}RAIN) = (~!NOT!~ v(RAIN)) ~!OR!~ v(RAIN) = (~!NOT!~ ω) ~!OR!~ ω = ω$$
+
+    And since $ω ≠ 1$, this is a model where the formula isn't true.
+
+2.  we have that $v(RAIN {{< to >}}RAIN) = v(RAIN) ~!Ł!~ v(RAIN)$. That is,
+    we're dealing with an expression of the form `X ~!Ł!~ X`. If we go to the
+table for ~!Ł!~, we note that for identical inputs, the values (on the
+diagonal) are always `1`. In other words, the formula is true in all models.
+
+3. Suppose that $v(A) = 1$ and $v(A {{< to >}}B) = 1$. Inspecting the table for
+   ~!Ł!~, we can see that there is one and only one configuration of values
+that makes this possible, namely the one where $v(B) = 1$. 
+
+    
+    {{< img src="img/luk_table.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
 
 # Fuzz Predicates
 
