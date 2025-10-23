@@ -7,18 +7,27 @@ params:
   math: true
 ---
 
-# Unification
+# Unification {.solved}
 
 For each of the following pairs of terms determine whether they can be unified. If so, provide the unifier:
 
-1. $LiesBetween Munich y z $ and $LiesBetween x Milan Rome $
-2. $SitsBeween Mary x x $ and $SitsBetween x Jane y$
-3. $Between x Rome Rome $ and ${{< neg >}}Between Rome y x $
-4. ${{< neg >}}BornIn fatherOf motherOf x London$ and ${{< neg >}}BornIn fatherOf y x$
-5. ${{< neg >}}Human x$ and ${{< neg >}}Human fatherOf x$
-6. $Human fatherOf y x$ and $Human x fatherOf y$
+1. `LiesBetween Munich y z ` and `LiesBetween x Milan Rome `
+2. `SitsBeween Mary x x ` and `SitsBetween x Jane y`
+3. `Between x Rome Rome ` and `{{< neg >}}Between Rome y x `
+4. `{{< neg >}}BornIn fatherOf motherOf x London` and `{{< neg >}}BornIn fatherOf y x`
+5. `{{< neg >}}Human x` and `{{< neg >}}Human fatherOf x`
+6. `Human fatherOf y x` and `Human x fatherOf y`
 
-# Robinson's Algorithm
+## Solution {#unificationSolution .solution}
+
+1. Unifiable with `[x / Munich, y / Milan, z / Rome]`.
+2. Not unifiable since `x` would need to be both `Mary` and `Jane`, which is impossible.
+3. Not unifiable since one formula is a negation and the other isn't.
+4. Unifiable with `[x / London, y / motherOf London]`
+5. Not unifiable since whatever `x` would be it can't give you `fatherOf x`.
+6. Also not unifiable for analogous reasons.
+
+# Robinson's Algorithm {.solved}
 
 The first algorithms for unification is due to [John Alan Robinson](https://en.wikipedia.org/wiki/John_Alan_Robinson), the father of resolution.
 
@@ -92,7 +101,56 @@ one of two things will happen:
     
 Apply this algorithm to check your work in Exercise 1.
 
-# Skolemization
+## Solution {#robinsons-algorithmSolution .solution}
+
+
+1. Steps 1. & 2. of the algorithm all succeed with no difficulty. So, we check the pairs:
+    ```
+    E = {[Munich, y],[y, Milan], [z, Rome]
+    ```
+
+    Applying cases 2. and 3. gives us the substitution: 
+
+    ```
+    [x / Munich, y / Milan, z / Rome]
+    ```
+
+2. Steps 1. & 2. of the algorithm all succeed with no difficulty. So, we check the pairs:
+    ```
+    E = {[Mary, x], [x, Jane], [x, y]}
+    ```
+
+    Applying Case 3. with `[Mary, x]` gives us:
+
+    ```
+    {[Mary, Jane], [Mary, y]}
+    ```
+
+    Case 4. tells us to stop when we reach `[Mary, Jane]`. There is no substitution possible.
+
+3. Check 1. already fails, the two aren't unifiable.
+
+4. Steps 1. & 2. of the algorithm all succeed with no difficulty. So, we check the pairs:
+
+    ```
+    E = {[fatherOf motherOf x, fatherOf y], [London, x]}
+    ```
+
+    Step 4 gives us for `[fatherOf motherOf x, fatherOf y]`:
+
+    ```
+    E = {[motherOf x, y], [London, x]}
+    ```
+
+    Applying rule 3. and 4. gives us the substitution:
+
+    ```
+    [x / London, y / motherOf x]
+    ```
+
+    which unifies the two formulas.
+
+# Skolemization {.solved}
 
 Skolemize the following formulas:
 
@@ -102,7 +160,15 @@ Skolemize the following formulas:
 
 3. ${{< exists >}}y₁{{< exists >}}y₂ IsFriendOf y₁ y₂$
 
-# Drinker Paradox
+## Solution {#skolemizationSolution .solution}
+
+1. $(Human `skolem₁` {{< land >}} {{< forall >}}x₁ Mortal x₁)$
+
+2. ${{< forall >}}x₁({{< forall >}}x₂(IsFriendOf x₁ `skolem₁` x₁ x₂ {{< land >}} IsFriendOf x₂ `skolem₁` x₁ x₂) {{< lor >}} {{< neg >}}IsFriendOf x₁ `skolem₂` x₁)$
+
+3. $ IsFriendOf `skolem₁` `skolem₂`$
+
+# Drinker Paradox {.solved}
 
 Consider the following inference:
 
@@ -128,6 +194,58 @@ simultaneously.
 3. Apply resolution with unification to derive the empty sequent ${ }$. And
    conclude that the initial set is unsatisfiable and the inference thus
 valid.
+
+## Solution {#drinker-paradoxSolution .solution}
+
+1. The set is:
+
+    $${{{< exists >}}x InPub x, {{< neg >}}{{< exists >}}x (InPub x {{< land >}}(IsDrinking x {{< to >}}{{< forall >}}x(InPub x{{< to >}}IsDrinking x)))}$$
+
+2. Here are the results of the procedure:
+
+    - The transformation of ${{< exists >}}x InPub x$ just involves one step (Skolemization), which immediately gives us: 
+
+        $$InPub `skolem₁`$$
+
+    - The other formula requires some more steps:
+
+        - ${{< neg >}}{{< exists >}}x (InPub x {{< land >}}(IsDrinking x {{< to >}}{{< forall >}}x(InPub x{{< to >}}IsDrinking x)))}$
+
+
+        - Two applications of $r₀$ give: 
+
+            $${{< neg >}}{{< exists >}}x (InPub x {{< lor >}}({{< neg >}} IsDrinking x {{< lor >}}{{< forall >}}x({{< neg >}} InPub x{{< lor >}}IsDrinking x)))$$
+
+        - Then we push negations inwards with $r₁-r₃$ and $r₆$:
+
+            $${{< forall >}}x ({{< neg >}}InPub x {{< land >}}(IsDrinking x {{< land >}}{{< exists >}}x (InPub x{{< land >}}{{< neg >}}IsDrinking x)))$$
+
+        - Next we make the variables unique:
+
+            $${{< forall >}}x₁ ({{< neg >}}InPub x₁ {{< land >}}(IsDrinking x₁ {{< land >}}{{< exists >}}y₁ (InPub y₁{{< land >}}{{< neg >}}IsDrinking y₁)))$$
+
+        - Then we Skolemize:
+
+
+            $${{< forall >}}x₁ ({{< neg >}}InPub x₁ {{< land >}}(IsDrinking x₁ {{< land >}} (InPub `skolem₂` x₁{{< land >}}{{< neg >}}IsDrinking `skolem₂` x₁)))$$
+
+        - And drop the universal:
+
+            $$({{< neg >}}InPub x₁ {{< land >}}(IsDrinking x₁ {{< land >}} (InPub `skolem₂` x₁{{< land >}}{{< neg >}}IsDrinking `skolem₂` x₁)))$$
+
+         - Finally, repeated distribution gives us:
+
+            $$({{< neg >}}InPub x₁ {{< lor >}}IsDrinking x) {{< land >}}({{< neg >}}InPub x{{< lor >}}InPub `skolem₂ x`){{< land >}}({{< neg >}}InPub x{{< lor >}}{{< neg >}}IsDrinking `skolem₂ x`))$$
+
+    - For the resolution, we therefore work with the sets:
+
+        $${InPub `skolem₁`} &emsp; {{{< neg >}}InPub x₁ , IsDrinking x₁}$$
+        $${{{< neg >}}InPub x₁, InPub `skolem₂ x`} &emsp; {{{< neg >}}InPub x₁, {{< neg >}}IsDrinking `skolem₂ x₁`}$$
+
+        Here's a derivation of ${ }$ from this using resolution:
+
+        {{< img src="img/resolution.png" class="mx-auto rounded d-block inert-img img-fluid" width="800px">}}
+
 
 # Natural deduction
 
