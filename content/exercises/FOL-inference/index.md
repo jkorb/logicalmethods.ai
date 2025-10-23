@@ -273,8 +273,7 @@ laws. Note that some of these require `<span class="dark-blue">open</span> Class
 3. ${{< exists >}}xA(x){{< to >}}C{{< v_dash >}}{{< forall >}}x(A(x){{< to >}}C)$, assuming that $x$ is not free in $C$
 4. ${{< forall >}}xA(x){{< to >}}C{{< v_dash >}}{{< exists >}}x(A(x){{< to >}}C)$, assuming that $x$ is not free in $C$.
 
-# Lean
-
+# Lean {.solved}
 Verify your work from the previous exercise in Lean. Here's a template for the
 work. You can follow the link below to work in the interactive environment.
 
@@ -298,16 +297,16 @@ theorem duality_two_rtl (h : ∀x, ¬A x) : ¬∃x, A x := by
 
 /-! Duality Laws -/
 
-theorem all_over_and_rtl (h: ∀x, A x ∧ B x) : ∀x, A x ∧ ∀x, B x := by
+theorem all_over_and_rtl (h: ∀x, A x ∧ B x) : (∀x, A x) ∧ (∀x, B x) := by 
   sorry
 
-theorem all_over_and_ltr (h: ∀x, A x ∧ ∀x, B x) : ∀x, A x ∧  B x := by
+theorem all_over_and_ltr (h: (∀x, A x) ∧ (∀x, B x)) : ∀x, A x ∧  B x := by
   sorry
 
-theorem exists_over_or_rtl (h: ∃x, A x ∨ B x) : ∃x, A x ∨ ∃x, B x := by
+theorem exists_over_or_rtl (h: ∃x, A x ∨ B x) : (∃x, A x) ∨ (∃x, B x) := by
   sorry
 
-theorem exists_over_or_ltr (h: ∃x, A x ∨ ∃x, B x) : ∃x, A x ∨ Bx := by
+theorem exists_over_or_ltr (h: (∃x, A x) ∨ (∃x, B x)) : ∃x, A x ∨ B x := by
   sorry
 
 /-! Interaction Laws -/
@@ -318,11 +317,149 @@ theorem existential_import (h: ∀x, A x) : ∃x, A x := by
 theorem switcheroo (h : ∃x, ∀y, R x y) : ∀y, ∃x, R x y := by
   sorry
 
-theorem exists_to_forall (h: ∃x, A x → C) : ∀x, A x → C := by
+theorem exists_to_forall (h: (∃x, A x) → C) : ∀x, A x → C := by
   sorry
 
-theorem forall_to_exists (h: ∀x, A x → C) : ∃x, A x → C := by
+theorem forall_to_exists (h: (∀x, A x) → C) : ∃x, A x → C := by
   sorry
 ~~~
 
 Follow this [link](https://live.lean-lang.org/#codez=G4QwTgliBGA2CmACAFAFXmAtogXI1AngA7wCUKAgogEK74baBJhIgApgD2R5yASnelkTMBTVhy4oAwnTadSAKHkB6ALQBCRABEAriFgQALgUQAZEAHcAzohVLFBgBbx2YeNgAmu/UYD67AHbwPrAGYCgOdAA1gABEAB4ANIhUseR4gMBECYiRybgAvIjQBPKIiJYuYEXyjs6uHl6GBH6BPmAGsOF0GYnZiClRcYk5OPmFxaXlldUuboieeg0+BubswaEdeJFdSb2piANZQyNFJWVgFfZO03Xzvksrre3IEXj7PX0bW4cFx+NnlaoaHQ3YxmKw2OxVS61RB6WB+YAYHwgfzuFptcIvTI5QDkRDQdnR9ji9plaLE8t8xqdzpCajNYfDEcjUSEwk9MYNeohcftSbtCZzcXiycMKScJhdadh4LEIJYDJYGWA/EqHhjEJ9OYAKIiFuw1ZO1W1J5NGYr+EquiGlsvliuVq1ZDnSWK16pJ+KdHP1NGFR0p4uU6kQAEl/AYMCAAMYGCABUwWay2c3Qq1y+ChqBwiCYIguAxq/nvV2e40/KmTKEzSzmQwRpwcdjrIt7AiJPhkgh8ltNtuIYwik2/alTZMyuUKgwrABmLlhar1QkQkj5zrJzGk/dL/uHM2nYHpE58Kfl+ZXC6XnVPa5Lfr+QA) to work in the digital playground.
+
+## Solution {.solution #leanSolution}
+
+Credit: Alexander Apers
+
+{{<lean_logo>}}
+~~~~lean4
+variable (Term : Type) (A B : Term → Prop) (R : Term → Term → Prop) (C : Prop) 
+
+open Classical
+
+/-! Duality Laws -/
+theorem duality_one_ltr (h : ¬∀x, A x) : ∃x, ¬A x := by
+  apply byContradiction
+  intro neg_concl
+  apply h 
+  intro x
+  apply byContradiction
+  intro neg_A_c
+  apply neg_concl
+  apply Exists.intro 
+  exact neg_A_c
+
+
+theorem duality_one_rtl (h : ∃x, ¬A x) : ¬∀x, A x := by
+  intro forallxAx
+  apply Exists.elim h
+  intro x negAc
+  apply negAc
+  apply forallxAx x
+
+
+theorem duality_two_ltr (h : ¬∃x, A x) : ∀x, ¬A x := by
+  intro x Ac
+  apply h
+  apply Exists.intro 
+  exact Ac
+
+
+theorem duality_two_rtl (h : ∀x, ¬A x) : ¬∃x, A x := by
+  intro existsxAx 
+  apply Exists.elim existsxAx
+  intro x
+  apply h x
+
+
+/-! Duality Laws -/
+theorem all_over_and_rtl (h: ∀x, A x ∧ B x) : (∀x, A x) ∧ (∀x, B x) := by 
+  apply And.intro 
+  intro x
+  apply And.left
+  apply h x
+  intro x
+  apply And.right
+  apply h x
+
+
+theorem all_over_and_ltr (h: (∀x, A x) ∧ (∀x, B x)) : ∀x, A x ∧  B x := by
+  intro x
+  apply And.intro
+  apply And.left h x
+  apply And.right h x
+  
+
+theorem exists_over_or_rtl (h: ∃x, A x ∨ B x) : (∃x, A x) ∨ (∃x, B x) := by
+  apply Exists.elim h
+  intro x AcorBc
+  apply Or.elim AcorBc
+  intro Ac
+  apply Or.inl 
+  apply Exists.intro 
+  exact Ac
+  intro Bc
+  apply Or.inr
+  apply Exists.intro
+  exact Bc
+
+
+theorem exists_over_or_ltr (h: (∃x, A x) ∨ (∃x, B x)) : ∃x, A x ∨ B x := by
+  apply Or.elim h
+  intro existsxAx
+  apply Exists.elim existsxAx
+  intro x Ac
+  apply Exists.intro
+  apply Or.inl Ac 
+  intro existsxBx
+  apply Exists.elim existsxBx
+  intro x Bc
+  apply Exists.intro
+  apply Or.inr Bc
+
+
+/-! Interaction Laws -/
+-- note: This proof requires explicitly telling lean we are working with a non-empty domain. 
+-- Since this was not discussed in the textbook it is not expected that you are able to do this.
+-- solved by Johannes
+theorem existential_import [Inhabited Term] (h: ∀x, A x) : ∃x, A x := by
+  apply Exists.intro
+  apply h 
+  exact default
+
+theorem switcheroo (h : ∃x, ∀y, R x y) : ∀y, ∃x, R x y := by
+  intro y
+  apply Exists.elim h
+  intro x Rcd
+  apply Exists.intro 
+  apply Rcd
+
+
+theorem exists_to_forall (h: (∃x, A x) → C) : ∀x, A x → C := by
+  intro x Ad
+  apply h
+  apply Exists.intro
+  exact Ad
+
+-- note: this proof also required a non-empty domain
+-- solved by Johannes
+theorem forall_to_exists [Inhabited Term] (h: (∀x, A x) → C) : ∃x, A x → C := by
+  apply byContradiction
+  intro neg_existsxAxtoC
+  apply neg_existsxAxtoC
+  · apply Exists.intro (default : Term)
+    intro Ad
+    apply h
+    apply byContradiction
+    intro neg_allxAx
+    apply neg_existsxAxtoC
+    apply Exists.elim
+    · apply duality_one_ltr 
+      exact neg_allxAx
+    · intro c neg_Ac
+      apply Exists.intro
+      · intro Ac
+        apply False.elim
+        apply neg_Ac Ac
+~~~~
+
+You can review the code in the lean plaground by following this [link](https://live.lean-lang.org/#codez=G4QwTgliBGA2CmACAFAFXmAtogXI1AngA7wCUKAgogEK74baBJhIgApgD2R5yASnelkTMBTVhy4oAwnTadyAKHmd4AO0STYIAM5aIAYxCxFAegC0AQkQARAK6GIAFwKIAMiADuWxKePyHAC3h2MHhsABM7WEcCAH12FXgY2AcwFH86ABrAACIADwAaRCoc8jxAYCJ8xAyi3ABeRGgCeUREECIiWGcGyXiUkDD9Bwh4psQIFRT2RASAcxi9eL0jZtb253SRsYnEHJGVjvqCbvGwPoGhlQ3jyZmYijndtv2b+ZVFh9XEAFEciC0HLQAdJsOIgRvAciA9A4pvBZnc9Io/IFgqFEBF7E44gkYmAHLA0nRygUqtsSpVcgVqjg6g1LlsAGbBQywHIUHbLR7Ob6/f4A+BRbD+OkgnIw6YUBEcj4zCXvfaMk6wFls7aIgJBELhSLRGIOdzsJIpAl4DJEwqkugUypUmmNZrAyai2VS/ZCl1cn5/QEO0HNcGQ6GyxTqlFajGxPUG3H45DpPBWknFTJmm0HYWTcE8rSs0Vyj1ZvkCxCZr059Oq92IdI7EwWazapyuDxeHxIjWo5lxYAYGIgFRhHF4tLxirVQDkRDQLXhkFaiuQJzOKrQk9SDr6WpzCv2gVd1z72RuPhRtwh6Q481WK6Ndwe9s5j2EAZBpv5z5Xq2rkZqWkquz2+wOySpLG06zhaC5WsupBkmBooTpOoqrrS9o3heD47hMaEnvAZ6Xrem7oc+r54SMwZfqiJb/H+YBxDR0bDogKbbIggAURAhZLIExSZsZxS5TraF7cl6hYQIK5ZOvMYDUJKh77AA8mAInYBKwTSeWzqyc4Ck7vigmeryPpghCUKFDJPpqZW2ljGAekFg6RkBjQCJke22CUVo1G0YawH+NOXHkDxZpQWSXGsQhtRppZin8qJVblu5ZaVkJvIxW5+nZmy4mmbZwn2VFOmmXuu4JdQ+EfMlgKpcW6U5KVWUWZpXzpRhHAXlZKipGptaWAAkuMGABucTaeN4vimKYUzsA48B4Kg/i/IgRAcOw9KICEACONgQCEXjgu0+iOPs01KmM0yIAgfaIO4SDgEg+pgAA1qdV2OOkICTSopihEQjZhOwmAgGMAKIAAymMehIAEC3uNok3Qv0Wh6DYOjwGE16IOqGPgg40DsOwD2jNCC0qFN1UkFCqMY/4IDQgQ7A2C0IQtHAkOTH9VO/AC8jjYgWjsLA3Zow0iAAFLsNTKgJFobahtVPKqIMhgxKJRDBNCADafXU9AjiUyIAC6DGwSFo7MUhdqNRVLXsBe6x+sZ8M4SANjJC5staO4jh6IEy3GoxFRZAQBR8KKBAwUH/vB8xzjm+WFt3k1BZVW615bKKPB6GEOUGbuF4Z1nbvfu5uoGgqzIMbxlIWswkgwaboo1xFyGpyKhRZ++2felcDkmRQBc8yT014FDXhLXjq2GHza3wJt22U+9JOfd9v3/YDFw83zAuU8LYsS1LMvfmXv4OAa7mIJrKja7raMGxXxtCOoJtVw36hN/Hm5dD0Jz9FC5zljcCU2Qn0kBeABNUgHsBAc0AA7ZbZqPpkBhCdi7aEs0GCkBGChLYfdMGNRTpWT+xxTi/2GM0LBIIbjMkSmQhOYCsw5mAbghOVtUq4NgQndEURMTxESEBdcZDqqOUoUqahMCW6TD0GKW4MkBHMPgd3ARYifQaUUY1AAYpPeASlcGyM3DcCUpkgA).
