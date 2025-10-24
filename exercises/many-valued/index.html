@@ -884,8 +884,19 @@ valuation iff at least one of the laws fails. They don&rsquo;t return anything s
 laws hold.</p>
 
 </div>
-<div id="łukasiewicz-conditionals" ><h5 class="">
+<div id="łukasiewicz-conditionals" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Łukasiewicz conditionals
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="łukasiewicz-conditionalsSolution"
+        onclick="showPasswordModal('łukasiewicz-conditionalsSolution', 'exc-mv')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>In <span class="excalifont">K3</span>, we&rsquo;ve defined a semantics for conditionals by saying that <div class="text-center my-4 excalifont">v(A
 <img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
@@ -923,6 +934,35 @@ RAIN</span> is true in all <span class="excalifont">Ł</span> models.</p>
 </ol>
 
 </div>
+<div id="łukasiewicz-conditionalsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><ol>
+<li>
+<p>Consider the <span class="excalifont">K3</span>-model where <span class="excalifont">v(RAIN) = ω</span>. In this model, we have</p>
+ <div class="text-center my-4 excalifont">v(RAIN 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN) = (<span class="Kleene">NOT</span> v(RAIN)) <span class="Kleene">OR</span> v(RAIN) = (<span class="Kleene">NOT</span> ω) <span class="Kleene">OR</span> ω = ω</div>
+<p>And since <span class="excalifont">ω ≠ 1</span>, this is a model where the formula isn&rsquo;t true.</p>
+</li>
+<li>
+<p>we have that <span class="excalifont">v(RAIN 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+RAIN) = v(RAIN) <span class="Kleene">Ł</span> v(RAIN)</span>. That is,
+we&rsquo;re dealing with an expression of the form <code class="customCode">X <span class="Kleene">Ł</span> X</code>. If we go to the
+table for <span class="Kleene">Ł</span>, we note that for identical inputs, the values (on the
+diagonal) are always <code class="customCode">1</code>. In other words, the formula is true in all models.</p>
+</li>
+<li>
+<p>Suppose that <span class="excalifont">v(A) = 1</span> and <span class="excalifont">v(A 
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+B) = 1</span>. Inspecting the table for
+<span class="Kleene">Ł</span>, we can see that there is one and only one configuration of values
+that makes this possible, namely the one where <span class="excalifont">v(B) = 1</span>.</p>
+
+    <img src="https://logicalmethods.ai/exercises/many-valued/img/luk_table.png" class="mx-auto rounded d-block inert-img img-fluid"  width="300px"  alt="" >
+
+</li>
+</ol>
+
+</div>
 <div id="fuzz-predicates" ><h5 class="">
     <div class="d-inline-flex flex-row m-0 p-0 ">Fuzz Predicates
     </div>
@@ -942,8 +982,19 @@ slow, while avoiding breaking and accelerating simultaneously.</p>
 </ol>
 
 </div>
-<div id="fuzzy-logic" ><h5 class="">
+<div id="fuzzy-logic" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Fuzzy Logic
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="fuzzy-logicSolution"
+        onclick="showPasswordModal('fuzzy-logicSolution', 'exc-mv')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>In class, we&rsquo;ve seen that in fuzzy logic, disjunctive syllogism fails:
 there are formulas <span class="excalifont">A,B</span>, such that <div class="text-center my-4 excalifont">
@@ -960,6 +1011,63 @@ B</div></p>
 A
 <img src="/img/nvDash.png" alt="nvDash" class="inline-icon" style="height:1em;width:auto;"/>
 B</div></p>
+
+</div>
+<div id="fuzzy-logicSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Soltution</h6><p>Let&rsquo;s take for <span class="excalifont">A</span> a statement which, in a suitable model, is both &ldquo;half-true&rdquo;,
+that is, has value 0.5. For example, <code class="customCode">Fast 45km/h</code> could be such that <code class="customCode">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+Fast 45km/h
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ = 0.5</code>. It follows by the semantics
+for <span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+</span> that also <code class="customCode">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+Fast 45km/h
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ = 0.5</code>. That means that</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+min(
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+Fast 45km/h
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+, 
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+Fast 45km/h
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+) = 0.5
+</code></div>
+<p>If we then take a statement for <span class="excalifont">B</span>, which is certainly false, such as <code class="customCode">Fast 0kmh</code>, meaning <code class="customCode">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+Fast 0km/h
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ = 0</code>, we have a clear countermodel:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+min(
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+Fast 45km/h
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+, 
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+Fast 45km/h
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+) = 0.5 ≥ 0 = 
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+Fast 0km/h
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+
+</code></div>
+<p>So the inference <div class="text-center my-4 excalifont">A,
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A
+<img src="/img/nvDash.png" alt="nvDash" class="inline-icon" style="height:1em;width:auto;"/>
+B</div> is invalid.</p>
 
 
   </div>
