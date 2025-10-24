@@ -100,7 +100,7 @@ that makes this possible, namely the one where $v(B) = 1$.
     
     {{< img src="img/luk_table.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
 
-# Fuzz Predicates
+# Fuzzy Predicates {.solved}
 
 Suppose we've got a language with predicates `Fast¹` and `Slow¹`, which
 describe the speed of a car and apply to terms for speed (like `10
@@ -113,6 +113,39 @@ km/h`).
    a system of fuzzy rules that keep the car in the gray area between fast and
 slow, while avoiding breaking and accelerating simultaneously.
 
+## Solution {#fuzzy-predicatesSolution .solution}
+
+1. There are different ways of interpreting "gray area".
+
+    - Here's an interpretation, according to which "gray area" means that
+    there's an area where the car is both fully not slow and fully not fast:
+
+        {{< img src="img/fuzzy_pred_1.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
+
+    - Here's an interpretation, where "gray area" means that there's an area
+    where the car is both half-way fast and half-way slow:
+
+        {{< img src="img/fuzzy_pred_2.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
+
+    These are, of course, other models, but these two will do.
+
+2. How such rules could look like highly depends on the model we chose to interpret `Fast` and `Slow`:
+
+    - In our first model, the following rules will do:
+
+        ```
+        Fast x {{< longrightarrow >}} break
+        ```
+        ```
+        Slow x {{< longrightarrow >}} accelerate
+        ```
+
+      In this model, our car will never break and accelerate at the same time.
+
+
+    - In our second model, the same rules will lead to situations where we're
+    breaking and accelerating at the same time: if we pick an `x` where `{{< llbracket >}}Slow x {{< rrbracket >}} = {{< llbracket >}}Fast x {{< rrbracket >}} = 0.5`, we'll have `{{< llbracket >}}break {{< rrbracket >}} = {{< llbracket >}}accelerate {{< rrbracket >}} = 0.5`. But they will keep the car in the "gray area".  
+
 # Fuzzy Logic {.solved}
 
 In class, we've seen that in fuzzy logic, disjunctive syllogism fails:
@@ -122,7 +155,7 @@ nvDash >}}B$$
 Modify the example to show that in fuzzy logic, also the [principle of explosion](https://en.wikipedia.org/wiki/Principle_of_explosion) fails, that is there are formulas $A,B$, such that $$A,{{< neg >}}A{{<
 nvDash >}}B$$
 
-## Soltution {#fuzzy-logicSolution .solution}
+## Solution {#fuzzy-logicSolution .solution}
 
 Let's take for $A$ a statement which, in a suitable model, is both "half-true",
 that is, has value 0.5. For example, `Fast 45km/h` could be such that `{{<
