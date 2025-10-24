@@ -160,7 +160,7 @@ Pr(B | A) = Pr(A)/Pr(A) = 1
 
 But since _all_ probabilities are less than 1, it follows that `Pr(B | A) ≥ Pr(A)`.
 
-# Base-rate fallacy
+# Base-rate fallacy {.solved}
 
 The [base-rate fallacy](https://en.wikipedia.org/wiki/Base_rate_fallacy) is
 about a common probabilistic fallacy involving conditional probabilities, which
@@ -210,3 +210,160 @@ medicine to a patient where we're more certain than not that they have the
 disease. How many times do you need to get a positive result before you should
 administer the medicine if you apply Bayesian updating after each positive
 result.
+
+## Solution {#base-rate-fallacySolution .solution}
+
+1. Here's the relevant probabilities:
+
+    - `Pr(HasDisease) = 0.01`
+    - `Pr(TestPositive | HasDisease) = 0.9`
+    - `Pr(¬TestPositive | ¬HasDisease) = 0.9`
+
+2. According to Bayes formula
+
+    ```
+    Pr(HasDisease | TestPositive) 
+    ```
+    ```
+    =
+    ```
+    ```
+    [Pr(HasDisease) x Pr(TestPositive | HasDisease) ] / Pr(TestPositive)
+    ```
+
+    We have `Pr(HasDisease)` and `Pr(TestPositive | HasDisease)`, but we need to figure out `Pr(TestPositive)`.
+
+    For this, we use the law of total probability. Apply it to `TestPositive` as `A` and `HasDisease` as `B` gives us:
+
+    ```
+    Pr(TestPositive) 
+    ```
+    ```
+    =
+    ```
+    ```
+    Pr(TestPositive| HasDiesease)Pr(HasDisease) 
+    ```
+    ```
+    +
+    ```
+    ```
+    Pr(TestPositive | ¬HasDisease)Pr(¬HasDisease)
+    ```
+
+    We have `Pr(TestPositive| HasDiesease)` and `Pr(HasDisease)` given. To obtain 
+    `Pr(TestPositive | ¬HasDisease)` and `Pr(¬HasDisease)`, we apply the negation laws:
+    ```
+    Pr(TestPositive | ¬HasDisease) = 1 - Pr(¬TestPositive | ¬HasDisease)
+    ```
+    ```
+    Pr(¬HasDisease) = 1 - Pr(HasDisease)
+    ```
+
+    Now we have all the relevant values and can calculate:
+
+    ```
+    Pr(¬HasDisease) = 1 - Pr(HasDisease) = 1 - 0.01 = 0.99
+    ```
+    ```
+    Pr(TestPositive | ¬HasDisease) = 1 - Pr(¬TestPositive | ¬HasDisease) 
+    ```
+    ```
+    = 1 - 0.9 = 0.1
+    ```
+    ```
+    Pr(TestPositive | ¬HasDisease)Pr(¬HasDisease) = 0.99 x 0.1 = 0.099
+    ```
+
+    So:
+
+    ```
+    Pr(TestPositive) 
+    ```
+    ```
+    =
+    ```
+    ```
+    Pr(TestPositive| HasDiesease)Pr(HasDisease) 
+    ```
+    ```
+    +
+    ```
+    ```
+    Pr(TestPositive | ¬HasDisease)Pr(¬HasDisease)
+    ```
+    ```
+    =
+    ```
+    ```
+    (0.9 x 0.01) + 0.099 = 0.108
+    ```
+
+    Now for the final probabilities:
+
+    ```
+    Pr(HasDisease | TestPositive) 
+    ```
+    ```
+    =
+    ```
+    ```
+    [Pr(HasDisease) x Pr(TestPositive | HasDisease) ] / Pr(TestPositive)
+    ```
+    ```
+    =
+    ```
+    ```
+    (0.01 x 0.9) / 0.108 = 0.009 / 0.108 = 0.083...
+    ```
+
+    In other words, a random person testing positive, given this setup, gives
+    us a probability of around 8% of them having the disease—even if the test
+    is 90% reliable. This is because the prior probability of the person having
+    the disease—the so-called base-rate—is very low.
+
+    Note that it's important here that the person was chosen randomly. If there
+    is additional information, such as them showing symptoms, the prior of them
+    having the disease would be different.
+
+3. If we re-set the probabilities using Bayesian updating, we now have:
+
+    ```
+    Pr(Disease) = 0.083...
+    ```
+
+    This affects the value of `Pr(TestPositive)`, which we've calculated using `Pr(Disease)`.
+
+    We now get:
+
+    ```
+    Pr(¬HasDisease) = 1 - Pr(HasDisease) = 1 - 0.083.. = 0.916...
+    ```
+    ```
+    Pr(TestPositive | ¬HasDisease)Pr(¬HasDisease) = 0.1 x 0.916... = 0.0916...
+    ```
+
+    So, we now have for `Pr(TestPositive)` that:
+
+    ```
+    Pr(TestPositive) = 0.009 + 0.0916... = 0.1006...
+    ```
+
+    ```
+    Pr(HasDisease | TestPositive) 
+    ```
+    ```
+    =
+    ```
+    ```
+    [Pr(HasDisease) x Pr(TestPositive | HasDisease) ] / Pr(TestPositive)
+    ```
+    ```
+    =
+    ```
+    ```
+    (0.083 x 0.9) / 0.106 = 0.0747 / 0.1006... ≈ 0.742..
+    ```
+
+    So, two consecutive positive tests on a random citizen are sufficient to raise the probability to around 75%.
+
