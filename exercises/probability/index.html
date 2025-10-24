@@ -1071,8 +1071,19 @@ Pr(B | A) = Pr(A)/Pr(A) = 1
 <p>But since <em>all</em> probabilities are less than 1, it follows that <code class="customCode">Pr(B | A) ≥ Pr(A)</code>.</p>
 
 </div>
-<div id="base-rate-fallacy" ><h5 class="">
+<div id="base-rate-fallacy" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Base-rate fallacy
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="base-rate-fallacySolution"
+        onclick="showPasswordModal('base-rate-fallacySolution', 'exc-prob')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>The <i class="bi bi-box-arrow-up-right h-6"></i>
 <a href="https://en.wikipedia.org/wiki/Base_rate_fallacy" class="link-dark" rel="external" target="_blank">base-rate fallacy</a>
@@ -1145,6 +1156,147 @@ medicine to a patient where we&rsquo;re more certain than not that they have the
 disease. How many times do you need to get a positive result before you should
 administer the medicine if you apply Bayesian updating after each positive
 result.</p>
+</li>
+</ol>
+
+</div>
+<div id="base-rate-fallacySolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><ol>
+<li>
+<p>Here&rsquo;s the relevant probabilities:</p>
+<ul>
+<li><code class="customCode">Pr(HasDisease) = 0.01</code></li>
+<li><code class="customCode">Pr(TestPositive | HasDisease) = 0.9</code></li>
+<li><code class="customCode">Pr(¬TestPositive | ¬HasDisease) = 0.9</code></li>
+</ul>
+</li>
+<li>
+<p>According to Bayes formula</p>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ Pr(HasDisease | TestPositive) 
+ </code></div>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ =
+ </code></div>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ [Pr(HasDisease) x Pr(TestPositive | HasDisease) ] / Pr(TestPositive)
+ </code></div>
+<p>We have <code class="customCode">Pr(HasDisease)</code> and <code class="customCode">Pr(TestPositive | HasDisease)</code>, but we need to figure out <code class="customCode">Pr(TestPositive)</code>.</p>
+<p>For this, we use the law of total probability. Apply it to <code class="customCode">TestPositive</code> as <code class="customCode">A</code> and <code class="customCode">HasDisease</code> as <code class="customCode">B</code> gives us:</p>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ Pr(TestPositive) 
+ </code></div>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ =
+ </code></div>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ Pr(TestPositive| HasDiesease)Pr(HasDisease) 
+ </code></div>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ +
+ </code></div>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ Pr(TestPositive | ¬HasDisease)Pr(¬HasDisease)
+ </code></div>
+<p>We have <code class="customCode">Pr(TestPositive| HasDiesease)</code> and <code class="customCode">Pr(HasDisease)</code> given. To obtain
+<code class="customCode">Pr(TestPositive | ¬HasDisease)</code> and <code class="customCode">Pr(¬HasDisease)</code>, we apply the negation laws:</p>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ Pr(TestPositive | ¬HasDisease) = 1 - Pr(¬TestPositive | ¬HasDisease)
+ </code></div>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ Pr(¬HasDisease) = 1 - Pr(HasDisease)
+ </code></div>
+<p>Now we have all the relevant values and can calculate:</p>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ Pr(¬HasDisease) = 1 - Pr(HasDisease) = 1 - 0.01 = 0.99
+ </code></div>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ Pr(TestPositive | ¬HasDisease) = 1 - Pr(¬TestPositive | ¬HasDisease) 
+ </code></div>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ = 1 - 0.9 = 0.1
+ </code></div>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ Pr(TestPositive | ¬HasDisease)Pr(¬HasDisease) = 0.99 x 0.1 = 0.099
+ </code></div>
+<p>So:</p>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ Pr(TestPositive) 
+ </code></div>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ =
+ </code></div>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ Pr(TestPositive| HasDiesease)Pr(HasDisease) 
+ </code></div>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ +
+ </code></div>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ Pr(TestPositive | ¬HasDisease)Pr(¬HasDisease)
+ </code></div>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ =
+ </code></div>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ (0.9 x 0.01) + 0.099 = 0.108
+ </code></div>
+<p>Now for the final probabilities:</p>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ Pr(HasDisease | TestPositive) 
+ </code></div>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ =
+ </code></div>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ [Pr(HasDisease) x Pr(TestPositive | HasDisease) ] / Pr(TestPositive)
+ </code></div>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ =
+ </code></div>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ (0.01 x 0.9) / 0.108 = 0.009 / 0.108 = 0.083...
+ </code></div>
+<p>In other words, a random person testing positive, given this setup, gives
+us a probability of around 8% of them having the disease—even if the test
+is 90% reliable. This is because the prior probability of the person having
+the disease—the so-called base-rate—is very low.</p>
+<p>Note that it&rsquo;s important here that the person was chosen randomly. If there
+is additional information, such as them showing symptoms, the prior of them
+having the disease would be different.</p>
+</li>
+<li>
+<p>If we re-set the probabilities using Bayesian updating, we now have:</p>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ Pr(Disease) = 0.083...
+ </code></div>
+<p>This affects the value of <code class="customCode">Pr(TestPositive)</code>, which we&rsquo;ve calculated using <code class="customCode">Pr(Disease)</code>.</p>
+<p>We now get:</p>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ Pr(¬HasDisease) = 1 - Pr(HasDisease) = 1 - 0.083.. = 0.916...
+ </code></div>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ Pr(TestPositive | ¬HasDisease)Pr(¬HasDisease) = 0.1 x 0.916... = 0.0916...
+ </code></div>
+<p>So, we now have for <code class="customCode">Pr(TestPositive)</code> that:</p>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ Pr(TestPositive) = 0.009 + 0.0916... = 0.1006...
+ </code></div>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ Pr(HasDisease | TestPositive) 
+ </code></div>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ =
+ </code></div>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ [Pr(HasDisease) x Pr(TestPositive | HasDisease) ] / Pr(TestPositive)
+ </code></div>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ =
+ </code></div>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ (0.083 x 0.9) / 0.106 = 0.0747 / 0.1006... ≈ 0.742..
+ </code></div>
+<p>So, two consecutive positive tests on a random citizen are sufficient to raise the probability to around 75%.</p>
 </li>
 </ol>
 
