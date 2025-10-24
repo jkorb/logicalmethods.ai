@@ -262,7 +262,7 @@ valid.
         {{< img src="img/resolution.png" class="mx-auto rounded d-block inert-img img-fluid" width="800px">}}
 
 
-# Natural deduction
+# Natural deduction {.solved}
 
 Find logical proofs in FOL natural deduction for the following logical
 laws. Note that some of these require `<span class="dark-blue">open</span> Classical`.
@@ -287,6 +287,62 @@ laws. Note that some of these require `<span class="dark-blue">open</span> Class
 2. ${{< exists >}}x{{< forall >}}yR(x,y){{< v_dash >}}{{< forall >}}y{{< exists >}}xR(x,y)$
 3. ${{< exists >}}xA(x){{< to >}}C{{< v_dash >}}{{< forall >}}x(A(x){{< to >}}C)$, assuming that $x$ is not free in $C$
 4. ${{< forall >}}xA(x){{< to >}}C{{< v_dash >}}{{< exists >}}x(A(x){{< to >}}C)$, assuming that $x$ is not free in $C$.
+
+## Solution {#natural-deductionSolution .solution}
+
+**Duality Laws**
+
+1. ${{< neg >}}{{< forall >}}xA(x){{< v_dash >}}{{< exists >}}x{{< neg >}}A(x)$ (This one's a bit more difficult)
+
+    {{< img src="img/duality_1.png" class="mx-auto rounded d-block inert-img img-fluid" width="200px">}}
+
+2. ${{< exists >}}x{{< neg >}}A(x){{< v_dash >}}{{< neg >}}{{< forall >}}xA(x)$
+
+    {{< img src="img/duality_2.png" class="mx-auto rounded d-block inert-img img-fluid" width="200px">}}
+
+3. ${{< neg >}}{{< exists >}}xA(x){{< v_dash >}}{{< forall >}}x{{< neg >}}A(x)$
+
+    {{< img src="img/duality_3.png" class="mx-auto rounded d-block inert-img img-fluid" width="200px">}}
+
+4. ${{< forall >}}x{{< neg >}}A(x){{< v_dash >}}{{< neg >}}{{< exists >}}xA(x)$
+
+    {{< img src="img/duality_4.png" class="mx-auto rounded d-block inert-img img-fluid" width="200px">}}
+
+**Distribution Laws**
+
+1. ${{< forall >}}x(A(x) {{< land >}} B(x)) {{< v_dash >}}{{< forall >}}xA(x) {{< land >}} {{< forall >}}xB(x)$
+
+    {{< img src="img/distribution_1.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
+
+2. ${{< forall >}}xA(x) {{< land >}} {{< forall >}}xB(x){{< v_dash >}} {{< forall >}}x (A(x) {{< land >}} B(x))$
+
+    {{< img src="img/distribution_2.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
+
+3. ${{< exists >}}x(A(x) {{< lor >}} B(x)) {{< v_dash >}}{{< exists >}}xA(x) {{< lor >}} {{< exists >}}xB(x)$
+
+    {{< img src="img/distribution_3.png" class="mx-auto rounded d-block inert-img img-fluid" width="500px">}}
+
+4. ${{< exists >}}x A(x) {{< lor >}} {{< exists >}}x B(x) {{< v_dash >}}{{< exists >}}x(A(x) {{< lor >}} B(x))$
+
+    {{< img src="img/distribution_4.png" class="mx-auto rounded d-block inert-img img-fluid" width="500px">}}
+
+**Interaction Laws**
+
+1. ${{< forall >}}xA(x){{< v_dash >}}{{< exists >}}xA(x)$
+
+    {{< img src="img/interaction_1.png" class="mx-auto rounded d-block inert-img img-fluid" width="150px">}}
+
+2. ${{< exists >}}x{{< forall >}}yR(x,y){{< v_dash >}}{{< forall >}}y{{< exists >}}xR(x,y)$
+
+    {{< img src="img/interaction_2.png" class="mx-auto rounded d-block inert-img img-fluid" width="250px">}}
+
+3. ${{< exists >}}xA(x){{< to >}}C{{< v_dash >}}{{< forall >}}x(A(x){{< to >}}C)$, assuming that $x$ is not free in $C$
+
+    {{< img src="img/interaction_3.png" class="mx-auto rounded d-block inert-img img-fluid" width="250px">}}
+
+4. ${{< forall >}}xA(x){{< to >}}C{{< v_dash >}}{{< exists >}}x(A(x){{< to >}}C)$, assuming that $x$ is not free in $C$.
+
+    {{< img src="img/interaction_4.png" class="mx-auto rounded d-block inert-img img-fluid" width="350px">}}
 
 # Lean {.solved}
 Verify your work from the previous exercise in Lean. Here's a template for the
