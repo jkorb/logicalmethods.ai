@@ -7,7 +7,7 @@ params:
   math: true
 ---
 
-# Coin flips
+# Coin flips {.solved}
 
 Suppose you're flipping two coins consecutively. You may assume that the
 outcome of the two coin-flips are independent of each other.
@@ -29,7 +29,60 @@ as tails.
 
     - none of the two flips is heads.
 
-# Law of total probability
+## Solution {#coin-flipsSolution .solution}
+
+1. There are different ways of setting this up, but a straight-forward way is
+   to model the basic outcomes as pairs $[x,y]$, where `x,y{{< in >}}{H,T}` are
+the outcomes of the first and second flip respectively (`H` being heads, and
+`T` being tails). That is:
+
+    ```
+    Ω = { [H,H], [H,T], [T,H], [T,T]}
+    ```
+
+2. Here are the two distributions, which I call `p₁` and `p₂`:
+
+    - `p₁([H,H]) = p₁([H,T]) = p₁([T,H]) = p₁([T,T]) = 1/4`
+
+    - `p₂([H,H]) = 4/9`, `p₂([H,T]) = 2/9`, `p₂([T,H]) = 2/9`, `p₂([T,T]) = 1/9`
+
+
+    For `p₁`, it should be pretty clear how to arrive at these values: each
+    outcome is equally likely and there are four outcomes, so they must all
+    have probability `1/4`.
+
+    For `p₂`, one way you can arrive at the values is to treat heads and tails
+    as independent events and the pair as their conjunction. That is we assign
+    `H = 2/3` and `T = 1/3` to satisfy the constraint, and then calculate `[H,T]
+    = 2/3 x 1/3 = 2/9`, etc.
+
+3. First, let's translate the events into set representations:
+
+    - "At least one flip is heads" becomes `{[H,H], [H,T], [T,H]}`
+
+    - "Both flips are tails" becomes `{[T,T]}`
+
+    - "The first flip is heads or the second is tails" becomes `{[H,T], [H,H], [T,T]}`
+
+    - "None of the two flips is heads" becomes `{[T,T]}`.
+
+   For the probabilities of these events under the distributions, we simply add
+   up the weights of the events:
+
+    - `Pr₁({[H,H], [H,T], [T,H]}) = p₁([H,H]) + p₁([H,T]) + p₁([T,H]) = 1/4 +
+    1/4 + 1/4 = 3/4`
+    - `Pr₂({[H,H], [H,T], [T,H]}) = p₂([H,H]) + p₂([H,T]) + p₂([T,H]) = 4/9 +
+    2/9 + 2/9 = 8/9`
+
+    - `Pr₁({[T,T]}) = p₁([T,T]) = 1/4`
+    - `Pr₂({[T,T]}) = p₂([T,T]) = 1/9`
+
+    - `Pr₁({[H,T], [H,H], [T,T]}) = p₁([H,T]) + p₁([H,H]) + p₁([T,T]) = 1/4 +
+    1/4 + 1/4 = 3/4`
+    - `Pr₂({[H,T], [H,H], [T,T]}) = p₂([H,T]) + p₂([H,H]) + p₂([T,T]) = 2/9 +
+    4/9 + 1/9 = 7/9`
+
+# Law of total probability {.solved}
 
 The [law of total
 probability](https://en.wikipedia.org/wiki/Law_of_total_probability) states
@@ -47,12 +100,65 @@ Derive this law from the Kolmogorov axioms. You may use the following facts with
 
 3. The conjunction rule `Pr(A {{< land >}} B) = Pr(A | B)Pr(B)`
 
-# Deductive and inductive inference
+## Solution {#law-of-total-probabilitySolution .solution}
+
+We start with the trivial identity:
+
+```
+Pr(A) = Pr(A)
+```
+
+Since `A` is equivalent to `(A{{< land >}}B){{<lor>}}(A{{<land>}}{{< neg >}}B)`,
+we can infer: 
+
+```
+Pr(A) = Pr((A{{< land >}}B){{<lor>}}(A{{<land>}}{{< neg >}}B))
+```
+
+We observe that `A{{< land >}}B)` and `A{{<land>}}{{< neg >}}B` are logically
+incompatible, that is `{{< vDash >}}{{< neg >}}(Pr((A{{< land >}}B){{<land>}}(A{{<land>}}{{< neg >}}B)))`. Thus:
+
+```
+Pr((A{{< land >}}B){{<lor>}}(A{{<land>}}{{< neg >}}B)) = Pr((A{{< land >}}B) + (A{{<land>}}{{< neg >}}B))
+```
+
+So, we arrive at: 
+
+```
+Pr(A) = Pr((A{{< land >}}B) + (A{{<land>}}{{< neg >}}B))
+```
+
+Replacing the conjunctive probabilities using the conjunction rule, we get:
+
+```
+Pr(A) = Pr(A | B)Pr(B) + Pr(A | {{< neg >}}B)Pr({{< neg >}}B)
+```
+
+# Deductive and inductive inference {.solved}
 
 Show that if $A{{<vDash>}}B$, then $A{{< approx >}}B$. That is: every
 deductively valid inference is also inductively valid. You may use the fact
 that if $A{{< vDash >}}B$, then $A{{< land >}}B$ is logically equivalent to
 $A$.
+
+## Solution {#deductive-and-inductive-inferenceSolution .solution}
+
+Suppose that `A{{<vDash>}}B`. For `A{{< approx >}}B` to be the case, we need
+that `Pr(B | A) ≥ Pr(B)`. Unfolding the definition of conditional probability,
+we get:
+
+```
+Pr(B | A) = Pr(B {{< land >}} A)/Pr(A)
+```
+
+But since `A{{<vDash>}}B`, we have that `Pr(B {{< land >}} A) = Pr(A)`. But that
+means that:
+
+```
+Pr(B | A) = Pr(A)/Pr(A) = 1
+```
+
+But since _all_ probabilities are less than 1, it follows that `Pr(B | A) ≥ Pr(A)`.
 
 # Base-rate fallacy
 
