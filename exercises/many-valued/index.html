@@ -963,8 +963,19 @@ that makes this possible, namely the one where <span class="excalifont">v(B) = 1
 </ol>
 
 </div>
-<div id="fuzz-predicates" ><h5 class="">
-    <div class="d-inline-flex flex-row m-0 p-0 ">Fuzz Predicates
+<div id="fuzzy-predicates" class=" solved"><h5 class="solved">
+    <div class="d-inline-flex flex-row m-0 p-0 ">Fuzzy Predicates
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="fuzzy-predicatesSolution"
+        onclick="showPasswordModal('fuzzy-predicatesSolution', 'exc-mv')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>Suppose we&rsquo;ve got a language with predicates <code class="customCode">Fast¹</code> and <code class="customCode">Slow¹</code>, which
 describe the speed of a car and apply to terms for speed (like <code class="customCode">10
@@ -978,6 +989,69 @@ is a &ldquo;gray area&rdquo; between fast and slow.</p>
 <p>Add to the language two fuzzy constants <code class="customCode">break</code> and <code class="customCode">accelerate</code>. Formulate
 a system of fuzzy rules that keep the car in the gray area between fast and
 slow, while avoiding breaking and accelerating simultaneously.</p>
+</li>
+</ol>
+
+</div>
+<div id="fuzzy-predicatesSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><ol>
+<li>
+<p>There are different ways of interpreting &ldquo;gray area&rdquo;.</p>
+<ul>
+<li>
+<p>Here&rsquo;s an interpretation, according to which &ldquo;gray area&rdquo; means that
+there&rsquo;s an area where the car is both fully not slow and fully not fast:</p>
+
+        <img src="https://logicalmethods.ai/exercises/many-valued/img/fuzzy_pred_1.png" class="mx-auto rounded d-block inert-img img-fluid"  width="300px"  alt="" >
+
+</li>
+<li>
+<p>Here&rsquo;s an interpretation, where &ldquo;gray area&rdquo; means that there&rsquo;s an area
+where the car is both half-way fast and half-way slow:</p>
+
+        <img src="https://logicalmethods.ai/exercises/many-valued/img/fuzzy_pred_2.png" class="mx-auto rounded d-block inert-img img-fluid"  width="300px"  alt="" >
+
+</li>
+</ul>
+<p>These are, of course, other models, but these two will do.</p>
+</li>
+<li>
+<p>How such rules could look like highly depends on the model we chose to interpret <code class="customCode">Fast</code> and <code class="customCode">Slow</code>:</p>
+<ul>
+<li>
+<p>In our first model, the following rules will do:</p>
+  <div class="customBlock text-center my-4"><code class="customCode">
+  Fast x 
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+ break
+  </code></div>
+  <div class="customBlock text-center my-4"><code class="customCode">
+  Slow x 
+<img src="/img/longrightarrow.png" alt="Long Rightarrow" class="inline-icon" style="height:1em;width:auto;"/>
+ accelerate
+  </code></div>
+<p>In this model, our car will never break and accelerate at the same time.</p>
+</li>
+<li>
+<p>In our second model, the same rules will lead to situations where we&rsquo;re
+breaking and accelerating at the same time: if we pick an <code class="customCode">x</code> where <code class="customCode">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+Slow x 
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ = 
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+Fast x 
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ = 0.5</code>, we&rsquo;ll have <code class="customCode">
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+break 
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ = 
+<img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
+accelerate 
+<img src="/img/rrbracket.png" alt="Right semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-left:-0.4em"/>
+ = 0.5</code>. But they will keep the car in the &ldquo;gray area&rdquo;.</p>
+</li>
+</ul>
 </li>
 </ol>
 
@@ -1013,7 +1087,7 @@ A
 B</div></p>
 
 </div>
-<div id="fuzzy-logicSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Soltution</h6><p>Let&rsquo;s take for <span class="excalifont">A</span> a statement which, in a suitable model, is both &ldquo;half-true&rdquo;,
+<div id="fuzzy-logicSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>Let&rsquo;s take for <span class="excalifont">A</span> a statement which, in a suitable model, is both &ldquo;half-true&rdquo;,
 that is, has value 0.5. For example, <code class="customCode">Fast 45km/h</code> could be such that <code class="customCode">
 <img src="/img/llbracket.png" alt="Left semantic bracket" class="inline-icon" style="height:1.1em;width:auto;margin-right:-0.4em"/>
 Fast 45km/h
