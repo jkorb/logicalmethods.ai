@@ -1304,8 +1304,19 @@ IsDrinking <code class="customCode">skolem₂ x₁</code>}</div>
 </ol>
 
 </div>
-<div id="natural-deduction" ><h5 class="">
+<div id="natural-deduction" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Natural deduction
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="natural-deductionSolution"
+        onclick="showPasswordModal('natural-deductionSolution', 'exc-finf')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>Find logical proofs in FOL natural deduction for the following logical
 laws. Note that some of these require <code class="customCode"><span class="dark-blue">open</span> Classical</code>.</p>
@@ -1486,6 +1497,243 @@ C
 x(A(x)
 <img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
 C)</span>, assuming that <span class="excalifont">x</span> is not free in <span class="excalifont">C</span>.</li>
+</ol>
+
+</div>
+<div id="natural-deductionSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p><strong>Duality Laws</strong></p>
+<ol>
+<li>
+<p><span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+xA(x)
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A(x)</span> (This one&rsquo;s a bit more difficult)</p>
+
+    <img src="https://logicalmethods.ai/exercises/fol-inference/img/duality_1.png" class="mx-auto rounded d-block inert-img img-fluid"  width="200px"  alt="" >
+
+</li>
+<li>
+<p><span class="excalifont">
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A(x)
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+xA(x)</span></p>
+
+    <img src="https://logicalmethods.ai/exercises/fol-inference/img/duality_2.png" class="mx-auto rounded d-block inert-img img-fluid"  width="200px"  alt="" >
+
+</li>
+<li>
+<p><span class="excalifont">
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+xA(x)
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A(x)</span></p>
+
+    <img src="https://logicalmethods.ai/exercises/fol-inference/img/duality_3.png" class="mx-auto rounded d-block inert-img img-fluid"  width="200px"  alt="" >
+
+</li>
+<li>
+<p><span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+A(x)
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+xA(x)</span></p>
+
+    <img src="https://logicalmethods.ai/exercises/fol-inference/img/duality_4.png" class="mx-auto rounded d-block inert-img img-fluid"  width="200px"  alt="" >
+
+</li>
+</ol>
+<p><strong>Distribution Laws</strong></p>
+<ol>
+<li>
+<p><span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x(A(x) 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B(x)) 
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+xA(x) 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+xB(x)</span></p>
+
+    <img src="https://logicalmethods.ai/exercises/fol-inference/img/distribution_1.png" class="mx-auto rounded d-block inert-img img-fluid"  width="300px"  alt="" >
+
+</li>
+<li>
+<p><span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+xA(x) 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+xB(x)
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+x (A(x) 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B(x))</span></p>
+
+    <img src="https://logicalmethods.ai/exercises/fol-inference/img/distribution_2.png" class="mx-auto rounded d-block inert-img img-fluid"  width="300px"  alt="" >
+
+</li>
+<li>
+<p><span class="excalifont">
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x(A(x) 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B(x)) 
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+xA(x) 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+xB(x)</span></p>
+
+    <img src="https://logicalmethods.ai/exercises/fol-inference/img/distribution_3.png" class="mx-auto rounded d-block inert-img img-fluid"  width="500px"  alt="" >
+
+</li>
+<li>
+<p><span class="excalifont">
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x A(x) 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ 
+ <img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+ 
+x B(x) 
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x(A(x) 
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ B(x))</span></p>
+
+    <img src="https://logicalmethods.ai/exercises/fol-inference/img/distribution_4.png" class="mx-auto rounded d-block inert-img img-fluid"  width="500px"  alt="" >
+
+</li>
+</ol>
+<p><strong>Interaction Laws</strong></p>
+<ol>
+<li>
+<p><span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+xA(x)
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+xA(x)</span></p>
+
+    <img src="https://logicalmethods.ai/exercises/fol-inference/img/interaction_1.png" class="mx-auto rounded d-block inert-img img-fluid"  width="150px"  alt="" >
+
+</li>
+<li>
+<p><span class="excalifont">
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+yR(x,y)
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+y
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+xR(x,y)</span></p>
+
+    <img src="https://logicalmethods.ai/exercises/fol-inference/img/interaction_2.png" class="mx-auto rounded d-block inert-img img-fluid"  width="250px"  alt="" >
+
+</li>
+<li>
+<p><span class="excalifont">
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+xA(x)
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+C
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x(A(x)
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+C)</span>, assuming that <span class="excalifont">x</span> is not free in <span class="excalifont">C</span></p>
+
+    <img src="https://logicalmethods.ai/exercises/fol-inference/img/interaction_3.png" class="mx-auto rounded d-block inert-img img-fluid"  width="250px"  alt="" >
+
+</li>
+<li>
+<p><span class="excalifont">
+<img src="/img/forall.png" alt="forall" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+xA(x)
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+C
+<img src="/img/v_dash.png" alt="nvdash" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/exists.png" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
+
+x(A(x)
+<img src="/img/to.png" alt="Implication" class="inline-icon" style="height:1em;width:auto;"/>
+C)</span>, assuming that <span class="excalifont">x</span> is not free in <span class="excalifont">C</span>.</p>
+
+    <img src="https://logicalmethods.ai/exercises/fol-inference/img/interaction_4.png" class="mx-auto rounded d-block inert-img img-fluid"  width="350px"  alt="" >
+
+</li>
 </ol>
 
 </div>
