@@ -757,8 +757,19 @@ password protected and you&rsquo;ll receive the password in the work groups.</p>
 <div class="container exercises">
   <div class="m-4">
 </div>
-<div id="coin-flips" ><h5 class="">
+<div id="coin-flips" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Coin flips
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="coin-flipsSolution"
+        onclick="showPasswordModal('coin-flipsSolution', 'exc-prob')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>Suppose you&rsquo;re flipping two coins consecutively. You may assume that the
 outcome of the two coin-flips are independent of each other.</p>
@@ -792,8 +803,95 @@ as tails.</p>
 </ol>
 
 </div>
-<div id="law-of-total-probability" ><h5 class="">
+<div id="coin-flipsSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><ol>
+<li>
+<p>There are different ways of setting this up, but a straight-forward way is
+to model the basic outcomes as pairs <span class="excalifont">[x,y]</span>, where <code class="customCode">x,y
+<img src="/img/in.png" alt="Element" class="inline-icon" style="height:1em;width:auto;"/>
+{H,T}</code> are
+the outcomes of the first and second flip respectively (<code class="customCode">H</code> being heads, and
+<code class="customCode">T</code> being tails). That is:</p>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ Ω = { [H,H], [H,T], [T,H], [T,T]}
+ </code></div>
+</li>
+<li>
+<p>Here are the two distributions, which I call <code class="customCode">p₁</code> and <code class="customCode">p₂</code>:</p>
+<ul>
+<li>
+<p><code class="customCode">p₁([H,H]) = p₁([H,T]) = p₁([T,H]) = p₁([T,T]) = 1/4</code></p>
+</li>
+<li>
+<p><code class="customCode">p₂([H,H]) = 4/9</code>, <code class="customCode">p₂([H,T]) = 2/9</code>, <code class="customCode">p₂([T,H]) = 2/9</code>, <code class="customCode">p₂([T,T]) = 1/9</code></p>
+</li>
+</ul>
+<p>For <code class="customCode">p₁</code>, it should be pretty clear how to arrive at these values: each
+outcome is equally likely and there are four outcomes, so they must all
+have probability <code class="customCode">1/4</code>.</p>
+<p>For <code class="customCode">p₂</code>, one way you can arrive at the values is to treat heads and tails
+as independent events and the pair as their conjunction. That is we assign
+<code class="customCode">H = 2/3</code> and <code class="customCode">T = 1/3</code> to satisfy the constraint, and then calculate <code class="customCode">[H,T]
+= 2/3 x 1/3 = 2/9</code>, etc.</p>
+</li>
+<li>
+<p>First, let&rsquo;s translate the events into set representations:</p>
+<ul>
+<li>
+<p>&ldquo;At least one flip is heads&rdquo; becomes <code class="customCode">{[H,H], [H,T], [T,H]}</code></p>
+</li>
+<li>
+<p>&ldquo;Both flips are tails&rdquo; becomes <code class="customCode">{[T,T]}</code></p>
+</li>
+<li>
+<p>&ldquo;The first flip is heads or the second is tails&rdquo; becomes <code class="customCode">{[H,T], [H,H], [T,T]}</code></p>
+</li>
+<li>
+<p>&ldquo;None of the two flips is heads&rdquo; becomes <code class="customCode">{[T,T]}</code>.</p>
+</li>
+</ul>
+<p>For the probabilities of these events under the distributions, we simply add
+up the weights of the events:</p>
+<ul>
+<li>
+<p><code class="customCode">Pr₁({[H,H], [H,T], [T,H]}) = p₁([H,H]) + p₁([H,T]) + p₁([T,H]) = 1/4 +
+1/4 + 1/4 = 3/4</code></p>
+</li>
+<li>
+<p><code class="customCode">Pr₂({[H,H], [H,T], [T,H]}) = p₂([H,H]) + p₂([H,T]) + p₂([T,H]) = 4/9 +
+2/9 + 2/9 = 8/9</code></p>
+</li>
+<li>
+<p><code class="customCode">Pr₁({[T,T]}) = p₁([T,T]) = 1/4</code></p>
+</li>
+<li>
+<p><code class="customCode">Pr₂({[T,T]}) = p₂([T,T]) = 1/9</code></p>
+</li>
+<li>
+<p><code class="customCode">Pr₁({[H,T], [H,H], [T,T]}) = p₁([H,T]) + p₁([H,H]) + p₁([T,T]) = 1/4 +
+1/4 + 1/4 = 3/4</code></p>
+</li>
+<li>
+<p><code class="customCode">Pr₂({[H,T], [H,H], [T,T]}) = p₂([H,T]) + p₂([H,H]) + p₂([T,T]) = 2/9 +
+4/9 + 1/9 = 7/9</code></p>
+</li>
+</ul>
+</li>
+</ol>
+
+</div>
+<div id="law-of-total-probability" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Law of total probability
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="law-of-total-probabilitySolution"
+        onclick="showPasswordModal('law-of-total-probabilitySolution', 'exc-prob')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>The <i class="bi bi-box-arrow-up-right h-6"></i>
 <a href="https://en.wikipedia.org/wiki/Law_of_total_probability" class="link-dark" rel="external" target="_blank">law of total
@@ -839,8 +937,101 @@ B)</code></p>
 </ol>
 
 </div>
-<div id="deductive-and-inductive-inference" ><h5 class="">
+<div id="law-of-total-probabilitySolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>We start with the trivial identity:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+Pr(A) = Pr(A)
+</code></div>
+<p>Since <code class="customCode">A</code> is equivalent to <code class="customCode">(A
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B)
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(A
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+B)</code>,
+we can infer:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+Pr(A) = Pr((A
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B)
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(A
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+B))
+</code></div>
+<p>We observe that <code class="customCode">A
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B)</code> and <code class="customCode">A
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+B</code> are logically
+incompatible, that is <code class="customCode">
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+(Pr((A
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B)
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(A
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+B)))</code>. Thus:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+Pr((A
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B)
+<img src="/img/disjunction.png" alt="Disjunction" class="inline-icon" style="height:1em;width:auto;"/>
+(A
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+B)) = Pr((A
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B) + (A
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+B))
+</code></div>
+<p>So, we arrive at:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+Pr(A) = Pr((A
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+B) + (A
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+B))
+</code></div>
+<p>Replacing the conjunctive probabilities using the conjunction rule, we get:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+Pr(A) = Pr(A | B)Pr(B) + Pr(A | 
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+B)Pr(
+<img src="/img/negation.png" alt="Negation" class="inline-icon" style="height:1em;width:auto;"/>
+B)
+</code></div>
+
+</div>
+<div id="deductive-and-inductive-inference" class=" solved"><h5 class="solved">
     <div class="d-inline-flex flex-row m-0 p-0 ">Deductive and inductive inference
+      
+      &nbsp;
+      <button 
+        class="btn p-0 m-0 border-0" 
+        aria-expanded="false"
+        aria-controls="deductive-and-inductive-inferenceSolution"
+        onclick="showPasswordModal('deductive-and-inductive-inferenceSolution', 'exc-prob')">
+        <i class="bi bi-lightbulb-fill"></i>
+      </button>
+      
+      
     </div>
 </h5><p>Show that if <span class="excalifont">A
 <img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
@@ -854,6 +1045,30 @@ B</span>, then <span class="excalifont">A
 <img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
 B</span> is logically equivalent to
 <span class="excalifont">A</span>.</p>
+
+</div>
+<div id="deductive-and-inductive-inferenceSolution" class="collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light solution"><h6 class=" solution">Solution</h6><p>Suppose that <code class="customCode">A
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+B</code>. For <code class="customCode">A
+<img src="/img/approx.png" alt="approxmodels" class="inline-icon" style="height:1em;width:auto;"/>
+B</code> to be the case, we need
+that <code class="customCode">Pr(B | A) ≥ Pr(B)</code>. Unfolding the definition of conditional probability,
+we get:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+Pr(B | A) = Pr(B 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ A)/Pr(A)
+</code></div>
+<p>But since <code class="customCode">A
+<img src="/img/vDash.png" alt="vDash" class="inline-icon" style="height:1em;width:auto;"/>
+B</code>, we have that <code class="customCode">Pr(B 
+<img src="/img/conjunction.png" alt="Conjunction" class="inline-icon" style="height:1em;width:auto;"/>
+ A) = Pr(A)</code>. But that
+means that:</p>
+<div class="customBlock text-center my-4"><code class="customCode">
+Pr(B | A) = Pr(A)/Pr(A) = 1
+</code></div>
+<p>But since <em>all</em> probabilities are less than 1, it follows that <code class="customCode">Pr(B | A) ≥ Pr(A)</code>.</p>
 
 </div>
 <div id="base-rate-fallacy" ><h5 class="">
