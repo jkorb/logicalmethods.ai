@@ -229,24 +229,25 @@ valid.
 
         - Two applications of $r₀$ give: 
 
-            $${{< neg >}}{{< exists >}}x (InPub x {{< lor >}}({{< neg >}} IsDrinking x {{< lor >}}{{< forall >}}x({{< neg >}} InPub x{{< lor >}}IsDrinking x)))$$
+            $${{< neg >}}{{< exists >}}x (InPub x {{< land >}}({{< neg >}} IsDrinking x {{< lor >}}{{< forall >}}x({{< neg >}} InPub x{{< lor >}}IsDrinking x)))$$
 
         - Then we push negations inwards with $r₁-r₃$ and $r₆$:
 
-            $${{< forall >}}x ({{< neg >}}InPub x {{< land >}}(IsDrinking x {{< land >}}{{< exists >}}x (InPub x{{< land >}}{{< neg >}}IsDrinking x)))$$
+
+            $${{< forall >}}x ({{< neg >}}InPub x {{< lor >}}(IsDrinking x {{< land >}}{{< exists >}}x (InPub x{{< land >}}{{< neg >}}IsDrinking x)))$$
 
         - Next we make the variables unique:
 
-            $${{< forall >}}x₁ ({{< neg >}}InPub x₁ {{< land >}}(IsDrinking x₁ {{< land >}}{{< exists >}}y₁ (InPub y₁{{< land >}}{{< neg >}}IsDrinking y₁)))$$
+            $${{< forall >}}x₁ ({{< neg >}}InPub x₁ {{< lor >}}(IsDrinking x₁ {{< land >}}{{< exists >}}y₁ (InPub y₁{{< land >}}{{< neg >}}IsDrinking y₁)))$$
 
         - Then we Skolemize:
 
 
-            $${{< forall >}}x₁ ({{< neg >}}InPub x₁ {{< land >}}(IsDrinking x₁ {{< land >}} (InPub `skolem₂` x₁{{< land >}}{{< neg >}}IsDrinking `skolem₂` x₁)))$$
+            $${{< forall >}}x₁ ({{< neg >}}InPub x₁ {{< lor >}}(IsDrinking x₁ {{< land >}} (InPub `skolem₂` x₁{{< land >}}{{< neg >}}IsDrinking `skolem₂` x₁)))$$
 
         - And drop the universal:
 
-            $$({{< neg >}}InPub x₁ {{< land >}}(IsDrinking x₁ {{< land >}} (InPub `skolem₂` x₁{{< land >}}{{< neg >}}IsDrinking `skolem₂` x₁)))$$
+            $$({{< neg >}}InPub x₁ {{< lor >}}(IsDrinking x₁ {{< land >}} (InPub `skolem₂` x₁{{< land >}}{{< neg >}}IsDrinking `skolem₂` x₁)))$$
 
          - Finally, repeated distribution gives us:
 
