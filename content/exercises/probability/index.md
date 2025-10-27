@@ -343,10 +343,54 @@ result.
     Pr(TestPositive | ¬HasDisease)Pr(¬HasDisease) = 0.1 x 0.916... = 0.0916...
     ```
 
+    Similarly, we get for the other summand:
+
+    ```
+    Pr(TestPositive | HasDisease)Pr(HasDisease) = 0.9 x 0.083.. = 0.0749...
+    ```
+
     So, we now have for `Pr(TestPositive)` that:
 
     ```
-    Pr(TestPositive) = 0.009 + 0.0916... = 0.1006...
+    Pr(TestPositive) = 0.0749... + 0.0916... = 0.16...
+    ```
+
+
+
+    ```
+    Pr(HasDisease | TestPositive) 
+    ```
+    ```
+    =
+    ```
+    ```
+    [Pr(HasDisease) x Pr(TestPositive | HasDisease) ] / Pr(TestPositive)
+    ```
+    ```
+    =
+    ```
+    ```
+    (0.083 x 0.9) / 0.16... = 0.0747 / 0.16... ≈ 0.47
+    ```
+
+    So, we need to do another test. Now we go somewhat quicker:
+
+    ```
+    Pr(Disease) = 0.47
+    ```
+
+    ```
+    Pr(TestPositive | ¬HasDisease)Pr(¬HasDisease) = 0.1 x 0.53 = 0.053
+    ```
+
+    ```
+    Pr(TestPositive | HasDisease)Pr(HasDisease) = 0.9 x 0.46 = 0.414
+    ```
+
+
+    So:
+    ```
+    Pr(TestPositive) = 0.467
     ```
 
     ```
@@ -362,8 +406,7 @@ result.
     =
     ```
     ```
-    (0.083 x 0.9) / 0.106 = 0.0747 / 0.1006... ≈ 0.742..
+    (0.47 x 0.9) / 0.467... ≈ 0.9
     ```
 
-    So, two consecutive positive tests on a random citizen are sufficient to raise the probability to around 75%.
-
+    So only after the third positive test in a row, we can infer with 90% confidence that the patient has a disease.
