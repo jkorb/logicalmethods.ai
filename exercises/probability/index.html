@@ -1277,9 +1277,13 @@ having the disease would be different.</p>
  <div class="customBlock text-center my-4"><code class="customCode">
  Pr(TestPositive | ¬HasDisease)Pr(¬HasDisease) = 0.1 x 0.916... = 0.0916...
  </code></div>
+<p>Similarly, we get for the other summand:</p>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ Pr(TestPositive | HasDisease)Pr(HasDisease) = 0.9 x 0.083.. = 0.0749...
+ </code></div>
 <p>So, we now have for <code class="customCode">Pr(TestPositive)</code> that:</p>
  <div class="customBlock text-center my-4"><code class="customCode">
- Pr(TestPositive) = 0.009 + 0.0916... = 0.1006...
+ Pr(TestPositive) = 0.0749... + 0.0916... = 0.16...
  </code></div>
  <div class="customBlock text-center my-4"><code class="customCode">
  Pr(HasDisease | TestPositive) 
@@ -1294,9 +1298,38 @@ having the disease would be different.</p>
  =
  </code></div>
  <div class="customBlock text-center my-4"><code class="customCode">
- (0.083 x 0.9) / 0.106 = 0.0747 / 0.1006... ≈ 0.742..
+ (0.083 x 0.9) / 0.16... = 0.0747 / 0.16... ≈ 0.47
  </code></div>
-<p>So, two consecutive positive tests on a random citizen are sufficient to raise the probability to around 75%.</p>
+<p>So, we need to do another test. Now we go somewhat quicker:</p>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ Pr(Disease) = 0.47
+ </code></div>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ Pr(TestPositive | ¬HasDisease)Pr(¬HasDisease) = 0.1 x 0.53 = 0.053
+ </code></div>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ Pr(TestPositive | HasDisease)Pr(HasDisease) = 0.9 x 0.46 = 0.414
+ </code></div>
+<p>So:</p>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ Pr(TestPositive) = 0.467
+ </code></div>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ Pr(HasDisease | TestPositive) 
+ </code></div>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ =
+ </code></div>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ [Pr(HasDisease) x Pr(TestPositive | HasDisease) ] / Pr(TestPositive)
+ </code></div>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ =
+ </code></div>
+ <div class="customBlock text-center my-4"><code class="customCode">
+ (0.47 x 0.9) / 0.467... ≈ 0.9
+ </code></div>
+<p>So only after the third positive test in a row, we can infer with 90% confidence that the patient has a disease.</p>
 </li>
 </ol>
 
