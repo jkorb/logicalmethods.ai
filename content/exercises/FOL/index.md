@@ -432,12 +432,12 @@ As a final brain teaser:
         {{< sql_logo >}}
         ~~~sql
         SELECT language
-        FROM Language
+        FROM LanguageOf AS outer
         WHERE NOT EXISTS (
           SELECT *
-          FROM Language
+          FROM LanguageOf as inner
           WHERE country = 'United States'
-            AND Language.language = language
+            AND inner.language = outer.language
         );
         ~~~
 
@@ -446,12 +446,12 @@ As a final brain teaser:
         {{< sql_logo >}}
         ~~~sql
         SELECT DISTINCT continent
-        FROM LocatedIn
+        FROM LocatedIn AS outer
         WHERE NOT EXISTS (
           SELECT *
-          FROM LocatedIn
+          FROM LocatedIn AS inner
           WHERE country = 'Japan'
-            AND LocatedIn.continent = continent
+            AND inner.continent = outer.continent
         );
         ~~~
 
@@ -459,13 +459,12 @@ As a final brain teaser:
 
         {{< sql_logo >}}
         ~~~sql
-        SELECT continent
-        FROM LocatedIn
+        SELECT DISTINCT continent
+        FROM LocatedIn AS outer 
         WHERE NOT EXISTS (
           SELECT *
-          FROM LocatedIn
-          WHERE country = 'Japan'
-            AND LocatedIn.continent = continent
+          FROM LocatedIn AS inner
+          WHERE inner.country = outer.continent
         );
         ~~~
 
