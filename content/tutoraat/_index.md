@@ -169,11 +169,12 @@ section. Please take note of where you're needed and when.
 
 ## Break Day 
 
-| Time          | Event              | Room |
-|---------------|--------------------|------|
-| 13:15–14:00   | Plenair welkom     | tbd  |
-| 14:15–15:00   | Tutor Meeting 2    | tbd  |
-| 15:15–16:00   | GitHub Workshop    | tbd  |
+| Time            | Event                | Room           |
+| --------------- | -------------------- | ------         |
+| 13:15–14:00     | Plenair welkom       | Drift 13 - 004 |
+| 14:15–15:00     | Tutor Meeting 2      | D25            |
+| 15:15–16:00     | GitHub Workshop      | KNG80          |
+| 16:15–16:45     | GenAI Voorlichting   | Drift 13 - 004 |
 
 **Plenary Welcome**
 
@@ -187,17 +188,17 @@ section. Please take note of where you're needed and when.
 
 | Group  | Time          | Room        |
 | ------ | ------------- | ----------- |
-| 1      | 14:15 - 15:00 | tbd         |
-| 2      | 14:15 - 15:00 | tbd         |
-| 3      | 14:15 - 15:00 | tbd         |
+| 1      | 14:15 - 15:00 | D25 - 001   |
+| 2      | 14:15 - 15:00 | D25 - 005   |
+| 3      | 14:15 - 15:00 | D25 - 101   |
 
-**LaTeX workshop**
+**Git workshop**
 
-| Group  | Time          | Room        |
-| ------ | ------------- | ----------- |
-| 1      | 15:15 - 16:00 | tbd         |
-| 2      | 15:15 - 16:00 | tbd         |
-| 3      | 15:15 - 16:00 | tbd         |
+| Group  | Time          | Room         |
+| ------ | ------------- | -----------  |
+| 1      | 15:15 - 16:00 | KNG 80 - 012 |
+| 2      | 15:15 - 16:00 | KNG 80 - 113 |
+| 3      | 15:15 - 16:00 | KNG 80 - 114 |
 
 # 4. Meetings
 
