@@ -122,14 +122,14 @@ section. Please take note of where you're needed and when.
 
 | When             | What                                    | Who    |
 | ---------------- | --------------------------------------  | ------ |
-| 26/08/25         | Peer coach training 1                   | P+M    |
-| before 01/09/25  | Tutor meets peer coaches                | T+P    |
-| 01/09/25         | Intro Day: Tutormeeting 1, LaTeX        | T+P+M  |
-| ca. 10/25        | Peer coach training 2                   | P      |
-| 03/11/25         | Break Day: Tutormeeting 2, Git workshop | T+P    |
-| before 24/12/25  | Social Activity                         | P+M    |
-| before 01/02/26  | Peer Coach Review & Tutormeeting 3      | T+P    |
-| 05/26            | Choice Day: Tutormeeting 4, Workshop    | T+P+S  |
+| 25/08/26         | Peer coach training 1                   | P+M    |
+| before 07/09/26  | Tutor meets peer coaches                | T+P    |
+| 07/09/26         | Intro Day: Tutormeeting 1, LaTeX        | T+P+M  |
+| ca. 10/26        | Peer coach training 2                   | P      |
+| 09/11/25            | Break Day: Tutormeeting 2, Git workshop | T+P    |
+| before 24/12/26  | Social Activity                         | P+M    |
+| before 01/02/27  | Peer Coach Review & Tutormeeting 3      | T+P    |
+| 05/27            | Choice Day: Tutormeeting 4, Workshop    | T+P+S  |
 
 **Legend**: P = Peer coach, T = Tutor, M = Mentor, S = Study advisor
 
@@ -139,25 +139,25 @@ section. Please take note of where you're needed and when.
 | --------------- | -------------------------------- | -------------- |
 | 12:00–12:55     | Lunch                            | Library        |
 | 13:15–14:00     | Welcome                          | Nicolaikerk    |
-| 14:15–15:00     | Logic Lecture                    | Nicolaikerk    |
-| 15:15–17:00     | Tutormeeting 1/LaTeX Workshop    | D25 & KNG80    |
+| 14:15–15:00     | Lecture                          | Nicolaikerk    |
+| 15:15–17:00     | Tutormeeting 1/LaTeX Workshop    | KNG80          |
 
 **Plenary Welcome**
 
 | Time            | Person                                 |
 | --------------- | -------------------------------------- |
-| 13:15–13:20     | Algemeen welkom (Johannes)             |
-| 13:20–13:35     | Bachelorcoordinator (Niels & Dominik)  |
+| 13:15–13:20     | Algemeen welkom (Dominik)              |
+| 13:20–13:35     | Bachelorcoordinator (Dominik)          |
 | 13:35–13:50     | Studieadviseur (Ruben)                 |
 | 13:50–14:00     | Incognito                              |
 
 **Tutor meetings**
 
- | Group | Time          | Room        |
- |------ | ------------- | ----------- |
- | 1     | 15:15 - 16:00 | D25 - 101   |
- | 2     | 15:15 - 16:00 | D25 - 105   |
- | 3     | 15:15 - 16:00 | KNG80 - 017 |
+ | Group | Time          | Room            |
+ |------ | ------------- | -----------     |
+ | 1     | 15:15 - 16:00 | KNG80 - 007     |
+ | 2     | 15:15 - 16:00 | KNG80 - 013     |
+ | 3     | 15:15 - 16:00 | KNG80 - 017-019 |
 
 **LaTeX workshop**
 
@@ -169,36 +169,38 @@ section. Please take note of where you're needed and when.
 
 ## Break Day 
 
-| Time            | Event                | Room           |
-| --------------- | -------------------- | ------         |
-| 13:15–14:00     | Plenair welkom       | Drift 13 - 004 |
-| 14:15–15:00     | Tutor Meeting 2      | D25            |
-| 15:15–16:00     | GitHub Workshop      | KNG80          |
-| 16:15–16:45     | GenAI Voorlichting   | Drift 13 - 004 |
+tbd
 
-**Plenary Welcome**
-
-| Time            | Person                      |
-| --------------- | --------------------------  |
-| 13:15–13:30     | Algemeen welkom (Johannes)  |
-| 13:30–13:45     | Bachelorcoordinator (Niels) |
-| 13:45–14:00     | Studieadviseur (Ruben)      |
-
-**Tutor meetings**
-
-| Group  | Time          | Room        |
-| ------ | ------------- | ----------- |
-| 1      | 14:15 - 15:00 | D25 - 001   |
-| 2      | 14:15 - 15:00 | D25 - 005   |
-| 3      | 14:15 - 15:00 | D25 - 101   |
-
-**Git workshop**
-
-| Group  | Time          | Room         |
-| ------ | ------------- | -----------  |
-| 1      | 15:15 - 16:00 | KNG 80 - 012 |
-| 2      | 15:15 - 16:00 | KNG 80 - 113 |
-| 3      | 15:15 - 16:00 | KNG 80 - 114 |
+<!-- | Time            | Event                | Room           | -->
+<!-- | --------------- | -------------------- | ------         | -->
+<!-- | 13:15–14:00     | Plenair welkom       | Drift 13 - 004 | -->
+<!-- | 14:15–15:00     | Tutor Meeting 2      | D25            | -->
+<!-- | 15:15–16:00     | GitHub Workshop      | KNG80          | -->
+<!-- | 16:15–16:45     | GenAI Voorlichting   | Drift 13 - 004 | -->
+<!---->
+<!-- **Plenary Welcome** -->
+<!---->
+<!-- | Time            | Person                      | -->
+<!-- | --------------- | --------------------------  | -->
+<!-- | 13:15–13:30     | Algemeen welkom (Johannes)  | -->
+<!-- | 13:30–13:45     | Bachelorcoordinator (Niels) | -->
+<!-- | 13:45–14:00     | Studieadviseur (Ruben)      | -->
+<!---->
+<!-- **Tutor meetings** -->
+<!---->
+<!-- | Group  | Time          | Room        | -->
+<!-- | ------ | ------------- | ----------- | -->
+<!-- | 1      | 14:15 - 15:00 | D25 - 001   | -->
+<!-- | 2      | 14:15 - 15:00 | D25 - 005   | -->
+<!-- | 3      | 14:15 - 15:00 | D25 - 101   | -->
+<!---->
+<!-- **Git workshop** -->
+<!---->
+<!-- | Group  | Time          | Room         | -->
+<!-- | ------ | ------------- | -----------  | -->
+<!-- | 1      | 15:15 - 16:00 | KNG 80 - 012 | -->
+<!-- | 2      | 15:15 - 16:00 | KNG 80 - 113 | -->
+<!-- | 3      | 15:15 - 16:00 | KNG 80 - 114 | -->
 
 # 4. Meetings
 
