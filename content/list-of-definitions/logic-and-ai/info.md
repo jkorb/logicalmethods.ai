@@ -1,0 +1,1 @@
+Here you can find a list of important definitions. Note: these definitions are not sufficient to understand the concept in full, you should read the textbook, practice and attent the lectures and tutorials to gain real understanding. This list is meant to refresh some basics.
