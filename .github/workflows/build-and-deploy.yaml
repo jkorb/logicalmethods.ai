@@ -1,4 +1,7 @@
 name: Build and deploy
+run-name: >-
+  ${{ github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && 'Deploy logicalmethods.ai' || 'Check logicalmethods.ai' }}
+  — ${{ github.event.pull_request.title || github.event.head_commit.message || format('Manual run on {0} by @{1}', github.ref_name, github.actor) }}
 
 on:
   push:
@@ -11,7 +14,8 @@ permissions:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  # Let an active production deployment finish; superseded PR checks can stop.
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
   verify:
@@ -45,10 +49,13 @@ jobs:
             tmp/test-results/
           if-no-files-found: ignore
           retention-days: 7
-      - name: Upload tested site
-        uses: actions/upload-artifact@v4
+      - name: Configure GitHub Pages
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        uses: actions/configure-pages@v5
+      - name: Upload tested GitHub Pages artifact
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v4
         with:
-          name: tested-site
           path: tmp/site/
           retention-days: 7
 
@@ -79,21 +86,18 @@ jobs:
           retention-days: 7
 
   deploy:
-    name: Deploy tested site
+    name: Deploy logicalmethods.ai · main · run ${{ github.run_number }}
     # Publish only after the required tests have passed.
     needs: [verify]
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     runs-on: ubuntu-24.04
     permissions:
-      contents: write
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
-        with:
-          name: tested-site
-          path: public
-      - uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
-          cname: logicalmethods.ai
+      - name: Publish tested site to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -153,8 +153,11 @@ full suite after upgrades and the prose tests after Vale changes.
 
 The [build and deployment workflow](../.github/workflows/build-and-deploy.yaml)
 has a `verify` job that runs `npm test`. The `deploy` job requires `verify` to
-succeed, then publishes the tested files. Only pushes to `main` deploy;
-pull requests and manual runs just check the site. The README badge links to
+succeed, then publishes the tested files through GitHub's Pages artifact and
+deployment actions. Pushes and manual runs on `main` deploy; pull requests and
+manual runs on other branches just check the site. See the
+[deployment setup](technical.md#deployment) for the required Pages settings.
+The README badge links to
 this workflow, using GitHub's native status badge for pushes to `main`. It shows
 the overall build and deployment status, including tests. Badge images can lag
 behind a run; follow the link for the current result.
