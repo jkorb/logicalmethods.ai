@@ -7,8 +7,9 @@ export function proseText(source, course = true) {
   let text = source.replace(/^---\r?\n[\s\S]*?\r?\n---/, blank)
     .replace(/<!--(?!\s*vale\b)[\s\S]*?-->/g, blank)
     .replace(/^([`~]{3,})[^\n]*\n[\s\S]*?^\1\s*$/gm, blank);
-  // Remove just shortcode tags, preserving explanatory inner text.
-  text = text.replace(/\{\{[<%][\s\S]*?[%>]\}\}/g, text => '<!--' + blank(text.slice(4, -3)) + '-->')
+  // A nonbreaking space prevents shortcode padding from becoming indented code.
+  // Unlike HTML placeholders, it cannot start a Markdown HTML block.
+  text = text.replace(/\{\{[<%][\s\S]*?[%>]\}\}/g, text => blank(text).replace(/^ /gm, '\u00a0'))
     .replace(/\$\$[\s\S]*?\$\$|\$[^$]*?\$|\\\([\s\S]*?\\\)|\\\[[\s\S]*?\\\]/g, inline)
     .replace(/```[\s\S]*?```|`[^`]*`/g, inline);
   if (course) text = text.replace(/!![\s\S]*?!!|~![\s\S]*?!~|%[^%\n]+%/g, inline);

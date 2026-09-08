@@ -87,7 +87,10 @@ Vale version is already on your PATH, you can omit `VALE_BIN=tmp/bin/vale` too.
 Results appear in the terminal and in `tmp/prose-report.json`.
 
 Add accepted names and technical terms to the
-[course vocabulary](../.vale/styles/config/vocabularies/Course/accept.txt).
+[course vocabulary](../.vale/styles/config/vocabularies/Course/accept.txt), one
+entry per line in alphabetical order. This also covers acronyms, possessives,
+and words in foreign-language bibliography titles. Check the word in context
+before adding it; formatting problems and spelling errors should stay flagged.
 The spelling dictionary is American English, with some British variants accepted.
 English spelling and terminology checks are disabled for the Dutch study-track
 section and the mixed-language tutoring guide. Repeated-word checks still apply.

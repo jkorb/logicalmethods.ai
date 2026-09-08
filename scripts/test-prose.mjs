@@ -15,6 +15,9 @@ const dutch = Object.entries(report).find(([key]) => key.endsWith('dutch.md'))?.
 assert(english.some(f => f.Check === 'LogicalMethods.Repetition'));
 assert(english.some(f => f.Match === 'mispelingvisible'));
 assert(english.some(f => f.Match === 'mispelinginner'));
+// Recognize course vocabulary without hiding misspellings or emphasis text.
+const misspellings = english.filter(f => f.Check === 'Vale.Spelling').map(f => f.Match).sort();
+assert.deepEqual(misspellings, ['Programe', 'countermodle', 'mispelingemphasis', 'mispelinginner', 'mispelingvisible'].sort());
 assert(!english.some(f => /mispeling(?:Hidden|attribute|formula|code|percent|block)/i.test(f.Match)));
 assert(dutch.some(f => f.Check === 'LogicalMethods.Repetition'));
 assert(!dutch.some(f => f.Check === 'Vale.Spelling'));
