@@ -957,6 +957,8 @@ language.](https://doi.org/10.1515/9783111546216-007)
 
 **Notes:**
 
+<!-- Existing unreferenced editorial note; retained for revision. -->
+<!-- markdownlint-disable-next-line MD053 -->
 [^history]: See the book by Dutilh Novaes, for example.
 There is not so much more to be said about the alphabet but it's useful to
 remark that in logical contexts, there are some special kinds of symbols that

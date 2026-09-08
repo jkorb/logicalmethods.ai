@@ -4,3 +4,6 @@ public/
 
 # Temporary review and validation artifacts
 /tmp/
+
+# Development dependencies and local tool downloads
+/node_modules/

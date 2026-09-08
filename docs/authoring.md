@@ -69,8 +69,7 @@ Use page-bundle images with the existing shortcode:
 
 The [`img` shortcode](../layouts/shortcodes/img.html) looks only in the page's
 resources and fails the Hugo build with a source location if lookup fails.
-Shared graphics live in
-`assets/img/` and are accessed by templates or dedicated symbol shortcodes.
+Shared graphics live in `assets/img/` and are accessed by templates or dedicated symbol shortcodes.
 Editable diagram resources may accompany exports; preserve both when present.
 
 For textbook references, [`chapter_ref`](../layouts/shortcodes/chapter_ref.html)
@@ -101,7 +100,7 @@ Hugo generates a heading ID when none is supplied. Use an explicit ID to keep
 solution controls working when you rename a question. Verify the modal and
 collapse in a browser. Answers are present in delivered HTML.
 
-## Slides and completion checks
+## Slides
 
 Existing slides such as
 [`slides/logic-and-ai/index.md`](../content/slides/logic-and-ai/index.md) select
@@ -109,7 +108,13 @@ Existing slides such as
 `iframe` shortcode. The default slide template instead initializes Reveal.js.
 Editing an embed URL does not edit the external deck; review it separately.
 
-Before finishing: run `hugo -D`, inspect the changed page and its section list,
-check notation and resource loading, and test any affected anchors or controls.
-For a topic revision, check related textbook, exercise, and slide pages for
-consistency. Update these guides if the authoring conventions themselves change.
+## Checking your work
+
+Run `npm run check` after editing content, and `npm test` before pushing. Preview
+the changed page and its section list. Check formulas, images, links, and any
+solution controls. When revising a topic, also check its related textbook,
+exercise, and slide pages for consistency.
+
+For spelling and style suggestions, use `npm run lint:prose` after
+[setting up Vale](testing.md#spelling-and-style). The [testing guide](testing.md)
+explains the available checks and how to handle exceptions.

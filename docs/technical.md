@@ -2,19 +2,16 @@
 
 ## Build and preview
 
-This is a static Hugo site with custom templates in `layouts/`; no external Hugo
-theme or root-level Node build is configured. Git and Hugo are sufficient for
-the site build using the checked-in assets.
-
-From the repository root:
+The site is built with Hugo and custom templates in `layouts/`. Install the
+version in [`.hugo-version`](../.hugo-version), then run these commands from the
+repository root:
 
 ```sh
 hugo version
 hugo server -D
 ```
 
-Use the preview URL printed by Hugo (normally `http://localhost:1313/`). To match
-the CI build, run `hugo -D`; output goes to the ignored `public/` directory.
+Use the preview URL printed by Hugo (normally `http://localhost:1313/`). Run `hugo -D` to build the site into `public/`.
 `-D` includes draft content. A plain `hugo` build excludes drafts and therefore
 does not reproduce the current deployment behavior.
 
@@ -32,19 +29,15 @@ does not reproduce the current deployment behavior.
  | [`docs/`](./)                                                        | Contributor knowledge base; not part of the generated site.             |
 
 Bootstrap, Bootstrap Icons, Reveal.js, and KaTeX are bundled under `assets/`.
-Although [`.gitmodules`](../.gitmodules) declares the first three and CI requests
-recursive submodule checkout, this baseline tracks their files directly and
-`git submodule status` returns no entries. Do not assume a submodule update will
-upgrade them. Package manifests inside these libraries belong to those upstream
-projects; ordinary site work does not require running their package installers.
+Their files are checked into the repository, even though `.gitmodules` lists
+some of them. Package manifests inside these directories belong to the libraries;
+you do not need to install their dependencies to work on the site.
 
 ## Temporary working files
 
-Use the root `tmp/` directory for copy-edit reviews, approval checklists, scratch
-notes, screenshots, and other temporary validation artifacts. This directory is
-ignored by Git and is outside Hugo's content and asset directories. Keep these
-files local unless the user explicitly requests that they be committed; do not
-force-add them. Reserve `docs/` for lasting contributor documentation.
+Keep screenshots, test reports, and scratch files in `tmp/`. Git ignores this
+directory, and Hugo does not publish it. Use `docs/` for contributor documentation
+that belongs in the repository.
 
 ## Rendering and assets
 
@@ -72,26 +65,20 @@ modules. Section templates can add scripts, such as exercise interactions.
 
 ## Deployment
 
-[`build-and-deploy.yaml`](../.github/workflows/build-and-deploy.yaml) runs on pull
-requests and pushes to `main`, uses Ubuntu 22.04, installs Hugo `latest`, and runs
-`hugo -D`. The deployment step runs only for `refs/heads/main` and publishes
-`public/` through `peaceiris/actions-gh-pages@v4` with `logicalmethods.ai` as the
-custom domain. A push to `main` can therefore publish changes automatically.
+Pushing to `main` runs the [build and deployment workflow](../.github/workflows/build-and-deploy.yaml).
+Its test job must pass before the deployment job can publish to GitHub Pages.
+The deployment uses the files produced and checked by that run. Pull requests
+run the same tests without publishing.
+
+See [testing](testing.md) for local setup and commands. Spelling suggestions and
+external-link reports are available separately and do not block deployment.
 
 ## Validation and known caveats
 
-For site changes, run `hugo -D`, then preview the affected routes. Template or CSS
-changes warrant checking the home page, section lists, a textbook chapter,
-exercises, and slides at narrow and wide viewport sizes. Check navigation, image
-and font loading, notation, and any changed browser interactions. The build does
-not verify visual layout, external embeds, or mathematical correctness. No
-project-level automated test suite is configured; bundled library tests are not
-site tests.
-
-The site uses `locale` for its language setting and builds with Hugo v0.165.0.
-CI's unpinned `latest` can change compatibility; no minimum Hugo version is
-declared, and the successful extended build does not establish an extended-only
-requirement.
+Run `npm test` before pushing. For a quick build check, use `hugo -D`.
+Preview the pages you change, including their small-screen layout, formulas,
+and interactive controls. Automated tests complement this review; they cannot
+judge whether an explanation or a mathematical argument is correct.
 
 `hidden` filters navigation, while `locked` disables links in the list partial.
 Neither prevents page generation or direct access. Exercise passwords and

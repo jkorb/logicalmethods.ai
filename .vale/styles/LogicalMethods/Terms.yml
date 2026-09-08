@@ -1,0 +1,8 @@
+extends: substitution
+message: "Use '%s' for consistent terminology."
+level: suggestion
+ignorecase: false
+swap:
+  Github: GitHub
+  Javascript: JavaScript
+  Boolean Algebra: Boolean algebra

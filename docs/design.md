@@ -1,9 +1,8 @@
 # Design language
 
-The current site combines a restrained reading layout with a hand-drawn teaching
+The site combines a restrained reading layout with a hand-drawn teaching
 style: white content panels, dark navigation, sketch-like logic symbols, and the
-course mascot. This guide describes the implementation and gives conventions for
-extending it; it is not a claim that every existing page meets those conventions.
+course mascot. Use these conventions when adding or changing pages.
 
 ## Layout and navigation
 
@@ -51,6 +50,5 @@ the separate Reveal.js presentation template.
 When extending the design, prefer Bootstrap utilities and shared partials; put
 section-specific rules in the corresponding file under `assets/css/`. Verify
 keyboard operation, visible focus, readable contrast, accessible control labels,
-and small-screen overflow for new or changed interactions. These are review
-criteria, not an existing accessibility certification. Check the separate
+and small-screen overflow for new or changed interactions. Check the separate
 `tutoraat` and `verdiepingspakketten` shells when a change should affect them.

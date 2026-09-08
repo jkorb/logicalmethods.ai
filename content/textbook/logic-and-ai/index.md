@@ -775,10 +775,14 @@ subscribe to newsletters, such as [tl;dr -- AI](https://tldr.tech/ai) or the
 
 [^bivalence]: Why is this a simplifying assumption?
 
+<!-- Existing unreferenced editorial note; retained for revision. -->
+<!-- markdownlint-disable-next-line MD053 -->
 [^history]: The history of symbolic AI is an intriguing but complex topic. We
 don't have the space here to get into it too much. Check out some of the
 suggestions in the [references](#further-readings).
 
+<!-- Existing unreferenced editorial note; retained for revision. -->
+<!-- markdownlint-disable-next-line MD053 -->
 [^XAI]: This is, of course, a problem for XAI, as many scandals, like the [Dutch
 childcare benefits
 scandal](https://en.wikipedia.org/wiki/Dutch_childcare_benefits_scandal) have

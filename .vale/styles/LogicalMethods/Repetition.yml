@@ -1,0 +1,8 @@
+extends: existence
+message: "Repeated word: '%s'."
+level: warning
+scope: text
+ignorecase: true
+nonword: true
+tokens:
+  - '\b(the|a|an|and|or|of|to|in|is|are|de|het|een|en|van)\s+\1\b'

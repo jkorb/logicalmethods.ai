@@ -1,43 +1,98 @@
-# Workflow to build and deploy site to Github Pages using Hugo.
-# "Lifted" from: https://github.com/peaceiris/actions-hugo
-#
-# Thanks!
-
 name: Build and deploy
 
 on:
   push:
-    branches:
-      - main  # Set a branch name to trigger deployment
+    branches: [main]
   pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
+  verify:
+    name: Tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Read Hugo version
+        id: hugo
+        run: echo "version=$(cat .hugo-version)" >> "$GITHUB_OUTPUT"
+      - uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: ${{ steps.hugo.outputs.version }}
+          extended: true
+      - run: npm ci
+      - run: npm run setup:browsers -- --with-deps
+      - name: Run required tests
+        run: npm test
+      - name: Upload browser diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-diagnostics
+          path: |
+            tmp/playwright-report/
+            tmp/test-results/
+          if-no-files-found: ignore
+          retention-days: 7
+      - name: Upload tested site
+        uses: actions/upload-artifact@v4
+        with:
+          name: tested-site
+          path: tmp/site/
+          retention-days: 7
+
+  prose:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run setup:prose
+      - run: npm run test:prose
+        env:
+          VALE_BIN: tmp/bin/vale
+      - run: npm run lint:prose
+        env:
+          VALE_BIN: tmp/bin/vale
+      - name: Upload advisory prose report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: prose-report
+          path: tmp/prose-report.json
+          if-no-files-found: ignore
+          retention-days: 7
+
   deploy:
-    runs-on: ubuntu-22.04
+    name: Deploy tested site
+    # Publish only after the required tests have passed.
+    needs: [verify]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
     permissions:
       contents: write
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
         with:
-          submodules: recursive  # Fetch Hugo themes (true OR recursive)
-          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
-
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
-        with:
-          hugo-version: 'latest'
-
-      - name: Build
-        run: hugo -D
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v4
-        # If you're changing the branch from main,
-        # also change the `main` in `refs/heads/main`
-        # below accordingly.
-        if: github.ref == 'refs/heads/main'
+          name: tested-site
+          path: public
+      - uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public

@@ -1,0 +1,30 @@
+{
+  "name": "logicalmethods-site-checks",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build:test": "node scripts/build.mjs",
+    "test:unit": "node --test tests/unit/*.test.mjs",
+    "check:site": "node scripts/check-site.mjs",
+    "check:content": "node scripts/check-content.mjs",
+    "lint:markdown": "markdownlint-cli2",
+    "check": "npm run test:unit && npm run build:test && npm run check:content && npm run check:site && npm run lint:markdown",
+    "test": "npm run check && npm run test:browser",
+    "test:browser": "node scripts/playwright.mjs test",
+    "serve:test": "node scripts/serve.mjs",
+    "lint:prose": "node scripts/prose.mjs",
+    "check:external": "npm run build:test && node scripts/external.mjs",
+    "setup:prose": "node scripts/install-vale.mjs",
+    "test:prose": "node scripts/test-prose.mjs",
+    "setup:browsers": "node scripts/playwright.mjs install chromium"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "cheerio": "1.2.0",
+    "markdownlint-cli2": "0.23.2",
+    "yaml": "2.9.0"
+  }
+}

@@ -1,22 +1,16 @@
-# Project knowledge base
+# Contributor guide
 
-Shared reference for people and AI agents working on logicalmethods.ai.
-The root [AGENTS.md](../AGENTS.md) directs agents here; the repository
-[README](../README.md) provides the human entry point. These files are repository
-documentation, outside Hugo's `content/`, and are not published as course pages.
+Use these guides to work on logicalmethods.ai:
 
-| Guide                           | Read when you need to…                                               |
-| ---                             | ---                                                                  |
-| [Project](project.md)           | Understand the audience, aims, curriculum, and ownership.            |
-| [Technical setup](technical.md) | Run the site, locate implementation files, or understand deployment. |
-| [Design](design.md)             | Change layout, styling, navigation, or interactions.                 |
-| [Authoring](authoring.md)       | Add or edit lessons, exercises, slides, or notation.                 |
+| Guide | What it covers |
+| --- | --- |
+| [Project](project.md) | The course, its audience, and licensing. |
+| [Technical setup](technical.md) | Running Hugo, finding source files, and deployment. |
+| [Design](design.md) | Layout, typography, and interactive elements. |
+| [Authoring](authoring.md) | Writing lessons, notation, images, and exercises. |
+| [Testing](testing.md) | Running tests, checking prose, and investigating failures. |
 
-Start with the project guide, then read the guide relevant to your task. The
-linked source files are the implementation authority if documentation drifts.
-Update the corresponding guide alongside changes to behavior; keep explanations
-short and link to code instead of duplicating it. Add a new guide only when a
-topic no longer fits clearly in an existing one.
-
-Baseline inspected: 2026-09-07. A local build passed with Hugo v0.165.0; see
-[build notes](technical.md#validation-and-known-caveats) for limitations.
+To get started, follow the [technical setup](technical.md) to preview the site,
+then install the [test tools](testing.md#first-time-setup). Update the relevant
+guide when you change how the site works. These documents are for contributors
+and are not published as course pages.

@@ -35,7 +35,7 @@ contains tutoring guidance, and
 [`verdiepingspakketten`](../content/verdiepingspakketten/) supports study-track
 guidance. These sections and [`unlock`](../content/unlock/) are hidden from normal
 navigation, not private. Quiz templates and scripts exist, but there is no
-`content/quizzes/` section in this baseline.
+`content/quizzes/` section in the course content.
 
 ## Editorial direction
 
