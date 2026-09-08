@@ -738,9 +738,9 @@ Pr({{< forall >}}x White x | White m₁{{< land >}} ...{{< land >}} White mₙ)
 
 For this purpose, we can make use of probabilistic theorems like the following:
 
-**Theorem**: If `C{{< vDash >}} P₁ {{< land >}} P₂...` (the conclusion
-deductively implies the premises), `Pr(P₁ {{< land >}} P₂) ≠ 1` (the premises
-aren't tautologies), and `Pr(C) ≠ 0` (the conclusion is not impossible), then
+**Theorem**: If `C{{< vDash >}} P₁ {{< land >}} P₂ {{< land >}} ...` (the conclusion
+deductively implies the premises), `Pr(P₁ {{< land >}} P₂ {{< land >}} …) ≠ 1` (the premises
+aren't certain), and `Pr(C) ≠ 0` (the conclusion is not impossible), then
 `Pr(C | P₁ {{< land >}} P₂...) > Pr(C)`.
 
 To see that this must be true, we need to observe the logical fact that:
