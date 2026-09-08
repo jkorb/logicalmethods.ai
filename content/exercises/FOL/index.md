@@ -42,7 +42,7 @@ a specific domain. There are different approaches to this problem, but here
 we'll try out an FOL-based approach.
 
 The problem we're tackling is to represent information about a given setup using
-FOL formulas. The first step on the approach is to decide on a suitable
+FOL formulas. The first step in the approach is to decide on a suitable
 vocabulary. Since we're working with FOL languages, this means that we need to
 pick suitable constants, function symbols, and predicates to represent the
 information. Picking the right vocabulary is crucial for success when dealing
@@ -54,7 +54,7 @@ Picking the right language is closely related to finding a suitable
 [ontology](https://en.wikipedia.org/wiki/Ontology_(information_science)) for the
 problem. That is, we need to say which objects exist in the information, which
 functions and properties are at play. We also need to answer questions like
-whether we can reduce some properties to others do have a simpler language. For
+whether we can reduce some properties to others to have a simpler language. For
 example, should we have a separate predicate for `Uncle²` or should we define it
 using `Male¹`, `Sibling²`, and `Parent²`, where rather than `Uncle x y` we use:
 
@@ -72,7 +72,7 @@ and to encode it with FOL formulas. Here, the main challenge is adequacy: we
 need to find formulas whose FOL truth-conditions resemble the given information
 as closely as possible, while remaining within the confines of FOL.
 
-For a concrete knowledge engineering problem, lets consider the following
+For a concrete knowledge engineering problem, let's consider the following
 marketing information about {{< logo >}}&ThinSpace; provided by its developer:
 
 {{< img src="img/competition.png" class="rounded  float-start inert-img img-fluid m-2" width="200px" >}} 
@@ -119,7 +119,7 @@ reasoning tasks.*
     - `IsCapableOf ∀I natural_deduction`, `IsCapableOf ∀I sat_solving`
     - `IsCapableOf ∀I voice_recognition`, `IsCapableOf ∀I image_recognition`
     - `IsSymbolic KnowIt∀ {{< land >}} {{< neg >}}IsSubSymbolic KnowIt∀`
-    - `{{< forall >}}x (IsCabaleOf KnowIt∀ x {{< to >}} IsReasoningTask x)`
+    - `{{< forall >}}x (IsCapableOf KnowIt∀ x {{< to >}} IsReasoningTask x)`
     - `{{< neg >}}IsSymbolic DeepL {{< land >}} IsSubSymbolic DeepL`
     - `{{< forall >}}x (IsLearnedTask x {{< to >}} IsCapableOf ∀I x)`
     - `{{< exists >}}x (IsReasoningTask x {{< land >}} IsCapableOf ∀I x)`
@@ -146,7 +146,7 @@ For this exercise, we are working with an FOL language with the following vocabu
 Now consider the following facts about our protagonist, little Jimmy:
 
 *Little Jimmy and his brother, Linus, are the children of Mr Sir and Lady Dame.
-They family lives in New York, where Lady Dame is from. But both Jimmy and his
+The family lives in New York, where Lady Dame is from. But both Jimmy and his
 brother were born in London, where their father is from. The children's paternal
 grandmother is Granny Smith, who still lives in London, where she was born. The
 children and their grandmother love soccer, unlike their parents.*
@@ -226,7 +226,7 @@ For this purpose:
 
 1. Parse the expression according to the grammar for FOL terms.
 
-2. Recursively calculate the values of each term, following the terms parsing
+2. Recursively calculate the values of each term, following the term's parsing
    tree.
 
 ## Solution {#denotationSolution .solution}
@@ -272,17 +272,17 @@ In this exercise, we'll explore this connection a bit more.
 We return to our country DB from the textbook. You can open it again under
 [db-fiddle](https://www.db-fiddle.com/f/bTqC7rED8PrABxDyhN766d/2).
 
-I should preface this that what we're doing here is _not_ great SQL practice.
+I should preface this by saying that what we're doing here is _not_ great SQL practice.
 We're writing code that might seem unnatural in SQL and there certainly are
 better ways to code the queries. The point here is to get the idea of the
 correspondence across and then worry about learning to code "clean" SQL later
 (if you want to). 
 
-So: SQL is a rich and powerful language of domain-specific languages, and there are
+So: SQL is a rich and powerful domain-specific language, and there are
 much easier ways to make some of these queries.
 
 With this disclaimer out of the way, the starting point for our discussion of
-the relation between DB queries and open FOL formulas was the observation the
+the relation between DB queries and open FOL formulas was the observation that the
 SQL query
 
 {{< sql_logo >}}
@@ -299,16 +299,15 @@ LocatedIn x Europe
 ```
 
 This correspondence consists in the fact that the table returned by the query is
-precisely the extension of the formula. To begin with, let's see if you can
-formula queries that correspond to other atoms:
+precisely the extension of the formula. To begin with, let's see if you can formulate queries that correspond to other atoms:
 
-1. Write SQL queries that correspond to to the following atomic open formulas:
+1. Write SQL queries that correspond to the following atomic open formulas:
     
     - `LanguageOf UnitedStates x`
     - `LocatedIn Japan x`
     - `LocatedIn x x`
 
-Verify your results using the df-fiddle.
+Verify your results using the db-fiddle.
 
 We form complex formulas using the logical operators. These syntactic operations
 are mirrored by operations on the queries. 
@@ -346,7 +345,7 @@ that's another story.
 
 To test the understanding of this:
 
-2. Write SQL queries that correspond to to the following negations:
+2. Write SQL queries that correspond to the following negations:
     
     - `{{< neg >}}LanguageOf UnitedStates x`
     - `{{< neg >}}LocatedIn Japan x`
@@ -379,19 +378,19 @@ across the sub-queries. This is what the `<span class="dark-blue">FROM</span>
 CapitalOf AS c` and later `c.country` syntax does. Let's see if you can apply
 this:
 
-3. Write SQL queries that correspond to to the following conjunctions:
+3. Write SQL queries that correspond to the following conjunctions:
 
     - `LocatedIn x Europe {{< land >}} {{< neg >}}LanguageOf x Dutch`
-    - `{{< neg >}}LocatedIn Japan x {{< land >}} {{< neg >}}CaptailOf x WashingtonDC`
+    - `{{< neg >}}LocatedIn Japan x {{< land >}} {{< neg >}}CapitalOf x WashingtonDC`
 
 We can go on from here and cover disjunction, conditionals, and existentials,
-but I hope that the sub-pattern strategy pattern has become clear. This is one
-way to obtain SQL queries for ever FOL formula. There is much more to be said
+but I hope that the sub-pattern strategy has become clear. This is one
+way to obtain SQL queries for every FOL formula. There is much more to be said
 about this, but let's leave it here.
 
 As a final brain teaser:
 
-4. Write SQL queries that corresponds to `LocatedIn x Europe {{< lor >}}
+4. Write SQL queries that correspond to `LocatedIn x Europe {{< lor >}}
    LanguageOf x English` using _only_ the patterns for {{< neg >}} and {{< land >}} we've already discussed.
 
 ## Solution {#sql-queriesSolution .solution}
@@ -494,7 +493,7 @@ As a final brain teaser:
           );
          ~~~
 
-    - `{{< neg >}}LocatedIn Japan x {{< land >}} {{< neg >}}CaptailOf x WashingtonDC`
+    - `{{< neg >}}LocatedIn Japan x {{< land >}} {{< neg >}}CapitalOf x WashingtonDC`
 
         {{< sql_logo >}}
         ~~~sql
@@ -540,7 +539,7 @@ WHERE NOT (
 );
 ~~~
 
-A much simpler code uses `<span class="dark-red">OR</span>`, but that wasn't the
+Much simpler code uses `<span class="dark-red">OR</span>`, but that wasn't the
 question:
 
 {{< sql_logo >}}

@@ -32,11 +32,11 @@ acting on the basis of such knowledge, we need to be able to communicate such
 knowledge to any prospective AI system. That is, we need a way to *represent*
 our knowledge about the world.
 
-The solution to the first problem are—of course—*programming languages*, which
+The solution to the first problem is—of course—*programming languages*, which
 are precisely defined, rule-based systems for expressing unambiguous
 instructions in a language that we can understand, but which we can
 automatically transform into instructions that a computer can understand. The
-solution to the second problem are *knowledge representation languages*, which
+solution to the second problem is *knowledge representation languages*, which
 are systems of precisely defined expressions that can represent various facts
 about the world.
 
@@ -114,7 +114,7 @@ such properties stand out:
 + Natural languages are _ambiguous_: Statements formulated in a natural language
 can often be interpreted in multiple ways. As a consequence, if we choose to use
 natural language as a basis for drawing inferences, we can't always be sure that
-rules or facts that we want would want an AI system to benefit from are
+rules or facts that we would want an AI system to benefit from are
 understood in the appropriate way.
 
 + Natural languages are _over-expressive_: Specific statements made in a natural
@@ -140,7 +140,7 @@ Also, we prompt the AI system with another English language sentence:
 {{< excalifont display=true >}}T = The mushroom in front of me has red spots and
 gills.{{< /excalifont >}}
 
-It may seem straightforward how the AI system can prepare an advice on the basis
+It may seem straightforward how the AI system can prepare some advice on the basis
 of the knowledge captured in {{< excalifont >}}S{{< /excalifont >}} and the information in the user
 prompt {{< excalifont >}}T{{< /excalifont >}}. 
 
@@ -150,7 +150,7 @@ the inference from an if-then statement together with the if-part to the
 then-part: from "if the door is open, you can come in" and "the door is open",
 you can infer "you can come in." Schematically, modus ponens licenses all the
 inferences of the following form, where {{< excalifont >}}A{{< /excalifont >}}
-and {{< excalifont >}}A{{< /excalifont >}}  are *any* two statements:
+and {{< excalifont >}}B{{< /excalifont >}} are *any* two statements:
 {{< img src="img/modus_ponens.png" class="rounded mx-auto d-block inert-img img-fluid" width="150px">}}
 Applying this principle, then, you would expect that from the two statements
 above the AI system should infer that the mushroom in question is not poisonous. 
@@ -161,7 +161,7 @@ The problem, however, is that "the mushroom in front of me has red spots and
 gills" is ambiguous. It could either mean that the mushroom has red spots and
 red gills, or it could state that it has red spots and that it has gills (of
 whatever colour). Because of this we cannot be sure what either of these
-statements are saying exactly. It is not clear what the rule is that
+statements is saying exactly. It is not clear what the rule is that
 {{< excalifont >}}S{{< /excalifont >}} is intended to capture, nor is it clear what observation the user
 is describing with {{< excalifont >}}T{{< /excalifont >}}. And because of all that uncertainty, we
 cannot be sure whether modus ponens applies. For instance, perhaps
@@ -206,9 +206,9 @@ our knowledge in the form of a long list of English sentences of the form
 how does the AI system decide which of these to interpret the way we interpreted
 {{< excalifont >}}S'{{< /excalifont >}} and which to interpret parallel to our understanding of {{< excalifont >}}U{{< /excalifont >}}? The
 use of a natural language complicates the storing of knowledge, since a single
-natural language sentence often come with more than one interpretation. 
+natural language sentence often comes with more than one interpretation.
 
-Ambiguity is extremely common. Whenever we want represent knowledge and rules
+Ambiguity is extremely common. Whenever we want to represent knowledge and rules
 precisely, we should avoid the inherent ambiguity of natural language. Formal
 languages allow us to do just that. Let us now turn to a second reason why we
 choose formal over natural languages. 
@@ -285,7 +285,7 @@ use natural language to express individual cases where modus ponens applies, as
 we just did above. But because natural language is so good at talking about the
 specific details of situations, it can make us lose sight of the more general,
 abstract patterns that underlie our reasoning—it is very bad at *abstracting
-away* form logically irrelevant details. {{< excalifont >}}M{{< /excalifont >}}
+away* from logically irrelevant details. {{< excalifont >}}M{{< /excalifont >}}
 and {{< excalifont >}}N{{< /excalifont >}} are highly specific examples of
 premises that with the right further premise bring us in a situation where we
 can apply modus ponens. To be able to talk about modus ponens as a _general_
@@ -327,9 +327,8 @@ was the case, as was
 {{< excalifont >}}B{{< /excalifont >}}
 was not the case. Given that this clashes with modus ponens we start questioning our
 assumptions. Either something is wrong with our assumptions
-{{< excalifont >}}A{{< /excalifont >}} or {{< excalifont >}}If A, then B{{< /excalifont >}}, or something's wrong with our belief that 
-{{< excalifont >}}B{{< /excalifont >}}.—Logic allows us to
-do make such reasoning very explicit and very general. By using a formal
+{{< excalifont >}}A{{< /excalifont >}} or {{< excalifont >}}If A, then B{{< /excalifont >}}, or something's wrong with our belief that
+{{< excalifont >}}not-B{{< /excalifont >}}.—Logic allows us to make such reasoning very explicit and very general. By using a formal
 language we can focus on the pattern underlying our mechanisms of valid
 inference.
 
@@ -345,8 +344,7 @@ to find out what the consequences are of our assumptions about logical laws.  If
 we only had natural language to study this, which sentences should we use then?
 Should these be about mushrooms, rabbits, numbers, or ice creams? Similar
 considerations apply to mathematics. Highly abstract formal languages allow us
-to focus on the important things. We all learn that we can simplify a quadratic
-equations like 
+to focus on the important things. We all learn that we can simplify a quadratic equation like
 
 {{< excalifont display=true >}}x² + 5x + 6 = 0{{< /excalifont >}}
 
@@ -388,12 +386,12 @@ membership, nothing matters to a set. For instance, there is no order to the
 elements in a set and an object is either in the set or not - it cannot be in a
 set multiple times. 
 
-It can sometimes be helpful (but also sometimes hurtful!) to think of a set as
+It can sometimes be helpful (but also sometimes hurtful!) to think of a set as a
 "bag" of objects from an ambient "space". Consider the following illustration:
 
 {{< img src="img/set.png" class="rounded mx-auto my-2 d-block inert-img img-fluid" width="900px">}}
 
-The yellow rectangle is out ambient space of objects, everything in its confines
+The yellow rectangle is our ambient space of objects, everything in its confines
 is a potential member of our set. It contains a bunch of things: animals,
 people, drinks, playing cards, numbers, …. The green area is a set in this
 space: the set that contains little Jimmy, my beer, and the number 1. It's
@@ -464,7 +462,7 @@ but
 
 {{< excalifont display=true >}}4 ϵ<span style="display:inline-block;width:0;position:relative;left:-0.5em;">/</span> {x : x is a prime number}{{< /excalifont >}}
 
-But by [Euclids theorem](https://en.wikipedia.org/wiki/Euclid%27s_theorem),
+But by [Euclid's theorem](https://en.wikipedia.org/wiki/Euclid%27s_theorem),
 there are infinitely many prime numbers. So, for reasons of time and space, we
 could never write down a list of all the prime numbers for an extensional
 definition of the set.[^primes] 
@@ -493,8 +491,7 @@ is a perfectly fine alphabet. You can use it to define the language of all the _
 
 One way to do that is to use an operation called the Kleene
 star, named after the American mathematician [Stephen
-Kleene](https://en.wikipedia.org/wiki/Stephen_Cole_Kleene) and written as an
-asterix. The set 
+Kleene](https://en.wikipedia.org/wiki/Stephen_Cole_Kleene) and written as an asterisk. The set
 {{< excalifont >}}Σ*{{< /excalifont >}} is the set of all sequences that you can build
 with the elements of {{< excalifont >}}Σ{{< /excalifont >}}. This set is a formal language and it includes
 sequences such as 
@@ -534,8 +531,7 @@ all numerals  built from {{< excalifont >}}Σ{{< /excalifont >}}.
 {{< excalifont >}}N9{{< /excalifont >}}.
 3. Nothing else is a numeral.
 
-Here's how this definition works: In the first step we get all the numerals that can be written as a single digit. This is the whole alphabet with the exception of {{< excalifont >}}0{{< /excalifont >}}.
-, which isn't a numeral. Then in the second step we can represent numbers
+Here's how this definition works: In the first step we get all the numerals that can be written as a single digit. This is the whole alphabet with the exception of {{< excalifont >}}0{{< /excalifont >}}, which isn't a numeral. Then in the second step we can represent numbers
 that correspond to sequences of any length {{< excalifont >}}>1{{< /excalifont >}}. For instance, this definition
 shows that {{< excalifont >}}120{{< /excalifont >}} is a numeral: 
 
@@ -577,7 +573,7 @@ An example of an alphabet for the language of propositional logic is:
 
 Here, {{< excalifont >}}p₁, …, pₙ{{< /excalifont >}} are the _(propositional)
 variables_, {{< img src="img/operators.png" class="inert-img" height="24px"
-style="vertical-align: middle;" >}} are are the _operators_, and 
+style="vertical-align: middle;" >}} are the _operators_, and
 {{< excalifont >}}({{< /excalifont >}}  and {{< excalifont >}}){{< /excalifont >}} are the
 auxiliaries.
 
@@ -627,9 +623,9 @@ src="img/formula_example_2.png" class="inert-img" height="24px" style="vertical-
 src="img/formula_example.png" class="inert-img" height="24px" style="vertical-align: middle;" >}} (by the third clause and 4. and 5.)
 
 But we can also see that {{< img
-src="img/formula_counterexample_2.png" class="inert-img" height="18px" style="vertical-align: middle;" >}} is _not_ a formula, since no rule every
+src="img/formula_counterexample_2.png" class="inert-img" height="18px" style="vertical-align: middle;" >}} is _not_ a formula, since no rule ever
 allows for {{< img
-src="img/negation.png" class="inert-img" height="18px" style="vertical-align: middle;" >}} to occur in a formula without being followed by formula.
+src="img/negation.png" class="inert-img" height="18px" style="vertical-align: middle;" >}} to occur in a formula without being followed by a formula.
 
 In computer science and AI, there is a wide-spread notation that significantly
 simplifies the above rules: the so-called **Backus-Naur Form (BNF)**. In BNF,
@@ -679,7 +675,7 @@ reconstruction of formulas into their constitutive parts. Essentially,
 "unwinding" the formula, by figuring out how it was constructed.
 
 This is the first step of how computers **understand** formulas (computer
-programs etc.) as it gives them a clear order in which to process its
+programs etc.) as it gives them a clear order in which to process their
 components. Later, when we'll look into how the semantic processing of formulas
 works—how we assign _meaning_ to them—this will become very important.
 
@@ -748,13 +744,13 @@ that the patient is showing symptom $R$, but not showing
 {{< excalifont >}}Q{{< /excalifont >}}.
 It needs to
 figure out that the sub-proposition 
-{{< img src="img/p_or_q.png" class="inert-img" height="24px" style="vertical-align: middle;" >}}, 
-are negated, while
+{{< img src="img/p_or_q.png" class="inert-img" height="24px" style="vertical-align: middle;" >}}
+is negated, while the
 sub-proposition $r$ is not. To do this, it needs to parse the formula correctly.
 From the parse, it is clear that the disjunction 
 {{< img src="img/p_or_q.png" class="inert-img" height="24px" style="vertical-align: middle;" >}} is negated, but
 that 
-{{< excalifont >}}r{{< /excalifont >}},
+{{< excalifont >}}r{{< /excalifont >}}
 escapes the effect of that negation. 
 
 Parsing allows us to distinguish seemingly similar, but crucially different logical forms like:
@@ -791,7 +787,7 @@ to the following two parse trees.
 
 Imagine we are building an AI system to regulate a train crossing. There is a
 light stopping traffic from crossing the railway when it turns red and similarly
-there is a light indicating the train should stop and wait with crossing the
+there is a light indicating the train should stop and wait to cross the
 road until that light turns green. Let's say we have trained a neural network to
 regulate things as efficiently as possible, minimizing train delays and traffic
 jams. Unfortunately, the neural network is not flawless. We need a rule-based
@@ -911,11 +907,11 @@ that. Sometimes, simple languages, like the language of propositional logic, are
 the right choice, sometimes we need more complex languages. 
 
 Once we've formalized our claims in a suitable formal language, we collect our
-formalized knowledge in what's known as a **knowledge bas (KB)**. Generally
+formalized knowledge in what's known as a **knowledge base (KB)**. Generally
 speaking, a KB is a way of storing formalized knowledge in such a way that any
-agent—artificial or otherwise—can both **ask** the KB what is already known or
+agent—artificial or otherwise—can both **ask** the KB what is already known and
 **tell** the KB new facts. From a logical perspective, it turns out, that we can
-then think of a KB  as simply as set of formulas of a suitable language. 
+then think of a KB  as simply a set of formulas of a suitable language.
 
 An expert system can generate unknown novel facts on the basis of a great many
 applications of modus ponens and other patterns of valid inference. Conversely,
@@ -942,8 +938,7 @@ facts it used in order to reach it.
 
 This is in stark contrast to generative AI, which relies on untraceable
 statistical regularities in vast amounts of data. This lack of traceable
-reasoning makes the reliability of generative AI questionable, thereby raising
-question about its safe use. Even worse, it makes it less clear that AI can be
+reasoning makes the reliability of generative AI questionable, thereby raising questions about its safe use. Even worse, it makes it less clear that AI can be
 held accountable for the decisions it makes. 
 
 ## Further readings
@@ -951,18 +946,18 @@ held accountable for the decisions it makes.
 An incredibly rich and extensive discussion of formal languages and their role
 in logic is:
 
-+ [Duthil Novaes, Catarina. 2012. Formal languages in logic. Cambridge
++ [Dutilh Novaes, Catarina. 2012. Formal languages in logic. Cambridge
 University Press](https://doi.org/10.1017/CBO9781139108010)
 
 From a linguistic perspective, a highly influential idea is Montague's idea to
 understand "English as a formal language":
 
-+ [Montague, Richard. 1968.English as a formal
++ [Montague, Richard. 1968. English as a formal
 language.](https://doi.org/10.1515/9783111546216-007)
 
 **Notes:**
 
-[^history]: See the book by Duthil Novaes, for example.
+[^history]: See the book by Dutilh Novaes, for example.
 There is not so much more to be said about the alphabet but it's useful to
 remark that in logical contexts, there are some special kinds of symbols that
 are usually used in the alphabets, which have special meanings.

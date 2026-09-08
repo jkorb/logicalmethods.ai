@@ -6,7 +6,7 @@ params:
   emoji: "🏋️"
   icon: '<i class="bi-gear-fill"></i>'
   teaser: "Practice after class!"
-  md-title: 'Tutorial **excercises** for tutorials'
+  md-title: 'Tutorial **exercises**'
   section-icon: '<i class="bi bi-people-fill"></i>'
   toc-title: 'Tutorials'
   section-names: "Tutorial"

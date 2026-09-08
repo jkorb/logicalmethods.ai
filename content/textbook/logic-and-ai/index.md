@@ -84,7 +84,7 @@ The special role of language for thought—illustrated, for example, by Fodor's
 [language of thought
 hypothesis](https://en.wikipedia.org/wiki/Language_of_thought_hypothesis) —shows
 that also [linguistics](https://en.wikipedia.org/wiki/Linguistics) plays a role
-in AI.—In short, AI is highly *interdisciplinary* field of study.
+in AI.—In short, AI is a highly *interdisciplinary* field of study.
 
 All of these senses of AI will play a role in this course. For example, we'll
 look at the role that logic plays in intelligent behavior, the role of logic in
@@ -159,7 +159,7 @@ call an inference like that, where the premises _necessitate_ the conclusion,
 **deductively valid**. Deductive inferences are the traditional topic of most
 logical theory. They are often associated with mathematical reasoning.
 
-But what about the second inference—the one about the swans. Even if all the
+But what about the second inference—the one about the swans? Even if all the
 swans we've observed were white, it's certainly possible that there's a
 non-white (robot?) swan—just that we haven't seen it yet. {{< img src="img/robot_swan.png" class="rounded  float-start inert-img img-fluid" width="350px">}}
 So, the inference from all previously observed swans being white to all swans
@@ -167,11 +167,11 @@ being white is *not* deductively valid—it is deductively *in*valid.
 
 But isn't there a sense in which the fact that all the swans we've observed were
 white *does* support the claim that all swans are white? Now, we know that there
-are black swans, so let's take slightly modified inference. Suppose that there
+are black swans, so let's take a slightly modified inference. Suppose that there
 are a hundred marbles in this bowl. We can't see inside the bowl and we can only
 take the marbles out one by one. We keep taking out marbles and they are all
 white. We've sampled the marbles randomly, we've taken them from the bottom of
-the bag, from the top, and so on. They're always white. 
+the bowl, from the top, and so on. They're always white.
 
 After some time of sampling—but before we've sampled them all—it would seem
 reasonable to conclude that _all_ marbles are white. {{< img
@@ -182,7 +182,7 @@ that all marbles are white. Not with certainty—a black marble might still be i
 there somewhere—but with reasonable _confidence_.
 
 The point is that for some number of marbles, for argument's sake let's say 70,
-the fact that we've samples 70 white marbles together with the assumption that
+the fact that we've sampled 70 white marbles together with the assumption that
 we've sampled well (to avoid [selection
 bias](https://en.wikipedia.org/wiki/Selection_bias) and the like), supports the
 conclusion that all marbles are white by making it _more likely_. An inference
@@ -208,7 +208,7 @@ they are not the main interest of logicians.
 Just like with the term "artificial intelligence", the term "logic" is used
 with different meanings. What we've looked at so far is the academic
 *discipline* of logic. In this context, we might say that an inference is
-"logical" and mean that it's valid (or inductively strong). This is in contrast
+"logical" and mean that it's valid (or inductively strong). This is in contrast to
 saying something like "it's logical that I was scared", which means something
 like "it's *understandable* that I was scared".
 
@@ -230,7 +230,7 @@ that logicians use to study valid inference **_logical systems_**.
 A logical system typically has three components:
 
 + a **syntax**, which is a model of the _language_ of the inferences,
-+ a **semantics**, which is model of the _meaning_ of the premises and
++ a **semantics**, which is a model of the _meaning_ of the premises and
 conclusions, 
 + and a **proof theory**, which is a model of _stepwise inference_.
 
@@ -257,9 +257,9 @@ looks something like this:
 {{< img src="img/model.png" class="rounded mx-auto mb-2 d-block inert-img img-fluid" width="500px">}}
 
 
-In this model, the physicist would assign a mass to the ball, represents the
-ball as a point in 2-dimensional [Euclidian
-space](https://en.wikipedia.org/wiki/Euclidean_space), and treats the forces
+In this model, the physicist would assign a mass to the ball, represent the
+ball as a point in 2-dimensional [Euclidean
+space](https://en.wikipedia.org/wiki/Euclidean_space), and treat the forces
 acting on the ball as [vectors](https://en.wikipedia.org/wiki/Euclidean_vector).
 Assuming that there's no air resistance, it's a high-school level exercise to
 calculate where the ball will land using the laws of classical mechanics (can
@@ -298,13 +298,13 @@ where the ball will land using the laws of mechanics, these derivations
 calculate valid inferences from the basic laws of logic.
 
 Developing and studying logical systems is the core business of logical theory
-and has lead to rich body of logical knowledge.
+and has led to a rich body of logical knowledge.
 
 One last thing to note about logical systems is that there are _many_ of them.
 In this course, you'll learn about a wide range of logical systems and how they
 are used in AI. So, there's what we might call **logical diversity**!
 
-There are different ways of classifying logical systems, but let's just just
+There are different ways of classifying logical systems, but let's just
 look at two to get the point of logical diversity across.
 
 One natural way of classifying logical systems is by the kind of inferences they
@@ -335,7 +335,7 @@ As you'll see different systems are useful in different contexts. {{< img src="i
 
 ## Logic and AI
 
-Logic plays a special role in AI since its inception as an academic discipline
+Logic has played a special role in AI since its inception as an academic discipline
 in the second half of the 20th century. One event that is often mentioned as a
 "beginning" of AI is the 1956 [Dartmouth Summer Research Project on Artificial
 Intelligence](https://en.wikipedia.org/wiki/Dartmouth_workshop), which was
@@ -344,9 +344,8 @@ organized by [Claude Shannon](https://en.wikipedia.org/wiki/Claude_Shannon),
 McCarthy](https://en.wikipedia.org/wiki/John_McCarthy_(computer_scientist)),
 [Nathaniel
 Rochester](https://en.wikipedia.org/wiki/Nathaniel_Rochester_(computer_scientist)),
-and [Marvin Minsky](https://en.wikipedia.org/wiki/Marvin_Minsky) and who are
-therefore considered by some the "founding fathers". The research proposal
-contains for the event one of the first documented uses of the term "artificial
+and [Marvin Minsky](https://en.wikipedia.org/wiki/Marvin_Minsky) who are
+therefore considered by some the "founding fathers". The research proposal for the event contains one of the first documented uses of the term "artificial
 intelligence" to refer to an academic discipline. 
 
 The naming of the discipline is typically attributed to McCarthy, who thought
@@ -387,7 +386,7 @@ systems using logic. This is a very powerful idea.
 
 The thought that logic is the path to achieving human-level artificial
 intelligence is the paradigm of **logic-based AI**, which was the dominant
-paradigm for AI research from the 1950 until at least the late 1980s. Around
+paradigm for AI research from the 1950s until at least the late 1980s. Around
 this time, probability theory and statistics slowly started to take over as the
 main approach to the problems of AI, putting the focus on ideas like [machine
 learning](https://en.wikipedia.org/wiki/Machine_learning) and [big
@@ -398,8 +397,7 @@ networks (ANNs)](https://en.wikipedia.org/wiki/Neural_network), which are,
 effectively, statistical models of data, obtained through machine learning on an
 architecture that is inspired by the structure of the human brain. {{< img
 src="img/ai_ann.png" class="rounded  float-end inert-img img-fluid"
-width="250px">}} Today, **statistics-based AI** using {{< abbr
-title="explainable AI">}}XAI{{< /abbr >}}s is, by far, the dominant paradigm in
+width="250px">}} Today, **statistics-based AI** is, by far, the dominant paradigm in
 AI research. This is the approach that led to the recent developments in {{<
 abbr title="generative AI" >}}GenAI{{< /abbr >}}.
 
@@ -413,7 +411,7 @@ _methodological_, and _auxiliary_ entanglement between logic and AI research.
 Valid inference simply _is_ paradigmatic intelligent behavior. So, logical
 systems directly target what we're trying to model in AI—logical systems are
 models of intelligent behavior. So, by our definition, logical systems are part
-of AI. This makes logical part of AI and the results of logical research _qua_
+of AI. This makes logic part of AI and the results of logical research _qua_
 logical research relevant to AI research.
 
 {{< img src="img/logic_math.png" class="rounded  float-start inert-img img-fluid m-3" width="400px">}}
@@ -474,19 +472,18 @@ development of AI is via the logic-based AI paradigm, which is also known as
 **symbolic AI** due to its use of transparent, human-readable methods.
 
 The idea that logic is the path to achieving human-level artificial intelligence
-has led to the development of many important technologies, both on as abstract
-designs and concrete technologies, such as the
+has led to the development of many important technologies, both as abstract
+designs and as concrete technologies, such as the
 [LISP](https://en.wikipedia.org/wiki/Lisp_(programming_language)) programming
 language.
 
-The technology which has had arguably the most influence within AI to come from
+The technologies which have had arguably the most influence within AI to come from
 the logic-based paradigm are the so-called [**expert
 systems**](https://en.wikipedia.org/wiki/Expert_system), which are computer
 systems designed to behave like human experts at certain reasoning or decision
 making tasks. Examples of expert systems that found "real world" applications
 include [Mycin](https://en.wikipedia.org/wiki/Mycin), which is a system for
-medical diagnosis, and [XCon](https://en.wikipedia.org/wiki/Xcon), which helped
-selecting computer parts for your new gaming PC.
+medical diagnosis, and [XCon](https://en.wikipedia.org/wiki/Xcon), which helped select computer parts for your new gaming PC.
 
 
 {{< img src="img/expert_system.png" class="rounded  float-start inert-img img-fluid mx-4" width="550px">}}
@@ -498,8 +495,8 @@ and
 + an _inference engine (IE)_, which derives new information/decisions from input
   using the {{< abbr title="knowledge base" >}}KB{{< /abbr >}} and valid inference.
 
-Typically, the information in the {{< abbr title="knowledge base" >}}KB{{< /abbr >}} takes the form of **if-then rules**. To
-An exper system for medical diagnosis, for example, may contain the following
+Typically, the information in the {{< abbr title="knowledge base" >}}KB{{< /abbr >}} takes the form of **if-then rules**.
+An expert system for medical diagnosis, for example, may contain the following
 rule:
 
 {{< excalifont display=true >}}
@@ -523,14 +520,14 @@ common cold: because the robot presents the symptoms _and_ there is a
 corresponding rule for the symptoms. This is typically very different with
 {{< abbr title="explainable AI">}}XAI{{< /abbr >}}-based systems, for example, where it's not always possible to say
 why the system makes the predictions it does, making them "**black boxes**".
-This has lead to development of the field of [explainable AI
+This has led to the development of the field of [explainable AI
 (XAI)](https://en.wikipedia.org/wiki/Explainable_artificial_intelligence), which
 tries to resolve the black box problems for statistics-based AI systems. The
 problem simply doesn't occur for most logic-based systems.
 
 So, why did the paradigm shift from logic-based AI to statistics-based AI?—The
 full (hi)story of this shift is nuanced and complicated, but looking at aspects
-of in a slightly simplified fashion may still help us understand the rather
+of it in a slightly simplified fashion may still help us understand the rather
 complex entanglement between logic and AI research.
 
 We can identify at least two factors that contributed to the shift. One is the
@@ -563,7 +560,7 @@ Diogenes presents us with an object that satisfies the two conditions in the
 if-part of the rule, but not the condition in the then-part. He found a
 _counterexample_ to Plato's definition. We can easily imagine this kind of
 situation happening with expert systems, where the expert knowledge is expressed
-in similar if-then rules and the AI-system make corresponding classification
+in similar if-then rules and the AI-system makes corresponding classification
 errors by rigidly applying these rules. Fixing systems in light of such errors
 is a tedious process, which cannot easily be automated and requires further
 expert input: finding correct if-then rules often requires _a lot_ of effort,
@@ -572,15 +569,15 @@ trial-and-error, fine-tuning, etc. and then maintenance, bug-fixing, and so on.
 Moreover, each problem (medical diagnostics, computer assembly, identifying
 humans, ...) requires its own expert knowledge and expert system.
 Correspondingly, in general, we can't expect the solutions to problems for one
-expert systems to transfer to the problems of another system. 
+expert system to transfer to the problems of another system.
 
-These are some of the issues with expert systems that lead to development of
+These are some of the issues with expert systems that led to the development of
 such systems slowing down over the years, and ultimately halting during the
 (second) [AI winter](https://en.wikipedia.org/wiki/AI_winter).
 
 Logic-based AI achieved great things: IBM's [Deep
 Blue](https://en.wikipedia.org/wiki/Deep_Blue_(chess_computer)), which beat
-world chess champion Gary Kasparov in the 1990s, is ultimately a rule-based
+world chess champion Garry Kasparov in the 1990s, is ultimately a rule-based
 expert system and one of the main success stories of symbolic, logic-based AI.
 It shows how human-level—even *super-human*—intelligence can be achieved using
 logic-based expert systems. At the same time, logic-based methods struggled to
@@ -627,7 +624,7 @@ part because of the way the machine learning algorithms work.
 
 While statistics-based methods are, at the moment, the state of the art, logic
 still plays an important role in AI research. Logic-based research in AI has
-sparked the development of extremely sharp and powerfull _tool_ for different
+sparked the development of extremely sharp and powerful _tools_ for different
 tasks in AI development, which are still in use today.{{< img src="img/logical_tools.png" class="rounded  float-end inert-img img-fluid m-3" width="300px">}}
 
 One big area where this is the case is what's known as **Knowledge
@@ -704,7 +701,7 @@ calculating, and the like. Examples:
   + performing complex calculations, like $432\times 441$,
   + ...
 
-The diagnosis of the problem with {{< abbr title="large language model" >}}LLM{{< /abbr >}}S shared promoted, e.g., by [Andrej
+The diagnosis of the problem with {{< abbr title="large language model" >}}LLM{{< /abbr >}}s promoted, e.g., by [Andrej
 Karpathy](https://en.wikipedia.org/wiki/Andrej_Karpathy) is that {{< abbr title="large language model" >}}LLM{{< /abbr >}}s are really
 good at system 1 thinking, but are lacking in system 2 capabilities. Symbolic
 systems, like expert systems, instead, are really good at system 2 thinking, but
@@ -712,8 +709,8 @@ have little to no system 1 capabilities. There are different ways of tackling
 this problem, but one promising way that's being explored by companies like
 [OpenAI](https://en.wikipedia.org/wiki/OpenAI) at the moment is to create
 [**hybrid systems**](https://en.wikipedia.org/wiki/Hybrid_intelligent_system),
-which both have symbolic and subsymbolic components. Think of teaching ChaptGPT
-to use calculator rather than letting it try to solve a calculation "in its
+which both have symbolic and subsymbolic components. Think of teaching ChatGPT
+to use a calculator rather than letting it try to solve a calculation "in its
 head".
 
 Another way in which logic-based methods play a role in recent research is in
@@ -743,7 +740,7 @@ understand AI research.
 
 This textbook is what might be called a _didactic_ textbook. The aim is to
 familiarize the reader with the basic concepts of logical theory and their role
-in AI research. The focus lies on teaching with examples and to illustrate
+in AI research. The focus lies on teaching with examples and illustrating
 bigger ideas. In contrast, an _encyclopedic_ textbook focuses more on
 providing an exhaustive discussion of the most important concepts in the field.
 
@@ -757,21 +754,21 @@ I recommend two:
 encyclopedic overview of most topics in logical theory. You can download and
 read online in their [builds section](https://builds.openlogicproject.org/).
 
-+ [Russel and Norvig. 2021. Artificial Intelligence: A Modern Approach. 4th
++ [Russell and Norvig. 2021. Artificial Intelligence: A Modern Approach. 4th
 Edition. Pearson](https://elibrary.pearson.de/book/99.150005/9781292401171) is a
 standard introduction to AI as a field of academic research.
 
 I will recommend specific sections from these two textbooks in different places
 for readers who'd like to go deeper into specific topics.
 
-In general, I recommend to use the internet to keep up to date on logic and AI
+In general, I recommend using the internet to keep up to date on logic and AI
 developments. I'll include references to relevant
 [Wikipedia](https://www.wikipedia.org/) articles. Don't listen to your
-high-school teacher, wikipedia is
+high-school teacher; Wikipedia is
 [great](https://link.springer.com/article/10.1007/s11423-025-10505-x)—you just
 have to learn [how to use
 it](https://repository.isls.org/bitstream/1/6367/1/1565-1568.pdf). You can also
-subscribe to newsletter, such as [tl;dr -- AI](https://tldr.tech/ai) or the
+subscribe to newsletters, such as [tl;dr -- AI](https://tldr.tech/ai) or the
 [Superhuman AI newsletter](https://www.superhuman.ai/). Read, Learn, Improve!
 
 **Notes:**

@@ -29,7 +29,7 @@ Verify your work! That is don't just provide an expression, but show that for al
 
 ## Solution {.solution #boolean-conditionalSolution}
 
-The most straight-forward solution is:
+The most straightforward solution is:
 
 ```
 !!NOT!!(Y !!AND!! (!!NOT!! X))
@@ -42,14 +42,13 @@ Here's a truth-table to show that `!!NOT!!(Y !!AND!! (!!NOT!! X)) = X !!IF!! Y`:
 
 # Equivalence {.solved}
 
-Remember the truth-table for $XNOR$ from the last exercises set:
+Remember the truth-table for $XNOR$ from the last exercise set:
 
 {{< img src="img/xnor_table.png" class="mx-auto d-block rounded inert-img img-fluid" width="200px">}}
 
 Find a formula representation of this Boolean truth-function using only the
 propositional variables $p$ and $q$ and the connectives ${{< land >}}$ and ${{<
-to >}}$! That is, find such formula satisfying these constraints, which meets
-the assignments $v$ of truth-values to $p$ and $q$, we have:
+to >}}$! That is, find a formula $A$ satisfying these constraints such that, for all assignments $v$ of truth-values to $p$ and $q$, we have:
 
 $$v(A) = v(p) !!XNOR!! v(q).$$
 
@@ -139,15 +138,15 @@ and why the work you did shows that the inference in question is valid or invali
 
     The task is to show that $${ (RAIN {{< to >}}( SUN {{< to >}} RAINBOW)), {{< neg >}} ((RAIN {{< land >}} SUN) {{< to >}} RAINBOW) }$$ is not satisfiable.
 
-    First, we trans form to CNF. Recursively applying $r₀$, we get $${{< neg >}}RAIN {{< lor >}} {{< neg >}} SUN {{< lor >}} RAINBOW$$ from $$RAIN {{< to >}}( SUN {{< to >}} RAINBOW).$$
+    First, we transform to CNF. Recursively applying $r₀$, we get $${{< neg >}}RAIN {{< lor >}} {{< neg >}} SUN {{< lor >}} RAINBOW$$ from $$RAIN {{< to >}}( SUN {{< to >}} RAINBOW).$$
 
     For the second formula, $${{< neg >}} ((RAIN {{< land >}} SUN) {{< to >}}
     RAINBOW),$$ we get $${{< neg >}} ({{< neg >}}(RAIN {{< land >}} SUN) {{< lor >}}
     RAINBOW)$$ using $r₀$ and then $${{< neg >}}{{< neg >}}(RAIN {{< land >}} SUN) {{< land >}}
-    {{< neg >}}RAINBOW)$$ using $r₂$ Finally, $r₁$ give us:
+    {{< neg >}}RAINBOW)$$ using $r₂$ Finally, $r₁$ gives us:
     $$RAIN {{< land >}} SUN {{< land >}}{{< neg >}}RAINBOW$$
 
-    This give us the sets: $${{{< neg >}}RAIN, {{< neg >}} SUN, RAINBOW }&emsp; { RAIN } &emsp; { SUN } &emsp;{{{< neg >}}RAINBOW }$$
+    This gives us the sets: $${{{< neg >}}RAIN, {{< neg >}} SUN, RAINBOW }&emsp; { RAIN } &emsp; { SUN } &emsp;{{{< neg >}}RAINBOW }$$
 
     The derivation of ${ }$ using resolution is a simple, three-step affair:
 
@@ -180,7 +179,7 @@ $$P₁, P₂, … {{< vDash >}} C&emsp; if and only if &emsp; <span class="dark-
 
 1. A logical formula $A$ is called a **logical truth** iff for all assignments $v$ of truth-values to its propositional variables, the formula is true, i.e. $v(A) = 1$. Verify that the simple formula $$(RAIN {{< lor >}} {{< neg >}}RAIN)$$ is a logical truth in this sense.
 
-2. Rephrase the right-hand side of above equivalence in terms of the logical truth rather than unsatisfiability.
+2. Rephrase the right-hand side of the above equivalence in terms of the logical truth rather than unsatisfiability.
 
 3. Give an argument that the above equivalence is true. 
 
@@ -220,7 +219,7 @@ $$P₁, P₂, … {{< vDash >}} C&emsp; if and only if &emsp; <span class="dark-
    logical truth$$ This criterion shows the particularly deep connection between
    valid inference and conditionals.
 
-3. This is the hardest part and more advanced logical reasoning. One way to
+3. This is the hardest part and requires more advanced logical reasoning. One way to
    proceed is to start from the known criterion that $$P₁, P₂, … {{< vDash >}}
    C&emsp; if and only if &emsp; <span class="dark-red shanns">not-SAT</span> {
    P₁, P₂, … , {{< neg >}}C }.$$ Let's think about $<span class="dark-red
@@ -263,11 +262,11 @@ $$RAIN, SNOW$$
 
 ## Solution {#chainingSolution .solution}
 
-1. Our goal is derive $STORM$. The facts are $RAIN$ and $SNOW$. First, we use forward chaining:
+1. Our goal is to derive $STORM$. The facts are $RAIN$ and $SNOW$. First, we use forward chaining:
 
     -  So, in the first iteration, we run through all the conditionals and
     see if we can derive anything from those facts using $genMP$. We come
-    across the two conditionals $RAIN {{< to >}}CLOUDS$ and $RAIN{{< to >}}PUDDLES$. We derive $CLOUDS$ and $PUDDLES$ and add them two our facts. But our goal is not reached.
+    across the two conditionals $RAIN {{< to >}}CLOUDS$ and $RAIN{{< to >}}PUDDLES$. We derive $CLOUDS$ and $PUDDLES$ and add them to our facts. But our goal is not reached.
 
     - So, in the second step, the facts are $RAIN, SNOW, CLOUDS,$ and
       $PUDDLES$. Again, we check the conditionals for possible $MP$
@@ -298,7 +297,7 @@ derivation first (if there is one).
 
     For backward-chaining, finding this particular derivation depended on
     the order in which we looked through the rules. If, for some
-    implementation reason, we would have first come across $HUMID {{< to >}} CLOUDS$ in the second step, we would have added $HUMID$ to our goals rather than $RAIN$. Then, we'd have continued two more iterations going through $PUDDLES{{< to>}}HUMID$ and $RAIN{{<to>}}PUDDLES$ until we hit a known fact. This would have lead to a much longer derivation. This means that with backward-chaining, whether we come across the shortest derivation first, highly depends on external factors, like the ordering of the conditionals in our $KB$.
+    implementation reason, we would have first come across $HUMID {{< to >}} CLOUDS$ in the second step, we would have added $HUMID$ to our goals rather than $RAIN$. Then, we'd have continued two more iterations going through $PUDDLES{{< to>}}HUMID$ and $RAIN{{<to>}}PUDDLES$ until we hit a known fact. This would have led to a much longer derivation. This means that with backward-chaining, whether we come across the shortest derivation first, highly depends on external factors, like the ordering of the conditionals in our $KB$.
 
 3. To test this with forward-chaining, we go through all possible derivations. We've described the first two steps above, which gave us $STORM$ and $PUDDLES$. Continuing further, we derive $HUMID$ using $PUDDLES$ and $PUDDLES {{< to >}}HUMID$ and then $CLOUDS$ from $HUMID$ and $HUMID{{< to >}}CLOUDS$. At this point, we have $RAIN, SNOW, STORM, PUDDLES, HUMID,$ and $CLOUDS$ among our facts and can't apply $genMP$ anymore. Since $DRIFTING$ isn't among these facts, we conclude it can't be derived.
 
@@ -308,19 +307,19 @@ derivation first (if there is one).
 
 # Planning {.solved}
 
-We've made things a more difficult for {{< logo >}}&ThinSpace; by introducing a third block into the puzzle:
+We've made things more difficult for {{< logo >}}&ThinSpace; by introducing a third block into the puzzle:
 
 {{< img src="img/planning_3.png" class="mx-auto d-block rounded inert-img img-fluid" width="400px">}}
-                                                               le
+
 Adjust our planning solution to accommodate the more complicated setup. That is:
 
-1. Determine how we need to adjust the language to accommodate the third block.
+1. Determine how we need to adjust the language to accommodate the third block?
 
-2. Which rules do we need to add to our a KB to accommodate the third block.
+2. Which rules do we need to add to our KB to accommodate the third block?
 
 3. Represent the initial setup state and the goal state in the language.
 
-4. Find a model that satisfies the KB, as well as the setup and goal state. Then read off a course o action. You don't need to do this formally—using resolution or chaining—but just find such a model using _human_ intelligence.
+4. Find a model that satisfies the KB, as well as the setup and goal state. Then read off a course of action. You don't need to do this formally—using resolution or chaining—but just find such a model using _human_ intelligence.
 
 ## Solution {#planningSolution .solution}
 
@@ -333,7 +332,7 @@ facts involving the new blue block.
    $B$, so ${{< neg >}}On(X,X)$ for $X{{< in >}}{R,B,G}$, and so on. We do need
 to add principles that exclude new weird configurations that are logically
 possible, such as $On(R,G,t){{< land >}}On(G, B,t){{< land >}}On(B,R,t)$ for
-some time $t$. On previous rules only excluded 2-step loops, like $On(R,G,t){{<
+some time $t$. Our previous rules only excluded 2-step loops, like $On(R,G,t){{<
 land >}}On(G,R,t)$, but not 3-step loops like the one above. We _could_ just add the schema:
 
     $$On(X,Y,t){{< land >}}On(Y, Z,t){{< to >}}{{< neg >}}On(Z,X,t)$$
@@ -398,7 +397,7 @@ land >}}On(G,R,t)$, but not 3-step loops like the one above. We _could_ just add
         - State: $On(G,B,4), {{< neg >}}On(B,R,4)$
 
 
-You can straight-forwardly check that all conditions are satisfied.
+You can straightforwardly check that all conditions are satisfied.
 
 # Discussion
 

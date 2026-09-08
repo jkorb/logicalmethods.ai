@@ -13,7 +13,7 @@ params:
 # Boolean satisfiability 
 
 We've seen that Boolean logic is at the heart of computation and deductive
-reasoning. But when it comes to automated reasoning, our approach has so-far
+reasoning. But when it comes to automated reasoning, our approach has so far
 been limited to pre-programmed circuits, like the [logic
 gates](https://en.wikipedia.org/wiki/Logic_gate) and
 [adders](https://en.wikipedia.org/wiki/Adder_(electronics)) we've discussed.
@@ -22,8 +22,8 @@ tasks, like adding two numbers or calculating truth-values, they are not very
 flexible. Each circuit carries out one specific task.
 
 {{< img src="img/ai_boolean.png" class="rounded  float-start inert-img img-fluid m-2" width="200px" >}} 
-But in AI, we don't only want to implement specific inference patters using
-specific cirucits, like adding two bits using an adder circuit or inferring $(A
+But in AI, we don't only want to implement specific inference patterns using
+specific circuits, like adding two bits using an adder circuit or inferring $(A
 {{< land >}} B)$ from $A$ and $B$ using !!AND!!. We want to implement deductive
 reasoning _in general_. 
 
@@ -36,7 +36,7 @@ whether there is one that makes the premises true and the conclusion false.
 **Satisfiability solving** is a powerful approach to automated reasoning using
 Boolean logic, which is popular in research and industry alike. The observation
 that motivates the approach is that we can reduce the question whether a given
-inference is valid to the question whether certain truth-value assignment is
+inference is valid to the question whether a certain truth-value assignment is
 possible. `SAT`-solving algorithms are instructions for systematically—and
 ideally efficiently—testing for the existence of specific truth-value
 assignments.
@@ -168,7 +168,7 @@ idea using our !!NAND!! circuit.
 
 For the approach, we need to translate both our specification (the !!NAND!!
 table) and our circuit into Boolean expressions. For the circuit, this is rather
-straight-forward, once we realize that a $default "off"$ relay is essentially
+straightforward, once we realize that a $default "off"$ relay is essentially
 a Boolean !!AND!! and a $default "on"$ relay is a Boolean !!NOT!!. Inspecting
 our circuit, we see that we just chain the $default "off"$ and $default "on"$
 relays with the inputs. This means that the Boolean expression that corresponds
@@ -219,7 +219,7 @@ every truth-function can be represented using !!NOT!!, !!AND!!, and !!OR!!, but
 that's for another time. The resulting formula is also called the _full_ or
 _maximal_  [Disjunctive Normal Form
 (DNF)](https://en.wikipedia.org/wiki/Disjunctive_normal_form) representation of
-the truth-table—these kind of normal forms we'll return to later.
+the truth-table—these kinds of normal forms we'll return to later.
 
 Now, we've got two formulas:
 
@@ -228,20 +228,20 @@ Now, we've got two formulas:
 + and a circuit representation: `!!NOT!! (X !!AND!! Y)`
 
 The question is whether the circuit implements the specification, that is
-whether the two expressions always have evaluate to the same truth-values. That
+whether the two expressions always evaluate to the same truth-values. That
 is:
 
 + If the specification evaluates to `1`, does the representation evaluate to
 `1`?
 
 + If the representation evaluates to `1`, does the specification evaluate to `1`
-  as well.
+  as well?
 
 We can, of course, check this by going through the possible values for `X` and
 `Y` again, but the point here is that we can reduce this problem to a `SAT`
 problem.
 
-For this, the trick is to check whether it's possible that the two expression
+For this, the trick is to check whether it's possible that the two expressions
 evaluate to _different_ values. That is, is it possible that:
 
 + The specification evaluates to `1` and the representation to `0`.
@@ -271,7 +271,7 @@ correct.—We've reduced the verification of the circuit to a `SAT` problem.
 While it may look like we've made things worse—the Boolean expressions we wrote
 down are not *per se* easier to understand than the initial problem—we've
 actually massively improved our situation. We've figured out a way of
-_mechanically_ translate the question whether our circuit functions according to
+_mechanically_ translating the question whether our circuit functions according to
 specification into a `SAT`-problem. And as we'll see, the `SAT` problem itself
 allows for algorithmic approaches. This is the foundation for automated circuit
 verification. Similar ideas are used for software verification 
@@ -288,7 +288,7 @@ ultimate ideas are still the same.
 
 The importance of these technologies is illustrated by the [Pentium
 bug](https://en.wikipedia.org/wiki/Pentium_FDIV_bug), where an implementation
-mistake lead to calculation errors in in certain division operations. Not only
+mistake led to calculation errors in certain division operations. Not only
 was this catastrophic for Intel's bottom line, but imagine what could have
 happened if the chips had been used in critical infrastructure setups where
 high-level accuracy is crucial…
@@ -400,7 +400,7 @@ is invalid, instead, since the set
 
 $${ (SUN {{< lor >}} RAIN), SUN, {{< neg >}}RAIN }$$
 
-_is_ satisfiable.—In other words, deductive validity and `SAT` a are two sides of the same coin.
+_is_ satisfiable.—In other words, deductive validity and `SAT` are two sides of the same coin.
 
 One interesting observation is that the algebraic and the logical interpretation
 of `SAT` boil down to, essentially, the same thing. To see this, let's look at
@@ -414,7 +414,7 @@ $$v(SUN {{< lor >}} RAIN) = 1, v({{< neg >}} SUN) = 1, and v({{< neg >}} RAIN) =
 
 But if we apply to this the implementation of the logical operators {{< lor >}}
 and {{< neg >}} in terms of !!OR!! and !!NOT!!, respectively, we get a Boolean
-expression, where the only remnants of logic is the use of $v$ applied to the
+expression, where the only remnant of logic is the use of $v$ applied to the
 propositional variables $SUN$ and $RAIN$:
 
 $$(v(SUN) !!OR!! v(RAIN)) = 1, !!NOT!! v(SUN) = 1, and !!NOT!! v(RAIN) = 1$$
@@ -425,7 +425,7 @@ In fact, if we say `X = v(SUN)` and `Y = v(RAIN)`, the condition becomes:
 (X !!OR!! Y) = 1, (!!NOT!! X) = 1, and (!!NOT!! Y) = 1
 ```
 
-That that just asks whether the set 
+That just asks whether the set
 
 ```
 { (X !!OR!! Y), (!!NOT!! X), (!!NOT!! Y) }
@@ -482,7 +482,7 @@ the logical flavor, but it will hopefully be clear how to carry out the method
 in an algebraic fashion.
 
 To describe the method, let's suppose that we have a set of formulas, of which
-we want to know whether it is satisfiable. For concreteness sake, we take our
+we want to know whether it is satisfiable. For concreteness, we take our
 running example again and check for the satisfiability of:
 
 $${ (SUN {{< lor >}} RAIN), {{< neg >}}SUN, {{< neg >}}RAIN }.$$
@@ -534,7 +534,7 @@ We then document the resulting truth-values in our table like so:
 {{< img src="img/truth_table_valid_complete.png" class="rounded mx-auto d-block inert-img img-fluid" width="850px">}}
 
 In the last step, we inspect our truth-table and see if we can find a row in
-which each formula get's the value `1`. If there is one, the set is satisfiable;
+which each formula gets the value `1`. If there is one, the set is satisfiable;
 if there isn't—like in our case—the set isn't satisfiable.
 
 This truth-table doubles as the proof of the validity of our inference: 
@@ -553,14 +553,14 @@ The satisfiability of this set corresponds to the *in*validity of the inference:
 
 $$ (SUN {{< lor >}} ({{< neg >}} RAIN {{< land >}} {{< neg >}} WIND)), SUN {{< therefore >}} WIND $$
 
-I hope you can see that this is just a more complicated instance of *affirming a disjunct**, a fallacy which we've mentioned a couple of times before.
+I hope you can see that this is just a more complicated instance of *affirming a disjunct*, a fallacy which we've mentioned a couple of times before.
 
 The possible valuations, we've determined already above. So let's skip to
 parsing. The relevant parse trees are as follows:
 
 {{< img src="img/parsing_three.png" class="rounded mx-auto d-block inert-img img-fluid" width="850px">}}
 
-Now in this case, a more complex formula is involved, viz. $(SUN {{< lor >}} ({{< neg >}} RAIN {{< land >}} {{< neg >}} WIND))$. When we're calculating it's value under a given valuation, the parse tree comes in handy. It tells us in which order to apply the Boolean operations !!NOT!!, !!AND!!, and !!OR!! to calculate the truth-values. We can document the calculation in our truth-table as follows:
+Now in this case, a more complex formula is involved, viz. $(SUN {{< lor >}} ({{< neg >}} RAIN {{< land >}} {{< neg >}} WIND))$. When we're calculating its value under a given valuation, the parse tree comes in handy. It tells us in which order to apply the Boolean operations !!NOT!!, !!AND!!, and !!OR!! to calculate the truth-values. We can document the calculation in our truth-table as follows:
 
 {{< img src="img/truth_table_three_full.png" class="rounded mx-auto d-block inert-img img-fluid" width="1100px">}}
 
@@ -637,7 +637,7 @@ Generally speaking, a Boolean expression in _DNF_ is
 
 + _literals_ ("variables or !!NOT!!'s of variables").
 
-Each chain in this definition can be just have a single element. So, for
+Each chain in this definition can just have a single element. So, for
 example:
 
 | {{< img src="img/dnf.png" class="inert-img" height="40px" style="vertical-align: middle;" >}} | &emsp; &emsp; &emsp;   | {{< img src="img/no_dnf.png" class="inert-img" height="40px" style="vertical-align: middle;" >}} |
@@ -681,7 +681,7 @@ directly "read it off" off the function table for `(X !!NAND!! Y)`.
 
 But the connection between truth-tables and DNFs is very deep. In fact, evidence
 suggests that working with DNFs doesn't provide much of an advantage over
-truth-tables in the context of automated `SAT`-solving. It turns out that the
+truth-tables in the context of automated `SAT`-solving. It turns out that
 whether they do once more turns on deep issues like [P vs.
 NP](https://en.wikipedia.org/wiki/P_versus_NP_problem), but from a practical
 perspective the other kind of normal form, CNFs, have historically been much
@@ -714,7 +714,7 @@ Again, each "chain" in this definition can be just a single formula. So, for exa
 
 While in a formula in DNF, each disjunct (from "the chain of !!OR!!s")
 represents one way for the formula to be true, the conjuncts of a CNF are more
-like a "menu" to pick from. To make a formula in DNF true, one picks one
+like a "menu" to pick from. To make a formula in CNF true, one picks one
 disjunct (that is one literal, a propositional variable or its negation) from
 each conjunct in the long chain of {{< land >}}'s. Take the following formula,
 for example:
@@ -727,7 +727,7 @@ windy. Another way of making it true is to pick ${{< neg >}}RAIN$ from the first
 and ${{< neg >}}WIND$ from the second. That is, the formula is true if it's
 neither rainy nor windy. Obviously, we can't pick ${{< neg >}}RAIN$ from the
 first and $RAIN$ from the second. This is not a way to make the formula true,
-since its not a real possibility in Boolean logic that it both rains and it
+since it's not a real possibility in Boolean logic that it both rains and it
 doesn't. Excluding these kinds of possibilities from the search space in a
 systematic fashion is what many `SAT`-solving algorithms are designed to do.
 
@@ -739,7 +739,7 @@ Boolean logic. In this context, by "equivalent" we mean that for any assignment
 of values, the original expression/formula always evaluates to the same value as
 the formula in normal form. Typically, the normal form of an expression is not
 _unique_: there is more than one expression in normal form, which is equivalent
-to a given formula. We can obtain a uniqueness by putting additional
+to a given formula. We can obtain uniqueness by putting additional
 constraints, but for now we shall not occupy ourselves with such subtleties. 
 
 
@@ -747,7 +747,7 @@ constraints, but for now we shall not occupy ourselves with such subtleties.
 There are different algorithms for finding an equivalent formula for a given
 formula. In practice, we're interested in transforming a given input as quickly
 and efficiently as possible, but for now we'll focus on the _naive_ approach,
-which though not efficient is straight-forward. When we're implementing
+which though not efficient is straightforward. When we're implementing
 efficient `SAT`-solvers, we'll rather use something like the [Tseytin
 transformation](https://en.wikipedia.org/wiki/Tseytin_transformation), for
 example, which transforms a formula into a formula that is not necessarily
@@ -759,7 +759,7 @@ We describe the algorithm for transforming a formula into normal form using
 [rewrite rules](https://en.wikipedia.org/wiki/Rewriting), which are similar to
 the ones we used in our definitions of grammars for formal languages. But rather
 than rewriting basic expressions into complex formulas, our new rules apply
-transformations to existing formulas to change them step-by-step from into
+transformations to existing formulas to change them step-by-step into
 normal form.
 
 The algorithms for transforming into CNF and DNF both start with the same three
@@ -771,7 +771,7 @@ These rules are applied _recursively_, which means they are not only applied to
 a full formula, but repeatedly to all subformulas during the entire
 transformation. 
 
-This idea is illustrate in the following re-write sequence:
+This idea is illustrated in the following re-write sequence:
 
 {{< img src="img/rewrite_negation.png" class="rounded mx-auto d-block inert-img img-fluid" width="900px">}}
 
@@ -791,7 +791,7 @@ can continue our example as follows:
 
 {{< img src="img/cnf_distribution.png" class="rounded mx-auto d-block inert-img img-fluid" width="900px">}}
 
-The resulting formula $(SUN {{< lor >}} {{< neg >}}RAIN ) {{< land >}} (SUN {{< lor >}} SUN)$ is in CNF: it's a conjunction of disjunction of literals.
+The resulting formula $(SUN {{< lor >}} {{< neg >}}RAIN ) {{< land >}} (SUN {{< lor >}} SUN)$ is in CNF: it's a conjunction of disjunctions of literals.
 
 For what we want to do next, we could stop our transformation at this point. The
 only thing you might find odd is that we have $(SUN {{< lor >}} SUN)$ as our
@@ -812,7 +812,7 @@ we'd typically use more efficient algorithms, like Tseytin transformations. But
 the naive recursive re-write method gets the job done. It's worth pointing out,
 however, where the inefficiency lies with this method. Note that in the step
 where we applied $r₄$, our formula got _longer_. In the worst case, this can
-happen multiple times during a transformation, leading to every growing
+happen multiple times during a transformation, leading to ever-growing
 formulas, where the CNF _or_ DNF is significantly longer than the original,
 non-canonical formula. This "exponential blowout" is a main roadblock for
 practical applications.
@@ -820,7 +820,7 @@ practical applications.
 ## Resolution
 
 {{< img src="img/ai_resolution.png" class="rounded  float-start inert-img img-fluid m-2" width="400px" >}} 
-One of the main algorithms for `SAT`-solving in logic-based context is based on
+One of the main algorithms for `SAT`-solving in logic-based contexts is based on
 [resolution](https://en.wikipedia.org/wiki/Resolution_(logic)), which is a rule
 of inference that operates on CNFs to determine whether a given set of formulas
 is satisfiable. We shall now describe how it works.
@@ -830,7 +830,7 @@ for satisfiability, and the $0$th step of the algorithm is to transform all of
 the formulas in the set into CNF. In the following, we assume that this step has
 been carried out.
 
-For concreteness sake, let's start with our very simple example of the
+For concreteness, let's start with our very simple example of the
 inference:
 
 $$(SUN {{< lor >}} RAIN), {{< neg >}} SUN {{< therefore >}} RAIN.$$ 
@@ -849,7 +849,8 @@ but it is easier to work with sets. In our case, the resulting sets are:
 $${ SUN , RAIN } &emsp; { {{< neg >}} SUN } &emsp; {{{< neg >}}RAIN }$$ 
 
 The idea is that we turn each conjunct of each formula into a set—the set of
-its disjuncts and we consider all these sets as the starting points. 
+its disjuncts, which are literals. We call each such set a **clause**
+and consider all these clauses as the starting points.
 
 If our set would have contained $$(SUN {{< lor >}} {{< neg >}}RAIN ) {{< land >}} SUN,$$ as well, we'd have to add the following two sets:
 
@@ -862,7 +863,7 @@ the rule allows us to reason as follows:
 
 {{< img src="img/resolution_application.png" class="rounded mx-auto d-block inert-img img-fluid" width="300px">}}
 
-What is going on here is that we have to **complementary** literals in the two
+What is going on here is that we have two **complementary** literals in the two
 sets: $SUN$ and ${{< neg >}}SUN$. The resolution rule removes this pair and
 infers the set that contains the remaining literals from both sets.
 
@@ -879,12 +880,12 @@ resolution rule does.
 
 This inference is also called "**clausal resolution**". The resolution method
 consists in repeatedly resolving, while adding the results to our initial set.
-If we ever get across a set of like $${ SUN, {{< neg >}} SUN, RAIN },$$ we can
+If we ever come across a set like $${ SUN, {{< neg >}} SUN, RAIN },$$ we can
 kick it out from our search, since it is trivially satisfied and doesn't
 constrain our search (keeping it around might get us into loops, but that's
 another story). We keep doing this until one of two things happens:
 
-1. We end up with an empty set ${ }$ of clauses.
+1. We derive the empty clause ${ }$, a clause with no literals.
 
 2. We cannot resolve any further.
 
@@ -901,7 +902,7 @@ result:
 
 {{< img src="img/resolution_final.png" class="rounded mx-auto d-block inert-img img-fluid" width="500px">}}
 
-We can derive the empty set ${ }$ to witness the unsatisfiability of: 
+We can derive the empty clause ${ }$ to witness the unsatisfiability of:
 
 $${ SUN , RAIN } &emsp; { {{< neg >}} SUN } &emsp; {{{< neg >}}RAIN },$$ 
 
@@ -934,17 +935,17 @@ The resolution method described like this is a **sound and complete** decision
 procedure for satisfiability in the sense that for _any_ set of formulas it
 correctly determines in finitely many steps _whether_ the set is satisfiable. In
 many cases, it does so much quicker than the truth-table method. For example, in
-our valid inference, two applications of resolution where enough, even though we
+our valid inference, two applications of resolution were enough, even though we
 needed to check four valuations using truth-tables.
 
-Worst-case the method performs as bad as truth-tables. One bottle-neck is the
+Worst-case the method performs as badly as truth-tables. One bottle-neck is the
 translation into CNF, which we've seen can have exponential blowout. But even if
 we use smart methods, like Tseytin transformations, resolution might still need
 many applications of the resolution rule to get the desired result: especially
 when it comes to satisfiable sets, where we need to go through every case.
 
 In any case, resolution is one of the main methods of `SAT`-solving, which is
-the basis for state-of-the art artificial reasoning technologies, like
+the basis for state-of-the-art artificial reasoning technologies, like
 [Prover9](https://en.wikipedia.org/wiki/Prover9),
 [Z3](https://en.wikipedia.org/wiki/Z3_Theorem_Prover), and
 [Vampire](https://en.wikipedia.org/wiki/Vampire_(theorem_prover)). These systems

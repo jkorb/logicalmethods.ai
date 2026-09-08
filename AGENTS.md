@@ -19,3 +19,8 @@ and exercise passwords do not provide access control.
 Keep the relevant `/docs` guide current when changing documented behavior or
 conventions. Record facts supported by the repository; distinguish proposed
 improvements from implemented features. Keep this file a short entry point.
+
+Keep temporary review checklists, scratch notes, and validation artifacts in the
+Git-ignored root `tmp/` directory. Do not commit these files unless the user
+explicitly asks to retain them in the repository. Use `/docs` for lasting project
+guidance.

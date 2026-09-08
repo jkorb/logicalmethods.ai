@@ -82,23 +82,23 @@ class="rounded  float-end inert-img img-fluid m-2" width="250px" >}}
 
 Since proof assistants interface with their users in formal languages and {{<
 abbr title="generative AI">}}genAI{{< /abbr>}}-systems, such as ChatGPT, Gemini,
-Claude, LLama, et al., are very good at learning formal languages, [hybrid AI
+Claude, Llama, et al., are very good at learning formal languages, [hybrid AI
 systems](https://en.wikipedia.org/wiki/Hybrid_intelligent_system) using an
-architecture involving {{< abbr title="large language models">}}LLM's{{<
+architecture involving {{< abbr title="large language models">}}LLMs{{<
 /abbr>}} together with proof assistants have yielded promising results in
 "artificial mathematics"—the project of developing human or super human-level
 AI-systems for logical and mathematical reasoning.
 
 In fact, proof systems are the playground for a certain kind of [automated
 theorem prover (ATP)](https://en.wikipedia.org/wiki/Automated_theorem_proving).
-State of the art ATP's often use methods we've already discussed, such as
-resolution or `SAT`-solving. But there are also ATP's which are expert systems
+State of the art ATPs often use methods we've already discussed, such as
+resolution or `SAT`-solving. But there are also ATPs which are expert systems
 for **proof search**, i.e. the activity of searching through logical proofs in
 well-designed proof systems, using knowledge bases that contain expert knowledge
 on logical proofs. An example of this approach is
 [MUSCADET](https://github.com/theoremprover-museum/muscadet).
 
-Today, these kind of expert system architectures are virtually extinct in
+Today, these kinds of expert system architectures are virtually extinct in
 ATP-contexts, but there's an intriguing way of thinking about what's going on in
 genAI-research on mathematical proofs in terms of proof search: effectively,
 LLM-based theorem provers are reasoning _inductively_ about proofs, rather than
@@ -110,7 +110,7 @@ At the end of this chapter, you will be able to:
 
 - explain the concept of a formal proof in a calculus
 - name important kinds of proof systems with their advantages and drawbacks
-- construct logical proofs  the natural deduction calculus for intuitionistic
+- construct logical proofs in the natural deduction calculus for intuitionistic
 and classical propositional logic
 - verify simple natural deduction arguments in the Lean proof assistant
 - explain the core idea behind the Curry-Howard correspondence
@@ -120,7 +120,7 @@ and classical propositional logic
 Over the years, logical research generated _many_ different kinds of proof
 systems. For the purposes of AI-research, you don't need to know the ins and
 outs of all these different systems. But it is useful to have an overview of the
-most important kind of systems and their different use-cases. We'll begin by
+most important kinds of systems and their different use-cases. We'll begin by
 reviewing the following important families of proof systems, highlighting their
 specific uses for AI purposes:
 
@@ -128,13 +128,13 @@ specific uses for AI purposes:
 2. Structural proof systems, such as [sequent calculi](https://en.wikipedia.org/wiki/Sequent_calculus).
 3. Algorithmic proof systems, such as [tableaux](https://en.wikipedia.org/wiki/Method_of_analytic_tableaux)-systems and [resolution](https://en.wikipedia.org/wiki/Resolution_(logic))-style systems.
 
-Then we'll do a deep dive into a particularly import kind of proof system, which
+Then we'll do a deep dive into a particularly important kind of proof system, which
 is both useful for practical reasoning with logical formulas and for AI
 applications, which are:
 
 4. Natural deduction systems
 
-As a running example for ours discussion, let's consider the following inference
+As a running example for our discussion, let's consider the following inference
 in natural language, carried out by {{< logo >}}:
 
 $${{< img src="img/ai_nuclear.png" class="rounded  float-end inert-img img-fluid m-2" width="300px" >}}
@@ -184,7 +184,7 @@ a logic, which state that for all inferences:
 
 $$P₁, P₂, … {{< v_dash >}} C &emsp; if and only if P₁, P₂, … {{< vDash >}} C$$
 
-Most logical systems you'll come across in AI-application have this property,
+Most logical systems you'll come across in AI applications have this property,
 especially when we're dealing with basic systems for classical propositional
 logic, like below. But it's also important to know that there *are* logical
 systems where no complete proof system exists—where not for every valid
@@ -204,10 +204,9 @@ Let's check out how.
 after the approach of Euclid's elements, which starts from basic laws or
 [*axioms*](https://en.wikipedia.org/wiki/Axiom) and constructs logical proofs by
 deriving consequences using simple inference rules. In logical theory, axiomatic
-systems are typically called [**Hilbert
-system**](https://en.wikipedia.org/wiki/Hilbert_system). 
+systems are typically called [**Hilbert systems**](https://en.wikipedia.org/wiki/Hilbert_system).
 
-Here's how a logical proof for our inference would like in a Hilbert system for
+Here's how a logical proof for our inference would look like in a Hilbert system for
 propositional logic:
 
 1. $RAIN$ <span class="right-justified">(Premise)</span>
@@ -228,7 +227,7 @@ disjunction is true as well. The axioms of a Hilbert calculus for propositional
 logic are **logical truths**, that is formulas which are true in every model.
 The challenge when formulating a Hilbert calculus is to find a collection of
 logical truths of the logic, which allow for the derivation of all valid
-consequences. We've already encountered this idea Boolean algebra, where we
+consequences. We've already encountered this idea in Boolean algebra, where we
 looked at how to derive Boolean laws from others.
 
 Here's a list of axioms, which together with the rule of MP form a sound and
@@ -258,7 +257,7 @@ get unreasonably long.
 Here's an example to illustrate both points, by showing that the condition
 $$RAIN{{< to >}}RAIN$$ is derivable from no assumptions in this calculus. The
 conditional is, of course, a logical truth: if it rains, then it rains. This
-should be easy to see work. But see for yourself:
+should be easy to see. But see for yourself:
 
 &nbsp;
 &nbsp;
@@ -319,7 +318,7 @@ Such a derivation will then be the proof corresponding to the claim that:
 $$((RAIN {{< lor >}} WIND) {{< to >}} COLD), (COLD {{< to >}}HEATING), RAIN {{<
 v_dash >}}HEATING$$ 
 
-Here's how this works in a standard sequent calculus for classical propositional
+Here's how a standard sequent calculus for classical propositional
 logic would derive this sequent:
 
 {{< img src="img/sequent_derivation.png" class="mx-auto rounded d-block inert-img img-fluid" width="800px">}}
@@ -329,7 +328,7 @@ sequent"—essentially an _axiom_ of sequent calculus. These initial sequents
 express the basic logical fact that every statement logically entails itself: if
 it rains, then it rains. We could also think of this as a _trivial_ inference.
 
-From these kind of basic inferences, the sequent calculus proof constructs more
+From these kinds of basic inferences, the sequent calculus proof constructs more
 complex sequents from the simple ones by applying **sequent rules**. For
 example, the inference from $RAIN {{< longrightarrow >}} RAIN$ to 
 $RAIN {{< longrightarrow >}} (RAIN {{< lor>}} WIND)$ uses the rule 
@@ -354,7 +353,7 @@ connective on the right side of {{< longrightarrow >}} (here in <span
 tell us what follows from a formula involving the connective based on the
 consequences of the formulas the connective is operating on. The "right-rules"
 for a connective, instead, tell us what a formula involving the connective
-follows from given what it's parts follow from.
+follows from given what its parts follow from.
 
 The symbol {{< bot >}}, which occurs in the rules for negation, for example, is
 a special "contradiction"-symbol, which is also called **falsum**. It is a
@@ -398,7 +397,7 @@ robust implementations of this idea.
 ## Algorithmic systems
 
 There are many different kinds of algorithmic systems, but many of them are
-`SAT`-based. That is, they are build on the idea we discussed before that we can
+`SAT`-based. That is, they are built on the idea we discussed before that we can
 reduce valid inference to the unsatisfiability of the premises with the negation
 of the conclusion:
 
@@ -415,27 +414,26 @@ mathematical sense is simply a structure of the following kind:
 
 The circles are called **nodes**, the top-most node is the **root** (here in
 <span class="dark-red">red</span>), the outermost nodes are **leaves** (here in
-<span class="dark-blue">blue</span>), and a way of getting from the root to a
-leave is called a path (like the <span class="dark-green">green</span> path from
+<span class="dark-blue">blue</span>), and a way of getting from the root to a leaf is called a path (like the <span class="dark-green">green</span> path from
 the root to the right-most leaf). It's a defining characteristic of trees in the
 mathematical sense that there's a unique path from the root to every leaf. By
 the way, our parsing trees from syntax-theory are also trees in this
 precise mathematical sense.
 
-In a tableaux, the nodes are populated with formulas and each branch corresponds
-to a different way in which the formulas at the root could be true. Here's how
+In a tableau, the nodes are populated with formulas and each branch corresponds
+to a different way in which the formulas at the root could be true. Here's what
 this looks like in our example inference:
 
 {{< img src="img/tableau_derivation.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
 
-What's going on here is that the we start with the premises and negation of the
+What's going on here is that we start with the premises and negation of the
 conclusion of our inference and then recursively unfold the truth-conditions for
 the formulas involved. For example, the first "branching" to the formulas ${{<
 neg >}}(RAIN {{< lor >}} WIND)$ and $COLD$ unfolds the two ways in which the
 conditional $((RAIN {{< lor >}} WIND){{< to >}} COLD)$ could be true. By our
 Boolean implementation of {{< to >}}, we have: $$v(((RAIN {{< lor >}} WIND){{<
 to >}} COLD)) = (!!NOT!! v(RAIN {{< lor >}} WIND)) !!OR!! v(COLD)$$ If we set
-this equation to `1` (i.e. *true*), we can see that the there are only two
+this equation to `1` (i.e. *true*), we can see that there are only two
 possibilities, either $!!NOT!! v(RAIN {{< lor >}} WIND) = 1$  or $v(COLD)$. And
 since $!!NOT!! v(RAIN {{< lor >}} WIND) = 1$ is the same as $v({{< neg >}}(RAIN
 {{< lor >}} WIND)) = 1$, the two branches in our tree represent the two *a
@@ -460,8 +458,7 @@ every branch that passes through the formula according to the rule.
 If a branch contains a contradiction, it is eliminated—*closed off* as we say.
 If this happens to every branch in a complete tableau, like in our example, we
 consider this the proof that the formulas at the root aren't jointly
-satisfiable—which means that the inference in question is valid. That is, the
-tableaux above is the logical proof that:
+satisfiable—which means that the inference in question is valid. That is, the tableau above is the logical proof that:
 
 $$((RAIN {{< lor >}} WIND) {{< to >}} COLD), (COLD {{< to >}}HEATING), RAIN {{<
 v_dash >}}HEATING.$$
@@ -483,17 +480,17 @@ $$v(COLD) = 0, v(WIND) = 0, v(RAIN) = 0$$
 It's easy to check that all the formulas on the green branch are true, and so
 the inference in question is invalid.
 
-What makes tableau particularly fruitful for AI-research is their algorithmic
+What makes tableaux particularly fruitful for AI-research is their algorithmic
 nature: they are effectively an algorithm for countermodel search. Moreover,
 they can easily be made more efficient, for example, by checking for
 contradictions after each rule application, to eliminate branches early.
 Tableau systems that are optimized in this way are the basis for many {{< abbr
 title="automated theorem prover">}}ATP{{< /abbr >}}-applications. 
 
-The main drawback of tableau is that they are essentially `SAT`-solving
+The main drawback of tableaux is that they are essentially `SAT`-solving
 algorithms in disguise. As a consequence, they are not very "natural" in the
-sense that it can sometimes be hard to see what's going on in a given tableaux
-and it's not straight-forward to go back and forth between natural language
+sense that it can sometimes be hard to see what's going on in a given tableau
+and it's not straightforward to go back and forth between natural language
 arguments and tableau proofs—they are simply not a great model of natural
 language step-by-step inference. This makes them less useful for use in proof
 assistants, for example, which are supposed to be formalized augmented
@@ -567,7 +564,7 @@ $$(SUN {{< lor >}}RAIN), {{< neg >}} SUN {{< v_dash >}} RAIN$$
 
 The rules $Ex falso$ and ${{< neg >}}{{< bot >}}$ deserve special attention
 since they capture logical laws that are only valid in very specific logical
-contexts or systems. The principle of explosion, which we've just used to proof disjunctive
+contexts or systems. The principle of explosion, which we've just used to prove disjunctive
 syllogism, for example, is valid in Boolean logic. Here, we can derive the falsum {{<
 bot >}} from any contradiction, like $SUN$ and ${{< neg >}}SUN$. This is because
 $SUN$ cannot both be true and false at the same time. But that means that if we
@@ -575,7 +572,7 @@ assume that it is, we get {{< bot >}} and "anything goes", so if both $SUN$ and
 ${{< neg >}}SUN$, then $RAIN$. 
 
 Or think about it the other way around. The only way for the inference from
-$SUN$ and ${{< neg >}}SUN$ to $RAIN$ be *in*valid is for both $SUN$ and 
+$SUN$ and ${{< neg >}}SUN$ to $RAIN$ to be *in*valid is for both $SUN$ and
 ${{< neg >}}SUN$ to be `1`, while $RAIN$ is `0`. But in Boolean logic that's
 excluded. So the inference must be valid.—If we move to a [paraconsistent
 logic](https://en.wikipedia.org/wiki/Paraconsistent_logic), however, where statements can
@@ -586,7 +583,7 @@ databases, but that's a story for later on.
 The case of {{< neg >}}{{< bot >}} is equally fraught with logical and
 philosophical issues, but suffice it to say here, that it is required to derive
 ${{< neg >}}{{< neg >}}RAIN {{< v_dash >}} RAIN$. This principle fails, for
-example, in [intuistionistic
+example, in [intuitionistic
 logic](https://en.wikipedia.org/wiki/Intuitionistic_logic), which is of
 paramount importance in the foundations of computation. We won't be able to go
 into the full details here, but we'll see that these special rules play an
@@ -604,9 +601,9 @@ This is called **vacuous discharge** and without it, we couldn't prove laws
 like the one from the derivation, which is one of Hilbert's axioms. The
 assumption $RAIN$, then, can be discharged as normal.
 
-It's also worth pointing out that are actually many different
-notational system for natural deduction: we use the
-[Genzten-Prawitz-style](https://en.wikipedia.org/wiki/Natural_deduction#Gentzen-style_propositional_logic),
+It's also worth pointing out that there are actually many different
+notational systems for natural deduction: we use the
+[Gentzen-Prawitz-style](https://en.wikipedia.org/wiki/Natural_deduction#Gentzen-style_propositional_logic),
 but there are also
 [Fitch-notation](https://en.wikipedia.org/wiki/Fitch_notation), [Suppes-Lemmon
 notation](https://en.wikipedia.org/wiki/Suppes%E2%80%93Lemmon_notation), and
@@ -616,7 +613,7 @@ As we said, natural deduction attempts to model the most basic, small-step
 inferences we make in natural language reasoning. At the same time, as any math
 student can attest, making good small-step inferences is hard work—even in
 natural language. So, it should come as no surprise that learning to make
-correct natural deduction inferences for is hard work. And unfortunately,
+correct natural deduction inferences is hard work. And unfortunately,
 there's no shortcut around just trying one's hand at this. Luckily, there are
 tools that allow us to check our own work: these are the proof assistants we've
 mentioned before and will talk about next.
@@ -663,13 +660,13 @@ carefully check all the proofs of your potential collaborators—the computer
 does that for you. This opens up the possibility of new kinds of collaboration.
 
 {{< img src="img/ai_clippy.png" class="rounded  float-start inert-img img-fluid m-2" width="200px" >}} 
-At the same time, way that proof assistants interface with natural language
+At the same time, the way that proof assistants interface with natural language
 proofs is very adaptable to the way that 
 {{< abbr title="large language models">}}LLMs{{< /abbr >}} treat texts. 
 This opens up the possibility of GenAI-technologies, like ChatGPT, Claude,
 Gemini, and others, using proof assistants to formulate and verify their
 reasoning. The potential for applications of this observation in machine
-learning and practice are endless. What we see in practice already is that
+learning and practice is endless. What we see in practice already is that
 AI-tools like [GitHub Copilot](https://en.wikipedia.org/wiki/GitHub_Copilot) can
 complete some simple mathematical arguments while they are being typed in
 $LaTeX$ source code by an author. 
@@ -691,7 +688,7 @@ formalized and verified in Lean.
 Lean is, in effect, a programming language. To verify a proof, you essentially
 write a computer program in the Lean programming language, which when run will
 return errors if there are mistakes in the proof. The details are, of course,
-much bit more complicated, but for our purposes, this picture is enough for now.
+a bit more complicated, but for our purposes, this picture is enough for now.
 
 Lean-code can be [compiled](https://en.wikipedia.org/wiki/Compiler) into a
 stand-alone program or it can be run directly in your text-editor by an
@@ -756,8 +753,8 @@ example (rain : RAIN)
 ~~~
 
 This declaration has itself a complex structure. It begins with the
-straight-forward keyword `<span class="dark-blue">example</span>` to indicate
-that we're dealing with an example. This immediately followed by a sequence of
+straightforward keyword `<span class="dark-blue">example</span>` to indicate
+that we're dealing with an example. This is immediately followed by a sequence of
 additional declarations:
 
 ~~~lean4 {lineNos = false }
@@ -796,8 +793,7 @@ mode**. We already mentioned that in Lean, we're basically converting proofs of
 assumptions into proofs of our conclusion. This works by means of proof
 _constructions_ (whence the name "Calculus of Constructions"), which we can
 write down in different ways. We can directly apply the constructions of COC,
-leading to expressions in what's known as [typed lambda
-caclulus](https://en.wikipedia.org/wiki/Typed_lambda_calculus). These
+leading to expressions in what's known as [typed lambda calculus](https://en.wikipedia.org/wiki/Typed_lambda_calculus). These
 expressions are the formal foundation of what's going on "under the hood", but
 they are very difficult to understand for humans.
 
@@ -886,7 +882,7 @@ natural deduction proofs and Lean programs and it's the very foundation of how
 Lean ultimately works.
 
 The correspondence is most clearly visible in the case of conjunctions and
-disjunctions. For each the corresponding introduction and elimination rules,
+disjunctions. For each of the corresponding introduction and elimination rules,
 there are corresponding Lean tactics:
 
 + ${{<land>}}-Intro$ corresponds to `And<span class="dark-green">.</span>intro`, which `applied` to the proofs of
@@ -955,13 +951,19 @@ name `rain`. Lean figures out by itself that this is supposed to be the hypothes
 if part of the conditional $RAIN {{< to >}} (RAIN {{< lor >}} WIND)$—i.e. for
 `RAIN`—since that's what we need to prove at this point.
 
-Note that in the last line we write `exact rain`, rather than just `rain`, which
-would also have been fine. The tactic `exact` is "[syntactic
-sugar](https://en.wikipedia.org/wiki/Syntactic_sugar)" for the `apply`-tactic,
-which you're supposed to use when your proof is complete. It doesn't do anything
-else than `apply` or not writing anything, but it will fail give more
-transparent error messages if proof doesn't quite work—and in this way, `exact`
-fosters code Lean practice.
+Note that in the last line we write `exact rain`. We could also write
+`apply rain`: at this point, `rain` already proves the current goal, so either
+tactic closes it. The difference is that `apply` can leave new goals for the
+premises of a rule, while `exact` requires a complete proof of the current goal.
+For example, `apply Or.inl` leaves us to prove the left disjunct; `exact rain`
+then supplies that proof. Using `exact` makes our intention to finish the current
+goal explicit and gives an error if the supplied term doesn't prove it.
+
+A bare `rain` is a proof term, not a tactic. We can use it directly after `:=`
+when its type matches the statement being proved, but inside a `by` block we
+need a tactic such as `exact`. See Lean's
+[tactic tutorial](https://lean-lang.org/theorem_proving_in_lean4/Tactics/)
+for more examples.
 
 With this in hand, we can move to `Or<span class="dark-green">.</span>elim`. To
 illustrate, let's look at a more complex example. Let's verify the following in
@@ -998,7 +1000,7 @@ This code corresponds to the following derivation in natural deduction:
 
 {{< img src="img/nd_complex.png" class="mx-auto rounded d-block inert-img img-fluid" width="900px">}}
 
-There are a few things going on here. As we've discussed before, the Lean can
+There are a few things going on here. As we've discussed before, Lean can
 work out itself that the following line
 ~~~lean4 {linenostart=4}
   intro rain_and_wind_or_sun
@@ -1019,7 +1021,7 @@ SUN)` in
   apply Or.elim (And.right rain_and_wind_or_sun)
 ~~~
 
-To this disjunction, we apply the rule `OR<span class="dark-green">.</span>elim`. But the tactic needs to more arguments, which is what's provided next:
+To this disjunction, we apply the rule `OR<span class="dark-green">.</span>elim`. But the tactic needs two more arguments, which is what's provided next:
 ~~~lean4 {linenostart=6}
   · intro wind
     apply Or.inl
@@ -1212,7 +1214,7 @@ the search for proofs via tactics like `exact?`, which searches the
 currently have. This could help researchers find results even if they've never
 heard of them.
 
-At the same time, Lean is playground for GenAI techniques, which in 2024 helped
+At the same time, Lean is a playground for GenAI techniques, which in 2024 helped
 researchers at Google's _DeepMind_ research group develop an AI-system that
 achieved [silver-medal standard at IMO
 problems](https://deepmind.google/discover/blog/ai-solves-imo-problems-at-silver-medal-level/).

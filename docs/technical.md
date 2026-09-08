@@ -38,6 +38,14 @@ recursive submodule checkout, this baseline tracks their files directly and
 upgrade them. Package manifests inside these libraries belong to those upstream
 projects; ordinary site work does not require running their package installers.
 
+## Temporary working files
+
+Use the root `tmp/` directory for copy-edit reviews, approval checklists, scratch
+notes, screenshots, and other temporary validation artifacts. This directory is
+ignored by Git and is outside Hugo's content and asset directories. Keep these
+files local unless the user explicitly requests that they be committed; do not
+force-add them. Reserve `docs/` for lasting contributor documentation.
+
 ## Rendering and assets
 
 [`layouts/_default/baseof.html`](../layouts/_default/baseof.html) provides the

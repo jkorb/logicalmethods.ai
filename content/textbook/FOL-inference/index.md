@@ -17,7 +17,7 @@ Take our standard inference, for example:
 
 {{< img src="img/socrates_inference.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
 
-It's actually rather straight-forward to see that this inference is deductively
+It's actually rather straightforward to see that this inference is deductively
 valid in FOL. Suppose, we've got a model, $M$, where both premises are true,
 that is:
 
@@ -48,7 +48,7 @@ inference is deductively valid:
 $${{< forall >}}x (Human x {{< to >}} Mortal x), Human Socrates {{< vDash >}}Mortal Socrates$$
 
 The relative ease with which we showed the inference's validity might spark the
-hope for a relatively straight-forward theory of mechanized FOL inference. We've
+hope for a relatively straightforward theory of mechanized FOL inference. We've
 developed a series of inference techniques for Boolean and propositional
 reasoning, such as truth-tables, `SAT`-solving, and natural deduction. We might
 hope, at this point, that they just carry over to FOL _modulo_ some adjustments
@@ -69,7 +69,7 @@ While in propositional logic, all that mattered for the truth of a formula is
 which of its propositional variables are true, in FOL, we need to know more:
 which objects there are, what the terms denote, and what the properties express. 
 But that means that not only do we need to search through all distributions of
-truth-values over the atoms, we need to search through all through possible
+truth-values over the atoms, we need to search through all possible
 _domains_ and interpretations of vocabularies across them.
 
 But there are _many_ possible domains. _Every_ set of objects could be the
@@ -88,7 +88,7 @@ answer is: there can't be!
 This is a consequence of Church and [Turing's
 answer](https://en.wikipedia.org/wiki/Turing%27s_proof) to the [halting
 problem](https://en.wikipedia.org/wiki/Halting_problem). Without going into too
-much detail, Curry and Turing independently showed that there can't be a single
+much detail, Church and Turing independently showed that there can't be a single
 algorithm that determines in a finite amount of time whether any given computer
 program "halts"—meaning it doesn't get stuck in an "[infinite
 loop](https://en.wikipedia.org/wiki/Infinite_loop)". The model of computation
@@ -151,7 +151,7 @@ What remains to be done is to find a mechanizable way of determining that we
 should set the value of $x$ to Socrates. The way this works, formally, is using
 the method of [unification](https://en.wikipedia.org/wiki/Unification_(computer_science)).
 
-What we need to do in order to be able to apply $MP$, what we need to do is to
+What we need to do in order to be able to apply $MP$ is to
 set the value of $x$ in such a way that the $Human x$ in 
 $Human x {{< to >}}Mortal x$ becomes $Human Socrates$. The obvious way of doing
 this is to replace the $x$ with the constant $Socrates$ to obtain $Human
@@ -179,7 +179,7 @@ variable $x$ from a
 if there is a unifier which makes the antecedent of the conditional and the
 sentence syntactically identical.
 
-It's rather straight-forward to generalize this rule to antecedents with
+It's rather straightforward to generalize this rule to antecedents with
 multiple variables in the premise and antecedent. Take the following deductively
 valid inference, for example:
 {{< img src="img/ai_brothers.png" class="mx-auto rounded d-block inert-img img-fluid" width="600px">}}
@@ -203,7 +203,7 @@ class="dark-green">.</span></span>inl`, for example.
 Remember that the natural deduction inference from $A$ to $A {{< lor >}}B$ using
 ${{< lor >}} Intro$ corresponds to the lean `apply Or<span
 class="dark-green">.</span></span>inl h`, where `h : A` is a proof of $A$. Note
-that you don't need to tell Lean here that you're other disjunct is supposed to
+that you don't need to tell Lean here that your other disjunct is supposed to
 be $B$. If you later want to `apply` MP-style reasoning with some premise `g : (A <span
 class="dark-green">∨</span> B) <span class="dark-green">→</span> C` to obtain a
 proof of $C$, you do this with code like this:
@@ -227,7 +227,7 @@ use the [backward chaining](https://en.wikipedia.org/wiki/Backward_chaining) and
 [forward chaining](https://en.wikipedia.org/wiki/Forward_chaining) algorithms
 when our KB contains suitable conditionals.
 
-In practice, there are different algorithms for efficiently search for unifiers
+In practice, there are different algorithms for efficiently searching for unifiers
 for two first-order terms. The most basic one, due to
 [Robinson](https://en.wikipedia.org/wiki/John_Alan_Robinson), you will explore
 in the exercises. Importantly, the unifiability of two terms is a [decidable
@@ -247,7 +247,7 @@ inference, for example:
 
 {{< img src="img/giant_inference.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
 
-This inference is straight-forwardly seen to be valid: If it's true that anyone
+This inference is straightforwardly seen to be valid: If it's true that anyone
 bigger than everyone is a giant, and $PolyphemOS$ is bigger than everybody, then
 $PolyphemOS$ is a giant. In fact, applying our strategy of dropping all the
 universals {{< forall >}}, we might think we could do the following:
@@ -296,7 +296,7 @@ lor >}} Giant x)$.
 Either there exists something that $x$ is not bigger than, or $x$ is a giant.
 
 Writing the premise in this form explains why the simple unification-based
-FOL-MP cannot be applied here, since there's an existential is involved. To
+FOL-MP cannot be applied here, since an existential is involved. To
 handle such more general inferences, we need to move to a more powerful system.
 
 ## FOL Resolution
@@ -321,13 +321,13 @@ whether an inference is valid. And that's what FOL resolution does. The only
 caveat here is that while in propositional logic, resolution is a decision
 procedure—that is, it correctly tells us in finitely many steps _whether_ a set
 is satisfiable/an inference is valid—in FOL, the method is "only" sound and
-complete: _if_ we can derive an empty sequent or contradiction from a set using
-resolution, we know its unsatisfiable, and for each unsatisfiable set _there is_
+complete: _if_ we can derive an empty clause or contradiction from a set using
+resolution, we know it's unsatisfiable, and for each unsatisfiable set _there is_
 such a derivation. But crucially, as a consequence of Church and Turing's
-theorem, there is no algorithm that in general is guaranteed to find the this
+theorem, there is no algorithm that in general is guaranteed to find this
 derivation—even if it exists. We still need to be "smart" about it. This puts a
 damper on the ambition of fully automating FOL reasoning, but it also presents
-an opportunity to develop smart algorithms that perform imitate human-level
+an opportunity to develop smart algorithms that imitate human-level
 skills—or even achieve *super*human abilities—at finding FOL derivations.
 
 So, here's how FOL resolution works. In the simplest cases, we've actually
@@ -345,11 +345,11 @@ The other premise and negation are already of the right form:
 $$Human Socrates &emsp; {{< neg >}}Mortal Socrates$$
 
 With these transformations in place, we can move to sets like in the
-propositional case and apply resolution rules to derive the empty set ${ }$:
+propositional case and apply resolution rules to derive the empty clause ${ }$:
 
 {{< img src="img/socrates_resolution.png" class="mx-auto rounded d-block inert-img img-fluid" width="500px">}}
 
-The idea here is that we can resolve _on_ two formulas just in case the can
+The idea here is that we can resolve _on_ two formulas just in case they can
 be unified using a substitution such that the one becomes the negation of the
 other. Here, we resolve on $Human Socrates$ and ${{< neg >}}Human x$ using the
 substitution $[x/Socrates]$. This substitution needs to be applied to all the
@@ -365,7 +365,7 @@ title="conjunctive normal form">}}CNF{{< /abbr >}}, which means that they are
 conjunctions of disjunctions of literals. To carry this notion over to FOL, we
 just need to adjust the notion of a
 [literal](https://en.wikipedia.org/wiki/Literal_(mathematical_logic)). In
-propositional logic, a literal is a propositional vairable or its negation. In
+propositional logic, a literal is a propositional variable or its negation. In
 FOL, it's simply an atomic formula or its negation. That is $$Human x, {{< neg >}}x = Socrates, BiggerThan Socrates fatherOf(y), ... $$ are all
 literals in the sense of FOL. That's it, this gives us the notion of a CNF for
 FOL. 
@@ -374,10 +374,10 @@ There is also a corresponding notion of a
 {{< abbr title="disjunctive normal form">}}DNF{{< /abbr >}}, 
 which in AI and automated inference is not as important as the CNF. This is
 mainly because there is no truth-table style method for `SAT`-solving in FOL,
-which is one of the main things that DNF's are good for in propositional logic.
+which is one of the main things that DNFs are good for in propositional logic.
 So, we'll focus on CNFs.
 
-Just like in propositional logic, there's an re-write algorithm for transforming
+Just like in propositional logic, there's a re-write algorithm for transforming
 any formula into CNF. Crucially, this transformation doesn't give us an
 _equivalent_ formula, but an
 [**equi-satisfiable**](https://en.wikipedia.org/wiki/Equisatisfiability)
@@ -385,7 +385,7 @@ formula, meaning that the CNF is satisfiable if and only if the original formula
 is. The reason why we don't get full equivalence has to do with quantifiers.
 
 {{< img src="img/ai_quantifier_elimination.png" class="rounded  float-start inert-img img-fluid m-2" width="200px" >}} 
-Note that CNFs are, by definition, free of quantifiers. This means, we need when
+Note that CNFs are, by definition, free of quantifiers. This means that when
 we transform a formula into CNF, we need to [eliminate the
 quantifiers](https://en.wikipedia.org/wiki/Quantifier_elimination)—and this
 cannot, in general, be done in such a way as to preserve strict equivalence. But
@@ -437,8 +437,7 @@ the previous formula, we write:
 $${{< exists >}}x (Human x {{< land >}} {{< forall >}}y(Human y {{< to >}}Mortal y))$$
 
 This sort of variable renaming is called **α-renaming** and happens in its own
-step. In order to implement this, we first create two
-[stack](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)) of pairwise
+step. In order to implement this, we first create two [stacks](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)) of pairwise
 distinct variables 
 
 ```
@@ -469,8 +468,8 @@ $${{< exists >}}x (Human x {{< land >}} {{<
 forall >}}x(Human x {{< to >}}Mortal x)){{< longrightarrow >}}{{< exists >}}y₁ (Human y₁ {{< land >}} {{<
 forall >}}x₁(Human x₁ {{< to >}}Mortal x₁))$$ 
 
-If there are more variables involved, the variable naming get's more complex,
-but every quantifier get's its own variable:
+If there are more variables involved, the variable naming gets more complex,
+but every quantifier gets its own variable:
 
 $${{< forall >}}x( Human x{{< to >}}{{< exists  >}}y ({{< forall >}}z(ParentOf x
 z {{< to >}} ParentOf y z))) …$$
@@ -487,12 +486,12 @@ we need to transform them into something like ${{< forall >}}x₁ Human x₁$ an
 ${{< forall >}}x₂ Mortal x₂$ (results may vary depending on how many other
 variables occur in other formulas "in between").
 
-We solve this by applying the entire algorithm to all formulas in our
+We solve this by applying the entire algorithm to all formulas in our set
 simultaneously, moving through the steps in unison and then sharing the variable
 stack across the different formulas. The use of `pop` prevents us from ever
 using the same variable twice in the transformation.
 
-So far, all our transformations where equivalent transformations in the sense
+So far, all our transformations were equivalent transformations in the sense
 that the formula that comes out the other end is deductively equivalent to the
 original formula—it always has the same truth-value in all models. This changes
 in the next step, where we [eliminate the
@@ -520,8 +519,7 @@ $${{< forall >}}x₁({{< exists >}}x₂{{< neg >}} Bigger Than x₁ x₂ {{< lor
 What this formula says is that for each $x₁$ either there exists an $x₂$ which
 $x₁$ is not bigger than or, otherwise, $x₁$ is a giant. We want to re-write this
 fact—if not equivalently, at least
-[equi-satisfiably](https://en.wikipedia.org/wiki/Equisatisfiability)—without
-without using existential quantifiers. The crucial insight of Skolem's that
+[equi-satisfiably](https://en.wikipedia.org/wiki/Equisatisfiability)—without using existential quantifiers. The crucial insight of Skolem's that
 makes this possible is that all we need to do is to pick _some_ object for each
 $x₁$. That is, dependent on any value for $x₁$, we need to get an object that
 behaves according to the formula. In mathematical terms, this means that there's
@@ -543,7 +541,7 @@ This is the formula we can use for FOL resolution.
 
 But in the more general case, a few things can happen that we need to discuss.
 First, when there's more than one existential quantifier in a formula, then we
-need have different `skolem`-functions for each of them to guarantee
+need to have different `skolem`-functions for each of them to guarantee
 equi-satisfiability. Take the following, for example:
 
 $${{< forall >}}x₁({{< exists >}}y₁ BrotherOf x₁ y₁ {{< land >}} {{< neg >}}{{<
@@ -602,9 +600,9 @@ $${{< exists >}}y₁ Human y₁ {{< land >}}{{< exists >}}y₂ Human y₂{{< lon
   $$r₁₀: {{< exists >}}yᵢ A{{< longrightarrow >}} A[ yᵢ / `skolemᵢdeps`]$$
 
 As we said, this re-write rule is rather complex, in practice relatively
-straight-forward to work out. 
+straightforward to work out.
 
-Now that we've eliminated the existentials, we can drop all the universal:
+Now that we've eliminated the existentials, we can drop all the universals:
 
 5. We recursively drop the universal quantifiers using:
 
@@ -619,8 +617,8 @@ In the very last step, we distribute if necessary:
     $$r₄': (A {{< land >}}B){{< lor >}}C{{< longrightarrow >}}(A{{< lor >}}C){{< land >}}(B{{< lor >}}C)$$
 
 Applying rules 1—6 of this algorithm simultaneously for all formulas in a set,
-yields a set of CNF formulas. These we can transform into sets of clauses and
-like before and start apply resolution.
+yields a set of CNF formulas. As before, we can turn each conjunct into a clause (a set of literals)
+and start applying resolution to the resulting collection of clauses.
 
 Take, for example, in our inference about $PolyphemOS$:
 
@@ -638,7 +636,7 @@ $${{< neg >}}BiggerThan x₁ `skolem` x₁ {{< lor >}} Giant x₁$$
 $$BiggerThan PolyphemOS x₂$$
 $${{< neg >}}Giant PolyphemOS$$
 
-Using FOL-resolution, we derive the empty sequent in two steps:
+Using FOL-resolution, we derive the empty clause in two steps:
 
 {{< img src="img/polyphemOS_resolution.png" class="mx-auto rounded d-block inert-img img-fluid" width="600px">}}
 
@@ -665,8 +663,8 @@ $C$, that is: $$B σ = C σ$$
 
 These are the basics of FOL resolution. Before we conclude our discussion, it's
 worth remarking that FOL resolution is a sound and complete proof system for
-FOL. That is, there is a derivation of the empty sequent from the CNFs of the
-premises and the CNF of the negation of the conclusion if and only the inference
+FOL. That is, there is a derivation of the empty clause from the CNFs of the
+premises and the CNF of the negation of the conclusion if and only if the inference
 is valid. But in contrast to propositional logic, the system is _not_ a decision
 procedure: we cannot fully automate it as an algorithm and trust that it will
 return the correct answer—valid or invalid—for any given inference. Let's try to
@@ -685,8 +683,7 @@ If you think about what a model of these formulas looks like, you  notice that
 it must contain an infinite sequence of objects, which successively get bigger
 and bigger. The following is a graph-representation of such a model, where the
 domain consists of the natural numbers ${0, 1, 2, ...}$ and ${{< llbracket
->}}≤{{< rrbracket >}}$ is simply the "real" smaller than relation on the
->numbers:
+>}}≤{{< rrbracket >}}$ is simply the "real" smaller than relation on the numbers:
 
 {{< img src="img/inf_model.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
 
@@ -719,14 +716,14 @@ it's best left to computers. There are various industry-level implementations,
 with various optimizations, which perform well at the tasks involved—much better
 than humans could. For example, the method of validity checking we've just
 described is the basis for [Prover9](https://en.wikipedia.org/wiki/Prover9),
-which is oftern used as a
+which is often used as a
 [benchmark](https://en.wikipedia.org/wiki/Benchmark_(computing)) for FOL
 automated theorem provers.
 
 ## Natural deduction and Lean
 
 While FOL resolution is useful for computer implementations, it's not the most
-straight-forward to work with when trying to write logical proofs for in a
+straightforward to work with when trying to write logical proofs in a
 human-readable way. For this, we need to look to natural deduction. There are
 also sound and complete Hilbert calculi, sequent calculi, and tableaux systems
 for FOL, but natural deduction is the system that most closely resembles
@@ -745,7 +742,7 @@ Each of these rules has some special side-conditions, which require some
 explanation. Let's discuss them in turn.
 
 The first rule, ${{< forall >}}&ThinSpace;Intro$, has the side-condition that
-the variable $x$ may not occur free in any undischarged assumption the we've
+the variable $x$ may not occur free in any undischarged assumption that we've
 used to derive $A(x)$. The idea is that if we can derive $A(x)$ without making any
 assumptions about $x$, this means that the argument holds for _any_ $x$. Here's
 an example of the rule at work:
@@ -755,11 +752,11 @@ an example of the rule at work:
 This is a rather trivial inference, but it illustrates the idea well. We can
 show that if $x$ is human, then $x$ is human without any open assumptions left
 using ${{< to >}}Intro$. Since this proof doesn't assume anything about $x$, we
-conclude that it holds for _all_ $x$. Every human is human is a logical truth,
-we can proof without any undischarged assumptions.
+conclude that it holds for _all_ $x$. Every human is human is a logical truth
+we can prove without any undischarged assumptions.
 
 For a slightly more interesting application, we first need to talk about ${{<
-forall >}} Elim$. This rule is perhaps the most straight-forward one: it allows
+forall >}} Elim$. This rule is perhaps the most straightforward one: it allows
 us to infer from a universal statement that holds for all $x$, that it holds for
 any specific object, designated by any term $t$. For example, it gives us the
 inference:
@@ -781,7 +778,7 @@ $${{< forall >}}x(Black x {{< land >}} White x){{< v_dash >}}{{< forall >}}x Bla
 
 {{< img src="img/and_distribution.png" class="mx-auto rounded d-block inert-img img-fluid" width="800px">}}
 
-The rule ${{< exists >}}&ThinSpace;Intro$ is also relatively straight-forward:
+The rule ${{< exists >}}&ThinSpace;Intro$ is also relatively straightforward:
 it allows us to infer that there exists an object satisfying a property from
 any concrete object instantiating that property. For example, we have:
 
@@ -842,8 +839,8 @@ corresponding pair of Lean rules, we have Lean rules for the introduction and
 elimination rules for the quantifiers.
 
 Let's begin with ${{< forall >}}Intro$. Essentially, Lean treats the universal
-quantifier just like the existential: what we need to show is that from the
-assumption of an arbitrary $x$, we can derive a proof the proposition in
+quantifier much like a conditional: what we need to show is that from the
+assumption of an arbitrary $x$, we can derive a proof of the proposition in
 question—then we can conclude that the property holds for all $x$. Here's the
 Lean proof that corresponds to our simple inference which shows that all humans
 are human:
@@ -864,8 +861,9 @@ to run this code in your browser.
 That is, Lean treats a proof of a universally quantified statement as a kind of
 conditional: if $x$ is an arbitrary object, then $x$ is human if it is human.
 
-Correspondingly, the rule of ${{< forall>}}Elim$ corresponds application: to
-infer an instance from a universal quantifier, we take 
+Correspondingly, the rule of ${{< forall>}}Elim$ corresponds to application:
+to infer an instance of a universal statement, we apply its proof to the
+relevant term.
 
 Here, for example, is the Lean verification of our inference:
 
@@ -906,10 +904,13 @@ to run this code in your browser.
 Finally, for the existential quantifier, we have the tactics `Exists<span
 class="dark-green">.</span>intro` and `Exists<span
 class="dark-green">.</span>elim`. The tactic `Exists<span
-class="dark-green">.</span>elim` takes as arguments a proof of a disjunction and
-a proof of a conclusion from the assumption that an arbitrary object (which
-needs to be `intro`'ed) has the property in question. `Exists<span
-class="dark-green">.</span>elim` just requires a proof of an instance.
+class="dark-green">.</span>elim` takes as arguments a proof of an existential statement and
+a proof that the desired conclusion follows from any witness having the
+property in question. In a tactic proof, we introduce the witness and the
+assumption that it has the property using `intro`. `Exists<span
+class="dark-green">.</span>intro` takes a witness and a proof that it has
+the property; with `apply Exists.intro`, we can supply the witness first and
+prove the property as the remaining goal.
 
 Here's how they work in action in our combined inference to show that if there's
 a black thing, there's a black or white thing:

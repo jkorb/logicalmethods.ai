@@ -12,7 +12,7 @@ params:
 For each of the following pairs of terms determine whether they can be unified. If so, provide the unifier:
 
 1. `LiesBetween Munich y z ` and `LiesBetween x Milan Rome `
-2. `SitsBeween Mary x x ` and `SitsBetween x Jane y`
+2. `SitsBetween Mary x x ` and `SitsBetween x Jane y`
 3. `Between x Rome Rome ` and `{{< neg >}}Between Rome y x `
 4. `{{< neg >}}BornIn fatherOf motherOf x London` and `{{< neg >}}BornIn fatherOf y x`
 5. `{{< neg >}}Human x` and `{{< neg >}}Human fatherOf x`
@@ -29,7 +29,7 @@ For each of the following pairs of terms determine whether they can be unified. 
 
 # Robinson's Algorithm {.solved}
 
-The first algorithms for unification is due to [John Alan Robinson](https://en.wikipedia.org/wiki/John_Alan_Robinson), the father of resolution.
+The first algorithm for unification is due to [John Alan Robinson](https://en.wikipedia.org/wiki/John_Alan_Robinson), the father of resolution.
 
 To check whether two FOL literals can be unified, the algorithm proceeds as follows:
 
@@ -72,7 +72,7 @@ To check whether two FOL literals can be unified, the algorithm proceeds as foll
     pairs, add it to `σ`, and remove the pair `[sᵢ, tᵢ]` from the set.
 
     - Case 4. `sᵢ ≠ tᵢ` and neither  `sᵢ` nor `tᵢ` is a variable. Then we check
-    the form of `sᵢ` and `tᵢ`. Only if they are of the following forms, we
+    the form of `sᵢ` and `tᵢ`. Only if they are of the following forms do we
     continue:
 
     ```
@@ -142,7 +142,7 @@ Apply this algorithm to check your work in Exercise 1.
     E = {[motherOf x, y], [London, x]}
     ```
 
-    Applying rule 3. and 4. gives us the substitution:
+    Applying rules 3. and 4. gives us the substitution:
 
     ```
     [x / London, y / motherOf x]
@@ -206,7 +206,7 @@ universals is just a constant `skolem`. It's important to document your work,
 which transformations you're applying, but you can apply several steps
 simultaneously.
 
-3. Apply resolution with unification to derive the empty sequent ${ }$. And
+3. Apply resolution with unification to derive the empty clause ${ }$. And
    conclude that the initial set is unsatisfiable and the inference thus
 valid.
 
@@ -534,4 +534,4 @@ theorem forall_to_exists [Inhabited Term] (h: (∀x, A x) → C) : ∃x, A x →
         apply neg_Ac Ac
 ~~~~
 
-You can review the code in the lean plaground by following this [link](https://live.lean-lang.org/#codez=G4QwTgliBGA2CmACAFAFXmAtogXI1AngA7wCUKAgogEK74baBJhIgApgD2R5yASnelkTMBTVhy4oAwnTadyAKHmd4AO0STYIAM5aIAYxCxFAegC0AQkQARAK6GIAFwKIAMiADuWxKePyHAC3h2MHhsABM7WEcCAH12FXgY2AcwFH86ABrAACIADwAaRCoc8jxAYCJ8xAyi3ABeRGgCeUREECIiWGcGyXiUkDD9Bwh4psQIFRT2RASAcxi9eL0jZtb253SRsYnEHJGVjvqCbvGwPoGhlQ3jyZmYijndtv2b+ZVFh9XEAFEciC0HLQAdJsOIgRvAciA9A4pvBZnc9Io/IFgqFEBF7E44gkYmAHLA0nRygUqtsSpVcgVqjg6g1LlsAGbBQywHIUHbLR7Ob6/f4A+BRbD+OkgnIw6YUBEcj4zCXvfaMk6wFls7aIgJBELhSLRGIOdzsJIpAl4DJEwqkugUypUmmNZrAyai2VS/ZCl1cn5/QEO0HNcGQ6GyxTqlFajGxPUG3H45DpPBWknFTJmm0HYWTcE8rSs0Vyj1ZvkCxCZr059Oq92IdI7EwWazapyuDxeHxIjWo5lxYAYGIgFRhHF4tLxirVQDkRDQLXhkFaiuQJzOKrQk9SDr6WpzCv2gVd1z72RuPhRtwh6Q481WK6Ndwe9s5j2EAZBpv5z5Xq2rkZqWkquz2+wOySpLG06zhaC5WsupBkmBooTpOoqrrS9o3heD47hMaEnvAZ6Xrem7oc+r54SMwZfqiJb/H+YBxDR0bDogKbbIggAURAhZLIExSZsZxS5TraF7cl6hYQIK5ZOvMYDUJKh77AA8mAInYBKwTSeWzqyc4Ck7vigmeryPpghCUKFDJPpqZW2ljGAekFg6RkBjQCJke22CUVo1G0YawH+NOXHkDxZpQWSXGsQhtRppZin8qJVblu5ZaVkJvIxW5+nZmy4mmbZwn2VFOmmXuu4JdQ+EfMlgKpcW6U5KVWUWZpXzpRhHAXlZKipGptaWAAkuMGABucTaeN4vimKYUzsA48B4Kg/i/IgRAcOw9KICEACONgQCEXjgu0+iOPs01KmM0yIAgfaIO4SDgEg+pgAA1qdV2OOkICTSopihEQjZhOwmAgGMAKIAAymMehIAEC3uNok3Qv0Wh6DYOjwGE16IOqGPgg40DsOwD2jNCC0qFN1UkFCqMY/4IDQgQ7A2C0IQtHAkOTH9VO/AC8jjYgWjsLA3Zow0iAAFLsNTKgJFobahtVPKqIMhgxKJRDBNCADafXU9AjiUyIAC6DGwSFo7MUhdqNRVLXsBe6x+sZ8M4SANjJC5staO4jh6IEy3GoxFRZAQBR8KKBAwUH/vB8xzjm+WFt3k1BZVW615bKKPB6GEOUGbuF4Z1nbvfu5uoGgqzIMbxlIWswkgwaboo1xFyGpyKhRZ++2felcDkmRQBc8yT014FDXhLXjq2GHza3wJt22U+9JOfd9v3/YDFw83zAuU8LYsS1LMvfmXv4OAa7mIJrKja7raMGxXxtCOoJtVw36hN/Hm5dD0Jz9FC5zljcCU2Qn0kBeABNUgHsBAc0AA7ZbZqPpkBhCdi7aEs0GCkBGChLYfdMGNRTpWT+xxTi/2GM0LBIIbjMkSmQhOYCsw5mAbghOVtUq4NgQndEURMTxESEBdcZDqqOUoUqahMCW6TD0GKW4MkBHMPgd3ARYifQaUUY1AAYpPeASlcGyM3DcCUpkgA).
+You can review the code in the Lean playground by following this [link](https://live.lean-lang.org/#codez=G4QwTgliBGA2CmACAFAFXmAtogXI1AngA7wCUKAgogEK74baBJhIgApgD2R5yASnelkTMBTVhy4oAwnTadyAKHmd4AO0STYIAM5aIAYxCxFAegC0AQkQARAK6GIAFwKIAMiADuWxKePyHAC3h2MHhsABM7WEcCAH12FXgY2AcwFH86ABrAACIADwAaRCoc8jxAYCJ8xAyi3ABeRGgCeUREECIiWGcGyXiUkDD9Bwh4psQIFRT2RASAcxi9eL0jZtb253SRsYnEHJGVjvqCbvGwPoGhlQ3jyZmYijndtv2b+ZVFh9XEAFEciC0HLQAdJsOIgRvAciA9A4pvBZnc9Io/IFgqFEBF7E44gkYmAHLA0nRygUqtsSpVcgVqjg6g1LlsAGbBQywHIUHbLR7Ob6/f4A+BRbD+OkgnIw6YUBEcj4zCXvfaMk6wFls7aIgJBELhSLRGIOdzsJIpAl4DJEwqkugUypUmmNZrAyai2VS/ZCl1cn5/QEO0HNcGQ6GyxTqlFajGxPUG3H45DpPBWknFTJmm0HYWTcE8rSs0Vyj1ZvkCxCZr059Oq92IdI7EwWazapyuDxeHxIjWo5lxYAYGIgFRhHF4tLxirVQDkRDQLXhkFaiuQJzOKrQk9SDr6WpzCv2gVd1z72RuPhRtwh6Q481WK6Ndwe9s5j2EAZBpv5z5Xq2rkZqWkquz2+wOySpLG06zhaC5WsupBkmBooTpOoqrrS9o3heD47hMaEnvAZ6Xrem7oc+r54SMwZfqiJb/H+YBxDR0bDogKbbIggAURAhZLIExSZsZxS5TraF7cl6hYQIK5ZOvMYDUJKh77AA8mAInYBKwTSeWzqyc4Ck7vigmeryPpghCUKFDJPpqZW2ljGAekFg6RkBjQCJke22CUVo1G0YawH+NOXHkDxZpQWSXGsQhtRppZin8qJVblu5ZaVkJvIxW5+nZmy4mmbZwn2VFOmmXuu4JdQ+EfMlgKpcW6U5KVWUWZpXzpRhHAXlZKipGptaWAAkuMGABucTaeN4vimKYUzsA48B4Kg/i/IgRAcOw9KICEACONgQCEXjgu0+iOPs01KmM0yIAgfaIO4SDgEg+pgAA1qdV2OOkICTSopihEQjZhOwmAgGMAKIAAymMehIAEC3uNok3Qv0Wh6DYOjwGE16IOqGPgg40DsOwD2jNCC0qFN1UkFCqMY/4IDQgQ7A2C0IQtHAkOTH9VO/AC8jjYgWjsLA3Zow0iAAFLsNTKgJFobahtVPKqIMhgxKJRDBNCADafXU9AjiUyIAC6DGwSFo7MUhdqNRVLXsBe6x+sZ8M4SANjJC5staO4jh6IEy3GoxFRZAQBR8KKBAwUH/vB8xzjm+WFt3k1BZVW615bKKPB6GEOUGbuF4Z1nbvfu5uoGgqzIMbxlIWswkgwaboo1xFyGpyKhRZ++2felcDkmRQBc8yT014FDXhLXjq2GHza3wJt22U+9JOfd9v3/YDFw83zAuU8LYsS1LMvfmXv4OAa7mIJrKja7raMGxXxtCOoJtVw36hN/Hm5dD0Jz9FC5zljcCU2Qn0kBeABNUgHsBAc0AA7ZbZqPpkBhCdi7aEs0GCkBGChLYfdMGNRTpWT+xxTi/2GM0LBIIbjMkSmQhOYCsw5mAbghOVtUq4NgQndEURMTxESEBdcZDqqOUoUqahMCW6TD0GKW4MkBHMPgd3ARYifQaUUY1AAYpPeASlcGyM3DcCUpkgA).

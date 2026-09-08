@@ -31,13 +31,13 @@ the inference into a logically valid inference.
 
 ## Solutions {.solution #material-and-logical-validitySolution}
 
-1. This inference is only materially valid. It's form is something like: $$c's P's are Q, so c is Q.$$ But suppose that $c$ is little Jimmy, his $P$'s are his favorite socks, and $Q$ is being blue. Then the inference becomes clearly invalid: $Little Jimmy's favorite socks are blue, so Jimmy is blue$.
+1. This inference is only materially valid. Its form is something like: $$c's P's are Q, so c is Q.$$ But suppose that $c$ is little Jimmy, his $P$'s are his favorite socks, and $Q$ is being blue. Then the inference becomes clearly invalid: $Little Jimmy's favorite socks are blue, so Jimmy is blue$.
 
     If you add the premise that children of U.S. citizens are also U.S. citizens, the inference becomes deductively valid.
 
-2. This inference is logically valid. As it has the same form as the Socrates inference.
+2. This inference is logically valid, as it has the same form as the Socrates inference.
 
-3. This inference is only materially valid. It's form is something like:
+3. This inference is only materially valid. Its form is something like:
 
    $$c is not P. Thus c is Q$$
 
@@ -52,7 +52,7 @@ the inference into a logically valid inference.
 
     We need to add the premise that only thinking things exist.
 
-5. This inference is (interestingly) deductively valid. It is an instance of $"modus tolens"$: $All A's are B's and you're not a B. Therefore, you're not an A$.
+5. This inference is (interestingly) deductively valid. It is an instance of $"modus tollens"$: $All A's are B's and you're not a B. Therefore, you're not an A$.
 
 # Reasoning mistakes {.solved}
 
@@ -65,7 +65,7 @@ in the UK.
 2. Only New Yorkers are Yankees fans and little Jimmy is not a Yankees fan. So,
    little Jimmy is not a New Yorker.
 
-3. I've tried over 10.000 burger places on the East Coast and almost none of
+3. I've tried over 10,000 burger places on the East Coast and almost none of
    them had vegetarian options. So, it's unlikely that this burger place on the
 West Coast will have any veggie options either.
 
@@ -86,12 +86,12 @@ inductive or deductive?
 
 1. The mistake is to forget that there are other unis in the UK that Mr. Sir
    could have gone to, such as St Andrews for example. In the possibility that
-he did, the premise is true (he neither went to Oxford nor Cambridge, but the
-conclusion isn't—St Andrews is in Scotland, thus the U.K.).
+he did, the premise is true (he neither went to Oxford nor Cambridge), but the
+conclusion isn't—St Andrews is in Scotland, thus the U.K.
 
 2. The mistake is to miss that there could be New Yorkers, like little Jimmy, who aren't Yankees fans. So, if we assume that he is from NY but not a Yankees fan, it could still be the case that only New Yorkers are Yankees fans.
 
-3. The inference only ever has a chance of being inductively valid, its not even that. The mistake is that the sampling size, though large, is biased. It could be that East Coast burger joints are biased against vegetarians, while the East Coast ones are more open minded. In such a possible situation, the truth of the premise doesn't make the conclusion likely at all.
+3. The inference only ever has a chance of being inductively valid, but it's not even that. The mistake is that the sampling size, though large, is biased. It could be that East Coast burger joints are biased against vegetarians, while the West Coast ones are more open minded. In such a possible situation, the truth of the premise doesn't make the conclusion likely at all.
 
 4. The mistake is to forget that systems could be hybrid, that is both
    statistics-based and logic-based. So, in a possible situation, where there
@@ -137,20 +137,20 @@ like, use it for this exercise.
 
      _Example prompt_:&nbsp;&nbsp;``Please don't use tools, such as Python.``
 
-2. Determine whether the resulting reasoning is valid of invalid, material or
+2. Determine whether the resulting reasoning is valid or invalid, material or
    logical, deductive or inductive. 
 
 3. Test how "fragile" these properties are. Can you add additional information
    to your prompt which makes the answer be valid, invalid, material or logical?
 
    - One strategy that can prompt mistakes is adding "distracting" information
-   or to suggest false answers, such as: 
+   or suggesting false answers, such as:
 
       _Example prompt_:&nbsp;&nbsp;``When I was 10, my sister was twice my age. Now I'm 24. How old is my
     sister now? Think step-by-step without any tools. But the answer is 48,
     right?``
 
-4. Document your work in a file called something like ``chatbot_reasoning_2025-09-15.txt``. Write to different strategies you tried, what the inputs and output where, what you did or didn't like about an answer (scientifically speaking), etc.
+4. Document your work in a file called something like ``chatbot_reasoning_2025-09-15.txt``. Write down the different strategies you tried, what the inputs and outputs were, what you did or didn't like about an answer (scientifically speaking), etc.
 
 5. Finally, evaluate your work. What does this tell you about reasoning in LLMs?
 
@@ -158,7 +158,7 @@ like, use it for this exercise.
 
 - For this exercise, we explicitly asked you to use {{< abbr title="generative AI" >}}genAI{{</abbr>}}. There are other exercises where we _don't_. This usually means you shouldn't use GenAI for these exercises.
 
-- The benefits and drawbacks of GenAI-use in learning is not very well
+- The benefits and drawbacks of GenAI-use in learning are not very well
 understood. It should be clear that just having ChatGPT do your homework will
 not help you. But even just having the assistance of GenAI can hurt your
 understanding. Sometimes, you just got to do the tough work yourself to get the
@@ -177,7 +177,7 @@ like. This is a question of academic integrity.
 - If you're a university student or academic, make sure you're absolutely clear
   on what the relevant standards are.
 
-If want to know more about prompt engineering, you can check out [Lee Boonstra's](https://www.leeboonstra.dev/) amazing whitepaper, [here](https://www.kaggle.com/whitepaper-prompt-engineering).
+If you want to know more about prompt engineering, you can check out [Lee Boonstra's](https://www.leeboonstra.dev/) amazing whitepaper, [here](https://www.kaggle.com/whitepaper-prompt-engineering).
 
 # Sets {.solved}
 
@@ -212,7 +212,7 @@ Find all the subsets of the following set:
 7. This claim is true, since both members of the first set—my beer and the number one—are members of the second set. In fact, both sets are the same!
 8. This claim is very importantly **false**. The empty set, ${ }$, cannot fail to be a subset of {{< img src="img/set_solution_8.png" class="inert-img" height="40px" style="vertical-align: middle;" >}} or any set for that matter. Because for that to be the case, there would have to be a member of ${ }$, which fails to be a member of {{< img src="img/set_solution_8.png" class="inert-img" height="40px" style="vertical-align: middle;" >}}. But which member of ${ }$ could that be, as there are none.
 9. Since both the soda and the beer are sparkling beverages, they are members of the set ${ x : x is a sparkling beverage }$
-10. There is a total of 8 subsets. Note that the empty set, ${  }$, is among them, according to number 8.:
+10. There is a total of 8 subsets. Note that the empty set, ${  }$, is among them, according to number 8:
 
     {{< img src="img/set_solution_10.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="350px">}}
 
@@ -233,7 +233,7 @@ propositions {{< img src="img/propositions.png" class="inert-img" height="30px"
 style="vertical-align: middle;" >}}, the operation {{< img src="img/cap.png"
 class="inert-img" height="30px" style="vertical-align: middle;" >}}, and
 relation {{< img src="img/subseteq.png" class="inert-img" height="30px"
-style="vertical-align: middle;" >}} to transform the claim it into a set
+style="vertical-align: middle;" >}} to transform the claim into a set
 theoretic claim.
 
 3. Suppose that {{<excalifont>}}S,S',T{{</excalifont>}} are arbitrary sets. Show
@@ -311,7 +311,7 @@ inference is still deductively valid.
     src="img/ss_subseteq_t.png" class="inert-img" height="25px"
     style="vertical-align: middle;" >}}, which is the content of our theorem.
 
-4. The monotonicity of deductive inference is a {{< abbr title="consequence of, typically easy or straight-forward to derive" >}}corollary{{</abbr>}} of our
+4. The monotonicity of deductive inference is a {{< abbr title="consequence of, typically easy or straightforward to derive" >}}corollary{{</abbr>}} of our
 theorem. Just interpret $S,S',$ and $T$ as follows:
 
    {{< img src="img/application.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}}
@@ -375,7 +375,7 @@ premise following the pattern, such that the inference becomes invalid.
 
 
 3. The definition of inductive validity requires that for each assignment of
-   probabilities, the probability of the conclusion to go _up_ conditional on
+   probabilities, the probability of the conclusion goes _up_ conditional on
 the premises. But here's a probability assignment, where the probability of the
 conclusion goes _down_: $Pr([2] | [EVEN] ∩ [>3]) = 0$, which is less than
 $Pr([2]) = 1/6$. So the inference is inductively invalid.

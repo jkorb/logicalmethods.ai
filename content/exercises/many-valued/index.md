@@ -48,8 +48,8 @@ Note that for the laws with 3 variables, you need to create a table `ValueTriple
 
 The following [db-fiddle](https://www.db-fiddle.com/f/wawYXVNo3K6QWMyQYHkHeB/0)
 contains code that verifies all laws. There are three queries, one for the laws
-with one variables, one for laws with two variables, and one for laws with
-three variables. The queries are structured such that it would return a
+with one variable, one for laws with two variables, and one for laws with
+three variables. The queries are structured such that they would return a
 valuation iff at least one of the laws fails. They don't return anything so the
 laws hold.
 
@@ -76,7 +76,7 @@ This logic is called Łukasiewicz logic, $Ł$.
 
 1. Verify that there exists a $K3$ model, where $RAIN {{< to >}}RAIN$ is not true.
 
-2. Verify that there $RAIN{{< to >}}RAIN$ is true in all $Ł$ models.
+2. Verify that $RAIN{{< to >}}RAIN$ is true in all $Ł$ models.
 
 3. Is MP valid in $Ł$-logic?
 
@@ -88,7 +88,7 @@ This logic is called Łukasiewicz logic, $Ł$.
 
     And since $ω ≠ 1$, this is a model where the formula isn't true.
 
-2.  we have that $v(RAIN {{< to >}}RAIN) = v(RAIN) ~!Ł!~ v(RAIN)$. That is,
+2. We have that $v(RAIN {{< to >}}RAIN) = v(RAIN) ~!Ł!~ v(RAIN)$. That is,
     we're dealing with an expression of the form `X ~!Ł!~ X`. If we go to the
 table for ~!Ł!~, we note that for identical inputs, the values (on the
 diagonal) are always `1`. In other words, the formula is true in all models.
@@ -109,9 +109,9 @@ km/h`).
 1. Describe a model for these predicates by means of a diagram, in which there
    is a "gray area" between fast and slow.
 
-2. Add to the language two fuzzy constants `break` and `accelerate`. Formulate
+2. Add to the language two fuzzy constants `brake` and `accelerate`. Formulate
    a system of fuzzy rules that keep the car in the gray area between fast and
-slow, while avoiding breaking and accelerating simultaneously.
+slow, while avoiding braking and accelerating simultaneously.
 
 ## Solution {#fuzzy-predicatesSolution .solution}
 
@@ -127,24 +127,24 @@ slow, while avoiding breaking and accelerating simultaneously.
 
         {{< img src="img/fuzzy_pred_2.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
 
-    These are, of course, other models, but these two will do.
+    There are, of course, other models, but these two will do.
 
-2. How such rules could look like highly depends on the model we chose to interpret `Fast` and `Slow`:
+2. What such rules could look like highly depends on the model we chose to interpret `Fast` and `Slow`:
 
     - In our first model, the following rules will do:
 
         ```
-        Fast x {{< longrightarrow >}} break
+        Fast x {{< longrightarrow >}} brake
         ```
         ```
         Slow x {{< longrightarrow >}} accelerate
         ```
 
-      In this model, our car will never break and accelerate at the same time.
+      In this model, our car will never brake and accelerate at the same time.
 
 
     - In our second model, the same rules will lead to situations where we're
-    breaking and accelerating at the same time: if we pick an `x` where `{{< llbracket >}}Slow x {{< rrbracket >}} = {{< llbracket >}}Fast x {{< rrbracket >}} = 0.5`, we'll have `{{< llbracket >}}break {{< rrbracket >}} = {{< llbracket >}}accelerate {{< rrbracket >}} = 0.5`. But they will keep the car in the "gray area".  
+    braking and accelerating at the same time: if we pick an `x` where `{{< llbracket >}}Slow x {{< rrbracket >}} = {{< llbracket >}}Fast x {{< rrbracket >}} = 0.5`, we'll have `{{< llbracket >}}brake {{< rrbracket >}} = {{< llbracket >}}accelerate {{< rrbracket >}} = 0.5`. But they will keep the car in the "gray area".
 
 # Fuzzy Logic {.solved}
 
@@ -157,7 +157,7 @@ nvDash >}}B$$
 
 ## Solution {#fuzzy-logicSolution .solution}
 
-Let's take for $A$ a statement which, in a suitable model, is both "half-true",
+Let's take for $A$ a statement which, in a suitable model, is "half-true",
 that is, has value 0.5. For example, `Fast 45km/h` could be such that `{{<
 llbracket >}}Fast 45km/h{{< rrbracket>}} = 0.5`. It follows by the semantics
 for ${{< neg >}}$ that also `{{< llbracket >}}{{< neg >}}Fast 45km/h{{<

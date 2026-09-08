@@ -17,7 +17,7 @@ title="large language models, such as GPT, Claude, Llama, ...">}}LLMs{{</abbr>}}
 use a form of inductive inference to predict pieces of text, and, of course, any
 [artificial general intelligence
 (AGI)](https://en.wikipedia.org/wiki/Artificial_General_Intelligence) would need
-to be able perform valid inferences, like our first example: 
+to be able to perform valid inferences, like our first example:
 
 {{< img src="img/socrates_inference.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="400px">}}
 
@@ -98,7 +98,7 @@ statements.
 
 When we test for validity, we do not look at the actual truth of premises and
 conclusion, instead we look for a **relationship** between their truth-values.
-You can think about it like this: imagine that the premises and true and think
+You can think about it like this: imagine that the premises are true and think
 about whether the conclusion is true _under this assumption_.
 
 Think about the inference this way. When we do this, we imagine a world that is
@@ -212,7 +212,7 @@ $mother$, and
 $uncle$. In logical theory, we also call
 inferences like this, which are valid, but not in virtue of their logical form,
 **materially valid**. While logical validity—validity in virtue of logical
-form—is is **domain-general**, material validity is **domain-specific**. As
+form—is **domain-general**, material validity is **domain-specific**. As
 we've seen, for the validity of our inference about Socrates it doesn't matter
 that we're talking about Socrates, being human, or being mortal, but for the
 validity of our inference about {{< logo >}}'s uncle, it does matter that we're
@@ -230,8 +230,8 @@ underperforming in domain-*general*, logical inference. Some researchers specula
 that improving the domain-general reasoning abilities of AI systems improves
 their domain-specific reasoning abilities as well.
 
-There is close connection between logical and material validity. Some
-logician's, like [Rudolf Carnap](https://de.wikipedia.org/wiki/Rudolf_Carnap),
+There is a close connection between logical and material validity. Some
+logicians, like [Rudolf Carnap](https://de.wikipedia.org/wiki/Rudolf_Carnap),
 have suggested that we can *reduce* material validity to a special case of
 logical validity under additional assumptions, so-called "meaning postulates".
 His idea is based on the observation that the material validity of the inference
@@ -241,7 +241,14 @@ following inference:
 Here the statement {{< excalifont >}}the brother of a person's mother is their
 uncle{{< /excalifont >}} is a meaning postulate, which captures (part of) the
 meaning of the term {{< excalifont>}}uncle{{< /excalifont >}}.
-While 
+While the original inference depends on the meaning of $uncle$, the expanded
+inference makes that connection explicit as an additional premise. Once we add
+the meaning postulate, the conclusion follows by logical form: anyone who is the
+brother of someone's mother is their uncle; $Σ$ is the brother of {{< logo >}}'s
+mother; so $Σ$ is {{< logo >}}'s uncle. We can thus study this materially valid
+inference as a logically valid inference with an extra premise. The meaning
+postulate supplies the connection between the terms; logic tells us what follows
+from it.
 
 ## Always -- Deductive validity
 
@@ -279,13 +286,13 @@ apply some general pattern to a specific case. For example,
 [vixens](https://en.wikipedia.org/wiki/Fox) are female foxes. That is the
 definition of the concept _vixen_. Suppose you know this and you hear someone
 say "there is a vixen living in the forest!". In that case, you might use
-deduction to infer that there is a fox living the forest.—This kind of
+deduction to infer that there is a fox living in the forest.—This kind of
 deductive inference should be carried out by any reasoning AI system, such as
 expert systems, but also reasoning {{< abbr title="large language models">}}LLMs{{</abbr>}}, such as OpenAI's [o4-mini](https://en.wikipedia.org/wiki/OpenAI_o4-mini) or Deepseek's [R1](https://en.wikipedia.org/wiki/DeepSeek).
 
 Moreover, many **programming languages** are essentially formal languages with
 deductive rules. This is a perfect way to apply logical methods. Consider the
-code snippet below. This simple Python snipped is supposed to take an input
+code snippet below. This simple Python snippet is supposed to take an input
 that is a whole number and identify whether it is a positive number or not:
 
 {{< img src="img/python.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}}
@@ -293,8 +300,7 @@ that is a whole number and identify whether it is a positive number or not:
 Imagine what would happen if the computer did, effectively, not obey deductive
 rules like "modus ponens". We would have no idea what to expect when we run this
 program. Sometimes when you ran the program and entered the number 1, you might
-get the correct answer that 1 is a positive number, but other times you might
-you get no answer at all. That would be useless and frustrating. In order to
+get the correct answer that 1 is a positive number, but other times you might get no answer at all. That would be useless and frustrating. In order to
 make the behavior of programs predictable, we want them to effectively follow
 deductive rules of reasoning.
 
@@ -350,7 +356,7 @@ scenarios.
 
 Now it'll be helpful to talk about 
 {{< abbr title="collection of objects">}}sets{{</abbr>}} again. 
-Remember that a set is collection of arbitrary objects, _anything_ can be in a
+Remember that a set is a collection of arbitrary objects, _anything_ can be in a
 set—even abstract mathematical objects like models. So for each formula {{<
 excalifont  >}}A{{< /excalifont >}}, we can consider the set of models where
 the formula is true. We write this as {{< excalifont >}}[A]{{< /excalifont >}}.
@@ -393,7 +399,7 @@ Then consider the set that contains only little Jimmy and Mr. Sir:
 
 {{< img src="img/set_small.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="200px">}} 
 
-Then the latter set is a subset of the former, since both elements of the latter set—little Jimmy and Mr. Sir—are also members of the latter set:
+Then the latter set is a subset of the former, since both elements of the latter set—little Jimmy and Mr. Sir—are also members of the former set:
 
 {{< img src="img/set_subset.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}} 
 
@@ -413,7 +419,7 @@ In the case of a simple inference (in a formal language), with just one premise
 {{< excalifont >}}P{{</excalifont>}} and conclusion {{< excalifont >}}C{{</excalifont>}}, 
 we can directly understand deductive validity in terms of the subset relation.
 
-The idea is that we can understand truth-preservation—the idea that the
+The idea is that truth-preservation—the idea that the
 conclusion is true under the hypothesis that the premises are true—can be
 spelled out using models: 
 
@@ -474,8 +480,7 @@ all the premises are true, so is the conclusion. That is:
 
 =<br>
 
-In every model, where P₁, P₂, … are all true, the
-C must be true as well. 
+In every model, where P₁, P₂, … are all true, C must be true as well.
 {{</excalifont>}}
 
 But we can describe the models where {{< excalifont >}}P₁{{</excalifont>}}, 
@@ -485,13 +490,13 @@ where each individual formula is true:
 
 {{< img src="img/premise_intersection.png" class="rounded mx-auto d-block inert-img img-fluid my-2" width="600px">}}
 
-This gives us the final definition deductively valid inference:
+This gives us the final definition of deductively valid inference:
 
 {{< img src="img/validity_general.png" class="rounded mx-auto d-block inert-img img-fluid my-2" width="600px">}}
 
 So, for an inference with two premises $P,Q$ and
 conclusion $C$ to be valid, the situation needs
-to like the one depicted here:
+to be like the one depicted here:
 
 {{< img src="img/valid_multi_premise.png" class="rounded mx-auto d-block inert-img img-fluid my-2" width="900px">}}
 
@@ -515,7 +520,7 @@ propositional logic, for example, we need to show that:
 
 That is, we need to show that in all models where {{< img src="img/a_or_b.png" class="inert-img" height="30px" style="vertical-align: middle;" >}} and {{< img src="img/neg_a.png" class="inert-img" height="30px" style="vertical-align: middle;" >}} are both true, $B$ is true as well.
 
-Similarly, if we want to show that denying the antecedent is 
+Similarly, if we want to show that denying the antecedent is invalid, we need to show that:
 
 {{< img src="img/invalid_dc.png" class="rounded mx-auto d-block inert-img img-fluid my-5" width="500px">}}
 
@@ -527,7 +532,7 @@ and so on are true in them—providing this is the core task of semantic theory.
 
 The concept of deductive validity is specialized. It makes sense to use
 deductive reasoning for specific tasks: reasoning in mathematics or other
-specific theories, reasoning with precisely defined concepts or pattern that
+specific theories, reasoning with precisely defined concepts or patterns that
 are truly general. Notice how this air-tight reasoning is not quite the same
 thing as what Sherlock Holmes calls "doing a deduction":
 
@@ -540,7 +545,7 @@ which can only be acquired by long and patient study..."
 {{< /blockquote >}}
 
 Sherlock uses the word "deduction" for any reasoning that is careful,
-systematic, and reliable. However, the examples in this passage sounds a lot
+systematic, and reliable. However, the examples in this passage sound a lot
 like inductive reasoning. Take a small sample and make an educated guess about
 the larger collection that it belongs to. That kind of reasoning is not
 indefeasible, it does not make a necessary connection. _We_ do not call that
@@ -571,11 +576,11 @@ Inductive reasoning is characteristic of **scientific
 inference**, especially in disciplines where statistical empirical research
 plays an important role. For example, we commonly use [randomized control
 trials](https://en.wikipedia.org/wiki/Randomized_controlled_trial) in medical
-research to determine the whether a drug is effective. Very roughly, the idea is
+research to determine whether a drug is effective. Very roughly, the idea is
 that we randomly allocate participants a drug or placebo (or the like) and see
 if one group (drug or placebo) has significantly better outcomes. Along the way,
 we control for various confounding factors. If the group with the drug has
-better outcome than the other, we conclude that the drug is effective. This is,
+better outcomes than the other, we conclude that the drug is effective. This is,
 ultimately, a form of inductive inference: we infer that a drug works from the
 fact that it has worked in many cases, which have been well-sampled.—The
 complete story is, of course, much more complicated (how *do* we guarantee that
@@ -588,13 +593,13 @@ overturned by further evidence—it is well-suited to **belief modulation**: to
 change our beliefs in light of new evidence. Take the case of smoke means fire,
 for example. If {{< logo >}} sees smoke coming up behind the trees, it might
 think that there's an illegal open camp-fire burning in the woods. But if {{<
-logo >}} learns that that Mr. Sir often smokes his pipe in the forest, he might
+logo >}} learns that Mr. Sir often smokes his pipe in the forest, he might
 change his conclusions. Even though the original evidence didn't go away, it's
 been further supplemented by additional information, which changes the
 conclusions we draw. In this way, inductive logic is closely related to
 **learning from evidence**, which is a core concept of AI research.
 
-Similarly, inductive reasoning play a central role in **prediction**. We make
+Similarly, inductive reasoning plays a central role in **prediction**. We make
 predictions when we don't know what's going to happen: the weather, what the
 stock market will look like tomorrow, and so on. In fact, we've already
 discussed how next-word-prediction is essentially the core concept underlying
@@ -602,14 +607,14 @@ recent AI {{<abbr text="large language models" >}}LLMs{{</abbr>}}
 
 {{< img src="img/text_prediction.png" class="rounded mx-auto d-block inert-img img-fluid my-5" width="700px">}}
 
-The examples we used to motivate the idea of logical form where all deductive
-inferences. But also *in*ductive logic, deals with logic form. Let's revisit
+The examples we used to motivate the idea of logical form were all deductive
+inferences. But *in*ductive logic also deals with logical form. Let's revisit
 some examples. First, take the inference about swans, perhaps the most
 traditional example of an inductive inference:
 
 {{< img src="img/swans_inference.png" class="rounded mx-auto d-block inert-img img-fluid my-5" width="700px">}}
 
-In light of the well-known fact that there are black swan's we've slightly
+In light of the well-known fact that there are black swans, we've slightly
 modified the example to a case where {{< logo >}} draws marbles from a jar:
 
 {{< img src="img/marbles_inference.png" class="rounded mx-auto d-block inert-img img-fluid my-5" width="700px">}}
@@ -644,10 +649,10 @@ an inductively valid inference, writing
 {{< img src="img/inductively_valid_inference.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="200px" >}}
 to say that the inference from the premises
 {{< excalifont >}}P₁{{</excalifont>}}, {{< excalifont >}}P₂{{</excalifont>}}, …,
-to the conclusion {{< excalifont >}}C{{</excalifont>}}
+to the conclusion {{< excalifont >}}C{{</excalifont>}} is
 inductively valid. To say that an inference is inductively _strong_, we write a
 {{< excalifont >}}!{{</excalifont>}} on top, like so {{< img src="img/inductively_strong_validity.png"
-class="inert-img" height="40px" style="vertical-align: middle;" >}}. So if we have a inductively
+class="inert-img" height="40px" style="vertical-align: middle;" >}}. So if we have an inductively
 strong inference going from premises {{< excalifont >}}P₁{{</excalifont>}}, {{< excalifont >}}P₂{{</excalifont>}}, …,
 to conclusion {{< excalifont >}}C{{</excalifont>}} we can
 abbreviate this with symbols: 
@@ -657,7 +662,7 @@ There are different approaches to obtain a semantic definition of inductive
 validity, but the most prominent approach involves **probability theory**, which we
 use to spell out the idea of the premises making the conclusion more likely.
 
-A straight-forward way for implementing probabilities for the formal languages
+A straightforward way for implementing probabilities for the formal languages
 of logic "piggy-backs" on the notion of a model, which we've used in deductive
 logic to define validity. So, we'll be working with a logical space, in which
 each formula $A$ has an associated set
@@ -670,13 +675,13 @@ a model:
 
 {{< img src="img/dice_worlds.png" class="rounded mx-auto d-block inert-img img-fluid my-5" width="700px">}}
 
-If in our language we have a formulas $EVEN$ and $ODD$, for example, to say that the outcome will be even or odd, then these would correspond to the following {{<abbr title="set of models">}}propositions{{</abbr>}}:
+If in our language we have formulas $EVEN$ and $ODD$, for example, to say that the outcome will be even or odd, then these would correspond to the following {{<abbr title="set of models">}}propositions{{</abbr>}}:
 
 {{< img src="img/even_odd_prop.png" class="rounded mx-auto d-block inert-img img-fluid my-5" width="700px">}}
 
 In standard [probability
 theory](https://en.wikipedia.org/wiki/Probability_space), such a logical space
-is also known as an **sample space**, whose members represent different possible
+is also known as a **sample space**, whose members represent different possible
 outcomes. In *logical* theory, however, the outcomes are just models: possible
 reasoning scenarios. The sets of models which we associate with our formulas,
 the *propositions*,  are called **events** in standard probability theory. From
@@ -684,13 +689,13 @@ the perspective of logical theory, however, they are just the semantic content
 of formulas.
 
 A **probability function** is a mathematical function, which assigns to each
-{{<abbr title="set of models">}}propositions{{</abbr>}} a real number between 0
-and 1—the proposition's **probability**. Well talk about the laws of
+{{<abbr title="set of models">}}proposition{{</abbr>}} a real number between 0
+and 1—the proposition's **probability**. We'll talk about the laws of
 probabilities when we discuss concrete systems of inductive logic, but we can
 outline the basic ideas of inductive logic without worrying too much about the
 details.
 
-In our toy example of a die role, here's one way the probabilities could work
+In our toy example of a die roll, here's one way the probabilities could work
 out:
 
 {{< img src="img/fair_die.png" class="rounded mx-auto d-block inert-img img-fluid my-5" width="700px">}}
@@ -717,17 +722,17 @@ standard definition of this is given by the following formula:
 
 Here, we crucially need to assume that $Pr([B]) ≠ 0$ to avoid [division by zero](https://en.wikipedia.org/wiki/Division_by_zero).
 What this formula says is that the conditional probability  $Pr([A] | [B])$ of $A$ given $B$
-is the "part" of $B$'s probability that is an $A$-probability—a measaure of the proportion of $A$ scenarios that are $B$ scenarios.
+is the "part" of $B$'s probability that is an $A$-probability—a measure of the proportion of $B$ scenarios that are $A$ scenarios.
 
 Here's how this plays out in our previous two distributions if we ask ourselves
-what's the probability of the role being a two given that/under the hypothesis
+what's the probability of the roll being a two given that/under the hypothesis
 that it's even:
 
 {{< img src="img/two_given_even.png" class="rounded mx-auto d-block inert-img img-fluid my-5" width="900px">}}
 
 What we can see here is that the probability of the roll being a two _goes up_
-under the hypothesis that it's even: from  $1/3$
-to $1/2$ in the case of the fair die, and from $1/10$ to $1/7$ in the case of the loaded die. In this sense, the hypothesis that the roll is even *supports* the conclusion.
+under the hypothesis that it's even: from $1/6$
+to $1/3$ in the case of the fair die, and from $1/10$ to $1/7$ in the case of the loaded die. In this sense, the hypothesis that the roll is even *supports* the conclusion.
 
 You might be worried about this increase of probabilities depending on the
 concrete numbers, but in fact, it doesn't. Once we've introduced the laws of
@@ -739,7 +744,7 @@ inductively valid inference:
 {{< img src="img/final_definition_single.png" class="rounded mx-auto d-block inert-img img-fluid my-5" width="500px">}}
 
 The **strength** of the inference can be determined in different ways, but the
-most straight-forward one is to look at the absolute increase of probability.
+most straightforward one is to look at the absolute increase of probability.
 That is, we measure the strength of an inductive inference by:
 
 $$strength = | Pr([C] | [P]) - Pr([C]) |$$
@@ -770,11 +775,11 @@ prediction, and more.
 It remains to generalize the notion of inductively valid inference to inferences
 with more than one premise {{< excalifont >}}P₁{{</excalifont>}}, {{< excalifont >}}P₂{{</excalifont>}}, …, and conclusion {{< excalifont >}}C{{</excalifont>}}.
 But given what we know now about intersection from the study of deductive
-inference, this is pretty straight-forward. The obvious definition is: 
+inference, this is pretty straightforward. The obvious definition is:
 
 {{< img src="img/final_definition_multiple.png" class="rounded mx-auto d-block inert-img img-fluid my-2" width="500px">}}
 
-Similarly, one straight-forward way of calculating the strength of the inference
+Similarly, one straightforward way of calculating the strength of the inference
 is:
 {{<excalifont display=true >}}strength = | Pr([C] | [P₁] ∩ [P₂] ∩ …) - Pr([C]) |{{</excalifont>}}
 
@@ -809,6 +814,6 @@ influenced by the work of Rudolf Carnap:
 Influential mathematical treatment of inductive validity:
 
 + [S. Kraus, D. Lehmann, & M. Magidor. "Nonmonotonic Reasoning, Preferential
-Models and Cumulative Logics". _Artifical Intelligence_, 44: 167–207,
+Models and Cumulative Logics". _Artificial Intelligence_, 44: 167–207,
 1990.](https://doi.org/10.1016/0004-3702(90)90101-5).
 

@@ -31,7 +31,7 @@ Or, imagine a very simple meteorology {{< abbr title="knowledge base">}}KB{{< /a
 {{< img src="img/kb-if-then.png" class="rounded mx-auto d-block inert-img img-fluid" width="450px">}}
 If we want to use this information for automated weather forecasting, we need to think about artificial conditional inference. That's the topic of this chapter.
 
-At the end of it chapter, you will be able to:
+At the end of this chapter, you will be able to:
 
 - explain the relationship between deductive reasoning and conditionals
 - outline the basic theory of the Boolean material conditional and the theory of
@@ -69,10 +69,10 @@ for example, works out to:
 
 {{< img src="img/to_table.png" class="mx-auto d-block rounded inert-img img-fluid" width="900px">}}
 
-The rows that represent models where its raining, that is $v(SUN) = 1$, are in
+The rows that represent models where it's raining, that is $v(SUN) = 1$, are in
 line with expectations:
 
-- If the it's raining and it's not windy, that is $v(RAIN) = 1$ and $v(WIND) = 0$,
+- If it's raining and it's not windy, that is $v(RAIN) = 1$ and $v(WIND) = 0$,
 the situation contradicts the conditional so it is not true, that is
 $v(RAIN {{< to >}} WIND) = 0$.
 
@@ -99,19 +99,19 @@ But the conditional doesn't say anything about what to do with objects whose
 name isn't `<span class="dark-green">"monday"</span>`. So, if the computer comes
 across an object that _doesn't_ satisfy the if-clause, say an object with the
 name `<span class="dark-green">"tuesday"</span>`, and it assigns this the number
-`<span class="dark-orange">2</span>`, did it make a mistake? What it it assigns
+`<span class="dark-orange">2</span>`, did it make a mistake? What if it assigns
 the Tuesday-object also the number `<span class="dark-orange">1</span>`? Is that
 a mistake?—Clearly, neither is a mistake. Both behaviors could be implemented by
 adding additional conditionals, like:
 
 {{< img src="img/python_ex_1.png" class="mx-auto d-block rounded inert-img img-fluid" width="700px">}}
 
-And this wouldn't conflict with our initial conditional. A straight-forward way
-of interpreting this situation n Boolean algebra is to assign it the truth-value
+And this wouldn't conflict with our initial conditional. A straightforward way
+of interpreting this situation in Boolean algebra is to assign it the truth-value
 `1`. The computer _didn't_ make a mistake, so `0` is out. That means that `1` is
 the only live option.
 
-Note that if non-Boolean contexts, such as the **many-valued logics** we'll be
+Note that in non-Boolean contexts, such as the **many-valued logics** we'll be
 looking at later in this course, this is no longer necessarily the best option.
 If we have, for example, a third truth-value $i$ for "indeterminate" sentences,
 we could use that in the case of the antecedent being untrue.
@@ -151,7 +151,7 @@ techniques like resolution. In fact, we can use this rule to transform a
 formula containing any number of {{< to >}}'s into a formula in normal form,
 both {{< abbr
 title="disjunctive normal form">}}DNF{{< /abbr >}} and {{< abbr
-title="conjunctive normal form">}}CNF{{< /abbr >}}. Since the re-write rule introduces new negations
+title="conjunctive normal form">}}CNF{{< /abbr >}}. Since the re-write rule introduces new negation
 symbols {{< neg >}}, we apply $r₀$ recursively before the negation rules, but
 that's all we need to change. The rest is business as usual.
 
@@ -193,7 +193,7 @@ of {{< abbr title="modus ponens">}}MP{{< /abbr >}} in disguise.
 
 Crucially, this works only in the case of Horn formulas and their CNFs. If we're
 applying the resolution rule to sets with more than one unnegated literal in
-them, the interpretation is no longer as straight-forward. _Something_ can still
+them, the interpretation is no longer as straightforward. _Something_ can still
 be said about it, but that brings us too far afield.
 
 To bring the point home, as you may have noticed, the interpretation of 
@@ -214,9 +214,8 @@ Importantly, the material conditional is not the only way to interpret
 {{< to >}} or to formalize natural language "if …, then …" statements. In fact,
 in many contexts, it is not even an adequate interpretation. Consider, for
 example, the statement "if you'd throw the ball at the window, then it
-would break" said to {{< logo >}}&ThinSpace;standing in front the window with his ball.
-Such a conditional statement is called a [counterfactual
-conditionals](https://en.wikipedia.org/wiki/Counterfactual_conditional).
+would break" said to {{< logo >}}&ThinSpace;standing in front of the window with his ball.
+Such a conditional statement is called a [counterfactual conditional](https://en.wikipedia.org/wiki/Counterfactual_conditional).
 Clearly, the material interpretation of {{< to >}} is inadequate to describe the
 meaning of this conditional: if {{< logo >}}&ThinSpace;(responsibly) doesn't throw the
 ball, this doesn't mean that the conditional is automagically true—the ball
@@ -244,7 +243,7 @@ which artificial reasoning becomes more [tractable](https://en.wikipedia.org/wik
 {{< img src="img/ai_horn.png" class="rounded  float-end inert-img img-fluid m-2" width="200px" >}}
 Simply speaking a **Horn clause** is a disjunction of {{< abbr
 title="propositional variable or the negation of one">}}literals{{< /abbr >}},
-which contains at most one *un*-negated literal, that is propositional variable.
+which contains at most one *un*-negated literal, that is a propositional variable.
 Here's an example: $${{<neg>}}SUN {{< lor >}} {{<neg>}}RAIN {{< lor >}}WIND$$
 Off the bat, you might not think that this is a conditional, but a disjunction.
 But look at it this way: using the $"De Morgan Identities"$, we can see that
@@ -253,7 +252,7 @@ ${{< neg >}}SUN {{< lor >}}{{< neg >}}RAIN$ is equivalent to ${{< neg >}}(SUN
 
 $${{<neg>}}(SUN {{< land >}} RAIN) {{< lor >}}WIND$$
 
-But of we now apply the reduction of $A {{< to >}}B$ to ${{< neg >}}A {{< lor >}}B$ "backwards", we get:
+But if we now apply the reduction of $A {{< to >}}B$ to ${{< neg >}}A {{< lor >}}B$ "backwards", we get:
 
 $$(SUN {{< land >}} RAIN) {{< to >}}WIND$$
 
@@ -263,8 +262,7 @@ title="if-part">}}antecedent{{< /abbr >}} consists of the conjunction of the
 negated literals and the {{< abbr title="then-part">}}consequent{{< /abbr>}} is
 the unnegated literal. 
 
-Horn clauses are named after [Alfred
-Hresolutionorn](https://en.wikipedia.org/wiki/Alfred_Horn) (nothing to do with horns) and
+Horn clauses are named after [Alfred Horn](https://en.wikipedia.org/wiki/Alfred_Horn) (nothing to do with horns) and
 they are the theoretical basis for [logic
 programming](https://en.wikipedia.org/wiki/Logic_programming), which is used,
 for example, to write efficient expert systems, but also find other industry
@@ -299,8 +297,8 @@ that contains the following strict Horn clauses:
 {{< img src="img/kb_rainbow.png" class="mx-auto d-block rounded inert-img img-fluid" width="500px">}}
 
 Suppose further that {{< logo >}}&ThinSpace;observes that it's morning, the
-skies are (partially) clear, and its starting to rain. This gives 
-{{< logo >}}&ThinSpace;the following two _facts_ in the terminology of Horn
+skies are (partially) clear, and it's starting to rain. This gives
+{{< logo >}}&ThinSpace;the following three _facts_ in the terminology of Horn
 clauses: $$MORNING, CLEAR, RAIN$$
 Now {{< logo >}}&ThinSpace;is wondering if there'll be a rainbow. 
 
@@ -311,7 +309,7 @@ $<nobr>{{< neg >}}RAINBOW</nobr>$ is a _goal_ clause in Horn terminology.
 
 So, what we do is to add the facts $MORNING, CLEAR,RAIN$ and goal clause
 $<nobr>{{< neg >}}RAINBOW</nobr>$ to the $KB$ and apply resolution to see
-whether we can derive ${ }$. If so, we can conclude that there will be rainbow.
+whether we can derive ${ }$. If so, we can conclude that there will be a rainbow.
 
 Here we go:
 
@@ -320,7 +318,7 @@ Here we go:
 
    {{< img src="img/kb-rewrite.png" class="rounded mx-auto d-block inert-img img-fluid" width="850px">}}
 
-2. Next, {{< logo >}}&ThinSpace;transforms the CNFs into sets (again, this could be done in pre-processing) and add the facts and goal clause as {{< abbr title="sets with one element">}}singletons{{< /abbr >}}:
+2. Next, {{< logo >}}&ThinSpace;transforms the CNFs into sets (again, this could be done in pre-processing) and adds the facts and goal clause as {{< abbr title="sets with one element">}}singletons{{< /abbr >}}:
 
    {{< img src="img/kb-sets.png" class="rounded d-block inert-img img-fluid" width="400px">}}
 
@@ -330,7 +328,7 @@ that {{< logo >}}&ThinSpace;finds in the search:
 
    {{< img src="img/resolution_rainbow.png" class="mx-auto rounded d-block inert-img img-fluid" width="700px">}}
 
-All the hard work paid of, {{< logo >}}&ThinSpace;derived ${ }$, so {{< logo >}}&ThinSpace;knows there will be a rainbow:
+All the hard work paid off, {{< logo >}}&ThinSpace;derived ${ }$, so {{< logo >}}&ThinSpace;knows there will be a rainbow:
 
 {{< img src="img/ai_rainbow.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
 
@@ -352,7 +350,7 @@ can use to analyze the resolution above as a **chain** of
 
 {{< img src="img/horn_chaining.png" class="mx-auto rounded d-block inert-img img-fluid" width="600px">}}
 
-Essentially, we're taking our initial facts and apply gen-MP to infer as many
+Essentially, we're taking our initial facts and applying gen-MP to infer as many
 new facts as we can from the conditionals in our KB. We add these facts to our
 KB and again derive as many new facts as we can. Lather-rinse-repeat, we apply
 this method _recursively_ until at some point we derive the desired formula.
@@ -369,7 +367,7 @@ forward-chaining algorithm works by:
 1. Applying gen-MP as many times as possible using the known facts and the rule
 base and adding the results to the known facts. 
 
-2. Recursively repeat 1. until one of two possible things happen:
+2. Recursively repeat 1. until one of two possible things happens:
 
     - The goal formula is derived.
 
@@ -407,7 +405,7 @@ in the next section will illustrate why.
 But before we discuss this example, let's briefly talk about the other main
 algorithm for reasoning with conditionals in artificial inference [backward
 chaining](https://en.wikipedia.org/wiki/Backward_chaining). This algorithm is
-basically backward chaining in reverse. Here's how {{< logo >}}&ThinSpace;would
+basically forward chaining in reverse. Here's how {{< logo >}}&ThinSpace;would
 apply the algo in our example:
 
 - {{< logo >}}&ThinSpace;_wants_ to know whether the goal, $RAINBOW$, follows
@@ -478,7 +476,7 @@ in AI.
 ## Planning 
 
 We've seen that conditionals are useful for formulating rules in **Knowledge
-Representation and Reasoning (KKR)** contexts. In the final section of this
+Representation and Reasoning (KRR)** contexts. In the final section of this
 chapter, we'll look at a concrete application of this, which serves two
 interrelated purposes: on the one hand, it's a concrete application of the
 different techniques we've studied in the last couple of chapters; on the other
@@ -494,11 +492,11 @@ wall, telling {{< logo >}}&ThinSpace;to invert the stacking:
 
 It seems that {{< logo >}}&ThinSpace;needs to make a **plan**.
 
-There is an AI approach to planning involves `SAT`-solving and knowledge
+There is an AI approach to planning that involves `SAT`-solving and knowledge
 representation using conditionals. The approach is known as [`Satplan`](https://en.wikipedia.org/wiki/Satplan) or "Planning as satisfaction."
 
 The idea is to describe the planning situation using a suitable propositional
-language. Here's the basic components of such a language for our problem:
+language. Here are the basic components of such a language for our problem:
 
 - The **fluents** are propositional variables that describe possibly changing
 states of the world. For each combination of $X,Y {{< in >}} { R, G}$ and for
@@ -525,18 +523,17 @@ of $Y$ at time-stamp $t$.
 Otherwise, our language is an ordinary propositional language with {{< neg >}},
 {{< land >}}, {{< lor >}}, and {{< to >}} as operators.
 
-For now, the variables are just ordinary propositional variables, nothing
-constraints our models from assigning them "weird" values that don't align with
+For now, the variables are just ordinary propositional variables, nothing constrains our models from assigning them "weird" values that don't align with
 our intended interpretation. For example, an assignment may very well assign
 $On(R,G,1)$ and $On(G,R,1)$ both the value `1`, even though in the "real world" of
 course they can't both be true.
 
 We tackle this problem by implementing a {{< abbr title="knowledge base">}}KB{{</abbr>}}, 
-which at a minimum contain the following formulas:
+which at a minimum contains the following formulas:
 
 - Principles about the way the world works "(meta-)physically", such as: $${{< neg >}}On(X,X,t)&emsp;&emsp;&emsp; On(X,Y,t){{< to >}}{{< neg >}}On(Y,X,t),$$ for all $t$. These guarantee, for example, that no block can be on top of itself in a model or both one on top of the other and the other on top of the one, in some weird "wormhole"-style model.
 
-- Principles that guarantee that our actions work like indented, like: $$Stack(X,Y,t){{< to >}}On(X,Y,t+1)&emsp;&emsp;&emsp;Unstack(X,Y,t){{< to >}}{{< neg >}}On(X,Y,t+1),$$ for all $X,Y,t$ as before. These express action principles like that if you stack at one time-stamp in the model, the action will succeed and the blocks will be indeed on top of each other at the next time-stamp.
+- Principles that guarantee that our actions work as intended, like: $$Stack(X,Y,t){{< to >}}On(X,Y,t+1)&emsp;&emsp;&emsp;Unstack(X,Y,t){{< to >}}{{< neg >}}On(X,Y,t+1),$$ for all $X,Y,t$ as before. These express action principles like that if you stack at one time-stamp in the model, the action will succeed and the blocks will be indeed on top of each other at the next time-stamp.
 
     These action principles also need some plausibility rules, like
     $$Unstack(X,Y,t){{< to >}}On(X,Y,t),$$ for all $X,Y,t$ as before, which
@@ -565,7 +562,7 @@ this, we can use any of the techniques we've developed before. Even more, if you
 check carefully, you can see that all the formulas involved are Horn formulas,
 which means we can find a model in linear time. Of course, this
 language is already large enough that linear might still be too long to do by
-hand, but in practice, we can easily use a AI program to solve this.
+hand, but in practice, we can easily use an AI program to solve this.
 
 One model the system might find for our language is given by this diagram, where
 the depicted formulas are the ones that are true (i.e. assigned value `1`):
@@ -586,7 +583,7 @@ are a mainstay in AI research. Another famous example involves [monkeys and
 bananas](https://en.wikipedia.org/wiki/Monkey_and_banana_problem). Of course,
 real world planning situations are much more complex. But the principles remain
 the same, and `Satplan` has _many_ real world, industry applications, ranging
-from scheduling shifts to warehouse stocking. These applications easy involve
+from scheduling shifts to warehouse stocking. These applications easily involve
 hundreds to thousands of variables. They _really_ need AI to automatically plan.
 
 There is one hiccup, however. Also the following model is a model of our KB
@@ -599,7 +596,7 @@ In this model, which you can easily verify validates all our principles so far,
 the first and second time-stamp, but the problem solves itself: the blocks
 magically re-arrange themselves into the desired configuration.
 
-Of course, this is a non-sense model, but how do we exclude it? It turns out
+Of course, this is a nonsense model, but how do we exclude it? It turns out
 that the obvious solution has some undesirable properties. What we really want
 to do is postulate this for all $X,Y,t$:
 
@@ -611,7 +608,7 @@ longer Horn clauses. Which puts our planning with them square into the territory
 of exponential time `SAT`-solving. While modern computers are sufficiently
 powerful that they can tackle even very time-complex `SAT`-problems in
 reasonable time-frames, this is not good. It presents a fundamental challenge to
-scaling planing.
+scaling planning.
 
 The underlying problem is known as the [frame
 problem](https://en.wikipedia.org/wiki/Frame_problem), which is one of the most

@@ -70,7 +70,7 @@ AI-systems.
 
 ## Kleene Algebra
 
-Recall our simply country DB from when we explored the relation between open FOL
+Recall our simple country DB from when we explored the relation between open FOL
 formulas and SQL queries. The content of the DB was given by the following
 tables:
 
@@ -97,7 +97,7 @@ INSERT INTO LanguageOf VALUES
   ('Zimbabwe', NULL),
 ~~~
 
-Now, let's query the database and to ask for the countries which speak Dutch.
+Now, let's query the database and ask for the countries which speak Dutch.
 Following the ideas we've discussed before, we can do this with the following
 query:
 
@@ -112,7 +112,7 @@ The return value is, as expected, the table with the single row `Netherlands`:
 
 {{< img src="img/table_1.png" class="mx-auto rounded d-block inert-img img-fluid" width="250px">}}
 
-But now, let's query our DB for the countries that _dont_ speak Dutch:
+But now, let's query our DB for the countries that _don't_ speak Dutch:
 
 {{< sql_logo >}}
 ~~~sql
@@ -130,12 +130,12 @@ You can check this out yourself in our updated [db-fiddle](https://www.db-fiddle
 
 But what happened to Zimbabwe? It returns in none of the two queries and, in a
 sense, that's to be expected: our DB doesn't know whether they speak Dutch in
-Zimbabwe, so it neither returns the country as one where they do or where they
+Zimbabwe, so it neither returns the country as one where they do nor as one where they
 don't. But if we look at this from a logical perspective, things get a bit less
 clear.
 
 Remember that SQL queries correspond to open FOL formulas and the return value
-for a query is the extensions of the extension of the corresponding formula in
+for a query is the extension of the corresponding formula in
 the model expressed by the DB. Now, in our toy example, `QUERY #1` corresponds
 to the following formula:
 
@@ -200,7 +200,7 @@ that this query _does_ return Zimbabwe as expected.
 
 So, let's explore the basic theory of $K3$ from a logical perspective and look
 at some other applications. For the purpose of this chapter, we'll restrict
-ourselves to propositional $K3$. It's rather straight-forward to extend the
+ourselves to propositional $K3$. It's rather straightforward to extend the
 ideas to FOL formulas and you'll explore some of these ideas in the exercises.
 
 
@@ -245,7 +245,7 @@ truth-functions.
 
 To understand the functions, our informational interpretation is helpful. For
 example, if we have the information that a sentence is false, i.e. has value
-`0`, this is enough information to know that it's negation is true, so we set
+`0`, this is enough information to know that its negation is true, so we set
 `~!NOT!~ 0 = 1`. But if we have no information about the sentence, i.e. value
 `ω`, then this is not enough information to determine what the negation of that
 sentence should be. In other words `~!NOT!~ ω = ω`. This interpretation works
@@ -262,12 +262,12 @@ sometimes called the "definedness" function:
 
 {{< img src="img/delta_table.png" class="mx-auto rounded d-block inert-img img-fluid" width="150px">}}
 
-This function doesn't play a huge practically role, but it cannot be expressed
+This function doesn't play a huge practical role, but it cannot be expressed
 using ~!NOT!~, ~!AND!~, ~!OR!~ alone. But ~!Δ!~ together with ~!NOT!~, ~!AND!~,
 ~!OR!~ can express all possible Kleene truth-functions.
 
 In Boolean algebra, we provided implementations of the Boolean truth-functions
-using relay circuits. In Kleene logic, an implementation are SQL queries using
+using relay circuits. In Kleene logic, one implementation uses SQL queries using
 the SQL operations `<span class="dark-blue">NOT</span>, <span
 class="dark-blue">AND</span>, <span class="dark-blue">OR</span>`. To show how
 this works, let's create a simple SQL DB that contains two tables, one for all
@@ -311,8 +311,7 @@ A cool little side-effect of this is that you can use SQL as a $K3$
 `SAT`-solver, which is an idea you'll explore in the exercises.
 
 Just like in Boolean algebra, there are laws of [Kleene
-algebra](https://en.wikipedia.org/wiki/Kleene_algebra). Here's a
-straight-forward
+algebra](https://en.wikipedia.org/wiki/Kleene_algebra). Here's a straightforward list of the laws:
 
 |                                                                                                                                       |    |                        |
 | ------------------------------------------------------------------------------------------------------------------------------------- | -- | ---------------------- |
@@ -368,8 +367,7 @@ That is, logical space looks something like this:
 Following essentially the same idea as in Boolean algebra, we can think of each
 of these scenarios as a function from the propositional variables into the
 Kleene truth-values. The information state 1., for example, corresponds to the
-function that assigns both $SUN$ and $RAIN$ the value `1`, while state 3.
-assings $SUN$ the value `1` and $RAIN$ the value `ω`. So, we can write `v($A$)`
+function that assigns both $SUN$ and $RAIN$ the value `1`, while state 3. assigns $SUN$ the value `1` and $RAIN$ the value `ω`. So, we can write `v($A$)`
 just like before, just that `v($A$){{< in >}}{ 0, 1, ω }` rather than just `{0,
 1}`. 
 
@@ -410,7 +408,7 @@ rrbracket >}}{{< cap >}}{{< llbracket >}}SUN {{< lor >}}RAIN{{< rrbracket >}}$ o
 ${{< llbracket >}}{{< neg >}}SUN{{<
 rrbracket >}}$ and ${{< llbracket >}}SUN {{< lor >}}RAIN{{< rrbracket >}}$. And
 the only model in that intersection is the one where we have the information
-that there's no sun but it will rains, which is a member of 
+that there's no sun but it will rain, which is a member of
 ${{< llbracket >}}RAIN{{< rrbracket >}}$. So, the inference is valid: from the
 information that it will be rainy or sunny and that it will not be sunny, we can
 infer the information that it will be rainy.
@@ -465,7 +463,7 @@ we've used in Boolean logic and classical FOL **doesn't** hold in $K3$:
 
 $$`P₁, P₂, … {{< vDash >}} C` &emsp; if and only if &emsp; not-`SAT ` { `P₁, P₂, …, {{< neg >}} C` }$$
 
-The reason for this is that there in $K3$, there can be countermodels that don't
+The reason for this is that in $K3$, there can be countermodels that don't
 satisfy ${ `P₁, P₂, …, {{< neg >}} C` }$. A $K3$ countermodel is a model where
 all the premises are true, but the conclusion isn't. But that doesn't mean that
 the conclusion is *false*—it could also be a model where the conclusion is
@@ -485,7 +483,7 @@ $${ SUN, {{< neg >}}(RAIN{{< lor >}}{{< neg >}}RAIN) }$$
 is unsatisfiable in $K3$ but the inference isn't valid.
 
 But that doesn't mean that we can't use a `SAT`-solving _style_ approach. For
-example, it's straight-forward to develop a brute-force truth-table method,
+example, it's straightforward to develop a brute-force truth-table method,
 where we generate all the relevant models and check if in the models where the
 premises are true, the conclusion is as well. In fact, we can easily illustrate
 the idea in `SQL`.
@@ -546,7 +544,7 @@ derive $RAINBOW$—for example, because our facts only contain $RAIN$, $MORNING$
 Does that mean that we _won't_ see a rainbow _or_ that we don't know whether we
 will? 
 
-That depends on the way we interpret our KB: Is it a omniscient collection of
+That depends on the way we interpret our KB: Is it an omniscient collection of
 all the laws and rules concerning the subject matter—say, all the ways a rainbow
 can occur? Then, we might be tempted to think that the fact that we can't derive
 $RAINBOW$ means that $RAINBOW$ is false. In AI, this is known as the
@@ -576,21 +574,20 @@ all the way there, while 0.1 warm means not freezing cold, but also barely warm.
 
 If we take this idea seriously and assume a language with three predicates
 `IsCold`, `IsWarm`, and `IsHot`, we can assign those predicates values between
-`0` and `1` when applied to a temperature in order to represent the extend to
+`0` and `1` when applied to a temperature in order to represent the extent to
 which this temperature is considered cold, warm, or hot. One way of assigning
 such values is represented in the following diagram:
 
 {{< img src="img/fuzzy_predicates.png" class="mx-auto d-block rounded inert-img img-fluid" width="500px">}}
 
 This is the idea of **fuzzy predicates**: we've treated `IsCold`, `IsWarm`, and
-`IsHot` as fuzzy predicates of temperature. In contrast, the binary predicates
-of classical FOL are also called **crisp** predicates. 
+`IsHot` as fuzzy predicates of temperature. In contrast, the bivalent predicates of classical FOL are also called **crisp** predicates.
 
 Fuzzy logic deals with inference involving fuzzy concepts. While it is central
 for many AI-technologies, especially so-called [fuzzy control
 systems](https://en.wikipedia.org/wiki/Fuzzy_control_system), which you find in
-automotive systems (trains, cars, plains, etc.) or self-regulating thermostats,
-it turns out to be rather difficult to formulate theory of high-level inference
+automotive systems (trains, cars, planes, etc.) or self-regulating thermostats,
+it turns out to be rather difficult to formulate a theory of high-level inference
 with fuzzy predicates—difficult, though not _impossible_. Accordingly, we'll
 only scratch the surface of fuzzy logic in this chapter, but we'll illustrate
 some basic ideas of working with fuzzy predicates, which will come in handy if
@@ -620,7 +617,7 @@ sense—that is sets of objects having the described property—but we associate
 with each predicate `Pⁿ` a function `{{< llbracket >}}Pⁿ{{< rrbracket >}}`,
 which assigns to all $n$ inputs from the domain a [real
 number](https://en.wikipedia.org/wiki/Real_number) between $0$ and $1$
-(inclusive). This number measures the extend to which the predicate applies to
+(inclusive). This number measures the extent to which the predicate applies to
 these objects. 
 
 That is, if our domain contains all the temperatures, then 
@@ -645,7 +642,7 @@ Here, `{{< llbracket >}}t{{< rrbracket >}}` is the denotation of the term $t$,
 defined just like in FOL.
 
 The main question we'll be looking into now is how we can interpret _complex_
-fuzzy expresions in such models. What, for example, is the value of the
+fuzzy expressions in such models. What, for example, is the value of the
 following complex open formula:
 
 ```
@@ -668,8 +665,7 @@ $${{< llbracket >}}A {{< land >}}B{{< rrbracket >}} = min {{< llbracket >}}A{{< 
 
 $${{< llbracket >}}A {{< lor >}}B{{< rrbracket >}} = max {{< llbracket >}}A{{< rrbracket >}} {{< llbracket >}}B{{< rrbracket >}}$$
 
-Here, $min$ and $max$ are the [minimum and maximum
-function](https://en.wikipedia.org/wiki/Maximum_and_minimum) respectively, which
+Here, $min$ and $max$ are the [minimum and maximum functions](https://en.wikipedia.org/wiki/Maximum_and_minimum) respectively, which
 return the biggest value among their inputs in the case of $max$ and the
 smallest input in the case of $min$.
 
@@ -709,7 +705,7 @@ block of fuzzy control systems.
 
 A fuzzy rule is, in essence, a model constraint that enforces that some
 conditions—the _antecedent_ of the rule—fuzzy imply (in the above sense) a
-conclusion. Typically, we formulate these fuzzy rules using open formulas of
+conclusion. Typically, we formulate these fuzzy rules using open formulas
 with appropriate free variables. For example, we write the fuzzy rule that
 `IsHot` fuzzy entails `AcOn`—where `AcOn` is a fuzzy propositional variable which
 just gets a fuzzy value assigned—either as 
@@ -724,7 +720,7 @@ or using arrow notation as
  IsHot x {{< longrightarrow >}} AcOn
 ```
 
-We postulate that fuzzy rules have a kind of MP property where a model that
+We postulate that fuzzy rules have a kind of MP property where a model
 _satisfies_ a rule just in case for every object in the model, the value of the
 consequent of the rule applied to the object is at least as big as the value of
 the premise of the rule applied to it.
@@ -740,10 +736,10 @@ interpreted.
 
 But other rules, we need to _enforce_. And that's the idea of fuzzy control
 systems. Think, for example, of a self-regulating heating system, which aims to
-keep the warm always warm and cozy, never too hot and never too cold. One way of
+keep the room always warm and cozy, never too hot and never too cold. One way of
 implementing such a system is by means of a fuzzy rule.
 
-Suppose for the setup that we define our fuzzy predicate `IsCold` is given by
+Suppose for the setup that our fuzzy predicate `IsCold` is given by
 the above diagram. Then we can implement our fuzzy heater by means of the
 following rule:
 
@@ -752,12 +748,11 @@ IsCold x {{< longrightarrow >}} HeatingOn
 ```
 
 Here `HeatingOn` is again a fuzzy propositional variable, which simply gets a
-value between `0` and `1` in every model and which represents the extend to
+value between `0` and `1` in every model and which represents the extent to
 which the heating is engaged.
 
 The idea is to enforce through some mechanism that this rule is satisfied by the
-temperature at any given point in time. That is, the system ensures that the
-extend to which `HeatingOn` is true at any time coasts the line `IsCold`:
+temperature at any given point in time. That is, the system ensures that the extent to which `HeatingOn` is true at any time coasts the line `IsCold`:
 
 {{< img src="img/heating_on.png" class="mx-auto d-block rounded inert-img img-fluid" width="400px">}}
 
@@ -778,7 +773,7 @@ follows, while leaving `IsCold` unchanged:
 
 {{< img src="img/custom_warm.png" class="mx-auto d-block rounded inert-img img-fluid" width="400px">}}
 
-Now, the fuzzy following fuzzy rule 
+Now, the following fuzzy rule
 
 ```
 IsCold x {{< land >}}{{< neg >}}IsWarm x{{< longrightarrow >}} HeatingOn
@@ -794,6 +789,6 @@ since the former rule will stop heating quicker. Just inspect the following diag
 
 {{< img src="img/optimized_heating.png" class="mx-auto d-block rounded inert-img img-fluid" width="400px">}}
 
-This is just a small teaser of the huger world of fuzzy logic, but I hope it
+This is just a small teaser of the huge world of fuzzy logic, but I hope it
 became clear that there are excellent low-level applications of these core
 logical methods.

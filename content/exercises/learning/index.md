@@ -8,8 +8,7 @@ params:
   math: true
 ---
 
-For the last workgroup, we just have one exercise that illustrate an important
-concepts about Bayesian learning. The rest of the workgroup you can use to ask
+For the last workgroup, we just have one exercise that illustrates an important concept about Bayesian learning. The rest of the workgroup you can use to ask
 questions for the exam.
 
 # Base-rate fallacy {.solved}
@@ -47,15 +46,15 @@ disease as the prevalence of the disease in the population.
 ## b)
 
 Suppose we're administering the test to a randomly selected person from the
-population. The test results positive. What is the probability that the person
+population. The test result is positive. What is the probability that the person
 has the disease given this outcome? 
 
 _Hint_: Use the alternative formulation of Bayes theorem.
 
 ## c) 
 
-Let's take the Netherlands with around 18 million people as sample population?
-Interpreting probabilities as frequencies and work out what the numbers from
+Let's take the Netherlands with around 18 million people as a sample population.
+Interpret probabilities as frequencies and work out what the numbers from
 before mean. This may help understand the situation.
 
 ## Solution {.solution #base-rate-fallacySolution}
@@ -92,6 +91,6 @@ $$Pr(\mathsf{DISEASE}\mid \mathsf{POSITIVE})=$$
 $$\frac{0.9\times 0.01}{(0.9\times 0.01)+(0.1\times 0.99)}=0.08\bar{3}$$
 
 That is, a positive test for a randomly picked person should raise your credence
-in that person having the disease from 1% to about 8%. This may be surprising in
+in that person having the disease from 1% to about 8%. This may be surprising and
 is nowhere _near_ the 90% reliability of the test.
 

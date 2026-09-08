@@ -26,7 +26,7 @@ electronically operated switches—and not
 [semiconductors](https://en.wikipedia.org/wiki/Semiconductor), which are the
 actual technology used to implement computers today, the fundamental principles
 are the same. Boolean algebra is the logic of low-level computing, and the way
-that computers add, subtract, multiply, etc. are ultimately grounded in Boolean
+that computers add, subtract, multiply, etc. is ultimately grounded in Boolean
 logic.
 
 But the importance of Boolean algebra to AI is not restricted to the low level.
@@ -94,8 +94,7 @@ For now, we'll restrict ourselves to the basic functions $!!NOT!!$, $!!AND!!$, a
 $!!OR!!$. These are not the most fundamental truth-functions in any sense of the
 word, but _are_ the most commonly used truth-functions in logical theory. In
 computer science, instead, especially when we're thinking about basic
-semiconductor circuits $!!XOR!!$ and especially when we're
-thinking about basic semiconductor circuits $!!NAND!!$ are more commonly used as
+semiconductor circuits $!!XOR!!$ and $!!NAND!!$ are more commonly used as
 basic functions.
 
 The truth-functions are given by the following functional tables, where the
@@ -140,11 +139,10 @@ off and on affects the behavior of the circuit:
 
 {{< img src="img/relay_behavior.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="900px">}}
 
-The $default  "on"$ relay, of course, behaves
-dually.
+The $default "off"$ relay, of course, behaves dually.
 
 We can use these two relays to implement our three Boolean truth-functions. For
-this, we assume that following set-up: 
+this, we assume the following set-up:
 
 {{< img src="img/implementation_setup.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}}
 
@@ -177,10 +175,10 @@ We can implement $!!AND!!$ using the other kind of relay as follows:
 {{< img src="img/conjunction_impl.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="900px">}}
 
 There are four possible states of the circuits, but as you can see: only if both
-inputs are $1$ the output is
+inputs are $1$ is the output
 $1$. In all other configurations, the output is
 $0$—just like the
-$!!AND!!$ function, requires.
+$!!AND!!$ function requires.
 
 Implementing the $!!OR!!$ function using the relays
 is one of the exercises. If you want to try more, you can try the amazing
@@ -221,7 +219,7 @@ calculations:
 
 </div>
 
-Only the second and third line are "interesting" calculations, the first and
+Only the second and third lines are "interesting" calculations, the first and
 last are "trivial".
 
 This law is called the law of $Commutativity$ for
@@ -347,7 +345,7 @@ Let's look at how to derive {{<excalifont>}}("Double
 
 
 This derivation may seem a bit tedious—especially since we can prove the fact
-that $!!NOT!! !!NOT!! X = X$ fact by simply inspecting
+that $!!NOT!! !!NOT!! X = X$ by simply inspecting
 the function tables: `!!NOT!! !!NOT!! 1 = 1$ and $!!NOT!! !!NOT!! 0 = 0`.
 
 But there are also questions where the laws are much more efficient at giving
@@ -398,12 +396,12 @@ The derivation also illustrates an important point: the above laws of Boolean
 algebra allow us to derive further laws that don't look like they're covered by
 the initial list. In fact, we can derive _all_ valid identities of Boolean
 algebra from these laws. The list of laws is **complete** in this sense. 
-Having a complete list of laws for a subject matter is an incredibly feat: _all
+Having a complete list of laws for a subject matter is an incredible feat: _all
 there is to know about Boolean algebras is encoded in these laws_. And as the
 example of `X !!AND!! ((Y !!AND!! Z) !!OR!! !!NOT!! (Y !!AND!! Z))` shows, this
 can be a handy tool in the toolbox of any AI researcher.
 
-On a more historical note, the set of laws we've discussed are originally due to
+On a more historical note, the set of laws we've discussed is originally due to
 [Alfred North Whitehead](https://en.wikipedia.org/wiki/Alfred_North_Whitehead).
 But it is not the only collection of complete laws and certainly not the
 [minimal one](https://en.wikipedia.org/wiki/Minimal_axioms_for_Boolean_algebra).
@@ -419,7 +417,7 @@ But that's a story for another day.
 
 ## Adders
 
-To illustrate the usefulness of Boolean algebra, let's look an important
+To illustrate the usefulness of Boolean algebra, let's look at an important
 application: the implementation of addition via
 [adders](https://en.wikipedia.org/wiki/Adder_(electronics)).
 
@@ -446,7 +444,7 @@ unusual at first, but is also common in computer science. So, the first bit of $
 
 {{< img src="img/bits_example.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="200px">}}
 
-To calculate the number represented by a string, you go through the digits one.
+To calculate the number represented by a string, you go through the digits one by one.
 Let's call the $n$th bit $dₙ$. So, in our example, we have: $$d₀ = 1, d₁ = 0,
 d₂ = 1, d₃ = 1$$
 
@@ -460,7 +458,7 @@ from above. In more general mathematical notation, we can write this as:
 
 {{< img src="img/representation_formula.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="200px">}}
 
-But this is just "fancy notation"" to say exactly the same thing we just said.
+But this is just "fancy notation" to say exactly the same thing we just said.
 
 The number $1101$ is what's called a $4$-bit number, since it represents a
 number using four bits. Typically, we're dealing with binary numbers of a fixed
@@ -469,7 +467,7 @@ limitations: while mathematicians are happy dealing with strings of infinite
 length in their minds, it's slightly complicated to stuff them into a computer
 chip. This is why we have [$64$-bit computing](https://en.wikipedia.org/wiki/64-bit_computing) and not "∞-bit computing".
 
-But there are also practical advantages to have a fixed bit-size. For example,
+But there are also practical advantages to having a fixed bit-size. For example,
 if we have two binary numbers of the same length, they are incredibly easy to
 add. Here's an example of how this works:
 
@@ -530,7 +528,7 @@ The idea is that the blue boxes are implementations of $!!XOR!!$ and $!!AND!!$
 respectively, which take two inputs and give two outputs. The input switches
 represent $d₀$ and $e₀$ respectively, on meaning $1$ and off meaning $0$. The
 two lamps stand for the results, the $0$th digit and the carry, respectively. A
-lamp being on means the relevant output is $1$, otherwise its $0$. What's
+lamp being on means the relevant output is $1$, otherwise it's $0$. What's
 depicted here is the configuration that corresponds to our example, i.e. $d₀ =
 1$ and $e₀ = 1$. 
 
@@ -548,7 +546,7 @@ carry from the previous step (let's call it $c₀$). Like in the first step, we
 need to calculate two outputs: the $1$st digit of our sum, and any potential
 carry that might result.
 
-The $1$st digit of our sum is rather straight-forward to calculate: it should
+The $1$st digit of our sum is rather straightforward to calculate: it should
 be $1$ just in case exactly one input is $1$ _or_ all three inputs are $1$. The
 reasoning is like in the two input case from before:
 
@@ -693,7 +691,7 @@ language $L$ _is_ an assignment of Boolean truth-values to the propositional
 variables. In short: $$Mᵢ = vᵢ$$
 
 Each model tells us what the truth-values for the propositional variables are.
-This allows as, for example, to determine the proposition $[SUN]$ as follows:
+This allows us, for example, to determine the proposition $[SUN]$ as follows:
 
 {{< img src="img/prop_sun.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="900px">}}
 
@@ -703,7 +701,7 @@ RAIN$, we first need to think about the connectives. For now, we'll focus on the
 
 Let's start with negation. In which models should we say that 
 {{< img src="img/neg_sun.png" class="inert-img" height="28px"
-style="vertical-align: middle;" >}}, say, is true? A straight-forward answer
+style="vertical-align: middle;" >}}, say, is true? A straightforward answer
 is: {{< img src="img/neg_sun.png" class="inert-img" height="28px"
 style="vertical-align: middle;" >}} says that it's not sunny, so the formula
 should be true in precisely those models, where $SUN$ is _not_ true: $$v({{< img src="img/neg_sun.png" class="inert-img" height="34px"

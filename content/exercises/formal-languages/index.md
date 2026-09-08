@@ -58,7 +58,7 @@ other.
 
     - He thanked her children, whoever they are, and two people called "Alan" and "Ada".
 
-    On the first reading, you can infer that Alan is her child, while you cannot n the second reading.
+    On the first reading, you can infer that Alan is her child, while you cannot on the second reading.
 
 4. This statement instead uses the [serial
    comma](https://en.wikipedia.org/wiki/Serial_comma) to avoid the previous
@@ -88,7 +88,7 @@ ambiguity.
 
     - I am happy that I'm here and she is also here.
 
-    On the second reading you can, for example, infer that she is here, while on the second one you can't.
+    On the second reading you can, for example, infer that she is here, while on the first one you can't.
 
  9. This statement is ambiguous between:
 
@@ -96,7 +96,7 @@ ambiguity.
 
     - The priest got married to my uncle.
 
-    On the second reading, you can infer that the priest is now the speakers uncle in law, while on the first one you can't.
+    On the second reading, you can infer that the priest is now the speaker's uncle-in-law, while on the first one you can't.
 
  10. Also this statement is ambiguous:
 
@@ -155,7 +155,7 @@ Describe the following sets using set notation:
 
 4. ${ n : n is an even natural number }$
 
-5. ${ {1}, {2}, {3}, {1,2}, {1,3}, {2,3}, {1,2,3} }$ or: $${ x : x is a non-empty set with only member from {1, 2, 3} }$$
+5. ${ {1}, {2}, {3}, {1,2}, {1,3}, {2,3}, {1,2,3} }$ or: $${ x : x is a non-empty set with only members from {1, 2, 3} }$$
 
 # Parsing {.solved}
 
@@ -201,7 +201,7 @@ in honor of the Polish logician [Jan
 Łukasiewicz](https://en.wikipedia.org/wiki/Jan_%C5%81ukasiewicz), who pioneered
 it.
 
-We'll look at a simple proposition language in Polish notation, with the
+We'll look at a simple propositional language in Polish notation, with the
 following alphabet:
 
 The letters {{<excalifont>}}p,q,r{{</excalifont>}} are propositional variables,
@@ -265,7 +265,7 @@ a propositional variable. But this formula starts with a propositional variable 
 write instructions on how to find the treasure. Since he's an AI system, he
 does so using propositional logic.
 
-First, he divided the disk-world into 4 quadrants, indicating in the following coordinate system: 
+First, he divided the disk-world into 4 quadrants, indicated in the following coordinate system:
 
 {{< img src="img/map.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="550px">}}
 
@@ -303,19 +303,19 @@ Help {{< logo >}}&nbsp; to represent the following hints about the treasure's lo
 
 ## Solution {.solution #knowledge-representationSolution}
 
-1. A straight-forward representation is {{< img src="img/representation1.png" class="inert-img" height="38px" style="vertical-align: middle;" >}}. But an equally valid alternative is: {{< img src="img/representation1a.png" class="inert-img" height="32px" style="vertical-align: middle;" >}}.
+1. A straightforward representation is {{< img src="img/representation1.png" class="inert-img" height="38px" style="vertical-align: middle;" >}}. But an equally valid alternative is: {{< img src="img/representation1a.png" class="inert-img" height="32px" style="vertical-align: middle;" >}}.
 2. This one is trickier than it might seem at first. I've attached a paraphrase to facilitate reading:
 
   {{< img src="img/representation2.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="750px">}}
 
-3. This one has at least two readings in natural language. The most straight-forwardly intended one is {{< img src="img/representation3.png" class="inert-img" height="38px" style="vertical-align: middle;" >}}, which reads as if the treasure is not in the lower right and not in the lower left, then it's in the upper left. But if we take the "only if" parlance seriously, and read the statement as "if the treasure is not in the lower right, then it's only in the upper left, if it's not in the lower left," we get this formula: {{< img src="img/representation3a.png" class="inert-img" height="38px" style="vertical-align: middle;" >}}.
+3. This one has at least two readings in natural language. The most straightforwardly intended one is {{< img src="img/representation3.png" class="inert-img" height="38px" style="vertical-align: middle;" >}}, which reads as if the treasure is not in the lower right and not in the lower left, then it's in the upper left. But if we take the "only if" parlance seriously, and read the statement as "if the treasure is not in the lower right, then it's only in the upper left, if it's not in the lower left," we get this formula: {{< img src="img/representation3a.png" class="inert-img" height="38px" style="vertical-align: middle;" >}}.
 4. This is then just the consequence of the second reading from 3.: {{< img src="img/representation4.png" class="inert-img" height="38px" style="vertical-align: middle;" >}}
 5. {{< img src="img/representation5.png" class="inert-img" height="38px" style="vertical-align: middle;" >}}
-6. A very straight-forward reading is this: {{< img src="img/representation7.png" class="inert-img" height="38px" style="vertical-align: middle;" >}} ("the treasure is not here, not here, not here, and not here"), but an equivalent statement is just the negation of 6.: {{< img src="img/representation7a.png" class="inert-img" height="38px" style="vertical-align: middle;" >}}. 
+6. A very straightforward reading is this: {{< img src="img/representation7.png" class="inert-img" height="38px" style="vertical-align: middle;" >}} ("the treasure is not here, not here, not here, and not here"), but an equivalent statement is just the negation of 6.: {{< img src="img/representation7a.png" class="inert-img" height="38px" style="vertical-align: middle;" >}}.
 7. {{< img src="img/representation6.png" class="inert-img" height="38px" style="vertical-align: middle;" >}}
 8. {{< img src="img/representation8.png" class="inert-img" height="38px" style="vertical-align: middle;" >}}
 
-As you can see, in knowledge representation, we have to handle natural language ambiguity, there are often more than one solution, and things that sound easy in natural language, can be hard to formalize.
+As you can see, in knowledge representation, we have to handle natural language ambiguity, there is often more than one solution, and things that sound easy in natural language, can be hard to formalize.
 
 # Knowledge extraction  {.solved}
 

@@ -34,7 +34,7 @@ challenges they face.
 
 ## Belief revision
 
-We start with the deductive approach: **belief revision**. Suppose we have
+We start with the deductive approach: **belief revision**. Suppose we have a
 knowledge base $\mathsf{KB}$, which contains our knowledge about the relevant subject
 matter. For belief revision, it's important that we understand our $\mathsf{KB}$ as a set
 of formulas, meaning $\mathsf{KB}\subseteq \mathcal{L}$. In addition, we assume that
@@ -57,8 +57,7 @@ There are many reasons for why this can happen:
 + we used inductive reasoning to generate the $\mathsf{KB}$
 + ...
 
-Our aim is figure out how we should respond when we receive new information. For
-concreteness sake, let's assume that we learn that it's, as a matter of fact, raining:
+Our aim is to figure out how we should respond when we receive new information. For concreteness, let's assume that we learn that it's, as a matter of fact, raining:
 
 $$\mathsf{RAIN}$$
 
@@ -148,7 +147,7 @@ problematic.
 The upshot is that we need to be _very_ careful when removing
 $\neg\mathsf{RAIN}$: we need to remove at least some of its "grounds" (if they
 exist) and many of its consequences from the base as well. But which ones
-_exactly_ to remove. Think of $\mathsf{HIGH\\_PRESSURE}$, $\mathsf{WARM}$ and
+_exactly_ to remove? Think of $\mathsf{HIGH\\_PRESSURE}$, $\mathsf{WARM}$ and
 the rule $\mathsf{HIGH\\_PRESSURE}\land\mathsf{WARM}\to\neg\mathsf{RAIN}$ again.
 Removing any of them will do to make it possible to add $\mathsf{RAIN}$, but
 which one to remove? Often, we'd try to stick to the rule, as it usually
@@ -186,7 +185,7 @@ An approach to logic-based learning that's easier to implement is **Bayesian
 updating**, which is based on inductive, rather than deductive inference.
 
 The setup for Bayesian learning is slightly different: rather than a knowledge
-bank with a lot of qualitative knowledge (0/1, we know or we don't), we have
+bank with a lot of qualitative knowledge (0/1, we know or we don't), we
 assume that our background knowledge bank is _probabilistic_. In fact, we simply
 assume that we can represent our probabilistic knowledge about the world by
 means of a probability $$Pr_\mathsf{KB}:\mathcal{L}\to\mathbb{R}.$$
@@ -210,7 +209,7 @@ $$Pr_{\mathsf{KB}\ast\mathsf{RAIN}}(\ \cdot\ )=Pr_\mathsf{KB}(\ \cdot \mid
 
 The crucial idea here is that according to this approach, the original
 probabilistic knowledge bank already contains the information about how to
-respond to new information via it's conditional probabilities, which are,
+respond to new information via its conditional probabilities, which are,
 remember, defined as follows:
 
 $$Pr(A\mid B)=\frac{Pr(A\land B)}{Pr(B)}$$
@@ -228,7 +227,7 @@ that the die-roll was even, formalized as
 $$\mathsf{RESULT}_2\lor\mathsf{RESULT}_4\lor \mathsf{RESULT}_6?$$
 
 The answer is to conditionalize on this proposition. Let's go through the
-outcomes of this. We've already calculated result for $\mathsf{RESULT}_2$
+outcomes of this. We've already calculated the result for $\mathsf{RESULT}_2$
 (abbreviated as $\mathsf{R}_2$){{< chapter_ref chapter="probability"
 id="conditional-probabilities" >}} last chapter {{< /chapter_ref >}}. The
 calculation, for $\mathsf{R}_4$ and $\mathsf{R}_6$ is exactly analogous, giving
@@ -265,7 +264,7 @@ We can present the result in the following table:
 This is as we should expect: when we learn that the die-roll is even, all the
 odd results become impossible. 
 
-Bayesian updating is an impressively effective method for changing believes in
+Bayesian updating is an impressively effective method for changing beliefs in
 the light of evidence. The method has _a lot_ of applications in AI, ranging
 from text classification to [email spam
 filters](https://en.wikipedia.org/wiki/Naive_Bayes_spam_filtering).
@@ -288,9 +287,10 @@ The reason why Bayes rule is so important is because _in practical applications_
 the values on the right hand are often known or easier to figure out than the
 conditional probability on the left of the equation.
 
-For example, if we're wondering what should $$Pr(\mathsf{HIGH\\_PRESSURE}\mid
-\mathsf{RAIN})$$ be. That is, how should we change our credence in the air
-pressure being high if we learn that it rains. 
+For example, suppose we're wondering what
+$$Pr(\mathsf{HIGH\\_PRESSURE}\mid\mathsf{RAIN})$$
+should be. That is, how should we change our credence in the air
+pressure being high if we learn that it rains?
 
 Bayes formula tells us that this is the same as:
 
@@ -301,7 +301,7 @@ Our starting point was to say that
 
 $$Pr_\mathsf{KB}(\mathsf{RAIN})=0.25$$
 
-Now the point is that it's easier to figure out what $Pr(\mathsf{RAIN}\mid
+Now the point is that $Pr(\mathsf{RAIN}\mid
 \mathsf{HIGH\\_PRESSURE})$ is easier to assess than
 $Pr(\mathsf{HIGH\\_PRESSURE}\mid\mathsf{RAIN})$: high pressure makes rain
 unlikely, since low pressure is one of the main factors in rain. Let's suppose
@@ -340,19 +340,19 @@ unfortunately, we don't have the time to explore this connection here.
 ## Logic-based learning in AI
 
 This chapter was a brief overview of how learning in logic-based AI can work.
-But, as your doubtlessly aware, logic-based learning is _not_ the standard
+But, as you're doubtlessly aware, logic-based learning is _not_ the standard
 paradigm for machine learning: statistical methods reign supreme.
 
 The main reason for this is the **computational complexity** of logic-based
 learning procedures. This point is easy to see with the methods we've discussed
-in this chapter: AGM belief revision requires a defining a selection function
+in this chapter: AGM belief revision requires defining a selection function
 that generally performs the contractions (removing the $\neg A$) and therefore
 needs to go through all the subsets of our knowledge base. 
 
 Bayesian updating, instead, requires updating the probabilities of _every_
 proposition, even if they're not relevant to the learning situation.
 
-Statistical machine learning are _way_ more efficient in the model parameters they
+Statistical machine learning methods are _way_ more efficient in the model parameters they
 update.
 
 But that doesn't mean that logic-based learning methods have no place in AI:

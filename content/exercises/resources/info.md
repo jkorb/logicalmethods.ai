@@ -10,8 +10,7 @@ You'll receive constructive feedback from your TA on your work.
 
 You can also ask your TA for suggestions and advice.
 
-You **must** show your work in order to get tips, meaning that if you just
-say "i don't know". Try by yourself first and explain _what_ you don't get.
+You **must** show your work in order to get tips; just saying "I don't know" isn't enough. Try by yourself first and explain _what_ you don't get.
 
 The questions marked with a 
 {{< i class="bi bi-lightbulb-fill" >}}

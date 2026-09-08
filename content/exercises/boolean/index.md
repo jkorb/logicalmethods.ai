@@ -33,7 +33,7 @@ the idea. To show what I mean, here's one way to simplify the diagram for the
 
 {{< img src="img/simplified_circuit.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="200px">}}
 
-Make sure that to verify that your circuit is according to spec! Note that you may need both kinds of relays for the implementations.
+Make sure to verify that your circuit is according to spec! Note that you may need both kinds of relays for the implementations.
 
 1. Implement !!OR!!
 
@@ -49,7 +49,7 @@ Make sure that to verify that your circuit is according to spec! Note that you m
 
 ## Solution {.solution #relay-logicSolution }
 
-Here are _some_ implementations. They re not the only ones, they illustrate different ideas. What matters is that your circuit works:
+Here are _some_ implementations. They're not the only ones, they illustrate different ideas. What matters is that your circuit works:
 
 1. An !!OR!! implementation, which uses the idea that `X !!OR!! Y` is `!!NOT!! ((!!NOT!! X) !!AND!! (!!NOT!! Y))`:
 
@@ -81,7 +81,7 @@ Using the function table for !!OR!!, we can calculate the value of this expressi
 !!NOT!! ((!!NOT!! X) !!AND!! (!!NOT!! Y))
 ```
 
-We (by which I mean you 😉), we can verify this by going through the possible values for `X` and `Y` and check that for each such value, we have that:
+We (by which I mean you 😉) can verify this by going through the possible values for `X` and `Y` and checking that for each such value, we have that:
 
 ```
 X !!OR!! Y = !!NOT!! ((!!NOT!! X) !!AND!! (!!NOT!! Y))
@@ -146,7 +146,7 @@ X !!AND!! (X !!OR!! Y) = X !!OR!! (X !!AND!! Y)
 
 ## Solution {.solution #boolean-lawsSolution}
 
-This is rather straight-forward: just note that both sides are equal to `X` by the law of $"Absorption"$. 
+This is rather straightforward: just note that both sides are equal to `X` by the law of $"Absorption"$.
 
 # Addition {.solved}
 
@@ -172,14 +172,14 @@ calculation to work).
     - $0$-th bit:
       - sum bit: `(d₀ !!XOR!! e₀) !!XOR!! 0 = (1 !!XOR!! 1) !!XOR!! 0 = 0 !!XOR!! 0 = 0`
       - carry bit =`(d₀ !!AND!! e₀ ) !!OR!! (0 !!AND!! (d₀ !!XOR!! e₀)) = (1 !!AND!! 1) !!OR!! (0 !!AND!! (1 !!XOR!! 1) = 1 !!OR!! (0 !!AND!! 0) = 1 !!OR!! 0 = 1` 
-    - $1$-th bit:
+    - $1$st bit:
       - sum bit: `(d₁ !!XOR!! e₁) !!XOR!! c₀ = (0 !!XOR!! 1) !!XOR!! 1 = 1 !!XOR!! 1 = 0`
 
       - carry bit = `(d₁ !!AND!! e₁ ) !!OR!! (c₁ !!AND!! (d₁ !!XOR!! e₁)) = (0 !!AND!! 1) !!OR!! (1 !!AND!! (0 !!XOR!! 1) = 0 !!OR!! (1 !!AND!! 1) = 0 !!OR!! 1 = 1`
-    - $2$-th bit:
+    - $2$nd bit:
       - sum bit: `(d₂ !!XOR!! e₂) !!XOR!! c₁ = (1 !!XOR!! 1) !!XOR!! 1 = 0 !!XOR!! 1 = 1`
       - carry bit = `(d₂ !!AND!! e₂ ) !!OR!! (c₁ !!AND!! (d₂ !!XOR!! e₂)) = (1 !!AND!! 1) !!OR!! (1 !!AND!! (1 !!XOR!! 1)) = 1 !!OR!! (1 !!AND!! 0) = 1 !!OR!! 0 = 1`
-    - $3$-th bit:
+    - $3$rd bit:
       - sum bit: `(d₃ !!XOR!! e₃) !!XOR!! c₂ = (0 !!XOR!! 0) !!XOR!! 1 = 0 !!XOR!! 1 = 1`
       - carry bit = `(d₃ !!AND!! e₃) !!OR!! (c₂ !!AND!! (d₃ !!XOR!! e₃)) =  (0 !!AND!! 0) !!OR!! (1 !!AND!! (0 !!XOR!! 0) = 0 !!OR!! (1 !!AND!! 0) = 0 !!OR!! 0 = 0`
 
@@ -195,11 +195,11 @@ Suppose that we have a language $L$ with three propositional variables $RED$, $B
    color of a first pixel, and $RED₂$, $BLUE₂$, and $GREEN₂$ to talk about the
 color of a second pixel, what happens to the number of valuations? Don't determine them all, just think about what happens.
 
-3. How many valuations are there in the language that has a propositional variable for each RGB-value of each pixel on a [4K-resolution screen](https://en.wikipedia.org/wiki/4K_resolution). (You can't actually calculate that value, but you can write an expression that represents it.)
+3. How many valuations are there in the language that has a propositional variable for each RGB-value of each pixel on a [4K-resolution screen](https://en.wikipedia.org/wiki/4K_resolution)? (You can't actually calculate that value, but you can write an expression that represents it.)
 
 ## Solution {#modelsSolution .solution}
 
-1. There are $2⁴ = 8$ total valuations for that language. We can give them in the following table:
+1. There are $2³ = 8$ total valuations for that language. We can give them in the following table:
 
     &nbsp;
     
@@ -235,11 +235,11 @@ color of a second pixel, what happens to the number of valuations? Don't determi
 
     {{< img src="img/jimmy_inference_2.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="450px">}}
 
-2. To see check whether the inference is valid, we need to go through all possible valuations of the language and see if whenever the premises are true, so is the conclusion. There are four possible valuations, given by the following table:
+2. To check whether the inference is valid, we need to go through all possible valuations of the language and see if whenever the premises are true, so is the conclusion. There are four possible valuations, given by the following table:
 
    {{< img src="img/jimmy_valuations.png" class="rounded mx-auto d-block inert-img img-fluid my-2" width="900px">}}
 
-    The value of the formulas involved are calculated as follows:
+    The values of the formulas involved are calculated as follows:
 
    {{< img src="img/jimmy_clauses.png" class="rounded mx-auto d-block inert-img img-fluid my-2" width="800px">}}
 
@@ -264,7 +264,7 @@ color of a second pixel, what happens to the number of valuations? Don't determi
 
 So far, we've only shown of _particular_ inferences (about the weather or
 little Jimmy) that they are valid or invalid. For this exercise, you'll show
-that _all_ inferences of a certain form are valid, regardless what they're
+that _all_ inferences of a certain form are valid, regardless of what they're
 about. 
 
 For this, we'll focus on _disjunctive syllogism_, which we take to be the
@@ -282,10 +282,10 @@ valuation $v$:
 
 $$If v{{< in >}}{{< llbracket >}}A{{< lor >}}B{{< rrbracket >}}{{< cap >}}{{< llbracket >}}{{< neg >}}A{{< rrbracket >}}, then v{{< in >}}{{< llbracket >}}B{{< rrbracket >}}$$
 
-This is the claim, we'll set out to show:
+This is the claim we'll set out to show:
 
 1. Assume that $v$ is an arbitrary valuation, meaning you don't know
-   anything about, such as which values it assigns to which formula.
+   anything about it, such as which values it assigns to which formula.
 Assume further that $v{{< in >}}{{< llbracket >}}A{{< lor >}}B{{<
 rrbracket >}}{{< cap >}}{{< llbracket >}}{{< neg >}}A{{< rrbracket >}}$.
 Apply the definition of $${{< llbracket >}}A{{< rrbracket>}} = { v :
@@ -301,7 +301,7 @@ v(A) = 1},$$ as well as the definition of intersection as
    $$v(A{{< land >}}B) = v(B) !!AND!! v(A)$$
    $$v(A{{< lor >}}B) = v(A) !!OR!! v(A)$$
    
-   to transform the result of a last step into two Boolean equations.
+   to transform the result of the last step into two Boolean equations.
 
 3. "Solve" this Boolean equation for the value $v(B)$ of $B$, that is
    infer what that value must be. Conclude from this that $v{{< in

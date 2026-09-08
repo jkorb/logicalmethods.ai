@@ -15,7 +15,7 @@ params:
 [First-order logic (FOL)](https://en.wikipedia.org/wiki/First-order_logic) is
 one of the most powerful logical systems in common use today. Part of its
 strength derives from its [expressive
-power](https://en.wikipedia.org/wiki/Expressive_power_(computer_science)): it's
+power](https://en.wikipedia.org/wiki/Expressive_power_(computer_science)): its
 ability to express complex ideas in syntactically straightforward and logically
 tractable ways. In fact, FOL-style syntax is the effective paradigm in which
 most of modern mathematics, physics, economics, and other formal theories are
@@ -54,11 +54,11 @@ $${{< forall >}}x(Human x {{< to >}}Mortal x)$$
 
 This formula says that any arbitrary object, $x$, if it has the property of
 being human, then it has the property of being mortal. This general formula we
-can particularize to Socrates by taking it's instance:
+can particularize to Socrates by taking its instance:
 
 $$Human(Socrates) {{< to >}}Mortal(Socrates)$$
 
-Then, adding the additional premise that $Mortal(Socrates)$, we can perform our
+Then, adding the additional premise that $Human(Socrates)$, we can perform our
 desired inference using MP. Crucially, however, we can do this for _anything_
 whatsoever: 
 + $All humans are mortal, Ada Lovelace is human {{< therefore >}}Ada
@@ -72,12 +72,12 @@ that all humans are mortal, viz.: ${{< forall >}}x(Human x {{< to >}}Mortal x)$.
 {{< img src="img/db_wisdom.png" class="rounded  float-start inert-img img-fluid m-2" width="200px" >}} 
 The increase in expressive power from propositional logic to FOL is immense. In
 fact, FOL can express almost _any_ kind of fact about the world we'd want to
-include in our KB in a straight-forward and logically tractable fashion.
+include in our KB in a straightforward and logically tractable fashion.
 Historically, the need for the expressive power was first noticed in
 mathematics, where it became apparent in the 19th century that the rigorous,
 axiomatic treatment of basic concepts like
 [continuity](https://en.wikipedia.org/wiki/Continuous_function) required
-quantifiers. But today, we make use of this expressive powers in virtually all
+quantifiers. But today, we make use of this expressive power in virtually all
 contexts where we have to store information in databases. As it turns out, FOL
 is the logical foundation for [database theory](https://en.wikipedia.org/wiki/Database_theory).
 
@@ -85,7 +85,7 @@ That is, from a logical perspective, we can look at [databases
 (DBs)](https://en.wikipedia.org/wiki/Database) as a special form of FOL models,
 where [querying](https://en.wikipedia.org/wiki/Query_language) a
 database—automatically retrieving information from it—ultimately boils down to
-interpreting FOL formulas in DBs. This is, effectively, the content [Codd's
+interpreting FOL formulas in DBs. This is, effectively, the content of [Codd's
 theorem](https://en.wikipedia.org/wiki/Codd%27s_theorem), which makes FOL one of
 the most important logical tools for AI: it's the way we interact with KBs and,
 more generally, DBs. And this is not only an academic curiosity. As you'll see
@@ -97,7 +97,7 @@ At the end of this chapter, you will be able to:
 + define FOL languages and parse FOL formulas
 + explain the concept of an FOL model 
 + determine the objects satisfying a formula in an FOL model
-+ represent databases to FOL models
++ represent databases as FOL models
 + query databases using FOL formulas
 
 ## Syntax
@@ -157,7 +157,7 @@ We haven't mentioned yet the other quantifier ${{< exists >}}$, which we read as
 number, we might use the formula: $${{< forall >}}x {{< exists >}}y
 BiggerThan yx$$
 
-The ability to have these kind of **nested** quantifiers is one of the strengths
+The ability to have these kinds of **nested** quantifiers is one of the strengths
 of FOL, and the need for them in mathematics—for example in the definition of
 [continuity](https://en.wikipedia.org/wiki/Continuous_function)—was one of the
 reasons FOL was discovered.
@@ -177,13 +177,13 @@ like $fatherOf x$, $distanceBetween xy$, $Human$, $BiggerThan$, etc.
 
 For the function symbols and predicates, especially when using metavariables, we
 need to indicate their [**arity**](https://en.wikipedia.org/wiki/Arity), that is,
-how many terms can "legally" follow them. For example, $fatherOf$ function
+how many terms can "legally" follow them. For example, the $fatherOf$ function
 symbol is _unary_, since we can write $fatherOf Socrates$ but $fatherOf x y$
 makes no sense if $x$ and $y$ aren't related. The function $distanceBetween xy$,
 instead, is _binary_ since distance is defined between two points. Etc.
 Similarly, for predicates, we can write $Human x$,  but not $Human xy$. 
 
-We sometimes indicate a terms arity using superscripts, like $fatherOf¹$,
+We sometimes indicate a term's arity using superscripts, like $fatherOf¹$,
 $distanceBetween²$, $Human¹$, $BiggerThan²$, etc. But often, the arity of a term
 is clear from the context, and then we leave it out.
 
@@ -220,8 +220,7 @@ This grammar gives us the following rewrite rules:
 + $r₁: t {{< longrightarrow >}} x$
 + $r₂: t {{< longrightarrow >}} ft₁…tₙ$
 
-Let's apply these rules to generate the parsing tree for our term
-These rules generate the following parsing tree for the term:
+Let's apply these rules to generate the parsing tree for our term:
 
 $$distanceBetween(birthplaceOf (Socrates), capitalOf(x))$$
 
@@ -289,7 +288,7 @@ $${{< exists>}}x Human x$$
 We'd be saying that there is a human or, a bit closer to the surface syntax of
 the formula, there exists an object such that it is human. But without the
 quantifier expression to "act" on the variable, the $x$ is a term that stands
-for a some unspecified object.
+for some unspecified object.
 
 A formula like $Human(x)$, where some variable isn't "captured" by any
 quantifier— where some variable is
@@ -319,7 +318,7 @@ can illustrate this, for example, in the following "wire diagram":
 
 The idea is, roughly, that a variable is bound by a quantifier just in case the
 variable "comes after" the quantifier in the formula and the variable is the
-same as the one that directly follows the quantifier—we say that its the
+same as the one that directly follows the quantifier—we say that it's the
 variable that the quantifier _ranges_ over.
 
 {{< img src="img/scope.png" class="rounded  float-start inert-img img-fluid m-2" width="150px" >}} 
@@ -490,7 +489,7 @@ but which we can handle if we are aware of them. For example, we use a function
 symbol like $fatherOf$ only in a language that talks exclusively about humans,
 perhaps we introduce an idealized first human who's their own father, and so on.
 
-In fact, these kind of issues persist on various levels. For example, the
+In fact, these kinds of issues persist on various levels. For example, the
 following is, from a logical perspective, a perfectly valid interpretation of
 the $distanceBetween$ function symbol:
 {{< img src="img/distanceBetween.png" class="mx-auto rounded d-block inert-img img-fluid" width="700px">}}
@@ -505,7 +504,7 @@ and function symbols, we can recursively calculate the denotation of
 all—possibly complex—{{< abbr title="terms without variables">}}ground terms
 {{</abbr>}}. Take the term
 $$distanceBetween(birthplaceOf (Socrates), capitalOf(Greece))$$
-for example. It's denotation is given by the following simple calculation:
+for example. Its denotation is given by the following simple calculation:
 $${{< llbracket >}}distanceBetween(birthplaceOf (Socrates), capitalOf(Greece)){{< rrbracket >}}$$
 $$=$$
 $${{< llbracket >}}distanceBetween{{< rrbracket >}}({{< llbracket >}}birthplaceOf{{< rrbracket >}}({{< llbracket >}}Socrates{{< rrbracket >}}), {{< llbracket >}}capitalOf{{< rrbracket >}}({{< llbracket >}}Greece{{< rrbracket >}})){{< rrbracket >}}$$
@@ -519,10 +518,10 @@ $${{< llbracket >}}f t₁…tₙ{{< rrbracket >}} = {{< llbracket >}}f{{< rrbrac
 
 This leaves only the predicates uninterpreted. We begin with _unary_
 predicates—that is, predicates with one place, like $Human$ and $Mortal$ from
-our formula ${{< forall >}}x (Human x {{< to >}} Mortal x)$. The idea is that we
+our formula ${{< forall >}}x (Human x {{< to >}} Mortal x)$. The idea is that
 the interpretation in a model is simply the set of objects from the domain,
 which, according to the model, have the property expressed by the predicate.
-Here's an example of what such an interpretation could work out:
+Here's an example of how such an interpretation could work out:
 
 {{< img src="img/extensions_1.png" class="mx-auto rounded d-block inert-img img-fluid" width="800px">}}
 
@@ -542,16 +541,16 @@ This is a perfectly valid FOL model. And as you can probably tell already, in
 this model ${{< forall >}}x (Human x {{< to >}} Mortal x)$ will turn out to be
 false since little Jimmy is human but immortal.
 
-To generalize this idea to predicates with more than one place, like the binary
+We can generalize this idea to predicates with more than one place, like the binary
 $BiggerThan$ or the ternary $LiesBetween$. In order to interpret them, we use
 [**tuples**](https://en.wikipedia.org/wiki/Tuple) of objects in the domain. A
 tuple is essentially an ordered
-[list](https://en.wikipedia.org/wiki/List_(abstract_data_type) of objects of
+[list](https://en.wikipedia.org/wiki/List_(abstract_data_type)) of objects of
 finite length. Here are a few examples of tuples over our domain with their
 respective lengths using Python-style list notation: {{< img src="img/lists.png"
 class="mx-auto rounded d-block inert-img img-fluid" width="700px">}}
 
-Note that with lists, order and multiplicity matters: although both lists have
+Note that with lists, order and multiplicity matter: although both lists have
 length 2, the list with Granny Smith in first and Linus in second place is
 different from the list with Linus in first and Granny Smith in second place.
 And the list with the Ace of Spades in place 1 and 3 still has length 3.
@@ -603,13 +602,13 @@ $$vs.$$
 There are two ways of representing the interpretations of the predicates that
 are very common in computer science and AI contexts. First, if we're dealing
 with unary and binary predicates only, we can straightforwardly represent the
-interpretation of using
+interpretation using
 [**graphs**](https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)). Here's
 how this works:
 
 {{< img src="img/knowledge_graph.png" class="mx-auto rounded d-block inert-img img-fluid" width="900px">}}
 
-What's going on here is that we interpretations of unary predicates are
+What's going on here is that the interpretations of unary predicates are
 represented as sets and we're using arrows to indicate that a relation holds
 between two objects with the arrow pointing from the first 
 {{< abbr title="thing that is related">}}relatum{{< /abbr >}} to the second.
@@ -643,7 +642,7 @@ This gives us the basic ingredients for an FOL model:
 
 + a **denotation** ${{< llbracket >}}a{{< rrbracket >}} {{< in >}} D$ for each constant $a$,
 
-+ a **mathmetical function** ${{< llbracket >}}f{{< rrbracket >}}$ for each function symbol $f$, which maps
++ a **mathematical function** ${{< llbracket >}}f{{< rrbracket >}}$ for each function symbol $f$, which maps
 inputs from the domain to outputs from the domain,
 
 + an **extension** ${{< llbracket >}}R{{< rrbracket >}}$ for each predicate symbol.
@@ -674,7 +673,7 @@ $$M{{< vDash >}} A &emsp; if and only if &emsp; {{< llbracket >}}A{{< rrbracket 
 
 Our aim right now is to define $M{{< vDash >}} A$ for all formulas $A$.
 
-The simplest case are the so-called [ground
+The simplest case is the so-called [ground
 formulas](https://en.wikipedia.org/wiki/Ground_expression), which are atomic
 formulas—a predicate applied to terms—without any variables in them. Take the
 ground formula $Human LittleJimmy$, for example. The natural thought is that
@@ -702,7 +701,7 @@ As a general formula, we get:
 $$M {{< vDash >}} P t₁…tₙ &emsp; if and only if &emsp;  [ {{< llbracket >}}t₁{{< rrbracket >}}, … , {{< llbracket >}}tₙ{{< rrbracket >}}] {{< in >}} {{< llbracket >}}P{{< rrbracket >}}$$
 
 {{< img src="img/jimmySir.png" class="rounded  float-start inert-img img-fluid m-2" width="100px" >}} 
-The case of identity claims with ground terms is equally straight-forward. Take,
+The case of identity claims with ground terms is equally straightforward. Take,
 for example, the formula: $$MrSir = fatherOf LittleJimmy$$ This formula should
 be true just in case the denotation of $MrSir$ in the model _is_ the value of
 the $fatherOf$-function applied to the denotation of $LittleJimmy$—in other
@@ -747,11 +746,11 @@ In this sense, what we're doing in FOL is an _extension_ of the framework of
 Boolean algebra.
 
 The main question is how to interpret quantifiers ${{< forall >}}$ and ${{<
-exists >}}$. But before we can do that, we need to talk about variables the  $x,
+exists >}}$. But before we can do that, we need to talk about the variables $x,
 y, z, …$. Logical theory knows different ways of handling the variables of FOL.
 There are approaches that take them to be denoting terms, which requires the use
 of so-called **variable assignments**. These work in a similar way as variable
-assignments in programming language, where you can set the values of `x, y, z`
+assignments in programming languages, where you can set the values of `x, y, z`
 to something like so:
 ~~~python3 {lineNos = false }
 x = socrates
@@ -816,7 +815,7 @@ satisfies the open formula, in the model with immortal Jimmy, he doesn't.
 It's worth remarking that this approach, though common in AI practice, is on
 shaky logical footing and requires a lot of technical care to be worked out
 rigorously—it can be done, but we won't go into the logical details. When it
-comes to DB's, however, we'll see a non-shaky version of it.
+comes to DBs, however, we'll see a non-shaky version of it.
 
 The idea of satisfaction allows us also to define the very useful notion of the
 **extension** of an open formula: the set of objects satisfying a predicate. In
@@ -906,7 +905,7 @@ if and only if &emsp; {{< llbracket >}}A(x){{< rrbracket >}} `≠` { }$$
 For the recursive evaluation of formulas, it's helpful to slightly rewrite the
 resulting clauses. To see how this works, think about under which conditions we
 have that ${{< llbracket >}}A(x){{< rrbracket >}} = D$, and under which ${{<
-llbracket >}}A(x){{< rrbracket >}} `≠` { }$. For concreteness sake, let's take
+llbracket >}}A(x){{< rrbracket >}} `≠` { }$. For concreteness, let's take
 the formula $Mortal x$ as $A(x)$. For ${{< llbracket >}}Mortal x{{< rrbracket >}} =
 D$, what needs to be the case is that for _all_ objects $d{{< in >}}D$, we have
 that $M{{< vDash >}}Mortal `d`$, that is, we have to have: 
@@ -937,11 +936,10 @@ data in complex computer systems.
 {{< img src="img/db_proceed.png" class="rounded  float-start inert-img img-fluid m-2" width="200px" >}} 
 Roughly speaking a [**database (DB)**](https://en.wikipedia.org/wiki/Database)
 is an organized collection of
-[data](https://en.wikipedia.org/wiki/Data_(computer_science)). Data can be
+[data](https://en.wikipedia.org/wiki/Data_(computer_science)). Data can
 essentially be _any_ sequence of symbols, but we'll look at data that is a bit
 more structured. Our running example will involve information about the capitals
-of different countries, in which part of the world they are located, which
-language are spoken there. 
+of different countries, in which part of the world they are located, which languages are spoken there.
 
 We'll store this data as plain text in a
 [SQL](https://en.wikipedia.org/wiki/SQL) database, which is by far the most
@@ -970,13 +968,13 @@ CREATE TABLE LocatedIn (
   continent TEXT NOT NULL
 );
 
-CREATE TABLE Language (
+CREATE TABLE LanguageOf (
   country TEXT,
   language TEXT
 );
 ~~~
 
-Don't worry, you don't need to install anything. In the moment, there will be a
+Don't worry, you don't need to install anything. In a moment, there will be a
 link that allows you to interactively execute the code in the browser.
 
 In any case, running this code doesn't do much, it just sets up the three
@@ -1032,7 +1030,7 @@ The output looks something like this:
 {{< img src="img/db_tables.png" class="mx-auto rounded d-block inert-img img-fluid" width="900px">}}
 
 But wait a second, that looks suspiciously like the specification of an FOL
-model using tables! In fact, it _is_ a model for language with three binary
+model using tables! In fact, it _is_ a model for a language with three binary
 predicates: 
 
 ```

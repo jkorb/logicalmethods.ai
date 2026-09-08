@@ -26,7 +26,7 @@ params:
 
 - Create at least one more ```.tex``` file in the project and typeset it.
 
-# Latex-gymnastics {.solved}
+# LaTeX gymnastics {#latex-gymnastics .solved}
 
 Typeset the following in $\LaTeX$. Don't take shortcuts, figure it out yourself
 using the tutorial and tools like

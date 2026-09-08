@@ -35,7 +35,7 @@ remaining in DNF?
 
 # Circuit representations {.solved}
 
-We've observed that our relay circuits are essentially build up from relay
+We've observed that our relay circuits are essentially built up from relay
 implementations of !!NOT!! ($default "on"$) and !!AND!! ($default "off"$). Use
 the idea to represent the following circuits as Boolean expressions:
 
@@ -47,7 +47,7 @@ Are the resulting formulas in normal form (CNF or DNF)?
 
 ## Solution {.solution #circuit-representationsSolution}
 
-1. The first circuit consist of two !!NOT!!'s which are combined with an !!AND!! and the output fed into a !!NOT!!. That is: 
+1. The first circuit consists of two !!NOT!!'s which are combined with an !!AND!! and the output fed into a !!NOT!!. That is:
 
     ```
     !!NOT!!((!!NOT!! X) !!AND!! (!!NOT!! Y))
@@ -67,7 +67,7 @@ Are the resulting formulas in normal form (CNF or DNF)?
     !!NOT!!(X !!AND!! Y)
     ```
 
-    The right-hand side is actually the first, circuit, which we know corresponds to 
+    The right-hand side is actually the first circuit, which we know corresponds to
 
     ```
     !!NOT!!((!!NOT!! X) !!AND!! (!!NOT!! Y))
@@ -145,7 +145,7 @@ Use the truth-table method to check whether the following claims are true:
 
 1. The set of expressions `((!!NOT!! X) !!OR!! (!!NOT!! Y))` and `(X !!AND!! Y)` is `SAT`.
 
-2. The set formulas ${ {{< neg >}} RAIN, (RAIN {{< lor >}} ({{< neg >}}WIND {{< land >}} RAIN) ) }$ is `SAT`.
+2. The set of formulas ${ {{< neg >}} RAIN, (RAIN {{< lor >}} ({{< neg >}}WIND {{< land >}} RAIN) ) }$ is `SAT`.
 
 ## Solution {.solution #truth-tablesSolution}
 
@@ -164,7 +164,7 @@ Use the truth-table method to check whether the following claims are true:
 
 # Mystery formula {.solved}
 
-Determine the following $"mystery formula"$ form its truth-table:
+Determine the following $"mystery formula"$ from its truth-table:
 
 {{< img src="img/mystery_table.png" class="mx-auto d-block rounded inert-img img-fluid" width="400px">}}
 
@@ -185,7 +185,7 @@ This means that we can equivalently write the formula as:
 
 $$SUN {{< lor >}} {{< neg >}}WIND$$
 
-There are various algorithms for doing these kind of simplifications, an important one of them is to use the [Karnaugh map](https://en.wikipedia.org/wiki/Karnaugh_map), which is closely related to the [Quine-McCluskey algorithm](https://en.wikipedia.org/wiki/Quine%E2%80%93McCluskey_algorithm).
+There are various algorithms for doing these kinds of simplifications, an important one of them is to use the [Karnaugh map](https://en.wikipedia.org/wiki/Karnaugh_map), which is closely related to the [Quine-McCluskey algorithm](https://en.wikipedia.org/wiki/Quine%E2%80%93McCluskey_algorithm).
 
 # Normal Forms {.solved}
 
@@ -226,7 +226,7 @@ satisfiable:
 
     {{< img src="img/sun_resolution.png" class="mx-auto d-block rounded inert-img img-fluid" width="400px">}}
 
-    Note that we needed to use ${ SUN }$, which was the result of the first resolution _again_ in the last resolution. This is why it's important to _recursively_ resolve, meaning adding the results of the resolutions to our base and keep resolving until we can't anymore.
+    Note that we needed to use ${ SUN }$, which was the result of the first resolution _again_ in the last resolution. This is why it's important to _recursively_ resolve, meaning adding the results of the resolutions to our base and keeping on resolving until we can't anymore.
 
     The conclusion is that the formula is unsatisfiable.
 
@@ -261,7 +261,7 @@ RAIN{{< lor >}}SUN$
     set is satisfiable and the inference thus invalid. We can read off the same
     counter-model as before, if we so desire.
 
-    Comparison in terms of speed on this abstract level are tricky, but one way
+    Comparisons in terms of speed on this abstract level are tricky, but one way
     to compare the two is how many operations we needed to carry out. The
     truth-table method required us to generate $4$ valuations and carry out $7$
     Boolean calculations each. That is a total $4 + (4 x 7) = = 32$ operations.
@@ -309,8 +309,8 @@ Here's the truth-table showing the unsatisfiability of the set:
     + ${{< neg >}}(RAIN{{< lor >}}SUN)$ requires one De Morgan re-write using
     $r₂$, giving us the CNF ${{< neg >}}RAIN {{< land >}}{{< neg >}}SUN$
 
-    The resulting set clauses are: $${ RAIN } &emsp; { RAIN, WIND
+    The resulting sets of literals (clauses) are: $${ RAIN } &emsp; { RAIN, WIND
     }&emsp;{{{< neg >}} RAIN}&emsp;{{{< neg >}} SUN}.$$ A single application
     of resolution on ${ RAIN }$ and ${{{< neg >}} RAIN}$ derives the empty
-    set ${ }$, showing the unsatisfiability of the set, and thus validity of
+clause ${ }$, showing the unsatisfiability of the set, and thus validity of
     the inference.

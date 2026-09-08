@@ -23,7 +23,7 @@ distribution](https://en.wikipedia.org/wiki/Probability_distribution) over
 sequences of characters that make up words. The idea is that we can use the
 [conditional probability](https://en.wikipedia.org/wiki/Conditional_probability)
 of one token given a sequence of others to predict what the _next_
-token in the sequence should be. The perhaps surprising fact is, that this
+token in the sequence should be. The perhaps surprising fact is that this
 "next-token prediction" allows us to develop AI agents with human-like
 abilities.
 
@@ -51,10 +51,10 @@ filters](https://en.wikipedia.org/wiki/Email_filtering).
 
 There are different approaches to inductive logic in AI-research. In the
 logic-based tradition, there are systems which aim to assimilate inductive logic
-to deductive logic:  they work just like the sytems we know from deductive logic
+to deductive logic:  they work just like the systems we know from deductive logic
 in terms of syntax, semantics, and proof-theory, except that their consequence
 relation is inductive: it allows for the premises to be true and the conclusion
-to be false. The result are systems of [non-monotonic
+to be false. The results are systems of [non-monotonic
 logic](https://en.wikipedia.org/wiki/Non-monotonic_logic), such as
 [autoepistemic logic](https://en.wikipedia.org/wiki/Autoepistemic_logic) and
 [default logic](https://en.wikipedia.org/wiki/Default_logic), which have a solid
@@ -85,7 +85,7 @@ formula](https://en.wikipedia.org/wiki/Bayes%27_theorem),
 
 ## Probabilities
 
-Lets think back to our example of a six-sided die. When we're rolling the die,
+Let's think back to our example of a six-sided die. When we're rolling the die,
 we don't know what the outcome will be. A process that has different possible
 outcomes is called [random](https://en.wikipedia.org/wiki/Randomness) in
 probability theory. In our case, there are six possible outcomes: we could roll
@@ -124,7 +124,7 @@ p({{< die_1 >}}) + p({{< die_2 >}}) + p({{< die_3 >}}) +p({{< die_4 >}}) + p({{<
 
 This constraint captures the idea that at least one of the outcomes must obtain.
 And behind this way of mathematically expressing this constraint is the idea that
-the chance of one of sequence of mutually exclusive outcomes to occur is the sum
+the chance of one of a sequence of mutually exclusive outcomes occurring is the sum
 of the chances of these outcomes. That is, what we're saying here is that: the
 chance of the roll either being a 1, a 2, a 3, a 4, a 5, or a 6 is 1—it's
 absolutely certain that at least one outcome will occur.
@@ -139,7 +139,7 @@ probabilities of complex outcomes, like the die showing an even number or
 showing a number bigger than four. In the parlance of probability theory, these
 are called [events](https://en.wikipedia.org/wiki/Event_(probability_theory)).
 An event is a set of basic outcomes, the basic outcomes which correspond to the
-event. So, for example, the event that die shows an even number is:
+event. So, for example, the event that the die shows an even number is:
 ```
 {{{< die_2>}}, {{< die_4>}}, {{< die_6>}}}
 ```
@@ -195,7 +195,7 @@ can take a naive view of probabilities as chances or likelihoods of something
 happening.
 
 Note that the outcomes of a random experiment are nothing different than the
-reasoning scenarios we've discussed on logical semantics. Suppose, for example,
+reasoning scenarios we've discussed in logical semantics. Suppose, for example,
 that rather than a die roll, our random experiment is given by tomorrow's
 weather with respect to sun and rain. In this setup, there are four possible
 outcomes:
@@ -205,7 +205,7 @@ But these are just the models for the propositional language with $SUN$ and
 $RAIN$. In fact, we can think of a probability mass function as an assignment of
 values between `0` and `1` to the models of this language. A convenient way of
 displaying them is by means of a **probabilistic truth-table**, which next to
-the truth-values, gives the probability of a given row. Here's, for example, two
+the truth-values, gives the probability of a given row. Here are, for example, two
 probabilistic truth-tables: one table that represents a situation where we don't know
 what'll happen tomorrow, where each outcome is equally likely, and one table
 that represents a situation where we know that the sun will shine but it's
@@ -318,11 +318,10 @@ That means that under the hypothesis that it's sunny, the probability of rain
 *changes*—in fact, it goes down (since $1/3 < 3/8$).
 
 Two formulas $A$ and $B$ are said to be **probabilistically independent** just
-in case if they are like $SUN$ and $RAIN$ in our first distribution, that is
+in case they are like $SUN$ and $RAIN$ in our first distribution, that is
 just in case $$Pr(A | B) = Pr(A)$$
 
-In the case where $A$ and $B$ are probabilistically independent, we have
-the $$Pr( A {{< land >}}B ) = Pr(A) x Pr(B)$$ To see this, suppose that
+In the case where $A$ and $B$ are probabilistically independent, we have $$Pr( A {{< land >}}B ) = Pr(A) x Pr(B)$$ To see this, suppose that
 $Pr(A | B) = Pr(A)$. By the formula for conditional probabilities, we
 have that $Pr(A | B ) = Pr(A {{< land >}}B)/Pr(B)$. So, if we multiply
 by $Pr(B)$, we get $Pr(A | B) x Pr(B) = Pr(A {{< land >}}B)$. But since
@@ -349,17 +348,21 @@ We get:
 
 $$Pr(SUN {{< lor >}}RAIN) = 1/4 + 1/4 + 1/4 = 3/4$$
 
-Looking at this calculation, you can note that we're adding $Pr(SUN), Pr(RAIN),$
-*and* $Pr(SUN{{< land >}}RAIN)$ to obtain the probability of $SUN{{< lor>}}
-RAIN$.
+Here we're adding the probabilities of three different scenarios: sun without
+rain, rain without sun, and both sun and rain. These scenarios don't overlap,
+so we can simply add their probabilities.
 
-In fact, this is the _general_ formula for calculating disjunctive
-probabilities:
+But adding $Pr(SUN)$ and $Pr(RAIN)$ would count the last scenario twice: once
+as a sunny scenario and once as a rainy one. We need to subtract its probability
+once to correct for that double counting. In our example, this gives
+$$1/2 + 1/2 - 1/4 = 3/4.$$
 
-$$Pr(A {{< lor >}}B) = Pr(A) + Pr(B) + Pr(A {{< land >}}B)$$
+The same reasoning gives the general formula for a disjunction:
+
+$$Pr(A {{< lor >}}B) = Pr(A) + Pr(B) - Pr(A {{< land >}}B)$$
 
 But that means that, in general, we cannot calculate the probability of a
-disjunction from the probabilities of it's disjuncts—we also need to know the
+disjunction from the probabilities of its disjuncts—we also need to know the
 probability of their conjunction.
 
 Only in the very special case where $Pr(A {{< land >}}B) = 0$, when $A$ and $B$
@@ -376,17 +379,16 @@ ${{< neg >}}A$ is not, and the masses of the rows add up to $1$.
 {{< img src="img/laws.png" class="rounded  float-start inert-img img-fluid m-2"
 width="250px">}} The fact that probabilities aren't recursive puts special
 emphasis on the _laws_ of probability. Moreover, in AI research, you're often
-dealing with situations where its practically
+dealing with situations where it's practically
 [intractable](https://en.wikipedia.org/wiki/Computational_complexity_theory#tractable_problem)
 to go through all possible models of the premises and assign them probability masses.
 Instead, you'll be _estimating_ the relevant probabilities of the formulas
 directly. And when you do that, you have to make sure you're doing this in
 accordance with the laws of probability.
 
-The standard axiomatization of probability is due to [Andrey
-Komogorov](https://en.wikipedia.org/wiki/Andrey_Kolmogorov) and correspondingly
+The standard axiomatization of probability is due to [Andrey Kolmogorov](https://en.wikipedia.org/wiki/Andrey_Kolmogorov) and correspondingly
 known as the [Kolmogorov
-axioms](https://en.wikipedia.org/wiki/Probability_axioms). We can formula these
+axioms](https://en.wikipedia.org/wiki/Probability_axioms). We can formulate these
 axioms in logical terms and directly in terms of events. First, the logical
 axiomatization. It states that for each assignment of probabilities $Pr$ to
 formulas in a language, the following laws apply:
@@ -400,7 +402,7 @@ As you can see, these axioms are rather minimal. But it turns out that they are
 _sound and complete_ with respect to the probabilities we've defined in terms of
 probability mass distributions over valuations. That is, every law about
 probabilities that holds for all probabilities $Pr$ defined in terms of
-probability mass distributions is derivable form these laws, and everything
+probability mass distributions is derivable from these laws, and everything
 that's derivable holds for all distributions.
 
 For example, here's how we derive the law of negation:
@@ -429,7 +431,7 @@ $1 - Pr(A {{< lor  >}}{{< neg >}} B)$ is positive and so $Pr(B) = Pr(A) + x$,
 for some positive $x$. 
 - In other words, $Pr(A) {{<leq>}} Pr(B)$.
 
-We can give these axioms completely equivalently directly in terms
+We can give these axioms completely equivalently directly in terms of events:
 
 1. $0{{< leq >}}Pr(X)$, for all events $X {{< subseteq >}} Ω$
 2. $Pr(Ω) = 1$
@@ -461,10 +463,10 @@ expert system for this task. We devise a propositional language with atoms like
 UnknownSender, SubjectUrgent, ExclamationMarks, MoneyTalk, SPAM
 ```
 
-In this language, we can formula conditional rules like:
+In this language, we can formulate conditional rules like:
 
 - `(SubjectUrgent{{< land >}}MoneyTalk) {{< to >}} SPAM`
-- `(ExlamationMarks{{< land >}}SubjectUrgent) {{< to >}} SPAM`
+- `(ExclamationMarks{{< land >}}SubjectUrgent) {{< to >}} SPAM`
 - `...`
 
 Then we could run a filter through each email and check whether the propositions 
@@ -494,7 +496,7 @@ evidence. In other words, evidence is a form of inductive inference.
 
 So, what we're looking for is $Pr(`SPAM` | `[MARKERS]`)$, where $`[MARKERS]`$
 is a combination of things like `UnknownSender, SubjectUrgent, ExclamationMarks,
-MoneyTalk`. That is see whether the present markers are evidence for the mail being
+MoneyTalk`. That is, to see whether the present markers are evidence for the mail being
 `SPAM`, we need to calculate $Pr(`SPAM` | `[MARKERS]`)$ as well as $Pr(`SPAM`)$.
 
 Bayes rule is, in essence, a convenient way of calculating $Pr(`SPAM` | `[MARKERS]`)$:
@@ -534,7 +536,7 @@ MoneyTalk`, we have to estimate the marginal likelihood $Pr(`[Markers]`)$ and
 likelihood $Pr(`[Markers]` | `SPAM`)$. In practice, this happens on the basis of
 a frequency analysis of datasets of emails, especially the ones _you_ have
 received. For each marker, we can easily check how often it occurs in an email:
-how many emails are from unknown sender, how many emails have "urgent" in the
+how many emails are from unknown senders, how many emails have "urgent" in the
 subject line, and so on. Dividing these numbers by the total number of emails
 gives us a decent estimate of their respective probabilities. We might, for
 example, find:
@@ -554,7 +556,7 @@ Pr(MoneyTalk) = 0.3
 
 The same procedure, we can use to estimate the likelihoods for the markers given
 in `SPAM` messages. What's the frequency of SPAM emails with an unknown sender,
-SPAM emails with urgent subject line, etc. For example, we might find:
+SPAM emails with an urgent subject line, etc. For example, we might find:
 
 ```
 Pr( UnknownSender | SPAM )  = 0.4
@@ -594,23 +596,22 @@ incOfFirmness(E, H) = |Pr(H | E) - Pr(H)|
 In our case, the increase of firmness is not very strong.
 
 But note that the probability of the email being `SPAM` went up from $0.2$ to
-$0.26$, which is a 30% increase. This is known as the **the ratio measure**:
+$0.26$, which is a 30% increase. This is known as the **ratio measure**:
 
 ```
 ratioStrength(E, H) = Pr(H | E)/Pr(H)
 ```
 
 There are many more such confirmation measures. In fact, in industry
-implementations of naive Bayesian classifiers the co-called [log-likelihood
+implementations of naive Bayesian classifiers the so-called [log-likelihood
 ratio](https://en.wikipedia.org/wiki/Likelihood-ratio_test) is commonly used,
 but we won't go into the more involved mathematical details here.
 
 Different measures have different advantages: for example, the increase of
 firmness gives an intuitively clear and robust measure of strength of evidence,
 but it doesn't work very well with evidence and hypotheses close to 0 or 1.
-The ration measure, instead also works well close to extreme values, but it is
-not [normed](https://en.wikipedia.org/wiki/Norm_(mathematics))—in particular
-it's value can get arbitrarily high making comparisons difficult.
+The ratio measure, instead also works well close to extreme values, but it is
+not [normed](https://en.wikipedia.org/wiki/Norm_(mathematics))—in particular its value can get arbitrarily high making comparisons difficult.
 
 But regardless of different measures of _how much_ weight the evidence carries,
 there's another fundamental question we've got to address: if the posterior
@@ -621,7 +622,7 @@ as `SPAM`. A natural minimum is to say that $Pr(H | E)$ should _at least_ be
 0.5. But if [false
 positives](https://en.wikipedia.org/wiki/False_positives_and_false_negatives)
 are particularly bad—when classifying email as `SPAM` that isn't risks important
-messages to be missed—we should set the bar high. Perhaps we want to have 0.75?
+messages being missed—we should set the bar high. Perhaps we want to have 0.75?
 0.8? It ultimately depends on the stakes of the situation, but let's try to
 reach 0.5 in our `SPAM` filter.
 
@@ -632,15 +633,15 @@ all. So, we want to calculate:
 {{< img src="img/combined_markers.png" class="rounded mx-auto d-block inert-img img-fluid" width="900px">}}
 
 But now we have a new kind of probability to estimate: the conjunctive
-probabilities of the markers. In fact, if we want our classifier to not only
-work in this case, but also when one or more of the markers are absent. But
+probabilities of the markers. In fact, we want our classifier to work not only in this case, but also
+when one or more of the markers are absent. But
 since conjunctive probabilities are not recursively calculable from their
 conjunctions' probabilities, this leads to a problem of [combinatorial
 explosion](https://en.wikipedia.org/wiki/Combinatorial_explosion) In our
 example, we only have 4 markers, but that's already quite a large number of
 conjunctions to estimate: all 4 markers by themselves, their 6 binary
-conjunctions (up to re-ordering), their 3 ternary conjunctions, and the
-conjunction of all 4 makes 14 conjunctions we need to estimate. This quickly
+conjunctions (up to re-ordering), their 4 ternary conjunctions, and the
+conjunction of all 4 makes 15 conjunctions we need to estimate. This quickly
 becomes intractable.
 
 This is where the "naive" in naive Bayes classifiers comes in. The defining
@@ -676,8 +677,7 @@ Pr(UnknownSender) x Pr(SubjectUrgent) x ...
 ```
 
 This, then is the **naive Bayes assumption**: that the different markers are
-conditionally independent. It is naive because it is clearly true in strict
-terms: whether urgent and exclamation points occur is not independent of each
+conditionally independent. It is naive because it is clearly false in strict terms: whether urgent and exclamation points occur is not independent of each
 other. But it turns out that this gives us pretty good _classifications_ in
 practice. It gives us for our email:
 
@@ -726,7 +726,7 @@ look at something like:
 White m₁, ..., White mₙ {{< therefore >}}{{< forall >}}x White x
 ```
 
-To assess the logically validity of this inference, we need to think about the
+To assess the logical validity of this inference, we need to think about the
 conditional probability _independently_ of any concrete probability
 distribution:
 
@@ -741,7 +741,7 @@ deductively implies the premises), `Pr(P₁ {{< land >}} P₂) ≠ 1` (the premi
 aren't tautologies), and `Pr(C) ≠ 0` (the conclusion is not impossible), then
 `Pr(C | P₁ {{< land >}} P₂...) > Pr(C)`.
 
-To see that this must be true, we need observe the logical fact that: 
+To see that this must be true, we need to observe the logical fact that:
 
 ```
 if C{{< vDash >}} P₁ {{< land >}} P₂, then {{< llbracket >}}C {{< land >}}P₁ {{< land >}} P₂{{< land >}}...{{< rrbracket >}} = {{< llbracket >}}C{{< rrbracket >}}
@@ -764,10 +764,10 @@ P₂{{< land >}}...$—the less likely the premises the bigger the factor in the
 above equation and, correspondingly, the stronger the inference. This justifies
 the condition that we need to sample our premises well—it should be unlikely
 that they are jointly true. We can achieve this by finding many independent
-instances and calculate `Pr(P₁{{< land >}} P₂{{< land >}}...) = Pr(P₁) × Pr(P₂)
-× ...`, which will eventually bring us below any desired threshold. Or we 
+instances and calculating `Pr(P₁{{< land >}} P₂{{< land >}}...) = Pr(P₁) × Pr(P₂)
+× ...`, which will eventually bring us below any desired threshold.
 
 Inductive reasoning is the ultimate foundation for most machine learning
 techniques, but also for simple algorithms like "People who liked this
 show also liked ..."-style recommendation on streaming platforms, which makes
-inductive logic a fundamental tool in an AI-researchers toolbox.
+inductive logic a fundamental tool in an AI-researcher's toolbox.

@@ -9,8 +9,7 @@ params:
 
 # Coin flips {.solved}
 
-Suppose you're flipping two coins consecutively. You may assume that the
-outcome of the two coin-flips are independent of each other.
+Suppose you're flipping two coins consecutively. You may assume that the outcomes of the two coin-flips are independent of each other.
 
 1. Describe the outcome space $Ω$ of the random experiment.
 
@@ -31,7 +30,7 @@ as tails.
 
 ## Solution {#coin-flipsSolution .solution}
 
-1. There are different ways of setting this up, but a straight-forward way is
+1. There are different ways of setting this up, but a straightforward way is
    to model the basic outcomes as pairs $[x,y]$, where `x,y{{< in >}}{H,T}` are
 the outcomes of the first and second flip respectively (`H` being heads, and
 `T` being tails). That is:
@@ -190,7 +189,7 @@ the same for simplicity.
     the disease as the prevalence of the disease in the population.
 
 2. Suppose we're administering the test to a randomly selected person from the
-   population. The test results positive. What is the probability that the
+   population. The test result is positive. What is the probability that the
 person has the disease given this outcome? What do you notice?
 
     _Hints_: 
@@ -208,12 +207,11 @@ there's a treatment for the rare disease, which has adverse side-effects if you
 give it to somebody who doesn't have the disease. So we only want to give the
 medicine to a patient where we're more certain than not that they have the
 disease. How many times do you need to get a positive result before you should
-administer the medicine if you apply Bayesian updating after each positive
-result.
+administer the medicine if you apply Bayesian updating after each positive result?
 
 ## Solution {#base-rate-fallacySolution .solution}
 
-1. Here's the relevant probabilities:
+1. Here are the relevant probabilities:
 
     - `Pr(HasDisease) = 0.01`
     - `Pr(TestPositive | HasDisease) = 0.9`
@@ -233,7 +231,7 @@ result.
 
     We have `Pr(HasDisease)` and `Pr(TestPositive | HasDisease)`, but we need to figure out `Pr(TestPositive)`.
 
-    For this, we use the law of total probability. Apply it to `TestPositive` as `A` and `HasDisease` as `B` gives us:
+    For this, we use the law of total probability. Applying it to `TestPositive` as `A` and `HasDisease` as `B` gives us:
 
     ```
     Pr(TestPositive) 
@@ -242,7 +240,7 @@ result.
     =
     ```
     ```
-    Pr(TestPositive| HasDiesease)Pr(HasDisease) 
+    Pr(TestPositive| HasDisease)Pr(HasDisease)
     ```
     ```
     +
@@ -251,7 +249,7 @@ result.
     Pr(TestPositive | ¬HasDisease)Pr(¬HasDisease)
     ```
 
-    We have `Pr(TestPositive| HasDiesease)` and `Pr(HasDisease)` given. To obtain 
+    We have `Pr(TestPositive| HasDisease)` and `Pr(HasDisease)` given. To obtain
     `Pr(TestPositive | ¬HasDisease)` and `Pr(¬HasDisease)`, we apply the negation laws:
     ```
     Pr(TestPositive | ¬HasDisease) = 1 - Pr(¬TestPositive | ¬HasDisease)
@@ -284,7 +282,7 @@ result.
     =
     ```
     ```
-    Pr(TestPositive| HasDiesease)Pr(HasDisease) 
+    Pr(TestPositive| HasDisease)Pr(HasDisease)
     ```
     ```
     +
