@@ -17,6 +17,9 @@ Install the Hugo version listed in [`.hugo-version`](../.hugo-version) from
 edition to match GitHub Actions. The Node version is listed in
 [`.nvmrc`](../.nvmrc); with nvm installed, run `nvm install` to select it.
 
+The build checks the exact Hugo release number, accepting both official builds
+with a commit hash and packaged builds such as Homebrew's.
+
 Then, from the repository root:
 
 ```sh
@@ -152,7 +155,9 @@ The [build and deployment workflow](../.github/workflows/build-and-deploy.yaml)
 has a `verify` job that runs `npm test`. The `deploy` job requires `verify` to
 succeed, then publishes the tested files. Only pushes to `main` deploy;
 pull requests and manual runs just check the site. The README badge links to
-this workflow and shows its status on `main`.
+this workflow, using GitHub's native status badge for pushes to `main`. It shows
+the overall build and deployment status, including tests. Badge images can lag
+behind a run; follow the link for the current result.
 
 The `prose` job runs separately and uploads its report. The
 [external-link workflow](../.github/workflows/external-links.yaml) runs on Mondays

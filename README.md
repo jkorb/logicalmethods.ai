@@ -1,4 +1,4 @@
-[![Tests](https://img.shields.io/github/actions/workflow/status/jkorb/logicalmethods.ai/build-and-deploy.yaml?branch=main&label=Tests)](https://github.com/jkorb/logicalmethods.ai/actions/workflows/build-and-deploy.yaml)
+[![Build and deploy](https://github.com/jkorb/logicalmethods.ai/actions/workflows/build-and-deploy.yaml/badge.svg?branch=main&event=push)](https://github.com/jkorb/logicalmethods.ai/actions/workflows/build-and-deploy.yaml?query=branch%3Amain+event%3Apush)
 
 # About
 
