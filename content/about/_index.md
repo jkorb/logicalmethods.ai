@@ -46,7 +46,7 @@ but it's freely available to anyone interested.
 
  {{< img src="img/ai_avatar.png" width="100px" class="">}} This is {{< logo >}}, our friendly course mascot.
 
-#####  Details
+##### Details
 
 {{< raw >}}
 <div class="d-flex flex-column flex-md-row p-4 gap-4 mt-2 mb-4 align-items-center justify-content-center">

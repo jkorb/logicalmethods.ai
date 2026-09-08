@@ -333,7 +333,7 @@ following:
 Explain these instructions in natural language. Can you tell why the robot shut
 down?
 
-## Solution 
+## Solution {#knowledge-extractionSolution .solution}
 
 1. If you detect rain, then seek cover.
 

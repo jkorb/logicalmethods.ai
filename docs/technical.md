@@ -88,9 +88,7 @@ not verify visual layout, external embeds, or mathematical correctness. No
 project-level automated test suite is configured; bundled library tests are not
 site tests.
 
-The baseline build passed with Hugo v0.165.0+extended+withdeploy on 2026-09-07
-(64 pages). It warned that `languageCode` is deprecated in favor of `locale`.
-This is an observed warning, not a migration implemented by this documentation.
+The site uses `locale` for its language setting and builds with Hugo v0.165.0.
 CI's unpinned `latest` can change compatibility; no minimum Hugo version is
 declared, and the successful extended build does not establish an extended-only
 requirement.

@@ -286,6 +286,8 @@ the sun is shining, this doesn't have any influence on the probability of it rai
 
 To further illustrate this, we can use the concept of [conditional
 probabilities](https://en.wikipedia.org/wiki/Conditional_probability).
+<span id="conditional-probabilities"></span>
+
 We've already seen the definition of conditional probabilities in terms
 of propositions when discussing valid inference:
 

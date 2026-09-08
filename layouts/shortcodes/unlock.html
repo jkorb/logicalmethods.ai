@@ -1,6 +1,6 @@
-<div class="container" tabindex="-1" id="offcanvas-nav" aria-labelledby="offcanvas-navLabel" data-bs-theme="dark" data-bs-backdrop="false">
+<div class="container" tabindex="-1" id="unlock-nav" aria-labelledby="unlock-navLabel" data-bs-theme="dark" data-bs-backdrop="false">
   <div class="container">
-    <div class="h5 offcanvas-title" id="offcanvas-navLabel">
+    <div class="h5 offcanvas-title" id="unlock-navLabel">
       Browse 
     </div>
   </div>
@@ -20,14 +20,14 @@
           <button 
             class="btn btn-sm btn-secondary" 
             href="{{ $s.RelPermalink }}"
-            id="navbarSection{{ $s.Param "id" }}" data-bs-toggle="collapse"
-            data-bs-target="#collapse{{ $s.Param "id" }}"  
+            id="unlockNavbarSection{{ $s.Param "id" }}" data-bs-toggle="collapse"
+            data-bs-target="#unlockCollapse{{ $s.Param "id" }}"
             aria-expanded="{{ if or (eq $currentPage.Section $s.Section) (eq $currentPage $s)}}true{{ else }}aria-expanded=false{{ end }}"
-            aria-controls="collapse{{ $s.Param "id" }}">
+            aria-controls="unlockCollapse{{ $s.Param "id" }}">
             <i class="bi bi-caret-left-fill toggle-icon"></i>
           </button>
         </div>
-        <div class="collapse {{ if or (eq $currentPage.Section $s.Section) (eq $currentPage $s) }}show{{ end }}" id="collapse{{ $s.Param "id" }}">
+        <div class="collapse {{ if or (eq $currentPage.Section $s.Section) (eq $currentPage $s) }}show{{ end }}" id="unlockCollapse{{ $s.Param "id" }}">
           <ul class="list-unstyled ms-3">
             {{- range $s.Pages }}
             <li>

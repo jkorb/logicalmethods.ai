@@ -97,7 +97,7 @@ coordinator.
 
 **Administration**:
 
-- Declare hours in Topselect [see here](./#declaration).
+- Declare hours in Topselect [see here](./#6-declaration).
 
 ## Mentor
 

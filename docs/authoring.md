@@ -68,19 +68,21 @@ Use page-bundle images with the existing shortcode:
 ```
 
 The [`img` shortcode](../layouts/shortcodes/img.html) looks only in the page's
-resources and prints `Image not found` if lookup fails. Shared graphics live in
+resources and fails the Hugo build with a source location if lookup fails.
+Shared graphics live in
 `assets/img/` and are accessed by templates or dedicated symbol shortcodes.
 Editable diagram resources may accompany exports; preserve both when present.
 
 For textbook references, [`chapter_ref`](../layouts/shortcodes/chapter_ref.html)
-looks up a topic under `/textbook/` and accepts an optional heading `id`:
+looks up a topic under `/textbook/` and accepts an optional heading `id`.
+A missing chapter fails the build:
 
 ```go-html-template
 {{< chapter_ref chapter="logic-and-ai" >}}Logic and AI{{< /chapter_ref >}}
 ```
 
 Preserve existing heading anchors when editing titles, or update incoming links.
-Exercise solution controls depend on matching explicit heading IDs:
+Exercise solution controls connect a question ID to a solution ID:
 
 ```markdown
 # Example question {#example .solved}
@@ -95,8 +97,9 @@ Solution text.
 The [exercise heading hook](../layouts/exercises/_markup/render-heading.html)
 and [`exercises.js`](../assets/js/exercises.js) connect the question ID plus
 `Solution` to the solution block, and the page `params.id` to the password lookup.
-A `.solved` class alone does not supply the explicit ID required by that hook.
-Verify the modal and collapse in a browser. Answers are present in delivered HTML.
+Hugo generates a heading ID when none is supplied. Use an explicit ID to keep
+solution controls working when you rename a question. Verify the modal and
+collapse in a browser. Answers are present in delivered HTML.
 
 ## Slides and completion checks
 

@@ -24,7 +24,7 @@ x))`
 4. `{{< exists >}}x{{< exists >}}y (Thief x {{< land >}} Thief y {{< land >}} {{<
    neg >}} x = y)`
 
-## Solution { #decoding-folSolution }
+## Solution { #decoding-folSolution .solution }
 
 1. There is a person who's the father of Jimmy's brother but not Jimmy's father.
 

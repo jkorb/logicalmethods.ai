@@ -3,7 +3,7 @@ title: Assignment 3 (due 24/10/2025)
 author: Johannes Korbmacher
 weight: 30
 params: 
-  id: ass-2
+  id: ass-3
   math: true
 ---
 

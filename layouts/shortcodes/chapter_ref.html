@@ -1,7 +1,7 @@
 {{ $chapter := .Get "chapter" }}
 {{ $page := site.GetPage (printf "/textbook/%s" $chapter) }}
 {{ if $page }}
-<a href="{{ $page.Permalink}}{{with .Get "id"}}/#{{.}}{{end}}"
+<a href="{{ $page.Permalink}}{{with .Get "id"}}#{{.}}{{end}}"
    {{with .Get "class"}}class="{{ . }}"{{ end }}
    {{with .Get "target"}}target="{{ . }}"{{ end }}
    {{with .Get "rel"}}rel="{{ . }}"{{ end }}
@@ -9,4 +9,6 @@
    {{with .Get "role"}}role="{{ . }}"{{ end }}
    {{with .Get "aria-controls"}}aria-controls="{{ . }}"{{ end }}>
   {{- .Inner -}}</a>
+{{ else }}
+{{ errorf "Chapter not found: %s (%s)" $chapter .Position }}
 {{ end }}

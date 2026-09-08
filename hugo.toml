@@ -1,5 +1,5 @@
 baseURL = 'https://logicalmethods.ai/'
-languageCode = 'en-us'
+locale = 'en-US'
 title = 'logicalmethods.ai'
 contentDir = "content"
 

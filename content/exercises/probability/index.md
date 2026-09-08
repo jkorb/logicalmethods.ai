@@ -174,10 +174,10 @@ Now suppose that we have a test for the disease, which is 90% accurate in the
 following sense:
 
 + If you have the disease, the test is positive with 0.90 probability. This is
-called the [test sensitivity](Sensitivity_and_specificity).
+called the [test sensitivity](https://en.wikipedia.org/wiki/Sensitivity_and_specificity).
 
 + If you don't have the disease, the test is negative with 0.90 probability. This is
-called the [test specificity](Sensitivity_and_specificity).
+called the [test specificity](https://en.wikipedia.org/wiki/Sensitivity_and_specificity).
 
 Note that test sensitivity and specificity can differ, but we assume both are
 the same for simplicity.

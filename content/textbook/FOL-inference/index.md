@@ -9,7 +9,7 @@ params:
   math: true
 ---
 
- # FOL Inference
+# FOL Inference
 
 It turns out that automating inference in FOL is a _hard_ problem.
 
