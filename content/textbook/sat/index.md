@@ -631,7 +631,7 @@ always evaluate to the same truth-value for all values for `X` and `Y`.
 
 Generally speaking, a Boolean expression in _DNF_ is
 
-+ a _disjunction ("chain of !!OR!!'s") of 
++ a _disjunction_ ("chain of !!OR!!'s") of
 
 + _conjunctions_ ("chains of !!AND!!'s") of
 

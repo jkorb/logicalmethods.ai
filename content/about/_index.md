@@ -137,10 +137,10 @@ but it's freely available to anyone interested.
   <p>
     Utrecht University's 
       <a href="https://www.uu.nl/en/education/interdisciplinary-education" target="_blank">
-      Interdisciplinary Education Programe 
+      Interdisciplinary Education Programme
       </a>
   </p>
-  <img class="img-fluid mb-2" src="./img/IDO.png" style="width:500px;" alt="Interdisciplinary Education Programe">
+  <img class="img-fluid mb-2" src="./img/IDO.png" style="width:500px;" alt="Interdisciplinary Education Programme">
   <p>
     Utrecht University's focus area
       <a href="https://www.uu.nl/en/research/human-centered-artificial-intelligence" target="_blank">
