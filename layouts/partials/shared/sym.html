@@ -1,0 +1,9 @@
+{{/* A logic symbol, inline. Traced from the original hand-drawn artwork, so the
+     ink follows currentColor and it works on paper, in dark mode and in forced
+     colors. Sized in em, so it scales with the surrounding text. */}}
+{{- $name := .name -}}
+{{- $label := .label -}}
+{{- $res := resources.Get (printf "img/sym/%s.svg" $name) -}}
+{{- if not $res }}{{ errorf "sym: no such asset img/sym/%s.svg" $name }}{{ end -}}
+{{- $svg := $res.Content -}}
+<span class="sym" role="img" aria-label="{{ $label }}">{{ $svg | safeHTML }}</span>

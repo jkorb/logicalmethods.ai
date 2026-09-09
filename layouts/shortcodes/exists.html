@@ -1,3 +1,1 @@
-{{ $img := resources.Get "img/exists.png" }}
-<img src="{{ $img.RelPermalink }}" alt="exists" class="inline-icon" style="height:1em;width:auto;margin-right:-0.4em"/>
-
+{{ partial "shared/notation.html" (dict "char" "∃") }}

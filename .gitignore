@@ -7,3 +7,6 @@ public/
 
 # Development dependencies and local tool downloads
 /node_modules/
+
+# Desktop build of the patched notation font; the site uses the .woff2
+/assets/fonts/ComicShanns/comic-shanns-logic.otf
