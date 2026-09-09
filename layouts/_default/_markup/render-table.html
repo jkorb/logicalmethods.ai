@@ -1,16 +1,38 @@
-{{- $caption := "" -}}
-{{- range .THead }}{{ range . }}{{ $caption = printf "%s %s" $caption (.Text | plainify) }}{{ end }}{{ end -}}
-{{- $caption = trim $caption " " -}}
-{{- $n := .Ordinal | default 0 -}}
-{{/* A scroll container has to be reachable by keyboard, so it has to be named.
-     The name must also be unique on the page or the landmarks collide. */}}
-{{- $label := cond (gt (len $caption) 0) (printf "Table %d: %s" (add $n 1) $caption) (printf "Table %d" (add $n 1)) -}}
-<div class="table-scroll" role="region" tabindex="0" aria-label="{{ chomp $label }}">
-  <table>
+{{/* Two separate questions about the header row, which are easy to conflate:
+
+     - does the table HAVE a header? Any content counts, including a cell whose
+       only content is a figure. Markdown always produces a <thead>, so a table
+       used purely to align formulas would otherwise draw a header rule under
+       nothing.
+     - what should the table be CALLED? Only readable words count. A cell
+       containing an image shortcode yields markup, which must never reach the
+       aria-label — unescaped it terminates the attribute early. */}}
+{{- $raw := "" -}}
+{{- range .THead }}{{ range . }}{{ $raw = printf "%s %s" $raw (.Text | plainify) }}{{ end }}{{ end -}}
+{{- $hasHead := gt (len (trim $raw " \n\t")) 0 -}}
+
+{{- $caption := $raw -}}
+{{/* Hugo swaps shortcodes for placeholder tokens before Markdown runs and
+     substitutes the rendered markup back afterwards — after this template has
+     finished. A cell containing a figure therefore looks like plain letters
+     here, and its <img> lands in the attribute later, unescaped, terminating
+     it early. The token has to be removed while it is still a token. */}}
+{{- $caption = replaceRE `HAHAHUGOSHORTCODE\w*` " " $caption -}}
+{{- $caption = replaceRE `\{\{[<%][^}]*[>%]\}\}` " " $caption -}}
+{{- $caption = replaceRE `<[^>]*>?` " " $caption -}}                {{/* markup, closed or not */}}
+{{- $caption = replaceRE `[^\pL\pN .,:;()\[\]/+\-–—]+` " " $caption -}}
+{{- $caption = trim (replaceRE `\s+` " " $caption) " " -}}
+{{- if gt (len $caption) 80 }}{{ $caption = printf "%s…" (substr $caption 0 80) }}{{ end -}}
+
+{{- $n := add (.Ordinal | default 0) 1 -}}
+{{- $label := cond (gt (len $caption) 0) (printf "Table %d: %s" $n $caption) (printf "Table %d" $n) -}}
+<div class="table-scroll" role="region" tabindex="0" aria-label="{{ $label | htmlEscape }}">
+  <table{{ if not $hasHead }} class="table--headless"{{ end }}>
+    {{- if $hasHead }}
     <thead>
       {{- range .THead }}<tr>
         {{- range . -}}
-          {{- $t := trim (.Text | plainify) " " -}}
+          {{- $t := trim (.Text | plainify) " \n\t" -}}
           {{- if eq (len $t) 0 -}}
             <td{{ with .Alignment }} style="text-align: {{ . }}"{{ end }}></td>
           {{- else -}}
@@ -19,6 +41,7 @@
         {{- end -}}
       </tr>{{ end -}}
     </thead>
+    {{- end }}
     <tbody>
       {{- range .TBody }}<tr>{{ range . }}<td{{ with .Alignment }} style="text-align: {{ . }}"{{ end }}>{{ .Text }}</td>{{ end }}</tr>{{ end -}}
     </tbody>

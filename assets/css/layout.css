@@ -170,18 +170,73 @@ pre code { background: none; border: 0; padding: 0; }
 :root[data-theme="dark"] .inline-icon,
 :root:not([data-theme="light"]) .inline-icon { background: #FBFAF7; }
 
-/* ---- tables ------------------------------------------------------------- */
-.table-scroll { overflow-x: auto; margin-block: 1.4rem; border: 1px solid var(--rule);
-                border-radius: var(--radius); background: var(--paper-raised); }
+/* ---- tables -------------------------------------------------------------
+   Ruled the way you would rule a table by hand: a stroke between the columns
+   and one under the header, and nothing else. The strokes are SVG masks, so a
+   single asset takes any colour and stretches to any cell height. Each path
+   starts and ends at the same offset, so the segments drawn by adjacent cells
+   meet instead of stepping.
+
+   Scoped to .table-scroll: Chroma renders line numbers as a table too, and it
+   must not be ruled.
+   -------------------------------------------------------------------------- */
+:root {
+  --rule-hand-v: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 100' preserveAspectRatio='none'%3E%3Cpath d='M5,0 C7.1,17 2.6,31 5,47 C7.4,63 2.7,85 5,100' fill='none' stroke='%23000' stroke-width='1.9' stroke-linecap='round'/%3E%3C/svg%3E");
+  --rule-hand-h: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M0,5 C17,7.1 31,2.7 47,5 C63,7.3 85,2.6 100,5' fill='none' stroke='%23000' stroke-width='1.9' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+.table-scroll {
+  overflow-x: auto; margin-block: 1.5rem;
+  border-radius: var(--radius);
+}
 .table-scroll:focus-visible { outline: 3px solid var(--focus-inner); outline-offset: 2px; }
-.prose table { border-collapse: collapse; margin: 0; inline-size: 100%;
-               font-variant-numeric: tabular-nums; font-size: var(--step--1); }
-.prose th, .prose td { padding: .45rem .7rem; border-block-end: 1px solid var(--rule); text-align: center; }
-.prose th:first-child, .prose td:first-child { text-align: start; }
-.prose thead th { background: var(--paper-sunken); font-weight: 700; }
-.prose tbody tr:last-child td { border-block-end: 0; }
-.prose caption { caption-side: top; padding: .5rem .7rem; font-size: var(--step--1);
-                 color: var(--ink-muted); text-align: start; }
+
+.table-scroll table {
+  border-collapse: collapse; margin: 0 auto; inline-size: auto; max-inline-size: 100%;
+  font-variant-numeric: tabular-nums; font-size: var(--step--1);
+}
+.table-scroll :is(th, td) {
+  position: relative; border: 0;
+  padding: .5rem .95rem; text-align: center; vertical-align: top;
+}
+/* a layout grid wants tighter, quieter spacing than a data table */
+.table--headless :is(th, td) { padding-block: .3rem; }
+.table-scroll :is(th, td):first-child { text-align: start; }
+.table-scroll thead th { font-weight: 700; background: none; padding-block-end: .65rem; }
+.table-scroll tbody tr:first-child :is(th, td) { padding-block-start: .65rem; }
+.table-scroll caption {
+  caption-side: top; padding: .25rem .5rem .6rem; font-size: var(--step--1);
+  color: var(--ink-muted); text-align: start;
+}
+
+/* Between the columns — but only on real data tables. Every headless table in
+   this book is a layout grid aligning a formula with its name, and ruling those
+   is noise. A header row is what marks a table as data. */
+.table-scroll table:not(.table--headless) :is(th, td):not(:last-child)::after {
+  content: ""; position: absolute; inset-block: 0; inset-inline-end: -4px;
+  inline-size: 8px; background-color: var(--table-rule);
+  -webkit-mask-image: var(--rule-hand-v); mask-image: var(--rule-hand-v);
+  -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  pointer-events: none;
+}
+/* and one under the header */
+.table-scroll thead th::before,
+.table-scroll thead td::before {
+  content: ""; position: absolute; inset-inline: 0; inset-block-end: -4px;
+  block-size: 8px; background-color: var(--table-rule);
+  -webkit-mask-image: var(--rule-hand-h); mask-image: var(--rule-hand-h);
+  -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  pointer-events: none;
+}
+@media (forced-colors: active) {
+  .table-scroll table:not(.table--headless) :is(th, td):not(:last-child)::after,
+  .table-scroll thead :is(th, td)::before {
+    background-color: CanvasText;
+    -webkit-mask-image: none; mask-image: none;
+  }
+}
 
 /* ==========================================================================
    Mascot sizing
@@ -252,7 +307,8 @@ pre code { background: none; border: 0; padding: 0; }
   .prose, .prose > * { max-inline-size: none; }
   .prose a::after { content: " (" attr(href) ")"; font-size: .85em; word-break: break-all; }
   .prose a[href^="#"]::after { content: ""; }
-  .callout, .table-scroll { break-inside: avoid; border: 1px solid #999; }
+  .callout { break-inside: avoid; border: 1px solid #999; }
+  .table-scroll { break-inside: avoid; }
   h1, h2, h3 { break-after: avoid; }
 }
 
