@@ -165,6 +165,10 @@ markup are both delivered to the browser. Do not describe it as security.
 
 ## Render hooks
 
+Chapter contents list main sections (`h2`) only. Hugo's
+`markup.tableOfContents` settings omit subsection links; subsection headings and
+their anchors remain available in the chapter.
+
 | Hook | Does |
 | --- | --- |
 | `_default/_markup/render-link.html` | external-link icon **inside** the anchor, `rel="noopener noreferrer"`, a visually-hidden "(opens in a new tab)" |

@@ -180,6 +180,8 @@ marbles—but it seems rather clear that at some point, we can reasonably conclu
 that all marbles are white. Not with certainty—a black marble might still be in
 there somewhere—but with reasonable _confidence_.
 
+<div style="clear: both;"></div>
+
 The point is that for some number of marbles, for argument's sake let's say 70,
 the fact that we've sampled 70 white marbles together with the assumption that
 we've sampled well (to avoid [selection

@@ -27,6 +27,10 @@ source = "content"
 target = "content"
 
 [markup]
+[markup.tableOfContents]
+startLevel = 2
+endLevel = 2
+
 [markup.highlight]
 anchorLineNos = false
 codeFences = true
