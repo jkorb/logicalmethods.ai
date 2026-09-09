@@ -1,0 +1,25 @@
+{{/* A code block carries its language as the author's own hand-drawn icon,
+     placed in the corner of the block. Chroma has no usable Lean lexer — it
+     marks tactics as plain names — so Lean gets a keyword pass here. */}}
+{{- $lang := .Type | default "" -}}
+{{- $family := $lang -}}
+{{- if in (slice "lean" "lean4") $lang }}{{ $family = "lean" }}{{ end -}}
+{{- if in (slice "python" "python3" "py") $lang }}{{ $family = "python" }}{{ end -}}
+{{- $icon := resources.Get (printf "img/lang/%s.svg" $family) -}}
+{{- $rendered := "" -}}
+{{- if eq $family "lean" -}}
+  {{- $esc := .Inner | htmlEscape -}}
+  {{- $kw := `\b(theorem|lemma|example|def|axiom|variable|variables|open|import|namespace|end|section|structure|instance|class|inductive|where|with|match|do|by|fun|let|have|show|from|calc|sorry|Prop|Type|True|False|Classical)\b` -}}
+  {{- $tac := `\b(intro|intros|apply|exact|refine|rintro|rcases|cases|constructor|left|right|use|simp|rw|rfl|assumption|contradiction|trivial|induction|unfold|linarith|omega|decide|ring|tauto|exfalso|specialize|obtain|byCases|absurd)\b` -}}
+  {{- $esc = replaceRE $kw `<span class="k">$1</span>` $esc -}}
+  {{- $esc = replaceRE $tac `<span class="nb">$1</span>` $esc -}}
+  {{- $esc = replaceRE `(--[^\n]*)` `<span class="c1">$1</span>` $esc -}}
+  {{- $esc = replaceRE `(^|\s)(·|⟨|⟩|←|→|↔|∀|∃|∧|∨|¬|≠|≤|≥|⊢)` `$1<span class="o">$2</span>` $esc -}}
+  {{- $rendered = printf `<pre class="chroma"><code class="language-lean" data-lang="lean">%s</code></pre>` $esc -}}
+{{- else -}}
+  {{- $rendered = (transform.Highlight .Inner $lang .Options) -}}
+{{- end -}}
+<div class="highlight{{ if $icon }} has-lang-icon{{ end }}">
+  {{- with $icon }}<span class="lang-badge" role="img" aria-label="{{ $family }}">{{ .Content | safeHTML }}</span>{{ end -}}
+  {{- $rendered | safeHTML -}}
+</div>

@@ -1,0 +1,23 @@
+{{- $cur := . -}}
+{{- $sec := .CurrentSection -}}
+{{- $names := $sec.Param "section-names" -}}
+<nav class="chapter-rail" aria-label="{{ $sec.Title }} contents">
+  <p class="chapter-rail__head">{{ $sec.Title }}</p>
+  <ol>
+    {{- range $sec.Pages.ByWeight }}
+      {{- $n := math.Div .Weight 10 -}}
+      <li>
+        {{- if .Params.locked }}
+          <span class="chapter-rail__item is-locked">
+            <span class="chapter-rail__num">{{ $n }}</span><span>{{ .Title }}</span>
+          </span>
+        {{- else }}
+          <a class="chapter-rail__item{{ if eq $cur . }} is-current{{ end }}" href="{{ .RelPermalink }}"
+             {{ if eq $cur . }}aria-current="page"{{ end }}>
+            <span class="chapter-rail__num">{{ $n }}</span><span>{{ .Title }}</span>
+          </a>
+        {{- end }}
+      </li>
+    {{- end }}
+  </ol>
+</nav>

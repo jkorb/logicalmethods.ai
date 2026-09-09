@@ -1,30 +1,32 @@
-
-<ul class="navbar-nav flex-row justify-content-between mt-auto">
-  {{ with .NextInSection }}
-  <li class="nav-item">
-    <a href="{{ .RelPermalink }}" class="btn" tabindex="-1" role="button" aria-disabled="true">
-      <i class="bi bi-chevron-left"></i>
+{{/* Hugo's PrevInSection/NextInSection follow the section's default ordering,
+     which runs opposite to chapter order here. Derive them from weight instead
+     so "previous" really is the lower-numbered chapter. */}}
+{{- $cur := . -}}
+{{- $pages := where .CurrentSection.Pages.ByWeight "Params.locked" "!=" true -}}
+{{- $prev := "" -}}{{- $next := "" -}}{{- $seen := false -}}
+{{- range $pages -}}
+  {{- if $seen -}}
+    {{- if not $next }}{{ $next = . }}{{ end -}}
+  {{- else if eq . $cur -}}
+    {{- $seen = true -}}
+  {{- else -}}
+    {{- $prev = . -}}
+  {{- end -}}
+{{- end -}}
+{{- $names := .CurrentSection.Param "section-names" -}}
+{{- if or $prev $next -}}
+<nav class="page-nav" aria-label="Chapter navigation">
+  {{- with $prev }}
+    <a class="page-nav__link page-nav__link--prev" href="{{ .RelPermalink }}" rel="prev">
+      <span class="page-nav__dir"><i class="bi bi-arrow-left" aria-hidden="true"></i> Previous</span>
+      <span class="page-nav__title">{{ .Title }}</span>
     </a>
-    {{ else }}
-    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
-      <i class="bi bi-chevron-left"></i>
+  {{- else }}<span></span>{{ end }}
+  {{- with $next }}
+    <a class="page-nav__link page-nav__link--next" href="{{ .RelPermalink }}" rel="next">
+      <span class="page-nav__dir">Next <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+      <span class="page-nav__title">{{ .Title }}</span>
     </a>
-    {{ end }}
-  </li>
-  <li class="nav-item">
-    <button class="btn btn-back-to-top">
-    <i class="bi bi-chevron-double-up"></i>
-  </button>
-  </li>
-  <li class="nav-item">
-    {{with .PrevInSection }}
-    <a href="{{ .RelPermalink }}" class="btn" tabindex="-1" role="button" aria-disabled="true">
-      <i class="bi bi-chevron-right"></i>
-    </a>
-    {{ else }}
-    <a href="" class="btn disabled border-0 btn-outline-secondary" tabindex="-1" role="button" aria-disabled="true">
-      <i class="bi bi-chevron-right"></i>
-    </a>
-    {{ end }}
-  </li>
-</ul>
+  {{- else }}<span></span>{{ end }}
+</nav>
+{{- end -}}

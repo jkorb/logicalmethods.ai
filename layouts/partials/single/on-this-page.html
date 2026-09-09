@@ -1,0 +1,6 @@
+{{- $toc := .TableOfContents -}}
+{{- if gt (len $toc) 60 -}}
+<nav class="on-this-page" aria-label="On this page">
+  {{ $toc }}
+</nav>
+{{- end -}}

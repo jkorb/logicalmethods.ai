@@ -1,122 +1,10 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const rules = [
-    // {
-    //   className: 'homework',
-    //   iconClass: 'bi bi-house-gear-fill',
-    //   colorClass: 'text-danger'
-    // },
-    // {
-    //   className: 'latex',
-    //   latexString: '\\LaTeX',
-    //   colorClass: 'text-success'
-    // },
-    // {
-    //   className: 'discussion',
-    //   iconClass: 'bi bi-chat-dots-fill',
-    //   colorClass: 'text-success'
-    // },
-    // {
-    //   className: 'research',
-    //   iconClass: 'bi bi-search-heart-fill',
-    //   colorClass: 'text-warning'
-    // },
-    // {
-    //   className: 'application',
-    //   iconClass: 'bi bi-gear',
-    //   colorClass: 'text-warning'
-    // },
-    // Add more rules here as needed
-    ];
-
-  rules.forEach(rule => {
-    const headers = document.querySelectorAll(`h5.${rule.className}`);
-    headers.forEach(header => {
-      const space = document.createTextNode('\u00A0'); // Non-breaking space
-
-      if (rule.iconClass && rule.colorClass) {
-        const icon = document.createElement('i');
-        icon.className = `${rule.iconClass} ${rule.colorClass}`;
-        header.appendChild(space); // Insert a non-breaking space
-        header.appendChild(icon);  // Insert the icon after the space
-      } else if (rule.latexString) {
-        const latexSpan = document.createElement('span');
-        latexSpan.className = `${rule.colorClass}`; // Set color to red
-        header.appendChild(latexSpan);
-        katex.render(rule.latexString, latexSpan);
-      }
-    });
-  });
-
-
-    rules.forEach(rule => {
-        const headers = document.querySelectorAll(`h6.${rule.className}`);
-        headers.forEach(header => {
-            const space = document.createTextNode('\u00A0'); // Non-breaking space
-            const icon = document.createElement('i');
-            icon.className = `${rule.iconClass} ${rule.colorClass}`;
-            header.appendChild(space); // Insert a non-breaking space
-            header.appendChild(icon);  // Insert the icon after the space
-        });
-    });
-});
-
-function showPasswordModal(solutionId,tutorialId) {
-
-  var targetElement = document.getElementById(solutionId);
-
-  if (targetElement.classList.contains('show')) {
-    var collapseElement = new bootstrap.Collapse(targetElement, {
-      toggle: false
-    });
-    collapseElement.hide();
-  } else {
-    var passwordModal = new bootstrap.Modal(document.getElementById('passwordModal'));
-    var submitButton = document.getElementById('passwordSubmitButton');
-    submitButton.onclick = function() {
-      checkPassword(solutionId, tutorialId);
-    };
-
-    passwordInput.onkeydown = function(event) {
-      if (event.key === 'Enter') {
-        checkPassword(solutionId, tutorialId);
-      }
-    };
-
-    passwordModal.show();
-  }
-}
-
-function checkPassword(solutionId,tutorialId) {
-  var correctPassword = passwords[tutorialId];
-  var userPassword = document.getElementById('passwordInput').value;
-  var targetElement = document.getElementById(solutionId);
-
-  if (userPassword === correctPassword) {
-    var collapseElement = new bootstrap.Collapse(targetElement, {
-      toggle: false
-    });
-    collapseElement.show();
-
-    var passwordModal = bootstrap.Modal.getInstance(document.getElementById('passwordModal'));
-    passwordModal.hide();
-  } else {
-    alert("Incorrect password!");
-  }
-}
-
-function copyContent(idSuffix) {
-  const spanId = idSuffix;
-  const spanElement = document.getElementById(spanId);
-  if (spanElement) {
-    const textToCopy = spanElement.textContent || spanElement.innerText;
-    navigator.clipboard.writeText(textToCopy).then(function() {
-    }, function(err) {
-      });
-  }
-}
+/* Staged disclosure of tutorial solutions.
+   NOTE: this is not access control. Both the passwords and the solution markup
+   are delivered to the browser; the gate exists so students attempt the
+   question first. Do not present it as security. */
 
 const passwords = {
-  "exc-latex" : "chalk",
+  "exc-latex": "chalk",
   "exc-laa": "apple",
   "exc-val": "robot",
   "exc-for": "quiz",
@@ -128,6 +16,71 @@ const passwords = {
   "exc-finf": "panda",
   "exc-mv": "balloon",
   "exc-prob": "rainbow",
-  "exc-learn" : "teacher"
+  "exc-learn": "teacher"
 };
 
+document.addEventListener("DOMContentLoaded", function () {
+  const modalEl = document.getElementById("passwordModal");
+  const form = document.getElementById("passwordForm");
+  const input = document.getElementById("passwordInput");
+  const error = document.getElementById("passwordError");
+  if (!modalEl || !form || !input) return;
+
+  const modal = new bootstrap.Modal(modalEl);
+  let pending = null;          // the button that opened the dialog
+  const unlocked = new Set();
+
+  function setError(message) {
+    error.textContent = message || "";
+    input.setAttribute("aria-invalid", message ? "true" : "false");
+  }
+
+  function reveal(button) {
+    const panel = document.getElementById(button.dataset.solution);
+    if (!panel) return;
+    const collapse = bootstrap.Collapse.getOrCreateInstance(panel, { toggle: false });
+    const open = panel.classList.contains("show");
+    collapse[open ? "hide" : "show"]();
+    button.setAttribute("aria-expanded", String(!open));
+    const label = button.querySelector(".btn-solution__label");
+    if (label) label.textContent = open ? "Show solution" : "Hide solution";
+  }
+
+  document.querySelectorAll(".btn-solution").forEach(function (button) {
+    button.addEventListener("click", function () {
+      const sheet = button.dataset.sheet;
+      // Once a sheet is unlocked, further solutions on it toggle freely.
+      if (unlocked.has(sheet) || button.getAttribute("aria-expanded") === "true") {
+        reveal(button);
+        return;
+      }
+      pending = button;
+      setError("");
+      input.value = "";
+      modal.show();
+    });
+  });
+
+  modalEl.addEventListener("shown.bs.modal", function () { input.focus(); });
+  modalEl.addEventListener("hidden.bs.modal", function () {
+    // Return focus to the control that opened the dialog. Bootstrap only does
+    // this for triggers that used data-bs-toggle; this one opens imperatively.
+    if (pending) { pending.focus(); pending = null; }
+  });
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    if (!pending) return;
+    const expected = passwords[pending.dataset.sheet];
+    if (input.value === expected) {
+      unlocked.add(pending.dataset.sheet);
+      reveal(pending);
+      modal.hide();   // 'hidden' then returns focus to the button and clears pending
+    } else {
+      setError("That password does not match this tutorial. Ask your tutor if you missed it.");
+      input.select();
+    }
+  });
+
+  input.addEventListener("input", function () { if (error.textContent) setError(""); });
+});

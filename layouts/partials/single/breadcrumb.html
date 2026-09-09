@@ -1,0 +1,11 @@
+<nav class="breadcrumb-trail" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="{{ "/" | relURL }}">Home</a></li>
+    {{- with .CurrentSection }}
+      {{- if ne .RelPermalink "/" }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end -}}
+    {{- end }}
+    <li><span aria-current="page">
+      {{- with .CurrentSection.Param "section-names" }}{{ . }} {{ math.Div $.Weight 10 }}{{ else }}{{ $.Title }}{{ end -}}
+    </span></li>
+  </ol>
+</nav>

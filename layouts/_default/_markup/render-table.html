@@ -1,0 +1,26 @@
+{{- $caption := "" -}}
+{{- range .THead }}{{ range . }}{{ $caption = printf "%s %s" $caption (.Text | plainify) }}{{ end }}{{ end -}}
+{{- $caption = trim $caption " " -}}
+{{- $n := .Ordinal | default 0 -}}
+{{/* A scroll container has to be reachable by keyboard, so it has to be named.
+     The name must also be unique on the page or the landmarks collide. */}}
+{{- $label := cond (gt (len $caption) 0) (printf "Table %d: %s" (add $n 1) $caption) (printf "Table %d" (add $n 1)) -}}
+<div class="table-scroll" role="region" tabindex="0" aria-label="{{ chomp $label }}">
+  <table>
+    <thead>
+      {{- range .THead }}<tr>
+        {{- range . -}}
+          {{- $t := trim (.Text | plainify) " " -}}
+          {{- if eq (len $t) 0 -}}
+            <td{{ with .Alignment }} style="text-align: {{ . }}"{{ end }}></td>
+          {{- else -}}
+            <th scope="col"{{ with .Alignment }} style="text-align: {{ . }}"{{ end }}>{{ .Text }}</th>
+          {{- end -}}
+        {{- end -}}
+      </tr>{{ end -}}
+    </thead>
+    <tbody>
+      {{- range .TBody }}<tr>{{ range . }}<td{{ with .Alignment }} style="text-align: {{ . }}"{{ end }}>{{ .Text }}</td>{{ end }}</tr>{{ end -}}
+    </tbody>
+  </table>
+</div>
