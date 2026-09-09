@@ -1,18 +1,33 @@
-{{ define "head" }}
-<link rel="stylesheet" href="{{ (resources.Get "reveal.js/dist/reveal.css").Permalink}}">
-<link rel="stylesheet" href="{{ (resources.Get "css/slides.css").Permalink }}">
-{{ end }}
-
 {{ define "main" }}
-{{ partial "single/nav-top" . }}
-{{ partial "single/title" . }}
+<div class="shell slides-shell">
+  <article class="prose">
+    {{ partial "single/breadcrumb.html" . }}
+    <p class="chapter__num">
+      {{ with .CurrentSection.Param "section-names" }}{{ . }} {{ math.Div $.Weight 10 }}{{ end }}
+    </p>
+    <h1 class="chapter__name">{{ .Title }}</h1>
+    <p class="chapter__meta">
+      {{ with .Params.author }}<span>{{ . }}</span>{{ end }}
+      <span>Lecture slides</span>
+    </p>
 
-<!-- <hr> -->
+    {{ .Content }}
 
-{{ .Content }}
+    {{ with .Param "highlights" }}
+      <section class="highlights" aria-labelledby="highlights-title">
+        <h2 id="highlights-title">Key points from this lecture</h2>
+        <ul>
+          {{ range . }}<li><strong>{{ .keyword }}</strong>{{ with .note }} — {{ . }}{{ end }}</li>{{ end }}
+        </ul>
+      </section>
+    {{ else }}
+      <p class="highlights-missing">
+        A written summary of this lecture has not been added yet. The slides above are
+        currently the only version of this material.
+      </p>
+    {{ end }}
 
-<!-- <hr> -->
-
-<!-- {{ partial "single/nav-bot" . }} -->
+    {{ partial "single/nav-bot" . }}
+  </article>
+</div>
 {{ end }}
-

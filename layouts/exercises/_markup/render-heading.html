@@ -1,27 +1,34 @@
-{{ $curPage := .Page }}
+{{- $p := .Page -}}
+{{- $attrs := .Attributes -}}
+{{- $id := index $attrs "id" -}}
+{{- $class := index $attrs "class" | default "" -}}
+{{- $isSolution := in $class "solution" -}}
+{{- $isSolved := in $class "solved" -}}
+{{/* Only a question (level 1) or a solution starts a new box. Every other
+     heading is rendered in place, so sub-parts, code and figures stay inside
+     the question they belong to. The wrapper opened by the template balances
+     the final close. */}}
+{{- if or (eq .Level 1) $isSolution -}}
 </div>
-<div {{with index .Attributes "id"}}id="{{ . }}"{{end}} {{ with index .Attributes "class"}}class="{{ if in . "solution"}}collapse border border-1 border-opacity-25 rounded p-3 m-2 fw-light{{end}} {{.}}"{{end}}>
-{{- if eq .Level 1 -}}
-<h5 class="{{ with index .Attributes "class"}}{{.}}{{end}}">
-    <div class="d-inline-flex flex-row m-0 p-0 ">
-      {{- .Text | safeHTML -}}
-      {{ if in (index .Attributes "class") "solved" }}
-      {{ with index .Attributes "id" }}
-      &nbsp;
-      <button 
-        class="btn p-0 m-0 border-0" 
-        aria-expanded="false"
-        aria-controls="{{ . }}Solution"
-        onclick="showPasswordModal('{{ . }}Solution', '{{ $curPage.Param "id" }}')">
-        <i class="bi bi-lightbulb-fill"></i>
-      </button>
-      {{ end }}
-      {{ end }}
-    </div>
-</h5>
+<div {{ with $id }}id="{{ . }}"{{ end }} class="{{ if $isSolution }}solution collapse{{ else }}question{{ end }} {{ $class }}">
+{{- end -}}
 
+{{- if eq .Level 1 -}}
+  <h2 class="question__head" {{ with $id }}id="h-{{ . }}"{{ end }}>
+    <span class="question__text">{{ .Text | safeHTML }}</span>
+    {{- if and $isSolved $id }}
+      <button class="btn-solution" type="button"
+              aria-expanded="false" aria-controls="{{ $id }}Solution"
+              data-solution="{{ $id }}Solution" data-sheet="{{ $p.Param "id" }}">
+        <span class="btn-solution__icon" aria-hidden="true">
+          {{ partial "shared/mascot.html" (dict "name" "bulb") }}
+        </span>
+        <span class="btn-solution__label">Show solution</span>
+      </button>
+    {{- end }}
+  </h2>
+{{- else if $isSolution -}}
+  <h3 class="solution__head">{{ .Text | safeHTML }}</h3>
 {{- else -}}
-  <h6 class="{{ with index .Attributes "class"}} {{.}}{{end}}">
-  {{- .Text | safeHTML -}}   
-  </h6>
+  <h3 class="subquestion__head">{{ .Text | safeHTML }}</h3>
 {{- end -}}

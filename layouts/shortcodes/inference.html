@@ -1,0 +1,31 @@
+{{/* A Prawitz-style inference figure: premises on a rule, conclusion under it.
+
+     {{< inference rule="MP" >}}
+     `Human x → Mortal x`
+     `Human Socrates`
+     ---
+     `Mortal Socrates`
+     {{< /inference >}}
+
+     Lines above the --- are premises, one per line; the line below is the
+     conclusion. Nest by putting an inference in a premise slot with
+     {{< premise >}}…{{< /premise >}}.
+
+     The figure carries a text description, so a screen reader gets the
+     inference as a sentence rather than three loose fragments. */}}
+{{- $parts := split (trim .Inner "\n ") "\n---\n" -}}
+{{- if ne (len $parts) 2 }}{{ errorf "inference: needs one --- line separating premises from the conclusion (%s)" .Position }}{{ end -}}
+{{- $premises := slice -}}
+{{- range (split (index $parts 0) "\n") }}{{ with (trim . " ") }}{{ $premises = $premises | append . }}{{ end }}{{ end -}}
+{{- $conclusion := trim (index $parts 1) " \n" -}}
+{{- $plain := printf "From %s, infer %s" (delimit (apply $premises "plainify" ".") ", " ", and ") ($conclusion | plainify) -}}
+<figure class="inference{{ with .Get "class" }} {{ . }}{{ end }}" role="figure" aria-label="{{ $plain }}{{ with .Get "rule" }}, by {{ . }}{{ end }}">
+  <div class="inference__body" aria-hidden="true">
+    <div class="inference__premises">
+      {{- range $premises }}<span class="inference__premise">{{ $.Page.RenderString . }}</span>{{ end -}}
+    </div>
+    <div class="inference__rule-line"></div>
+    <div class="inference__conclusion">{{ $.Page.RenderString $conclusion }}</div>
+  </div>
+  {{- with .Get "rule" }}<figcaption class="inference__label" aria-hidden="true">{{ . }}</figcaption>{{ end -}}
+</figure>

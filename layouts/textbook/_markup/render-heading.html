@@ -1,9 +1,23 @@
-<h{{ .Level }} id="{{ .Anchor }}">
-  {{- .Text | safeHTML -}}   <button class="btn btn-back-to-top">
-    {{ if gt .Level 1 }}
-    <i class="bi bi-chevron-double-up"></i>
-    {{ end }}
-  </button>
-</h{{ .Level }}>
-<hr>
-
+{{- $p := .Page -}}
+{{- if eq .Level 1 -}}
+  {{/* The chapter's own h1 is the page h1 — the template no longer renders a
+       second one. Chapter furniture is attached here so document order stays
+       heading, then metadata, then contents. */}}
+  <p class="chapter__num">Chapter {{ math.Div $p.Weight 10 }}</p>
+  <h1 id="{{ .Anchor }}" class="chapter__name">
+    {{- .Text | safeHTML -}}
+    <a class="heading-anchor" href="#{{ .Anchor }}" aria-label="Link to this section"><i class="bi bi-link-45deg" aria-hidden="true"></i></a>
+  </h1>
+  {{- $mins := math.Round (div (float (countwords $p.RawContent)) 180.0) -}}
+  <p class="chapter__meta">
+    {{ with $p.Params.author }}<span>{{ . }}</span>{{ end }}
+    <span>{{ cond (lt $mins 1.0) "a short read" (printf "about %.0f min read" $mins) }}</span>
+    {{ with $p.Params.last_edited }}<span>updated {{ . }}</span>{{ end }}
+  </p>
+  {{ partial "single/on-this-page.html" $p }}
+{{- else -}}
+  <h{{ .Level }} id="{{ .Anchor }}"{{ with index .Attributes "class" }} class="{{ . }}"{{ end }}>
+    {{- .Text | safeHTML -}}
+    <a class="heading-anchor" href="#{{ .Anchor }}" aria-label="Link to this section"><i class="bi bi-link-45deg" aria-hidden="true"></i></a>
+  </h{{ .Level }}>
+{{- end -}}

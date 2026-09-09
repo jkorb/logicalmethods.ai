@@ -5,7 +5,6 @@
 {{- define "main" -}}
 {{ partial "single/nav-top" . }}
 {{ partial "single/title" . }}
-{{ partial "shared/info" . }}
 <hr>
 {{ $content := .Content }}
 {{ $content := replaceRE "<ul>" "<ul class=\"quiz\">" $content }}

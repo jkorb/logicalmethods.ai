@@ -1,6 +1,26 @@
-{{- $img := .Page.Resources.GetMatch (.Get "src") -}}
-{{- if $img }}
-<img src="{{ $img.Permalink }}" {{ with .Get "class" }}class="{{ . }}"{{ end }} {{ with .Get "height" }}height="{{ . }}"{{ end }} {{ with .Get "width" }}width="{{ . }}"{{ end }} {{ with .Get "style" }}style="{{ . }}"{{ end }} alt="{{ .Get "alt" }}" >
-{{ else }}
-{{ errorf "Image not found: %s (%s)" (.Get "src") .Position }}
-{{ end -}}
+{{- /* Figures prefer a vector sibling. An SVG figure is inlined rather than
+       linked, so it uses the page's own fonts (an <img> cannot) and can pick up
+       currentColor. Excalidraw exports carry no ids or internal references, so
+       inlining several on one page is safe. */ -}}
+{{- $src := .Get "src" -}}
+{{- $alt := .Get "alt" | default "" -}}
+{{- $class := .Get "class" -}}
+{{- $svg := .Page.Resources.GetMatch (replaceRE `\.(png|jpg|jpeg)$` ".svg" $src) -}}
+{{- if $svg -}}
+  {{- $markup := $svg.Content -}}
+  {{- $markup = replace $markup `class="figure-svg"` (printf `class="figure-svg %s"` $class) 1 -}}
+  {{- with $alt -}}
+    {{- $markup = replace $markup `role="img"` (printf `role="img" aria-label="%s"` .) 1 -}}
+  {{- else -}}
+    {{- $markup = replace $markup `role="img"` `role="img" aria-hidden="true"` 1 -}}
+  {{- end -}}
+  <span class="figure-inline{{ with .Get "width" }} figure-inline--sized{{ end }}"
+        {{ with .Get "width" }}style="--figure-w: {{ . }}"{{ end }}>{{ $markup | safeHTML }}</span>
+{{- else -}}
+  {{- $img := .Page.Resources.GetMatch $src -}}
+  {{- if $img }}
+<img src="{{ $img.Permalink }}" loading="lazy" decoding="async" {{ with $img.Width }}width="{{ . }}"{{ end }} {{ with $img.Height }}height="{{ . }}"{{ end }} {{ with $class }}class="{{ . }}"{{ end }} style="{{ with .Get "width" }}max-inline-size: min({{ . }}, 100%);{{ end }}{{ with .Get "style" }}{{ . }}{{ end }}" alt="{{ $alt }}" >
+  {{ else }}
+{{ errorf "Image not found: %s (%s)" $src .Position }}
+  {{ end -}}
+{{- end -}}

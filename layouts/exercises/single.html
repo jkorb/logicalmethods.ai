@@ -1,66 +1,68 @@
 {{ define "head" }}
-<link rel="stylesheet" href="{{ (resources.Get "css/exercises.css").Permalink }}"></link>
+<link rel="stylesheet" href="{{ (resources.Get "css/exercises.css").Permalink }}">
 {{ end }}
 
 {{ define "main" }}
-  {{ partial "exercises/password-modal" . }}
-  {{ partial "single/nav-top" . }}
-  {{ partial "single/title" . }}
+{{ partial "exercises/password-modal" . }}
+<div class="shell exercise-shell">
+  <article class="exercises prose">
+    {{ partial "single/breadcrumb.html" . }}
 
-{{ partial "shared/info" . }}
+    <p class="chapter__num">
+      {{ with .CurrentSection.Param "section-names" }}{{ . }} {{ math.Div $.Weight 10 }}{{ end }}
+    </p>
+    <h1 class="chapter__name">{{ .Title }}</h1>
+    <p class="chapter__meta">
+      {{ with .CurrentSection.Param "section-subtitle" }}<span>{{ . }}</span>{{ end }}
+      {{ $qs := len (findRE `\{ *\.solved` .RawContent) }}{{ if $qs }}<span>{{ $qs }} questions</span>{{ end }}
+    </p>
 
-{{ with .Resources.Get "img/test.md"}}
-{{ .Content }}
-{{end}}
-
-<div class="container exercises">
-  <div class="m-4">
-
-    {{- $patternMathBlock := `(?s)\$\$(.*?)\$\$` -}}
+    <div class="exercises__body">
+{{- $patternMathBlock := `(?s)\$\$(.*?)\$\$` -}}
     {{- $replacementMathBlock := `<div class="text-center my-4 excalifont">${1}</div>` -}}
-  
     {{- $patternMathInline := `(?s)\$(.*?)\$` -}}
     {{- $replacementMathInline := `<span class="excalifont">${1}</span>` -}}
-  
     {{- $patternCodeBlock := "```([^`]*)```" -}}
     {{- $replacementCodeBlock := `<div class="customBlock text-center my-4"><code class="customCode">${1}</code></div>` -}}
-  
     {{- $patternCodeInline := "`([^`]*)`" -}}
     {{- $replacementCodeInline := `<code class="customCode">${1}</code>` -}}
-  
     {{- $patternBoolean := "!!(.*?)!!" -}}
     {{- $replacementBoolean := `<span class="Boolean">${1}</span>` -}}
-
     {{- $patternKleene := "~!(.*?)!~" -}}
     {{- $replacementKleene := `<span class="Kleene">${1}</span>` -}}
-
     {{- $patternMDCode := "~~~(.*?)~~~" -}}
     {{- $replacementMDCode := "```${1}```" -}}
-
     {{- $patternMDInline := "%(.*?)%" -}}
     {{- $replacementMDInline := "`${1}`" -}}
 
-    {{- $processed := .RawContent 
-        | replaceRE $patternMathBlock $replacementMathBlock 
-        | replaceRE $patternMathInline $replacementMathInline 
-        | replaceRE $patternCodeBlock $replacementCodeBlock 
-        | replaceRE $patternCodeInline $replacementCodeInline 
-        | replaceRE $patternBoolean $replacementBoolean 
-        | replaceRE $patternKleene $replacementKleene 
-        | replaceRE $patternMDCode $replacementMDCode 
-        | replaceRE $patternMDInline $replacementMDInline 
-      -}}
-    
-    {{ $processed | .RenderString }}
+      {{/* On a LaTeX page the $ delimiters must survive for KaTeX. */}}
+      {{- $processed := .RawContent -}}
+      {{- if not (.Param "latex") -}}
+        {{- $processed = $processed
+          | replaceRE $patternMathBlock $replacementMathBlock
+          | replaceRE $patternMathInline $replacementMathInline -}}
+      {{- end -}}
+      {{- $processed = $processed
+          | replaceRE $patternCodeBlock $replacementCodeBlock
+          | replaceRE $patternCodeInline $replacementCodeInline
+          | replaceRE $patternBoolean $replacementBoolean
+          | replaceRE $patternKleene $replacementKleene
+          | replaceRE $patternMDCode $replacementMDCode
+          | replaceRE $patternMDInline $replacementMDInline
+        -}}
 
-  </div>
+      {{ $processed | .RenderString }}
+    </div>
+
+    {{ partial "single/nav-bot" . }}
+  </article>
 </div>
 
-{{ partial "single/nav-bot" . }}
-
+<button class="back-to-top" type="button">
+  <i class="bi bi-arrow-up" aria-hidden="true"></i> Back to top
+</button>
 {{ end }}
 
-
 {{ define "footer" }}
-<script src="{{ (resources.Get "js/exercises.js").Permalink}}"></script>
+<script src="{{ (resources.Get "js/exercises.js").Permalink }}"></script>
 {{ end }}

@@ -1,28 +1,21 @@
-<div class="container p-3 text-center">
-  {{ with .Param "title_img" }}
-    {{ with resources.Get (printf "img/%s" .) }}
-       <img src="{{ .Permalink }}" draggable="false" width="660px" class="inert-img img-fluid">
+{{/* Section masthead. Replaces the 660px *_title.png files, which baked the
+     heading into raster (WCAG 1.4.5) and duplicated the page <title>. */}}
+{{- $poses := dict "textbook" "reading" "slides" "board" "exercises" "goals" "about" "wave" -}}
+{{- $pose := .Param "mascot" | default (index $poses .Section) | default "mark" -}}
+<header class="section-head-block">
+  <div class="section-head-block__text">
+    <p class="section-head-block__eyebrow">Logical methods for AI</p>
+    <h1 class="section-head-block__title">{{ .Title }}</h1>
+    {{ with .Param "teaser" }}<p class="section-head-block__teaser">{{ . }}</p>{{ end }}
+    {{ if .Param "show-author" }}
+      <p class="section-head-block__byline">
+        {{- $authors := .Param "authors" | default (slice) -}}
+        {{- range $i, $a := $authors }}{{ if $i }}, {{ end }}{{ $a | markdownify }}{{ end -}}
+        {{- with .Param "contributors" }}, with {{ range $i, $c := . }}{{ if $i }} and {{ end }}{{ $c | markdownify }}{{ end }}{{ end -}}
+      </p>
     {{ end }}
-  {{ end }}
-  {{ if .Param "show-author" }}
-  <p>
-    <ul class="list-group">
-      {{ range .Param "authors"}}
-      <li class="list-group-item border-0 p-0 bg-white">
-        <em>{{ . | markdownify }}</em>
-      </li>
-      {{ end }}
-    </ul>
-  </p>
-  {{ with .Param "contributors" }}
-  <p>
-    Contributors:
-    <ul class="list-group">
-      {{ range . }}
-      <li class="list-group-item border-0 p-0 bg-white"><em>{{ . | markdownify }}</em></li>
-      {{ end }}
-    </ul>
-  </p>
-  {{ end }}
-  {{ end }}
-</div>
+  </div>
+  <div class="section-head-block__figure">
+    {{ partial "shared/mascot.html" (dict "name" $pose "class" "mascot-lg") }}
+  </div>
+</header>

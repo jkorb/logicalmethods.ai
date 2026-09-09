@@ -1,0 +1,17 @@
+{{- $type := .Get "type" | default "note" -}}
+{{- $titles := dict
+  "definition" "Definition" "example" "Example" "theorem" "Theorem"
+  "warning" "Careful" "note" "Note" "objectives" "Learning objectives" -}}
+{{- $icons := dict
+  "definition" "bi-bookmark-fill" "example" "bi-lightbulb-fill" "theorem" "bi-award-fill"
+  "warning" "bi-exclamation-triangle-fill" "note" "bi-info-circle-fill" "objectives" "bi-check2-square" -}}
+{{- $label := index $titles $type | default "Note" -}}
+{{- $icon := index $icons $type | default "bi-info-circle-fill" -}}
+{{- $id := printf "callout-%s" (substr (sha256 (printf "%s%s" $type .Inner)) 0 8) -}}
+<aside class="callout callout--{{ $type }}" role="note" aria-labelledby="{{ $id }}">
+  <p class="callout__label" id="{{ $id }}">
+    <i class="bi {{ $icon }}" aria-hidden="true"></i>
+    <span>{{ $label }}{{ with .Get "title" }} &middot; {{ . }}{{ end }}</span>
+  </p>
+  <div class="callout__body">{{ .Inner | .Page.RenderString }}</div>
+</aside>

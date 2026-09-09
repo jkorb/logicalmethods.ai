@@ -1,70 +1,153 @@
-.chapter {
-  width:90vw;
-  max-width:1140px;
-  /* font-size: 18pt; */
+/* ==========================================================================
+   textbook.css — the chapter page
+   ========================================================================== */
+
+.chapter-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem;
+  padding-block: 1.5rem 2rem;
+  align-items: start;
+}
+@media (min-width: 75rem) {
+  .chapter-shell { grid-template-columns: 15rem minmax(0, 1fr); gap: 3rem; }
 }
 
-.chapter {
-  counter-reset : h2;
+/* ---- the left rail ------------------------------------------------------ */
+.chapter-rail { display: none; }
+@media (min-width: 75rem) {
+  .chapter-rail {
+    display: block; position: sticky; top: 4.5rem;
+    max-block-size: calc(100vh - 6rem); overflow-y: auto;
+    font-size: var(--step--1); padding-block-end: 1rem;
+  }
+}
+.chapter-rail__head {
+  font-family: var(--font-hand); font-size: var(--step-0);
+  margin: 0 0 .5rem; padding-block-end: .4rem; border-block-end: 1px solid var(--rule);
+}
+.chapter-rail ol { list-style: none; margin: 0; padding: 0; counter-reset: none; }
+.chapter-rail__item {
+  display: flex; gap: .55rem; align-items: baseline;
+  padding: .3rem .5rem; border-radius: var(--radius);
+  text-decoration: none; color: var(--ink-muted); min-block-size: 1.6rem;
+  border-inline-start: 2px solid transparent;
+}
+a.chapter-rail__item:hover { background: var(--paper-sunken); color: var(--ink); }
+.chapter-rail__item.is-current { color: var(--ink); font-weight: 700; position: relative; }
+.chapter-rail__item.is-current::after {
+  content: ""; position: absolute; inset-inline: .5rem .25rem; inset-block-end: .05rem;
+  block-size: .4em; background-color: var(--red-gfx);
+  -webkit-mask-image: var(--squiggle); mask-image: var(--squiggle);
+  -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+}
+.chapter-rail__num { font-family: var(--font-hand); min-inline-size: 1.1rem; }
+.chapter-rail__item.is-locked { opacity: .65; }
+
+/* ---- the chapter itself -------------------------------------------------
+   inline-size:100% is load-bearing. As a bare grid item with width:auto this
+   article resolves wider than its own track once content carries an intrinsic
+   width, which pushes the whole page sideways on small screens. */
+.chapter { inline-size: 100%; min-inline-size: 0; }
+@media (min-width: 48rem) {
+  /* the red margin line of a squared exercise book */
+  .chapter { padding-inline-start: 2.25rem; border-inline-start: 1px solid var(--margin-rule); }
 }
 
-h2 {
-  counter-reset : h3;
+/* ---- section numbering: 4.1, 4.1.2 … ----------------------------------- */
+.chapter__body { counter-reset: h2; }
+.chapter__body h2 { counter-reset: h3; }
+.chapter__body h3 { counter-reset: h4; }
+.chapter__body h2::before {
+  content: var(--chapter) "." counter(h2) "\00a0\00a0"; counter-increment: h2;
+  color: var(--ink-muted);
 }
-
-h3 {
-  counter-reset : h4;
+.chapter__body h3::before {
+  content: var(--chapter) "." counter(h2) "." counter(h3) "\00a0\00a0"; counter-increment: h3;
+  color: var(--ink-muted);
 }
+.chapter__body :is(h2, h3).nocount::before { content: ""; counter-increment: none; }
 
-h4 {
-  counter-reset : h5;
+/* ==========================================================================
+   Reading progress
+   The margin rule of the notebook, inked in as far as you have read, with a
+   tick for each section. Only where there is room for a margin.
+   ========================================================================== */
+.progress-rail { display: none; }
+@media (min-width: 48rem) {
+  .chapter { position: relative; }
+  .chapter { border-inline-start-color: transparent; }
+  .progress-rail {
+    display: block; position: absolute; inset-block: 0;
+    inset-inline-start: -1px; inline-size: 1px;
+  }
+  .progress-rail__track,
+  .progress-rail__fill {
+    position: absolute; inset-inline-start: 0; inline-size: 1px; inset-block-start: 0;
+  }
+  .progress-rail__track { block-size: 100%; background: var(--margin-rule); }
+  .progress-rail__fill  { block-size: 0; background: var(--red-gfx); inline-size: 2px;
+                          inset-inline-start: -.5px; transition: block-size .12s linear; }
+  .progress-rail__tick {
+    position: absolute; inset-inline-start: 50%; inline-size: 1.5rem; block-size: 1.5rem;
+    transform: translate(-50%, -50%); padding: 0; border: 0; background: none;
+    cursor: pointer; border-radius: 50%; color: var(--margin-rule);
+  }
+  .progress-rail__tick::before {
+    content: ""; position: absolute; inset: 50% auto auto 50%;
+    inline-size: .42rem; block-size: .42rem; transform: translate(-50%, -50%);
+    border-radius: 50%; background: var(--paper); border: 1.5px solid currentColor;
+  }
+  .progress-rail__tick.is-read { color: var(--red-gfx); }
+  .progress-rail__tick.is-current { color: var(--red-ink); }
+  .progress-rail__tick.is-current::before { background: var(--red-ink); inline-size: .55rem; block-size: .55rem; }
+  .progress-rail__tick:hover::before { background: var(--red-gfx); }
+  .progress-rail__label {
+    position: absolute; inset-inline-start: 1.4rem; inset-block-start: 50%;
+    transform: translateY(-50%);
+    font-size: var(--step--2); color: var(--ink); background: var(--paper-raised);
+    border: 1px solid var(--rule); border-radius: var(--radius);
+    padding: .2rem .5rem; white-space: nowrap; opacity: 0; pointer-events: none;
+    transition: opacity .12s ease;
+  }
+  .progress-rail__tick:hover .progress-rail__label,
+  .progress-rail__tick:focus-visible .progress-rail__label { opacity: 1; }
 }
-
-h5 {
-  counter-reset : h6;
+@media (prefers-reduced-motion: reduce) {
+  .progress-rail__fill, .progress-rail__label { transition: none; }
 }
+@media print { .progress-rail { display: none !important; } }
 
-h1:before {
-  content: "Chapter " var(--chapter) ". "
+/* A faint hand-drawn rule where a new section starts — the nearest honest
+   equivalent of a page turn, since it marks a boundary that actually exists. */
+.chapter__body h2 { position: relative; padding-block-start: 1.1em; }
+.chapter__body h2::after {
+  content: ""; position: absolute; inset-block-start: 0; inset-inline: 0 35%;
+  block-size: .5em; background-color: var(--rule-strong); opacity: .55;
+  -webkit-mask-image: var(--squiggle); mask-image: var(--squiggle);
+  -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
 }
+.chapter__body h2:first-child { padding-block-start: 0; }
+.chapter__body h2:first-child::after { content: none; }
 
-h2:before {
-  content : var(--chapter) "." counter(h2,decimal) ". ";
-  counter-increment : h2;
+/* ==========================================================================
+   Further readings
+   An appendix, not a section: quieter type, no number, a hairline to separate
+   it from the chapter proper. It is always the last section, so the sibling
+   selector is safe.
+   ========================================================================== */
+.chapter__body h2.readings {
+  font-size: var(--step-1); color: var(--ink-muted);
+  margin-block-start: 3rem; padding-block-start: 1.5rem;
+  border-block-start: 1px solid var(--rule);
+  -webkit-text-stroke: 0;
 }
-
-h3:before {
-  content : var(--chapter) "." counter(h2,decimal) "." counter(h3,decimal) ". ";
-  counter-increment : h3;
+.chapter__body h2.readings::after { content: none; }
+.chapter__body h2.readings ~ * {
+  font-size: var(--step--1); color: var(--ink-muted);
 }
-
-h4:before {
-  content : var(--chapter) "." counter(h2,decimal) "." counter(h3,decimal) "." counter(h4,decimal) ". ";
-  counter-increment : h4;
-}
-
-h5:before {
-  content : var(--chapter) "." counter(h2,decimal) "." counter(h3,decimal) "." counter(h4,decimal) "." counter(h5,decimal) ". ";
-  counter-increment : h5;
-}
-
-h6:before {
-  content : var(--chapter) "." counter(h2,decimal) "." counter(h3,decimal) "." counter(h4,decimal) "." counter(h5,decimal) "." counter(h6,decimal) ". ";
-  counter-increment : h6;
-}
-
-h2.nocount:before, h3.nocount:before, h4.nocount:before, h5.nocount:before, h6.nocount:before {
-  content : "";
-  counter-increment : none;
-}
-
-table {
-  margin-left: auto;
-  margin-right: auto; /* centers the whole table */
-}
-
-table th,
-table td {
-  text-align: center; /* centers text in cells */
-}
-
+.chapter__body h2.readings ~ ul { padding-inline-start: 1.2rem; }
+.chapter__body h2.readings ~ * a { color: var(--ink-muted); text-decoration-thickness: 1px; }
+.chapter__body h2.readings ~ * a:hover { color: var(--blue-ink); }

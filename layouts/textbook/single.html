@@ -1,60 +1,58 @@
 {{- define "head" -}}
-<link href="{{ (resources.Get "css/textbook.css").Permalink}}" rel="stylesheet"></link>
+<link href="{{ (resources.Get "css/textbook.css").Permalink }}" rel="stylesheet">
 {{- end -}}
 
-{{ define "style"}}
-    :root {
-      --chapter: "{{ math.Div .Weight 10}}";
-    }
-{{end}}
+{{ define "style" }}:root { --chapter: "{{ math.Div .Weight 10 }}"; }{{ end }}
 
 {{- define "main" -}}
-{{- partial "single/nav-top" . -}}
+<div class="shell chapter-shell">
 
-<div class="container chapter">
-  {{ with .Params.author }}<p>By: <em>{{.}}</em></p>{{end}}
-  <div class="m-4">
-  {{- $patternMathBlock := `(?s)\$\$(.*?)\$\$` -}}
-  {{- $replacementMathBlock := `<div class="text-center my-4 excalifont">${1}</div>` -}}
+  {{ partial "single/chapter-rail.html" . }}
 
-  {{- $patternMathInline := `(?s)\$(.*?)\$` -}}
-  {{- $replacementMathInline := `<span class="excalifont">${1}</span>` -}}
+  <article class="chapter prose">
+    {{ partial "single/progress-rail.html" . }}
+    {{ partial "single/breadcrumb.html" . }}
 
-  {{- $patternCodeBlock := "```([^`]*)```" -}}
-  {{- $replacementCodeBlock := `<div class="customBlock text-center my-4"><code class="customCode">${1}</code></div>` -}}
+    {{- $patternMathBlock := `(?s)\$\$(.*?)\$\$` -}}
+    {{- $replacementMathBlock := `<div class="text-center my-4 excalifont">${1}</div>` -}}
+    {{- $patternMathInline := `(?s)\$(.*?)\$` -}}
+    {{- $replacementMathInline := `<span class="excalifont">${1}</span>` -}}
+    {{- $patternCodeBlock := "```([^`]*)```" -}}
+    {{- $replacementCodeBlock := `<div class="customBlock text-center my-4"><code class="customCode">${1}</code></div>` -}}
+    {{- $patternCodeInline := "`([^`]*)`" -}}
+    {{- $replacementCodeInline := `<code class="customCode">${1}</code>` -}}
+    {{- $patternBoolean := "!!(.*?)!!" -}}
+    {{- $replacementBoolean := `<span class="Boolean">${1}</span>` -}}
+    {{- $patternKleene := "~!(.*?)!~" -}}
+    {{- $replacementKleene := `<span class="Kleene">${1}</span>` -}}
+    {{- $patternMDCode := "~~~(.*?)~~~" -}}
+    {{- $replacementMDCode := "```${1}```" -}}
+    {{- $patternMDInline := "%(.*?)%" -}}
+    {{- $replacementMDInline := "`${1}`" -}}
 
-  {{- $patternCodeInline := "`([^`]*)`" -}}
-  {{- $replacementCodeInline := `<code class="customCode">${1}</code>` -}}
+    {{/* On a LaTeX page the $ delimiters have to survive for KaTeX. */}}
+    {{- $processed := .RawContent -}}
+    {{- if not (.Param "latex") -}}
+      {{- $processed = $processed
+        | replaceRE $patternMathBlock $replacementMathBlock
+        | replaceRE $patternMathInline $replacementMathInline -}}
+    {{- end -}}
+    {{- $processed = $processed
+        | replaceRE $patternCodeBlock $replacementCodeBlock
+        | replaceRE $patternCodeInline $replacementCodeInline
+        | replaceRE $patternBoolean $replacementBoolean
+        | replaceRE $patternKleene $replacementKleene
+        | replaceRE $patternMDCode $replacementMDCode
+        | replaceRE $patternMDInline $replacementMDInline
+      -}}
 
-  {{- $patternBoolean := "!!(.*?)!!" -}}
-  {{- $replacementBoolean := `<span class="Boolean">${1}</span>` -}}
+    <div class="chapter__body">{{ $processed | .RenderString }}</div>
 
-  {{- $patternKleene := "~!(.*?)!~" -}}
-  {{- $replacementKleene := `<span class="Kleene">${1}</span>` -}}
-
-  {{- $patternMDCode := "~~~(.*?)~~~" -}}
-  {{- $replacementMDCode := "```${1}```" -}}
-
-  {{- $patternMDInline := "%(.*?)%" -}}
-  {{- $replacementMDInline := "`${1}`" -}}
-
-
-  {{- $processed := .RawContent 
-      | replaceRE $patternMathBlock $replacementMathBlock 
-      | replaceRE $patternMathInline $replacementMathInline 
-      | replaceRE $patternCodeBlock $replacementCodeBlock 
-      | replaceRE $patternCodeInline $replacementCodeInline 
-      | replaceRE $patternBoolean $replacementBoolean 
-      | replaceRE $patternKleene $replacementKleene 
-      | replaceRE $patternMDCode $replacementMDCode 
-      | replaceRE $patternMDInline $replacementMDInline 
-    -}}
-  
-  {{ $processed | .RenderString }}
-
-  </div>
-  {{ with .Params.last_edited }} <p><em>Last edited: </em>{{.}}</p>{{ end }}
+    {{ partial "single/nav-bot" . }}
+  </article>
 </div>
 
-{{ partial "single/nav-bot" . }}
+<button class="back-to-top" type="button">
+  <i class="bi bi-arrow-up" aria-hidden="true"></i> Back to top
+</button>
 {{- end -}}

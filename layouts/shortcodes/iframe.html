@@ -1,5 +1,16 @@
-<iframe 
-  {{ with .Get "src"}}src="{{ .}}"{{ end }}
-  width="100%" height="460px" allowFullScreen="true" style="border: 10px;"
-  >
-</iframe>
+{{- $src := .Get "src" -}}
+{{- $title := .Get "title" | default (printf "%s — slides (Excalidraw)" .Page.Title) -}}
+<figure class="embed">
+  <div class="embed__frame">
+    <iframe src="{{ $src }}" title="{{ $title }}" loading="lazy"
+            referrerpolicy="no-referrer" allow="fullscreen" allowfullscreen></iframe>
+  </div>
+  <figcaption class="embed__fallback">
+    <span>The deck is hosted on Excalidraw. If it does not load, or you would rather
+      view it full screen:</span>
+    <a class="btn-hand" href="{{ $src }}" target="_blank" rel="noopener noreferrer">
+      Open the slides <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+      <span class="visually-hidden">(opens in a new tab)</span>
+    </a>
+  </figcaption>
+</figure>

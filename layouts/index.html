@@ -1,24 +1,79 @@
 {{ define "main" }}
-<div class="element align-self-center bg-white mb-2">
-  <div class="pt-5 pb-2 text-center ">
-    <img src="{{ (resources.Get "img/title-graphics.png").Permalink }}" draggable="false" width="660px" class="inert-img img-fluid p-4">
-  </div>
-  <div class="d-flex justify-content-center p-2 ">
-    <div class="list-group shadow">
-      {{ range sort .Site.Sections.ByWeight }}
-      {{ if not .Params.hidden }}
-      <a href="{{ .RelPermalink }}" class="list-group-item list-group-item-action d-flex gap-3 py-3">
-        {{ .Param "emoji" }}
-        <div class="d-flex gap-2 w-100 justify-content-between">
-          <div>
-            <h6 class="mb-0" style="font-size: 18pt;">{{ .Title }}</h6>
-            <p class="mb-0 opacity-75">{{ .Param "teaser" }}</p>
-          </div>
-        </div>
-      </a>
-      {{ end }}
-      {{ end }}
+{{- $textbook := site.GetPage "/textbook" -}}
+{{- $first := "" -}}
+{{- with $textbook }}{{ range .Pages.ByWeight }}{{ if and (not $first) (not .Params.locked) }}{{ $first = . }}{{ end }}{{ end }}{{ end -}}
+{{- $poses := dict "textbook" "reading" "slides" "board" "exercises" "goals" -}}
+
+<div class="shell">
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero__text">
+      <p class="hero__eyebrow">Free and open &middot; CC&nbsp;BY&nbsp;4.0</p>
+      <h1 class="hero__title" id="hero-title">Logical methods for AI</h1>
+      <p class="hero__lede">
+        Logic is the study of correct reasoning, and reasoning is what artificial
+        intelligence sets out to automate. This is an open introduction to the
+        logical foundations of AI: how formal languages represent knowledge, how
+        algorithms search for proofs, and where the limits are.
+      </p>
+      <p class="hero__actions">
+        {{ with $first }}
+          <a class="btn-hand btn-hand--primary" href="{{ .RelPermalink }}">
+            {{ partial "shared/icon.html" (dict "name" "play") }} Start Chapter 1
+          </a>
+        {{ end }}
+        <a class="btn-hand" href="{{ "/textbook/" | relURL }}">Browse the textbook</a>
+      </p>
     </div>
-  </div>
+    <div class="hero__figure">
+      {{ partial "shared/mascot.html" (dict "name" "heart" "class" "mascot-hero"
+          "label" "The course mascot, a smiling stick figure with antennae, holding a heart") }}
+    </div>
+  </section>
+
+  <section class="routes" aria-label="Course sections">
+    <ul class="routes__grid">
+      {{- range sort .Site.Sections.ByWeight -}}
+        {{- if not .Params.hidden -}}
+          <li>
+            <a class="route-card" href="{{ .RelPermalink }}">
+              <span class="route-card__figure" aria-hidden="true">
+                {{ partial "shared/mascot.html" (dict "name" (index $poses .Section | default "mark")) }}
+              </span>
+              <span class="route-card__body">
+                <span class="route-card__title">{{ .Title }}</span>
+                <span class="route-card__teaser">{{ .Param "teaser" }}</span>
+                {{ with .Pages }}
+                  <span class="route-card__count">{{ len . }} {{ $.Param "unit" | default (cond (eq (len .) 1) "entry" "entries") }}</span>
+                {{ end }}
+              </span>
+            </a>
+          </li>
+        {{- end -}}
+      {{- end -}}
+    </ul>
+  </section>
+
+  <section class="outcomes" aria-labelledby="outcomes-title">
+    <div class="outcomes__figure">
+      {{ partial "shared/mascot.html" (dict "name" "bulb" "class" "mascot-bulb") }}
+    </div>
+    <div class="outcomes__text">
+      <h2 class="section-head" id="outcomes-title">Learning goals</h2>
+      <ul class="outcomes__list">
+        <li>Identify where logic is applied within AI.</li>
+        <li>Explain the strengths and weaknesses of logic within AI.</li>
+        <li>Represent knowledge using logical formulas.</li>
+        <li>Apply algorithms for automated reasoning.</li>
+        <li>Evaluate inferences in AI contexts for validity.</li>
+      </ul>
+      <p class="outcomes__note">
+        Written for undergraduates, and free to read, copy and adapt &mdash; on your own
+        or in your own teaching. No accounts, no cookies, no tracking.
+        <a href="{{ "/about/" | relURL }}">More about this course</a>.
+      </p>
+    </div>
+  </section>
+
 </div>
 {{ end }}

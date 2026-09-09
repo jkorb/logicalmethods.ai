@@ -1,15 +1,76 @@
-.exercises {
-  counter-reset : h5;
-  max-width: 1000px
+/* ==========================================================================
+   assignments.css — homework sheets
+   Numbering is generated; heading levels carry structure, not size.
+   ========================================================================== */
+.exercise-shell { padding-block: 1.5rem 2rem; }
+.exercises { inline-size: 100%; min-inline-size: 0; }
+@media (min-width: 48rem) {
+  .exercises { padding-inline-start: 2.25rem; border-inline-start: 1px solid var(--margin-rule); }
 }
-h5 {
-font-size: 20pt;
-margin-top: 1.5rem;
-margin-bottom: 1.5rem;
+/* The heading hook closes .exercises__body at the first question, so the
+   question blocks are siblings of it. The counter must live on the article. */
+.exercises { counter-reset: question; }
+
+/* ---- a question --------------------------------------------------------- */
+.exercises .question {
+  counter-increment: question;
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-inline-start: 3px solid var(--rule-strong);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1rem 1.2rem .35rem;
+  margin-block: 1.5rem;
 }
-h5::before {
-  content: "Question " counter(h5,decimal) ". ";
-  counter-increment: h5;
-  font-weight: bold;
+.question__head {
+  display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .75rem;
+  font-family: var(--font-hand); font-size: var(--step-1);
+  margin: 0 0 .75rem; line-height: var(--leading-tight);
+}
+.question__head::before {
+  content: counter(question);
+  flex: none; inline-size: 2rem; block-size: 2rem;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: var(--font-hand); font-size: var(--step-0);
+  border: 2px solid var(--ink); border-radius: 50%;
+}
+.question__text { flex: 1 1 auto; min-inline-size: 0; }
+.subquestion__head {
+  font-family: var(--font-prose); font-weight: 700;
+  font-size: var(--step-0); margin-block: 1.2rem .3rem;
 }
 
+/* ---- the solution disclosure -------------------------------------------- */
+.btn-solution {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-family: var(--font-prose); font-size: var(--step--1);
+  padding: .35rem .75rem; min-block-size: 2.25rem;
+  background: var(--surf-amber); color: var(--orange-ink);
+  border: 1px solid var(--orange-gfx); border-radius: 999px;
+  cursor: pointer;
+}
+.btn-solution:hover { background: var(--paper-raised); }
+.btn-solution__icon { inline-size: 1.1rem; display: block; flex: none; color: var(--orange-ink); }
+.btn-solution__icon .mascot { inline-size: 100%; }
+.btn-solution[aria-expanded="true"] .btn-solution__label::after { content: ""; }
+
+.exercises .solution {
+  background: var(--surf-green);
+  border: 1px dashed var(--green-gfx);
+  border-radius: var(--radius);
+  padding: .9rem 1.2rem .35rem;
+  margin-block: 1rem;
+}
+.solution__head {
+  font-family: var(--font-hand); font-size: var(--step-0);
+  color: var(--green-ink); margin: 0 0 .5rem;
+}
+.solution__head::before { content: "\2713\00a0"; }
+
+/* the info button beside a sheet */
+.sheet-info {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-size: var(--step--1); padding: .35rem .75rem; min-block-size: 2.25rem;
+  background: var(--paper-raised); color: var(--ink);
+  border: 1px solid var(--rule-strong); border-radius: 999px; cursor: pointer;
+}
+.sheet-info:hover { background: var(--paper-sunken); color: var(--ink); }

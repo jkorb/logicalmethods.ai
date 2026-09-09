@@ -1,9 +1,6 @@
 {{ define "main" }}
+<div class="shell">
   {{ partial "list/title" . }}
-  {{ with .Content }}
-  <div class="m-5">
-    {{ . }}
-  </div>
-  {{ end }}
-  {{ partial "list/toc.html" . }}
+  {{ with .Content }}<div class="prose page-prose">{{ . }}</div>{{ end }}
+</div>
 {{ end }}

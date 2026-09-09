@@ -1,10 +1,7 @@
 {{ define "main" }}
+<div class="shell">
   {{ partial "list/title" . }}
-  <!-- {{ partial "shared/info" . }} -->
-  <!-- {{ partial "shared/license" . }} -->
-  <!-- <hr> -->
-  {{ with .Content }}
-    {{ . }}
-  {{ end }}
+  {{ with .Content }}<div class="prose section-intro">{{ . }}</div>{{ end }}
   {{ partial "list/toc.html" . }}
+</div>
 {{ end }}
