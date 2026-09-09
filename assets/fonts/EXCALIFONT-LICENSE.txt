@@ -1,0 +1,11 @@
+Excalifont
+
+Copyright (c) Excalidraw (https://excalidraw.com), with Reserved Font Name
+"Excalifont".
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is available with a FAQ at: https://openfontlicense.org
+
+Full license text: https://openfontlicense.org/open-font-license-official-text/
+The unmodified license text is distributed alongside this notice as
+AtkinsonHyperlegible/OFL-1.1.txt, which applies verbatim to this font as well.
