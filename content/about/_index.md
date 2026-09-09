@@ -1,136 +1,94 @@
 ---
-menus:
-  main:
-    weight: 5
+hidden: true
 title: About
 weight: 1
 params: 
   id: about-home
-  title_img: "about_title.png"
-  emoji: 🧑‍🏫
-  icon: '<i class="bi-file-person-fill"></i>'
-  teaser: 'Learn about this class!'
-  md-title: '**About** this website'
 ---
 
-This page contains the material for the course [Logical methods for
-AI](https://osiris-student.uu.nl/onderwijscatalogus/extern/cursus?cursuscode=KI1V24001&taal=nl&collegejaar=2024)
-as taught at [Utrecht
-University](https://www.uu.nl/bachelors/kunstmatige-intelligentie").
+## What this is
 
-##### Course description
+A free textbook on the logical foundations of AI, with the lecture slides and
+tutorial sheets that go with it. Read it, copy it, teach from it.
 
-Artificial intelligence (AI) aims to understand, artificially replicate, and
-possibly improve intelligent behavior. In this course, you will learn about the
-role that logic plays in this pursuit. Logic is the study of correct reasoning:
-what constitutes good and bad inferences. Because reasoning is a fundamental
-aspect of intelligent behavior, logic is a core subject in AI research. You
-will learn how the methods of modern logic have influenced the development of
-AI as a discipline and the role they play in current and cutting-edge AI
-research, for example in the context of recent developments surrounding GenAI.
+Logic is the study of correct reasoning: what makes an inference good or bad.
+Reasoning is a big part of what we call intelligent behavior, which is why logic
+sits at the base of AI as a discipline. This course follows that thread — how
+logical methods shaped AI, what they do in current research, and where they stop
+working.
 
-This course teaches you the logical foundations of AI research. At the end, you
-will be able to:
-+ identify the applications of logic within AI,
-+ explain the strengths and weaknesses of logic within AI,
-+ represent knowledge using logical formulas,
-+ apply algorithms for automated reasoning, and
-+ evaluate inferences in AI contexts for validity.
+## Who it's for
 
-The material is intended for students taking the course at Utrecht University,
-but it's freely available to anyone interested.
+I wrote it for first-year AI students meeting formal logic for the first time.
+It assumes no more than secondary-school mathematics.
 
-##### {{< logo >}}
+**Working on your own?** Start at Chapter 1 and go in order. The exercise sheets
+are worth attempting even without a tutor to hand out the solution passwords —
+the chapters work through plenty of examples.
 
+**Taking a course that uses this site?** Read the chapter before the lecture,
+follow the slides during it, and do the tutorial sheet afterwards. Your education
+is in your own hands: what you get out of the course is what you put in.
 
+**Teaching your own course?** Take it. The license lets you copy, translate,
+remix and re-teach any of it, as long as you say where it came from. Everything —
+pages, drawings, scripts, fonts — is public.
 
- {{< img src="img/ai_avatar.png" width="100px" class="">}} This is {{< logo >}}, our friendly course mascot.
+## Using it
 
-##### Details
+Course content is [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en);
+the code that builds the site is [MIT](https://opensource.org/license/mit).
+
+The site collects nothing at all. No accounts, no cookies, no analytics, and no
+requests to anyone else's servers — the fonts and scripts are served from here.
+
+## {{< logo >}}
+
+{{< raw >}}<div class="about-mascot">{{< /raw >}}
+{{< mascot name="wave" >}}
+{{< raw >}}</div>{{< /raw >}}
+
+This is {{< logo >}}, who shows up throughout the book to point at things.
+
+## Where it comes from
+
+The material grew out of *Logical methods for AI*, a first-year course in the
+[AI bachelor's programme](https://www.uu.nl/bachelors/kunstmatige-intelligentie)
+at Utrecht University, where I still teach it.
+
+**This is not an official Utrecht University publication.** Nobody at the
+university has reviewed or approved it, and the mistakes in it are mine.
 
 {{< raw >}}
-<div class="d-flex flex-column flex-md-row p-4 gap-4 mt-2 mb-4 align-items-center justify-content-center">
-  <div class="list-group shadow">
-    <a href="https://jkorbmacher.org" class="list-group-item list-group-item-action d-flex gap-3 py-3" target="_blank">
-      <i class="bi bi-person-circle"></i>
-      <div class="d-flex gap-2 w-100 justify-content-between">
-        <div>
-          <h6 class="mb-0">Maintainer</h6>
-          <p class="mb-0 opacity-75">
-            The website is developed and maintained by Johannes Korbmacher.
-          </p>
-        </div>
-      </div>
-    </a>
-
-    <a href="https://logicalmethods.ai" class="list-group-item list-group-item-action d-flex gap-3 py-3" target="_blank">
-      <i class="bi bi-person-hearts"></i>
-      <div class="d-flex gap-2 w-100 justify-content-between">
-        <div>
-          <h6 class="mb-0">Contributors</h6>
-          <p class="mb-0 opacity-75">
-            This project has a growing list of contributors. 
-          </p>
-        </div>
-      </div>
-    </a>
-
-
-    <a href="https://gohugo.io/" class="list-group-item list-group-item-action d-flex gap-3 py-3" target="_blank">
-      <i class="bi bi-hexagon"></i>
-      <div class="d-flex gap-2 w-100 justify-content-between">
-        <div>
-          <h6 class="mb-0">Hosting</h6>
-          <p class="mb-0 opacity-75">The website is build with Hugo.</p>
-        </div>
-      </div>
-    </a>
-
-    <a href="https://github.com/jkorb/logicalmethods.ai" class="list-group-item list-group-item-action d-flex gap-3 py-3" target="_blank">
-      <i class="bi bi-github"></i>
-      <div class="d-flex gap-2 w-100 justify-content-between">
-        <div>
-          <h6 class="mb-0">Hosting</h6>
-          <p class="mb-0 opacity-75">The website is hosted on GitHub pages.</p>
-        </div>
-      </div>
-    </a>
-
-    <a href="https://creativecommons.org/licenses/by/4.0/deed.en" class="list-group-item list-group-item-action d-flex gap-3 py-3" target="_blank">
-      <i class="bi bi-universal-access-circle"></i>
-      <div class="d-flex gap-2 w-100 justify-content-between">
-        <div>
-          <h6 class="mb-0">Content license</h6>
-          <p class="mb-0 opacity-75"> The content of the website (the "course") is licensed under CC BY 4.0.</p>
-        </div>
-      </div>
-    </a>
-    <a href="https://opensource.org/license/mit" class="list-group-item list-group-item-action d-flex gap-3 py-3" target="_blank">
-      <i class="bi bi-code-slash"></i>
-      <div class="d-flex gap-2 w-100 justify-content-between">
-        <div>
-          <h6 class="mb-0">Software license</h6>
-          <p class="mb-0 opacity-75"> The code of the website is licensed under the MIT license.</p>
-        </div>
-      </div>
-    </a>
-    <a href="https://gdpr.eu/what-is-gdpr/" class="list-group-item list-group-item-action d-flex gap-3 py-3" target="_blank">
-      <i class="bi bi-activity"></i>
-      <div class="d-flex gap-2 w-100 justify-content-between">
-        <div>
-          <h6 class="mb-0">GDPR</h6>
-          <p class="mb-0 opacity-75">I neither collect nor store your data.
-            Period.</p>
-        </div>
-      </div>
-    </a>
-  </div>
-</div>
+<ul class="fact-list">
+  <li><a href="https://jkorbmacher.org" target="_blank" rel="noopener noreferrer">
+    <i class="bi bi-person-circle" aria-hidden="true"></i>
+    <span><strong>Maintainer</strong>Developed and maintained by Johannes Korbmacher.</span></a></li>
+  <li><a href="https://github.com/jkorb/logicalmethods.ai/graphs/contributors" target="_blank" rel="noopener noreferrer">
+    <i class="bi bi-person-hearts" aria-hidden="true"></i>
+    <span><strong>Contributors</strong>A growing list of people have improved this material.</span></a></li>
+  <li><a href="https://creativecommons.org/licenses/by/4.0/deed.en" target="_blank" rel="license noopener noreferrer">
+    <i class="bi bi-universal-access-circle" aria-hidden="true"></i>
+    <span><strong>Content licence</strong>The course is licensed under CC BY 4.0.</span></a></li>
+  <li><a href="https://opensource.org/license/mit" target="_blank" rel="license noopener noreferrer">
+    <i class="bi bi-code-slash" aria-hidden="true"></i>
+    <span><strong>Software licence</strong>The site code is licensed under MIT.</span></a></li>
+  <li><a href="https://github.com/jkorb/logicalmethods.ai" target="_blank" rel="noopener noreferrer">
+    <i class="bi bi-github" aria-hidden="true"></i>
+    <span><strong>Source</strong>Every page, asset and script is public on GitHub.</span></a></li>
+  <li><a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">
+    <i class="bi bi-hexagon" aria-hidden="true"></i>
+    <span><strong>Built with</strong>Hugo, and hosted on GitHub Pages.</span></a></li>
+  <li><span>
+    <i class="bi bi-shield-check" aria-hidden="true"></i>
+    <span><strong>Your data</strong>No accounts, no cookies, no analytics, and no
+    third-party requests. Fonts and scripts are served from this domain only.</span></span></li>
+</ul>
 {{< /raw >}}
 
 {{< raw >}}
-<div class="container text-center mb-2">
-<h6>Sponsors</h6>
+<div class="sponsors">
+<h2>Sponsors</h2>
   <p >
     This page and course has been made possible by the support of:
   </p>

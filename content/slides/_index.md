@@ -11,14 +11,11 @@ weight: 3
 params: 
   id: 'sli-home'
   icon: '<i class="bi bi-rocket-takeoff-fill"></i>'
-  emoji: '🚀'
   section-names: 'Lecture'
   section-subtitle: 'Slides'
   section-icon: '<i class="bi bi-file-earmark-slides"></i>'
   toc-title: 'Lectures'
-  teaser: 'Follow during class!'
+  teaser: 'The lecture decks, drawn by hand.'
   md-title: 'Lecture **slides**'
   license: 'CC-BY-4.0'
-  title_img: "slides_title.png"
 ---
-
