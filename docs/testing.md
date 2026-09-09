@@ -10,6 +10,25 @@ This builds the website, checks its content and links, and opens representative
 pages in desktop and mobile Chromium. GitHub runs the same tests on pull requests
 and pushes to `main`. Deployment waits for them to pass.
 
+## Accessibility, keyboard and reflow suites
+
+Three browser suites guard the redesign. They run as part of `npm test`.
+
+| File | Guards |
+| --- | --- |
+| `tests/browser/a11y.spec.mjs` | axe-core across ten routes at WCAG 2.2 AA, plus `/textbook/boolean/` in both light and dark mode. |
+| `tests/browser/keyboard.spec.mjs` | The skip link is the first tab stop; chapter navigation is reachable; every tab stop has a name and a visible focus ring; prev/next point at the right neighbors. |
+| `tests/browser/reflow.spec.mjs` | No horizontal scrollbar at 320&nbsp;px on eight routes (WCAG 1.4.10). |
+
+The keyboard and reflow checks exist because axe cannot see either problem, and
+both were real defects before the redesign: chapter navigation carried
+`tabindex="-1"`, and truth tables and code blocks pushed the page sideways.
+
+Accepted axe findings go in `tests/a11y-exceptions.json` as
+`{"id": "...", "reason": "..."}`. A finding without a written reason is not an
+exception. `layouts/tutoraat/` and `layouts/verdiepingspakketten/` are out of scope
+and are not audited.
+
 ## First-time setup
 
 Install the Hugo version listed in [`.hugo-version`](../.hugo-version) from

@@ -30,7 +30,7 @@ inference, many-valued logic, probability, and learning. Related sections often
 share topic names and weights, but are not exact mirrors: for example, the
 textbook uses `proofs/`, while exercises and slides use `proof/`.
 
-Additional routes serve the AI degree programme: [`tutoraat`](../content/tutoraat/)
+Additional routes serve the AI degree program: [`tutoraat`](../content/tutoraat/)
 contains tutoring guidance, and
 [`verdiepingspakketten`](../content/verdiepingspakketten/) supports study-track
 guidance. These sections and [`unlock`](../content/unlock/) are hidden from normal

@@ -669,7 +669,7 @@ const rules = [
     text: "Je hebt aangegeven dat je werkvormen als argumentatie, het schrijven \
     van teksten en het oplossen van wiskundige problemen prettig vindt. Die \
     sluiten goed aan bij het verdiepingspakket <em>Reasoning and \
-    Computation</em>. Houd er wel rekening mee dat programmeren ook een rol \
+    Computation</em>. Houd er wel rekening mee dat programren ook een rol \
     speelt binnen dit pakket – het is niet de hoofdfocus, maar het is \
     belangrijk dat je er in elk geval geen sterke afkeer van hebt. Misschien \
     is het de moeite waard om dit pakket eens van dichterbij te bekijken.",
@@ -723,7 +723,7 @@ const rules = [
         { question: 'question-5', not: 'dislike-math' },
       ],      
     ],
-    text: "Je hebt aangegeven dat je programmeren en het oplossen van \
+    text: "Je hebt aangegeven dat je programren en het oplossen van \
     wiskundige problemen leuke werkvormen vindt – een sterke combinatie! Deze \
     vaardigheden vormen de kern van het verdiepingspakket <em>Learning and \
     Computation</em>. Zeker de moeite waard om dat pakket eens goed te \
@@ -746,7 +746,7 @@ const rules = [
         { question: 'question-5', not: 'dislike-math' },
       ],      
     ],
-    text: "Je hebt aangegeven dat je óf programmeren óf het oplossen van \
+    text: "Je hebt aangegeven dat je óf programren óf het oplossen van \
     wiskundige problemen een prettige werkvorm vindt. Beide vaardigheden spelen \
     een belangrijke rol binnen het verdiepingspakket <em>Learning and \
     Computation</em>. Als dat je interesse wekt, is het zeker de moeite waard \
@@ -766,7 +766,7 @@ const rules = [
       ],   
     ],
     text: "Sommige van de werkvormen die je prettig vindt passen goed bij het \
-    verdiepingspakket <em>Learning and Computation</em> – denk aan programmeren \
+    verdiepingspakket <em>Learning and Computation</em> – denk aan programren \
     en het oplossen van wiskundige problemen. Tegelijk heb je aangegeven dat je \
     minder enthousiast bent over werkvormen die ook een belangrijke rol spelen \
     binnen dit pakket, zoals modelleren of computationele benaderingen. Het is \
@@ -812,7 +812,7 @@ const rules = [
     text: "Geïnteresseerd in een master zoals <em>Computing Sciences</em> of \
     <em>(Applied) Data Science</em>? Dan sluit het verdiepingspakket \
     <em>Learning and Computation</em> goed aan, met name vanwege de nadruk op \
-    programmeren en computationele modellen. Ook <em>Reasoning and \
+    programren en computationele modellen. Ook <em>Reasoning and \
     Computation</em> kan een optie zijn. In elk geval moet je in je profileringsruimte de \
     juiste aanvullende vakken kiesen om aan sommige toelatingseisen te voldoen.", 
     scores: { learning: 2, reasoning: 1, cognitive: 0 }

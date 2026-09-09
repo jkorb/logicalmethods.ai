@@ -22,6 +22,7 @@
     "setup:browsers": "node scripts/playwright.mjs install chromium"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
     "@playwright/test": "1.63.0",
     "cheerio": "1.2.0",
     "markdownlint-cli2": "0.23.2",

@@ -108,6 +108,87 @@ Existing slides such as
 `iframe` shortcode. The default slide template instead initializes Reveal.js.
 Editing an embed URL does not edit the external deck; review it separately.
 
+## Notation: what to type
+
+The design rule is in [design](design.md#notation). In practice:
+
+| You are writing | Type this | Renders as |
+| --- | --- | --- |
+| An expression of a formal language | `` `Human x → Mortal x` `` | object-language face |
+| A logic symbol | the character itself: `∀ ∃ ∧ ∨ ¬ → ↔ ⊨ ⊬ ⊆ ∈ ∉ ∩ ∪ ≤ ⟦ ⟧ ∴ ⊥` | same face, same hand |
+| Whiteboard emphasis, display asides | `$…$` or `$$…$$` | Excalifont |
+| Boolean-language notation | `!!…!!` | blue, underlined solid |
+| Kleene-language notation | `~!…!~` | red, underlined dotted |
+| Source code | a fenced block with a language | JetBrains Mono, highlighted |
+
+**Prefer the literal character to the shortcode.** `` `∀x(Human x → Mortal x)` ``
+is readable in the Markdown source; `` `{{</* forall */>}}x(Human x {{</* to */>}} Mortal x)` ``
+is not. The shortcodes (`{{</* forall */>}}`, `{{</* land */>}}`, `{{</* vDash */>}}` …)
+still work and now emit the same characters, so nothing breaks — but when you
+touch a paragraph, replace them.
+
+Never use an image for notation. If you need a symbol the font lacks, add it:
+draw it in the same hand, trace it into `assets/img/sym/`, add a line to the map
+in `scripts/build-notation-font.py`, and rebuild.
+
+## Inference figures
+
+```go-html-template
+{{</* inference rule="MP" */>}}
+`Human x → Mortal x`
+`Human Socrates`
+---
+`Mortal Socrates`
+{{</* /inference */>}}
+```
+
+Lines above the `---` are premises, one per line; the line below is the
+conclusion. `rule` is optional. The figure gets a sentence as its accessible
+name ("From …, and …, infer …"), so a screen reader hears the inference rather
+than three loose fragments.
+
+## Callouts
+
+Mark definitions, examples and warnings with the callout shortcode rather than
+plain paragraphs:
+
+```go-html-template
+{{< callout type="definition" title="Valid inference" >}}
+An inference is valid iff it is impossible for the premises to be true and the
+conclusion false.
+{{< /callout >}}
+```
+
+`type` is one of `definition`, `example`, `theorem`, `warning`, `note` or
+`objectives`. The type name is always rendered as visible text, so the meaning
+never depends on color alone.
+
+## Figures
+
+Book figures are Excalidraw drawings. Export them to SVG rather than
+screenshotting them: vector figures scale, print, stay sharp, and diff as text.
+
+1. Keep the `.excalidraw` source. Commit it next to the page bundle.
+2. In Excalidraw, put each figure in a **frame** and name the frame after the
+   file you want (`sun_values`, `bayes_rule`).
+3. Export:
+
+   ```sh
+   npm i --no-save @excalidraw/excalidraw react react-dom esbuild playwright
+   node scripts/excalidraw-svg.mjs path/to/chapter.excalidraw content/textbook/<topic>/img --frames
+   ```
+
+   Without `--frames` the whole scene is exported as one SVG.
+
+4. Reference it with the usual shortcode; `img` prefers an `.svg` sibling when
+   one exists.
+
+The exporter strips the embedded copy of Excalifont, because the site already
+serves it. That makes the files far smaller but means a figure opened on its own,
+outside the site, falls back to a system font for any text it contains.
+
+Existing PNG figures still work. Convert them as you revise each chapter.
+
 ## Checking your work
 
 Run `npm run check` after editing content, and `npm test` before pushing. Preview

@@ -33,6 +33,86 @@ Their files are checked into the repository, even though `.gitmodules` lists
 some of them. Package manifests inside these directories belong to the libraries;
 you do not need to install their dependencies to work on the site.
 
+## Regenerating the mascot
+
+The mascot poses in `assets/img/mascot/` are exported from the Excalidraw scene
+that also produced the original title PNGs. To change or add one:
+
+1. Open the scene (`scratch.excalidraw` in the course Excalidraw library) and
+   select the group you want.
+2. Export it to SVG with `@excalidraw/excalidraw`'s `exportToSvg`. It needs a DOM,
+   so bundle a small entry with esbuild and drive it from a headless browser.
+3. Post-process the result before committing it:
+   - drop the embedded `@font-face` block — the site already serves Excalifont;
+   - map Excalidraw's palette onto tokens: `#1e1e1e` and `#000000` become
+     `currentColor`, the rest become `var(--mascot-*, <original>)`;
+   - remove the fixed `width`/`height` and keep the `viewBox`;
+   - add `class="mascot" role="img" aria-hidden="true" focusable="false"`;
+   - round coordinates to one decimal (roughly 20% smaller, no visible change).
+
+Keep the strokes on `currentColor`. A black-stroked asset is invisible in dark
+mode, which is why the original PNGs could not be used.
+
+Excalidraw scenes are plain JSON and this same pipeline is what will let the slide
+decks be self-hosted instead of embedded from `link.excalidraw.com`.
+
+## Weight
+
+**KaTeX is scoped to one page.** The templates strip `$` before Markdown runs, so
+KaTeX could never see a delimiter and rendered nothing anywhere. It is now loaded
+only where a page sets `latex: true` in its front matter, and on such a page the
+templates leave `$` alone so KaTeX can do its work. Exactly one page needs this:
+`content/exercises/preamble/`, where the exercise *is* typesetting LaTeX and the
+rendered result is the answer key. Everywhere else notation is the object
+language; see [design](design.md#notation).
+
+**Reveal.js is gone.** Every deck uses the Excalidraw layout, so the reveal
+template, theme, logo and the 6.8&nbsp;MB submodule were dead.
+
+**Bootstrap Icons are subsetted.** The upstream font ships ~2,000 icons; this
+site uses about 35. `scripts/subset-icons.py` keeps only those, taking
+223&nbsp;KB of font and CSS down to 5&nbsp;KB, with every existing
+`<i class="bi bi-…">` unchanged. Rebuild it after adding an icon. The subsetter reads templates, content, scripts
+and stylesheets, because some icons only ever appear at runtime: scanning HTML
+alone once dropped `bi-sun` and `bi-moon-stars`, and the theme toggle rendered an
+empty box as soon as it was clicked. `tests/browser/icons.spec.mjs` covers both
+cases — every icon on a page, and the toggle through all three of its states.
+
+**Bootstrap's own CSS is the remaining bulk.** Measured with Chromium coverage
+across nine routes, 227&nbsp;KB ships and about 3% of it matches anything. What
+the site actually needs is a couple of dozen spacing and image utilities (many of
+them written into content markdown), plus the modal and collapse components.
+Subsetting it means building a custom bundle from the vendored SCSS with Hugo's
+Sass support, or filtering the compiled CSS against the built HTML. Both are
+verifiable against the screenshot and test suites, and neither has been done:
+the design currently rests on that file and the saving is not worth a silent
+regression.
+
+**Figures are the page weight.** A chapter's raster figures dominate everything
+else — `/textbook/boolean/` carried 6.5&nbsp;MB of PNG. The `img` shortcode now
+emits `loading="lazy"` with intrinsic `width`/`height`, which cut that page's
+initial load from 7.5&nbsp;MB to 0.1&nbsp;MB and removed the layout shift. The
+real fix is the SVG migration in [authoring](authoring.md#figures): the one
+diagram converted so far went from 94&nbsp;KB of PNG to 20&nbsp;KB of vector.
+
+When passing a display width to the `img` shortcode, note that it becomes an
+inline `max-inline-size`, which beats the stylesheet — so it is emitted as
+`min(<width>, 100%)`. Without the clamp, a wide figure overflows a phone.
+
+## Authoring tools
+
+Two scripts are for authoring, not for the build or the test run. Neither is
+wired into `npm test`, and their dependencies are deliberately not repo
+dependencies.
+
+| Script | Does | Needs |
+| --- | --- | --- |
+| `scripts/build-notation-font.py` | Rebuilds Comic Shanns Logic from `assets/img/sym/*.svg` | `pip install fonttools brotli` |
+| `scripts/excalidraw-svg.mjs` | Exports figures from `.excalidraw` sources | `npm i --no-save @excalidraw/excalidraw react react-dom esbuild playwright` |
+
+`tmp/assignment-pdfs/make-pdfs.mjs` turns the hidden Assignments section into
+PDFs; see the README beside it.
+
 ## Temporary working files
 
 Keep screenshots, test reports, and scratch files in `tmp/`. Git ignores this

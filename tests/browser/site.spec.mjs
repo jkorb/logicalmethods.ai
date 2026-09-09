@@ -25,22 +25,24 @@ for (const route of ['/', '/textbook/', '/textbook/boolean/', '/exercises/logic-
     await page.evaluate(() => document.fonts.ready);
     await expect(page.locator('body')).toBeVisible();
     expect(await page.title()).not.toBe('');
-    expect(await page.locator('img').evaluateAll(images => images.filter(i => !i.complete || i.naturalWidth === 0).map(i => i.src))).toEqual([]);
+    // Figures are lazy-loaded, so force them to resolve before asserting they exist.
+    await page.locator('img').evaluateAll(images => images.forEach(i => { i.loading = 'eager'; }));
+    await page.waitForFunction(() => [...document.images].every(i => i.complete), null, { timeout: 15000 });
+    expect(await page.locator('img').evaluateAll(images => images.filter(i => i.naturalWidth === 0).map(i => i.src))).toEqual([]);
     expect(failures).toEqual([]);
     await page.screenshot({ path: testInfo.outputPath('page.png') });
   });
 }
 
-test('course navigation opens, expands and follows a chapter link', async ({ page }) => {
+test('the section links in the header reach a chapter', async ({ page }) => {
   await page.goto('/');
-  await page.locator('[data-bs-target="#offcanvas-nav"]').click();
-  const nav = page.locator('#offcanvas-nav');
-  await expect(nav).toBeVisible();
-  await nav.locator('[data-bs-toggle="collapse"]').first().click();
-  const chapter = nav.locator('a[href="/textbook/logic-and-ai/"]');
-  await expect(chapter).toBeVisible();
-  await chapter.click();
+  const nav = page.locator('nav[aria-label="Main"]');
+  await expect(nav.getByRole('link', { name: 'Textbook' })).toBeVisible();
+  await nav.getByRole('link', { name: 'Textbook' }).click();
+  await expect(page).toHaveURL(/\/textbook\/$/);
+  await page.getByRole('link', { name: /Logic and AI/ }).first().click();
   await expect(page).toHaveURL(/\/textbook\/logic-and-ai\/$/);
+  await expect(page.locator('main h1')).toBeVisible();
 });
 
 test('exercise solution rejects wrong password, opens with Enter, and closes', async ({ page }) => {
@@ -63,18 +65,33 @@ test('exercise solution rejects wrong password, opens with Enter, and closes', a
   await expect(solution).toBeHidden();
 });
 
-test('custom notation and KaTeX render with loaded fonts', async ({ page }) => {
-  // Register before the shared auto-render callback, so its real configuration
-  // must render this probe during DOMContentLoaded.
-  await page.addInitScript(() => document.addEventListener('DOMContentLoaded', () => {
-    const probe = document.createElement('div');
-    probe.id = 'math-test-probe'; probe.textContent = '\\(x^2\\)'; document.body.append(probe);
-  }));
+test('custom notation renders with the loaded faces', async ({ page }) => {
   await page.goto('/textbook/boolean/');
   await expect(page.locator('.excalifont').first()).toBeVisible();
   await expect(page.locator('.Boolean').first()).toBeVisible();
   await page.evaluate(() => document.fonts.ready);
   expect(await page.evaluate(() => document.fonts.check('16px Excalifont'))).toBe(true);
-  await expect(page.locator('#math-test-probe .katex')).toBeVisible();
+  // Logic symbols are text in the patched object-language face, not images.
+  // Boolean algebra spells its connectives, so the quantifier chapter is the
+  // one that exercises the added glyphs.
+  expect(await page.evaluate(() => document.fonts.check('16px "Comic Shanns Logic"'))).toBe(true);
+  await page.goto('/textbook/FOL/');
+  await page.evaluate(() => document.fonts.ready);
+  expect(await page.evaluate(() => /[∀∃∧∨→⊨]/.test(document.body.innerText))).toBe(true);
+  expect(await page.locator('img[src*="/img/forall"], img[src*="/img/conjunction"]').count()).toBe(0);
+});
+
+test('KaTeX renders on the LaTeX exercise, and is not loaded anywhere else', async ({ page }) => {
+  await page.goto('/exercises/preamble/');
+  await page.evaluate(() => document.fonts.ready);
+  await expect(page.locator('.katex').first()).toBeVisible();
   await expect(page.locator('.katex-error')).toHaveCount(0);
+
+  // Every other page strips $ before Markdown runs, so KaTeX would render
+  // nothing there; it must not be shipped.
+  const katexRequests = [];
+  page.on('request', r => { if (/katex/i.test(r.url())) katexRequests.push(r.url()); });
+  await page.goto('/textbook/boolean/');
+  await page.evaluate(() => document.fonts.ready);
+  expect(katexRequests).toEqual([]);
 });
