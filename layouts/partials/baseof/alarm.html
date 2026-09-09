@@ -1,4 +1,5 @@
-<div class="align-self-center alert alert-{{.level}} alert-dismissible fade show shadow rounded-0 m-0 mt-md-1 mb-md-1" role="alert">
-  <strong>NB!</strong> {{ .body }}
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+{{/* A status notice, not an emergency. The old markup used alert-danger site-wide. */}}
+<div class="notice notice--{{ .level | default "info" }}" role="status">
+  <i class="bi bi-info-circle" aria-hidden="true"></i>
+  <span>{{ .body }}</span>
 </div>

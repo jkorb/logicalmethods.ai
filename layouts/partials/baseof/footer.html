@@ -1,10 +1,23 @@
-<nav class="navbar bg-dark shadow" data-bs-theme="dark" aria-label="footer-navbar">
-  <div class="container-sm align-self-center px-3">
-    <a class="navbar-brand fs-6" href="/about" aria-label="copyright-link">&copy; {{ now | time.Format "2006" }} jkorbmacher et al. </a>
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link fs-6" href="https://github.com/jkorb/logicalmethods.ai" target="_blank"><i class="bi bi-github"></i></a>
-      </li>
-    </ul>
-  </div>
-</nav>
+<div class="shell site-footer__inner">
+  <p class="site-footer__col">
+    <span class="site-footer__head">Logical methods for AI</span>
+    An open course on the logical foundations of AI, taught at Utrecht University.
+    Not officially reviewed or approved by the university.
+  </p>
+  <p class="site-footer__col">
+    <span class="site-footer__head">License</span>
+    Course content under
+    <a href="https://creativecommons.org/licenses/by/4.0/deed.en" rel="license noopener noreferrer" target="_blank">CC&nbsp;BY&nbsp;4.0</a>;
+    site code under
+    <a href="https://opensource.org/license/mit" rel="license noopener noreferrer" target="_blank">MIT</a>.
+    No trackers, no cookies, no third-party requests.
+  </p>
+  <p class="site-footer__col">
+    <span class="site-footer__head">Source</span>
+    <a href="https://github.com/jkorb/logicalmethods.ai" rel="noopener noreferrer" target="_blank">
+      <i class="bi bi-github" aria-hidden="true"></i> jkorb/logicalmethods.ai
+    </a><br>
+    <a href="{{ "/about/" | relURL }}">About this site</a>
+  </p>
+  <p class="site-footer__meta">&copy; {{ now | time.Format "2006" }} Johannes Korbmacher and contributors.</p>
+</div>

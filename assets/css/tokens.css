@@ -1,0 +1,289 @@
+/* ==========================================================================
+   tokens.css — foundation layer for logicalmethods.ai
+   Loaded after Bootstrap so these values win. Everything else builds on this.
+
+   The design is a squared exercise book: warm paper, a faint 5mm grid, a red
+   margin rule, and the lecturer's own hand-drawn marks on top.
+
+   Every color pair below was measured. The strictest case is text sitting on
+   a grid line rather than bare paper, so that is what the ratios refer to.
+   ========================================================================== */
+
+:root {
+  /* ---- paper -------------------------------------------------------- */
+  --paper:        #FCFBF7;   /* the page                                   */
+  --paper-raised: #FFFFFF;   /* cards, dialogs — lifts off the grid        */
+  --paper-sunken: #F2EFE7;   /* wells, code blocks                         */
+  --grid:         #EDEAE0;   /* 1.16:1 against paper — never affects text  */
+  --margin-rule:  #E3A7AC;   /* the red margin line of a German exercise book */
+  --rule:         #DDD8CC;   /* hairlines, borders                          */
+  --rule-strong:  #C3BCAB;
+
+  /* ---- ink ---------------------------------------------------------- */
+  --ink:       #23262B;      /* 14.66 on paper · 12.85 on a grid line      */
+  --ink-muted: #5A6068;      /*  6.13 on paper ·  5.42 on a grid line      */
+
+  /* ---- accents: -ink is text-safe (AA 4.5), -gfx is for strokes and fills */
+  --green-ink:  #20762F;  --green-gfx:  #2F9E44;   /* 5.49 / 3.30 */
+  --blue-ink:   #1263AE;  --blue-gfx:   #1971C2;   /* 5.93 / 4.81 */
+  --red-ink:    #C42B2B;  --red-gfx:    #E03131;   /* 5.44 / 4.32 */
+  --orange-ink: #8F5300;  --orange-gfx: #D37B00;   /* 5.96 / 3.05 */
+
+  /* ---- tinted surfaces: ~1.1 against paper, so they ALWAYS need their rule */
+  --surf-blue:   #EAF1FA;  --surf-green: #EAF5EC;
+  --surf-red:    #FBECEC;  --surf-amber: #FBF2E2;  --surf-neutral: #F2EFE6;
+
+  /* ---- the mascot: ink follows currentColor, these are the fills ---- */
+  --mascot-skin:     #D5D5D5;
+  --mascot-eye:      #FFFFFF;
+  --mascot-tip-a:    #B2F2BB;
+  --mascot-tip-b:    #FFC9C9;
+  --mascot-heart:    #D00000;
+  --mascot-bulb:     #FFEC99;
+  --mascot-filament: #F08C00;
+
+  /* ---- focus: two-tone, because no single hue clears 3:1 on both grounds */
+  --selection:   #FDE9A9;    /* ink stays 12:1 on it */
+  /* The mark joins to the wordmark in blue on paper, where red ran hot, and in
+     red on dark, where it needs the warmth. Red stays reserved for state. */
+  --brand-join:  #1263AE;
+  --focus-inner: #12141A;    /* 17.78 on paper */
+  --focus-outer: #FFD400;    /* 12.54 on dark  */
+
+  /* ---- type --------------------------------------------------------- */
+  --font-prose: "Atkinson Hyperlegible", ui-sans-serif, system-ui, -apple-system,
+                "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  /* Excalifont has no logic glyphs, so the patched object-language face backs it
+     up: a symbol typed directly into display text still lands in the right hand
+     instead of a system fallback. */
+  --font-hand:  "Excalifont", "Comic Shanns Logic", "Bradley Hand", "Segoe Print", cursive;
+  /* Comic Shanns carries the formal-language voice inline; source code needs a
+     face built for reading code, so the two roles have separate tokens. */
+  --font-formal: "Comic Shanns Logic", "Comic Shanns", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-code:   "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --step--2: clamp(0.72rem, 0.70rem + 0.10vw, 0.79rem);
+  --step--1: clamp(0.83rem, 0.80rem + 0.17vw, 0.94rem);
+  --step-0:  clamp(1.05rem, 1.00rem + 0.25vw, 1.20rem);
+  --step-1:  clamp(1.25rem, 1.17rem + 0.40vw, 1.50rem);
+  --step-2:  clamp(1.50rem, 1.37rem + 0.65vw, 1.88rem);
+  --step-3:  clamp(1.80rem, 1.59rem + 1.05vw, 2.34rem);
+  --step-4:  clamp(2.16rem, 1.83rem + 1.65vw, 2.93rem);
+  --leading-prose: 1.65;
+  --leading-tight: 1.18;
+
+  /* ---- measure and layout ------------------------------------------- */
+  --measure:       65ch;
+  --width-content: 46rem;
+  --width-wide:    64rem;
+  --width-shell:   82rem;
+  --gutter:        clamp(1rem, 4vw, 2.5rem);
+  --grid-size:     1.5rem;   /* the 5mm square */
+  --radius:        6px;
+  --shadow-raised: 0 1px 2px rgb(35 38 43 / .06), 0 10px 28px -14px rgb(35 38 43 / .22);
+
+  color-scheme: light dark;
+}
+
+/* ---- dark: system preference, unless an explicit light choice overrides -- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper:        #15171B;
+    --paper-raised: #1B1E23;
+    --paper-sunken: #101216;
+    --grid:         #1E2127;   /* 1.11 against the ground */
+    --margin-rule:  #6E4245;
+    --rule:         #2E333B;
+    --rule-strong:  #444B55;
+
+    --ink:       #E9E7E1;      /* 14.51 on ground · 13.05 on a grid line */
+    --ink-muted: #A8AEB8;      /*  8.04 on ground ·  7.23 on a grid line */
+
+    --green-ink:  #37B04D;  --green-gfx:  #37B04D;
+    --blue-ink:   #4E9BE0;  --blue-gfx:   #4E9BE0;
+    --red-ink:    #F07272;  --red-gfx:    #F07272;
+    --orange-ink: #E39B2B;  --orange-gfx: #E39B2B;
+
+    --surf-blue:   #172433;  --surf-green: #16261A;
+    --surf-red:    #2C1B1B;  --surf-amber: #2A2113;  --surf-neutral: #1F2229;
+
+    --mascot-skin:  #6C7079;
+    --mascot-eye:   #F2F1ED;
+    --mascot-tip-a: #4E8F5B;
+    --mascot-tip-b: #A86A6A;
+    --mascot-heart: #E05555;
+    --mascot-bulb:  #8A7530;
+    --mascot-filament: #E39B2B;
+
+    --selection: #3A4A63;
+    --brand-join: #F07272;
+    --shadow-raised: 0 1px 2px rgb(0 0 0 / .5), 0 10px 28px -14px rgb(0 0 0 / .7);
+  }
+}
+
+/* ---- dark: explicit choice, wins in both directions --------------------- */
+:root[data-theme="dark"] {
+  --paper:        #15171B;
+  --paper-raised: #1B1E23;
+  --paper-sunken: #101216;
+  --grid:         #1E2127;
+  --margin-rule:  #6E4245;
+  --rule:         #2E333B;
+  --rule-strong:  #444B55;
+
+  --ink:       #E9E7E1;
+  --ink-muted: #A8AEB8;
+
+  --green-ink:  #37B04D;  --green-gfx:  #37B04D;
+  --blue-ink:   #4E9BE0;  --blue-gfx:   #4E9BE0;
+  --red-ink:    #F07272;  --red-gfx:    #F07272;
+  --orange-ink: #E39B2B;  --orange-gfx: #E39B2B;
+
+  --surf-blue:   #172433;  --surf-green: #16261A;
+  --surf-red:    #2C1B1B;  --surf-amber: #2A2113;  --surf-neutral: #1F2229;
+
+  --mascot-skin:  #6C7079;
+  --mascot-eye:   #F2F1ED;
+  --mascot-tip-a: #4E8F5B;
+  --mascot-tip-b: #A86A6A;
+  --mascot-heart: #E05555;
+  --mascot-bulb:  #8A7530;
+  --mascot-filament: #E39B2B;
+
+  --selection: #3A4A63;
+  --brand-join: #F07272;
+  --shadow-raised: 0 1px 2px rgb(0 0 0 / .5), 0 10px 28px -14px rgb(0 0 0 / .7);
+}
+
+/* ==========================================================================
+   Self-hosted, openly licensed fonts. No third-party requests anywhere.
+   Atkinson Hyperlegible — SIL OFL 1.1, Braille Institute of America
+   Excalifont            — SIL OFL 1.1, Excalidraw
+   Comic Shanns          — MIT, Shannon Miwa
+   ========================================================================== */
+@font-face { font-family: "Atkinson Hyperlegible"; font-style: normal; font-weight: 400;
+  font-display: swap; src: url("/fonts/AtkinsonHyperlegible/AtkinsonHyperlegible-Regular.woff2") format("woff2"); }
+@font-face { font-family: "Atkinson Hyperlegible"; font-style: italic; font-weight: 400;
+  font-display: swap; src: url("/fonts/AtkinsonHyperlegible/AtkinsonHyperlegible-Italic.woff2") format("woff2"); }
+@font-face { font-family: "Atkinson Hyperlegible"; font-style: normal; font-weight: 700;
+  font-display: swap; src: url("/fonts/AtkinsonHyperlegible/AtkinsonHyperlegible-Bold.woff2") format("woff2"); }
+@font-face { font-family: "Excalifont"; font-style: normal; font-weight: 400;
+  font-display: swap; src: url("/fonts/Excalifont.woff2") format("woff2"); }
+@font-face { font-family: "Comic Shanns"; font-style: normal; font-weight: 400;
+  font-display: swap; src: url("/fonts/ComicShanns/comic-shanns.otf") format("opentype"); }
+/* Comic Shanns with the logic symbols added, built by scripts/build-notation-font.py
+   from the course's own traced artwork. See docs/design.md, "Notation". */
+@font-face { font-family: "Comic Shanns Logic"; font-style: normal; font-weight: 400;
+  font-display: swap; src: url("/fonts/ComicShanns/comic-shanns-logic.woff2") format("woff2"); }
+@font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 400 700;
+  font-display: swap; src: url("/fonts/JetBrainsMono/JetBrainsMono-Variable.woff2") format("woff2"); }
+@font-face { font-family: "JetBrains Mono"; font-style: italic; font-weight: 400;
+  font-display: swap; src: url("/fonts/JetBrainsMono/JetBrainsMono-Italic.woff2") format("woff2"); }
+
+/* ==========================================================================
+   The page
+   ========================================================================== */
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+
+body {
+  background-color: var(--paper);
+  /* the squared grid, drawn not loaded */
+  background-image:
+    repeating-linear-gradient(to right,  var(--grid) 0 1px, transparent 1px var(--grid-size)),
+    repeating-linear-gradient(to bottom, var(--grid) 0 1px, transparent 1px var(--grid-size));
+  background-position: center top;
+  color: var(--ink);
+  font-family: var(--font-prose);
+  font-size: var(--step-0);
+  line-height: var(--leading-prose);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Readers who ask for more contrast get plain paper — the grid is decoration. */
+@media (prefers-contrast: more) {
+  body { background-image: none; }
+  :root { --rule: var(--rule-strong); }
+}
+
+/* ==========================================================================
+   Focus — two-tone so it survives any background it lands on.
+   ========================================================================== */
+:where(a, button, input, select, textarea, summary, [tabindex], [contenteditable]):focus-visible {
+  outline: 3px solid var(--focus-inner);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px var(--focus-outer);
+  border-radius: 3px;
+  position: relative;
+  z-index: 5;
+}
+/* Bootstrap paints its own ring on .btn and .btn-close; ours replaces it. */
+.btn:focus-visible, .btn-close:focus-visible {
+  outline: 3px solid var(--focus-inner) !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 6px var(--focus-outer) !important;
+}
+/* A text field sits on a known surface inside a dialog, so one strong ring is
+   enough — and the yellow halo around an input read as an error state. */
+.form-control:focus, .form-control:focus-visible {
+  outline: 3px solid var(--blue-ink) !important;
+  outline-offset: 1px !important;
+  box-shadow: none !important;
+  border-color: var(--blue-ink) !important;
+}
+@media (prefers-contrast: more) {
+  :where(a, button, input, summary, [tabindex]):focus-visible { outline-width: 4px; }
+}
+
+/* ==========================================================================
+   Motion — the site had no reduced-motion handling at all.
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================================================
+   Forced colors — hand-drawn strokes must fall back to system ink.
+   ========================================================================== */
+@media (forced-colors: active) {
+  body { background-image: none; }
+  .mascot, .sym svg { forced-color-adjust: auto; }
+  .callout, .card-note, .chapter-card { border: 1px solid CanvasText !important; }
+  :focus-visible { outline: 3px solid Highlight !important; }
+}
+
+/* ==========================================================================
+   Skip link
+   ========================================================================== */
+.skip-link {
+  position: absolute; left: .5rem; top: .5rem; z-index: 1080;
+  transform: translateY(-200%);
+  background: var(--paper-raised); color: var(--ink);
+  border: 2px solid var(--ink); border-radius: var(--radius);
+  padding: .6rem 1rem; font-weight: 700; text-decoration: none;
+}
+.skip-link:focus { transform: translateY(0); }
+
+/* ==========================================================================
+   Shared helpers
+   ========================================================================== */
+.font-hand { font-family: var(--font-hand); }
+.font-code { font-family: var(--font-code); }
+
+.mascot { display: block; width: 100%; height: auto; color: var(--ink); }
+
+/* Wide things escape the measure without breaking the paragraphs around them */
+.breakout { max-inline-size: var(--width-wide); }
+.scroll-x { overflow-x: auto; overscroll-behavior-x: contain; }
+
+/* Every icon-only control gets a real target (WCAG 2.5.8 asks for 24px) */
+.btn-icon {
+  min-inline-size: 2.75rem; min-block-size: 2.75rem;
+  display: inline-flex; align-items: center; justify-content: center;
+}

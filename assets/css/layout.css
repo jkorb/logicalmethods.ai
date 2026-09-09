@@ -1,122 +1,391 @@
+/* ==========================================================================
+   layout.css — the notebook
+   Depends on tokens.css. Section-specific rules live in their own files.
+   ========================================================================== */
+
+/* ---- media never sets the page width -------------------------------------
+   Several content images carry a fixed width attribute. A percentage max-width
+   is ignored while the browser computes min-content, so without an explicit
+   floor they widen their grid track and push the page sideways on small screens. */
+img, svg, video, canvas, iframe { max-inline-size: 100%; block-size: auto; }
+img { min-inline-size: 0; }
+
+/* ---- containers --------------------------------------------------------- */
+.shell {
+  width: 100%;
+  max-inline-size: var(--width-shell);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.site-main { display: block; }
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+.site-header { position: sticky; top: 0; z-index: 1030; }
+
+.navbar-main {
+  background: color-mix(in srgb, var(--paper) 97%, transparent);
+  backdrop-filter: blur(10px) saturate(1.1);
+  border-block-end: 1px solid var(--rule);
+}
+.navbar-main__inner {
+  display: flex; align-items: center; gap: .5rem 1rem; flex-wrap: wrap;
+  min-block-size: 3.5rem; padding-block: .35rem;
+}
+/* On a narrow phone the three section links drop to their own row rather than
+   pushing the page sideways. */
+@media (max-width: 30rem) {
+  .navbar-main__inner { gap: .15rem .5rem; }
+  .navbar-main__links { order: 3; flex-basis: 100%; margin: 0; justify-content: center; }
+  .navbar-main__links a { padding-inline: .5rem; }
+  .brand__host { font-size: 1rem; }
+}
+
+.brand { display: flex; align-items: center; gap: .45rem; text-decoration: none; color: var(--ink); }
+.brand__join {
+  inline-size: .95rem; block-size: .5rem; flex: none;
+  background-color: var(--brand-join);
+  -webkit-mask-image: var(--dash); mask-image: var(--dash);
+  -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+}
+.brand__mark { flex: none; inline-size: 1.9rem; display: block; }
+.brand__mark .mascot { inline-size: 100%; }
+.brand__host { font-family: var(--font-hand); font-size: 1.1rem; color: var(--ink); letter-spacing: .005em; }
+.navbar-main__links { display: flex; flex-wrap: wrap; list-style: none;
+                      margin: 0 auto; padding: 0; gap: .1rem .35rem; }
+.navbar-main__links a {
+  position: relative; display: block; padding: .45rem .7rem .5rem;
+  border-radius: var(--radius); text-decoration: none; color: var(--ink);
+  font-size: var(--step--1);
+}
+.navbar-main__links a:hover { background: var(--paper-sunken); }
+.navbar-main__links a[aria-current] { font-weight: 700; }
+.navbar-main__links a[aria-current]::after { content: ""; }
+
+.btn-icon { color: var(--ink); border: 1px solid transparent; background: none; border-radius: var(--radius); }
+.btn-icon:hover { background: var(--paper-sunken); border-color: var(--rule); color: var(--ink); }
+
+/* ==========================================================================
+   Notice band
+   ========================================================================== */
+.notice-band { padding-block-start: 1rem; }
+.notice {
+  max-inline-size: var(--width-shell); margin-inline: auto;
+  margin-block-end: .5rem;
+  display: flex; gap: .6rem; align-items: flex-start;
+  padding: .7rem 1rem; border-radius: var(--radius);
+  font-size: var(--step--1);
+  background: var(--surf-amber); border: 1px solid var(--rule);
+  border-inline-start: 3px solid var(--orange-gfx);
+}
+.notice i { color: var(--orange-ink); }
+.notice--danger { background: var(--surf-red); border-inline-start-color: var(--red-gfx); }
+.notice--danger i { color: var(--red-ink); }
+
+/* ==========================================================================
+   Prose — the reading column
+   ========================================================================== */
+.prose { max-inline-size: var(--width-content); margin-inline: auto; }
+.prose > * { max-inline-size: var(--measure); }
+.prose > .breakout, .prose > .table-scroll, .prose > figure, .prose > .callout { max-inline-size: none; }
+
+.prose p, .prose li { overflow-wrap: break-word; }
+.prose p { margin-block: 0 .95em; text-wrap: pretty; }
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  font-family: var(--font-hand); line-height: var(--leading-tight); text-wrap: balance;
+  margin-block: 2.2em .55em; scroll-margin-block-start: 5rem;
+}
+.prose h1 { font-size: var(--step-3); margin-block-start: 0; }
+.prose h2 { font-size: var(--step-2); }
+.prose h3 { font-size: var(--step-1); }
+.prose h4, .prose h5, .prose h6 { font-size: var(--step-0); font-weight: 700; }
+.prose ul, .prose ol { padding-inline-start: 1.4rem; margin-block-end: 1em; }
+.prose li + li { margin-block-start: .3em; }
+.prose a { color: var(--blue-ink); text-underline-offset: .18em; text-decoration-thickness: 1px; }
+.prose a:hover { text-decoration-thickness: 2px; }
+.prose strong { font-weight: 700; }
+.prose hr { border: 0; border-block-start: 1px solid var(--rule); margin-block: 2rem; }
+.prose blockquote {
+  margin: 1.4rem 0; padding: .2rem 0 .2rem 1.1rem;
+  border-inline-start: 3px solid var(--rule-strong); color: var(--ink-muted); font-style: italic;
+}
+.prose img { max-inline-size: 100%; height: auto; }
+.prose figure { margin: 1.6rem 0; }
+.prose figcaption { font-size: var(--step--1); color: var(--ink-muted); margin-block-start: .5rem; }
+
+/* Anchor links on headings — revealed on hover or keyboard focus */
+.heading-anchor {
+  margin-inline-start: .4em; opacity: 0; text-decoration: none;
+  color: var(--ink-muted); font-size: .7em; vertical-align: middle;
+}
+:is(h1,h2,h3,h4,h5,h6):hover .heading-anchor, .heading-anchor:focus-visible { opacity: 1; }
+@media (hover: none) { .heading-anchor { opacity: .5; } }
+
+/* Selection keeps its own ink color, so muted text stays legible when highlighted. */
+::selection { background: var(--selection); color: var(--ink); }
+
+/* ---- notation ----------------------------------------------------------- */
+.excalifont { font-family: var(--font-hand); overflow-wrap: break-word; }
+/* Display formulas scroll inside themselves; inline runs of symbol images wrap. */
+div.excalifont, .customBlock { overflow-x: auto; overscroll-behavior-x: contain; }
+/* inline formal-language notation keeps the hand */
+.shanns, code, kbd, samp, .customCode, .Boolean, .Kleene { font-family: var(--font-formal); }
+/* multi-line source code is read character by character: a code face, at a
+   readable size, upright. Comic Shanns' slant costs comprehension here. */
+pre, pre code, .chroma, .highlight { font-family: var(--font-code); font-style: normal; }
+/* Inline backticks now carry object-language notation far more often than they
+   carry code, so they are unadorned: the face alone marks them. */
+code { color: inherit; background: none; border: 0; padding: 0;
+       font-size: 1.02em; overflow-wrap: break-word; }
+pre { background: var(--paper-sunken); border: 1px solid var(--rule); border-radius: var(--radius);
+      padding: .9rem 1rem; overflow-x: auto; max-inline-size: 100%;
+      font-size: .92em; line-height: 1.6; tab-size: 2; }
+pre code { background: none; border: 0; padding: 0; }
+
+/* Chroma emits line numbers as a table inside div.highlight; the wrapper has to
+   be the scroller or long code lines push the whole page sideways. */
+.highlight { overflow-x: auto; overscroll-behavior-x: contain; max-inline-size: 100%;
+             border: 1px solid var(--rule); border-radius: var(--radius); background: var(--paper-sunken);
+             font-size: .92em; line-height: 1.6; margin-block: 1.4rem; }
+.highlight pre, .highlight .chroma { overflow: visible; border: 0; margin: 0; background: none; }
+.highlight table, .highlight .lntable { inline-size: auto; margin: 0; border: 0; }
+.highlight .lntable td { border: 0; padding: 0; text-align: start; }
+.highlight .lnt { color: var(--ink-muted); user-select: none; }
+.customBlock { font-size: clamp(1.3rem, 1vw + .6rem, 1.85rem); }
+
+
+/* Two formal languages must differ by more than hue (WCAG 1.4.1) */
+.Boolean { font-family: var(--font-formal); color: var(--blue-ink);
+           text-decoration: underline solid 1px; text-underline-offset: .22em; }
+.Kleene  { font-family: var(--font-formal); color: var(--red-ink);
+           text-decoration: underline dotted 2px; text-underline-offset: .22em; }
+.dark-green { color: var(--green-ink); } .dark-blue { color: var(--blue-ink); }
+.dark-red { color: var(--red-ink); }     .dark-orange { color: var(--orange-ink); }
+
+/* Remaining raster inline art (dice, portraits, vendor logos) has an opaque
+   white ground, so it sits on a small light card rather than being inverted. */
+.inline-icon { vertical-align: -.12em; border-radius: 3px; }
+:root[data-theme="dark"] .inline-icon,
+:root:not([data-theme="light"]) .inline-icon { background: #FBFAF7; }
+
+/* ---- tables ------------------------------------------------------------- */
+.table-scroll { overflow-x: auto; margin-block: 1.4rem; border: 1px solid var(--rule);
+                border-radius: var(--radius); background: var(--paper-raised); }
+.table-scroll:focus-visible { outline: 3px solid var(--focus-inner); outline-offset: 2px; }
+.prose table { border-collapse: collapse; margin: 0; inline-size: 100%;
+               font-variant-numeric: tabular-nums; font-size: var(--step--1); }
+.prose th, .prose td { padding: .45rem .7rem; border-block-end: 1px solid var(--rule); text-align: center; }
+.prose th:first-child, .prose td:first-child { text-align: start; }
+.prose thead th { background: var(--paper-sunken); font-weight: 700; }
+.prose tbody tr:last-child td { border-block-end: 0; }
+.prose caption { caption-side: top; padding: .5rem .7rem; font-size: var(--step--1);
+                 color: var(--ink-muted); text-align: start; }
+
+/* ==========================================================================
+   Mascot sizing
+   ========================================================================== */
+.mascot-sm { inline-size: 3rem; }
+.mascot-md { inline-size: 6rem; }
+.mascot-lg { inline-size: min(15rem, 40vw); }
+.mascot-hero { inline-size: min(18rem, 46vw); }
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+.btn-hand {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-family: var(--font-hand); font-size: var(--step-0);
+  padding: .55rem 1.15rem; text-decoration: none;
+  color: var(--ink); background: var(--paper-raised);
+  border: 2px solid var(--ink);
+  border-radius: 255px 14px 225px 16px / 16px 225px 16px 255px;   /* sketched box */
+  box-shadow: 2px 2px 0 var(--ink);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.btn-hand:hover { transform: translate(-1px, -1px); box-shadow: 3px 3px 0 var(--ink); color: var(--ink); }
+.btn-hand:active { transform: translate(1px, 1px); box-shadow: 1px 1px 0 var(--ink); }
+.btn-hand--primary { background: var(--surf-red); border-color: var(--red-ink); box-shadow: 2px 2px 0 var(--red-ink); }
+.btn-hand--primary:hover { box-shadow: 3px 3px 0 var(--red-ink); }
+
+/* ==========================================================================
+   Back to top
+   ========================================================================== */
+.back-to-top {
+  position: fixed; inset-block-end: 1rem; inset-inline-end: 1rem; z-index: 1020;
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .5rem .85rem; font-size: var(--step--1);
+  background: var(--paper-raised); color: var(--ink);
+  border: 1px solid var(--rule-strong); border-radius: 999px;
+  box-shadow: var(--shadow-raised);
+  opacity: 0; visibility: hidden; transition: opacity .2s ease, visibility .2s ease;
+}
+.back-to-top.is-visible { opacity: 1; visibility: visible; }
+.back-to-top:focus-visible { opacity: 1; visibility: visible; }
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.site-footer { margin-block-start: 4rem; border-block-start: 1px solid var(--rule);
+               background: var(--paper-sunken); }
+.site-footer__inner {
+  display: grid; gap: 1.25rem 2rem; padding-block: 2rem 1.5rem;
+  grid-template-columns: 1fr;
+  font-size: var(--step--1); color: var(--ink-muted);
+}
+@media (min-width: 48rem) { .site-footer__inner { grid-template-columns: repeat(3, 1fr); } }
+.site-footer__col { margin: 0; }
+.site-footer__head { display: block; font-weight: 700; color: var(--ink); margin-block-end: .25rem; }
+.site-footer a { color: var(--blue-ink); }
+.site-footer__meta { margin: 0; grid-column: 1 / -1; padding-block-start: 1rem;
+                     border-block-start: 1px solid var(--rule); font-family: var(--font-code);
+                     font-size: var(--step--2); }
+
+/* ==========================================================================
+   Print — the notebook page, without the furniture
+   ========================================================================== */
+@media print {
+  body { background: #fff !important; background-image: none !important; color: #000; font-size: 11pt; }
+  .site-header, .site-footer, .offcanvas, .back-to-top, .chapter-rail, .on-this-page,
+  .page-nav, .theme-toggle, .skip-link, .notice-band { display: none !important; }
+  .prose, .prose > * { max-inline-size: none; }
+  .prose a::after { content: " (" attr(href) ")"; font-size: .85em; word-break: break-all; }
+  .prose a[href^="#"]::after { content: ""; }
+  .callout, .table-scroll { break-inside: avoid; border: 1px solid #999; }
+  h1, h2, h3 { break-after: avoid; }
+}
+
+/* the ∀I wordmark when it appears inline in prose */
+.logo-mark { font-family: var(--font-hand); white-space: nowrap; }
+
+/* Floated content images crush the measure on a narrow screen: below the
+   tablet breakpoint they become full-width blocks instead. */
+@media (max-width: 47.99rem) {
+  .prose .float-end, .prose .float-start,
+  .prose [class*="float-"] { float: none !important; display: block;
+                             margin-inline: auto !important; margin-block: 1rem !important; }
+}
+
+/* ==========================================================================
+   The hand-drawn underline
+   A mask lets one squiggle take any color, in either theme.
+   ========================================================================== */
+.underline-hand::after,
+.navbar-main__links a[aria-current]::after {
+  content: "";
+  position: absolute; inset-inline: .25rem; inset-block-end: .05rem;
+  block-size: .42em;
+  background-color: var(--red-gfx);
+  -webkit-mask-image: var(--squiggle); mask-image: var(--squiggle);
+  -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  pointer-events: none;
+}
 :root {
-  --dark-green: #2f9e44;
-  --dark-blue: #1971c2;
-  --dark-red: #e03131;
-  --dark-orange: #f08c00;
+  /* Drawn fast, not carefully: a thick stroke, gentle drift, one slight tilt —
+     the way you underline a heading, not the way you rule a line. */
+  --squiggle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 12' preserveAspectRatio='none'%3E%3Cpath d='M2,8.4 C18,6.1 34,5.4 52,4.9 68,4.5 84,4.6 98,3.4' fill='none' stroke='%23000' stroke-width='5.2' stroke-linecap='round'/%3E%3C/svg%3E");
+  --dash: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 12' preserveAspectRatio='none'%3E%3Cpath d='M3,7.6 C13,6.2 26,5.6 37,4.6' fill='none' stroke='%23000' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+@media (forced-colors: active) {
+  .underline-hand::after, .navbar-main__links a[aria-current]::after {
+    background-color: CanvasText;
+  }
 }
 
-body {
-  min-height: 100vh; 
-  font-size: clamp(0.9rem, 1vw + 0.5rem, 1.2rem);
+/* the hand-drawn buttons keep their label on one line */
+.btn-hand { white-space: nowrap; }
+.btn-hand .hand-icon { inline-size: 1.35em; block-size: 1.35em; flex: none; }
+.hand-icon { display: inline-block; vertical-align: -.28em; color: inherit; }
+
+/* the active mark, wherever it appears */
+.chapter-rail__item.is-current,
+.prose .chapter-rail__item.is-current { background: none; border-inline-start-color: transparent; position: relative; }
+
+/* ==========================================================================
+   Weight for a single-weight handwriting face
+   Excalifont ships one weight. font-weight:700 would trigger the browser's
+   synthetic bold, which smears the strokes. A hairline text-stroke thickens
+   the same outline evenly instead.
+   ========================================================================== */
+.prose h1, .prose h2, .prose h3,
+.hero__title, .section-head, .section-head-block__title, .chapter__name {
+  font-weight: 400;
+  -webkit-text-stroke: .016em currentColor;
+  paint-order: stroke fill;
+}
+.prose h4, .prose h5, .prose h6 { -webkit-text-stroke: .012em currentColor; }
+
+/* 15 — sections were separated by more air than they needed */
+.prose h2 { margin-block: 1.5em .45em; }
+.prose h3 { margin-block: 1.3em .4em; }
+.prose h4, .prose h5, .prose h6 { margin-block: 1.15em .35em; }
+
+/* ==========================================================================
+   Figures
+   The book's diagrams are Excalidraw screenshots on a white ground. On paper,
+   multiply lets the white disappear. In dark mode the colors cannot be
+   inverted without lying about them, so the figure sits on its own light
+   card instead — a printout pasted into the notebook.
+   ========================================================================== */
+.prose :is(p, div) > img:not(.inline-icon),
+.prose > img:not(.inline-icon) { border-radius: 4px; }
+:root .prose img:not(.inline-icon) { mix-blend-mode: multiply; }
+:root[data-theme="dark"] .prose img:not(.inline-icon),
+:root[data-theme="dark"] .figure-card { mix-blend-mode: normal; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .prose img:not(.inline-icon) { mix-blend-mode: normal; }
+}
+:root[data-theme="dark"] .prose img:not(.inline-icon) {
+  background: #FBFAF7; padding: .5rem; border-radius: 6px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .prose img:not(.inline-icon) {
+    background: #FBFAF7; padding: .5rem; border-radius: 6px;
+  }
 }
 
-header, footer, main, .alert, .element {
-  width:100vw;
-  max-width:1140px;
+/* ==========================================================================
+   Logic symbols
+   Traced from the original drawings. currentColor means one asset serves
+   paper, dark mode and forced colors, and it scales with the text.
+   ========================================================================== */
+.sym { display: inline-block; vertical-align: -.12em; line-height: 1; margin-inline: .06em; }
+.sym .sym__svg { display: block; block-size: calc(var(--sym-scale, .75) * 1em);
+                 inline-size: auto; fill: currentColor; }
+
+
+/* A logic symbol rendered as text, in the patched object-language face. */
+.notation { font-family: var(--font-formal); font-style: normal; }
+
+/* ==========================================================================
+   The mascot in dark mode
+   The mark is line art and follows currentColor. The figures carry real color
+   (skin, antenna tips, the heart), so they are inverted whole: that keeps every
+   internal relationship intact — pupil against eye-white, ink against skin —
+   which per-part recoloring does not.
+   ========================================================================== */
+:root[data-theme="dark"] .mascot--figure { filter: invert(1) hue-rotate(180deg); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .mascot--figure { filter: invert(1) hue-rotate(180deg); }
 }
+@media (forced-colors: active) { .mascot--figure { filter: none; } }
 
-main, .element {
-  box-shadow: 0 0.2rem 0.5rem rgba(255, 255, 255, 0.4)
+/* 10 — the outbound marker leads the link, close to it */
+.link-external { font-size: .78em; margin-inline-end: .18em; vertical-align: .04em; opacity: .75; }
+.link-out:hover .link-external { opacity: 1; }
+
+/* An inlined vector figure behaves like a block image. */
+.figure-inline { display: block; margin-inline: auto; margin-block: 1.4rem; max-inline-size: 100%; }
+.figure-inline--sized { inline-size: min(var(--figure-w), 100%); }
+.figure-inline .figure-svg { inline-size: 100%; block-size: auto; display: block; }
+/* A diagram's colours assume a light ground: its arrows and labels are drawn in
+   ink, its fills are pale. Rather than distort them, the figure sits on its own
+   sheet of paper in dark mode — the same treatment the raster figures get. */
+:root[data-theme="dark"] .figure-inline,
+:root:not([data-theme="light"]) .figure-inline {
+  background: #FBFAF7; padding: .75rem; border-radius: 8px; inline-size: fit-content;
 }
-
-.btn .toggle-icon, .toggle-icon-right {
-  transition: transform .35s ease;
-  display: inline-block;
-}
-
-.btn[aria-expanded="true"] .toggle-icon {
-  transform: rotate(-90deg);
-}
-.btn[aria-expanded="true"] .toggle-icon-right {
-  transform: rotate(90deg);
-}
-
-.inert-img {
-  user-select: none;
-  -webkit-user-select: none; /* Safari */
-  -moz-user-select: none;
-  -ms-user-select: none;
-
-  -webkit-user-drag: none;   /* Safari/old WebKit */
-  -khtml-user-drag: none;
-
-  -webkit-touch-callout: none; /* no long-press menu on iOS */
-  pointer-events: none;        /* if you don't want it clickable */
-}
-
-@font-face {
-  font-family: 'Excalifont';
-  src: url('/fonts/Excalifont.woff2') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Comic Shanns';
-  src: url('/fonts/Comic Shanns/comic shanns.otf') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-}
-
-.customBlock {
-  font-size: clamp(1.4rem, 1vw + 0.5rem, 2rem);
-}
-
-.excalifont 
-{
-  font-family: 'Excalifont', sans-serif;
-  /* font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem); */
-}
-
-.shanns 
-{
-  font-family: 'Comic Shanns', monospace;
-  /* font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem); */
-}
-
-
-code {
-  font-family: "Comic Shanns", monospace;
-  /* white-space: nowrap; */
-  max-width:1140px;
-  color: #000; /* force black text */
-  /* font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem); */
-  /* font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem); /* a bit larger than normal */ */
-}
-
-.Boolean {
-  font-family: "Comic Shanns", monospace;
-  color: #1971c2; 
-}
-
-.Kleene {
-  font-family: "Comic Shanns", monospace;
-  color: #e03131; 
-}
-
-
-.dark-green { color: var(--dark-green); }
-.dark-blue  { color: var(--dark-blue); }
-.dark-red   { color: var(--dark-red); }
-.dark-orange{ color: var(--dark-orange); }
-
-
-
-table {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.right-justified {
-  float: right;       /* pushes it to the right edge */
-  margin-right: 20vw;   /* small gap so it doesn’t crowd the formula */
-}
-
-/* pre code { */
-/*   font-family: "Comic Shanns", monospace; */
-/*   margin: 10pt; */
-/*   /* white-space: nowrap; */ */
-/*   /* color: #000; /* force black text */ */ */
-/*   /* font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem); */ */
-/*   /* font-size: clamp(0.9rem, 1vw + 0.5rem, 1.4rem); /* a bit larger than normal */ */ */
-/* } */
+:root[data-theme="dark"] .figure-inline--sized,
+:root:not([data-theme="light"]) .figure-inline--sized { inline-size: min(var(--figure-w), 100%); }

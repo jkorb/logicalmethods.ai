@@ -1,54 +1,93 @@
 <!doctype html>
-<html lang="en" data-bs-theme="light">
+<html lang="en">
   <head>
-    <meta charset="utf-8"></meta>
-    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-    <title>logicalmethods.ai {{ with .Params.title }}&ndash; {{ . }} {{ end }}</title>
-    <link rel="icon" type="image/x-icon" href="{{ (resources.Get "favicon.ico").Permalink}}"></link>
-    <link href="{{ (resources.Get "bootstrap/dist/css/bootstrap.min.css").Permalink}}" rel="stylesheet"></link>
-    <link rel="stylesheet" href="{{ (resources.Get "icons/font/bootstrap-icons.min.css").Permalink}}"></link>
-    <link rel="stylesheet" href="{{ (resources.Get "css/layout.css").Permalink }}"></link>
-    <link rel="stylesheet" href="{{ (resources.Get "css/syntax_hl.css").Permalink }}"></link>
-    {{ block "head" . }}
-    {{ end }}
-    <style>
-      {{ block "style" . }}
-      {{ end }}
-    </style>
-    {{ if .Param "math" }}
-      {{ partialCached "shared/math.html" . }}
-    {{ end }}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+
+    {{- $isHome := .IsHome -}}
+    <title>{{ if $isHome }}Logical methods for AI{{ else }}{{ .Title }}{{ end }} &middot; logicalmethods.ai</title>
+
+    {{- $desc := "" -}}
+    {{- with .Params.teaser }}{{ $desc = . }}{{ end -}}
+    {{- if not $desc }}{{ with .Description }}{{ $desc = . }}{{ end }}{{ end -}}
+    {{- if not $desc }}{{ $desc = "An open textbook on the logical foundations of artificial intelligence, for AI undergraduates at Utrecht University." }}{{ end -}}
+    <meta name="description" content="{{ $desc }}">
+    <link rel="canonical" href="{{ .Permalink }}">
+
+    <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+    <meta property="og:title" content="{{ if $isHome }}Logical methods for AI{{ else }}{{ .Title }}{{ end }}">
+    <meta property="og:description" content="{{ $desc }}">
+    <meta property="og:url" content="{{ .Permalink }}">
+    <meta property="og:site_name" content="logicalmethods.ai">
+    <meta name="twitter:card" content="summary">
+
+    <link rel="icon" type="image/x-icon" href="{{ (resources.Get "favicon.ico").Permalink }}">
+
+    {{/* Theme is applied before first paint so the page never flashes the wrong ground. */}}
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("lm-theme");
+          if (t === "dark" || t === "light") {
+            document.documentElement.setAttribute("data-theme", t);
+            document.documentElement.setAttribute("data-bs-theme", t);
+          } else {
+            document.documentElement.setAttribute("data-bs-theme",
+              window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    {{/* Preload the prose face: it is on the critical path for every page. */}}
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+          href="{{ (resources.Get "fonts/AtkinsonHyperlegible/AtkinsonHyperlegible-Regular.woff2").Permalink }}">
+
+    <link href="{{ (resources.Get "bootstrap/dist/css/bootstrap.min.css").Permalink }}" rel="stylesheet">
+    {{/* A subset of Bootstrap Icons: the ~35 this site uses, not the ~2,000
+         upstream. Rebuild with scripts/subset-icons.py after adding an icon. */}}
+    <link rel="stylesheet" href="{{ (resources.Get "icons/subset/bootstrap-icons-subset.css").Permalink }}">
+    <link rel="stylesheet" href="{{ (resources.Get "css/tokens.css").Permalink }}">
+    <link rel="stylesheet" href="{{ (resources.Get "css/layout.css").Permalink }}">
+    <link rel="stylesheet" href="{{ (resources.Get "css/pages.css").Permalink }}">
+    <link rel="stylesheet" href="{{ (resources.Get "css/syntax_hl.css").Permalink }}">
+    {{ block "head" . }}{{ end }}
+    <style>{{ block "style" . }}{{ end }}</style>
+    {{/* KaTeX is loaded only where real LaTeX is typeset. Elsewhere the
+         templates strip $ before Markdown runs, so it rendered nothing. */}}
+    {{ if .Param "latex" }}{{ partialCached "shared/math.html" . }}{{ end }}
   </head>
-  <body class="bg-black d-flex flex-column m-0 p-0">
-    {{ partial "baseof/offcanvas-nav" . }}
-    <header class="align-self-center d-flex flex-column m-0 mb-md-1 p-0" data-bs-theme="dark">
-      {{ partial "baseof/navbar" .}}
-      {{ block "header" . }}
-      {{ end }}
+
+  <body class="d-flex flex-column min-vh-100">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      {{ partial "baseof/navbar" . }}
+      {{ block "header" . }}{{ end }}
     </header>
-    {{ with .Param "alerts"}}
+
+    {{ with .Param "alerts" }}
+      <div class="notice-band">
+        {{ range . }}{{ partial "baseof/alarm" . }}{{ end }}
+      </div>
+    {{ end }}
+
+    <main id="main" class="site-main flex-fill" tabindex="-1">
+      {{ block "main" . }}{{ end }}
+    </main>
+
+    <footer class="site-footer">
+      {{ partial "baseof/footer" . }}
+    </footer>
+
+    <script src="{{ (resources.Get "js/helpers.js").Permalink }}"></script>
+    <script src="{{ (resources.Get "bootstrap/dist/js/bootstrap.bundle.min.js").Permalink }}"></script>
+    {{ with .Params.js }}
       {{ range . }}
-        {{ partial "baseof/alarm" . }}
+        {{ with resources.Get . }}<script type="module" src="{{ .Permalink }}"></script>{{ end }}
       {{ end }}
     {{ end }}
-    <main class="align-self-center d-flex flex-column flex-fill bg-white m-md-1 p-0" data-bs-theme="light">
-      {{ block "main" . }}
-      {{ end }}
-    </main>
-    <footer class="align-self-center d-flex flex-column mt-md-1 p-0" data-bs-theme="dark">
-      {{ partial "baseof/footer" . }} 
-      <script src="{{ (resources.Get "js/helpers.js").Permalink}}"></script>
-      <script src="{{ (resources.Get "bootstrap/dist/js/bootstrap.bundle.min.js").Permalink}}"></script>
-      {{ if .Params.js }}
-        {{ range .Params.js }}
-          {{ $res := resources.Get . }}
-          {{ if $res }}
-            <script type="module" src="{{ $res.Permalink }}"></script>
-          {{ end }}
-        {{ end }}
-      {{ end }}
-      {{ block "footer" . }}
-      {{ end }}
-    </footer>
+    {{ block "footer" . }}{{ end }}
   </body>
 </html>
