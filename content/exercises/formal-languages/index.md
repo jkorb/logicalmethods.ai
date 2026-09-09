@@ -5,7 +5,6 @@ weight: 20
 locked: false
 params: 
   id: exc-for
-  math: true
 ---
 
 # Ambiguity {.solved}
@@ -147,15 +146,15 @@ Describe the following sets using set notation:
 
 ## Solution {.solution #setsSolution}
 
-1. ${ }$, with nothing written between the curly brackets. There is also the set-theoretic symbol $∅$.
+1. `{ }`, with nothing written between the curly brackets. There is also the set-theoretic symbol `∅`.
 
-2. ${ {{< logo >}}, UU, {{{< logo >}}} }$
+2. `{ {{< logo >}}, UU, {{{< logo >}}} }`
 
-3. ${ 2, 4, 6, 8 }$ or ${ n : n is an even number between 1 and 10}$
+3. `{ 2, 4, 6, 8 }` or `{ n : n is an even number between 1 and 10}`
 
-4. ${ n : n is an even natural number }$
+4. `{ n : n is an even natural number }`
 
-5. ${ {1}, {2}, {3}, {1,2}, {1,3}, {2,3}, {1,2,3} }$ or: $${ x : x is a non-empty set with only members from {1, 2, 3} }$$
+5. `{ {1}, {2}, {3}, {1,2}, {1,3}, {2,3}, {1,2,3} }` or: ```{ x : x is a non-empty set with only members from {1, 2, 3} }```
 
 # Parsing {.solved}
 
@@ -231,9 +230,9 @@ in Polish notation.
 
 ## Solution {.solution #polish-notationSolution}
 
-1. I'm using $ϕ$ as the variable in the form, rather than $A$ as before to avoid confusion with the symbol for disjunction:
+1. I'm using `ϕ` as the variable in the form, rather than `A` as before to avoid confusion with the symbol for disjunction:
 
-  $$φ ::= p | q | Nφ | Kφφ | Aφφ | Cφφ | Bφφ$$
+  ```φ ::= p | q | Nφ | Kφφ | Aφφ | Cφφ | Bφφ```
 
 2. Here are the rewrite rules:
 
@@ -243,17 +242,17 @@ in Polish notation.
 
   {{< img src="img/polish_tree.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="350px">}}
 
-3. $pCpqNqCpr$ can't be a formula in Polish notation since there are only two
-   options: either a formula starts with an operator from $N,K,A,C,B$ or it is
+3. `pCpqNqCpr` can't be a formula in Polish notation since there are only two
+   options: either a formula starts with an operator from `N,K,A,C,B` or it is
 a propositional variable. But this formula starts with a propositional variable and then continues. There is no rule, which can generate such a formula, so it isn't one.
 
 
-4. The formula was {{< img src="img/neg_p_and_q.png" class="inert-img" height="38px" style="vertical-align: middle;" >}}. If we write this in Polish notation, it becomes $NKpq$. But this formula now has a unique reading, given by the following parse tree:
+4. The formula was {{< img src="img/neg_p_and_q.png" class="inert-img" height="38px" style="vertical-align: middle;" >}}. If we write this in Polish notation, it becomes `NKpq`. But this formula now has a unique reading, given by the following parse tree:
 
 
     {{< img src="img/parse_ambi.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="250px">}}
 
-    If we wanted to give it "the other" reading, we would need to write $KNpq$.
+    If we wanted to give it "the other" reading, we would need to write `KNpq`.
 
 # Knowledge representation {.solved}
 

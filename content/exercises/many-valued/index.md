@@ -4,27 +4,26 @@ author: Johannes Korbmacher
 weight: 100
 params: 
   id: exc-mv
-  math: true
 ---
 
-# $K3$-Sat Solving {.solved}
+# `K3`-Sat Solving {.solved}
 
-In class, we've implemented a counter-model searcher for $K3$ inferences using
+In class, we've implemented a counter-model searcher for `K3` inferences using
 SQL in [db-fiddle](https://www.db-fiddle.com/f/ixfKDFBJaxNfSSysEQvpgk/6). Use
-the machinery to check whether the following inferences are $K3$ valid or not:
+the machinery to check whether the following inferences are `K3` valid or not:
 
-1. $(RAIN {{< lor >}}(RAIN {{< land >}}SUN)){{< therefore >}} SUN$
-1. $SUN {{< therefore >}} RAIN {{< land >}}{{< neg >}} RAIN$
-1. $SUN, {{< neg >}}SUN {{< therefore >}} RAIN$
-1. $RAIN {{< land >}}{{< neg >}}SUN {{< therefore >}} {{< neg >}}({{< neg >}}RAIN {{< lor >}} SUN)$
-1. $WIND {{< therefore >}} {{< neg >}}(RAIN {{< land >}} {{< neg >}}RAIN)$
-1. $RAIN {{< therefore >}} RAIN {{< lor >}} {{< neg >}}RAIN$
+1. `(RAIN ∨(RAIN ∧SUN))∴ SUN`
+1. `SUN ∴ RAIN ∧¬ RAIN`
+1. `SUN, ¬SUN ∴ RAIN`
+1. `RAIN ∧¬SUN ∴ ¬(¬RAIN ∨ SUN)`
+1. `WIND ∴ ¬(RAIN ∧ ¬RAIN)`
+1. `RAIN ∴ RAIN ∨ ¬RAIN`
 
 ## Solution {#k3-sat-solvingSolution .solution}
 
 The following [db-fiddle](https://www.db-fiddle.com/f/ixfKDFBJaxNfSSysEQvpgk/12) contains queries for each of the above inferences. The ones that return non-empty tables have countermodels, which are given by the return values. The annotations explain how to interpret the tables.
 
-# $K3$-Laws {.solved}
+# `K3`-Laws {.solved}
 
 In fact, you can use a similar method to verify the laws of Kleene algebra using SQL.
 
@@ -55,14 +54,13 @@ laws hold.
 
 # Łukasiewicz conditionals {.solved}
 
-In $K3$, we've defined a semantics for conditionals by saying that $$v(A{{< to
->}}B) = (~!NOT!~ A) ~!OR!~ B$$
+In `K3`, we've defined a semantics for conditionals by saying that ```v(A→B) = (~!NOT!~ A) ~!OR!~ B```
 
-This gives rise to the Kleene logic $K3$. But interestingly, in this logic,
-it's not a logical law that $RAIN {{< to >}}RAIN$—there are countermodels,
+This gives rise to the Kleene logic `K3`. But interestingly, in this logic,
+it's not a logical law that `RAIN →RAIN`—there are countermodels,
 where this statement isn't true.
 
-But there's an alternative system of $3$-valued logic, which is defined just
+But there's an alternative system of `3`-valued logic, which is defined just
 like Kleene logic, except that it uses the following truth-table to interpret
 the conditional:
 
@@ -70,32 +68,32 @@ the conditional:
 
 That is, in this system,
 
-$$v(A{{< to >}}B) = A ~!Ł!~ B$$
+```v(A→B) = A ~!Ł!~ B```
 
-This logic is called Łukasiewicz logic, $Ł$.
+This logic is called Łukasiewicz logic, `Ł`.
 
-1. Verify that there exists a $K3$ model, where $RAIN {{< to >}}RAIN$ is not true.
+1. Verify that there exists a `K3` model, where `RAIN →RAIN` is not true.
 
-2. Verify that $RAIN{{< to >}}RAIN$ is true in all $Ł$ models.
+2. Verify that `RAIN→RAIN` is true in all `Ł` models.
 
-3. Is MP valid in $Ł$-logic?
+3. Is MP valid in `Ł`-logic?
 
 ## Solution {#łukasiewicz-conditionalsSolution .solution}
 
-1. Consider the $K3$-model where $v(RAIN) = ω$. In this model, we have 
+1. Consider the `K3`-model where `v(RAIN) = ω`. In this model, we have 
 
-    $$v(RAIN {{< to >}}RAIN) = (~!NOT!~ v(RAIN)) ~!OR!~ v(RAIN) = (~!NOT!~ ω) ~!OR!~ ω = ω$$
+    ```v(RAIN →RAIN) = (~!NOT!~ v(RAIN)) ~!OR!~ v(RAIN) = (~!NOT!~ ω) ~!OR!~ ω = ω```
 
-    And since $ω ≠ 1$, this is a model where the formula isn't true.
+    And since `ω ≠ 1`, this is a model where the formula isn't true.
 
-2. We have that $v(RAIN {{< to >}}RAIN) = v(RAIN) ~!Ł!~ v(RAIN)$. That is,
+2. We have that `v(RAIN →RAIN) = v(RAIN) ~!Ł!~ v(RAIN)`. That is,
     we're dealing with an expression of the form `X ~!Ł!~ X`. If we go to the
 table for ~!Ł!~, we note that for identical inputs, the values (on the
 diagonal) are always `1`. In other words, the formula is true in all models.
 
-3. Suppose that $v(A) = 1$ and $v(A {{< to >}}B) = 1$. Inspecting the table for
+3. Suppose that `v(A) = 1` and `v(A →B) = 1`. Inspecting the table for
    ~!Ł!~, we can see that there is one and only one configuration of values
-that makes this possible, namely the one where $v(B) = 1$. 
+that makes this possible, namely the one where `v(B) = 1`. 
 
     
     {{< img src="img/luk_table.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
@@ -133,45 +131,33 @@ slow, while avoiding braking and accelerating simultaneously.
 
     - In our first model, the following rules will do:
 
-        ```
-        Fast x {{< longrightarrow >}} brake
-        ```
-        ```
-        Slow x {{< longrightarrow >}} accelerate
-        ```
+        ```Fast x ⟹ brake```
+        ```Slow x ⟹ accelerate```
 
       In this model, our car will never brake and accelerate at the same time.
 
 
     - In our second model, the same rules will lead to situations where we're
-    braking and accelerating at the same time: if we pick an `x` where `{{< llbracket >}}Slow x {{< rrbracket >}} = {{< llbracket >}}Fast x {{< rrbracket >}} = 0.5`, we'll have `{{< llbracket >}}brake {{< rrbracket >}} = {{< llbracket >}}accelerate {{< rrbracket >}} = 0.5`. But they will keep the car in the "gray area".
+    braking and accelerating at the same time: if we pick an `x` where `⟦Slow x ⟧ = ⟦Fast x ⟧ = 0.5`, we'll have `⟦brake ⟧ = ⟦accelerate ⟧ = 0.5`. But they will keep the car in the "gray area".
 
 # Fuzzy Logic {.solved}
 
 In class, we've seen that in fuzzy logic, disjunctive syllogism fails:
-there are formulas $A,B$, such that $${{< neg >}}A, A{{< lor >}}B{{<
-nvDash >}}B$$
+there are formulas `A,B`, such that ```¬A, A∨B⊭B```
 
-Modify the example to show that in fuzzy logic, also the [principle of explosion](https://en.wikipedia.org/wiki/Principle_of_explosion) fails, that is there are formulas $A,B$, such that $$A,{{< neg >}}A{{<
-nvDash >}}B$$
+Modify the example to show that in fuzzy logic, also the [principle of explosion](https://en.wikipedia.org/wiki/Principle_of_explosion) fails, that is there are formulas `A,B`, such that ```A,¬A⊭B```
 
 ## Solution {#fuzzy-logicSolution .solution}
 
-Let's take for $A$ a statement which, in a suitable model, is "half-true",
-that is, has value 0.5. For example, `Fast 45km/h` could be such that `{{<
-llbracket >}}Fast 45km/h{{< rrbracket>}} = 0.5`. It follows by the semantics
-for ${{< neg >}}$ that also `{{< llbracket >}}{{< neg >}}Fast 45km/h{{<
-rrbracket>}} = 0.5`. That means that 
+Let's take for `A` a statement which, in a suitable model, is "half-true",
+that is, has value 0.5. For example, `Fast 45km/h` could be such that `⟦Fast 45km/h⟧ = 0.5`. It follows by the semantics
+for `¬` that also `⟦¬Fast 45km/h⟧ = 0.5`. That means that 
 
-```
-min({{< llbracket >}}Fast 45km/h{{< rrbracket>}}, {{< llbracket >}}{{< neg >}}Fast 45km/h{{< rrbracket>}}) = 0.5
-```
+```min(⟦Fast 45km/h⟧, ⟦¬Fast 45km/h⟧) = 0.5```
 
-If we then take a statement for $B$, which is certainly false, such as `Fast 0kmh`, meaning `{{< llbracket >}}Fast 0km/h{{< rrbracket>}} = 0`, we have a clear countermodel:
+If we then take a statement for `B`, which is certainly false, such as `Fast 0kmh`, meaning `⟦Fast 0km/h⟧ = 0`, we have a clear countermodel:
 
-```
-min({{< llbracket >}}Fast 45km/h{{< rrbracket>}}, {{< llbracket >}}{{< neg >}}Fast 45km/h{{< rrbracket>}}) = 0.5 ≥ 0 = {{< llbracket >}}Fast 0km/h{{< rrbracket>}}
-```
+```min(⟦Fast 45km/h⟧, ⟦¬Fast 45km/h⟧) = 0.5 ≥ 0 = ⟦Fast 0km/h⟧```
 
-So the inference $$A,{{< neg >}}A{{< nvDash >}}B$$ is invalid.
+So the inference ```A,¬A⊭B``` is invalid.
 

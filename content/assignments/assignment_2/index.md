@@ -5,10 +5,9 @@ locked: false
 weight: 20
 params: 
   id: ass-2
-  math: true
 ---
 
-Submission via Brightspace in $LaTeX$ generated PDF. GenAI-use not allowed.
+Submission via Brightspace in `LaTeX` generated PDF. GenAI-use not allowed.
 
 # The Material Conditional
 
@@ -18,9 +17,9 @@ In the exercises, we've defined the Boolean truth-function !!IF!!.
 
     *Note*: To include the diagram of your relay, you can:
 
-    - draw a diagram with pen and paper and include it in your $LaTeX$ document using `\includegraphics`. See <https://docs.overleaf.com/writing-and-editing/inserting-images>;
+    - draw a diagram with pen and paper and include it in your `LaTeX` document using `\includegraphics`. See <https://docs.overleaf.com/writing-and-editing/inserting-images>;
 
-    - use more advanced $LaTeX$-tools, like <https://ctan.org/pkg/tikz-relay?lang=en>.
+    - use more advanced `LaTeX`-tools, like <https://ctan.org/pkg/tikz-relay?lang=en>.
 
 2. Verify your work by translating the circuit and specification to formulas (1 point) and show that they are equivalent (1 point) 
 
@@ -41,7 +40,7 @@ allow {{< logo>}}&ThinSpace;to reach the banana.
 
     _Hint_: A single <span class="dark-red">kind of</span> fluent and two actions are enough! <span class="dark-red">(red added later for clarification)</span>
 
-2. Give the $KB$ with all necessary principles governing possibilities and
+2. Give the `KB` with all necessary principles governing possibilities and
    interaction of actions and fluents (1 point), as well as persistence conditions (1 point).
 
     _Hint_: You can be rather simplistic about the effects of actions. For

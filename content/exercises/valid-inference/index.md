@@ -5,7 +5,6 @@ locked: false
 weight: 30
 params: 
   id: exc-val
-  math: true
 ---
 
 # Material and logical validity {.solved}
@@ -31,7 +30,7 @@ the inference into a logically valid inference.
 
 ## Solutions {.solution #material-and-logical-validitySolution}
 
-1. This inference is only materially valid. Its form is something like: $$c's P's are Q, so c is Q.$$ But suppose that $c$ is little Jimmy, his $P$'s are his favorite socks, and $Q$ is being blue. Then the inference becomes clearly invalid: $Little Jimmy's favorite socks are blue, so Jimmy is blue$.
+1. This inference is only materially valid. Its form is something like: ```c's P's are Q, so c is Q.``` But suppose that `c` is little Jimmy, his `P`'s are his favorite socks, and `Q` is being blue. Then the inference becomes clearly invalid: `Little Jimmy's favorite socks are blue, so Jimmy is blue`.
 
     If you add the premise that children of U.S. citizens are also U.S. citizens, the inference becomes deductively valid.
 
@@ -39,20 +38,20 @@ the inference into a logically valid inference.
 
 3. This inference is only materially valid. Its form is something like:
 
-   $$c is not P. Thus c is Q$$
+   ```c is not P. Thus c is Q```
 
-   But if $c$ is little Jimmy, P is hungry, and $Q$ thirsty, the inference becomes: $Little Jimmy is not hungry. So, Little Jimmy is thirsty$, which is clearly invalid.
+   But if `c` is little Jimmy, P is hungry, and `Q` thirsty, the inference becomes: `Little Jimmy is not hungry. So, Little Jimmy is thirsty`, which is clearly invalid.
 
 
    We need to add the premise that a sentence is false if and only if it's not
    true as a further premise to make this inference valid. This premise is
    false, for example, in many-valued logic.
 
-4. This inference is only materially valid, as it has the form $c is P. Therefore c is Q$. Most $c$'s, $P$s and $Q$s are counterexamples, but let's take $c$ to be little Jimmy, $P$ having a blue hat, and $Q$ being an adult. The inference becomes: $Little Jimmy has a blue hat. Therefore, he's an adult$.
+4. This inference is only materially valid, as it has the form `c is P. Therefore c is Q`. Most `c`'s, `P`s and `Q`s are counterexamples, but let's take `c` to be little Jimmy, `P` having a blue hat, and `Q` being an adult. The inference becomes: `Little Jimmy has a blue hat. Therefore, he's an adult`.
 
     We need to add the premise that only thinking things exist.
 
-5. This inference is (interestingly) deductively valid. It is an instance of $"modus tollens"$: $All A's are B's and you're not a B. Therefore, you're not an A$.
+5. This inference is (interestingly) deductively valid. It is an instance of `"modus tollens"`: `All A's are B's and you're not a B. Therefore, you're not an A`.
 
 # Reasoning mistakes {.solved}
 
@@ -205,14 +204,14 @@ Find all the subsets of the following set:
 
 1. {{< img src="img/set_solution_1.png" class="inert-img" height="50px" style="vertical-align: middle;" >}}
 2. {{< img src="img/set_solution_2.png" class="inert-img" height="50px" style="vertical-align: middle;" >}} 
-3. ${2, 4, 6, 8 }$ or simply ${ n : n is an even integer between 1 and 10 }$
-4. ${ }$. This is the _empty_ set again, which has no members, whatsoever.
+3. `{2, 4, 6, 8 }` or simply `{ n : n is an even integer between 1 and 10 }`
+4. `{ }`. This is the _empty_ set again, which has no members, whatsoever.
 5. {{< img src="img/set_solution_5.png" class="inert-img" height="80px" style="vertical-align: middle;" >}} 
 6. This claim is false. In fact, we have that {{< img src="img/set_solution_6.png" class="inert-img" height="50px" style="vertical-align: middle;" >}} since the only members of the first set, Mr. Sir and little Jimmy, are both members of the second set as well.
 7. This claim is true, since both members of the first set—my beer and the number one—are members of the second set. In fact, both sets are the same!
-8. This claim is very importantly **false**. The empty set, ${ }$, cannot fail to be a subset of {{< img src="img/set_solution_8.png" class="inert-img" height="40px" style="vertical-align: middle;" >}} or any set for that matter. Because for that to be the case, there would have to be a member of ${ }$, which fails to be a member of {{< img src="img/set_solution_8.png" class="inert-img" height="40px" style="vertical-align: middle;" >}}. But which member of ${ }$ could that be, as there are none.
-9. Since both the soda and the beer are sparkling beverages, they are members of the set ${ x : x is a sparkling beverage }$
-10. There is a total of 8 subsets. Note that the empty set, ${  }$, is among them, according to number 8:
+8. This claim is very importantly **false**. The empty set, `{ }`, cannot fail to be a subset of {{< img src="img/set_solution_8.png" class="inert-img" height="40px" style="vertical-align: middle;" >}} or any set for that matter. Because for that to be the case, there would have to be a member of `{ }`, which fails to be a member of {{< img src="img/set_solution_8.png" class="inert-img" height="40px" style="vertical-align: middle;" >}}. But which member of `{ }` could that be, as there are none.
+9. Since both the soda and the beer are sparkling beverages, they are members of the set `{ x : x is a sparkling beverage }`
+10. There is a total of 8 subsets. Note that the empty set, `{  }`, is among them, according to number 8:
 
     {{< img src="img/set_solution_10.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="350px">}}
 
@@ -288,19 +287,19 @@ inference is still deductively valid.
     - To show that {{< img src="img/ss_subseteq_t.png"
     class="inert-img" height="30px" style="vertical-align: middle;" >}}, we think about what a member of {{< img src="img/intersection_s_sprime.png"
     class="inert-img" height="30px" style="vertical-align: middle;" >}} can look like. As we'll see, just by looking at the definition of {{< img src="img/intersection_s_sprime.png"
-    class="inert-img" height="30px" style="vertical-align: middle;" >}}, we can see that all elements of this set need to be in $T$.
+    class="inert-img" height="30px" style="vertical-align: middle;" >}}, we can see that all elements of this set need to be in `T`.
 
     - By definition, {{< img src="img/def_cap.png" class="inert-img"
     height="30px" style="vertical-align: middle;" >}}. That means that any
     member of {{< img src="img/intersection_s_sprime.png" class="inert-img"
-    height="20px" style="vertical-align: middle;" >}} is both a member of $S$ and of $S'$.
+    height="20px" style="vertical-align: middle;" >}} is both a member of `S` and of `S'`.
 
     - But we've assumed that {{< img src="img/s_subseteq_t.png"
     class="inert-img" height="24px" style="vertical-align: middle;" >}}, which
-    means that every member of $S$ is a member of $T$. And any member of {{<
+    means that every member of `S` is a member of `T`. And any member of {{<
     img src="img/intersection_s_sprime.png" class="inert-img" height="30px"
-    style="vertical-align: middle;" >}} is a member of $S$. _So_, every member of {{< img src="img/intersection_s_sprime.png"
-    class="inert-img" height="30px" style="vertical-align: middle;" >}} is a member of $T$.
+    style="vertical-align: middle;" >}} is a member of `S`. _So_, every member of {{< img src="img/intersection_s_sprime.png"
+    class="inert-img" height="30px" style="vertical-align: middle;" >}} is a member of `T`.
 
     - But that just means that {{< img src="img/ss_subseteq_t.png"
     class="inert-img" height="25px" style="vertical-align: middle;" >}}. So, if
@@ -312,7 +311,7 @@ inference is still deductively valid.
     style="vertical-align: middle;" >}}, which is the content of our theorem.
 
 4. The monotonicity of deductive inference is a {{< abbr title="consequence of, typically easy or straightforward to derive" >}}corollary{{</abbr>}} of our
-theorem. Just interpret $S,S',$ and $T$ as follows:
+theorem. Just interpret `S,S',` and `T` as follows:
 
    {{< img src="img/application.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}}
 
@@ -371,14 +370,14 @@ premise following the pattern, such that the inference becomes invalid.
 
     {{< img src="img/failure_prob.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="900px">}}
 
-    Note that the intersection of $[2]$ and $[EVEN] ∩ [>3]$ is _empty_: the result being two is incompatible with being an even result bigger than $3$. This is why the result of the calculation is $0$.
+    Note that the intersection of `[2]` and `[EVEN] ∩ [>3]` is _empty_: the result being two is incompatible with being an even result bigger than `3`. This is why the result of the calculation is `0`.
 
 
 3. The definition of inductive validity requires that for each assignment of
    probabilities, the probability of the conclusion goes _up_ conditional on
 the premises. But here's a probability assignment, where the probability of the
-conclusion goes _down_: $Pr([2] | [EVEN] ∩ [>3]) = 0$, which is less than
-$Pr([2]) = 1/6$. So the inference is inductively invalid.
+conclusion goes _down_: `Pr([2] | [EVEN] ∩ [>3]) = 0`, which is less than
+`Pr([2]) = 1/6`. So the inference is inductively invalid.
 
 4. What's going on here is that we've added additional information that
    contradicts our conclusion. That this can happen is characteristic of
@@ -387,4 +386,4 @@ likely but is not conclusive, in the sense it still allows for the conclusion
 to be false. 
 
     This generalizes to all inductively valid inferences, which are not also
-    deductively valid. We can always take information that contradicts our conclusion—if you're hard pressed to find something contradictory, just take the negation of the conclusion—and add it to the premises, and we'll have lowered the conditional probability of the conclusion given these premises to $0$. Whatever the probability of the conclusion was before, if it was at all possible (meaning $≥ 0$), it's now smaller.
+    deductively valid. We can always take information that contradicts our conclusion—if you're hard pressed to find something contradictory, just take the negation of the conclusion—and add it to the premises, and we'll have lowered the conditional probability of the conclusion given these premises to `0`. Whatever the probability of the conclusion was before, if it was at all possible (meaning `≥ 0`), it's now smaller.

@@ -5,10 +5,9 @@ locked: false
 weight: 10
 params: 
   id: ass-1
-  math: true
 ---
 
-Submission via Brightspace in $\LaTeX$ generated PDF. GenAI-use not allowed.
+Submission via Brightspace in `LaTeX` generated PDF. GenAI-use not allowed.
 
 # Logic and AI
 

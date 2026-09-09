@@ -11,11 +11,9 @@ weight: 2
 params: 
   id: 'txt-home'
   icon: '<i class="bi bi-book"></i>'
-  emoji: '📖'
   section-names: 'Chapter'
   section-icon: '<i class="bi bi-paragraph"></i>'
   toc-title: 'Table of contents'
-  teaser: 'Read before class!'
+  teaser: 'Twelve chapters, from valid inference to logic and neural networks.'
   md-title: 'Logic **textbook** for AI undergrads'
-  title_img: 'textbook_title.png'
 ---

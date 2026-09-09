@@ -4,7 +4,6 @@ author: Johannes Korbmacher
 weight: 90
 params: 
   id: exc-finf
-  math: true
 ---
 
 # Unification {.solved}
@@ -13,9 +12,9 @@ For each of the following pairs of terms determine whether they can be unified. 
 
 1. `LiesBetween Munich y z ` and `LiesBetween x Milan Rome `
 2. `SitsBetween Mary x x ` and `SitsBetween x Jane y`
-3. `Between x Rome Rome ` and `{{< neg >}}Between Rome y x `
-4. `{{< neg >}}BornIn fatherOf motherOf x London` and `{{< neg >}}BornIn fatherOf y x`
-5. `{{< neg >}}Human x` and `{{< neg >}}Human fatherOf x`
+3. `Between x Rome Rome ` and `¬Between Rome y x `
+4. `¬BornIn fatherOf motherOf x London` and `¬BornIn fatherOf y x`
+5. `¬Human x` and `¬Human fatherOf x`
 6. `Human fatherOf y x` and `Human x fatherOf y`
 
 ## Solution {#unificationSolution .solution}
@@ -41,19 +40,17 @@ To check whether two FOL literals can be unified, the algorithm proceeds as foll
 
     + `Pⁿ s₁ ... sₙ` and `Pⁿ t₁ ... tₙ`
 
-    + `{{< neg >}}Pⁿ s₁ ... sₙ` and `{{< neg >}}Pⁿ t₁ ... tₙ`
+    + `¬Pⁿ s₁ ... sₙ` and `¬Pⁿ t₁ ... tₙ`
 
     In both cases, to unify the formulas, we need to find a substitution
-    $σ$, such that $s₁σ = t₁σ$, ..., $sₙσ = tₙσ$, that is the result of
+    `σ`, such that `s₁σ = t₁σ`, ..., `sₙσ = tₙσ`, that is the result of
     substituting within these terms must make each pair identical. 
 
     To express this requirement, we make a list of these pairs:
 
-    ```
-    Eq = [ [s₁, t₁], ..., [sₙ, tₙ] ]
-    ```
+    ```Eq = [ [s₁, t₁], ..., [sₙ, tₙ] ]```
 
-    The algorithm aims to step-wise construct the desired substitution $σ$. We
+    The algorithm aims to step-wise construct the desired substitution `σ`. We
     start with the empty substitution `σ = [ ]`, and go through each pair `[sᵢ,
     tᵢ]` of our list. We distinguish the following cases:
 
@@ -75,18 +72,14 @@ To check whether two FOL literals can be unified, the algorithm proceeds as foll
     the form of `sᵢ` and `tᵢ`. Only if they are of the following forms do we
     continue:
 
-    ```
-     sᵢ = fᵐ s₁' … sₘ'  &emsp; and &emsp; tᵢ = fᵐ t₁' … tₘ'
-    ```
+    ```sᵢ = fᵐ s₁' … sₘ'  &emsp; and &emsp; tᵢ = fᵐ t₁' … tₘ'```
 
     That is, both terms are the result of applying the same function term to a
     sequence of terms. If they are not, unification is impossible and we can
     terminate the algorithm. If they _are_ of this form, we add all the
     following corresponding pairs to `Eq`:
 
-    ```
-    [ [s₁', s₂'], ..., [sₙ', tₙ'] ]
-    ```
+    ```[ [s₁', s₂'], ..., [sₙ', tₙ'] ]```
 
 4. By going through all the pairs, deleting pairs when substitutions are
    possible or trivial (Cases 1—3), and recursively adding new pairs (Case 4),
@@ -105,26 +98,18 @@ Apply this algorithm to check your work in Exercise 1.
 
 
 1. Steps 1. & 2. of the algorithm all succeed with no difficulty. So, we check the pairs:
-    ```
-    E = {[Munich, y],[y, Milan], [z, Rome]
-    ```
+    ```E = {[Munich, y],[y, Milan], [z, Rome]```
 
     Applying cases 2. and 3. gives us the substitution: 
 
-    ```
-    [x / Munich, y / Milan, z / Rome]
-    ```
+    ```[x / Munich, y / Milan, z / Rome]```
 
 2. Steps 1. & 2. of the algorithm all succeed with no difficulty. So, we check the pairs:
-    ```
-    E = {[Mary, x], [x, Jane], [x, y]}
-    ```
+    ```E = {[Mary, x], [x, Jane], [x, y]}```
 
     Applying Case 3. with `[Mary, x]` gives us:
 
-    ```
-    {[Mary, Jane], [Mary, y]}
-    ```
+    ```{[Mary, Jane], [Mary, y]}```
 
     Case 4. tells us to stop when we reach `[Mary, Jane]`. There is no substitution possible.
 
@@ -132,35 +117,25 @@ Apply this algorithm to check your work in Exercise 1.
 
 4. Steps 1. & 2. of the algorithm all succeed with no difficulty. So, we check the pairs:
 
-    ```
-    E = {[fatherOf motherOf x, fatherOf y], [London, x]}
-    ```
+    ```E = {[fatherOf motherOf x, fatherOf y], [London, x]}```
 
     Step 4 gives us for `[fatherOf motherOf x, fatherOf y]`:
 
-    ```
-    E = {[motherOf x, y], [London, x]}
-    ```
+    ```E = {[motherOf x, y], [London, x]}```
 
     Applying rules 3. and 4. gives us the substitution:
 
-    ```
-    [x / London, y / motherOf x]
-    ```
+    ```[x / London, y / motherOf x]```
 
     which unifies the two formulas.
 
 6. Steps 1. & 2. of the algorithm all succeed with no difficulty. So, we check the pairs:
 
-    ```
-    E = { [fatherOf y, x], [x, fatherOf y]}
-    ```
+    ```E = { [fatherOf y, x], [x, fatherOf y]}```
 
     which gives us by rule 3 the set
 
-    ```
-    E = { [fatherOf y, fatherOf y] }
-    ```
+    ```E = { [fatherOf y, fatherOf y] }```
     
     with substitution `[x / fatherOf y]`, which terminates the algorithm.
 
@@ -169,25 +144,25 @@ Apply this algorithm to check your work in Exercise 1.
 
 Skolemize the following formulas:
 
-1. $({{< exists >}}y₁ Human y₁ {{< land >}} {{< forall >}}x₁ Mortal x₁)$
+1. `(∃y₁ Human y₁ ∧ ∀x₁ Mortal x₁)`
 
-2. ${{< forall >}}x₁({{< forall >}}x₂{{< exists >}}y₁(IsFriendOf x₁ y₁ {{< land >}} IsFriendOf x₂ y₁) {{< lor >}} {{< exists >}}y₂{{< neg >}}IsFriendOf x₁ y₂)$
+2. `∀x₁(∀x₂∃y₁(IsFriendOf x₁ y₁ ∧ IsFriendOf x₂ y₁) ∨ ∃y₂¬IsFriendOf x₁ y₂)`
 
-3. ${{< exists >}}y₁{{< exists >}}y₂ IsFriendOf y₁ y₂$
+3. `∃y₁∃y₂ IsFriendOf y₁ y₂`
 
 ## Solution {#skolemizationSolution .solution}
 
-1. $(Human `skolem₁` {{< land >}} {{< forall >}}x₁ Mortal x₁)$
+1. `(Human skolem₁ ∧ ∀x₁ Mortal x₁)`
 
-2. ${{< forall >}}x₁({{< forall >}}x₂(IsFriendOf x₁ `skolem₁` x₁ x₂ {{< land >}} IsFriendOf x₂ `skolem₁` x₁ x₂) {{< lor >}} {{< neg >}}IsFriendOf x₁ `skolem₂` x₁)$
+2. `∀x₁(∀x₂(IsFriendOf x₁ skolem₁ x₁ x₂ ∧ IsFriendOf x₂ skolem₁ x₁ x₂) ∨ ¬IsFriendOf x₁ skolem₂ x₁)`
 
-3. $ IsFriendOf `skolem₁` `skolem₂`$
+3. `IsFriendOf skolem₁ skolem₂`
 
 # Drinker Paradox {.solved}
 
 Consider the following inference:
 
-$${{< exists >}}x InPub x {{< therefore >}}{{< exists >}}x (InPub x {{< land >}}(IsDrinking x {{< to >}}{{< forall >}}x(InPub x{{< to >}}IsDrinking x)))$$
+```∃x InPub x ∴∃x (InPub x ∧(IsDrinking x →∀x(InPub x→IsDrinking x)))```
 
 In natural language: There's somebody in the pub, so there's somebody in the
 pub, such that if they are drinking, then everybody in the pub is drinking.
@@ -206,7 +181,7 @@ universals is just a constant `skolem`. It's important to document your work,
 which transformations you're applying, but you can apply several steps
 simultaneously.
 
-3. Apply resolution with unification to derive the empty clause ${ }$. And
+3. Apply resolution with unification to derive the empty clause `{ }`. And
    conclude that the initial set is unsatisfiable and the inference thus
 valid.
 
@@ -214,51 +189,51 @@ valid.
 
 1. The set is:
 
-    $${{{< exists >}}x InPub x, {{< neg >}}{{< exists >}}x (InPub x {{< land >}}(IsDrinking x {{< to >}}{{< forall >}}x(InPub x{{< to >}}IsDrinking x)))}$$
+    ```{∃x InPub x, ¬∃x (InPub x ∧(IsDrinking x →∀x(InPub x→IsDrinking x)))}```
 
 2. Here are the results of the procedure:
 
-    - The transformation of ${{< exists >}}x InPub x$ just involves one step (Skolemization), which immediately gives us: 
+    - The transformation of `∃x InPub x` just involves one step (Skolemization), which immediately gives us: 
 
-        $$InPub `skolem₁`$$
+        ```InPub skolem₁```
 
     - The other formula requires some more steps:
 
-        - ${{< neg >}}{{< exists >}}x (InPub x {{< land >}}(IsDrinking x {{< to >}}{{< forall >}}x(InPub x{{< to >}}IsDrinking x)))}$
+        - `¬∃x (InPub x ∧(IsDrinking x →∀x(InPub x→IsDrinking x)))}`
 
 
-        - Two applications of $r₀$ give: 
+        - Two applications of `r₀` give: 
 
-            $${{< neg >}}{{< exists >}}x (InPub x {{< land >}}({{< neg >}} IsDrinking x {{< lor >}}{{< forall >}}x({{< neg >}} InPub x{{< lor >}}IsDrinking x)))$$
+            ```¬∃x (InPub x ∧(¬ IsDrinking x ∨∀x(¬ InPub x∨IsDrinking x)))```
 
-        - Then we push negations inwards with $r₁-r₃$ and $r₆$:
+        - Then we push negations inwards with `r₁-r₃` and `r₆`:
 
 
-            $${{< forall >}}x ({{< neg >}}InPub x {{< lor >}}(IsDrinking x {{< land >}}{{< exists >}}x (InPub x{{< land >}}{{< neg >}}IsDrinking x)))$$
+            ```∀x (¬InPub x ∨(IsDrinking x ∧∃x (InPub x∧¬IsDrinking x)))```
 
         - Next we make the variables unique:
 
-            $${{< forall >}}x₁ ({{< neg >}}InPub x₁ {{< lor >}}(IsDrinking x₁ {{< land >}}{{< exists >}}y₁ (InPub y₁{{< land >}}{{< neg >}}IsDrinking y₁)))$$
+            ```∀x₁ (¬InPub x₁ ∨(IsDrinking x₁ ∧∃y₁ (InPub y₁∧¬IsDrinking y₁)))```
 
         - Then we Skolemize:
 
 
-            $${{< forall >}}x₁ ({{< neg >}}InPub x₁ {{< lor >}}(IsDrinking x₁ {{< land >}} (InPub `skolem₂` x₁{{< land >}}{{< neg >}}IsDrinking `skolem₂` x₁)))$$
+            ```∀x₁ (¬InPub x₁ ∨(IsDrinking x₁ ∧ (InPub skolem₂ x₁∧¬IsDrinking skolem₂ x₁)))```
 
         - And drop the universal:
 
-            $$({{< neg >}}InPub x₁ {{< lor >}}(IsDrinking x₁ {{< land >}} (InPub `skolem₂` x₁{{< land >}}{{< neg >}}IsDrinking `skolem₂` x₁)))$$
+            ```(¬InPub x₁ ∨(IsDrinking x₁ ∧ (InPub skolem₂ x₁∧¬IsDrinking skolem₂ x₁)))```
 
          - Finally, repeated distribution gives us:
 
-            $$({{< neg >}}InPub x₁ {{< lor >}}IsDrinking x) {{< land >}}({{< neg >}}InPub x{{< lor >}}InPub `skolem₂ x`){{< land >}}({{< neg >}}InPub x{{< lor >}}{{< neg >}}IsDrinking `skolem₂ x`))$$
+            ```(¬InPub x₁ ∨IsDrinking x) ∧(¬InPub x∨InPub skolem₂ x)∧(¬InPub x∨¬IsDrinking skolem₂ x))```
 
     - For the resolution, we therefore work with the sets:
 
-        $${InPub `skolem₁`} &emsp; {{{< neg >}}InPub x₁ , IsDrinking x₁}$$
-        $${{{< neg >}}InPub x₁, InPub `skolem₂ x`} &emsp; {{{< neg >}}InPub x₁, {{< neg >}}IsDrinking `skolem₂ x₁`}$$
+        ```{InPub skolem₁} &emsp; {¬InPub x₁ , IsDrinking x₁}```
+        ```{¬InPub x₁, InPub skolem₂ x} &emsp; {¬InPub x₁, ¬IsDrinking skolem₂ x₁}```
 
-        Here's a derivation of ${ }$ from this using resolution:
+        Here's a derivation of `{ }` from this using resolution:
 
         {{< img src="img/resolution.png" class="mx-auto rounded d-block inert-img img-fluid" width="800px">}}
 
@@ -270,78 +245,78 @@ laws. Note that some of these require `<span class="dark-blue">open</span> Class
 
 ## Duality Laws
 
-1. ${{< neg >}}{{< forall >}}xA(x){{< v_dash >}}{{< exists >}}x{{< neg >}}A(x)$
-2. ${{< exists >}}x{{< neg >}}A(x){{< v_dash >}}{{< neg >}}{{< forall >}}xA(x)$
-3. ${{< neg >}}{{< exists >}}xA(x){{< v_dash >}}{{< forall >}}x{{< neg >}}A(x)$
-4. ${{< forall >}}x{{< neg >}}A(x){{< v_dash >}}{{< neg >}}{{< exists >}}xA(x)$
+1. `¬∀xA(x)⊢∃x¬A(x)`
+2. `∃x¬A(x)⊢¬∀xA(x)`
+3. `¬∃xA(x)⊢∀x¬A(x)`
+4. `∀x¬A(x)⊢¬∃xA(x)`
 
 ## Distribution Laws
 
-1. ${{< forall >}}x(A(x) {{< land >}} B(x)) {{< v_dash >}}{{< forall >}}xA(x) {{< land >}} {{< forall >}}xB(x)$
-2. ${{< forall >}}xA(x) {{< land >}} {{< forall >}}xB(x){{< v_dash >}} {{< forall >}}x (A(x) {{< land >}} B(x))$
-3. ${{< exists >}}x(A(x) {{< lor >}} B(x)) {{< v_dash >}}{{< exists >}}xA(x) {{< lor >}} {{< exists >}}xB(x)$
-4. ${{< exists >}}x A(x) {{< lor >}} {{< exists >}}x B(x) {{< v_dash >}}{{< exists >}}x(A(x) {{< lor >}} B(x))$
+1. `∀x(A(x) ∧ B(x)) ⊢∀xA(x) ∧ ∀xB(x)`
+2. `∀xA(x) ∧ ∀xB(x)⊢ ∀x (A(x) ∧ B(x))`
+3. `∃x(A(x) ∨ B(x)) ⊢∃xA(x) ∨ ∃xB(x)`
+4. `∃x A(x) ∨ ∃x B(x) ⊢∃x(A(x) ∨ B(x))`
 
 ## Interaction Laws
 
-1. ${{< forall >}}xA(x){{< v_dash >}}{{< exists >}}xA(x)$
-2. ${{< exists >}}x{{< forall >}}yR(x,y){{< v_dash >}}{{< forall >}}y{{< exists >}}xR(x,y)$
-3. ${{< exists >}}xA(x){{< to >}}C{{< v_dash >}}{{< forall >}}x(A(x){{< to >}}C)$, assuming that $x$ is not free in $C$
-4. ${{< forall >}}xA(x){{< to >}}C{{< v_dash >}}{{< exists >}}x(A(x){{< to >}}C)$, assuming that $x$ is not free in $C$.
+1. `∀xA(x)⊢∃xA(x)`
+2. `∃x∀yR(x,y)⊢∀y∃xR(x,y)`
+3. `∃xA(x)→C⊢∀x(A(x)→C)`, assuming that `x` is not free in `C`
+4. `∀xA(x)→C⊢∃x(A(x)→C)`, assuming that `x` is not free in `C`.
 
 ## Solution {#natural-deductionSolution .solution}
 
 **Duality Laws**
 
-1. ${{< neg >}}{{< forall >}}xA(x){{< v_dash >}}{{< exists >}}x{{< neg >}}A(x)$ (This one's a bit more difficult)
+1. `¬∀xA(x)⊢∃x¬A(x)` (This one's a bit more difficult)
 
     {{< img src="img/duality_1.png" class="mx-auto rounded d-block inert-img img-fluid" width="200px">}}
 
-2. ${{< exists >}}x{{< neg >}}A(x){{< v_dash >}}{{< neg >}}{{< forall >}}xA(x)$
+2. `∃x¬A(x)⊢¬∀xA(x)`
 
     {{< img src="img/duality_2.png" class="mx-auto rounded d-block inert-img img-fluid" width="200px">}}
 
-3. ${{< neg >}}{{< exists >}}xA(x){{< v_dash >}}{{< forall >}}x{{< neg >}}A(x)$
+3. `¬∃xA(x)⊢∀x¬A(x)`
 
     {{< img src="img/duality_3.png" class="mx-auto rounded d-block inert-img img-fluid" width="200px">}}
 
-4. ${{< forall >}}x{{< neg >}}A(x){{< v_dash >}}{{< neg >}}{{< exists >}}xA(x)$
+4. `∀x¬A(x)⊢¬∃xA(x)`
 
     {{< img src="img/duality_4.png" class="mx-auto rounded d-block inert-img img-fluid" width="200px">}}
 
 **Distribution Laws**
 
-1. ${{< forall >}}x(A(x) {{< land >}} B(x)) {{< v_dash >}}{{< forall >}}xA(x) {{< land >}} {{< forall >}}xB(x)$
+1. `∀x(A(x) ∧ B(x)) ⊢∀xA(x) ∧ ∀xB(x)`
 
     {{< img src="img/distribution_1.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
 
-2. ${{< forall >}}xA(x) {{< land >}} {{< forall >}}xB(x){{< v_dash >}} {{< forall >}}x (A(x) {{< land >}} B(x))$
+2. `∀xA(x) ∧ ∀xB(x)⊢ ∀x (A(x) ∧ B(x))`
 
     {{< img src="img/distribution_2.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
 
-3. ${{< exists >}}x(A(x) {{< lor >}} B(x)) {{< v_dash >}}{{< exists >}}xA(x) {{< lor >}} {{< exists >}}xB(x)$
+3. `∃x(A(x) ∨ B(x)) ⊢∃xA(x) ∨ ∃xB(x)`
 
     {{< img src="img/distribution_3.png" class="mx-auto rounded d-block inert-img img-fluid" width="500px">}}
 
-4. ${{< exists >}}x A(x) {{< lor >}} {{< exists >}}x B(x) {{< v_dash >}}{{< exists >}}x(A(x) {{< lor >}} B(x))$
+4. `∃x A(x) ∨ ∃x B(x) ⊢∃x(A(x) ∨ B(x))`
 
     {{< img src="img/distribution_4.png" class="mx-auto rounded d-block inert-img img-fluid" width="500px">}}
 
 **Interaction Laws**
 
-1. ${{< forall >}}xA(x){{< v_dash >}}{{< exists >}}xA(x)$
+1. `∀xA(x)⊢∃xA(x)`
 
     {{< img src="img/interaction_1.png" class="mx-auto rounded d-block inert-img img-fluid" width="150px">}}
 
-2. ${{< exists >}}x{{< forall >}}yR(x,y){{< v_dash >}}{{< forall >}}y{{< exists >}}xR(x,y)$
+2. `∃x∀yR(x,y)⊢∀y∃xR(x,y)`
 
     {{< img src="img/interaction_2.png" class="mx-auto rounded d-block inert-img img-fluid" width="250px">}}
 
-3. ${{< exists >}}xA(x){{< to >}}C{{< v_dash >}}{{< forall >}}x(A(x){{< to >}}C)$, assuming that $x$ is not free in $C$
+3. `∃xA(x)→C⊢∀x(A(x)→C)`, assuming that `x` is not free in `C`
 
     {{< img src="img/interaction_3.png" class="mx-auto rounded d-block inert-img img-fluid" width="250px">}}
 
-4. ${{< forall >}}xA(x){{< to >}}C{{< v_dash >}}{{< exists >}}x(A(x){{< to >}}C)$, assuming that $x$ is not free in $C$.
+4. `∀xA(x)→C⊢∃x(A(x)→C)`, assuming that `x` is not free in `C`.
 
     {{< img src="img/interaction_4.png" class="mx-auto rounded d-block inert-img img-fluid" width="350px">}}
 

@@ -7,7 +7,6 @@ params:
   date: "13/09/2024"
   last_edited: "13/09/2024"
   id: txt-bool
-  math: true
 ---
 
 # Boolean algebra
@@ -46,8 +45,7 @@ algebra:
 
 In short, the importance of Boolean logic for AI can hardly be overstated.
 
-At the end of this chapter, you'll be able to:
-
+{{< callout type="objectives" >}}
 + explain the basic principles of Boolean algebra
 
 + implement the Boolean truth-functions using simple circuits
@@ -57,22 +55,23 @@ At the end of this chapter, you'll be able to:
 + build and apply adders from Boolean circuits
 
 + test propositional inferences for deductive validity using Boolean models
+{{< /callout >}}
 
 ## Boolean truth-values
 
 Boolean algebra is the logic of the proverbial 0's and 1's. That is, the Boolean
 truth-values are:
 
-$${0, 1}$$
+```{0, 1}```
 
 These values have many different interpretations depending on the reasoning
 context we're in: on/off, high/low, true/false, …. 
 
 In logic, the true/false interpretation is the most common. If we're dealing
 with a propositional language that has a propositional letter
-$SUN$ to express that the sun is shining,
+`SUN` to express that the sun is shining,
 assigning it the value 1 means that the sun is indeed shining, while assigning
-$SUN$ the value 0 means that it is not.
+`SUN` the value 0 means that it is not.
 
 {{< img src="img/sun_boolean.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="400px">}}
 
@@ -90,11 +89,11 @@ These are [functions](https://en.wikipedia.org/wiki/Function_(mathematics)) in
 the mathematical sense, which take one or more Boolean truth-values as input and
 return exactly one Boolean truth-value as output.
 
-For now, we'll restrict ourselves to the basic functions $!!NOT!!$, $!!AND!!$, and
-$!!OR!!$. These are not the most fundamental truth-functions in any sense of the
+For now, we'll restrict ourselves to the basic functions `!!NOT!!`, `!!AND!!`, and
+`!!OR!!`. These are not the most fundamental truth-functions in any sense of the
 word, but _are_ the most commonly used truth-functions in logical theory. In
 computer science, instead, especially when we're thinking about basic
-semiconductor circuits $!!XOR!!$ and $!!NAND!!$ are more commonly used as
+semiconductor circuits `!!XOR!!` and `!!NAND!!` are more commonly used as
 basic functions.
 
 The truth-functions are given by the following functional tables, where the
@@ -104,13 +103,13 @@ intersecting the two input columns:
 
 {{< img src="img/function_tables.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="900px">}}
 
-So, for example, $!!NOT!! 0 = 1$ and 
-$1 !!OR!! 0 = 1$.
+So, for example, `!!NOT!! 0 = 1` and 
+`1 !!OR!! 0 = 1`.
 
-The truth-functions $!!NOT!!$, $!!AND!!$, and $!!OR!!$ are sufficient to express _any_
+The truth-functions `!!NOT!!`, `!!AND!!`, and `!!OR!!` are sufficient to express _any_
 truth-function whatsoever. This mathematical fact is known as the joint
 **truth-functional completeness** of these operators, and we'll investigate it
-in the exercises. $!!NOT!!$, $!!AND!!$, and $!!OR!!$ are not the only collection of
+in the exercises. `!!NOT!!`, `!!AND!!`, and `!!OR!!` are not the only collection of
 truth-functions with this property, not even the smallest one. But especially
 in logical contexts, they are the most commonly used ones, since using these
 truth-functions, we can easily describe many different important concepts and
@@ -133,13 +132,13 @@ power in case the input does. With the {{<excalifont>}}default
 receives power, the output gets disconnected from the input, breaking the
 circuit.
 
-So, if the $default  "on"$ circuit receives
+So, if the `default  "on"` circuit receives
 constant power to the right circuit, this is how turning the power to the magnet
 off and on affects the behavior of the circuit:
 
 {{< img src="img/relay_behavior.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="900px">}}
 
-The $default "off"$ relay, of course, behaves dually.
+The `default "off"` relay, of course, behaves dually.
 
 We can use these two relays to implement our three Boolean truth-functions. For
 this, we assume the following set-up:
@@ -148,39 +147,39 @@ this, we assume the following set-up:
 
 We have:
 
-- a constant source of power $POWER$
+- a constant source of power `POWER`
 
-- two switchable inputs, $X$ and $Y$
+- two switchable inputs, `X` and `Y`
 
 - a single output, which is connected to an indicator lamp 
 
-We interpret $X$ being $off$ as the first input being $0$ and $X$ being $on$ as
-the first input being $1$, and analogously for $Y$ and the second input. The
-lamp represents the output in the same way: if it is $off$, the output is $0$,
-if it is $on$ the output is $1$. So, the set-up is depicted in the configuration
-for the first and second input both being $0$. Since we haven't implemented
-anything yet, the output is also $0$.
+We interpret `X` being `off` as the first input being `0` and `X` being `on` as
+the first input being `1`, and analogously for `Y` and the second input. The
+lamp represents the output in the same way: if it is `off`, the output is `0`,
+if it is `on` the output is `1`. So, the set-up is depicted in the configuration
+for the first and second input both being `0`. Since we haven't implemented
+anything yet, the output is also `0`.
 
-We can implement the $!!NOT!!$ function with a single $default "on"$ relay:
+We can implement the `!!NOT!!` function with a single `default "on"` relay:
 
 {{< img src="img/negation_impl.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="900px">}}
 
-Depicted are both states of the circuit: if the first input is $0$ ($X$ is
-$off$), the output is $1$ (the lamp is $on$); and if the first input is $1$ ($X$
-is $on$), the output is $0$ (the lamp is $off$). The second input doesn't
+Depicted are both states of the circuit: if the first input is `0` (`X` is
+`off`), the output is `1` (the lamp is `on`); and if the first input is `1` (`X`
+is `on`), the output is `0` (the lamp is `off`). The second input doesn't
 matter, of course.
 
-We can implement $!!AND!!$ using the other kind of relay as follows:
+We can implement `!!AND!!` using the other kind of relay as follows:
 
 {{< img src="img/conjunction_impl.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="900px">}}
 
 There are four possible states of the circuits, but as you can see: only if both
-inputs are $1$ is the output
-$1$. In all other configurations, the output is
-$0$—just like the
-$!!AND!!$ function requires.
+inputs are `1` is the output
+`1`. In all other configurations, the output is
+`0`—just like the
+`!!AND!!` function requires.
 
-Implementing the $!!OR!!$ function using the relays
+Implementing the `!!OR!!` function using the relays
 is one of the exercises. If you want to try more, you can try the amazing
 [nandgame](https://nandgame.com/), which allows you to implement an entire
 computer "by hand".
@@ -190,21 +189,21 @@ computer "by hand".
 {{< img src="img/laws_of_logic.png" class="rounded  float-end inert-img img-fluid mx-3" width="300px">}}
 The behavior of the Boolean truth-functions is
 governed by a series of **algebraic laws**, that is _identities_ describing
-their interaction. These identities are formulated using **variables** $X,Y,…$,
-which can assume arbitrary values from among the set ${0, 1}$. Take, for
+their interaction. These identities are formulated using **variables** `X,Y,…`,
+which can assume arbitrary values from among the set `{0, 1}`. Take, for
 example, the *Boolean equation*:
 
 <div class="text-center my-4">
 `(X !!AND!! Y) = (Y !!AND!! X)`
 </div>
 
-This equation says that for any pair of values $X,Y$ from {{<excalifont>}}{0,
-  1}{{</excalifont>}}, the result of applying $!!AND!!$ with $X$ as the first
-input and $Y$ as the second is the same as applying $!!AND!!$ with $Y$ as the
-first input and $X$ as the second.
+This equation says that for any pair of values `X,Y` from {{<excalifont>}}{0,
+  1}{{</excalifont>}}, the result of applying `!!AND!!` with `X` as the first
+input and `Y` as the second is the same as applying `!!AND!!` with `Y` as the
+first input and `X` as the second.
 
-You can verify this law by inspecting the function table for $!!AND!!$ and
-going through all possible values for $X$ and $Y$. Here are the corresponding
+You can verify this law by inspecting the function table for `!!AND!!` and
+going through all possible values for `X` and `Y`. Here are the corresponding
 calculations:
 
 <div class="text-center my-4">
@@ -222,32 +221,32 @@ calculations:
 Only the second and third lines are "interesting" calculations, the first and
 last are "trivial".
 
-This law is called the law of $Commutativity$ for
-$!!AND!!$, which states that for
-$!!AND!!$, the order of its inputs doesn't matter.
+This law is called the law of `Commutativity` for
+`!!AND!!`, which states that for
+`!!AND!!`, the order of its inputs doesn't matter.
 Many laws of Boolean algebra have such names.
 
 Here are the most important laws and their corresponding names:
 
 |                                                                                                                                                              |               |                                                      |
 | ----------------------------------------------------------------------------                                                                                 | -             | -----------------------------------------            |
-| `(X !!OR!! (Y !!OR!! Z)) = ((X !!OR!! Y) !!OR!! Z)`<br>`(X !!AND!! (Y !!AND!! Z)) = ((X !!AND!! Y) !!AND!! Z)`                 | &emsp; &emsp; | $("Associativity")$   |
+| `(X !!OR!! (Y !!OR!! Z)) = ((X !!OR!! Y) !!OR!! Z)`<br>`(X !!AND!! (Y !!AND!! Z)) = ((X !!AND!! Y) !!AND!! Z)`                 | &emsp; &emsp; | `("Associativity")`   |
 | &nbsp;                                                                                                                                                       |               |
-| `(X !!OR!! Y) = (Y !!OR!! X)`<br>`(X !!AND!! Y) = (Y !!AND!! X)`                                               |               | $("Commutativity")$   |
+| `(X !!OR!! Y) = (Y !!OR!! X)`<br>`(X !!AND!! Y) = (Y !!AND!! X)`                                               |               | `("Commutativity")`   |
 | &nbsp;                                                                                                                                                       |               |
-| `(X !!OR!! (X !!AND!! Y) = X `<br>`(X !!AND!! (X !!OR!! Y) = X `                                               |               | $("Absorption")$      |
+| `(X !!OR!! (X !!AND!! Y) = X `<br>`(X !!AND!! (X !!OR!! Y) = X `                                               |               | `("Absorption")`      |
 | &nbsp;                                                                                                                                                       |               |
-| `(X !!OR!! (Y !!AND!! Z)) = ((X !!OR!! Y) !!AND!! (X !!OR!! Z) ` <br>`(X !!AND!! (Y !!OR!! Z)) = ((X !!AND!! Y) !!OR!! (X !!AND!! Z) ` |               | $("Distributivity")$  |
+| `(X !!OR!! (Y !!AND!! Z)) = ((X !!OR!! Y) !!AND!! (X !!OR!! Z) ` <br>`(X !!AND!! (Y !!OR!! Z)) = ((X !!AND!! Y) !!OR!! (X !!AND!! Z) ` |               | `("Distributivity")`  |
 | &nbsp;                                                                                                                                                       |               |
-| `(X !!OR!! !!NOT!! X) = 1 ` <br>`(X !!AND!! !!NOT!! X) = 0 `                                                   |               | $("Complementation")$ |
+| `(X !!OR!! !!NOT!! X) = 1 ` <br>`(X !!AND!! !!NOT!! X) = 0 `                                                   |               | `("Complementation")` |
 | &nbsp;                                                                                                                                                       |               |
-| `(X !!OR!! 0) = X ` <br> `(X !!AND!! 1) = X `                                                          |               | $("Identity")$        |
+| `(X !!OR!! 0) = X ` <br> `(X !!AND!! 1) = X `                                                          |               | `("Identity")`        |
 | &nbsp;                                                                                                                                                       |               |
-| `(X !!AND!! 0) = 0 ` <br>`(X !!OR!! 1) = 1 `                                                           |               | $("Domination")$      |
+| `(X !!AND!! 0) = 0 ` <br>`(X !!OR!! 1) = 1 `                                                           |               | `("Domination")`      |
 | &nbsp;                                                                                                                                                       |               |
 
 You can (and should!) verify all these laws, just like we did for
-$Commutativity$. Don't worry, you don't need to
+`Commutativity`. Don't worry, you don't need to
 memorize all of these laws. But at the same time, knowing them can be incredibly
 helpful in showing facts about Boolean algebras.
 
@@ -257,9 +256,9 @@ important family of laws known as the **de Morgan laws**:
 
 |                                                                                                                                                              |               |                                                      |
 | ----------------------------------------------------------------------------                                                                                 | -             | -----------------------------------------            |
-| `!!NOT!! (X !!OR!! Y) = (!!NOT!! X !!AND!! !!NOT!! Y)`<br>`!!NOT!! (X !!AND!! Y) = (!!NOT!! X !!OR!! !!NOT!! Y) `                 | &emsp; &emsp; | $("De Morgan Identities")$   |
+| `!!NOT!! (X !!OR!! Y) = (!!NOT!! X !!AND!! !!NOT!! Y)`<br>`!!NOT!! (X !!AND!! Y) = (!!NOT!! X !!OR!! !!NOT!! Y) `                 | &emsp; &emsp; | `("De Morgan Identities")`   |
 | &nbsp;                                                                                                                                                       |               |
-| `!!NOT!! !!NOT!! X = X `                                              |               | $("Double Negation")$   |
+| `!!NOT!! !!NOT!! X = X `                                              |               | `("Double Negation")`   |
 | &nbsp;                                                                                                                                                       |               |
 
 Let's look at how to derive {{<excalifont>}}("Double
@@ -267,129 +266,93 @@ Let's look at how to derive {{<excalifont>}}("Double
 
 1. We start with 
 
-   ```
-   !!NOT!! !!NOT!! X = ((!!NOT!! !!NOT!! X) !!AND!! 1),
-   ```
+   ```!!NOT!! !!NOT!! X = ((!!NOT!! !!NOT!! X) !!AND!! 1),```
 
-    which we know by $"Identity"$.
+    which we know by `"Identity"`.
 
-2. We then apply the fact that `X !!OR!! !!NOT!! X = 1`, that is $"Complementation"$, which gives us that 
+2. We then apply the fact that `X !!OR!! !!NOT!! X = 1`, that is `"Complementation"`, which gives us that 
  
-   ```
-   !!NOT!! !!NOT!! X = ((!!NOT!! !!NOT!! X) !!AND!! (X !!OR!! !!NOT!! X)),
-   ```
+   ```!!NOT!! !!NOT!! X = ((!!NOT!! !!NOT!! X) !!AND!! (X !!OR!! !!NOT!! X)),```
 
-3. By $"Distributivity"$, we have 
+3. By `"Distributivity"`, we have 
 
-   ```
-   ((!!NOT!! !!NOT!! X) !!AND!! (X !!OR!! !!NOT!! X))= ((!!NOT!! !!NOT!! X) !!AND!! X) !!OR!! ((!!NOT!! !!NOT!! X) !!AND!! !!NOT!! X),
-   ```
+   ```((!!NOT!! !!NOT!! X) !!AND!! (X !!OR!! !!NOT!! X))= ((!!NOT!! !!NOT!! X) !!AND!! X) !!OR!! ((!!NOT!! !!NOT!! X) !!AND!! !!NOT!! X),```
 
    so we can conclude that 
 
-   ```
-   !!NOT!! !!NOT!! X = ((!!NOT!! !!NOT!! X) !!AND!! X) !!OR!! ((!!NOT!! !!NOT!! X) !!AND!! !!NOT!! X).
-   ```
+   ```!!NOT!! !!NOT!! X = ((!!NOT!! !!NOT!! X) !!AND!! X) !!OR!! ((!!NOT!! !!NOT!! X) !!AND!! !!NOT!! X).```
 
-4. Now, notice that  `((!!NOT!! !!NOT!! X) !!AND!! !!NOT!! X) = 0` by $"Complementation"$. So step 3. simplifies to:
+4. Now, notice that  `((!!NOT!! !!NOT!! X) !!AND!! !!NOT!! X) = 0` by `"Complementation"`. So step 3. simplifies to:
 
-   ```
-    !!NOT!! !!NOT!! X = ((!!NOT!! !!NOT!! X) !!AND!! X) !!OR!! 0.
-   ```
+   ```!!NOT!! !!NOT!! X = ((!!NOT!! !!NOT!! X) !!AND!! X) !!OR!! 0.```
 
-   which by $"Identity"$ simplifies further
+   which by `"Identity"` simplifies further
    down to:
 
-   ```
-    !!NOT!! !!NOT!! X = (!!NOT!! !!NOT!! X) !!AND!! X.
-   ```
+   ```!!NOT!! !!NOT!! X = (!!NOT!! !!NOT!! X) !!AND!! X.```
 
 5. Going a bit faster, we can see by analogous reasoning that
 
-   ```
-    X = X !!AND!! 1 = X !!AND!! ((!!NOT!! !!NOT!! X) !!OR!! !!NOT!! X),
-   ```
+   ```X = X !!AND!! 1 = X !!AND!! ((!!NOT!! !!NOT!! X) !!OR!! !!NOT!! X),```
 
-   using $"Identity"$ and $"Complementation"$ like before.
+   using `"Identity"` and `"Complementation"` like before.
 
-6. Using $"Distributivity"$, this gives us
+6. Using `"Distributivity"`, this gives us
 
-   ```
-    X = (X !!AND!! !!NOT!! !!NOT!! X) !!OR!! (X !!AND!! !!NOT!! X).
-   ```
+   ```X = (X !!AND!! !!NOT!! !!NOT!! X) !!OR!! (X !!AND!! !!NOT!! X).```
 
 7. But since `{{<excalifont >}}(X !!AND!! !!NOT!! X) = 0{{</excalifont>}}`, we now get 
 
-   ```
-    X = (X !!AND!! (!!NOT!! !!NOT!! X))
-   ```
+   ```X = (X !!AND!! (!!NOT!! !!NOT!! X))```
    
-   using $"Identity"$ and $"Complementation"$.
+   using `"Identity"` and `"Complementation"`.
 
 8. But now we know that both: 
 
-   ```
-   !!NOT!! !!NOT!! X = (!!NOT!! !!NOT!! X) !!AND!! X
-   ```
+   ```!!NOT!! !!NOT!! X = (!!NOT!! !!NOT!! X) !!AND!! X```
 
-   ```
-   X = (X !!AND!! (!!NOT!! !!NOT!! X)), 
-   ```
+   ```X = (X !!AND!! (!!NOT!! !!NOT!! X)),```
 
   where the latter is just `X = (!!NOT!! !!NOT!! X) !!AND!!
-   X,` using $"Commutativity"$ to reorder. So, we can conclude that: 
+   X,` using `"Commutativity"` to reorder. So, we can conclude that: 
 
-   ```
-    !!NOT!! !!NOT!! X = X
-   ```
+   ```!!NOT!! !!NOT!! X = X```
 
 
 This derivation may seem a bit tedious—especially since we can prove the fact
-that $!!NOT!! !!NOT!! X = X$ by simply inspecting
-the function tables: `!!NOT!! !!NOT!! 1 = 1$ and $!!NOT!! !!NOT!! 0 = 0`.
+that `!!NOT!! !!NOT!! X = X` by simply inspecting
+the function tables: `!!NOT!! !!NOT!! 1 = 1`and`!!NOT!! !!NOT!! 0 = 0`.
 
 But there are also questions where the laws are much more efficient at giving
 you the answer than inspecting the tables. Take for example the Boolean
 expression:
 
-  ```
-  X !!AND!! ((Y !!AND!! Z) !!OR!! !!NOT!! (Y !!AND!! Z))
-  ```
+  ```X !!AND!! ((Y !!AND!! Z) !!OR!! !!NOT!! (Y !!AND!! Z))```
 
 It turns out that this expression reduces to simply
-$X$. To see this by truth-table inspection, we
-need to go through $2³&nbsp;=&nbsp;8$ different
-combinations of truth-values for $X, Y, Z$ and
-for each combination, we need to calculate $5$ different operations. That's a
+`X`. To see this by truth-table inspection, we
+need to go through `2³&nbsp;=&nbsp;8` different
+combinations of truth-values for `X, Y, Z` and
+for each combination, we need to calculate `5` different operations. That's a
 lot of calculations. 
 
 Using the laws of Boolean algebra, however, we can recognize that 
 
-  ```
-  ((Y !!AND!! Z) !!OR!! !!NOT!! (Y !!AND!! Z))
-  ```
+  ```((Y !!AND!! Z) !!OR!! !!NOT!! (Y !!AND!! Z))```
 
   is of the form 
 
-  ```
-  [something] !!OR!! !!NOT!! [something], 
-  ```
+  ```[something] !!OR!! !!NOT!! [something],```
 
 where `[something] = (Y !!AND!! Z)`. So, by
-$"Complementation"$, we can reduce  
+`"Complementation"`, we can reduce  
 
-  ```
-  X !!AND!! ((Y
-  !!AND!! Z) !!OR!! !!NOT!! (Y
-  !!AND!! Z))
-  ```
+  ```X !!AND!! ((Y !!AND!! Z) !!OR!! !!NOT!! (Y !!AND!! Z))```
 down to 
 
-  ```
-  X !!AND!! 1, 
-  ```
+  ```X !!AND!! 1,```
 
-which by $"Identity"$ is just `X`.
+which by `"Identity"` is just `X`.
 
 {{< img src="img/ai_tools.png" class="rounded  float-end inert-img img-fluid mx-3" width="100px">}} 
 The derivation also illustrates an important point: the above laws of Boolean
@@ -407,11 +370,9 @@ But it is not the only collection of complete laws and certainly not the
 [minimal one](https://en.wikipedia.org/wiki/Minimal_axioms_for_Boolean_algebra).
 It turns out that the following single law is enough to derive all the other
 laws of Boolean algebra (expressed using  only
-$!!NOT!!$ and $!!OR!!$): 
+`!!NOT!!` and `!!OR!!`): 
 
-```
-!!NOT!! (!!NOT!! (!!NOT!! (X !!OR!! Y) !!OR!! Z) !!OR!! !!NOT!! (X !!OR!! !!NOT!! (!!NOT!! Z !!OR!! !!NOT!! (Z !!OR!! U)))) = Z
-```
+```!!NOT!! (!!NOT!! (!!NOT!! (X !!OR!! Y) !!OR!! Z) !!OR!! !!NOT!! (X !!OR!! !!NOT!! (!!NOT!! Z !!OR!! !!NOT!! (Z !!OR!! U)))) = Z```
 
 But that's a story for another day.
 
@@ -429,43 +390,42 @@ numbers into something a Boolean function can understand. We need to talk about
 
 The fundamental idea of [binary
 numbers](https://en.wikipedia.org/wiki/Binary_number) is that we can represent
-any natural number as a sequence of $0$'s and $1$'s. Here's how this works. Take
-the string $$1101,$$ for example. This string is the binary representation of
-the number $13$. Here's how this works:
+any natural number as a sequence of `0`'s and `1`'s. Here's how this works. Take
+the string ```1101,``` for example. This string is the binary representation of
+the number `13`. Here's how this works:
 
 {{< img src="img/binary_example.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}}
 
-The $0$'s and $1$'s are also called
+The `0`'s and `1`'s are also called
 [bits](https://en.wikipedia.org/wiki/Bit)—short for binary digits—especially in
 computer science contexts. For simplicity, we count the bits of a binary number
 backwards from the end of the string (right-to-left rather than left-to-right).
-You'll see in a second why. We also start counting at $0$, which might be
-unusual at first, but is also common in computer science. So, the first bit of $1101$, for example, is what would normally be called "the second digit from the end", i.e. $0$:
+You'll see in a second why. We also start counting at `0`, which might be
+unusual at first, but is also common in computer science. So, the first bit of `1101`, for example, is what would normally be called "the second digit from the end", i.e. `0`:
 
 {{< img src="img/bits_example.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="200px">}}
 
 To calculate the number represented by a string, you go through the digits one by one.
-Let's call the $n$th bit $dₙ$. So, in our example, we have: $$d₀ = 1, d₁ = 0,
-d₂ = 1, d₃ = 1$$
+Let's call the `n`th bit `dₙ`. So, in our example, we have: ```d₀ = 1, d₁ = 0, d₂ = 1, d₃ = 1```
 
-Then you multiply the $n-th$ bit with the $n-th$ power of $2$, that is, you
-calculate: $$(dₙ x 2ⁿ)$$
+Then you multiply the `n-th` bit with the `n-th` power of `2`, that is, you
+calculate: ```(dₙ x 2ⁿ)```
 And then you sum up the results for all the digits:
-$$(d₀ x 2⁰) + (d₁ x 2¹) + (d₂ x 2²) + …$$
+```(d₀ x 2⁰) + (d₁ x 2¹) + (d₂ x 2²) + …```
 This is the general formula for calculating the number represented by a binary
-string. In our case of $1101$, this formula gives us precisely the calculation
+string. In our case of `1101`, this formula gives us precisely the calculation
 from above. In more general mathematical notation, we can write this as:
 
 {{< img src="img/representation_formula.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="200px">}}
 
 But this is just "fancy notation" to say exactly the same thing we just said.
 
-The number $1101$ is what's called a $4$-bit number, since it represents a
+The number `1101` is what's called a `4`-bit number, since it represents a
 number using four bits. Typically, we're dealing with binary numbers of a fixed
 number of bits. In implementations, this restriction is enforced by hardware
 limitations: while mathematicians are happy dealing with strings of infinite
 length in their minds, it's slightly complicated to stuff them into a computer
-chip. This is why we have [$64$-bit computing](https://en.wikipedia.org/wiki/64-bit_computing) and not "∞-bit computing".
+chip. This is why we have [`64`-bit computing](https://en.wikipedia.org/wiki/64-bit_computing) and not "∞-bit computing".
 
 But there are also practical advantages to having a fixed bit-size. For example,
 if we have two binary numbers of the same length, they are incredibly easy to
@@ -476,47 +436,45 @@ add. Here's an example of how this works:
 Essentially, what we do here is to add the two numbers by adding their binary
 components one by one, taking care along the way to "carry over" any overspill.
 The way this works is that you start from the end again and you add the two
-$0$th digits according to the following rules: 
+`0`th digits according to the following rules: 
 
-+ If one digit is a $0$ and the other is a $1$, the result is $1$, since $$(0 x
-2⁰) + (1 x 2⁰) = (1 x
-2⁰) + (0 x 2⁰) = 1$$
++ If one digit is a `0` and the other is a `1`, the result is `1`, since ```(0 x 2⁰) + (1 x 2⁰) = (1 x 2⁰) + (0 x 2⁰) = 1```
 
-+ If both digits are a $0$, then the result is $0$, since 
-$$(0 x 2⁰) + (0 x 2⁰) = 0$$
++ If both digits are a `0`, then the result is `0`, since 
+```(0 x 2⁰) + (0 x 2⁰) = 0```
 
-+ If both digits are a $1$, then the result is $0$ with a **carry** of $1$ (this
++ If both digits are a `1`, then the result is `0` with a **carry** of `1` (this
 is the little red number in the next column), since 
 
     {{< img src="img/half_adder_rule.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="500px">}}
 
 Now you might already see that what's going on here is just Boolean
-truth-functions being applied to the $0$th digit. Basically, what we have here
-are two inputs: the $0$th digit of our first number and the $0$th digit of our
-second number. Let's call them $d₀$ and $e₀$ respectively. What we need to
-calculate are two things: the $0$th digit of our result, and any potential
+truth-functions being applied to the `0`th digit. Basically, what we have here
+are two inputs: the `0`th digit of our first number and the `0`th digit of our
+second number. Let's call them `d₀` and `e₀` respectively. What we need to
+calculate are two things: the `0`th digit of our result, and any potential
 carry.
 
-According to the rules, the first output, the $0$th digit of our addition, is
-$1$ just in case exactly one (and not both) of $d₀$ and $e₀$ is $1$. Otherwise, if
-either $d₀ = e₀ = 0$ or $d₀ = e₀ = 1$, the output is $0$. This describes a
-truth-function, which is known as $!!XOR!!$ ("exclusive or"), which has the
+According to the rules, the first output, the `0`th digit of our addition, is
+`1` just in case exactly one (and not both) of `d₀` and `e₀` is `1`. Otherwise, if
+either `d₀ = e₀ = 0` or `d₀ = e₀ = 1`, the output is `0`. This describes a
+truth-function, which is known as `!!XOR!!` ("exclusive or"), which has the
 following function table:
 
 {{< img src="img/xor_table.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="500px">}}
 
-We can actually express this function using only $!!NOT!!, !!AND!!, !!OR!!$, but
-using $!!XOR!!$ directly it's much easier.
+We can actually express this function using only `!!NOT!!, !!AND!!, !!OR!!`, but
+using `!!XOR!!` directly it's much easier.
 
-The carry, instead, is $1$ just in case both $d₀$ and $e₀$ are $1$ and $0$
-otherwise. But that's just the specification of $!!AND!!$. So, we can describe the
+The carry, instead, is `1` just in case both `d₀` and `e₀` are `1` and `0`
+otherwise. But that's just the specification of `!!AND!!`. So, we can describe the
 rule as follows using Boolean truth-functions:
 
-+ the $0$th digit of our addition is $d₀ !!XOR!! e₀$
++ the `0`th digit of our addition is `d₀ !!XOR!! e₀`
 
-+ the carry is $d₀ !!AND!! e₀$
++ the carry is `d₀ !!AND!! e₀`
 
-If we've implemented $!!XOR!!$ and $!!AND!!$ using relays or semiconductors, following
+If we've implemented `!!XOR!!` and `!!AND!!` using relays or semiconductors, following
 the ideas sketched above, we can implement this rule using the following
 circuit known as a **half-adder**:
 
@@ -524,74 +482,74 @@ circuit known as a **half-adder**:
 
 
 {{< img src="img/ai_half_adder.png" class="rounded  float-start inert-img img-fluid mx-3" width="100px">}} 
-The idea is that the blue boxes are implementations of $!!XOR!!$ and $!!AND!!$
+The idea is that the blue boxes are implementations of `!!XOR!!` and `!!AND!!`
 respectively, which take two inputs and give two outputs. The input switches
-represent $d₀$ and $e₀$ respectively, on meaning $1$ and off meaning $0$. The
-two lamps stand for the results, the $0$th digit and the carry, respectively. A
-lamp being on means the relevant output is $1$, otherwise it's $0$. What's
+represent `d₀` and `e₀` respectively, on meaning `1` and off meaning `0`. The
+two lamps stand for the results, the `0`th digit and the carry, respectively. A
+lamp being on means the relevant output is `1`, otherwise it's `0`. What's
 depicted here is the configuration that corresponds to our example, i.e. $d₀ =
-1$ and $e₀ = 1$. 
+1`and`e₀ = 1$. 
 
-Now, let's return to the $1$st (meaning second from the end) digit of our
+Now, let's return to the `1`st (meaning second from the end) digit of our
 result:
 
 {{< img src="img/calculation_focus.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="300px">}}
 
 You might notice that here, we no longer have just two inputs, but *three*: the
-$1$st digit of the first 
-{{<abbr title="number to be added">}}summand{{</abbr>}} ($d₁$), the $1$st digit
+`1`st digit of the first 
+{{<abbr title="number to be added">}}summand{{</abbr>}} (`d₁`), the `1`st digit
 of the second 
-{{<abbr  title="number to be added">}}summand{{</abbr>}} ($e₀$), *plus* the
-carry from the previous step (let's call it $c₀$). Like in the first step, we
-need to calculate two outputs: the $1$st digit of our sum, and any potential
+{{<abbr  title="number to be added">}}summand{{</abbr>}} (`e₀`), *plus* the
+carry from the previous step (let's call it `c₀`). Like in the first step, we
+need to calculate two outputs: the `1`st digit of our sum, and any potential
 carry that might result.
 
-The $1$st digit of our sum is rather straightforward to calculate: it should
-be $1$ just in case exactly one input is $1$ _or_ all three inputs are $1$. The
+The `1`st digit of our sum is rather straightforward to calculate: it should
+be `1` just in case exactly one input is `1` _or_ all three inputs are `1`. The
 reasoning is like in the two input case from before:
 
-+ If there's no $1$, we get:
++ If there's no `1`, we get:
 
-    $$(0 x 2¹) + (0 x 2¹) + (0 x 2¹)$$
+    ```(0 x 2¹) + (0 x 2¹) + (0 x 2¹)```
     {{< img src="img/addition_full_0.png" class="rounded mx-auto d-block inert-img img-fluid " width="150px">}}
 
 
-+ If there's precisely one $1$, we have:
++ If there's precisely one `1`, we have:
 
-    $$(1 x 2¹) + (0 x 2¹) + (0 x 2¹)$$
-    $$= (0 x 2¹) + (1 x 2¹) + (0 x 2¹)$$
-    $$= (0 x 2¹) + (0 x 2¹) + (1 x 2¹)$$
+    ```(1 x 2¹) + (0 x 2¹) + (0 x 2¹)```
+    ```= (0 x 2¹) + (1 x 2¹) + (0 x 2¹)```
+    ```= (0 x 2¹) + (0 x 2¹) + (1 x 2¹)```
     {{< img src="img/addition_full_1.png" class="rounded mx-auto d-block inert-img img-fluid " width="150px">}}
 
-+ If there's exactly two $1$'s, we get:
++ If there's exactly two `1`'s, we get:
 
-    $$(1 x 2¹) + (1 x 2¹) + (0 x 2¹)$$
-    $$= (1 x 2¹) + (0 x 2¹) + (1 x 2¹)$$
-    $$= (0 x 2¹) + (1 x 2¹) + (1 x 2¹)$$
+    ```(1 x 2¹) + (1 x 2¹) + (0 x 2¹)```
+    ```= (1 x 2¹) + (0 x 2¹) + (1 x 2¹)```
+    ```= (0 x 2¹) + (1 x 2¹) + (1 x 2¹)```
     {{< img src="img/addition_full_2.png" class="rounded mx-auto d-block inert-img img-fluid" width="300px">}}
 
     
-+ And if there's three $1$'s, we have:
++ And if there's three `1`'s, we have:
 
-    $$= (1 x 2¹) + (1 x 2¹) + (1 x 2¹)$$
+    ```= (1 x 2¹) + (1 x 2¹) + (1 x 2¹)```
     {{< img src="img/addition_full_3.png" class="rounded mx-auto d-block inert-img img-fluid" width="300px">}}
 
 The Boolean truth-function which gives us precisely the desired output for the
-$1$st digit of our computation is:
+`1`st digit of our computation is:
 
-$$(d₁ !!XOR!! e₁ ) !!XOR!! c₀$$
+```(d₁ !!XOR!! e₁ ) !!XOR!! c₀```
 
 But what should the carry be? Inspecting the cases, we can see that we should
-carry a $1$ in one of two scenarios: if there's exactly two $1$'s and if there's
+carry a `1` in one of two scenarios: if there's exactly two `1`'s and if there's
 precisely three. How can we express this in terms of truth-functions? While
-there are different ways of doing this, here's a common one using $!!AND!!, !!OR!!,$ and
-$!!XOR!!$:
+there are different ways of doing this, here's a common one using `!!AND!!, !!OR!!,` and
+`!!XOR!!`:
 
-$$(d₁ !!AND!! e₁ ) !!OR!! (c₀ !!AND!! (d₁ !!XOR!! e₁))$$
+```(d₁ !!AND!! e₁ ) !!OR!! (c₀ !!AND!! (d₁ !!XOR!! e₁))```
 
-The reasoning is that we can analyze our two scenarios (exactly two $1$'s and
-exactly three $1$'s) in a slightly different way: either both inputs are $1$ or
-exactly one input is $1$ and the carry from before is $1$. You can—and—
+The reasoning is that we can analyze our two scenarios (exactly two `1`'s and
+exactly three `1`'s) in a slightly different way: either both inputs are `1` or
+exactly one input is `1` and the carry from before is `1`. You can—and—
 should!—verify that this works.
 
 It's a bit more tedious to implement this using circuits, but of course it can
@@ -636,8 +594,8 @@ Boolean algebra to inferences, we need to translate the formulas of our formal
 language into something that Boolean algebra can work with—which turns out to
 be truth-values.
 
-Suppose that we have a propositional language, $L$, which has two propositional
-variables $SUN$ and $RAIN$, which we interpret as saying that it's sunny and
+Suppose that we have a propositional language, `L`, which has two propositional
+variables `SUN` and `RAIN`, which we interpret as saying that it's sunny and
 that it's rainy, respectively. 
 
 There are _four_ logically relevant reasoning scenarios for inference in this
@@ -655,43 +613,43 @@ That is, our logical space should look something like this:
 
 {{< img src="img/logical_space.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}}
 
-Our aim is to implement a definition of a model for $L$ that adequately
+Our aim is to implement a definition of a model for `L` that adequately
 reflects this idea. To achieve this goal, we'll use the thought mentioned
 before that we can *assign* truth-values to propositional variables, where
-assigning the value $1$ to $SUN$, say, means that $SUN$ is true (it's sunny),
-and assigning it the value $0$ means that $SUN$ is not true (it's not sunny).
+assigning the value `1` to `SUN`, say, means that `SUN` is true (it's sunny),
+and assigning it the value `0` means that `SUN` is not true (it's not sunny).
 
-Mathematically, we typically express such an assignment of values using the function symbol $v$, like so:
+Mathematically, we typically express such an assignment of values using the function symbol `v`, like so:
 
 {{< img src="img/assignments.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="900px">}}
 
 When more than one assignment viewed as a model is under consideration at the
 same time, we disambiguate with the use of subscripts. So, for example, there
-is the assignment $v₁$, such that $v₁(SUN)=1$ and $v₁(RAIN)=1$, as well as the
-assignment $v₂$, such that $v₂(SUN)=1$, but $v₂(RAIN)=0$.
+is the assignment `v₁`, such that `v₁(SUN)=1` and `v₁(RAIN)=1`, as well as the
+assignment `v₂`, such that `v₂(SUN)=1`, but `v₂(RAIN)=0`.
 
-Since there are two propositional variables ($SUN$ and $RAIN$), there are $2² =
-4$ possible ways of assigning truth-values from among ${0, 1}$ in this way.
+Since there are two propositional variables (`SUN` and `RAIN`), there are $2² =
+4`possible ways of assigning truth-values from among`{0, 1}$ in this way.
 Each of these assignments corresponds to one of our reasoning situations. More
-generally, if there are $n$ propositional variables, where $n$ is any number,
-then there are $2ⁿ$ different ways of assigning truth-values from ${0, 1}$ to
+generally, if there are `n` propositional variables, where `n` is any number,
+then there are `2ⁿ` different ways of assigning truth-values from `{0, 1}` to
 the propositional variables. In our case, the relevant assignments and
 corresponding scenarios are:
 
  |                                                                                                    |              |                                |   |                                                                                                    |              |                                |
  | -------------------------------------------------------------------------------------------------- | -            | -----------                    | - | -                                                                                                  | -            | -                              |
- | $M₁$: {{< img src="img/m1.png" class="inert-img" height="48px" style="vertical-align: middle;" >}} | &emsp;&emsp; | $v₁(RAIN) = 1$ and $v₁(SUN) = 1$ | &emsp;&emsp;  | $M₃$: {{< img src="img/m3.png" class="inert-img" height="48px" style="vertical-align: middle;" >}} | &emsp;&emsp; | $v₃(RAIN) = 0$ and $v₃(SUN) = 1$ |  |
+ | `M₁`: {{< img src="img/m1.png" class="inert-img" height="48px" style="vertical-align: middle;" >}} | &emsp;&emsp; | `v₁(RAIN) = 1` and `v₁(SUN) = 1` | &emsp;&emsp;  | `M₃`: {{< img src="img/m3.png" class="inert-img" height="48px" style="vertical-align: middle;" >}} | &emsp;&emsp; | `v₃(RAIN) = 0` and `v₃(SUN) = 1` |  |
  | &emsp;                                                                                             |              |                                |   | &emsp;                                                                                             |              |                                |  |
- | $M₂$: {{< img src="img/m2.png" class="inert-img" height="48px" style="vertical-align: middle;" >}} | &emsp;&emsp; | $v₂(RAIN) = 1$ and $v₂(SUN) = 0$ |   | $M₄$: {{< img src="img/m4.png" class="inert-img" height="48px" style="vertical-align: middle;" >}} | &emsp;&emsp; | $v₄(RAIN) = 1$ and $v₄(SUN) = 1$ |  |
+ | `M₂`: {{< img src="img/m2.png" class="inert-img" height="48px" style="vertical-align: middle;" >}} | &emsp;&emsp; | `v₂(RAIN) = 1` and `v₂(SUN) = 0` |   | `M₄`: {{< img src="img/m4.png" class="inert-img" height="48px" style="vertical-align: middle;" >}} | &emsp;&emsp; | `v₄(RAIN) = 1` and `v₄(SUN) = 1` |  |
  | &emsp;                                                                                             |              |                                |   |
  
 The idea is to _identify_ the possible reasoning scenarios—from a logical
 perspective—with these assignments. That is, we say that a **model** for the
-language $L$ _is_ an assignment of Boolean truth-values to the propositional
-variables. In short: $$Mᵢ = vᵢ$$
+language `L` _is_ an assignment of Boolean truth-values to the propositional
+variables. In short: ```Mᵢ = vᵢ```
 
 Each model tells us what the truth-values for the propositional variables are.
-This allows us, for example, to determine the proposition $[SUN]$ as follows:
+This allows us, for example, to determine the proposition `[SUN]` as follows:
 
 {{< img src="img/prop_sun.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="900px">}}
 
@@ -704,13 +662,10 @@ Let's start with negation. In which models should we say that
 style="vertical-align: middle;" >}}, say, is true? A straightforward answer
 is: {{< img src="img/neg_sun.png" class="inert-img" height="28px"
 style="vertical-align: middle;" >}} says that it's not sunny, so the formula
-should be true in precisely those models, where $SUN$ is _not_ true: $$v({{< img src="img/neg_sun.png" class="inert-img" height="34px"
-style="vertical-align: middle;" >}}) = 1 just in case v(SUN) = 0.$$
+should be true in precisely those models, where `SUN` is _not_ true: ```v({{< img src="img/neg_sun.png" class="inert-img" height="34px" style="vertical-align: middle;" >}}) = 1 just in case v(SUN) = 0.```
 
-But do you recognize it? This is exactly what the Boolean truth-function $!!NOT!!$
-does! That is, we can implement the proposal using $!!NOT!!$ as follows: $$v({{<
-img src="img/neg_sun.png" class="inert-img" height="34px"
-style="vertical-align: middle;" >}}) = !!NOT!! v(SUN)$$
+But do you recognize it? This is exactly what the Boolean truth-function `!!NOT!!`
+does! That is, we can implement the proposal using `!!NOT!!` as follows: ```v({{< img src="img/neg_sun.png" class="inert-img" height="34px" style="vertical-align: middle;" >}}) = !!NOT!! v(SUN)```
 
 This means that {{< img src="img/neg_sun.png" class="inert-img" height="34px"
 style="vertical-align: middle;" >}} gets the following semantic content:
@@ -720,12 +675,12 @@ style="vertical-align: middle;" >}} gets the following semantic content:
 Turning to conjunction, in which models is {{< img src="img/sun_and_rain.png"
 class="inert-img" height="30px" style="vertical-align: middle;" >}} true? Since
 the formula says that it's both sunny and raining, the answer is: precisely in
-those models where both $SUN$ and $RAIN$ are true. In all other models, {{< img src="img/sun_and_rain.png"
+those models where both `SUN` and `RAIN` are true. In all other models, {{< img src="img/sun_and_rain.png"
 class="inert-img" height="30px" style="vertical-align: middle;" >}} is false. That is:
 
 {{< img src="img/condition_sun_and_rain.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="850px">}}
 
-But that's just what $!!AND!!$ does! So, we can implement this by saying:
+But that's just what `!!AND!!` does! So, we can implement this by saying:
 
 {{< img src="img/clause_and.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}}
 
@@ -734,7 +689,7 @@ class="inert-img" height="30px" style="vertical-align: middle;" >}} says that it
 
 {{< img src="img/condition_sun_or_rain.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="800px">}}
 
-This we can implement using the Boolean $!!OR!!$ by saying that:
+This we can implement using the Boolean `!!OR!!` by saying that:
 
 {{< img src="img/clause_or.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}}
 
@@ -744,8 +699,8 @@ class="inert-img" height="30px" style="vertical-align: middle;" >}} get the foll
 
 {{< img src="img/prop_sun_and_or_rain.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="900px">}}
 
-Using this idea, we can calculate the proposition $[A]$ expressed by any
-formula $A$ of our language. Just apply the following clauses to calculate the
+Using this idea, we can calculate the proposition `[A]` expressed by any
+formula `A` of our language. Just apply the following clauses to calculate the
 truth-values under an assignment:
 
 {{< img src="img/clauses.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}}
@@ -755,7 +710,7 @@ For example, we can calculate the proposition expressed by {{< img src="img/comp
 {{< img src="img/complex_proposition.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="900px">}}
 
 The most difficult part to work out in this example is, as you might have
-noticed, for which $v$ we have $v(SUN) !!OR!! (v(RAIN) !!AND!! (!!NOT!! v(SUN))) =
+noticed, for which `v` we have $v(SUN) !!OR!! (v(RAIN) !!AND!! (!!NOT!! v(SUN))) =
 1$. Basically, you need to go through all the valuations and calculate the
 value of the Boolean expression. This is tedious work! In the next chapter,
 we'll discuss methods for making our lives a bit easier using the method of
@@ -772,7 +727,7 @@ class="inert-img" height="38px" style="vertical-align: middle;" >}}
 - We'll show that {{< img src="img/aff_inf.png" class="inert-img" height="38px" style="vertical-align: middle;" >}} is deductively invalid, i.e. {{< img src="img/aff_val.png"
 class="inert-img" height="38px" style="vertical-align: middle;" >}}
 
-The first inference is an instance of $Disjunctive Syllogism$, which we've
+The first inference is an instance of `Disjunctive Syllogism`, which we've
 identified as a paradigmatic example of valid inference. Here, we'll show that
 the concrete instance is valid. In the exercises, you'll show that the general
 _schema_ is valid for all instances.
@@ -786,13 +741,13 @@ So, let's check in logical space:
 {{< img src="img/ds_validity.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="800px">}}
 
 Indeed! Once we've worked out the relevant propositions, we can see that the only member of {{< img src="img/proposition_intersection.png"
-class="inert-img" height="32px" style="vertical-align: middle;" >}} is $M₄$, in which it is raining, i.e. $v₄(RAIN) = 1 $ and so $M₄ ∈ [RAIN]$. But that just means that our condition is satisfied:
+class="inert-img" height="32px" style="vertical-align: middle;" >}} is `M₄`, in which it is raining, i.e. `v₄(RAIN) = 1` and so `M₄ ∈ [RAIN]`. But that just means that our condition is satisfied:
 
 {{< img src="img/ds_condition.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="500px">}}
 
 We can conclude that, indeed, {{< img src="img/ds_val.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="500px">}}
 
-The second inference is an instance of $Affirming a Disjunct$, which we've
+The second inference is an instance of `Affirming a Disjunct`, which we've
 identified as a traditional fallacy. Let's see. For the inference to be valid, the following would need to be the case:
 
 {{< img src="img/aff_condition.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}}
@@ -802,15 +757,14 @@ When we check logical space, we find the following:
 {{< img src="img/aff_countermodel.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="800px">}}
 
 Once we've worked out the propositions, we can see that {{< img src="img/countermodel.png"
-class="inert-img" height="40px" style="vertical-align: middle;" >}}. This makes $M₁$ a **countermodel** for the inference, which shows that 
+class="inert-img" height="40px" style="vertical-align: middle;" >}}. This makes `M₁` a **countermodel** for the inference, which shows that 
 
 {{< img src="img/aff_inval.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="500px">}}
 
 This means that, indeed: {{< img src="img/aff_val.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="500px">}}
 
 Note, however, that the invalidity crucially depends on us interpreting {{< img src="img/disjunction.png"
-class="inert-img" height="32px" style="vertical-align: middle;" >}} using $!!OR!!$. If we read the operation as an $!!XOR!!$, the story changes—which you'll see in the exercises.
+class="inert-img" height="32px" style="vertical-align: middle;" >}} using `!!OR!!`. If we read the operation as an `!!XOR!!`, the story changes—which you'll see in the exercises.
 
-## Further readings
-
+## Further readings {.readings .nocount}
 - George Boole's [The Laws of Thought](https://en.wikipedia.org/wiki/The_Laws_of_Thought) is an enticing _historical_ read.

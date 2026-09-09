@@ -6,7 +6,6 @@ params:
   date: 21/10/2024
   last_edited: 21/10/2024
   id: txt-prob
-  math: true
 ---
 
 # Probability and inductive logic
@@ -71,8 +70,7 @@ develop the standard theory of inductive inference in the same setting as the
 standard theory of deductive inference—which in turn makes it possible to
 compare the two.
 
-At the end of the chapter, you'll be able to:
-
+{{< callout type="objectives" >}}
 - explain the basic concept of a probability distribution over a propositional
 language,
 - define probability distributions using classical truth-tables and probability
@@ -82,6 +80,7 @@ formula](https://en.wikipedia.org/wiki/Bayes%27_theorem),
 - explain the relevance of probability to inductive inference and apply this in
   examples, such as naive Bayes filters,
 - explain the logical relation between inductive and deductive inference.
+{{< /callout >}}
 
 ## Probabilities
 
@@ -92,7 +91,7 @@ probability theory. In our case, there are six possible outcomes: we could roll
 a 1, a 2, a 3, a 4, a 5, or a 6. Visually, we can represent these possible
 outcomes as: 
 {{< img src="img/die_space.png" class="rounded mx-auto d-block inert-img img-fluid" width="500px">}}
-In probability theory, the symbol $Ω$ stands for the so-called [sample
+In probability theory, the symbol `Ω` stands for the so-called [sample
 space](https://en.wikipedia.org/wiki/Sample_space), from which our possible
 outcomes are recruited. Rolling the die is what's called a [random
 experiment](https://en.wikipedia.org/wiki/Experiment_(probability_theory)),
@@ -118,9 +117,7 @@ measure the chance with a higher value meaning a higher chance.
 The only constraint on a probability mass function is that the sum of the values
 over all outcomes must be one, i.e.
 
-```
-p({{< die_1 >}}) + p({{< die_2 >}}) + p({{< die_3 >}}) +p({{< die_4 >}}) + p({{< die_4 >}}) + p({{< die_5 >}}) + p({{< die_6 >}}) = 1
-```
+```p({{< die_1 >}}) + p({{< die_2 >}}) + p({{< die_3 >}}) +p({{< die_4 >}}) + p({{< die_4 >}}) + p({{< die_5 >}}) + p({{< die_6 >}}) = 1```
 
 This constraint captures the idea that at least one of the outcomes must obtain.
 And behind this way of mathematically expressing this constraint is the idea that
@@ -140,30 +137,22 @@ showing a number bigger than four. In the parlance of probability theory, these
 are called [events](https://en.wikipedia.org/wiki/Event_(probability_theory)).
 An event is a set of basic outcomes, the basic outcomes which correspond to the
 event. So, for example, the event that the die shows an even number is:
-```
-{{{< die_2>}}, {{< die_4>}}, {{< die_6>}}}
-```
+```{{{< die_2>}}, {{< die_4>}}, {{< die_6>}}}```
 Instead, the event that the roll is bigger than four (exclusive) is:
-```
-{{{< die_5>}}, {{< die_6>}}}
-```
+```{{{< die_5>}}, {{< die_6>}}}```
 
 To calculate the probability of an event, we simply sum up the probability
 masses of its outcomes. So, for example,
 
-```
-Pr({{{< die_2>}}, {{< die_4>}}, {{< die_6>}}}) = p({{< die_2 >}}) + p({{<
-die_4 >}}) + p({{< die_6 >}})
-```
+```Pr({{{< die_2>}}, {{< die_4>}}, {{< die_6>}}}) = p({{< die_2 >}}) + p({{< die_4 >}}) + p({{< die_6 >}})```
 
 This probability, then, will differ for each mass function. For our fair die,
 e.g., we get `Pr({{{< die_2>}}, {{< die_4>}}, {{< die_6>}}}) = 1/6 + 1/6 + 1/6 =
 3/6 = 1/2`. But for the unfair distribution, we get `Pr({{{< die_2>}}, {{<
-die_4>}}, {{< die_6>}}}) = 1/10 + 1/10 + 1/10 = 3/10`. Since each outcome $ω {{<
-in >}}Ω$ corresponds to a singleton event, viz. `{ω}`, we can also write things
+die_4>}}, {{< die_6>}}}) = 1/10 + 1/10 + 1/10 = 3/10`. Since each outcome `ω ∈Ω` corresponds to a singleton event, viz. `{ω}`, we can also write things
 like `Pr({{< die_1>}})`, which technically would be `Pr({{{< die_1>}}}) = p({{<
 die_1>}})`. More generally, the formula for the probability of an arbitrary
-event `X {{< subseteq >}} Ω` is:
+event `X ⊆ Ω` is:
 {{< img src="img/probability.png" class="rounded mx-auto d-block inert-img img-fluid" width="200px">}}
 
 This is, in a nutshell, the standard model of [(finite) discrete
@@ -171,7 +160,7 @@ probabilities](https://en.wikipedia.org/wiki/Probability_distribution#Discrete_p
 Things get a bit more complicated if we want to allow for non-discrete
 [continuous](https://en.wikipedia.org/wiki/Probability_distribution#Absolutely_continuous_probability_distribution)
 values: where the outcomes cannot be counted like 1, 2, 3, ... but are things
-like real-valued functions with values in an interval $[0, 1]$. But for the
+like real-valued functions with values in an interval `[0, 1]`. But for the
 purposes of basic AI-applications, discrete probability theory is more than
 enough.
 
@@ -201,8 +190,8 @@ weather with respect to sun and rain. In this setup, there are four possible
 outcomes:
 {{< img src="img/weather_space.png" class="rounded mx-auto d-block inert-img img-fluid" width="500px">}}
 
-But these are just the models for the propositional language with $SUN$ and
-$RAIN$. In fact, we can think of a probability mass function as an assignment of
+But these are just the models for the propositional language with `SUN` and
+`RAIN`. In fact, we can think of a probability mass function as an assignment of
 values between `0` and `1` to the models of this language. A convenient way of
 displaying them is by means of a **probabilistic truth-table**, which next to
 the truth-values, gives the probability of a given row. Here are, for example, two
@@ -215,9 +204,9 @@ uncertain whether it will rain or not:
 Given a probability mass function over the models of a language, we can
 calculate the probabilities of arbitrary formulas by calculating the probability
 of the proposition they express. Remember that the proposition 
-${{< llbracket >}}A{{< rrbracket >}}$ expressed by a formula $A$ is simply the 
+`⟦A⟧` expressed by a formula `A` is simply the 
 set of models where the formula is true:
-$${{< llbracket >}}A{{< rrbracket >}} = { v : v(A) = 1 }$$
+```⟦A⟧ = { v : v(A) = 1 }```
 But in probabilistic terms, such a proposition is just an event over the sample
 space of valuations or models. So, the rules from before tell us that:
 
@@ -231,7 +220,7 @@ Truth-tables are of great help here: if you have a probabilistic
 truth-table—like the ones above—you can simply calculate the values of your
 formula in question for each row, and then sum up the weights of the rows where
 the outcome is `1`. Here's how this works out for our two examples and the
-formula $SUN{{< lor >}}{{< neg >}}RAIN$:
+formula `SUN∨¬RAIN`:
 {{< img src="img/prob_tables_calc.png" class="rounded mx-auto d-block inert-img img-fluid" width="700px">}}
 In this way, given a probability mass, we can calculate the probability of each
 formula. 
@@ -242,39 +231,39 @@ calculated
 [recursively](https://en.wikipedia.org/wiki/Recursion_(computer_science)),
 which means step-by-step from the values of their parts. The _probabilities_ of
 complex formulas, however, are _not_ (in general) recursive. Take, for example,
-the probability of $SUN{{< land >}}RAIN$ under the ignorance distribution and compare
-it to the probabilities of $SUN$ and $RAIN$:
+the probability of `SUN∧RAIN` under the ignorance distribution and compare
+it to the probabilities of `SUN` and `RAIN`:
 
 {{< img src="img/prob_conjunction_id.png" class="rounded mx-auto d-block inert-img img-fluid" width="500px">}}
 
-With this probability mass distribution, we have that $$Pr(SUN{{< land >}}RAIN) = PR(SUN) x Pr(RAIN)$$
+With this probability mass distribution, we have that ```Pr(SUN∧RAIN) = PR(SUN) x Pr(RAIN)```
 
 But this formula doesn't apply under all distributions. Look, for example, at
-the following table with the distribution $p*$:
+the following table with the distribution `p*`:
 
 {{< img src="img/table_indie.png" class="rounded mx-auto d-block inert-img img-fluid" width="400px">}}
 
 This table represents a situation where it's more likely to be sunny than not. We have:
 
-$$Pr(SUN) = 1/2 + 1/4 = 3/4$$
+```Pr(SUN) = 1/2 + 1/4 = 3/4```
 
 If we're looking at the situations where the sun shines, it's relatively
 unlikely that it will rain: the world where the sun shines and it's not raining
-has probability $1/2$ and the one where the sun shines and it's raining has
-probability $1/4$. 
+has probability `1/2` and the one where the sun shines and it's raining has
+probability `1/4`. 
 
 If instead, we look at the two situations where the sun
 isn't shining, we see that it's equally likely among those that it's raining:
 both scenarios, sun and rain as well as sun and no rain, have probability
-$1/8$. The probability that it's raining is therefore:
+`1/8`. The probability that it's raining is therefore:
 
-$$Pr(RAIN) = 1/8 + 1/4 = 3/8$$
+```Pr(RAIN) = 1/8 + 1/4 = 3/8```
 
 But if we look at the probability of the conjunction, we get that:
 
-$$Pr(SUN{{< land >}}RAIN) = 1/4$$
+```Pr(SUN∧RAIN) = 1/4```
 
-And clearly, $1/4$ is different from $3/4 x 3/8 = 9/32$. In fact, there is _no_
+And clearly, `1/4` is different from `3/4 x 3/8 = 9/32`. In fact, there is _no_
 formula that allows us to calculate the probability of a conjunction purely on
 the basis of the probabilities of its conjuncts.
 
@@ -293,48 +282,46 @@ of propositions when discussing valid inference:
 
 {{< img src="img/cond_prob_sets.png" class="rounded mx-auto d-block inert-img img-fluid" width="300px">}}
 
-Here, the crucial condition that $Pr({{< llbracket >}}B{{< rrbracket >}}) ≠ 0$ applies. But using the following identity:
-$${{< llbracket >}}A{{< land >}}B {{< rrbracket >}} = {{< llbracket >}}A {{< rrbracket >}}{{< cap >}}{{< llbracket >}}B {{< rrbracket >}} $$
+Here, the crucial condition that `Pr(⟦B⟧) ≠ 0` applies. But using the following identity:
+```⟦A∧B ⟧ = ⟦A ⟧∩⟦B ⟧```
 we can also directly define conditional probabilities on formulas:
 
 {{< img src="img/conditional_prob.png" class="rounded mx-auto d-block inert-img img-fluid" width="300px">}}
 
 Now look at what happens in the case of our ignorance distribution, if we
-calculate $Pr(RAIN | SUN)$. First, we note that: $$Pr(RAIN) = 1/4 + 1/4 = 1/2
-&emsp; Pr(SUN) = 1/4 + 1/4 = 1/2$$
-$$Pr(SUN {{< land >}}RAIN) = 1/4$$
-Now, let's calculate $Pr(RAIN | SUN)$. We get:
-$$Pr(RAIN | SUN) = Pr(SUN {{< land >}}RAIN)/Pr(SUN) = (1/4)/(1/2) = 2/4 = 1/2$$
-That is, we have that $$Pr( RAIN | SUN ) = Pr(RAIN)$$
+calculate `Pr(RAIN | SUN)`. First, we note that: ```Pr(RAIN) = 1/4 + 1/4 = 1/2 &emsp; Pr(SUN) = 1/4 + 1/4 = 1/2```
+```Pr(SUN ∧RAIN) = 1/4```
+Now, let's calculate `Pr(RAIN | SUN)`. We get:
+```Pr(RAIN | SUN) = Pr(SUN ∧RAIN)/Pr(SUN) = (1/4)/(1/2) = 2/4 = 1/2```
+That is, we have that ```Pr( RAIN | SUN ) = Pr(RAIN)```
 In other words, the information that it's sunny doesn't tell us anything about the rain.
 
-If we look at the distribution $p*$, instead, we get:
+If we look at the distribution `p*`, instead, we get:
 
-$$Pr(SUN) = 3/4 &emsp; Pr(RAIN) = 3/8$$
-$$Pr(SUN {{< land >}}RAIN) = 1/4$$
+```Pr(SUN) = 3/4 &emsp; Pr(RAIN) = 3/8```
+```Pr(SUN ∧RAIN) = 1/4```
 
 And so, we have that: 
-$$Pr(RAIN | SUN) = Pr(SUN {{< land >}}RAIN)/Pr(SUN) = (1/4)/(3/4) = 4/12 = 1/3$$
+```Pr(RAIN | SUN) = Pr(SUN ∧RAIN)/Pr(SUN) = (1/4)/(3/4) = 4/12 = 1/3```
 
 That means that under the hypothesis that it's sunny, the probability of rain
-*changes*—in fact, it goes down (since $1/3 < 3/8$).
+*changes*—in fact, it goes down (since `1/3 < 3/8`).
 
-Two formulas $A$ and $B$ are said to be **probabilistically independent** just
-in case they are like $SUN$ and $RAIN$ in our first distribution, that is
-just in case $$Pr(A | B) = Pr(A)$$
+Two formulas `A` and `B` are said to be **probabilistically independent** just
+in case they are like `SUN` and `RAIN` in our first distribution, that is
+just in case ```Pr(A | B) = Pr(A)```
 
-In the case where $A$ and $B$ are probabilistically independent, we have $$Pr( A {{< land >}}B ) = Pr(A) x Pr(B)$$ To see this, suppose that
-$Pr(A | B) = Pr(A)$. By the formula for conditional probabilities, we
-have that $Pr(A | B ) = Pr(A {{< land >}}B)/Pr(B)$. So, if we multiply
-by $Pr(B)$, we get $Pr(A | B) x Pr(B) = Pr(A {{< land >}}B)$. But since
-$Pr(A | B) = Pr(A)$ by assumption, we have that $Pr(A) x Pr(B) = Pr(A
-{{< land >}}B)$.
+In the case where `A` and `B` are probabilistically independent, we have ```Pr( A ∧B ) = Pr(A) x Pr(B)``` To see this, suppose that
+`Pr(A | B) = Pr(A)`. By the formula for conditional probabilities, we
+have that `Pr(A | B ) = Pr(A ∧B)/Pr(B)`. So, if we multiply
+by `Pr(B)`, we get `Pr(A | B) x Pr(B) = Pr(A ∧B)`. But since
+`Pr(A | B) = Pr(A)` by assumption, we have that $Pr(A) x Pr(B) = Pr(A
+∧B)$.
 
 In fact, this is a *test* for probabilistic independence as well: if
-$Pr(A {{< land >}}B) = Pr(A) x Pr(B)$, then  $Pr(A | B ) = Pr(A)$. This
-is simply because $Pr(A | B) = Pr(A {{< land >}}B)/Pr(B)$. So, if $Pr(A
-{{< land >}}B) = Pr(A) x Pr(B)$, we have that: $$Pr(A | B) = Pr(A {{<
-land >}}B)/Pr(B) = (Pr(A) x Pr(B))/Pr(B)= Pr(A)$$
+`Pr(A ∧B) = Pr(A) x Pr(B)`, then  `Pr(A | B ) = Pr(A)`. This
+is simply because `Pr(A | B) = Pr(A ∧B)/Pr(B)`. So, if $Pr(A
+∧B) = Pr(A) x Pr(B)$, we have that: ```Pr(A | B) = Pr(A ∧B)/Pr(B) = (Pr(A) x Pr(B))/Pr(B)= Pr(A)```
 
 In the absence of independence, the best thing we can say about the probability
 of a conjunction is that: 
@@ -342,39 +329,38 @@ of a conjunction is that:
 {{< img src="img/conjunction.png" class="rounded mx-auto d-block inert-img img-fluid" width="400px">}}
 
 This covers conjunction. Disjunction is subject to similar considerations. Take
-our ignorance table and look at the disjunction $SUN {{< lor >}}RAIN$:
+our ignorance table and look at the disjunction `SUN ∨RAIN`:
 
 {{< img src="img/disjunction_table.png" class="rounded mx-auto d-block inert-img img-fluid" width="300px">}}
 
 We get:
 
-$$Pr(SUN {{< lor >}}RAIN) = 1/4 + 1/4 + 1/4 = 3/4$$
+```Pr(SUN ∨RAIN) = 1/4 + 1/4 + 1/4 = 3/4```
 
 Here we're adding the probabilities of three different scenarios: sun without
 rain, rain without sun, and both sun and rain. These scenarios don't overlap,
 so we can simply add their probabilities.
 
-But adding $Pr(SUN)$ and $Pr(RAIN)$ would count the last scenario twice: once
+But adding `Pr(SUN)` and `Pr(RAIN)` would count the last scenario twice: once
 as a sunny scenario and once as a rainy one. We need to subtract its probability
 once to correct for that double counting. In our example, this gives
-$$1/2 + 1/2 - 1/4 = 3/4.$$
+```1/2 + 1/2 - 1/4 = 3/4.```
 
 The same reasoning gives the general formula for a disjunction:
 
-$$Pr(A {{< lor >}}B) = Pr(A) + Pr(B) - Pr(A {{< land >}}B)$$
+```Pr(A ∨B) = Pr(A) + Pr(B) - Pr(A ∧B)```
 
 But that means that, in general, we cannot calculate the probability of a
 disjunction from the probabilities of its disjuncts—we also need to know the
 probability of their conjunction.
 
-Only in the very special case where $Pr(A {{< land >}}B) = 0$, when $A$ and $B$
-are probabilistically _incompatible_, we get the recursive formula: $$Pr(A {{<
-lor >}}B) = Pr(A) + Pr(B)$$
+Only in the very special case where `Pr(A ∧B) = 0`, when `A` and `B`
+are probabilistically _incompatible_, we get the recursive formula: ```Pr(A ∨B) = Pr(A) + Pr(B)```
 
 The only case where we have a full recursive rule is the case of negation. Under
-each distribution, we have $$Pr({{< neg >}}A) = 1 - Pr(A)$$ This follows from
-the simple fact that the rows where $A$ is true are precisely the rows where
-${{< neg >}}A$ is not, and the masses of the rows add up to $1$.
+each distribution, we have ```Pr(¬A) = 1 - Pr(A)``` This follows from
+the simple fact that the rows where `A` is true are precisely the rows where
+`¬A` is not, and the masses of the rows add up to `1`.
 
 ## Probability Laws
 
@@ -392,58 +378,58 @@ The standard axiomatization of probability is due to [Andrey Kolmogorov](https:/
 known as the [Kolmogorov
 axioms](https://en.wikipedia.org/wiki/Probability_axioms). We can formulate these
 axioms in logical terms and directly in terms of events. First, the logical
-axiomatization. It states that for each assignment of probabilities $Pr$ to
+axiomatization. It states that for each assignment of probabilities `Pr` to
 formulas in a language, the following laws apply:
 
-1. $Pr(A) ≥ 0$, for all formulas $A$.
-2. $Pr(A) = 1$, if $A$ is a tautology, that is: ${{< vDash >}} A$.
-3. $Pr(A {{< lor >}} B) = Pr(A) + Pr(B)$, given that $A$ and $B$ are logically
-incompatible, that is: ${{< vDash >}} {{< neg>}}(A{{< land >}}B)$.
+1. `Pr(A) ≥ 0`, for all formulas `A`.
+2. `Pr(A) = 1`, if `A` is a tautology, that is: `⊨ A`.
+3. `Pr(A ∨ B) = Pr(A) + Pr(B)`, given that `A` and `B` are logically
+incompatible, that is: `⊨ ¬(A∧B)`.
 
 As you can see, these axioms are rather minimal. But it turns out that they are
 _sound and complete_ with respect to the probabilities we've defined in terms of
 probability mass distributions over valuations. That is, every law about
-probabilities that holds for all probabilities $Pr$ defined in terms of
+probabilities that holds for all probabilities `Pr` defined in terms of
 probability mass distributions is derivable from these laws, and everything
 that's derivable holds for all distributions.
 
 For example, here's how we derive the law of negation:
 
-$$Pr({{< neg >}}A) = 1 - Pr(A) ("Negation")$$
+```Pr(¬A) = 1 - Pr(A) ("Negation")```
 
-- $Pr(A {{< lor >}}{{< neg >}}A) = 1$, by axiom 1. since ${{< vDash >}}A{{< lor >}}{{< neg >}}A$.
-- $Pr(A {{< lor >}}{{< neg >}}A) = Pr(A) + Pr({{< neg >}}A)$ by axiom 3. since
- ${{< vDash >}}{{< neg >}}(A {{< land >}}{{< neg >}}A)$.
-- It follows that $1 = Pr(A) + Pr({{< neg >}}A)$.
-- But that gives us: $Pr({{< neg >}}A) = 1 - Pr(A)$
+- `Pr(A ∨¬A) = 1`, by axiom 1. since `⊨A∨¬A`.
+- `Pr(A ∨¬A) = Pr(A) + Pr(¬A)` by axiom 3. since
+ `⊨¬(A ∧¬A)`.
+- It follows that `1 = Pr(A) + Pr(¬A)`.
+- But that gives us: `Pr(¬A) = 1 - Pr(A)`
 
-From this it immediately follows that $Pr(A) {{<leq>}} 1$ for all $A$, since $Pr(A) = 1
-- Pr({{< neg >}}A)$.
+From this it immediately follows that `Pr(A) ≤ 1` for all `A`, since $Pr(A) = 1
+- Pr(¬A)$.
 
-Or, we can derive that if $A{{< vDash >}}B$, then $Pr(A) {{<leq>}} Pr(B)$:
+Or, we can derive that if `A⊨B`, then `Pr(A) ≤ Pr(B)`:
 
-- $Pr(A {{< lor >}} {{< neg >}}B) = Pr(A) + Pr({{< neg >}}B)$, by axiom 3.,
-since from the assumption that $A{{< vDash >}}B$ it follows that 
-${{< vDash >}}{{<neg >}}A{{< land >}}{{< neg >}}B$—that is if $A$ and 
-${{< neg >}}B$ is unsatisfiable.
-- Since $Pr({{< neg >}}B) = 1 - Pr(B)$, we have $Pr(A {{< lor >}} {{< neg >}}B) = Pr(A) + (1 - Pr(B))$. 
-- So, we get that $Pr(B) = Pr(A) + (1 - Pr(A {{< lor >}}{{< neg >}} B))$.
-- But we know that $Pr(A{{< lor >}}{{< neg >}}B) {{<leq>}} 1$, so 
-$1 - Pr(A {{< lor  >}}{{< neg >}} B)$ is positive and so $Pr(B) = Pr(A) + x$,
-for some positive $x$. 
-- In other words, $Pr(A) {{<leq>}} Pr(B)$.
+- `Pr(A ∨ ¬B) = Pr(A) + Pr(¬B)`, by axiom 3.,
+since from the assumption that `A⊨B` it follows that 
+`⊨¬A∧¬B`—that is if `A` and 
+`¬B` is unsatisfiable.
+- Since `Pr(¬B) = 1 - Pr(B)`, we have `Pr(A ∨ ¬B) = Pr(A) + (1 - Pr(B))`. 
+- So, we get that `Pr(B) = Pr(A) + (1 - Pr(A ∨¬ B))`.
+- But we know that `Pr(A∨¬B) ≤ 1`, so 
+`1 - Pr(A ∨¬ B)` is positive and so `Pr(B) = Pr(A) + x`,
+for some positive `x`. 
+- In other words, `Pr(A) ≤ Pr(B)`.
 
 We can give these axioms completely equivalently directly in terms of events:
 
-1. $0{{< leq >}}Pr(X)$, for all events $X {{< subseteq >}} Ω$
-2. $Pr(Ω) = 1$
-3. $Pr(X {{< cup >}}Y) = Pr(X) + Pr(Y)$, given that $X{{< cap >}}Y = ∅$. 
+1. `0≤Pr(X)`, for all events `X ⊆ Ω`
+2. `Pr(Ω) = 1`
+3. `Pr(X ∪Y) = Pr(X) + Pr(Y)`, given that `X∩Y = ∅`. 
 
 This axiomatization says precisely the same thing as the previous one once we
-realize that ${{< llbracket >}}A{{< rrbracket >}} = Ω$ means that $A$ is a
+realize that `⟦A⟧ = Ω` means that `A` is a
 logical truth and 
 
-$${{< llbracket >}}A {{< lor >}}B{{< rrbracket >}} = {{< llbracket >}}A {{< rrbracket >}}{{< cup >}}{{< llbracket >}}B {{< rrbracket >}}$$
+```⟦A ∨B⟧ = ⟦A ⟧∪⟦B ⟧```
 
 ## Naive Bayes Classifiers
 
@@ -461,14 +447,12 @@ How can {{< logo >}}&ThinSpace;tell that this is a `SPAM` email?
 
 Since we're in a logic course, you might think that we'd try to develop an
 expert system for this task. We devise a propositional language with atoms like
-```
-UnknownSender, SubjectUrgent, ExclamationMarks, MoneyTalk, SPAM
-```
+```UnknownSender, SubjectUrgent, ExclamationMarks, MoneyTalk, SPAM```
 
 In this language, we can formulate conditional rules like:
 
-- `(SubjectUrgent{{< land >}}MoneyTalk) {{< to >}} SPAM`
-- `(ExclamationMarks{{< land >}}SubjectUrgent) {{< to >}} SPAM`
+- `(SubjectUrgent∧MoneyTalk) → SPAM`
+- `(ExclamationMarks∧SubjectUrgent) → SPAM`
 - `...`
 
 Then we could run a filter through each email and check whether the propositions 
@@ -491,51 +475,49 @@ email being `SPAM`, they are fallible
 
 A powerful approach to inductive inference uses probabilities and [Bayes'
 rule](https://en.wikipedia.org/wiki/Bayes%27_theorem). The basic idea is that we
-can say that a piece of propositional evidence, $E$, confirms a hypothesis, $H$,
-just in case: $$Pr(H | E) > Pr(H)$$ That is, the evidence confirms the hypothesis
+can say that a piece of propositional evidence, `E`, confirms a hypothesis, `H`,
+just in case: ```Pr(H | E) > Pr(H)``` That is, the evidence confirms the hypothesis
 just in case the probability of the hypothesis goes up if we assume the
 evidence. In other words, evidence is a form of inductive inference.
 
-So, what we're looking for is $Pr(`SPAM` | `[MARKERS]`)$, where $`[MARKERS]`$
+So, what we're looking for is `Pr(SPAM | [MARKERS])`, where `[MARKERS]`
 is a combination of things like `UnknownSender, SubjectUrgent, ExclamationMarks,
 MoneyTalk`. That is, to see whether the present markers are evidence for the mail being
-`SPAM`, we need to calculate $Pr(`SPAM` | `[MARKERS]`)$ as well as $Pr(`SPAM`)$.
+`SPAM`, we need to calculate `Pr(SPAM | [MARKERS])` as well as `Pr(SPAM)`.
 
-Bayes rule is, in essence, a convenient way of calculating $Pr(`SPAM` | `[MARKERS]`)$:
+Bayes rule is, in essence, a convenient way of calculating `Pr(SPAM | [MARKERS])`:
 
 {{< img src="img/bayes_rule.png" class="rounded mx-auto d-block inert-img img-fluid" width="500px">}}
 
-This calculation is derived by simply substituting $P(H {{< land >}}E)$ with
-$Pr(H) x Pr(E | H)$ from the general rule for conjunction. The terms in the
+This calculation is derived by simply substituting `P(H ∧E)` with
+`Pr(H) x Pr(E | H)` from the general rule for conjunction. The terms in the
 equation have suggestive names:
 
-- $Pr(H | E)$ is known as the [_posterior_ probability](https://en.wikipedia.org/wiki/Posterior_probability) of the hypothesis given the evidence.
+- `Pr(H | E)` is known as the [_posterior_ probability](https://en.wikipedia.org/wiki/Posterior_probability) of the hypothesis given the evidence.
 
-- $Pr(H)$ is called the [_prior_ probability](https://en.wikipedia.org/wiki/Prior_probability) of the hypothesis, independent of the
+- `Pr(H)` is called the [_prior_ probability](https://en.wikipedia.org/wiki/Prior_probability) of the hypothesis, independent of the
   evidence.
 
-- $Pr(E | H)$ is known as the
+- `Pr(E | H)` is known as the
 [_likelihood_](https://en.wikipedia.org/wiki/Likelihood_function) of the
 evidence given the hypothesis.
 
-- $Pr(E)$ is known as the [marginal
+- `Pr(E)` is known as the [marginal
 likelihood](https://en.wikipedia.org/wiki/Marginal_likelihood) of the evidence.
 
 Plugging in `SPAM` and `[MARKERS]`, we obtain:
 
 {{< img src="img/bayes_applied.png" class="rounded mx-auto d-block inert-img img-fluid" width="500px">}}
 
-This is progress: the prior probability, $Pr(`SPAM`)$, we can estimate using the
+This is progress: the prior probability, `Pr(SPAM)`, we can estimate using the
 [frequency of SPAM](https://en.wikipedia.org/wiki/Email_spam). For this example,
 let's estimate it optimistically as 20%. In probabilistic terms:
 
-```
-Pr(SPAM) = 0.2
-```
+```Pr(SPAM) = 0.2```
 
 For individual markers, like `UnknownSender, SubjectUrgent, ExclamationMarks,
-MoneyTalk`, we have to estimate the marginal likelihood $Pr(`[Markers]`)$ and
-likelihood $Pr(`[Markers]` | `SPAM`)$. In practice, this happens on the basis of
+MoneyTalk`, we have to estimate the marginal likelihood `Pr([Markers])` and
+likelihood `Pr([Markers] | SPAM)`. In practice, this happens on the basis of
 a frequency analysis of datasets of emails, especially the ones _you_ have
 received. For each marker, we can easily check how often it occurs in an email:
 how many emails are from unknown senders, how many emails have "urgent" in the
@@ -543,35 +525,19 @@ subject line, and so on. Dividing these numbers by the total number of emails
 gives us a decent estimate of their respective probabilities. We might, for
 example, find:
 
-```
-Pr(UnknownSender)  = 0.3
-```
-```
-Pr(SubjectUrgent)  = 0.4
-```
-```
-Pr(ExclamationMarks) = 0.6
-```
-```
-Pr(MoneyTalk) = 0.3
-```
+```Pr(UnknownSender)  = 0.3```
+```Pr(SubjectUrgent)  = 0.4```
+```Pr(ExclamationMarks) = 0.6```
+```Pr(MoneyTalk) = 0.3```
 
 The same procedure, we can use to estimate the likelihoods for the markers given
 in `SPAM` messages. What's the frequency of SPAM emails with an unknown sender,
 SPAM emails with an urgent subject line, etc. For example, we might find:
 
-```
-Pr( UnknownSender | SPAM )  = 0.4
-```
-```
-Pr( SubjectUrgent | SPAM )  = 0.6
-```
-```
-Pr( ExclamationMarks | SPAM ) = 0.7
-```
-```
-Pr( MoneyTalk | SPAM) = 0.6
-```
+```Pr( UnknownSender | SPAM )  = 0.4```
+```Pr( SubjectUrgent | SPAM )  = 0.6```
+```Pr( ExclamationMarks | SPAM ) = 0.7```
+```Pr( MoneyTalk | SPAM) = 0.6```
 
 We can plug this data into Bayes rule and obtain estimates of how likely it is
 that an email is `SPAM` given that it comes from an unknown sender:
@@ -580,10 +546,7 @@ that an email is `SPAM` given that it comes from an unknown sender:
 
 Since 
 
-```
-
-Pr(Spam | UnknownSender) = 0.26 > 0.2 = Pr(Spam)
-```
+```Pr(Spam | UnknownSender) = 0.26 > 0.2 = Pr(Spam)```
 
 receiving an email from an unknown sender _is_ evidence of it being `SPAM`—but
 not very _strong_ evidence. 
@@ -591,18 +554,14 @@ not very _strong_ evidence.
 What does this mean? Well, for one, the probability of the email being `SPAM`
 only went up by 0.06. This is the so-called **increase of firmness measure**
 
-```
-incOfFirmness(E, H) = |Pr(H | E) - Pr(H)|
-```
+```incOfFirmness(E, H) = |Pr(H | E) - Pr(H)|```
 
 In our case, the increase of firmness is not very strong.
 
-But note that the probability of the email being `SPAM` went up from $0.2$ to
-$0.26$, which is a 30% increase. This is known as the **ratio measure**:
+But note that the probability of the email being `SPAM` went up from `0.2` to
+`0.26`, which is a 30% increase. This is known as the **ratio measure**:
 
-```
-ratioStrength(E, H) = Pr(H | E)/Pr(H)
-```
+```ratioStrength(E, H) = Pr(H | E)/Pr(H)```
 
 There are many more such confirmation measures. In fact, in industry
 implementations of naive Bayesian classifiers the so-called [log-likelihood
@@ -620,7 +579,7 @@ there's another fundamental question we've got to address: if the posterior
 probability is "only" 0.26, it's still more likely that this _isn't_ `SPAM` than
 that it is. What we need to do is to set a
 [threshold](https://en.wikipedia.org/wiki/Threshold_model) for classifying email
-as `SPAM`. A natural minimum is to say that $Pr(H | E)$ should _at least_ be
+as `SPAM`. A natural minimum is to say that `Pr(H | E)` should _at least_ be
 0.5. But if [false
 positives](https://en.wikipedia.org/wiki/False_positives_and_false_negatives)
 are particularly bad—when classifying email as `SPAM` that isn't risks important
@@ -650,33 +609,17 @@ This is where the "naive" in naive Bayes classifiers comes in. The defining
 assumption is that the different markers are probabilistically independent of
 each other, both given `SPAM` and not given `SPAM`. That is, we can calculate:
 
-```
-Pr( UnknownSender {{< land >}} SubjectUrgent {{< land >}} ExclamationMarks {{< land >}} MoneyTalk | SPAM)
-```
-```
-=
-```
-```
-Pr(UnknownSender | SPAM) x Pr(SubjectUrgent | SPAM) x ... 
-```
-```
-... x Pr(ExclamationMarks | SPAM) x Pr(MoneyTalk | SPAM)
-```
+```Pr( UnknownSender ∧ SubjectUrgent ∧ ExclamationMarks ∧ MoneyTalk | SPAM)```
+```=```
+```Pr(UnknownSender | SPAM) x Pr(SubjectUrgent | SPAM) x ...```
+```... x Pr(ExclamationMarks | SPAM) x Pr(MoneyTalk | SPAM)```
 
 And similarly, 
 
-```
-Pr( UnknownSender {{< land >}} SubjectUrgent {{< land >}} ExclamationMarks {{< land >}} MoneyTalk)
-```
-```
-=
-```
-```
-Pr(UnknownSender) x Pr(SubjectUrgent) x ... 
-```
-```
-... x Pr(ExclamationMarks) x Pr(MoneyTalk)
-```
+```Pr( UnknownSender ∧ SubjectUrgent ∧ ExclamationMarks ∧ MoneyTalk)```
+```=```
+```Pr(UnknownSender) x Pr(SubjectUrgent) x ...```
+```... x Pr(ExclamationMarks) x Pr(MoneyTalk)```
 
 This, then is the **naive Bayes assumption**: that the different markers are
 conditionally independent. It is naive because it is clearly false in strict terms: whether urgent and exclamation points occur is not independent of each
@@ -706,10 +649,7 @@ and conclusion. Logically valid inductive inference is inductive inference that
 purely depends on their logical form. We can cash this out as probability
 raising under _all_ probabilities:
 
-```
-P₁, P₂, ... {{< approx >}} C if and only if for all Pr, we have
-Pr(C | P₁ {{< land >}} P₂{{< land >}} ) ≥ P(C)
-```
+```P₁, P₂, ... {{< approx >}} C if and only if for all Pr, we have Pr(C | P₁ ∧ P₂∧ ) ≥ P(C)```
 
 Inductive logic is concerned with the study of inductively valid inference patterns.
 Today, this is mainly done as statistics and probability theory, whose study
@@ -718,55 +658,50 @@ ideas by returning to one of our first examples of inductive inference: [enumera
 
 Take our inference about the marbles:
 
-$$All marbles we've observed so far were white{{< therefore >}}All marbles
-are white$$
+```All marbles we've observed so far were white∴All marbles are white```
 
 If we formalize this inference with a sufficient number of observations, we'll
 look at something like:
 
-```
-White m₁, ..., White mₙ {{< therefore >}}{{< forall >}}x White x
-```
+```White m₁, ..., White mₙ ∴∀x White x```
 
 To assess the logical validity of this inference, we need to think about the
 conditional probability _independently_ of any concrete probability
 distribution:
 
-```
-Pr({{< forall >}}x White x | White m₁{{< land >}} ...{{< land >}} White mₙ)
-```
+```Pr(∀x White x | White m₁∧ ...∧ White mₙ)```
 
 For this purpose, we can make use of probabilistic theorems like the following:
 
-**Theorem**: If `C{{< vDash >}} P₁ {{< land >}} P₂ {{< land >}} ...` (the conclusion
-deductively implies the premises), `Pr(P₁ {{< land >}} P₂ {{< land >}} …) ≠ 1` (the premises
+{{< callout type="theorem" title="Confirmation by deductive consequence" >}}
+If `C⊨ P₁ ∧ P₂ ∧ ...` (the conclusion
+deductively implies the premises), `Pr(P₁ ∧ P₂ ∧ …) ≠ 1` (the premises
 aren't certain), and `Pr(C) ≠ 0` (the conclusion is not impossible), then
-`Pr(C | P₁ {{< land >}} P₂...) > Pr(C)`.
+`Pr(C | P₁ ∧ P₂...) > Pr(C)`.
+{{< /callout >}}
 
 To see that this must be true, we need to observe the logical fact that:
 
-```
-if C{{< vDash >}} P₁ {{< land >}} P₂, then {{< llbracket >}}C {{< land >}}P₁ {{< land >}} P₂{{< land >}}...{{< rrbracket >}} = {{< llbracket >}}C{{< rrbracket >}}
-```
+```if C⊨ P₁ ∧ P₂, then ⟦C ∧P₁ ∧ P₂∧...⟧ = ⟦C⟧```
 
 Using this, we can calculate:
 
 {{< img src="img/enum_calc.png" class="rounded mx-auto d-block inert-img img-fluid" width="500px">}}
 
-That is, since $Pr(P₁ {{< land >}} P₂{{< land >}}...) < 1$, we know that
-$1/Pr(P₁ {{< land >}} P₂{{< land >}}...) > 1$ and so $Pr(C | P₁ {{< land >}}
-P₂{{< land >}}...)$ is more than one times $Pr(C)$—in other words, $Pr(C | P₁
-{{< land >}} P₂{{< land >}}...)$ is strictly bigger than $Pr(C)$.
+That is, since `Pr(P₁ ∧ P₂∧...) < 1`, we know that
+`1/Pr(P₁ ∧ P₂∧...) > 1` and so $Pr(C | P₁ ∧
+P₂∧...)`is more than one times`Pr(C)`—in other words,`Pr(C | P₁
+∧ P₂∧...)`is strictly bigger than`Pr(C)$.
 
 This establishes that enumerative induction is at least weakly inductively
 valid: the premises will always raise the likelihood of the conclusion. 
 
-The strength of the inference depends on the probability of $P₁{{< land >}}
-P₂{{< land >}}...$—the less likely the premises the bigger the factor in the
+The strength of the inference depends on the probability of $P₁∧
+P₂∧...$—the less likely the premises the bigger the factor in the
 above equation and, correspondingly, the stronger the inference. This justifies
 the condition that we need to sample our premises well—it should be unlikely
 that they are jointly true. We can achieve this by finding many independent
-instances and calculating `Pr(P₁{{< land >}} P₂{{< land >}}...) = Pr(P₁) × Pr(P₂)
+instances and calculating `Pr(P₁∧ P₂∧...) = Pr(P₁) × Pr(P₂)
 × ...`, which will eventually bring us below any desired threshold.
 
 Inductive reasoning is the ultimate foundation for most machine learning

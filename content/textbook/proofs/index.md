@@ -6,7 +6,6 @@ weight: 70
 params: 
   last_edited: 03/10/2025         
   id: txt-proof
-  math: true
 ---
 
 # Logical proofs
@@ -14,10 +13,8 @@ params:
 A _logical proof_ is a chaining of inference rules applied to logical formulas,
 which models natural language step-by-step reasoning. We've already seen a
 simple example of a proof, when we discussed the chaining methods. The following
-structure, for example, is a logical proof that *derives* $RAINBOW$ from the
-assumptions $$MORNING, CLEAR, RAIN, MORNING {{< to >}} DAY, (CLEAR {{< land >}}
-DAY){{< to >}} SUN, ...$$ $$... (MORNING {{< land >}} SUN){{< to >}} LOW_SUN,
-(RAIN {{< land >}} LOW_SUN){{< to >}} RAINBOW$$ using just the rule of {{<abbr
+structure, for example, is a logical proof that *derives* `RAINBOW` from the
+assumptions ```MORNING, CLEAR, RAIN, MORNING → DAY, (CLEAR ∧ DAY)→ SUN, ...``` ```... (MORNING ∧ SUN)→ LOW_SUN, (RAIN ∧ LOW_SUN)→ RAINBOW``` using just the rule of {{<abbr
   title="generalized MP">}}genMP{{</abbr>}}:
 
 {{< img src="img/horn_chaining.png" class="mx-auto rounded d-block inert-img img-fluid" width="500px">}}
@@ -25,8 +22,7 @@ DAY){{< to >}} SUN, ...$$ $$... (MORNING {{< land >}} SUN){{< to >}} LOW_SUN,
 But the proofs we've seen so far are rather limited in scope: using genMP, we
 can only reason with conditionals where the {{< abbr
 title="if-part">}}antecedent{{< /abbr >}} is a conjunction of formulas. We can't
-use it, for example, to infer $WET$ from $$(RAIN {{< lor >}}SWIM) {{< to
->}}WET$$ and $RAIN$. But clearly that inference is valid: if I get wet if it
+use it, for example, to infer `WET` from ```(RAIN ∨SWIM) →WET``` and `RAIN`. But clearly that inference is valid: if I get wet if it
 rains or I go swimming, and it does rain, then it follows that I do get wet.
 
 Systems for logical proofs, also called [**proof
@@ -106,14 +102,14 @@ deductively, like expert systems. But before we can go into more details, we
 need to better understand how logical proofs work in their standard
 applications.
 
-At the end of this chapter, you will be able to:
-
+{{< callout type="objectives" >}}
 - explain the concept of a formal proof in a calculus
 - name important kinds of proof systems with their advantages and drawbacks
 - construct logical proofs in the natural deduction calculus for intuitionistic
 and classical propositional logic
 - verify simple natural deduction arguments in the Lean proof assistant
 - explain the core idea behind the Curry-Howard correspondence
+{{< /callout >}}
 
 ## Proof systems
 
@@ -137,52 +133,48 @@ applications, which are:
 As a running example for our discussion, let's consider the following inference
 in natural language, carried out by {{< logo >}}:
 
-$${{< img src="img/ai_nuclear.png" class="rounded  float-end inert-img img-fluid m-2" width="300px" >}}
-If it's windy or rainy, then I get cold, and if I get cold, I need my heating unit. I see that it's rainy. So, I need my heating unit.$$
+```{{< img src="img/ai_nuclear.png" class="rounded float-end inert-img img-fluid m-2" width="300px" >}} If it's windy or rainy, then I get cold, and if I get cold, I need my heating unit. I see that it's rainy. So, I need my heating unit.```
 
 The first step whenever we want to do anything using logical methods in natural
 language contexts is to represent the inference in a formal language using our
 by now familiar knowledge representation techniques. For the premises, we get:
 
-$$((RAIN {{< lor >}} WIND) {{< to >}} COLD)&emsp; (COLD {{< to >}}HEATING)&emsp; RAIN$$
+```((RAIN ∨ WIND) → COLD)&emsp; (COLD →HEATING)&emsp; RAIN```
 
-The conclusion is simply: $HEATING.$
+The conclusion is simply: `HEATING.`
 
 So, the entire formal inference, therefore, becomes:
 
-$$((RAIN {{< lor >}} WIND) {{< to >}} COLD), (COLD {{< to >}}HEATING), RAIN {{<
-therefore >}}HEATING$$
+```((RAIN ∨ WIND) → COLD), (COLD →HEATING), RAIN ∴HEATING```
 
 Using our established methods, such as truth-tables or resolution, we can see
 that this inference is deductively valid:
 
-$$((RAIN {{< lor >}} WIND) {{< to >}} COLD), (COLD {{< to >}}HEATING), RAIN {{<
-vDash >}}HEATING$$
+```((RAIN ∨ WIND) → COLD), (COLD →HEATING), RAIN ⊨HEATING```
 
 But in this chapter, we're interested in a different perspective on the
 inference, namely how we can see its validity via step-by-step arguments. That's
 what proof systems are for.
 
 To say that there exists a formal, step-by-step argument from the premises to
-the conclusion, we use the symbol {{< v_dash >}}, called the "turnstile". So, in
+the conclusion, we use the symbol ⊢, called the "turnstile". So, in
 our example, we would write 
 
-$$((RAIN {{< lor >}} WIND) {{< to >}} COLD), (COLD {{< to >}}HEATING), RAIN {{<
-v_dash >}}HEATING$$
+```((RAIN ∨ WIND) → COLD), (COLD →HEATING), RAIN ⊢HEATING```
 
 to say that there exists a step-by-step argument—a *logical proof*—from the
 premises to the conclusion.
 
-It's important to realize that the symbols {{< vDash >}} and {{< v_dash >}} say
-different things: the former, {{< vDash >}}, says that an inference is valid;
-the latter, {{< v_dash >}} says that there exists a logical proof from the
+It's important to realize that the symbols ⊨ and ⊢ say
+different things: the former, ⊨, says that an inference is valid;
+the latter, ⊢ says that there exists a logical proof from the
 premises to the conclusion. We *want* the two to coincide, and in most systems
 they do. This is the content of the
 [soundness](https://en.wikipedia.org/wiki/Soundness) and
 [completeness](https://en.wikipedia.org/wiki/Completeness_(logic)) theorems for
 a logic, which state that for all inferences:
 
-$$P₁, P₂, … {{< v_dash >}} C &emsp; if and only if P₁, P₂, … {{< vDash >}} C$$
+```P₁, P₂, … ⊢ C &emsp; if and only if P₁, P₂, … ⊨ C```
 
 Most logical systems you'll come across in AI applications have this property,
 especially when we're dealing with basic systems for classical propositional
@@ -193,8 +185,7 @@ logic](https://en.wikipedia.org/wiki/Second-order_logic).
 
 Returning to our main topic, different proof systems have different ways of
 showing that: 
-$$((RAIN {{< lor >}} WIND) {{< to >}} COLD), (COLD {{< to >}}HEATING), RAIN {{<
-v_dash >}}HEATING.$$
+```((RAIN ∨ WIND) → COLD), (COLD →HEATING), RAIN ⊢HEATING.```
 
 Let's check out how.
 
@@ -209,19 +200,19 @@ systems are typically called [**Hilbert systems**](https://en.wikipedia.org/wiki
 Here's how a logical proof for our inference would look like in a Hilbert system for
 propositional logic:
 
-1. $RAIN$ <span class="right-justified">(Premise)</span>
-2. $(RAIN {{< to >}} (RAIN {{< lor >}} WIND))$ <span class="right-justified">(Axiom)</span>
-3. $(RAIN {{< lor >}} WIND)$ <span class="right-justified">(1., 2., MP)</span>
-4. $((RAIN {{< lor >}} WIND) {{< to >}} COLD)$  <span class="right-justified">(Premise)</span>
-5. $COLD$ <span class="right-justified">(3., 4., MP)</span>
-6. $(COLD {{< to >}} HEATING)$  <span class="right-justified">(Premise)</span>
-7. $HEATING$ <span class="right-justified">(5., 6., MP)</span>
+1. `RAIN` <span class="right-justified">(Premise)</span>
+2. `(RAIN → (RAIN ∨ WIND))` <span class="right-justified">(Axiom)</span>
+3. `(RAIN ∨ WIND)` <span class="right-justified">(1., 2., MP)</span>
+4. `((RAIN ∨ WIND) → COLD)`  <span class="right-justified">(Premise)</span>
+5. `COLD` <span class="right-justified">(3., 4., MP)</span>
+6. `(COLD → HEATING)`  <span class="right-justified">(Premise)</span>
+7. `HEATING` <span class="right-justified">(5., 6., MP)</span>
 
 Only one rule of inference is used in this derivation, namely MP, which is
 characteristic of Hilbert calculi. Typically Hilbert calculi have only one or
 two rules of inference and rely on the axioms to do the "heavy lifting".
 
-The only axiom in this derivation is 2. $(RAIN {{< to >}} (RAIN {{< lor >}}
+The only axiom in this derivation is 2. $(RAIN → (RAIN ∨
 WIND))$, which expresses the thought that if one disjunct is true the
 disjunction is true as well. The axioms of a Hilbert calculus for propositional
 logic are **logical truths**, that is formulas which are true in every model.
@@ -231,16 +222,16 @@ consequences. We've already encountered this idea in Boolean algebra, where we
 looked at how to derive Boolean laws from others.
 
 Here's a list of axioms, which together with the rule of MP form a sound and
-complete Hilbert calculus for classical Boolean logic, where $A,B,C$ can be any
+complete Hilbert calculus for classical Boolean logic, where `A,B,C` can be any
 formula:
 
-+ $(A {{< to >}}(B {{< to >}} A))$
-+ $((A {{< to >}} (B {{< to >}} C)) {{< to >}}((A{{< to >}}B){{< to >}}(A {{< to >}} C)))$
-+ $(({{< neg >}}B {{< to >}}{{< neg >}}A){{< to >}}(A {{< to >}}B))$
-+ $((A {{< land >}} B){{< to >}} A)$ and $((A {{< land >}} B){{< to >}} B)$
-+ $(A {{< to >}}(B {{< to >}} (A{{< land >}} B))$
-+ $(A {{< to >}}(A{{< lor >}} B))$ and $(B {{< to >}}(A{{< lor >}} B))$
-+ $((A {{< to >}}C){{< to >}}((B{{< to >}}C){{< to >}}((A{{< lor >}}B){{< to >}} C)))$
++ `(A →(B → A))`
++ `((A → (B → C)) →((A→B)→(A → C)))`
++ `((¬B →¬A)→(A →B))`
++ `((A ∧ B)→ A)` and `((A ∧ B)→ B)`
++ `(A →(B → (A∧ B))`
++ `(A →(A∨ B))` and `(B →(A∨ B))`
++ `((A →C)→((B→C)→((A∨B)→ C)))`
 
 That is for all and only the valid inferences, we can derive the conclusion from
 the premises in this calculus.
@@ -255,7 +246,7 @@ reasoning. Proofs in Hilbert calculi are typically quite hard to find and can
 get unreasonably long. 
 
 Here's an example to illustrate both points, by showing that the condition
-$$RAIN{{< to >}}RAIN$$ is derivable from no assumptions in this calculus. The
+```RAIN→RAIN``` is derivable from no assumptions in this calculus. The
 conditional is, of course, a logical truth: if it rains, then it rains. This
 should be easy to see. But see for yourself:
 
@@ -265,24 +256,24 @@ should be easy to see. But see for yourself:
 &nbsp;
 &nbsp;
 
-1. $((RAIN {{< to >}} ((RAIN {{< to >}} RAIN) {{< to >}} RAIN)) {{< to >}} ((RAIN {{< to >}} (RAIN {{< to >}} RAIN)) {{< to >}} (RAIN {{< to >}} RAIN)))$ 
+1. `((RAIN → ((RAIN → RAIN) → RAIN)) → ((RAIN → (RAIN → RAIN)) → (RAIN → RAIN)))` 
 
-    &nbsp; <span class="right-justified">(Axiom 2. with $A = RAIN, B = (RAIN{{< to >}} RAIN),$ and $C = RAIN$)</span>
+    &nbsp; <span class="right-justified">(Axiom 2. with `A = RAIN, B = (RAIN→ RAIN),` and `C = RAIN`)</span>
 
 
-2. $(RAIN {{< to >}} ((RAIN {{< to >}} RAIN) {{< to >}} RAIN))$ 
+2. `(RAIN → ((RAIN → RAIN) → RAIN))` 
 
-    &nbsp; <span class="right-justified"> (Axiom 1. with $A = RAIN$ and $B = (RAIN{{< to >}} RAIN)$)</span>
+    &nbsp; <span class="right-justified"> (Axiom 1. with `A = RAIN` and `B = (RAIN→ RAIN)`)</span>
 
-3. $((RAIN {{< to >}} (RAIN {{< to >}} RAIN)) {{< to >}} (RAIN {{< to >}} RAIN))$ 
+3. `((RAIN → (RAIN → RAIN)) → (RAIN → RAIN))` 
 
     &nbsp; <span class="right-justified"> (1., 2., MP)</span>
 
-4. $(RAIN {{< to >}} (RAIN {{< to >}} RAIN))$ 
+4. `(RAIN → (RAIN → RAIN))` 
 
-    &nbsp; <span class="right-justified"> (Axiom 1. with $A = RAIN$ and $B = RAIN$.)</span>
+    &nbsp; <span class="right-justified"> (Axiom 1. with `A = RAIN` and `B = RAIN`.)</span>
 
-5. $(RAIN {{< to >}} RAIN)$
+5. `(RAIN → RAIN)`
 
     &nbsp; <span class="right-justified"> (3., 4., MP)</span>
 
@@ -291,7 +282,7 @@ should be easy to see. But see for yourself:
 While providing Hilbert-style logical proofs is certainly a learnable skill, it
 is not an easy thing to do—not even for computers. To find the above proof in an
 algorithmic fashion, one has to systematically search through _all_ possible
-values that $A,B,C$ could take in the axioms. Not a good starting point.
+values that `A,B,C` could take in the axioms. Not a good starting point.
 
 Hilbert calculi are a common starting point for logical inquiry in AI. For
 example, proof systems for [modal
@@ -307,38 +298,36 @@ results.
 Sequent calculi take a fundamentally different approach to logical proofs.
 Rather than directly working with formulas, they work with so-called
 **sequents**. Sequents are "meta"-statements of sorts, which are formal claims
-of valid inference using the *sequent arrow*, {{< longrightarrow >}}. For our
+of valid inference using the *sequent arrow*, ⟹. For our
 example, then, the aim is to derive the following sequent:
 
-$$RAIN, ((RAIN {{< lor >}} WIND) {{< to >}} COLD), (COLD {{< to >}}HEATING) {{<
-longrightarrow >}}HEATING.$$
+```RAIN, ((RAIN ∨ WIND) → COLD), (COLD →HEATING) ⟹HEATING.```
 
 Such a derivation will then be the proof corresponding to the claim that:
 
-$$((RAIN {{< lor >}} WIND) {{< to >}} COLD), (COLD {{< to >}}HEATING), RAIN {{<
-v_dash >}}HEATING$$ 
+```((RAIN ∨ WIND) → COLD), (COLD →HEATING), RAIN ⊢HEATING``` 
 
 Here's how a standard sequent calculus for classical propositional
 logic would derive this sequent:
 
 {{< img src="img/sequent_derivation.png" class="mx-auto rounded d-block inert-img img-fluid" width="800px">}}
 
-The derivation begins with $RAIN {{< longrightarrow >}} RAIN$, which is called an "initial
+The derivation begins with `RAIN ⟹ RAIN`, which is called an "initial
 sequent"—essentially an _axiom_ of sequent calculus. These initial sequents
 express the basic logical fact that every statement logically entails itself: if
 it rains, then it rains. We could also think of this as a _trivial_ inference.
 
 From these kinds of basic inferences, the sequent calculus proof constructs more
 complex sequents from the simple ones by applying **sequent rules**. For
-example, the inference from $RAIN {{< longrightarrow >}} RAIN$ to 
-$RAIN {{< longrightarrow >}} (RAIN {{< lor>}} WIND)$ uses the rule 
-${{< lor >}}R$, which in general looks like this, where $Γ$ is any collection of
-premises and $A,B$ any formulas:
+example, the inference from `RAIN ⟹ RAIN` to 
+`RAIN ⟹ (RAIN ∨ WIND)` uses the rule 
+`∨R`, which in general looks like this, where `Γ` is any collection of
+premises and `A,B` any formulas:
 
 {{< img src="img/lor_right.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
 
-The idea of this rule is that if the $Γ$'s logically imply $A$, then they also
-logically imply $(A{{< lor >}}B)$, since $A$ implies $(A{{< lor >}}B)$.
+The idea of this rule is that if the `Γ`'s logically imply `A`, then they also
+logically imply `(A∨B)`, since `A` implies `(A∨B)`.
 
 There are many different ways of constructing a sequent calculus for classical
 propositional logic, but one is this:
@@ -346,21 +335,21 @@ propositional logic, but one is this:
 {{< img src="img/sequent_calculus.png" class="mx-auto rounded d-block inert-img img-fluid" width="800px">}}
 
 As you can see, there are a lot of rules here. For each logical connective there
-are rules that introduce the connective on the left side of {{< longrightarrow >}} 
+are rules that introduce the connective on the left side of ⟹ 
 (here in <span class="dark-red">red</span>) and rules that introduce the
-connective on the right side of {{< longrightarrow >}} (here in <span
+connective on the right side of ⟹ (here in <span
   class="dark-green">green</span>). The so-called "left-rules" for a connective
 tell us what follows from a formula involving the connective based on the
 consequences of the formulas the connective is operating on. The "right-rules"
 for a connective, instead, tell us what a formula involving the connective
 follows from given what its parts follow from.
 
-The symbol {{< bot >}}, which occurs in the rules for negation, for example, is
+The symbol ⊥, which occurs in the rules for negation, for example, is
 a special "contradiction"-symbol, which is also called **falsum**. It is a
 special propositional variable which is false in every model. It is extremely
-useful in proof-theoretic contexts, where $Γ, A {{< longrightarrow >}} {{< bot >}}$ 
-says that we can derive a contradiction from $A$ and $Γ$. From this we infer
-that the formulas in $Γ$ must entail ${{< neg >}}A$.
+useful in proof-theoretic contexts, where `Γ, A ⟹ ⊥` 
+says that we can derive a contradiction from `A` and `Γ`. From this we infer
+that the formulas in `Γ` must entail `¬A`.
 
 Additionally, there are principles that express basic logical facts (here in
 <span class="dark-orange">orange</span>), and so-called "structural" rules,
@@ -382,7 +371,7 @@ primarily foundational. In fact, sequent calculi have been instrumental in the
 obtaining of fundamental results in mathematical logic, such as [Gentzen's
 consistency proof](https://en.wikipedia.org/wiki/Gentzen%27s_consistency_proof)
 for the standard theory of natural numbers, which shows that you can't prove in
-that theory mathematical falsehoods like $0 = 1$.
+that theory mathematical falsehoods like `0 = 1`.
 
 In the context of AI-research, you will therefore mainly come across sequent
 calculi in foundational papers. But they are also useful for another reason: in
@@ -401,7 +390,7 @@ There are many different kinds of algorithmic systems, but many of them are
 reduce valid inference to the unsatisfiability of the premises with the negation
 of the conclusion:
 
-$$P₁, P₂, … {{< vDash >}} C &emsp; if and only if ` <span class="dark-red">not SAT</span>` { P₁, P₂, … ,{{< neg >}}C}$$
+```P₁, P₂, … ⊨ C &emsp; if and only if <span class="dark-red">not SAT</span> { P₁, P₂, … ,¬C}```
 
 The [analytic tableau
 method](https://en.wikipedia.org/wiki/Method_of_analytic_tableaux) works by
@@ -428,23 +417,20 @@ this looks like in our example inference:
 
 What's going on here is that we start with the premises and negation of the
 conclusion of our inference and then recursively unfold the truth-conditions for
-the formulas involved. For example, the first "branching" to the formulas ${{<
-neg >}}(RAIN {{< lor >}} WIND)$ and $COLD$ unfolds the two ways in which the
-conditional $((RAIN {{< lor >}} WIND){{< to >}} COLD)$ could be true. By our
-Boolean implementation of {{< to >}}, we have: $$v(((RAIN {{< lor >}} WIND){{<
-to >}} COLD)) = (!!NOT!! v(RAIN {{< lor >}} WIND)) !!OR!! v(COLD)$$ If we set
+the formulas involved. For example, the first "branching" to the formulas `¬(RAIN ∨ WIND)` and `COLD` unfolds the two ways in which the
+conditional `((RAIN ∨ WIND)→ COLD)` could be true. By our
+Boolean implementation of →, we have: ```v(((RAIN ∨ WIND)→ COLD)) = (!!NOT!! v(RAIN ∨ WIND)) !!OR!! v(COLD)``` If we set
 this equation to `1` (i.e. *true*), we can see that there are only two
-possibilities, either $!!NOT!! v(RAIN {{< lor >}} WIND) = 1$  or $v(COLD)$. And
-since $!!NOT!! v(RAIN {{< lor >}} WIND) = 1$ is the same as $v({{< neg >}}(RAIN
-{{< lor >}} WIND)) = 1$, the two branches in our tree represent the two *a
-priori* possible ways the formula $((RAIN {{< lor >}} WIND){{< to >}} COLD)$
+possibilities, either `!!NOT!! v(RAIN ∨ WIND) = 1`  or `v(COLD)`. And
+since `!!NOT!! v(RAIN ∨ WIND) = 1` is the same as $v(¬(RAIN
+∨ WIND)) = 1$, the two branches in our tree represent the two *a
+priori* possible ways the formula `((RAIN ∨ WIND)→ COLD)`
 could be true.
 
-In a similar fashion, ${{< neg >}}(WIND {{< lor >}} RAIN)$ gets unfolded to ${{<
-neg >}}RAIN$ and ${{< neg >}}WIND$. If we assume that 
-$$v({{< neg >}}(RAIN {{< lor >}} WIND)) = !!NOT!!(v(RAIN) !!OR!! v(WIND)) = 1,$$
-we can "solve" for $v(RAIN)$ and $v(WIND)$ and see that they both need to be
-`0`, which in turn means that ${{< neg >}}RAIN$ and ${{< neg >}}WIND$ both are
+In a similar fashion, `¬(WIND ∨ RAIN)` gets unfolded to `¬RAIN` and `¬WIND`. If we assume that 
+```v(¬(RAIN ∨ WIND)) = !!NOT!!(v(RAIN) !!OR!! v(WIND)) = 1,```
+we can "solve" for `v(RAIN)` and `v(WIND)` and see that they both need to be
+`0`, which in turn means that `¬RAIN` and `¬WIND` both are
 `1`.
 
 All the other tableau rules are motivated by completely analogous arguments.
@@ -460,15 +446,13 @@ If this happens to every branch in a complete tableau, like in our example, we
 consider this the proof that the formulas at the root aren't jointly
 satisfiable—which means that the inference in question is valid. That is, the tableau above is the logical proof that:
 
-$$((RAIN {{< lor >}} WIND) {{< to >}} COLD), (COLD {{< to >}}HEATING), RAIN {{<
-v_dash >}}HEATING.$$
+```((RAIN ∨ WIND) → COLD), (COLD →HEATING), RAIN ⊢HEATING.```
 
 If there are branches that don't close off, this shows that there exists a
 countermodel to the inference in question. Here's a case where this happens,
 which shows that 
 
-$$((RAIN {{< lor >}} WIND) {{< to >}} COLD), (COLD {{< to >}}HEATING), SUN {{<
-nv_dash >}}HEATING.$$
+```((RAIN ∨ WIND) → COLD), (COLD →HEATING), SUN ⊬HEATING.```
 
 {{< img src="img/tableau_invalid.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
 
@@ -476,7 +460,7 @@ All rules have been applied and some branches close off. But the left-most one
 (here indicated in <span class="green">green</span>) remains "open". A great
 advantage of the tableau-method is that we can directly "read off" a
 countermodel from it. Here, the corresponding countermodel is given by 
-$$v(COLD) = 0, v(WIND) = 0, v(RAIN) = 0$$
+```v(COLD) = 0, v(WIND) = 0, v(RAIN) = 0```
 It's easy to check that all the formulas on the green branch are true, and so
 the inference in question is invalid.
 
@@ -511,10 +495,10 @@ Here's how this plays out for our running example:
 What's going on here is that our premises are **assumptions** in a proof
 tree, where we apply inference rules to derive conclusions until we eventually
 bottom-out at our desired conclusion. There are rules that introduce
-connectives, like ${{< lor >}} Intro$, which we use to infer 
-$(RAIN{{< lor >}}WIND)$ from $RAIN$. Then there are rules like ${{< to >}}Elim$,
+connectives, like `∨ Intro`, which we use to infer 
+`(RAIN∨WIND)` from `RAIN`. Then there are rules like `→Elim`,
 which eliminate connectives from the derivation. Here, for example, we use it to
-infer $COLD$ from $RAIN{{< lor >}}WIND$ and $(RAIN{{< lor >}}WIND){{< to >}}
+infer `COLD` from `RAIN∨WIND` and $(RAIN∨WIND)→
 COLD)$—which is essentially just MP, I'm sure you noticed.
 
 In the standard natural deduction calculus for classical propositional logic,
@@ -523,10 +507,10 @@ and its **elimination rules**. Here they are:
 
 {{< img src="img/natural_deduction_rules.png" class="mx-auto rounded d-block inert-img img-fluid" width="800px">}}
 
-Some of these rules require a bit more explanation. Take the rule ${{< to >}}Introduction$, 
-for example. This rule has corner brackets around its premise, $[A]$. What this
-means is that the assumption $A$ is **discharged** in the application of 
-${{< to >}}Introduction$—after the application of the rule, $A$ no longer counts
+Some of these rules require a bit more explanation. Take the rule `→Introduction`, 
+for example. This rule has corner brackets around its premise, `[A]`. What this
+means is that the assumption `A` is **discharged** in the application of 
+`→Introduction`—after the application of the rule, `A` no longer counts
 among the assumptions of the proof.
 
 Applying this rule, we can for example reason as follows:
@@ -534,55 +518,52 @@ Applying this rule, we can for example reason as follows:
 
 We assume that it rains. From this we infer that it's rainy or windy. So, even
 without the assumption, we know that _if_ it rains, then it's rainy or windy. In
-other words, what this derivation establishes is that $(RAIN {{< to >}}(RAIN {{<
-lor >}}WIND))$ can be derived _without any assumptions_: $${{< v_dash >}}(RAIN
-{{< to >}}(RAIN {{< lor >}}WIND))$$ Maybe you remember from before that this was
+other words, what this derivation establishes is that `(RAIN →(RAIN ∨WIND))` can be derived _without any assumptions_: ```⊢(RAIN →(RAIN ∨WIND))``` Maybe you remember from before that this was
 an _axiom_ of Hilbert's axiomatization of propositional logic, which we used in
 our Hilbert-style derivation for our example inference. It turns out that in a
 similar way, all the axioms of Hilbert's calculus can be derived without any
 assumptions. This is a sense in which they are _logical laws_.
 
-In rules like ${{< lor >}}Elim$, this hypothetical reasoning with discharging
+In rules like `∨Elim`, this hypothetical reasoning with discharging
 assumptions is taken to the next level. This rule captures **case-by-case
 reasoning**, which we can use, for example, to show the validity of our previous
 example for disjunctive syllogism in natural deduction:
 
 {{< img src="img/disjunction_elimination.png" class="mx-auto rounded d-block inert-img img-fluid" width="600px">}}
 
-What's going on here is that we assume both $(SUN {{< lor >}}RAIN)$ and ${{< neg >}} SUN$.
+What's going on here is that we assume both `(SUN ∨RAIN)` and `¬ SUN`.
 We know that the disjunction means that there are two possible cases, either
-$SUN$ or $RAIN$, so we think both through. We assume sun in addition to our
+`SUN` or `RAIN`, so we think both through. We assume sun in addition to our
 other assumptions, and note that we got a contradiction with our other
-assumption ${{< neg >}}SUN$, which yields ${{< bot >}}$. From this, we can use
+assumption `¬SUN`, which yields `⊥`. From this, we can use
 the [principle of
 explosion](https://en.wikipedia.org/wiki/Principle_of_explosion), which we've
-captured in the rule $Ex falso$ to infer that $RAINS$. That leaves only the
+captured in the rule `Ex falso` to infer that `RAINS`. That leaves only the
 other possible case. If we assume that it rains, it rains, so we can discharge
 the assumption directly. We infer that it must be raining. This proof shows that 
 
-$$(SUN {{< lor >}}RAIN), {{< neg >}} SUN {{< v_dash >}} RAIN$$
+```(SUN ∨RAIN), ¬ SUN ⊢ RAIN```
 
-The rules $Ex falso$ and ${{< neg >}}{{< bot >}}$ deserve special attention
+The rules `Ex falso` and `¬⊥` deserve special attention
 since they capture logical laws that are only valid in very specific logical
 contexts or systems. The principle of explosion, which we've just used to prove disjunctive
-syllogism, for example, is valid in Boolean logic. Here, we can derive the falsum {{<
-bot >}} from any contradiction, like $SUN$ and ${{< neg >}}SUN$. This is because
-$SUN$ cannot both be true and false at the same time. But that means that if we
-assume that it is, we get {{< bot >}} and "anything goes", so if both $SUN$ and
-${{< neg >}}SUN$, then $RAIN$. 
+syllogism, for example, is valid in Boolean logic. Here, we can derive the falsum ⊥ from any contradiction, like `SUN` and `¬SUN`. This is because
+`SUN` cannot both be true and false at the same time. But that means that if we
+assume that it is, we get ⊥ and "anything goes", so if both `SUN` and
+`¬SUN`, then `RAIN`. 
 
 Or think about it the other way around. The only way for the inference from
-$SUN$ and ${{< neg >}}SUN$ to $RAIN$ to be *in*valid is for both $SUN$ and
-${{< neg >}}SUN$ to be `1`, while $RAIN$ is `0`. But in Boolean logic that's
+`SUN` and `¬SUN` to `RAIN` to be *in*valid is for both `SUN` and
+`¬SUN` to be `1`, while `RAIN` is `0`. But in Boolean logic that's
 excluded. So the inference must be valid.—If we move to a [paraconsistent
 logic](https://en.wikipedia.org/wiki/Paraconsistent_logic), however, where statements can
 be both true and false at the same time, things change. Such logics are very
 important when combining potentially contradictory information from different
 databases, but that's a story for later on.
 
-The case of {{< neg >}}{{< bot >}} is equally fraught with logical and
+The case of ¬⊥ is equally fraught with logical and
 philosophical issues, but suffice it to say here, that it is required to derive
-${{< neg >}}{{< neg >}}RAIN {{< v_dash >}} RAIN$. This principle fails, for
+`¬¬RAIN ⊢ RAIN`. This principle fails, for
 example, in [intuitionistic
 logic](https://en.wikipedia.org/wiki/Intuitionistic_logic), which is of
 paramount importance in the foundations of computation. We won't be able to go
@@ -595,11 +576,11 @@ natural deduction:
 
 {{< img src="img/vacuous_discharge.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
 
-What's going on here is that in the first application of ${{< to >}} Intro$,
-the assumption $WIND$ is discharged even though it's not written down anywhere.
+What's going on here is that in the first application of `→ Intro`,
+the assumption `WIND` is discharged even though it's not written down anywhere.
 This is called **vacuous discharge** and without it, we couldn't prove laws
 like the one from the derivation, which is one of Hilbert's axioms. The
-assumption $RAIN$, then, can be discharged as normal.
+assumption `RAIN`, then, can be discharged as normal.
 
 It's also worth pointing out that there are actually many different
 notational systems for natural deduction: we use the
@@ -669,7 +650,7 @@ reasoning. The potential for applications of this observation in machine
 learning and practice is endless. What we see in practice already is that
 AI-tools like [GitHub Copilot](https://en.wikipedia.org/wiki/GitHub_Copilot) can
 complete some simple mathematical arguments while they are being typed in
-$LaTeX$ source code by an author. 
+`LaTeX` source code by an author. 
 
 There are many proof assistants out there, such as
 [Agda](https://en.wikipedia.org/wiki/Agda_(programming_language)),
@@ -709,7 +690,6 @@ Lean, live in your browser.
 
 Here is a verification of our running example in Lean:
 
-{{< lean_logo >}}
 ~~~lean4
 variable (RAIN WIND COLD HEATING: Prop)
 
@@ -766,8 +746,8 @@ additional declarations:
 To understand what's going on here, we need to talk about how Lean works "under
 the hood". What we're saying here is, essentially: suppose that `rain` is a
 proof of the proposition `RAIN`, `if_rain_or_wind_then_cold` is a proof of
-`(RAIN{{< lor >}}WIND){{< to >}}COLD`, and `if_cold_then_heating` is a proof of
-`COLD{{< to >}}HEATING`. Our aim is to show how we can transform these proofs
+`(RAIN∨WIND)→COLD`, and `if_cold_then_heating` is a proof of
+`COLD→HEATING`. Our aim is to show how we can transform these proofs
 into a proof of `HEATING`, this is what we declare by following this declaration
 by "`: HEATING`".
 
@@ -810,7 +790,7 @@ the top. The line
 ~~~
 
 takes the proof of `RAIN` and applies to it (what's effectively) the natural
-deduction rule ${{< lor >}} Intro$. That is, this line represents the natural
+deduction rule `∨ Intro`. That is, this line represents the natural
 deduction inference:
 
 {{< img src="img/nd_step_1.png" class="mx-auto rounded d-block inert-img img-fluid" width="200px">}}
@@ -826,19 +806,19 @@ The next line working backwards is:
 
 Note that the `apply` keyword, which took 2 arguments in line `9`, only seems to
 have one argument here. We're applying the proof `if_rain_or_wind_then_cold` for
-`(RAIN {{< lor >}}WIND){{< to >}} COLD`. But to what? 
+`(RAIN ∨WIND)→ COLD`. But to what? 
 
 The answer is that we apply it to the next line, that is line no `9`. The
 expression here is parsed just like the following one-liner:
 ~~~lean4 {lineNos = false}
   apply if_rain_or_wind_then_cold (apply Or.inl rain)
 ~~~
-That is Lean recursively applies the proof for `(RAIN {{< lor >}}WIND){{< to >}}
-COLD` to the result of applying the ${{< lor >}}Intro$-rule to the proof for
+That is Lean recursively applies the proof for `(RAIN ∨WIND)→
+COLD` to the result of applying the `∨Intro`-rule to the proof for
 `RAIN`. 
 
-But what does it mean to apply a proof for `(RAIN {{< lor >}}WIND){{< to >}}
-COLD` to a proof for `(RAIN {{< lor >}}WIND){{< to >}} COLD`? The answer is
+But what does it mean to apply a proof for `(RAIN ∨WIND)→
+COLD` to a proof for `(RAIN ∨WIND)→ COLD`? The answer is
 rather obvious: apply MP to infer `COLD`—which is precisely what Lean does here.
 That is, at this point, we've constructed in Lean the following natural
 deduction proof:
@@ -846,7 +826,7 @@ deduction proof:
 {{< img src="img/nd_step_2.png" class="mx-auto rounded d-block inert-img img-fluid" width="500px">}}
 
 Now it should be clear how the proof finishes. The last `apply` takes the proof
-for `COLD{{< to >}}HEATING` to our proof for `COLD`. That is, reading the lines 
+for `COLD→HEATING` to our proof for `COLD`. That is, reading the lines 
 
 ~~~lean4 {linenostart=7}
   apply if_cold_then_heating
@@ -885,21 +865,20 @@ The correspondence is most clearly visible in the case of conjunctions and
 disjunctions. For each of the corresponding introduction and elimination rules,
 there are corresponding Lean tactics:
 
-+ ${{<land>}}-Intro$ corresponds to `And<span class="dark-green">.</span>intro`, which `applied` to the proofs of
++ `∧-Intro` corresponds to `And<span class="dark-green">.</span>intro`, which `applied` to the proofs of
 two propositions yields a proof of their conjunction.
-+ ${{<land>}}-Elim$ corresponds to the two tactics `And<span class="dark-green">.</span>left` and `And<span class="dark-green">.</span>right`,
++ `∧-Elim` corresponds to the two tactics `And<span class="dark-green">.</span>left` and `And<span class="dark-green">.</span>right`,
 which when `applied` to proofs of a conjunction yield proofs of the left or right
 conjunct respectively.
-+ ${{<lor>}}-Intro$ correspond to `Or<span class="dark-green">.</span></span>inl` and `Or<span class="dark-green">.</span>inr`, which when `applied` to
++ `∨-Intro` correspond to `Or<span class="dark-green">.</span></span>inl` and `Or<span class="dark-green">.</span>inr`, which when `applied` to
 proofs of a proposition yield the disjunction with _some_ other formula on the
 left or on the right (Lean figures out which one you mean).
-+ ${{<lor>}}-Elim$ corresponds  `Or<span class="dark-green">.</span>elim`, which when `applied` to two proofs of a
++ `∨-Elim` corresponds  `Or<span class="dark-green">.</span>elim`, which when `applied` to two proofs of a
   given conclusion from each of two disjuncts, gives a proof of that conclusion
   from the disjunction itself.
 
-Here's a simple example to illustrate how this works for ${{<land>}}-Intro/Elim$ and ${{<lor>}}-Intro$:
+Here's a simple example to illustrate how this works for `∧-Intro/Elim` and `∨-Intro`:
 
-{{< lean_logo >}}
 ~~~lean4
 (variable RAIN WIND SUN : Prop)
 
@@ -917,21 +896,19 @@ Click this
 
 This code verifies the following natural deduction proof:
 
-$$(RAIN {{< land >}}WIND){{< v_dash >}}(RAIN {{< lor >}}SUN){{< land >}}(WIND{{< lor >}}SUN)$$
+```(RAIN ∧WIND)⊢(RAIN ∨SUN)∧(WIND∨SUN)```
 
 {{< img src="img/nd_conjunction_disjunction.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
 
-Before we can talk about ${{< lor >}}-Elim$, we need to talk about the
-conditional. We've actually already discussed how ${{< to >}}-Elim$ works in
+Before we can talk about `∨-Elim`, we need to talk about the
+conditional. We've actually already discussed how `→-Elim` works in
 Lean: if we have a proof of a conditional, we can directly `apply` it to a proof
-of its antecedent to obtain a proof of the consequent. So, how do we do ${{< to >}}-Intros$?
+of its antecedent to obtain a proof of the consequent. So, how do we do `→-Intros`?
 
-Remember that ${{< to >}}-Intro$ works by hypothetical reasoning: to prove $A{{<
-to >}}B$, we derive $B$ from the assumption that $A$, which we discharge in the
+Remember that `→-Intro` works by hypothetical reasoning: to prove `A→B`, we derive `B` from the assumption that `A`, which we discharge in the
 process. In Lean, we introduce an assumption like this using the `intro` tactic.
 Here's how this works in practice:
 
-{{< lean_logo >}}
 ~~~lean4
 (variable RAIN WIND: Prop)
 
@@ -943,12 +920,12 @@ example : RAIN → (RAIN ∨ WIND) := by
 Click this
 [link](https://live.lean-lang.org/#codez=BQNwhgTglmBGA2BTABAJQIIEkByyDqOAIgFzIAKEA9gA4CUAUPYgB5gC21SypGOygSYTJgvXIAoifEVrcAvMlgBPZPWTIoAOwAuVZBDDrlyMNU6KA8hAB06+AZZgAxhp161QA) to run this code in your browser. 
 
-This is the Lean verification of our earlier natural deduction proof for ${{< v_dash >}}RAIN {{< to >}} (RAIN {{< lor >}} WIND)$:
+This is the Lean verification of our earlier natural deduction proof for `⊢RAIN → (RAIN ∨ WIND)`:
 {{< img src="img/or_intro_axiom.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
 
 The `intro`-tactic introduces a new hypothesis into the space, which we give the
 name `rain`. Lean figures out by itself that this is supposed to be the hypothesis for the
-if part of the conditional $RAIN {{< to >}} (RAIN {{< lor >}} WIND)$—i.e. for
+if part of the conditional `RAIN → (RAIN ∨ WIND)`—i.e. for
 `RAIN`—since that's what we need to prove at this point.
 
 Note that in the last line we write `exact rain`. We could also write
@@ -969,13 +946,10 @@ With this in hand, we can move to `Or<span class="dark-green">.</span>elim`. To
 illustrate, let's look at a more complex example. Let's verify the following in
 Lean:
 
-```
-{{< v_dash >}}RAIN {{< land >}} (WIND {{< lor >}} SUN) {{< to >}} ((RAIN {{< land >}} WIND) {{< lor >}} (RAIN {{< land >}} SUN))
-```
+```⊢RAIN ∧ (WIND ∨ SUN) → ((RAIN ∧ WIND) ∨ (RAIN ∧ SUN))```
 
 Here is the Lean code:
 
-{{< lean_logo >}}
 ~~~lean4
 variable (RAIN WIND SUN : Prop)
 
@@ -1005,17 +979,15 @@ work out itself that the following line
 ~~~lean4 {linenostart=4}
   intro rain_and_wind_or_sun
 ~~~
-introduces the assumption that `RAIN {{< land >}} (WIND {{< lor >}} SUN)`. Lean
+introduces the assumption that `RAIN ∧ (WIND ∨ SUN)`. Lean
 "knows" this because we're trying to prove the conditional:
 
-```
-RAIN {{< land >}} (WIND {{< lor >}} SUN) {{< to >}} ((RAIN {{< land >}} WIND) {{< lor >}} (RAIN {{< land >}} SUN))
-```
+```RAIN ∧ (WIND ∨ SUN) → ((RAIN ∧ WIND) ∨ (RAIN ∧ SUN))```
 
-and the assumption we have to make for this is that `RAIN {{< land >}} (WIND {{< lor >}} SUN)`.
+and the assumption we have to make for this is that `RAIN ∧ (WIND ∨ SUN)`.
 
 Correspondingly, when we apply `And<span class="dark-green">.</span>right` to
-this assumption, this gives us a proof of the disjunction `(WIND {{< lor >}}
+this assumption, this gives us a proof of the disjunction `(WIND ∨
 SUN)` in
 ~~~lean4 {linenostart=5}
   apply Or.elim (And.right rain_and_wind_or_sun)
@@ -1039,14 +1011,13 @@ The bullet points `<span class="dark-green">·</span>` are, again, "syntactic
 sugar" (you can typeset them by typing "`\\.`" in the online text-editor). They
 structure the sub-proof in such a way that we can more easily see what's going
 on—which is that we have two proofs, one from `WIND` and one from `SUN` both
-ending in `((RAIN {{< land >}} WIND) {{< lor >}} (RAIN {{< land >}} SUN))`, as
+ending in `((RAIN ∧ WIND) ∨ (RAIN ∧ SUN))`, as
 desired. 
 
 Note that also here, Lean can work out by itself that `wind` is a proof of
 `WIND` and `sun` a proof of `SUN`. In fact, we don't need to use the mnemonic
 names here, the following code provides the exact same result:
 
-{{< lean_logo >}}
 ~~~lean4
 variable (RAIN WIND SUN : Prop)
 
@@ -1077,7 +1048,6 @@ want to start naming our results. The standard way of doing this is using the
 `<span class="dark-blue">theorem</span>` declaration followed by a name. The
 following code gives an example:
 
-{{< lean_logo >}}
 ~~~lean4
 theorem absorption_right_to_left (A B : Prop): A ∨ (A ∧ B) → A := by
   intro a_or_a_and_b
@@ -1099,35 +1069,34 @@ laws.
 Once we have a name for a theorem, we can use it in later proofs (which, of
 course, need to load the earlier proof as well). That is, if we have the
 previous code, we can simply `apply absorption_right_to_left` to a proof of
-`A{{< lor >}} (A{{< land >}} B)` to obtain a proof of `A`.
+`A∨ (A∧ B)` to obtain a proof of `A`.
 
 This gives you an idea of how to verify proofs in Boolean propositional logic
-involving {{< land >}}, {{< lor >}}, and {{< to >}} using tactics-based Lean
+involving ∧, ∨, and → using tactics-based Lean
 code. Of course, Lean is much, _much_ more powerful than that: it can verify
 logical proofs from even the most cutting-edge areas of mathematics and
 physics with relative ease—this is part of its appeal to mathematicians!
 
 You'll learn more advanced Lean techniques later in this course, but before we
 move on to other logical systems, we should discuss how the negation operator
-{{< neg >}} works in Lean.
+¬ works in Lean.
 
-For this, let's inspect the natural deduction rules for {{< neg >}}:
+For this, let's inspect the natural deduction rules for ¬:
 
 {{< img src="img/negation_rules.png" class="mx-auto rounded d-block inert-img img-fluid" width="600px">}}
 
-The thing to note here is that ${{< neg >}}A$ behaves _exactly_ like 
-$A {{< to >}} {{< bot >}}$, where ${{< bot >}}$ is the special _falsum_
+The thing to note here is that `¬A` behaves _exactly_ like 
+`A → ⊥`, where `⊥` is the special _falsum_
 constant. Lean takes this to be the defining feature of negation, which is an
 idea that traces back to Lean's
 [intuitionistic](https://en.wikipedia.org/wiki/Intuitionistic_logic)-roots,
 which we don't have time to look into now.
 
-This means that we can `apply` formulas of the form `{{< neg >}}A` to formulas
-of the form `A` to obtain a proof of {{< bot >}}, and if we can derive 
-{{< bot>}} from a formula `A`, this gives us a proof of `{{< neg >}} A`. Here is
+This means that we can `apply` formulas of the form `¬A` to formulas
+of the form `A` to obtain a proof of ⊥, and if we can derive 
+⊥ from a formula `A`, this gives us a proof of `¬ A`. Here is
 an example that illustrates both ideas at the same time:
 
-{{< lean_logo >}}
 ~~~lean4
 theorem de_morgan_one_ltr (A B : Prop): ¬(A ∨ B) → (¬A ∧ ¬ B) := by
    intro not_a_or_b
@@ -1148,15 +1117,14 @@ Under the ideas just outlined, this code corresponds to the following natural de
 
 {{< img src="img/de_morgan_nd.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
 
-Note that in our Lean derivation, we didn't need to write out {{< bot >}}, but
+Note that in our Lean derivation, we didn't need to write out ⊥, but
 if you ever have to, it works by writing `False`. That is, you can write "`A
 <span class="dark-green">→</span> False`" instead of "`<span class="dark-green">¬</span>A`" and say the same thing.
 
-The principle $Ex falso$, which states that you can derive any consequence from
+The principle `Ex falso`, which states that you can derive any consequence from
 a contradiction has the equivalent Lean tactic `False.elim`, which you can also
 refer to by `absurd`. So, we can prove the law:
 
-{{< lean_logo >}}
 ~~~lean4
 theorem ex_falso_quodlibet (A C : Prop) : (A ∧ ¬ A) → C := by
   intro a_and_neg_a
@@ -1167,7 +1135,7 @@ theorem ex_falso_quodlibet (A C : Prop) : (A ∧ ¬ A) → C := by
 Click this
 [link](https://live.lean-lang.org/#codez=C4Cwpg9gTmC2AEYAeB9AZgQwDYGcIoEcBXCAEywEsAjMYeACgEF4BheALngAUoIAHAJQcGzQORE8ADXxGQwEmErDgF54VAJ4AoePAoA7YL3gYUGHaRQ6wAc2ObDfPllXwAYthxgAdGEqxbGe47Sph5QFJYgdEYmZhbWGLbIGADGdIzBWGBokcam5lbGQA) to run this code in your browser. 
 
-What's left is to discuss the rule {{< neg >}}{{< bot >}}, which is peculiar in
+What's left is to discuss the rule ¬⊥, which is peculiar in
 natural deduction, as in Lean:
 
 {{< img src="img/neg_bot.png" class="mx-auto rounded d-block inert-img img-fluid" width="100px">}}
@@ -1177,7 +1145,6 @@ Lean's roots in intuitionistic logic, where the rule fails. But we can _load_
 the rule by the line `<span class="dark-blue">open</span> Classical`. The rule is needed, for example, to
 derive the law of double negation elimination:
 
-{{< lean_logo >}}
 ~~~lean4
 open Classical
 
@@ -1203,7 +1170,7 @@ class="dark-green">¬</span>A`. This is precisely what's going on here:
 The tactic `byContradiction` introduces the hypothesis `not_a`, which is a proof
 of `<span class="dark-green">¬</span>A`. We apply our previous assumption
 `not_not_a` to this to obtain `False` via MP, which is enough to infer `A`
-according to the idea underlying {{< neg >}}{{< bot >}}.
+according to the idea underlying ¬⊥.
 
 This concludes our teaser of Lean for proof verification in classical Boolean
 logic. This is just the very beginning of a huge field of active AI research,
@@ -1219,8 +1186,7 @@ researchers at Google's _DeepMind_ research group develop an AI-system that
 achieved [silver-medal standard at IMO
 problems](https://deepmind.google/discover/blog/ai-solves-imo-problems-at-silver-medal-level/).
 
-## Further readings
-
+## Further readings {.readings .nocount}
 An excellent introduction to [structural proof
 theory](https://en.wikipedia.org/wiki/Structural_proof_theory) is Sara Negri and
 Jan van Plato's [Structural Proof

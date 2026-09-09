@@ -6,7 +6,6 @@ weight: 60
 params: 
   date: 25/09/2025
   id: txt-if
-  math: true
 ---
 
 # Logical conditionals
@@ -19,7 +18,7 @@ valid inference requires that the conclusion be true under the hypothesis that
 the premises are—*if* the premises are. This applies to both deductive and
 inductive inference, but in this chapter, we'll focus on deductive inference. 
 
-The conditional of deductive logic, which we formalize as {{< to >}}, is the
+The conditional of deductive logic, which we formalize as →, is the
 basis for many artificial reasoning techniques, especially in logic-based AI. 
 It turns out that conditional reasoning is crucial to many AI-related tasks.
 Think for example of computer code like this:
@@ -31,8 +30,7 @@ Or, imagine a very simple meteorology {{< abbr title="knowledge base">}}KB{{< /a
 {{< img src="img/kb-if-then.png" class="rounded mx-auto d-block inert-img img-fluid" width="450px">}}
 If we want to use this information for automated weather forecasting, we need to think about artificial conditional inference. That's the topic of this chapter.
 
-At the end of this chapter, you will be able to:
-
+{{< callout type="objectives" >}}
 - explain the relationship between deductive reasoning and conditionals
 - outline the basic theory of the Boolean material conditional and the theory of
   Horn formulas
@@ -41,19 +39,20 @@ At the end of this chapter, you will be able to:
 - use conditionals to formalize rules in knowledge representation scenarios
 - explain the limitations of Horn formulas in knowledge representation and
 reasoning
+{{< /callout >}}
 
 ## Boolean If-then
 
-The most characteristic inference involving {{< to >}} is the principle of
+The most characteristic inference involving → is the principle of
 _Modus Ponens (MP)_:
 
-$$A, (A {{< to >}} B) {{< therefore >}} B$$
+```A, (A → B) ∴ B```
 
 How can we develop a theory of conditional logic which validates this principle?
 
 It turns out that Boolean algebra already has the resources to interpret 
-{{< to >}} in a way that aligns with many of our expectations about if-then
-statements. The idea is that we can interpret {{< to >}} using the Boolean functions
+→ in a way that aligns with many of our expectations about if-then
+statements. The idea is that we can interpret → using the Boolean functions
 !!NOT!! and !!OR!! in combination:
 
 | | | |
@@ -62,24 +61,24 @@ statements. The idea is that we can interpret {{< to >}} using the Boolean funct
 
 The way this works is by saying:
 
-$$v( A {{< to >}} B) = (!!NOT!! v(A)) !!OR!! v(B)$$
+```v( A → B) = (!!NOT!! v(A)) !!OR!! v(B)```
 
-Using this clause, the truth-table for $(RAIN {{< to >}} WIND)$,
+Using this clause, the truth-table for `(RAIN → WIND)`,
 for example, works out to:
 
 {{< img src="img/to_table.png" class="mx-auto d-block rounded inert-img img-fluid" width="900px">}}
 
-The rows that represent models where it's raining, that is $v(SUN) = 1$, are in
+The rows that represent models where it's raining, that is `v(SUN) = 1`, are in
 line with expectations:
 
-- If it's raining and it's not windy, that is $v(RAIN) = 1$ and $v(WIND) = 0$,
+- If it's raining and it's not windy, that is `v(RAIN) = 1` and `v(WIND) = 0`,
 the situation contradicts the conditional so it is not true, that is
-$v(RAIN {{< to >}} WIND) = 0$.
+`v(RAIN → WIND) = 0`.
 
-- If it's raining and windy, that is $v(RAIN) = 1$ and $v(WIND) = 1$, then everything is like the conditional says, so it is true, meaning $v(RAIN {{< to >}} WIND) = 1$.
+- If it's raining and windy, that is `v(RAIN) = 1` and `v(WIND) = 1`, then everything is like the conditional says, so it is true, meaning `v(RAIN → WIND) = 1`.
 
 More curious are the other rows that represent models where it's _not_ raining,
-that is $v(RAIN) = 0$. In all those situations, the conditional $RAIN {{< to >}}WIND$, according to the table, is _true_. 
+that is `v(RAIN) = 0`. In all those situations, the conditional `RAIN →WIND`, according to the table, is _true_. 
 
 One way to make sense of this is by thinking about conditionals in programming
 languages. Take the following snippet, which assigns the day named `<span
@@ -113,12 +112,12 @@ the only live option.
 
 Note that in non-Boolean contexts, such as the **many-valued logics** we'll be
 looking at later in this course, this is no longer necessarily the best option.
-If we have, for example, a third truth-value $i$ for "indeterminate" sentences,
+If we have, for example, a third truth-value `i` for "indeterminate" sentences,
 we could use that in the case of the antecedent being untrue.
 
 This is the **default-true interpretation** of the conditional: the default
 truth-value of the conditional is `1`, only a clear counterexample changes it to
-`0`. In logical theory, we call this way of interpreting {{< to >}} the
+`0`. In logical theory, we call this way of interpreting → the
 **material conditional**. 
 
 A major application of the material conditional in AI is to formalize
@@ -126,57 +125,57 @@ A major application of the material conditional in AI is to formalize
 building a {{< abbr title="knowledge base">}}KB{{< /abbr >}} for an expert
 system—especially, when we want to express a particularly strong relationship
 between the antecedent (the if-part) and the consequent (the then-part).
-This is because the interpretation of {{< to >}} validates 
+This is because the interpretation of → validates 
 {{< abbr title="modus ponens">}}MP{{< /abbr >}} as a deductively valid
 principle:
 
-$$A, (A {{< to >}} B) {{< vDash >}} B$$
+```A, (A → B) ⊨ B```
 
-If we know the if-part of an `if-then`-rule expressed with {{< to >}}, we can
+If we know the if-part of an `if-then`-rule expressed with →, we can
 infer the then-part with deductive certainty.
 
 To verify this, we can use our well-trusted tools for Boolean reasoning, such as
 the `SAT`-solving using truth-tables or resolution. This is because we've
-interpreted {{< to >}} in terms of !!NOT!! and !!OR!!, whose behavior is already
+interpreted → in terms of !!NOT!! and !!OR!!, whose behavior is already
 covered by our previous techniques. 
 
-To handle {{< to >}} in logical formulas, we introduce a rewrite rule, which
-allows us to transform formulas with {{< to >}} into equivalent formulas
+To handle → in logical formulas, we introduce a rewrite rule, which
+allows us to transform formulas with → into equivalent formulas
 without the operator:
 
 {{< img src="img/rewrite_conditional.png" class="mx-auto d-block rounded inert-img img-fluid" width="300px">}}
 
 We use this rule to recursively eliminate all conditionals before we apply
 techniques like resolution. In fact, we can use this rule to transform a
-formula containing any number of {{< to >}}'s into a formula in normal form,
+formula containing any number of →'s into a formula in normal form,
 both {{< abbr
 title="disjunctive normal form">}}DNF{{< /abbr >}} and {{< abbr
 title="conjunctive normal form">}}CNF{{< /abbr >}}. Since the re-write rule introduces new negation
-symbols {{< neg >}}, we apply $r₀$ recursively before the negation rules, but
+symbols ¬, we apply `r₀` recursively before the negation rules, but
 that's all we need to change. The rest is business as usual.
 
 Here's how this works in practice. Take the following instance of {{< abbr
 title="modus ponens">}}MP{{< /abbr >}}, for example:
 
-$$RAIN, (RAIN {{< to >}}WIND){{< therefore >}}WIND$$
+```RAIN, (RAIN →WIND)∴WIND```
 
 We know that the validity of this inference reduces to:
 
 ```
-SAT{$RAIN$, $(RAIN{{< to >}}WIND)$, ${{< neg >}}WIND$}
+SAT{`RAIN`, `(RAIN→WIND)`, `¬WIND`}
 ```
 
 To check this using resolution, we first transform the formulas into {{< abbr
 title="conjunctive normal form">}}CNF{{< /abbr >}}. The only formula that needs
-rewriting is $(RAIN{{< to >}}WIND)$, which by one application of $r₀$ becomes $({{< neg >}}RAIN{{< lor >}}WIND)$. This gives us the following sets for resolution:
+rewriting is `(RAIN→WIND)`, which by one application of `r₀` becomes `(¬RAIN∨WIND)`. This gives us the following sets for resolution:
 
-$${ RAIN } &emsp;&emsp;&emsp;{{{< neg >}}RAIN, WIND }&emsp;&emsp;&emsp;{ {{< neg >}}WIND }$$
+```{ RAIN } &emsp;&emsp;&emsp;{¬RAIN, WIND }&emsp;&emsp;&emsp;{ ¬WIND }```
 
 Two applications of resolution take care of business:
 
 {{< img src="img/resolution_conditional.png" class="mx-auto d-block rounded inert-img img-fluid" width="700px">}}
 
-Since we can derive the empty set ${ }$, we know that the set is `not-SAT` and
+Since we can derive the empty set `{ }`, we know that the set is `not-SAT` and
 so the corresponding inference is valid.
 
 But we can say even more. Not only can we use resolution to see that {{< abbr
@@ -197,12 +196,12 @@ them, the interpretation is no longer as straightforward. _Something_ can still
 be said about it, but that brings us too far afield.
 
 To bring the point home, as you may have noticed, the interpretation of 
-$(A {{< to >}}B)$ as $({{< neg >}}A
-{{< lor >}}B)$ essentially makes {{< abbr title="modus ponens">}}MP{{< /abbr >}}
-a variant of $Disjunctive Syllogism$ $$A, (A {{< to >}}B) {{< therefore >}} B$$
-becomes $$A, {{< neg >}}A {{< lor >}}B {{< therefore >}}B.$$ In fact, using the
-equivalence of ${{< neg >}}{{< neg >}} A$ and $A$, we can derive the one rule
-from the other: by replacing the first $A$ with ${{< neg >}}{{< neg >}} A$ using this equivalence, {{< abbr title="modus ponens">}}MP{{< /abbr >}} finally becomes  $${{< neg >}}{{< neg >}}A, {{< neg >}}A {{< lor >}}B {{< therefore >}}B,$$ which is an instance of $Disjunctive Syllogism$.
+`(A →B)` as $(¬A
+∨B)$ essentially makes {{< abbr title="modus ponens">}}MP{{< /abbr >}}
+a variant of `Disjunctive Syllogism` ```A, (A →B) ∴ B```
+becomes ```A, ¬A ∨B ∴B.``` In fact, using the
+equivalence of `¬¬ A` and `A`, we can derive the one rule
+from the other: by replacing the first `A` with `¬¬ A` using this equivalence, {{< abbr title="modus ponens">}}MP{{< /abbr >}} finally becomes  ```¬¬A, ¬A ∨B ∴B,``` which is an instance of `Disjunctive Syllogism`.
 
 Alternatively, we can—of course—verify the validity of 
 {{< abbr title="modus ponens">}}MP{{< /abbr >}} by inspecting the truth-table:
@@ -211,12 +210,12 @@ Alternatively, we can—of course—verify the validity of
 
 {{< img src="img/ai_counterfactual.png" class="rounded  float-end inert-img img-fluid m-2" width="300px" >}}
 Importantly, the material conditional is not the only way to interpret 
-{{< to >}} or to formalize natural language "if …, then …" statements. In fact,
+→ or to formalize natural language "if …, then …" statements. In fact,
 in many contexts, it is not even an adequate interpretation. Consider, for
 example, the statement "if you'd throw the ball at the window, then it
 would break" said to {{< logo >}}&ThinSpace;standing in front of the window with his ball.
 Such a conditional statement is called a [counterfactual conditional](https://en.wikipedia.org/wiki/Counterfactual_conditional).
-Clearly, the material interpretation of {{< to >}} is inadequate to describe the
+Clearly, the material interpretation of → is inadequate to describe the
 meaning of this conditional: if {{< logo >}}&ThinSpace;(responsibly) doesn't throw the
 ball, this doesn't mean that the conditional is automagically true—the ball
 might be a soft, foam ball and the window double glazed. The counterfactual might be
@@ -230,7 +229,7 @@ material conditionals in [knowledge engineering](https://en.wikipedia.org/wiki/K
 
 ## Conditional reasoning
 
-Using the reduction of $A {{< to >}}B$ to ${{< neg >}}A {{< lor >}}B$, we can
+Using the reduction of `A →B` to `¬A ∨B`, we can
 apply all the artificial reasoning methods for Boolean inference we know to
 conditional reasoning. This is great, of course, but applying these methods
 means we also incur all the drawbacks we've discussed, especially the risk of
@@ -244,17 +243,17 @@ which artificial reasoning becomes more [tractable](https://en.wikipedia.org/wik
 Simply speaking a **Horn clause** is a disjunction of {{< abbr
 title="propositional variable or the negation of one">}}literals{{< /abbr >}},
 which contains at most one *un*-negated literal, that is a propositional variable.
-Here's an example: $${{<neg>}}SUN {{< lor >}} {{<neg>}}RAIN {{< lor >}}WIND$$
+Here's an example: ```¬SUN ∨ ¬RAIN ∨WIND```
 Off the bat, you might not think that this is a conditional, but a disjunction.
-But look at it this way: using the $"De Morgan Identities"$, we can see that
-${{< neg >}}SUN {{< lor >}}{{< neg >}}RAIN$ is equivalent to ${{< neg >}}(SUN
-{{< land >}}RAIN)$, which means that our example Horn clause can be written as:
+But look at it this way: using the `"De Morgan Identities"`, we can see that
+`¬SUN ∨¬RAIN` is equivalent to $¬(SUN
+∧RAIN)$, which means that our example Horn clause can be written as:
 
-$${{<neg>}}(SUN {{< land >}} RAIN) {{< lor >}}WIND$$
+```¬(SUN ∧ RAIN) ∨WIND```
 
-But if we now apply the reduction of $A {{< to >}}B$ to ${{< neg >}}A {{< lor >}}B$ "backwards", we get:
+But if we now apply the reduction of `A →B` to `¬A ∨B` "backwards", we get:
 
-$$(SUN {{< land >}} RAIN) {{< to >}}WIND$$
+```(SUN ∧ RAIN) →WIND```
 
 This means that if we have a Horn clause like in our example, we can equivalently
 re-write it as a simple conditional, where the {{< abbr
@@ -270,50 +269,50 @@ applications.
 
 The definition of Horn clauses allows for two special cases:
 
-- A clause that consists of a single propositional variable, like $SUN, RAIN,$
-or $WIND$. Such a clause is called a **fact**.
+- A clause that consists of a single propositional variable, like `SUN, RAIN,`
+or `WIND`. Such a clause is called a **fact**.
 
 - A clause that's the disjunction _only_ of negated propositional variables,
 that is without any unnegated propositional variable, like 
 
-    $${{< neg >}}SUN {{< lor >}}{{< neg >}}RAIN.$$
+    ```¬SUN ∨¬RAIN.```
 
     Such a clause is called a **goal (clause)**. Note that by the $"De Morgan
     Identities"$, goal clauses are simply negated conjunctions of propositional
     variables—in our case:
 
-    $${{< neg >}}(SUN {{< land >}}RAIN).$$
+    ```¬(SUN ∧RAIN).```
 
     The special case of a single negated propositional variable, like 
-    ${{< neg >}}SUN$, is explicitly included.
+    `¬SUN`, is explicitly included.
 
 The Horn clause in our example has both: negated and unnegated propositional
 variables. It is what's called a **strict Horn clause**. 
 
 These names derive from the way we reason with Horn clauses. Suppose, for
 example, that {{<logo>}}&ThinSpace;has downloaded a simple meteorological {{<
-abbr title="knowledge base">}}$KB${{</abbr>}},
+abbr title="knowledge base">}}`KB`{{</abbr>}},
 that contains the following strict Horn clauses:
 {{< img src="img/kb_rainbow.png" class="mx-auto d-block rounded inert-img img-fluid" width="500px">}}
 
 Suppose further that {{< logo >}}&ThinSpace;observes that it's morning, the
 skies are (partially) clear, and it's starting to rain. This gives
 {{< logo >}}&ThinSpace;the following three _facts_ in the terminology of Horn
-clauses: $$MORNING, CLEAR, RAIN$$
+clauses: ```MORNING, CLEAR, RAIN```
 Now {{< logo >}}&ThinSpace;is wondering if there'll be a rainbow. 
 
 To determine this, {{< logo >}}&ThinSpace;can use resolution based reasoning
-with its new KB! We know that $RAINBOW$ follows just in case $KB$ together with
-the facts, and $<nobr>{{< neg >}}RAINBOW</nobr>$ is `not-SAT`. Note that
-$<nobr>{{< neg >}}RAINBOW</nobr>$ is a _goal_ clause in Horn terminology. 
+with its new KB! We know that `RAINBOW` follows just in case `KB` together with
+the facts, and `¬RAINBOW` is `not-SAT`. Note that
+`¬RAINBOW` is a _goal_ clause in Horn terminology. 
 
-So, what we do is to add the facts $MORNING, CLEAR,RAIN$ and goal clause
-$<nobr>{{< neg >}}RAINBOW</nobr>$ to the $KB$ and apply resolution to see
-whether we can derive ${ }$. If so, we can conclude that there will be a rainbow.
+So, what we do is to add the facts `MORNING, CLEAR,RAIN` and goal clause
+`¬RAINBOW` to the `KB` and apply resolution to see
+whether we can derive `{ }`. If so, we can conclude that there will be a rainbow.
 
 Here we go:
 
-1. First, {{< logo >}}&ThinSpace;re-writes the $KB$ in CNF using $r₀$ (an industry level KB would
+1. First, {{< logo >}}&ThinSpace;re-writes the `KB` in CNF using `r₀` (an industry level KB would
    already be written in CNF):
 
    {{< img src="img/kb-rewrite.png" class="rounded mx-auto d-block inert-img img-fluid" width="850px">}}
@@ -323,12 +322,12 @@ Here we go:
    {{< img src="img/kb-sets.png" class="rounded d-block inert-img img-fluid" width="400px">}}
 
 3. Finally, {{< logo >}}&ThinSpace;recursively applies the resolution rule
-   until it can derive ${ }$ or cannot resolve anymore. Here's the derivation
+   until it can derive `{ }` or cannot resolve anymore. Here's the derivation
 that {{< logo >}}&ThinSpace;finds in the search:
 
    {{< img src="img/resolution_rainbow.png" class="mx-auto rounded d-block inert-img img-fluid" width="700px">}}
 
-All the hard work paid off, {{< logo >}}&ThinSpace;derived ${ }$, so {{< logo >}}&ThinSpace;knows there will be a rainbow:
+All the hard work paid off, {{< logo >}}&ThinSpace;derived `{ }`, so {{< logo >}}&ThinSpace;knows there will be a rainbow:
 
 {{< img src="img/ai_rainbow.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
 
@@ -337,10 +336,10 @@ using {{< abbr title="modus ponens">}}MP{{< /abbr >}}-style reasoning. For this
 purpose, we use the following more generalized version of MP, which we call
 **gen-MP**:
 
-$$A₁, A₂, …, (A₁ {{<land>}} A₂{{<land>}} …) {{<to>}} B {{< therefore >}} B$$
+```A₁, A₂, …, (A₁ ∧ A₂∧ …) → B ∴ B```
 
-This inference allows us, for example, to infer $SUN$ from $CLEAR, DAY,$ and
-$(SUN{{< land >}}CLEAR){{< to >}}DAY$. We let gen-MP subsume MP with the special
+This inference allows us, for example, to infer `SUN` from `CLEAR, DAY,` and
+`(SUN∧CLEAR)→DAY`. We let gen-MP subsume MP with the special
 case that the conjunction in the antecedent is of length one.
 
 We've already pointed out that resolution-style inferences are, at heart,
@@ -408,19 +407,19 @@ chaining](https://en.wikipedia.org/wiki/Backward_chaining). This algorithm is
 basically forward chaining in reverse. Here's how {{< logo >}}&ThinSpace;would
 apply the algo in our example:
 
-- {{< logo >}}&ThinSpace;_wants_ to know whether the goal, $RAINBOW$, follows
-from the known facts $MORNING, CLEAR,$ and $RAIN$ and the KB.
+- {{< logo >}}&ThinSpace;_wants_ to know whether the goal, `RAINBOW`, follows
+from the known facts `MORNING, CLEAR,` and `RAIN` and the KB.
 
 - {{< logo >}}&ThinSpace;inspects the KB and sees that there is 
-$(RAIN {{< land >}} LOW_SUN){{< to >}} RAINBOW$ in there. That means that if 
- {{< logo >}}&ThinSpace;could derive $RAIN$ and $LOW_SUN$, it could derive $RAINBOW$ via
-gen-MP. So,  {{< logo >}}&ThinSpace;*replaces* the goal $RAINBOW$ with $RAIN$
-and $LOW_SUN$ as the two *new* goals. But since $RAIN$ is already one of the known facts, we
+`(RAIN ∧ LOW_SUN)→ RAINBOW` in there. That means that if 
+ {{< logo >}}&ThinSpace;could derive `RAIN` and `LOW_SUN`, it could derive `RAINBOW` via
+gen-MP. So,  {{< logo >}}&ThinSpace;*replaces* the goal `RAINBOW` with `RAIN`
+and `LOW_SUN` as the two *new* goals. But since `RAIN` is already one of the known facts, we
 delete it from the goals.
 
 - {{< logo >}}&ThinSpace;recursively repeats this procedure, updating the goals
-  along the way, until in the last step, the goal will be $DAY$, we have
-$MORNING{{< to >}}DAY$ in the KB and $MORNING$ among the facts. This deletes the
+  along the way, until in the last step, the goal will be `DAY`, we have
+`MORNING→DAY` in the KB and `MORNING` among the facts. This deletes the
 last goal and the backward search is complete. If {{< logo >}}&ThinSpace;diligently 
 kept track of the conditionals involved in the backward search, it can easily
 construct the gen-MP derivation we found above from it.
@@ -462,9 +461,9 @@ of length. Ultimately, it's the requirements of the concrete artificial
 reasoning scenario that determine which algorithm is better suited to the
 problem at hand.
 
-You might be wondering: What if we couldn't have derived $RAINBOW$? For example,
-because we neither had $MORNING$ nor $EVENING$ as known facts. Would that have
-meant we _don't_ see a rainbow according to the $KB$? It turns out that's a
+You might be wondering: What if we couldn't have derived `RAINBOW`? For example,
+because we neither had `MORNING` nor `EVENING` as known facts. Would that have
+meant we _don't_ see a rainbow according to the `KB`? It turns out that's a
 subtle question about the difference between being true and provable, or dually,
 false and unprovable. We'll return to this question much later in the course,
 when we discuss [many-valued
@@ -499,60 +498,60 @@ The idea is to describe the planning situation using a suitable propositional
 language. Here are the basic components of such a language for our problem:
 
 - The **fluents** are propositional variables that describe possibly changing
-states of the world. For each combination of $X,Y {{< in >}} { R, G}$ and for
-each $t$ a time-stamp in $0, 1, 2, …$, we have a different (!)
-propositional variable: $$On(X,Y,t),$$ which states that block $X$ is on top of
-block $Y$ at point $t$.
+states of the world. For each combination of `X,Y ∈ { R, G}` and for
+each `t` a time-stamp in `0, 1, 2, …`, we have a different (!)
+propositional variable: ```On(X,Y,t),``` which states that block `X` is on top of
+block `Y` at point `t`.
 
-    That is, we have a propositional variable $On(R,G,1)$, which says that the
+    That is, we have a propositional variable `On(R,G,1)`, which says that the
     red block is on top of the green block at the first time-stamp. But we also
-    have a _different_ propositional variable $On(G,R,1)$, which says that the
+    have a _different_ propositional variable `On(G,R,1)`, which says that the
     _green_ block is on top of the _red_ one at the first time-stamp. Of course,
     in a realistic model, only one of the two can be true at the same time, more
     on that later.
 
 - The **actions** are propositional variables whose truth expresses that {{<
 logo >}}&ThinSpace;carries out a specific action. Again for each combination of
-$X,Y {{< in >}} { R, G}$ and for each $t$ a time-stamp in $0, 1, 2, …$, we have
-the variable $$Stack(X,Y,t),$$ which expresses the action of stacking $X$ on top
-of $Y$ at time-stamp $t$. 
+`X,Y ∈ { R, G}` and for each `t` a time-stamp in `0, 1, 2, …`, we have
+the variable ```Stack(X,Y,t),``` which expresses the action of stacking `X` on top
+of `Y` at time-stamp `t`. 
 
-    Similarly, we have for each $X,Y$ and each $t$ the action $$Unstack(X,Y,t),$$ which 
-    removes the block $X$ from the block $Y$ at time $t$.
+    Similarly, we have for each `X,Y` and each `t` the action ```Unstack(X,Y,t),``` which 
+    removes the block `X` from the block `Y` at time `t`.
 
-Otherwise, our language is an ordinary propositional language with {{< neg >}},
-{{< land >}}, {{< lor >}}, and {{< to >}} as operators.
+Otherwise, our language is an ordinary propositional language with ¬,
+∧, ∨, and → as operators.
 
 For now, the variables are just ordinary propositional variables, nothing constrains our models from assigning them "weird" values that don't align with
 our intended interpretation. For example, an assignment may very well assign
-$On(R,G,1)$ and $On(G,R,1)$ both the value `1`, even though in the "real world" of
+`On(R,G,1)` and `On(G,R,1)` both the value `1`, even though in the "real world" of
 course they can't both be true.
 
 We tackle this problem by implementing a {{< abbr title="knowledge base">}}KB{{</abbr>}}, 
 which at a minimum contains the following formulas:
 
-- Principles about the way the world works "(meta-)physically", such as: $${{< neg >}}On(X,X,t)&emsp;&emsp;&emsp; On(X,Y,t){{< to >}}{{< neg >}}On(Y,X,t),$$ for all $t$. These guarantee, for example, that no block can be on top of itself in a model or both one on top of the other and the other on top of the one, in some weird "wormhole"-style model.
+- Principles about the way the world works "(meta-)physically", such as: ```¬On(X,X,t)&emsp;&emsp;&emsp; On(X,Y,t)→¬On(Y,X,t),``` for all `t`. These guarantee, for example, that no block can be on top of itself in a model or both one on top of the other and the other on top of the one, in some weird "wormhole"-style model.
 
-- Principles that guarantee that our actions work as intended, like: $$Stack(X,Y,t){{< to >}}On(X,Y,t+1)&emsp;&emsp;&emsp;Unstack(X,Y,t){{< to >}}{{< neg >}}On(X,Y,t+1),$$ for all $X,Y,t$ as before. These express action principles like that if you stack at one time-stamp in the model, the action will succeed and the blocks will be indeed on top of each other at the next time-stamp.
+- Principles that guarantee that our actions work as intended, like: ```Stack(X,Y,t)→On(X,Y,t+1)&emsp;&emsp;&emsp;Unstack(X,Y,t)→¬On(X,Y,t+1),``` for all `X,Y,t` as before. These express action principles like that if you stack at one time-stamp in the model, the action will succeed and the blocks will be indeed on top of each other at the next time-stamp.
 
     These action principles also need some plausibility rules, like
-    $$Unstack(X,Y,t){{< to >}}On(X,Y,t),$$ for all $X,Y,t$ as before, which
+    ```Unstack(X,Y,t)→On(X,Y,t),``` for all `X,Y,t` as before, which
     states that you can only unstack blocks that are actually stacked.
 
 We can now interpret a model for our language that makes all the principles in
 the KB true as a "real world" scenario. The principles guarantee that things
 behave as expected. Note that each model contains a "full history," by telling
-us which statements are true at time-stamp $0,1,2, …$. 
+us which statements are true at time-stamp `0,1,2, …`. 
 
 In this language, we can express our planning problem as follows:
 
-- We take an **initial state** of our system, which is $$On(G,R,0).$$ We couple
-  it with a **goal state**, which is $$On(R,G,2).$$
+- We take an **initial state** of our system, which is ```On(G,R,0).``` We couple
+  it with a **goal state**, which is ```On(R,G,2).```
 
 - If we can find a model for the KB—that is a "real world" model—which makes the
   initial state and goal state true, we can read off a _plan_ from the model: it
-will tell us which actions are true by assigning them value $1$, such as
-$v(Unstack(G,R,0) = 1$, to say first, unstack green from red.
+will tell us which actions are true by assigning them value `1`, such as
+`v(Unstack(G,R,0) = 1`, to say first, unstack green from red.
 
 - To carry out the plan, we just "do" the corresponding actions in the real
 world.
@@ -571,7 +570,7 @@ the depicted formulas are the ones that are true (i.e. assigned value `1`):
 
 You can verify, that these assignments correspond with the above described
 rules. Of course, the diagram only shows the relevant parts of the model, more
-things are true, like ${{< neg >}}On(R,R,0), {{< neg >}}On(G,G,0), …$.
+things are true, like `¬On(R,R,0), ¬On(G,G,0), …`.
 
 The plan we can read off is the one where we first unstack the green from the
 red block, and then just stack the red on the green. Of course, you could have
@@ -598,10 +597,10 @@ magically re-arrange themselves into the desired configuration.
 
 Of course, this is a nonsense model, but how do we exclude it? It turns out
 that the obvious solution has some undesirable properties. What we really want
-to do is postulate this for all $X,Y,t$:
+to do is postulate this for all `X,Y,t`:
 
-$$On(X,Y,t){{< land >}}{{< neg >}}Unstack(X,Y,t){{< to >}}On(X,Y,t+1)$$
-$${{< neg >}}On(X,Y,t){{< land >}}{{< neg >}}Stack(X,Y,t){{< to >}}{{< neg >}}On(X,Y,t+1)$$
+```On(X,Y,t)∧¬Unstack(X,Y,t)→On(X,Y,t+1)```
+```¬On(X,Y,t)∧¬Stack(X,Y,t)→¬On(X,Y,t+1)```
 
 This would exclude the "miracle model", but at a cost: these conditionals are no
 longer Horn clauses. Which puts our planning with them square into the territory

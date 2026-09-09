@@ -4,25 +4,23 @@ author: Johannes Korbmacher
 weight: 80
 params: 
   id: exc-fol
-  math: true
 ---
 
 # Decoding FOL {.solved}
 
 Paraphrase the following FOL formulas in natural language:
 
-1. `{{< exists >}}x (FatherOf x brotherOf jimmy {{< land >}} {{< neg >}}
+1. `∃x (FatherOf x brotherOf jimmy ∧ ¬
    FatherOf x jimmy)`
 
-2. `{{< forall >}}x ( Fish x {{< to >}} {{< exists >}}y (Fish y {{< land >}}
+2. `∀x ( Fish x → ∃y (Fish y ∧
    BiggerThan y x ))`
 
-3. `{{< exists >}} x SiblingOf jimmy x {{< to >}} {{< exists >}} x( SiblingOf
-   jimmy x {{< land >}} {{< forall >}}y ( Sibling x y {{< to >}} YoungerThan y
+3. `∃ x SiblingOf jimmy x → ∃ x( SiblingOf
+   jimmy x ∧ ∀y ( Sibling x y → YoungerThan y
 x))`
 
-4. `{{< exists >}}x{{< exists >}}y (Thief x {{< land >}} Thief y {{< land >}} {{<
-   neg >}} x = y)`
+4. `∃x∃y (Thief x ∧ Thief y ∧ ¬ x = y)`
 
 ## Solution { #decoding-folSolution .solution }
 
@@ -58,9 +56,7 @@ whether we can reduce some properties to others to have a simpler language. For
 example, should we have a separate predicate for `Uncle²` or should we define it
 using `Male¹`, `Sibling²`, and `Parent²`, where rather than `Uncle x y` we use:
 
-```
-Male y {{< land >}} {{< exists >}}z (Parent z x {{< land >}} Sibling y z)
-```
+```Male y ∧ ∃z (Parent z x ∧ Sibling y z)```
 
 `Uncle x y` is much simpler, but the previous formula contains more information.
 There is a trade-off that needs to be weighed carefully for every proposed
@@ -113,18 +109,18 @@ reasoning tasks.*
 
 2. At a minimum, the following information should be included:
 
-    - `IsSymbolic ∀I {{< land >}} IsSubSymbolic ∀I`
-    - `{{< forall >}}x (IsReasoningTask x {{< to >}} IsCapableOf ∀I x)`
-    - `{{< exists >}}x (IsLearnedTask x {{< land >}} IsCapableOf ∀I x)`
+    - `IsSymbolic ∀I ∧ IsSubSymbolic ∀I`
+    - `∀x (IsReasoningTask x → IsCapableOf ∀I x)`
+    - `∃x (IsLearnedTask x ∧ IsCapableOf ∀I x)`
     - `IsCapableOf ∀I natural_deduction`, `IsCapableOf ∀I sat_solving`
     - `IsCapableOf ∀I voice_recognition`, `IsCapableOf ∀I image_recognition`
-    - `IsSymbolic KnowIt∀ {{< land >}} {{< neg >}}IsSubSymbolic KnowIt∀`
-    - `{{< forall >}}x (IsCapableOf KnowIt∀ x {{< to >}} IsReasoningTask x)`
-    - `{{< neg >}}IsSymbolic DeepL {{< land >}} IsSubSymbolic DeepL`
-    - `{{< forall >}}x (IsLearnedTask x {{< to >}} IsCapableOf ∀I x)`
-    - `{{< exists >}}x (IsReasoningTask x {{< land >}} IsCapableOf ∀I x)`
+    - `IsSymbolic KnowIt∀ ∧ ¬IsSubSymbolic KnowIt∀`
+    - `∀x (IsCapableOf KnowIt∀ x → IsReasoningTask x)`
+    - `¬IsSymbolic DeepL ∧ IsSubSymbolic DeepL`
+    - `∀x (IsLearnedTask x → IsCapableOf ∀I x)`
+    - `∃x (IsReasoningTask x ∧ IsCapableOf ∀I x)`
     
-    Implied but not explicitly stated is: `{{< exists >}}x (IsReasoningTask x {{< land >}} {{< neg >}}IsCapableOf ∀I x)`
+    Implied but not explicitly stated is: `∃x (IsReasoningTask x ∧ ¬IsCapableOf ∀I x)`
 
 3. We might add a constant `ai_labs` and a predicate `IsMakerOf²` to the
    language to say that:
@@ -202,25 +198,23 @@ different from any of the other methods of representing the model?
 
     The full atomic diagram, however, is much larger, since there are
     plenty of false atoms, like `ParentOf soccer ny`, so their negations
-    are all true, including `{{< neg >}}ParentOf soccer ny`.
+    are all true, including `¬ParentOf soccer ny`.
 
 # Denotation {.solved}
 
 Suppose that we're working with an FOL language that has the single constant
 `null`, as well as the function symbols `succ¹` and `prod²`.
 
-Consider the model whose domain $D = { 0, 1, 2, ... }$ is the set of natural
+Consider the model whose domain `D = { 0, 1, 2, ... }` is the set of natural
 numbers and where:
 
-+ `{{< llbracket >}}null{{< rrbracket >}} = 0`
-+ `{{< llbracket >}}succ{{< rrbracket >}}` is defined by the equation `{{< llbracket >}}succ{{< rrbracket >}}(n) = n + 1` for all `n {{< in >}} { 0 , 1, 2, ... }`.
-+ `{{< llbracket >}}prod  {{< rrbracket >}}` is defined by the equation `{{< llbracket >}}prod{{< rrbracket >}}(n,m) = n × m` for all `n, m {{< in >}} { 0 , 1, 2, ... }`.
++ `⟦null⟧ = 0`
++ `⟦succ⟧` is defined by the equation `⟦succ⟧(n) = n + 1` for all `n ∈ { 0 , 1, 2, ... }`.
++ `⟦prod  ⟧` is defined by the equation `⟦prod⟧(n,m) = n × m` for all `n, m ∈ { 0 , 1, 2, ... }`.
 
 In this model, determine: 
 
-```
-{{< llbracket >}} prod succ null  prod succ succ null succ null {{< rrbracket >}}
-```
+```⟦ prod succ null  prod succ succ null succ null ⟧```
 
 For this purpose:
 
@@ -237,11 +231,11 @@ For this purpose:
 
 2. Here's the calculation:
 
-    - ${{< llbracket >}}null{{< rrbracket >}} = 0$
-    - ${{< llbracket >}}suc null{{< rrbracket >}} = {{< llbracket >}}suc {{< rrbracket >}}({{< llbracket >}}null{{< rrbracket >}}) = 0 + 1 = 1$
-    - ${{< llbracket >}}succ suc null{{< rrbracket >}} = {{< llbracket >}}suc {{< rrbracket >}}({{< llbracket >}}succ null{{< rrbracket >}}) = 1 + 1 = 2$
-    - ${{< llbracket >}}prod succ suc null succ null{{< rrbracket >}} = {{< llbracket >}}prod {{< rrbracket >}}({{< llbracket >}}succ succ null{{< rrbracket >}}, {{< llbracket >}}succ null{{< rrbracket >}}) = 2 x 1 = 2$
-    - ${{< llbracket >}}prod succ null prod succ suc null succ null{{< rrbracket >}} = {{< llbracket >}}prod {{< rrbracket >}}({{< llbracket >}}succ null{{< rrbracket >}}, {{< llbracket >}}prod succ suc null succ null{{< rrbracket >}}) = 1 x 2 = 2$
+    - `⟦null⟧ = 0`
+    - `⟦suc null⟧ = ⟦suc ⟧(⟦null⟧) = 0 + 1 = 1`
+    - `⟦succ suc null⟧ = ⟦suc ⟧(⟦succ null⟧) = 1 + 1 = 2`
+    - `⟦prod succ suc null succ null⟧ = ⟦prod ⟧(⟦succ succ null⟧, ⟦succ null⟧) = 2 x 1 = 2`
+    - `⟦prod succ null prod succ suc null succ null⟧ = ⟦prod ⟧(⟦succ null⟧, ⟦prod succ suc null succ null⟧) = 1 x 2 = 2`
 
 
 # Satisfaction {.solved}
@@ -249,13 +243,13 @@ For this purpose:
 In the model you've characterized in exercise 3, determine the extensions of the
 following open formulas. Give them in table form:
 
-1. `Loves x soccer {{< land >}} IsFrom x ny`
+1. `Loves x soccer ∧ IsFrom x ny`
 
-2. `IsFrom x y {{< land >}} ParentOf x sir`
+2. `IsFrom x y ∧ ParentOf x sir`
 
-3. `{{< exists >}}y ParentOf y x {{< land >}} {{< exists >}} z ParentOf z y`
+3. `∃y ParentOf y x ∧ ∃ z ParentOf z y`
 
-4. `IsFrom x y {{< land >}} LivesIn x y`
+4. `IsFrom x y ∧ LivesIn x y`
 
 ## Solution {#satisfactionSolution .solution}
 
@@ -294,9 +288,7 @@ WHERE continent = 'Europe';
 
 directly corresponds to the open formula:
 
-```
-LocatedIn x Europe
-```
+```LocatedIn x Europe```
 
 This correspondence consists in the fact that the table returned by the query is
 precisely the extension of the formula. To begin with, let's see if you can formulate queries that correspond to other atoms:
@@ -312,7 +304,7 @@ Verify your results using the db-fiddle.
 We form complex formulas using the logical operators. These syntactic operations
 are mirrored by operations on the queries. 
 
-Let's talk about the negation operator {{< neg >}} first. To negate our atomic
+Let's talk about the negation operator ¬ first. To negate our atomic
 query for `LocatedIn(x,Europe)`, we'd use the `<span class="dark-blue">WHERE
 NOT EXISTS</span>` sub-query, such that
 
@@ -347,9 +339,9 @@ To test the understanding of this:
 
 2. Write SQL queries that correspond to the following negations:
     
-    - `{{< neg >}}LanguageOf UnitedStates x`
-    - `{{< neg >}}LocatedIn Japan x`
-    - `{{< neg >}}LocatedIn x x`
+    - `¬LanguageOf UnitedStates x`
+    - `¬LocatedIn Japan x`
+    - `¬LocatedIn x x`
 
 To conclude our little journey into queries as FOL formulas, let's
 talk about conjunction. One approach to form the conjunction is to make
@@ -380,8 +372,8 @@ this:
 
 3. Write SQL queries that correspond to the following conjunctions:
 
-    - `LocatedIn x Europe {{< land >}} {{< neg >}}LanguageOf x Dutch`
-    - `{{< neg >}}LocatedIn Japan x {{< land >}} {{< neg >}}CapitalOf x WashingtonDC`
+    - `LocatedIn x Europe ∧ ¬LanguageOf x Dutch`
+    - `¬LocatedIn Japan x ∧ ¬CapitalOf x WashingtonDC`
 
 We can go on from here and cover disjunction, conditionals, and existentials,
 but I hope that the sub-pattern strategy has become clear. This is one
@@ -390,8 +382,8 @@ about this, but let's leave it here.
 
 As a final brain teaser:
 
-4. Write SQL queries that correspond to `LocatedIn x Europe {{< lor >}}
-   LanguageOf x English` using _only_ the patterns for {{< neg >}} and {{< land >}} we've already discussed.
+4. Write SQL queries that correspond to `LocatedIn x Europe ∨
+   LanguageOf x English` using _only_ the patterns for ¬ and ∧ we've already discussed.
 
 ## Solution {#sql-queriesSolution .solution}
 
@@ -426,7 +418,7 @@ As a final brain teaser:
 
 2. Here we go:
 
-    - `{{< neg >}}LanguageOf UnitedStates x`
+    - `¬LanguageOf UnitedStates x`
         
         {{< sql_logo >}}
         ~~~sql
@@ -440,7 +432,7 @@ As a final brain teaser:
         );
         ~~~
 
-    - `{{< neg >}} LocatedIn Japan x`
+    - `¬ LocatedIn Japan x`
 
         {{< sql_logo >}}
         ~~~sql
@@ -454,7 +446,7 @@ As a final brain teaser:
         );
         ~~~
 
-    - `{{< neg >}} LocatedIn x x`
+    - `¬ LocatedIn x x`
 
         {{< sql_logo >}}
         ~~~sql
@@ -470,7 +462,7 @@ As a final brain teaser:
 
 3. And the last
 
-    - `LocatedIn x Europe {{< land >}} {{< neg >}}LanguageOf x Dutch`
+    - `LocatedIn x Europe ∧ ¬LanguageOf x Dutch`
 
         {{< sql_logo >}}
         ~~~sql
@@ -493,7 +485,7 @@ As a final brain teaser:
           );
          ~~~
 
-    - `{{< neg >}}LocatedIn Japan x {{< land >}} {{< neg >}}CapitalOf x WashingtonDC`
+    - `¬LocatedIn Japan x ∧ ¬CapitalOf x WashingtonDC`
 
         {{< sql_logo >}}
         ~~~sql

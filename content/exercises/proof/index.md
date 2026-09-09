@@ -5,7 +5,6 @@ locked: false
 weight: 70
 params: 
   id: exc-proof
-  math: true
 ---
 
 # Proof systems {.solved}
@@ -13,9 +12,9 @@ params:
 Let's trial run the different proof systems. For each of the following, provide
 a logical proof in our Hilbert calculus, sequent calculus, and tableaux.
 
-1. $A {{< v_dash >}} A {{< lor >}}(A{{< land >}}B)$
+1. `A ⊢ A ∨(A∧B)`
 
-2. $A {{< lor >}}(A{{< land >}}B) {{< v_dash >}}A$
+2. `A ∨(A∧B) ⊢A`
 
 ## Solution {.solution #proof-systemsSolution}
 
@@ -23,9 +22,9 @@ a logical proof in our Hilbert calculus, sequent calculus, and tableaux.
 
     - Hilbert:
   
-      1. $A$ <span class="right-justified">(Premise)</span>
-      2. $A {{< to >}} (A {{< lor >}} (A {{< land >}} B))$ <span class="right-justified">(Axiom 6 with $B = A {{< land >}} B$)</span>
-      3. $(A {{< lor >}} (A {{< land >}} B))$ <span class="right-justified">(1., 2., MP)</span>
+      1. `A` <span class="right-justified">(Premise)</span>
+      2. `A → (A ∨ (A ∧ B))` <span class="right-justified">(Axiom 6 with `B = A ∧ B`)</span>
+      3. `(A ∨ (A ∧ B))` <span class="right-justified">(1., 2., MP)</span>
 
     - Sequent:
 
@@ -39,14 +38,14 @@ a logical proof in our Hilbert calculus, sequent calculus, and tableaux.
 
     - Hilbert:
 
-      1. $A {{< lor >}}(A {{< land >}} B)$ <span class="right-justified">(Premise)</span>
-      2. $(A {{< to >}}A) {{< to >}} (((A {{< land >}} B) {{< to >}} A){{< to >}}((A {{< lor >}}(A {{< land >}} B)){{< to >}} A))$ <span class="right-justified">(Axiom 7.)</span>
+      1. `A ∨(A ∧ B)` <span class="right-justified">(Premise)</span>
+      2. `(A →A) → (((A ∧ B) → A)→((A ∨(A ∧ B))→ A))` <span class="right-justified">(Axiom 7.)</span>
 
-      3. $(A {{< to >}}A)$ <span class="right-justified">(Theorem from textbook)</span>
-      4. $((A {{< land >}} B) {{< to >}} A){{< to >}}((A {{< lor >}}(A {{< land >}} B)){{< to >}} A)$<span class="right-justified">(2., 3., MP)</span>
-      5. $(A {{< land >}} B) {{< to >}} A)$ <span class="right-justified">(Axiom 5.)</span>
-      6. $((A {{< lor >}}(A {{< land >}} B)){{< to >}} A)$<span class="right-justified">(4., 5., MP)</span>
-      7. $A$ <span class="right-justified">(1., 6., MP)</span>
+      3. `(A →A)` <span class="right-justified">(Theorem from textbook)</span>
+      4. `((A ∧ B) → A)→((A ∨(A ∧ B))→ A)`<span class="right-justified">(2., 3., MP)</span>
+      5. `(A ∧ B) → A)` <span class="right-justified">(Axiom 5.)</span>
+      6. `((A ∨(A ∧ B))→ A)`<span class="right-justified">(4., 5., MP)</span>
+      7. `A` <span class="right-justified">(1., 6., MP)</span>
 
     - Sequent:
 
@@ -59,73 +58,73 @@ a logical proof in our Hilbert calculus, sequent calculus, and tableaux.
 # Natural deduction { .solved }
 
 For this exercise, you do a deep dive into natural deduction: below are a series
-of laws to prove for arbitrary formulas $A,B,C$. Some require the rule 
-{{< neg >}}{{< bot >}}, take note of which ones.
+of laws to prove for arbitrary formulas `A,B,C`. Some require the rule 
+¬⊥, take note of which ones.
 
 ## Conjunction and Disjunction
 
-1. $A {{< lor >}} (B {{< land >}} C) {{< v_dash >}} (A {{< lor >}} B){{< land >}}(A {{< lor >}} C)$
+1. `A ∨ (B ∧ C) ⊢ (A ∨ B)∧(A ∨ C)`
 
-2. $(A {{< lor >}} B){{< land >}}(A {{< lor >}} C){{< v_dash >}} A {{< lor >}} (B {{< land >}} C) $
+2. `(A ∨ B)∧(A ∨ C)⊢ A ∨ (B ∧ C)`
 
-3. $A {{< land >}} (B {{< lor >}} C) {{< v_dash >}} (A {{< land >}} B){{< lor >}}(A {{< land >}} C)$
+3. `A ∧ (B ∨ C) ⊢ (A ∧ B)∨(A ∧ C)`
 
-4. $(A {{< land >}} B){{< lor >}}(A {{< land >}} C){{< v_dash >}}  A{{< land >}} (B {{< lor >}} C) $
+4. `(A ∧ B)∨(A ∧ C)⊢  A∧ (B ∨ C)`
 
 ## Negation
 
-1. $A {{< v_dash >}}{{< neg >}}{{< neg >}} A$
+1. `A ⊢¬¬ A`
 
-2. ${{< neg >}}{{< neg >}} A{{< v_dash >}} A$
+2. `¬¬ A⊢ A`
 
-3. ${{< neg >}}(A {{< land >}}B) {{< v_dash >}} {{< neg >}}A {{< lor >}}{{< neg >}}B$
+3. `¬(A ∧B) ⊢ ¬A ∨¬B`
 
-4. $ {{< neg >}}A {{< lor >}}{{< neg >}}B {{< v_dash >}}  {{< neg >}}(A {{< land >}}B)$
+4. `¬A ∨¬B ⊢  ¬(A ∧B)`
 
-5. ${{< neg >}}(A {{< lor >}}B) {{< v_dash >}} {{< neg >}}A {{< land >}}{{< neg >}}B$
+5. `¬(A ∨B) ⊢ ¬A ∧¬B`
 
-6. ${{< neg >}}A {{< land >}}{{< neg >}}B {{< v_dash >}} {{< neg >}}(A {{< lor >}}B)$
+6. `¬A ∧¬B ⊢ ¬(A ∨B)`
 
 ## Conditionals
 
-1. ${{< neg >}}A {{< lor >}} B{{< v_dash >}}A{{< to >}}B$
+1. `¬A ∨ B⊢A→B`
 
-2. $A {{< to >}} B {{< v_dash >}}{{< neg >}}A {{< lor >}} B$
+2. `A → B ⊢¬A ∨ B`
 
-3. $({{< neg >}}A{{< to >}} A) {{< v_dash >}} A$
+3. `(¬A→ A) ⊢ A`
 
-4. $(A{{< to >}}B){{< v_dash >}}({{< neg >}}B {{< to >}}{{< neg >}}A)$
+4. `(A→B)⊢(¬B →¬A)`
 
-5. (${{< neg >}}B {{< to >}}{{< neg >}}A){{< v_dash >}}(A {{< to >}} B)$
+5. (`¬B →¬A)⊢(A → B)`
 
 ## Solution {#natural-deductionSolution .solution}
 
 *Conjunction and Disjunction*
 
-1. $A {{< lor >}} (B {{< land >}} C) {{< v_dash >}} (A {{< lor >}} B){{< land >}}(A {{< lor >}} C)$
+1. `A ∨ (B ∧ C) ⊢ (A ∨ B)∧(A ∨ C)`
 
     This solution is interactive! Click through the slides to get an explanation of how to find the derivation:
 
     {{<iframe src="https://link.excalidraw.com/p/readonly/foQADbq8hXxQlzw0Qznf" >}}
 
-2. $(A {{< lor >}} B){{< land >}}(A {{< lor >}} C){{< v_dash >}} A {{< lor >}} (B {{< land >}} C) $
+2. `(A ∨ B)∧(A ∨ C)⊢ A ∨ (B ∧ C)`
 
     {{< img src="img/distribution_two_rtl.png" class="mx-auto rounded d-block inert-img img-fluid" width="700px">}}
 
-3. $A {{< land >}} (B {{< lor >}} C) {{< v_dash >}} (A {{< land >}} B){{< lor >}}(A {{< land >}} C)$
+3. `A ∧ (B ∨ C) ⊢ (A ∧ B)∨(A ∧ C)`
 
     This solution is interactive! Click through the slides to get an explanation of how to find the derivation:
 
     {{<iframe src="https://link.excalidraw.com/p/readonly/bI3TWrMYvvnheKW6gr2i" >}}
 
 
-4. $(A {{< land >}} B){{< lor >}}(A {{< land >}} C){{< v_dash >}}  A{{< land >}} (B {{< lor >}} C) $
+4. `(A ∧ B)∨(A ∧ C)⊢  A∧ (B ∨ C)`
 
     {{< img src="img/distribution_one_rtl.png" class="mx-auto rounded d-block inert-img img-fluid" width="700px">}}
 
 *Negation*
 
-1. $A {{< v_dash >}}{{< neg >}}{{< neg >}} A$
+1. `A ⊢¬¬ A`
 
     This solution is interactive! Click through the slides to get an explanation of how to find the derivation:
 
@@ -134,51 +133,51 @@ of laws to prove for arbitrary formulas $A,B,C$. Some require the rule
     This is perhaps the most difficult one of this set.
 
 
-2. ${{< neg >}}{{< neg >}} A{{< v_dash >}} A$
+2. `¬¬ A⊢ A`
 
     {{< img src="img/double_negation_rtl.png" class="mx-auto rounded d-block inert-img img-fluid" width="200px">}}
 
     Note that this derivation requires classicality.
 
-3. ${{< neg >}}(A {{< land >}}B) {{< v_dash >}} {{< neg >}}A {{< lor >}}{{< neg >}}B$
+3. `¬(A ∧B) ⊢ ¬A ∨¬B`
 
     {{< img src="img/de_morgan_one_ltr.png" class="mx-auto rounded d-block inert-img img-fluid" width="500px">}}
 
-4. $ {{< neg >}}A {{< lor >}}{{< neg >}}B {{< v_dash >}}  {{< neg >}}(A {{< land >}}B)$
+4. `¬A ∨¬B ⊢  ¬(A ∧B)`
 
     {{< img src="img/de_morgan_one_rtl.png" class="mx-auto rounded d-block inert-img img-fluid" width="500px">}}
 
-5. ${{< neg >}}(A {{< lor >}}B) {{< v_dash >}} {{< neg >}}A {{< land >}}{{< neg >}}B$
+5. `¬(A ∨B) ⊢ ¬A ∧¬B`
 
     {{< img src="img/de_morgan_two_ltr.png" class="mx-auto rounded d-block inert-img img-fluid" width="500px">}}
 
-6. ${{< neg >}}A {{< land >}}{{< neg >}}B {{< v_dash >}} {{< neg >}}(A {{< lor >}}B)$
+6. `¬A ∧¬B ⊢ ¬(A ∨B)`
 
     {{< img src="img/de_morgan_two_rtl.png" class="mx-auto rounded d-block inert-img img-fluid" width="500px">}}
 
 *Conditionals*
 
 
-1. ${{< neg >}}A {{< lor >}} B{{< v_dash >}}A{{< to >}}B$
+1. `¬A ∨ B⊢A→B`
 
     This solution is interactive! Click through the slides to get an explanation of how to find the derivation:
 
     {{<iframe src="https://link.excalidraw.com/p/readonly/kYgz1Qljtf4yMChwYvTk" >}}
 
 
-2. $A {{< to >}} B {{< v_dash >}}{{< neg >}}A {{< lor >}} B$
+2. `A → B ⊢¬A ∨ B`
 
     {{< img src="img/cond_def_rtl.png" class="mx-auto rounded d-block inert-img img-fluid" width="500px">}}
 
-3. $({{< neg >}}A{{< to >}} A) {{< v_dash >}} A$
+3. `(¬A→ A) ⊢ A`
 
     {{< img src="img/consequentia_mirabilis.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
 
-4. $(A{{< to >}}B){{< v_dash >}}({{< neg >}}B {{< to >}}{{< neg >}}A)$
+4. `(A→B)⊢(¬B →¬A)`
 
     {{< img src="img/contrapos_ltr.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
 
-5. (${{< neg >}}B {{< to >}}{{< neg >}}A){{< v_dash >}}(A {{< to >}} B)$
+5. (`¬B →¬A)⊢(A → B)`
 
     {{< img src="img/contrapos_rtl.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
 

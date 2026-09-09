@@ -7,19 +7,18 @@ params:
   date: 31/08/2024        
   last_edited: 09/05/2025 
   id: txt-laa
-  math: true
 ---
 
 # Logic and AI
 
 Logic and AI are intimately connected. In this chapter you'll learn how.
 
-At the end of the chapter, you'll be able to:
-
+{{< callout type="objectives" >}}
 - define logic and artificial intelligence as scientific disciplines, 
 - explain the three main ways in which the two disciplines are related, and 
 - give some examples of uses of logical methods in AI and distinguish them from
   non-logical methods.
+{{< /callout >}}
 
 By the way, meet {{< logo >}}&nbsp; (read: "for all I")!
 
@@ -142,7 +141,7 @@ it in a visually clear way. For example, {{< logo >}}&nbsp; uses the so-called
 {{< img src="img/ai_inference.png" class="rounded mx-auto d-block inert-img img-fluid" width="600px">}}
 
 There are many different notations. For example, in mathematics, we often use
-the turnstile $\vdash$ to indicate a (valid) inference and commas to separate
+the turnstile `⊢` to indicate a (valid) inference and commas to separate
 the premises, like so:
 {{< img src="img/there_is_turnstile.png" class="rounded mx-auto d-block inert-img img-fluid" width="800px">}}
 
@@ -690,7 +689,7 @@ associative, and the like. Examples:
 
   + recognizing a face,
   + telling if one object is taller than another,
-  + performing simple calculations, like $5+7$,
+  + performing simple calculations, like `5+7`,
   + ...
 
 + **System 2 thinking**, which is slow, deliberate, conscious, logical,
@@ -698,7 +697,7 @@ calculating, and the like. Examples:
 
   + counting the number of A's in a text,
   + solving a logic puzzle,
-  + performing complex calculations, like $432\times 441$,
+  + performing complex calculations, like `432× 441`,
   + ...
 
 The diagnosis of the problem with {{< abbr title="large language model" >}}LLM{{< /abbr >}}s promoted, e.g., by [Andrej
@@ -736,8 +735,7 @@ The bottom-line is that even if logic-based AI is no longer "the only game in
 town", you still need to learn logic and logical methods if you want to
 understand AI research.
 
-## Further readings
-
+## Further readings {.readings .nocount}
 This textbook is what might be called a _didactic_ textbook. The aim is to
 familiarize the reader with the basic concepts of logical theory and their role
 in AI research. The focus lies on teaching with examples and illustrating

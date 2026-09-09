@@ -4,16 +4,15 @@ author: Johannes Korbmacher
 weight: 110
 params: 
   id: exc-prob
-  math: true
 ---
 
 # Coin flips {.solved}
 
 Suppose you're flipping two coins consecutively. You may assume that the outcomes of the two coin-flips are independent of each other.
 
-1. Describe the outcome space $Ω$ of the random experiment.
+1. Describe the outcome space `Ω` of the random experiment.
 
-2. Assign probability mass distributions over $Ω$ which correspond to a) a fair
+2. Assign probability mass distributions over `Ω` which correspond to a) a fair
    coin-flip, where all outcomes are equally likely, and b) an unfair coin-flip
 where the outcome heads on either flip (the first or second) is twice as likely
 as tails. 
@@ -31,13 +30,11 @@ as tails.
 ## Solution {#coin-flipsSolution .solution}
 
 1. There are different ways of setting this up, but a straightforward way is
-   to model the basic outcomes as pairs $[x,y]$, where `x,y{{< in >}}{H,T}` are
+   to model the basic outcomes as pairs `[x,y]`, where `x,y∈{H,T}` are
 the outcomes of the first and second flip respectively (`H` being heads, and
 `T` being tails). That is:
 
-    ```
-    Ω = { [H,H], [H,T], [T,H], [T,T]}
-    ```
+    ```Ω = { [H,H], [H,T], [T,H], [T,T]}```
 
 2. Here are the two distributions, which I call `p₁` and `p₂`:
 
@@ -85,77 +82,61 @@ the outcomes of the first and second flip respectively (`H` being heads, and
 
 The [law of total
 probability](https://en.wikipedia.org/wiki/Law_of_total_probability) states
-that for every $A,B$ and every probability $Pr$, we have:
+that for every `A,B` and every probability `Pr`, we have:
 
-```
-Pr(A) = Pr(A | B)Pr(B) + Pr(A | {{< neg >}}B)Pr({{< neg >}}B)
-```
+```Pr(A) = Pr(A | B)Pr(B) + Pr(A | ¬B)Pr(¬B)```
 
 Derive this law from the Kolmogorov axioms. You may use the following facts without further proof:
 
-1. If two formulas are logically equivalent, then they have the same probability. That is, if `{{< llbracket >}}A{{< rrbracket >}} = {{< llbracket >}}B{{< rrbracket >}}`, then `Pr(A) = Pr(B)`.
+1. If two formulas are logically equivalent, then they have the same probability. That is, if `⟦A⟧ = ⟦B⟧`, then `Pr(A) = Pr(B)`.
 
-2. `A` is logically equivalent to `(A{{< land >}}B){{<lor>}}(A{{<land>}}{{< neg >}}B)`
+2. `A` is logically equivalent to `(A∧B)∨(A∧¬B)`
 
-3. The conjunction rule `Pr(A {{< land >}} B) = Pr(A | B)Pr(B)`
+3. The conjunction rule `Pr(A ∧ B) = Pr(A | B)Pr(B)`
 
 ## Solution {#law-of-total-probabilitySolution .solution}
 
 We start with the trivial identity:
 
-```
-Pr(A) = Pr(A)
-```
+```Pr(A) = Pr(A)```
 
-Since `A` is equivalent to `(A{{< land >}}B){{<lor>}}(A{{<land>}}{{< neg >}}B)`,
+Since `A` is equivalent to `(A∧B)∨(A∧¬B)`,
 we can infer: 
 
-```
-Pr(A) = Pr((A{{< land >}}B){{<lor>}}(A{{<land>}}{{< neg >}}B))
-```
+```Pr(A) = Pr((A∧B)∨(A∧¬B))```
 
-We observe that `A{{< land >}}B)` and `A{{<land>}}{{< neg >}}B` are logically
-incompatible, that is `{{< vDash >}}{{< neg >}}(Pr((A{{< land >}}B){{<land>}}(A{{<land>}}{{< neg >}}B)))`. Thus:
+We observe that `A∧B)` and `A∧¬B` are logically
+incompatible, that is `⊨¬(Pr((A∧B)∧(A∧¬B)))`. Thus:
 
-```
-Pr((A{{< land >}}B){{<lor>}}(A{{<land>}}{{< neg >}}B)) = Pr((A{{< land >}}B) + (A{{<land>}}{{< neg >}}B))
-```
+```Pr((A∧B)∨(A∧¬B)) = Pr((A∧B) + (A∧¬B))```
 
 So, we arrive at: 
 
-```
-Pr(A) = Pr((A{{< land >}}B) + (A{{<land>}}{{< neg >}}B))
-```
+```Pr(A) = Pr((A∧B) + (A∧¬B))```
 
 Replacing the conjunctive probabilities using the conjunction rule, we get:
 
-```
-Pr(A) = Pr(A | B)Pr(B) + Pr(A | {{< neg >}}B)Pr({{< neg >}}B)
-```
+```Pr(A) = Pr(A | B)Pr(B) + Pr(A | ¬B)Pr(¬B)```
 
 # Deductive and inductive inference {.solved}
 
-Show that if $A{{<vDash>}}B$, then $A{{< approx >}}B$. That is: every
+Show that if `A⊨B`, then `A{{< approx >}}B`. That is: every
 deductively valid inference is also inductively valid. You may use the fact
-that if $A{{< vDash >}}B$, then $A{{< land >}}B$ is logically equivalent to
-$A$.
+that if `A⊨B`, then `A∧B` is logically equivalent to
+`A`.
 
 ## Solution {#deductive-and-inductive-inferenceSolution .solution}
 
-Suppose that `A{{<vDash>}}B`. For `A{{< approx >}}B` to be the case, we need
+Suppose that `A⊨B`. For `A{{< approx >}}B` to be the case, we need
 that `Pr(B | A) ≥ Pr(B)`. Unfolding the definition of conditional probability,
 we get:
 
-```
-Pr(B | A) = Pr(B {{< land >}} A)/Pr(A)
-```
+```Pr(B | A) = Pr(B ∧ A)/Pr(A)```
 
-But since `A{{<vDash>}}B`, we have that `Pr(B {{< land >}} A) = Pr(A)`. But that
+But since `A⊨B`, we have that `Pr(B ∧ A) = Pr(A)`. But that
 means that:
 
-```
-Pr(B | A) = Pr(A)/Pr(A) = 1
-```
+```Pr(B | A) = Pr(A)/Pr(A) = 1```
 
 But since _all_ probabilities are less than 1, it follows that `Pr(B | A) ≥ Pr(A)`.
 
@@ -198,7 +179,7 @@ person has the disease given this outcome? What do you notice?
 
     - You can calculate the marginal probability `Pr(TestPositive)` using the law of total probability from information you already have. 
 
-    - You need to use that `Pr({{< neg >}}HasDisease) = 1 - Pr(HasDisease)` and `Pr({{< neg >}}HasDisease | {{< neg >}}TestPositive) = 1 - Pr(HasDisease | {{< neg >}}TestPositive)`
+    - You need to use that `Pr(¬HasDisease) = 1 - Pr(HasDisease)` and `Pr(¬HasDisease | ¬TestPositive) = 1 - Pr(HasDisease | ¬TestPositive)`
 
 3. When you have a positive result, you can re-set the probability of
    `P(HasDisease)` to `Pr(HasDisease | TestPositive)`. This is called [Bayesian
@@ -219,101 +200,49 @@ administer the medicine if you apply Bayesian updating after each positive resul
 
 2. According to Bayes formula
 
-    ```
-    Pr(HasDisease | TestPositive) 
-    ```
-    ```
-    =
-    ```
-    ```
-    [Pr(HasDisease) x Pr(TestPositive | HasDisease) ] / Pr(TestPositive)
-    ```
+    ```Pr(HasDisease | TestPositive)```
+    ```=```
+    ```[Pr(HasDisease) x Pr(TestPositive | HasDisease) ] / Pr(TestPositive)```
 
     We have `Pr(HasDisease)` and `Pr(TestPositive | HasDisease)`, but we need to figure out `Pr(TestPositive)`.
 
     For this, we use the law of total probability. Applying it to `TestPositive` as `A` and `HasDisease` as `B` gives us:
 
-    ```
-    Pr(TestPositive) 
-    ```
-    ```
-    =
-    ```
-    ```
-    Pr(TestPositive| HasDisease)Pr(HasDisease)
-    ```
-    ```
-    +
-    ```
-    ```
-    Pr(TestPositive | ¬HasDisease)Pr(¬HasDisease)
-    ```
+    ```Pr(TestPositive)```
+    ```=```
+    ```Pr(TestPositive| HasDisease)Pr(HasDisease)```
+    ```+```
+    ```Pr(TestPositive | ¬HasDisease)Pr(¬HasDisease)```
 
     We have `Pr(TestPositive| HasDisease)` and `Pr(HasDisease)` given. To obtain
     `Pr(TestPositive | ¬HasDisease)` and `Pr(¬HasDisease)`, we apply the negation laws:
-    ```
-    Pr(TestPositive | ¬HasDisease) = 1 - Pr(¬TestPositive | ¬HasDisease)
-    ```
-    ```
-    Pr(¬HasDisease) = 1 - Pr(HasDisease)
-    ```
+    ```Pr(TestPositive | ¬HasDisease) = 1 - Pr(¬TestPositive | ¬HasDisease)```
+    ```Pr(¬HasDisease) = 1 - Pr(HasDisease)```
 
     Now we have all the relevant values and can calculate:
 
-    ```
-    Pr(¬HasDisease) = 1 - Pr(HasDisease) = 1 - 0.01 = 0.99
-    ```
-    ```
-    Pr(TestPositive | ¬HasDisease) = 1 - Pr(¬TestPositive | ¬HasDisease) 
-    ```
-    ```
-    = 1 - 0.9 = 0.1
-    ```
-    ```
-    Pr(TestPositive | ¬HasDisease)Pr(¬HasDisease) = 0.99 x 0.1 = 0.099
-    ```
+    ```Pr(¬HasDisease) = 1 - Pr(HasDisease) = 1 - 0.01 = 0.99```
+    ```Pr(TestPositive | ¬HasDisease) = 1 - Pr(¬TestPositive | ¬HasDisease)```
+    ```= 1 - 0.9 = 0.1```
+    ```Pr(TestPositive | ¬HasDisease)Pr(¬HasDisease) = 0.99 x 0.1 = 0.099```
 
     So:
 
-    ```
-    Pr(TestPositive) 
-    ```
-    ```
-    =
-    ```
-    ```
-    Pr(TestPositive| HasDisease)Pr(HasDisease)
-    ```
-    ```
-    +
-    ```
-    ```
-    Pr(TestPositive | ¬HasDisease)Pr(¬HasDisease)
-    ```
-    ```
-    =
-    ```
-    ```
-    (0.9 x 0.01) + 0.099 = 0.108
-    ```
+    ```Pr(TestPositive)```
+    ```=```
+    ```Pr(TestPositive| HasDisease)Pr(HasDisease)```
+    ```+```
+    ```Pr(TestPositive | ¬HasDisease)Pr(¬HasDisease)```
+    ```=```
+    ```(0.9 x 0.01) + 0.099 = 0.108```
 
     Now for the final probabilities:
 
-    ```
-    Pr(HasDisease | TestPositive) 
-    ```
-    ```
-    =
-    ```
-    ```
-    [Pr(HasDisease) x Pr(TestPositive | HasDisease) ] / Pr(TestPositive)
-    ```
-    ```
-    =
-    ```
-    ```
-    (0.01 x 0.9) / 0.108 = 0.009 / 0.108 = 0.083...
-    ```
+    ```Pr(HasDisease | TestPositive)```
+    ```=```
+    ```[Pr(HasDisease) x Pr(TestPositive | HasDisease) ] / Pr(TestPositive)```
+    ```=```
+    ```(0.01 x 0.9) / 0.108 = 0.009 / 0.108 = 0.083...```
 
     In other words, a random person testing positive, given this setup, gives
     us a probability of around 8% of them having the disease—even if the test
@@ -326,85 +255,47 @@ administer the medicine if you apply Bayesian updating after each positive resul
 
 3. If we re-set the probabilities using Bayesian updating, we now have:
 
-    ```
-    Pr(Disease) = 0.083...
-    ```
+    ```Pr(Disease) = 0.083...```
 
     This affects the value of `Pr(TestPositive)`, which we've calculated using `Pr(Disease)`.
 
     We now get:
 
-    ```
-    Pr(¬HasDisease) = 1 - Pr(HasDisease) = 1 - 0.083.. = 0.916...
-    ```
-    ```
-    Pr(TestPositive | ¬HasDisease)Pr(¬HasDisease) = 0.1 x 0.916... = 0.0916...
-    ```
+    ```Pr(¬HasDisease) = 1 - Pr(HasDisease) = 1 - 0.083.. = 0.916...```
+    ```Pr(TestPositive | ¬HasDisease)Pr(¬HasDisease) = 0.1 x 0.916... = 0.0916...```
 
     Similarly, we get for the other summand:
 
-    ```
-    Pr(TestPositive | HasDisease)Pr(HasDisease) = 0.9 x 0.083.. = 0.0749...
-    ```
+    ```Pr(TestPositive | HasDisease)Pr(HasDisease) = 0.9 x 0.083.. = 0.0749...```
 
     So, we now have for `Pr(TestPositive)` that:
 
-    ```
-    Pr(TestPositive) = 0.0749... + 0.0916... = 0.16...
-    ```
+    ```Pr(TestPositive) = 0.0749... + 0.0916... = 0.16...```
 
 
 
-    ```
-    Pr(HasDisease | TestPositive) 
-    ```
-    ```
-    =
-    ```
-    ```
-    [Pr(HasDisease) x Pr(TestPositive | HasDisease) ] / Pr(TestPositive)
-    ```
-    ```
-    =
-    ```
-    ```
-    (0.083 x 0.9) / 0.16... = 0.0747 / 0.16... ≈ 0.47
-    ```
+    ```Pr(HasDisease | TestPositive)```
+    ```=```
+    ```[Pr(HasDisease) x Pr(TestPositive | HasDisease) ] / Pr(TestPositive)```
+    ```=```
+    ```(0.083 x 0.9) / 0.16... = 0.0747 / 0.16... ≈ 0.47```
 
     So, we need to do another test. Now we go somewhat quicker:
 
-    ```
-    Pr(Disease) = 0.47
-    ```
+    ```Pr(Disease) = 0.47```
 
-    ```
-    Pr(TestPositive | ¬HasDisease)Pr(¬HasDisease) = 0.1 x 0.53 = 0.053
-    ```
+    ```Pr(TestPositive | ¬HasDisease)Pr(¬HasDisease) = 0.1 x 0.53 = 0.053```
 
-    ```
-    Pr(TestPositive | HasDisease)Pr(HasDisease) = 0.9 x 0.46 = 0.414
-    ```
+    ```Pr(TestPositive | HasDisease)Pr(HasDisease) = 0.9 x 0.46 = 0.414```
 
 
     So:
-    ```
-    Pr(TestPositive) = 0.467
-    ```
+    ```Pr(TestPositive) = 0.467```
 
-    ```
-    Pr(HasDisease | TestPositive) 
-    ```
-    ```
-    =
-    ```
-    ```
-    [Pr(HasDisease) x Pr(TestPositive | HasDisease) ] / Pr(TestPositive)
-    ```
-    ```
-    =
-    ```
-    ```
-    (0.47 x 0.9) / 0.467... ≈ 0.9
-    ```
+    ```Pr(HasDisease | TestPositive)```
+    ```=```
+    ```[Pr(HasDisease) x Pr(TestPositive | HasDisease) ] / Pr(TestPositive)```
+    ```=```
+    ```(0.47 x 0.9) / 0.467... ≈ 0.9```
 
     So only after the third positive test in a row, we can infer with 90% confidence that the patient has a disease.

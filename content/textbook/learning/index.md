@@ -1,5 +1,5 @@
 ---
-title: Logic-based learning
+title: Logic and neural networks
 author: Johannes Korbmacher
 locked: true
 weight: 120
@@ -7,7 +7,6 @@ params:
   date: 23/10/2024
   last_edited: 23/10/2024
   id: txt-learn
-  math: true
 ---
 
 # Logic-based learning
@@ -68,13 +67,13 @@ this new fact, i.e. when $$\neg\mathsf{RAIN}\notin \mathsf{KB}.$$ In that case,
 we can "simply add" $\mathsf{RAIN}$ to our knowledge base.
 
 The operation of "simply adding" a formula to the knowledge base is symbolically
-denoted with $+$, that is, $\mathsf{KB}+A$ is the result of adding the formula $A$ to the
+denoted with `+`, that is, $\mathsf{KB}+A$ is the result of adding the formula `A` to the
 knowledge base $\mathsf{KB}$. 
 
 There is one small caveat, however. That is, we want that our new, updated
-knowledge base again be deductively closed. But by simply adding $A$ to
+knowledge base again be deductively closed. But by simply adding `A` to
 $\mathsf{KB}$, this is not guaranteed. We also need to add anything that follows
-from $A$ and the $\mathsf{KB}$. We achieve this as follows:
+from `A` and the $\mathsf{KB}$. We achieve this as follows:
 
 $$KB+A=\Set{B:\mathsf{KB}\cup A\vdash B}$$
 
@@ -82,7 +81,7 @@ That is, we define our updated knowledge base to contain everything that we can
 derive from the old knowledge base, together with the new information. This, of
 course, contains everything in $\mathsf{KB}$ plus the new information, since:
 $$\mathsf{KB},A\vdash \mathsf{KB}$$ $$\mathsf{KB},A\vdash A$$ But in addition,
-this also contains everything that we can derive from the $\mathsf{KB}$ and $A$.
+this also contains everything that we can derive from the $\mathsf{KB}$ and `A`.
 
 For example, if we have the rule $$\mathsf{RAIN}\to\mathsf{WET}$$ in our
 $\mathsf{KB}$ and we add $\mathsf{RAIN}$ to it, we'll get
@@ -100,14 +99,14 @@ trivial in the sense that it contains _all_ facts.
 
 Since we're treating $\mathsf{RAIN}$ as a newly learned _fact_, a natural
 thought is to first _remove_ the "falsified" $\neg\mathsf{RAIN}$ from
-$\mathsf{KB}$. We could try to define an operation $-$ of "subtraction", defined
+$\mathsf{KB}$. We could try to define an operation `-` of "subtraction", defined
 by: 
 $$\mathsf{KB} -A = \Set{B\in\mathsf{KB}:B\text{ is not equivalent to }B}$$ 
 If we denote the operation of **revising** our knowledge bank $\mathsf{KB}$ in
-light of the new information $A$ by $\mathsf{KB}\ast A,$ we might just try to
+light of the new information `A` by $\mathsf{KB}\ast A,$ we might just try to
 say that $$\mathsf{KB}\ast A=(\mathsf{KB}-\neg A)+A$$
 
-But this approach, with a so-defined **contraction** operation $-$ doesn't work.
+But this approach, with a so-defined **contraction** operation `-` doesn't work.
 
 
 Suppose, for example, that $\neg\mathsf{RAIN}$ is in our $\mathsf{KB}$ because
@@ -164,8 +163,8 @@ behave. In our notation, the rules are:
 2. $A\in \mathsf{KB}\ast A$
 3. $\mathsf{KB}\ast A\subseteq \mathsf{KB}+A$
 4. If $\neg A\notin\mathsf{KB}$, then $\mathsf{KB}\ast A=\mathsf{KB}+A$
-5. $\mathsf{KB}\ast A$ is only inconsistent if $A$ itself is
-6. If $A,B$ are logically equivalent, then $\mathsf{KB}\ast A=\mathsf{KB}\ast B$
+5. $\mathsf{KB}\ast A$ is only inconsistent if `A` itself is
+6. If `A,B` are logically equivalent, then $\mathsf{KB}\ast A=\mathsf{KB}\ast B$
 7. $\mathsf{KB}\ast(A\land B)\subseteq (\mathsf{KB}\ast A)+B$
 8. If $\neg B\notin\mathsf{KB}\ast A$, then $(\mathsf{KB}\ast A)+B\subseteq
    \mathsf{KB}\ast(A\land B)$
@@ -245,8 +244,8 @@ $$Pr(\mathsf{R}_1\land (\mathsf{R}_2\lor\mathsf{R}_4\lor\mathsf{R}_6 ))=0$$
 
 This holds because the only valuations where this formula is true are ones where
 both $\mathsf{R}_1$ and one of either $\mathsf{R}_2,\mathsf{R}_4,$ or $\mathsf{R}_6$
-is true. But all of these valuations have weight $0$, meaning that the whole
-formula has value $0$.
+is true. But all of these valuations have weight `0`, meaning that the whole
+formula has value `0`.
 
 From this it immediately follows that:
 
@@ -320,15 +319,15 @@ Pr(\mathsf{HIGH\\_PRESSURE})}{Pr(\mathsf{RAIN})}$$
 $$=\frac{0.2\times0.8}{0.25}=0.64$$
 
 In this setting, we usually give the terms $Pr(A\mid B)$, $Pr(B\mid A)$,
-$Pr(A)$, and $Pr(B)$ special names:
+`Pr(A)`, and `Pr(B)` special names:
 
 + $Pr(A\mid B)$ is the **posterior probability**, since it's the outcome of our
 learning process
 
-+ $Pr(A)$ is called the **prior probability**, since it's what we know about the
-  probability of $A$ before learning that $B$
++ `Pr(A)` is called the **prior probability**, since it's what we know about the
+  probability of `A` before learning that `B`
 
-+ $Pr(B)$ is called the **marginal probability**
++ `Pr(B)` is called the **marginal probability**
 
 + $Pr(B\mid A)$ is called the
 [likelihood](https://en.wikipedia.org/wiki/Likelihood_function), since it's a

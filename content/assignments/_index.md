@@ -1,4 +1,5 @@
 ---
+hidden: true
 title: Assignments
 weight: 5
 params: 
@@ -10,5 +11,4 @@ params:
   toc-title: 'Tutorials'
   section-subtitle: ""
   license: 'CC-BY-4.0'
-  title_img: 'assignments_title.png'
 ---

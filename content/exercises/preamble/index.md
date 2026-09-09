@@ -5,7 +5,7 @@ locked: false
 weight: 1
 params: 
   id: exc-latex
-  math: true
+  latex: true
 ---
 
 # Overleaf

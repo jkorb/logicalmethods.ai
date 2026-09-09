@@ -6,7 +6,6 @@ weight: 50
 params: 
   last_edited: 21/09/2025
   id: txt-sat
-  math: true
 ---
 
 
@@ -24,13 +23,13 @@ flexible. Each circuit carries out one specific task.
 {{< img src="img/ai_boolean.png" class="rounded  float-start inert-img img-fluid m-2" width="200px" >}} 
 But in AI, we don't only want to implement specific inference patterns using
 specific circuits, like adding two bits using an adder circuit or inferring $(A
-{{< land >}} B)$ from $A$ and $B$ using !!AND!!. We want to implement deductive
+∧ B)`from`A`and`B$ using !!AND!!. We want to implement deductive
 reasoning _in general_. 
 
 We did already discuss an implementation of deductive inference in Boolean
 logic, but the approach still required human intervention. To determine whether
-a certain inference is valid, like whether $(SUN {{< lor >}} RAIN), {{< neg >}}SUN
-{{< vdash >}}RAIN$, we manually needed to check all possible valuations to see
+a certain inference is valid, like whether $(SUN ∨ RAIN), ¬SUN
+⊨RAIN$, we manually needed to check all possible valuations to see
 whether there is one that makes the premises true and the conclusion false.
 
 **Satisfiability solving** is a powerful approach to automated reasoning using
@@ -47,8 +46,7 @@ verification](https://en.wikipedia.org/wiki/Formal_verification) to [automated
 reasoning](https://en.wikipedia.org/wiki/Automated_reasoning) in propositional
 languages and beyond.
 
-At the end of this chapter you'll be able to:
-
+{{< callout type="objectives" >}}
 + define the `SAT` problem for Boolean formulas and explain its relevance to
 logic and artificial reasoning
 
@@ -58,6 +56,7 @@ logic and artificial reasoning
 
 + apply the resolution algorithm and explain its advantages over the truth-table
   method
+{{< /callout >}}
 
 ## `SAT`
 
@@ -68,25 +67,19 @@ problem](https://en.wikipedia.org/wiki/Boolean_satisfiability_problem) or `SAT`.
 We'll start thinking algebraically, where `SAT` asks whether for a given Boolean
 expression, like: 
 
-```
-X !!AND!! (!!NOT!! (0 !!AND!! Y)),
-```
+```X !!AND!! (!!NOT!! (0 !!AND!! Y)),```
 
 whether there exists an assignment of values to `X` and `Y`, such that the
-expression evaluates to `1`. In this case, the answer is $yes$, since for `X =
+expression evaluates to `1`. In this case, the answer is `yes`, since for `X =
 1` and `Y = 1`, we get the calculation:
 
-```
-1 !!AND!! (!!NOT!! (0 !!AND!! 1)) = 1 !!AND!! (!!NOT!! 0) = 1 !!AND!! 1 = 1
-```
+```1 !!AND!! (!!NOT!! (0 !!AND!! 1)) = 1 !!AND!! (!!NOT!! 0) = 1 !!AND!! 1 = 1```
 
 We say that the expression is *satisfiable*.
 
 If we take the following Boolean expression, instead:
 
-```
-X !!AND!! !!NOT!! (X !!OR!! 1),
-```
+```X !!AND!! !!NOT!! (X !!OR!! 1),```
 
 we find that no matter the value for `X`, the formula evaluates to `0`:
 
@@ -105,9 +98,7 @@ set true.
 
 Here's an example of a satisfiable set of Boolean expressions:
 
-```
-{ (!!NOT!! X) !!AND!! (Y !!OR!! Z), X !!OR!! (!!NOT!! Y), Z !!OR!! (!!NOT!! Z) }
-```
+```{ (!!NOT!! X) !!AND!! (Y !!OR!! Z), X !!OR!! (!!NOT!! Y), Z !!OR!! (!!NOT!! Z) }```
 
 This is because for the values `X = 0, Y = 0, Z = 1`, we get:
 
@@ -120,9 +111,7 @@ This is because for the values `X = 0, Y = 0, Z = 1`, we get:
 
 Here's an example of an unsatisfiable set:
 
-```
-{ X !!OR!! 0, (!!NOT!! X) !!AND!! 1}
-```
+```{ X !!OR!! 0, (!!NOT!! X) !!AND!! 1}```
 
 No matter what the value of `X`, at least one formula evaluates to `0`:
 
@@ -168,15 +157,13 @@ idea using our !!NAND!! circuit.
 
 For the approach, we need to translate both our specification (the !!NAND!!
 table) and our circuit into Boolean expressions. For the circuit, this is rather
-straightforward, once we realize that a $default "off"$ relay is essentially
-a Boolean !!AND!! and a $default "on"$ relay is a Boolean !!NOT!!. Inspecting
-our circuit, we see that we just chain the $default "off"$ and $default "on"$
+straightforward, once we realize that a `default "off"` relay is essentially
+a Boolean !!AND!! and a `default "on"` relay is a Boolean !!NOT!!. Inspecting
+our circuit, we see that we just chain the `default "off"` and `default "on"`
 relays with the inputs. This means that the Boolean expression that corresponds
 to our circuit is:
 
-```
-!!NOT!! (X !!AND!! Y)
-```
+```!!NOT!! (X !!AND!! Y)```
 
 This is the origin of the term "!!NAND!!", by the way: !!NOT!! applied to
 !!AND!! …  !!NAND!!.
@@ -209,9 +196,7 @@ This gives us:
 
 The final Boolean expression joins the clauses using !!OR!!, giving us:
 
-```
-((!!NOT!! X) !!AND!! (!!NOT!! Y)) !!OR!! ((!!NOT!! X) !!AND!! Y) !!OR!! (X !!AND!! (!!NOT!! Y))
-```
+```((!!NOT!! X) !!AND!! (!!NOT!! Y)) !!OR!! ((!!NOT!! X) !!AND!! Y) !!OR!! (X !!AND!! (!!NOT!! Y))```
 
 This method is guaranteed to generate a Boolean expression that describes the
 truth-table it was generated from. In fact, we can use this method to prove that
@@ -253,16 +238,12 @@ The last ingredient is to note that an expression evaluates to `0` just in case
 table for !!NOT!!. But then, we can reduce our question to the `SAT` problem for
 the following two sets:
 
-$${ specification, !!NOT!! representation }&emsp; &emsp;{ representation, !!NOT!! specification }$$
+```{ specification, !!NOT!! representation }&emsp; &emsp;{ representation, !!NOT!! specification }```
 
 In our example, the question is whether any of the following two sets is satisfiable:
 
-```
-{ ((!!NOT!! X) !!AND!! (!!NOT!! Y)) !!OR!! ((!!NOT!! X) !!AND!! Y) !!OR!! (X !!AND!! (!!NOT!! Y)), !!NOT!!(!!NOT!! (X !!AND!! Y))}
-```
-```
-{ (!!NOT!! (X !!AND!! Y)), !!NOT!![((!!NOT!! X) !!AND!! (!!NOT!! Y)) !!OR!! ((!!NOT!! X) !!AND!! Y) !!OR!! (X !!AND!! (!!NOT!! Y))]}
-```
+```{ ((!!NOT!! X) !!AND!! (!!NOT!! Y)) !!OR!! ((!!NOT!! X) !!AND!! Y) !!OR!! (X !!AND!! (!!NOT!! Y)), !!NOT!!(!!NOT!! (X !!AND!! Y))}```
+```{ (!!NOT!! (X !!AND!! Y)), !!NOT!![((!!NOT!! X) !!AND!! (!!NOT!! Y)) !!OR!! ((!!NOT!! X) !!AND!! Y) !!OR!! (X !!AND!! (!!NOT!! Y))]}```
 
 If any of the two sets is satisfiable, our circuit implementation does not
 follow the specification. If neither of them is satisfiable, our circuit is
@@ -297,96 +278,92 @@ From a logical perspective, instead, `SAT` is the foundation of an important
 approach to artificial deductive inference. Look again at our inference about the
 weather from last chapter, again: 
 
-$$(SUN {{< lor >}} RAIN), {{< neg >}} SUN {{< therefore >}} RAIN.$$ 
+```(SUN ∨ RAIN), ¬ SUN ∴ RAIN.``` 
 
 According to the Boolean implementation of propositional logic, the validity of
 this inference boils down to the following fact about valuations:
 
-$$[(SUN {{< lor >}} RAIN)] {{< cap >}} [{{< neg >}} SUN]{{< subseteq >}} [RAIN],$$
+```[(SUN ∨ RAIN)] ∩ [¬ SUN]⊆ [RAIN],```
 
 where:
 
-- $[(SUN {{< lor >}} RAIN)] = { v : v(SUN {{< lor >}} RAIN) = 1 }$,
-- $[{{< neg >}} SUN] = { v : v({{<neg>}}SUN) = 1 }$, and
-- $[RAIN] = { v : v(RAIN) = 1 }$
+- `[(SUN ∨ RAIN)] = { v : v(SUN ∨ RAIN) = 1 }`,
+- `[¬ SUN] = { v : v(¬SUN) = 1 }`, and
+- `[RAIN] = { v : v(RAIN) = 1 }`
 
 To verify that the inference is deductively valid, we checked that for each
-valuation $v {{< in >}} [(SUN {{< lor >}} RAIN)] {{< cap >}} [{{< neg >}} SUN]$, we also have that $v {{< in >}} [RAIN]$. We did this by calculating the propositions $[(SUN {{< lor >}} RAIN)], [{{< neg >}}SUN], $ and $[RAIN]$ and inspecting logical space:
+valuation `v ∈ [(SUN ∨ RAIN)] ∩ [¬ SUN]`, we also have that `v ∈ [RAIN]`. We did this by calculating the propositions `[(SUN ∨ RAIN)], [¬SUN],` and `[RAIN]` and inspecting logical space:
 
 {{< img src="img/ds_validity.png" class="rounded my-4 mx-auto d-block inert-img img-fluid" width="350px">}}
 
 We found that indeed, the only member of  
-$[(SUN {{< lor >}} RAIN)] {{< cap >}} [{{< neg >}} SUN]$, viz. the assignment
-with $v(SUN) = 0$ and $v(RAIN) = 0$, is also a member of $[RAIN].$ This shows to
+`[(SUN ∨ RAIN)] ∩ [¬ SUN]`, viz. the assignment
+with `v(SUN) = 0` and `v(RAIN) = 0`, is also a member of `[RAIN].` This shows to
 us that every valuation where the premises are true is one where the conclusion
-is true, i.e. $$(SUN {{< lor >}} RAIN), {{< neg >}}SUN {{< vDash >}} RAIN.$$
+is true, i.e. ```(SUN ∨ RAIN), ¬SUN ⊨ RAIN.```
 
 But we could have asked the question slightly differently and would have gotten
 the same answer. We could have asked whether there exists a valuation 
-$v {{< in >}} [(SUN {{< lor >}} RAIN)] {{< cap >}} [{{< neg >}} SUN]$ such that $v {{<
-notin >}}[RAIN]$. The answer to _this_ question gives us the same information as
+`v ∈ [(SUN ∨ RAIN)] ∩ [¬ SUN]` such that `v ∉[RAIN]`. The answer to _this_ question gives us the same information as
 the answer to the previous question:
 
-- If there _is_ such a valuation $v$, it is a
+- If there _is_ such a valuation `v`, it is a
 {{< abbr title="model where the premises are true and the conclusion isn't">}}countermodel{{< /abbr>}}, which makes the premises true but not the conclusion. 
 
-- If there _isn't_ such a valuation $v$, then every valuation that makes the
+- If there _isn't_ such a valuation `v`, then every valuation that makes the
 premises true must make the conclusion true as well.
 
 Just check logical space to help see this: is there any model which is in $[(SUN
-{{< lor >}} RAIN)] {{< cap >}} [{{< neg >}} SUN]$ but not in $[RAIN]$? _Of course_
+∨ RAIN)] ∩ [¬ SUN]`but not in`[RAIN]$? _Of course_
 not! Every element in the former is in the latter.
 
 In the case of an invalid inference, such as our previous example: 
 
-$$(SUN {{< lor >}} RAIN), SUN {{< therefore >}} {{< neg >}} RAIN,$$ 
+```(SUN ∨ RAIN), SUN ∴ ¬ RAIN,``` 
 
 this works as well. Working out the relevant propositions gave us the following
 picture of logical space:
 
 {{< img src="img/aff_countermodel.png" class="rounded my-4 mx-auto d-block inert-img img-fluid" width="350px">}}
 
-Here we have a valuation $v$—the one with $v(SUN) = 1$ and $v(RAIN) = 0$—such that $v$ makes the premises true—$v {{< in >}} ([SUN {{< lor >}} RAIN] {{< cap >}} [SUN])$—but the conclusion is not—$v {{< notin >}} [{{< neg >}} RAIN]$. The inference is invalid:
-$$(SUN {{< lor >}} RAIN), SUN {{< nvDash >}} {{< neg >}} RAIN.$$ 
+Here we have a valuation `v`—the one with `v(SUN) = 1` and `v(RAIN) = 0`—such that `v` makes the premises true—`v ∈ ([SUN ∨ RAIN] ∩ [SUN])`—but the conclusion is not—`v ∉ [¬ RAIN]`. The inference is invalid:
+```(SUN ∨ RAIN), SUN ⊭ ¬ RAIN.``` 
 
 Now we just need to make one observation to connect the validity test to `SAT`,
-which is that for every formula $A$, we have that $$v {{< notin >}} [A] if and
-only if v {{< in >}}[{{< neg >}} A]$$
+which is that for every formula `A`, we have that ```v ∉ [A] if and only if v ∈[¬ A]```
 This mathematical fact derives from the general equation for the values of
-negations: $$v({{< neg >}}A) = !!NOT!! v(A)$$
-Combining this with the fact that $$!!NOT!! 1 = 0 &emsp; &emsp; !!NOT!! 0 = 1$$
+negations: ```v(¬A) = !!NOT!! v(A)```
+Combining this with the fact that ```!!NOT!! 1 = 0 &emsp; &emsp; !!NOT!! 0 = 1```
 allows us to see that:
 
-$$v {{< in >}}[{{< neg >}}A] = { v : v({{< neg >}} A) = !!NOT!! v(A) = 1 } = { v
-: v(A) = 0 }$$
+```v ∈[¬A] = { v : v(¬ A) = !!NOT!! v(A) = 1 } = { v : v(A) = 0 }```
 
-$$if and only if$$
+```if and only if```
 
-$$v{{< notin >}}[A] = { v : v( A) = 1 }$$
+```v∉[A] = { v : v( A) = 1 }```
 
-Because no $v$ can be both such that $v(A) = 0$ _and_ $v(A) = 1$ at the same
+Because no `v` can be both such that `v(A) = 0` _and_ `v(A) = 1` at the same
 time.
 
-So, what we've seen now is that to determine whether $(SUN {{< lor >}} RAIN),
-{{< neg >}} SUN {{< therefore >}} RAIN$ is valid, we can ask whether there is a
-valuation $v$, such that $v {{< in >}} [(SUN {{< lor >}} RAIN)] {{< cap >}} [{{<
-neg >}} SUN]$ such that $v {{< notin >}}[RAIN]$ ("$v$ makes the premises true and the conclusion false"). And by the last observation about the propositions expressed by negations, 
-$v {{< notin >}}[RAIN]$ means the same as $v {{< in >}}[{{< neg >}}RAIN]$. So $$v {{< in >}} [(SUN {{< lor >}} RAIN)] {{< cap >}} [{{< neg >}} SUN] and v {{< notin >}}[RAIN]$$ is the same as $$v {{< in >}} [(SUN {{< lor >}} RAIN)] {{< cap >}} [{{< neg >}} SUN] and v {{< in >}}[{{< neg >}}A]$$
-applying the definition of {{< cap >}}, we can say this even
-simpler: $$v {{< in >}}[(SUN {{< lor >}} RAIN)] {{< cap >}} [{{< neg >}} SUN] {{< cap >}}[{{< neg >}} RAIN]$$. So what we're really asking is whether there's a $v$, such that:
+So, what we've seen now is that to determine whether $(SUN ∨ RAIN),
+¬ SUN ∴ RAIN$ is valid, we can ask whether there is a
+valuation `v`, such that `v ∈ [(SUN ∨ RAIN)] ∩ [¬ SUN]` such that `v ∉[RAIN]` ("`v` makes the premises true and the conclusion false"). And by the last observation about the propositions expressed by negations, 
+`v ∉[RAIN]` means the same as `v ∈[¬RAIN]`. So ```v ∈ [(SUN ∨ RAIN)] ∩ [¬ SUN] and v ∉[RAIN]``` is the same as ```v ∈ [(SUN ∨ RAIN)] ∩ [¬ SUN] and v ∈[¬A]```
+applying the definition of ∩, we can say this even
+simpler: ```v ∈[(SUN ∨ RAIN)] ∩ [¬ SUN] ∩[¬ RAIN]```. So what we're really asking is whether there's a `v`, such that:
 
-$$v((SUN {{< lor >}} RAIN)) = 1, v({{< neg >}} SUN) = 1, and v({{< neg >}} RAIN) = 1$$
+```v((SUN ∨ RAIN)) = 1, v(¬ SUN) = 1, and v(¬ RAIN) = 1```
 
-If such a $v$ exists, then it is a countermodel to the inference—a model where
-the premises are true and the conclusion isn't. The inference is invalid. If no such $v$ exists, the inference is valid, instead.
+If such a `v` exists, then it is a countermodel to the inference—a model where
+the premises are true and the conclusion isn't. The inference is invalid. If no such `v` exists, the inference is valid, instead.
 
 Now you can hopefully see how the question is related to satisfiability. In
 logical contexts, we say that a set of propositional formulas is _satisfiable_
-just in case there exists a valuation $v$, which makes all the members of the set
+just in case there exists a valuation `v`, which makes all the members of the set
 true. That is, the validity of 
-$$(SUN {{< lor >}} RAIN), {{< neg >}} SUN {{< therefore >}} RAIN$$
+```(SUN ∨ RAIN), ¬ SUN ∴ RAIN```
 boils down to the satisfiability of 
-$${ (SUN {{< lor >}} RAIN), {{< neg >}}SUN, {{< neg >}}RAIN }.$$
+```{ (SUN ∨ RAIN), ¬SUN, ¬RAIN }.```
 
 {{< img src="img/ai_two_sides.png" class="rounded  float-end inert-img img-fluid m-2" width="250px" >}} 
 And since this set is unsatisfiable in the logical sense, we can conclude that
@@ -394,11 +371,11 @@ the inference is valid.
 
 The other inference, 
 
-$$(SUN {{< lor >}} RAIN), SUN {{< therefore >}} {{< neg >}} RAIN,$$ 
+```(SUN ∨ RAIN), SUN ∴ ¬ RAIN,``` 
 
 is invalid, instead, since the set 
 
-$${ (SUN {{< lor >}} RAIN), SUN, {{< neg >}}RAIN }$$
+```{ (SUN ∨ RAIN), SUN, ¬RAIN }```
 
 _is_ satisfiable.—In other words, deductive validity and `SAT` are two sides of the same coin.
 
@@ -406,33 +383,29 @@ One interesting observation is that the algebraic and the logical interpretation
 of `SAT` boil down to, essentially, the same thing. To see this, let's look at
 the satisfiability of: 
 
-$${ (SUN {{< lor >}} RAIN), {{< neg >}}SUN, {{< neg >}}RAIN }.$$
+```{ (SUN ∨ RAIN), ¬SUN, ¬RAIN }.```
 
-A satisfying valuation $v$ would need to be such that:
+A satisfying valuation `v` would need to be such that:
 
-$$v(SUN {{< lor >}} RAIN) = 1, v({{< neg >}} SUN) = 1, and v({{< neg >}} RAIN) = 1$$
+```v(SUN ∨ RAIN) = 1, v(¬ SUN) = 1, and v(¬ RAIN) = 1```
 
-But if we apply to this the implementation of the logical operators {{< lor >}}
-and {{< neg >}} in terms of !!OR!! and !!NOT!!, respectively, we get a Boolean
-expression, where the only remnant of logic is the use of $v$ applied to the
-propositional variables $SUN$ and $RAIN$:
+But if we apply to this the implementation of the logical operators ∨
+and ¬ in terms of !!OR!! and !!NOT!!, respectively, we get a Boolean
+expression, where the only remnant of logic is the use of `v` applied to the
+propositional variables `SUN` and `RAIN`:
 
-$$(v(SUN) !!OR!! v(RAIN)) = 1, !!NOT!! v(SUN) = 1, and !!NOT!! v(RAIN) = 1$$
+```(v(SUN) !!OR!! v(RAIN)) = 1, !!NOT!! v(SUN) = 1, and !!NOT!! v(RAIN) = 1```
 
 In fact, if we say `X = v(SUN)` and `Y = v(RAIN)`, the condition becomes:
 
-```
-(X !!OR!! Y) = 1, (!!NOT!! X) = 1, and (!!NOT!! Y) = 1
-```
+```(X !!OR!! Y) = 1, (!!NOT!! X) = 1, and (!!NOT!! Y) = 1```
 
 That just asks whether the set
 
-```
-{ (X !!OR!! Y), (!!NOT!! X), (!!NOT!! Y) }
-```
+```{ (X !!OR!! Y), (!!NOT!! X), (!!NOT!! Y) }```
 
 is satisfiable in the algebraic sense, which it isn't, of course. This is, by
-the way, why we call $SUN,RAIN$ "propositional variables" in propositional
+the way, why we call `SUN,RAIN` "propositional variables" in propositional
 logic.
 
 To sum up, what we've achieved so far is to reduce two important
@@ -451,7 +424,7 @@ the relevant expression(s).
 Since there can only be finitely many variables (propositional or Boolean) in a
 given expression, the list of possible valuations is finite: by the [rule of
 products](https://en.wikipedia.org/wiki/Rule_of_product), if there are
-$n$-variables, which can take two values each ($0$ or $1$), then there $2ⁿ$-many
+`n`-variables, which can take two values each (`0` or `1`), then there `2ⁿ`-many
 combinations of such values—each being a different valuation. This number grows
 quickly, in fact
 [exponentially](https://en.wikipedia.org/wiki/Exponential_growth), but it will
@@ -466,13 +439,13 @@ but finite nevertheless.
 A direct consequence of this is that the `SAT` problem is [decidable
 problem](https://en.wikipedia.org/wiki/Decision_problem): there exists an
 effective method, which after finitely many steps generates a correct
-$yes/no$-answer to the question whether a given set of Boolean expressions is
+`yes/no`-answer to the question whether a given set of Boolean expressions is
 satisfiable. Since deductive validity in propositional logic can be reduced to a
 `SAT` problem, this means that propositional logic is a [decidable
 logic](https://en.wikipedia.org/wiki/Decidability_(logic))—we can
 algorithmically automate checking for valid inference in propositional logic.
 
-A procedure for deciding a problem—that is, giving a correct $yes/no$-answer in
+A procedure for deciding a problem—that is, giving a correct `yes/no`-answer in
 finitely many steps—is called a **decision procedure**. The truth-table method
 is such a decision procedure, which implements the naive approach described
 above is an algorithmic fashion.
@@ -485,10 +458,10 @@ To describe the method, let's suppose that we have a set of formulas, of which
 we want to know whether it is satisfiable. For concreteness, we take our
 running example again and check for the satisfiability of:
 
-$${ (SUN {{< lor >}} RAIN), {{< neg >}}SUN, {{< neg >}}RAIN }.$$
+```{ (SUN ∨ RAIN), ¬SUN, ¬RAIN }.```
 
 The first thing we need to do is to determine all the possible valuations. By
-what we said above, all we need to do is to count the number of different propositional variables in our set. In our case, $#variables = 2$. This means that there are $2² = 4$ different valuations to consider. 
+what we said above, all we need to do is to count the number of different propositional variables in our set. In our case, `#variables = 2`. This means that there are `2² = 4` different valuations to consider. 
 
 We need to write these valuations down in some order. We typically do this as
 follows:
@@ -497,10 +470,10 @@ follows:
 
 The idea is that each row is a function table for one possible valuation. The
 red little numbers are not part of the official table, but they illustrate a
-nice little trick: if you want to determine all the valuations for $n$
-propositional variables, just count the rows from $0$ to $n-1$ in binary. In our
-case, we counted from $0$ to $3$, which gives us our four rows. But if you have
-three variables, say $SUN, RAIN, WIND$, you count from $0$ to $7$ in binary, and
+nice little trick: if you want to determine all the valuations for `n`
+propositional variables, just count the rows from `0` to `n-1` in binary. In our
+case, we counted from `0` to `3`, which gives us our four rows. But if you have
+three variables, say `SUN, RAIN, WIND`, you count from `0` to `7` in binary, and
 get the following table:
 
 {{< img src="img/truth-table-3var.png" class="rounded mx-auto d-block inert-img img-fluid" width="350px">}}
@@ -517,11 +490,11 @@ as the **recursive clauses** for the truth-values under a Boolean valuation:
 
   |                            |   |                          |
   | -                          | - | -                        |
-  | v({{< neg >}} A)    &emsp; | = | &emsp; !!NOT!! v(A)      |
+  | v(¬ A)    &emsp; | = | &emsp; !!NOT!! v(A)      |
   | &emsp;                           |   |                          |
-  | v(A {{< land >}} B) &emsp; | = | &emsp; v(A) !!AND!! v(B) |
+  | v(A ∧ B) &emsp; | = | &emsp; v(A) !!AND!! v(B) |
   | &emsp;                           |   |                          |
-  | v(A {{< lor >}} B)  &emsp; | = | &emsp; v(A) !!OR!! v(B)  |
+  | v(A ∨ B)  &emsp; | = | &emsp; v(A) !!OR!! v(B)  |
 
 We apply these clauses by tracing the parsing tree backwards and calculating the
 value of the formula generated in the next step by applying the corresponding
@@ -539,19 +512,18 @@ if there isn't—like in our case—the set isn't satisfiable.
 
 This truth-table doubles as the proof of the validity of our inference: 
 
-$$(SUN {{< lor >}} RAIN), {{< neg >}} SUN {{< therefore >}}  RAIN,$$ 
+```(SUN ∨ RAIN), ¬ SUN ∴  RAIN,``` 
 
-since it shows that the set $${ (SUN {{< lor >}} RAIN), {{< neg >}} SUN, {{<
-neg >}}  RAIN}$$ is unsatisfiable and the inference thus valid. Note very
-crucially that the set has an extra {{< neg >}} where the conclusion occurs—we're checking whether it's possible for the premises to be true and the conclusion _not_ true.
+since it shows that the set ```{ (SUN ∨ RAIN), ¬ SUN, ¬  RAIN}``` is unsatisfiable and the inference thus valid. Note very
+crucially that the set has an extra ¬ where the conclusion occurs—we're checking whether it's possible for the premises to be true and the conclusion _not_ true.
 
-For an example of a satisfiable set, let's take a set with $#variables = 3$ and some more complex formulas to illustrate a few helpful methods:
+For an example of a satisfiable set, let's take a set with `#variables = 3` and some more complex formulas to illustrate a few helpful methods:
 
-$${ (SUN {{< lor >}} ({{< neg >}} RAIN {{< land >}} {{< neg >}} WIND)), SUN, {{< neg >}} WIND }$$
+```{ (SUN ∨ (¬ RAIN ∧ ¬ WIND)), SUN, ¬ WIND }```
 
 The satisfiability of this set corresponds to the *in*validity of the inference:
 
-$$ (SUN {{< lor >}} ({{< neg >}} RAIN {{< land >}} {{< neg >}} WIND)), SUN {{< therefore >}} WIND $$
+```(SUN ∨ (¬ RAIN ∧ ¬ WIND)), SUN ∴ WIND```
 
 I hope you can see that this is just a more complicated instance of *affirming a disjunct*, a fallacy which we've mentioned a couple of times before.
 
@@ -560,12 +532,12 @@ parsing. The relevant parse trees are as follows:
 
 {{< img src="img/parsing_three.png" class="rounded mx-auto d-block inert-img img-fluid" width="850px">}}
 
-Now in this case, a more complex formula is involved, viz. $(SUN {{< lor >}} ({{< neg >}} RAIN {{< land >}} {{< neg >}} WIND))$. When we're calculating its value under a given valuation, the parse tree comes in handy. It tells us in which order to apply the Boolean operations !!NOT!!, !!AND!!, and !!OR!! to calculate the truth-values. We can document the calculation in our truth-table as follows:
+Now in this case, a more complex formula is involved, viz. `(SUN ∨ (¬ RAIN ∧ ¬ WIND))`. When we're calculating its value under a given valuation, the parse tree comes in handy. It tells us in which order to apply the Boolean operations !!NOT!!, !!AND!!, and !!OR!! to calculate the truth-values. We can document the calculation in our truth-table as follows:
 
 {{< img src="img/truth_table_three_full.png" class="rounded mx-auto d-block inert-img img-fluid" width="1100px">}}
 
 Here, I used color coding and arrows to indicate which recursive step yields
-which truth-value, but you don't have to do that every time. You also don't _have_ to write down the intermediate values, like that of ${{< neg >}}RAIN$ or $({{< neg >}}RAIN {{< land >}} {{< neg >}}WIND)$, but it can be helpful.
+which truth-value, but you don't have to do that every time. You also don't _have_ to write down the intermediate values, like that of `¬RAIN` or `(¬RAIN ∧ ¬WIND)`, but it can be helpful.
 
 What remains to be done is to check whether there's a valuation ("row"), where all formulas in the set get value `1`. And indeed:
 
@@ -573,7 +545,7 @@ What remains to be done is to check whether there's a valuation ("row"), where a
 
 There are indeed _two_ valuations that make all formulas true. But that's alright, the more the merrier. Either row is enough to show that:
 
-$$ (SUN {{< lor >}} ({{< neg >}} RAIN {{< land >}} {{< neg >}} WIND)), SUN {{< nvDash >}} WIND $$
+```(SUN ∨ (¬ RAIN ∧ ¬ WIND)), SUN ⊭ WIND```
 
 This is, in a nutshell, the method of truth-tables. The method is brute force,
 but it's guaranteed to work. The main problem with the method is that how long
@@ -582,9 +554,9 @@ the algorithm has exponential  [time
 complexity](https://en.wikipedia.org/wiki/Time_complexity), which is about as
 bad as it gets. Using [big O
 notation](https://en.wikipedia.org/wiki/Big_O_notation), the time complexity of
-the truth-table method is $O(2ⁿ)$, where $n$ is the number of variables
+the truth-table method is `O(2ⁿ)`, where `n` is the number of variables
 involved. Worse even, the way we've described the algorithm, we _always_ run
-for $O(2ⁿ)$-many steps, since we begin with the computationally most complex
+for `O(2ⁿ)`-many steps, since we begin with the computationally most complex
 step: enumerating the valuations. In this way, truth-tables suffer from what's
 called  [combinatorial
 explosion](https://en.wikipedia.org/wiki/Combinatorial_explosion). 
@@ -615,16 +587,12 @@ normal forms.
 We've already encountered DNFs when we transformed the truth-table for !!NAND!!
 into a Boolean expression. The result was the expression:
 
-```
-((!!NOT!! X) !!AND!! (!!NOT!! Y)) !!OR!! ((!!NOT!! X) !!AND!! Y) !!OR!! (X !!AND!! (!!NOT!! Y))
-```
+```((!!NOT!! X) !!AND!! (!!NOT!! Y)) !!OR!! ((!!NOT!! X) !!AND!! Y) !!OR!! (X !!AND!! (!!NOT!! Y))```
 
 Crucially, this expression was **equivalent** to the following expression, which
 we've derived from the circuit implementation:
 
-```
-!!NOT!! (X !!AND!! Y)
-```
+```!!NOT!! (X !!AND!! Y)```
 
 We've seen that the two expressions are *equivalent* in the sense that they
 always evaluate to the same truth-value for all values for `X` and `Y`.
@@ -643,11 +611,11 @@ example:
 | {{< img src="img/dnf.png" class="inert-img" height="40px" style="vertical-align: middle;" >}} | &emsp; &emsp; &emsp;   | {{< img src="img/no_dnf.png" class="inert-img" height="40px" style="vertical-align: middle;" >}} |
 | -------                                                                                       | ---------------------- | -----------                                                                                      |
 |                                                                                               | &emsp; &emsp; &emsp;   |                                                                                                  |
-| $X, !!NOT!! X$                                                                                |                        | $!!NOT!! !!NOT!!  X$                                                                             |
-| $X !!AND!!  !!NOT!! Y$                                                                        |                        | $!!NOT!! (X !!AND!!  Y)$                                                                         |
-| $X !!OR!!  !!NOT!! Y$                                                                         |                        | $!!NOT!! (X !!OR!!  Y)$                                                                          |
-| $!!NOT!! X !!OR!!  ( X !!AND!!  !!NOT!! Y )$                                                  |                        | $X !!AND!!  ( !!NOT!! X !!OR!!  Y )$                                                             |
-| $(Z !!AND!! !!NOT!! X) !!OR!!  ( X !!AND!!  !!NOT!! Y )$                                      |                        | $X !!AND!!  ( !!NOT!! X !!OR!!  Y )$                                                             |
+| `X, !!NOT!! X`                                                                                |                        | `!!NOT!! !!NOT!!  X`                                                                             |
+| `X !!AND!!  !!NOT!! Y`                                                                        |                        | `!!NOT!! (X !!AND!!  Y)`                                                                         |
+| `X !!OR!!  !!NOT!! Y`                                                                         |                        | `!!NOT!! (X !!OR!!  Y)`                                                                          |
+| `!!NOT!! X !!OR!!  ( X !!AND!!  !!NOT!! Y )`                                                  |                        | `X !!AND!!  ( !!NOT!! X !!OR!!  Y )`                                                             |
+| `(Z !!AND!! !!NOT!! X) !!OR!!  ( X !!AND!!  !!NOT!! Y )`                                      |                        | `X !!AND!!  ( !!NOT!! X !!OR!!  Y )`                                                             |
 | ⋮                                                                                             |                        | ⋮                                                                                                |
 
 DNFs are intimately connected with truth-tables.  If we have a Boolean
@@ -663,9 +631,7 @@ having value `0`.
 
 In this way, we can see that 
 
-```
-((!!NOT!! X) !!AND!! (!!NOT!! Y)) !!OR!! ((!!NOT!! X) !!AND!! Y) !!OR!! (X !!AND!! (!!NOT!! Y))
-```
+```((!!NOT!! X) !!AND!! (!!NOT!! Y)) !!OR!! ((!!NOT!! X) !!AND!! Y) !!OR!! (X !!AND!! (!!NOT!! Y))```
 
 has three ways of evaluating to `1`:
 
@@ -694,39 +660,39 @@ Boolean terms.
 
 So, in logical terms, a formula in CNF is a formula which is the:
 
-+ _conjunction_ ("chain of {{< land>}}'s") of
++ _conjunction_ ("chain of ∧'s") of
 
-+ _disjunctions_ ("chain of {{< lor >}}'s") of
++ _disjunctions_ ("chain of ∨'s") of
 
-+ _literals_ ("variables or their {{< neg>}}'s")
++ _literals_ ("variables or their ¬'s")
 
 Again, each "chain" in this definition can be just a single formula. So, for example:
 
 | {{< img src="img/cnf.png" class="inert-img" height="40px" style="vertical-align: middle;" >}} | &emsp; &emsp; &emsp;   | {{< img src="img/no_cnf.png" class="inert-img" height="40px" style="vertical-align: middle;" >}} |
 | -------                                                                                       | ---------------------- | -----------                                                                                      |
 |                                                                                               | &emsp; &emsp; &emsp;   |                                                                                                  |
-| $RAIN, {{< neg >}}RAIN$                                                                         |                        | {{< neg >}}{{< neg >}} RAIN                                                                       |
-| $RAIN {{< land >}} {{< neg >}}WIND$                                                            |                        | ${{< neg >}}(RAIN {{< land >}} WIND)$                                                             |
-| $RAIN {{< lor >}} {{< neg >}}WIND$                                                             |                        | ${{< neg >}}(RAIN {{< lor >}} WIND)$                                                               | 
-| ${{< neg >}}RAIN {{< land >}} ( RAIN {{< lor >}} {{< neg >}}WIND )$                            | | ${{< neg >}}RAIN {{< lor >}} ( RAIN {{< land >}} {{< neg >}}WIND )$  |
-| $(SUN {{< lor >}} {{< neg >}}RAIN) {{< land >}} ( RAIN {{< lor >}} {{< neg >}}WIND )$                            | | ${{< neg >}}RAIN {{< land >}} {{< neg >}}( RAIN {{< lor >}} {{< neg >}}WIND )$  |
+| `RAIN, ¬RAIN`                                                                         |                        | ¬¬ RAIN                                                                       |
+| `RAIN ∧ ¬WIND`                                                            |                        | `¬(RAIN ∧ WIND)`                                                             |
+| `RAIN ∨ ¬WIND`                                                             |                        | `¬(RAIN ∨ WIND)`                                                               | 
+| `¬RAIN ∧ ( RAIN ∨ ¬WIND )`                            | | `¬RAIN ∨ ( RAIN ∧ ¬WIND )`  |
+| `(SUN ∨ ¬RAIN) ∧ ( RAIN ∨ ¬WIND )`                            | | `¬RAIN ∧ ¬( RAIN ∨ ¬WIND )`  |
 | ⋮ | | ⋮ |
 
 While in a formula in DNF, each disjunct (from "the chain of !!OR!!s")
 represents one way for the formula to be true, the conjuncts of a CNF are more
 like a "menu" to pick from. To make a formula in CNF true, one picks one
 disjunct (that is one literal, a propositional variable or its negation) from
-each conjunct in the long chain of {{< land >}}'s. Take the following formula,
+each conjunct in the long chain of ∧'s. Take the following formula,
 for example:
 
-$$(SUN {{< lor >}} {{< neg >}}RAIN) {{< land >}} ( RAIN {{< lor >}} {{< neg >}}WIND )$$
+```(SUN ∨ ¬RAIN) ∧ ( RAIN ∨ ¬WIND )```
 
-One way of making it true is to pick $SUN$ from the first conjunct and ${{< neg >}}WIND$
+One way of making it true is to pick `SUN` from the first conjunct and `¬WIND`
 from the second. That is, the formula is true if the sun shines and it's not
-windy. Another way of making it true is to pick ${{< neg >}}RAIN$ from the first
-and ${{< neg >}}WIND$ from the second. That is, the formula is true if it's
-neither rainy nor windy. Obviously, we can't pick ${{< neg >}}RAIN$ from the
-first and $RAIN$ from the second. This is not a way to make the formula true,
+windy. Another way of making it true is to pick `¬RAIN` from the first
+and `¬WIND` from the second. That is, the formula is true if it's
+neither rainy nor windy. Obviously, we can't pick `¬RAIN` from the
+first and `RAIN` from the second. This is not a way to make the formula true,
 since it's not a real possibility in Boolean logic that it both rains and it
 doesn't. Excluding these kinds of possibilities from the search space in a
 systematic fashion is what many `SAT`-solving algorithms are designed to do.
@@ -786,15 +752,15 @@ anymore. The next step is different for the two:
 
 {{< img src="img/cnf_v_dnf.png" class="rounded mx-auto d-block inert-img img-fluid" width="900px">}}
 
-Let's look at the CNF rule and leave the DNF rule as an exercise. With $r₄$, we
+Let's look at the CNF rule and leave the DNF rule as an exercise. With `r₄`, we
 can continue our example as follows:
 
 {{< img src="img/cnf_distribution.png" class="rounded mx-auto d-block inert-img img-fluid" width="900px">}}
 
-The resulting formula $(SUN {{< lor >}} {{< neg >}}RAIN ) {{< land >}} (SUN {{< lor >}} SUN)$ is in CNF: it's a conjunction of disjunctions of literals.
+The resulting formula `(SUN ∨ ¬RAIN ) ∧ (SUN ∨ SUN)` is in CNF: it's a conjunction of disjunctions of literals.
 
 For what we want to do next, we could stop our transformation at this point. The
-only thing you might find odd is that we have $(SUN {{< lor >}} SUN)$ as our
+only thing you might find odd is that we have `(SUN ∨ SUN)` as our
 second conjunct in this CNF. This is harmless, but we could further simplify
 using rewrite rules like the following: 
 
@@ -811,7 +777,7 @@ of many `SAT`-solving algorithms. As we mentioned, in industry applications,
 we'd typically use more efficient algorithms, like Tseytin transformations. But
 the naive recursive re-write method gets the job done. It's worth pointing out,
 however, where the inefficiency lies with this method. Note that in the step
-where we applied $r₄$, our formula got _longer_. In the worst case, this can
+where we applied `r₄`, our formula got _longer_. In the worst case, this can
 happen multiple times during a transformation, leading to ever-growing
 formulas, where the CNF _or_ DNF is significantly longer than the original,
 non-canonical formula. This "exponential blowout" is a main roadblock for
@@ -826,35 +792,35 @@ of inference that operates on CNFs to determine whether a given set of formulas
 is satisfiable. We shall now describe how it works.
 
 The starting point for the algorithm is a set of formulas that we want to test
-for satisfiability, and the $0$th step of the algorithm is to transform all of
+for satisfiability, and the `0`th step of the algorithm is to transform all of
 the formulas in the set into CNF. In the following, we assume that this step has
 been carried out.
 
 For concreteness, let's start with our very simple example of the
 inference:
 
-$$(SUN {{< lor >}} RAIN), {{< neg >}} SUN {{< therefore >}} RAIN.$$ 
+```(SUN ∨ RAIN), ¬ SUN ∴ RAIN.``` 
 
 We know that this inference is valid just in case the set 
 
-$${ (SUN {{< lor >}} RAIN), {{< neg >}} SUN,  {{< neg >}}RAIN }$$ 
+```{ (SUN ∨ RAIN), ¬ SUN,  ¬RAIN }``` 
 
 is unsatisfiable. As luck will have it, all the formulas in our set are already
-in CNF, so we don't have to do anything for the $0$th step.
+in CNF, so we don't have to do anything for the `0`th step.
 
 To begin the algorithm, we first transform all the formulas inside the set
 themselves into sets. It is possible to define the algorithm purely on formulas,
 but it is easier to work with sets. In our case, the resulting sets are:
 
-$${ SUN , RAIN } &emsp; { {{< neg >}} SUN } &emsp; {{{< neg >}}RAIN }$$ 
+```{ SUN , RAIN } &emsp; { ¬ SUN } &emsp; {¬RAIN }``` 
 
 The idea is that we turn each conjunct of each formula into a set—the set of
 its disjuncts, which are literals. We call each such set a **clause**
 and consider all these clauses as the starting points.
 
-If our set would have contained $$(SUN {{< lor >}} {{< neg >}}RAIN ) {{< land >}} SUN,$$ as well, we'd have to add the following two sets:
+If our set would have contained ```(SUN ∨ ¬RAIN ) ∧ SUN,``` as well, we'd have to add the following two sets:
 
-$${ (SUN , {{< neg >}}RAIN } &emsp; { SUN }$$ 
+```{ (SUN , ¬RAIN } &emsp; { SUN }``` 
 
 The **resolution rule** is a [rule of
 inference](https://en.wikipedia.org/wiki/Rule_of_inference), which allows us to
@@ -864,34 +830,34 @@ the rule allows us to reason as follows:
 {{< img src="img/resolution_application.png" class="rounded mx-auto d-block inert-img img-fluid" width="300px">}}
 
 What is going on here is that we have two **complementary** literals in the two
-sets: $SUN$ and ${{< neg >}}SUN$. The resolution rule removes this pair and
+sets: `SUN` and `¬SUN`. The resolution rule removes this pair and
 infers the set that contains the remaining literals from both sets.
 
-That is, if our sets had been ${ SUN, RAIN }$ and ${ {{< neg >}}SUN, {{< neg >}}WIND }$, respectively, the result would have been ${ RAIN, {{< neg >}}WIND }$.
+That is, if our sets had been `{ SUN, RAIN }` and `{ ¬SUN, ¬WIND }`, respectively, the result would have been `{ RAIN, ¬WIND }`.
 
 The idea behind the resolution rule is that to make each formula in our initial
 set true, we need to make at least one disjunct of each conjunction of each CNF
-true. In our case, we need to make at least one formula from ${ SUN, RAIN }$ and
-one formula from ${{{< neg >}}SUN }$ true. But that formula can't be $SUN$, nor
-can it be ${{< neg >}}SUN$—because making the one true makes the other false and
-vice versa. So, we can eliminate the pair $SUN, {{< neg >}}SUN$ from
+true. In our case, we need to make at least one formula from `{ SUN, RAIN }` and
+one formula from `{¬SUN }` true. But that formula can't be `SUN`, nor
+can it be `¬SUN`—because making the one true makes the other false and
+vice versa. So, we can eliminate the pair `SUN, ¬SUN` from
 consideration and leave the others as live candidates, which is what the
 resolution rule does.
 
 This inference is also called "**clausal resolution**". The resolution method
 consists in repeatedly resolving, while adding the results to our initial set.
-If we ever come across a set like $${ SUN, {{< neg >}} SUN, RAIN },$$ we can
+If we ever come across a set like ```{ SUN, ¬ SUN, RAIN },``` we can
 kick it out from our search, since it is trivially satisfied and doesn't
 constrain our search (keeping it around might get us into loops, but that's
 another story). We keep doing this until one of two things happens:
 
-1. We derive the empty clause ${ }$, a clause with no literals.
+1. We derive the empty clause `{ }`, a clause with no literals.
 
 2. We cannot resolve any further.
 
 If the former happens, we infer the initial set is unsatisfiable. This is
 reasonable because we have arrived at the conclusion that we need to make at
-least one formula from ${ }$ true to make the whole set true, but this is
+least one formula from `{ }` true to make the whole set true, but this is
 impossible. If, instead, the latter happens, we _can_ pick a member from each
 set to make true and we infer that the original set is satisfiable. The way in
 which we do this is something we'll discuss at another occasion, but for now we
@@ -902,33 +868,33 @@ result:
 
 {{< img src="img/resolution_final.png" class="rounded mx-auto d-block inert-img img-fluid" width="500px">}}
 
-We can derive the empty clause ${ }$ to witness the unsatisfiability of:
+We can derive the empty clause `{ }` to witness the unsatisfiability of:
 
-$${ SUN , RAIN } &emsp; { {{< neg >}} SUN } &emsp; {{{< neg >}}RAIN },$$ 
+```{ SUN , RAIN } &emsp; { ¬ SUN } &emsp; {¬RAIN },``` 
 
 and corresponding validity of the inference in question:
 
-$$(SUN {{< lor >}} RAIN), {{< neg >}} SUN {{< vDash >}} RAIN.$$ 
+```(SUN ∨ RAIN), ¬ SUN ⊨ RAIN.``` 
 
 Let's apply the method to our _invalid_ inference, instead:
 
-$$(SUN {{< lor >}} RAIN),  SUN {{< therefore >}} {{< neg >}}RAIN.$$ 
+```(SUN ∨ RAIN),  SUN ∴ ¬RAIN.``` 
 
 To check for validity, we need to check the following set for `SAT`:
 
-$${(SUN {{< lor >}} RAIN),  SUN, {{< neg >}} {{< neg >}}RAIN}$$ 
+```{(SUN ∨ RAIN),  SUN, ¬ ¬RAIN}``` 
 
-We need to do a simple application of $r₁$ to transform ${{< neg >}} {{< neg >}}RAIN$ into its CNF $RAIN$, and transforming to sets, we get:
+We need to do a simple application of `r₁` to transform `¬ ¬RAIN` into its CNF `RAIN`, and transforming to sets, we get:
 
-$${ SUN,  RAIN } &emsp; { SUN } &emsp; { RAIN }.$$ 
+```{ SUN,  RAIN } &emsp; { SUN } &emsp; { RAIN }.``` 
 
 
 But to this collection of sets no resolutions can be applied.
 
 In fact, if we inspect this list, we can see that there's precisely one way of
-picking a member of each set: pick $SUN$ from ${ SUN,  RAIN }$ and ${ SUN }$,
-as well as $RAIN$ from ${RAIN }$. This gives us our final countermodel $v$ with
-$v(SUN) = 1$ and $v(RAIN) = 1$—the same as before, but now we found it in a
+picking a member of each set: pick `SUN` from `{ SUN,  RAIN }` and `{ SUN }`,
+as well as `RAIN` from `{RAIN }`. This gives us our final countermodel `v` with
+`v(SUN) = 1` and `v(RAIN) = 1`—the same as before, but now we found it in a
 mechanized fashion.
 
 The resolution method described like this is a **sound and complete** decision

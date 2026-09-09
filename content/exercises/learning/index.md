@@ -1,11 +1,10 @@
 ---
-title: Logical learning
+title: Logic and neural networks
 author: Johannes Korbmacher
 locked: true
 weight: 120
 params: 
   id: exc-learn
-  math: true
 ---
 
 For the last workgroup, we just have one exercise that illustrates an important concept about Bayesian learning. The rest of the workgroup you can use to ask

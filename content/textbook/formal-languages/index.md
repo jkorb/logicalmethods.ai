@@ -10,7 +10,6 @@ params:
   date: 09/09/2024
   last_edited: 03/09/2025
   id: txt-lang
-  math: true
 ---
 
 # Formal languages
@@ -51,8 +50,7 @@ other disciplines that employ logical tools.
 In this chapter, we'll study formal languages, how they are defined
 mathematically, and how they are used in logical theory and AI.
 
-At the end of this chapter, you'll be able to:
-
+{{< callout type="objectives" >}}
 - explain the ambiguity and over-expressiveness of natural language using
 examples
 - define formal languages using formal grammars
@@ -60,6 +58,7 @@ examples
 - represent simple facts about the world using the language of propositional
 logic
 - name standard examples of formal languages and their use cases
+{{< /callout >}}
 
 ## Formal vs. natural languages
 
@@ -712,11 +711,11 @@ src="img/neg_A.png" class="inert-img" height="24px" style="vertical-align: middl
 {{< img src="img/negation_tree.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="150px">}}
 
 
-Then, we apply rule 5 to the right-most branch. This rule rewrites this {{< excalifont >}}A{{< /excalifont >}} into $(A\land A)$, which creates five more branches:
+Then, we apply rule 5 to the right-most branch. This rule rewrites this {{< excalifont >}}A{{< /excalifont >}} into `(A∧ A)`, which creates five more branches:
 
 {{< img src="img/tree_negation_conjunction.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="250px">}}
 
-Then, we apply rule 1 to {{< excalifont >}}A{{< /excalifont >}} that is to the left of "$\land$":
+Then, we apply rule 1 to {{< excalifont >}}A{{< /excalifont >}} that is to the left of "`∧`":
 
 {{< img src="img/tree_step_3.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="250px">}}
 
@@ -739,14 +738,14 @@ certain symptom, call these symptoms
 the system the formula 
 {{< img src="img/neg_p_or_q_and_r.png" class="inert-img" height="24px" style="vertical-align: middle;" >}}, 
 then we want the system to know
-that the patient is showing symptom $R$, but not showing 
+that the patient is showing symptom `R`, but not showing 
 {{< excalifont >}}P{{< /excalifont >}} or
 {{< excalifont >}}Q{{< /excalifont >}}.
 It needs to
 figure out that the sub-proposition 
 {{< img src="img/p_or_q.png" class="inert-img" height="24px" style="vertical-align: middle;" >}}
 is negated, while the
-sub-proposition $r$ is not. To do this, it needs to parse the formula correctly.
+sub-proposition `r` is not. To do this, it needs to parse the formula correctly.
 From the parse, it is clear that the disjunction 
 {{< img src="img/p_or_q.png" class="inert-img" height="24px" style="vertical-align: middle;" >}} is negated, but
 that 
@@ -941,8 +940,7 @@ statistical regularities in vast amounts of data. This lack of traceable
 reasoning makes the reliability of generative AI questionable, thereby raising questions about its safe use. Even worse, it makes it less clear that AI can be
 held accountable for the decisions it makes. 
 
-## Further readings
-
+## Further readings {.readings .nocount}
 An incredibly rich and extensive discussion of formal languages and their role
 in logic is:
 
