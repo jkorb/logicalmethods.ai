@@ -17,6 +17,7 @@
   --grid:         #EDEAE0;   /* 1.16:1 against paper — never affects text  */
   --margin-rule:  #E3A7AC;   /* the red margin line of a German exercise book */
   --rule:         #DDD8CC;   /* hairlines, borders                          */
+  --table-rule:   #847C6D;   /* hand-drawn table rules — 3.99:1 on paper    */
   --rule-strong:  #C3BCAB;
 
   /* ---- ink ---------------------------------------------------------- */
@@ -95,6 +96,7 @@
     --margin-rule:  #6E4245;
     --rule:         #2E333B;
     --rule-strong:  #444B55;
+    --table-rule:   #6E7684;   /* 3.92:1 on the dark ground */
 
     --ink:       #E9E7E1;      /* 14.51 on ground · 13.05 on a grid line */
     --ink-muted: #A8AEB8;      /*  8.04 on ground ·  7.23 on a grid line */
@@ -130,6 +132,7 @@
   --margin-rule:  #6E4245;
   --rule:         #2E333B;
   --rule-strong:  #444B55;
+  --table-rule:   #6E7684;
 
   --ink:       #E9E7E1;
   --ink-muted: #A8AEB8;

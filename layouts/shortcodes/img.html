@@ -18,9 +18,20 @@
         {{ with .Get "width" }}style="--figure-w: {{ . }}"{{ end }}>{{ $markup | safeHTML }}</span>
 {{- else -}}
   {{- $img := .Page.Resources.GetMatch $src -}}
-  {{- if $img }}
-<img src="{{ $img.Permalink }}" loading="lazy" decoding="async" {{ with $img.Width }}width="{{ . }}"{{ end }} {{ with $img.Height }}height="{{ . }}"{{ end }} {{ with $class }}class="{{ . }}"{{ end }} style="{{ with .Get "width" }}max-inline-size: min({{ . }}, 100%);{{ end }}{{ with .Get "style" }}{{ . }}{{ end }}" alt="{{ $alt }}" >
-  {{ else }}
-{{ errorf "Image not found: %s (%s)" $src .Position }}
-  {{ end -}}
+  {{- if $img -}}
+    {{/* The style is assembled first and marked safe. Interpolating two values
+         straight into a style attribute makes Go's contextual escaper give up
+         and emit ZgotmplZ, which silently dropped the sizing on 143 figures. */}}
+    {{- $decls := slice -}}
+    {{- with .Get "width" }}{{ $decls = $decls | append (printf "max-inline-size: min(%s, 100%%)" .) }}{{ end -}}
+    {{- with .Get "height" }}{{ $decls = $decls | append (printf "max-block-size: %s" .) }}{{ end -}}
+    {{- with .Get "style" }}{{ $decls = $decls | append (strings.TrimRight ";" .) }}{{ end -}}
+    {{- $style := delimit $decls "; " -}}
+<img src="{{ $img.Permalink }}" loading="lazy" decoding="async"
+     {{ with $img.Width }}width="{{ . }}"{{ end }} {{ with $img.Height }}height="{{ . }}"{{ end }}
+     {{ with $class }}class="{{ . }}"{{ end }}
+     {{ with $style }}style="{{ . | safeCSS }}"{{ end }} alt="{{ $alt }}">
+  {{- else -}}
+    {{ errorf "Image not found: %s (%s)" $src .Position }}
+  {{- end -}}
 {{- end -}}

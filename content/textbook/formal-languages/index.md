@@ -372,7 +372,7 @@ definition of what a formal language is, we need to talk a bit more about
 _sets_. Formal languages _are_ sets. So, we need to know what a set is before we
 can talk about formal languages.
 
-## Sets
+### Sets
 
 A **set** is the simplest kind of collection of objects. All that matters to a set
 is which things are in it and which things are not. If some object 
@@ -484,7 +484,7 @@ language.
 
 It's important to note that the alphabet can be _any_ set. So, e.g., 
 
-{{< excalifont display=true >}}Σ={0,1,2,3,4,5,6,7,8,9}{{< /excalifont >}}
+{{< excalifont display=true >}}Σ = {0,1,2,3,4,5,6,7,8,9}{{< /excalifont >}}
 
 is a perfectly fine alphabet. You can use it to define the language of all the _numerals_ (terms for natural numbers). 
 
@@ -567,79 +567,85 @@ things:
 
 An example of an alphabet for the language of propositional logic is:
 
-{{< img src="img/logic_alphabet.png" class="rounded mx-auto my-2 d-block inert-img img-fluid" width="400px">}}
+```
+Σ = { p₁, …, pₙ, ¬, ∧, ∨, →, ↔, (,) }
+```
 
-
-Here, {{< excalifont >}}p₁, …, pₙ{{< /excalifont >}} are the _(propositional)
-variables_, {{< img src="img/operators.png" class="inert-img" height="24px"
-style="vertical-align: middle;" >}} are the _operators_, and
-{{< excalifont >}}({{< /excalifont >}}  and {{< excalifont >}}){{< /excalifont >}} are the
-auxiliaries.
+Here, `p₁, …, pₙ` are the _(propositional) variables_, `¬, ∧, ∨, →, ↔` are the
+_operators_, and `(,)` are the auxiliaries.
 
 The operators have the following conventional names and readings:
 
-{{< img src="img/operators_reading.png" class="rounded mx-auto my-2 d-block inert-img img-fluid" width="400px">}}
+| **Operator**   | **Name**     | **Reading**        |
+| -------------- | ----------   | -------------      |
+|     `¬`        | Negation     | not …              |
+|     `∧`        | Conjunction  | … and …            |
+|     `∨`        | Disjunction  | … or …             |
+|     `→`        | Conditional  | if …, then …       |
+|     `↔`        | Bionditional | … if and only if … |
 
 
-The Kleene star of this set, {{< excalifont >}}Σ*{{< /excalifont >}},
-provides us with all the sequences that we can build using these symbols. {{< excalifont >}}Σ*{{< /excalifont >}}, contains meaningful expressions like:
+The Kleene star of this set, `Σ*`, provides us with all the sequences that we
+can build using these symbols. `Σ*`, contains meaningful expressions like:
 
-{{< img src="img/formula_example.png" class="rounded mx-auto my-2 d-block inert-img img-fluid" width="200px">}}
-
+```
+((p₁ ∧ p₃) → ¬p₂)
+```
 but also lots of expressions that are not well-formed for propositional logic, like:
 
-{{< img src="img/formula_counterexample.png" class="rounded mx-auto my-2 d-block inert-img img-fluid" width="200px">}}
+```
+)p₁¬∧((→
+```
 
+So, we should give an inductive definition for the language of propositional logic, which we will call `L`:
 
-So, we should give an inductive definition for the language of propositional logic, which we will call {{< excalifont >}}L{{< /excalifont >}}:
++ `p₁, ..., pₙ ϵ L` and
 
-+ {{< excalifont >}}p₁, ..., pₙ ϵ L{{< /excalifont >}} and
++ if `A ϵ L`, then `¬A ϵ L`, as well as
 
-+ if {{< excalifont >}}A ϵ L{{< /excalifont >}}, then {{< img
-src="img/negation_A.png" class="inert-img" height="18px" style="vertical-align: middle;" >}}, as well as
++ if `A, B ϵ L`, then `(A ∧ B), (A ∨ B), (A → B), (A ↔ B) ϵ L`.
 
-+ if {{< excalifont >}}A, B ϵ L{{< /excalifont >}}, then {{< img
-src="img/operator_AB.png" class="inert-img" height="24px" style="vertical-align: middle;" >}}.
+As before, crucially, we assume in addition that nothing else is in `L`, but
+from now on, we will leave this "closure condition" implicit. In other words,
+we assume that if something complies with the above statements, then it is
+indeed in `L`, but if it does not, then it is not. 
 
-As before, crucially, we assume in addition that nothing else is in {{<
-excalifont >}}L{{< /excalifont >}}, but from now on, we will leave this "closure
-condition" implicit. In other words, we assume that if something complies with
-the above statements, then it is indeed in 
-{{< excalifont >}}L{{< /excalifont >}}, but if it does not, then it is not. 
-
-We can now easily see that {{< img
-src="img/formula_example.png" class="inert-img" height="24px" style="vertical-align: middle;" >}} is a
+We can now easily see that `((p₁ ∧ p₃) → ¬p₂)` is a
 member of {{< excalifont >}}L{{< /excalifont >}}. To see this, we simply perform the construction:
 
-1. We know that {{< excalifont >}}p₁{{< /excalifont >}} and {{< excalifont >}}p₃{{< /excalifont >}} are formulas (by the first clause of the inductive definition).
-2. So, we know that {{< img
-src="img/formula_example_1.png" class="inert-img" height="24px" style="vertical-align: middle;" >}} is a formula (by the third clause and 1.).
-3. We know that {{< excalifont >}}p₂{{< /excalifont >}} is a formula (by the
-   first clause).
-4. So, we know that {{< img
-src="img/formula_example_2.png" class="inert-img" height="24px" style="vertical-align: middle;" >}} (by the second clause and 3.)
-5. So, we know that {{< img
-src="img/formula_example.png" class="inert-img" height="24px" style="vertical-align: middle;" >}} (by the third clause and 4. and 5.)
+1. We know that `p₁` and `p₃` are formulas (by the first clause of the inductive definition).
+2. So, we know that `(p₁ ∧ p₃)` is a formula (by the third clause and 1.).
+3. We know that `p₂` is a formula (by the first clause).
+4. So, we know that `¬p₂` (by the second clause and 3.)
+5. So, we know that `((p₁ ∧ p₃) → ¬p₂)` (by the third clause and 4. and 5.)
 
-But we can also see that {{< img
-src="img/formula_counterexample_2.png" class="inert-img" height="18px" style="vertical-align: middle;" >}} is _not_ a formula, since no rule ever
-allows for {{< img
-src="img/negation.png" class="inert-img" height="18px" style="vertical-align: middle;" >}} to occur in a formula without being followed by a formula.
+But we can also see that `)p₁¬∧((→` is _not_ a formula, since no rule ever
+allows for `→` to occur in a formula without being followed by a formula—but at
+the end of this expression, this is precisely what happens.
 
 In computer science and AI, there is a wide-spread notation that significantly
 simplifies the above rules: the so-called **Backus-Naur Form (BNF)**. In BNF,
-instead of all of the above, we can simply write the following to define the same language {{< excalifont >}}L{{< /excalifont >}}:
+instead of all of the above, we can simply write the following to define the same language `L`:
 
-{{< img src="img/bnf.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="400px">}}
+```
+A ::= pᵢ | ¬A | (A ∧ A) | (A ∨ A) | (A → A) | (A ↔ A) 
+```
 
-Here, we read the {{< excalifont >}}|{{< /excalifont >}} as an "or". And so this reads: a formula is either a
+Here, we read the `|` as an "or". And so this reads: a formula is either a
 propositional variable, or the negation of a formula, or the conjunction of two
 formulas, or ....
 
 You should know that BNFs sometimes take different forms. Here is an equivalent
 way of giving the BNF for the same language:
 
-{{< img src="img/bnf_alt.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="400px">}}
+```
+
+\<prop> ↦ p₁ | … | pₙ 
+
+\<fml> ↦ ¬\<fml> | (\<fml> ∘ \<fml> )
+
+∘ = ∧, ∨, →, ↔
+```
 
 but these are just notational differences. 
 
@@ -679,43 +685,54 @@ components. Later, when we'll look into how the semantic processing of formulas
 works—how we assign _meaning_ to them—this will become very important.
 
 To illustrate the idea of parsing, let's assume that our propositional language
-has just the three propositional variables {{< excalifont >}}p, q, r{{<
-/excalifont >}}. We can then understand the grammar of this language as the
-collection of the following eight rules:
+has just the three propositional variables `p, q, r`. We can then understand
+the grammar of this language as the collection of the following eight _rules_:
 
+```
+r₁ : A ⟹ p
 
-Essentially, this is a collection of eight rules:
+r₂ : A ⟹ q
 
-{{< img src="img/rewriting_rules.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="300px">}}
+r₃: A ⟹ r
 
-Rules like this are sometimes called _rewrite rules_. The intuition is that starting from the abstract 'start' symbol {{< excalifont >}}A{{< /excalifont >}}, the rules allow you to rewrite {{< excalifont >}}A{{< /excalifont >}}  to any formula in the language. So, any formula in the language can be _derived_ by applying a finite number of choices from these rules.
-For instance, to show that {{< img
-src="img/neg_p_and_q.png" class="inert-img" height="24px" style="vertical-align: middle;" >}} is a formula in this language, we start with {{< excalifont >}}A{{< /excalifont >}} and, using the rules above, we rewrite this {{< excalifont >}}A{{< /excalifont >}} until we arrive at this formula. We can do this in four steps:
+r₄ : A ⟹  ¬A
 
-{{< img src="img/rewriting_example.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="500px">}}
+r₅ : A ⟹  (A ∧ A)
+          
+r₆ : A ⟹  (A ∨ A)
+           
+r₇ : A ⟹  (A → A)
+           
+r₈ : A ⟹  (A ↔ A)
+
+```
+
+Rules like this are sometimes called _rewrite rules_. The intuition is that starting from the abstract 'start' symbol `A`, the rules allow you to rewrite `A` to any formula in the language. So, any formula in the language can be _derived_ by applying a finite number of choices from these rules.
+For instance, to show that ```(¬p ∧ q)``` is a formula in this language, we start with `A` and, using the rules above, we rewrite this `A` until we arrive at this formula. We can do this in four steps:
+
+```
+A ⟹   ¬A ⟹ ¬(A ∧ A) ⟹ ¬(p ∧ A) ⟹ ¬(p ∧ q)
+```
 
 To make this more insightful, we can turn this derivation into a so-called
 **parse tree**, which is a very useful representation of the syntax of a
 formula. A parse tree is a structure that is rooted in the abstract label {{<
 excalifont >}}A{{< /excalifont >}} that forms the base of our BNF definition of
 the language. You can construct a tree by just following the derivation above,
-step by step. Each application of a rule introduces a new branching, until there
-is nothing left to do anymore. Here is how to construct the parse tree for the
-derivation we gave for {{< img
-src="img/neg_p_and_q.png" class="inert-img" height="24px" style="vertical-align: middle;" >}}. We start with a node 
-{{< excalifont >}}A{{< /excalifont >}} and then look at the derivation to see which rule to
-apply first. This is rule 4, which maps {{< excalifont >}}A{{< /excalifont >}}
-to a new formula {{< img
-src="img/neg_A.png" class="inert-img" height="24px" style="vertical-align: middle;" >}}. For each new symbol we create a new branch:
+step by step. Each application of a rule introduces a new branching, until
+there is nothing left to do anymore. Here is how to construct the parse tree
+for the derivation we gave for ```(¬p ∧ q)```. We start with a node `A` and
+then look at the derivation to see which rule to apply first. This is rule 4,
+which maps `A` to a new formula `¬A`. For each new symbol we create a new
+branch:
 
 {{< img src="img/negation_tree.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="150px">}}
 
-
-Then, we apply rule 5 to the right-most branch. This rule rewrites this {{< excalifont >}}A{{< /excalifont >}} into `(A∧ A)`, which creates five more branches:
+Then, we apply rule 5 to the right-most branch. This rule rewrites this `A` into `(A∧ A)`, which creates five more branches:
 
 {{< img src="img/tree_negation_conjunction.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="250px">}}
 
-Then, we apply rule 1 to {{< excalifont >}}A{{< /excalifont >}} that is to the left of "`∧`":
+Then, we apply rule 1 to `A` that is to the left of "`∧`":
 
 {{< img src="img/tree_step_3.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="250px">}}
 
@@ -723,36 +740,24 @@ Finally, we apply rule 2:
 
 {{< img src="img/tree_step_4.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="250px">}}
 
-This now is the parse tree corresponding to our derivation of {{< img src="img/neg_p_and_q.png" class="inert-img" height="24px" style="vertical-align: middle;" >}}. The leaves of the tree spell out the formula, each branching is an
-application of a rule from the BNF grammar.
+This now is the parse tree corresponding to our derivation of `(¬p ∧ q)`. The
+leaves of the tree spell out the formula, each branching is an application of a
+rule from the BNF grammar.
 
 For a computer it is essential to be capable of parsing a complex formula in
 this way. This is because the parse of a formula gives us access to the logical
 form. Say, that the propositions in this logical language are meant to give a
-medical system crucial information about a patient. For instance, {{< excalifont >}}p, q{{< /excalifont >}}, and {{< excalifont >}}r{{< /excalifont >}} each correspond to the proposition that states that the patient has a
-certain symptom, call these symptoms 
-{{< excalifont >}}P{{< /excalifont >}},
-{{< excalifont >}}Q{{< /excalifont >}}, and
-{{< excalifont >}}R{{< /excalifont >}}
-, respectively. If we feed
-the system the formula 
-{{< img src="img/neg_p_or_q_and_r.png" class="inert-img" height="24px" style="vertical-align: middle;" >}}, 
-then we want the system to know
-that the patient is showing symptom `R`, but not showing 
-{{< excalifont >}}P{{< /excalifont >}} or
-{{< excalifont >}}Q{{< /excalifont >}}.
-It needs to
-figure out that the sub-proposition 
-{{< img src="img/p_or_q.png" class="inert-img" height="24px" style="vertical-align: middle;" >}}
-is negated, while the
-sub-proposition `r` is not. To do this, it needs to parse the formula correctly.
-From the parse, it is clear that the disjunction 
-{{< img src="img/p_or_q.png" class="inert-img" height="24px" style="vertical-align: middle;" >}} is negated, but
-that 
-{{< excalifont >}}r{{< /excalifont >}}
-escapes the effect of that negation. 
+medical system crucial information about a patient. For instance, `p, q`, and
+`r` each correspond to the proposition that states that the patient has a
+certain symptom. If we feed the system the formula `¬((p ∨ q) ∧ r)`, then we
+want the system to know that the patient is showing symptom `r`, but not
+showing `p` or `q`. It needs to figure out that the subproposition `(p ∨ q)`
+is negated, while the subproposition `r` is not. To do this, it needs to parse
+the formula correctly. From the parse, it is clear that the disjunction `p ∨ q`
+is negated, but that `r` escapes the effect of that negation. 
 
-Parsing allows us to distinguish seemingly similar, but crucially different logical forms like:
+Parsing allows us to distinguish seemingly similar, but crucially different
+logical forms like:
 
 {{< img src="img/negation_scope.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="500px">}}
 
