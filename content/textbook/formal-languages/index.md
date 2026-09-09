@@ -721,7 +721,7 @@ excalifont >}}A{{< /excalifont >}} that forms the base of our BNF definition of
 the language. You can construct a tree by just following the derivation above,
 step by step. Each application of a rule introduces a new branching, until
 there is nothing left to do anymore. Here is how to construct the parse tree
-for the derivation we gave for ```(¬p ∧ q)```. We start with a node `A` and
+for the derivation we gave for ```(¬p ∧ q)``` We start with a node `A` and
 then look at the derivation to see which rule to apply first. This is rule 4,
 which maps `A` to a new formula `¬A`. For each new symbol we create a new
 branch:
@@ -759,69 +759,66 @@ is negated, but that `r` escapes the effect of that negation.
 Parsing allows us to distinguish seemingly similar, but crucially different
 logical forms like:
 
-{{< img src="img/negation_scope.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="500px">}}
+```
+((¬p ∨ q) ∧ r)
+
+¬((p ∨ q) ∧ r)
+
+(¬(p ∨ q) ∧ r)
+```
 
 A fundamental insight of logical theory is that when a grammar is properly
 defined, we get what's known as **unique readability**. A formula has this
 property when the grammar only provides a single parse tree for it. This is the
-case for the examples we gave above. For instance, for 
-{{< img src="img/p_and_p_to_q.png" class="inert-img" height="24px" style="vertical-align: middle;" >}}, 
-we don't have a choice in what rule to apply first when
-we start our derivation. We cannot for instance apply rule 4 before we apply
-rule 7. If we did, we would end up with a different formula. We do have some
-choices later in the derivation. For instance, after applying rule 4, we could
-have chosen to apply rule 5 to the {{< excalifont >}}A{{< /excalifont >}} to the
-left of the 
-{{< img src="img/to.png" class="inert-img" height="24px" style="vertical-align: middle;" >}}. But that is not a choice that affects the structure.
-The parse tree would remain the same. In other words, all derivations of this
-formula lead to the same tree.
+case for the examples we gave above. For instance, for `((p ∧ (p → q)) → ¬p)`,
+we don't have a choice in what rule to apply first when we start our
+derivation. We cannot for instance apply rule 4 before we apply rule 7. If we
+did, we would end up with a different formula. We do have some choices later in
+the derivation. For instance, after applying rule 4, we could have chosen to
+apply rule 5 to the `A` to the left of the `→`. But that is not a choice that
+affects the structure. The parse tree would remain the same. In other words,
+all derivations of this formula lead to the same tree.
 
 Unique readability is of the utmost importance since if it fails, this means
 that formulas are **ambiguous**. Since we said that avoiding ambiguity is one of
 the motivations for the use of formal languages, this means that we need to take
 special care in designing our grammar. Take the following grammar, for example
 (note the absence of parentheses in the conjunction case):
-{{< img src="img/bad_bnf.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="250px">}}
+```
+A ::= p | q | ¬A | A ∧ A
+```
 In this language, we can derive the following formula:
-{{< img src="img/neg_p_and_q.png" class="inert-img" height="24px" style="vertical-align: middle;" >}}. 
+`¬p ∧ q`. 
 Crucially, though, we can derive this in two distinct ways, corresponding
 to the following two parse trees.
 
 {{< img src="img/two_derivations.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="500px">}}
 
 Imagine we are building an AI system to regulate a train crossing. There is a
-light stopping traffic from crossing the railway when it turns red and similarly
-there is a light indicating the train should stop and wait to cross the
-road until that light turns green. Let's say we have trained a neural network to
-regulate things as efficiently as possible, minimizing train delays and traffic
-jams. Unfortunately, the neural network is not flawless. We need a rule-based
-system to make sure the decisions made by the network are safe. To do this, we
-translate the network's decisions to statements in a propositional logic and
-compare these to rules that we want the system to obey. Let's say that 
-{{< excalifont >}}p{{< /excalifont >}}
-means that the cars have a green light and 
-{{< excalifont >}}q{{< /excalifont >}}
-means that the train has a green light.
-We now want a rule that says that 
-{{< excalifont >}}p{{< /excalifont >}} and 
-{{< excalifont >}}q{{< /excalifont >}}
-cannot be true at the same time. 
+light stopping traffic from crossing the railway when it turns red and
+similarly there is a light indicating the train should stop and wait to cross
+the road until that light turns green. Let's say we have trained a neural
+network to regulate things as efficiently as possible, minimizing train delays
+and traffic jams. Unfortunately, the neural network is not flawless. We need a
+rule-based system to make sure the decisions made by the network are safe. To
+do this, we translate the network's decisions to statements in a propositional
+logic and compare these to rules that we want the system to obey. Let's say
+that `p` means that the cars have a green light and `q` means that the train
+has a green light. We now want a rule that says that `p` and `q` cannot be true
+at the same time. 
 
-As the two parse trees above show us, we have no way of doing this. If we state the rule as 
-{{< img src="img/neg_p_and_q.png" class="inert-img" height="24px" style="vertical-align: middle;" >}}, 
-we end up with something that could be misunderstood. The two trees correspond
-to two distinct derivations, which correspond to two different structures for
-the same formula. In turn this means that the formula will have two
-interpretations. On the right is the interpretation that would be handy for this
-AI system: cars and trains do not have a green light at the same time. But if
-the system instead adopts the structure on the left, we could end up with a
-system that demands that trains have a green light while cars do not. Ambiguity
-might just have created a huge traffic jam! This shows that the BNF above is
-unsuitable as a formal language, since it fails the property of unique
-readability. All this is why we need to be careful about the auxiliaries,
-like 
-{{< img src="img/parentheses.png" class="inert-img" height="20px" style="vertical-align: middle;" >}}, 
-which ultimately guarantee unique readability. 
+As the two parse trees above show us, we have no way of doing this. If we state
+the rule as `¬p ∧ q`, we end up with something that could be misunderstood. The
+two trees correspond to two distinct derivations, which correspond to two
+different structures for the same formula. In turn this means that the formula
+will have two interpretations. On the right is the interpretation that would be
+handy for this AI system: cars and trains do not have a green light at the same
+time. But if the system instead adopts the structure on the left, we could end
+up with a system that demands that trains have a green light while cars do not.
+Ambiguity might just have created a huge traffic jam! This shows that the BNF
+above is unsuitable as a formal language, since it fails the property of unique
+readability. All this is why we need to be careful about the auxiliaries, like
+`(,)`, which ultimately guarantee unique readability. 
 
 Parsing is an incredibly important subject in the foundations and practice of
 programming, natural language processing (NLP), and elsewhere. We don't have
@@ -890,13 +887,23 @@ around this desk with two drawers:
 Suppose we have some information that we want to pass on to {{< logo >}}, who
 understands the language of propositional logic. Here are a few claims in
 natural language that we might want to convey, both in natural language and in
-the formal language of propositional logic, where we stipulate that {{<
-excalifont >}}LEFT{{< /excalifont >}} is a propositional variable, which states
-that the letter is in the left drawer, and {{< excalifont >}}RIGHT{{<
-/excalifont >}} is a propositional variable, which states that the letter is in
-the right drawer:
+the formal language of propositional logic, where we stipulate that `LEFT` is a
+propositional variable, which states that the letter is in the left drawer, and
+`RIGHT` is a propositional variable, which states that the letter is in the
+right drawer:
 
-{{< img src="img/guidelines.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="100%">}}
+|  Natural language          |  Formula representation       |
+|------------|---------|
+|  The letter isn't in the left drawer          |   `¬LEFT`      |
+|  It's not the case that the letter is in the right drawer         |   `¬RIGHT`      |
+| The letter is not in the left drawer, but also not in the right one | `(¬LEFT ∧ ¬RIGHT)` |
+| The letter is in the left or the right drawer | `(LEFT ∨ RIGHT)` |
+| The letter is either in the left or the right drawer | `((LEFT ∨ RIGHT) ∧ ¬(LEFT ∧ RIGHT))` |
+| The letter is neither in the left nor the right drawer | `(¬LEFT ∧ ¬RIGHT)` 
+|                                                         |`¬(LEFT ∨ RIGHT)` |
+| If the letter is in the left drawer, then it's not in the right drawer | `(LEFT → ¬RIGHT)` |
+| The letter is only in the left drawer, if it's not in the right one | `(¬RIGHT → LEFT)` |
+| The letter is in the left drawer just in case it's not in the right one | `(LEFT ↔ ¬RIGHT)`|
 
 These examples can be a helpful guideline, but it's important to keep in mind
 that formalization and knowledge representation is more of an **engineering
