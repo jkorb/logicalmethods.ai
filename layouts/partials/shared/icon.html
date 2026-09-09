@@ -1,0 +1,7 @@
+{{/* Hand-drawn icons, exported from Excalidraw. Ink follows currentColor. */}}
+{{- $name := .name | default "play" -}}
+{{- $res := resources.Get (printf "img/icons/%s.svg" $name) -}}
+{{- if not $res }}{{ errorf "icon: no such asset img/icons/%s.svg" $name }}{{ end -}}
+{{- $svg := $res.Content -}}
+{{- with .class }}{{ $svg = replace $svg `class="hand-icon"` (printf `class="hand-icon %s"` .) 1 }}{{ end -}}
+{{- $svg | safeHTML -}}

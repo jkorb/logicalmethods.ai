@@ -1,0 +1,14 @@
+{{/* Inline a mascot SVG so its strokes inherit currentColor and it works in dark mode.
+     Usage: {{ partial "shared/mascot.html" (dict "name" "reading" "class" "mascot-lg" "label" "…") }}
+     Pass label="" for purely decorative use (stays aria-hidden). */}}
+{{- $name := .name | default "mark" -}}
+{{- $res := resources.Get (printf "img/mascot/%s.svg" $name) -}}
+{{- if not $res }}{{ errorf "mascot: no such asset img/mascot/%s.svg" $name }}{{ end -}}
+{{- $svg := $res.Content -}}
+{{- $svg = replace $svg `role="img"` (printf `role="img" data-pose="%s"` $name) 1 -}}
+{{- with .class }}{{ $svg = replace $svg `class="mascot"` (printf `class="mascot %s"` .) 1 }}{{ end -}}
+{{- with .label -}}
+  {{- $svg = replace $svg `aria-hidden="true"` (printf `aria-label="%s"` .) 1 -}}
+  {{- $svg = replace $svg `role="img"` `role="img"` 1 -}}
+{{- end -}}
+{{- $svg | safeHTML -}}

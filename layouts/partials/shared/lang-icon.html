@@ -1,0 +1,4 @@
+{{/* A language icon, drawn in the course's own hand. */}}
+{{- $res := resources.Get (printf "img/lang/%s.svg" .name) -}}
+{{- if not $res }}{{ errorf "lang-icon: no such asset img/lang/%s.svg" .name }}{{ end -}}
+<span class="lang-icon-inline" role="img" aria-label="{{ .name }}">{{ $res.Content | safeHTML }}</span>
