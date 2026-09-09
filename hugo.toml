@@ -14,6 +14,9 @@ target = "static/katex/fonts"
 source = "assets/icons/font/fonts"
 target = "static/icons/font/fonts"
 [[module.mounts]]
+source = "assets/icons/subset"
+target = "static/icons/subset"
+[[module.mounts]]
 source = "assets/bootstrap/dist"
 target = "static/bootstrap/dist"
 [[module.mounts]]
