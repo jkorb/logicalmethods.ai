@@ -2,7 +2,7 @@
 <link href="{{ (resources.Get "css/textbook.css").Permalink }}" rel="stylesheet">
 {{- end -}}
 
-{{ define "style" }}:root { --chapter: "{{ math.Div .Weight 10 }}"; }{{ end }}
+{{ define "style" }}:root { --chapter: "{{ .Params.appendix | default (math.Div .Weight 10) }}"; }{{ end }}
 
 {{- define "main" -}}
 <div class="shell chapter-shell">

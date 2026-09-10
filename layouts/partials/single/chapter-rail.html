@@ -5,16 +5,16 @@
   <p class="chapter-rail__head">{{ $sec.Title }}</p>
   <ol>
     {{- range $sec.Pages.ByWeight }}
-      {{- $n := math.Div .Weight 10 -}}
+      {{- $n := .Params.appendix | default (math.Div .Weight 10) -}}
       <li>
         {{- if .Params.locked }}
           <span class="chapter-rail__item is-locked">
-            <span class="chapter-rail__num">{{ $n }}</span><span>{{ .Title }}</span>
+            <span class="chapter-rail__num">{{ $n }}</span><span>{{ if .Params.appendix }}Appendix: {{ end }}{{ .Title }}</span>
           </span>
         {{- else }}
           <a class="chapter-rail__item{{ if eq $cur . }} is-current{{ end }}" href="{{ .RelPermalink }}"
              {{ if eq $cur . }}aria-current="page"{{ end }}>
-            <span class="chapter-rail__num">{{ $n }}</span><span>{{ .Title }}</span>
+            <span class="chapter-rail__num">{{ $n }}</span><span>{{ if .Params.appendix }}Appendix: {{ end }}{{ .Title }}</span>
           </a>
         {{- end }}
       </li>

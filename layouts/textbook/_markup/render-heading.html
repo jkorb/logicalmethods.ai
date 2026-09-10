@@ -3,7 +3,7 @@
   {{/* The chapter's own h1 is the page h1 — the template no longer renders a
        second one. Chapter furniture is attached here so document order stays
        heading, then metadata, then contents. */}}
-  <p class="chapter__num">Chapter {{ math.Div $p.Weight 10 }}</p>
+  <p class="chapter__num">{{ with $p.Params.appendix }}Appendix {{ . }}{{ else }}Chapter {{ math.Div $p.Weight 10 }}{{ end }}</p>
   <h1 id="{{ .Anchor }}" class="chapter__name">
     {{- .Text | safeHTML -}}
     <a class="heading-anchor" href="#{{ .Anchor }}" aria-label="Link to this section"><i class="bi bi-link-45deg" aria-hidden="true"></i></a>

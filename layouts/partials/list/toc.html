@@ -6,18 +6,18 @@
       <li>
         {{- if .Params.locked }}
           <div class="chapter-card is-locked" aria-disabled="true">
-            <span class="chapter-card__num" aria-hidden="true">{{ printf "%02d" $n }}</span>
+            <span class="chapter-card__num" aria-hidden="true">{{ with .Params.appendix }}{{ . }}{{ else }}{{ printf "%02d" $n }}{{ end }}</span>
             <span class="chapter-card__body">
-              <span class="chapter-card__title">{{ .Title }}</span>
+              <span class="chapter-card__title">{{ if .Params.appendix }}Appendix: {{ end }}{{ .Title }}</span>
               {{ with .Param "teaser" }}<span class="chapter-card__teaser">{{ . }}</span>{{ end }}
             </span>
             <span class="badge-soon">Coming soon</span>
           </div>
         {{- else }}
           <a class="chapter-card" href="{{ .RelPermalink }}">
-            <span class="chapter-card__num" aria-hidden="true">{{ printf "%02d" $n }}</span>
+            <span class="chapter-card__num" aria-hidden="true">{{ with .Params.appendix }}{{ . }}{{ else }}{{ printf "%02d" $n }}{{ end }}</span>
             <span class="chapter-card__body">
-              <span class="chapter-card__title">{{ .Title }}</span>
+              <span class="chapter-card__title">{{ if .Params.appendix }}Appendix: {{ end }}{{ .Title }}</span>
               {{ with .Param "teaser" }}<span class="chapter-card__teaser">{{ . }}</span>{{ end }}
             </span>
             <i class="bi bi-arrow-right chapter-card__go" aria-hidden="true"></i>

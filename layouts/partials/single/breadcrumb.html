@@ -5,7 +5,7 @@
       {{- if ne .RelPermalink "/" }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end -}}
     {{- end }}
     <li><span aria-current="page">
-      {{- with .CurrentSection.Param "section-names" }}{{ . }} {{ math.Div $.Weight 10 }}{{ else }}{{ $.Title }}{{ end -}}
+      {{- if .Params.appendix }}Appendix {{ .Params.appendix }}: {{ .Title }}{{ else }}{{ with .CurrentSection.Param "section-names" }}{{ . }} {{ math.Div $.Weight 10 }}{{ else }}{{ $.Title }}{{ end }}{{ end -}}
     </span></li>
   </ol>
 </nav>
