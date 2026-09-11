@@ -96,7 +96,7 @@ AI technologies, and the relationship between logic as a discipline and AI.
 
 So, what is logic, then? Here is the standard definition:
 {{< callout type="definition" title="Logic (discipline)" >}}
-_{{< term "logic" "Logic" >}}_ is the discipline that aims to define and understand valid inference.
+{{< term "logic" "Logic" >}} is the discipline that aims to define and understand valid inference.
 {{< /callout >}}
 Let's talk about what that means.
 
@@ -150,9 +150,8 @@ There are many different notations. For example, in mathematics, we often use
 three dots $∴$ (read: "therefore") to indicate that an inference takes place,
 and we use commas to separate the premises, like so:
 
-{{< excalifont display=true >}}
-All humans are mortal, Socrates is human $∴$ Socrates is mortal
-{{< /excalifont >}}
+
+$$All humans are mortal, Socrates is human ∴ Socrates is mortal$$
 
 With an inference comes the expectation that the premises _support_ the
 conclusion, that the conclusion _follows from_ the premises. An inference where
@@ -530,10 +529,10 @@ Typically, the information in the {{< abbr title="knowledge base" >}}KB{{< /abbr
 For a toy example, suppose we put the following diagnostic rule into our
 expert system. We stipulate the rule for the example; it is not a medical claim:
 
-{{< excalifont display=true >}}
-If the patient has a runny nose, a sore throat, and a mild fever,<br>  
-then the patient likely has a common cold. 
-{{< /excalifont >}}
+$$
+<strong>If</strong> the patient has a runny nose, a sore throat, and a mild fever,<br>  
+ &nbsp;&nbsp;<strong>then</strong> the patient likely has a common cold. 
+$$
 
 If we present the system with the known fact that our patient does have a runny
 nose, a sore throat, and a mild fever, the inference engine could easily derive
