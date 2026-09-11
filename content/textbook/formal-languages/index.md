@@ -15,14 +15,14 @@ params:
 # Formal languages
 
 {{< img src="img/ai_language.png" class="rounded  float-start inert-img img-fluid m-2" width="350px">}}
-When we try to develop AI systems, we immediately run into an issue: computers,
-which are the basis for any modern AI technology, "speak" a different language
-than us—the proverbial 1's and 0's. 
+When we develop AI systems, we immediately run into an issue: computers, which
+are the basis for any modern AI technology, "speak" a different language than
+we do. They speak in the proverbial 1's and 0's. 
 
 That is, even if we understand what intelligent behavior is and we manage to
-break it down into instructions that a computer can, in principle, follow, we
-still need to express these instructions in an unambiguous language that the
-computer can "understand" (i.e. execute).
+break it down into instructions that a computer can, in principle, follow (two
+big _ifs_), we still need to express these instructions in an unambiguous
+language that the computer can _understand_ (i.e. execute).
 {{< img src="img/ai_understand.png" class="rounded  float-end inert-img img-fluid m-2" width="350px">}}
 We need to write *code*.
 

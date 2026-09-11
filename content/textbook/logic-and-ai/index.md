@@ -21,9 +21,9 @@ Logic and AI are intimately connected. In this chapter you'll learn how.
 - Explain how logical tools help check AI-generated reasoning.
 {{< /callout >}}
 
-By the way, meet `∀I` (read: "AI" --- The symbol `∀` is the so-called _universal quantifier_, which reads "for all". You'll learn about it soon enough 😃)!
+By the way, meet $∀I$ (read: "AI" --- The symbol $∀$ is the so-called _universal quantifier_, which reads "for all". You'll learn about it soon enough 😃)!
 
-{{< img src="img/ai_welcome.png" class="rounded mx-auto d-block inert-img img-fluid" width="200px">}}
+{{< img src="/img/drawings/la_ai_welcome.svg" class="rounded mx-auto d-block inert-img img-fluid" width="200px">}}
 
 It is our course mascot, and will feature in many of the examples and
 exercises.
@@ -51,8 +51,6 @@ and its various applications. This is the sense of AI in which
 [DeepSeek](https://en.wikipedia.org/wiki/DeepSeek_(chatbot)) are AIs. In this
 sense of the term, AI is not only possible but real: these technologies exist
 (obviously)!
-
-{{< img src="img/ai_is.png" class="rounded mx-auto d-block inert-img img-fluid" width="200px">}}
 
 There is also a sense of AI as
 [AI-engineering](https://en.wikipedia.org/wiki/Artificial_intelligence_engineering),
@@ -143,17 +141,17 @@ is 180°, we can conclude that the sum of all angles in this figure is 180°.
 By the way, here "we can conclude that" is the {{< term "conclusion-indicator" "conclusion indicator" >}}.
 
 Once we've identified the logical structure of an inference, we often represent
-it in a visually clear way. For example, `∀I` uses the so-called
+it in a visually clear way. For example, $∀I$ uses the so-called
 **{{< term "inference-line" "inference line" >}}** to indicate the inferential structure here:
 
-{{< img src="img/ai_inference.png" class="rounded mx-auto d-block inert-img img-fluid" width="600px">}}
+{{< img src="/img/drawings/la_ai_inference.svg" class="rounded mx-auto d-block inert-img img-fluid" width="600px">}}
 
 There are many different notations. For example, in mathematics, we often use
-three dots `∴` (read: "therefore") to indicate that an inference takes place,
+three dots $∴$ (read: "therefore") to indicate that an inference takes place,
 and we use commas to separate the premises, like so:
 
 {{< excalifont display=true >}}
-All humans are mortal, Socrates is human `∴` Socrates is mortal
+All humans are mortal, Socrates is human $∴$ Socrates is mortal
 {{< /excalifont >}}
 
 With an inference comes the expectation that the premises _support_ the
@@ -170,7 +168,7 @@ often associated with mathematical reasoning.
 But what about the second inference—the one about the swans? Even if all the
 swans we've observed were white, it's certainly possible that there's a
 non-white (robot?) swan—just that we haven't seen it yet. 
-{{< img src="img/robot_swan.png" class="rounded  float-start inert-img img-fluid" width="350px">}}
+{{< img src="/img/drawings/la_robot_swan.svg" class="rounded  float-start inert-img img-fluid" width="350px">}}
 So, the inference from all previously observed swans being white to all swans
 being white is *not* deductively valid—it is deductively *in*valid. 
 
@@ -182,7 +180,7 @@ take the marbles out one by one. We keep taking out marbles and they are all
 white. We've sampled the marbles randomly, we've taken them from the bottom of
 the bowl, from the top, and so on. They're always white.
 
-{{< img src="img/ai_induction.png" class="rounded float-end inert-img img-fluid" width="350px">}}
+{{< img src="/img/drawings/la_ai_induction.svg" class="rounded float-end inert-img img-fluid" width="350px">}}
 After some time of sampling—but before we've sampled them all—it would seem
 reasonable to conclude that *all* marbles are white. Not with certainty—a black
 marble might still be in there somewhere—but with reasonable *confidence*.
@@ -209,7 +207,7 @@ This is, in essence, what logicians study: different notions of "good"
 inference, ways in which the premises can support a conclusion. We've already
 seen a kind of classification emerging, which we'll study in more detail:
 
-{{< img src="img/classification.png" class="rounded mx-auto mb-2 d-block inert-img img-fluid" width="700px">}}
+{{< img src="/img/drawings/la_classification.svg" class="rounded mx-auto mb-2 d-block inert-img img-fluid" width="700px">}}
 
 Note that logicians (qua logicians)  *don't* study how people actually reason
 (psychology of reasoning), or how to use arguments to convince others
@@ -256,9 +254,9 @@ inference.
 
 In essence, logical systems are not all that different from the mathematical
 models used by physicists, for example. To illustrate, think about how a
-physicist would approach the question of how far `∀I` can throw its ball: 
+physicist would approach the question of how far $∀I$ can throw its ball:
 
-{{< img src="img/reality.png" class="rounded mx-auto mb-2 d-block inert-img img-fluid" width="500px">}}
+{{< img src="/img/drawings/la_reality.svg" class="rounded mx-auto mb-2 d-block inert-img img-fluid" width="500px">}}
 
 The physicist might use [Newtonian
 mechanics](https://en.wikipedia.org/wiki/Classical_mechanics) to predict how far
@@ -266,8 +264,7 @@ the ball will fly, but they wouldn't apply the laws of mechanics _directly_ to
 the real world. First, they'd build a mathematical model of the situation, which
 looks something like this: 
 
-{{< img src="img/model.png" class="rounded mx-auto mb-2 d-block inert-img img-fluid" width="500px">}}
-
+{{< img src="/img/drawings/la_model.svg" class="rounded mx-auto mb-2 d-block inert-img img-fluid" width="500px">}}
 
 In this model, the physicist would assign a mass to the ball, represent the
 ball as a point in 2-dimensional [Euclidean
@@ -352,8 +349,7 @@ exceptions to certain classical logical laws, such as that there's no true
 contradiction.
 
 As you'll see different systems are useful in different contexts. 
-{{< img src="img/mouse.png" class="rounded  float-end inert-img img-fluid" width="50px">}}
-
+{{< img src="/img/drawings/gimmick_mouse.svg" class="rounded  float-end inert-img img-fluid" width="50px">}}
 
 ## Logic and AI
 
@@ -382,7 +378,7 @@ is that we can think of the behavior of electrical circuits (specifically
 
 To illustrate the idea, take this simple circuit with two switches, A and B:
 
-{{< img src="img/shannon_circuit.png" class="rounded mx-auto mb-2 d-block inert-img img-fluid" width="500px">}}
+{{< img src="/img/drawings/la_shannon_circuit.svg" class="rounded mx-auto mb-2 d-block inert-img img-fluid" width="500px">}}
 
 If—and *only if*—both A and B are flipped, the light turns on. Shannon realized
 that this is effectively the operation of [logical
@@ -393,7 +389,7 @@ turning "on" to be 1 and it being "off" as 0. Then the behavior of the circuit
 is to return 1 just in case both A and B are 1 and 0 otherwise—which is just the
 operation of logical conjunction from Boolean logic. We'll study Boolean logic
 in detail later, but the idea is that a logical conjunction is true---value
-`1`---just in case both conjuncts are true, and false otherwise. Under the
+$1$---just in case both conjuncts are true, and false otherwise. Under the
 interpretation sketched here, this is precisely the behavior of our circuit!
 
 This relates logic to circuits, but what does this have to do with AI? One way
@@ -422,7 +418,7 @@ The success of this approach is not in small part due to [artificial neural
 networks (ANNs)](https://en.wikipedia.org/wiki/Neural_network), which are,
 effectively, statistical models of data, obtained through machine learning on an
 architecture that is inspired by the structure of the human brain. {{< img
-src="img/ai_ann.png" class="rounded  float-end inert-img img-fluid"
+src="/img/drawings/la_ai_ann.svg" class="rounded  float-end inert-img img-fluid"
 width="250px">}} Today, **statistics-based AI** is, by far, the dominant paradigm in
 AI research. This is the approach that led to the recent developments in {{<
 abbr title="generative AI" >}}GenAI{{< /abbr >}}.
@@ -444,7 +440,7 @@ models of intelligent behavior. So, by our definition, logical systems are part
 of AI. This makes logic part of AI and the results of logical research _qua_
 logical research relevant to AI research.
 
-{{< img src="img/logic_math.png" class="rounded  float-start inert-img img-fluid m-3" width="400px">}}
+{{< img src="/img/drawings/la_logic_math.svg" class="rounded  float-start inert-img img-fluid m-3" width="400px">}}
 The relevance of logic in this sense is mainly
 **foundational**, meaning that logic contributes to the understanding of (one
 of) the basic concepts of AI. A part of logical theory that's particularly
@@ -499,7 +495,6 @@ your field _before_ embarking on ground breaking research. Otherwise, one runs
 the risk of fundamental mistakes, misunderstandings, or simply hitting the
 limits of what's in principle possible---which would be a huge waste of effort.
 
-
 ### Methodological
 
 Historically, perhaps the most lasting influence that logic has had on the
@@ -522,7 +517,7 @@ diagnosis, and [XCon](https://en.wikipedia.org/wiki/Xcon), which configured DEC
 VAX computer systems. Today, this task roughly corresponds to picking the right
 components for your new gaming PC build.
 
-{{< img src="img/expert_system.png" class="rounded  float-start inert-img img-fluid mx-4" width="550px">}}
+{{< img src="/img/drawings/la_expert_system.svg" class="rounded  float-start inert-img img-fluid mx-4" width="550px">}}
 An expert system (typically) has two components: 
 
 + a _{{< term "knowledge-base" "knowledge base (KB)" >}}_, which stores the expert information and known facts,
@@ -547,7 +542,7 @@ patient doesn't have a fever, this rule no longer supplies that prediction.
 That doesn't establish that the patient has no cold; it just means we can't
 use this rule to reach the conclusion.
 
-{{< img src="img/ai_sick.png" class="rounded mx-auto d-block inert-img img-fluid" width="700px">}}
+{{< img src="/img/drawings/la_ai_sick.svg" class="rounded mx-auto d-block inert-img img-fluid" width="700px">}}
 
 One major advantage of expert systems—especially in hindsight, compared to
 modern statistics-based systems—is that their decisions, predictions,
@@ -585,7 +580,7 @@ featherless biped, much to the approval of everybody in the agora at the time
 (which is where the cool kids hung out). Along came history's first punk,
 [Diogenes](https://en.wikipedia.org/wiki/Diogenes), and presented Plato with a
 plucked chicken, remarking "Behold, Plato's human."
-{{< img src="img/featherless_biped.png" class="rounded  float-end inert-img img-fluid m-3" width="500px">}}
+{{< img src="/img/drawings/la_featherless_biped.svg" class="rounded  float-end inert-img img-fluid m-3" width="500px">}}
 
 This seemingly unrelated anecdote from the history of philosophy illustrates a
 very relevant problem for logic-based AI systems: identifying the precise
@@ -677,7 +672,7 @@ the paradigm shift from logic-based to statistics-based systems. The comparison
 between Deep Blue and AlphaGo is instructive, but the success of
 statistics-based AI really is "across the board": image recognition,
 translation, text-generation, …. In fact, statistics-based methods are at the
-heart of the recent developments of {{< abbr title="generative AI" >}}GenAI{{< /abbr >}}.{{< img src="img/text_generation.png" class="rounded  float-start inert-img img-fluid m-3" width="400px">}}
+heart of the recent developments of {{< abbr title="generative AI" >}}GenAI{{< /abbr >}}.{{< img src="/img/drawings/la_text_generation.svg" class="rounded  float-start inert-img img-fluid m-3" width="400px">}}
 
 The statistics-based approach uses [machine
 learning](https://en.wikipedia.org/wiki/Machine_learning) to train its systems.
@@ -702,7 +697,7 @@ part because of the way the machine learning algorithms work.
 While statistics-based methods are, at the moment, the state of the art, logic
 still plays an important role in AI research. Logic-based research in AI has
 sparked the development of extremely sharp and powerful _tools_ for different
-tasks in AI development, which are still in use today.{{< img src="img/logical_tools.png" class="rounded  float-end inert-img img-fluid m-3" width="150px">}}
+tasks in AI development, which are still in use today.{{< img src="/img/drawings/ai_tools.svg" class="rounded  float-end inert-img img-fluid m-3" width="150px">}}
 
 One big area where this is the case is what's known as 
 **{{< term "knowledge-representation-and-reasoning" "Knowledge Representation and Reasoning (KRR)" >}}**.  While subsymbolic systems, especially
@@ -783,7 +778,7 @@ Here are some examples:
  | ---                                           | ---                                          |
  | Recognizing a face                            | Counting the A's in a text                   |
  | Telling if one object is taller than another  | Solving a logic puzzle                       |
- | Performing a familiar calculation, like `5+7` | Working out `432×441`                        |
+ | Performing a familiar calculation, like $5+7$ | Working out $432×441$                        |
  | Recalling an answer from memory               | Checking the answer against a written record |
  | ⋮                                             | ⋮                                            |
 
@@ -969,7 +964,6 @@ For this chapter:
 
 The Open Logic links lead to freely downloadable PDFs. For AIMA, the
 link leads to the publisher; the chapter numbers refer to the fourth edition.
-
 
 **Notes:**
 
