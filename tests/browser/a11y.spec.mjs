@@ -14,8 +14,8 @@ test.beforeEach(async ({ page }) => {
   });
 });
 
-const ROUTES = ['/', '/about/', '/textbook/', '/textbook/boolean/', '/textbook/FOL/',
-                '/slides/', '/slides/logic-and-ai/', '/exercises/', '/exercises/logic-and-ai/',
+const ROUTES = ['/', '/about/', '/textbook/', '/textbook/boolean/', '/textbook/FOL/', '/textbook/formal-languages/', '/textbook/tools/', '/assignments/assignment_3/',
+                '/slides/', '/slides/logic-and-ai/', '/exercises/', '/exercises/preamble/', '/exercises/logic-and-ai/',
                 '/assignments/'];
 
 const TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'];

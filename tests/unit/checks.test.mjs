@@ -50,6 +50,8 @@ test('Hugo fails on missing image and chapter shortcodes with source locations',
   t.after(() => rm(root, { recursive: true, force: true }));
   await mkdir(path.join(root, 'content'), { recursive: true });
   await mkdir(path.join(root, 'layouts/shortcodes'), { recursive: true });
+  await mkdir(path.join(root, 'layouts/partials/figures'), { recursive: true });
+  await copyFile('layouts/partials/figures/image.html', path.join(root, 'layouts/partials/figures/image.html'));
   await writeFile(path.join(root, 'hugo.toml'), "baseURL = 'https://example.test/'\n");
   await writeFile(path.join(root, 'layouts/index.html'), '{{ .Content }}');
   for (const name of ['img', 'chapter_ref']) await copyFile(`layouts/shortcodes/${name}.html`, path.join(root, `layouts/shortcodes/${name}.html`));

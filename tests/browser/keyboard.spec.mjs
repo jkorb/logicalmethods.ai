@@ -22,7 +22,7 @@ async function walk(page, limit = 400) {
       if (!el || el === document.body) return null;
       const cs = getComputedStyle(el);
       return {
-        name: (el.getAttribute('aria-label') || el.innerText || el.value || '').replace(/\s+/g, ' ').trim(),
+        name: (el.getAttribute('aria-label') || [...(el.labels || [])].map(label => label.innerText).join(' ') || el.innerText || el.value || '').replace(/\s+/g, ' ').trim(),
         ring: cs.outlineStyle !== 'none' && parseFloat(cs.outlineWidth) > 0
       };
     });
@@ -33,7 +33,7 @@ async function walk(page, limit = 400) {
 }
 
 test('the first stop is the skip link, and it targets main', async ({ page }) => {
-  await page.goto('/textbook/boolean/');
+  await page.goto('/textbook/formal-languages/');
   await page.keyboard.press('Tab');
   const link = page.locator(':focus');
   await expect(link).toHaveText(/skip to content/i);
@@ -42,14 +42,14 @@ test('the first stop is the skip link, and it targets main', async ({ page }) =>
 });
 
 test('chapter navigation is reachable by keyboard', async ({ page }) => {
-  await page.goto('/textbook/boolean/');
+  await page.goto('/textbook/formal-languages/');
   const names = (await walk(page)).map(s => s.name.toLowerCase()).join(' | ');
   expect(names, 'previous-chapter link never received focus').toContain('previous');
   expect(names, 'next-chapter link never received focus').toContain('next');
 });
 
 test('every tab stop has a name and a visible focus indicator', async ({ page }) => {
-  await page.goto('/textbook/boolean/');
+  await page.goto('/textbook/formal-languages/');
   const stops = await walk(page);
   expect(stops.length).toBeGreaterThan(10);
   expect(stops.filter(s => !s.name)).toEqual([]);
@@ -57,7 +57,41 @@ test('every tab stop has a name and a visible focus indicator', async ({ page })
 });
 
 test('prev and next point at the neighboring chapters, in order', async ({ page }) => {
-  await page.goto('/textbook/boolean/');            // chapter 4
-  await expect(page.locator('.page-nav__link--prev')).toHaveAttribute('href', '/textbook/valid-inference/');
-  await expect(page.locator('.page-nav__link--next')).toHaveAttribute('href', '/textbook/sat/');
+  await page.goto('/textbook/formal-languages/');            // chapter 2
+  await expect(page.locator('.page-nav__link--prev')).toHaveAttribute('href', '/textbook/logic-and-ai/');
+  await expect(page.locator('.page-nav__link--next')).toHaveAttribute('href', '/textbook/notation/');
+});
+
+/* Two focus treatments, on purpose: buttons and links can land on any ground,
+   so they keep the two-tone ring; a text field always sits on paper or a card,
+   where the yellow halo swelled the box and read as an error state. */
+test('text fields take the blue ring, and everything else the two-tone one', async ({ page }) => {
+  const ring = el => {
+    const style = getComputedStyle(el);
+    return { colour: style.outlineColor, width: parseFloat(style.outlineWidth), halo: style.boxShadow };
+  };
+  const blue = [];
+  for (const [route, field] of [['/exercises/preamble/', '[data-game-answer]'],
+                                ['/textbook/formal-languages/', '[data-builder-atom]'],
+                                ['/textbook/formal-languages/', '.logic-app__input'],
+                                ['/textbook/glossary/', '#glossary-search']]) {
+    await page.goto(route);
+    const input = page.locator(field);
+    await input.scrollIntoViewIfNeeded();
+    if (await input.isDisabled()) await page.locator('.logic-app__edit').click();   // the parser's field
+    await input.focus();
+    blue.push({ field, ...await input.evaluate(ring) });
+  }
+  for (const got of blue) {
+    expect(got.halo, `${got.field} still has a halo`).toBe('none');
+    expect(got.width, `${got.field} ring is too thin`).toBeGreaterThanOrEqual(3);
+    // --blue-ink, in whichever theme is active
+    expect(['rgb(18, 99, 174)', 'rgb(78, 155, 224)'], `${got.field} is not blue`).toContain(got.colour);
+  }
+
+  await page.goto('/textbook/formal-languages/');
+  const button = page.locator('[data-logic-app="parser"]').getByRole('button', { name: 'Last step', exact: true });
+  await button.scrollIntoViewIfNeeded();
+  await button.focus();
+  expect((await button.evaluate(ring)).halo, 'a button lost its two-tone ring').not.toBe('none');
 });

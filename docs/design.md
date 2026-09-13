@@ -48,16 +48,21 @@ languages, so they differ in underline style as well as hue (solid vs dotted).
 
 ### Typography
 
-All three faces are self-hosted and openly licensed. **The site makes no
-third-party requests** — no font CDN, no analytics, no embeds beyond the slide
-decks. Keep it that way; it is a stated project principle and the About page
-claims it.
+Every face is self-hosted and openly licensed — Merriweather too, which the
+Dutch pages fetched from Google Fonts until September 2026 and now comes from
+`assets/fonts/Merriweather/`. **Opening a page contacts nobody but this
+domain**: no font CDN, no analytics, and the slide decks stay a button until
+the reader presses it. Keep it that way. It is a stated project principle, the
+About page and the footer claim it, and
+[`tests/browser/privacy.spec.mjs`](../tests/browser/privacy.spec.mjs) fails the
+build if a page reaches off-site on load.
 
  | Role                         | Face                  | License                         |
  | ---                          | ---                   | ---                             |
  | Prose                        | Atkinson Hyperlegible | SIL OFL 1.1 (Braille Institute) |
- | Headings, notation, the mark | Excalifont            | SIL OFL 1.1 (Excalidraw)        |
- | Code, eyebrows, metadata     | Comic Shanns          | MIT                             |
+ | Headings, highlights, the mark | Excalifont            | SIL OFL 1.1 (Excalidraw)        |
+ | Mathematics, formal notation, metadata | Comic Shanns Logic | MIT |
+ | Source code | JetBrains Mono | SIL OFL 1.1 |
 
 Atkinson Hyperlegible was drawn for low vision and separates characters that
 matter in a logic course — `I`/`l`/`1`, `O`/`0`. Licenses live beside the fonts in
@@ -165,6 +170,9 @@ markup are both delivered to the browser. Do not describe it as security.
 
 ## Render hooks
 
+Reference pages marked with `params.appendix` use “Appendix” and a letter in
+place of numbered chapter labels. They retain their paths and weight ordering.
+
 Chapter contents list main sections (`h2`) only. Hugo's
 `markup.tableOfContents` settings omit subsection links; subsection headings and
 their anchors remain available in the chapter.
@@ -189,9 +197,9 @@ Four kinds of text appear in this book, and each has one face. The rule is by
  | Role                 | What it is                                                            | Face                   | How it is written                  |
  | ---                  | ---                                                                   | ---                    | ---                                |
  | Prose                | the book's own voice                                                  | Atkinson Hyperlegible  | plain Markdown                     |
- | Display and headings | titles, whiteboard asides, emphasis                                   | Excalifont             | `$…$`, `$$…$$`, headings           |
- | **Object language**  | expressions *of* the formal languages being studied, symbols included | **Comic Shanns Logic** | backticks, `%…%`, `!!…!!`, `~!…!~` |
- | Source code          | Python, SQL, Lean                                                     | JetBrains Mono         | fenced code blocks                 |
+ | Display and headings | titles, whiteboard asides, emphasis                                   | Excalifont             | headings, `excalifont` shortcode           |
+ | **Mathematical notation** | formulas, sets, alphabets, metavariables and expressions of formal languages | **Comic Shanns Logic** | `$…$`, `$$…$$` |
+ | Source code          | Python, SQL, Lean                                                     | JetBrains Mono         | backticks and fenced code blocks   |
 
 ### Why the object language is one face
 
@@ -203,9 +211,10 @@ to put the symbols **into the font** rather than to keep composing formulas from
 two sources.
 
 `assets/fonts/ComicShanns/comic-shanns-logic.woff2` is Comic Shanns with twenty
-logic glyphs added: `∀ ∃ ∧ ∨ ↔ ⟹ ⊨ ⊭ ⊢ ⊬ ⊆ ∈ ∉ ∩ ∪ ⟦ ⟧ ∴ ⊥`. The outlines are
-the course's own hand-drawn symbols, traced from the original artwork, so they
-carry the same stroke and slant as the letters beside them. Comic Shanns is MIT
+logic glyphs added: `∀ ∃ ∧ ∨ ↔ ⟹ ⊨ ⊭ ⊢ ⊬ ⊆ ∈ ∉ ∩ ∪ ⟦ ⟧ ∴ ⊥`. Most added outlines come from the course's own hand-drawn symbols. The
+biconditional `↔` combines the native `→` with its reflection, keeping the
+conditional's stroke and height, with a slightly longer shaft between the heads. It remains the single Unicode character
+U+2194, rather than two adjacent arrows. Comic Shanns is MIT
 licensed, which permits this; the notice travels with the font.
 
 Rebuild it with:
@@ -235,8 +244,9 @@ notation with no Unicode character, so it stays an inline SVG via
 Figures are Excalidraw drawings exported to SVG (`scripts/excalidraw-svg.mjs`).
 The `img` shortcode prefers an `.svg` sibling and **inlines** it rather than
 linking it, so the figure uses the page's own fonts — an `<img>` cannot — and no
-copy of Excalifont has to be embedded per file. Excalidraw exports carry no ids
-or internal references, so several on one page cannot collide.
+copy of Excalifont has to be embedded per file. Excalidraw exports carry no IDs
+or internal references in some older exports; newer exports can contain them.
+The shared `drawing` shortcode prefixes these IDs per use to prevent collisions.
 
 A diagram's colours assume a light ground: ink arrows, pale fills. Rather than
 distort them in dark mode, the figure sits on its own sheet of paper — the same
@@ -298,3 +308,111 @@ therefore not covered by `tests/browser/a11y.spec.mjs`.
 Reuse a token; put section-specific rules in that section's stylesheet; keep shared
 page furniture in `pages.css`. Then run `npm test` — the accessibility, keyboard and
 reflow suites will catch a regression that a visual check will not.
+
+## Glossary interaction
+
+Glossary terms use a bold dotted-underlined link, with a shared definition preview
+on hover or keyboard focus. The preview stays within the viewport, can itself be
+hovered, and closes on Escape. Clicking opens the anchored glossary entry in a
+new tab, as announced in the link's accessible name. Native link titles provide
+a fallback when JavaScript is unavailable.
+
+The glossary search filters the existing entries and announces the result count.
+It is shown only when JavaScript is available; the full glossary is readable
+without it. Styles are in `assets/css/glossary.css` and interaction code is in
+`assets/js/glossary.js`, both loaded by the shared page shell.
+
+
+### Focus
+
+Two treatments, and the split is deliberate. Buttons, links and other controls
+can end up on any ground, so they take the two-tone ring — a dark outline
+inside a yellow halo — which survives whatever is behind it. A text field always
+sits on paper or on a raised card, so it takes a single blue ring
+(`--blue-ink`, 5.9:1 on paper and 5.6:1 on a dark card): the halo swelled the
+field's own box and read as an error state. `tests/browser/keyboard.spec.mjs`
+checks both, and that every tab stop still has some visible indicator.
+
+### Code blocks
+
+A fenced block is wrapped by `layouts/_default/_markup/render-codeblock.html`
+in a `.code-block` shell that exists only to hold the language badge: Chroma
+supplies the `.highlight` box itself (see `wrapperClass` in `hugo.toml`), so the
+shell must not carry that class too. Nesting them gave a double border, a stray
+margin, a badge the inner box painted over, and `font-size: .92em` applied
+twice. The shell does not scroll, so the badge stays put while long lines move
+under it, and it carries the block's own ground so they are masked cleanly.
+Vertical room for the badge is made on the scroller, the one box both Chroma
+shapes share. `tests/browser/site.spec.mjs` fails if a block scrolls sideways
+at a desktop width or if the badge covers the first line.
+
+### Chapter apps
+
+The `logic-app` shortcode places interactive tools in a bordered paper panel.
+App CSS is loaded only on pages containing that shortcode, uses the site's
+color and font tokens, and stays scoped to `.logic-app`. Formula inputs and
+SVG tree labels use `--font-formal`. A dashed outline marks the current tree
+node; color is supplementary. Trees scroll inside their panel when they grow,
+with a keyboard-focusable scroll region and a nested text equivalent.
+Navigation uses named native buttons, and explanations use a polite live region.
+
+
+Parser panels center the input and tree. Native icon navigation sits above the
+step explanation, followed by the growing tree, so the controls stay in place.
+The explanation uses a two-column definition list for “Current part” and “Next
+step”, followed by prose. The formula input keeps its accessible name without
+a visible label. During parsing it is read-only, with a muted paper background;
+the inline pencil enables editing. An accessibility icon in the panel's lower
+right switches to the text tree. A separate checkbox switches between operators
+and full formulas at nodes, without changing the parsing history.
+
+Static `syntax-tree` figures use nested HTML lists and CSS edges, with the
+same formal font and theme tokens. Their stylesheet is page-local and scoped
+to `.syntax-tree` and `.ast-comparison`. They require no JavaScript.
+
+
+Excalifont remains the heading and highlight face. New mathematical notation,
+including sets and metavariables, uses Comic Shanns Logic via dollar math.
+Backticks are reserved for literal source code in JetBrains Mono.
+Display notation preserves internal line breaks but trims the opening and
+closing delimiter newlines. It uses a regular weight, a size close to the prose and
+compact margins; source-code fences still use JetBrains Mono. Use spaces around binary operators, after commas and around `=` and `:`;
+keep negation and brackets attached to their operands.
+
+Stacked inferences use `inference layout="stacked"`: centered premises,
+a solid horizontal rule, and the conclusion below, all in the formal font.
+Blockquotes retain their left rule but discard their first and last children's
+outer margins, so the rule ends with the quoted text.
+
+Book images use `.book-figure`, with floats and dimensions on its wrapper.
+The original ink and fills sit on `--figure-paper` in dark mode. Nested set
+figures use the formal font for braces, commas and text and can include drawings
+as members. Larger sets fit to the column, with scrolling as a fallback.
+
+
+Formal displays (`.math-display`) and illustrated sets (`.set-figure`) share the
+same type size, regular weight and vertical rhythm. Picture members are 1.6em
+high and braces 1.45em, relative to the surrounding set text. An illustrated
+set should read as an expression, rather than as a large diagram.
+
+`assets/js/display-math.js` measures each display at its normal font size and
+reduces that size only when its widest line exceeds the column. It refits after
+fonts load, column resizing and hidden exercise solutions becoming visible,
+and restores the normal size when space permits. It never changes source-code
+blocks or formula text. The scroll container remains a fallback without
+JavaScript or for legacy fixed-size images. Authors should still break very
+long derivations into meaningful lines rather than rely on extreme shrinking.
+
+Example sentences use the `sentence` shortcode: a quiet sunken-paper surface,
+Comic Shanns Logic, no quote bar, label or icon. Genuine quotations remain
+blockquotes; definitions and theorems retain their named callouts.
+
+The `img` shortcode and the set renderer share `figures/image.html`. Bundle and
+shared assets get the same wrapper, spacing, width clamp and dark paper; SVGs
+and remaining PNGs do not have separate layout rules. See the authoring guide
+for export and migration instructions.
+
+The Notation appendix uses one reference table with left-aligned readings.
+LaTeX commands have their own cheat sheet. Its `.notation-reference` wrapper keeps a prose-measure minimum
+inside the shared table scroll region, so phone layouts scroll horizontally
+instead of squeezing explanations into narrow columns.

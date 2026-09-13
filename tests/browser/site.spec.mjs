@@ -81,17 +81,104 @@ test('custom notation renders with the loaded faces', async ({ page }) => {
   expect(await page.locator('img[src*="/img/forall"], img[src*="/img/conjunction"]').count()).toBe(0);
 });
 
-test('KaTeX renders on the LaTeX exercise, and is not loaded anywhere else', async ({ page }) => {
-  await page.goto('/exercises/preamble/');
-  await page.evaluate(() => document.fonts.ready);
-  await expect(page.locator('.katex').first()).toBeVisible();
-  await expect(page.locator('.katex-error')).toHaveCount(0);
-
-  // Every other page strips $ before Markdown runs, so KaTeX would render
-  // nothing there; it must not be shipped.
+test('preamble and chapters use Unicode math without KaTeX', async ({ page }) => {
   const katexRequests = [];
   page.on('request', r => { if (/katex/i.test(r.url())) katexRequests.push(r.url()); });
-  await page.goto('/textbook/boolean/');
-  await page.evaluate(() => document.fonts.ready);
+  for (const path of ['/exercises/preamble/', '/textbook/formal-languages/']) {
+    await page.goto(path);
+    await page.evaluate(() => document.fonts.ready);
+    await expect(page.locator('.math-inline').first()).toBeVisible();
+    expect(await page.locator('.math-inline').first().evaluate(el => getComputedStyle(el).fontFamily)).toContain('Comic');
+    await expect(page.locator('.katex')).toHaveCount(0);
+  }
   expect(katexRequests).toEqual([]);
+});
+
+/* The boxed chapter contents is only useful while it is on screen, so a square
+   in the corner carries the same list down the page. */
+test('the chapter contents follows the reader once its box scrolls away', async ({ page }) => {
+  await page.goto('/textbook/boolean/');
+  const box = page.locator('.chapter .on-this-page');
+  const mini = page.locator('.toc-mini');
+  const toggle = page.getByRole('button', { name: 'Chapter contents' });
+  const panel = page.locator('#toc-mini-panel');
+
+  const sections = await box.locator('a').evaluateAll(links => links.map(a => a.getAttribute('href')));
+  expect(sections.length).toBeGreaterThan(1);
+  await expect(mini).toBeHidden();          // the box itself is still in view
+
+  // put a section heading just below the header, so it is the one being read
+  await page.evaluate(() => window.scrollTo(0,
+    document.getElementById('models').getBoundingClientRect().top + window.scrollY - 100));
+  await expect(toggle).toBeVisible();
+  await expect(panel).toBeHidden();
+
+  await toggle.click();
+  await expect(panel).toBeVisible();
+  expect(await panel.locator('a').evaluateAll(links => links.map(a => a.getAttribute('href'))))
+    .toEqual(sections);
+  await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+  // the copy tracks the section being read, exactly as the box does
+  await expect(box.getByRole('link', { name: 'Models' })).toHaveAttribute('aria-current', 'true');
+  await expect(panel.getByRole('link', { name: 'Models' })).toHaveAttribute('aria-current', 'true');
+
+  await page.keyboard.press('Escape');
+  await expect(panel).toBeHidden();
+  await expect(toggle).toBeFocused();
+
+  await toggle.click();
+  await panel.getByRole('link').first().click();
+  expect(new URL(page.url()).hash).toBe(sections[0]);
+  await expect(panel).toBeHidden();         // the jump takes over from here
+
+  // scrolling back to the box makes the copy redundant again
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await expect(mini).toBeHidden();
+});
+
+/* A code block that scrolls sideways hides the ends of lines, and the language
+   badge in the corner must not push them there. This caught a real regression:
+   un-nesting the wrapper stopped .highlight's font-size applying twice, and the
+   longest line stopped fitting. */
+test('code blocks fit their column, and the language badge is clear of them', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  // Revised sources obey the current code layout convention; legacy chapters
+  // retain their existing code and are covered by the page reflow checks.
+  const routes = ['/textbook/logic-and-ai/', '/textbook/formal-languages/',
+                  '/exercises/formal-languages/', '/assignments/assignment_3/'];
+  const scrolling = [];
+  let badges = 0;
+  for (const route of routes) {
+    await page.goto(route);
+    await page.evaluate(() => document.fonts.ready);
+    scrolling.push(...await page.evaluate(here =>
+      [...document.querySelectorAll('.highlight')]
+        .filter(el => el.getBoundingClientRect().height > 0)
+        .map((el, i) => ({ where: `${here} block ${i}`, over: Math.round(el.scrollWidth - el.clientWidth) }))
+        .filter(row => row.over > 1)
+        .map(row => `${row.where} overflows by ${row.over}px`), route));
+
+    // the badge sits inside the block and above the first glyph, uncropped
+    badges += await page.evaluate(() => {
+      // a solution panel starts collapsed, and a hidden block has no geometry
+      const shells = [...document.querySelectorAll('.code-block.has-lang-icon')]
+        .filter(shell => shell.getBoundingClientRect().height > 0);
+      for (const shell of shells) {
+        const badge = shell.querySelector('.lang-badge').getBoundingClientRect();
+        const box = shell.querySelector(':scope > .highlight').getBoundingClientRect();
+        if (badge.top < box.top - 1 || badge.right > box.right + 1) throw new Error('badge outside the block');
+        if (badge.width < 8 || badge.height < 8) throw new Error('badge collapsed');
+        /* the padding box of <pre> starts above the text, so measure the text —
+           walking the code box, not the shell, whose badge holds an SVG title */
+        const walker = document.createTreeWalker(shell.querySelector(':scope > .highlight'), NodeFilter.SHOW_TEXT);
+        let node; while ((node = walker.nextNode())) if (node.textContent.trim()) break;
+        const range = document.createRange();
+        range.selectNode(node);
+        if (badge.bottom > range.getBoundingClientRect().top) throw new Error('badge overlaps the code');
+      }
+      return shells.length;
+    });
+  }
+  expect(scrolling).toEqual([]);
+  expect(badges, 'no language badges were checked').toBeGreaterThan(0);
 });

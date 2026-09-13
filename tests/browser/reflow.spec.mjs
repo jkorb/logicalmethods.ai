@@ -15,8 +15,8 @@ test.beforeEach(async ({ page }) => {
   });
 });
 
-for (const route of ['/', '/about/', '/textbook/', '/textbook/boolean/', '/textbook/FOL/',
-                     '/exercises/logic-and-ai/', '/slides/logic-and-ai/', '/assignments/']) {
+for (const route of ['/', '/about/', '/textbook/', '/textbook/boolean/', '/textbook/FOL/', '/textbook/formal-languages/', '/textbook/tools/', '/assignments/assignment_3/',
+                     '/exercises/preamble/', '/exercises/logic-and-ai/', '/slides/logic-and-ai/', '/assignments/']) {
   test(`no horizontal scroll at 320px: ${route}`, async ({ page }) => {
     await page.goto(route);
     await page.evaluate(() => document.fonts.ready);

@@ -58,13 +58,13 @@ decks be self-hosted instead of embedded from `link.excalidraw.com`.
 
 ## Weight
 
-**KaTeX is scoped to one page.** The templates strip `$` before Markdown runs, so
-KaTeX could never see a delimiter and rendered nothing anywhere. It is now loaded
-only where a page sets `latex: true` in its front matter, and on such a page the
-templates leave `$` alone so KaTeX can do its work. Exactly one page needs this:
-`content/exercises/preamble/`, where the exercise *is* typesetting LaTeX and the
-rendered result is the answer key. Everywhere else notation is the object
-language; see [design](design.md#notation).
+**KaTeX is opt-in.** Only `params.latex: true` pages load it.
+No current exercise page enables it. Elsewhere Hugo's passthrough render hook
+renders Unicode dollar math directly in Comic Shanns Logic. Markdown itself
+protects source-code spans and fences; the textbook/exercise/assignment templates no longer
+preprocess `.RawContent` with regular expressions for revised pages. Unrevised
+chapters opt into the legacy compatibility renderer; see
+[authoring](authoring.md#staged-release).
 
 **Reveal.js is gone.** Every deck uses the Excalidraw layout, so the reveal
 template, theme, logo and the 6.8&nbsp;MB submodule were dead.
@@ -88,16 +88,12 @@ verifiable against the screenshot and test suites, and neither has been done:
 the design currently rests on that file and the saving is not worth a silent
 regression.
 
-**Figures are the page weight.** A chapter's raster figures dominate everything
-else — `/textbook/boolean/` carried 6.5&nbsp;MB of PNG. The `img` shortcode now
-emits `loading="lazy"` with intrinsic `width`/`height`, which cut that page's
-initial load from 7.5&nbsp;MB to 0.1&nbsp;MB and removed the layout shift. The
-real fix is the SVG migration in [authoring](authoring.md#figures): the one
-diagram converted so far went from 94&nbsp;KB of PNG to 20&nbsp;KB of vector.
-
-When passing a display width to the `img` shortcode, note that it becomes an
-inline `max-inline-size`, which beats the stylesheet — so it is emitted as
-`min(<width>, 100%)`. Without the clamp, a wide figure overflows a phone.
+**Figures are the page weight.** PNGs are being replaced by SVGs as chapters
+are revised. `img` handles both formats through one shared renderer; remaining
+rasters have lazy loading and intrinsic dimensions. Shared illustrations live
+in `assets/img/drawings/`, and bundle-local SVGs work identically. The renderer
+normalizes direct Excalidraw exports at build time; the optional export script
+is only an authoring convenience. See [authoring](authoring.md#figures).
 
 ## Authoring tools
 
@@ -133,14 +129,14 @@ distribution files, and project fonts as static resources. Preserve these URL
 relationships when moving assets. Several paths are rooted at `/`, so deploying
 under a URL subdirectory would require an audit.
 
-Goldmark allows raw HTML (`unsafe = true`). Textbook and exercise templates
-preprocess `.RawContent` before calling `.RenderString`; this changes the meaning
-of normal Markdown math and code delimiters. Read [authoring](authoring.md) before
-editing notation. Syntax highlighting emits CSS classes styled by
+Goldmark allows raw HTML (`unsafe = true`). Textbook, exercise and assignment templates
+render `.Content`; the shared passthrough hook renders dollar math, including
+in callouts and other shortcodes that use `.RenderString`. Read
+[authoring](authoring.md) before editing notation. Syntax highlighting emits CSS classes styled by
 [`syntax_hl.css`](../assets/css/syntax_hl.css).
 
 The shared shell loads Bootstrap and helper scripts, optionally loads KaTeX when
-`.Param "math"` is true, and loads asset paths listed in `params.js` as JavaScript
+`.Param "latex"` is true, and loads asset paths listed in `params.js` as JavaScript
 modules. Section templates can add scripts, such as exercise interactions.
 
 ## Deployment
@@ -184,3 +180,11 @@ judge whether an explanation or a mathematical argument is correct.
 Neither prevents page generation or direct access. Exercise passwords and
 solutions are delivered to the browser; their purpose is staged disclosure, not
 authentication. Drafts are also published by the current CI command.
+
+The Excalidraw exporter also accepts a directory and `--keep-sources`; shared
+exports live in `assets/img/drawings/`. It uses one browser for a batch, serves
+Excalidraw font assets locally and blocks external requests. Dependencies can be
+installed under `tmp/excalidraw-tools` and resolved using `NODE_PATH`, leaving the
+site's package manifest unchanged. Set `PLAYWRIGHT_BROWSERS_PATH` to the matching
+local browser cache when needed. The regular Hugo build uses the checked-in SVGs
+and patched font; it does not need either authoring toolchain.

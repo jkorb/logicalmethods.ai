@@ -19,6 +19,7 @@ Three browser suites guard the redesign. They run as part of `npm test`.
 | `tests/browser/a11y.spec.mjs` | axe-core across ten routes at WCAG 2.2 AA, plus `/textbook/boolean/` in both light and dark mode. |
 | `tests/browser/keyboard.spec.mjs` | The skip link is the first tab stop; chapter navigation is reachable; every tab stop has a name and a visible focus ring; prev/next point at the right neighbors. |
 | `tests/browser/reflow.spec.mjs` | No horizontal scrollbar at 320&nbsp;px on eight routes (WCAG 1.4.10). |
+| `tests/browser/privacy.spec.mjs` | No page contacts another host on load; the built HTML links nothing off-site; an embedded deck loads only when pressed; local storage holds only the keys the About page names, and no cookies are set. |
 
 The keyboard and reflow checks exist because axe cannot see either problem, and
 both were real defects before the redesign: chapter navigation carried
@@ -157,7 +158,7 @@ tests do not cover every layout, browser, or accessibility requirement.
 
 Markdown rules are configured in
 [`.markdownlint-cli2.jsonc`](../.markdownlint-cli2.jsonc). Raw HTML, multiple
-chapter headings, and the site's custom code notation are allowed. For a local
+chapter headings, and the site's dollar math notation are allowed. For a local
 exception, use a rule-specific comment and explain why it is needed.
 
 For a temporary site-check exception, add the exact diagnostic and a reason to
@@ -185,3 +186,49 @@ The `prose` job runs separately and uploads its report. The
 [external-link workflow](../.github/workflows/external-links.yaml) runs on Mondays
 or on request. Neither report is a deployment prerequisite. In GitHub Actions,
 open a run and look under **Artifacts** for reports and browser diagnostics.
+
+
+Parser checks live in `tests/unit/parser.test.mjs` and
+`tests/browser/parser-app.spec.mjs`. They cover strict and conventional syntax,
+negation scope, precedence, grouping, invalid input, immutable trace snapshots,
+LaTeX conversion, keyboard operation, exercise disclosure, no-JavaScript
+fallback, reflow, and light/dark accessibility.
+
+
+The parser browser tests also check read-only initialization, pencil editing,
+resubmission, icon navigation, the text-tree toggle, and numeric LaTeX subscripts.
+When changing static trees, inspect both ambiguity readings on narrow screens
+and without JavaScript. The notation appendix's cheat sheet should agree with
+`assets/js/apps/latex-input.js`; unit checks cover its conversion examples.
+
+
+Browser tests must route production-domain asset requests to the local test
+server, as the parser and site suites do. The normal Hugo test build retains
+production absolute URLs. A preview built with a localhost base URL can mask
+missing request routing; verify new browser tests against the normal build.
+Third-party resources are stubbed, with availability checked separately.
+
+The glossary's persistent-hover test intentionally skips the mobile project:
+touch has no persistent hover. The other glossary checks run on both projects.
+
+
+Parser tests cover immediate typing and paste conversion, including `\to` /
+`\top` and multi-digit subscripts, as well as switching node labels without
+losing the trace. Controls are checked for a stable position above the tree.
+For drawing changes, inspect SVG contact sheets and chapter figures in light and
+dark themes; compare exports with their retained Excalidraw sources. The shared
+inference/set shortcodes and blockquote spacing also need a visual check at
+320 pixels. Font changes require reviewing actual glyphs in formulas as well
+as running the font-loading tests.
+
+
+`tests/browser/display-math.spec.mjs` checks trimmed display boundaries, fitting
+at desktop and mobile widths, restoration after widening, unchanged formula
+text and source-code sizing, set proportions, and the parser accessibility
+button's lower-right placement.
+
+`tests/unit/rendering.test.mjs` builds an isolated Hugo fixture to check the
+shared math hook, literal code, escaped dollars and color qualifiers, together
+with direct SVG exports and repeated-image IDs. The app independence test uses
+the two real instances in Appendix C. Accessibility and reflow checks include
+Formal Languages, the Tools appendix and a representative assignment page.
