@@ -1,4 +1,5 @@
 ---
+locked: true
 title: Logical proofs
 author: Johannes Korbmacher
 weight: 70

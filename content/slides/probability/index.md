@@ -1,4 +1,5 @@
 ---
+locked: true
 title: Probability and inductive logic
 author: Johannes Korbmacher
 weight: 110

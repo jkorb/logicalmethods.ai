@@ -1,0 +1,31 @@
+<div class="glossary" data-glossary>
+  <div class="glossary-search" hidden>
+    <label for="glossary-search">Find a term</label>
+    <input id="glossary-search" type="search" placeholder="Try algorithm, set, or BNF" aria-controls="glossary-entries" autocomplete="off">
+    <p id="glossary-count" role="status" aria-live="polite"></p>
+  </div>
+  <div id="glossary-entries">
+  {{- $entries := slice -}}
+  {{- range $key, $entry := hugo.Data.glossary -}}
+    {{- $entries = $entries | append (merge $entry (dict "id" $key)) -}}
+  {{- end -}}
+  {{- range sort $entries "term" -}}
+    {{- $chapter := site.GetPage (printf "/textbook/%s" .chapter) -}}
+    {{- if not $chapter }}{{ errorf "Missing glossary chapter for %s" .id }}{{ end -}}
+    {{- $anchor := .anchor | default "" -}}
+    {{- if not $anchor -}}
+      {{- $matches := findRE (printf `id="term-%s-[0-9]+"` .id) $chapter.Content 1 -}}
+      {{- with $matches }}{{ $anchor = index . 0 | strings.TrimPrefix `id="` | strings.TrimSuffix `"` }}{{ end -}}
+    {{- end -}}
+    {{- if not $anchor }}{{ errorf "No glossary introduction or section anchor for %s in %s" .id .chapter }}{{ end -}}
+    {{/* The haystack is the term and its slug, never the definition: common
+         words in definitions matched half the glossary on every query. The
+         slug carries the useful aliases — xai, bnf, prior. */}}
+    <section class="glossary-entry" id="{{ .id }}" data-search="{{ .term }} {{ .id }}">
+      <h2 class="nocount"><a href="#{{ .id }}">{{ .term }}</a></h2>
+      <p>{{ .definition }}</p>
+      <p><a href="{{ $chapter.RelPermalink }}#{{ $anchor }}">Read about {{ .term }} in {{ $chapter.Title }}</a></p>
+    </section>
+  {{- end -}}
+  </div>
+</div>

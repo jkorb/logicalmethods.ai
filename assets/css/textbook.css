@@ -119,6 +119,50 @@ a.chapter-rail__item:hover { background: var(--paper-sunken); color: var(--ink);
 }
 @media print { .progress-rail { display: none !important; } }
 
+/* ==========================================================================
+   The contents, in the corner
+   A square that follows the reader once the boxed contents has scrolled away,
+   and opens the same list. helpers.js builds it from the box.
+   ========================================================================== */
+/* the start offset clears the sticky header; helpers.js replaces it with the
+   header's measured height, which grows a row on a narrow screen */
+.toc-mini {
+  position: fixed; inset-block-start: 4.5rem; inset-inline-end: 1rem; z-index: 1020;
+  opacity: 0; visibility: hidden; transition: opacity .2s ease, visibility .2s ease;
+}
+.toc-mini.is-visible { opacity: 1; visibility: visible; }
+
+.toc-mini__toggle {
+  display: grid; place-items: center; padding: 0;
+  inline-size: 2.5rem; block-size: 2.5rem;
+  color: var(--ink); background: var(--paper-raised);
+  border: 1px solid var(--rule-strong); border-radius: var(--radius);
+  box-shadow: var(--shadow-raised); cursor: pointer;
+}
+.toc-mini__toggle:hover { background: var(--paper-sunken); }
+.toc-mini__toggle[aria-expanded="true"] { color: var(--red-ink); border-color: var(--red-gfx); }
+/* three uneven rules read as a contents list, and cost no icon font */
+.toc-mini__toggle::before {
+  content: ""; inline-size: 1.15rem; block-size: .8rem;
+  background:
+    linear-gradient(currentColor 0 0) 0 0   / 100% 2px no-repeat,
+    linear-gradient(currentColor 0 0) 0 50% /  75% 2px no-repeat,
+    linear-gradient(currentColor 0 0) 0 100% / 90% 2px no-repeat;
+}
+
+/* .on-this-page supplies the box; only the placement differs */
+.toc-mini__panel {
+  position: absolute; inset-block-start: calc(100% + .4rem); inset-inline-end: 0;
+  margin: 0; inline-size: max-content;
+  max-inline-size: min(20rem, calc(100vw - 2rem));
+  max-block-size: min(60vh, 26rem); overflow-y: auto;
+  box-shadow: var(--shadow-raised);
+}
+.toc-mini__panel .on-this-page__head { border-block-end: 1px solid var(--rule); padding-block-end: .3rem; }
+
+@media (prefers-reduced-motion: reduce) { .toc-mini { transition: none; } }
+@media print { .toc-mini { display: none !important; } }
+
 /* A faint hand-drawn rule where a new section starts — the nearest honest
    equivalent of a page turn, since it marks a boundary that actually exists. */
 .chapter__body h2 { position: relative; padding-block-start: 1.1em; }
@@ -151,3 +195,9 @@ a.chapter-rail__item:hover { background: var(--paper-sunken); color: var(--ink);
 .chapter__body h2.readings ~ ul { padding-inline-start: 1.2rem; }
 .chapter__body h2.readings ~ * a { color: var(--ink-muted); text-decoration-thickness: 1px; }
 .chapter__body h2.readings ~ * a:hover { color: var(--blue-ink); }
+
+/* Keep the notation reference readable inside the shared table scroll region. */
+.notation-reference table { min-inline-size: var(--measure); }
+.notation-reference :is(th, td) { text-align: start; vertical-align: top; }
+.notation-reference :is(th, td):first-child { inline-size: 26%; }
+.notation-reference :is(th, td):last-child { inline-size: 74%; }

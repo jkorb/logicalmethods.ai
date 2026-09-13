@@ -1,4 +1,5 @@
 ---
+locked: true
 title: Logic and Neural Networks
 author: Johannes Korbmacher
 weight: 120

@@ -13,40 +13,7 @@
     {{ partial "single/progress-rail.html" . }}
     {{ partial "single/breadcrumb.html" . }}
 
-    {{- $patternMathBlock := `(?s)\$\$(.*?)\$\$` -}}
-    {{- $replacementMathBlock := `<div class="text-center my-4 excalifont">${1}</div>` -}}
-    {{- $patternMathInline := `(?s)\$(.*?)\$` -}}
-    {{- $replacementMathInline := `<span class="excalifont">${1}</span>` -}}
-    {{- $patternCodeBlock := "```([^`]*)```" -}}
-    {{- $replacementCodeBlock := `<div class="customBlock text-center my-4"><code class="customCode">${1}</code></div>` -}}
-    {{- $patternCodeInline := "`([^`]*)`" -}}
-    {{- $replacementCodeInline := `<code class="customCode">${1}</code>` -}}
-    {{- $patternBoolean := "!!(.*?)!!" -}}
-    {{- $replacementBoolean := `<span class="Boolean">${1}</span>` -}}
-    {{- $patternKleene := "~!(.*?)!~" -}}
-    {{- $replacementKleene := `<span class="Kleene">${1}</span>` -}}
-    {{- $patternMDCode := "~~~(.*?)~~~" -}}
-    {{- $replacementMDCode := "```${1}```" -}}
-    {{- $patternMDInline := "%(.*?)%" -}}
-    {{- $replacementMDInline := "`${1}`" -}}
-
-    {{/* On a LaTeX page the $ delimiters have to survive for KaTeX. */}}
-    {{- $processed := .RawContent -}}
-    {{- if not (.Param "latex") -}}
-      {{- $processed = $processed
-        | replaceRE $patternMathBlock $replacementMathBlock
-        | replaceRE $patternMathInline $replacementMathInline -}}
-    {{- end -}}
-    {{- $processed = $processed
-        | replaceRE $patternCodeBlock $replacementCodeBlock
-        | replaceRE $patternCodeInline $replacementCodeInline
-        | replaceRE $patternBoolean $replacementBoolean
-        | replaceRE $patternKleene $replacementKleene
-        | replaceRE $patternMDCode $replacementMDCode
-        | replaceRE $patternMDInline $replacementMDInline
-      -}}
-
-    <div class="chapter__body">{{ $processed | .RenderString }}</div>
+    <div class="chapter__body">{{ if .Param "legacy-notation" }}{{ partial "legacy-content.html" . | safeHTML }}{{ else }}{{ .Content }}{{ end }}</div>
 
     {{ partial "single/nav-bot" . }}
   </article>

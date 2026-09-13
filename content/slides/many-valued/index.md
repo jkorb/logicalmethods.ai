@@ -1,4 +1,5 @@
 ---
+locked: true
 title: Many-valued Logic
 author: Johannes Korbmacher
 weight: 100

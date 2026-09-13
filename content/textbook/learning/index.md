@@ -3,7 +3,8 @@ title: Logic and neural networks
 author: Johannes Korbmacher
 locked: true
 weight: 120
-params: 
+params:
+  legacy-notation: true
   date: 23/10/2024
   last_edited: 23/10/2024
   id: txt-learn

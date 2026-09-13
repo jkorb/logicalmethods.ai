@@ -1,4 +1,5 @@
 ---
+locked: true
 title: Boolean algebra
 author: Johannes Korbmacher
 weight: 40

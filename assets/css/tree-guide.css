@@ -1,0 +1,25 @@
+.tree-guide { margin-block: 2rem; }
+.tree-guide__hint { font-size: var(--step--1); text-align: center; color: var(--ink-muted); }
+.tree-guide__layout { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 1.5rem; align-items: start; }
+.tree-guide svg { width: 100%; height: auto; position: sticky; top: var(--tree-guide-top, 5rem); overflow: visible; }
+.tree-guide line { stroke: var(--ink-muted); stroke-width: 2; }
+.tree-guide circle { fill: var(--paper-raised); stroke: var(--ink-muted); stroke-width: 2; }
+.tree-guide text { font-family: "Apple Color Emoji", "Segoe UI Emoji", sans-serif; font-size: 36px; }
+.tree-guide [data-node].is-highlighted circle { fill: var(--surf-blue); stroke: var(--blue-ink); stroke-width: 4; stroke-dasharray: 6 3; }
+.tree-guide line.is-highlighted { stroke: var(--blue-ink); stroke-width: 5; stroke-dasharray: 8 4; }
+.tree-guide__definitions { margin: 0; }
+.tree-guide__definitions > div { padding: 0 .65rem; border-inline-start: 3px solid transparent; }
+.tree-guide__definitions > .is-active { border-color: var(--blue-ink); background: var(--surf-blue); }
+.tree-guide dd { margin: 0 0 .4rem; font-size: var(--step--1); }
+.tree-guide button { color: var(--ink); font: inherit; font-weight: bold; background: transparent; border: 0; border-radius: var(--radius); padding: .4rem .2rem; text-decoration: underline dotted; text-underline-offset: .2em; min-height: 44px; cursor: pointer; }
+.tree-guide button[aria-expanded="true"] { color: var(--blue-ink); text-decoration-style: solid; }
+.tree-guide button:focus-visible { outline: 2px solid var(--blue-ink); outline-offset: 2px; }
+@media (max-width: 600px) {
+  .tree-guide__layout { grid-template-columns: minmax(0, 1fr); gap: .5rem; }
+  .tree-guide button { scroll-margin-block-start: calc(var(--tree-guide-top, 7rem) + 32vh + 1rem); }
+  .tree-guide svg { z-index: 1; top: var(--tree-guide-top, 7rem); max-height: 32vh; background: var(--paper); }
+}
+
+.tree-guide button { display: flex; align-items: center; justify-content: space-between; gap: .5rem; width: 100%; text-align: start; }
+.tree-guide button::after { content: "+"; font-weight: normal; }
+.tree-guide button[aria-expanded="true"]::after { content: "−"; }

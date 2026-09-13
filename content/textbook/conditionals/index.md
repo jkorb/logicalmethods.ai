@@ -1,9 +1,10 @@
 ---
 title: Logical conditionals
 author: Johannes Korbmacher
-locked: false
+locked: true
 weight: 60
-params: 
+params:
+  legacy-notation: true
   date: 25/09/2025
   id: txt-if
 ---

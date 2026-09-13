@@ -1,8 +1,10 @@
 ---
+locked: true
 title: Many-valued logics
 author: Johannes Korbmacher
 weight: 100
-params: 
+params:
+  legacy-notation: true
   last_edited: 14/10/2025
   id: txt-mv
 ---

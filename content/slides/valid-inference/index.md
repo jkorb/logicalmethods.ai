@@ -1,4 +1,5 @@
 ---
+locked: true
 title: Valid inference
 author: Johannes Korbmacher
 weight: 30

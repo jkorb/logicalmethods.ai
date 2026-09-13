@@ -1,0 +1,39 @@
+{{/* One renderer for page-bundle and shared figures, including set members.
+     src is a bundle path, or /img/... relative to assets for shared artwork. */}}
+{{- $src := .src -}}
+{{- $res := false -}}
+{{- if hasPrefix $src "/" -}}
+  {{- $res = resources.Get (strings.TrimPrefix "/" $src) -}}
+{{- else -}}
+  {{- $res = .page.Resources.GetMatch $src -}}
+{{- end -}}
+{{- if not $res -}}{{ errorf "Image not found: %s (%s)" $src .position }}{{- end -}}
+{{- $decls := slice -}}
+{{- with .width }}{{ $decls = $decls | append (printf "--figure-width: %s" .) }}{{ end -}}
+{{- with .height }}{{ $decls = $decls | append (printf "--figure-height: %s" .) }}{{ end -}}
+{{- with .style }}{{ $decls = $decls | append (strings.TrimRight ";" .) }}{{ end -}}
+<span class="book-figure{{ if .inline }} book-figure--inline{{ end }}{{ with .class }} {{ . }}{{ end }}"{{ with delimit $decls "; " }} style="{{ . | safeCSS }}"{{ end }}>
+{{- if eq $res.MediaType.Type "image/svg+xml" -}}
+  {{- $svg := $res.Content | replaceRE `<\?xml[^>]*>|<!DOCTYPE[^>]*>` "" -}}
+  {{/* Direct Excalidraw exports work too: normalize root metadata only, never
+       child geometry. The site already supplies the drawing fonts. */}}
+  {{- $svg = replaceRE `(?s)<style class="style-fonts">.*?</style>` "" $svg -}}
+  {{- $root := index (findRE `<svg\b[^>]*>` $svg 1) 0 -}}
+  {{- $normalized := replaceRE `\s(?:width|height|class|role|aria-label|aria-labelledby|aria-hidden|focusable)="[^"]*"` "" $root -}}
+  {{- $access := `aria-hidden="true"` -}}
+  {{- with .alt }}{{ $access = printf `aria-label="%s"` (htmlEscape .) }}{{ end -}}
+  {{- $normalized = replace $normalized "<svg" (printf `<svg class="figure-svg" role="img" focusable="false" %s` $access) 1 -}}
+  {{- $svg = replace $svg $root $normalized 1 -}}
+  {{- $prefix := printf "figure-%s" .id -}}
+  {{- range findRE `id="[^"]+"` $svg -}}
+    {{- $old := strings.TrimSuffix `"` (strings.TrimPrefix `id="` .) -}}
+    {{- $new := printf "%s-%s" $prefix $old -}}
+    {{- $svg = replace $svg (printf `id="%s"` $old) (printf `id="%s"` $new) -}}
+    {{- $svg = replace $svg (printf `url(#%s)` $old) (printf `url(#%s)` $new) -}}
+    {{- $svg = replace $svg (printf `href="#%s"` $old) (printf `href="#%s"` $new) -}}
+  {{- end -}}
+  {{- $svg | safeHTML -}}
+{{- else -}}
+  <img src="{{ $res.Permalink }}" loading="lazy" decoding="async" width="{{ $res.Width }}" height="{{ $res.Height }}" alt="{{ .alt | default "" }}">
+{{- end -}}
+</span>

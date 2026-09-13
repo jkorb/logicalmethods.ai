@@ -1,9 +1,10 @@
 ---
 title: Logical proofs
 author: Johannes Korbmacher
-locked: false
+locked: true
 weight: 70
-params: 
+params:
+  legacy-notation: true
   id: exc-proof
 ---
 

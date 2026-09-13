@@ -1,9 +1,10 @@
 ---
 title: Valid Inference
 author: Colin Caret and Johannes Korbmacher
-locked: false
+locked: true
 weight: 30
 params:
+  legacy-notation: true
   last_edited: 12/09/2025
   id: txt-val
 ---

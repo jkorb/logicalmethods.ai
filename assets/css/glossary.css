@@ -1,0 +1,51 @@
+.glossary-term {
+  font-weight: 700;
+  text-decoration-style: dotted;
+  text-underline-offset: .2em;
+}
+.glossary-preview {
+  position: fixed;
+  z-index: 1090;
+  max-inline-size: min(var(--measure), calc(100vw - 2 * var(--gutter)));
+  inline-size: var(--width-content);
+  padding: .75em 1em;
+  color: var(--ink);
+  background: var(--paper-raised);
+  border: 1px solid var(--ink-muted);
+  border-radius: var(--radius);
+  font-size: var(--step--1);
+  pointer-events: auto;
+}
+.glossary-search {
+  margin-block: 1.5em;
+}
+.glossary-search label {
+  display: block;
+  font-weight: 700;
+}
+.glossary-search input {
+  inline-size: 100%;
+  padding: .65em .85em;
+  color: var(--ink);
+  background: var(--paper-raised);
+  border: 1px solid var(--ink-muted);
+  border-radius: var(--radius);
+}
+.glossary-entry {
+  padding-block: 1.25em;
+  border-block-end: 1px solid var(--rule);
+  scroll-margin-block-start: var(--gutter);
+}
+.glossary-entry:target {
+  border-inline-start: 3px solid var(--blue-ink);
+  padding-inline-start: var(--gutter);
+}
+
+.glossary .glossary-entry h2 {
+  margin-block: 0 .5em;
+  font-size: var(--step-1);
+}
+.glossary-entry p:last-child {
+  margin-block-end: 0;
+  font-size: var(--step--1);
+}

@@ -51,7 +51,18 @@
     <link rel="stylesheet" href="{{ (resources.Get "css/tokens.css").Permalink }}">
     <link rel="stylesheet" href="{{ (resources.Get "css/layout.css").Permalink }}">
     <link rel="stylesheet" href="{{ (resources.Get "css/pages.css").Permalink }}">
+    <link rel="stylesheet" href="{{ (resources.Get "css/glossary.css").Permalink }}">
     <link rel="stylesheet" href="{{ (resources.Get "css/syntax_hl.css").Permalink }}">
+    {{ if .HasShortcode "logic-app" }}
+    <link rel="stylesheet" href="{{ (resources.Get "css/apps/logic-app.css").Permalink }}">
+    {{ end }}
+    {{ if .HasShortcode "syntax-tree" }}
+    <link rel="stylesheet" href="{{ (resources.Get "css/apps/syntax-tree.css").Permalink }}">
+    {{ end }}
+    {{ if .HasShortcode "tree-guide" }}
+    <link rel="stylesheet" href="{{ (resources.Get "css/tree-guide.css").Permalink }}">
+    <script type="module" src="{{ (resources.Get "js/tree-guide.js").Permalink }}"></script>
+    {{ end }}
     {{ block "head" . }}{{ end }}
     <style>{{ block "style" . }}{{ end }}</style>
     {{/* KaTeX is loaded only where real LaTeX is typeset. Elsewhere the
@@ -82,11 +93,17 @@
     </footer>
 
     <script src="{{ (resources.Get "js/helpers.js").Permalink }}"></script>
+    <script type="module" src="{{ (resources.Get "js/glossary.js").Permalink }}"></script>
+    <script type="module" src="{{ (resources.Get "js/display-math.js").Permalink }}"></script>
     <script src="{{ (resources.Get "bootstrap/dist/js/bootstrap.bundle.min.js").Permalink }}"></script>
     {{ with .Params.js }}
       {{ range . }}
         {{ with resources.Get . }}<script type="module" src="{{ .Permalink }}"></script>{{ end }}
       {{ end }}
+    {{ end }}
+    {{ if .HasShortcode "logic-app" }}
+      {{ $apps := resources.Get "js/apps/index.js" | js.Build (dict "targetPath" "js/logic-apps.js" "minify" true) }}
+      <script type="module" src="{{ $apps.RelPermalink }}"></script>
     {{ end }}
     {{ block "footer" . }}{{ end }}
   </body>

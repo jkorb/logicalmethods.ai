@@ -7,7 +7,7 @@ contributors:
     - 'Colin Caret'
     - 'Rick Nouwen'
 show-author: true
-weight: 2
+weight: 1
 params: 
   id: 'txt-home'
   icon: '<i class="bi bi-book"></i>'

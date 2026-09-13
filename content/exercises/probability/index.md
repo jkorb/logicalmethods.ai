@@ -1,8 +1,10 @@
 ---
+locked: true
 title: Logic and probability
 author: Johannes Korbmacher
 weight: 110
-params: 
+params:
+  legacy-notation: true
   id: exc-prob
 ---
 

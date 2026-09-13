@@ -45,3 +45,10 @@ noClasses = false
 style = 'friendly'
 tabWidth = 4
 wrapperClass = 'highlight'
+
+# Dollar math is parsed by Markdown itself, so code spans/fences stay literal.
+[markup.goldmark.extensions.passthrough]
+enable = true
+[markup.goldmark.extensions.passthrough.delimiters]
+block = [['$$', '$$']]
+inline = [['$', '$']]

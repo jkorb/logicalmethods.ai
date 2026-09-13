@@ -1,4 +1,5 @@
 ---
+locked: true
 title: Boolean satisfiability
 author: Johannes Korbmacher
 weight: 50

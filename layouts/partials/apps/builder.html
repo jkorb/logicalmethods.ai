@@ -1,0 +1,50 @@
+{{/* Formula builder. Either one target (a chapter demonstration) or the level
+     list in assets/js/apps/formula-builder.js, never both. */}}
+{{- $id := .id -}}
+{{- $levels := eq (.sc.Get "levels") "true" -}}
+{{- $target := .sc.Get "target" | default "" -}}
+{{- if and $levels $target }}{{ errorf "The builder takes either levels or a target, not both" }}{{ end -}}
+{{- if not (or $levels $target) }}{{ errorf "The builder needs a target formula, or levels=\"true\"" }}{{ end -}}
+<section class="logic-app builder" data-logic-app="builder"
+         data-variables="{{ .sc.Get "variables" }}" data-levels="{{ $levels }}" data-target="{{ $target }}"
+         aria-label="{{ .sc.Get "title" | default "Formula builder" }}">
+  {{- if $levels }}
+  <div class="builder__levels" data-builder-levels role="group" aria-label="Levels"></div>
+  {{- end }}
+
+  <p class="builder__goal-line"><span class="builder__goal" data-builder-goal></span></p>
+
+  <div class="builder__board" data-builder-board role="group"
+       aria-label="Formulas on the board" data-empty="true"></div>
+
+  <form class="builder__atom">
+    <label for="{{ $id }}-atom">Atom:</label>
+    <input id="{{ $id }}-atom" class="builder__atom-input" data-builder-atom type="text"
+           autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="8"
+           placeholder="{{ if eq (.sc.Get "variables") "plain" }}p{{ else }}p₁{{ end }}" aria-describedby="{{ $id }}-atom-help" disabled>
+    <button type="submit" disabled>Add</button>
+  </form>
+  <p id="{{ $id }}-atom-help" class="logic-app__help">{{ if eq (.sc.Get "variables") "plain" }}Use p, q, and r as variables.{{ else }}Use p₁, p₂, … or the shorthand p, q, r as variables. You can type subscripts as LaTeX, for example <code>p_1</code>.{{ end }} <a href="{{ "textbook/notation/#latex-cheat-sheet" | relURL }}">LaTeX cheat sheet</a></p>
+
+  <div class="logic-app__controls builder__operators" role="group" aria-label="Operators">
+    <button type="button" data-op="¬" disabled aria-label="Negation, applies to one formula">¬</button>
+    <button type="button" data-op="∧" disabled aria-label="Conjunction, applies to two formulas">∧</button>
+    <button type="button" data-op="∨" disabled aria-label="Disjunction, applies to two formulas">∨</button>
+    <button type="button" data-op="→" disabled aria-label="Conditional, applies to two formulas">→</button>
+    <button type="button" data-op="↔" disabled aria-label="Biconditional, applies to two formulas">↔</button>
+  </div>
+
+  <div class="logic-app__controls">
+    <button type="button" data-builder-undo disabled aria-label="Undo the last step" title="Undo the last step">
+      {{ partial "apps/icon.html" "undo" }}
+    </button>
+    <button type="button" data-builder-clear disabled aria-label="Clear the board" title="Clear the board">
+      {{ partial "apps/icon.html" "trash" }}
+    </button>
+  </div>
+
+  <div class="logic-app__status builder__status" role="status" aria-live="polite" aria-atomic="true">Add an atom, then select formulas and press an operator to put them together.</div>
+
+  <p data-app-fallback>Enable JavaScript to build formulas here. The construction
+    is written out step by step in the chapter above.</p>
+</section>

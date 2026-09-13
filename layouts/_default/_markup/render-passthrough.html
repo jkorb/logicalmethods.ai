@@ -1,0 +1,15 @@
+{{- if .Page.Param "latex" -}}
+  {{/* Opt-in TeX pages retain delimiters for the scoped KaTeX loader. */}}
+  {{- if eq .Type "block" -}}$${{ .Inner | safeHTML }}$${{- else -}}${{ .Inner | safeHTML }}${{- end -}}
+{{- else -}}
+  {{/* Author-controlled math can include symbol shortcodes and inline HTML.
+       Color qualifiers are interpreted only here, never inside source code. */}}
+  {{- $math := trim .Inner " \r\n\t" -}}
+  {{- $math = replaceRE "!!(.*?)!!" `<span class="Boolean">${1}</span>` $math -}}
+  {{- $math = replaceRE "~!(.*?)!~" `<span class="Kleene">${1}</span>` $math -}}
+  {{- if eq .Type "block" -}}
+    <div class="math-display"><span class="math-content">{{ $math | safeHTML }}</span></div>
+  {{- else -}}
+    <span class="math-inline">{{ $math | safeHTML }}</span>
+  {{- end -}}
+{{- end -}}

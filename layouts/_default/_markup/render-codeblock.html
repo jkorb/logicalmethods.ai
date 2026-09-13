@@ -15,11 +15,15 @@
   {{- $esc = replaceRE $tac `<span class="nb">$1</span>` $esc -}}
   {{- $esc = replaceRE `(--[^\n]*)` `<span class="c1">$1</span>` $esc -}}
   {{- $esc = replaceRE `(^|\s)(·|⟨|⟩|←|→|↔|∀|∃|∧|∨|¬|≠|≤|≥|⊢)` `$1<span class="o">$2</span>` $esc -}}
-  {{- $rendered = printf `<pre class="chroma"><code class="language-lean" data-lang="lean">%s</code></pre>` $esc -}}
+  {{- $rendered = printf `<div class="highlight"><pre class="chroma"><code class="language-lean" data-lang="lean">%s</code></pre></div>` $esc -}}
 {{- else -}}
   {{- $rendered = (transform.Highlight .Inner $lang .Options) -}}
 {{- end -}}
-<div class="highlight{{ if $icon }} has-lang-icon{{ end }}">
+{{/* transform.Highlight brings its own div.highlight (see hugo.toml's
+     wrapperClass), so the wrapper here is a plain positioning shell. Nesting
+     two .highlight boxes gave a double border, a stray top margin, and a badge
+     the inner box painted over. */}}
+<div class="code-block{{ if $icon }} has-lang-icon{{ end }}">
   {{- with $icon }}<span class="lang-badge" role="img" aria-label="{{ $family }}">{{ .Content | safeHTML }}</span>{{ end -}}
   {{- $rendered | safeHTML -}}
 </div>

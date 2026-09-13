@@ -294,7 +294,7 @@ a.chapter-card:hover { color: var(--ink); border-color: var(--rule-strong); tran
    ========================================================================== */
 .inference {
   display: flex; align-items: flex-end; justify-content: center; gap: .6rem;
-  margin-block: 1.75rem; font-family: var(--font-formal);
+  margin-block: .75em; font-family: var(--font-formal); font-size: 1.05em; line-height: 1.35;
 }
 .inference__body { display: inline-flex; flex-direction: column; align-items: center; gap: .35rem; }
 .inference__premises {
@@ -320,3 +320,58 @@ a.chapter-card:hover { color: var(--ink); border-color: var(--rule-strong); tran
   .inference__rule-line { background-color: CanvasText; -webkit-mask-image: none; mask-image: none; }
 }
 .mascot-bulb { inline-size: min(6rem, 22vw); }
+
+.inference--stacked .inference__premises { flex-direction: column; align-items: center; gap: .2rem; }
+.inference--stacked .inference__body { align-items: stretch; max-inline-size: 100%; }
+.inference__premise, .inference__conclusion { text-align: center; }
+.inference--stacked .inference__rule-line { block-size: 1px; mask: none; -webkit-mask: none; }
+
+/* One wrapper owns figure sizing, floats and spacing, for SVG and raster alike. */
+.book-figure { display: block; inline-size: min(var(--figure-width, 100%), 100%); max-inline-size: 100%; margin: 1.4rem auto; }
+.book-figure > :is(svg, img) { display: block; inline-size: 100%; block-size: auto; max-block-size: var(--figure-height, none); object-fit: contain; }
+:root[data-theme="dark"] .book-figure { background: var(--figure-paper); border-radius: var(--radius); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .book-figure { background: var(--figure-paper); border-radius: var(--radius); }
+}
+.set-figure { max-inline-size: 100%; overflow: auto; text-align: center; }
+.math-set { display: inline-flex; align-items: center; gap: .35em; font-family: var(--font-formal); font-size: 1em; white-space: nowrap; }
+.math-set .math-set { font-size: inherit; }
+.math-set__brace { font-size: 1.45em; font-weight: normal; }
+.math-set__member { display: inline-flex; align-items: center; }
+.book-figure--set { inline-size: auto; margin: 0; }
+.book-figure--set > svg { inline-size: auto; block-size: 1.6em; }
+.set-figure > span { display: inline-block; vertical-align: middle; }
+
+/* Example sentences use the notebook hand without quotation or callout chrome. */
+.sentence-example { font-family: var(--font-formal); background: var(--paper-sunken); padding: .55em .85em; margin-block: .75em; border-radius: var(--radius); }
+.sentence-example > :first-child { margin-block-start: 0; }
+.sentence-example > :last-child { margin-block-end: 0; }
+
+.book-figure--inline { display: inline-block; inline-size: auto; margin: 0; vertical-align: middle; }
+.book-figure--inline > :is(svg, img) { inline-size: auto; block-size: var(--figure-height, 1em); }
+
+/* The deck is an invitation until the reader asks for it, and the invitation
+   becomes the loading notice; see layouts/shortcodes/iframe.html. */
+.embed__frame { position: relative; }
+.embed__invite {
+  position: absolute; inset: 0; z-index: 1;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .6rem;
+  padding: 1.25rem; text-align: center; background: var(--paper-sunken);
+}
+.embed__invite-mascot { display: block; inline-size: clamp(3rem, 12vw, 5rem); color: var(--ink); }
+.embed__invite-mascot .mascot { inline-size: 100%; }
+.embed__invite-title { margin: 0; font-family: var(--font-hand); font-size: var(--step-1); color: var(--ink); }
+.embed__invite-note {
+  margin: 0; max-inline-size: 30rem; font-size: var(--step--1); color: var(--ink-muted);
+}
+.embed__load { cursor: pointer; }
+/* once it is loading, the notice stays but stops offering the button again */
+.embed__invite[data-state="loading"] .embed__load,
+.embed__invite[data-state="loading"] .embed__invite-note { display: none; }
+.embed__invite[data-state="loading"] .embed__invite-mascot { animation: embed-wait 1.4s ease-in-out infinite; }
+@keyframes embed-wait { 50% { opacity: .45; } }
+@media (prefers-reduced-motion: reduce) {
+  .embed__invite[data-state="loading"] .embed__invite-mascot { animation: none; }
+}
+/* a short frame on a phone cannot fit the mascot and the prose both */
+@media (max-height: 30rem), (max-width: 26rem) { .embed__invite-mascot { display: none; } }

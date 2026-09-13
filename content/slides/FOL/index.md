@@ -1,4 +1,5 @@
 ---
+locked: true
 title: FOL
 author: Johannes Korbmacher
 weight: 80

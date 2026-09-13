@@ -1,8 +1,10 @@
 ---
+locked: true
 title: FOL
 author: Johannes Korbmacher
 weight: 80
-params: 
+params:
+  legacy-notation: true
   id: exc-fol
 ---
 

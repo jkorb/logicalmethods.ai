@@ -1,9 +1,10 @@
 ---
 title: FOL
 author: Johannes Korbmacher
-locked: false
+locked: true
 weight: 80
-params: 
+params:
+  legacy-notation: true
   last_edited: 08/10/2025
   id: txt-fol
 ---

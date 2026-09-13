@@ -1,0 +1,37 @@
+{{- $cases := index hugo.Data "reasoning-practice" -}}
+<section class="logic-app reasoning-practice" data-logic-app="reasoning-practice" aria-label="What follows?">
+  <script type="application/json" data-cases>{{ $cases | jsonify | safeJS }}</script>
+  <div data-interactive hidden>
+    <div class="reasoning-practice__progress"><span data-count></span><span data-score></span></div>
+    <div class="reasoning-practice__case">
+      <h3 data-title tabindex="-1"></h3>
+      <p class="reasoning-practice__label">Take these premises as given</p>
+      <ol data-premises></ol>
+      <p class="reasoning-practice__label">Proposed conclusion</p>
+      <p class="reasoning-practice__conclusion" data-conclusion></p>
+    </div>
+    <p id="{{ .id }}-choice">How much support do the premises give?</p>
+    <div class="reasoning-practice__choices" role="group" aria-labelledby="{{ .id }}-choice">
+      <button type="button" data-choice="deductive" disabled><span>Deductive guarantee</span><small>The conclusion must be true.</small></button>
+      <button type="button" data-choice="inductive" disabled><span>Inductive support</span><small>There is reason to expect it.</small></button>
+      <button type="button" data-choice="unsupported" disabled><span>Insufficient support</span><small>The conclusion isn't warranted.</small></button>
+    </div>
+    <p class="logic-app__status" role="status" aria-live="polite" aria-atomic="true"></p>
+    <div class="logic-app__controls">
+      <button type="button" data-previous disabled>Previous case</button>
+      <button type="button" data-next disabled>Next case</button>
+      <button type="button" data-restart hidden>Try again</button>
+    </div>
+  </div>
+  <noscript>
+    <p>Classify each inference, then open its feedback to check your answer.</p>
+    <ol>
+    {{ range $cases }}
+      <li><p>{{ .title }}</p><ul>{{ range .premises }}<li>{{ . }}</li>{{ end }}</ul>
+        <p>Conclusion: {{ .conclusion }}</p>
+        <details><summary>Check your answer</summary><p>{{ .explanation }}</p></details>
+      </li>
+    {{ end }}
+    </ol>
+  </noscript>
+</section>

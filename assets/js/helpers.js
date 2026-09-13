@@ -67,12 +67,72 @@
   });
 })();
 
-/* ---- "on this page": mark the section you are actually reading --------- */
+/* ---- "on this page", kept within reach ---------------------------------
+   The boxed contents only helps while it is on screen. Once it scrolls under
+   the header the same list follows the reader as a square in the corner that
+   opens on click. Built from the box itself, so there is one list to author.
+   Runs before the scrollspy below, which then marks both copies. */
+(function () {
+  var box = document.querySelector(".on-this-page");
+  var list = box && box.querySelector("ul");
+  if (!list || !("IntersectionObserver" in window)) return;
+  var header = document.querySelector(".site-header");
+  function headroom() { return header ? header.offsetHeight : 56; }
+
+  var mini = document.createElement("div");
+  mini.className = "toc-mini";
+  mini.innerHTML =
+    '<button class="toc-mini__toggle" type="button" aria-expanded="false"' +
+    ' aria-controls="toc-mini-panel" aria-label="Chapter contents"></button>' +
+    '<nav class="on-this-page toc-mini__panel" id="toc-mini-panel"' +
+    ' aria-label="Chapter contents" hidden>' +
+    '<p class="on-this-page__head">On this page</p></nav>';
+  var toggle = mini.querySelector(".toc-mini__toggle");
+  var panel = mini.querySelector(".toc-mini__panel");
+  panel.appendChild(list.cloneNode(true));
+  document.body.appendChild(mini);
+
+  function open(state) {
+    toggle.setAttribute("aria-expanded", String(state));
+    panel.hidden = !state;
+  }
+  // the header is sticky, and wraps to a second row on a narrow screen
+  function place() { mini.style.insetBlockStart = (headroom() + 8) + "px"; }
+  place();
+  window.addEventListener("resize", place, { passive: true });
+
+  toggle.addEventListener("click", function () {
+    open(toggle.getAttribute("aria-expanded") !== "true");
+  });
+  panel.addEventListener("click", function (e) {
+    if (e.target.closest("a")) open(false);  // the jump takes over from here
+  });
+  document.addEventListener("click", function (e) {
+    if (!panel.hidden && !mini.contains(e.target)) open(false);
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && !panel.hidden) { open(false); toggle.focus(); }
+  });
+
+  new IntersectionObserver(function (entries) {
+    var e = entries[0];
+    var past = !e.isIntersecting && e.boundingClientRect.top < 0;
+    mini.classList.toggle("is-visible", past);
+    if (!past) open(false);
+  }, { rootMargin: "-" + headroom() + "px 0px 0px 0px" }).observe(box);
+})();
+
+/* ---- "on this page": mark the section you are actually reading ---------
+   Both the box and the corner copy carry a link per section, so each id maps
+   to a list of links rather than to one. */
 (function () {
   var links = document.querySelectorAll(".on-this-page a");
   if (!links.length || !("IntersectionObserver" in window)) return;
   var byId = {};
-  links.forEach(function (a) { byId[a.getAttribute("href").slice(1)] = a; });
+  links.forEach(function (a) {
+    var id = a.getAttribute("href").slice(1);
+    (byId[id] = byId[id] || []).push(a);
+  });
   var heads = Object.keys(byId).map(function (id) { return document.getElementById(id); })
                     .filter(Boolean);
   var seen = new Set();
@@ -82,7 +142,7 @@
     });
     links.forEach(function (a) { a.removeAttribute("aria-current"); });
     var first = heads.find(function (h) { return seen.has(h.id); });
-    if (first && byId[first.id]) byId[first.id].setAttribute("aria-current", "true");
+    if (first) byId[first.id].forEach(function (a) { a.setAttribute("aria-current", "true"); });
   }, { rootMargin: "-80px 0px -70% 0px" });
   heads.forEach(function (h) { io.observe(h); });
 })();
@@ -92,7 +152,7 @@
    short snippets does not fill the tab order. Tables get this server-side,
    where it also survives JavaScript being unavailable. */
 (function () {
-  const blocks = document.querySelectorAll(".highlight, div.excalifont, .customBlock");
+  const blocks = document.querySelectorAll(".highlight, div.excalifont, .math-display");
   if (!blocks.length) return;
   const label = function (el) {
     if (!el.classList.contains("highlight")) return "Formula";
@@ -190,6 +250,38 @@
   if ("ResizeObserver" in window) new ResizeObserver(refresh).observe(article);
   article.querySelectorAll("img").forEach(function (img) {
     if (!img.complete) img.addEventListener("load", refresh, { once: true });
+  });
+})();
+
+/* ---- embedded decks load only when asked ------------------------------
+   An <iframe> fetches from someone else's server the moment the page opens.
+   These stay an invitation until the reader presses it. The deck is a web app
+   that takes a few seconds to paint, so the invitation stays on top as a
+   loading notice rather than leaving an empty box. */
+(function () {
+  var frames = document.querySelectorAll("[data-embed]");
+  Array.prototype.forEach.call(frames, function (frame) {
+    var invite = frame.querySelector("[data-embed-invite]");
+    var button = frame.querySelector(".embed__load");
+    var message = frame.querySelector("[data-embed-message]");
+    if (!invite || !button) return;
+
+    button.addEventListener("click", function () {
+      invite.dataset.state = "loading";
+      if (message) message.textContent = "Loading the slides…";
+      var iframe = document.createElement("iframe");
+      iframe.title = frame.dataset.embedTitle;
+      iframe.setAttribute("referrerpolicy", "no-referrer");
+      iframe.setAttribute("allow", "fullscreen");
+      iframe.allowFullscreen = true;
+      iframe.addEventListener("load", function () {
+        frame.dataset.embedLoaded = "true";
+        invite.remove();
+        iframe.focus();
+      });
+      iframe.src = frame.dataset.embedSrc;
+      frame.insertBefore(iframe, invite);
+    });
   });
 })();
 

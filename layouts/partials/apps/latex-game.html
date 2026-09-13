@@ -1,0 +1,52 @@
+{{/* LaTeX drill. The prompts and the marking live in assets/js/apps/, and the
+     controls start disabled so the page is honest without JavaScript. The
+     shortcuts named in the titles are bound in latex-game.js. */}}
+{{- $id := .id -}}
+<section class="logic-app latex-game" data-logic-app="latex-game"
+         aria-label="{{ .sc.Get "title" | default "LaTeX speed challenge" }}">
+  <dl class="latex-game__meters">
+    <div><dt>Time</dt><dd data-game-time>1:00</dd></div>
+    <div><dt>Score</dt><dd data-game-score>0</dd></div>
+    <div><dt>Best</dt><dd data-game-best>0</dd></div>
+  </dl>
+
+  <fieldset class="latex-game__levels">
+    <legend>Difficulty</legend>
+    <div class="latex-game__choices">
+      {{- range $i, $level := slice "easy" "medium" "hard" }}
+      <label><input type="radio" name="{{ $id }}-level" value="{{ $level }}" data-game-level
+                    {{ if eq $i 0 }}checked{{ end }} disabled> {{ $level | title }}</label>
+      {{- end }}
+    </div>
+  </fieldset>
+
+  <div class="latex-game__stage">
+    <p class="latex-game__symbol" data-game-symbol role="img" aria-label="No prompt yet">?</p>
+  </div>
+
+  <form class="latex-game__form">
+    <label for="{{ $id }}-answer">LaTeX for the box above</label>
+    <input id="{{ $id }}-answer" class="logic-app__input latex-game__input" data-game-answer
+           type="text" autocomplete="off" autocapitalize="off" autocorrect="off"
+           spellcheck="false" maxlength="80" disabled>
+  </form>
+
+  <div class="logic-app__controls">
+    <button type="button" data-game-start disabled aria-label="Start" title="Start (Enter)">
+      <span data-icon="start">{{ partial "apps/icon.html" "play" }}</span>
+      <span data-icon="again" hidden>{{ partial "apps/icon.html" "replay" }}</span>
+    </button>
+    <button type="button" data-game-skip disabled aria-label="Skip" title="Skip (Shift+Enter)">
+      {{ partial "apps/icon.html" "skip" }}
+    </button>
+    <button type="button" data-game-end disabled aria-label="End round" title="End round (Esc)">
+      {{ partial "apps/icon.html" "stop" }}
+    </button>
+  </div>
+
+  <div class="logic-app__status latex-game__status" role="status" aria-live="polite" aria-atomic="true">One minute. Click the field, type the LaTeX for what the box shows, and press Enter. Shift+Enter skips a prompt, Esc ends the round.</div>
+
+  <p data-app-fallback>Enable JavaScript to play. The
+    <a href="{{ "textbook/notation/#latex-cheat-sheet" | relURL }}">LaTeX cheat sheet</a>
+    lists the same commands.</p>
+</section>

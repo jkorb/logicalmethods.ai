@@ -1,8 +1,10 @@
 ---
+locked: true
 title: Probability and inductive logic
 author: Johannes Korbmacher
 weight: 110
-params: 
+params:
+  legacy-notation: true
   date: 21/10/2024
   last_edited: 21/10/2024
   id: txt-prob

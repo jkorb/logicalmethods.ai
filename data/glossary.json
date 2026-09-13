@@ -1,0 +1,503 @@
+{
+  "abstraction": {
+    "term": "Abstraction",
+    "definition": "Leaving out features of a reasoning scenario that do not matter for the question we are studying.",
+    "chapter": "logic-and-ai"
+  },
+  "algorithm": {
+    "term": "Algorithm",
+    "definition": "A precise, step-by-step procedure that takes an input and produces an output in finitely many steps.",
+    "chapter": "formal-languages"
+  },
+  "belief-revision": {
+    "term": "Belief revision",
+    "definition": "Changing the propositions we accept when we receive new information, including information that conflicts with earlier beliefs.",
+    "chapter": "notation"
+  },
+  "cardinality": {
+    "term": "Cardinality",
+    "definition": "The number of elements of a set.",
+    "chapter": "formal-languages"
+  },
+  "conditional": {
+    "term": "Conditional",
+    "definition": "An if-then statement. In classical logic, A→B is false exactly when A is true and B is false.",
+    "chapter": "logic-and-ai"
+  },
+  "conditional-probability": {
+    "term": "Conditional probability",
+    "definition": "The probability of one claim given another. Formally, Pr(A given B)=Pr(A∧B)/Pr(B), provided Pr(B)>0.",
+    "chapter": "logic-and-ai"
+  },
+  "contradiction": {
+    "term": "Contradiction",
+    "definition": "A formula that is false in every model of the logic under discussion.",
+    "chapter": "notation"
+  },
+  "countermodel": {
+    "term": "Countermodel",
+    "definition": "A model in which all the premises of an inference are true and its conclusion is not true.",
+    "chapter": "notation"
+  },
+  "deductive-closure": {
+    "term": "Deductive closure",
+    "definition": "The set of all logical consequences of a set of formulas.",
+    "chapter": "notation"
+  },
+  "deductive-validity": {
+    "term": "Deductive validity",
+    "definition": "The impossibility of the premises being true and the conclusion false in the reasoning situations under consideration.",
+    "chapter": "logic-and-ai"
+  },
+  "denotation": {
+    "term": "Denotation",
+    "definition": "The object or function assigned to a term symbol by an interpretation.",
+    "chapter": "notation"
+  },
+  "derivability": {
+    "term": "Derivability",
+    "definition": "The existence of a formal proof of a conclusion from given assumptions, written with ⊢.",
+    "chapter": "notation"
+  },
+  "designated-value": {
+    "term": "Designated value",
+    "definition": "A truth value counted as acceptable in defining a consequence relation; in K3, only 1 is designated.",
+    "chapter": "notation"
+  },
+  "disjunction": {
+    "term": "Disjunction",
+    "definition": "An or-formula. Classical A∨B is true when at least one disjunct is true, including when both are.",
+    "chapter": "formal-languages"
+  },
+  "domain": {
+    "term": "Domain",
+    "definition": "The nonempty set of objects over which an FOL model interprets names, predicates, functions, and quantifiers.",
+    "chapter": "notation"
+  },
+  "entailment": {
+    "term": "Entailment",
+    "definition": "Another name for semantic consequence, written with ⊨.",
+    "chapter": "notation"
+  },
+  "equivalence": {
+    "term": "Logical equivalence",
+    "definition": "Two formulas are logically equivalent if they have the same truth-value in every model of the logic.",
+    "chapter": "notation"
+  },
+  "existential-quantifier": {
+    "term": "Existential quantifier",
+    "definition": "The symbol ∃, used to say that at least one object in the domain satisfies a condition.",
+    "chapter": "notation"
+  },
+  "expansion": {
+    "term": "Expansion",
+    "definition": "Adding a formula and all its consequences together with the old beliefs: KB+A=Cn(KB∪{A}).",
+    "chapter": "notation"
+  },
+  "formal-language": {
+    "term": "Formal language",
+    "definition": "A set of finite strings of symbols from an alphabet.",
+    "chapter": "formal-languages"
+  },
+  "formalization": {
+    "term": "Formalization",
+    "definition": "Representing an expression or inference in a formal language.",
+    "chapter": "formal-languages"
+  },
+  "formula": {
+    "term": "Formula",
+    "definition": "An expression formed according to the syntax of a logical language.",
+    "chapter": "formal-languages"
+  },
+  "free-variable": {
+    "term": "Free variable",
+    "definition": "An occurrence of a variable not governed by a quantifier for that variable.",
+    "chapter": "notation"
+  },
+  "fuzzy-predicate": {
+    "term": "Fuzzy predicate",
+    "definition": "A predicate whose extension assigns degrees in [0,1] rather than just membership or nonmembership.",
+    "chapter": "notation"
+  },
+  "grammar": {
+    "term": "Grammar",
+    "definition": "Rules for generating the expressions of a formal language.",
+    "chapter": "formal-languages"
+  },
+  "idealization": {
+    "term": "Idealization",
+    "definition": "Representing a situation in a simplified form that need not reproduce all its real features.",
+    "chapter": "logic-and-ai"
+  },
+  "inductive-support": {
+    "term": "Inductive support",
+    "definition": "Support that premises give a conclusion without guaranteeing it. In probability models, evidence positively supports a conclusion when learning the evidence raises its probability.",
+    "chapter": "logic-and-ai"
+  },
+  "inference": {
+    "term": "Inference",
+    "definition": "A piece of reasoning from premises to a conclusion.",
+    "chapter": "logic-and-ai"
+  },
+  "knowledge-base": {
+    "term": "Knowledge base",
+    "definition": "A collection of represented information used as the starting point for further inference.",
+    "chapter": "logic-and-ai"
+  },
+  "model": {
+    "term": "Model",
+    "definition": "A mathematical representation of a possible reasoning situation; a model of premises makes those premises true.",
+    "chapter": "logic-and-ai"
+  },
+  "model-checking": {
+    "term": "Model checking",
+    "definition": "Determining whether a formula is true in a specified model.",
+    "chapter": "notation"
+  },
+  "modus-ponens": {
+    "term": "Modus ponens",
+    "definition": "The rule from A and A→B to B.",
+    "chapter": "formal-languages"
+  },
+  "negation": {
+    "term": "Negation",
+    "definition": "A not-formula. Classical ¬A is true exactly when A is false.",
+    "chapter": "formal-languages"
+  },
+  "premise": {
+    "term": "Premise",
+    "definition": "A statement from which an inference starts.",
+    "chapter": "logic-and-ai"
+  },
+  "proof": {
+    "term": "Logical proof",
+    "definition": "A chaining of inference rules applied to logical formulas, with assumptions tracked through the derivation.",
+    "chapter": "logic-and-ai"
+  },
+  "pseudocode": {
+    "term": "Pseudocode",
+    "definition": "A precise description of an algorithm written for readers, using programming-like notation without requiring a complete executable program.",
+    "chapter": "formal-languages"
+  },
+  "semantics": {
+    "term": "Semantics",
+    "definition": "The component of a logical system that specifies interpretations and truth conditions.",
+    "chapter": "logic-and-ai"
+  },
+  "substitution": {
+    "term": "Substitution",
+    "definition": "Replacing free occurrences of a variable by a term, while avoiding variable capture.",
+    "chapter": "notation"
+  },
+  "syntax": {
+    "term": "Syntax",
+    "definition": "The component of a logical system that specifies which expressions are well formed.",
+    "chapter": "logic-and-ai"
+  },
+  "tautology": {
+    "term": "Tautology",
+    "definition": "A formula true in every valuation of the propositional logic under discussion.",
+    "chapter": "notation"
+  },
+  "truth-value": {
+    "term": "Truth-value",
+    "definition": "A value assigned to a formula by a semantics, such as 0 or 1 in classical logic.",
+    "chapter": "logic-and-ai"
+  },
+  "unification": {
+    "term": "Unification",
+    "definition": "Finding a substitution that makes two expressions syntactically identical.",
+    "chapter": "notation"
+  },
+  "universal-quantifier": {
+    "term": "Universal quantifier",
+    "definition": "The symbol ∀, used to say that every object in the domain satisfies a condition.",
+    "chapter": "notation"
+  },
+  "valuation": {
+    "term": "Valuation",
+    "definition": "An assignment of truth-values to propositional variables, extended to formulas by the semantic clauses.",
+    "chapter": "notation"
+  },
+  "verification": {
+    "term": "Verification",
+    "definition": "Checking that a proposed result meets a stated specification; for an argument, checking a proof or a countermodel in the chosen formal setting.",
+    "chapter": "logic-and-ai"
+  },
+  "xai": {
+    "term": "Explainable AI",
+    "definition": "Research into making the behavior and results of AI systems understandable.",
+    "chapter": "logic-and-ai"
+  },
+  "conjunction": {
+    "term": "Conjunction",
+    "definition": "An and-formula. Classical A∧B is true exactly when both conjuncts are true.",
+    "chapter": "formal-languages"
+  },
+  "probability": {
+    "term": "Probability",
+    "definition": "A measure of the chance of an event, given by adding the masses of its outcomes in our finite models.",
+    "chapter": "notation"
+  },
+  "identity": {
+    "term": "Identity",
+    "definition": "Sameness of objects: a=b is true when the two terms denote the same object.",
+    "chapter": "notation"
+  },
+  "set": {
+    "term": "Set",
+    "definition": "A collection of objects, called its members or elements. Sets are equal when they have exactly the same members.",
+    "chapter": "formal-languages"
+  },
+  "inductive-validity": {
+    "term": "Inductive validity",
+    "definition": "In our weak logical sense, conditioning on the premises never lowers the probability of the conclusion, for any distribution giving the premises positive probability.",
+    "chapter": "notation"
+  },
+  "logic": {
+    "term": "Logic",
+    "definition": "The discipline that aims to define and understand valid inference.",
+    "chapter": "logic-and-ai"
+  },
+  "conclusion": {
+    "term": "Conclusion",
+    "definition": "The statement being inferred from the premises of an inference.",
+    "chapter": "logic-and-ai"
+  },
+  "validity": {
+    "term": "Validity",
+    "definition": "In the broad sense used in chapter 1, the premises supporting the conclusion in the way required by the kind of inference under discussion.",
+    "chapter": "logic-and-ai"
+  },
+  "inference-indicator": {
+    "term": "Inference indicator",
+    "definition": "A word or phrase, such as “therefore” or “since”, that signals an inference and helps identify its premises or conclusion.",
+    "chapter": "logic-and-ai"
+  },
+  "premise-indicator": {
+    "term": "Premise indicator",
+    "definition": "A word or phrase, such as “given that”, that signals a premise of an inference.",
+    "chapter": "logic-and-ai"
+  },
+  "inference-line": {
+    "term": "Inference line",
+    "definition": "A horizontal line separating the premises above it from the conclusion below it.",
+    "chapter": "logic-and-ai"
+  },
+  "inductive-strength": {
+    "term": "Inductive strength",
+    "definition": "How strongly the premises support a conclusion without guaranteeing it, given the relevant background information.",
+    "chapter": "logic-and-ai"
+  },
+  "inductive-validity-in-context": {
+    "term": "Inductive validity (in context)",
+    "definition": "In the sense used in chapter 1, the premises supporting the conclusion strongly enough to justify accepting it, without making it certain.",
+    "chapter": "logic-and-ai"
+  },
+  "logical-system": {
+    "term": "Logical system",
+    "definition": "A mathematical model of valid inference, typically comprising syntax, semantics, and proof theory.",
+    "chapter": "logic-and-ai"
+  },
+  "proof-theory": {
+    "term": "Proof theory",
+    "definition": "The study of formal proofs and the rules by which they are constructed; as a component of a logical system, it models stepwise inference.",
+    "chapter": "logic-and-ai"
+  },
+  "logical-law": {
+    "term": "Logical law",
+    "definition": "A general principle of valid inference in a logical system.",
+    "chapter": "logic-and-ai"
+  },
+  "counterexample": {
+    "term": "Counterexample",
+    "definition": "A case that shows a claim is false. For an inference, it is a case where the premises are true but the conclusion is false.",
+    "chapter": "logic-and-ai"
+  },
+  "proof-assistant": {
+    "term": "Proof assistant",
+    "definition": "Software for constructing formal proofs and checking that their steps obey the rules of the proof system.",
+    "chapter": "logic-and-ai"
+  },
+  "inference-engine": {
+    "term": "Inference engine",
+    "definition": "The part of a reasoning system that applies rules to information in a knowledge base to derive further conclusions.",
+    "chapter": "logic-and-ai"
+  },
+  "undecidable-statement": {
+    "term": "Undecidable statement (in a theory)",
+    "definition": "A statement that can neither be proved nor refuted in the theory under discussion.",
+    "chapter": "logic-and-ai"
+  },
+  "algorithmic-undecidability": {
+    "term": "Algorithmic undecidability",
+    "definition": "The absence of an algorithm that terminates with the correct yes-or-no answer on every allowed input to a problem.",
+    "chapter": "logic-and-ai"
+  },
+  "consistency": {
+    "term": "Consistency",
+    "definition": "A theory is consistent if it does not prove both a statement and its negation.",
+    "chapter": "logic-and-ai"
+  },
+  "effective-axiomatization": {
+    "term": "Effective axiomatization",
+    "definition": "Specifying the axioms of a theory so that an algorithm can list them all, though the list may be infinite.",
+    "chapter": "logic-and-ai"
+  },
+  "conclusion-indicator": {
+    "term": "Conclusion indicator",
+    "definition": "A word or phrase, such as “therefore”, that signals the conclusion of an inference.",
+    "chapter": "logic-and-ai"
+  },
+  "knowledge-representation-and-reasoning": {
+    "term": "Knowledge Representation and Reasoning (KRR)",
+    "definition": "The study of how to represent information in a form that allows a system to draw conclusions and answer questions.",
+    "chapter": "logic-and-ai"
+  },
+  "querying": {
+    "term": "Querying a database",
+    "definition": "Asking a database for information by specifying what to retrieve and which conditions it must meet.",
+    "chapter": "logic-and-ai"
+  },
+  "system-1": {
+    "term": "System 1 thinking",
+    "definition": "Fast, automatic, intuitive and associative thinking, usually requiring little conscious effort.",
+    "chapter": "logic-and-ai"
+  },
+  "system-2": {
+    "term": "System 2 thinking",
+    "definition": "Slow, deliberate and conscious thinking, such as working through a calculation or checking an argument.",
+    "chapter": "logic-and-ai"
+  },
+  "set-membership": {
+    "term": "Set membership",
+    "definition": "An object belongs to a set if it is one of its elements, written ∈.",
+    "chapter": "formal-languages"
+  },
+  "extensional-definition": {
+    "term": "Extensional definition of a set",
+    "definition": "Specifying a set by listing its elements.",
+    "chapter": "formal-languages"
+  },
+  "set-abstraction": {
+    "term": "Set abstraction",
+    "definition": "Specifying a set by a condition its members satisfy, within an intended domain.",
+    "chapter": "formal-languages"
+  },
+  "alphabet": {
+    "term": "Alphabet",
+    "definition": "A set of symbols from which strings of a formal language are formed.",
+    "chapter": "formal-languages"
+  },
+  "string": {
+    "term": "String",
+    "definition": "A finite sequence of symbols, where order and repetitions matter.",
+    "chapter": "formal-languages"
+  },
+  "empty-string": {
+    "term": "Empty string",
+    "definition": "The string containing no symbols, often written ε.",
+    "chapter": "formal-languages"
+  },
+  "kleene-star": {
+    "term": "Kleene star",
+    "definition": "For an alphabet Σ, the set Σ* of all finite strings over Σ, including the empty string.",
+    "chapter": "formal-languages"
+  },
+  "inductive-definition": {
+    "term": "Inductive definition",
+    "definition": "A definition by initial cases and rules for generating further cases, with nothing else included.",
+    "chapter": "formal-languages"
+  },
+  "bnf": {
+    "term": "Backus–Naur Form (BNF)",
+    "definition": "Notation for grammar rules, using alternatives to specify how expressions can be built.",
+    "chapter": "formal-languages"
+  },
+  "rewrite-rule": {
+    "term": "Rewrite rule",
+    "definition": "An instruction specifying how one string of symbols may be replaced by another when generating expressions.",
+    "chapter": "formal-languages"
+  },
+  "parsing": {
+    "term": "Parsing",
+    "definition": "Reconstructing the grammatical structure of a string according to a grammar.",
+    "chapter": "formal-languages"
+  },
+  "abstract-syntax-tree": {
+    "term": "Abstract syntax tree (AST)",
+    "definition": "A tree representing the structure of an expression while omitting grammatical details such as brackets.",
+    "chapter": "formal-languages"
+  },
+  "unique-readability": {
+    "term": "Unique readability",
+    "definition": "A property of a grammar: every expression it generates has exactly one grammatical structure.",
+    "chapter": "formal-languages"
+  },
+  "recursion": {
+    "term": "Recursion",
+    "definition": "Defining or carrying out a procedure in terms of further calls to that same procedure.",
+    "chapter": "formal-languages"
+  },
+  "operator-precedence": {
+    "term": "Operator precedence",
+    "definition": "A convention specifying which operators bind more tightly when brackets are omitted.",
+    "chapter": "formal-languages"
+  },
+  "termination": {
+    "term": "Termination",
+    "definition": "The property that a procedure finishes after finitely many steps on its intended inputs.",
+    "chapter": "formal-languages"
+  },
+  "algorithm-correctness": {
+    "term": "Algorithm correctness",
+    "definition": "An algorithm produces the specified result on its intended inputs; total correctness also requires termination.",
+    "chapter": "formal-languages"
+  },
+  "propositional-variable": {
+    "term": "Propositional variable",
+    "definition": "A basic symbol representing a proposition in a propositional language.",
+    "chapter": "formal-languages"
+  },
+  "logical-operator": {
+    "term": "Logical operator",
+    "definition": "A symbol used to form compound expressions, such as negation or conjunction.",
+    "chapter": "formal-languages"
+  },
+  "biconditional": {
+    "term": "Biconditional",
+    "definition": "A connective written ↔ and read “if and only if”; in classical logic it is true when its two parts have the same truth-value.",
+    "chapter": "formal-languages"
+  },
+  "auxiliary-symbol": {
+    "term": "Auxiliary symbol",
+    "definition": "A symbol used to mark the grammatical structure of an expression, such as a bracket in propositional logic.",
+    "chapter": "formal-languages"
+  },
+  "metavariable": {
+    "term": "Metavariable",
+    "definition": "A variable in the language used to talk about another language; for example, A standing for any formula of propositional logic.",
+    "chapter": "formal-languages"
+  },
+  "rooted-tree": {
+    "term": "Rooted tree",
+    "definition": "A structure of nodes joined by edges, with a designated root and exactly one path from the root to each other node.",
+    "chapter": "formal-languages"
+  },
+  "numeral": {
+    "term": "Numeral",
+    "definition": "A written expression representing a number; for example, 120 represents the number one hundred and twenty.",
+    "chapter": "formal-languages"
+  },
+  "ambiguous-grammar": {
+    "term": "Ambiguous grammar",
+    "definition": "A grammar that generates at least one expression with more than one grammatical structure.",
+    "chapter": "formal-languages"
+  },
+  "ambiguity": {
+    "term": "Ambiguity",
+    "definition": "An expression is ambiguous if it has more than one possible reading.",
+    "chapter": "formal-languages",
+    "anchor": "ambiguity"
+  }
+}

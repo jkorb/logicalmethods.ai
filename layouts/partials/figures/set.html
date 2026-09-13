@@ -1,0 +1,10 @@
+<span class="math-set"><span class="math-set__brace">{</span>{{- range $i, $member := .members -}}
+{{- if $i }}<span class="math-set__comma">,</span>{{ end -}}
+<span class="math-set__member">{{- if reflect.IsMap $member -}}
+  {{- if isset $member "set" -}}
+    {{- partial "figures/set.html" (dict "members" $member.set "id" (printf "%s-%d" $.id $i)) -}}
+  {{- else -}}
+    {{- partial "figures/image.html" (dict "src" (printf "/img/drawings/%s.svg" $member.image) "class" "book-figure--set" "id" (printf "%s-%d" $.id $i)) -}}
+  {{- end -}}
+{{- else -}}{{ $member }}{{- end -}}</span>
+{{- end -}}<span class="math-set__brace">}</span></span>

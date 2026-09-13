@@ -1,6 +1,11 @@
 {{- $toc := .TableOfContents -}}
+{{- range findRE `<a[^>]*>[^<]*</a>` $toc -}}
+  {{- $label := replaceRE `<a[^>]*>|</a>` "" . -}}
+  {{- $rendered := $.RenderString $label -}}
+  {{- $toc = replace $toc . (replace . $label $rendered) -}}
+{{- end -}}
 {{- if gt (len $toc) 60 -}}
 <nav class="on-this-page" aria-label="On this page">
-  {{ $toc }}
+  {{ $toc | safeHTML }}
 </nav>
 {{- end -}}

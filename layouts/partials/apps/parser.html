@@ -1,0 +1,29 @@
+{{/* Parser app. The shortcode hands over its own context as .sc, so the
+     app-specific parameters are read and validated here. */}}
+{{- $mode := .sc.Get "mode" | default "strict" -}}
+{{- if not (in (slice "strict" "conventional") $mode) }}{{ errorf "Unknown parser mode %q" $mode }}{{ end -}}
+{{- $id := .id -}}
+<section class="logic-app" data-logic-app="parser" data-mode="{{ $mode }}" aria-label="{{ .sc.Get "title" | default "Abstract syntax trees" }}">
+  <form class="logic-app__form">
+    <div class="logic-app__input-wrap">
+      <input id="{{ $id }}-input" class="logic-app__input" aria-label="Formula" type="text" value="{{ .sc.Get "formula" | default "((p ∧ q) → ¬r)" }}" autocomplete="off" spellcheck="false" maxlength="512" aria-describedby="{{ $id }}-help" disabled>
+      <button type="button" class="logic-app__edit" aria-label="Edit formula" title="Edit formula" disabled>{{ partial "apps/icon.html" "edit" }}</button>
+    </div>
+    <p id="{{ $id }}-help" class="logic-app__help">{{ if eq (.sc.Get "variables") "plain" }}Use p, q, and r as variables.{{ else }}Use p₁, p₂, … or the shorthand p, q, r as variables.{{ end }} LaTeX commands turn into symbols as you type. <a href="{{ "textbook/notation/#latex-cheat-sheet" | relURL }}">LaTeX cheat sheet</a></p>
+    <button class="logic-app__use" type="submit" disabled>Start parsing</button>
+  </form>
+  <p class="logic-app__mode">{{ if eq $mode "strict" }}Full brackets: each binary formula has its own pair of brackets.{{ else }}Conventional notation: ¬, ∧, ∨, →, ↔ in decreasing priority; ∧ and ∨ group left, → groups right. Bracket repeated ↔ explicitly.{{ end }}</p>
+  <label class="logic-app__labels"><input type="checkbox" data-formula-labels disabled> Show formulas at nodes</label>
+  <div class="logic-app__controls" aria-label="Parsing steps">
+    <button type="button" data-action="first" aria-label="First step" title="First step" disabled>{{ partial "apps/icon.html" "first" }}</button>
+    <button type="button" data-action="previous" aria-label="Previous step" title="Previous step" disabled>{{ partial "apps/icon.html" "previous" }}</button>
+    <span class="logic-app__count"></span>
+    <button type="button" data-action="next" aria-label="Next step" title="Next step" disabled>{{ partial "apps/icon.html" "next" }}</button>
+    <button type="button" data-action="last" aria-label="Last step" title="Last step" disabled>{{ partial "apps/icon.html" "last" }}</button>
+  </div>
+  <div class="logic-app__status" role="status" aria-live="polite" aria-atomic="true">The interactive tree is loading. The explanation in the chapter can also be followed without it.</div>
+  <div class="logic-app__tree" role="region" aria-label="Parsing tree; scroll to view a larger tree" tabindex="0"></div>
+  <div id="{{ $id }}-text" class="logic-app__text" role="region" aria-label="Parsing tree as text" hidden><div></div></div>
+  <button type="button" class="logic-app__text-toggle" aria-label="Show tree as text" title="Show tree as text" aria-expanded="false" aria-controls="{{ $id }}-text" disabled>{{ partial "apps/icon.html" "accessibility" }}</button>
+  <p data-app-fallback>Enable JavaScript to step through the tree. The grammar and worked example remain available in the chapter.</p>
+</section>

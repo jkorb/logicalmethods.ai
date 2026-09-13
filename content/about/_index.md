@@ -39,8 +39,18 @@ pages, drawings, scripts, fonts — is public.
 Course content is [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en);
 the code that builds the site is [MIT](https://opensource.org/license/mit).
 
-The site collects nothing at all. No accounts, no cookies, no analytics, and no
-requests to anyone else's servers — the fonts and scripts are served from here.
+No accounts, no analytics, no tracking, and no cookies. Fonts, scripts and
+images are all served from this domain, so opening a page contacts nobody else.
+The embedded slide decks are the one exception: they live on Excalidraw's
+servers, so they stay a button until you press it, and pressing it is what sends
+your IP address there.
+
+A few settings are kept in your browser's local storage so the site can remember
+them between visits: the light or dark theme you picked, your best score in the
+LaTeX drill, and which formula-builder levels you have finished. They never
+leave your computer, and clearing your browser data removes them. The site is
+hosted on GitHub Pages, which — like any web host — sees the IP address of
+requests it serves.
 
 ## {{< logo >}}
 
@@ -81,8 +91,9 @@ university has reviewed or approved it, and the mistakes in it are mine.
     <span><strong>Built with</strong>Hugo, and hosted on GitHub Pages.</span></a></li>
   <li><span>
     <i class="bi bi-shield-check" aria-hidden="true"></i>
-    <span><strong>Your data</strong>No accounts, no cookies, no analytics, and no
-    third-party requests. Fonts and scripts are served from this domain only.</span></span></li>
+    <span><strong>Your data</strong>No accounts, no analytics, no tracking, no
+    cookies. A few settings are stored in your own browser; embedded decks load
+    only when you ask.</span></span></li>
 </ul>
 {{< /raw >}}
 

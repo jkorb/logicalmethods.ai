@@ -1,0 +1,33 @@
+{{- $id := printf "tree-guide-%s-%d" .Page.File.UniqueID .Ordinal -}}
+<figure class="tree-guide" data-tree-guide id="{{ $id }}" aria-label="Tree terminology">
+  <p class="tree-guide__hint" hidden>Click a term to expand its definition and highlight the tree.</p>
+  <div class="tree-guide__layout">
+    <svg viewBox="20 4 350 284" role="img" aria-labelledby="{{ $id }}-title {{ $id }}-desc">
+      <title id="{{ $id }}-title">An animal-labelled rooted tree</title>
+      <desc id="{{ $id }}-desc">Rabbit is the root, with children hedgehog on the left and whale on the right. Hedgehog has children fox and wolf. Whale has one child, bird. Fox, wolf, and bird are leaves.</desc>
+      <line data-edge="rabbit-hedgehog" x1="220" y1="42" x2="125" y2="145" />
+      <line data-edge="rabbit-whale" x1="220" y1="42" x2="330" y2="145" />
+      <line data-edge="hedgehog-fox" x1="125" y1="145" x2="65" y2="250" />
+      <line data-edge="hedgehog-wolf" x1="125" y1="145" x2="185" y2="250" />
+      <line data-edge="whale-bird" x1="330" y1="145" x2="330" y2="250" />
+      <g data-node="rabbit" transform="translate(220 42)"><circle r="32"/><text text-anchor="middle" dy=".35em">🐰</text></g>
+      <g data-node="hedgehog" transform="translate(125 145)"><circle r="32"/><text text-anchor="middle" dy=".35em">🦔</text></g>
+      <g data-node="whale" transform="translate(330 145)"><circle r="32"/><text text-anchor="middle" dy=".35em">🐋</text></g>
+      <g data-node="fox" transform="translate(65 250)"><circle r="32"/><text text-anchor="middle" dy=".35em">🦊</text></g>
+      <g data-node="wolf" transform="translate(185 250)"><circle r="32"/><text text-anchor="middle" dy=".35em">🐺</text></g>
+      <g data-node="bird" transform="translate(330 250)"><circle r="32"/><text text-anchor="middle" dy=".35em">🐦</text></g>
+    </svg>
+    <dl class="tree-guide__definitions">
+      <div data-concept="node" data-nodes="rabbit hedgehog whale fox wolf bird" data-edges=""><dt>Node</dt><dd>A point in the tree. Each of the six circles is a node; the emojis are their labels.</dd></div>
+      <div data-concept="root" data-nodes="rabbit" data-edges=""><dt>Root</dt><dd>The starting node, drawn at the top. Here it is labelled 🐰 (rabbit). It has no parent.</dd></div>
+      <div data-concept="edge" data-nodes="rabbit hedgehog" data-edges="rabbit-hedgehog"><dt>Edge</dt><dd>A line joining two nodes directly. Here we highlight the edge from 🐰 (rabbit) to 🦔 (hedgehog).</dd></div>
+      <div data-concept="parent" data-nodes="hedgehog" data-edges="hedgehog-fox hedgehog-wolf"><dt>Parent</dt><dd>The node immediately above another node, joined to it by an edge. 🦔 (hedgehog) is the parent of both 🦊 (fox) and 🐺 (wolf).</dd></div>
+      <div data-concept="children" data-nodes="fox wolf" data-edges="hedgehog-fox hedgehog-wolf"><dt>Children</dt><dd>The nodes immediately below a node, joined to it by edges. 🦊 (fox) and 🐺 (wolf) are the children of 🦔 (hedgehog).</dd></div>
+      <div data-concept="siblings" data-nodes="fox wolf" data-edges=""><dt>Siblings</dt><dd>Nodes with the same parent. 🦊 (fox) and 🐺 (wolf) are siblings; their parent is 🦔 (hedgehog).</dd></div>
+      <div data-concept="leaf" data-nodes="fox wolf bird" data-edges=""><dt>Leaf</dt><dd>A node with no children. 🦊 (fox), 🐺 (wolf), and 🐦 (bird) are the leaves.</dd></div>
+      <div data-concept="internal" data-nodes="rabbit hedgehog whale" data-edges=""><dt>Internal node</dt><dd>A node with at least one child. 🐰 (rabbit), 🦔 (hedgehog), and 🐋 (whale) are internal nodes.</dd></div>
+      <div data-concept="path" data-nodes="rabbit hedgehog" data-edges="rabbit-hedgehog"><dt>Path</dt><dd>A route along edges with no repeated nodes. One example runs from 🐰 (rabbit) to 🦔 (hedgehog).</dd></div>
+      <div data-concept="branch" data-nodes="rabbit hedgehog fox" data-edges="rabbit-hedgehog hedgehog-fox"><dt>Branch</dt><dd>Here, a complete path from the root to a leaf. One branch runs from 🐰 (rabbit) through 🦔 (hedgehog) to 🦊 (fox).</dd></div>
+    </dl>
+  </div>
+</figure>

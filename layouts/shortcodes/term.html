@@ -1,0 +1,5 @@
+{{- $key := .Get 0 -}}
+{{- $entry := index hugo.Data.glossary $key -}}
+{{- if not $entry -}}{{ errorf "Unknown glossary term %q at %s" $key .Position }}{{- end -}}
+{{- $page := site.GetPage "/textbook/glossary" -}}
+<a id="term-{{ $key }}-{{ .Ordinal }}" class="glossary-term" href="{{ $page.RelPermalink }}#{{ $key }}" target="_blank" rel="noopener noreferrer" data-glossary-definition="{{ $entry.definition }}" title="{{ $entry.definition }}">{{ .Get 1 | default $entry.term }}<span class="visually-hidden"> (glossary, opens in a new tab)</span></a>

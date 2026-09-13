@@ -111,6 +111,8 @@ img { min-inline-size: 0; }
   margin: 1.4rem 0; padding: .2rem 0 .2rem 1.1rem;
   border-inline-start: 3px solid var(--rule-strong); color: var(--ink-muted); font-style: italic;
 }
+.prose blockquote > :first-child { margin-block-start: 0; }
+.prose blockquote > :last-child { margin-block-end: 0; }
 .prose img { max-inline-size: 100%; height: auto; }
 .prose figure { margin: 1.6rem 0; }
 .prose figcaption { font-size: var(--step--1); color: var(--ink-muted); margin-block-start: .5rem; }
@@ -129,14 +131,13 @@ img { min-inline-size: 0; }
 /* ---- notation ----------------------------------------------------------- */
 .excalifont { font-family: var(--font-hand); overflow-wrap: break-word; }
 /* Display formulas scroll inside themselves; inline runs of symbol images wrap. */
-div.excalifont, .customBlock { overflow-x: auto; overscroll-behavior-x: contain; }
+div.excalifont, .math-display { overflow-x: auto; overscroll-behavior-x: contain; }
 /* inline formal-language notation keeps the hand */
-.shanns, code, kbd, samp, .customCode, .Boolean, .Kleene { font-family: var(--font-formal); }
+.shanns, .math-inline, .math-content, .Boolean, .Kleene { font-family: var(--font-formal); }
 /* multi-line source code is read character by character: a code face, at a
    readable size, upright. Comic Shanns' slant costs comprehension here. */
-pre, pre code, .chroma, .highlight { font-family: var(--font-code); font-style: normal; }
-/* Inline backticks now carry object-language notation far more often than they
-   carry code, so they are unadorned: the face alone marks them. */
+code, kbd, samp, pre, pre code, .chroma, .highlight { font-family: var(--font-code); font-style: normal; }
+/* Ordinary Markdown code keeps its programming face; dollar math uses Shanns. */
 code { color: inherit; background: none; border: 0; padding: 0;
        font-size: 1.02em; overflow-wrap: break-word; }
 pre { background: var(--paper-sunken); border: 1px solid var(--rule); border-radius: var(--radius);
@@ -146,14 +147,20 @@ pre code { background: none; border: 0; padding: 0; }
 
 /* Chroma emits line numbers as a table inside div.highlight; the wrapper has to
    be the scroller or long code lines push the whole page sideways. */
+/* .85em is the size these blocks have always rendered at: .92em used to be
+   applied twice, because transform.Highlight's own .highlight wrapper sat
+   inside ours. Now that there is one wrapper, the declared size is the real
+   one — and it has to stay at .85 so the longest lines still fit without a
+   sideways scroll. */
 .highlight { overflow-x: auto; overscroll-behavior-x: contain; max-inline-size: 100%;
              border: 1px solid var(--rule); border-radius: var(--radius); background: var(--paper-sunken);
-             font-size: .92em; line-height: 1.6; margin-block: 1.4rem; }
+             font-size: .85em; line-height: 1.6; margin-block: 1.4rem; }
+.code-block { margin-block: 1.4rem; }
 .highlight pre, .highlight .chroma { overflow: visible; border: 0; margin: 0; background: none; }
 .highlight table, .highlight .lntable { inline-size: auto; margin: 0; border: 0; }
 .highlight .lntable td { border: 0; padding: 0; text-align: start; }
 .highlight .lnt { color: var(--ink-muted); user-select: none; }
-.customBlock { font-size: clamp(1.3rem, 1vw + .6rem, 1.85rem); }
+.math-display, .set-figure { font-size: 1.05em; font-weight: 400; line-height: 1.35; margin-block: .75em; }
 
 
 /* Two formal languages must differ by more than hue (WCAG 1.4.1) */
@@ -387,17 +394,17 @@ pre code { background: none; border: 0; padding: 0; }
    ========================================================================== */
 .prose :is(p, div) > img:not(.inline-icon),
 .prose > img:not(.inline-icon) { border-radius: 4px; }
-:root .prose img:not(.inline-icon) { mix-blend-mode: multiply; }
-:root[data-theme="dark"] .prose img:not(.inline-icon),
+:root .prose img:not(.inline-icon):not(.book-figure > img) { mix-blend-mode: multiply; }
+:root[data-theme="dark"] .prose img:not(.inline-icon):not(.book-figure > img),
 :root[data-theme="dark"] .figure-card { mix-blend-mode: normal; }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .prose img:not(.inline-icon) { mix-blend-mode: normal; }
+  :root:not([data-theme="light"]) .prose img:not(.inline-icon):not(.book-figure > img) { mix-blend-mode: normal; }
 }
-:root[data-theme="dark"] .prose img:not(.inline-icon) {
+:root[data-theme="dark"] .prose img:not(.inline-icon):not(.book-figure > img) {
   background: #FBFAF7; padding: .5rem; border-radius: 6px;
 }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .prose img:not(.inline-icon) {
+  :root:not([data-theme="light"]) .prose img:not(.inline-icon):not(.book-figure > img) {
     background: #FBFAF7; padding: .5rem; border-radius: 6px;
   }
 }
@@ -432,16 +439,6 @@ pre code { background: none; border: 0; padding: 0; }
 .link-external { font-size: .78em; margin-inline-end: .18em; vertical-align: .04em; opacity: .75; }
 .link-out:hover .link-external { opacity: 1; }
 
-/* An inlined vector figure behaves like a block image. */
-.figure-inline { display: block; margin-inline: auto; margin-block: 1.4rem; max-inline-size: 100%; }
-.figure-inline--sized { inline-size: min(var(--figure-w), 100%); }
-.figure-inline .figure-svg { inline-size: 100%; block-size: auto; display: block; }
-/* A diagram's colours assume a light ground: its arrows and labels are drawn in
-   ink, its fills are pale. Rather than distort them, the figure sits on its own
-   sheet of paper in dark mode — the same treatment the raster figures get. */
-:root[data-theme="dark"] .figure-inline,
-:root:not([data-theme="light"]) .figure-inline {
-  background: #FBFAF7; padding: .75rem; border-radius: 8px; inline-size: fit-content;
-}
-:root[data-theme="dark"] .figure-inline--sized,
-:root:not([data-theme="light"]) .figure-inline--sized { inline-size: min(var(--figure-w), 100%); }
+.math-display { text-align: center; }
+.math-inline { font-size: 1.02em; }
+.math-display > .math-content { display: inline-block; white-space: pre; tab-size: 24; text-align: start; font-size: 1em; font-weight: 400; vertical-align: middle; }

@@ -1,0 +1,1 @@
+<li><span>{{ .label }}</span>{{ with .children }}<ul>{{ range . }}{{ partial "apps/tree-node.html" . }}{{ end }}</ul>{{ end }}</li>

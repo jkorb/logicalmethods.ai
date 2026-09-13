@@ -16,14 +16,14 @@
         logical foundations of AI: how formal languages represent knowledge, how
         algorithms search for proofs, and where the limits are.
       </p>
-      <p class="hero__actions">
-        {{ with $first }}
+      {{/* One action only: the section cards below already lead to the textbook. */}}
+      {{ with $first }}
+        <p class="hero__actions">
           <a class="btn-hand btn-hand--primary" href="{{ .RelPermalink }}">
             {{ partial "shared/icon.html" (dict "name" "play") }} Start Chapter 1
           </a>
-        {{ end }}
-        <a class="btn-hand" href="{{ "/textbook/" | relURL }}">Browse the textbook</a>
-      </p>
+        </p>
+      {{ end }}
     </div>
     <div class="hero__figure">
       {{ partial "shared/mascot.html" (dict "name" "heart" "class" "mascot-hero"
@@ -69,7 +69,7 @@
       </ul>
       <p class="outcomes__note">
         Written for undergraduates, and free to read, copy and adapt &mdash; on your own
-        or in your own teaching. No accounts, no cookies, no tracking.
+        or in your own teaching. No accounts, no tracking, no cookies.
         <a href="{{ "/about/" | relURL }}">More about this course</a>.
       </p>
     </div>

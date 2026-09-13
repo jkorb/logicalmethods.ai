@@ -1,0 +1,248 @@
+/* No panel. These sit on the page like the syntax-tree glosses in the formal
+   languages chapter: the notebook grid stays visible, and the pieces you work
+   with — the tree, the board, the prompt — are what lift off it. A hard border
+   round the whole app boxed the paper out and made every control inside it
+   read as one more nested box. */
+.logic-app {
+  clear: both;
+  margin-block: 2.75rem;
+  padding-block-end: 3rem;   /* room for the corner control */
+  position: relative;
+  min-inline-size: 0;
+  text-align: center;
+}
+.logic-app__title { font-family: var(--font-hand); font-size: var(--step-1); }
+.logic-app__form { display: grid; gap: .5rem; }
+.logic-app__input { inline-size: 100%; min-inline-size: 0; font-family: var(--font-formal); font-size: var(--step-1); padding: .6rem 3rem; text-align: center; color: var(--ink); background: var(--paper-raised); border: 1px solid var(--rule-strong); border-radius: var(--radius); }
+.logic-app button {
+  color: var(--ink); background: var(--paper-raised);
+  border: 1px solid var(--rule-strong); border-radius: var(--radius);
+  padding: .5rem .7rem; min-block-size: 44px; cursor: pointer;
+  transition: border-color .12s ease, background .12s ease;
+}
+.logic-app button:disabled { color: var(--ink-muted); border-color: var(--rule); border-style: dashed; background: none; cursor: default; }
+.logic-app button:not(:disabled):hover { border-color: var(--ink-muted); background: var(--paper-sunken); }
+.logic-app__controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .4rem; }
+.logic-app__help, .logic-app__mode { font-size: var(--step--1); color: var(--ink-muted); }
+.logic-app__mode { margin-block: 1rem; }
+.logic-app__status {
+  text-align: start; margin: 1rem auto; padding: .9rem 1.1rem;
+  max-inline-size: var(--measure);
+  background: var(--surf-neutral); border: 1px solid var(--rule);
+  border-inline-start: 3px solid var(--blue-gfx);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  overflow-wrap: anywhere;
+}
+.logic-app__status p { margin-block: .5rem 0; }
+.logic-app__status[data-state="error"] { border-inline-start-color: var(--red-gfx); }
+.logic-app__status[data-state="success"] { border-inline-start-color: var(--green-gfx); }
+.logic-app__tree { max-inline-size: 100%; overflow: auto; max-block-size: 36rem; }
+.logic-app__tree svg { display: block; margin-inline: auto; max-inline-size: none; height: auto; }
+.logic-app__tree line { stroke: var(--ink-muted); stroke-width: 1.5; }
+.logic-app__tree rect { stroke: var(--ink-muted); fill: var(--paper); }
+.logic-app__tree text { font-family: var(--font-formal); font-size: var(--step-1); fill: var(--ink); }
+.logic-app__tree .is-current rect { stroke: var(--blue-gfx); stroke-width: 3; stroke-dasharray: 5 3; }
+.logic-app__text { text-align: start; inline-size: fit-content; max-inline-size: 100%; margin: 1rem auto; overflow-wrap: anywhere; }
+@media print { .logic-app__form, .logic-app__controls { display: none; } }
+
+.logic-app__formula { font-family: var(--font-formal); }
+
+.logic-app [hidden] { display: none !important; }
+.logic-app__input-wrap { position: relative; }
+.logic-app .logic-app__edit { position: absolute; inset-inline-end: .2rem; inset-block-start: 50%; transform: translateY(-50%); border: 0; background: transparent; }
+.logic-app__controls button { display: inline-flex; justify-content: center; align-items: center; min-inline-size: 44px; padding: .5rem; }
+.logic-app__controls { margin-block: 1rem; }
+.logic-app__step-title { display: block; text-align: center; font-family: var(--font-hand); font-size: var(--step-1); }
+
+.logic-app__status .logic-app__explanation { margin-block: 1rem; }
+.logic-app__tree { min-block-size: 12rem; }
+.logic-app__use { justify-self: center; }
+
+.logic-app .logic-app__text-toggle { position: absolute; inset-block-end: 0; inset-inline-end: 0; display: inline-flex; padding: .45rem; }
+.logic-app__input[readonly] { color: var(--ink-muted); background: var(--paper-sunken); }
+.logic-app__labels { display: inline-flex; align-items: center; gap: .5rem; min-block-size: 44px; cursor: pointer; }
+.logic-app__labels input { inline-size: 1.2rem; block-size: 1.2rem; accent-color: var(--blue-ink); }
+.logic-app__details { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: .5rem 1rem; margin-block: 1rem; }
+.logic-app__details dt { font-weight: 700; }
+.logic-app__details dd { margin: 0; }
+@media (max-width: 360px) { .logic-app__details { column-gap: .5rem; font-size: var(--step--1); } }
+
+/* ==========================================================================
+   LaTeX drill
+   A symbol in a box, two minutes, and the command that produces it.
+   ========================================================================== */
+.latex-game__meters { display: flex; justify-content: center; gap: 1.5rem; margin: 0 0 1rem; }
+.latex-game__meters div { margin: 0; }
+.latex-game__meters dt { font-size: var(--step--1); color: var(--ink-muted); }
+.latex-game__meters dd { margin: 0; font-family: var(--font-hand); font-size: var(--step-2); line-height: 1.1; }
+.latex-game__meters dd.is-low { color: var(--red-ink); }
+
+.latex-game__levels { margin: 0 0 1rem; padding: 0; border: 0; }
+.latex-game__levels legend { padding: 0; font-size: var(--step--1); color: var(--ink-muted); }
+.latex-game__choices { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 1.25rem; }
+.latex-game__choices label { display: inline-flex; align-items: center; gap: .4rem; min-block-size: 44px; cursor: pointer; }
+.latex-game__choices input { inline-size: 1.2rem; block-size: 1.2rem; accent-color: var(--blue-ink); }
+
+.latex-game__stage { position: relative; display: flex; justify-content: center; margin-block: 1rem; }
+/* .prose p sets a bottom margin in em, which at this size is a large gap */
+.latex-game .latex-game__symbol {
+  display: grid; place-items: center; margin: 0;
+  min-inline-size: 6rem; block-size: 6rem; max-inline-size: 100%;
+  padding-inline: 1.25rem; white-space: nowrap; overflow-x: auto;
+  font-family: var(--font-formal); font-size: var(--step-4); line-height: 1;
+  color: var(--ink); background: var(--paper-raised);
+  border: 1px solid var(--ink-muted); border-radius: var(--radius);
+  transition: color .15s ease, border-color .15s ease;
+}
+/* prompts run from one glyph to a whole claim, so the box has three sizes */
+.latex-game__symbol[data-size="few"] { font-size: var(--step-2); }
+.latex-game__symbol[data-size="many"] { font-size: var(--step-1); }
+/* a text command is drilled by how it reads, so the prompt has to show that */
+.latex-game__symbol :is(em, strong) { font-family: var(--font-prose); }
+/* prose marks inline code by its face alone, but the box's own face is already
+   a monospace, so this one needs the extra cue to read as \texttt */
+.latex-game__symbol code {
+  font-family: var(--font-code); font-size: .85em; color: inherit;
+  background: var(--paper-sunken); border-radius: 4px; padding: .1em .3em;
+}
+.latex-game__symbol sup { font-size: .55em; vertical-align: super; }
+.latex-game__symbol sub { font-size: .55em; vertical-align: sub; }
+.latex-game__sans { font-family: var(--font-prose); }
+/* the start button carries both its icons and swaps which one shows */
+.latex-game [data-icon] { display: inline-flex; }
+.latex-game__stage[data-feedback="right"] .latex-game__symbol { color: var(--green-ink); border-color: var(--green-gfx); }
+.latex-game__stage[data-feedback="wrong"] .latex-game__symbol {
+  color: var(--red-ink); border-color: var(--red-gfx);
+  animation: latex-game-shake .4s ease;
+}
+@keyframes latex-game-shake {
+  20%, 80% { transform: translateX(5px); }
+  40%, 60% { transform: translateX(-7px); }
+}
+
+/* the burst rises from the middle of the box and fades on the way out */
+.latex-game__confetti { position: absolute; inset-block-start: 50%; inset-inline-start: 50%; inline-size: 0; block-size: 0; pointer-events: none; }
+.latex-game__confetti i {
+  position: absolute; inline-size: .5rem; block-size: .75rem; background: var(--confetti);
+  animation: latex-game-confetti .9s var(--delay) ease-out forwards;
+}
+@keyframes latex-game-confetti {
+  from { transform: translate(0, 0) rotate(0); opacity: 1; }
+  to   { transform: translate(var(--x), var(--y)) rotate(var(--spin)); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .latex-game__stage[data-feedback="wrong"] .latex-game__symbol { animation: none; }
+}
+
+.latex-game__form { display: grid; justify-items: center; gap: .4rem; }
+.latex-game__form label { font-size: var(--step--1); color: var(--ink-muted); }
+.latex-game .latex-game__input { max-inline-size: 22rem; padding-inline: 1rem; }
+/* the field is sized for typing formulas; the hint in it has to fit a phone */
+.latex-game__input::placeholder { font-size: var(--step--1); opacity: 1; color: var(--ink-muted); }
+.latex-game__status { text-align: center; }
+@media print { .latex-game__stage, .latex-game__levels { display: none; } }
+
+/* ==========================================================================
+   Formula builder
+   Atoms at the leaves, the formula you are building on top. The lines between
+   nodes are drawn with borders rather than measured into an overlay: every
+   node has one or two children, which is exactly what this technique handles.
+   ========================================================================== */
+.builder__levels { display: flex; flex-wrap: wrap; justify-content: center; gap: .35rem; margin-block-end: 1rem; }
+.builder .builder__level {
+  min-inline-size: 2.4rem; min-block-size: 2.4rem; padding: .25rem;
+  font-family: var(--font-hand); font-size: var(--step-0);
+}
+.builder__level[data-done="true"] { border-color: var(--green-gfx); color: var(--green-ink); }
+.builder__level[data-done="true"]::after { content: "\00a0✓"; }
+.builder .builder__level[aria-current="true"] { border-width: 2px; border-color: var(--blue-ink); color: var(--ink); }
+
+.builder__goal-line { font-size: var(--step--1); color: var(--ink-muted); margin-block: 0 .75rem; }
+.builder__goal { font-family: var(--font-formal); font-size: var(--step-1); color: var(--ink); }
+.builder__goal[data-state="done"] { color: var(--green-ink); }
+.builder__goal[data-state="done"]::after { content: "\00a0✓"; }
+
+/* Once there is something on it, the board gets out of the way: the formulas
+   sit on the page like the trees in the chapter's glosses. It only draws
+   itself while it is empty, where the outline is the invitation. */
+.builder__board {
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start;
+  gap: 1.5rem 2rem; min-block-size: 7rem; padding: 1.25rem .75rem;
+  border: 1px dashed transparent; border-radius: var(--radius);
+  overflow-x: auto;
+}
+.builder__board[data-empty="true"] { border-color: var(--rule-strong); background: var(--paper-sunken); }
+.builder__board[data-empty="true"]::before {
+  content: "The board is empty — add an atom to start.";
+  align-self: center; margin-inline: auto;
+  font-size: var(--step--1); color: var(--ink-muted);
+}
+
+.builder__tree { display: flex; flex-direction: column; align-items: center; }
+.builder__node {
+  font-family: var(--font-formal); font-size: var(--step-0); white-space: nowrap;
+  padding: .35rem .6rem; border-radius: var(--radius);
+  border: 1px solid var(--ink-muted); background: var(--paper-raised); color: var(--ink);
+}
+.builder .builder__node { min-block-size: 0; }
+.builder button.builder__node { cursor: pointer; }
+.builder button.builder__node[aria-pressed="true"] {
+  border-color: var(--blue-ink); border-width: 2px; padding: calc(.35rem - 1px) calc(.6rem - 1px);
+  background: color-mix(in srgb, var(--blue-gfx) 12%, var(--paper-raised));
+}
+/* a formula that has been used up is part of something bigger now */
+.builder__node.is-used { border-style: dashed; color: var(--ink-muted); background: none; }
+
+/* the stems: down from a parent, up to each child, joined across the row */
+.builder__children {
+  display: flex; justify-content: center; gap: .75rem;
+  position: relative; padding-block-start: 1.5rem;
+}
+.builder__children::before {
+  content: ""; position: absolute; inset-block-start: 0; inset-inline-start: 50%;
+  block-size: .75rem; border-inline-start: 1px solid var(--rule-strong);
+}
+.builder__children > .builder__tree { position: relative; padding-block-start: .75rem; }
+.builder__children > .builder__tree::before {
+  content: ""; position: absolute; inset-block-start: 0; inset-inline-start: 50%;
+  block-size: .75rem; border-inline-start: 1px solid var(--rule-strong);
+}
+.builder__children > .builder__tree::after {
+  content: ""; position: absolute; inset-block-start: 0; border-block-start: 1px solid var(--rule-strong);
+}
+.builder__children > .builder__tree:first-child::after { inset-inline: 50% -.375rem; }
+.builder__children > .builder__tree:last-child::after { inset-inline: -.375rem 50%; }
+.builder__children > .builder__tree:only-child::after { content: none; }
+
+.builder__atom { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: .5rem; margin-block: 1rem 0; }
+.builder__atom label { font-size: var(--step--1); color: var(--ink-muted); }
+.builder .builder__atom-input {
+  inline-size: 6rem; text-align: center; padding: .5rem;
+  font-family: var(--font-formal); font-size: var(--step-0);
+  color: var(--ink); background: var(--paper-raised);
+  border: 1px solid var(--rule-strong); border-radius: var(--radius);
+}
+.builder .builder__operators button { font-family: var(--font-formal); font-size: var(--step-1); min-inline-size: 3rem; }
+.builder__status { text-align: center; }
+@media print { .builder__atom, .builder__operators, .builder__levels { display: none; } }
+
+/* Exercise practice: reuse the app controls and keep formal text in Shanns. */
+.logic-app .practice-prompt { display: block; font-size: var(--step-1); overflow-wrap: anywhere; }
+.logic-app .yard-state { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: .6rem; text-align: start; }
+.logic-app .yard-state dd { margin: 0; overflow-wrap: anywhere; min-inline-size: 0; }
+.logic-app select { max-inline-size: 100%; min-block-size: 44px; color: var(--ink); background: var(--paper-raised); }
+
+.reasoning-practice__progress { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem; font-size: var(--step--1); color: var(--ink-muted); }
+.reasoning-practice__case { text-align: start; margin-block: 1rem; padding: 1rem; border: 1px solid var(--rule); border-radius: var(--radius); background: var(--paper-raised); }
+.reasoning-practice__case h3 { margin-block: 0 1rem; }
+.reasoning-practice__label { color: var(--ink-muted); font-size: var(--step--1); margin-block: 1rem .4rem; }
+.reasoning-practice__conclusion { font-size: var(--step-1); margin-block: .4rem 0; }
+.reasoning-practice__choices { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; }
+.reasoning-practice__choices button { text-align: start; }
+.reasoning-practice__choices small { display: block; margin-block-start: .35rem; font-size: var(--step--1); }
+.reasoning-practice__choices button[aria-pressed="true"] { outline: 2px solid var(--ink); outline-offset: 2px; }
+.reasoning-practice__choices button[data-correct="true"] { color: var(--ink); border: 2px solid var(--green-ink); background: var(--paper-raised); }
+@media (max-width: 40rem) { .reasoning-practice__choices { grid-template-columns: 1fr; } }
+
+.reasoning-practice .logic-app__status { margin-block: 1rem; }
+.reasoning-practice__choices button { display: flex; flex-direction: column; justify-content: start; }

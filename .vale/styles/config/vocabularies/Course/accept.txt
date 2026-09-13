@@ -94,6 +94,7 @@ Magidor
 Makinson
 markdownlint
 mathlib
+Merriweather
 metalogic
 metalogical
 metatheory

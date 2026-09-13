@@ -5,7 +5,6 @@ locked: false
 weight: 1
 params: 
   id: exc-latex
-  latex: true
 ---
 
 # Overleaf
@@ -22,52 +21,63 @@ params:
 
 - Share that project with at least one of your fellow students.
 
-- Use ```main.tex``` to typeset the exercise below.
+- Use `main.tex` to typeset the exercise below.
 
-- Create at least one more ```.tex``` file in the project and typeset it.
+- Create at least one more `.tex` file in the project and typeset it.
 
 # LaTeX gymnastics {#latex-gymnastics .solved}
 
-Typeset the following in $\LaTeX$. Don't take shortcuts, figure it out yourself
-using the tutorial and tools like
-[detexify](https://detexify.kirelabs.org/classify.html)!
+Use the [LaTeX cheat sheet](/textbook/notation/#latex-cheat-sheet) for the
+book's symbols.
 
-- $0\in\mathbb{N}$, but $\omega\notin\mathbb{N}$.
+Typeset the following in LaTeX. Use the tutorial and
+[detexify](https://detexify.kirelabs.org/classify.html) to look up unfamiliar
+commands. The fractions may be written with a horizontal fraction bar.
 
-- $\mathbb{N}=\set{0,1,2,\mathellipsis}$
-
-- $e^{i\pi}-1=0$
-
-- $\frac{1}{2}+\frac{3}{4}=\frac{5}{2}$
-
-- $\forall x, x\mapsto x+2$
-
-- $1\overset{!}{\neq}0$
-
-- $(x_i)_{i\in \mathbb{N}}=(x_1, x_2,\dots)$
-
-- $\square\phi\supset \phi$
-
-- $f(x)=\sum_{i\in I}f_i(x)^{-\frac{1}{2}}$
-
-- $\LaTeX$
-
-- This is $\textbf{boldface}$, this is $\textit{italic}$, this is $\textsf{sans}$, and this is $\texttt{code}$.
+- $0 ∈ ℕ$, but $ω ∉ ℕ$ (here $ω$ is the first infinite ordinal).
+- $ℕ = {0, 1, 2, …}$
+- $e<sup>iπ</sup> + 1 = 0$
+- $1/2 + 3/4 = 5/4$
+- $f : ℝ → ℝ$, $x ↦ x + 2$
+- $1 ≠ 0$
+- $(x<sub>i</sub>)<sub>i ∈ ℕ</sub> = (x₀, x₁, x₂, …)$
+- $□φ → φ$
+- $f(x) = ∑<sub>i ∈ I</sub> f<sub>i</sub>(x)<sup>−1/2</sup>$
+- The LaTeX logo.
+- This is **boldface**, this is *italic*, this is <span style="font-family: sans-serif">sans</span>, and this is `code`.
 
 ## Solutions {.solution #latex-gymnasticsSolution}
 
-- ```$0\in\mathbb{N}$, but $\omega\notin\mathbb{N}$.```
+These examples use `\usepackage{amssymb}` in the preamble. Several commands
+have alternatives; the examples below give one answer for each item.
 
-- ```$\mathbb{N}=\{0,1,2,\mathellipsis\}$```
+- `$0 \in \mathbb{N}$, but $\omega \notin \mathbb{N}$.`
+- `$\mathbb{N} = \{0, 1, 2, \dots\}$`
+- `$e^{i\pi} + 1 = 0$`
+- `$\frac{1}{2} + \frac{3}{4} = \frac{5}{4}$`
+- `$f : \mathbb{R} \to \mathbb{R}$, $x \mapsto x + 2$`
+- `$1 \neq 0$`
+- `$(x_i)_{i \in \mathbb{N}} = (x_0, x_1, x_2, \dots)$`
+- `$\square\phi \to \phi$`
+- `$f(x) = \sum_{i \in I} f_i(x)^{-\frac{1}{2}}$`
+- `\LaTeX`
+- `This is \textbf{boldface}, this is \textit{italic}, this is \textsf{sans}, and this is \texttt{code}.`
 
-- ```$e^{i\pi}-1=0$```
+# LaTeX speed challenge {#symbol-drill}
 
-- ```$\frac{1}{2}+\frac{3}{4}=\frac{5}{2}$```
+How many symbols can you type in a minute? Start on easy and aim for ten
+correct answers. Once the commands feel familiar, try combining them on
+medium or tackling the longer expressions on hard.
 
-- ```$\forall x, x\mapsto x+2$```
-- ```$1\overset{!}{\neq}0$```
-- ```$(x_i)_{i\in \mathbb{N}}=(x_1, x_2,\dots)$```
-- ```$\square\phi\supset \phi$```
-- ```$f(x)=\sum_{i\in I}f_i(x)^{-\frac{1}{2}}$```
-- ```$\LaTeX$```
-- ```This is \textbf{boldface}, this is \textit{italic}, this is \textsf{sans}, and this is \texttt{code}.```
+Click the field to start, type the LaTeX for the symbol or expression shown,
+and press Enter. Don't include dollar signs. For example, both `\land` and
+`\wedge` count for $∧$. Spaces don't affect your score. Shift+Enter skips a
+prompt; Escape ends the round.
+
+Easy asks for individual symbols and subscripts. Medium combines symbols
+into expressions and adds text formatting. Hard also includes fractions,
+superscripts, and symbols such as $ℕ$. Keep the
+[cheat sheet](/textbook/notation/#latex-cheat-sheet) handy for practice,
+then try a round without looking anything up.
+
+{{< logic-app name="latex-game" title="LaTeX speed challenge" >}}

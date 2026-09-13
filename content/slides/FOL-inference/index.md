@@ -1,4 +1,5 @@
 ---
+locked: true
 title: FOL Inference
 author: Johannes Korbmacher
 weight: 90

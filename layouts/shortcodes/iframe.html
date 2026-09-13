@@ -1,9 +1,22 @@
+{{/* An embedded deck is a request to somebody else's server, so it is not made
+     until the reader asks for it: the frame is an invitation until then, and
+     nothing leaves the page on load. assets/js/helpers.js swaps the frame in,
+     and keeps the invitation on top as a loading notice — the deck is a whole
+     web app and takes a few seconds to paint. */}}
 {{- $src := .Get "src" -}}
 {{- $title := .Get "title" | default (printf "%s — slides (Excalidraw)" .Page.Title) -}}
+{{- $host := (urls.Parse $src).Host -}}
 <figure class="embed">
-  <div class="embed__frame">
-    <iframe src="{{ $src }}" title="{{ $title }}" loading="lazy"
-            referrerpolicy="no-referrer" allow="fullscreen" allowfullscreen></iframe>
+  <div class="embed__frame" data-embed data-embed-src="{{ $src }}" data-embed-title="{{ $title }}">
+    <div class="embed__invite" data-embed-invite>
+      <span class="embed__invite-mascot">{{ partial "shared/mascot.html" (dict "name" "board") }}</span>
+      <p class="embed__invite-title" data-embed-message aria-live="polite">These slides live on {{ $host }}</p>
+      <button class="btn-hand embed__load" type="button">
+        <i class="bi bi-play-fill" aria-hidden="true"></i> Load the slides
+      </button>
+      <p class="embed__invite-note">Loading them tells that server your IP&nbsp;address.
+        Nothing is sent until you press the button.</p>
+    </div>
   </div>
   <figcaption class="embed__fallback">
     <span>The deck is hosted on Excalidraw. If it does not load, or you would rather

@@ -1,0 +1,16 @@
+<section class="logic-app shunting-yard" data-logic-app="shunting-yard" aria-label="Shunting-yard steps">
+  <form class="logic-app__form">
+    <label for="{{ .id }}-formula">Formula in conventional notation</label>
+    <input id="{{ .id }}-formula" class="logic-app__input" value="{{ .sc.Get "formula" | default "p ∨ q ∧ r" }}" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="512" aria-describedby="{{ .id }}-help" disabled>
+    <div class="logic-app__controls"><button type="submit" disabled>Start</button></div>
+  </form>
+  <p class="logic-app__help" id="{{ .id }}-help">Use p, q, and r. <a href="{{ "textbook/notation/#latex-cheat-sheet" | relURL }}">LaTeX cheat sheet</a></p>
+  <dl class="yard-state">
+    <dt>Unread input</dt><dd class="math-inline" data-input>—</dd>
+    <dt>Stack (top at right)</dt><dd class="math-inline" data-stack>—</dd>
+    <dt>Output</dt><dd class="math-inline" data-output>—</dd>
+  </dl>
+  <div class="logic-app__controls"><button type="button" data-back disabled>Previous step</button><button type="button" data-forward disabled>Next step</button></div>
+  <p class="logic-app__status" role="status" aria-live="polite" aria-atomic="true"></p>
+  <noscript>Enable JavaScript to step through the algorithm. A complete worked trace is included in the solution.</noscript>
+</section>

@@ -1,0 +1,20 @@
+.ast-comparison { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-block: 2rem; }
+.syntax-tree { margin: 0; text-align: center; max-inline-size: 100%; overflow-x: auto; }
+.syntax-tree ul { display: flex; justify-content: center; position: relative; list-style: none; padding: 1.5rem 0 0; margin: 0; }
+.syntax-tree > ul { padding-block-start: 0; }
+.syntax-tree li { position: relative; padding: 1.5rem .7rem 0; margin: 0; }
+.syntax-tree > ul > li { padding-block-start: 0; }
+.syntax-tree li::before, .syntax-tree li::after { content: ''; position: absolute; top: 0; width: 50%; height: 1.5rem; border-block-start: 1px solid var(--ink-muted); }
+.syntax-tree li::before { right: 50%; }
+.syntax-tree li::after { left: 50%; border-inline-start: 1px solid var(--ink-muted); }
+.syntax-tree li:first-child::before, .syntax-tree li:last-child::after { border: 0; }
+.syntax-tree li:last-child::before { border-inline-end: 1px solid var(--ink-muted); }
+.syntax-tree li:only-child::before, .syntax-tree li:only-child::after { display: none; }
+.syntax-tree li:only-child { padding-block-start: 0; }
+.syntax-tree li > ul::before { content: ''; position: absolute; top: 0; left: 50%; height: 1.5rem; border-inline-start: 1px solid var(--ink-muted); }
+.syntax-tree li > span { display: inline-block; font-family: var(--font-formal); font-size: var(--step-1); color: var(--ink); background: var(--paper-raised); border: 1px solid var(--ink-muted); border-radius: var(--radius); padding: .3rem .7rem; min-inline-size: 2.5rem; }
+.syntax-tree figcaption { margin-block-start: 1rem; font-family: var(--font-formal); }
+
+.syntax-tree li + li { margin-block-start: 0; }
+.syntax-tree li { flex-shrink: 0; }
+.syntax-tree > ul { inline-size: max-content; min-inline-size: 100%; }

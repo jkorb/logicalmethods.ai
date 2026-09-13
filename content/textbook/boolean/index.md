@@ -1,9 +1,10 @@
 ---
 title: Boolean algebra
 author: Johannes Korbmacher
-locked: false
+locked: true
 weight: 40
-params: 
+params:
+  legacy-notation: true
   date: "13/09/2024"
   last_edited: "13/09/2024"
   id: txt-bool

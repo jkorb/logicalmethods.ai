@@ -1,0 +1,16 @@
+<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+{{- if eq . "first" }}<path d="M5 5v14m13-13-7 6 7 6"/>
+{{- else if eq . "previous" }}<path d="m15 5-7 7 7 7"/>
+{{- else if eq . "next" }}<path d="m9 5 7 7-7 7"/>
+{{- else if eq . "last" }}<path d="M19 5v14M6 6l7 6-7 6"/>
+{{- else if eq . "edit" }}<path d="m15 4 5 5M4 20l5-1L21 7l-5-5L4 14z"/>
+{{- else if eq . "play" }}<path d="M8 5v14l11-7z"/>
+{{- else if eq . "replay" }}<path d="M20 12a8 8 0 1 1-2.34-5.66M20 4v5h-5"/>
+{{- else if eq . "skip" }}<path d="m5 5 7 7-7 7M19 5v14"/>
+{{- else if eq . "stop" }}<rect x="6" y="6" width="12" height="12" rx="1.5"/>
+{{- else if eq . "undo" }}<path d="M9 14 4 9l5-5M4 9h11a5 5 0 0 1 0 10h-4"/>
+{{- else if eq . "trash" }}<path d="M4 7h16M9 7V5h6v2m-9 0 1 13h10l1-13"/>
+{{- else if eq . "accessibility" }}<circle cx="12" cy="12" r="10"/><circle cx="12" cy="6" r="1"/><path d="m6 10 6 1 6-1m-6 1v4m0 0-3 4m3-4 3 4"/>
+{{- else }}<path d="M9 5h12M9 12h12M9 19h12M3 5h1m-1 7h1m-1 7h1"/>
+{{- end }}
+</svg>

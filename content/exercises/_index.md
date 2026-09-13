@@ -1,6 +1,6 @@
 ---
 title: Exercises
-weight: 4
+weight: 2
 params: 
   id: exe-home
   icon: '<i class="bi-gear-fill"></i>'

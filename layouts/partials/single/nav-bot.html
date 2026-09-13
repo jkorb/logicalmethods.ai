@@ -3,14 +3,12 @@
      so "previous" really is the lower-numbered chapter. */}}
 {{- $cur := . -}}
 {{- $pages := where .CurrentSection.Pages.ByWeight "Params.locked" "!=" true -}}
-{{- $prev := "" -}}{{- $next := "" -}}{{- $seen := false -}}
+{{- $prev := "" -}}{{- $next := "" -}}
 {{- range $pages -}}
-  {{- if $seen -}}
-    {{- if not $next }}{{ $next = . }}{{ end -}}
-  {{- else if eq . $cur -}}
-    {{- $seen = true -}}
-  {{- else -}}
+  {{- if lt .Weight $cur.Weight -}}
     {{- $prev = . -}}
+  {{- else if and (gt .Weight $cur.Weight) (not $next) -}}
+    {{- $next = . -}}
   {{- end -}}
 {{- end -}}
 {{- $names := .CurrentSection.Param "section-names" -}}

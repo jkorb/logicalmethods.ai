@@ -1,9 +1,10 @@
 ---
 title: Boolean satisfiability
 author: Johannes Korbmacher
-locked: false
+locked: true
 weight: 50
-params: 
+params:
+  legacy-notation: true
   id: exc-sat
 ---
 

@@ -1,0 +1,5 @@
+{{- $tree := .Inner | transform.Unmarshal -}}
+<figure class="syntax-tree" tabindex="0" aria-label="{{ .Get "caption" }}">
+<ul>{{ partial "apps/tree-node.html" $tree }}</ul>
+<figcaption>{{ .Get "caption" }}</figcaption>
+</figure>

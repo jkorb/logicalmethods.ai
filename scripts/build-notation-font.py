@@ -25,6 +25,7 @@ from fontTools.pens.t2CharStringPen import T2CharStringPen
 from fontTools.pens.transformPen import TransformPen
 from fontTools.pens.boundsPen import ControlBoundsPen
 from fontTools.pens.recordingPen import RecordingPen
+from fontTools.pens.reverseContourPen import ReverseContourPen
 from fontTools.svgLib.path import SVGPath
 from fontTools.misc.transform import Transform
 
@@ -39,7 +40,6 @@ MAP = {
     'exists':        (0x2203, 'existential'),
     'conjunction':   (0x2227, 'logicaland'),
     'disjunction':   (0x2228, 'logicalor'),
-    'leftrightarrow':(0x2194, 'arrowboth'),
     'longrightarrow':(0x27F9, 'arrowlongdblright'),
     'vDash':         (0x22A8, 'models'),
     'nvDash':        (0x22AD, 'notmodels'),
@@ -140,6 +140,31 @@ def main():
         adv = add_glyph(font, gname, cp, svg, scale.get(name, 0.75))
         order.append(gname)
         added.append(f'{gname:18} U+{cp:04X}  advance {adv}')
+    # Match ↔ to Comic Shanns' own →: the same shaft, weight and arrowheads.
+    # Reverse winding before reflecting so overlapping outlines remain filled.
+    right = font.getBestCmap()[0x2192]
+    rec = RecordingPen()
+    font.getGlyphSet()[right].draw(rec)
+    bounds = ControlBoundsPen(None)
+    rec.replay(bounds)
+    xmin, _, xmax, _ = bounds.bounds
+    pen = T2CharStringPen(0, None)
+    shaft_extension = 180
+    rec.replay(TransformPen(pen, Transform(1, 0, 0, 1, shaft_extension, 0)))
+    rec.replay(ReverseContourPen(TransformPen(pen, Transform(-1, 0, 0, 1, xmin + xmax, 0))))
+    cs = pen.getCharString()
+    top = font['CFF '].cff.topDictIndex[0]
+    cs.private, cs.globalSubrs = top.Private, top.CharStrings.globalSubrs
+    top.CharStrings.charStringsIndex.append(cs)
+    top.CharStrings.charStrings['arrowboth'] = len(top.CharStrings.charStringsIndex) - 1
+    top.charset.append('arrowboth')
+    advance, bearing = font['hmtx'].metrics[right]
+    font['hmtx'].metrics['arrowboth'] = (advance + shaft_extension, bearing)
+    for table in font['cmap'].tables:
+        if table.isUnicode():
+            table.cmap[0x2194] = 'arrowboth'
+    order.append('arrowboth')
+    added.append('arrowboth          U+2194  from native arrowright')
     font.setGlyphOrder(order)
     font['maxp'].numGlyphs = len(order)
 

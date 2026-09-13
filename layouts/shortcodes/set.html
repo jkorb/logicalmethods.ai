@@ -1,0 +1,4 @@
+{{- $members := .Inner | transform.Unmarshal -}}
+{{- $alt := .Get "alt" -}}
+{{- if not $alt }}{{ errorf "set: supply an alt description (%s)" .Position }}{{ end -}}
+<div class="set-figure" role="img" aria-label="{{ $alt }}" tabindex="0"><span aria-hidden="true">{{ partial "figures/set.html" (dict "members" $members "id" (printf "%s-set-%d" .Page.File.UniqueID .Ordinal)) }}</span></div>

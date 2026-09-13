@@ -84,14 +84,25 @@
 .chroma .gs { font-weight: 700; }
 .chroma .gu, .chroma .gh { color: var(--code-comment); font-weight: 700; }
 
-/* the language icon, in the corner of the block */
-.highlight { position: relative; }
+/* The language icon sits in the corner of the block. The shell does not scroll,
+   so the badge stays put while long lines scroll underneath it, and it carries
+   the block's own ground so nothing shows through from behind. */
+.code-block { position: relative; }
+.code-block > .highlight { margin-block: 0; }
 .lang-badge {
-  position: absolute; inset-block-start: .6rem; inset-inline-end: .75rem;
-  inline-size: 1.5rem; block-size: 1.5rem; display: block;
+  position: absolute; z-index: 1;
+  inset-block-start: 1px; inset-inline-end: 1px;
+  padding: .35rem .5rem; border-start-end-radius: var(--radius);
+  inline-size: 2.3rem; block-size: 2.1rem;
+  background: var(--paper-sunken);
   pointer-events: none; user-select: none; opacity: .85;
 }
 .lang-badge svg, .lang-icon-inline svg { inline-size: 100%; block-size: 100%; display: block; }
-.highlight.has-lang-icon > .chroma,
-.highlight.has-lang-icon > pre { padding-inline-end: 3.4rem; padding-block-start: 1.1rem; }
+/* The first line is pushed below the badge rather than being kept clear of it
+   sideways: reserving width at the end pushed long lines into a scrollbar, and
+   the badge carries the block's own ground, so anything passing under it is
+   masked cleanly. The room is made on the scroller, which is the one box both
+   shapes share — with line numbers the code sits in a table inside .chroma,
+   without them .chroma is the <pre> itself and would swallow the padding. */
+.code-block.has-lang-icon > .highlight { padding-block-start: 1.6rem; }
 .lang-icon-inline { display: inline-block; inline-size: 1.15em; vertical-align: -.2em; }

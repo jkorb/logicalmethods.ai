@@ -1,0 +1,14 @@
+<section class="logic-app notation-practice" data-logic-app="notation-practice" aria-label="Adding and removing brackets">
+  <label for="{{ .id }}-direction">Rewrite into</label>
+  <select id="{{ .id }}-direction" disabled><option value="full">Fully bracketed notation</option><option value="conventional">Conventional notation</option></select>
+  <p data-count></p>
+  <p class="math-inline practice-prompt" data-prompt></p>
+  <form class="logic-app__form">
+    <label for="{{ .id }}-answer">Your formula</label>
+    <input id="{{ .id }}-answer" class="logic-app__input" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="512" aria-describedby="{{ .id }}-help" disabled>
+    <div class="logic-app__controls"><button type="submit" disabled>Check</button><button type="button" data-answer disabled>Show answer</button><button type="button" data-next disabled>Next example</button></div>
+  </form>
+  <p class="logic-app__help" id="{{ .id }}-help">Use p, q, and r. Spaces don't matter. <a href="{{ "textbook/notation/#latex-cheat-sheet" | relURL }}">LaTeX cheat sheet</a></p>
+  <p class="logic-app__status" role="status" aria-live="polite" aria-atomic="true"></p>
+  <noscript>Enable JavaScript for interactive practice. As a first example, write <span class="math-inline">¬p ∧ q</span> with full brackets. <details><summary>Check your answer</summary><span class="math-inline">(¬p ∧ q)</span></details></noscript>
+</section>

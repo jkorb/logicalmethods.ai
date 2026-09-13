@@ -1,9 +1,10 @@
 ---
 title: Valid inference
 author: Colin Caret, Annefleur de Haan, Johannes Korbmacher
-locked: false
+locked: true
 weight: 30
-params: 
+params:
+  legacy-notation: true
   id: exc-val
 ---
 

@@ -1,4 +1,5 @@
 ---
+locked: true
 title: Logical conditionals
 author: Johannes Korbmacher
 weight: 60

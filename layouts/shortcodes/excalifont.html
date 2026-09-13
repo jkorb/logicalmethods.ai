@@ -1,3 +1,5 @@
-{{ if .Get "display"}}<p class="text-center">{{ end }}
-<span class="excalifont {{ with .Get "class"}}{{ . }}{{ end }}">{{ .Inner }}</span>{{- /* chomp trailing whitespace? */ -}}
-{{ if .Get "display "}}</p>{{ end }}
+{{- if .Get "display" -}}
+<div class="excalifont text-center{{ with .Get "class" }} {{ . }}{{ end }}">{{ .Inner | .Page.RenderString }}</div>
+{{- else -}}
+<span class="excalifont{{ with .Get "class" }} {{ . }}{{ end }}">{{ .Inner | .Page.RenderString }}</span>
+{{- end -}}

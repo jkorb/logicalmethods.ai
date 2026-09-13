@@ -7,7 +7,7 @@ params:
   id: ass-1
 ---
 
-Submission via Brightspace in `LaTeX` generated PDF. GenAI-use not allowed.
+Submission via Brightspace in $LaTeX$ generated PDF. GenAI-use not allowed.
 
 # Logic and AI
 
@@ -35,11 +35,11 @@ than writing logical operations before their operands in so-called "prefix
 notation" of the Polish system, reverse Polish notation writes the operators
 _after_ in so-called "postfix notation."
 
-For simplicity, we'll use the ordinary symbols {{< img
-src="img/negation.png" class="inert-img" height="18px" style="vertical-align: middle;" >}}, {{< img
-src="img/conjunction.png" class="inert-img" height="18px" style="vertical-align: middle;" >}}, {{< img
-src="img/disjunction.png" class="inert-img" height="18px" style="vertical-align: middle;" >}}, {{< img
-src="img/conditional.png" class="inert-img" height="18px" style="vertical-align: middle;" >}},  {{< img
+For simplicity, we'll use the ordinary symbols {{< img inline=true
+src="img/negation.png" class="inert-img" height="18px" style="vertical-align: middle;" >}}, {{< img inline=true
+src="img/conjunction.png" class="inert-img" height="18px" style="vertical-align: middle;" >}}, {{< img inline=true
+src="img/disjunction.png" class="inert-img" height="18px" style="vertical-align: middle;" >}}, {{< img inline=true
+src="img/conditional.png" class="inert-img" height="18px" style="vertical-align: middle;" >}},  {{< img inline=true
 src="img/bi-conditional.png" class="inert-img" height="18px" style="vertical-align: middle;" >}}
 rather than the Polish {{<excalifont>}}N, K, A, C, B{{</excalifont>}} for the logical operators. 
 
@@ -51,10 +51,10 @@ Note the absence of parentheses.
 
 1. Determine the grammar of reverse Polish notation in BNF. (1 point)
 
-2. Determine the corresponding re-write rules and generate the parsing tree for the formula {{< img
+2. Determine the corresponding re-write rules and generate the parsing tree for the formula {{< img inline=true
 src="img/rpn_formula.png" class="inert-img" height="38px" style="vertical-align: middle;" >}}. (2 points)
 
-3. Give an argument why {{< img
+3. Give an argument why {{< img inline=true
 src="img/non_fml.png" class="inert-img" height="38px" style="vertical-align: middle;" >}} isn't a formula in reverse Polish notation. (1 point)
 
 4. A very important parsing algorithm is the so-called [shunting yard
@@ -77,8 +77,8 @@ reverse Polish notation. Here's a quick description of the algorithm:
       4. For a logical operator, we push it onto the stack.
       5. At the end, we pop any remaining operators to the output queue.
 
-    Apply this algorithm step-by-step to transform the infix formula {{< img
-src="img/formula_convert.png" class="inert-img" height="40px" style="vertical-align: middle;" >}} into reverse Polish notation. Write step-by-step what the ```QUEUE``` is and what the ```STACK``` is. (2 points)
+    Apply this algorithm step-by-step to transform the infix formula {{< img inline=true
+src="img/formula_convert.png" class="inert-img" height="40px" style="vertical-align: middle;" >}} into reverse Polish notation. Write step-by-step what the `QUEUE` is and what the `STACK` is. (2 points)
 
 # Transitivity of deductive inference
 
@@ -93,13 +93,13 @@ deductively valid and the inference from {{<excalifont>}}Q{{</excalifont>}} to
 {{<excalifont>}}P{{</excalifont>}} to {{<excalifont>}}C{{</excalifont>}} is
 valid.
 
-1. Formally state the property of transitivity using the symbol {{< img src="img/models.png" class="inert-img" height="30px" style="vertical-align: middle;" >}}. (1 point)
+1. Formally state the property of transitivity using the symbol {{< img inline=true src="img/models.png" class="inert-img" height="30px" style="vertical-align: middle;" >}}. (1 point)
 
-2. Apply the definition of {{< img src="img/models.png" class="inert-img"
+2. Apply the definition of {{< img inline=true src="img/models.png" class="inert-img"
    height="30px" style="vertical-align: middle;" >}} in terms of the
-propositions {{<excalifont>}}[P], [Q]{{</excalifont>}}, and {{<excalifont>}}[C]{{</excalifont>}}, the operation {{< img src="img/cap.png"
+propositions {{<excalifont>}}[P], [Q]{{</excalifont>}}, and {{<excalifont>}}[C]{{</excalifont>}}, the operation {{< img inline=true src="img/cap.png"
 class="inert-img" height="30px" style="vertical-align: middle;" >}}, and
-relation {{< img src="img/subseteq.png" class="inert-img" height="30px"
+relation {{< img inline=true src="img/subseteq.png" class="inert-img" height="30px"
 style="vertical-align: middle;" >}} to transform the claim it into a set
 theoretic claim. (1 point)
 
@@ -109,16 +109,13 @@ theoretic claim. (1 point)
    {{< img src="img/theorem.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="400px">}}
 
    _Hint_: Apply the definition of 
-      {{< img src="img/subseteq.png" class="inert-img" height="30px" style="vertical-align: middle;" >}} and reason "step-by-step":
+      {{< img inline=true src="img/subseteq.png" class="inert-img" height="30px" style="vertical-align: middle;" >}} and reason "step-by-step":
    
-     - {{< img src="img/def_subseteq.png" class="inert-img" height="25px" style="vertical-align: middle;" >}} 
-     - {{< img src="img/def_subseteq_1.png" class="inert-img" height="30px" style="vertical-align: middle;" >}} 
+     - {{< img inline=true src="img/def_subseteq.png" class="inert-img" height="25px" style="vertical-align: middle;" >}}
+     - {{< img inline=true src="img/def_subseteq_1.png" class="inert-img" height="30px" style="vertical-align: middle;" >}}
       - Assume you have an arbitrary member of {{<excalifont>}}S{{</excalifont>}}, why must it be a member of {{<excalifont>}}U{{</excalifont>}}?
-
 
       (2 points)
 
-
 4. Conclude that the transitivity property holds. (1 point)
-
 

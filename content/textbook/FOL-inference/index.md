@@ -1,9 +1,10 @@
 ---
 title: FOL Inference
 author: Johannes Korbmacher
-locked: false
+locked: true
 weight: 90
-params: 
+params:
+  legacy-notation: true
   last_edited: 10/13/2025
   id: txt-finf
 ---
