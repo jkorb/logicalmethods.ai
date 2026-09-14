@@ -19,7 +19,7 @@ development; do not assume every lesson is complete or reviewed.
 | Source                                            | Role                                                                   |
 | ---                                               | ---                                                                    |
 | [`content/textbook/`](../content/textbook/)       | Reading before class; explanations, examples, and learning objectives. |
-| [`content/slides/`](../content/slides/)           | Lecture material, including embedded Excalidraw presentations.         |
+| [`content/slides/`](../content/slides/)           | Released self-hosted lecture material and review notices.         |
 | [`content/exercises/`](../content/exercises/)     | Tutorial practice and solutions.                                       |
 | [`content/assignments/`](../content/assignments/) | Homework sheets.                                                       |
 | [`content/about/`](../content/about/)             | Course description, credits, and licensing information.                |

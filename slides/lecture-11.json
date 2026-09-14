@@ -1,0 +1,86 @@
+{
+  "id": "lecture-11",
+  "title": "Lecture 11: Probability and inductive logic",
+  "source": "sources/Lecture 11.excalidraw",
+  "output": "slides/unpublished/probability/deck",
+  "publication": "unpublished",
+  "originalSha256": "3d1c86e9acf2bd8801b7b93d15cdbfc899d4277ae0675973d882066f5f3436df",
+  "slides": [
+    {
+      "frameId": "8-0iVojdNpos8D450Cz3q",
+      "title": "Logical methods for AI — Lecture 11"
+    },
+    {
+      "frameId": "77JFsno6COrJQpXPUWdAx",
+      "title": "Probabilities, AI, and inductive inference"
+    },
+    {
+      "frameId": "yTPLNP1fCE3w2GgKh9tQN",
+      "title": "Sample space"
+    },
+    {
+      "frameId": "t1jARE2ykd8waniy5QGY-",
+      "title": "Interpretations"
+    },
+    {
+      "frameId": "CYznFFBcDCiLDvRr3lvvk",
+      "title": "Logic and probability"
+    },
+    {
+      "frameId": "oJm4M8emcSZHZvGJdf_qF",
+      "title": "Probabilities aren't recursive!"
+    },
+    {
+      "frameId": "hq7qZRlDQSk1wtNjlxaEf",
+      "title": "Probabilities aren't recursive!!"
+    },
+    {
+      "frameId": "uAT5duQhWL3Ol71B9EwHY",
+      "title": "Probabilistic independence"
+    },
+    {
+      "frameId": "Kz-ouqZx7Ww8G5c4V9NEJ",
+      "title": "Probabilities aren't recursive! - ep. 2"
+    },
+    {
+      "frameId": "Sjvz8XbeMqj-cOcViZtXS",
+      "title": "Probabilistic incompatibility"
+    },
+    {
+      "frameId": "vLz6zQdZdFxl0S56s6pFu",
+      "title": "Non-recursive (!) rules"
+    },
+    {
+      "frameId": "h_92HsMlX6xAvxDCNjerv",
+      "title": "Laws of Probability"
+    },
+    {
+      "frameId": "UnCFRil2D4pTtUz0cg5CQ",
+      "title": "Naive Bayes Filter"
+    },
+    {
+      "frameId": "ifj7CrJ4dvw5kyNw8cpjp",
+      "title": "Bayes Rule"
+    },
+    {
+      "frameId": "fDdHQG1KiBYoQkmBOopdD",
+      "title": "Prediction with Bayes"
+    },
+    {
+      "frameId": "znQSWSenlwt6Ey4ZT1QJH",
+      "title": "Naive Bayes assumption"
+    },
+    {
+      "frameId": "lFRdaKUQJXnz0vZWKqGaz",
+      "title": "Inductive logic"
+    },
+    {
+      "frameId": "mAINixgq74buZnCng0QWo",
+      "title": "Theorem"
+    },
+    {
+      "frameId": "lAbNvwOUn2Nz-ptuemaNy",
+      "title": "The validity of enumerative induction"
+    }
+  ]
+}

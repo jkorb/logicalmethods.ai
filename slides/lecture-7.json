@@ -1,0 +1,82 @@
+{
+  "id": "lecture-7",
+  "title": "Lecture 7: Logical proofs",
+  "source": "sources/Lecture 7.excalidraw",
+  "output": "slides/unpublished/proof/deck",
+  "publication": "unpublished",
+  "originalSha256": "bdca6fa8b705614c3cdb9dbc9c7a089de44df898764169695e05caa36ae40464",
+  "slides": [
+    {
+      "frameId": "8Nk5fGAsF5bmmuIiQzZKM",
+      "title": "Logical methods for AI — Lecture 7"
+    },
+    {
+      "frameId": "Ic-MTd_JP5dBSkAbyDHmP",
+      "title": "Proofs and proof systems"
+    },
+    {
+      "frameId": "ZFybF1vr6Dh3a7VKUJxLM",
+      "title": "Logical proofs"
+    },
+    {
+      "frameId": "tMKTcEXTNWLjieLj20Cyw",
+      "title": "Proof systems"
+    },
+    {
+      "frameId": "i2tcAVFFhuEvp3amXnXsm",
+      "title": "Hilbert systems"
+    },
+    {
+      "frameId": "zTl2N71eE0inZMD05jhSg",
+      "title": "Axioms for propositional logic"
+    },
+    {
+      "frameId": "CwkBB9U4XRhT0q56nvU0M",
+      "title": "Sequent calculi"
+    },
+    {
+      "frameId": "ktpB79gI72L8wWSw86lMb",
+      "title": "Calculus for propositional logic"
+    },
+    {
+      "frameId": "apbaNHfUFRIsQexQNdvTa",
+      "title": "Algorithmic calculi"
+    },
+    {
+      "frameId": "30CZ7DPVyB2yv_Ll906N9",
+      "title": "Calculus for propositional logic"
+    },
+    {
+      "frameId": "NW9UhMjrHB66asJMS8-ma",
+      "title": "Natural deduction"
+    },
+    {
+      "frameId": "DmC4HBbBSPDgG-yeJyr_1",
+      "title": "Calculus for propositional logic"
+    },
+    {
+      "frameId": "u0VyX6mknINvKrKygLRjC",
+      "title": "Natural deduction example"
+    },
+    {
+      "frameId": "EWP4LOZE3eU35Xk0OlYb5",
+      "title": "Proof assistants"
+    },
+    {
+      "frameId": "6nywGZQaRJSwe_e8ecWxt",
+      "title": "Lean: foundations and practice"
+    },
+    {
+      "frameId": "U74CnhuDSKxjWgU34wE41",
+      "title": "Proofs in Lean"
+    },
+    {
+      "frameId": "OCAAusVrEcO4iJSBtnr4s",
+      "title": "Negation in Lean"
+    },
+    {
+      "frameId": "v4HYY4frsX3mncvodfUPt",
+      "title": "Classicality in Lean"
+    }
+  ]
+}

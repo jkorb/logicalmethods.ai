@@ -7,6 +7,18 @@ public/
 
 # Development dependencies and local tool downloads
 /node_modules/
+/tools/slides/node_modules/
 
 # Desktop build of the patched notation font; the site uses the .woff2
 /assets/fonts/ComicShanns/comic-shanns-logic.otf
+
+# Local slide originals and exports with unreviewed third-party images.
+# Keep these on disk; publish a reviewed lecture by updating this allowlist.
+/slides/archive/
+/slides/images/
+/slides/sources/*
+!/slides/sources/Lecture 1.excalidraw
+/slides/unpublished/
+/content/slides/*/deck/
+!/content/slides/logic-and-ai/deck/
+/slides/local-originals/

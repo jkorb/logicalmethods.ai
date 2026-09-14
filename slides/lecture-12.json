@@ -1,0 +1,66 @@
+{
+  "id": "lecture-12",
+  "title": "Lecture 12: Logic and Neural Networks",
+  "source": "sources/Lecture 12.excalidraw",
+  "output": "slides/unpublished/anns/deck",
+  "publication": "unpublished",
+  "originalSha256": "0895d42c9aa9b4ba2d87f9ffbbfc6bdb2b6a6c26fdc1e915801d4988d97fa441",
+  "slides": [
+    {
+      "frameId": "-SM-njC47mzWmrf75jd7E",
+      "title": "Logical methods for AI — Lecture 12"
+    },
+    {
+      "frameId": "Nd4dUVURth5zzsb4z8_yt",
+      "title": "Logic and artificial neural networks (ANNs)"
+    },
+    {
+      "frameId": "SXDzDbYx1gWk4g6kA0BjH",
+      "title": "Perceptrons"
+    },
+    {
+      "frameId": "AOCBqZ_yg4OZDfs3O1358",
+      "title": "Activation function"
+    },
+    {
+      "frameId": "cwrcZyaaAB7_LPkoRBXZ6",
+      "title": "Implementation of Boolean functions"
+    },
+    {
+      "frameId": "3bpKceqNYvMGLYetPIrSo",
+      "title": "Conjunction"
+    },
+    {
+      "frameId": "JOUr_L4EOJ3ftpMoj7IRx",
+      "title": "Disjunction"
+    },
+    {
+      "frameId": "P48PUVVE8fb8z83eV2gBW",
+      "title": "Negation"
+    },
+    {
+      "frameId": "xfbKgjBpgnhN0K3RvjEk0",
+      "title": "The XOR affair"
+    },
+    {
+      "frameId": "LdmodEIYCeUTlJqq0TmA9",
+      "title": "implementation with one hidden layer"
+    },
+    {
+      "frameId": "iiaC4mkILoepTSZJoZ6MW",
+      "title": "Feedforward ANNs"
+    },
+    {
+      "frameId": "ajKQihmrgYnQUDnEkWUND",
+      "title": "Essential skills"
+    },
+    {
+      "frameId": "DZIswQLJz_pEPHQ85LOh2",
+      "title": "Reasoning in AI"
+    },
+    {
+      "frameId": "bZ5XAndLarfqJpVKc5TPf",
+      "title": "Closing slide"
+    }
+  ]
+}

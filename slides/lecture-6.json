@@ -1,0 +1,78 @@
+{
+  "id": "lecture-6",
+  "title": "Lecture 6: Logical conditionals",
+  "source": "sources/Lecture 6.excalidraw",
+  "output": "slides/unpublished/conditionals/deck",
+  "publication": "unpublished",
+  "originalSha256": "333d3e31df4cc3f4e4eabb5ef7d4e2b9dcd6b8c03cc95412276e28803d4694c5",
+  "slides": [
+    {
+      "frameId": "hjt-MohjOHeML6nWwAN5k",
+      "title": "Logical methods for AI — Lecture 6"
+    },
+    {
+      "frameId": "rfcRz9kZwTKtlHGk_Q1ls",
+      "title": "Conditionals"
+    },
+    {
+      "frameId": "3wvB_CqdGPRqTnwWZ80oA",
+      "title": "Boolean implementation"
+    },
+    {
+      "frameId": "9546zb5-Sd6wBYz7bgkHw",
+      "title": "Sanity check!"
+    },
+    {
+      "frameId": "8BJN6FH8QZG2yg694aTBn",
+      "title": "Resolution and modus ponens"
+    },
+    {
+      "frameId": "TSDMmXPMinh1V7apSYmwP",
+      "title": "Non-material conditionals"
+    },
+    {
+      "frameId": "2AL4DsavMAECQFFRkz_oz",
+      "title": "Conditional reasoning"
+    },
+    {
+      "frameId": "FXWUFZhVGUJ0dQbjV11Na",
+      "title": "Resolution with Horn clauses"
+    },
+    {
+      "frameId": "_Fs74UtBrIS3KpWbNLy2m",
+      "title": "(Re)solution"
+    },
+    {
+      "frameId": "2WE53dW8DeGkAvNPWbnqB",
+      "title": "Analysis using gen-MP"
+    },
+    {
+      "frameId": "8q8dqu4oMOUrEe5-bZEWV",
+      "title": "Forward-chaining"
+    },
+    {
+      "frameId": "z6fpT_YTVesyx9tYBQYSq",
+      "title": "Planning"
+    },
+    {
+      "frameId": "U5IL85QPqwEItcbykX6FV",
+      "title": "Satplan"
+    },
+    {
+      "frameId": "EqjlwKrX1UoV5EHYnzTXL",
+      "title": "HORN-SAT planning"
+    },
+    {
+      "frameId": "yDlzSBtYO00cjVYBQwTUS",
+      "title": "A Plan"
+    },
+    {
+      "frameId": "vnoVSHlYbshdmfLPelsLY",
+      "title": "\"Miracles\""
+    },
+    {
+      "frameId": "xYEfGNiQwZNSSYWfFlbZY",
+      "title": "Frame problem"
+    }
+  ]
+}

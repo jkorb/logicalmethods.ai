@@ -1,0 +1,30 @@
+{{/* Label symbol groups with over/underbraces. Symbols remain real text. */}}
+{{- $groups := .Inner | transform.Unmarshal -}}
+{{- $prefix := .Get "prefix" | default "" -}}
+{{- $suffix := .Get "suffix" | default "" -}}
+{{- $separator := .Get "separator" | default ", " -}}
+{{- $descriptions := slice -}}
+{{- range $groups -}}
+  {{- if not .symbols }}{{ errorf "annotated-math: every group needs symbols (%s)" $.Position }}{{ end -}}
+  {{- $position := .position | default "below" -}}
+  {{- if not (in (slice "above" "below") $position) }}{{ errorf "annotated-math: position must be above or below (%s)" $.Position }}{{ end -}}
+  {{- $description := .symbols -}}
+  {{- with .label }}{{ $description = printf "%s (%s)" $description . }}{{ end -}}
+  {{- $descriptions = $descriptions | append $description -}}
+{{- end -}}
+<figure class="annotated-math" role="figure" tabindex="0" aria-label="{{ with .Get "title" }}{{ . }}: {{ end }}{{ $prefix }} {{ delimit $descriptions $separator }} {{ $suffix }}">
+  <div class="annotated-math__row" aria-hidden="true">
+    {{ with $prefix }}<span class="annotated-math__edge">{{ . }}</span>{{ end }}
+    {{ range $i, $group := $groups }}
+      {{ if $i }}<span class="annotated-math__edge">{{ $separator }}</span>{{ end }}
+      <span class="annotated-math__group annotated-math__group--{{ .position | default "below" }}{{ with .color }} annotated-math__group--{{ . }}{{ end }}">
+        <span class="annotated-math__symbols">{{ .symbols }}</span>
+        {{ with .label }}
+          <svg class="annotated-math__brace" viewBox="0 0 100 16" preserveAspectRatio="none" focusable="false" aria-hidden="true"><path d="M1 1 C1 9 5 9 12 9 H40 C47 9 49 10 50 15 C51 10 53 9 60 9 H88 C95 9 99 9 99 1" vector-effect="non-scaling-stroke"/></svg>
+          <span class="annotated-math__label">{{ . }}</span>
+        {{ end }}
+      </span>
+    {{ end }}
+    {{ with $suffix }}<span class="annotated-math__edge">{{ . }}</span>{{ end }}
+  </div>
+</figure>

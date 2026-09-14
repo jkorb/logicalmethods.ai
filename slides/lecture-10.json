@@ -1,0 +1,70 @@
+{
+  "id": "lecture-10",
+  "title": "Lecture 10: Many-valued Logic",
+  "source": "sources/Lecture 10.excalidraw",
+  "output": "slides/unpublished/many-valued/deck",
+  "publication": "unpublished",
+  "originalSha256": "83918817b7568c00c014eda9e1c8c4abb39c5a8a30d766f1fadd12aaaa2264ff",
+  "slides": [
+    {
+      "frameId": "-dhrVfhzwtsCYeARHja3q",
+      "title": "Logical methods for AI — Lecture 10"
+    },
+    {
+      "frameId": "zvfTvhKUvvBXESrL5hUq_",
+      "title": "Many-valued logic"
+    },
+    {
+      "frameId": "M5OZ4gAYlNJeNouT-f6tl",
+      "title": "Incomplete information"
+    },
+    {
+      "frameId": "T9IPccfe0qgn1L8cqvAOs",
+      "title": "Logical analysis"
+    },
+    {
+      "frameId": "hX_boCaG8lL4U7NbB8kDa",
+      "title": "Kleene algebra"
+    },
+    {
+      "frameId": "tZOO1m3n1g826CXunQBdu",
+      "title": "Kleene laws"
+    },
+    {
+      "frameId": "rILlXQGHWjloUD2DVLqW1",
+      "title": "Kleene Logic"
+    },
+    {
+      "frameId": "yL8HjmrM5aFPq_5X9lgML",
+      "title": "Disjunctive syllogism"
+    },
+    {
+      "frameId": "AJQyD-q6R73S-0AmFxKD9",
+      "title": "SAT-style truth tables"
+    },
+    {
+      "frameId": "NHM49zKuB_otKndz_Cf9t",
+      "title": "Open vs closed world"
+    },
+    {
+      "frameId": "Fvu-O1h8pL55F0Q6MMLYF",
+      "title": "Fuzzy predicates"
+    },
+    {
+      "frameId": "0hMnvCGj3f9peO9ZWZx8u",
+      "title": "Zadeh operators — negation"
+    },
+    {
+      "frameId": "H-oID0YOoCrfaZbPlshD1",
+      "title": "Zadeh operators - Conjunction and Disjunction"
+    },
+    {
+      "frameId": "0eHRZqmx7UDCVV3cmiHaF",
+      "title": "Fuzzy Logic"
+    },
+    {
+      "frameId": "88LpR1eVp5eV7tF5NiTFP",
+      "title": "Fuzzy rules"
+    }
+  ]
+}

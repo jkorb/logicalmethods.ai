@@ -246,3 +246,19 @@
 
 .reasoning-practice .logic-app__status { margin-block: 1rem; }
 .reasoning-practice__choices button { display: flex; flex-direction: column; justify-content: start; }
+
+/* Keep the tree and its current-step explanation together on desktop. */
+.logic-app__parse-result { display: grid; gap: 1rem; align-items: start; }
+.logic-app__parse-result > * { min-inline-size: 0; }
+@media (min-width: 60rem) {
+  .logic-app__parse-result { grid-template-columns: minmax(0, 1.35fr) minmax(15rem, 1fr); }
+  .logic-app__parse-result .logic-app__tree,
+  .logic-app__parse-result .logic-app__text { grid-column: 1; grid-row: 1; max-block-size: clamp(14rem, 40vh, 24rem); overflow: auto; margin: 0; }
+  .logic-app__parse-result .logic-app__status { grid-column: 2; grid-row: 1; margin: 0; padding: .7rem .85rem; font-size: var(--step--1); }
+  .logic-app__parse-result .logic-app__details { grid-template-columns: 1fr; gap: .2rem; margin-block: .6rem; }
+  .logic-app__parse-result .logic-app__details dd + dt { margin-block-start: .5rem; }
+  .logic-app__parse-result .logic-app__explanation { margin-block: .6rem 0; }
+  [data-logic-app="parser"] .logic-app__mode { margin-block: .5rem; }
+  [data-logic-app="parser"] .logic-app__controls { margin-block: .5rem 1rem; }
+}
+.notation-picker { position: relative; width: fit-content; max-width: 100%; margin: .5rem auto 1rem; text-align: left; }

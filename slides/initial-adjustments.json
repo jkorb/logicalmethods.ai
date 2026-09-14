@@ -1,0 +1,4863 @@
+[
+  {
+    "lecture": 1,
+    "slide": 6,
+    "elementId": "NlbUQxHb6Rsp3GiD3CpBq",
+    "before": {
+      "text": "All observed swans are white",
+      "originalText": "All observed swans are white",
+      "fontFamily": 5,
+      "version": 174,
+      "fontSize": 27.31807419100223
+    },
+    "after": {
+      "text": "All observed swans are white",
+      "originalText": "All observed swans are white",
+      "fontFamily": 8,
+      "version": 175,
+      "fontSize": 25.06889334254214
+    }
+  },
+  {
+    "lecture": 1,
+    "slide": 6,
+    "elementId": "WSpLrTXU6UzYs47ykxLaz",
+    "before": {
+      "text": "All swans are white",
+      "originalText": "All swans are white",
+      "fontFamily": 5,
+      "version": 153,
+      "fontSize": 28.896606156275084
+    },
+    "after": {
+      "text": "All swans are white",
+      "originalText": "All swans are white",
+      "fontFamily": 8,
+      "version": 154,
+      "fontSize": 25.90378130464436
+    }
+  },
+  {
+    "lecture": 1,
+    "slide": 6,
+    "elementId": "1U4m-QllczI-feGaKRgu7",
+    "before": {
+      "text": "All humans are mortal\nSocrates is human",
+      "originalText": "All humans are mortal\nSocrates is human",
+      "fontFamily": 5,
+      "version": 544,
+      "fontSize": 25.933180998184458
+    },
+    "after": {
+      "text": "All humans are mortal\nSocrates is human",
+      "originalText": "All humans are mortal\nSocrates is human",
+      "fontFamily": 8,
+      "version": 545,
+      "fontSize": 23.36077799458611
+    }
+  },
+  {
+    "lecture": 1,
+    "slide": 6,
+    "elementId": "3hylGtYzrOq0d-YA28ClW",
+    "before": {
+      "text": "Socrates is mortal",
+      "originalText": "Socrates is mortal",
+      "fontFamily": 5,
+      "version": 624,
+      "fontSize": 25.933180998184458
+    },
+    "after": {
+      "text": "Socrates is mortal",
+      "originalText": "Socrates is mortal",
+      "fontFamily": 8,
+      "version": 625,
+      "fontSize": 23.69537362027203
+    }
+  },
+  {
+    "lecture": 1,
+    "slide": 8,
+    "elementId": "NMFXmz65_j3J-hjO4a_MX",
+    "before": {
+      "text": "All observed swans are white",
+      "originalText": "All observed swans are white",
+      "fontFamily": 5,
+      "version": 194,
+      "fontSize": 27.31807419100223
+    },
+    "after": {
+      "text": "All observed swans are white",
+      "originalText": "All observed swans are white",
+      "fontFamily": 8,
+      "version": 195,
+      "fontSize": 25.06889334254214
+    }
+  },
+  {
+    "lecture": 1,
+    "slide": 8,
+    "elementId": "CHBb87BJqcm6QQCAkxSra",
+    "before": {
+      "text": "All swans are white",
+      "originalText": "All swans are white",
+      "fontFamily": 5,
+      "version": 173,
+      "fontSize": 28.896606156275084
+    },
+    "after": {
+      "text": "All swans are white",
+      "originalText": "All swans are white",
+      "fontFamily": 8,
+      "version": 174,
+      "fontSize": 25.90378130464436
+    }
+  },
+  {
+    "lecture": 1,
+    "slide": 10,
+    "elementId": "PK0JgV5nMulgVZu3zYzdb",
+    "before": {
+      "text": "10",
+      "originalText": "10",
+      "fontFamily": 1,
+      "version": 459
+    },
+    "after": {
+      "text": "10",
+      "originalText": "10",
+      "fontFamily": 8,
+      "version": 460
+    }
+  },
+  {
+    "lecture": 1,
+    "slide": 10,
+    "elementId": "ues8_-OysBxjp5T5pEtTe",
+    "before": {
+      "text": "All As are Bs\nc is an A",
+      "originalText": "All As are Bs\nc is an A",
+      "fontFamily": 5,
+      "version": 97,
+      "fontSize": 36
+    },
+    "after": {
+      "text": "All As are Bs\nc is an A",
+      "originalText": "All As are Bs\nc is an A",
+      "fontFamily": 8,
+      "version": 98,
+      "fontSize": 32.67858725827523
+    }
+  },
+  {
+    "lecture": 1,
+    "slide": 10,
+    "elementId": "zsjJhgAOv8-JPTIwIuz_F",
+    "before": {
+      "text": "c is a B",
+      "originalText": "c is a B",
+      "fontFamily": 5,
+      "version": 58,
+      "fontSize": 36
+    },
+    "after": {
+      "text": "c is a B",
+      "originalText": "c is a B",
+      "fontFamily": 8,
+      "version": 59,
+      "fontSize": 32.42746367708639
+    }
+  },
+  {
+    "lecture": 1,
+    "slide": 10,
+    "elementId": "_7-_F-kq34EWR_o7Nj-0R",
+    "before": {
+      "text": "y",
+      "originalText": "y",
+      "fontFamily": 5,
+      "version": 493
+    },
+    "after": {
+      "text": "y",
+      "originalText": "y",
+      "fontFamily": 8,
+      "version": 494
+    }
+  },
+  {
+    "lecture": 1,
+    "slide": 10,
+    "elementId": "cxvXQBhONK1Bj0uQDvGqc",
+    "before": {
+      "text": "x",
+      "originalText": "x",
+      "fontFamily": 5,
+      "version": 478
+    },
+    "after": {
+      "text": "x",
+      "originalText": "x",
+      "fontFamily": 8,
+      "version": 479
+    }
+  },
+  {
+    "lecture": 1,
+    "slide": 10,
+    "elementId": "TmHnUlrhCmh_Awd8OCBWZ",
+    "before": {
+      "text": "1",
+      "originalText": "1",
+      "fontFamily": 5,
+      "version": 491
+    },
+    "after": {
+      "text": "1",
+      "originalText": "1",
+      "fontFamily": 8,
+      "version": 492
+    }
+  },
+  {
+    "lecture": 1,
+    "slide": 10,
+    "elementId": "T2XpIXt66b5A5ntoa6n3-",
+    "before": {
+      "text": "5",
+      "originalText": "5",
+      "fontFamily": 5,
+      "version": 720
+    },
+    "after": {
+      "text": "5",
+      "originalText": "5",
+      "fontFamily": 8,
+      "version": 721
+    }
+  },
+  {
+    "lecture": 1,
+    "slide": 10,
+    "elementId": "geNeF7-s6-itNHa-2jcOT",
+    "before": {
+      "text": "10",
+      "originalText": "10",
+      "fontFamily": 5,
+      "version": 834
+    },
+    "after": {
+      "text": "10",
+      "originalText": "10",
+      "fontFamily": 8,
+      "version": 835
+    }
+  },
+  {
+    "lecture": 1,
+    "slide": 10,
+    "elementId": "-_zGl1freoSf03RUyN7oy",
+    "before": {
+      "text": "g = 9.81 m/s ",
+      "originalText": "g = 9.81 m/s ",
+      "fontFamily": 5,
+      "version": 624,
+      "fontSize": 12.904877763378256
+    },
+    "after": {
+      "text": "g = 9.81 m/s ",
+      "originalText": "g = 9.81 m/s ",
+      "fontFamily": 8,
+      "version": 625,
+      "fontSize": 11.959517634253332
+    }
+  },
+  {
+    "lecture": 1,
+    "slide": 10,
+    "elementId": "JMpxz3sDiYkhXUKMdNg2F",
+    "before": {
+      "text": "m = 0.58 kg",
+      "originalText": "m = 0.58 kg",
+      "fontFamily": 5,
+      "version": 656,
+      "fontSize": 12.904877763378252
+    },
+    "after": {
+      "text": "m = 0.58 kg",
+      "originalText": "m = 0.58 kg",
+      "fontFamily": 8,
+      "version": 657,
+      "fontSize": 12.36984429368368
+    }
+  },
+  {
+    "lecture": 1,
+    "slide": 10,
+    "elementId": "fPVFIj1x7VG21vkEQ4CRj",
+    "before": {
+      "text": "v = 9 m/s ",
+      "originalText": "v = 9 m/s ",
+      "fontFamily": 5,
+      "version": 600,
+      "fontSize": 12.904877763378256
+    },
+    "after": {
+      "text": "v = 9 m/s ",
+      "originalText": "v = 9 m/s ",
+      "fontFamily": 8,
+      "version": 601,
+      "fontSize": 12.35269749465761
+    }
+  },
+  {
+    "lecture": 1,
+    "slide": 10,
+    "elementId": "EzKdspwCZ25AgcWWdgDcb",
+    "before": {
+      "text": "0",
+      "originalText": "0",
+      "fontFamily": 5,
+      "version": 611
+    },
+    "after": {
+      "text": "0",
+      "originalText": "0",
+      "fontFamily": 8,
+      "version": 612
+    }
+  },
+  {
+    "lecture": 1,
+    "slide": 10,
+    "elementId": "mz_2W4qkt7FsKZS8zd1oM",
+    "before": {
+      "text": "2",
+      "originalText": "2",
+      "fontFamily": 5,
+      "version": 583
+    },
+    "after": {
+      "text": "2",
+      "originalText": "2",
+      "fontFamily": 8,
+      "version": 584
+    }
+  },
+  {
+    "lecture": 1,
+    "slide": 12,
+    "elementId": "rX5Dwn6bksb3JPoE8U47F",
+    "before": {
+      "text": "All As are Bs\nc is an A",
+      "originalText": "All As are Bs\nc is an A",
+      "fontFamily": 5,
+      "version": 307,
+      "fontSize": 19.441821277237594
+    },
+    "after": {
+      "text": "All As are Bs\nc is an A",
+      "originalText": "All As are Bs\nc is an A",
+      "fontFamily": 8,
+      "version": 308,
+      "fontSize": 17.649758723312107
+    }
+  },
+  {
+    "lecture": 1,
+    "slide": 12,
+    "elementId": "pOP0yWK-nCHwfAyxiVNA_",
+    "before": {
+      "text": "c is a B",
+      "originalText": "c is a B",
+      "fontFamily": 5,
+      "version": 268,
+      "fontSize": 19.441821277237594
+    },
+    "after": {
+      "text": "c is a B",
+      "originalText": "c is a B",
+      "fontFamily": 8,
+      "version": 269,
+      "fontSize": 17.51412830783449
+    }
+  },
+  {
+    "lecture": 1,
+    "slide": 13,
+    "elementId": "iSfChFWCj6vtiCJDmIoXI",
+    "before": {
+      "text": "All As are Bs\nc is an A",
+      "originalText": "All As are Bs\nc is an A",
+      "fontFamily": 5,
+      "version": 628,
+      "fontSize": 19.441821277237594
+    },
+    "after": {
+      "text": "All As are Bs\nc is an A",
+      "originalText": "All As are Bs\nc is an A",
+      "fontFamily": 8,
+      "version": 629,
+      "fontSize": 17.649758723312107
+    }
+  },
+  {
+    "lecture": 1,
+    "slide": 13,
+    "elementId": "qVEYnoeepuf5w7jPokQE-",
+    "before": {
+      "text": "c is a B",
+      "originalText": "c is a B",
+      "fontFamily": 5,
+      "version": 589,
+      "fontSize": 19.441821277237594
+    },
+    "after": {
+      "text": "c is a B",
+      "originalText": "c is a B",
+      "fontFamily": 8,
+      "version": 590,
+      "fontSize": 17.51412830783449
+    }
+  },
+  {
+    "lecture": 1,
+    "slide": 14,
+    "elementId": "NfIE0fCjJ6eWv7cdmZh8c",
+    "before": {
+      "text": "1997 DeepBlue beats\nWC GM Gary Kasparov",
+      "originalText": "1997 DeepBlue beats\nWC GM Gary Kasparov",
+      "fontFamily": 5,
+      "version": 262
+    },
+    "after": {
+      "text": "1997 DeepBlue beats\nWC GM Garry Kasparov",
+      "originalText": "1997 DeepBlue beats\nWC GM Garry Kasparov",
+      "fontFamily": 5,
+      "version": 263
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 4,
+    "elementId": "AsRrL2EowVJjICFvxNrSf",
+    "before": {
+      "text": "Precise and unambigious",
+      "originalText": "Precise and unambigious",
+      "fontFamily": 1,
+      "version": 485
+    },
+    "after": {
+      "text": "Precise and unambiguous",
+      "originalText": "Precise and unambiguous",
+      "fontFamily": 1,
+      "version": 486
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 6,
+    "elementId": "wQ5D7yH5kSEpvxiEVM9NQ",
+    "before": {
+      "text": "4",
+      "originalText": "4",
+      "fontFamily": 1,
+      "version": 435
+    },
+    "after": {
+      "text": "4",
+      "originalText": "4",
+      "fontFamily": 8,
+      "version": 436
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 6,
+    "elementId": "_Tj2nN4q65j1g8PE-jS7x",
+    "before": {
+      "text": "a x b = c",
+      "originalText": "a x b = c",
+      "fontFamily": 5,
+      "version": 188,
+      "fontSize": 26.618326944147356
+    },
+    "after": {
+      "text": "a × b = c",
+      "originalText": "a × b = c",
+      "fontFamily": 8,
+      "version": 189,
+      "fontSize": 24.532345662817285
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 7,
+    "elementId": "IR4Znr9K0MinfczuKlDy2",
+    "before": {
+      "text": "5",
+      "originalText": "5",
+      "fontFamily": 1,
+      "version": 443
+    },
+    "after": {
+      "text": "5",
+      "originalText": "5",
+      "fontFamily": 8,
+      "version": 444
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 7,
+    "elementId": "5sxLYjSV5kfxfeoTJ1btI",
+    "before": {
+      "text": "If A, then B.\nA\n ",
+      "originalText": "If A, then B.\nA\n ",
+      "fontFamily": 5,
+      "version": 67,
+      "fontSize": 36
+    },
+    "after": {
+      "text": "If A, then B.\nA\n ",
+      "originalText": "If A, then B.\nA\n ",
+      "fontFamily": 8,
+      "version": 68,
+      "fontSize": 32.64540451411466
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 7,
+    "elementId": "DQj0wN5Mk1GIIw3clze9z",
+    "before": {
+      "text": "B",
+      "originalText": "B",
+      "fontFamily": 5,
+      "version": 65
+    },
+    "after": {
+      "text": "B",
+      "originalText": "B",
+      "fontFamily": 8,
+      "version": 66
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 8,
+    "elementId": "ubOqegk9PiTDGsL0xIzYS",
+    "before": {
+      "text": "6",
+      "originalText": "6",
+      "fontFamily": 1,
+      "version": 443
+    },
+    "after": {
+      "text": "6",
+      "originalText": "6",
+      "fontFamily": 8,
+      "version": 444
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 8,
+    "elementId": "PDQmMApBY-YM6QZDxFi0a",
+    "before": {
+      "text": "{ x : x is a drink }",
+      "originalText": "{ x : x is a drink }",
+      "fontFamily": 5,
+      "version": 52,
+      "fontSize": 36
+    },
+    "after": {
+      "text": "{ x : x is a drink }",
+      "originalText": "{ x : x is a drink }",
+      "fontFamily": 8,
+      "version": 53,
+      "fontSize": 30.271040897058747
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 8,
+    "elementId": "ch7l7-q9iPi1yrbl8EyuM",
+    "before": {
+      "text": "=",
+      "originalText": "=",
+      "fontFamily": 5,
+      "version": 9
+    },
+    "after": {
+      "text": "=",
+      "originalText": "=",
+      "fontFamily": 8,
+      "version": 10
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 8,
+    "elementId": "ebbfFv8Dy3QCv7u19YaKq",
+    "before": {
+      "text": "1",
+      "originalText": "1",
+      "fontFamily": 5,
+      "version": 151
+    },
+    "after": {
+      "text": "1",
+      "originalText": "1",
+      "fontFamily": 8,
+      "version": 152
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 8,
+    "elementId": "eR6ieLWQncbCkZW57OV1S",
+    "before": {
+      "text": "{",
+      "originalText": "{",
+      "fontFamily": 5,
+      "version": 55
+    },
+    "after": {
+      "text": "{",
+      "originalText": "{",
+      "fontFamily": 8,
+      "version": 56
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 8,
+    "elementId": "41yUPiD0cvaW31VXZQEaF",
+    "before": {
+      "text": "}",
+      "originalText": "}",
+      "fontFamily": 5,
+      "version": 59
+    },
+    "after": {
+      "text": "}",
+      "originalText": "}",
+      "fontFamily": 8,
+      "version": 60
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 8,
+    "elementId": "93TtgznkB1uPxDKKJDk-H",
+    "before": {
+      "text": ",",
+      "originalText": ",",
+      "fontFamily": 5,
+      "version": 36
+    },
+    "after": {
+      "text": ",",
+      "originalText": ",",
+      "fontFamily": 8,
+      "version": 37
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 8,
+    "elementId": "iWb7pZmm-4Iac-YllAaZ9",
+    "before": {
+      "text": " ϵ",
+      "originalText": " ϵ",
+      "fontFamily": 5,
+      "version": 45
+    },
+    "after": {
+      "text": " ∈",
+      "originalText": " ∈",
+      "fontFamily": 8,
+      "version": 46
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 8,
+    "elementId": "xIgTbUOA3eS6nuo2PxQkM",
+    "before": {
+      "text": " ϵ ",
+      "originalText": " ϵ ",
+      "fontFamily": 5,
+      "version": 31
+    },
+    "after": {
+      "text": " ∈ ",
+      "originalText": " ∈ ",
+      "fontFamily": 8,
+      "version": 32
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 8,
+    "elementId": "9c8osZzQ12vxbd6vICNdv",
+    "before": {
+      "text": "{",
+      "originalText": "{",
+      "fontFamily": 5,
+      "version": 76
+    },
+    "after": {
+      "text": "{",
+      "originalText": "{",
+      "fontFamily": 8,
+      "version": 77
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 8,
+    "elementId": "pInZb5vLba6Lds2lRrLyv",
+    "before": {
+      "text": "}",
+      "originalText": "}",
+      "fontFamily": 5,
+      "version": 80
+    },
+    "after": {
+      "text": "}",
+      "originalText": "}",
+      "fontFamily": 8,
+      "version": 81
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 8,
+    "elementId": "uRWgrO0ZiRxmA6bRAdqMI",
+    "before": {
+      "text": ",",
+      "originalText": ",",
+      "fontFamily": 5,
+      "version": 56
+    },
+    "after": {
+      "text": ",",
+      "originalText": ",",
+      "fontFamily": 8,
+      "version": 57
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 8,
+    "elementId": "8fbYWF04qVEs2Uj5YVJSb",
+    "before": {
+      "text": "{",
+      "originalText": "{",
+      "fontFamily": 5,
+      "version": 147
+    },
+    "after": {
+      "text": "{",
+      "originalText": "{",
+      "fontFamily": 8,
+      "version": 148
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 8,
+    "elementId": "5WhJrr01WFvDEhd6irYLi",
+    "before": {
+      "text": "}",
+      "originalText": "}",
+      "fontFamily": 5,
+      "version": 151
+    },
+    "after": {
+      "text": "}",
+      "originalText": "}",
+      "fontFamily": 8,
+      "version": 152
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 8,
+    "elementId": "ZFoppZghCcZVuf-dzZ1tr",
+    "before": {
+      "text": ",",
+      "originalText": ",",
+      "fontFamily": 5,
+      "version": 71
+    },
+    "after": {
+      "text": ",",
+      "originalText": ",",
+      "fontFamily": 8,
+      "version": 72
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 9,
+    "elementId": "n3mC7BoWzFhXztXJttB3u",
+    "before": {
+      "text": "7",
+      "originalText": "7",
+      "fontFamily": 1,
+      "version": 431
+    },
+    "after": {
+      "text": "7",
+      "originalText": "7",
+      "fontFamily": 8,
+      "version": 432
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 9,
+    "elementId": "qLcdbPzFTfMq1B8tVFZaI",
+    "before": {
+      "text": "N = { 1, 2, 3, ... }",
+      "originalText": "N = { 1, 2, 3, ... }",
+      "fontFamily": 5,
+      "version": 72,
+      "fontSize": 36
+    },
+    "after": {
+      "text": "N = { 1, 2, 3, ... }",
+      "originalText": "N = { 1, 2, 3, ... }",
+      "fontFamily": 8,
+      "version": 73,
+      "fontSize": 28.25196768414787
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 9,
+    "elementId": "nUTA6PpVd4Garrnjmz1cC",
+    "before": {
+      "text": "{",
+      "originalText": "{",
+      "fontFamily": 5,
+      "version": 87
+    },
+    "after": {
+      "text": "{",
+      "originalText": "{",
+      "fontFamily": 8,
+      "version": 88
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 9,
+    "elementId": "LSOPyvVHhx4M1TuABg5jq",
+    "before": {
+      "text": "}",
+      "originalText": "}",
+      "fontFamily": 5,
+      "version": 139
+    },
+    "after": {
+      "text": "}",
+      "originalText": "}",
+      "fontFamily": 8,
+      "version": 140
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 9,
+    "elementId": "qx6S47YEKGBB_3PLFUUPg",
+    "before": {
+      "text": "}",
+      "originalText": "}",
+      "fontFamily": 5,
+      "version": 160
+    },
+    "after": {
+      "text": "}",
+      "originalText": "}",
+      "fontFamily": 8,
+      "version": 161
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 9,
+    "elementId": "3renM8oE-85xPWrPF6zOU",
+    "before": {
+      "text": "1",
+      "originalText": "1",
+      "fontFamily": 5,
+      "version": 158
+    },
+    "after": {
+      "text": "1",
+      "originalText": "1",
+      "fontFamily": 8,
+      "version": 159
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 9,
+    "elementId": "Z_aBvc5nBtyNlf2T7NatU",
+    "before": {
+      "text": ",",
+      "originalText": ",",
+      "fontFamily": 5,
+      "version": 89
+    },
+    "after": {
+      "text": ",",
+      "originalText": ",",
+      "fontFamily": 8,
+      "version": 90
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 9,
+    "elementId": "Y7_fc0_eaB5_X_gPX4oX2",
+    "before": {
+      "text": ",",
+      "originalText": ",",
+      "fontFamily": 5,
+      "version": 92
+    },
+    "after": {
+      "text": ",",
+      "originalText": ",",
+      "fontFamily": 8,
+      "version": 93
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 9,
+    "elementId": "4mvmnjbvGvWbmpZqsBZAV",
+    "before": {
+      "text": "{",
+      "originalText": "{",
+      "fontFamily": 5,
+      "version": 121
+    },
+    "after": {
+      "text": "{",
+      "originalText": "{",
+      "fontFamily": 8,
+      "version": 122
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 9,
+    "elementId": "0lhnlPI46F_mFF5MNvvux",
+    "before": {
+      "text": " ϵ",
+      "originalText": " ϵ",
+      "fontFamily": 5,
+      "version": 85
+    },
+    "after": {
+      "text": " ∈",
+      "originalText": " ∈",
+      "fontFamily": 8,
+      "version": 86
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 9,
+    "elementId": "b6BprOdE94mD8W7HCvlpz",
+    "before": {
+      "text": " ϵ",
+      "originalText": " ϵ",
+      "fontFamily": 5,
+      "version": 140
+    },
+    "after": {
+      "text": " ∈",
+      "originalText": " ∈",
+      "fontFamily": 8,
+      "version": 141
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 9,
+    "elementId": "iY46Nz0prild8QMcgr4XJ",
+    "before": {
+      "text": "}",
+      "originalText": "}",
+      "fontFamily": 5,
+      "version": 145
+    },
+    "after": {
+      "text": "}",
+      "originalText": "}",
+      "fontFamily": 8,
+      "version": 146
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 9,
+    "elementId": "kO7ulmxaPExyECuoKUfRZ",
+    "before": {
+      "text": "1",
+      "originalText": "1",
+      "fontFamily": 5,
+      "version": 165
+    },
+    "after": {
+      "text": "1",
+      "originalText": "1",
+      "fontFamily": 8,
+      "version": 166
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 9,
+    "elementId": "d9acj4DgyAT-bTYxBGMvl",
+    "before": {
+      "text": ",",
+      "originalText": ",",
+      "fontFamily": 5,
+      "version": 96
+    },
+    "after": {
+      "text": ",",
+      "originalText": ",",
+      "fontFamily": 8,
+      "version": 97
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 9,
+    "elementId": "rhpdART_YvEj8nPUHuu79",
+    "before": {
+      "text": "{",
+      "originalText": "{",
+      "fontFamily": 5,
+      "version": 127
+    },
+    "after": {
+      "text": "{",
+      "originalText": "{",
+      "fontFamily": 8,
+      "version": 128
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 9,
+    "elementId": "iPOcqAPymEb_76OQi4_Nu",
+    "before": {
+      "text": " ϵ",
+      "originalText": " ϵ",
+      "fontFamily": 5,
+      "version": 115
+    },
+    "after": {
+      "text": " ∈",
+      "originalText": " ∈",
+      "fontFamily": 8,
+      "version": 116
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 9,
+    "elementId": "UEQVRaaVRBt9fZandSbyZ",
+    "before": {
+      "text": "{ x : x is prime } = { 2, 3, 5, 7, ... ??? }",
+      "originalText": "{ x : x is prime } = { 2, 3, 5, 7, ... ??? }",
+      "fontFamily": 5,
+      "version": 147,
+      "fontSize": 36
+    },
+    "after": {
+      "text": "{ x : x is prime } = { 2, 3, 5, 7, ... ??? }",
+      "originalText": "{ x : x is prime } = { 2, 3, 5, 7, ... ??? }",
+      "fontFamily": 8,
+      "version": 148,
+      "fontSize": 29.206836316323614
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 10,
+    "elementId": "Uh1JfigCwuJSQbYn6nlCg",
+    "before": {
+      "text": "8",
+      "originalText": "8",
+      "fontFamily": 1,
+      "version": 442
+    },
+    "after": {
+      "text": "8",
+      "originalText": "8",
+      "fontFamily": 8,
+      "version": 443
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 10,
+    "elementId": "LJfvWsoB0cbDIb6P4fOxy",
+    "before": {
+      "text": " Σ={0,1,2,3,4,5,6,7,8,9} ",
+      "originalText": " Σ={0,1,2,3,4,5,6,7,8,9} ",
+      "fontFamily": 5,
+      "version": 105,
+      "fontSize": 35.999999999999254
+    },
+    "after": {
+      "text": " Σ={0,1,2,3,4,5,6,7,8,9} ",
+      "originalText": " Σ={0,1,2,3,4,5,6,7,8,9} ",
+      "fontFamily": 8,
+      "version": 106,
+      "fontSize": 29.824349466511478
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 10,
+    "elementId": "d9KqZnVuzKU-7Kg1_KztR",
+    "before": {
+      "text": "Σ* = set of all sequences over Σ",
+      "originalText": "Σ* = set of all sequences over Σ",
+      "fontFamily": 5,
+      "version": 123,
+      "fontSize": 36
+    },
+    "after": {
+      "text": "Σ* = set of all sequences over Σ",
+      "originalText": "Σ* = set of all sequences over Σ",
+      "fontFamily": 8,
+      "version": 124,
+      "fontSize": 32.99147621772489
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 10,
+    "elementId": "pfnuE8cBQ1j3jwNGaMVqk",
+    "before": {
+      "text": " 15935304888",
+      "originalText": " 15935304888",
+      "fontFamily": 1,
+      "version": 462
+    },
+    "after": {
+      "text": " 15935304888",
+      "originalText": " 15935304888",
+      "fontFamily": 8,
+      "version": 463
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 10,
+    "elementId": "ScpDsKT_KtIqBMh4yeJpz",
+    "before": {
+      "text": " 049583",
+      "originalText": " 049583",
+      "fontFamily": 1,
+      "version": 470
+    },
+    "after": {
+      "text": " 049583",
+      "originalText": " 049583",
+      "fontFamily": 8,
+      "version": 471
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 10,
+    "elementId": "Y19RrMb9Szt2-kAxRbCW4",
+    "before": {
+      "text": " 2",
+      "originalText": " 2",
+      "fontFamily": 1,
+      "version": 462
+    },
+    "after": {
+      "text": " 2",
+      "originalText": " 2",
+      "fontFamily": 8,
+      "version": 463
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 11,
+    "elementId": "jn9kd7GHWeyCchDY8rVpk",
+    "before": {
+      "text": "9",
+      "originalText": "9",
+      "fontFamily": 1,
+      "version": 453
+    },
+    "after": {
+      "text": "9",
+      "originalText": "9",
+      "fontFamily": 8,
+      "version": 454
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 12,
+    "elementId": "jYJ7x_yX0Siw7S78dhswV",
+    "before": {
+      "text": "10",
+      "originalText": "10",
+      "fontFamily": 1,
+      "version": 439
+    },
+    "after": {
+      "text": "10",
+      "originalText": "10",
+      "fontFamily": 8,
+      "version": 440
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 12,
+    "elementId": "QoGUBQw8oDE5u1APAoUCX",
+    "before": {
+      "text": ",",
+      "originalText": ",",
+      "fontFamily": 5,
+      "version": 225
+    },
+    "after": {
+      "text": ",",
+      "originalText": ",",
+      "fontFamily": 8,
+      "version": 226
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 12,
+    "elementId": "sxPDnhIgDxK6P1bmd9a_j",
+    "before": {
+      "text": ",",
+      "originalText": ",",
+      "fontFamily": 5,
+      "version": 248
+    },
+    "after": {
+      "text": ",",
+      "originalText": ",",
+      "fontFamily": 8,
+      "version": 249
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 12,
+    "elementId": "vnXE2fErFzh5W0kxbVqrA",
+    "before": {
+      "text": ",",
+      "originalText": ",",
+      "fontFamily": 5,
+      "version": 270
+    },
+    "after": {
+      "text": ",",
+      "originalText": ",",
+      "fontFamily": 8,
+      "version": 271
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 12,
+    "elementId": "2rlvde8vm7VK4K6kbQGRv",
+    "before": {
+      "text": ",",
+      "originalText": ",",
+      "fontFamily": 5,
+      "version": 304
+    },
+    "after": {
+      "text": ",",
+      "originalText": ",",
+      "fontFamily": 8,
+      "version": 305
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 12,
+    "elementId": "09GK7hYEgU-T8prdIcnyD",
+    "before": {
+      "text": ",",
+      "originalText": ",",
+      "fontFamily": 5,
+      "version": 336
+    },
+    "after": {
+      "text": ",",
+      "originalText": ",",
+      "fontFamily": 8,
+      "version": 337
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 12,
+    "elementId": "_998oKDRIUVVFJ1u5tip-",
+    "before": {
+      "text": "( , )",
+      "originalText": "( , )",
+      "fontFamily": 5,
+      "version": 185,
+      "fontSize": 17.934340725739872
+    },
+    "after": {
+      "text": "( , )",
+      "originalText": "( , )",
+      "fontFamily": 8,
+      "version": 186,
+      "fontSize": 12.861702429261989
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "OinGFtAf6parZ__DY5HkB",
+    "before": {
+      "text": "11",
+      "originalText": "11",
+      "fontFamily": 1,
+      "version": 437
+    },
+    "after": {
+      "text": "11",
+      "originalText": "11",
+      "fontFamily": 8,
+      "version": 438
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "2vmP3Yqz9D5z_40EPWmKk",
+    "before": {
+      "text": "p₁, ..., pₙ ϵ L",
+      "originalText": "p₁, ..., pₙ ϵ L",
+      "fontFamily": 1,
+      "version": 503,
+      "fontSize": 25.420874461286935
+    },
+    "after": {
+      "text": "p₁, ..., pₙ ∈ L",
+      "originalText": "p₁, ..., pₙ ∈ L",
+      "fontFamily": 8,
+      "version": 504,
+      "fontSize": 20.93261828602175
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "VWRWECgDa_PQkv0V1-iS2",
+    "before": {
+      "text": "If A ϵ L, then ¬A ϵ L ",
+      "originalText": "If A ϵ L, then ¬A ϵ L ",
+      "fontFamily": 1,
+      "version": 561,
+      "fontSize": 25.420874461286935
+    },
+    "after": {
+      "text": "If A ∈ L, then ¬A ∈ L ",
+      "originalText": "If A ∈ L, then ¬A ∈ L ",
+      "fontFamily": 8,
+      "version": 562,
+      "fontSize": 25.159095626251222
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "nhxMalEWR-e7mr86msNfU",
+    "before": {
+      "text": "If A,B ϵ L, then (A  B), (A  B), (A   B), (A   B) ϵ L ",
+      "originalText": "If A,B ϵ L, then (A  B), (A  B), (A   B), (A   B) ϵ L ",
+      "fontFamily": 1,
+      "version": 592
+    },
+    "after": {
+      "text": "If A,B ∈ L, then (A  B), (A  B), (A   B), (A   B) ∈ L ",
+      "originalText": "If A,B ∈ L, then (A  B), (A  B), (A   B), (A   B) ∈ L ",
+      "fontFamily": 1,
+      "version": 593
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "07S1er8moxRZJaG7SGbOC",
+    "before": {
+      "text": "A ",
+      "originalText": "A ",
+      "fontFamily": 5,
+      "version": 153
+    },
+    "after": {
+      "text": "A ",
+      "originalText": "A ",
+      "fontFamily": 8,
+      "version": 154
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "Fn2Os22WsITxeC1orduCU",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 202
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 203
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "B1D_oi-Gd9aYS38OtCVj-",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 233
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 234
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "lLMkJt5T4bAwBMZ3p92fH",
+    "before": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 5,
+      "version": 281
+    },
+    "after": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 8,
+      "version": 282
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "QRQ99a83DXDs6z2CCXga3",
+    "before": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 5,
+      "version": 291
+    },
+    "after": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 8,
+      "version": 292
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "i9q-tb9MSUfInkqzcFN6X",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 178
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 179
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "hKyfb4pCGSy_IiATYEydy",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 209
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 210
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "9h_GsoHHTHwZZseDE0yka",
+    "before": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 5,
+      "version": 256
+    },
+    "after": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 8,
+      "version": 257
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "ZektLMzUUsdznzwr7OoE5",
+    "before": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 5,
+      "version": 267
+    },
+    "after": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 8,
+      "version": 268
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "dOqWiM2CC6bSh3abshHGK",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 179
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 180
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "73XTAJG4OPOu6NUfcSx1i",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 246
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 247
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "DBnHrQ4IMx_rKnz9UG3Vx",
+    "before": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 5,
+      "version": 258
+    },
+    "after": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 8,
+      "version": 259
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "AiIDo8mNR7Gs5ywtX5hCQ",
+    "before": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 5,
+      "version": 274
+    },
+    "after": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 8,
+      "version": 275
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "4q0P3Ynt9pcqrSyilpqvl",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 189
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 190
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "Ww1BCKIFgdzKUoVBnn3_i",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 256
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 257
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "2YJz-z_TdktlDhv554b3B",
+    "before": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 5,
+      "version": 268
+    },
+    "after": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 8,
+      "version": 269
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "QiNtjiySUJJtXCtwj4a6b",
+    "before": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 5,
+      "version": 284
+    },
+    "after": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 8,
+      "version": 285
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "-MmAZoJeBvdnsR4KmfVIq",
+    "before": {
+      "text": "i",
+      "originalText": "i",
+      "fontFamily": 5,
+      "version": 240
+    },
+    "after": {
+      "text": "i",
+      "originalText": "i",
+      "fontFamily": 8,
+      "version": 241
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "o26Idv9jVUC2u0rTzVWsk",
+    "before": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 5,
+      "version": 153
+    },
+    "after": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 8,
+      "version": 154
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "y7Kmg7qoWaCikt2RLePOT",
+    "before": {
+      "text": "1",
+      "originalText": "1",
+      "fontFamily": 5,
+      "version": 312
+    },
+    "after": {
+      "text": "1",
+      "originalText": "1",
+      "fontFamily": 8,
+      "version": 313
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "QT9sohjyvP4zwIXekw2i1",
+    "before": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 5,
+      "version": 235
+    },
+    "after": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 8,
+      "version": 236
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "pkw3q8lHR7AdfHYwAZ05G",
+    "before": {
+      "text": "2",
+      "originalText": "2",
+      "fontFamily": 5,
+      "version": 346
+    },
+    "after": {
+      "text": "2",
+      "originalText": "2",
+      "fontFamily": 8,
+      "version": 347
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "z02JpQ84epHYioCMEId_I",
+    "before": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 5,
+      "version": 267
+    },
+    "after": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 8,
+      "version": 268
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "v1X6HC5K0trxmY515MATo",
+    "before": {
+      "text": "3",
+      "originalText": "3",
+      "fontFamily": 5,
+      "version": 386
+    },
+    "after": {
+      "text": "3",
+      "originalText": "3",
+      "fontFamily": 8,
+      "version": 387
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "Z9BuSmijkPR2FKr-wZRO6",
+    "before": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 5,
+      "version": 304
+    },
+    "after": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 8,
+      "version": 305
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "wA-x2l1bj011tIgpKTf8r",
+    "before": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 5,
+      "version": 322
+    },
+    "after": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 8,
+      "version": 323
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "Fg4goB1qtEZyf-mYzcVeP",
+    "before": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 5,
+      "version": 300
+    },
+    "after": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 8,
+      "version": 301
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "rV-Wv5zsf2hptTR_SdbSb",
+    "before": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 5,
+      "version": 238
+    },
+    "after": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 8,
+      "version": 239
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "EW4f07AFSSm6N5zvXSK10",
+    "before": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 5,
+      "version": 243
+    },
+    "after": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 8,
+      "version": 244
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "2Wm-viaU_k4KPqhUiY75C",
+    "before": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 5,
+      "version": 257
+    },
+    "after": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 8,
+      "version": 258
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "viIruzqqzKqF1FrkuTQY9",
+    "before": {
+      "text": "1",
+      "originalText": "1",
+      "fontFamily": 5,
+      "version": 258
+    },
+    "after": {
+      "text": "1",
+      "originalText": "1",
+      "fontFamily": 8,
+      "version": 259
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "e8wh8_gF-pFKBeWR6Omdd",
+    "before": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 5,
+      "version": 181
+    },
+    "after": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 8,
+      "version": 182
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "07IPGfJ6Ijk3wmzUSuHvG",
+    "before": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 5,
+      "version": 230
+    },
+    "after": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 8,
+      "version": 231
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 13,
+    "elementId": "rXgtbCg9qNGMdvV7ZwmdE",
+    "before": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 5,
+      "version": 245
+    },
+    "after": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 8,
+      "version": 246
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 14,
+    "elementId": "JQNGKsY7M_s9WB2F9zfwp",
+    "before": {
+      "text": "12",
+      "originalText": "12",
+      "fontFamily": 1,
+      "version": 408
+    },
+    "after": {
+      "text": "12",
+      "originalText": "12",
+      "fontFamily": 8,
+      "version": 409
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "tn0oCsHavAaqD6659y8wl",
+    "before": {
+      "text": "13",
+      "originalText": "13",
+      "fontFamily": 1,
+      "version": 440
+    },
+    "after": {
+      "text": "13",
+      "originalText": "13",
+      "fontFamily": 8,
+      "version": 441
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "nVZEdC6p6RHO0egghLhem",
+    "before": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 5,
+      "version": 132
+    },
+    "after": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 8,
+      "version": 133
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "70ds9t_gfq9l0oW6d019I",
+    "before": {
+      "text": "q",
+      "originalText": "q",
+      "fontFamily": 5,
+      "version": 190
+    },
+    "after": {
+      "text": "q",
+      "originalText": "q",
+      "fontFamily": 8,
+      "version": 191
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "_G_RqFmy9x2O6mc9Q2s5w",
+    "before": {
+      "text": "r",
+      "originalText": "r",
+      "fontFamily": 5,
+      "version": 225
+    },
+    "after": {
+      "text": "r",
+      "originalText": "r",
+      "fontFamily": 8,
+      "version": 226
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "6vaB-hJD_1AHTkmDrx7Di",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 152
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 153
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "EL-bM0x9JMwjQIZfOQCqF",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 172
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 173
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "B3zsuQMHcwbLrr6N44xXK",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 160
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 161
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "6eN4WWbiMT7BM0tddzEG2",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 176
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 177
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "wR7BkHvjck_OjIIQCjzYm",
+    "before": {
+      "text": "1",
+      "originalText": "1",
+      "fontFamily": 5,
+      "version": 450
+    },
+    "after": {
+      "text": "1",
+      "originalText": "1",
+      "fontFamily": 8,
+      "version": 451
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "TOSWfVyYFqqXTkP4T3bLN",
+    "before": {
+      "text": "r",
+      "originalText": "r",
+      "fontFamily": 5,
+      "version": 377
+    },
+    "after": {
+      "text": "r",
+      "originalText": "r",
+      "fontFamily": 8,
+      "version": 378
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "yEd5B4jJHw5l3rdV2HbYX",
+    "before": {
+      "text": ":",
+      "originalText": ":",
+      "fontFamily": 5,
+      "version": 243
+    },
+    "after": {
+      "text": ":",
+      "originalText": ":",
+      "fontFamily": 8,
+      "version": 244
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "aw3sOMZoF8haAiaCvCAFX",
+    "before": {
+      "text": "2",
+      "originalText": "2",
+      "fontFamily": 5,
+      "version": 459
+    },
+    "after": {
+      "text": "2",
+      "originalText": "2",
+      "fontFamily": 8,
+      "version": 460
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "daPVdRmS4Jrq4kP9lssZT",
+    "before": {
+      "text": "r",
+      "originalText": "r",
+      "fontFamily": 5,
+      "version": 384
+    },
+    "after": {
+      "text": "r",
+      "originalText": "r",
+      "fontFamily": 8,
+      "version": 385
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "ZtNEp3TDUOlqZrEJZGOLr",
+    "before": {
+      "text": ":",
+      "originalText": ":",
+      "fontFamily": 5,
+      "version": 250
+    },
+    "after": {
+      "text": ":",
+      "originalText": ":",
+      "fontFamily": 8,
+      "version": 251
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "Ltn2RcX_eAeATcd82fyJK",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 179
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 180
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "GUx6O1Kkn6fMCs3dA-tMo",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 205
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 206
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "32B9sOEFopoptynYuC9xM",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 207
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 208
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "8-wi_LIUDnL61Xn2rt6Ss",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 227
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 228
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "6sAyhjpvaQj8Da3Q8iOHI",
+    "before": {
+      "text": "3",
+      "originalText": "3",
+      "fontFamily": 5,
+      "version": 472
+    },
+    "after": {
+      "text": "3",
+      "originalText": "3",
+      "fontFamily": 8,
+      "version": 473
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "LHe8RJeQ4l4f6eIjC2LDt",
+    "before": {
+      "text": "r",
+      "originalText": "r",
+      "fontFamily": 5,
+      "version": 397
+    },
+    "after": {
+      "text": "r",
+      "originalText": "r",
+      "fontFamily": 8,
+      "version": 398
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "h6B_cp_qZZND07QFv1JEp",
+    "before": {
+      "text": ":",
+      "originalText": ":",
+      "fontFamily": 5,
+      "version": 263
+    },
+    "after": {
+      "text": ":",
+      "originalText": ":",
+      "fontFamily": 8,
+      "version": 264
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "LmAWkrmA-Z0kIzsyEdr0O",
+    "before": {
+      "text": "4",
+      "originalText": "4",
+      "fontFamily": 5,
+      "version": 498
+    },
+    "after": {
+      "text": "4",
+      "originalText": "4",
+      "fontFamily": 8,
+      "version": 499
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "gnTo7VUFFt6pF7-tywtEm",
+    "before": {
+      "text": "r",
+      "originalText": "r",
+      "fontFamily": 5,
+      "version": 423
+    },
+    "after": {
+      "text": "r",
+      "originalText": "r",
+      "fontFamily": 8,
+      "version": 424
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "WrVwYwfcBnqssLAurlxC5",
+    "before": {
+      "text": ":",
+      "originalText": ":",
+      "fontFamily": 5,
+      "version": 289
+    },
+    "after": {
+      "text": ":",
+      "originalText": ":",
+      "fontFamily": 8,
+      "version": 290
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "Z5-b5rHDF6AtOWGBO9nTn",
+    "before": {
+      "text": "5",
+      "originalText": "5",
+      "fontFamily": 5,
+      "version": 515
+    },
+    "after": {
+      "text": "5",
+      "originalText": "5",
+      "fontFamily": 8,
+      "version": 516
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "d3phXOnzCK8u3OO6iRKmM",
+    "before": {
+      "text": "r",
+      "originalText": "r",
+      "fontFamily": 5,
+      "version": 436
+    },
+    "after": {
+      "text": "r",
+      "originalText": "r",
+      "fontFamily": 8,
+      "version": 437
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "Ub_atlwGN09NLOuLQiZkN",
+    "before": {
+      "text": ":",
+      "originalText": ":",
+      "fontFamily": 5,
+      "version": 302
+    },
+    "after": {
+      "text": ":",
+      "originalText": ":",
+      "fontFamily": 8,
+      "version": 303
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "Kv1ei9IQG8lBNRH5c2lb3",
+    "before": {
+      "text": "6",
+      "originalText": "6",
+      "fontFamily": 5,
+      "version": 525
+    },
+    "after": {
+      "text": "6",
+      "originalText": "6",
+      "fontFamily": 8,
+      "version": 526
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "c7uyT9BRyAuzwkcqZgyGE",
+    "before": {
+      "text": "r",
+      "originalText": "r",
+      "fontFamily": 5,
+      "version": 450
+    },
+    "after": {
+      "text": "r",
+      "originalText": "r",
+      "fontFamily": 8,
+      "version": 451
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "1lwkgAP8Bk0n698_qX_Hp",
+    "before": {
+      "text": ":",
+      "originalText": ":",
+      "fontFamily": 5,
+      "version": 316
+    },
+    "after": {
+      "text": ":",
+      "originalText": ":",
+      "fontFamily": 8,
+      "version": 317
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "YLh7td0bL6C-Wp5DbtjSf",
+    "before": {
+      "text": "7",
+      "originalText": "7",
+      "fontFamily": 5,
+      "version": 552
+    },
+    "after": {
+      "text": "7",
+      "originalText": "7",
+      "fontFamily": 8,
+      "version": 553
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "4-4jrWrXcRQ8xtXIMS5cH",
+    "before": {
+      "text": "r",
+      "originalText": "r",
+      "fontFamily": 5,
+      "version": 477
+    },
+    "after": {
+      "text": "r",
+      "originalText": "r",
+      "fontFamily": 8,
+      "version": 478
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "nrcFSUoKzpRMe0eAWi0OS",
+    "before": {
+      "text": ":",
+      "originalText": ":",
+      "fontFamily": 5,
+      "version": 343
+    },
+    "after": {
+      "text": ":",
+      "originalText": ":",
+      "fontFamily": 8,
+      "version": 344
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "vInDC8NafuAqTfJDhognD",
+    "before": {
+      "text": "8",
+      "originalText": "8",
+      "fontFamily": 5,
+      "version": 579
+    },
+    "after": {
+      "text": "8",
+      "originalText": "8",
+      "fontFamily": 8,
+      "version": 580
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "92lQd97QzdLDo9re8wN20",
+    "before": {
+      "text": "r",
+      "originalText": "r",
+      "fontFamily": 5,
+      "version": 504
+    },
+    "after": {
+      "text": "r",
+      "originalText": "r",
+      "fontFamily": 8,
+      "version": 505
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "BIE3-r3nNUoIeR2ldHTb9",
+    "before": {
+      "text": ":",
+      "originalText": ":",
+      "fontFamily": 5,
+      "version": 370
+    },
+    "after": {
+      "text": ":",
+      "originalText": ":",
+      "fontFamily": 8,
+      "version": 371
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "61liiZ5UlNZRLrjh4eGxa",
+    "before": {
+      "text": "A ",
+      "originalText": "A ",
+      "fontFamily": 5,
+      "version": 238
+    },
+    "after": {
+      "text": "A ",
+      "originalText": "A ",
+      "fontFamily": 8,
+      "version": 239
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "GBbcMWYKYkpeb1WnUZ53-",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 291
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 292
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "UsRk9G4scVwGT6ugmPmyY",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 322
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 323
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "KwdIgiU13RCZu75bnvG7G",
+    "before": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 5,
+      "version": 370
+    },
+    "after": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 8,
+      "version": 371
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "XchsDcuelkN8s9QIYlPj6",
+    "before": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 5,
+      "version": 380
+    },
+    "after": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 8,
+      "version": 381
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "1i08IR2owAxpRV9F0xl4h",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 286
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 287
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "_qyKqcBqMuRY_CyA1rHgo",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 317
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 318
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "v-3eZd7K9oQwB81JLyvvF",
+    "before": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 5,
+      "version": 364
+    },
+    "after": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 8,
+      "version": 365
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "OYwHB4xnnb9FcBx7CqEvA",
+    "before": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 5,
+      "version": 375
+    },
+    "after": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 8,
+      "version": 376
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "HYxkUVfurmdPZexdolJJm",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 281
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 282
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "eT10A1wuLUQxTNTbY8d5a",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 348
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 349
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "grYlV99XZNRYfWYDGG9wn",
+    "before": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 5,
+      "version": 360
+    },
+    "after": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 8,
+      "version": 361
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "yZEj9_UFM8ZfHKKD3IJOm",
+    "before": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 5,
+      "version": 376
+    },
+    "after": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 8,
+      "version": 377
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "_5AQ5dXXG02Q4KUIAMQVr",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 300
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 301
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "ZytCbF4PNzIqQ0cSbDCne",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 367
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 368
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "aBBlIANT7Lh8nPrbh2cLq",
+    "before": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 5,
+      "version": 379
+    },
+    "after": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 8,
+      "version": 380
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "X19jYWDU_7Feq30Y0P8nI",
+    "before": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 5,
+      "version": 395
+    },
+    "after": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 8,
+      "version": 396
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "-AABYaeMHJ8G_j2MZYp2v",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 224
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 225
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "Nzlxt4a4u2-hOyPe79ruZ",
+    "before": {
+      "text": "A ",
+      "originalText": "A ",
+      "fontFamily": 5,
+      "version": 435
+    },
+    "after": {
+      "text": "A ",
+      "originalText": "A ",
+      "fontFamily": 8,
+      "version": 436
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "FRPosdwsZbRnZ2NO7dv6k",
+    "before": {
+      "text": "4",
+      "originalText": "4",
+      "fontFamily": 5,
+      "version": 613
+    },
+    "after": {
+      "text": "4",
+      "originalText": "4",
+      "fontFamily": 8,
+      "version": 614
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "r6LxzYWdTh0Gj42Rk6dIZ",
+    "before": {
+      "text": "r",
+      "originalText": "r",
+      "fontFamily": 5,
+      "version": 538
+    },
+    "after": {
+      "text": "r",
+      "originalText": "r",
+      "fontFamily": 8,
+      "version": 539
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "BQtHfFXOjazI4wxbSjNX2",
+    "before": {
+      "text": "5",
+      "originalText": "5",
+      "fontFamily": 5,
+      "version": 654
+    },
+    "after": {
+      "text": "5",
+      "originalText": "5",
+      "fontFamily": 8,
+      "version": 655
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "h8ZbcNasAl9s-nIxBMF2t",
+    "before": {
+      "text": "r",
+      "originalText": "r",
+      "fontFamily": 5,
+      "version": 575
+    },
+    "after": {
+      "text": "r",
+      "originalText": "r",
+      "fontFamily": 8,
+      "version": 576
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "fX3f2ExeltRrxvmpnmy0G",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 389
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 390
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "JEoKh8c8U5SwlFybXn0iA",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 420
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 421
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "Abw_m-juu4GPvnQ76Eqvy",
+    "before": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 5,
+      "version": 468
+    },
+    "after": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 8,
+      "version": 469
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "v4IuewLMSi3S3uL5Jn1tL",
+    "before": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 5,
+      "version": 478
+    },
+    "after": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 8,
+      "version": 479
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "ZLuC711L0yuIw4nMQbLEU",
+    "before": {
+      "text": "1",
+      "originalText": "1",
+      "fontFamily": 5,
+      "version": 662
+    },
+    "after": {
+      "text": "1",
+      "originalText": "1",
+      "fontFamily": 8,
+      "version": 663
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "WJd5j3I5mSY3ssXYuk-Zw",
+    "before": {
+      "text": "r",
+      "originalText": "r",
+      "fontFamily": 5,
+      "version": 585
+    },
+    "after": {
+      "text": "r",
+      "originalText": "r",
+      "fontFamily": 8,
+      "version": 586
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "HYKxo_sPOAnPea69J_3D5",
+    "before": {
+      "text": "2",
+      "originalText": "2",
+      "fontFamily": 5,
+      "version": 709
+    },
+    "after": {
+      "text": "2",
+      "originalText": "2",
+      "fontFamily": 8,
+      "version": 710
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "N0j6HMmY3-rASoXMZnv7N",
+    "before": {
+      "text": "r",
+      "originalText": "r",
+      "fontFamily": 5,
+      "version": 630
+    },
+    "after": {
+      "text": "r",
+      "originalText": "r",
+      "fontFamily": 8,
+      "version": 631
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "Q76NLp5syPr_OOEBaUq_A",
+    "before": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 5,
+      "version": 411
+    },
+    "after": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 8,
+      "version": 412
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "9RHHxlZD27ZcAB7B02v23",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 440
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 441
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "iAdxeBryW3_OtJLf2Mbjv",
+    "before": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 5,
+      "version": 494
+    },
+    "after": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 8,
+      "version": 495
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "xWHJfGslo_CLGHOLDVj0s",
+    "before": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 5,
+      "version": 498
+    },
+    "after": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 8,
+      "version": 499
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "HT3w5hMoEzWz8RNrvV2B6",
+    "before": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 5,
+      "version": 350
+    },
+    "after": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 8,
+      "version": 351
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "1evIWxlsAj8Q0r22zadQH",
+    "before": {
+      "text": "q",
+      "originalText": "q",
+      "fontFamily": 5,
+      "version": 390
+    },
+    "after": {
+      "text": "q",
+      "originalText": "q",
+      "fontFamily": 8,
+      "version": 391
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "KjVRvFXz13BlfbP9EwyJn",
+    "before": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 5,
+      "version": 437
+    },
+    "after": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 8,
+      "version": 438
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "sI3DcWQa_gD2kIZ1xdAed",
+    "before": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 5,
+      "version": 441
+    },
+    "after": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 8,
+      "version": 442
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "doKRVlaio5fZSYGbtlqUn",
+    "before": {
+      "text": "A ",
+      "originalText": "A ",
+      "fontFamily": 5,
+      "version": 338
+    },
+    "after": {
+      "text": "A ",
+      "originalText": "A ",
+      "fontFamily": 8,
+      "version": 339
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "oUNyPUwIyNtuSEMxuQ7_6",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 336
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 337
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "9Lu1LMovLxUkxuXm8XLCk",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 376
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 377
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "r6Vrae3ni9TYA2f9IgM4S",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 391
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 392
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "j--nQl3gNdABjaAYgAemA",
+    "before": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 5,
+      "version": 309
+    },
+    "after": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 8,
+      "version": 310
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "iTP6dNl9lJp81lgUfwNCL",
+    "before": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 5,
+      "version": 311
+    },
+    "after": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 8,
+      "version": 312
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "ehbppKrrmVuPFBlO_3owq",
+    "before": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 5,
+      "version": 264
+    },
+    "after": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 8,
+      "version": 265
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "eKn-uuN4SdnWkxAt62YeE",
+    "before": {
+      "text": "q",
+      "originalText": "q",
+      "fontFamily": 5,
+      "version": 227
+    },
+    "after": {
+      "text": "q",
+      "originalText": "q",
+      "fontFamily": 8,
+      "version": 228
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "IQr9Bq3NlviOdlQlwbgbU",
+    "before": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 5,
+      "version": 262
+    },
+    "after": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 8,
+      "version": 263
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "FTFQ09brskCcGmLYuTpf0",
+    "before": {
+      "text": "q",
+      "originalText": "q",
+      "fontFamily": 5,
+      "version": 302
+    },
+    "after": {
+      "text": "q",
+      "originalText": "q",
+      "fontFamily": 8,
+      "version": 303
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "JjAc5sStNzJ1AwPlxYmwg",
+    "before": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 5,
+      "version": 349
+    },
+    "after": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 8,
+      "version": 350
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 15,
+    "elementId": "Zr0bPp431HhgGwYyvgqmh",
+    "before": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 5,
+      "version": 353
+    },
+    "after": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 8,
+      "version": 354
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 16,
+    "elementId": "KMK-sSZiyzl71G2UBGrHZ",
+    "before": {
+      "text": "14",
+      "originalText": "14",
+      "fontFamily": 1,
+      "version": 430
+    },
+    "after": {
+      "text": "14",
+      "originalText": "14",
+      "fontFamily": 8,
+      "version": 431
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 16,
+    "elementId": "h6YN_uco6UiWAbarj3fNh",
+    "before": {
+      "text": "A ",
+      "originalText": "A ",
+      "fontFamily": 5,
+      "version": 288
+    },
+    "after": {
+      "text": "A ",
+      "originalText": "A ",
+      "fontFamily": 8,
+      "version": 289
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 16,
+    "elementId": "2pGPtq1vBp6qDtWkLxtKB",
+    "before": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 5,
+      "version": 298
+    },
+    "after": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 8,
+      "version": 299
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 16,
+    "elementId": "B3UC4GsqYIkePdEK8JuTx",
+    "before": {
+      "text": "q",
+      "originalText": "q",
+      "fontFamily": 5,
+      "version": 341
+    },
+    "after": {
+      "text": "q",
+      "originalText": "q",
+      "fontFamily": 8,
+      "version": 342
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 16,
+    "elementId": "8X0dXbwm8ylEqIvA7qTOf",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 389
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 390
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 16,
+    "elementId": "eeGSROVVot5_bOApO81KP",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 419
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 420
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 16,
+    "elementId": "ygoblHZk0HCecz5HVic-_",
+    "before": {
+      "text": "A ",
+      "originalText": "A ",
+      "fontFamily": 5,
+      "version": 251
+    },
+    "after": {
+      "text": "A ",
+      "originalText": "A ",
+      "fontFamily": 8,
+      "version": 252
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 16,
+    "elementId": "f76ujr1m7d38ZnjkDVGsV",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 250
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 251
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 16,
+    "elementId": "bCPTGl2yV0c_NECF-_Y1V",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 289
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 290
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 16,
+    "elementId": "zUePG6QH6BGftfuKzPJxT",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 304
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 305
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 16,
+    "elementId": "r8uBL9VuCU7b7qOIOMaCE",
+    "before": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 5,
+      "version": 165
+    },
+    "after": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 8,
+      "version": 166
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 16,
+    "elementId": "7TVW3mgdoz14Y2cyonuPU",
+    "before": {
+      "text": "q",
+      "originalText": "q",
+      "fontFamily": 5,
+      "version": 177
+    },
+    "after": {
+      "text": "q",
+      "originalText": "q",
+      "fontFamily": 8,
+      "version": 178
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 16,
+    "elementId": "RPk0oReYyYQbFiqTIFc_v",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 268
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 269
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 16,
+    "elementId": "k7-_S37mg8AQvIR4HFyQP",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 307
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 308
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 16,
+    "elementId": "L1qc_vSje6KgUCZFnFo0_",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 322
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 323
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 16,
+    "elementId": "nEF5JYhuORjmEZKHFVnwP",
+    "before": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 5,
+      "version": 294
+    },
+    "after": {
+      "text": "A",
+      "originalText": "A",
+      "fontFamily": 8,
+      "version": 295
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 16,
+    "elementId": "VVtoV0cvq6aTWGi7Q90Gi",
+    "before": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 5,
+      "version": 203
+    },
+    "after": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 8,
+      "version": 204
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 16,
+    "elementId": "4JsRAlNz6KSPWb0yd3R9w",
+    "before": {
+      "text": "q",
+      "originalText": "q",
+      "fontFamily": 5,
+      "version": 204
+    },
+    "after": {
+      "text": "q",
+      "originalText": "q",
+      "fontFamily": 8,
+      "version": 205
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 16,
+    "elementId": "inHuX_Gwf2YUfKZk_imMr",
+    "before": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 5,
+      "version": 125
+    },
+    "after": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 8,
+      "version": 126
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 16,
+    "elementId": "oeKch6iqQ0R0_TsjEtMlh",
+    "before": {
+      "text": "q",
+      "originalText": "q",
+      "fontFamily": 5,
+      "version": 116
+    },
+    "after": {
+      "text": "q",
+      "originalText": "q",
+      "fontFamily": 8,
+      "version": 117
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "jK_VD-ybKWfcOxml5m5B3",
+    "before": {
+      "text": "15",
+      "originalText": "15",
+      "fontFamily": 1,
+      "version": 441
+    },
+    "after": {
+      "text": "15",
+      "originalText": "15",
+      "fontFamily": 8,
+      "version": 442
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "-QfiU3GUcgVrj6vJ_I8BG",
+    "before": {
+      "text": "LEFT",
+      "originalText": "LEFT",
+      "fontFamily": 5,
+      "version": 351
+    },
+    "after": {
+      "text": "LEFT",
+      "originalText": "LEFT",
+      "fontFamily": 8,
+      "version": 352
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "jPNZ-lBsOXaYAtUYum5nl",
+    "before": {
+      "text": "RIGHT",
+      "originalText": "RIGHT",
+      "fontFamily": 5,
+      "version": 386
+    },
+    "after": {
+      "text": "RIGHT",
+      "originalText": "RIGHT",
+      "fontFamily": 8,
+      "version": 387
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "LQoNAcJLKGApNSIkikZDH",
+    "before": {
+      "text": "LEFT",
+      "originalText": "LEFT",
+      "fontFamily": 5,
+      "version": 357
+    },
+    "after": {
+      "text": "LEFT",
+      "originalText": "LEFT",
+      "fontFamily": 8,
+      "version": 358
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "EqVafGWy4LjASFPTwSOYF",
+    "before": {
+      "text": "RIGHT",
+      "originalText": "RIGHT",
+      "fontFamily": 5,
+      "version": 429
+    },
+    "after": {
+      "text": "RIGHT",
+      "originalText": "RIGHT",
+      "fontFamily": 8,
+      "version": 430
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "nLfJOrTLMQ3Zq4A_Xi7ah",
+    "before": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 5,
+      "version": 409
+    },
+    "after": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 8,
+      "version": 410
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "zmNxe_EMtTH0dQRpIIvC7",
+    "before": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 5,
+      "version": 375
+    },
+    "after": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 8,
+      "version": 376
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "_2pDPWzsA0sFhpl24jL_J",
+    "before": {
+      "text": "LEFT",
+      "originalText": "LEFT",
+      "fontFamily": 5,
+      "version": 357
+    },
+    "after": {
+      "text": "LEFT",
+      "originalText": "LEFT",
+      "fontFamily": 8,
+      "version": 358
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "mekXyBDP-U8F9WgpYX-8_",
+    "before": {
+      "text": "RIGHT",
+      "originalText": "RIGHT",
+      "fontFamily": 5,
+      "version": 404
+    },
+    "after": {
+      "text": "RIGHT",
+      "originalText": "RIGHT",
+      "fontFamily": 8,
+      "version": 405
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "k2wjNbXh8JcA7-wJBPxGp",
+    "before": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 5,
+      "version": 396
+    },
+    "after": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 8,
+      "version": 397
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "Pu9xBLx1id2c4r0pPG8Ke",
+    "before": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 5,
+      "version": 396
+    },
+    "after": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 8,
+      "version": 397
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "BZIqHzUDJS2-Og7n0Kzhp",
+    "before": {
+      "text": "LEFT",
+      "originalText": "LEFT",
+      "fontFamily": 5,
+      "version": 401
+    },
+    "after": {
+      "text": "LEFT",
+      "originalText": "LEFT",
+      "fontFamily": 8,
+      "version": 402
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "184RTmAoRkErLQkCoP8MU",
+    "before": {
+      "text": "RIGHT",
+      "originalText": "RIGHT",
+      "fontFamily": 5,
+      "version": 448
+    },
+    "after": {
+      "text": "RIGHT",
+      "originalText": "RIGHT",
+      "fontFamily": 8,
+      "version": 449
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "PobxEFaC9M2xdwPPrR5IZ",
+    "before": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 5,
+      "version": 440
+    },
+    "after": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 8,
+      "version": 441
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "kF25SmpFsCPn8fAW0GlRn",
+    "before": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 5,
+      "version": 440
+    },
+    "after": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 8,
+      "version": 441
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "x6N3oBTGY8G4NR200GYMm",
+    "before": {
+      "text": "LEFT",
+      "originalText": "LEFT",
+      "fontFamily": 5,
+      "version": 431
+    },
+    "after": {
+      "text": "LEFT",
+      "originalText": "LEFT",
+      "fontFamily": 8,
+      "version": 432
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "b63wIixLdTHG4Qk3An8c-",
+    "before": {
+      "text": "RIGHT",
+      "originalText": "RIGHT",
+      "fontFamily": 5,
+      "version": 478
+    },
+    "after": {
+      "text": "RIGHT",
+      "originalText": "RIGHT",
+      "fontFamily": 8,
+      "version": 479
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "VTNkZ8b-PvW2x_iffJ0um",
+    "before": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 5,
+      "version": 470
+    },
+    "after": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 8,
+      "version": 471
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "R4NDhGiVToVzZJPQyS_z3",
+    "before": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 5,
+      "version": 470
+    },
+    "after": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 8,
+      "version": 471
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "h8cG7ZSjR3I72kozOql4k",
+    "before": {
+      "text": "LEFT",
+      "originalText": "LEFT",
+      "fontFamily": 5,
+      "version": 465
+    },
+    "after": {
+      "text": "LEFT",
+      "originalText": "LEFT",
+      "fontFamily": 8,
+      "version": 466
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "CkIxVgirgS6oTmI2p3ncn",
+    "before": {
+      "text": "RIGHT",
+      "originalText": "RIGHT",
+      "fontFamily": 5,
+      "version": 537
+    },
+    "after": {
+      "text": "RIGHT",
+      "originalText": "RIGHT",
+      "fontFamily": 8,
+      "version": 538
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "SRyoKXD-TsmPphPPPosWS",
+    "before": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 5,
+      "version": 517
+    },
+    "after": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 8,
+      "version": 518
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "UwOhwKsNHakp_LB5VU0Mc",
+    "before": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 5,
+      "version": 482
+    },
+    "after": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 8,
+      "version": 483
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "RZm1GHFgX0qBLM_jdcZp4",
+    "before": {
+      "text": "LEFT",
+      "originalText": "LEFT",
+      "fontFamily": 5,
+      "version": 437
+    },
+    "after": {
+      "text": "LEFT",
+      "originalText": "LEFT",
+      "fontFamily": 8,
+      "version": 438
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "-wUvcfIzDIqTg_G7xvFqB",
+    "before": {
+      "text": "RIGHT",
+      "originalText": "RIGHT",
+      "fontFamily": 5,
+      "version": 484
+    },
+    "after": {
+      "text": "RIGHT",
+      "originalText": "RIGHT",
+      "fontFamily": 8,
+      "version": 485
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "LKQnnJ3je9PhzXDNDAHXs",
+    "before": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 5,
+      "version": 476
+    },
+    "after": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 8,
+      "version": 477
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "GpmxhGmcf9fr2--xZdS0y",
+    "before": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 5,
+      "version": 476
+    },
+    "after": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 8,
+      "version": 477
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "t1KgmiGYVNWHnr5kbPxWh",
+    "before": {
+      "text": "LEFT",
+      "originalText": "LEFT",
+      "fontFamily": 5,
+      "version": 358
+    },
+    "after": {
+      "text": "LEFT",
+      "originalText": "LEFT",
+      "fontFamily": 8,
+      "version": 359
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "CAFVLcFzCgdNWtCDmQktW",
+    "before": {
+      "text": "RIGHT",
+      "originalText": "RIGHT",
+      "fontFamily": 5,
+      "version": 435
+    },
+    "after": {
+      "text": "RIGHT",
+      "originalText": "RIGHT",
+      "fontFamily": 8,
+      "version": 436
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "HX_7ErGRW4jGwJ685La2U",
+    "before": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 5,
+      "version": 395
+    },
+    "after": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 8,
+      "version": 396
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "YpRlsffQQbYvoaV2LNYWx",
+    "before": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 5,
+      "version": 380
+    },
+    "after": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 8,
+      "version": 381
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "5CxquSJp1KiptQYlVMik4",
+    "before": {
+      "text": "RIGHT",
+      "originalText": "RIGHT",
+      "fontFamily": 5,
+      "version": 426
+    },
+    "after": {
+      "text": "RIGHT",
+      "originalText": "RIGHT",
+      "fontFamily": 8,
+      "version": 427
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "e3lmoB4waEFdK7zFaIYIN",
+    "before": {
+      "text": "LEFT",
+      "originalText": "LEFT",
+      "fontFamily": 5,
+      "version": 375
+    },
+    "after": {
+      "text": "LEFT",
+      "originalText": "LEFT",
+      "fontFamily": 8,
+      "version": 376
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "imZfD9Ab1Z9878qyUiu5Z",
+    "before": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 5,
+      "version": 389
+    },
+    "after": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 8,
+      "version": 390
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "pwtZQB8a5GMOOPj4twNlg",
+    "before": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 5,
+      "version": 379
+    },
+    "after": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 8,
+      "version": 380
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "T3UXrYY6QROqwCc_lFwHW",
+    "before": {
+      "text": "LEFT",
+      "originalText": "LEFT",
+      "fontFamily": 5,
+      "version": 370
+    },
+    "after": {
+      "text": "LEFT",
+      "originalText": "LEFT",
+      "fontFamily": 8,
+      "version": 371
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "Oom2QjaoOs3CXW4u4cX61",
+    "before": {
+      "text": "RIGHT",
+      "originalText": "RIGHT",
+      "fontFamily": 5,
+      "version": 447
+    },
+    "after": {
+      "text": "RIGHT",
+      "originalText": "RIGHT",
+      "fontFamily": 8,
+      "version": 448
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "ZuFjspi37VmFVBTrTnqmU",
+    "before": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 5,
+      "version": 407
+    },
+    "after": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 8,
+      "version": 408
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 17,
+    "elementId": "FPj2I-i6PRp6onpdRU2uz",
+    "before": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 5,
+      "version": 392
+    },
+    "after": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 8,
+      "version": 393
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 18,
+    "elementId": "mSD7BYr4qqh1uIOCu6taH",
+    "before": {
+      "text": "16",
+      "originalText": "16",
+      "fontFamily": 1,
+      "version": 430
+    },
+    "after": {
+      "text": "16",
+      "originalText": "16",
+      "fontFamily": 8,
+      "version": 431
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 18,
+    "elementId": "4x5rRhEtIrdwS19wS08JR",
+    "before": {
+      "text": "1",
+      "originalText": "1",
+      "fontFamily": 5,
+      "version": 235
+    },
+    "after": {
+      "text": "1",
+      "originalText": "1",
+      "fontFamily": 8,
+      "version": 236
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 18,
+    "elementId": "inEaAwGavh50qDW4_rLWx",
+    "before": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 5,
+      "version": 158
+    },
+    "after": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 8,
+      "version": 159
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 18,
+    "elementId": "JHkE65vvK-kI_qC5xqJ6m",
+    "before": {
+      "text": "2",
+      "originalText": "2",
+      "fontFamily": 5,
+      "version": 269
+    },
+    "after": {
+      "text": "2",
+      "originalText": "2",
+      "fontFamily": 8,
+      "version": 270
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 18,
+    "elementId": "4tixCeycgQEfWjZ5dNrOI",
+    "before": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 5,
+      "version": 190
+    },
+    "after": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 8,
+      "version": 191
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 18,
+    "elementId": "v_pfXpYR-tYeTnZb2mEGT",
+    "before": {
+      "text": "3",
+      "originalText": "3",
+      "fontFamily": 5,
+      "version": 309
+    },
+    "after": {
+      "text": "3",
+      "originalText": "3",
+      "fontFamily": 8,
+      "version": 310
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 18,
+    "elementId": "RMeMoCwbF2G0iEST981-s",
+    "before": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 5,
+      "version": 227
+    },
+    "after": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 8,
+      "version": 228
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 18,
+    "elementId": "9X_slTtgXd1MNL7ZHo94E",
+    "before": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 5,
+      "version": 244
+    },
+    "after": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 8,
+      "version": 245
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 18,
+    "elementId": "PORuVfku86stKxrL8P2h4",
+    "before": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 5,
+      "version": 223
+    },
+    "after": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 8,
+      "version": 224
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 18,
+    "elementId": "iQOW3I5s07x5Uw5KwpACt",
+    "before": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 5,
+      "version": 161
+    },
+    "after": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 8,
+      "version": 162
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 18,
+    "elementId": "A-WJCMrIEXrbqgePAvD7y",
+    "before": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 5,
+      "version": 166
+    },
+    "after": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 8,
+      "version": 167
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 18,
+    "elementId": "nZEdVm7iy4oPzsn8PkvQY",
+    "before": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 5,
+      "version": 270
+    },
+    "after": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 8,
+      "version": 271
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 18,
+    "elementId": "G1AlNc_q8vkzcBF9mSdyu",
+    "before": {
+      "text": "q",
+      "originalText": "q",
+      "fontFamily": 5,
+      "version": 310
+    },
+    "after": {
+      "text": "q",
+      "originalText": "q",
+      "fontFamily": 8,
+      "version": 311
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 18,
+    "elementId": "NzDAjQN4E8fsr07-ZwHGj",
+    "before": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 5,
+      "version": 357
+    },
+    "after": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 8,
+      "version": 358
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 18,
+    "elementId": "dwVt6kPKOh2bGFDnWKT_G",
+    "before": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 5,
+      "version": 361
+    },
+    "after": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 8,
+      "version": 362
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 18,
+    "elementId": "F4B_EHdvrCKMLLV8zXVKP",
+    "before": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 5,
+      "version": 229
+    },
+    "after": {
+      "text": "p",
+      "originalText": "p",
+      "fontFamily": 8,
+      "version": 230
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 18,
+    "elementId": "Wy6PbJsKsRw7aaSWwbNT0",
+    "before": {
+      "text": "q",
+      "originalText": "q",
+      "fontFamily": 5,
+      "version": 299
+    },
+    "after": {
+      "text": "q",
+      "originalText": "q",
+      "fontFamily": 8,
+      "version": 300
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 18,
+    "elementId": "L2VeF4WdV902Q-EDEzQsg",
+    "before": {
+      "text": "r",
+      "originalText": "r",
+      "fontFamily": 5,
+      "version": 348
+    },
+    "after": {
+      "text": "r",
+      "originalText": "r",
+      "fontFamily": 8,
+      "version": 349
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 18,
+    "elementId": "Vq1Y583b6uI_HeWfybtRs",
+    "before": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 5,
+      "version": 255
+    },
+    "after": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 8,
+      "version": 256
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 18,
+    "elementId": "kUCcwMHNi3HXbFiLDgVBf",
+    "before": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 5,
+      "version": 247
+    },
+    "after": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 8,
+      "version": 248
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 18,
+    "elementId": "Ri7MH2iCx1hpwCgCTWx0v",
+    "before": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 5,
+      "version": 235
+    },
+    "after": {
+      "text": "( ",
+      "originalText": "( ",
+      "fontFamily": 8,
+      "version": 236
+    }
+  },
+  {
+    "lecture": 2,
+    "slide": 18,
+    "elementId": "wiEiyDBiY6UkGIBJq9N6J",
+    "before": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 5,
+      "version": 244
+    },
+    "after": {
+      "text": ")",
+      "originalText": ")",
+      "fontFamily": 8,
+      "version": 245
+    }
+  }
+]

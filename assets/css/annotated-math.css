@@ -1,0 +1,18 @@
+/* Braces stretch; the mathematical text and its labels do not. */
+.annotated-math { clear: both; max-inline-size: 100%; overflow-x: auto; padding: .6rem .3rem; margin-block: 1.5rem; }
+.annotated-math__row { display: flex; align-items: center; justify-content: center; gap: .25em; inline-size: max-content; min-inline-size: 100%; font: var(--step-1)/1.4 var(--font-formal); color: var(--ink); }
+.annotated-math__group { display: grid; grid-template-rows: 1.4rem .75rem auto .75rem 1.4rem; align-items: center; justify-items: stretch; text-align: center; }
+.annotated-math__symbols { grid-row: 3; white-space: nowrap; }
+.annotated-math__edge { white-space: pre; }
+.annotated-math__brace { grid-row: 4; inline-size: 100%; block-size: .65rem; fill: none; stroke: var(--blue-ink); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.annotated-math__label { grid-row: 5; font: var(--step--1)/1.3 var(--font-hand); color: var(--blue-ink); white-space: nowrap; padding-inline: .3rem; }
+.annotated-math__group--above .annotated-math__brace { grid-row: 2; transform: scaleY(-1); }
+.annotated-math__group--above .annotated-math__label { grid-row: 1; }
+@media print { .annotated-math { overflow: visible; } .annotated-math__row { font-size: 1rem; } }
+/* Distinguish the three symbol roles without relying on colour alone. */
+.annotated-math__group--red { --annotation-ink: var(--red-ink); }
+.annotated-math__group--blue { --annotation-ink: var(--blue-ink); }
+.annotated-math__group--green { --annotation-ink: var(--green-ink); }
+.annotated-math__group { color: var(--annotation-ink, var(--ink)); }
+.annotated-math__group .annotated-math__brace { stroke: var(--annotation-ink, var(--blue-ink)); }
+.annotated-math__group .annotated-math__label { color: var(--annotation-ink, var(--blue-ink)); }

@@ -41,40 +41,16 @@ for (const route of PAGES) {
   });
 }
 
-test('an embedded deck contacts nobody until the reader asks it to', async ({ page }) => {
+test('released slides stay local and deferred slides expose no embed', async ({ page }) => {
   const offsite = watch(page);
-  await page.goto('/slides/boolean/');
-  const frame = page.locator('[data-embed]');
-  const invite = frame.locator('[data-embed-invite]');
-  const load = invite.getByRole('button', { name: /Load the slides/ });
-  await expect(load).toBeVisible();
-  await expect(frame.locator('iframe')).toHaveCount(0);
+  expect((await page.goto('/slides/logic-and-ai/')).status()).toBe(200);
+  await expect(page.locator('[data-slide-deck]')).toHaveAttribute('data-ready', 'true');
+  await page.getByLabel('Next slide', { exact: true }).click();
+  await expect(page).toHaveURL(/#slide-2$/);
+  expect((await page.goto('/slides/boolean/')).status()).toBe(200);
+  await expect(page.locator('iframe, [data-embed], [data-slide-deck]')).toHaveCount(0);
+  await expect(page.locator('main')).toContainText('awaiting content and image review');
   expect(offsite).toEqual([]);
-
-  // the invitation says where it goes, so the choice is an informed one
-  await expect(invite).toContainText('link.excalidraw.com');
-  await expect(invite).toContainText('IP address');
-
-  await load.click();
-  await expect(frame.locator('iframe')).toHaveAttribute('src', /link\.excalidraw\.com/);
-  expect(offsite.some(url => url.includes('excalidraw.com')), 'the deck never loaded').toBe(true);
-});
-
-/* The deck is a whole web application and takes seconds to paint, so pressing
-   the button has to show something happening — an empty frame reads as broken.
-   The response is stalled here so the loading state can be observed at all. */
-test('a deck that is slow to arrive says so', async ({ page }) => {
-  watch(page);
-  await page.route('**link.excalidraw.com/**', async route => {
-    await new Promise(resolve => setTimeout(resolve, 10000));
-    await route.abort();
-  });
-  await page.goto('/slides/boolean/');
-  const invite = page.locator('[data-embed-invite]');
-  await invite.getByRole('button', { name: /Load the slides/ }).click();
-  await expect(invite).toHaveAttribute('data-state', 'loading');
-  await expect(invite).toContainText('Loading the slides');
-  await expect(invite.getByRole('button')).toBeHidden();   // no pressing it twice
 });
 
 test('the built site links no font, script or style to another host', async () => {

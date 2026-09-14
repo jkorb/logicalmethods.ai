@@ -16,10 +16,10 @@ const later = ['valid-inference', 'boolean', 'sat', 'conditionals', 'proofs',
 for (const section of ['textbook', 'exercises', 'slides']) {
   test(`${section}: release navigation and legacy direct URLs`, async ({ page }, testInfo) => {
     await page.goto(`/${section}/`);
-    for (const chapter of ['logic-and-ai', 'formal-languages']) {
+    for (const chapter of (section === 'slides' ? ['logic-and-ai'] : ['logic-and-ai', 'formal-languages'])) {
       await expect(page.locator(`a.chapter-card[href="/${section}/${chapter}/"]`)).toBeVisible();
     }
-    await expect(page.locator('.chapter-card.is-locked')).toHaveCount(10);
+    await expect(page.locator('.chapter-card.is-locked')).toHaveCount(section === 'slides' ? 11 : 10);
     for (let chapter of later) {
       if (section !== 'textbook' && chapter === 'proofs') chapter = 'proof';
       if (section === 'slides' && chapter === 'learning') chapter = 'anns';

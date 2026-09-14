@@ -1,0 +1,90 @@
+{
+  "id": "lecture-8",
+  "title": "Lecture 8: FOL",
+  "source": "sources/Lecture 8.excalidraw",
+  "output": "slides/unpublished/FOL/deck",
+  "publication": "unpublished",
+  "originalSha256": "c05dab3e5a24241a5c77b8ab58d365cebb1d6fb7fb5f6148ebad18dec6992175",
+  "slides": [
+    {
+      "frameId": "IqDHBdqZvgn1El9tWOYK3",
+      "title": "Logical methods for AI — Lecture 8"
+    },
+    {
+      "frameId": "mMXUjSY078Bi_nQEY8XID",
+      "title": "FOL"
+    },
+    {
+      "frameId": "_ZpFEJbgJoH8Tjm5fR0Xt",
+      "title": "Syntax"
+    },
+    {
+      "frameId": "3HlvcaCYxZKwm-LBCAtu-",
+      "title": "Grammar - Terms"
+    },
+    {
+      "frameId": "LkgWb0sdma3ouYJTYRVza",
+      "title": "Grammar - Formulas"
+    },
+    {
+      "frameId": "dM18qu2kVrBUlvAV8OWij",
+      "title": "Binding and scope"
+    },
+    {
+      "frameId": "1LziQl8XxqT_gd3yooXW-",
+      "title": "Open formulas and Substitution"
+    },
+    {
+      "frameId": "oL5PRfsDRq3Y4KxKPiaaT",
+      "title": "FOL Models"
+    },
+    {
+      "frameId": "kV919izO8274_fzRSH5T6",
+      "title": "Ground terms - Constants and Function Symbols"
+    },
+    {
+      "frameId": "4cr5IK8s266IxEfP2-ctz",
+      "title": "Ground terms — recursion"
+    },
+    {
+      "frameId": "c87N50l4nO_acYW7XqLPO",
+      "title": "Predicates"
+    },
+    {
+      "frameId": "Ptw6wQzPTo7jnH_P4F8-e",
+      "title": "Multi-ary predicates"
+    },
+    {
+      "frameId": "ZeXPkqixyy5QT131-S4RQ",
+      "title": "FOL Models as Knowledge Graphs"
+    },
+    {
+      "frameId": "y_rWNUebGdYYjTBTY16M9",
+      "title": "FOL Models via Tables"
+    },
+    {
+      "frameId": "l9HafREv270tDohPpvv7J",
+      "title": "Truth in a model"
+    },
+    {
+      "frameId": "eWXYNIdzQKqIYlIlzg_XR",
+      "title": "Satisfaction"
+    },
+    {
+      "frameId": "yT5M264uMmnCjyIBW_vMn",
+      "title": "Multi-ary predicates and database theory"
+    },
+    {
+      "frameId": "kzYi1tqDSk9SfCkoChmJi",
+      "title": "Quantifiers"
+    },
+    {
+      "frameId": "rIJLZgbAjqT8egicOazn4",
+      "title": "FOL & DB Theory"
+    },
+    {
+      "frameId": "wydguw3EMb2vtznJwyFAu",
+      "title": "Codd's Theorem"
+    }
+  ]
+}

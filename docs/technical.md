@@ -53,8 +53,9 @@ that also produced the original title PNGs. To change or add one:
 Keep the strokes on `currentColor`. A black-stroked asset is invisible in dark
 mode, which is why the original PNGs could not be used.
 
-Excalidraw scenes are plain JSON and this same pipeline is what will let the slide
-decks be self-hosted instead of embedded from `link.excalidraw.com`.
+All twelve lectures now use a separate frame exporter and local viewer;
+Lectures 2–12 remain outside normal builds and Git until reviewed. Their editable
+scenes, image inventories and local Excalidraw editor are described in [Slides](slides.md).
 
 ## Weight
 
@@ -66,7 +67,8 @@ preprocess `.RawContent` with regular expressions for revised pages. Unrevised
 chapters opt into the legacy compatibility renderer; see
 [authoring](authoring.md#staged-release).
 
-**Reveal.js is gone.** Every deck uses the Excalidraw layout, so the reveal
+**Reveal.js is gone.** Every deck uses the Excalidraw layout (Lecture 1 is
+in the normal site; Lectures 2–12 use a local-only preview overlay), so the reveal
 template, theme, logo and the 6.8&nbsp;MB submodule were dead.
 
 **Bootstrap Icons are subsetted.** The upstream font ships ~2,000 icons; this
@@ -97,9 +99,9 @@ is only an authoring convenience. See [authoring](authoring.md#figures).
 
 ## Authoring tools
 
-Two scripts are for authoring, not for the build or the test run. Neither is
-wired into `npm test`, and their dependencies are deliberately not repo
-dependencies.
+The figure/font scripts are optional authoring tools. The slide editor and
+renderer have separately pinned dependencies under `tools/slides/`; see
+[Slides](slides.md). A regular Hugo build needs none of these authoring tools.
 
 | Script | Does | Needs |
 | --- | --- | --- |
@@ -138,6 +140,8 @@ in callouts and other shortcodes that use `.RenderString`. Read
 The shared shell loads Bootstrap and helper scripts, optionally loads KaTeX when
 `.Param "latex"` is true, and loads asset paths listed in `params.js` as JavaScript
 modules. Section templates can add scripts, such as exercise interactions.
+The exercise script uses a relative URL with a content fingerprint, so previews
+load their own password hashes and password changes invalidate cached scripts.
 
 ## Deployment
 
@@ -177,7 +181,7 @@ and interactive controls. Automated tests complement this review; they cannot
 judge whether an explanation or a mathematical argument is correct.
 
 `hidden` filters navigation, while `locked` disables links in the list partial.
-Neither prevents page generation or direct access. Exercise passwords and
+Neither prevents page generation or direct access. Exercise password hashes and
 solutions are delivered to the browser; their purpose is staged disclosure, not
 authentication. Drafts are also published by the current CI command.
 
@@ -188,3 +192,7 @@ installed under `tmp/excalidraw-tools` and resolved using `NODE_PATH`, leaving t
 site's package manifest unchanged. Set `PLAYWRIGHT_BROWSERS_PATH` to the matching
 local browser cache when needed. The regular Hugo build uses the checked-in SVGs
 and patched font; it does not need either authoring toolchain.
+
+Shared page CSS and JavaScript use local, fingerprinted URLs so a Hugo preview
+loads its own current assets. Disclosure pickers share `assets/css/pickers.css`,
+including the local editor lecture picker; native selects have a matching fallback.

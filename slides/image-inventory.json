@@ -1,0 +1,1884 @@
+{
+  "policy": "Review image sources and licences before publication; matching a workspace filename does not establish rights. Lecture 1 is cleared: every embedded image without a rights record was removed, and the decision is recorded in slides/lecture-1.json. Lectures 2-12 keep their images visible at the maintainer request and are still unreviewed.",
+  "images": [
+    {
+      "fileId": "7cf42278e0560e3bc287472dcf15499add60fe86596477ef656d4e6be1b2c714fb373ccb518da692cae67072c55f6d5d",
+      "mimeType": "image/jpeg",
+      "sha256": "261ad8460c12baed0cf1d1bdaa9318243ecc298659343bdfd9611f5a26bd0043",
+      "uses": [
+        {
+          "lecture": "lecture-2",
+          "slide": 2,
+          "title": "Lecture team",
+          "elementIds": [
+            "h1aAh_2F8p73XgYapU0Pd"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": null,
+      "imagePath": "slides/images/261ad8460c12baed0cf1d1bdaa9318243ecc298659343bdfd9611f5a26bd0043.jpg"
+    },
+    {
+      "fileId": "6c96834c33c7511b9ddec8ac5a34bc759c19bbb3ebd457d654c1a2d5c7de5aa130abda02bbe5817d09cbccbeecd92a7c",
+      "mimeType": "image/jpeg",
+      "sha256": "18d60bdd1e3a153ffada08ce27a886d711c218b35aae39247dd6c06db8cf85fe",
+      "uses": [
+        {
+          "lecture": "lecture-2",
+          "slide": 10,
+          "title": "Alphabets",
+          "elementIds": [
+            "nXPbQryyTqg1BIkMfzJ0i"
+          ]
+        },
+        {
+          "lecture": "lecture-10",
+          "slide": 5,
+          "title": "Kleene algebra",
+          "elementIds": [
+            "wg2eEOPmRlez3PzoYdvF0"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "Stephen_Cole_Kleene.jpg",
+        "method": "identical bytes"
+      },
+      "imagePath": "slides/images/18d60bdd1e3a153ffada08ce27a886d711c218b35aae39247dd6c06db8cf85fe.jpg"
+    },
+    {
+      "fileId": "855360fe05d98fdfe22316a89256839c24a8962fb36f943d9bdd95109e914bcd0e0aadb3a2d2321eddf63ab2aed4fb41",
+      "mimeType": "image/jpeg",
+      "sha256": "e01ab39446c4e04fac7e7dd90e93e2c5d58dc463d0d566cf572fae4d08e10836",
+      "uses": [
+        {
+          "lecture": "lecture-2",
+          "slide": 13,
+          "title": "Grammar and Backus–Naur form",
+          "elementIds": [
+            "_cQ05SHFWtT5RS0ya1Ddb"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "John_Backus_2.jpg",
+        "method": "identical bytes"
+      },
+      "imagePath": "slides/images/e01ab39446c4e04fac7e7dd90e93e2c5d58dc463d0d566cf572fae4d08e10836.jpg"
+    },
+    {
+      "fileId": "70a59b8ce77bf19c34d1f96f931425a72de71c4d72321b48bc2c3e9b4dc728557d7ac1c9ac77182d1f901db90b8dbadc",
+      "mimeType": "image/jpeg",
+      "sha256": "6d6c9823355f5396a0a5bedcad01d8ba6461a330017962c1750f3383b11f9c73",
+      "uses": [
+        {
+          "lecture": "lecture-2",
+          "slide": 13,
+          "title": "Grammar and Backus–Naur form",
+          "elementIds": [
+            "uax7hpiRTp1D_DYKMJafm"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "Peternaur.JPG",
+        "method": "identical bytes"
+      },
+      "imagePath": "slides/images/6d6c9823355f5396a0a5bedcad01d8ba6461a330017962c1750f3383b11f9c73.jpg"
+    },
+    {
+      "fileId": "71c679af180f2558b2b77076227aeb74c418a8610957b9a7224afa0a2bb8503485910e17f70dd545725b865334aae403",
+      "mimeType": "image/png",
+      "sha256": "88c638aca6313affc2e9e0073604f32a41d80c8c507dd6a5ab75c0f13dd8524b",
+      "uses": [
+        {
+          "lecture": "lecture-2",
+          "slide": 14,
+          "title": "Python BNF",
+          "elementIds": [
+            "m2X4oahuZF6ei6pM-vo-D"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "python_bnf.png",
+        "method": "identical bytes"
+      },
+      "imagePath": "slides/images/88c638aca6313affc2e9e0073604f32a41d80c8c507dd6a5ab75c0f13dd8524b.png"
+    },
+    {
+      "fileId": "3d12224bf815e3583c69faaa9f936ec2c67cda77411817b77bfe601d0cf3dcd253818b25fb7e3e3a061628673ffdccaf",
+      "mimeType": "image/png",
+      "sha256": "19813651577e6dcf144610167acea114bdec232b45430b41548cd081b8ddaa44",
+      "uses": [
+        {
+          "lecture": "lecture-2",
+          "slide": 3,
+          "title": "Attendance",
+          "elementIds": [
+            "8hn6_CyAynYTc821gGQpQ"
+          ]
+        },
+        {
+          "lecture": "lecture-5",
+          "slide": 2,
+          "title": "Attendance",
+          "elementIds": [
+            "makMLDFopn75RjtTLpbvA"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "qr-code_attendance.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0
+      },
+      "imagePath": "slides/images/19813651577e6dcf144610167acea114bdec232b45430b41548cd081b8ddaa44.png"
+    },
+    {
+      "fileId": "e1c58caded494b21a642bc2bfec10f8e63227980652863c0816d0a47da35f0ce5532207af60cbb54bf8a978446c704aa",
+      "mimeType": "image/jpeg",
+      "sha256": "ea83ae038175c531092a3365db64b6e5b8dbff7af00ebb3b47a0deb4c20ea297",
+      "uses": [
+        {
+          "lecture": "lecture-3",
+          "slide": 4,
+          "title": "Logical form",
+          "elementIds": [
+            "6cXGdAHhrnvsGStcRNU9Y"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "Ada_Lovelace_portrait.jpg",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0.29
+      },
+      "imagePath": "slides/images/ea83ae038175c531092a3365db64b6e5b8dbff7af00ebb3b47a0deb4c20ea297.jpg"
+    },
+    {
+      "fileId": "fe35db757c768380370322d582f5fc556f291ec0264b3bdd52c078eab595a7efe378c00ba8b716cff687ac981aa48ec4",
+      "mimeType": "image/png",
+      "sha256": "fd8b7df679463482f6ac2669fe79cab01be536ddfffddbaa991b9d4ad6b26461",
+      "uses": [
+        {
+          "lecture": "lecture-3",
+          "slide": 6,
+          "title": "Material validity",
+          "elementIds": [
+            "niXp7QOR_M6TH8RnTUTWX"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "meta-ai-math-reasoning.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0
+      },
+      "imagePath": "slides/images/fd8b7df679463482f6ac2669fe79cab01be536ddfffddbaa991b9d4ad6b26461.png"
+    },
+    {
+      "fileId": "6cf1fd6028b0285fd736e3d2594d7a1f6899c1c794965ec91a4e9478393e0156135ed37b1d297450ec47ddf46a5bfa85",
+      "mimeType": "image/png",
+      "sha256": "b00a6e5db832c6cee9188bce75cf4d5c6e732acc0226eb3c938f9f60007983ff",
+      "uses": [
+        {
+          "lecture": "lecture-3",
+          "slide": 6,
+          "title": "Material validity",
+          "elementIds": [
+            "gXcnKa-EVippbnigOg0xn"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "open-ai-math.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0
+      },
+      "imagePath": "slides/images/b00a6e5db832c6cee9188bce75cf4d5c6e732acc0226eb3c938f9f60007983ff.png"
+    },
+    {
+      "fileId": "c7cfbe18e9e2fdfbd6167001ab0bc376dc24e61e6982f8f16c6803a5f8dfbf6bdc3ceac52280977261600693787d8b97",
+      "mimeType": "image/png",
+      "sha256": "8f81ed552eaa0a0e697550586766c86732f45bf5222280088f7674003e42a710",
+      "uses": [
+        {
+          "lecture": "lecture-3",
+          "slide": 7,
+          "title": "Deductive validity",
+          "elementIds": [
+            "s2zrATdW3-HMboFH1OM2k"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": null,
+      "imagePath": "slides/images/8f81ed552eaa0a0e697550586766c86732f45bf5222280088f7674003e42a710.png"
+    },
+    {
+      "fileId": "11ec3268d2a8998eae60e427dc962ecf17d37c80b3c9226f3b900f36a2f382891850326470a7fb04a7ccd72a2d4434af",
+      "mimeType": "image/png",
+      "sha256": "2036b383592016bde8acbf966c5fe692a6c3ae444db86e92fc60bd4610dfed4f",
+      "uses": [
+        {
+          "lecture": "lecture-3",
+          "slide": 14,
+          "title": "Inductive validity",
+          "elementIds": [
+            "qzqRGgsvKdoP-GLtuZQ1f"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": null,
+      "imagePath": "slides/images/2036b383592016bde8acbf966c5fe692a6c3ae444db86e92fc60bd4610dfed4f.png"
+    },
+    {
+      "fileId": "fd198ce4be45b9f876cf65b90f9046115fae68fd2611e4d6b944ad13a4b84278c2c861d6a3ed093a279acc7ca94960a4",
+      "mimeType": "image/png",
+      "sha256": "a607d3fe873ed969e1e58ffda84563a3621c3a851a134f4d6ecf52a35a42e219",
+      "uses": [
+        {
+          "lecture": "lecture-3",
+          "slide": 14,
+          "title": "Inductive validity",
+          "elementIds": [
+            "3-PXFEGW5h7yfy8fE568h"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": null,
+      "imagePath": "slides/images/a607d3fe873ed969e1e58ffda84563a3621c3a851a134f4d6ecf52a35a42e219.png"
+    },
+    {
+      "fileId": "75768e5873adc438d276f7cb6dd16cd783a835fc18727a78e3d0e67cdbd1126fa0c6c455f644cef7b04118b468fcd3b0",
+      "mimeType": "image/png",
+      "sha256": "186c602df4e4d8fda6f5e38992b6ba0dd088cb1198bfba1c7d3f101ad8eb2c11",
+      "uses": [
+        {
+          "lecture": "lecture-3",
+          "slide": 14,
+          "title": "Inductive validity",
+          "elementIds": [
+            "IHlMUlMxE0ykeI7tjsnVJ"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "Claude_AI_logo.svg.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0.12
+      },
+      "imagePath": "slides/images/186c602df4e4d8fda6f5e38992b6ba0dd088cb1198bfba1c7d3f101ad8eb2c11.png"
+    },
+    {
+      "fileId": "c3d9d03f3bae7d2a8c929ca65e40735c692e89435ae19872e1da5cc147781a6fef23d850be25ae5d87623a8288e1dd59",
+      "mimeType": "image/png",
+      "sha256": "b93d65d59876ae4135ca2c1e602da43a7efe2894ed17da11d4b12a7db43dd4fe",
+      "uses": [
+        {
+          "lecture": "lecture-3",
+          "slide": 14,
+          "title": "Inductive validity",
+          "elementIds": [
+            "bgMti52kMJN8x_q30dN1g"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "DeepSeek_logo.svg.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0.11
+      },
+      "imagePath": "slides/images/b93d65d59876ae4135ca2c1e602da43a7efe2894ed17da11d4b12a7db43dd4fe.png"
+    },
+    {
+      "fileId": "856f8a8aa8e780b76c8552be94a2373e33ffd47fd8089b880583cdcef80fe11bc186b50f39ad6ee52873ffe130e89f48",
+      "mimeType": "image/png",
+      "sha256": "fe59c8a95c45a505511d2c0e3caa0658b52d105fdadaa7edd873d9271c61784e",
+      "uses": [
+        {
+          "lecture": "lecture-4",
+          "slide": 2,
+          "title": "Boolean algebra",
+          "elementIds": [
+            "lX4U5UNMVMQuk0NY-w_VG"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "Portrait_of_George_Boole.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0
+      },
+      "imagePath": "slides/images/fe59c8a95c45a505511d2c0e3caa0658b52d105fdadaa7edd873d9271c61784e.png"
+    },
+    {
+      "fileId": "a61f57137b5e8e750e6f8a58ba63ddc8279c1029ab023d755413ccd54e6e79e01193535e688171903cba15d52de49821",
+      "mimeType": "image/jpeg",
+      "sha256": "fd231f2600944c598bc58c0bc8c7626723334c764575abe86ab66e99af2cf3d9",
+      "uses": [
+        {
+          "lecture": "lecture-4",
+          "slide": 4,
+          "title": "Truth functions",
+          "elementIds": [
+            "-qCVcGPn3z4OJBLxMNGoM"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "Emil_Leon_Post.jpg",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0.26
+      },
+      "imagePath": "slides/images/fd231f2600944c598bc58c0bc8c7626723334c764575abe86ab66e99af2cf3d9.jpg"
+    },
+    {
+      "fileId": "a4aa0a2f353fc51e9d317e720621bae292c3ce0c6a3082e7e9a0a02f0e517c734df0bd617d7cee44fef04be1911f31dd",
+      "mimeType": "image/jpeg",
+      "sha256": "63ab89c69c45c4c422842af2fdf1ac311ed5d33a55f682deb46e7b1d96662337",
+      "uses": [
+        {
+          "lecture": "lecture-4",
+          "slide": 5,
+          "title": "Relay switches",
+          "elementIds": [
+            "EwQWQ3RBEeY8quyQRDglB"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "shannon.jpg",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0.31
+      },
+      "imagePath": "slides/images/63ab89c69c45c4c422842af2fdf1ac311ed5d33a55f682deb46e7b1d96662337.jpg"
+    },
+    {
+      "fileId": "8fb690ad94c7b5f336e755d798462323db5563296e07e60554db26b729b477b5313364481bb0c69c755dd1ab3dd59b46",
+      "mimeType": "image/png",
+      "sha256": "5fa871c68d2578d6e70af7c2fbbe40ed0c41020532f38048c2413ac92206eee1",
+      "uses": [
+        {
+          "lecture": "lecture-4",
+          "slide": 5,
+          "title": "Relay switches",
+          "elementIds": [
+            "tj6v1rCere5to_WnJla9J"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "shannon_thesis.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0.08
+      },
+      "imagePath": "slides/images/5fa871c68d2578d6e70af7c2fbbe40ed0c41020532f38048c2413ac92206eee1.png"
+    },
+    {
+      "fileId": "7baadb3bae755aaa4f2d68a4a3f87b9dd314c4bcc49bf2720e6bab6db5956f18b8ffdb6b8cbc9b28ebde8b461c6b2966",
+      "mimeType": "image/jpeg",
+      "sha256": "5283900f37a275e1d04ac3cc3165cbade054c99ca7404c6653421d35766418cb",
+      "uses": [
+        {
+          "lecture": "lecture-4",
+          "slide": 9,
+          "title": "De Morgan Laws",
+          "elementIds": [
+            "gaqo9OBw6MF-sceN_wus6"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "De_Morgan_Augustus.jpg",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0.3
+      },
+      "imagePath": "slides/images/5283900f37a275e1d04ac3cc3165cbade054c99ca7404c6653421d35766418cb.jpg"
+    },
+    {
+      "fileId": "37ff72be623b2169378aa9e3ba6d5cc87097726bb55f73eaac50fb00684ea7318bfedb256c8bb3144c66552760413217",
+      "mimeType": "image/jpeg",
+      "sha256": "d19a3b494e035f6a6a7969b49dc7c7628703b12ffe8dbef0b269da0a8ffad14f",
+      "uses": [
+        {
+          "lecture": "lecture-5",
+          "slide": 8,
+          "title": "Truth tables",
+          "elementIds": [
+            "qMgH2HZ21osxcK_zk7Pv_"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "all_the.jpg",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0.38
+      },
+      "imagePath": "slides/images/d19a3b494e035f6a6a7969b49dc7c7628703b12ffe8dbef0b269da0a8ffad14f.jpg"
+    },
+    {
+      "fileId": "6c2b7e545ed5a1d8a574877124ab85d87cb8ea00be7c56651503960b88aa8ec5b2421b87adb6a5c39bac75dc65f13c33",
+      "mimeType": "image/jpeg",
+      "sha256": "d53cd1b435e303e9a22f28bcc9f78c01eb8a13a282c2ae6a4b6586293dd8fc4a",
+      "uses": [
+        {
+          "lecture": "lecture-6",
+          "slide": 7,
+          "title": "Conditional reasoning",
+          "elementIds": [
+            "MSauFm6vSA9EBcznvGd42"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "alfred_horn.jpg",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0.26
+      },
+      "imagePath": "slides/images/d53cd1b435e303e9a22f28bcc9f78c01eb8a13a282c2ae6a4b6586293dd8fc4a.jpg"
+    },
+    {
+      "fileId": "fac0beea93920d4dfa6e626e4d19585350f705e6e44baad24d4d3b50daddf78bd21075b56aff416fb03e2270bfbafdd1",
+      "mimeType": "image/jpeg",
+      "sha256": "ef4c1de97c42bfc44acaf924fc4bae7272c3a31384a0552ade35ee27ecab011d",
+      "uses": [
+        {
+          "lecture": "lecture-7",
+          "slide": 5,
+          "title": "Hilbert systems",
+          "elementIds": [
+            "6wOqrqGy2U1Sgf0EdKngn"
+          ]
+        },
+        {
+          "lecture": "lecture-7",
+          "slide": 6,
+          "title": "Axioms for propositional logic",
+          "elementIds": [
+            "AK7GbgJvePJNAWMTJ6eTU"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "Hilbert.jpg",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0.31
+      },
+      "imagePath": "slides/images/ef4c1de97c42bfc44acaf924fc4bae7272c3a31384a0552ade35ee27ecab011d.jpg"
+    },
+    {
+      "fileId": "d986cbfd814f27268411809c358fc6ee9f5ad3264e405b2bb60c4ce4a4d473b2045ff9788593ca14b76358b739934d6e",
+      "mimeType": "image/png",
+      "sha256": "7a2df15a8e33075ef22406735fe436b5359169d21d10e549465b01a2c043df89",
+      "uses": [
+        {
+          "lecture": "lecture-7",
+          "slide": 5,
+          "title": "Hilbert systems",
+          "elementIds": [
+            "pRj3e8sCp1WKpdzQMZSZ3"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "derivation.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0
+      },
+      "imagePath": "slides/images/7a2df15a8e33075ef22406735fe436b5359169d21d10e549465b01a2c043df89.png"
+    },
+    {
+      "fileId": "9957efc0fe94a757f283ff5135ea306b3dca0af2eceb869c46dc2ca5deb9dc8ef11f90837b808d0b3a1d684e46859b31",
+      "mimeType": "image/png",
+      "sha256": "c763ae3bbea632c7ba9c94a32fc791abc186b8c85eb05b0147a84751bb8ba940",
+      "uses": [
+        {
+          "lecture": "lecture-7",
+          "slide": 6,
+          "title": "Axioms for propositional logic",
+          "elementIds": [
+            "H0-B8T6B_SXpbkJP-kXE8"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "hilbert_system.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0
+      },
+      "imagePath": "slides/images/c763ae3bbea632c7ba9c94a32fc791abc186b8c85eb05b0147a84751bb8ba940.png"
+    },
+    {
+      "fileId": "aae4125b931bd6acb53fd9ae9de689c63dc24d4ba2f21f10349c70914ba6f500dbc2ba9b6fc799b6df438c4df330d055",
+      "mimeType": "image/png",
+      "sha256": "d3404ad9c31260c03614625e2b9d05f0ef0c666aa7b3b16c6035fc89a075d88d",
+      "uses": [
+        {
+          "lecture": "lecture-7",
+          "slide": 6,
+          "title": "Axioms for propositional logic",
+          "elementIds": [
+            "z2xZIibvEupkyHB_H29JK"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "atoa.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 4.75
+      },
+      "imagePath": "slides/images/d3404ad9c31260c03614625e2b9d05f0ef0c666aa7b3b16c6035fc89a075d88d.png"
+    },
+    {
+      "fileId": "0b8b85393da3f72e404e25b245c8d5e974a609e63a3c11414ca740e4eeb2e21be39b02bca0099da218c2196d81495cd7",
+      "mimeType": "image/jpeg",
+      "sha256": "599976d5771a0093f49101034c0f71602f661a064d4fe4d56d52b8c910af1fc7",
+      "uses": [
+        {
+          "lecture": "lecture-7",
+          "slide": 7,
+          "title": "Sequent calculi",
+          "elementIds": [
+            "Yl2MePrCWRNcst7_tRyGu"
+          ]
+        },
+        {
+          "lecture": "lecture-7",
+          "slide": 11,
+          "title": "Natural deduction",
+          "elementIds": [
+            "9G32cdxLJl1OzqBv-DM4t"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "lost_genius.jpg",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0.36
+      },
+      "imagePath": "slides/images/599976d5771a0093f49101034c0f71602f661a064d4fe4d56d52b8c910af1fc7.jpg"
+    },
+    {
+      "fileId": "68df1caabb7ec9e0c11cd95fc0cb685eece9b5499e9645014abdfd670c481319b59efac8b68a83bedb2033fa91db2ff8",
+      "mimeType": "image/jpeg",
+      "sha256": "ab14c386c43adf548f6da6fbe815454817ccf5d9eafb6d41dabd5135ffbfb712",
+      "uses": [
+        {
+          "lecture": "lecture-7",
+          "slide": 9,
+          "title": "Algorithmic calculi",
+          "elementIds": [
+            "K3mDReCV4UwSfkkOhd34v"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "beth1.jpg",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0.3
+      },
+      "imagePath": "slides/images/ab14c386c43adf548f6da6fbe815454817ccf5d9eafb6d41dabd5135ffbfb712.jpg"
+    },
+    {
+      "fileId": "779c9945eaa72b8cc8fb24bcda19de36f984ebffd8c2bfef6448c93a82488c2fad4da21e69959d915f147ebfe83b16b8",
+      "mimeType": "image/png",
+      "sha256": "ac30afb057fb9bb8ccae5cfd7d7c6ab1f40f2e538ba0e14f057a2f4459a54baa",
+      "uses": [
+        {
+          "lecture": "lecture-7",
+          "slide": 14,
+          "title": "Proof assistants",
+          "elementIds": [
+            "PKMPAtz365-gV5dWEZy5s"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "isabelle (Case Conflict).png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0.06
+      },
+      "imagePath": "slides/images/ac30afb057fb9bb8ccae5cfd7d7c6ab1f40f2e538ba0e14f057a2f4459a54baa.png"
+    },
+    {
+      "fileId": "bd45eb95ca002b18c360a722526960a31b09bff863aa5de45a4329619bf85caeed417147a6a751407baa8de3d92c131c",
+      "mimeType": "image/png",
+      "sha256": "ff933045602634c17a5267699573801e002d118dac6a94638c8f93079b6b1ec6",
+      "uses": [
+        {
+          "lecture": "lecture-7",
+          "slide": 14,
+          "title": "Proof assistants",
+          "elementIds": [
+            "PJNw8uXzZNRW-J6rpnxzn"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "rocq.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 11.11
+      },
+      "imagePath": "slides/images/ff933045602634c17a5267699573801e002d118dac6a94638c8f93079b6b1ec6.png"
+    },
+    {
+      "fileId": "447329a7062854fd0731b8cc563c36dc5c65d509fa2697e271965ca15a16e0a59fd2e06f0439a2800199f1eba74e821b",
+      "mimeType": "image/png",
+      "sha256": "87d53a0d56ab7bf3d5cde0a7bf6520cc36c9c545350ce450dae9fced474f9c8b",
+      "uses": [
+        {
+          "lecture": "lecture-7",
+          "slide": 14,
+          "title": "Proof assistants",
+          "elementIds": [
+            "jkXFawpYYSRuz_wsB0_Q5"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "alphageo.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0
+      },
+      "imagePath": "slides/images/87d53a0d56ab7bf3d5cde0a7bf6520cc36c9c545350ce450dae9fced474f9c8b.png"
+    },
+    {
+      "fileId": "ced6e90a0516910c75251b0f1879d69f0c44d405e5c136240d55540bf6782459f884eabe9023ff8e1c30b78f736dce0a",
+      "mimeType": "image/png",
+      "sha256": "c7d4b8c08195dacaf65c589c82149103696354acc416ff5028328ee5201f4fb7",
+      "uses": [
+        {
+          "lecture": "lecture-7",
+          "slide": 14,
+          "title": "Proof assistants",
+          "elementIds": [
+            "r65VWEexGyP89lVvLYx-6"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "deep-seek-prover.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 7.62
+      },
+      "imagePath": "slides/images/c7d4b8c08195dacaf65c589c82149103696354acc416ff5028328ee5201f4fb7.png"
+    },
+    {
+      "fileId": "9242ea9470b294d4684a98fc4f20eccb152b7fc3cefd9f57821e7790d8d8fdf11d1bba57ab47a91f7a73a0d03aefaff4",
+      "mimeType": "image/png",
+      "sha256": "cd1d48bb21664c7bf066a53dfaec63d9128a8fb5745e68b91646ca62363d7f7d",
+      "uses": [
+        {
+          "lecture": "lecture-7",
+          "slide": 15,
+          "title": "Lean: foundations and practice",
+          "elementIds": [
+            "UtahG4B7bvl7HLd_oMdzK"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "lean_example.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0
+      },
+      "imagePath": "slides/images/cd1d48bb21664c7bf066a53dfaec63d9128a8fb5745e68b91646ca62363d7f7d.png"
+    },
+    {
+      "fileId": "e0b807f43e8fa67351afb617117d9d3aa928ec0892f5a05aef981a84c6e20c27c67eceb7c1483369fbbfad69034ec8bb",
+      "mimeType": "image/jpeg",
+      "sha256": "a02916d9c9d6ffc5ff1e21a14b9fa34731dab7b37e734c9b96d928e1f891e93c",
+      "uses": [
+        {
+          "lecture": "lecture-7",
+          "slide": 15,
+          "title": "Lean: foundations and practice",
+          "elementIds": [
+            "V7JrCxoiJ7zRLAKn7L4a9"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "curry.jpg",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0.28
+      },
+      "imagePath": "slides/images/a02916d9c9d6ffc5ff1e21a14b9fa34731dab7b37e734c9b96d928e1f891e93c.jpg"
+    },
+    {
+      "fileId": "43b38746464179316e3ed1fdd5b02bb0ec62a14c8218b66bed050298d015ce1df5cc52cd0c268704da950e302e04a001",
+      "mimeType": "image/jpeg",
+      "sha256": "15dcc7a815d53da2670f0eb6731ea3e1f81e6d5f86e587ba10f02e1cd9afd37d",
+      "uses": [
+        {
+          "lecture": "lecture-7",
+          "slide": 15,
+          "title": "Lean: foundations and practice",
+          "elementIds": [
+            "Nvfev8oi5zEqLjZoztlI8"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "howard.jpg",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0.35
+      },
+      "imagePath": "slides/images/15dcc7a815d53da2670f0eb6731ea3e1f81e6d5f86e587ba10f02e1cd9afd37d.jpg"
+    },
+    {
+      "fileId": "baf40071d4168a3d59fc019b0ee1963475101cea978c361b3242d6a46cd33de3d6d039f59caf71cc4378406daef9552d",
+      "mimeType": "image/png",
+      "sha256": "5f68e326fd3888883e1395e37ed67c9a3db1648c4a8a17f8e7920a38ff226754",
+      "uses": [
+        {
+          "lecture": "lecture-7",
+          "slide": 16,
+          "title": "Proofs in Lean",
+          "elementIds": [
+            "I2S9o00_QGvUZWUCVutdh"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "lean_complex.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0
+      },
+      "imagePath": "slides/images/5f68e326fd3888883e1395e37ed67c9a3db1648c4a8a17f8e7920a38ff226754.png"
+    },
+    {
+      "fileId": "92e67431b8dcf60117674deae8296cf56178fc3fa15b7023b252f23317033cc5775cf29c850db7270693e549ebb1a930",
+      "mimeType": "image/jpeg",
+      "sha256": "23b780f97376c6a662eb7a7948295b38aac29ae3e139f32631ed66bcea07486f",
+      "uses": [
+        {
+          "lecture": "lecture-7",
+          "slide": 16,
+          "title": "Proofs in Lean",
+          "elementIds": [
+            "atuAcUQtZsVHu-Tyoa_sC"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "leo_moura.jpg",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0.45
+      },
+      "imagePath": "slides/images/23b780f97376c6a662eb7a7948295b38aac29ae3e139f32631ed66bcea07486f.jpg"
+    },
+    {
+      "fileId": "455eca15ba143c3fa8360115eededfe967ce245a25d9b1bc251f42b7d0944e5635ee93cd2181f53c9db05c704d1748f5",
+      "mimeType": "image/png",
+      "sha256": "b29b34515afd70f29c193fd4911686a2bfc96b522fd7897705ed300d2f3ff85f",
+      "uses": [
+        {
+          "lecture": "lecture-7",
+          "slide": 16,
+          "title": "Proofs in Lean",
+          "elementIds": [
+            "dxbsVct_pSOLRCo15hW1t"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "Z3.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0
+      },
+      "imagePath": "slides/images/b29b34515afd70f29c193fd4911686a2bfc96b522fd7897705ed300d2f3ff85f.png"
+    },
+    {
+      "fileId": "a889325c5fbb26d0a9988b4f81f5e56e2bb5675b100f04622bc4885d65d8084f14e5e9595fa1c1d1b448581456667973",
+      "mimeType": "image/png",
+      "sha256": "341400b33f1b0877571d6f9f24848ff5c39d38fc03f44d6ed99fd104c6b394c6",
+      "uses": [
+        {
+          "lecture": "lecture-7",
+          "slide": 17,
+          "title": "Negation in Lean",
+          "elementIds": [
+            "z-YNEy20p_JFGF90jvom9"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "lean_negation.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0
+      },
+      "imagePath": "slides/images/341400b33f1b0877571d6f9f24848ff5c39d38fc03f44d6ed99fd104c6b394c6.png"
+    },
+    {
+      "fileId": "2fc9f7d2bc327127306b9497f1756b0be3867417a43300135b51ef058d295e495ea08cbf1efc482eb2800b91c452637d",
+      "mimeType": "image/png",
+      "sha256": "dc30d2839784adce5dabad9ea0e407bc6b6a1e9bfffb7f156876c3183ac17d50",
+      "uses": [
+        {
+          "lecture": "lecture-7",
+          "slide": 18,
+          "title": "Classicality in Lean",
+          "elementIds": [
+            "JeiXWEIzZYkvgJoGfpkoa"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "lean_classical.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0
+      },
+      "imagePath": "slides/images/dc30d2839784adce5dabad9ea0e407bc6b6a1e9bfffb7f156876c3183ac17d50.png"
+    },
+    {
+      "fileId": "9a5d1ae571f130df2d9db6c5703236531eef3710da463c166f5149f6f87d308c333d3e709eb15fb5faf0db44411ccdf4",
+      "mimeType": "image/png",
+      "sha256": "7e344de1ea22fff9bf42d9e04b33df455d897110b1f302b475d6623330126301",
+      "uses": [
+        {
+          "lecture": "lecture-8",
+          "slide": 15,
+          "title": "Truth in a model",
+          "elementIds": [
+            "TVmysWn5QK7HQfihne4g8"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "clauses.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0
+      },
+      "imagePath": "slides/images/7e344de1ea22fff9bf42d9e04b33df455d897110b1f302b475d6623330126301.png"
+    },
+    {
+      "fileId": "107cde0bb12b863abfe840db99120de2b570ba497de1645e39b7dc602b6bdd22be96d9e584365e120e7fd0fbf03628ea",
+      "mimeType": "image/png",
+      "sha256": "9d901fe53b75e854f4c4cb75d5ce19aad85e09e0c4b98d5af3248c707d91412a",
+      "uses": [
+        {
+          "lecture": "lecture-8",
+          "slide": 19,
+          "title": "FOL & DB Theory",
+          "elementIds": [
+            "_xXCNtXyODBECIQ0fBDzl"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "sql.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0.12
+      },
+      "imagePath": "slides/images/9d901fe53b75e854f4c4cb75d5ce19aad85e09e0c4b98d5af3248c707d91412a.png"
+    },
+    {
+      "fileId": "2ece24823b0e733c61f125c24bbd7ff4cff50f91a61bf27f2a1594869db5d5541d8e69e96c9398a8b5f2a0f2f28a85ef",
+      "mimeType": "image/png",
+      "sha256": "e5722d097b8a0589d5328e949a832755ca77502de21c495b9c630734f394f93f",
+      "uses": [
+        {
+          "lecture": "lecture-8",
+          "slide": 20,
+          "title": "Codd's Theorem",
+          "elementIds": [
+            "MEuX-ov8dxDYBpS4IW8ag"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "sql-query.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0
+      },
+      "imagePath": "slides/images/e5722d097b8a0589d5328e949a832755ca77502de21c495b9c630734f394f93f.png"
+    },
+    {
+      "fileId": "2d2e479bfc93b974fb5b516aacfcd6f402130584488cb5e0e8ca95ad719f00a1fec1647be546953ed1ec24aa09f0f9cb",
+      "mimeType": "image/png",
+      "sha256": "8f6f58b72b1ec33e172f5e26017cb4a1252e2561e5ee39efd9d306254448e501",
+      "uses": [
+        {
+          "lecture": "lecture-8",
+          "slide": 20,
+          "title": "Codd's Theorem",
+          "elementIds": [
+            "Q55greoZmhJpfDrBe85_1"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "query_formula.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0
+      },
+      "imagePath": "slides/images/8f6f58b72b1ec33e172f5e26017cb4a1252e2561e5ee39efd9d306254448e501.png"
+    },
+    {
+      "fileId": "45c0f7d04521e5def0d861d06e6ce349ee86f908f88aed37e072497c0bf3749932e6be6b43cdac43d822bf77ad1e1edb",
+      "mimeType": "image/jpeg",
+      "sha256": "77c9089a74c04ddcad54dc31992455962ed4223c3a6900a3f49f8c91202f9466",
+      "uses": [
+        {
+          "lecture": "lecture-8",
+          "slide": 20,
+          "title": "Codd's Theorem",
+          "elementIds": [
+            "u5UWqdO9RPMYtJsjsDDY_"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "Edgar_F_Codd.jpg",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0.39
+      },
+      "imagePath": "slides/images/77c9089a74c04ddcad54dc31992455962ed4223c3a6900a3f49f8c91202f9466.jpg"
+    },
+    {
+      "fileId": "7f21d0e4001c3fe323b9cc27184908877c63d9133fbf3275956243171cb28f92dc9fc43641f9e088935bfb33055d42bf",
+      "mimeType": "image/jpeg",
+      "sha256": "213cb25396f956113e8a3937472a9b08e175da4ea5e144c7f6693aa31c352112",
+      "uses": [
+        {
+          "lecture": "lecture-9",
+          "slide": 2,
+          "title": "FOL Inference",
+          "elementIds": [
+            "lh31JUN0zvhd-vGXiZOp5"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "alan_turing.jpg",
+        "method": "identical bytes"
+      },
+      "imagePath": "slides/images/213cb25396f956113e8a3937472a9b08e175da4ea5e144c7f6693aa31c352112.jpg"
+    },
+    {
+      "fileId": "1e5866edc210063d6d6f5063cdaa188c8e9d6cb1078b8122958e83689bcff3900e01c22166549a02189c91f231afe123",
+      "mimeType": "image/jpeg",
+      "sha256": "8e28737e8cdf679e65714fe2bdbe461c80b2158746f4346b06af75b42f212408",
+      "uses": [
+        {
+          "lecture": "lecture-9",
+          "slide": 2,
+          "title": "FOL Inference",
+          "elementIds": [
+            "5GHo-kY9rr1wFMsEVQTIA"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "Alonzo_Church.jpg",
+        "method": "identical bytes"
+      },
+      "imagePath": "slides/images/8e28737e8cdf679e65714fe2bdbe461c80b2158746f4346b06af75b42f212408.jpg"
+    },
+    {
+      "fileId": "9a9bb212394c19f7f269ecefd600708c830815a085b49627d724b58dee3977ca4391f5b7e8e52d767267672fea1eeaf6",
+      "mimeType": "image/jpeg",
+      "sha256": "d898621a5d8cf5ac2072dcf1943892f3492c109e306ff19f875185125482d11b",
+      "uses": [
+        {
+          "lecture": "lecture-9",
+          "slide": 8,
+          "title": "Skolemization",
+          "elementIds": [
+            "_1E3SXBFyISDDj1LJ9EEM"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "ThoralfSkolem.jpg",
+        "method": "identical bytes"
+      },
+      "imagePath": "slides/images/d898621a5d8cf5ac2072dcf1943892f3492c109e306ff19f875185125482d11b.jpg"
+    },
+    {
+      "fileId": "73691c50f9338c0b75a2dcf945a78837a223274de78e176f45ff0f1580dafe4658dfff4dd89baca4da83a67de1684d02",
+      "mimeType": "image/gif",
+      "sha256": "b27fddee58401b9bf3a444398c88d7dde57d46a2f4cb693131c348fc7dc7cf21",
+      "uses": [
+        {
+          "lecture": "lecture-9",
+          "slide": 9,
+          "title": "FOL Resolution",
+          "elementIds": [
+            "D1JYEqZP2fX3vS1ecvWF8"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "prover9t.gif",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0
+      },
+      "imagePath": "slides/images/b27fddee58401b9bf3a444398c88d7dde57d46a2f4cb693131c348fc7dc7cf21.gif"
+    },
+    {
+      "fileId": "c63e723d132c6669790fa53aa8e2de48f9c2d9c23f96249547dd40aada3fe3a024dafd6a2184a7aefbf7c785d453549b",
+      "mimeType": "image/png",
+      "sha256": "4dc7e503e7620c684dedd2e62dfb63874fd212ce38bec995fec39d0690a9e8a6",
+      "uses": [
+        {
+          "lecture": "lecture-9",
+          "slide": 10,
+          "title": "Infinite loops and undecidability",
+          "elementIds": [
+            "Q4tQmssmjc6bnZ-v0KdYf"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "infinite.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0
+      },
+      "imagePath": "slides/images/4dc7e503e7620c684dedd2e62dfb63874fd212ce38bec995fec39d0690a9e8a6.png"
+    },
+    {
+      "fileId": "f6bc1526e778a12a235afec9cec6de4b7d42f1b5cd5ffce5e46754baaf0a1597d2ddf61bb5d3af9f4c0f79eefe5b258f",
+      "mimeType": "image/png",
+      "sha256": "cdb2e23b311199f70a283ed17e140193e9a83265f1b53f2f3d8af9f9b1827652",
+      "uses": [
+        {
+          "lecture": "lecture-9",
+          "slide": 14,
+          "title": "Universals and hypotheticals",
+          "elementIds": [
+            "YusWaac_9YSAfYKjGiapt"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "lean-universal.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0
+      },
+      "imagePath": "slides/images/cdb2e23b311199f70a283ed17e140193e9a83265f1b53f2f3d8af9f9b1827652.png"
+    },
+    {
+      "fileId": "faeed92c5251aea1ce000d18eb82cbea87485bc71f5359c986d3882ec429143850d4ddbde8c7c7d8c9f81ed5ea0ee58e",
+      "mimeType": "image/png",
+      "sha256": "892e52df1bbd925b57f11f603ef40dca338391fd79105fd73bb422eb56999bf5",
+      "uses": [
+        {
+          "lecture": "lecture-9",
+          "slide": 15,
+          "title": "Existentials have intro and elim rules:",
+          "elementIds": [
+            "5nLn4buwYeokrbr7eJVmT"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "lean-existential.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0
+      },
+      "imagePath": "slides/images/892e52df1bbd925b57f11f603ef40dca338391fd79105fd73bb422eb56999bf5.png"
+    },
+    {
+      "fileId": "013170e88cf7d026a7d06c11fced24a09d7ee49a4c30d2f0fdba8a13243df31960bc78a30dd5d8a5a922dc77f607b6d9",
+      "mimeType": "image/png",
+      "sha256": "6dea80157f6775c4560a237529c4e62baa6b81f1e6cb46955a460982f784af0f",
+      "uses": [
+        {
+          "lecture": "lecture-9",
+          "slide": 16,
+          "title": "Lean Game Server",
+          "elementIds": [
+            "12gILb2_0ZPdc2BJKO2Xz"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "lean_games.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0
+      },
+      "imagePath": "slides/images/6dea80157f6775c4560a237529c4e62baa6b81f1e6cb46955a460982f784af0f.png"
+    },
+    {
+      "fileId": "ebc51fe886911901d958694a7df1529450ffdb3be731a07f33bb5d269911abafccf89919e77dc3e7ddbedc5c736a4d70",
+      "mimeType": "image/jpeg",
+      "sha256": "657d3cfd4f8fa69e8e781883f755fd84786693f688bb752b03b507c664f030fd",
+      "uses": [
+        {
+          "lecture": "lecture-10",
+          "slide": 2,
+          "title": "Many-valued logic",
+          "elementIds": [
+            "95NimrfWKKeif0aJPzQxc"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "seabattle.jpg",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0.26
+      },
+      "imagePath": "slides/images/657d3cfd4f8fa69e8e781883f755fd84786693f688bb752b03b507c664f030fd.jpg"
+    },
+    {
+      "fileId": "89a1057238bf593973f9a457193b3ac89948752ef6fd6ec41e7184ccffbe0ae00ab9ce026f43a024e3bafe329ae769a6",
+      "mimeType": "image/jpeg",
+      "sha256": "9ab162e8025fa7d8b69cf82d35c3934e56817f7321ccc851e9152d06a5b0bee1",
+      "uses": [
+        {
+          "lecture": "lecture-10",
+          "slide": 2,
+          "title": "Many-valued logic",
+          "elementIds": [
+            "0kBvmcIdE32HVOsoTY1KI"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "Sendai_subway_1014_20081021.jpg",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0.31
+      },
+      "imagePath": "slides/images/9ab162e8025fa7d8b69cf82d35c3934e56817f7321ccc851e9152d06a5b0bee1.jpg"
+    },
+    {
+      "fileId": "3125fc30f28eaecf7de0df0d2b477253dd5ad25a8a180cf976fe20bd6e51ad1b883e470b47d5b7769234587c24517bf9",
+      "mimeType": "image/png",
+      "sha256": "75114a81e9b486c6fb8e74b63abef1d84ea2b4c4c9837f66d31523fac6f3a8ec",
+      "uses": [
+        {
+          "lecture": "lecture-10",
+          "slide": 3,
+          "title": "Incomplete information",
+          "elementIds": [
+            "zRa-9ByMyYRtzk2ZyxlHY"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "query_1.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0
+      },
+      "imagePath": "slides/images/75114a81e9b486c6fb8e74b63abef1d84ea2b4c4c9837f66d31523fac6f3a8ec.png"
+    },
+    {
+      "fileId": "3949983d74c22dbdb42ab257feb5bd6d96c005785fc9a4edf4bc82251051e5765850bbd9bc07f70dceb048e6a95d22fa",
+      "mimeType": "image/png",
+      "sha256": "79686e0e13cd05364bc006680154e1a9780fd3330d946f1469337669a6df51ae",
+      "uses": [
+        {
+          "lecture": "lecture-10",
+          "slide": 3,
+          "title": "Incomplete information",
+          "elementIds": [
+            "Hrc4TompMkuWvTes2ItDC"
+          ]
+        },
+        {
+          "lecture": "lecture-10",
+          "slide": 4,
+          "title": "Logical analysis",
+          "elementIds": [
+            "uSRZu7AsLTmsIO8vLp13y"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "query_2.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0
+      },
+      "imagePath": "slides/images/79686e0e13cd05364bc006680154e1a9780fd3330d946f1469337669a6df51ae.png"
+    },
+    {
+      "fileId": "82744bef86e182572e65755e04eec1939f41005ff8b11964875594421c1f06dd476d165e3e44dea7a3f8634020984335",
+      "mimeType": "image/png",
+      "sha256": "477a996a136c24e87c4715bc77b9db7a1e36c07a4aa3ff27d376c7793f6fc894",
+      "uses": [
+        {
+          "lecture": "lecture-10",
+          "slide": 3,
+          "title": "Incomplete information",
+          "elementIds": [
+            "RV8T2FIPqnVn88BGgvaIn"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "Flag_of_Zimbabwe.svg.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 8.15
+      },
+      "imagePath": "slides/images/477a996a136c24e87c4715bc77b9db7a1e36c07a4aa3ff27d376c7793f6fc894.png"
+    },
+    {
+      "fileId": "a10093d5fe36840dbca1b90ea59a32939cc4fef17b329a25ff2949c1a443e71cd90805eeb66e24a24a86f3777e0357a7",
+      "mimeType": "image/jpeg",
+      "sha256": "f45572b64e98778f09934683835dd3463a3192c84796bb43231d8bc792f078af",
+      "uses": [
+        {
+          "lecture": "lecture-10",
+          "slide": 5,
+          "title": "Kleene algebra",
+          "elementIds": [
+            "IFI9Naosh3K1F5KZrm8_f"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "Jan_lukasiewicz.jpg",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0.28
+      },
+      "imagePath": "slides/images/f45572b64e98778f09934683835dd3463a3192c84796bb43231d8bc792f078af.jpg"
+    },
+    {
+      "fileId": "68aba6a9fd3e9709ea36cc67859e3d3de155a9ca6e0772242fcd3b934a23fbe811849021b0b067a695e9c1cf52605d03",
+      "mimeType": "image/png",
+      "sha256": "76e2618e73f0972a5dd9e5065c599727ef733259e557a544cc2af4e9b5bf184f",
+      "uses": [
+        {
+          "lecture": "lecture-10",
+          "slide": 6,
+          "title": "Kleene laws",
+          "elementIds": [
+            "z2tm8patFOMnj1ZxSKHXO"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "kleene_laws_1.png",
+        "method": "identical bytes"
+      },
+      "imagePath": "slides/images/76e2618e73f0972a5dd9e5065c599727ef733259e557a544cc2af4e9b5bf184f.png"
+    },
+    {
+      "fileId": "14cffb98c6898066f398a736435543275d1d4fc2308834f9ee9752d73c04a45ec4ee9298b843c978c3c5b5c7ed373e64",
+      "mimeType": "image/png",
+      "sha256": "1e0f2b58c536520954214a0c1d43aa6a0378464ae75c981bc980f30c84fc72de",
+      "uses": [
+        {
+          "lecture": "lecture-10",
+          "slide": 6,
+          "title": "Kleene laws",
+          "elementIds": [
+            "2aJ654s3337dpzDsgfcEx"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "kleene_laws_2.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0
+      },
+      "imagePath": "slides/images/1e0f2b58c536520954214a0c1d43aa6a0378464ae75c981bc980f30c84fc72de.png"
+    },
+    {
+      "fileId": "caa940d6818da629a03c2bd654a8f90b79368c5da1cbb589981887be412d46a0f5a8ac430e4f3563c0c25bb833eb3c2a",
+      "mimeType": "image/png",
+      "sha256": "883d827d9dd1b36ab7f035737acb7bf7143a3c9bec32f7499a38fbf621fcdeec",
+      "uses": [
+        {
+          "lecture": "lecture-10",
+          "slide": 9,
+          "title": "SAT-style truth tables",
+          "elementIds": [
+            "cnqoJKkUNXSRX4ot4AA4W"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "kleene_sat.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0
+      },
+      "imagePath": "slides/images/883d827d9dd1b36ab7f035737acb7bf7143a3c9bec32f7499a38fbf621fcdeec.png"
+    },
+    {
+      "fileId": "c1b1a783f63abe695d96eda26774612c1adc77ddc68466d7a1cc1cd531d5decccb4a7bade52cf925def533e840bdd4f4",
+      "mimeType": "image/jpeg",
+      "sha256": "218fc3b9fe66f06eadde7259196c7010848dea74d9e407f83d7e1c918305b3aa",
+      "uses": [
+        {
+          "lecture": "lecture-10",
+          "slide": 12,
+          "title": "Zadeh operators — negation",
+          "elementIds": [
+            "0x9ZlfcRpQTsV0h8gU9I7"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "Zadeh.jpg",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0.4
+      },
+      "imagePath": "slides/images/218fc3b9fe66f06eadde7259196c7010848dea74d9e407f83d7e1c918305b3aa.jpg"
+    },
+    {
+      "fileId": "44b8e5353d3e93ae140809b2e914b6397ebd959e3ff928487136a5f43276da0b64a167aa8e7038e011e2023ec6aa9a79",
+      "mimeType": "image/png",
+      "sha256": "353086513a7013010b3a9867177b284827cefb413437a98abb483fbe606e4c8f",
+      "uses": [
+        {
+          "lecture": "lecture-11",
+          "slide": 4,
+          "title": "Interpretations",
+          "elementIds": [
+            "Jp06ZoApceRHa1_2PnY-6"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "586px-decay_modes_2x.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0
+      },
+      "imagePath": "slides/images/353086513a7013010b3a9867177b284827cefb413437a98abb483fbe606e4c8f.png"
+    },
+    {
+      "fileId": "d6aa6d65c80f25c27704e215e8e9dcf26d8304a68c71f516aac07518de4eba380847b6942d472fe6fd56bd1342b2d700",
+      "mimeType": "image/jpeg",
+      "sha256": "0f82001bd3652bec16cf31f593ff341964efb45ca1c0f122aaf89e1d86c4f876",
+      "uses": [
+        {
+          "lecture": "lecture-11",
+          "slide": 4,
+          "title": "Interpretations",
+          "elementIds": [
+            "YdmlS5gIS8deHG7vIyE32"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "John_Venn.jpg",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0.34
+      },
+      "imagePath": "slides/images/0f82001bd3652bec16cf31f593ff341964efb45ca1c0f122aaf89e1d86c4f876.jpg"
+    },
+    {
+      "fileId": "85db591b4706221ee914a22813291dcc9f41ef6b0c6fbee0e00a28493bcbaf5d585e322b99681abcef894f98864475a9",
+      "mimeType": "image/gif",
+      "sha256": "97d2be3bcbcfcda0dd43c9d1aaca2ec1d3e911093df46762e8b2e990023e9d2a",
+      "uses": [
+        {
+          "lecture": "lecture-11",
+          "slide": 4,
+          "title": "Interpretations",
+          "elementIds": [
+            "uGJfQXrtvs_fg-MdJAXr5"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "Thomas_Bayes.gif",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0
+      },
+      "imagePath": "slides/images/97d2be3bcbcfcda0dd43c9d1aaca2ec1d3e911093df46762e8b2e990023e9d2a.gif"
+    },
+    {
+      "fileId": "2014601572858c415b1f2fc182edfd688fe3c2c9bbcce41e813f12f102e8bc62e98f1856e2b3e9605fa0c7751dba0f4f",
+      "mimeType": "image/png",
+      "sha256": "f9e0743fc1ff16015e55731b7b0e7ea4bb413cce560b8df52f21fcab9921d605",
+      "uses": [
+        {
+          "lecture": "lecture-11",
+          "slide": 4,
+          "title": "Interpretations",
+          "elementIds": [
+            "FWUI7KOtdcqr1B6CIT7jI"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "Charles_Sanders_Peirce.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0
+      },
+      "imagePath": "slides/images/f9e0743fc1ff16015e55731b7b0e7ea4bb413cce560b8df52f21fcab9921d605.png"
+    },
+    {
+      "fileId": "b1350cac1d0309fa382e4bf3da05b51578c1e13cdbbdfcf058d4d4e589c8324a88899a8c5e546d68b3d9f4a18581dcc8",
+      "mimeType": "image/jpeg",
+      "sha256": "e3b8c2e5fe315d3b69ecfba05ec8159c234c7d36829c00e7d878ce885f6f2206",
+      "uses": [
+        {
+          "lecture": "lecture-11",
+          "slide": 12,
+          "title": "Laws of Probability",
+          "elementIds": [
+            "3bjJQ5AuzodQt0Mg67Tzu"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "Andrej_Nikolajewitsch_Kolmogorov.jpg",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0.32
+      },
+      "imagePath": "slides/images/e3b8c2e5fe315d3b69ecfba05ec8159c234c7d36829c00e7d878ce885f6f2206.jpg"
+    },
+    {
+      "fileId": "1e20e925d0d4b3b34687c53d694be273c23204c2ea86fa6f8f61955e2117ef714a09f06e7d187a4d4bd4d40480e1cc0b",
+      "mimeType": "image/png",
+      "sha256": "1e81e0d1ea25e3672e1da9f1f3bd282ee97b3bfd9531dba6ddb9e3c93f2c032f",
+      "uses": [
+        {
+          "lecture": "lecture-12",
+          "slide": 3,
+          "title": "Perceptrons",
+          "elementIds": [
+            "m349yKJLn-zHRPGtmpC_o"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "Neuron3.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0.07
+      },
+      "imagePath": "slides/images/1e81e0d1ea25e3672e1da9f1f3bd282ee97b3bfd9531dba6ddb9e3c93f2c032f.png"
+    },
+    {
+      "fileId": "3cca75b2877e9fc2cefb4c8929fd5f33976c54dab0976b56aa27a303adf1106ddea1fdb49aec1884521ec910903d4325",
+      "mimeType": "image/jpeg",
+      "sha256": "6e72589e674d7712260bcdfe26f379b9963db26e390edb95780dfbb8f856fbd2",
+      "uses": [
+        {
+          "lecture": "lecture-12",
+          "slide": 3,
+          "title": "Perceptrons",
+          "elementIds": [
+            "BaKK3ugY8P5pWPhCs2BRq"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "pitts.jpg",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0.26
+      },
+      "imagePath": "slides/images/6e72589e674d7712260bcdfe26f379b9963db26e390edb95780dfbb8f856fbd2.jpg"
+    },
+    {
+      "fileId": "31ad4fcc0ce75a5f1a157de9f6e786ba3a01eece2bdac56e80a5a8f5e1351939ec2b7f5139fa6b4aa0af2a065de8a043",
+      "mimeType": "image/jpeg",
+      "sha256": "8fbe3d9f4479d4a7f13df75027dfbce82726cbed109269533a4553948813989a",
+      "uses": [
+        {
+          "lecture": "lecture-12",
+          "slide": 3,
+          "title": "Perceptrons",
+          "elementIds": [
+            "7cyNTMxtuLt8i2JqQmxk1"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "mcculloch.jpg",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0.23
+      },
+      "imagePath": "slides/images/8fbe3d9f4479d4a7f13df75027dfbce82726cbed109269533a4553948813989a.jpg"
+    },
+    {
+      "fileId": "1e42073e1c9d031f6764129b4de65e0e01e1365ebed96035528615f512afc01459c405b1a04a4e239f46fcb600b72a01",
+      "mimeType": "image/jpeg",
+      "sha256": "e9d4baa0a23da3b6e7e6279ba7a39174d0918cbe6293d0f4152ce2ab5cfbdaad",
+      "uses": [
+        {
+          "lecture": "lecture-12",
+          "slide": 9,
+          "title": "The XOR affair",
+          "elementIds": [
+            "_oYFraCe089vtRdQZ5Nev"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "Perceptrons_(book).jpg",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0.35
+      },
+      "imagePath": "slides/images/e9d4baa0a23da3b6e7e6279ba7a39174d0918cbe6293d0f4152ce2ab5cfbdaad.jpg"
+    },
+    {
+      "fileId": "d36428e446ddb17cfd10f6b38306e6a0f1f11d4526d80400ef19c0686e845a9d95de210d5ee1c12099d7c36c6004ac66",
+      "mimeType": "image/png",
+      "sha256": "ab3bee9399199280d0d596839f2f1aaf83b7a236117f19fabbba3c8461f4d130",
+      "uses": [
+        {
+          "lecture": "lecture-12",
+          "slide": 10,
+          "title": "implementation with one hidden layer",
+          "elementIds": [
+            "ZIFbnBRDfJ77QreTb_eGG"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "perceptron.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0.25
+      },
+      "imagePath": "slides/images/ab3bee9399199280d0d596839f2f1aaf83b7a236117f19fabbba3c8461f4d130.png"
+    },
+    {
+      "fileId": "344ae9c3540ba85b914823b03eb3de5e66c09efc1a1a47bd030b18e121ffa63cac73a7a65996b26f66c4747979011682",
+      "mimeType": "image/png",
+      "sha256": "563847b56e6ff7e67a8b5d9c1d383100ff51918f0741eceb2aa60acd9e841400",
+      "uses": [
+        {
+          "lecture": "lecture-12",
+          "slide": 12,
+          "title": "Essential skills",
+          "elementIds": [
+            "DeRfXX_pBN-75A-XkFqXp"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": null,
+      "imagePath": "slides/images/563847b56e6ff7e67a8b5d9c1d383100ff51918f0741eceb2aa60acd9e841400.png"
+    },
+    {
+      "fileId": "477e5183842b97590c0e8fc117f0d2fbcb9d6f13467e776e1bdddeaba249fab6f2875978021585f7d3440206934d3d92",
+      "mimeType": "image/svg+xml",
+      "sha256": "bd0859a78a76f5f7dd882bcabd5a80b770b8814139d53f449b6f03ad25b302dc",
+      "uses": [
+        {
+          "lecture": "lecture-12",
+          "slide": 12,
+          "title": "Essential skills",
+          "elementIds": [
+            "pjh2xjdNHrXcRUV4ZgZqd"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "Utrecht_University_logo.svg",
+        "method": "identical bytes"
+      },
+      "imagePath": "slides/images/bd0859a78a76f5f7dd882bcabd5a80b770b8814139d53f449b6f03ad25b302dc.svg"
+    },
+    {
+      "fileId": "88a1d40cdf79bcca9aa4d4ad178e0658b0ed9bebe16f89874e933dab7dc9e924aa59e0089856ea6919cc58ecdfce6eee",
+      "mimeType": "image/png",
+      "sha256": "aab020e6a3fc947264c64f747b1278beb9f89788d5d3ef4207d985d6cce66e26",
+      "uses": [
+        {
+          "lecture": "lecture-12",
+          "slide": 12,
+          "title": "Essential skills",
+          "elementIds": [
+            "FiKhqlX2PL7Sv5n4qpOik"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": null,
+      "imagePath": "slides/images/aab020e6a3fc947264c64f747b1278beb9f89788d5d3ef4207d985d6cce66e26.png"
+    },
+    {
+      "fileId": "e239f1c73b52e0d0de7df6ae7deb14dcbc8b8e7575164de1370a6a52338b14e069b35f0b7655966711eb6073fbb4ac8b",
+      "mimeType": "image/svg+xml",
+      "sha256": "4146b8875a70fe68ca3d0e3538e546f7c750bb1cada350856e51d6f1acaca454",
+      "uses": [
+        {
+          "lecture": "lecture-12",
+          "slide": 13,
+          "title": "Reasoning in AI",
+          "elementIds": [
+            "ASfakcVVGS1eWJ13zwQmF"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "Apple_logo_black.svg",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0
+      },
+      "imagePath": "slides/images/4146b8875a70fe68ca3d0e3538e546f7c750bb1cada350856e51d6f1acaca454.svg"
+    },
+    {
+      "fileId": "9da2518f0a6355638f443a00ff3038ae25aca88e19df3203ba6d140674844ab956dd4f5c61092f81ece24037a6b445e3",
+      "mimeType": "image/png",
+      "sha256": "9c4ff1d671f5dd62aedcea45479bf5c8cd3e8021542ed86f4a2c6b19e501220a",
+      "uses": [
+        {
+          "lecture": "lecture-12",
+          "slide": 13,
+          "title": "Reasoning in AI",
+          "elementIds": [
+            "AzbIHFozwP-pfRS8c4lVd"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "gsm_symbolic.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0
+      },
+      "imagePath": "slides/images/9c4ff1d671f5dd62aedcea45479bf5c8cd3e8021542ed86f4a2c6b19e501220a.png"
+    },
+    {
+      "fileId": "f3c2c1dcb8612c7a83779ab7220d0bfad54e86978106fb707af79e9710f8c13e2487d586d50ea467a0cb8747b8f7b935",
+      "mimeType": "image/png",
+      "sha256": "d30edc84d40b1b2a613369d75a21ec73534b07adf252fe064d23770377f05655",
+      "uses": [
+        {
+          "lecture": "lecture-12",
+          "slide": 13,
+          "title": "Reasoning in AI",
+          "elementIds": [
+            "8i1nbKgCW7eW5UUPYFiXL"
+          ]
+        }
+      ],
+      "reviewStatus": "unverified",
+      "sourceURL": null,
+      "license": null,
+      "workspaceMatch": {
+        "filename": "inductive.png",
+        "method": "visual candidate; verify manually",
+        "rmsDifference": 0
+      },
+      "imagePath": "slides/images/d30edc84d40b1b2a613369d75a21ec73534b07adf252fe064d23770377f05655.png"
+    }
+  ]
+}

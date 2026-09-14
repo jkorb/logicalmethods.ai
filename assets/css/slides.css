@@ -1,0 +1,49 @@
+/* The source canvas is white; retain its ink and image colours in both themes. */
+.slide-deck { margin-block: 1.5rem; border: 1px solid var(--rule); border-radius: .4rem; background: var(--paper-raised); overflow: hidden; }
+.slide-deck__toolbar { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; padding: .6rem; border-bottom: 1px solid var(--rule); }
+.slide-deck__toolbar[hidden], .slide-deck__help[hidden], .slide-deck__slide[hidden] { display: none; }
+.slide-deck__toolbar .btn { font-size: .9rem; min-height: 44px; color: var(--ink); border-color: var(--rule-strong); transition: none; }
+.slide-deck__toolbar .btn:hover:not(:disabled) { background: var(--picker-surface); color: var(--ink); }
+.slide-deck__jump { display: flex; align-items: center; gap: .4rem; flex: 1; min-width: 0; font-size: .9rem; }
+.slide-deck__jump select { min-width: 0; width: 100%; min-height: 44px; font: inherit; color: var(--ink); background: var(--paper); border: 1px solid var(--rule-strong); border-radius: .25rem; }
+.slide-deck__slide { margin: 0; scroll-margin-top: 5rem; }
+.slide-deck__slide img { display: block; width: 100%; max-width: none; height: auto; background: #fff; }
+.slide-deck__slide figcaption { padding: .4rem .75rem; font-size: .85rem; color: var(--ink-muted); }
+.slide-deck__help { padding: .6rem .75rem; margin: 0; font-size: .85rem; color: var(--ink-muted); }
+.slide-deck:fullscreen { width: 100%; height: 100%; border: 0; border-radius: 0; margin: 0; display: flex; flex-direction: column; background: var(--paper); }
+.slide-deck:fullscreen .slide-deck__stage { flex: 1; min-height: 0; }
+.slide-deck:fullscreen .slide-deck__slide { height: 100%; display: flex; flex-direction: column; }
+.slide-deck:fullscreen .slide-deck__slide[hidden] { display: none; }
+.slide-deck:fullscreen .slide-deck__slide img { flex: 1; min-height: 0; object-fit: contain; background: #fff; }
+.slide-deck:fullscreen .slide-deck__help { display: none; }
+.slide-text { margin-block: 1rem 2rem; }
+.slide-text summary { cursor: pointer; font-weight: 700; padding-block: .5rem; }
+.slide-text pre { white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; background: none; }
+@media (max-width: 40rem) { .slide-deck__jump { flex-basis: 100%; order: 1; } .slide-deck__toolbar { justify-content: space-between; } }
+@media print { .slide-deck__toolbar, .slide-deck__help, .slide-text { display: none !important; } .slide-deck { border: 0; } .slide-deck__slide { break-after: page; } }
+/* Presentation shell follows the course's paper, ink and blue palette. */
+.slide-deck { border: 0; border-radius: .85rem; box-shadow: 0 8px 30px rgb(0 0 0 / .12); overflow: visible; }
+.slide-deck__toolbar { position: relative; z-index: 6; padding: .65rem; gap: .4rem; border-radius: .85rem .85rem 0 0; background: var(--paper-raised); }
+.slide-deck svg, .slide-text summary svg { width: 22px; height: 22px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.slide-deck__toolbar .btn { display: grid; place-items: center; width: 44px; padding: 0; border: 0; border-radius: .5rem; }
+.slide-deck__jump { display: block; position: relative; margin: 0; }
+.slide-deck__jump summary span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.slide-deck__jump nav button span { color: var(--ink-muted); min-width: 1.5em; font-variant-numeric: tabular-nums; }
+.slide-deck .slide-deck__slide { margin: 0; padding: 0; border: 0; border-radius: 0; background: transparent; }
+.slide-deck .slide-deck__slide img { margin: 0; padding: 0; border: 0; border-radius: 0; box-shadow: none; }
+.slide-deck[data-ready] figcaption { display: none; }
+.slide-deck__help { padding: .8rem 1rem; border-radius: 0 0 .85rem .85rem; }
+.slide-deck:fullscreen .slide-deck__toolbar { border-radius: 0; }
+.slide-text { border: 1px solid var(--rule); border-radius: .75rem; background: var(--paper-raised); padding: .25rem 1rem; }
+.slide-text summary { display: flex; align-items: center; gap: .65rem; min-height: 52px; color: var(--blue-ink); }
+.slide-text__hint { margin-left: auto; font-size: .8rem; font-weight: 400; color: var(--ink-muted); }
+.slide-text pre { color: var(--ink); }
+/* Authored slide descriptions read as prose, not as extracted fragments. */
+.slide-text__note { color: var(--ink); max-inline-size: var(--measure); }
+.slide-text__note p { margin-block: 0 .7rem; }
+.slide-text__note p:last-child { margin-block-end: 0; }
+@media (max-width: 40rem) { .slide-deck__jump { flex-basis: auto; order: 0; } .slide-text__hint { display: none; } }
+/* Override the book's dark-theme image card padding for presentation canvases. */
+:root .prose .slide-deck .slide-deck__slide > img { padding: 0; border-radius: 0; background: #fff; mix-blend-mode: normal; }
+
+.slide-deck__links { margin: 0; padding: .5rem .75rem; font-size: .9rem; background: var(--paper-raised); }

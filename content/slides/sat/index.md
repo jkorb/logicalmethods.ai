@@ -9,6 +9,4 @@ params:
   license: 'CC-BY-4.0'
 ---
 
-{{<iframe src="https://link.excalidraw.com/p/readonly/izwMQWC8am3UPiKoHDVU" >}}
-
-
+The self-hosted slides for this lecture are awaiting content and image review.

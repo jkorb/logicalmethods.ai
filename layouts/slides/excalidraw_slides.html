@@ -1,3 +1,8 @@
+{{ define "head" }}
+{{ if .Params.selfHosted }}
+<link rel="stylesheet" href="{{ (resources.Get "css/slides.css" | fingerprint).RelPermalink }}">
+{{ end }}
+{{ end }}
 {{ define "main" }}
 <div class="shell slides-shell">
   <article class="prose">
@@ -11,6 +16,7 @@
       <span>Lecture slides</span>
     </p>
 
+    {{ if .Params.selfHosted }}{{ partial "slides-viewer.html" . }}{{ end }}
     {{ .Content }}
 
     {{ with .Param "highlights" }}
@@ -20,14 +26,21 @@
           {{ range . }}<li><strong>{{ .keyword }}</strong>{{ with .note }} — {{ . }}{{ end }}</li>{{ end }}
         </ul>
       </section>
-    {{ else }}
+    {{ else }}{{ if not .Params.selfHosted }}
       <p class="highlights-missing">
         A written summary of this lecture has not been added yet. The slides above are
         currently the only version of this material.
       </p>
     {{ end }}
+    {{ end }}
 
     {{ partial "single/nav-bot" . }}
   </article>
 </div>
+{{ end }}
+
+{{ define "footer" }}
+{{ if .Params.selfHosted }}
+<script type="module" src="{{ (resources.Get "js/slides.js" | fingerprint).RelPermalink }}"></script>
+{{ end }}
 {{ end }}

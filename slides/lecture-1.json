@@ -1,0 +1,150 @@
+{
+  "id": "lecture-1",
+  "title": "Lecture 1: Logic and AI",
+  "source": "sources/Lecture 1.excalidraw",
+  "output": "content/slides/logic-and-ai/deck",
+  "originalSha256": "07e2bd709b00d7837bb2233a49ebc05efe7187dccc9b081b68eee8d978f86924",
+  "slides": [
+    {
+      "frameId": "FcSBefju8Yq6cI9oW3RIU",
+      "title": "Logical methods for AI — Lecture 1"
+    },
+    {
+      "frameId": "NuYMhlIwgcgGFdlyaWBuq",
+      "title": "What you'll be able to do"
+    },
+    {
+      "frameId": "EB1r2feUjNbMFeN30MNrU",
+      "title": "Artificial intelligence"
+    },
+    {
+      "frameId": "RxdqcYTsfLhGLGM528Sod",
+      "title": "Logic"
+    },
+    {
+      "frameId": "sjiZF8pf5jdM3y17NYFRY",
+      "title": "Reading an inference"
+    },
+    {
+      "frameId": "epyimKJ4FmolFhFVWrXUh",
+      "title": "Deduction"
+    },
+    {
+      "frameId": "JOs44Y-mz9yPW-NJPk72K",
+      "title": "Induction"
+    },
+    {
+      "frameId": "xkjYfz9s3A_9hs1uNGlAp",
+      "title": "Logical theory"
+    },
+    {
+      "frameId": "3Mh05tzn-CgvidwVAMjyB",
+      "title": "Logical systems"
+    },
+    {
+      "frameId": "TsnICwfMtDuorE3lhSo9e",
+      "title": "Logic and AI"
+    },
+    {
+      "frameId": "bkiDN_WKW8GC_M6vcpuuD",
+      "title": "Logic-based and statistics-based AI"
+    },
+    {
+      "frameId": "C4Gxol1MrzxZj8jEOXdXl",
+      "title": "Three ways logic contributes to AI"
+    },
+    {
+      "frameId": "ESo7iFjGdKqCdAFtqifOp",
+      "title": "Methodological: expert systems"
+    },
+    {
+      "frameId": "xj1bbZB8M6-TYXyilEDlF",
+      "title": "Why the paradigm shifted"
+    },
+    {
+      "frameId": "L8-1Hxr0jMRjcXktS6kCj",
+      "title": "A brief history of AI"
+    },
+    {
+      "frameId": "GqxmVfMyANmBysp-uTQdY",
+      "title": "Auxiliary: knowledge and reasoning"
+    },
+    {
+      "frameId": "PoD-xUzH2O9Vj685Y2QSc",
+      "title": "System 1 and system 2"
+    },
+    {
+      "frameId": "YKlBaaZon1fa5zjS_7r8E",
+      "title": "Checking the reasoning"
+    },
+    {
+      "frameId": "cnr1DIcrwR_FCgqwxiC5k",
+      "title": "Checking AI-generated mathematics"
+    },
+    {
+      "frameId": "KivaMJn-WzX31MISkjmxC",
+      "title": "The future of logic and AI"
+    }
+  ],
+  "removedImages": {
+    "reason": "No creator, source or licence could be established for any embedded image in this lecture, and the course publishes under CC BY 4.0. The image elements stay in the scene as deleted history; their bytes were dropped.",
+    "reviewed": "2026-09-14",
+    "fileIds": [
+      "0fa2ba2a94eb69683930c931db94e1564dd14f351ced6320c9cfe36e9ba59fda63826d2aa824a764deb4505d6d1c352a",
+      "107cde0bb12b863abfe840db99120de2b570ba497de1645e39b7dc602b6bdd22be96d9e584365e120e7fd0fbf03628ea",
+      "11ec3268d2a8998eae60e427dc962ecf17d37c80b3c9226f3b900f36a2f382891850326470a7fb04a7ccd72a2d4434af",
+      "1e5866edc210063d6d6f5063cdaa188c8e9d6cb1078b8122958e83689bcff3900e01c22166549a02189c91f231afe123",
+      "2795772c60586ff7fbccb90a2bb580742698391aca2ffc970490d068559903932daa7f28e6843309a727353b0da2c9b7",
+      "2a9cf83a2caf54acbf36787cf2c912a1757634e762bd92086cc4c85eea7c1f5da432c15e3a68b8422e7b7d399e5874a9",
+      "2c83687251449f087d6a5c08e3ae56a20ef2cbcfaf711eff4ce225c21af33aecacd6205998e74e2789b1822ffeef1c11",
+      "2e8ebc7914b0bf384d78be46210f184f067e9ea885381bd85a510125183840ec62e7d69df9533bf45488042072e3423d",
+      "36622649a39c226b92b72909b4d94a5aad8d66bc068c44e7009c59e28ad4e9a406941a94fb95b368a55c0edabd2f73e7",
+      "3d12224bf815e3583c69faaa9f936ec2c67cda77411817b77bfe601d0cf3dcd253818b25fb7e3e3a061628673ffdccaf",
+      "455eca15ba143c3fa8360115eededfe967ce245a25d9b1bc251f42b7d0944e5635ee93cd2181f53c9db05c704d1748f5",
+      "56268f2598d8b703738a9f5f482b64893eaffc602cdabcec4ce443b587bcb61598091910ff86bef6c230135db47e0376",
+      "5caa6caf70f11e90fedb1154d82c0cca77f58d03f7a3fd74c4b2f88c8f1076097f84feb930dd291345102bfcf12de614",
+      "5cc993a3d1f93afb416c1ade0756cfbcdd8c0e85d3098b459a60e9d4fd0c2dc3537c62de15b00fca9db5535d7ec1e63b",
+      "6326c8126305f5e750d3ffb9643d0661f504d1b16a54ed5fe5541c9a58efab21020bed594fa8ee63bdbb62cbb182d1ac",
+      "69981bf62b07784307621f5ac934db5f47c53c62c882dcf57c7ad83b8ad90103a959a85511e93b034a962307f42020f2",
+      "75768e5873adc438d276f7cb6dd16cd783a835fc18727a78e3d0e67cdbd1126fa0c6c455f644cef7b04118b468fcd3b0",
+      "7cf42278e0560e3bc287472dcf15499add60fe86596477ef656d4e6be1b2c714fb373ccb518da692cae67072c55f6d5d",
+      "7f21d0e4001c3fe323b9cc27184908877c63d9133fbf3275956243171cb28f92dc9fc43641f9e088935bfb33055d42bf",
+      "88a1d40cdf79bcca9aa4d4ad178e0658b0ed9bebe16f89874e933dab7dc9e924aa59e0089856ea6919cc58ecdfce6eee",
+      "8bb43994d558494c8bb1616026fac64d3f42d9601290177805458e1d58878a577942d5bd6ce4578fff1e40869ec91376",
+      "8fb690ad94c7b5f336e755d798462323db5563296e07e60554db26b729b477b5313364481bb0c69c755dd1ab3dd59b46",
+      "9b9450bc2024e410f3d2f68920dd04fafd550257bc3aab1feed67942321832c7987a5d721efe1ec3d740732df5a6fbd5",
+      "a648697a5f1d2832629dde5bef2005df22898f177f96db07edb92d236df30a2de8d3584ab6f0a988417a203c505febb5",
+      "ab9cfacd235ceff8f86e34ba7c497c066eb48c1e621e2ec20b19e477ff84d46242ce8894ff62ea517b08ad06a55ec9ba",
+      "ac2353423fc7cb8159da065d6ddad2528c35fbd7ba426d31c5100c1bd15e2032adbefcbd3675ad1f4cd217a73505cf16",
+      "ae76eadaabed2283bf1872cc9b848887a7b338628c60b1c265b0483740d887964d0f3896e431b4db94b4a8fdbc327e0d",
+      "c167f84684e2615f56caa8c69f4db4bdfd0453e3cdcb59cb1e743bfde2f906f26227002dd0b040bf824b209156de84a9",
+      "c3d9d03f3bae7d2a8c929ca65e40735c692e89435ae19872e1da5cc147781a6fef23d850be25ae5d87623a8288e1dd59",
+      "ca7489b1b8337af0cdd3b36d63f5b3d1d2a7b9b1233f7302cfb4001a13c1ab220d9334a799b2e58ba2b36af5a76e7e1c",
+      "ccea1ed6d4f239b2c76c6f57febc03029e7c4ff05fd1bd65b4b492db53c9194d4a0fcd07406d5c6904412df6556f5f9f",
+      "ed4e46e44806775926dd1899bdbb26eb8444eb2d349ba523539cfe9d1370373bd6758b5798f228637dbb5e04f46eeae1",
+      "fd198ce4be45b9f876cf65b90f9046115fae68fd2611e4d6b944ad13a4b84278c2c861d6a3ed093a279acc7ca94960a4"
+    ]
+  },
+  "releaseImageReview": {
+    "date": "2026-09-14",
+    "decision": "Official logo assets replaced with plain text because redistribution permission was not established. Original files remain only in ignored local backups.",
+    "removedFiles": [
+      {
+        "fileId": "openaiBlossomOfficial2026",
+        "dataUrlSha256": "7e0c324d45ef9afd4275e7763502b1ad2c03517e9bd821a65d32b0eb9cad24e7"
+      },
+      {
+        "fileId": "anthropicLogoMark",
+        "dataUrlSha256": "53e42c61c9a8145414f5b5f49b1084471d68bfdb27c8d197233254998de5c1f9"
+      },
+      {
+        "fileId": "claudeOfficialWordmark",
+        "dataUrlSha256": "ce83a23198377aad684b77fc213f9aa31eddb26c9ed10a21ceb173f6773bf939"
+      },
+      {
+        "fileId": "deepseekOfficialLogo",
+        "dataUrlSha256": "fcfcd61a33f875881f925c011e6fe31e613f1ad65d24863ae5cc99edfe361dc6"
+      }
+    ]
+  }
+}

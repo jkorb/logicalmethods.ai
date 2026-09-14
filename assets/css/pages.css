@@ -375,3 +375,5 @@ a.chapter-card:hover { color: var(--ink); border-color: var(--rule-strong); tran
 }
 /* a short frame on a phone cannot fit the mascot and the prose both */
 @media (max-height: 30rem), (max-width: 26rem) { .embed__invite-mascot { display: none; } }
+
+.hero__figure > .mascot, .outcomes__figure > .mascot { inline-size: 50%; }

@@ -1,3 +1,4 @@
+import { testPassword, useTestPassword } from './solution-password.mjs';
 import { test, expect } from '@playwright/test';
 
 // Production absolute URLs must exercise the local artifact, never the live site.
@@ -46,17 +47,21 @@ test('the section links in the header reach a chapter', async ({ page }) => {
 });
 
 test('exercise solution rejects wrong password, opens with Enter, and closes', async ({ page }) => {
+  await useTestPassword(page);
   await page.goto('/exercises/logic-and-ai/');
+  // A local preview must never use the live site's (possibly older) passwords.
+  const scriptURL = await page.locator('script[src*="/js/exercises."]').getAttribute('src');
+  expect(scriptURL).toMatch(/^\/js\/exercises\.[a-f0-9]+\.js$/);
   const button = page.locator('button[aria-controls="definitionsSolution"]');
   const solution = page.locator('#definitionsSolution');
   await expect(solution).toBeHidden();
   await button.click();
   await expect(page.locator('#passwordModal')).toBeVisible();
   await page.locator('#passwordInput').fill('incorrect-test-password');
-  page.once('dialog', async dialog => { expect(dialog.message()).toContain('Incorrect password'); await dialog.accept(); });
   await page.locator('#passwordSubmitButton').click();
+  await expect(page.locator('#passwordError')).toContainText('does not match');
   await expect(solution).toBeHidden();
-  await page.locator('#passwordInput').fill('apple');
+  await page.locator('#passwordInput').fill(testPassword);
   await page.locator('#passwordInput').press('Enter');
   await expect(solution).toHaveClass(/\bcollapse\b.*\bshow\b/);
   await expect(solution).toBeVisible();

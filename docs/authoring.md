@@ -33,6 +33,14 @@ Section front matter supplies presentation metadata such as `emoji`, `icon`,
 from the usual navigation, and `locked` disables a page's section-list link.
 Neither makes content private.
 
+For textbook pages with `params.last_edited`, use a quoted `DD/MM/YYYY` string
+and update it when editing the chapter, including its notation or illustrations.
+The chapter heading displays this value verbatim; it is not derived from Git.
+When auditing stale tags, check the page’s Git history and any uncommitted
+content changes. Do not advance the date for a date-only correction or a change
+to shared site templates. File modification times alone are not reliable evidence
+of an edit, since checkouts can reset them.
+
 ## Notation
 
 Textbook, exercise and assignment pages use ordinary Markdown code and dollar-delimited
@@ -106,19 +114,34 @@ Hugo generates a heading ID when none is supplied. Use an explicit ID to keep
 solution controls working when you rename a question. Verify the modal and
 collapse in a browser. Answers are present in delivered HTML.
 
+The `passwords` table stores lowercase hexadecimal SHA-256 hashes of exact UTF-8
+passwords. Matching is case-sensitive and does not trim spaces. Choose memorable
+course-themed passwords and share the plaintext list outside the repository;
+do not put it in documentation, tests, or scripts. To replace a hash, run
+`python3 -c 'import getpass, hashlib; print(hashlib.sha256(getpass.getpass("New password: ").encode()).hexdigest())'`
+and paste the output into the entry for the sheet's `params.id`.
+The browser uses Web Crypto, which requires HTTPS or localhost. Hashing only
+obscures the password list; solutions remain in the HTML. Browser tests substitute
+a test-only hash in the served script, keeping real passwords out of fixtures.
+
+
 ## Slides
 
-Existing slides such as
-[`slides/logic-and-ai/index.md`](../content/slides/logic-and-ai/index.md) select
-`layout: excalidraw_slides` and embed an externally hosted presentation with the
-`iframe` shortcode. The default slide template instead initializes Reveal.js.
-Editing an embed URL does not edit the external deck; review it separately.
+The local slide tools render available Excalidraw scenes in `slides/sources/`.
+Use `npm run slides:edit` to edit and **Save library** to retain icon-library edits.
+`npm run slides:render` regenerates decks whose sources are present. A lecture can carry a hand-written
+`narration.yaml` beside its `index.md` describing every slide, including its
+drawings; the viewer uses it for image `alt` text and for the reading view. Keep
+it in step with the scene. Illustrate slides from the book's own scenes in
+`assets/img/drawings/sources/` and from the icon library, which is where new
+course drawings belong too. Only Lecture 1 is released. Lectures 2–12
+are staged locally in ignored `slides/unpublished/` and stay outside normal
+builds, including `hugo -D`. Unreviewed sources, image extracts and archives
+are also Git-ignored, not distributed with a fresh clone. `npm run slides:preview` mounts them for local review.
+See [Slides](slides.md) for preservation, image locations and publication steps.
 
-The shortcode does not render an `<iframe>`. It renders a button naming the host
-it would contact, and `assets/js/helpers.js` swaps the frame in when the reader
-presses it, so opening a slide page sends nothing to anyone. Any new embed must
-go through this shortcode for the same reason — and with JavaScript off, the
-caption's link to the deck is still there.
+New external embeds must use the `iframe` shortcode, which contacts the named
+host only on request. No lecture currently relies on an external slide embed.
 
 Prefer literal symbols to symbol shortcodes: `$∀x(Human x → Mortal x)$` is
 readable in the source. The older symbol shortcodes still emit the same Unicode
@@ -497,3 +520,26 @@ The released glossary contains only entries referenced by the released material,
 including the complete Notation appendix. Return links point to introductions
 in chapters 1–2 or that appendix. Keep unreleased definitions local until the
 corresponding revisions are ready.
+
+### Annotated symbol groups
+
+Use `annotated-math` for selectable mathematical text with braces and labels
+above or below symbol groups, as in the propositional alphabet in Chapter 2:
+
+```text
+{{< annotated-math prefix="Σ = {" suffix="}" title="An alphabet" >}}
+[
+  {"symbols":"p₁, p₂, …", "label":"variables", "position":"below"},
+  {"symbols":"¬, ∧, ∨", "label":"operators", "position":"above"}
+]
+{{< /annotated-math >}}
+```
+
+Supply literal Unicode symbols, without dollar delimiters, in a JSON array.
+Each group requires `symbols`; `label` is optional and `position` defaults to
+`below`. `prefix`, `suffix`, and `title` are optional; `separator` defaults to
+comma-space. Mathematical text uses Comic Shanns Logic and labels use the course
+handwriting face. A small decorative SVG brace stretches to the group width.
+The figure exposes a complete labelled description to assistive technology and
+can scroll horizontally on narrow screens. It works without JavaScript and
+needs no Excalidraw export. Its stylesheet loads only on pages using the shortcode.

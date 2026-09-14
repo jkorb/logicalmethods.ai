@@ -1,0 +1,96 @@
+{
+  "id": "lecture-4",
+  "title": "Lecture 4: Boolean algebra",
+  "source": "sources/Lecture 4.excalidraw",
+  "output": "slides/unpublished/boolean/deck",
+  "publication": "unpublished",
+  "originalSha256": "b96338671e37bea6a9365e479cf24dc049604220d9f6286342b746866d974305",
+  "slides": [
+    {
+      "frameId": "5qh0qFOXVHkpK1NgTRc87",
+      "title": "Logical methods for AI — Lecture 4"
+    },
+    {
+      "frameId": "A42d55_aSBcvP_TVTyOy6",
+      "title": "Boolean algebra"
+    },
+    {
+      "frameId": "0ODU8nkWaF7p14PfhTo4O",
+      "title": "Truth-values"
+    },
+    {
+      "frameId": "k-AkZRPGIGatM8qB5KysY",
+      "title": "Truth functions"
+    },
+    {
+      "frameId": "xgLuIIEGDMn4O3kZdrPfI",
+      "title": "Relay switches"
+    },
+    {
+      "frameId": "1aapqaufXgamk-IKke1XN",
+      "title": "Relay logic"
+    },
+    {
+      "frameId": "tBgMttuq3GSFppcOP9jIu",
+      "title": "Boolean laws"
+    },
+    {
+      "frameId": "ZZrNh6XT7eCTHpj5-34Qd",
+      "title": "Axiomatization"
+    },
+    {
+      "frameId": "C7ck9Y94GT1LwAfvXIGut",
+      "title": "De Morgan Laws"
+    },
+    {
+      "frameId": "cBx__qYeP2Zu5Jv0HNyW9",
+      "title": "Binary numbers"
+    },
+    {
+      "frameId": "HlAfRn5V1mlGOWEm_teJI",
+      "title": "Binary addition — half adder"
+    },
+    {
+      "frameId": "KPrfXoCnwgJd_w79cwtqE",
+      "title": "Binary addition"
+    },
+    {
+      "frameId": "Nj-b-OYMWKytp3QTXc3u2",
+      "title": "Deductive inference"
+    },
+    {
+      "frameId": "yKpIC2ozfifFHvTWEsf1l",
+      "title": "Boolean models and logical space"
+    },
+    {
+      "frameId": "i9tLcaUgrj5Rh75T2blrb",
+      "title": "Logical propositions"
+    },
+    {
+      "frameId": "Mxwi8vN4oyrdSiE9Fy8xK",
+      "title": "Implementing negation"
+    },
+    {
+      "frameId": "2Asq7JmW3O9gF_A4I4blA",
+      "title": "Implementing conjunction and disjunction"
+    },
+    {
+      "frameId": "J8O9GQjgGk4F-d8IAkU5_",
+      "title": "Disjunctive syllogism"
+    },
+    {
+      "frameId": "UDxupgQZ_76QnETX9JBr0",
+      "title": "Affirming a disjunct"
+    }
+  ],
+  "nonSlideElements": [
+    {
+      "id": "ydq2xXOQG_fL8kiNMjYfO",
+      "reason": "Loose rectangle outside every slide frame in the original export. Retained unchanged in the editable scene; not part of the presentation."
+    },
+    {
+      "id": "X1NT0dX5LF9IyVwUkT_pW",
+      "reason": "Loose rectangle outside every slide frame in the original export. Retained unchanged in the editable scene; not part of the presentation."
+    }
+  ]
+}

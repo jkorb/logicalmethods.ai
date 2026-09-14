@@ -1,0 +1,74 @@
+{
+  "id": "lecture-9",
+  "title": "Lecture 9: FOL Inference",
+  "source": "sources/Lecture 9.excalidraw",
+  "output": "slides/unpublished/FOL-inference/deck",
+  "publication": "unpublished",
+  "originalSha256": "ffad039cabdf0eb94b2495afc44cb4d32be46245b69127af38b7f9db311f76e1",
+  "slides": [
+    {
+      "frameId": "LmKC3m40SgeCTP5108CVg",
+      "title": "Logical methods for AI — Lecture 9"
+    },
+    {
+      "frameId": "TYTWJ5eaB6heFJo8L1qB-",
+      "title": "FOL Inference"
+    },
+    {
+      "frameId": "327HuLhWARGUsJjXJgczf",
+      "title": "Unification and MP"
+    },
+    {
+      "frameId": "PEkk0jd-xvZRWgnM9Vhm4",
+      "title": "Unification and automated inference"
+    },
+    {
+      "frameId": "yWAE8A6iEdZyfZj-sLtcI",
+      "title": "Limitations"
+    },
+    {
+      "frameId": "PlXSYkoswRavXj7-zZbX3",
+      "title": "FOL Resolution"
+    },
+    {
+      "frameId": "jqTRjRMWHDJTLlbTU1FmB",
+      "title": "FOL CNF"
+    },
+    {
+      "frameId": "aD9X65PHtefDK6TP02h3c",
+      "title": "Skolemization"
+    },
+    {
+      "frameId": "hFqBxMgTbUuX0d2T8XYmY",
+      "title": "FOL Resolution"
+    },
+    {
+      "frameId": "kaF6WK-KjmmRGpRxP8zF8",
+      "title": "Infinite loops and undecidability"
+    },
+    {
+      "frameId": "FmOajetwX-yDavUGtwmeJ",
+      "title": "Natural deduction"
+    },
+    {
+      "frameId": "heO1kI1BpEdBtdsdSRc7s",
+      "title": "Universal quantifier rules"
+    },
+    {
+      "frameId": "275S6FBEXNbeu9SnF7ypf",
+      "title": "Quantifier rule example"
+    },
+    {
+      "frameId": "XY6Ci3hNw7hcZFhpxAbYV",
+      "title": "Universals and hypotheticals"
+    },
+    {
+      "frameId": "MWYxXKOR8H8HTiePpZFnz",
+      "title": "Existentials have intro and elim rules:"
+    },
+    {
+      "frameId": "rArBnOKiQIMUYghZq2SZJ",
+      "title": "Lean Game Server"
+    }
+  ]
+}

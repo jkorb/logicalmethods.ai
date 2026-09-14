@@ -8,6 +8,7 @@ Use these guides to work on logicalmethods.ai:
 | [Technical setup](technical.md) | Running Hugo, finding source files, and deployment. |
 | [Design](design.md) | Layout, typography, and interactive elements. |
 | [Authoring](authoring.md) | Writing lessons, notation, images, and exercises. |
+| [Slides](slides.md) | Self-hosted lectures, local Excalidraw editing, image review, and migration. |
 | [Testing](testing.md) | Running tests, checking prose, and investigating failures. |
 
 To get started, follow the [technical setup](technical.md) to preview the site,

@@ -1,6 +1,12 @@
 <section class="logic-app notation-practice" data-logic-app="notation-practice" aria-label="Adding and removing brackets">
-  <label for="{{ .id }}-direction">Rewrite into</label>
-  <select id="{{ .id }}-direction" disabled><option value="full">Fully bracketed notation</option><option value="conventional">Conventional notation</option></select>
+  <span id="{{ .id }}-direction">Rewrite into</span>
+  <details class="notation-picker course-picker" data-notation-picker>
+    <summary aria-labelledby="{{ .id }}-direction {{ .id }}-choice"><span id="{{ .id }}-choice" data-notation-current>Fully bracketed notation</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg></summary>
+    <div class="notation-picker__options course-picker__options" role="group" aria-label="Notation choices">
+      <button type="button" data-notation-mode="full" aria-pressed="true" disabled>Fully bracketed notation</button>
+      <button type="button" data-notation-mode="conventional" aria-pressed="false" disabled>Conventional notation</button>
+    </div>
+  </details>
   <p data-count></p>
   <p class="math-inline practice-prompt" data-prompt></p>
   <form class="logic-app__form">

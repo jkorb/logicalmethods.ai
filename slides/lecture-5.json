@@ -1,0 +1,86 @@
+{
+  "id": "lecture-5",
+  "title": "Lecture 5: Boolean satisfiability",
+  "source": "sources/Lecture 5.excalidraw",
+  "output": "slides/unpublished/sat/deck",
+  "publication": "unpublished",
+  "originalSha256": "562d0d38abf3ca039dd63896369e2ade18d1e0c2acf5819b7954112467a7dd79",
+  "slides": [
+    {
+      "frameId": "z5LJyeALumYHSlfgYQfUI",
+      "title": "Logical methods for AI — Lecture 5"
+    },
+    {
+      "frameId": "u7EUUm07yttdxEp2TARp8",
+      "title": "Attendance"
+    },
+    {
+      "frameId": "ZA7kes_5QnSs_MmcdE1-k",
+      "title": "Satisfiability"
+    },
+    {
+      "frameId": "fx4SWLAeNRw7H95k5Rv5f",
+      "title": "SAT"
+    },
+    {
+      "frameId": "UtAsG42pgoECyIsPiB3Qu",
+      "title": "Verification"
+    },
+    {
+      "frameId": "cVxl20GZNegwtLGfb7F9h",
+      "title": "Deductive inference"
+    },
+    {
+      "frameId": "SjP7ERPsP5KTHmAzhEf0F",
+      "title": "Falsification-based inference"
+    },
+    {
+      "frameId": "dOVSYKqUtolLphX_7STKY",
+      "title": "Truth tables"
+    },
+    {
+      "frameId": "wesOyMLw68sjSivkbw2WE",
+      "title": "Method"
+    },
+    {
+      "frameId": "QI5BcCf8Wno2XVaPKJt-H",
+      "title": "Normal Forms"
+    },
+    {
+      "frameId": "RFtVuqjqjECv1-xtxuk65",
+      "title": "Truth-tables"
+    },
+    {
+      "frameId": "bXp520-WgdjRxzLjnBTje",
+      "title": "\"Menu\""
+    },
+    {
+      "frameId": "Zc8s_Sibgj1aKKfvsE_8T",
+      "title": "Transforming into NF"
+    },
+    {
+      "frameId": "yctVTapUIbBI0qN5kPzPw",
+      "title": "Canonical NFs"
+    },
+    {
+      "frameId": "GZru__0Ox8eCbM-f_BQoq",
+      "title": "Resolution"
+    },
+    {
+      "frameId": "8_mJQ0rGOWW-qJf7O19Gy",
+      "title": "Invalid inference"
+    },
+    {
+      "frameId": "NMwexv4n5WQdlCrux1SXp",
+      "title": "Convert to CNF"
+    },
+    {
+      "frameId": "k8hTxV0BJT-dTIhxyx27I",
+      "title": "Worked example (continued)"
+    },
+    {
+      "frameId": "PB_EnOxIc83eIPbZbNsBP",
+      "title": "Resolution"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{{ $page := . }}
+{{ $index := .Resources.GetMatch "deck/index.json" }}
+{{ if not $index }}{{ errorf "Missing rendered deck for %s; run npm run slides:render" .RelPermalink }}{{ end }}
+{{ $deck := $index.Content | transform.Unmarshal }}
+{{/* An authored description of each slide, when the lecture has one. It names
+     the slide images and replaces the extracted text. See docs/slides.md. */}}
+{{ $notes := dict }}
+{{ with .Resources.GetMatch "narration.yaml" }}
+  {{ range (. | transform.Unmarshal).slides }}
+    {{ $notes = merge $notes (dict (printf "%d" (int .number)) .) }}
+  {{ end }}
+{{ end }}
+<section class="slide-deck" data-slide-deck aria-label="Lecture slides" tabindex="0">
+  <div class="slide-deck__toolbar" data-slide-controls hidden>
+    <button type="button" class="btn btn-outline-secondary" data-slide-prev aria-label="Previous slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button>
+    <details class="slide-deck__jump course-picker" data-slide-menu>
+      <summary aria-label="Go to slide"><span data-slide-current></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></summary>
+      <nav class="course-picker__options" aria-label="Choose a slide">{{ range $deck.slides }}<button type="button" data-slide-choice="{{ .number }}"><span>{{ .number }}</span>{{ .title }}</button>{{ end }}</nav>
+    </details>
+    <button type="button" class="btn btn-outline-secondary" data-slide-next aria-label="Next slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg></button>
+    <button type="button" class="btn btn-outline-secondary" data-slide-fullscreen aria-label="Full screen" title="Full screen (F)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4H4v5m11-5h5v5M4 15v5h5m11-5v5h-5"/></svg></button>
+  </div>
+  <div class="slide-deck__stage">
+    {{ range $deck.slides }}
+      {{ $number := int .number }}
+      {{ $title := .title }}
+      {{ $image := $page.Resources.GetMatch (printf "deck/%s" .file) }}
+      {{ if not $image }}{{ errorf "Missing slide %s on %s" .file $page.RelPermalink }}{{ end }}
+      {{ $image = $image | fingerprint }}
+      {{ $note := index $notes (printf "%d" $number) }}
+      <figure class="slide-deck__slide" id="slide-{{ $number }}" data-slide="{{ $number }}">
+        <img src="{{ $image.RelPermalink }}" width="{{ math.Round .width }}" height="{{ math.Round .height }}"
+             alt="{{ with $note }}{{ .alt }}{{ else }}{{ $title }}{{ end }}"
+             {{ with $note }}aria-describedby="slide-text-{{ $number }}"{{ end }}
+             {{ if ne $number 1 }}loading="lazy"{{ end }} decoding="async">
+        {{ with .links }}<p class="slide-deck__links">{{ range . }}<a href="{{ .url }}" target="_blank" rel="noopener noreferrer">{{ .label }}</a> {{ end }}</p>{{ end }}
+        <figcaption>{{ $number }} / {{ len $deck.slides }} · {{ .title }}</figcaption>
+      </figure>
+    {{ end }}
+  </div>
+  <p class="slide-deck__status visually-hidden" role="status" aria-live="polite" data-slide-status></p>
+  <p class="slide-deck__help" data-slide-controls hidden>Use ← / →, Page Up / Page Down, or Space to navigate. Press F for full screen and Esc to exit. Each slide has a shareable URL.</p>
+</section>
+<details class="slide-text">
+  <summary><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="4" r="2"/><path d="M4 9h16m-8-2v8m0-2-5 8m5-8 5 8"/></svg>{{ if $notes }}What is on the slides<span class="slide-text__hint">Written description</span>{{ else }}Text on the slides<span class="slide-text__hint">Automatic reading preview</span>{{ end }}</summary>
+  {{ if $notes }}
+  <p><strong>Written description of every slide.</strong> Each entry says what the slide shows, including its drawings and diagrams, so the lecture can be read without seeing it. The <a href="{{ (site.GetPage (printf "/textbook/%s" .Params.chapter)).RelPermalink }}">textbook chapter</a> explains the same material at length.</p>
+  {{ else }}
+  <p><strong>Automatically generated preview.</strong> This text is extracted from the slides. Its reading order may be confusing or incomplete; check the original slide when something does not make sense. Drawn symbols and diagrams are in the slides above; see the <a href="{{ (site.GetPage (printf "/textbook/%s" .Params.chapter)).RelPermalink }}">textbook chapter</a> for written explanations.</p>
+  {{ end }}
+  {{ range $deck.slides }}
+  {{ $number := int .number }}
+  {{ $note := index $notes (printf "%d" $number) }}
+  <section aria-labelledby="slide-text-heading-{{ $number }}">
+    <h2 id="slide-text-heading-{{ $number }}"><a href="#slide-{{ $number }}">{{ $number }}. {{ .title }}</a></h2>
+    {{ if $note }}<div class="slide-text__note" id="slide-text-{{ $number }}">{{ range (split (trim $note.body "\n") "\n\n") }}<p>{{ replace (trim . " \n") "\n" " " }}</p>{{ end }}</div>
+    {{ else }}<pre id="slide-text-{{ $number }}">{{ .text }}</pre>{{ end }}
+  </section>
+  {{ end }}
+</details>

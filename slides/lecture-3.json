@@ -1,0 +1,86 @@
+{
+  "id": "lecture-3",
+  "title": "Lecture 3: Valid inference",
+  "source": "sources/Lecture 3.excalidraw",
+  "output": "slides/unpublished/valid-inference/deck",
+  "publication": "unpublished",
+  "originalSha256": "0cd17f7e339be9890984186b343cacd01a70086189d322d1d2b6f765c25ae6c9",
+  "slides": [
+    {
+      "frameId": "qdzEYsCaS3LOiCqpSsSJo",
+      "title": "Logical methods for AI — Lecture 3"
+    },
+    {
+      "frameId": "j3pec2tFtgc6nfXudvga4",
+      "title": "Valid inference"
+    },
+    {
+      "frameId": "7dVkAYwJTgh5YVfJ7CaYz",
+      "title": "Hypotheticals"
+    },
+    {
+      "frameId": "1i0wQAFg5IHsX0Z_csJOR",
+      "title": "Logical form"
+    },
+    {
+      "frameId": "f8ybk0JaGri38a7rpNcOO",
+      "title": "Formal languages"
+    },
+    {
+      "frameId": "24Huy03ZmA_udWb8MyYPF",
+      "title": "Material validity"
+    },
+    {
+      "frameId": "9ccuQOebCC2iijPOcZtnM",
+      "title": "Deductive validity"
+    },
+    {
+      "frameId": "iye0rTKNFLaPQ2Szfn8bb",
+      "title": "Models"
+    },
+    {
+      "frameId": "ZeCkAjnOoh_OhSlg8N_m6",
+      "title": "Sets ... again"
+    },
+    {
+      "frameId": "sHVT2GMT70fRaQIsUbsJ_",
+      "title": "Deductive validity"
+    },
+    {
+      "frameId": "FjkNDzmNJmfIGBf3Z1Dv-",
+      "title": "Intersections"
+    },
+    {
+      "frameId": "kTbnZwEmrYqdWTNWERsVS",
+      "title": "Multi-premise deductive validity"
+    },
+    {
+      "frameId": "1-2a1xF4ew2qOpGGKYw2D",
+      "title": "Todo"
+    },
+    {
+      "frameId": "gQyoVPYRytNVKxdzJpepU",
+      "title": "Inductive validity"
+    },
+    {
+      "frameId": "7kqEkXQdIMZH2Seq2ZUBp",
+      "title": "Probabilities"
+    },
+    {
+      "frameId": "d6NuUDk5TKfPPHX2i1hzK",
+      "title": "Conditional probabilities"
+    },
+    {
+      "frameId": "Hc1edz3gP6EJCSPsI1pKl",
+      "title": "Inductive validity"
+    },
+    {
+      "frameId": "x_KCGQkECQ0QyKQIKvw_F",
+      "title": "Strength (one option)"
+    },
+    {
+      "frameId": "dLCuP7OZgW7ch6FLEcBhK",
+      "title": "Todo"
+    }
+  ]
+}

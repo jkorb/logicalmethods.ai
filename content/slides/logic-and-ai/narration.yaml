@@ -1,0 +1,388 @@
+# Written description of every slide in Lecture 1, for readers who cannot use
+# the drawn deck. `alt` names the slide image; `body` describes the whole slide
+# in reading order, including what the drawings show. Keep both in step with
+# the scene in slides/sources/Lecture 1.excalidraw after any edit.
+slides:
+  - number: 1
+    alt: Title slide for Logical methods for AI, Lecture 1, on Logic and AI.
+    body: |
+      A pink title card reads "Logical methods for ∀I, Lecture 1". The A of AI
+      is drawn as the upside-down A of the universal quantifier, ∀, which is
+      the course mascot's name.
+
+      Below the card: "Chapter 1: Logic and AI", and the course address,
+      logicalmethods.ai. The mascot ∀I waves from the corner, saying "HI!!" and
+      holding a flag that reads "I ♥ ∀I".
+
+  - number: 2
+    alt: The five learning goals for this lecture, each tagged with a level of Bloom's taxonomy.
+    body: |
+      Heading: "What you'll be able to do". Introduction: "After this lecture
+      and chapter 1, you can:". Five goals follow, each ticked off with a green
+      check mark and tagged on the right with its level in Bloom's revised
+      taxonomy.
+
+      One: define logic and AI as scientific disciplines. Remember and
+      understand. Two: describe how a logical system models inference.
+      Understand. Three: explain the three roles of logic in AI. Understand and
+      apply. Four: compare logic-based and statistics-based AI. Analyze. Five:
+      explain how logic checks AI-generated reasoning. Understand and apply.
+
+      Closing line: "Read chapter 1 before the lecture; exercise sheet 1 comes
+      after it." The mascot ∀I stands at the right wearing a lit lightbulb.
+
+  - number: 3
+    alt: Four senses of the word AI, with the definition of AI as an academic discipline.
+    body: |
+      Heading: "Artificial intelligence". The word is used in four ways, listed
+      down the left: intelligence that is artificial; AI technology; AI
+      engineering, meaning building and tuning those systems; and AI as an
+      academic discipline.
+
+      Under "AI technology" are the plain text names ChatGPT, Claude and
+      DeepSeek.
+
+      On the right the mascot ∀I waves, with a speech bubble saying "I'm an
+      AI". Below it, a blue box gives the definition of the discipline: "AI
+      aims to understand, artificially replicate, and possibly improve
+      intelligent behavior."
+
+      Bottom left: "AI is interdisciplinary: computer science, psychology,
+      philosophy, linguistics."
+
+  - number: 4
+    alt: Logic defined as the study of valid inference, with a deductive and an inductive example.
+    body: |
+      Heading: "Logic". Two points: logic defines and studies valid inference;
+      an inference has premises and a conclusion.
+
+      Two example inferences are written with an inference line, which
+      separates the premises above from the conclusion below. In a green box at
+      the lower left, with the mascot ∀I pointing at it: from "All humans are
+      mortal" and "Socrates is human", infer "Socrates is mortal". Socrates
+      himself stands beside the box, a bearded figure in the course's hand. On
+      the right: from "All observed swans are white", infer "All swans are
+      white", with a drawing of a white swan on a pond above it.
+
+      A note under the swan example: "Logicians don't study how people actually
+      reason (psychology), or how to persuade (rhetoric)."
+
+  - number: 5
+    alt: The parts of an inference, the words that signal them, and two ways of writing an inference down.
+    body: |
+      Heading: "Reading an inference". Left column: premises are what a
+      conclusion rests on; the conclusion is what is being inferred; indicators
+      tell you which is which. Two kinds of indicator are listed: conclusion
+      indicators, such as "so", "therefore" and "we can conclude that"; and
+      premise indicators, such as "since" and "given that".
+
+      A yellow card holds a worked example: "The ground is wet since it's
+      raining and, if it's raining, the ground is wet." A note underneath reads
+      "Conclusion first, premises after 'since'."
+
+      The right column is headed "Notation". First the inference-line form:
+      "All humans are mortal" and "Socrates is human" above a horizontal line,
+      and "Socrates is mortal" below it. Then the same inference written on one
+      run: "All humans are mortal, Socrates is human ∴ Socrates is mortal".
+      Two notes: the three dots read "therefore", and the line does the same.
+      The mascot ∀I points at the notation with a stick.
+
+  - number: 6
+    alt: A diagram of humans inside mortals, with the definitions of deductive validity and invalidity.
+    body: |
+      Heading: "Deduction". The left half is a diagram of two nested circles. A
+      large green circle is labelled "mortals". Inside it sits a smaller yellow
+      circle labelled "humans", holding several stick figures, one of them
+      labelled "Socrates". Inside the green circle but outside the yellow one
+      are other mortal things: a swan on a pond, the mascot ∀I with a lit
+      lightbulb, a mouse and a beetle. The picture is the Socrates inference:
+      every human is somewhere inside the mortals circle, so Socrates is too.
+
+      Right column. Deductive validity: if the premises are true, then,
+      necessarily, the conclusion is true as well. Deductive invalidity: it's
+      possible that the premises are true and the conclusion false. A closing
+      note: to show invalidity, give a counterexample, that is, a case with
+      true premises and a false conclusion.
+
+  - number: 7
+    alt: Inductive inference illustrated with swans and a bowl of marbles, and how inductive strength works.
+    body: |
+      Heading: "Induction". At the top, the swan inference again: from "All
+      observed swans are white", infer "All swans are white", with a swan on a
+      pond drawn beside it.
+
+      On the left the mascot ∀I reaches into a brown bowl and pulls out white
+      marbles, which lie beside it. Its speech bubble says "They're all white!!"
+
+      Four points on the right. The inference is deductively invalid, but the
+      premises still support the conclusion. The premises make the conclusion
+      more likely. So an inductive inference can be strong or weak, rather than
+      simply valid or invalid. And strength depends on what else you know: if
+      someone tells you they hid a black marble in the bowl, no number of white
+      ones should convince you.
+
+  - number: 8
+    alt: A tree classifying inferences into deductive, valid or invalid, and inductive, strong or weak.
+    body: |
+      Heading: "Logical theory". A tree diagram classifies inferences. At the
+      top, a blue diamond labelled "Inferences" branches into two yellow boxes:
+      "Deductive" on the left and "Inductive" on the right.
+
+      "Deductive" branches into two boxes: a green one labelled "Valid" and a
+      pink one labelled "Invalid". The split is sharp; an inference is one or
+      the other.
+
+      "Inductive" branches onto a single bar that shades continuously from
+      green at the left, labelled "Strong", to red at the right, labelled
+      "Weak", with a dotted line across the middle. Inductive support is a
+      matter of degree, not of two boxes.
+
+      A note at the bottom: deductive validity is chapters 3 to 9; inductive
+      support is chapter 11. A mouse watches from the top corner.
+
+  - number: 9
+    alt: The three parts of a logical system, next to a physicist's model of a thrown ball.
+    body: |
+      Heading: "Logical systems". A logical system is a model of valid
+      inference with three parts: a syntax, which models the language; a
+      semantics, which models meaning; and a proof theory, which models
+      stepwise inference. A green card below shows a schematic inference: from
+      "All As are Bs" and "c is an A", infer "c is a B".
+
+      The right half makes the comparison with physics. A drawing shows the
+      mascot ∀I throwing a ball at a basketball hoop, with trees and the sun. A
+      large pink arrow labelled "mathematical modeling" points from that scene
+      to a coordinate system, where the ball has become a single point carrying
+      labels: mass m = 0.58 kg, initial speed v₀ = 9 m/s, and gravity
+      g = 9.81 m/s².
+
+      A note between the two: models work by abstraction, idealization, and
+      simplifying assumptions. Logical systems are built the same way.
+
+  - number: 10
+    alt: Shannon's insight that a two-switch circuit computes logical conjunction.
+    body: |
+      Heading: "Logic and AI". Two points on the left: we study intelligent
+      behavior using logic, and all sorts of things count as "intelligent".
+
+      Below them the mascot ∀I stands beside a hand-drawn circuit, wearing a
+      lit lightbulb. The circuit has a battery, then two switches in series
+      labelled "Switch A" and "Switch B", then a lamp. Current reaches the lamp
+      only when both switches are closed.
+
+      The right column works the idea through. Switch on counts as 1, off as 0.
+      Light on counts as 1, off as 0. The light is on exactly when both
+      switches are on, which is the operation of conjunction: L = A ∧ B, shown
+      beside the standard AND-gate symbol. So the circuit infers L from A and
+      B: it performs an inference. Widen "intelligent behavior" like this and
+      sliding doors, air conditioning units and self-driving cars are AI
+      systems too.
+
+      Attribution at the bottom: Claude Shannon, "A Symbolic Analysis of Relay
+      and Switching Circuits".
+
+  - number: 11
+    alt: The logic-based and statistics-based paradigms of AI set side by side.
+    body: |
+      Heading: "Logic-based AI vs. Statistics-based AI".
+
+      Logic-based AI, listed first, is also called symbolic AI: it uses
+      explicit symbols and rules, it is transparent and human-readable, and it
+      was dominant from the 1950s to the late 1980s. A green card at the top
+      right shows its characteristic object, the schematic inference from "All
+      As are Bs" and "c is an A" to "c is a B", and beside it John McCarthy's
+      line: "Logic is the path to human-level artificial intelligence."
+
+      Statistics-based AI is listed second. A drawing shows a neural network:
+      three columns of coloured nodes, every node joined by arrows to the nodes
+      in the next column, with the mascot ∀I looking up at it. The notes beside
+      it read: subsymbolic AI, whose relations are learned from data rather
+      than written down by hand. Its keywords are listed: machine learning, big
+      data, neural networks.
+
+  - number: 12
+    alt: The three roles of logic in AI, with the two metalogical results behind the first of them.
+    body: |
+      Heading: "Three ways logic contributes to AI". Three roles are named,
+      each with a one-line gloss.
+
+      Foundational: logic studies intelligent behavior itself. Two results are
+      listed underneath. Gödel, 1931: arithmetic holds claims it cannot settle,
+      because every consistent, effectively axiomatized theory of arithmetic
+      contains a statement it can neither prove nor refute. Church and Turing,
+      1935 and 1936: no algorithm decides, for every inference of predicate
+      logic, whether it is valid.
+
+      Methodological: the logic-based paradigm and its technologies.
+      Auxiliary: logical tools for tasks across AI. Both get a slide of their
+      own later.
+
+      Closing lines: metalogic asks what logical systems can do in principle,
+      and it is worth knowing the limits of your field before you try to push
+      past them. On the right, the mascot ∀I stands at a blackboard covered in
+      metalogical formulas.
+
+  - number: 13
+    alt: How an expert system works, with a knowledge base, an inference engine and an example rule.
+    body: |
+      Heading: "Methodological: expert systems". Logic-based AI is also called
+      symbolic AI. An expert system behaves like a human expert on a task;
+      Mycin diagnosed infections and XCon configured computers.
+
+      A diagram of three boxes joined left to right by arrows. A green box,
+      "Knowledge base", holding if-then rules. An arrow to a blue box,
+      "Inference engine", which applies valid inference. An arrow to a yellow
+      box: a diagnosis, decision or piece of advice.
+
+      An example rule is written out below: if the patient has a runny nose, a
+      sore throat and a mild fever, then the patient likely has a common cold.
+      A note marks it as stipulated for the example, not a medical claim. The
+      mascot ∀I stands beside it in a doctor's coat and head mirror.
+
+      Two closing lines. Such a system is explainable: the answer is the rule
+      plus the facts. A large neural network is a black box instead, which is
+      what explainable AI works on.
+
+  - number: 14
+    alt: Diogenes' plucked chicken as a counterexample, and why rule-based systems turned out to be brittle.
+    body: |
+      Heading: "Why the paradigm shifted". Plato defined a human as a
+      featherless biped. The definition is written out as a rule in a yellow
+      box: "If something is a featherless biped, then it is human."
+
+      Diogenes says "Behold, Plato's human." That is a counterexample to the
+      rule. On the right, the scene is drawn: Diogenes holds up a plucked
+      chicken, while Plato, thinking "human = featherless biped", has nothing
+      to say.
+
+      The lesson for expert systems follows. Pinning down when a concept
+      applies is hard. Rules are brittle, and repairs need more expert work.
+      Each problem needs its own knowledge base.
+
+      Closing line: meanwhile, statistics-based systems were solving problems
+      rules could not.
+
+  - number: 15
+    alt: A timeline of AI from the 1956 Dartmouth workshop to ChatGPT, with Deep Blue, AlphaGo and the Bitter Lesson.
+    body: |
+      Two headings side by side, separated by vertical rules: "Rule-based
+      systems" on the left and "Statistics-based systems" on the right.
+
+      Under the left heading: hard-coded if-then rules. The field was named at
+      the 1956 Dartmouth workshop, organized by McCarthy, Shannon, Rochester
+      and Minsky. Its technologies were expert systems such as Mycin and XCon.
+      Deep Blue searched, but its scoring was hand-coded with experts.
+
+      Under the right heading: probabilistic artificial neural networks.
+      Relations are learned from data, not written down by hand. AlphaGo
+      learned which moves and positions were promising. Sutton's "The Bitter
+      Lesson": search and learning win out. The plain text names ChatGPT,
+      Claude and DeepSeek sit in the corner of this column.
+
+      Across the bottom runs a timeline, drawn as a long pink arrow pointing
+      right. Marked points, in order: 1956, the Dartmouth workshop; 1997, Deep
+      Blue beats world champion Garry Kasparov; 2016, AlphaGo beats the 9-dan
+      Go player Lee Sedol; and 2022, ChatGPT is released. The stretch before
+      1997 is labelled "logical period" and the stretch after it "statistical
+      period", with the final segment picked out in green.
+
+  - number: 16
+    alt: The auxiliary role of logic, from hallucination and databases to Codd's theorem.
+    body: |
+      Heading: "Auxiliary: knowledge and reasoning". Generative AI can store
+      facts, but it hallucinates. Compare our own imperfect memory: feeling
+      sure you remembered right does not make it so.
+
+      For exact records, write it down and use a database. A generative AI
+      system can consult one instead of trusting its memory. Codd's theorem
+      says that querying a database is, in many cases, evaluating formulas of
+      predicate logic. This whole area is Knowledge Representation and
+      Reasoning.
+
+      Closing lines: logic runs from transistors through programming languages
+      to the limits of what can be computed at all. The mascot ∀I stands at the
+      right holding a wrench and a hammer, because these are tools.
+
+  - number: 17
+    alt: Kahneman's system 1 and system 2, and two routes to giving an AI system system-2 abilities.
+    body: |
+      Heading: "System 1 and system 2", after Kahneman's "Thinking, Fast and
+      Slow". A two-column table compares them, with system 1 in the left column
+      and system 2 in the right.
+
+      Row by row. System 1 is fast, automatic and intuitive; system 2 is slow,
+      deliberate and conscious. System 1 recognizes a face; system 2 counts the
+      A's in a text. System 1 recalls an answer; system 2 checks it against a
+      record. System 1 does 5 + 7; system 2 works out 432 × 441. The mascot ∀I
+      stands beside the table looking thoroughly confused.
+
+      Three points below the table. One reading of the distinction: generative
+      AI does system 1, and logic does system 2. Route A, hybrid systems: give
+      the model a calculator, a database, a prover. Route B, reasoning models:
+      train the system to work in steps.
+
+      A closing note quotes Geoffrey Hinton: "what we need is vectors inside
+      the head". That challenges logic-based building of AI, not logic's other
+      roles.
+
+  - number: 18
+    alt: Checking an AI's argument by finding a counterexample or by building a proof.
+    body: |
+      Heading: "Checking the reasoning". A grey box quotes the familiar
+      disclaimer: "ChatGPT can make mistakes. Check important info." A fact you
+      can look up. But does the conclusion follow? Verification means asking
+      whether the result meets the requirements we set.
+
+      Two boxes show the two checks, each written with an inference line.
+
+      The pink box on the left, marked with a red cross, is headed "Invalid:
+      find a counterexample". From "If it rains, the ground is wet" and "The
+      ground is wet", infer "It rains." The note underneath: the sprinkler was
+      on, so the premises are true and the conclusion false. That is semantics
+      at work.
+
+      The green box on the right, marked with a green check, is headed "Valid:
+      build a proof". From "If it rains, the ground is wet" and "It rains",
+      infer "The ground is wet." The note underneath: every step follows a rule
+      a computer can check. That is proof theory at work.
+
+      Closing lines: this works however the AI found the argument, but picking
+      the logical system and formalizing the argument are still on us.
+
+  - number: 19
+    alt: Proof assistants and Lean as a way of checking AI-generated mathematics, and the limits of that check.
+    body: |
+      Heading: "Checking AI-generated mathematics". Like games, mathematics
+      tests a system: many steps, and new arguments. There is a real aim too,
+      namely tools that help mathematicians work.
+
+      Generative AI writes text that looks right, whereas a proof has to be
+      gap-free. A proof assistant checks every step: Lean, with its library
+      Mathlib. AlphaProof learns by trying proofs in Lean and reading the
+      checker's verdict. In 2026 came OpenAI's ten advances and a proposed
+      Navier-Stokes solution with a Lean formalization; both still need
+      mathematical scrutiny.
+
+      A blue box closes the slide. A checked proof is a very high standard of
+      verification. But, as Tao puts it, "there's more to mathematics than
+      rigour and proofs": we also want to know why. We use Lean ourselves later
+      in the course. Beside the box the mascot ∀I sits with a coffee, ticking
+      off a sheet of paper.
+
+  - number: 20
+    alt: Closing slide on where logic and AI are heading, with three open research directions.
+    body: |
+      Heading: "The future?". Three directions are listed on the left, each
+      with a gloss. Reasoning in large language models, the final frontier: can
+      a trained system do system 2 by itself? Hybrid systems: symbolic tools
+      for a subsymbolic system, drawn beside a small copy of the switch circuit
+      from the Shannon slide. The logical study of artificial neural networks,
+      drawn beside a small copy of the network diagram.
+
+      On the right: two routes to system 2, namely train the model to reason,
+      or give it logical tools to use. Either way, we still have to check the
+      reasoning. The phrase "reasoning language models" sits under it.
+
+      The mascot ∀I waves a sign reading "I ♥ ∀I" beside the words "tbc", to be
+      continued. A pointer at the top right: next is formal languages,
+      chapter 2.

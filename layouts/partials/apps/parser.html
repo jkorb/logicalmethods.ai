@@ -21,9 +21,11 @@
     <button type="button" data-action="next" aria-label="Next step" title="Next step" disabled>{{ partial "apps/icon.html" "next" }}</button>
     <button type="button" data-action="last" aria-label="Last step" title="Last step" disabled>{{ partial "apps/icon.html" "last" }}</button>
   </div>
-  <div class="logic-app__status" role="status" aria-live="polite" aria-atomic="true">The interactive tree is loading. The explanation in the chapter can also be followed without it.</div>
+  <div class="logic-app__parse-result">
   <div class="logic-app__tree" role="region" aria-label="Parsing tree; scroll to view a larger tree" tabindex="0"></div>
   <div id="{{ $id }}-text" class="logic-app__text" role="region" aria-label="Parsing tree as text" hidden><div></div></div>
+  <div class="logic-app__status" role="status" aria-live="polite" aria-atomic="true">The interactive tree is loading. The explanation in the chapter can also be followed without it.</div>
+  </div>
   <button type="button" class="logic-app__text-toggle" aria-label="Show tree as text" title="Show tree as text" aria-expanded="false" aria-controls="{{ $id }}-text" disabled>{{ partial "apps/icon.html" "accessibility" }}</button>
   <p data-app-fallback>Enable JavaScript to step through the tree. The grammar and worked example remain available in the chapter.</p>
 </section>

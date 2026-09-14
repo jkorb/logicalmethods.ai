@@ -1,0 +1,12 @@
+{
+  "name": "logicalmethods-slide-tools",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@excalidraw/excalidraw": "0.18.1",
+    "esbuild": "0.28.2",
+    "playwright": "1.63.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  }
+}

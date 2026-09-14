@@ -14,6 +14,7 @@
   --figure-paper: #FCFBF7;   /* original drawing paper, in either theme */
   --paper:        #FCFBF7;   /* the page                                   */
   --paper-raised: #FFFFFF;   /* cards, dialogs — lifts off the grid        */
+  --picker-surface: #E8EAED;
   --paper-sunken: #F2EFE7;   /* wells, code blocks                         */
   --grid:         #EDEAE0;   /* 1.16:1 against paper — never affects text  */
   --margin-rule:  #E3A7AC;   /* the red margin line of a German exercise book */
@@ -44,13 +45,13 @@
   --mascot-bulb:     #FFEC99;
   --mascot-filament: #F08C00;
 
-  /* ---- focus: two-tone, because no single hue clears 3:1 on both grounds */
+  /* ---- focus: consistent theme-aware blue */
   --selection:   #FDE9A9;    /* ink stays 12:1 on it */
   /* The mark joins to the wordmark in blue on paper, where red ran hot, and in
      red on dark, where it needs the warmth. Red stays reserved for state. */
   --brand-join:  #1263AE;
-  --focus-inner: #12141A;    /* 17.78 on paper */
-  --focus-outer: #FFD400;    /* 12.54 on dark  */
+  --focus-inner: var(--blue-ink);
+  --focus-outer: var(--blue-ink);
 
   /* ---- type --------------------------------------------------------- */
   --font-prose: "Atkinson Hyperlegible", ui-sans-serif, system-ui, -apple-system,
@@ -92,7 +93,8 @@
   :root:not([data-theme="light"]) {
     --paper:        #15171B;
     --paper-raised: #1B1E23;
-    --paper-sunken: #101216;
+    --picker-surface: #2B3038;
+  --paper-sunken: #101216;
     --grid:         #1E2127;   /* 1.11 against the ground */
     --margin-rule:  #6E4245;
     --rule:         #2E333B;
@@ -128,6 +130,7 @@
 :root[data-theme="dark"] {
   --paper:        #15171B;
   --paper-raised: #1B1E23;
+  --picker-surface: #2B3038;
   --paper-sunken: #101216;
   --grid:         #1E2127;
   --margin-rule:  #6E4245;
@@ -211,12 +214,12 @@ body {
 }
 
 /* ==========================================================================
-   Focus — two-tone so it survives any background it lands on.
+   Focus — blue in both themes.
    ========================================================================== */
 :where(a, button, input, select, textarea, summary, [tabindex], [contenteditable]):focus-visible {
   outline: 3px solid var(--focus-inner);
   outline-offset: 2px;
-  box-shadow: 0 0 0 6px var(--focus-outer);
+  box-shadow: none;
   border-radius: 3px;
   position: relative;
   z-index: 5;
@@ -225,13 +228,9 @@ body {
 .btn:focus-visible, .btn-close:focus-visible {
   outline: 3px solid var(--focus-inner) !important;
   outline-offset: 2px !important;
-  box-shadow: 0 0 0 6px var(--focus-outer) !important;
+  box-shadow: none !important;
 }
-/* A text field always sits on a known surface — paper, or a raised card — so
-   one strong ring is enough, and blue clears 3:1 on both grounds there. The
-   yellow halo is for controls that can land anywhere; around a field it swells
-   the box and reads as an error state. Buttons, links, checkboxes and radios
-   keep the two-tone ring above. */
+/* Fields use the same blue with a tighter offset. */
 :where(input:not([type="checkbox"]):not([type="radio"]), textarea, select):focus-visible,
 .form-control:focus, .form-control:focus-visible {
   outline: 3px solid var(--blue-ink) !important;

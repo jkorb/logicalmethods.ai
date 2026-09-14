@@ -62,10 +62,7 @@ test('prev and next point at the neighboring chapters, in order', async ({ page 
   await expect(page.locator('.page-nav__link--next')).toHaveAttribute('href', '/textbook/notation/');
 });
 
-/* Two focus treatments, on purpose: buttons and links can land on any ground,
-   so they keep the two-tone ring; a text field always sits on paper or a card,
-   where the yellow halo swelled the box and read as an error state. */
-test('text fields take the blue ring, and everything else the two-tone one', async ({ page }) => {
+test('fields and buttons use the same blue focus ring', async ({ page }) => {
   const ring = el => {
     const style = getComputedStyle(el);
     return { colour: style.outlineColor, width: parseFloat(style.outlineWidth), halo: style.boxShadow };
@@ -93,5 +90,7 @@ test('text fields take the blue ring, and everything else the two-tone one', asy
   const button = page.locator('[data-logic-app="parser"]').getByRole('button', { name: 'Last step', exact: true });
   await button.scrollIntoViewIfNeeded();
   await button.focus();
-  expect((await button.evaluate(ring)).halo, 'a button lost its two-tone ring').not.toBe('none');
+  const focus = await button.evaluate(ring);
+  expect(focus.halo).toBe('none');
+  expect(['rgb(18, 99, 174)', 'rgb(78, 155, 224)']).toContain(focus.colour);
 });

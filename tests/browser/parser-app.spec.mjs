@@ -1,3 +1,4 @@
+import { testPassword, useTestPassword } from './solution-password.mjs';
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 // Test the local artifact even when Hugo emits production asset URLs.
@@ -76,11 +77,12 @@ test('LaTeX conversion, keyboard controls, and frozen input', async ({ page }) =
   await expect(input).toHaveAttribute('readonly', '');
 });
 test('conventional parser works inside the exercise solution', async ({ page }) => {
+  await useTestPassword(page);
   await page.goto('/exercises/formal-languages/');
   const button = page.locator('[data-solution="conventional-grammarSolution"]');
   await button.click();
   await expect(page.locator('#passwordInput')).toBeFocused();
-  await page.locator('#passwordInput').fill('quiz');
+  await page.locator('#passwordInput').fill(testPassword);
   await page.locator('#passwordInput').press('Enter');
   await expect(page.locator('#passwordModal')).toBeHidden();
   const panel = page.locator('#conventional-grammarSolution');
@@ -149,9 +151,10 @@ test('static ASTs, grammar solution, and notation appendix', async ({ page }, in
     expect(current).toBeGreaterThan(previous);
     previous = current;
   }
+  await useTestPassword(page);
   await page.goto('/exercises/formal-languages/');
   await page.locator('[data-solution="parsingSolution"]').click();
-  await page.locator('#passwordInput').fill('quiz');
+  await page.locator('#passwordInput').fill(testPassword);
   await page.locator('#passwordInput').press('Enter');
   await expect(page.locator('#parsingSolution figure')).toHaveCount(4);
   await page.locator('#parsingSolution').screenshot({path: `tmp/content-review/formal-languages/${info.project.name}-exercise-trees.png`});
@@ -199,4 +202,21 @@ test('formula labels preserve history and controls remain above the growing tree
   await expect(app.locator('.logic-app__text')).toContainText('→');
   const results = await new AxeBuilder({page}).include('[data-logic-app="parser"]').analyze();
   expect(results.violations).toEqual([]);
+});
+
+
+test('parser keeps tree and explanation side by side on smaller desktops', async ({ page }) => {
+  for (const width of [1024, 1366]) {
+    await page.setViewportSize({ width, height: 768 });
+    await page.goto(chapter);
+    const app = page.locator('[data-logic-app="parser"]');
+    await expect(app).toHaveAttribute('data-mounted', 'true');
+    await app.getByRole('button', { name: 'Last step', exact: true }).click();
+    const tree = await app.locator('.logic-app__tree').boundingBox();
+    const explanation = await app.getByRole('status').boundingBox();
+    expect(Math.abs(tree.y - explanation.y)).toBeLessThan(2);
+    expect(tree.x + tree.width).toBeLessThanOrEqual(explanation.x);
+    expect((await app.boundingBox()).height).toBeLessThan(680);
+    await app.screenshot({ path: `tmp/parser-layout-${width}.png` });
+  }
 });

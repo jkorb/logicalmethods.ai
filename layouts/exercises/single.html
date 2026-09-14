@@ -31,5 +31,6 @@
 {{ end }}
 
 {{ define "footer" }}
-<script src="{{ (resources.Get "js/exercises.js").Permalink }}"></script>
+{{ $exercises := resources.Get "js/exercises.js" | fingerprint }}
+<script src="{{ $exercises.RelPermalink }}"></script>
 {{ end }}

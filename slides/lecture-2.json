@@ -1,0 +1,82 @@
+{
+  "id": "lecture-2",
+  "title": "Lecture 2: Formal languages",
+  "source": "sources/Lecture 2.excalidraw",
+  "output": "slides/unpublished/formal-languages/deck",
+  "originalSha256": "f76183513e9079acbdbd1827458309cfd1f9141d51230a6b245294f59290dd37",
+  "slides": [
+    {
+      "frameId": "49r4PZhFTQTyGK-xFUudf",
+      "title": "Logical methods for AI \u2014 Lecture 2"
+    },
+    {
+      "frameId": "XLMo9HxF6VrmHxzRxloko",
+      "title": "Lecture team"
+    },
+    {
+      "frameId": "QdL7LpkBkvZ1iQBbq0i-E",
+      "title": "Attendance"
+    },
+    {
+      "frameId": "O-wrj2H3TFtltmp0U_My2",
+      "title": "How to talk to an AI"
+    },
+    {
+      "frameId": "VbJzeyzC7ciJG0DSzToY7",
+      "title": "Formal and natural languages"
+    },
+    {
+      "frameId": "KwXQWYcW_JMEhoF9OuCBh",
+      "title": "Ambiguity and over-expressiveness"
+    },
+    {
+      "frameId": "LNPshwXGIClaXt85yrtjM",
+      "title": "Modus ponens"
+    },
+    {
+      "frameId": "bTAxP4yU6Ri-YUTXM0fGB",
+      "title": "Sets"
+    },
+    {
+      "frameId": "FJjeRcX111d5MmQHOvCgJ",
+      "title": "Infinite sets"
+    },
+    {
+      "frameId": "Jbs2w_ZpR6xveIotUiX59",
+      "title": "Alphabets"
+    },
+    {
+      "frameId": "-jZhHSaFpxjV8M2KKTxiu",
+      "title": "Grammars"
+    },
+    {
+      "frameId": "a2XW5sM92DvOJ_MWdHQzE",
+      "title": "The language of logic"
+    },
+    {
+      "frameId": "InzXDZLBlkbWLBGOxkl5v",
+      "title": "Grammar and Backus\u2013Naur form"
+    },
+    {
+      "frameId": "amDXa2voHm9Ok5gwtxpsl",
+      "title": "Python BNF"
+    },
+    {
+      "frameId": "1RTJvyDdEbMwUqQD1A6KZ",
+      "title": "Parsing"
+    },
+    {
+      "frameId": "IlUO_qCFlY_SPqg7y7j28",
+      "title": "Unique readability"
+    },
+    {
+      "frameId": "Q92Q7kaxljCOhA6NGi5CX",
+      "title": "Knowledge representation with logic"
+    },
+    {
+      "frameId": "RZzh05hmu9MlVeCWeJign",
+      "title": "Knowledge bases and expert systems"
+    }
+  ],
+  "publication": "unpublished"
+}

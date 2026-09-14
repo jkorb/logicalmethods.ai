@@ -22,7 +22,7 @@
     <meta property="og:site_name" content="logicalmethods.ai">
     <meta name="twitter:card" content="summary">
 
-    <link rel="icon" type="image/x-icon" href="{{ (resources.Get "favicon.ico").Permalink }}">
+    <link rel="icon" type="image/x-icon" href="{{ (resources.Get "favicon.ico" | fingerprint).RelPermalink }}">
 
     {{/* Theme is applied before first paint so the page never flashes the wrong ground. */}}
     <script>
@@ -42,26 +42,30 @@
 
     {{/* Preload the prose face: it is on the critical path for every page. */}}
     <link rel="preload" as="font" type="font/woff2" crossorigin
-          href="{{ (resources.Get "fonts/AtkinsonHyperlegible/AtkinsonHyperlegible-Regular.woff2").Permalink }}">
+          href="{{ (resources.Get "fonts/AtkinsonHyperlegible/AtkinsonHyperlegible-Regular.woff2").RelPermalink }}">
 
-    <link href="{{ (resources.Get "bootstrap/dist/css/bootstrap.min.css").Permalink }}" rel="stylesheet">
+    <link href="{{ (resources.Get "bootstrap/dist/css/bootstrap.min.css" | fingerprint).RelPermalink }}" rel="stylesheet">
     {{/* A subset of Bootstrap Icons: the ~35 this site uses, not the ~2,000
          upstream. Rebuild with scripts/subset-icons.py after adding an icon. */}}
-    <link rel="stylesheet" href="{{ (resources.Get "icons/subset/bootstrap-icons-subset.css").Permalink }}">
-    <link rel="stylesheet" href="{{ (resources.Get "css/tokens.css").Permalink }}">
-    <link rel="stylesheet" href="{{ (resources.Get "css/layout.css").Permalink }}">
-    <link rel="stylesheet" href="{{ (resources.Get "css/pages.css").Permalink }}">
-    <link rel="stylesheet" href="{{ (resources.Get "css/glossary.css").Permalink }}">
-    <link rel="stylesheet" href="{{ (resources.Get "css/syntax_hl.css").Permalink }}">
+    <link rel="stylesheet" href="{{ (resources.Get "icons/subset/bootstrap-icons-subset.css" | fingerprint).RelPermalink }}">
+    <link rel="stylesheet" href="{{ (resources.Get "css/tokens.css" | fingerprint).RelPermalink }}">
+    <link rel="stylesheet" href="{{ (resources.Get "css/layout.css" | fingerprint).RelPermalink }}">
+    <link rel="stylesheet" href="{{ (resources.Get "css/pages.css" | fingerprint).RelPermalink }}">
+    <link rel="stylesheet" href="{{ (resources.Get "css/glossary.css" | fingerprint).RelPermalink }}">
+    <link rel="stylesheet" href="{{ (resources.Get "css/syntax_hl.css" | fingerprint).RelPermalink }}">
+    <link rel="stylesheet" href="{{ (resources.Get "css/pickers.css" | fingerprint).RelPermalink }}">
     {{ if .HasShortcode "logic-app" }}
-    <link rel="stylesheet" href="{{ (resources.Get "css/apps/logic-app.css").Permalink }}">
+    <link rel="stylesheet" href="{{ (resources.Get "css/apps/logic-app.css" | fingerprint).RelPermalink }}">
+    {{ end }}
+    {{ if .HasShortcode "annotated-math" }}
+    <link rel="stylesheet" href="{{ (resources.Get "css/annotated-math.css" | fingerprint).RelPermalink }}">
     {{ end }}
     {{ if .HasShortcode "syntax-tree" }}
-    <link rel="stylesheet" href="{{ (resources.Get "css/apps/syntax-tree.css").Permalink }}">
+    <link rel="stylesheet" href="{{ (resources.Get "css/apps/syntax-tree.css" | fingerprint).RelPermalink }}">
     {{ end }}
     {{ if .HasShortcode "tree-guide" }}
-    <link rel="stylesheet" href="{{ (resources.Get "css/tree-guide.css").Permalink }}">
-    <script type="module" src="{{ (resources.Get "js/tree-guide.js").Permalink }}"></script>
+    <link rel="stylesheet" href="{{ (resources.Get "css/tree-guide.css" | fingerprint).RelPermalink }}">
+    <script type="module" src="{{ (resources.Get "js/tree-guide.js" | fingerprint).RelPermalink }}"></script>
     {{ end }}
     {{ block "head" . }}{{ end }}
     <style>{{ block "style" . }}{{ end }}</style>
@@ -92,18 +96,18 @@
       {{ partial "baseof/footer" . }}
     </footer>
 
-    <script src="{{ (resources.Get "js/helpers.js").Permalink }}"></script>
-    <script type="module" src="{{ (resources.Get "js/glossary.js").Permalink }}"></script>
-    <script type="module" src="{{ (resources.Get "js/display-math.js").Permalink }}"></script>
-    <script src="{{ (resources.Get "bootstrap/dist/js/bootstrap.bundle.min.js").Permalink }}"></script>
+    <script src="{{ (resources.Get "js/helpers.js" | fingerprint).RelPermalink }}"></script>
+    <script type="module" src="{{ (resources.Get "js/glossary.js" | fingerprint).RelPermalink }}"></script>
+    <script type="module" src="{{ (resources.Get "js/display-math.js" | fingerprint).RelPermalink }}"></script>
+    <script src="{{ (resources.Get "bootstrap/dist/js/bootstrap.bundle.min.js" | fingerprint).RelPermalink }}"></script>
     {{ with .Params.js }}
       {{ range . }}
-        {{ with resources.Get . }}<script type="module" src="{{ .Permalink }}"></script>{{ end }}
+        {{ with resources.Get . }}<script type="module" src="{{ .RelPermalink }}"></script>{{ end }}
       {{ end }}
     {{ end }}
     {{ if .HasShortcode "logic-app" }}
       {{ $apps := resources.Get "js/apps/index.js" | js.Build (dict "targetPath" "js/logic-apps.js" "minify" true) }}
-      <script type="module" src="{{ $apps.RelPermalink }}"></script>
+      <script type="module" src="{{ ($apps | fingerprint).RelPermalink }}"></script>
     {{ end }}
     {{ block "footer" . }}{{ end }}
   </body>

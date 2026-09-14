@@ -75,8 +75,7 @@ characters per line.
 
 ### Focus, motion, contrast
 
-- Focus is a **two-tone ring** (dark inner, yellow outer). No single hue clears 3:1
-  on both paper and dark ink, so both are drawn and one always shows.
+- Focus uses a **blue outline** (`--blue-ink`) in both themes, without a yellow halo.
 - `prefers-reduced-motion` disables transitions, collapse animations and smooth
   scrolling.
 - `prefers-contrast: more` drops the grid to plain paper.
@@ -165,7 +164,7 @@ The lightbulb button carries a visible *Show solution* label and a real
 `aria-expanded` that flips on toggle. Focus returns to the button when the dialog
 closes. Unlocking one solution unlocks the rest of that sheet.
 
-This is **staged disclosure, not access control**: the passwords and the solution
+This is **staged disclosure, not access control**: the password hashes and the solution
 markup are both delivered to the browser. Do not describe it as security.
 
 ## Render hooks
@@ -325,13 +324,12 @@ without it. Styles are in `assets/css/glossary.css` and interaction code is in
 
 ### Focus
 
-Two treatments, and the split is deliberate. Buttons, links and other controls
-can end up on any ground, so they take the two-tone ring — a dark outline
-inside a yellow halo — which survives whatever is behind it. A text field always
-sits on paper or on a raised card, so it takes a single blue ring
-(`--blue-ink`, 5.9:1 on paper and 5.6:1 on a dark card): the halo swelled the
-field's own box and read as an error state. `tests/browser/keyboard.spec.mjs`
-checks both, and that every tab stop still has some visible indicator.
+All keyboard targets use a blue outline (`--blue-ink`), including links,
+buttons, summaries, checkboxes, radios, and text fields. The token adapts to the
+active theme. Text fields use a tighter offset. Bootstrap button shadows are
+suppressed so they cannot introduce a different focus colour. Forced-colour
+mode retains the system Highlight outline. `tests/browser/keyboard.spec.mjs`
+checks blue focus and visible tab stops.
 
 ### Code blocks
 
@@ -418,3 +416,26 @@ The Notation appendix uses one reference table with left-aligned readings.
 LaTeX commands have their own cheat sheet. Its `.notation-reference` wrapper keeps a prose-measure minimum
 inside the shared table scroll region, so phone layouts scroll horizontally
 instead of squeezing explanations into narrow columns.
+
+
+### Local slide viewer
+
+Self-hosted lecture frames keep their original white canvas and colours in both
+themes. The page uses standard paper/ink tokens for the surrounding controls,
+with visible Previous, Next, slide selection and Full screen controls. A frame
+fits the available full-screen space without distortion. Slide links use
+`#slide-N`; keyboard handling preserves native form controls. Without JavaScript,
+all frames remain visible. See [Slides](slides.md) for the editing workflow and
+limits of the extracted slide text.
+
+### Compact teaching tools
+
+On desktop viewports at least 60rem wide, the parser places its scrollable tree
+and current-step explanation side by side below the controls. Smaller viewports
+stack them. All course pickers share `assets/css/pickers.css`: slides, notation practice and
+the local editor lecture picker use the same rounded gray surface
+(`--picker-surface`) with native disclosure keyboard access. Native selects
+receive a matching baseline style. Shared assets use fingerprinted relative URLs
+so local previews cannot accidentally load an older live-site stylesheet.
+The landing page's heart mascot and learning-goals bulb use half their previous
+width; route-card and other miniature icons keep their existing sizes.

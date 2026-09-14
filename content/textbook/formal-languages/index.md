@@ -5,7 +5,7 @@ locked: false
 weight: 20
 params: 
   date: 09/09/2024
-  last_edited: 11/09/2026
+  last_edited: "14/09/2026"
   id: txt-lang
 ---
 
@@ -212,6 +212,7 @@ meaning depends on their parts. First we'll look at the rules for building
 expressions; the rules for their meaning come later. As we'll see when we
 return to ambiguity in the section on [unique readability](#unique-readability),
 we need to design those rules carefully.
+
 
 ## Sets
 
@@ -471,9 +472,13 @@ symbols that stand for simple propositions
 
 The standard alphabet for the language of propositional logic is:
 
-$$
-Σ = { p₁, p₂, p₃, …, ¬, ∧, ∨, →, ↔, (, ) }
-$$
+{{< annotated-math prefix="Σ = {" suffix="}" title="The propositional alphabet" >}}
+[
+  {"symbols":"p₁, p₂, p₃, …", "label":"variables (atoms)", "position":"below", "color":"red"},
+  {"symbols":"¬, ∧, ∨, →, ↔", "label":"operators", "position":"above", "color":"blue"},
+  {"symbols":"(, )", "label":"auxiliaries", "position":"below", "color":"green"}
+]
+{{< /annotated-math >}}
 
 Here:
 
@@ -499,6 +504,16 @@ The operators have the following conventional names and readings:
 | $∨$            | {{< term "disjunction" "Disjunction" >}}     | … or …             |
 | $→$            | {{< term "conditional" "Conditional" >}}     | if …, then …       |
 | $↔$            | {{< term "biconditional" "Biconditional" >}} | … if and only if … |
+
+
+{{< callout type="note" title="Modelling assumption: simplifying linguistic structure" >}}
+As in [Chapter 1](../logic-and-ai/#logical-systems), our model involves
+**abstraction**. We use one standard symbol and reading for each connective,
+setting aside differences between ordinary uses of “and”, “or”, “if”, and so
+on. We also treat the claims represented by atoms as units, ignoring their
+internal structure. We assume these omitted distinctions do not matter for
+the inference at hand; otherwise, we need a richer model.
+{{< /callout >}}
 
 The Kleene star of the alphabet, $Σ*$, provides us with all the sequences that we
 can build using these symbols. $Σ*$ contains well-formed expressions like:
@@ -899,6 +914,14 @@ huge traffic jam!
 The unbracketed grammar is therefore ambiguous. In our fully bracketed
 grammar, the two readings are written $(¬p ∧ q)$ and $¬(p ∧ q)$. The brackets
 let us specify which structure we intend.
+
+{{< callout type="note" title="Modelling assumption: a fixed reading" >}}
+Our grammar removes structural ambiguity. Using it to model a claim assumes
+that we have chosen one intended reading and will keep it fixed. This is an
+**idealization** that gives formal checking a definite interpretation to work
+with. The brackets record our choice; they do not establish that it captures
+what the speaker meant.
+{{< /callout >}}
 
 ### Conventional notation
 

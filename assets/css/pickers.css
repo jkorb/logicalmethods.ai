@@ -1,0 +1,13 @@
+/* Shared disclosure pickers: course pages and the local editor. */
+.course-picker { position: relative; min-width: 0; text-align: left; }
+.course-picker summary { display: flex; align-items: center; justify-content: space-between; gap: .7rem; min-height: 44px; box-sizing: border-box; padding: .5rem .8rem; border-radius: .5rem; cursor: pointer; list-style: none; color: var(--ink, #242731); background: var(--picker-surface, #e8eaed); }
+.course-picker summary::-webkit-details-marker { display: none; }
+.course-picker summary > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.course-picker summary svg { width: 20px; height: 20px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.8; }
+.course-picker__options { position: absolute; z-index: 20; top: calc(100% + .4rem); inset-inline: 0; max-height: min(55vh, 25rem); overflow: auto; padding: .4rem; border: 1px solid var(--rule, #cccfcf); border-radius: .6rem; background: var(--picker-surface, #e8eaed); box-shadow: 0 8px 24px rgb(0 0 0 / .15); }
+.course-picker .course-picker__options button { display: flex; align-items: baseline; gap: .8rem; width: 100%; text-align: left; font: inherit; color: var(--ink, #242731); background: transparent; border: 0; border-radius: .35rem; min-height: 44px; padding: .5rem; cursor: pointer; }
+.course-picker .course-picker__options button:hover:not(:disabled),
+.course-picker .course-picker__options button[aria-current],
+.course-picker .course-picker__options button[aria-pressed="true"] { color: var(--blue-ink, #1263ae); background: var(--paper-raised, #fff); }
+/* A baseline for native selects introduced by future course apps. */
+select { font: inherit; color: var(--ink, #242731); background-color: var(--picker-surface, #e8eaed); border: 1px solid var(--rule, #cccfcf); border-radius: .5rem; min-height: 44px; padding: .4rem .6rem; }
