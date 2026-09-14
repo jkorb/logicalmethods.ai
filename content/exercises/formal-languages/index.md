@@ -441,9 +441,11 @@ Use the same rules and app for these questions. Predict each answer first.
 
 # Knowledge representation {.solved}
 
-$∀I$ has taken up {{< abbr title="state-sanctioned piracy, nothing illegal going on here...">}}privateering{{</abbr>}}. Now, he's got a treasure of numerous Bitcoin, rare computer chips, and Alan Turing's old {{< abbr title="knowledge base">}}KB{{< /abbr >}}.
+$∀I$ has taken up privateering. Now, he's got a treasure of numerous Bitcoin,
+RAM chips, and Alan Turing's old {{< abbr title="knowledge base">}}KB{{< /abbr
+>}}.
 
-{{< img src="img/ai_piracy.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="550px">}}
+{{< img src="/img/drawings/fl_ai_piracy.svg" class="rounded  float-end inert-img img-fluid m-4" width="200px">}}
 
 $∀I$ hid the treasure on some remote disk-world and now he's trying to
 write instructions on how to find the treasure. Since he's an AI system, he
@@ -451,7 +453,7 @@ does so using propositional logic.
 
 First, he divided the disk-world into 4 quadrants, indicated in the following coordinate system:
 
-{{< img src="img/map.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="550px">}}
+{{< img src="/img/drawings/fl_map.svg" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="400px">}}
 
 Use four propositional variables for the quadrants:
 
@@ -513,26 +515,25 @@ it is, or whether it covers every point of the disk-world.
 
 # Knowledge extraction  {.solved}
 
+{{< img src="/img/drawings/fl_rover.svg" class="rounded  float-start inert-img img-fluid m-2" width="200px">}}
 You arrive at an uninhabited planet and find an old space rover that some
 ancient civilization, which still used expert systems for AI, used to explore
 the planet. 
-
-{{< img src="img/rover.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="750px">}}
 
 The manual explains the variables as follows. Action variables describe
 commands issued by the controller, rather than confirming that an action
 succeeded.
 
-| Variable | Meaning |
-| --- | --- |
-| $p$ | Rain is detected. |
-| $q$ | Sun is detected. |
-| $r$ | The battery level is low. |
-| $s$ | The battery is charging. |
-| $t$ | The command to seek cover is issued. |
-| $u$ | The command to charge is issued. |
-| $v$ | The command to request assistance is issued. |
-| $w$ | The command to shut down is issued. |
+| Variable | Meaning                                      |
+| ---      | ---                                          |
+| $p$      | Rain is detected.                            |
+| $q$      | Sun is detected.                             |
+| $r$      | The battery level is low.                    |
+| $s$      | The battery is charging.                     |
+| $t$      | The command to seek cover is issued.         |
+| $u$      | The command to charge is issued.             |
+| $v$      | The command to request assistance is issued. |
+| $w$      | The command to shut down is issued.          |
 
 The knowledge base contains these rules, in conventional notation:
 
