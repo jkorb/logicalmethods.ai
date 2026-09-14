@@ -75,7 +75,7 @@ test('custom notation renders with the loaded faces', async ({ page }) => {
   // Boolean algebra spells its connectives, so the quantifier chapter is the
   // one that exercises the added glyphs.
   expect(await page.evaluate(() => document.fonts.check('16px "Comic Shanns Logic"'))).toBe(true);
-  await page.goto('/textbook/FOL/');
+  expect((await page.goto('/textbook/fol/')).status()).toBe(200);
   await page.evaluate(() => document.fonts.ready);
   expect(await page.evaluate(() => /[∀∃∧∨→⊨]/.test(document.body.innerText))).toBe(true);
   expect(await page.locator('img[src*="/img/forall"], img[src*="/img/conjunction"]').count()).toBe(0);
@@ -149,7 +149,7 @@ test('code blocks fit their column, and the language badge is clear of them', as
   const scrolling = [];
   let badges = 0;
   for (const route of routes) {
-    await page.goto(route);
+    expect((await page.goto(route)).status(), `Missing test page: ${route}`).toBe(200);
     await page.evaluate(() => document.fonts.ready);
     scrolling.push(...await page.evaluate(here =>
       [...document.querySelectorAll('.highlight')]

@@ -10,8 +10,16 @@ function fit(block, force = false) {
   if (!force && last?.width === width && last?.base === base) return;
   previous.set(block, { width, base });
   inner.style.fontSize = `${base}px`;
-  const naturalWidth = inner.getBoundingClientRect().width;
-  if (naturalWidth > width) inner.style.fontSize = `${base * (width - 1) / naturalWidth}px`;
+  let size = base;
+  // Glyph rounding, tab stops and fixed spacing need not scale proportionally.
+  // Measure the result of each correction, including painted text overflow.
+  // Bound the work so an unscalable image can still use the scroll fallback.
+  for (let attempt = 0; attempt < 8; attempt++) {
+    const measured = Math.max(inner.scrollWidth, inner.getBoundingClientRect().width);
+    if (measured <= width) break;
+    size *= Math.max(1, width - 1) / measured;
+    inner.style.fontSize = `${size}px`;
+  }
 }
 const refresh = () => displays.forEach(block => fit(block, true));
 refresh();

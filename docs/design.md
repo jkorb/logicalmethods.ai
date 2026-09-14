@@ -396,7 +396,9 @@ high and braces 1.45em, relative to the surrounding set text. An illustrated
 set should read as an expression, rather than as a large diagram.
 
 `assets/js/display-math.js` measures each display at its normal font size and
-reduces that size only when its widest line exceeds the column. It refits after
+reduces that size only when its widest line exceeds the column. It remeasures
+after shrinking to account for glyph rounding, tab stops and fixed spacing,
+with a bounded number of corrections before the scroll fallback. It refits after
 fonts load, column resizing and hidden exercise solutions becoming visible,
 and restores the normal size when space permits. It never changes source-code
 blocks or formula text. The scroll container remains a fallback without

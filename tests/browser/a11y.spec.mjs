@@ -14,7 +14,7 @@ test.beforeEach(async ({ page }) => {
   });
 });
 
-const ROUTES = ['/', '/about/', '/textbook/', '/textbook/boolean/', '/textbook/FOL/', '/textbook/formal-languages/', '/textbook/tools/', '/assignments/assignment_3/',
+const ROUTES = ['/', '/about/', '/textbook/', '/textbook/boolean/', '/textbook/fol/', '/textbook/formal-languages/', '/textbook/tools/', '/assignments/assignment_3/',
                 '/slides/', '/slides/logic-and-ai/', '/exercises/', '/exercises/preamble/', '/exercises/logic-and-ai/',
                 '/assignments/'];
 
@@ -22,7 +22,7 @@ const TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'];
 
 for (const route of ROUTES) {
   test(`no WCAG violations: ${route}`, async ({ page }) => {
-    await page.goto(route);
+    expect((await page.goto(route)).status(), `Missing test page: ${route}`).toBe(200);
     await page.evaluate(() => document.fonts.ready);
     const { violations } = await new AxeBuilder({ page }).withTags(TAGS).analyze();
     const exceptions = JSON.parse(await readFile('tests/a11y-exceptions.json', 'utf8'));

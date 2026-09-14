@@ -232,3 +232,16 @@ shared math hook, literal code, escaped dollars and color qualifiers, together
 with direct SVG exports and repeated-image IDs. The app independence test uses
 the two real instances in Appendix C. Accessibility and reflow checks include
 Formal Languages, the Tools appendix and a representative assignment page.
+
+## Matching CI locally
+
+Use the published URL spelling in browser tests: Hugo emits `/textbook/fol/`
+even though the source bundle is named `FOL`. The test server and link checker
+require exact path case on macOS as well as Linux, and page audits assert HTTP
+200 before checking accessibility or layout. This prevents a missing page from
+passing a reflow check or appearing as an unrelated accessibility failure.
+
+The reasoning-practice scenario has a 90-second timeout because it completes
+all twelve cases, checks review and restart, and runs an accessibility audit.
+Other tests retain their default timeout; no retries mask failures. Formula
+fitting diagnostics report the overflowing expression and measured widths.

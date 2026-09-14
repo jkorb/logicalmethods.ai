@@ -48,6 +48,9 @@ test('shunting steps support backward navigation, reject malformed input and rem
   expect((await new AxeBuilder({page}).include('[data-logic-app="shunting-yard"]').analyze()).violations).toEqual([]);
 });
 test('reasoning practice distinguishes support, records first answers and allows review',async({page})=>{
+  // Twelve cases, review/restart and an axe audit took 26s locally and exceeded
+  // 30s on the Linux runner. Give this complete scenario its own 90s budget.
+  test.slow();
   await page.goto('/exercises/logic-and-ai/');
   const app=page.locator('[data-logic-app="reasoning-practice"]');
   await expect(app.locator('[data-count]')).toHaveText('Case 1 of 12');

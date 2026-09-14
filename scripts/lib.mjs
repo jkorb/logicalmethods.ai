@@ -1,4 +1,4 @@
-import { readdir, readFile, stat } from 'node:fs/promises';
+import { readdir, readFile, stat, realpath } from 'node:fs/promises';
 import path from 'node:path';
 import { load } from 'cheerio';
 
@@ -17,7 +17,14 @@ export function internal(url) {
 export async function targetFile(url, root = siteDir) {
   const file = path.resolve(root, '.' + decodeURIComponent(url.pathname));
   if (file !== root && !file.startsWith(root + path.sep)) return null;
-  try { return (await stat(file)).isDirectory() ? ((await stat(path.join(file, 'index.html'))).isFile() ? path.join(file, 'index.html') : null) : file; }
+  try {
+    const target = (await stat(file)).isDirectory() ? path.join(file, 'index.html') : file;
+    if (!(await stat(target)).isFile()) return null;
+    // macOS can resolve /FOL/ to /fol/. Require the on-disk spelling so local
+    // previews and link checks exercise the same URLs as Linux and Pages.
+    const [actualRoot, actualTarget] = await Promise.all([realpath(root), realpath(target)]);
+    return path.relative(root, target) === path.relative(actualRoot, actualTarget) ? target : null;
+  }
   catch { return null; }
 }
 export async function documents(root = siteDir) {
