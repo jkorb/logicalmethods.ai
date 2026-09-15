@@ -18,7 +18,7 @@
  *
  *   npm i --no-save @excalidraw/excalidraw react react-dom esbuild playwright
  *
- * See docs/authoring.md, "Figures".
+ * See docs/authoring/figures.md and docs/authoring/excalidraw-export.md.
  */
 import fs from 'node:fs';
 import path from 'node:path';

@@ -3,7 +3,7 @@
 {{ if not $index }}{{ errorf "Missing rendered deck for %s; run npm run slides:render" .RelPermalink }}{{ end }}
 {{ $deck := $index.Content | transform.Unmarshal }}
 {{/* An authored description of each slide, when the lecture has one. It names
-     the slide images and replaces the extracted text. See docs/slides.md. */}}
+     the slide images and replaces the extracted text. See docs/slides/README.md. */}}
 {{ $notes := dict }}
 {{ with .Resources.GetMatch "narration.yaml" }}
   {{ range (. | transform.Unmarshal).slides }}

@@ -4,6 +4,7 @@ import { mkdtemp, mkdir, writeFile, rm } from 'node:fs/promises';
 import path from 'node:path';
 import { inspectSite } from '../../scripts/check-site.mjs';
 import { inspectContent } from '../../scripts/check-content.mjs';
+import { inspectVault } from '../../scripts/check-docs.mjs';
 import { proseText } from '../../scripts/prose-text.mjs';
 
 test('site checker catches broken resources, fragments, IDs and solution wiring', async t => {
@@ -62,4 +63,34 @@ test('Hugo fails on missing image and chapter shortcodes with source locations',
       return output.includes(message) && output.includes('_index.md');
     });
   }
+});
+
+test('documentation vault checker catches broken links, anchors, orphans and wikilinks', async t => {
+  await mkdir('tmp', { recursive: true });
+  const root = await mkdtemp(path.resolve('tmp/vault-fixture-'));
+  t.after(() => rm(root, { recursive: true, force: true }));
+  await writeFile(path.join(root, 'README.md'), '# Vault\n\n- [Area](area/README.md)\n');
+  await mkdir(path.join(root, 'area'));
+  await writeFile(path.join(root, 'area/README.md'), [
+    '# Area',
+    '',
+    '- [Good](good.md#a-real-heading)',
+    '- [Bad anchor](good.md#no-such-heading)',
+    '- [Gone](missing.md)',
+    '- [Outside](../../../package.json)',
+    'A `[[code span]]` is not a wikilink.',
+  ].join('\n'));
+  await writeFile(path.join(root, 'area/good.md'), '# Good\n\n## A real heading\n\nSee [[other]].\n');
+  await writeFile(path.join(root, 'area/orphan.md'), '# Orphan\n');
+  await mkdir(path.join(root, 'area/deep'));
+  await writeFile(path.join(root, 'area/deep/note.md'), '# Note\n');
+  const errors = await inspectVault(root);
+  assert(errors.some(e => e.includes('broken link missing.md')));
+  assert(errors.some(e => e.includes('missing anchor #no-such-heading')));
+  assert(errors.some(e => e.includes('orphan.md') && e.includes('not linked')));
+  assert(errors.some(e => e.includes('good.md') && e.includes('wikilink')));
+  assert(errors.some(e => e.includes('deep') && e.includes('missing README.md index')));
+  assert(!errors.some(e => e.includes('#a-real-heading')));
+  assert(!errors.some(e => e.includes('package.json')));
+  assert(!errors.some(e => e.includes('README.md: wikilink')));
 });

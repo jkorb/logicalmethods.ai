@@ -31,7 +31,7 @@ const caches = [
   'bin',                     // scripts/install-vale.mjs
   'vale.tar.gz',             // scripts/install-vale.mjs
   'npm-cache',
-  'excalidraw-tools',        // docs/technical.md
+  'excalidraw-tools',        // docs/technical/caveats.md
   'notation-font-tools',     // scripts/build-notation-font.py
   'slides-runtime'           // tools/slides/runtime.mjs bundle and work dirs
 ];

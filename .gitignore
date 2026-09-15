@@ -22,3 +22,9 @@ public/
 /content/slides/*/deck/
 !/content/slides/logic-and-ai/deck/
 /slides/local-originals/
+
+# Per-person Obsidian state for the docs/ vault. app.json is committed so every
+# contributor's Obsidian writes the same relative Markdown links.
+/docs/.obsidian/*
+!/docs/.obsidian/app.json
+!/docs/.obsidian/README.md

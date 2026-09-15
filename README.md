@@ -7,11 +7,13 @@ under heavy construction. Use with caution.
 
 # Working on the project
 
-Start with the [project knowledge base](docs/README.md) for the course aims,
-Hugo setup, design conventions, and content-authoring guidance. AI agents should
-read [AGENTS.md](AGENTS.md), which points to the same documentation.
+Start with the [contributor knowledge base](docs/README.md) for the course aims,
+Hugo setup, design conventions, and content-authoring guidance. It is an Obsidian
+vault of small, single-topic notes; open the `docs/` folder as a vault, or just
+read the Markdown. AI agents should read [AGENTS.md](AGENTS.md), which points to
+the same documentation.
 
-Run `npm test` before pushing changes. See the [testing guide](docs/testing.md)
+Run `npm test` before pushing changes. See the [testing notes](docs/testing/README.md)
 for setup, faster checks while editing, and optional spelling and style checks.
 
 # License

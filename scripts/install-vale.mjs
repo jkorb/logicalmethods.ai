@@ -4,7 +4,7 @@ import { execFileSync } from 'node:child_process';
 const version = (await readFile('.vale-version', 'utf8')).trim();
 const platform = { darwin: 'macOS', linux: 'Linux' }[process.platform];
 const arch = { arm64: 'arm64', x64: '64-bit' }[process.arch];
-if (!platform || !arch) throw new Error('Use the Vale release page for your platform; see docs/testing.md.');
+if (!platform || !arch) throw new Error('Use the Vale release page for your platform; see docs/testing/prose.md.');
 const name = `vale_${version}_${platform}_${arch}.tar.gz`;
 const base = `https://github.com/vale-cli/vale/releases/download/v${version}`;
 async function download(name) {

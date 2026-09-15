@@ -7,7 +7,7 @@ const version = (await readFile('.vale-version', 'utf8')).trim();
 const bin = process.env.VALE_BIN || 'vale';
 const installed = spawnSync(bin, ['--version'], { encoding: 'utf8' });
 if (installed.error || installed.status !== 0 || !installed.stdout.includes(` ${version}`)) {
-  console.error(`Install Vale ${version} (see docs/testing.md), or set VALE_BIN to its executable.`);
+  console.error(`Install Vale ${version} (see docs/testing/prose.md), or set VALE_BIN to its executable.`);
   process.exit(1);
 }
 const paths = process.argv.slice(2);
