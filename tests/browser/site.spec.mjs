@@ -137,7 +137,7 @@ test('code blocks fit their column, and the language badge is clear of them', as
   // Revised sources obey the current code layout convention; legacy chapters
   // retain their existing code and are covered by the page reflow checks.
   const routes = ['/textbook/logic-and-ai/', '/textbook/formal-languages/',
-                  '/exercises/formal-languages/', '/assignments/assignment_3/'];
+                  '/exercises/formal-languages/'];
   const scrolling = [];
   let badges = 0;
   for (const route of routes) {

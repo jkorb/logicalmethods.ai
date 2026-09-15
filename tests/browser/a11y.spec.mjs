@@ -2,9 +2,8 @@ import { test, expect } from './fixtures.mjs';
 import AxeBuilder from '@axe-core/playwright';
 import { readFile } from 'node:fs/promises';
 
-const ROUTES = ['/', '/about/', '/textbook/', '/textbook/boolean/', '/textbook/fol/', '/textbook/formal-languages/', '/textbook/tools/', '/assignments/assignment_3/',
-                '/slides/', '/slides/logic-and-ai/', '/exercises/', '/exercises/preamble/', '/exercises/logic-and-ai/',
-                '/assignments/'];
+const ROUTES = ['/', '/about/', '/textbook/', '/textbook/boolean/', '/textbook/fol/', '/textbook/formal-languages/', '/textbook/tools/',
+                '/slides/', '/slides/logic-and-ai/', '/exercises/', '/exercises/preamble/', '/exercises/logic-and-ai/'];
 
 const TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'];
 

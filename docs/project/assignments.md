@@ -9,3 +9,6 @@ dedicated template, and their stylesheet are no longer part of the website.
 Run `python3 build.py --check` from that directory to build the PDFs. See
 [Authoring tools](../technical/authoring-tools.md) for how this replaced the
 former hidden Hugo Assignments section.
+
+`npm run check:site` fails if any file appears under `assignments/` in the built
+output, so the section cannot return to the published site by accident.

@@ -28,7 +28,7 @@ function watch(page) {
 
 const PAGES = ['/', '/about/', '/textbook/', '/textbook/formal-languages/', '/textbook/boolean/',
                '/textbook/glossary/', '/textbook/tools/', '/exercises/', '/exercises/preamble/',
-               '/exercises/formal-languages/', '/slides/', '/slides/boolean/', '/assignments/',
+               '/exercises/formal-languages/', '/slides/', '/slides/boolean/',
                '/tutoraat/', '/verdiepingspakketten/'];
 
 for (const route of PAGES) {

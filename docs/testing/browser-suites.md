@@ -4,9 +4,9 @@ Three browser suites guard the redesign. They run as part of `npm test`.
 
 | File | Guards |
 | --- | --- |
-| `tests/browser/a11y.spec.mjs` | axe-core across ten routes at WCAG 2.2 AA, plus `/textbook/boolean/` in both light and dark mode. |
+| `tests/browser/a11y.spec.mjs` | axe-core across twelve routes at WCAG 2.2 AA, plus `/textbook/boolean/` in both light and dark mode. |
 | `tests/browser/keyboard.spec.mjs` | The skip link is the first tab stop; chapter navigation is reachable; every tab stop has a name and a visible focus ring; prev/next point at the right neighbors. |
-| `tests/browser/reflow.spec.mjs` | No horizontal scrollbar at 320&nbsp;px on eight routes (WCAG 1.4.10). |
+| `tests/browser/reflow.spec.mjs` | No horizontal scrollbar at 320&nbsp;px on ten routes (WCAG 1.4.10). |
 | `tests/browser/privacy.spec.mjs` | No page contacts another host on load; the built HTML links nothing off-site; an embedded deck loads only when pressed; local storage holds only the keys the About page names, and no cookies are set. |
 
 The keyboard and reflow checks exist because axe cannot see either problem, and
@@ -46,7 +46,7 @@ button's lower-right placement.
 shared math hook, literal code, escaped dollars and color qualifiers, together
 with direct SVG exports and repeated-image IDs. The app independence test uses
 the two real instances in Appendix C. Accessibility and reflow checks include
-Formal Languages, the Tools appendix and a representative assignment page.
+Formal Languages and the Tools appendix.
 
 ## Related
 

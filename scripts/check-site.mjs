@@ -8,6 +8,11 @@ export async function inspectSite(root = siteDir) {
   const fileSet = new Set(allFiles);
   const docs = await documents(root);
   const errors = [];
+  for (const file of allFiles) {
+    if (path.relative(root, file).split(path.sep)[0] === 'assignments') {
+      errors.push(`${path.relative(root, file)}: annual assignments must remain outside the public site`);
+    }
+  }
   async function check(ref, base, source) {
     let url;
     try { url = new URL(ref, base); } catch { errors.push(`${source}: invalid URL ${ref}`); return; }

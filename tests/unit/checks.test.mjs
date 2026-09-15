@@ -26,6 +26,20 @@ test('site checker catches broken resources, fragments, IDs and solution wiring'
   assert(!errors.some(e => e.includes('#good')));
 });
 
+test('site checker rejects assignment pages and files in published output', async t => {
+  await mkdir('tmp', { recursive: true });
+  const root = await mkdtemp(path.resolve('tmp/assignment-fixture-'));
+  t.after(() => rm(root, { recursive: true, force: true }));
+  await writeFile(path.join(root, 'index.html'), '<h1>Public textbook</h1>');
+  assert.deepEqual(await inspectSite(root), []);
+  await mkdir(path.join(root, 'assignments'));
+  await writeFile(path.join(root, 'assignments/index.html'), '<h1>Old assignment</h1>');
+  await writeFile(path.join(root, 'assignments/solutions.pdf'), 'fixture');
+  const errors = await inspectSite(root);
+  assert.equal(errors.length, 2);
+  assert(errors.every(error => error.includes('annual assignments must remain outside the public site')));
+});
+
 test('content schemas distinguish lessons and resource bundles', () => {
   const valid = '---\ntitle: Test\nweight: 10\nparams:\n  id: exc-test\n---\n# Question {.solved}\n';
   assert.deepEqual(inspectContent(valid, 'content/exercises/test/index.md', { 'exc-test': 'test' }), []);

@@ -5,8 +5,8 @@ import { test, expect } from './fixtures.mjs';
 
 test.use({ viewport: { width: 320, height: 800 } });
 
-for (const route of ['/', '/about/', '/textbook/', '/textbook/boolean/', '/textbook/fol/', '/textbook/formal-languages/', '/textbook/tools/', '/assignments/assignment_3/',
-                     '/exercises/preamble/', '/exercises/logic-and-ai/', '/slides/logic-and-ai/', '/assignments/']) {
+for (const route of ['/', '/about/', '/textbook/', '/textbook/boolean/', '/textbook/fol/', '/textbook/formal-languages/', '/textbook/tools/',
+                     '/exercises/preamble/', '/exercises/logic-and-ai/', '/slides/logic-and-ai/']) {
   test(`no horizontal scroll at 320px: ${route}`, async ({ page }) => {
     expect((await page.goto(route)).status(), `Missing test page: ${route}`).toBe(200);
     await page.evaluate(() => document.fonts.ready);
