@@ -1,46 +1,36 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, chapters } from './fixtures.mjs';
 
-test.beforeEach(async ({ context }) => {
-  await context.route('**/*', async route => {
-    const url = new URL(route.request().url());
-    if (['logicalmethods.ai', 'www.logicalmethods.ai'].includes(url.hostname)) {
-      await route.fulfill({ response: await route.fetch({ url: `http://127.0.0.1:4173${url.pathname}${url.search}` }) });
-    } else if (url.hostname === '127.0.0.1') await route.continue();
-    else await route.fulfill({ status: 200, contentType: 'text/html', body: '<!doctype html><title>stub</title>' });
-  });
-});
-
-const later = ['valid-inference', 'boolean', 'sat', 'conditionals', 'proofs',
-  'FOL', 'FOL-inference', 'many-valued', 'probability', 'learning'];
+/* Staged publication is a temporary development state, not a permanent feature:
+   a chapter carries `locked: true` in its front matter until it is released.
+   These checks read that front matter instead of listing chapters, so releasing
+   one needs no test edit. Once nothing is locked they assert an empty set and
+   this file can be deleted along with the `locked` parameter itself. */
 
 for (const section of ['textbook', 'exercises', 'slides']) {
-  test(`${section}: release navigation and legacy direct URLs`, async ({ page }, testInfo) => {
+  test(`${section}: locked chapters are listed but not linked`, async ({ page }) => {
+    const all = await chapters(section);
+    const locked = all.filter(chapter => chapter.locked);
+
     await page.goto(`/${section}/`);
-    for (const chapter of (section === 'slides' ? ['logic-and-ai'] : ['logic-and-ai', 'formal-languages'])) {
-      await expect(page.locator(`a.chapter-card[href="/${section}/${chapter}/"]`)).toBeVisible();
+    await expect(page.locator('.chapter-card.is-locked')).toHaveCount(locked.length);
+    for (const { slug } of locked) {
+      await expect(page.locator(`a.chapter-card[href="/${section}/${slug}/"]`)).toHaveCount(0);
     }
-    await expect(page.locator('.chapter-card.is-locked')).toHaveCount(section === 'slides' ? 11 : 10);
-    for (let chapter of later) {
-      if (section !== 'textbook' && chapter === 'proofs') chapter = 'proof';
-      if (section === 'slides' && chapter === 'learning') chapter = 'anns';
-      await expect(page.locator(`a.chapter-card[href="/${section}/${chapter}/"]`)).toHaveCount(0);
+    for (const { slug } of all.filter(chapter => !chapter.locked)) {
+      await expect(page.locator(`a.chapter-card[href="/${section}/${slug}/"]`)).toBeVisible();
     }
+    if (!locked.length) return;
+
     await page.evaluate(() => document.fonts.ready);
     await expect(page.locator('.chapter-card.is-locked').first()).toHaveCSS('border-top-style', 'dashed');
-    await page.screenshot({ path: testInfo.outputPath(`${section}-release.png`), fullPage: true });
-    expect((await page.goto(`/${section}/valid-inference/`)).status()).toBe(200);
-    await expect(page.locator('main')).toContainText(/valid inference/i);
+    // Locking hides the card; it is not access control, so the page still loads.
+    const [{ slug, title }] = locked;
+    expect((await page.goto(`/${section}/${slug}/`)).status()).toBe(200);
+    await expect(page.locator('main')).toContainText(title.split(':').pop().trim());
   });
 }
 
-test('glossary includes notation dependencies but omits unreleased definitions', async ({ page }) => {
-  await page.goto('/textbook/glossary/');
-  await expect(page.locator('.glossary-entry')).toHaveCount(100);
-  await expect(page.locator('#algorithm')).toBeVisible();
-  await expect(page.locator('#countermodel')).toBeVisible();
-  await expect(page.locator('#fair-search, #axiom')).toHaveCount(0);
-  const destinations = await page.locator('.glossary-entry p:last-child a').evaluateAll(
-    links => links.map(link => new URL(link.href).pathname));
-  expect(destinations.every(path => ['/textbook/logic-and-ai/', '/textbook/formal-languages/',
-    '/textbook/notation/'].includes(path))).toBe(true);
-});
+/* The glossary deliberately keeps terms whose chapter is still locked: the
+   released notation appendix references them, and locking hides a chapter from
+   the index without making it unreachable. `npm run check:site` already proves
+   every glossary link and anchor resolves, so nothing is asserted here. */

@@ -1,15 +1,5 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures.mjs';
 import AxeBuilder from '@axe-core/playwright';
-
-test.beforeEach(async ({ context }) => {
-  await context.route('**/*', async route => {
-    const url = new URL(route.request().url());
-    if (['logicalmethods.ai', 'www.logicalmethods.ai'].includes(url.hostname)) {
-      await route.fulfill({ response: await route.fetch({ url: `http://127.0.0.1:4173${url.pathname}${url.search}` }) });
-    } else if (url.hostname === '127.0.0.1') await route.continue();
-    else await route.fulfill({ status: 200, body: '' });
-  });
-});
 
 test('tree definitions support click, focus, hover, and clearing', async ({ page }, testInfo) => {
   await page.goto('/textbook/formal-languages/');
@@ -56,7 +46,7 @@ test('tree fits narrow screens and is accessible in both themes', async ({ page 
     expect(diagram.y).toBeGreaterThanOrEqual(header.y + header.height);
     const results = await new AxeBuilder({ page }).include('[data-tree-guide]').withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']).analyze();
     expect(results.violations).toEqual([]);
-    await page.screenshot({ path: `tmp/tree-guide-${testInfo.project.name}-${theme}.png` });
+    await page.screenshot({ path: testInfo.outputPath(`tree-guide-${theme}.png`) });
   }
   await page.setViewportSize({ width: 320, height: 720 });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);

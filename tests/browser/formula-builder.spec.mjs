@@ -1,16 +1,6 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures.mjs';
 import AxeBuilder from '@axe-core/playwright';
 import { LEVELS } from '../../assets/js/apps/formula-builder.js';
-
-test.beforeEach(async ({ page }) => {
-  await page.route('**/*', async route => {
-    const url = new URL(route.request().url());
-    if (['logicalmethods.ai', 'www.logicalmethods.ai'].includes(url.hostname)) {
-      await route.fulfill({ response: await route.fetch({ url: `http://127.0.0.1:4173${url.pathname}${url.search}` }) });
-    } else if (url.hostname === '127.0.0.1') await route.continue();
-    else await route.fulfill({ status: 200, contentType: 'text/html', body: '<!doctype html><title>stub</title>' });
-  });
-});
 
 const builder = page => ({
   app: page.locator('.builder'),

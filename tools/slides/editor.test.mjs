@@ -120,5 +120,10 @@ test('local editor edits, saves, backs up, rejects conflicts and retains origina
     assert.equal(await exited, 0);
     assert.equal(await fs.readFile(exported, 'utf8'), beforeStop);
     assert.match(output, /No rendering was run/);
-  } finally { if (browser) await browser.close(); child.kill('SIGTERM'); }
+  } finally {
+    if (browser) await browser.close();
+    child.kill('SIGTERM');
+    // The fixture is a throwaway copy of slides/; leaving it behind filled tmp/.
+    await fs.rm(fixture, { recursive: true, force: true });
+  }
 });

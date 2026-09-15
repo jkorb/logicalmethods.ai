@@ -64,7 +64,8 @@ Build warnings count as failures. Neither command changes your source files.
 The browser tests use port 4173, so you can leave a Hugo preview running on 1313.
 
 If a check fails, its output identifies the page, resource, or test to inspect.
-For browser failures, open the report:
+A browser failure prints the assertion, the call log and the code frame, which
+is normally enough. For more, open the report:
 
 ```sh
 npx playwright show-report tmp/playwright-report
@@ -72,6 +73,11 @@ npx playwright show-report tmp/playwright-report
 
 The report includes screenshots and traces. All local reports and temporary
 builds live under the Git-ignored `tmp/` directory.
+
+Do not read the `error-context.md` files a failure leaves in
+`tmp/test-results/`. They are whole-page accessibility snapshots, up to a
+hundred kilobytes each, and they repeat what the assertion already said. Open
+them in the report, where they are navigable, or not at all.
 
 You can also run individual checks:
 
@@ -82,10 +88,56 @@ You can also run individual checks:
 | `npm run check:site` | Links, anchors, resources, HTML IDs, and solution controls. |
 | `npm run lint:markdown` | Markdown in course content, documentation, and the README. |
 | `npm run test:browser` | Page loading, navigation, solutions, notation, and fonts. |
+| `npm run test:browser:desktop` | The same suite at desktop width only, in half the time. |
 | `npm run test:unit` | The validators themselves, using small test documents. |
 
 `check:site` and `test:browser` use the last build. Run `npm run build:test`
 first if you have edited the site since building it.
+
+## Running only what your change affects
+
+The browser suite is the slow and noisy part: over 200 tests across two viewports.
+Everything after `--` goes to Playwright, so a targeted run is one command:
+
+```sh
+npm run test:browser -- tests/browser/icons.spec.mjs --project=desktop
+npm run test:browser -- --grep "glossary"
+```
+
+Start from the suite that guards what you changed, and run the whole thing
+before pushing:
+
+| What you changed | Run |
+| --- | --- |
+| Chapter or exercise prose | `npm run check` |
+| Front matter, IDs, passwords | `npm run check:content` |
+| Links, anchors, images | `npm run build:test && npm run check:site` |
+| Styles or page furniture | `a11y`, `keyboard`, `reflow`, `display-math` |
+| An interactive app | its own spec, then `a11y` |
+| Slide decks or the deck shortcode | `slides`, `privacy` |
+| Release state: unlocking a chapter | `release`, `keyboard` |
+| The route stub or a shared fixture | the whole browser suite |
+
+The local reporter prints one character per passing test and the full failure
+block for each failure; `CI=1` restores the per-test listing, traces and
+failure screenshots that GitHub Actions uploads. The test server is reused
+between local runs, so leaving one up costs nothing.
+
+## Temporary files
+
+`tmp/` holds two unrelated things: output the tooling regenerates, and the
+review notes and scratch files [AGENTS.md](../AGENTS.md) asks you to keep
+there. To reclaim the first kind:
+
+```sh
+npm run clean              # builds, reports, test output, leftover fixtures
+npm run clean:all          # also Chromium, Vale and the other downloads
+node scripts/clean.mjs --dry-run
+```
+
+The script removes an allowlist, never the whole directory, and reports what it
+kept. Every entry names the script, config or test that writes it; check that
+the writer still exists before adding one.
 
 ## Spelling and style
 
@@ -156,10 +208,25 @@ The test code is in [`tests/`](../tests/) and the supporting commands are in
 checking the changed pages yourself, especially at narrow widths: the automated
 tests do not cover every layout, browser, or accessibility requirement.
 
+A browser spec imports `test` and `expect` from
+[`tests/browser/fixtures.mjs`](../tests/browser/fixtures.mjs), not from
+`@playwright/test`. That fixture points production absolute URLs at the local
+build and stubs everything off-site, so a new spec needs no routing of its own.
+Import `routeToTestSite` directly where a test builds its own context, or pass
+`{ offsite: 'abort' }` where a third-party request must fail rather than
+resolve. `privacy.spec.mjs` is the deliberate exception: it records and aborts
+off-site requests to prove the site makes none.
+
 Markdown rules are configured in
 [`.markdownlint-cli2.jsonc`](../.markdownlint-cli2.jsonc). Raw HTML, multiple
 chapter headings, and the site's dollar math notation are allowed. For a local
 exception, use a rule-specific comment and explain why it is needed.
+
+`tests/browser/release.spec.mjs` guards staged publication, which is temporary.
+It reads `locked` from chapter front matter rather than listing chapters, so
+releasing one needs no test edit; delete the file when the `locked` parameter
+goes. `keyboard.spec.mjs` derives chapter neighbors the same way, because
+navigation skips what is still locked.
 
 For a temporary site-check exception, add the exact diagnostic and a reason to
 [`tests/site-exceptions.json`](../tests/site-exceptions.json). Remove the entry

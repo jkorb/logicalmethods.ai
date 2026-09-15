@@ -1,14 +1,4 @@
-import { test, expect } from '@playwright/test';
-
-test.beforeEach(async ({ context }) => {
-  await context.route('**/*', async route => {
-    const url = new URL(route.request().url());
-    if (['logicalmethods.ai', 'www.logicalmethods.ai'].includes(url.hostname)) {
-      await route.fulfill({ response: await route.fetch({ url: `http://127.0.0.1:4173${url.pathname}${url.search}` }) });
-    } else if (url.hostname === '127.0.0.1') await route.continue();
-    else await route.fulfill({ status: 200, contentType: 'text/html', body: '<!doctype html><title>stub</title>' });
-  });
-});
+import { test, expect } from './fixtures.mjs';
 
 test('glossary search matches terms, not definitions, and a fragment reveals a filtered term', async ({ page }) => {
   const errors = [];
@@ -87,7 +77,6 @@ test('glossary and term links work without JavaScript', async ({ browser, baseUR
   await context.close();
 });
 
-
 test('reference pages are appendices and glossary links reach an explanation', async ({ page }) => {
   await page.goto('/textbook/glossary/');
   await expect(page.locator('.chapter__num')).toHaveText('Appendix B');
@@ -100,7 +89,11 @@ test('reference pages are appendices and glossary links reach an explanation', a
   await expect(page.locator(`[id="${id}"]`)).toBeInViewport();
   await page.goto('/textbook/glossary/');
   await page.locator('#countermodel p:last-child a').click();
-  await expect(page).toHaveURL(/\/textbook\/notation\/#term-countermodel-\d+$/);
+  // Which chapter defines a term moves as chapters are released; that it lands
+  // on the passage explaining the term does not.
+  await expect(page).toHaveURL(/\/textbook\/[a-z0-9-]+\/#term-countermodel-\d+$/);
+  const countermodel = new URL(page.url()).hash.slice(1);
+  await expect(page.locator(`[id="${countermodel}"]`)).toHaveText(/countermodel/i);
   await page.goto('/textbook/notation/');
   await expect(page.locator('.chapter__num')).toHaveText('Appendix A');
   await page.goto('/textbook/');

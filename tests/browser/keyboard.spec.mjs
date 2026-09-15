@@ -1,17 +1,4 @@
-import { test, expect } from '@playwright/test';
-
-/* axe cannot see these. Both were real defects before the redesign:
-   chapter navigation carried tabindex="-1", and no control had a focus ring. */
-
-test.beforeEach(async ({ page }) => {
-  await page.route('**/*', async route => {
-    const url = new URL(route.request().url());
-    if (['logicalmethods.ai', 'www.logicalmethods.ai'].includes(url.hostname)) {
-      await route.fulfill({ response: await route.fetch({ url: `http://127.0.0.1:4173${url.pathname}${url.search}` }) });
-    } else if (url.hostname === '127.0.0.1') await route.continue();
-    else await route.fulfill({ status: 200, contentType: 'text/html', body: '<!doctype html><title>stub</title>' });
-  });
-});
+import { test, expect, chapters } from './fixtures.mjs';
 
 async function walk(page, limit = 400) {
   const stops = [];
@@ -57,9 +44,12 @@ test('every tab stop has a name and a visible focus indicator', async ({ page })
 });
 
 test('prev and next point at the neighboring chapters, in order', async ({ page }) => {
-  await page.goto('/textbook/formal-languages/');            // chapter 2
-  await expect(page.locator('.page-nav__link--prev')).toHaveAttribute('href', '/textbook/logic-and-ai/');
-  await expect(page.locator('.page-nav__link--next')).toHaveAttribute('href', '/textbook/notation/');
+  // Chapter navigation skips what is still locked, so take the neighbours from
+  // the released chapters in weight order rather than naming three of them.
+  const [previous, current, next] = (await chapters('textbook')).filter(chapter => !chapter.locked);
+  await page.goto(`/textbook/${current.slug}/`);
+  await expect(page.locator('.page-nav__link--prev')).toHaveAttribute('href', `/textbook/${previous.slug}/`);
+  await expect(page.locator('.page-nav__link--next')).toHaveAttribute('href', `/textbook/${next.slug}/`);
 });
 
 test('fields and buttons use the same blue focus ring', async ({ page }) => {

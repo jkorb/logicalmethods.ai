@@ -1,15 +1,9 @@
-import { test, expect } from '@playwright/test';
+import { baseTest as test, expect, routeToTestSite } from './fixtures.mjs';
 import AxeBuilder from '@axe-core/playwright';
 
-test.beforeEach(async ({ context }) => {
-  await context.route('**/*', async route => {
-    const url = new URL(route.request().url());
-    if (['logicalmethods.ai', 'www.logicalmethods.ai'].includes(url.hostname)) {
-      await route.fulfill({ response: await route.fetch({ url: `http://127.0.0.1:4173${url.pathname}${url.search}` }) });
-    } else if (url.hostname === '127.0.0.1') await route.continue();
-    else await route.abort();
-  });
-});
+// A deck must load from the local build alone, so an offsite request fails here
+// rather than quietly resolving against a stub.
+test.beforeEach(async ({ context }) => { await routeToTestSite(context, { offsite: 'abort' }); });
 for (const [slug, count] of [['logic-and-ai', 20]]) {
   test(`${slug}: all slides load locally and keyboard/clicker navigation works`, async ({ page }, info) => {
     const errors = []; const offsite = [];

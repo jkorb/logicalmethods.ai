@@ -1,18 +1,5 @@
 import { testPassword, useTestPassword } from './solution-password.mjs';
-import { test, expect } from '@playwright/test';
-
-// Production absolute URLs must exercise the local artifact, never the live site.
-// Third-party resources are stubbed; their availability is checked separately.
-test.beforeEach(async ({ page }) => {
-  await page.route('**/*', async route => {
-    const url = new URL(route.request().url());
-    if (['logicalmethods.ai', 'www.logicalmethods.ai'].includes(url.hostname)) {
-      const response = await route.fetch({ url: `http://127.0.0.1:4173${url.pathname}${url.search}` });
-      await route.fulfill({ response });
-    } else if (url.hostname === '127.0.0.1') await route.continue();
-    else await route.fulfill({ status: 200, contentType: 'text/html', body: '<!doctype html><title>External content stub</title>' });
-  });
-});
+import { test, expect } from './fixtures.mjs';
 
 for (const route of ['/', '/textbook/', '/textbook/boolean/', '/exercises/logic-and-ai/', '/slides/logic-and-ai/', '/tutoraat/', '/verdiepingspakketten/']) {
   test(`page and first-party assets: ${route}`, async ({ page }, testInfo) => {

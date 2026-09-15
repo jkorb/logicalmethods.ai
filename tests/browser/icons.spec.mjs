@@ -1,18 +1,4 @@
-import { test, expect } from '@playwright/test';
-
-/* The icon font is subsetted to what the site uses (scripts/subset-icons.py).
-   Adding an icon without rebuilding the subset would render an empty box, so
-   this checks that every icon on a page actually has a glyph. */
-
-test.beforeEach(async ({ page }) => {
-  await page.route('**/*', async route => {
-    const url = new URL(route.request().url());
-    if (['logicalmethods.ai', 'www.logicalmethods.ai'].includes(url.hostname)) {
-      await route.fulfill({ response: await route.fetch({ url: `http://127.0.0.1:4173${url.pathname}${url.search}` }) });
-    } else if (url.hostname === '127.0.0.1') await route.continue();
-    else await route.fulfill({ status: 200, contentType: 'text/html', body: '<!doctype html><title>stub</title>' });
-  });
-});
+import { test, expect } from './fixtures.mjs';
 
 for (const route of ['/', '/about/', '/textbook/', '/textbook/boolean/', '/exercises/',
                      '/exercises/logic-and-ai/', '/slides/logic-and-ai/']) {

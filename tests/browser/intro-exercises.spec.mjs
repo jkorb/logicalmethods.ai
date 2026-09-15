@@ -1,14 +1,5 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures.mjs';
 import AxeBuilder from '@axe-core/playwright';
-test.beforeEach(async ({page}) => {
-  await page.route('**/*',async route=>{
-    const url=new URL(route.request().url());
-    if(['logicalmethods.ai','www.logicalmethods.ai'].includes(url.hostname)) {
-      const response=await route.fetch({url:`http://127.0.0.1:4173${url.pathname}${url.search}`}); await route.fulfill({response});
-    } else if(url.hostname==='127.0.0.1') await route.continue();
-    else await route.fulfill({status:200,body:''});
-  });
-});
 test('notation practice checks both directions, shows answers and changes examples',async({page})=>{
   await page.goto('/exercises/formal-languages/');
   const app=page.locator('[data-logic-app="notation-practice"]');

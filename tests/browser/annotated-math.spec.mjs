@@ -1,10 +1,6 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures.mjs';
 import AxeBuilder from '@axe-core/playwright';
-test('annotated alphabet has readable symbol groups and responsive over/underbraces', async ({ page, context }, testInfo) => {
-  await context.route('https://logicalmethods.ai/**', async route => {
-    const url = new URL(route.request().url());
-    await route.fulfill({response: await route.fetch({url: `http://127.0.0.1:4173${url.pathname}`})});
-  });
+test('annotated alphabet has readable symbol groups and responsive over/underbraces', async ({ page }, testInfo) => {
   await page.goto('/textbook/formal-languages/');
   const figure = page.locator('.annotated-math');
   await expect(figure).toHaveAttribute('aria-label', /p₁, p₂, p₃, … \(variables \(atoms\)\)/);

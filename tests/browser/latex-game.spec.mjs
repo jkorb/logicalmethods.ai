@@ -1,20 +1,10 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures.mjs';
 import AxeBuilder from '@axe-core/playwright';
 import { POOLS, plain } from '../../assets/js/apps/latex-game.js';
 
 /* The answer key comes from the app itself, so a symbol added to a pool is
    drilled here without the test having to be taught about it. */
 const COMMAND = new Map(POOLS.hard.map(([show, answers]) => [plain(show), answers[0]]));
-
-test.beforeEach(async ({ page }) => {
-  await page.route('**/*', async route => {
-    const url = new URL(route.request().url());
-    if (['logicalmethods.ai', 'www.logicalmethods.ai'].includes(url.hostname)) {
-      await route.fulfill({ response: await route.fetch({ url: `http://127.0.0.1:4173${url.pathname}${url.search}` }) });
-    } else if (url.hostname === '127.0.0.1') await route.continue();
-    else await route.fulfill({ status: 200, contentType: 'text/html', body: '<!doctype html><title>stub</title>' });
-  });
-});
 
 const drill = page => ({
   app: page.locator('.latex-game'),

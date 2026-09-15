@@ -1,18 +1,6 @@
 import { testPassword, useTestPassword } from './solution-password.mjs';
-import { test, expect } from '@playwright/test';
+import { test, expect, routeToTestSite } from './fixtures.mjs';
 import AxeBuilder from '@axe-core/playwright';
-// Test the local artifact even when Hugo emits production asset URLs.
-// Context routing also covers the separate no-JavaScript page below.
-async function routeLocalAssets(context) {
-  await context.route('**/*', async route => {
-    const url = new URL(route.request().url());
-    if (['logicalmethods.ai', 'www.logicalmethods.ai'].includes(url.hostname)) {
-      await route.fulfill({ response: await route.fetch({ url: `http://127.0.0.1:4173${url.pathname}${url.search}` }) });
-    } else if (url.hostname === '127.0.0.1') await route.continue();
-    else await route.fulfill({ status: 200, contentType: 'text/html', body: '<!doctype html><title>External content stub</title>' });
-  });
-}
-test.beforeEach(async ({ context }) => { await routeLocalAssets(context); });
 const chapter = '/textbook/formal-languages/';
 test('parser walkthrough, backwards steps, changed input, and errors', async ({ page }) => {
   const errors = [];
@@ -111,7 +99,7 @@ test('tree layout and accessibility in light and dark themes', async ({ page }, 
 });
 test('page without JavaScript retains the worked example and disabled app', async ({ browser }) => {
   const context = await browser.newContext({ javaScriptEnabled: false });
-  await routeLocalAssets(context);
+  await routeToTestSite(context);
   const page = await context.newPage();
   await page.goto('http://127.0.0.1:4173' + chapter);
   const app = page.locator('[data-logic-app="parser"]');
@@ -205,7 +193,7 @@ test('formula labels preserve history and controls remain above the growing tree
 });
 
 
-test('parser keeps tree and explanation side by side on smaller desktops', async ({ page }) => {
+test('parser keeps tree and explanation side by side on smaller desktops', async ({ page }, testInfo) => {
   for (const width of [1024, 1366]) {
     await page.setViewportSize({ width, height: 768 });
     await page.goto(chapter);
@@ -217,6 +205,6 @@ test('parser keeps tree and explanation side by side on smaller desktops', async
     expect(Math.abs(tree.y - explanation.y)).toBeLessThan(2);
     expect(tree.x + tree.width).toBeLessThanOrEqual(explanation.x);
     expect((await app.boundingBox()).height).toBeLessThan(680);
-    await app.screenshot({ path: `tmp/parser-layout-${width}.png` });
+    await app.screenshot({ path: testInfo.outputPath(`parser-layout-${width}.png`) });
   }
 });
