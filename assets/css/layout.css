@@ -300,6 +300,9 @@ pre code { background: none; border: 0; padding: 0; }
 .site-footer__col { margin: 0; }
 .site-footer__head { display: block; font-weight: 700; color: var(--ink); margin-block-end: .25rem; }
 .site-footer a { color: var(--blue-ink); }
+/* A stack of links, one per line. Inline targets stacked with <br> sit flush
+   against each other; the padding keeps each one tappable (WCAG 2.5.8). */
+.site-footer__stack a { display: inline-block; padding-block: .25rem; }
 .site-footer__meta { margin: 0; grid-column: 1 / -1; padding-block-start: 1rem;
                      border-block-start: 1px solid var(--rule); font-family: var(--font-code);
                      font-size: var(--step--2); }

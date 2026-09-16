@@ -77,6 +77,10 @@ university has reviewed or approved it, and the mistakes in it are mine.
   <li><a href="https://github.com/jkorb/logicalmethods.ai/graphs/contributors" target="_blank" rel="noopener noreferrer">
     <i class="bi bi-person-hearts" aria-hidden="true"></i>
     <span><strong>Contributors</strong>A growing list of people have improved this material.</span></a></li>
+  <li><a href="/ai-disclosure/">
+    <i class="bi bi-info-circle" aria-hidden="true"></i>
+    <span><strong>AI disclosure</strong>Generative AI was used extensively in
+    developing this course.</span></a></li>
   <li><a href="https://creativecommons.org/licenses/by/4.0/deed.en" target="_blank" rel="license noopener noreferrer">
     <i class="bi bi-universal-access-circle" aria-hidden="true"></i>
     <span><strong>Content licence</strong>The course is licensed under CC BY 4.0.</span></a></li>

@@ -115,6 +115,9 @@
   block-size: clamp(4.5rem, 9vw, 6.5rem); inline-size: auto; max-inline-size: 40vw;
 }
 .section-head-block__figure .mascot[data-pose="board"] { block-size: clamp(4rem, 8vw, 5.5rem); }
+/* ann spends most of its height on the thought bubble, so the figure itself
+   comes out smaller than the other poses at a shared height. */
+.section-head-block__figure .mascot[data-pose="ann"] { block-size: clamp(5.5rem, 11vw, 8rem); }
 
 /* the intro belongs to the section masthead, so it lines up with it rather
    than centering itself in the shell */

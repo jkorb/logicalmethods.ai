@@ -13,12 +13,13 @@
     No trackers, no analytics, no cookies.
     <a href="{{ "/about/#using-it" | relURL }}">What the site stores</a>.
   </p>
-  <p class="site-footer__col">
+  <p class="site-footer__col site-footer__stack">
     <span class="site-footer__head">Source</span>
     <a href="https://github.com/jkorb/logicalmethods.ai" rel="noopener noreferrer" target="_blank">
       <i class="bi bi-github" aria-hidden="true"></i> jkorb/logicalmethods.ai
     </a><br>
-    <a href="{{ "/about/" | relURL }}">About this site</a>
+    <a href="{{ "/about/" | relURL }}">About this site</a><br>
+    <a href="{{ "/ai-disclosure/" | relURL }}">AI disclosure</a>
   </p>
   <p class="site-footer__meta">&copy; {{ now | time.Format "2006" }} Johannes Korbmacher and contributors.</p>
 </div>
