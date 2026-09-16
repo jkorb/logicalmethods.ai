@@ -85,7 +85,7 @@ test('conventional parser works inside the exercise solution', async ({ page }) 
   await expect(app.getByRole('status')).toContainText('(p → (q → r))');
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(page.viewportSize().width + 1);
 });
-test('tree layout and accessibility in light and dark themes', async ({ page }, info) => {
+test('tree layout and accessibility in light and dark themes', async ({ page }) => {
   await page.goto(chapter);
   const app = page.locator('[data-logic-app="parser"]');
   await app.getByRole('button', { name: 'Last step', exact: true }).click();
@@ -93,7 +93,6 @@ test('tree layout and accessibility in light and dark themes', async ({ page }, 
     await page.evaluate(theme => document.documentElement.dataset.theme = theme, theme);
     const results = await new AxeBuilder({ page }).include('[data-logic-app="parser"]').analyze();
     expect(results.violations).toEqual([]);
-    await app.screenshot({ style: '.site-header, .back-to-top { visibility: hidden !important; }', path: `tmp/content-review/formal-languages/${info.project.name}-${theme}-parser.png` });
   }
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(page.viewportSize().width + 1);
 });

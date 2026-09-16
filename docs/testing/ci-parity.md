@@ -11,6 +11,15 @@ all twelve cases, checks review and restart, and runs an accessibility audit.
 Other tests retain their default timeout; no retries mask failures. Formula
 fitting diagnostics report the overflowing expression and measured widths.
 
+## Parser accessibility checks
+
+Keep the light/dark accessibility and reflow assertions independent of review
+screenshots. In the 16 September Linux CI trace, each parser element screenshot
+took about 25 seconds; both accessibility audits passed, but the screenshots
+exhausted the test budget. The routine test no longer captures those images.
+CI still retains traces and failure screenshots. Capture intentional visual
+reviews separately, using `testInfo.outputPath(...)` for their artifacts.
+
 ## Slide tests
 
 Regular slide tests verify each released source, frame manifest and SVG hashes.

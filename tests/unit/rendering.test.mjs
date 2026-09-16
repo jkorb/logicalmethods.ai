@@ -6,6 +6,7 @@ import path from 'node:path';
 import {load} from 'cheerio';
 
 test('Hugo separates Unicode math, literal code and reusable direct SVG exports', async t => {
+  await mkdir('tmp', {recursive:true});
   const root = await mkdtemp(path.resolve('tmp/rendering-fixture-'));
   t.after(() => rm(root, {recursive:true, force:true}));
   for (const dir of ['content','layouts/_default/_markup','layouts/shortcodes','layouts/partials/figures','assets/img']) await mkdir(path.join(root,dir),{recursive:true});
