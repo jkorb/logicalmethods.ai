@@ -32,6 +32,7 @@ separate from the normal build. Ordinary `hugo -D` excludes the staged deck file
 
 ## Notes
 
+- [Efficient slide work](agent-workflow.md) — scope reading, edits and visual review.
 - [Teach and read](teaching.md) — navigation, `narration.yaml`, no-JavaScript.
 - [Install the local authoring tools](authoring-setup.md) — the editor and saving.
 - [Slide management](slide-management.md) — adding, reordering, renumbering.
@@ -42,4 +43,5 @@ separate from the normal build. Ordinary `hugo -D` excludes the staged deck file
 - [Image review](image-review.md) — licence clearance before release.
 - [Content review](content-review.md) — what each lecture still needs.
 - [Publishing a lecture](publishing.md) — the release checklist.
-- [Validation](validation.md) — which test covers what.
+- [Validation](validation.md) — select checks for the changed lecture or tool.
+- [Slide test coverage](test-coverage.md) — what the optional suites exercise.

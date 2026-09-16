@@ -3,6 +3,8 @@
 [`docs/`](docs/README.md) is an Obsidian vault: many small, single-topic notes,
 linked with ordinary relative Markdown links. **Read the folder index, then open
 only the note you need.** Do not load a whole area to answer one question.
+Begin with the requested files; expand reading only to resolve a specific
+dependency or uncertainty.
 
 | Area | Index | For |
 | --- | --- | --- |
@@ -17,17 +19,33 @@ Edit source files, not generated `public/` output. Preserve existing page paths,
 anchors, and IDs unless the task calls for changing them. Treat bundled libraries
 as dependencies; prefer project CSS, JavaScript, and templates for site changes.
 
-Validate site changes with `hugo -D` and inspect affected pages when rendering or
-interaction changes. CI includes drafts in the published site. `hidden`, `locked`,
-and exercise passwords do not provide access control.
+CI includes drafts in the published site. `hidden`, `locked`, and exercise
+passwords do not provide access control.
 
-Run the narrowest check that covers your change — `npm run check` for content,
-one spec for one interaction — and the full `npm test` before pushing. The
-change-to-suite map and the targeted-run syntax are in
-[Running only what your change affects](docs/testing/targeted-runs.md). Read a
-browser failure from the assertion and code frame it prints; the
-`error-context.md` files under `tmp/test-results/` are whole-page dumps and are
-not worth opening.
+## Work scope and validation
+
+- Batch related edits before validation. Run the narrowest checks in the
+  [change-to-suite map](docs/testing/targeted-runs.md).
+- For prose-only edits, run `npm run check` once after the batch. Browser and
+  screenshot review require a concrete rendering concern.
+- For rendering changes, inspect the changed component on representative affected
+  pages. For interaction changes, run the relevant browser specs.
+- `npm run check` includes the `hugo -D` build; `npm test` includes `check`.
+  Avoid duplicate runs on unchanged source. Run the full `npm test` before pushing.
+- After required checks pass, finish. Repeat or broaden validation only because
+  of further edits, a failure, or a named unresolved concern.
+- Keep verbose logs in `tmp/`; return summaries and relevant failure excerpts.
+  Read browser failures from the assertion and code frame, not the whole-page
+  `error-context.md` dumps under `tmp/test-results/`.
+- Invoke named npm scripts directly so command-prefix approvals can match; avoid
+  shell wrappers and redirection when requesting test execution outside the sandbox.
+
+## Commits
+
+When asked to commit, include only this task's changes and necessary supporting
+files. A dirty worktree is expected; do not ask whether to include unrelated work.
+Stage specific files or hunks, preserve other edits and staged work, and review
+the staged diff. Follow [Commit scope and messages](docs/technical/commits.md).
 
 ## Keeping the vault current
 

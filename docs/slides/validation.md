@@ -1,32 +1,32 @@
 # Validation
 
+Select checks by the change; this is not a checklist to run after every edit.
+Batch edits and follow [Efficient slide work](agent-workflow.md) for visual review.
+
+| Change | Validation after the batch |
+| --- | --- |
+| Released deck content or narration | `npm run check`, then the target lecture's tests in `slides.spec.mjs`. |
+| Staged deck content or narration | Target lecture's preview test; normal-site checks do not inspect staged content. |
+| Scene preservation or image removal | Target lecture's preservation test, when its local archive is available. |
+| Editor or save code | `npm run slides:test`. |
+| Shared exporter/model code | Relevant unit tests, regenerate affected decks, then their viewer/preview and preservation checks. |
+| Viewer, shortcode or shared slide styles | Build, then full `slides` and `privacy` browser specs. |
+| Publication state | `npm run check` and full `slides` and `privacy` browser specs; follow [Publishing](publishing.md). |
+
+For example, after building a released deck, or with a staged deck and its local
+archive present:
+
 ```sh
-npm run check
-npm run test:browser -- tests/browser/slides.spec.mjs
-npm run slides:test
-# With the ignored local archives and all twelve sources present:
-npm run slides:test:preservation
-npm run slides:test:preview
+npm run test:browser -- tests/browser/slides.spec.mjs --grep 'logic-and-ai:'
+npm run slides:test:preview -- --grep '^Lecture 3:'
+node --test --test-name-pattern '^Lecture 3 ' tools/slides/preservation.test.mjs
 ```
 
-`slides:test` needs the optional authoring tools. It runs an actual browser edit
-and save against temporary copies of the cleared Lecture 1 scene, checks the
-backup, preserves original metadata/images/elements, rejects a stale revision and
-a foreign-origin save, and checks that the editor contacts no external host. It
-binds port 4184; `SLIDES_DATA_DIR` points its server at the test copies. The real
-sources are not modified. Regular `npm test` includes released-source/export
-integrity, Git exclusion and viewer checks, without requiring private original
-archives.
-
-`slides:test:preview` builds the isolated review overlay, checks all 214 frames
-for local image loading and navigation, and produces a contact sheet per lecture.
-Normal browser tests also verify that Lectures 2–12 expose no deck assets in a
-regular build.
-
-Review screenshots belong in `tmp/slides-review/`, never in the source archive.
-Original/final contact sheets from the initial migration are there for local
-comparison. Those temporary review artifacts are not part of the published site.
+These are separate examples, not three checks for every lecture. Update affected
+test expectations when intentionally changing counts, order or described content.
+Run the full `npm test` before pushing; do not rerun `check` separately then.
 
 ## Related
 
+- [Slide test coverage](test-coverage.md) — editor, preview and preservation details.
 - [Browser suites](../testing/browser-suites.md) — what `slides.spec.mjs` covers.

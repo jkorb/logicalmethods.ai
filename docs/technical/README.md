@@ -12,4 +12,5 @@ How the site is built, where its sources live, and how it is deployed.
 - [Regenerating the mascot](mascot.md) — exporting poses from Excalidraw.
 - [Temporary working files](temporary-files.md) — what belongs in `tmp/`.
 - [Deployment](deployment.md) — GitHub Pages workflow and settings.
+- [Commit scope and messages](commits.md) — isolate task changes and describe their purpose.
 - [Validation and known caveats](caveats.md) — what the checks do not cover.

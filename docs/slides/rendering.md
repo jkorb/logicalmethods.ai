@@ -1,15 +1,20 @@
 # Rendering
 
-After saving:
+After a batch of scene edits, render only the lecture you changed:
 
 ```sh
-npm run slides:render
-hugo -D
+npm run slides:render -- lecture-2
 ```
 
 Refresh the Hugo preview to see the regenerated slides. Rendering is explicit,
-not automatic on save. To render just one deck, use
-`npm run slides:render -- lecture-2`. To use a different editor port, run
+not automatic on save. Each render exports the complete selected deck; batch
+edits instead of rendering after every frame. Use bare `npm run slides:render`
+only when all decks need fresh exports, such as after a shared exporter change.
+Narration-only edits do not require rendering. Build the site once when needed
+for validation; `npm run check` already includes that build. See
+[Efficient slide work](agent-workflow.md) and [Validation](validation.md).
+
+To use a different editor port, run
 `SLIDES_PORT=4180 npm run slides:edit`. Stop with **Stop editor** in the browser
 or Ctrl+C in the terminal. Neither action renders; rendering is always a separate
 command. The stop button warns about unsaved changes and waits for active saves.

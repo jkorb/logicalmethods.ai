@@ -1,12 +1,16 @@
 # While editing
 
-`npm run check` is the faster option for content edits. It runs the build,
-content checks, link checks, documentation checks, and Markdown linter without
-opening a browser. Use `npm test` before pushing, or whenever you change
-templates, styles, or interactive features.
+For content edits, batch related changes and run `npm run check` once. It runs
+unit tests, the build, content checks, link checks, documentation checks, and the
+Markdown linter without opening a browser. For templates, styles, or interactive
+features, use the [change-to-suite map](targeted-runs.md). Run `npm test` before
+pushing.
 
 Both commands build from scratch into `tmp/site/`, including draft pages.
 Build warnings count as failures. Neither command changes your source files.
+`check` includes the `hugo -D` build, and `test` includes `check`; do not run them
+again on unchanged source. After required checks pass, finish unless further
+edits, a failure, or a named unresolved concern justify more validation.
 The browser tests use port 4173, so you can leave a Hugo preview running on 1313.
 
 ## Reading a failure
@@ -19,8 +23,10 @@ is normally enough. For more, open the report:
 npx playwright show-report tmp/playwright-report
 ```
 
-The report includes screenshots and traces. All local reports and temporary
-builds live under the Git-ignored `tmp/` directory.
+CI reports include failure screenshots and traces; automatic local capture is off
+by default, though individual tests may save screenshots explicitly. Keep verbose
+logs under `tmp/` and return summaries and relevant failure
+excerpts. All local reports and temporary builds also live there.
 
 Do not read the `error-context.md` files a failure leaves in
 `tmp/test-results/`. They are whole-page accessibility snapshots, up to a
