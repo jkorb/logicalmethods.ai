@@ -11,17 +11,36 @@ gets a slide. The course-team and attendance slides are gone, so anyone can
 teach from the deck, and every image is removed. Slides are illustrated from
 the book's own drawings in `assets/img/drawings/sources/` and from the icon
 library; keep using those two sources rather than importing pictures. It also
-carries the first `narration.yaml`. Lecture 2 still has a course-team slide with
-the same unreviewed staff photographs.
+carries the first `narration.yaml`.
+
+**Lecture 2 has been revised and released** the same way against chapter 2, and
+now runs to 20 slides, the same length as Lecture 1. Learning goals open it, the course-team and attendance slides are
+gone, and all six images are removed, so nothing in it is unreviewed
+third-party work. The gaps against the chapter are filled: the ice-cream
+conditional, extensional definition and set abstraction, the empty string,
+inductive definitions labelled by base case, induction step and closure, the
+two modelling-assumption notes, metavariables, rewrite rules and a derivation,
+abstract syntax trees and the vocabulary of rooted trees, the parsing algorithm
+in pseudocode, the level-crossing reading of `¬p ∧ q`, and the bracketing
+conventions. It carries the deck's second `narration.yaml`. The mushroom and
+flag drawings are the only artwork kept from the original scene; the rest comes
+from `assets/img/drawings/sources/`, the icon library and Lecture 1's mascot.
+The ice cream for the promise example is a new book drawing,
+`gimmick_ice_cream`. Its pseudocode slide is the first use of font family 3,
+Cascadia, which the exporter embeds like the other faces.
+
+A book drawing placed on a slide has to be scaled **with its stroke widths**, the
+way a browser scales the chapter's SVG. Scaling the geometry alone leaves a
+shrunken figure wearing its full-size lines, which is what makes a reused drawing
+look wrong beside the same figure in the chapter. Copied drawings also keep their
+own `roughness`; only the deck's own furniture uses the clean stroke style.
 
 Lectures 3–12 were copied byte-for-byte, without automatic font or notation
-replacement. Lecture 2 has local migration adjustments, but remains unreleased.
-Review them against the book, including historical staff/attendance information,
-terminology, proof examples, screenshots and image rights. Lecture 3 retains two
-“Todo” frames; Lecture 7 also has an unfinished note on its proof-systems slide.
-Lecture 9 ends with the Lean Game Server screenshot. Blank-looking, closing and
-unnumbered frames were kept. Lecture 2 has 18 frames despite its original
-numbering ending at 16.
+replacement. Review them against the book, including historical
+staff/attendance information, terminology, proof examples, screenshots and
+image rights. Lecture 3 retains two “Todo” frames; Lecture 7 also has an
+unfinished note on its proof-systems slide. Lecture 9 ends with the Lean Game
+Server screenshot. Blank-looking, closing and unnumbered frames were kept.
 
 Lecture 4's two loose rectangles sit outside every frame. They remain unchanged
 in the source and archive, and are explicitly recorded in the manifest's

@@ -22,8 +22,8 @@ test('saving preserves metadata, unused files and removed elements as deleted hi
   assert.deepEqual(saved.files, original.files);
   assert.equal(saved.elements.find(e => e.id === 'text').isDeleted, true);
 });
-test('released Lecture 1 has a current complete export', async () => {
-  const manifest = JSON.parse(await readFile('slides/lecture-1.json'));
+for (const n of [1, 2]) test(`released Lecture ${n} has a current complete export`, async () => {
+  const manifest = JSON.parse(await readFile(`slides/lecture-${n}.json`));
   const raw = await readFile(`slides/${manifest.source}`);
   const source = JSON.parse(raw);
   validateScene(source);
@@ -47,11 +47,13 @@ test('released Lecture 1 has a current complete export', async () => {
 test('unreviewed slide originals and exports cannot enter the Git release', async () => {
   const { execFileSync } = await import('node:child_process');
   const tracked = execFileSync('git', ['ls-files', '-z'], { encoding: 'utf8' }).split('\0').filter(Boolean);
+  const released = ['slides/sources/Lecture 1.excalidraw', 'slides/sources/Lecture 2.excalidraw'];
+  const releasedDecks = ['content/slides/logic-and-ai/deck/', 'content/slides/formal-languages/deck/'];
   const excluded = name => /^slides\/(archive|images|unpublished)\//.test(name)
-    || (name.startsWith('slides/sources/') && name !== 'slides/sources/Lecture 1.excalidraw')
-    || (/^content\/slides\/[^/]+\/deck\//.test(name) && !name.startsWith('content/slides/logic-and-ai/deck/'));
+    || (name.startsWith('slides/sources/') && !released.includes(name))
+    || (/^content\/slides\/[^/]+\/deck\//.test(name) && !releasedDecks.some(deck => name.startsWith(deck)));
   assert.deepEqual(tracked.filter(excluded), []);
-  for (let n = 2; n <= 12; n++) {
+  for (let n = 3; n <= 12; n++) {
     const manifest = JSON.parse(await readFile(`slides/lecture-${n}.json`));
     assert.equal(manifest.publication, 'unpublished');
     assert.ok(manifest.output.startsWith('slides/unpublished/'));
@@ -59,7 +61,7 @@ test('unreviewed slide originals and exports cannot enter the Git release', asyn
       assert.equal(execFileSync('git', ['check-ignore', '--no-index', file], { encoding: 'utf8' }).trim(), file);
     }
   }
-  for (const file of ['slides/images/example.png', 'slides/archive/Lecture 1.excalidraw.gz', 'content/slides/formal-languages/deck/slide-01.svg']) {
+  for (const file of ['slides/images/example.png', 'slides/archive/Lecture 1.excalidraw.gz', 'content/slides/valid-inference/deck/slide-01.svg']) {
     assert.equal(execFileSync('git', ['check-ignore', '--no-index', file], { encoding: 'utf8' }).trim(), file);
   }
 });

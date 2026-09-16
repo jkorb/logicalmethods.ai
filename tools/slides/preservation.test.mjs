@@ -12,7 +12,7 @@ for (const n of Array.from({ length: 12 }, (_, i) => i + 1)) {
     assert.equal(digest(original), manifest.originalSha256);
     const raw = await readFile(`slides/${manifest.source}`);
     const source = JSON.parse(raw);
-    if (n > 1) {
+    if (n > 2) {
       assert.equal(manifest.publication, "unpublished");
       assert.ok(manifest.output.startsWith("slides/unpublished/"));
     }

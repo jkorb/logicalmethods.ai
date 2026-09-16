@@ -2,81 +2,100 @@
   "id": "lecture-2",
   "title": "Lecture 2: Formal languages",
   "source": "sources/Lecture 2.excalidraw",
-  "output": "slides/unpublished/formal-languages/deck",
+  "output": "content/slides/formal-languages/deck",
   "originalSha256": "f76183513e9079acbdbd1827458309cfd1f9141d51230a6b245294f59290dd37",
   "slides": [
     {
       "frameId": "49r4PZhFTQTyGK-xFUudf",
-      "title": "Logical methods for AI \u2014 Lecture 2"
+      "title": "Logical methods for AI — Lecture 2"
     },
     {
-      "frameId": "XLMo9HxF6VrmHxzRxloko",
-      "title": "Lecture team"
+      "frameId": "cluOddqMH_f1YU9qM14TE",
+      "title": "What you'll be able to do"
     },
     {
-      "frameId": "QdL7LpkBkvZ1iQBbq0i-E",
-      "title": "Attendance"
+      "frameId": "lKvUhQKw7Ma5cYCuLy-p-",
+      "title": "Why formal languages?"
     },
     {
-      "frameId": "O-wrj2H3TFtltmp0U_My2",
-      "title": "How to talk to an AI"
+      "frameId": "Yy5nB-1EZg6fZUZyFjLvL",
+      "title": "Natural and formal languages"
     },
     {
-      "frameId": "VbJzeyzC7ciJG0DSzToY7",
-      "title": "Formal and natural languages"
+      "frameId": "7viFbquZDabRnqM1v2BAV",
+      "title": "Ambiguity"
     },
     {
-      "frameId": "KwXQWYcW_JMEhoF9OuCBh",
-      "title": "Ambiguity and over-expressiveness"
-    },
-    {
-      "frameId": "LNPshwXGIClaXt85yrtjM",
+      "frameId": "ZgoaRunvIvrMyQiH1Zk-V",
       "title": "Modus ponens"
     },
     {
-      "frameId": "bTAxP4yU6Ri-YUTXM0fGB",
+      "frameId": "OhEzkslsx--EsOl4BU7W0",
+      "title": "When \"if\" says more"
+    },
+    {
+      "frameId": "6lEgoo6xNcUeuo8AjYJqq",
       "title": "Sets"
     },
     {
-      "frameId": "FJjeRcX111d5MmQHOvCgJ",
-      "title": "Infinite sets"
+      "frameId": "L55svxFJPjgq6F0zCtqfL",
+      "title": "Alphabets and strings"
     },
     {
-      "frameId": "Jbs2w_ZpR6xveIotUiX59",
-      "title": "Alphabets"
-    },
-    {
-      "frameId": "-jZhHSaFpxjV8M2KKTxiu",
+      "frameId": "c3ThS_gye98SM7dBD4P8u",
       "title": "Grammars"
     },
     {
-      "frameId": "a2XW5sM92DvOJ_MWdHQzE",
-      "title": "The language of logic"
+      "frameId": "iytnWqoX-bOmNjRHsfXMq",
+      "title": "The language of propositional logic"
     },
     {
-      "frameId": "InzXDZLBlkbWLBGOxkl5v",
-      "title": "Grammar and Backus\u2013Naur form"
+      "frameId": "_hOgUn2bzBcaPs2_AFYC7",
+      "title": "The grammar of L"
     },
     {
-      "frameId": "amDXa2voHm9Ok5gwtxpsl",
-      "title": "Python BNF"
+      "frameId": "Bjq6LeJLOrKdMpm1qjPfC",
+      "title": "BNF and rewrite rules"
     },
     {
-      "frameId": "1RTJvyDdEbMwUqQD1A6KZ",
+      "frameId": "tJBAYtgEfmrcMWp9e-OJo",
       "title": "Parsing"
     },
     {
-      "frameId": "IlUO_qCFlY_SPqg7y7j28",
+      "frameId": "JoJKle--zuRHClWEUJcQi",
+      "title": "Abstract syntax trees"
+    },
+    {
+      "frameId": "LQWuOqGfy-nL5hVJ1BOUh",
+      "title": "The parsing algorithm"
+    },
+    {
+      "frameId": "5IUBcVKh85QgB0ykcnf9l",
       "title": "Unique readability"
     },
     {
-      "frameId": "Q92Q7kaxljCOhA6NGi5CX",
-      "title": "Knowledge representation with logic"
+      "frameId": "MTO7jxcXu3YQw3DzL2y_G",
+      "title": "Conventional notation"
     },
     {
-      "frameId": "RZzh05hmu9MlVeCWeJign",
+      "frameId": "96jmLxjLC8_sJB82BwHDh",
+      "title": "Formalization"
+    },
+    {
+      "frameId": "bMh4Vd5LRqUdQwG6ioyO3",
       "title": "Knowledge bases and expert systems"
     }
   ],
-  "publication": "unpublished"
+  "removedImages": {
+    "reason": "No creator, source or licence could be established for any embedded image in this lecture: a course photograph, an attendance QR code, three portraits and a screenshot. The course publishes under CC BY 4.0. The image elements stay in the scene as deleted history; their bytes were dropped.",
+    "reviewed": "2026-09-16",
+    "fileIds": [
+      "3d12224bf815e3583c69faaa9f936ec2c67cda77411817b77bfe601d0cf3dcd253818b25fb7e3e3a061628673ffdccaf",
+      "6c96834c33c7511b9ddec8ac5a34bc759c19bbb3ebd457d654c1a2d5c7de5aa130abda02bbe5817d09cbccbeecd92a7c",
+      "70a59b8ce77bf19c34d1f96f931425a72de71c4d72321b48bc2c3e9b4dc728557d7ac1c9ac77182d1f901db90b8dbadc",
+      "71c679af180f2558b2b77076227aeb74c418a8610957b9a7224afa0a2bb8503485910e17f70dd545725b865334aae403",
+      "7cf42278e0560e3bc287472dcf15499add60fe86596477ef656d4e6be1b2c714fb373ccb518da692cae67072c55f6d5d",
+      "855360fe05d98fdfe22316a89256839c24a8962fb36f943d9bdd95109e914bcd0e0aadb3a2d2321eddf63ab2aed4fb41"
+    ]
+  }
 }

@@ -13,10 +13,10 @@ fitting diagnostics report the overflowing expression and measured widths.
 
 ## Slide tests
 
-Regular slide tests verify the released source, frame manifest and SVG hashes.
+Regular slide tests verify each released source, frame manifest and SVG hashes.
 The optional `npm run slides:test:preservation` compares all twelve local
 archives and sources; it requires the ignored original imports.
-`tests/browser/slides.spec.mjs` checks all 20 published frames, local resources,
+`tests/browser/slides.spec.mjs` checks all 40 published frames, local resources,
 clicker/keyboard navigation, direct links, full screen, no-JavaScript reading,
 dark-mode control contrast and mobile reflow. The optional `npm run slides:test`
 checks actual Excalidraw editing and backup saves using temporary source copies;

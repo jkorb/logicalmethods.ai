@@ -1,0 +1,371 @@
+# Written description of every slide in Lecture 2, for readers who cannot use
+# the drawn deck. `alt` names the slide image; `body` describes the whole slide
+# in reading order, including what the drawings show. Keep both in step with
+# the scene in slides/sources/Lecture 2.excalidraw after any edit.
+slides:
+  - number: 1
+    alt: Title slide for Logical methods for AI, Lecture 2, on formal languages.
+    body: |
+      A pink title card reads "Logical methods for ∀I, Lecture 2". The A of AI
+      is drawn as the upside-down A of the universal quantifier, ∀, which is
+      the course mascot's name.
+
+      Below the card: "Chapter 2: Formal languages", and the course address,
+      logicalmethods.ai. At the right the mascot ∀I speaks, and what comes out
+      of its mouth is a green screen of ones and zeros.
+
+  - number: 2
+    alt: The five learning goals for this lecture, each tagged with a level of Bloom's taxonomy.
+    body: |
+      Heading: "What you'll be able to do". Introduction: "After this lecture
+      and chapter 2, you can:". Five goals follow, each ticked off with a green
+      check mark and tagged on the right with its level in Bloom's revised
+      taxonomy.
+
+      One: explain why logic and AI need formal languages. Understand. Two:
+      define a language with an alphabet and a grammar. Remember and
+      understand. Three: apply the parsing algorithm to logical formulas.
+      Apply. Four: interpret simple algorithms written in pseudocode.
+      Understand and apply. Five: represent simple information in a formal
+      language. Apply and create.
+
+      Closing line: "Read chapter 2 first; exercise sheet 2 comes after the
+      lecture." The mascot ∀I stands at the right wearing a lit lightbulb.
+
+  - number: 3
+    alt: Why AI needs formal languages, for instructions and for knowledge.
+    body: |
+      Heading: "Why formal languages?". Computers run code; we speak a natural
+      language. Instructions must be exact and executable — that is what
+      programming languages are for. Knowledge has to be written down — that is
+      what knowledge representation languages are for. Both are formal
+      languages.
+
+      Closing line: even sub-symbolic AI is built with code.
+
+      Two drawings on the right. Above, the mascot ∀I speaks a green screen of
+      ones and zeros. Below, a second mascot with a worried face and three
+      question marks over its head hears the instruction "Be intelligent!!".
+
+  - number: 4
+    alt: A two-column comparison of natural and formal languages.
+    body: |
+      Heading: "Natural and formal languages", set out in two columns.
+
+      Natural languages: English, Dutch, Ripuarian; picked up from the people
+      around you; they evolve on their own, just by being used; powerful,
+      everywhere, ambiguous.
+
+      Formal languages: Python, propositional logic, chess notation; learned by
+      conscious effort; designed, changed by decision; one exact meaning per
+      expression.
+
+      A line underneath: language models feed on natural language, and they are
+      built with formal ones.
+
+      Two drawings at the foot. On the left, a bunch of national flags. On the
+      right, the mascot ∀I speaks a screen of ones and zeros to a smaller
+      mascot, who answers with a screen of its own.
+
+  - number: 5
+    alt: The ambiguous mushroom rule, with three mushrooms showing the readings it allows.
+    body: |
+      Heading: "Ambiguity". A yellow card holds the rule we want to give an AI
+      system: "If a mushroom has red spots and gills, then it is not
+      poisonous." A blue card holds what the user tells it: "This mushroom has
+      red spots and gills."
+
+      There are two readings: red spots and red gills, or red spots and gills
+      of whatever colour. Modus ponens applies on one, not the other.
+
+      In blue: read it the wrong way and the system says: eat it.
+
+      The drawing on the right shows three mushrooms with brown caps and red
+      spots, labelled with arrows: one has red gills, one has no gills, and one
+      has gray gills.
+
+  - number: 6
+    alt: The rule of modus ponens, its schematic form, and an everyday instance.
+    body: |
+      Heading: "Modus ponens". A green card gives the rule: from an if-then
+      statement and its if-part, infer its then-part.
+
+      Under "The form", an inference figure: from the premises "If A, then B"
+      and "A", ruled off, the conclusion "B". Under "An example", the same
+      figure with English sentences: from "If the door is open, you can come
+      in." and "The door is open.", the conclusion "You can come in."
+
+      The rule is valid for any statements A and B. Closing line: the rule does
+      not look inside A and B, so their reading is everything.
+
+  - number: 7
+    alt: The ice-cream promise, which suggests more than it literally says.
+    body: |
+      Heading: "When 'if' says more". The mushroom rule is unambiguous once it
+      reads "red spots and red gills", and it still says nothing about other
+      mushrooms.
+
+      A yellow card holds a promise: "If you behave well, I will buy you an
+      ice-cream." The child also hears: behave badly, no ice-cream. That is an
+      expectation, not a valid inference.
+
+      Closing line: formalizing forces the choice; it does not make it for us.
+
+      On the right, a drawn ice-cream cone with three scoops and a cherry, and
+      below it Little Jimmy, the course's stick figure in a propeller cap.
+
+  - number: 8
+    alt: The definition of a set, its membership notation, and the two ways of describing one.
+    body: |
+      Heading: "Sets". A set is an abstract collection of objects. In the
+      notation, "a ∈ S" reads "a is an element of S" and "a ∉ S" reads "a is
+      not an element of S". A set is fixed by its members: no order, no
+      repeats.
+
+      Two ways to describe one. List them: { 2, 3, 5, 7 }. Or give a condition:
+      P = { x : x is prime }. Most sets we want are infinite: N = { 1, 2, 3,
+      … }.
+
+      Closing line: a condition can describe a set we could never finish
+      listing.
+
+      The drawing at the right is the book's set picture: a yellow rectangle of
+      assorted objects — a rabbit, a cardboard box, a playing card, a beer, a
+      soda can, a lightbulb, a mouse and several little people — with a green
+      outline drawn around some of them.
+
+  - number: 9
+    alt: The definition of a formal language, the alphabet of digits, and the Kleene star.
+    body: |
+      Heading: "Alphabets and strings". A green card gives the definition: a
+      formal language is a set of finite strings of symbols from an alphabet.
+
+      Σ = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }; any set will do. Σ* is every finite
+      string over Σ. ε is the empty string, in Σ* too.
+
+      A blue card lists strings of that alphabet: 15935304888, 249583, and 2.
+      Below them 000881, marked with a red cross and labelled "a string, but
+      not a numeral".
+
+      Closing lines: a language is a small part of Σ*, so to pick out the
+      strings we want, we need a grammar.
+
+  - number: 10
+    alt: An inductive definition of the numerals, in three clauses, with a worked construction.
+    body: |
+      Heading: "Grammars". A green card gives the definition: a grammar is a
+      collection of rules for generating the strings of a formal language.
+
+      Then an inductive definition of the numerals, in three labelled clauses.
+      Base case: each of 0, 1, 2, …, 9 is a numeral. Induction step: if N is a
+      numeral other than 0, then so are N0, N1, N2, …, N9. Closure: nothing
+      else is a numeral.
+
+      A yellow strip shows the construction running: "1 is a numeral" leads to
+      "12 is a numeral" leads to "120 is a numeral", ticked with a green check.
+      A pink card below it reads "01 is not a numeral", marked with a red
+      cross.
+
+      A note at the right: three rules, infinitely many numerals, each with its
+      own construction.
+
+  - number: 11
+    alt: The alphabet of propositional logic and a table of its five operators.
+    body: |
+      Heading: "The language of propositional logic". The alphabet is written
+      out and annotated in three colours:
+
+      Σ = { p₁, p₂, p₃, …, ¬, ∧, ∨, →, ↔, (, ) }
+
+      The variables p₁, p₂, p₃, … are underlined in red and labelled "variables
+      (atoms)". The operators ¬, ∧, ∨, →, ↔ are underlined in blue and labelled
+      "operators". The brackets are underlined in green and labelled
+      "auxiliaries".
+
+      A table with three columns — operator, name, reading — and five rows. ¬
+      is negation, read "not …". ∧ is conjunction, read "… and …". ∨ is
+      disjunction, read "… or …". → is the conditional, read "if …, then …". ↔
+      is the biconditional, read "… if and only if …".
+
+      Closing lines: in practice we write p, q, r; in AI, RAIN or WIND. And the
+      modelling assumption: one symbol and one reading per connective.
+
+      At the right the mascot ∀I sings, surrounded by musical notes, with a
+      speech bubble showing the operators: "Now I know logic's ABCs. Next time,
+      won't you sing with me?"
+
+  - number: 12
+    alt: The inductive definition of the set L of formulas, with a formula built and a non-formula rejected.
+    body: |
+      Heading: "The grammar of L". The set L of formulas: pᵢ ∈ L for every
+      positive integer i; if A ∈ L, then ¬A ∈ L; and if A, B ∈ L, then
+      (A ∧ B), (A ∨ B), (A → B), (A ↔ B) ∈ L. In blue: and nothing else.
+
+      A blue card, "Building a formula", runs the construction. One: p₁ and p₃
+      are formulas. Two: so (p₁ ∧ p₃) is a formula. Three: p₂ is, so ¬p₂ is.
+      Four: so ((p₁ ∧ p₃) → ¬p₂) is.
+
+      A pink card, "And one that is not", shows the string )p₁¬∧((→ marked with
+      a red cross: → never stands at the end with no formula after it.
+
+      Closing line: A and B are metavariables, so (A ∧ B) is a form, not a
+      formula. A note at the right points at the chapter's formula app, where
+      you can build one yourself.
+
+  - number: 13
+    alt: The same grammar in Backus-Naur form, its six rewrite rules, and a derivation.
+    body: |
+      Heading: "BNF and rewrite rules". Backus-Naur Form gives the same grammar
+      in one line:
+
+      A ::= pᵢ | ¬A | (A ∧ A) | (A ∨ A) | (A → A) | (A ↔ A)
+
+      Read | as "or". Each alternative is a rewrite rule, and the six are
+      listed: A ⟹ pᵢ, A ⟹ ¬A, A ⟹ (A ∧ A), A ⟹ (A ∨ A), A ⟹ (A → A),
+      A ⟹ (A ↔ A). Replace one A at a time; stop when none is left.
+
+      A blue card holds a derivation, each line labelled with the rule used:
+      from A to (A → A) by rule 5, to ((A ∧ A) → A) by rule 3, to ((p ∧ A) → A)
+      and then ((p ∧ q) → A) by rule 1, to ((p ∧ q) → ¬A) by rule 2, and
+      finally to ((p ∧ q) → ¬r) by rule 1.
+
+      Closing line: BNF specifies Python, C and Prolog, and email addresses in
+      RFC 5322.
+
+  - number: 14
+    alt: The parsing procedure step by step, with the syntax tree it produces.
+    body: |
+      Heading: "Parsing". A green card gives the definition: parsing
+      reconstructs how a string was built according to the grammar of its
+      language.
+
+      The procedure: which construction could have produced it? Put that
+      operator in its place; take the parts. Stop at variables, the base case.
+      No construction fits? Not a formula.
+
+      Closing lines: parsing decides membership and hands us the structure, and
+      what the parts mean comes later, following that structure. A note in blue
+      points at the chapter's parser app, where you can step through it.
+
+      At the right, the formula ((p ∧ q) → ¬r) and its tree: → at the top, with
+      ∧ below to the left and ¬ below to the right; ∧ has the leaves p and q,
+      and ¬ has the leaf r. Below the tree the mascot ∀I holds a signpost with
+      the same formula on it.
+
+  - number: 15
+    alt: The vocabulary of rooted trees, illustrated on the book's tree diagram.
+    body: |
+      Heading: "Abstract syntax trees". A green card gives the definition: an
+      abstract syntax tree represents the inductive structure of an expression.
+
+      A rooted tree is nodes joined by edges. There is one root at the top, and
+      the tree grows down. There is one path from the root to every other node.
+      Childless nodes are leaves.
+
+      Closing lines: order matters, because the left part of → is the if-part;
+      and the tree is called abstract because the brackets are gone — the links
+      record the grouping.
+
+      The drawing at the right is the book's labelled tree: a red root at the
+      top, black nodes below it joined by arrows, blue leaves at the bottom,
+      with "root", "edge", "branch" and "leaves" labelled on the diagram. A
+      note beneath it: rooted trees turn up all through the book.
+
+  - number: 16
+    alt: The parsing algorithm written in pseudocode, with notes on recursion, termination and correctness.
+    body: |
+      Heading: "The parsing algorithm". A green card gives the definition: an
+      algorithm takes an input and produces an output in finitely many steps.
+
+      A grey card holds the pseudocode. The procedure parse takes an
+      expression. If the expression is a variable, it returns a single node. If
+      it begins with a negation, it removes that negation, parses the smaller
+      expression, and returns a negation tree over the result. If it has binary
+      form, it parses the left part and the right part, takes the main
+      operator, and returns a binary tree of the operator over the two results.
+      Otherwise it fails with "Not a formula".
+
+      Notes at the right: recursion, because parse calls itself on the smaller
+      parts; termination, because every call gets a shorter input; and
+      correctness, because there is one case per construction, so every formula
+      parses and nothing else does.
+
+      Closing line: in, a string; out, its tree, or "not a formula".
+
+  - number: 17
+    alt: Unique readability, the two trees an unbracketed grammar allows, and the level-crossing example.
+    body: |
+      Heading: "Unique readability". A green card states the theorem: our fully
+      bracketed grammar has unique readability — every formula has exactly one
+      tree.
+
+      Drop the brackets, so that A ::= pᵢ | ¬A | A ∧ A, and it is ambiguous:
+      ¬p ∧ q now has two structures. Both are drawn. The first has ∧ at the
+      root, with ¬ over p on the left and q on the right, and is captioned
+      (¬p ∧ q). The second has ¬ at the root over ∧, which carries p and q, and
+      is captioned ¬(p ∧ q).
+
+      At the right, "A level crossing": two drawn signals, one showing red for
+      cars (p) and one showing green for trains (q). ¬(p ∧ q) is the safety
+      rule; (¬p ∧ q) instead stops the cars for nothing.
+
+      A note beside the theorem: brackets record which structure we mean, not
+      what the speaker meant.
+
+  - number: 18
+    alt: The bracket-saving conventions, with a table of fully bracketed formulas and their abbreviations.
+    body: |
+      Heading: "Conventional notation". (((p ∧ q) ∧ r) ∧ s) is really
+      p ∧ q ∧ r ∧ s.
+
+      The conventions: drop the outermost brackets; priority, highest first, is
+      ¬, ∧, ∨, →, ↔; repeated ∧ and ∨ group left, repeated → groups right; and
+      keep brackets for repeated ↔, and to override.
+
+      A grey table pairs fully bracketed formulas with their conventional
+      abbreviations: (((p ∧ q) ∧ r) ∧ s) with p ∧ q ∧ r ∧ s; (p ∧ (q ∧ r)) with
+      p ∧ (q ∧ r); and ((p ∨ q) ∧ r) with (p ∨ q) ∧ r.
+
+      Closing line: abbreviations only — our parser still rejects p ∧ q.
+
+  - number: 19
+    alt: Formalizing claims about a letter in a desk with two drawers, as a table of formulas.
+    body: |
+      Heading: "Formalization". A green card gives the definition:
+      formalization represents information from natural language in a formal
+      one.
+
+      Two propositional variables are stipulated: LEFT, the letter is in the
+      left drawer; RIGHT, the letter is in the right drawer. A table then pairs
+      English claims with their formulas. "Not in the left drawer" is ¬LEFT.
+      "Not in the left, and not in the right" is (¬LEFT ∧ ¬RIGHT). "In the left
+      or the right" is (LEFT ∨ RIGHT). "In one of them, but not both" is
+      ((LEFT ∨ RIGHT) ∧ ¬(LEFT ∧ RIGHT)). "In the left only if not in the
+      right" is (LEFT → ¬RIGHT). "In the left just in case not in the right" is
+      (LEFT ↔ ¬RIGHT).
+
+      Closing line: engineering, not mathematics — a good formalization depends
+      on the purpose.
+
+      The drawing at the right shows the mascot ∀I beside a desk with two
+      drawers, wondering where the letter is.
+
+  - number: 20
+    alt: Knowledge bases and expert systems, with a worked knowledge base in propositional logic.
+    body: |
+      Heading: "Knowledge bases and expert systems". A knowledge base (KB) is a
+      set of formulas: you ASK it what is known, and TELL it something new. An
+      expert system is a knowledge base plus an inference engine, which derives
+      consequences with modus ponens and other rules. A query may be settled,
+      refuted, or neither.
+
+      A blue card works a small knowledge base through, continuing the drawer
+      example: KB = { (LEFT ∨ RIGHT), ¬LEFT }. ASK RIGHT? — derived: the letter
+      is in the right drawer. TELL ¬RIGHT — now the KB settles both, so it is
+      inconsistent. In blue: a derivation shows what follows from the KB, not
+      what is true.
+
+      Closing line: a rule-based system can point at the facts and rules behind
+      an answer. At the top right: "Next: valid inference (ch. 3)". Below it,
+      the drawing of an expert system as a mascot: a blue database cylinder for
+      a body and an inference-engine chip for a head.

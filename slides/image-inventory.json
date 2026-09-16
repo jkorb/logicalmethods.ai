@@ -1,39 +1,11 @@
 {
-  "policy": "Review image sources and licences before publication; matching a workspace filename does not establish rights. Lecture 1 is cleared: every embedded image without a rights record was removed, and the decision is recorded in slides/lecture-1.json. Lectures 2-12 keep their images visible at the maintainer request and are still unreviewed.",
+  "policy": "Review image sources and licences before publication; matching a workspace filename does not establish rights. Lectures 1 and 2 are cleared: every embedded image without a rights record was removed, and each decision is recorded in slides/lecture-1.json and slides/lecture-2.json. Lectures 3-12 keep their images visible at the maintainer request and are still unreviewed.",
   "images": [
-    {
-      "fileId": "7cf42278e0560e3bc287472dcf15499add60fe86596477ef656d4e6be1b2c714fb373ccb518da692cae67072c55f6d5d",
-      "mimeType": "image/jpeg",
-      "sha256": "261ad8460c12baed0cf1d1bdaa9318243ecc298659343bdfd9611f5a26bd0043",
-      "uses": [
-        {
-          "lecture": "lecture-2",
-          "slide": 2,
-          "title": "Lecture team",
-          "elementIds": [
-            "h1aAh_2F8p73XgYapU0Pd"
-          ]
-        }
-      ],
-      "reviewStatus": "unverified",
-      "sourceURL": null,
-      "license": null,
-      "workspaceMatch": null,
-      "imagePath": "slides/images/261ad8460c12baed0cf1d1bdaa9318243ecc298659343bdfd9611f5a26bd0043.jpg"
-    },
     {
       "fileId": "6c96834c33c7511b9ddec8ac5a34bc759c19bbb3ebd457d654c1a2d5c7de5aa130abda02bbe5817d09cbccbeecd92a7c",
       "mimeType": "image/jpeg",
       "sha256": "18d60bdd1e3a153ffada08ce27a886d711c218b35aae39247dd6c06db8cf85fe",
       "uses": [
-        {
-          "lecture": "lecture-2",
-          "slide": 10,
-          "title": "Alphabets",
-          "elementIds": [
-            "nXPbQryyTqg1BIkMfzJ0i"
-          ]
-        },
         {
           "lecture": "lecture-10",
           "slide": 5,
@@ -53,87 +25,10 @@
       "imagePath": "slides/images/18d60bdd1e3a153ffada08ce27a886d711c218b35aae39247dd6c06db8cf85fe.jpg"
     },
     {
-      "fileId": "855360fe05d98fdfe22316a89256839c24a8962fb36f943d9bdd95109e914bcd0e0aadb3a2d2321eddf63ab2aed4fb41",
-      "mimeType": "image/jpeg",
-      "sha256": "e01ab39446c4e04fac7e7dd90e93e2c5d58dc463d0d566cf572fae4d08e10836",
-      "uses": [
-        {
-          "lecture": "lecture-2",
-          "slide": 13,
-          "title": "Grammar and Backus–Naur form",
-          "elementIds": [
-            "_cQ05SHFWtT5RS0ya1Ddb"
-          ]
-        }
-      ],
-      "reviewStatus": "unverified",
-      "sourceURL": null,
-      "license": null,
-      "workspaceMatch": {
-        "filename": "John_Backus_2.jpg",
-        "method": "identical bytes"
-      },
-      "imagePath": "slides/images/e01ab39446c4e04fac7e7dd90e93e2c5d58dc463d0d566cf572fae4d08e10836.jpg"
-    },
-    {
-      "fileId": "70a59b8ce77bf19c34d1f96f931425a72de71c4d72321b48bc2c3e9b4dc728557d7ac1c9ac77182d1f901db90b8dbadc",
-      "mimeType": "image/jpeg",
-      "sha256": "6d6c9823355f5396a0a5bedcad01d8ba6461a330017962c1750f3383b11f9c73",
-      "uses": [
-        {
-          "lecture": "lecture-2",
-          "slide": 13,
-          "title": "Grammar and Backus–Naur form",
-          "elementIds": [
-            "uax7hpiRTp1D_DYKMJafm"
-          ]
-        }
-      ],
-      "reviewStatus": "unverified",
-      "sourceURL": null,
-      "license": null,
-      "workspaceMatch": {
-        "filename": "Peternaur.JPG",
-        "method": "identical bytes"
-      },
-      "imagePath": "slides/images/6d6c9823355f5396a0a5bedcad01d8ba6461a330017962c1750f3383b11f9c73.jpg"
-    },
-    {
-      "fileId": "71c679af180f2558b2b77076227aeb74c418a8610957b9a7224afa0a2bb8503485910e17f70dd545725b865334aae403",
-      "mimeType": "image/png",
-      "sha256": "88c638aca6313affc2e9e0073604f32a41d80c8c507dd6a5ab75c0f13dd8524b",
-      "uses": [
-        {
-          "lecture": "lecture-2",
-          "slide": 14,
-          "title": "Python BNF",
-          "elementIds": [
-            "m2X4oahuZF6ei6pM-vo-D"
-          ]
-        }
-      ],
-      "reviewStatus": "unverified",
-      "sourceURL": null,
-      "license": null,
-      "workspaceMatch": {
-        "filename": "python_bnf.png",
-        "method": "identical bytes"
-      },
-      "imagePath": "slides/images/88c638aca6313affc2e9e0073604f32a41d80c8c507dd6a5ab75c0f13dd8524b.png"
-    },
-    {
       "fileId": "3d12224bf815e3583c69faaa9f936ec2c67cda77411817b77bfe601d0cf3dcd253818b25fb7e3e3a061628673ffdccaf",
       "mimeType": "image/png",
       "sha256": "19813651577e6dcf144610167acea114bdec232b45430b41548cd081b8ddaa44",
       "uses": [
-        {
-          "lecture": "lecture-2",
-          "slide": 3,
-          "title": "Attendance",
-          "elementIds": [
-            "8hn6_CyAynYTc821gGQpQ"
-          ]
-        },
         {
           "lecture": "lecture-5",
           "slide": 2,

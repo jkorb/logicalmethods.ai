@@ -1,21 +1,24 @@
 # Images and publication review
 
-**Lecture 1 is cleared; Lectures 2–12 are not.** Every embedded image in
+**Lectures 1 and 2 are cleared; Lectures 3–12 are not.** Every embedded image in
 Lecture 1 was removed on 14 September 2026, because no creator, source or licence
 could be established for any of them and the course publishes under CC BY 4.0,
 which cannot cover third-party work. Its manifest's `removedImages` block records
 their original file IDs and the removal decision. The separate
 `releaseImageReview` block records the four subsequently added official logo
-assets removed for this release. The image elements remain in the
+assets removed for this release. Lecture 2's six images — a course photograph,
+an attendance QR code, portraits of Kleene, Backus and Naur, and a screenshot of
+the Python grammar — went the same way on 16 September 2026, recorded in the
+same shape in `slides/lecture-2.json`. The image elements remain in the
 scene marked deleted, so the editor keeps their history, and
-`slides/archive/Lecture 1.excalidraw.gz` still holds the byte-for-byte original.
+`slides/archive/Lecture N.excalidraw.gz` still holds the byte-for-byte original.
 The optional local preservation test enforces this route: an original image may
 only leave a source through a `removedImages` entry that names it and actually
 drops its bytes.
 
-For the other eleven lectures the maintainer asked that imported images stay
+For the other ten lectures the maintainer asked that imported images stay
 visible for now, and **none of them has been marked licence-cleared**.
-`slides/image-inventory.json` now covers 78 image records across Lectures 2–12,
+`slides/image-inventory.json` now covers 74 image records across Lectures 3–12,
 including unused embedded records. Each record lists slide usages, an `imagePath`
 pointing to its exact extracted file under `slides/images/`, source/licence fields
 and review status. The canonical image bytes remain embedded in each
@@ -29,7 +32,8 @@ Removing an image from a source may leave a review copy under
 Original workspace image files remain in `tmp/excalidraw_workspace_export/img/`.
 Workspace filename matches are candidates only, not evidence of authorship or
 permission. Rendering embeds the images in each SVG: ignored staged SVGs for
-Lectures 2–12. Lecture 1 no longer has any. No separate remote image host is used.
+Lectures 3–12. Lectures 1 and 2 no longer have any. No separate remote image
+host is used.
 
 ## Before releasing a lecture
 

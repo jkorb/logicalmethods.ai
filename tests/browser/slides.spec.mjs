@@ -4,7 +4,7 @@ import AxeBuilder from '@axe-core/playwright';
 // A deck must load from the local build alone, so an offsite request fails here
 // rather than quietly resolving against a stub.
 test.beforeEach(async ({ context }) => { await routeToTestSite(context, { offsite: 'abort' }); });
-for (const [slug, count] of [['logic-and-ai', 20]]) {
+for (const [slug, count] of [['logic-and-ai', 20], ['formal-languages', 20]]) {
   test(`${slug}: all slides load locally and keyboard/clicker navigation works`, async ({ page }, info) => {
     const errors = []; const offsite = [];
     page.on('pageerror', e => errors.push(e.message));
@@ -74,7 +74,7 @@ test('no JavaScript leaves every slide and its text available', async ({ browser
 
 
 test('unreviewed lecture decks remain outside the normal build', async ({ page, request }) => {
-  for (const slug of ['formal-languages', 'valid-inference', 'boolean', 'sat', 'conditionals', 'proof', 'fol', 'fol-inference', 'many-valued', 'probability', 'anns']) {
+  for (const slug of ['valid-inference', 'boolean', 'sat', 'conditionals', 'proof', 'fol', 'fol-inference', 'many-valued', 'probability', 'anns']) {
     expect((await page.goto(`/slides/${slug}/`)).status()).toBe(200);
     await expect(page.locator('[data-slide-deck], iframe, [data-embed]')).toHaveCount(0);
     await expect(page.locator('main')).toContainText('awaiting content and image review');
@@ -83,11 +83,14 @@ test('unreviewed lecture decks remain outside the normal build', async ({ page, 
 });
 
 
-test('an authored deck description names its slides and replaces the extraction', async ({ page }) => {
-  await page.goto('/slides/logic-and-ai/');
+for (const [slug, numbers, [drawn, text]] of [
+  ['logic-and-ai', [1, 12, 20], [['#slide-text-6', 'circle'], ['#slide-text-15', 'timeline']]],
+  ['formal-languages', [1, 11, 20], [['#slide-text-5', 'mushrooms'], ['#slide-text-17', 'signals']]],
+]) test(`${slug}: an authored deck description names its slides and replaces the extraction`, async ({ page }) => {
+  await page.goto(`/slides/${slug}/`);
   const deck = page.locator('[data-slide-deck]');
   // Every slide image is named by a sentence, not by its navigation title.
-  for (const number of [1, 12, 20]) {
+  for (const number of numbers) {
     const image = deck.locator(`[data-slide="${number}"] img`);
     const alt = await image.getAttribute('alt');
     expect(alt.length).toBeGreaterThan(30);
@@ -97,7 +100,7 @@ test('an authored deck description names its slides and replaces the extraction'
   await expect(page.locator('.slide-text pre')).toHaveCount(0);
   await page.locator('.slide-text summary').click();
   // The drawings are described, not just the words printed on the slide.
-  await expect(page.locator('#slide-text-6')).toContainText('circle');
-  await expect(page.locator('#slide-text-15')).toContainText('timeline');
-
+  for (const [selector, description] of [drawn, text]) {
+    await expect(page.locator(selector)).toContainText(description);
+  }
 });
