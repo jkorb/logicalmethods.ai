@@ -1,0 +1,9 @@
+{{/* Intersect any number of contours by nesting clips. Subtraction is a mask
+     supplied by the caller. The same authored paths draw and select regions. */}}
+{{- if .include -}}
+  {{- $first := index .include 0 -}}
+  <g clip-path="url(#{{ .id }}-clip-{{ $first }})">{{ partial "figures/set-region.html" (dict "id" .id "include" (after 1 .include)) }}</g>
+{{- else -}}
+  <path d="M 18 18 H 582 V 342 H 18 Z" class="set-diagram__wash"/>
+  <path d="M 18 18 H 582 V 342 H 18 Z" fill="url(#{{ .id }}-hatch)"/>
+{{- end -}}

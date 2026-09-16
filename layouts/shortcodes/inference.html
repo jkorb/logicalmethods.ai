@@ -3,28 +3,45 @@
      {{< inference rule="MP" >}}
      $A → B$
      $A$
-     ---
+
+       ---
+
      $B$
      {{< /inference >}}
 
-     Lines above the --- are premises, one per line; the line below is the
-     conclusion. Use layout="stacked" for premises underneath one another.
+     Lines above the --- are premises, one per line; the content below is the
+     conclusion. Whitespace and blank lines around the separator are ignored.
+     Use layout="stacked" for premises underneath one another.
 
      The figure carries a text description, so a screen reader gets the
      inference as a sentence rather than three loose fragments. */}}
-{{- $parts := split (trim .Inner "\n ") "\n---\n" -}}
-{{- if ne (len $parts) 2 }}{{ errorf "inference: needs one --- line separating premises from the conclusion (%s)" .Position }}{{ end -}}
+
+{{- $separator := "___HUGO_INFERENCE_SEPARATOR___" -}}
+{{- $inner := trim .Inner " \t\r\n" -}}
+
+{{/* Normalize a --- line, allowing horizontal whitespace around it. Blank
+     lines before and after it remain harmless because each part is trimmed. */}}
+{{- $inner = replaceRE `(?m)^[ \t]*---[ \t]*\r?$` $separator $inner -}}
+{{- $parts := split $inner $separator -}}
+
+{{- if ne (len $parts) 2 -}}
+  {{- errorf "inference: needs exactly one --- line separating premises from the conclusion (%s)" .Position -}}
+{{- end -}}
+
 {{- $premises := slice -}}
-{{- range (split (index $parts 0) "\n") }}{{ with (trim . " ") }}{{ $premises = $premises | append . }}{{ end }}{{ end -}}
-{{- $conclusion := trim (index $parts 1) " \n" -}}
-{{- $plain := printf "From %s, infer %s" (delimit (apply $premises "replaceRE" "[`$]" "" ".") ", " ", and ") ($conclusion | replaceRE "[`$]" "" | plainify) -}}
-<figure class="inference{{ if eq (.Get "layout") "stacked" }} inference--stacked{{ end }}{{ with .Get "class" }} {{ . }}{{ end }}" role="figure" aria-label="{{ $plain }}{{ with .Get "rule" }}, by {{ . }}{{ end }}">
-  <div class="inference__body" aria-hidden="true">
-    <div class="inference__premises">
-      {{- range $premises }}<span class="inference__premise">{{ $.Page.RenderString . }}</span>{{ end -}}
-    </div>
-    <div class="inference__rule-line"></div>
-    <div class="inference__conclusion">{{ $.Page.RenderString $conclusion }}</div>
-  </div>
-  {{- with .Get "rule" }}<figcaption class="inference__label" aria-hidden="true">{{ . }}</figcaption>{{ end -}}
-</figure>
+{{- range (split (index $parts 0) "\n") -}}
+  {{- with (trim . " \t\r") -}}
+    {{- $premises = $premises | append . -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $conclusion := trim (index $parts 1) " \t\r\n" -}}
+
+{{- $plainPremises := apply $premises "replaceRE" "[`$]" "" "." -}}
+{{- $plain := printf
+      "From %s, infer %s"
+      (delimit $plainPremises ", " ", and ")
+      ($conclusion | replaceRE "[`$]" "" | plainify)
+-}}
+
+{{- partial "figures/inference.html" (dict "premises" $premises "conclusion" $conclusion "plain" $plain "layout" (.Get "layout") "class" (.Get "class") "rule" (.Get "rule") "page" .Page) -}}

@@ -1,0 +1,255 @@
+{
+  "countermodels": {
+    "scene": "countermodel",
+    "questions": [
+      {
+        "id": "premises",
+        "label": "True premises",
+        "prompt": "Select every model in which both P and Q are true.",
+        "view": "premises",
+        "explanation": "M₁ and M₂ make both premises true."
+      },
+      {
+        "id": "countermodels",
+        "label": "Countermodels",
+        "prompt": "Select every model in which both premises are true and C is false.",
+        "view": "countermodels",
+        "explanation": "M₂ is a countermodel: it belongs to [P] and [Q], but not [C]. The inference is invalid in this model space."
+      }
+    ]
+  },
+  "abstraction": {
+    "scene": "objects",
+    "levels": true,
+    "questions": [
+      {
+        "id": "alive",
+        "label": "Living things",
+        "prompt": "Select every pictured member of this set.",
+        "formula": "{ x : x is alive }",
+        "predicate": {
+          "all": [
+            "living"
+          ]
+        },
+        "explanation": "The three people, rabbit, mouse, and mushroom are alive. The robot is a machine."
+      },
+      {
+        "id": "boxes",
+        "label": "Boxes",
+        "prompt": "Select every pictured member of this set.",
+        "formula": "{ x : x is a box }",
+        "predicate": {
+          "all": [
+            "box"
+          ]
+        },
+        "explanation": "Both cardboard boxes belong. The school is a building, not a box, even though it has a rectangular shape."
+      },
+      {
+        "id": "drinks",
+        "label": "Beverages",
+        "prompt": "Select every pictured member of this set.",
+        "formula": "{ x : x is a beverage }",
+        "predicate": {
+          "all": [
+            "beverage"
+          ]
+        },
+        "explanation": "The soda and beer are beverages."
+      },
+      {
+        "id": "nonhuman",
+        "label": "Alive, but not human",
+        "prompt": "Select every pictured member of this set.",
+        "formula": "{ x : x is alive and x is not human }",
+        "predicate": {
+          "all": [
+            "living"
+          ],
+          "none": [
+            "human"
+          ]
+        },
+        "explanation": "The rabbit, mouse, and mushroom are alive but not human. A mushroom is a fungus, not an animal."
+      },
+      {
+        "id": "either",
+        "label": "Boxes or beverages",
+        "prompt": "Select every pictured member of this set.",
+        "formula": "{ x : x is a box or x is a beverage }",
+        "predicate": {
+          "any": [
+            "box",
+            "beverage"
+          ]
+        },
+        "explanation": "Both boxes, the soda, and the beer satisfy at least one of the two conditions."
+      },
+      {
+        "id": "both",
+        "label": "Living boxes",
+        "prompt": "Select every pictured member of this set.",
+        "formula": "{ x : x is a box and x is alive }",
+        "predicate": {
+          "all": [
+            "box",
+            "living"
+          ]
+        },
+        "explanation": "No pictured object satisfies both conditions. This set is empty, so select nothing."
+      }
+    ]
+  },
+  "relations": {
+    "scene": "overlap",
+    "levels": true,
+    "questions": [
+      {
+        "id": "overlap-subset",
+        "scene": "overlap",
+        "label": "True or false?",
+        "prompt": "Is this statement true in the diagram?",
+        "statement": "S ⊆ T",
+        "claim": {
+          "kind": "subset",
+          "left": "S",
+          "right": "T"
+        },
+        "explanation": "False. Mr. Sir belongs to S but not T."
+      },
+      {
+        "id": "nested-subset",
+        "scene": "subset",
+        "label": "True or false?",
+        "prompt": "Is this statement true in the diagram?",
+        "statement": "S ⊆ T",
+        "claim": {
+          "kind": "subset",
+          "left": "S",
+          "right": "T"
+        },
+        "explanation": "True. Every member of S also belongs to T."
+      },
+      {
+        "id": "common-member",
+        "scene": "overlap",
+        "label": "True or false?",
+        "prompt": "Is this statement true in the diagram?",
+        "statement": "@{b} ∈ S ∩ T",
+        "claim": {
+          "kind": "intersection-member",
+          "point": "b",
+          "sets": [
+            "S",
+            "T"
+          ]
+        },
+        "explanation": "True. Little Jimmy belongs to both sets."
+      },
+      {
+        "id": "reverse-subset",
+        "scene": "subset",
+        "label": "True or false?",
+        "prompt": "Is this statement true in the diagram?",
+        "statement": "T ⊆ S",
+        "claim": {
+          "kind": "subset",
+          "left": "T",
+          "right": "S"
+        },
+        "explanation": "False. The beer and rabbit belong to T but not S."
+      },
+      {
+        "id": "separate-member",
+        "scene": "separate",
+        "label": "True or false?",
+        "prompt": "Is this statement true in the diagram?",
+        "statement": "@{b} ∈ S ∩ T",
+        "claim": {
+          "kind": "intersection-member",
+          "point": "b",
+          "sets": [
+            "S",
+            "T"
+          ]
+        },
+        "explanation": "False. Little Jimmy belongs only to S in this diagram."
+      },
+      {
+        "id": "empty-intersection",
+        "scene": "separate",
+        "label": "True or false?",
+        "prompt": "Is this statement true in the diagram?",
+        "statement": "S ∩ T = ∅",
+        "claim": {
+          "kind": "empty-intersection",
+          "sets": [
+            "S",
+            "T"
+          ]
+        },
+        "explanation": "True. No member belongs to both sets."
+      },
+      {
+        "id": "intersection-subset",
+        "scene": "subset",
+        "label": "True or false?",
+        "prompt": "Is this statement true in the diagram?",
+        "statement": "S ∩ T ⊆ S",
+        "claim": {
+          "kind": "subset",
+          "left": [
+            "S",
+            "T"
+          ],
+          "right": "S"
+        },
+        "explanation": "True. A member of the intersection must belong to S."
+      },
+      {
+        "id": "beer-member",
+        "scene": "overlap",
+        "label": "True or false?",
+        "prompt": "Is this statement true in the diagram?",
+        "statement": "@{c} ∈ S",
+        "claim": {
+          "kind": "member",
+          "point": "c",
+          "set": "S"
+        },
+        "explanation": "False. The beer belongs to T but not S."
+      }
+    ]
+  },
+  "intersections": {
+    "scene": "overlap",
+    "levels": true,
+    "questions": [
+      {
+        "id": "overlap",
+        "scene": "overlap",
+        "label": "Shared members",
+        "prompt": "Select every member of S ∩ T.",
+        "view": "intersection",
+        "explanation": "Only Little Jimmy belongs to both sets."
+      },
+      {
+        "id": "nested",
+        "scene": "subset",
+        "label": "One set inside another",
+        "prompt": "Select every member of S ∩ T.",
+        "view": "intersection",
+        "explanation": "Only Little Jimmy belongs to S; he also belongs to T."
+      },
+      {
+        "id": "separate",
+        "scene": "separate",
+        "label": "Separate sets",
+        "prompt": "Select every member of S ∩ T. The answer may be empty.",
+        "view": "intersection",
+        "explanation": "The intersection is empty. Select nothing: no member belongs to both sets."
+      }
+    ]
+  }
+}

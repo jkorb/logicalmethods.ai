@@ -294,3 +294,10 @@ body {
   min-inline-size: 2.75rem; min-block-size: 2.75rem;
   display: inline-flex; align-items: center; justify-content: center;
 }
+
+/* Set illustrations retain the notebook's colored regions in both themes. */
+:root { --set-universe: #fff0ac; --set-green: #b2e9bc; --set-rose: #f7c3c9; --set-violet: #e5c0f3; --set-world: #a5d8ff; --set-highlight: #e9b545; }
+:root[data-theme="dark"] { --set-universe: #39331f; --set-green: #28543c; --set-rose: #60373c; --set-violet: #493953; --set-world: #427a9d; --set-highlight: #e9b545; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --set-universe: #39331f; --set-green: #28543c; --set-rose: #60373c; --set-violet: #493953; --set-world: #427a9d; --set-highlight: #e9b545; }
+}

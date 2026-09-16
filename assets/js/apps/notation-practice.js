@@ -30,12 +30,7 @@ export function mountNotationPractice(root) {
   choices.forEach(button => button.addEventListener('click', () => {
     mode = button.dataset.notationMode;
     choices.forEach(choice => choice.setAttribute('aria-pressed', String(choice === button)));
-    root.querySelector('[data-notation-current]').textContent = button.textContent;
-    picker.open = false; picker.querySelector('summary').focus(); show();
+    show();
   }));
-  document.addEventListener('click', event => { if (!picker.contains(event.target)) picker.open = false; });
-  picker.addEventListener('keydown', event => {
-    if (event.key === 'Escape') { picker.open = false; picker.querySelector('summary').focus(); event.preventDefault(); }
-  });
   show();
 }

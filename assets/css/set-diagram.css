@@ -1,0 +1,56 @@
+/* Open notebook figures: no card, border, or separate panel surface. */
+.set-diagram { clear: both; margin-block: 2rem; }
+.set-diagram__controls { display: flex; flex-wrap: wrap; gap: .35rem .7rem; margin-block: .5rem 1rem; }
+.set-diagram__controls[hidden] { display: none; }
+.set-diagram__controls button { background: transparent; color: var(--ink-muted); border: 0; border-block-end: 2px solid transparent; border-radius: 0; padding: .45rem .2rem; font: inherit; font-size: var(--step--1); min-height: 44px; cursor: pointer; }
+.set-diagram__controls button[aria-pressed="true"], .set-diagram__controls button:hover { color: var(--blue-ink); border-block-end-color: var(--blue-ink); }
+.set-diagram__layout { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 1.25rem; align-items: center; }
+.set-diagram__canvas { display: block; width: 100%; height: auto; overflow: visible; color: var(--ink); }
+.set-diagram__canvas text { fill: currentColor; }
+.set-diagram__universe { fill: var(--set-universe); stroke: var(--ink); stroke-width: 2.3; }
+.set-diagram__fill--green { fill: var(--set-green); }
+.set-diagram__fill--rose { fill: var(--set-rose); }
+.set-diagram__fill--violet { fill: var(--set-violet); }
+.set-diagram__fill { opacity: .8; }
+.set-diagram__outline { fill: none; stroke: var(--ink); stroke-width: 2.1; stroke-linecap: round; stroke-linejoin: round; }
+.set-diagram__outline.is-relevant { stroke-width: 3.5; }
+.set-diagram__label { font-family: var(--font-formal); font-size: 29px; }
+.set-diagram__object { font-family: var(--font-formal); font-size: 42px; }
+.set-diagram__model-label { font-family: var(--font-formal); font-size: 20px; }
+.set-diagram__world { fill: var(--set-world); stroke: var(--ink); stroke-width: 2.8; }
+.set-diagram__meridians { fill: none; stroke: var(--ink); stroke-width: 1.2; opacity: .6; }
+.set-diagram__halo { fill: none; stroke: var(--blue-ink); stroke-width: 3; stroke-dasharray: 5 5; visibility: hidden; }
+.set-diagram .is-selected .set-diagram__halo { visibility: visible; }
+.set-diagram [data-point] { transition: opacity .15s; }
+.set-diagram [data-point].is-muted { opacity: .65; }
+.set-diagram__wash { fill: var(--set-highlight); opacity: .25; }
+.set-diagram__hatch { fill: none; stroke: var(--ink); stroke-width: 1.2; opacity: .45; }
+.set-diagram__explanation { border-inline-start: 3px solid var(--blue-ink); padding-inline-start: 1rem; min-inline-size: 0; }
+.set-diagram__explanation .set-diagram__step-title { font-family: var(--font-hand); font-size: var(--step-1); line-height: 1.25; margin: 0 0 .65rem; }
+.set-diagram__explanation p { font-size: var(--step--1); line-height: 1.5; margin-block: .5rem; }
+.set-diagram__explanation .set-diagram__formula { font-family: var(--font-formal); font-size: var(--step-0); }
+.set-diagram__explanation details { font-size: var(--step--1); margin-block-start: 1rem; }
+.set-diagram__explanation summary { color: var(--ink-muted); }
+@media (max-width: 600px) {
+  .set-diagram__layout { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+  .set-diagram__explanation { min-block-size: 11rem; }
+  .set-diagram__canvas { max-height: 45vh; }
+}
+@media (prefers-reduced-motion: reduce) { .set-diagram [data-point] { transition: none; } }
+@media (forced-colors: active) {
+  .set-diagram__universe, .set-diagram__fill, .set-diagram__world { fill: Canvas; }
+  .set-diagram__halo { stroke: Highlight; }
+  .set-diagram__hatch, .set-diagram__outline { stroke: CanvasText; }
+}
+.set-diagram [data-point][role="button"] { cursor: pointer; }
+.set-diagram [data-point][role="button"]:focus-visible { outline: none; }
+.set-diagram [data-point][role="button"]:focus-visible .set-diagram__halo { visibility: visible; stroke-dasharray: none; stroke-width: 4; }
+.set-exercise__picture { width: 2rem; height: 2rem; overflow: visible; color: var(--ink); }
+.set-diagram [data-feedback] { min-height: 3em; }
+.set-levels { margin-block: 2rem; }
+.set-levels .set-diagram { margin-block: .5rem 1.5rem; }
+.set-levels [data-level-controls] { align-items: center; justify-content: space-between; }
+.set-levels [data-level-status] { font-size: var(--step--1); color: var(--ink-muted); }
+.set-levels button:disabled { opacity: .5; cursor: default; }
+.set-levels [data-set-level][hidden] { display: none; }
+.set-diagram__formula .set-exercise__picture { vertical-align: middle; }

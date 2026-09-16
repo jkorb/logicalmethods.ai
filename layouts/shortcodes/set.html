@@ -1,4 +1,6 @@
-{{- $members := .Inner | transform.Unmarshal -}}
+{{- $members := .Inner | transform.Unmarshal (dict "format" "json") -}}
 {{- $alt := .Get "alt" -}}
 {{- if not $alt }}{{ errorf "set: supply an alt description (%s)" .Position }}{{ end -}}
-<div class="set-figure" role="img" aria-label="{{ $alt }}" tabindex="0"><span aria-hidden="true">{{ partial "figures/set.html" (dict "members" $members "id" (printf "%s-set-%d" .Page.File.UniqueID .Ordinal)) }}</span></div>
+{{- $tag := "div" -}}{{- $class := "set-figure" -}}{{- $focus := ` tabindex="0"` -}}
+{{- if .Get "inline" }}{{ $tag = "span" }}{{ $class = "set-inline" }}{{ $focus = "" }}{{ end -}}
+{{ printf `<%s class="%s" role="img" aria-label="%s"%s>` $tag $class ($alt | htmlEscape) $focus | safeHTML }}<span aria-hidden="true">{{ partial "figures/set.html" (dict "members" $members "expression" (.Get "expression") "id" (printf "%s-set-%d" .Page.File.UniqueID .Ordinal)) }}</span>{{ printf "</%s>" $tag | safeHTML }}

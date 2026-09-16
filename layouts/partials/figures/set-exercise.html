@@ -1,0 +1,17 @@
+<p class="set-diagram__step-title" data-question-title></p>
+<div data-question-body></div>
+<p class="set-diagram__formula" data-question-formula></p>
+<div class="set-diagram__controls" data-answer-options></div>
+<div class="set-diagram__controls" data-exercise-actions hidden>
+  <button type="button" data-check>Check</button>
+  <button type="button" data-clear>Clear</button>
+  <button type="button" data-show-answer>Show answer</button>
+</div>
+<p data-feedback role="status" aria-live="polite" aria-atomic="true"></p>
+<noscript><p>Use the diagram to answer the question. Enable JavaScript to select objects and check answers.</p>
+{{ $scene := .scene }}{{ $id := .id }}
+{{ range $q := .exercise.questions }}<p>{{ .prompt }}</p>
+{{ with .formula }}<p class="set-diagram__formula">{{ . }}</p>{{ end }}
+{{ with .statement }}<p class="set-diagram__formula">{{ partial "figures/set-diagram-prose.html" (dict "text" . "scene" $scene "id" (printf "%s-%s" $id $q.id)) }}</p>{{ end }}
+<details><summary>Answer</summary>{{ .explanation }}</details>{{ end }}
+</noscript>

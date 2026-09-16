@@ -1,0 +1,13 @@
+{{- $rows := .Inner | transform.Unmarshal -}}
+{{- $caption := .Get "caption" | default "Inference rules" -}}
+<figure class="inference-rules" aria-label="{{ $caption }}">
+<figcaption>{{ $caption }}</figcaption>
+<div class="inference-rules__list">
+{{ range $rows }}
+{{ if or (not .name) (not .premises) (not .conclusion) }}{{ errorf "inference-rules: each rule needs name, premises and conclusion (%s)" $.Position }}{{ end }}
+<div class="inference-rules__item">
+  <div class="inference-rules__schema">{{ partial "figures/inference.html" (dict "premises" .premises "conclusion" .conclusion "plain" (printf "From %s, infer %s" (delimit .premises ", ") .conclusion | replaceRE "[$]" "") "layout" "stacked" "page" $.Page) }}</div>
+  <div class="inference-rules__explanation"><p class="inference-rules__name">{{ $.Page.RenderString .name }}</p>{{ $.Page.RenderString (dict "display" "block") .explanation }}</div>
+</div>
+{{ end }}
+</div></figure>

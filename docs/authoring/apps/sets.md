@@ -29,7 +29,9 @@ picture members and operators without adding outer braces:
 {{< /set >}}
 ```
 
-Use `inline=true` for a picture or set inside a sentence. The same recursive
+Use `inline=true` for a picture or set inside a sentence or a numbered exercise
+item. Inline expressions wrap between their terms on small screens; standalone
+expressions are centered. The same recursive
 renderer handles nested braces. Operators remain Unicode text. Picture members
 use transparent backgrounds and theme-aware ink; white parts follow the paper
 color so dice pips and facial details stay visible in dark mode. The original

@@ -5,11 +5,13 @@
 Reference the file you intend to publish:
 
 ```go-html-template
-{{</* img src="img/my-diagram.svg" width="600px" alt="Description of the diagram." */>}}
+{{</* img src="/img/drawings/my-diagram.svg" width="600px" alt="Description of the diagram." */>}}
 {{</* img src="/img/drawings/gimmick_mushroom.svg" width="150px" class="float-start me-3" */>}}
 ```
 
-A relative path resolves in the page bundle. A leading `/` resolves relative
+Store new SVGs in `assets/img/drawings/` and their editable sources in
+`assets/img/drawings/sources/`; reference them with `/img/drawings/…`.
+Relative paths remain supported for older page-bundle assets. A leading `/` resolves relative
 to `assets/`, so `/img/drawings/tree.svg` is a shared drawing. Missing resources
 fail the build with the calling page's source location. Supply `alt` for
 informative images; an empty or omitted `alt` marks decoration.
@@ -25,7 +27,9 @@ padding. Internal SVG IDs and references are prefixed for each occurrence.
 
 SVG is the target format for all illustrations. Convert remaining PNGs chapter
 by chapter, update references explicitly, and remove replaced files only from
-the chapter being revised. Formal Languages now has no PNG assets.
+the chapter being revised. Formal Languages and Valid Inference now have no textbook PNG assets.
+The Valid Inference exercises also use source notation and shared SVGs; neither
+Valid Inference bundle retains a local `img/` folder.
 
 Brand mascots in the shared shell retain their dedicated token-colored
 component. They are site furniture; chapter illustrations all use `img`.

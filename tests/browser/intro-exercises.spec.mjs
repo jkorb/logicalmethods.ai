@@ -6,7 +6,6 @@ test('notation practice checks both directions, shows answers and changes exampl
   const field=app.getByLabel('Your formula');
   await field.fill('(¬p ∧ q)'); await field.press('Enter');
   await expect(app.getByRole('status')).toContainText('Correct');
-  await app.locator('[data-notation-picker] summary').click();
   await app.getByRole('button', {name: 'Conventional notation', exact: true}).click();
   await field.fill('(¬p ∧ q)'); await field.press('Enter');
   await expect(app.getByRole('status')).toContainText('unnecessary');

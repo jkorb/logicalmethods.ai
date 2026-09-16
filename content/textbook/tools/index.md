@@ -43,3 +43,12 @@ output at each step. The [shunting-yard exercises](/exercises/formal-languages/#
 explain the rules and provide worked examples.
 
 {{< logic-app name="shunting-yard" formula="p ∨ q ∧ r" >}}
+
+## Sets and valid inference
+
+Explore [set membership](/textbook/formal-languages/#sets), then use intersections
+to test [deductive consequence](/textbook/valid-inference/#always--deductive-validity).
+The buttons highlight regions and explain the same finite sets.
+
+{{< set-diagram scene="overlap" >}}
+{{< set-diagram scene="countermodel" >}}

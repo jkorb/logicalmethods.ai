@@ -3,9 +3,23 @@ title: Formal languages
 author: Johannes Korbmacher
 weight: 20
 locked: false
-params: 
+params:
   id: exc-for
 ---
+
+# Members and non-members
+
+A set abstraction tells us which objects belong by describing a condition they
+must satisfy. Work through the levels below: each gives a different condition
+on the same collection of objects. Select all its members, then check your
+answer. Select a picture again to remove it; Tab and Enter or Space work too.
+The two boxes are different objects, so either or both may belong.
+
+Here “alive” means biologically alive: the mushroom is a living fungus and
+∀I is a machine. Later levels combine conditions; a set can have no members
+at all.
+
+{{< set-diagram exercise="abstraction" >}}
 
 # Ambiguity {.solved}
 
@@ -20,9 +34,9 @@ meanings are allowed; say which reading you are using.
 
 2. I see her duck.
 
-3. He thanked her children, Alan and Ada. 
+3. He thanked her children, Alan and Ada.
 
-4. They greeted their parents, Bob, and Betty. 
+4. They greeted their parents, Bob, and Betty.
 
 5. I see a man with my binoculars.
 
@@ -280,7 +294,7 @@ cannot continue indefinitely.
 # Polish notation {.solved}
 
 In the lesson on formal languages, we explained the need for parentheses in
-order to avoid ambiguity in the language for propositional logic. 
+order to avoid ambiguity in the language for propositional logic.
 
 But it turns out that there's another way, which is known as [Polish notation](https://en.wikipedia.org/wiki/Polish_notation),
 in honor of the Polish logician [Jan
@@ -518,7 +532,7 @@ it is, or whether it covers every point of the disk-world.
 {{< img src="/img/drawings/fl_rover.svg" class="rounded  float-start inert-img img-fluid m-2" width="200px">}}
 You arrive at an uninhabited planet and find an old space rover that some
 ancient civilization, which still used expert systems for AI, used to explore
-the planet. 
+the planet.
 
 The manual explains the variables as follows. Action variables describe
 commands issued by the controller, rather than confirming that an action

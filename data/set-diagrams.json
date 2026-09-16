@@ -1,0 +1,1311 @@
+{
+  "membership": {
+    "title": "What belongs to the set?",
+    "description": "Little Jimmy, the beer, 1 and the rabbit belong to S. Mr. Sir, the mushroom, the playing card and the chip do not.",
+    "sets": [
+      {
+        "id": "S",
+        "label": "S",
+        "path": "M 152 45 L 448 45 Q 470 45 470 67 L 470 218 Q 470 240 448 240 L 152 240 Q 130 240 130 218 L 130 67 Q 130 45 152 45 Z",
+        "lx": 300,
+        "ly": 75,
+        "color": "green"
+      }
+    ],
+    "points": [
+      {
+        "id": "jimmy",
+        "label": "Little Jimmy",
+        "x": 190,
+        "y": 90,
+        "sets": [
+          "S"
+        ],
+        "image": "gimmick_little_jimmy"
+      },
+      {
+        "id": "beer",
+        "label": "beer",
+        "x": 410,
+        "y": 180,
+        "sets": [
+          "S"
+        ],
+        "image": "gimmick_beer"
+      },
+      {
+        "id": "one",
+        "label": "1",
+        "x": 300,
+        "y": 180,
+        "sets": [
+          "S"
+        ]
+      },
+      {
+        "id": "sir",
+        "label": "Mr. Sir",
+        "x": 520,
+        "y": 90,
+        "sets": [],
+        "image": "gimmick_mr_sir"
+      },
+      {
+        "id": "two",
+        "label": "mushroom",
+        "x": 80,
+        "y": 270,
+        "sets": [],
+        "image": "gimmick_mushroom"
+      },
+      {
+        "id": "rabbit",
+        "label": "rabbit",
+        "x": 410,
+        "y": 90,
+        "sets": [
+          "S"
+        ],
+        "image": "gimmick_rabbit"
+      },
+      {
+        "id": "card",
+        "label": "playing card",
+        "x": 520,
+        "y": 270,
+        "sets": [],
+        "image": "gimmick_card"
+      },
+      {
+        "id": "chip",
+        "label": "chip",
+        "x": 80,
+        "y": 180,
+        "sets": [],
+        "image": "gimmick_chip"
+      }
+    ],
+    "steps": [
+      {
+        "id": "all",
+        "label": "The universe",
+        "title": "A space of possible members",
+        "text": "The rectangle contains everything we are considering. The outline groups just some of those objects into S.",
+        "include": [],
+        "exclude": [],
+        "view": "all",
+        "formula": ""
+      },
+      {
+        "id": "members",
+        "label": "Belongs to S",
+        "title": "Inside the set",
+        "text": "@{jimmy}, the @{beer}, 1 and the @{rabbit} lie inside S. Each is an element of the set. The shaded region picks out S.",
+        "include": [
+          "S"
+        ],
+        "exclude": [],
+        "view": "set:S",
+        "formula": ""
+      },
+      {
+        "id": "outside",
+        "label": "Outside S",
+        "title": "Not a member",
+        "text": "@{sir}, the @{two}, the @{card} and the @{chip} are in the universe, but outside S. Being in the picture is not the same as belonging to S.",
+        "include": [],
+        "exclude": [
+          "S"
+        ],
+        "view": "outside:S",
+        "formula": ""
+      }
+    ]
+  },
+  "overlap": {
+    "title": "Where two sets meet",
+    "description": "S contains Mr. Sir and Little Jimmy. T contains Little Jimmy, a beer and a soda. Little Jimmy belongs to both sets.",
+    "sets": [
+      {
+        "id": "S",
+        "label": "S",
+        "path": "M 152 45 L 338 45 Q 360 45 360 67 L 360 293 Q 360 315 338 315 L 152 315 Q 130 315 130 293 L 130 67 Q 130 45 152 45 Z",
+        "lx": 300,
+        "ly": 80,
+        "color": "rose"
+      },
+      {
+        "id": "T",
+        "label": "T",
+        "path": "M 272 135 L 458 135 Q 480 135 480 157 L 480 303 Q 480 325 458 325 L 272 325 Q 250 325 250 303 L 250 157 Q 250 135 272 135 Z",
+        "lx": 300,
+        "ly": 305,
+        "color": "green"
+      }
+    ],
+    "points": [
+      {
+        "id": "a",
+        "label": "Mr. Sir",
+        "x": 190,
+        "y": 90,
+        "sets": [
+          "S"
+        ],
+        "image": "gimmick_mr_sir"
+      },
+      {
+        "id": "b",
+        "label": "Little Jimmy",
+        "x": 300,
+        "y": 180,
+        "sets": [
+          "S",
+          "T"
+        ],
+        "image": "gimmick_little_jimmy"
+      },
+      {
+        "id": "c",
+        "label": "beer",
+        "x": 410,
+        "y": 180,
+        "sets": [
+          "T"
+        ],
+        "image": "gimmick_beer"
+      },
+      {
+        "id": "d",
+        "label": "mushroom",
+        "x": 80,
+        "y": 270,
+        "sets": [],
+        "image": "gimmick_mushroom"
+      },
+      {
+        "id": "soda",
+        "label": "soda",
+        "x": 410,
+        "y": 270,
+        "sets": [
+          "T"
+        ],
+        "image": "gimmick_soda"
+      },
+      {
+        "id": "mouse",
+        "label": "mouse",
+        "x": 520,
+        "y": 90,
+        "sets": [],
+        "image": "gimmick_mouse"
+      },
+      {
+        "id": "card",
+        "label": "playing card",
+        "x": 410,
+        "y": 90,
+        "sets": [],
+        "image": "gimmick_card"
+      }
+    ],
+    "steps": [
+      {
+        "id": "all",
+        "label": "Both sets",
+        "title": "Two collections in one space",
+        "text": "Follow each outline to see which objects it contains. An object can belong to both sets.",
+        "include": [],
+        "exclude": [],
+        "view": "all",
+        "formula": ""
+      },
+      {
+        "id": "S",
+        "label": "Set S",
+        "title": "The members of S",
+        "text": "@{a} and @{b} belong to S. Membership in T does not prevent @{b} from belonging to S too.",
+        "include": [
+          "S"
+        ],
+        "exclude": [],
+        "view": "set:S",
+        "formula": ""
+      },
+      {
+        "id": "T",
+        "label": "Set T",
+        "title": "The members of T",
+        "text": "@{b}, the @{c} and the @{soda} belong to T. The same @{b} appears in both sets, but only once in the picture.",
+        "include": [
+          "T"
+        ],
+        "exclude": [],
+        "view": "set:T",
+        "formula": ""
+      },
+      {
+        "id": "intersection",
+        "label": "Intersection",
+        "title": "What they have in common",
+        "text": "Keep only the objects inside both outlines. @{b} is the common member. The hatched overlap is S ∩ T.",
+        "include": [
+          "S",
+          "T"
+        ],
+        "exclude": [],
+        "view": "intersection",
+        "formula": "S ∩ T"
+      },
+      {
+        "id": "difference",
+        "label": "Is S ⊆ T?",
+        "title": "One exception is enough",
+        "text": "@{a} belongs to S but not T. This witness shows that S is not a subset of T.",
+        "include": [
+          "S"
+        ],
+        "exclude": [
+          "T"
+        ],
+        "view": "difference",
+        "formula": "S ⊈ T"
+      }
+    ]
+  },
+  "subset": {
+    "title": "Every member comes along",
+    "description": "S contains Little Jimmy. T contains Little Jimmy, a beer and a rabbit. Thus S is a subset of T.",
+    "sets": [
+      {
+        "id": "T",
+        "label": "T",
+        "path": "M 152 45 L 458 45 Q 480 45 480 67 L 480 303 Q 480 325 458 325 L 152 325 Q 130 325 130 303 L 130 67 Q 130 45 152 45 Z",
+        "lx": 410,
+        "ly": 80,
+        "color": "green"
+      },
+      {
+        "id": "S",
+        "label": "S",
+        "path": "M 272 140 L 338 140 Q 360 140 360 162 L 360 293 Q 360 315 338 315 L 272 315 Q 250 315 250 293 L 250 162 Q 250 140 272 140 Z",
+        "lx": 300,
+        "ly": 170,
+        "color": "rose"
+      }
+    ],
+    "points": [
+      {
+        "id": "a",
+        "label": "Little Jimmy",
+        "x": 300,
+        "y": 270,
+        "sets": [
+          "S",
+          "T"
+        ],
+        "image": "gimmick_little_jimmy"
+      },
+      {
+        "id": "b",
+        "label": "beer",
+        "x": 190,
+        "y": 90,
+        "sets": [
+          "T"
+        ],
+        "image": "gimmick_beer"
+      },
+      {
+        "id": "d",
+        "label": "Mr. Sir",
+        "x": 80,
+        "y": 270,
+        "sets": [],
+        "image": "gimmick_mr_sir"
+      },
+      {
+        "id": "rabbit",
+        "label": "rabbit",
+        "x": 410,
+        "y": 180,
+        "sets": [
+          "T"
+        ],
+        "image": "gimmick_rabbit"
+      },
+      {
+        "id": "soda",
+        "label": "soda",
+        "x": 520,
+        "y": 270,
+        "sets": [],
+        "image": "gimmick_soda"
+      },
+      {
+        "id": "chip",
+        "label": "chip",
+        "x": 520,
+        "y": 90,
+        "sets": [],
+        "image": "gimmick_chip"
+      }
+    ],
+    "steps": [
+      {
+        "id": "all",
+        "label": "Both sets",
+        "title": "One set within another",
+        "text": "The smaller outline sits entirely inside the larger one. Every member of S therefore also belongs to T.",
+        "include": [],
+        "exclude": [],
+        "view": "all",
+        "formula": ""
+      },
+      {
+        "id": "S",
+        "label": "Set S",
+        "title": "Start with the smaller set",
+        "text": "@{a} belongs to S. The same object also lies inside T.",
+        "include": [
+          "S"
+        ],
+        "exclude": [],
+        "view": "set:S",
+        "formula": ""
+      },
+      {
+        "id": "T",
+        "label": "Set T",
+        "title": "The larger collection",
+        "text": "T contains @{a}, the @{b} and the @{rabbit}. A subset need not contain every member of the larger set.",
+        "include": [
+          "T"
+        ],
+        "exclude": [],
+        "view": "set:T",
+        "formula": ""
+      },
+      {
+        "id": "difference",
+        "label": "Check S ⊆ T",
+        "title": "Look for an exception",
+        "text": "There is no member of S outside T. That is exactly what S ⊆ T says.",
+        "include": [
+          "S"
+        ],
+        "exclude": [
+          "T"
+        ],
+        "view": "subset-witness",
+        "formula": "S ⊆ T"
+      }
+    ]
+  },
+  "consequence": {
+    "title": "Joint premises: valid consequence",
+    "description": "Every model satisfying all premises satisfies C.",
+    "sets": [
+      {
+        "id": "C",
+        "label": "[C]",
+        "path": "M 262 35 L 348 35 Q 370 35 370 57 L 370 308 Q 370 330 348 330 L 262 330 Q 240 330 240 308 L 240 57 Q 240 35 262 35 Z",
+        "color": "green",
+        "lx": 300,
+        "ly": 65
+      },
+      {
+        "id": "P",
+        "label": "[P]",
+        "path": "M 152 130 L 338 130 Q 360 130 360 152 L 360 293 Q 360 315 338 315 L 152 315 Q 130 315 130 293 L 130 152 Q 130 130 152 130 Z",
+        "color": "rose",
+        "lx": 190,
+        "ly": 300
+      },
+      {
+        "id": "Q",
+        "label": "[Q]",
+        "path": "M 272 145 L 458 145 Q 480 145 480 167 L 480 303 Q 480 325 458 325 L 272 325 Q 250 325 250 303 L 250 167 Q 250 145 272 145 Z",
+        "color": "violet",
+        "lx": 410,
+        "ly": 175
+      }
+    ],
+    "points": [
+      {
+        "id": "m1",
+        "label": "M₁",
+        "x": 300,
+        "y": 180,
+        "sets": [
+          "P",
+          "Q",
+          "C"
+        ],
+        "icon": "world"
+      },
+      {
+        "id": "m2",
+        "label": "M₂",
+        "x": 300,
+        "y": 270,
+        "sets": [
+          "P",
+          "Q",
+          "C"
+        ],
+        "icon": "world"
+      },
+      {
+        "id": "m3",
+        "label": "M₃",
+        "x": 190,
+        "y": 180,
+        "sets": [
+          "P"
+        ],
+        "icon": "world"
+      },
+      {
+        "id": "m4",
+        "label": "M₄",
+        "x": 410,
+        "y": 270,
+        "sets": [
+          "Q"
+        ],
+        "icon": "world"
+      },
+      {
+        "id": "m5",
+        "label": "M₅",
+        "x": 80,
+        "y": 90,
+        "sets": [],
+        "icon": "world"
+      },
+      {
+        "id": "m6",
+        "label": "M₆",
+        "x": 300,
+        "y": 90,
+        "sets": [
+          "C"
+        ],
+        "icon": "world"
+      },
+      {
+        "id": "m7",
+        "label": "M₇",
+        "x": 520,
+        "y": 180,
+        "sets": [],
+        "icon": "world"
+      },
+      {
+        "id": "m8",
+        "label": "M₈",
+        "x": 520,
+        "y": 270,
+        "sets": [],
+        "icon": "world"
+      }
+    ],
+    "premises": [
+      "P",
+      "Q"
+    ],
+    "conclusion": "C",
+    "steps": [
+      {
+        "id": "all",
+        "label": "Model space",
+        "title": "Possible reasoning situations",
+        "text": "Each little world is one model. The outlines collect the models where each formula is true.",
+        "include": [],
+        "exclude": [],
+        "view": "all",
+        "formula": ""
+      },
+      {
+        "id": "P",
+        "label": "Premise P",
+        "title": "Where P is true",
+        "text": "Highlight the models of this premise. A model satisfying this premise alone need not satisfy the other premise.",
+        "include": [
+          "P"
+        ],
+        "exclude": [],
+        "view": "set:P",
+        "formula": "[P]"
+      },
+      {
+        "id": "Q",
+        "label": "Premise Q",
+        "title": "Where Q is true",
+        "text": "Highlight the models of this premise. A model satisfying this premise alone need not satisfy the other premise.",
+        "include": [
+          "Q"
+        ],
+        "exclude": [],
+        "view": "set:Q",
+        "formula": "[Q]"
+      },
+      {
+        "id": "premises",
+        "label": "Both premises",
+        "title": "All premises true together",
+        "text": "Keep only the worlds in both premise regions. A world outside this intersection cannot be a countermodel to the inference.",
+        "include": [
+          "P",
+          "Q"
+        ],
+        "exclude": [],
+        "view": "premises",
+        "formula": "[P] ∩ [Q]"
+      },
+      {
+        "id": "C",
+        "label": "Conclusion",
+        "title": "Where C is true",
+        "text": "The green outline contains the models in which the conclusion is true. Compare it with the premise region.",
+        "include": [
+          "C"
+        ],
+        "exclude": [],
+        "view": "set:C",
+        "formula": "[C]"
+      },
+      {
+        "id": "countermodels",
+        "label": "Countermodels",
+        "title": "No countermodel",
+        "text": "Every world satisfying both premises also satisfies C. There is no countermodel in this space.",
+        "include": [
+          "P",
+          "Q"
+        ],
+        "exclude": [
+          "C"
+        ],
+        "view": "countermodels",
+        "formula": "P, Q ⊨ C"
+      }
+    ]
+  },
+  "countermodel": {
+    "title": "Joint premises: a countermodel",
+    "description": "M₂ satisfies both premises but not C.",
+    "sets": [
+      {
+        "id": "C",
+        "label": "[C]",
+        "path": "M 162 35 L 358 35 Q 380 35 380 57 L 380 213 Q 380 235 358 235 L 162 235 Q 140 235 140 213 L 140 57 Q 140 35 162 35 Z",
+        "color": "green",
+        "lx": 300,
+        "ly": 65
+      },
+      {
+        "id": "P",
+        "label": "[P]",
+        "path": "M 152 130 L 338 130 Q 360 130 360 152 L 360 293 Q 360 315 338 315 L 152 315 Q 130 315 130 293 L 130 152 Q 130 130 152 130 Z",
+        "color": "rose",
+        "lx": 190,
+        "ly": 300
+      },
+      {
+        "id": "Q",
+        "label": "[Q]",
+        "path": "M 272 145 L 458 145 Q 480 145 480 167 L 480 303 Q 480 325 458 325 L 272 325 Q 250 325 250 303 L 250 167 Q 250 145 272 145 Z",
+        "color": "violet",
+        "lx": 410,
+        "ly": 175
+      }
+    ],
+    "points": [
+      {
+        "id": "m1",
+        "label": "M₁",
+        "x": 300,
+        "y": 180,
+        "sets": [
+          "P",
+          "Q",
+          "C"
+        ],
+        "icon": "world"
+      },
+      {
+        "id": "m2",
+        "label": "M₂",
+        "x": 300,
+        "y": 270,
+        "sets": [
+          "P",
+          "Q"
+        ],
+        "icon": "world"
+      },
+      {
+        "id": "m3",
+        "label": "M₃",
+        "x": 190,
+        "y": 180,
+        "sets": [
+          "P",
+          "C"
+        ],
+        "icon": "world"
+      },
+      {
+        "id": "m4",
+        "label": "M₄",
+        "x": 410,
+        "y": 270,
+        "sets": [
+          "Q"
+        ],
+        "icon": "world"
+      },
+      {
+        "id": "m5",
+        "label": "M₅",
+        "x": 80,
+        "y": 90,
+        "sets": [],
+        "icon": "world"
+      },
+      {
+        "id": "m6",
+        "label": "M₆",
+        "x": 190,
+        "y": 90,
+        "sets": [
+          "C"
+        ],
+        "icon": "world"
+      },
+      {
+        "id": "m7",
+        "label": "M₇",
+        "x": 520,
+        "y": 180,
+        "sets": [],
+        "icon": "world"
+      },
+      {
+        "id": "m8",
+        "label": "M₈",
+        "x": 520,
+        "y": 270,
+        "sets": [],
+        "icon": "world"
+      }
+    ],
+    "premises": [
+      "P",
+      "Q"
+    ],
+    "conclusion": "C",
+    "steps": [
+      {
+        "id": "all",
+        "label": "Model space",
+        "title": "Possible reasoning situations",
+        "text": "Each little world is one model. The outlines collect the models where each formula is true.",
+        "include": [],
+        "exclude": [],
+        "view": "all",
+        "formula": ""
+      },
+      {
+        "id": "P",
+        "label": "Premise P",
+        "title": "Where P is true",
+        "text": "Highlight the models of this premise. A model satisfying this premise alone need not satisfy the other premise.",
+        "include": [
+          "P"
+        ],
+        "exclude": [],
+        "view": "set:P",
+        "formula": "[P]"
+      },
+      {
+        "id": "Q",
+        "label": "Premise Q",
+        "title": "Where Q is true",
+        "text": "Highlight the models of this premise. A model satisfying this premise alone need not satisfy the other premise.",
+        "include": [
+          "Q"
+        ],
+        "exclude": [],
+        "view": "set:Q",
+        "formula": "[Q]"
+      },
+      {
+        "id": "premises",
+        "label": "Both premises",
+        "title": "All premises true together",
+        "text": "Keep only the worlds in both premise regions. A world outside this intersection cannot be a countermodel to the inference.",
+        "include": [
+          "P",
+          "Q"
+        ],
+        "exclude": [],
+        "view": "premises",
+        "formula": "[P] ∩ [Q]"
+      },
+      {
+        "id": "C",
+        "label": "Conclusion",
+        "title": "Where C is true",
+        "text": "The green outline contains the models in which the conclusion is true. Compare it with the premise region.",
+        "include": [
+          "C"
+        ],
+        "exclude": [],
+        "view": "set:C",
+        "formula": "[C]"
+      },
+      {
+        "id": "countermodels",
+        "label": "Countermodels",
+        "title": "A world that defeats the inference",
+        "text": "M₂ satisfies both premises but not C. One such world is enough to make the inference invalid.",
+        "include": [
+          "P",
+          "Q"
+        ],
+        "exclude": [
+          "C"
+        ],
+        "view": "countermodels",
+        "formula": "P, Q ⊭ C"
+      }
+    ]
+  },
+  "single": {
+    "title": "Single premise: valid consequence",
+    "description": "Every model satisfying all premises satisfies C.",
+    "sets": [
+      {
+        "id": "C",
+        "label": "[C]",
+        "path": "M 152 45 L 458 45 Q 480 45 480 67 L 480 303 Q 480 325 458 325 L 152 325 Q 130 325 130 303 L 130 67 Q 130 45 152 45 Z",
+        "lx": 410,
+        "ly": 80,
+        "color": "green"
+      },
+      {
+        "id": "P",
+        "label": "[P]",
+        "path": "M 272 140 L 338 140 Q 360 140 360 162 L 360 293 Q 360 315 338 315 L 272 315 Q 250 315 250 293 L 250 162 Q 250 140 272 140 Z",
+        "lx": 300,
+        "ly": 170,
+        "color": "rose"
+      }
+    ],
+    "points": [
+      {
+        "id": "m1",
+        "label": "M₁",
+        "x": 300,
+        "y": 270,
+        "sets": [
+          "P",
+          "C"
+        ],
+        "icon": "world"
+      },
+      {
+        "id": "m2",
+        "label": "M₂",
+        "x": 190,
+        "y": 90,
+        "sets": [
+          "C"
+        ],
+        "icon": "world"
+      },
+      {
+        "id": "m3",
+        "label": "M₃",
+        "x": 80,
+        "y": 270,
+        "sets": [],
+        "icon": "world"
+      },
+      {
+        "id": "m4",
+        "label": "M₄",
+        "x": 410,
+        "y": 180,
+        "sets": [
+          "C"
+        ],
+        "icon": "world"
+      },
+      {
+        "id": "m5",
+        "label": "M₅",
+        "x": 520,
+        "y": 270,
+        "sets": [],
+        "icon": "world"
+      },
+      {
+        "id": "m6",
+        "label": "M₆",
+        "x": 520,
+        "y": 90,
+        "sets": [],
+        "icon": "world"
+      }
+    ],
+    "premises": [
+      "P"
+    ],
+    "conclusion": "C",
+    "steps": [
+      {
+        "id": "all",
+        "label": "Model space",
+        "title": "Possible reasoning situations",
+        "text": "Each little world is one model. The outlines collect the models where each formula is true.",
+        "include": [],
+        "exclude": [],
+        "view": "all",
+        "formula": ""
+      },
+      {
+        "id": "P",
+        "label": "Premise P",
+        "title": "Where P is true",
+        "text": "Highlight the models of this premise. These are the only models relevant to testing the inference.",
+        "include": [
+          "P"
+        ],
+        "exclude": [],
+        "view": "set:P",
+        "formula": "[P]"
+      },
+      {
+        "id": "C",
+        "label": "Conclusion",
+        "title": "Where C is true",
+        "text": "The green outline contains the models in which the conclusion is true. Compare it with the premise region.",
+        "include": [
+          "C"
+        ],
+        "exclude": [],
+        "view": "set:C",
+        "formula": "[C]"
+      },
+      {
+        "id": "countermodels",
+        "label": "Countermodels",
+        "title": "No countermodel",
+        "text": "Every world satisfying P also satisfies C. There is no countermodel in this space.",
+        "include": [
+          "P"
+        ],
+        "exclude": [
+          "C"
+        ],
+        "view": "countermodels",
+        "formula": "P ⊨ C"
+      }
+    ]
+  },
+  "single-countermodel": {
+    "title": "Single premise: a countermodel",
+    "description": "M₃ satisfies P but not C.",
+    "sets": [
+      {
+        "id": "C",
+        "label": "[C]",
+        "path": "M 272 45 L 458 45 Q 480 45 480 67 L 480 303 Q 480 325 458 325 L 272 325 Q 250 325 250 303 L 250 67 Q 250 45 272 45 Z",
+        "lx": 300,
+        "ly": 80,
+        "color": "green"
+      },
+      {
+        "id": "P",
+        "label": "[P]",
+        "path": "M 152 135 L 338 135 Q 360 135 360 157 L 360 293 Q 360 315 338 315 L 152 315 Q 130 315 130 293 L 130 157 Q 130 135 152 135 Z",
+        "lx": 190,
+        "ly": 305,
+        "color": "rose"
+      }
+    ],
+    "points": [
+      {
+        "id": "m1",
+        "label": "M₁",
+        "x": 300,
+        "y": 270,
+        "sets": [
+          "P",
+          "C"
+        ],
+        "icon": "world"
+      },
+      {
+        "id": "m2",
+        "label": "M₂",
+        "x": 410,
+        "y": 90,
+        "sets": [
+          "C"
+        ],
+        "icon": "world"
+      },
+      {
+        "id": "m3",
+        "label": "M₃",
+        "x": 190,
+        "y": 180,
+        "sets": [
+          "P"
+        ],
+        "icon": "world"
+      },
+      {
+        "id": "m4",
+        "label": "M₄",
+        "x": 410,
+        "y": 270,
+        "sets": [
+          "C"
+        ],
+        "icon": "world"
+      },
+      {
+        "id": "m5",
+        "label": "M₅",
+        "x": 520,
+        "y": 90,
+        "sets": [],
+        "icon": "world"
+      },
+      {
+        "id": "m6",
+        "label": "M₆",
+        "x": 80,
+        "y": 270,
+        "sets": [],
+        "icon": "world"
+      }
+    ],
+    "premises": [
+      "P"
+    ],
+    "conclusion": "C",
+    "steps": [
+      {
+        "id": "all",
+        "label": "Model space",
+        "title": "Possible reasoning situations",
+        "text": "Each little world is one model. The outlines collect the models where each formula is true.",
+        "include": [],
+        "exclude": [],
+        "view": "all",
+        "formula": ""
+      },
+      {
+        "id": "P",
+        "label": "Premise P",
+        "title": "Where P is true",
+        "text": "Highlight the models of this premise. These are the only models relevant to testing the inference.",
+        "include": [
+          "P"
+        ],
+        "exclude": [],
+        "view": "set:P",
+        "formula": "[P]"
+      },
+      {
+        "id": "C",
+        "label": "Conclusion",
+        "title": "Where C is true",
+        "text": "The green outline contains the models in which the conclusion is true. Compare it with the premise region.",
+        "include": [
+          "C"
+        ],
+        "exclude": [],
+        "view": "set:C",
+        "formula": "[C]"
+      },
+      {
+        "id": "countermodels",
+        "label": "Countermodels",
+        "title": "A world that defeats the inference",
+        "text": "M₃ satisfies P but not C. One such world is enough to make the inference invalid.",
+        "include": [
+          "P"
+        ],
+        "exclude": [
+          "C"
+        ],
+        "view": "countermodels",
+        "formula": "P ⊭ C"
+      }
+    ]
+  },
+  "objects": {
+    "title": "A collection of objects",
+    "description": "Three people (Little Jimmy, Mr. Sir, and Granny Smith), a rabbit, a mouse, a living mushroom, two cardboard boxes, soda, beer, a chip, a table, a playing card, an AI robot, and a school. Alive means biologically alive; the robot is a machine.",
+    "sets": [],
+    "steps": [],
+    "points": [
+      {
+        "id": "jimmy",
+        "label": "Little Jimmy",
+        "image": "gimmick_little_jimmy",
+        "traits": [
+          "living",
+          "human"
+        ],
+        "sets": [],
+        "x": 80,
+        "y": 90
+      },
+      {
+        "id": "box1",
+        "label": "left box",
+        "image": "gimmick_box",
+        "traits": [
+          "box"
+        ],
+        "sets": [],
+        "x": 190,
+        "y": 90
+      },
+      {
+        "id": "rabbit",
+        "label": "rabbit",
+        "image": "gimmick_rabbit",
+        "traits": [
+          "living"
+        ],
+        "sets": [],
+        "x": 300,
+        "y": 90
+      },
+      {
+        "id": "soda",
+        "label": "soda",
+        "image": "gimmick_soda",
+        "traits": [
+          "beverage"
+        ],
+        "sets": [],
+        "x": 410,
+        "y": 90
+      },
+      {
+        "id": "sir",
+        "label": "Mr. Sir",
+        "image": "gimmick_mr_sir",
+        "traits": [
+          "living",
+          "human"
+        ],
+        "sets": [],
+        "x": 520,
+        "y": 90
+      },
+      {
+        "id": "mouse",
+        "label": "mouse",
+        "image": "gimmick_mouse",
+        "traits": [
+          "living"
+        ],
+        "sets": [],
+        "x": 80,
+        "y": 180
+      },
+      {
+        "id": "chip",
+        "label": "chip",
+        "image": "gimmick_chip",
+        "traits": [],
+        "sets": [],
+        "x": 190,
+        "y": 180
+      },
+      {
+        "id": "granny",
+        "label": "Granny Smith",
+        "image": "gimmick_granny_smith",
+        "traits": [
+          "living",
+          "human"
+        ],
+        "sets": [],
+        "x": 300,
+        "y": 180
+      },
+      {
+        "id": "box2",
+        "label": "right box",
+        "image": "gimmick_box",
+        "traits": [
+          "box"
+        ],
+        "sets": [],
+        "x": 410,
+        "y": 180
+      },
+      {
+        "id": "beer",
+        "label": "beer",
+        "image": "gimmick_beer",
+        "traits": [
+          "beverage"
+        ],
+        "sets": [],
+        "x": 520,
+        "y": 180
+      },
+      {
+        "id": "table",
+        "label": "table",
+        "image": "gimmick_table",
+        "traits": [],
+        "sets": [],
+        "x": 80,
+        "y": 270
+      },
+      {
+        "id": "mushroom",
+        "label": "mushroom",
+        "image": "gimmick_mushroom",
+        "traits": [
+          "living"
+        ],
+        "sets": [],
+        "x": 190,
+        "y": 270
+      },
+      {
+        "id": "card",
+        "label": "playing card",
+        "image": "gimmick_card",
+        "traits": [],
+        "sets": [],
+        "x": 300,
+        "y": 270
+      },
+      {
+        "id": "ai",
+        "label": "AI robot",
+        "image": "ai_pointer",
+        "traits": [],
+        "sets": [],
+        "x": 410,
+        "y": 270
+      },
+      {
+        "id": "school",
+        "label": "school",
+        "image": "gimmick_school",
+        "traits": [],
+        "sets": [],
+        "x": 520,
+        "y": 270
+      }
+    ]
+  },
+  "separate": {
+    "title": "Separate sets",
+    "description": "S contains Mr. Sir and Little Jimmy. T contains the beer and soda. The mushroom, mouse, and playing card lie outside both sets.",
+    "sets": [
+      {
+        "id": "S",
+        "label": "S",
+        "path": "M 157 45 L 228 45 Q 250 45 250 67 L 250 303 Q 250 325 228 325 L 157 325 Q 135 325 135 303 L 135 67 Q 135 45 157 45 Z",
+        "lx": 190,
+        "ly": 75,
+        "color": "rose"
+      },
+      {
+        "id": "T",
+        "label": "T",
+        "path": "M 377 45 L 448 45 Q 470 45 470 67 L 470 303 Q 470 325 448 325 L 377 325 Q 355 325 355 303 L 355 67 Q 355 45 377 45 Z",
+        "lx": 410,
+        "ly": 75,
+        "color": "green"
+      }
+    ],
+    "points": [
+      {
+        "id": "a",
+        "label": "Mr. Sir",
+        "x": 190,
+        "y": 180,
+        "sets": [
+          "S"
+        ],
+        "image": "gimmick_mr_sir"
+      },
+      {
+        "id": "b",
+        "label": "Little Jimmy",
+        "x": 190,
+        "y": 270,
+        "sets": [
+          "S"
+        ],
+        "image": "gimmick_little_jimmy"
+      },
+      {
+        "id": "c",
+        "label": "beer",
+        "x": 410,
+        "y": 180,
+        "sets": [
+          "T"
+        ],
+        "image": "gimmick_beer"
+      },
+      {
+        "id": "d",
+        "label": "mushroom",
+        "x": 80,
+        "y": 270,
+        "sets": [],
+        "image": "gimmick_mushroom"
+      },
+      {
+        "id": "soda",
+        "label": "soda",
+        "x": 410,
+        "y": 270,
+        "sets": [
+          "T"
+        ],
+        "image": "gimmick_soda"
+      },
+      {
+        "id": "mouse",
+        "label": "mouse",
+        "x": 520,
+        "y": 90,
+        "sets": [],
+        "image": "gimmick_mouse"
+      },
+      {
+        "id": "card",
+        "label": "playing card",
+        "x": 300,
+        "y": 90,
+        "sets": [],
+        "image": "gimmick_card"
+      }
+    ],
+    "steps": []
+  }
+}

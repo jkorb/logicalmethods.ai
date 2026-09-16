@@ -1,0 +1,9 @@
+{{- $text := .text | htmlEscape -}}
+{{- range .scene.points -}}
+  {{- $replacement := .label | htmlEscape -}}
+  {{- if .image -}}
+    {{- $replacement = partial "figures/image.html" (dict "src" (printf "/img/drawings/%s.svg" .image) "inline" true "height" "1.6em" "alt" .label "class" "book-figure--themed" "themed" true "id" (printf "%s-%s" $.id .id)) -}}
+  {{- end -}}
+  {{- $text = replace $text (printf "@{%s}" .id) $replacement -}}
+{{- end -}}
+{{- $text | safeHTML -}}

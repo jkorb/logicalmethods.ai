@@ -1,10 +1,9 @@
 ---
 title: Valid inference
 author: Colin Caret, Annefleur de Haan, Johannes Korbmacher
-locked: true
+locked: false
 weight: 30
 params:
-  legacy-notation: true
   id: exc-val
 ---
 
@@ -12,7 +11,8 @@ params:
 
 For each of the following inferences, determine whether it is logically or only materially valid:
 
-1. Little Jimmy's parents are U.S. citizens, so he's a U.S. citizen.
+1. Little Jimmy's parents are members of the club, so he's a member. For this
+   fictional club, assume that children of members are automatically members.
 
 2. Every logician knows this proof and little Jimmy is a logician. Therefore little
    Jimmy knows the proof.
@@ -31,32 +31,48 @@ the inference into a logically valid inference.
 
 ## Solutions {.solution #material-and-logical-validitySolution}
 
-1. This inference is only materially valid. Its form is something like: ```c's P's are Q, so c is Q.``` But suppose that `c` is little Jimmy, his `P`'s are his favorite socks, and `Q` is being blue. Then the inference becomes clearly invalid: `Little Jimmy's favorite socks are blue, so Jimmy is blue`.
+1. This inference is only materially valid. Its form is something like:
 
-    If you add the premise that children of U.S. citizens are also U.S. citizens, the inference becomes deductively valid.
+   $$
+   c's P's are Q, so c is Q.
+   $$
+
+    But suppose that $c$ is little Jimmy, his $P$'s are his favorite socks, and $Q$ is being blue. Then the inference becomes clearly invalid: $Little Jimmy's favorite socks are blue, so Jimmy is blue$.
+
+    If you add the premise that children of club members are also members, the inference becomes logically deductively valid.
 
 2. This inference is logically valid, as it has the same form as the Socrates inference.
 
 3. This inference is only materially valid. Its form is something like:
 
-   ```c is not P. Thus c is Q```
+   $$
+   c is not P. Thus c is Q
+   $$
 
-   But if `c` is little Jimmy, P is hungry, and `Q` thirsty, the inference becomes: `Little Jimmy is not hungry. So, Little Jimmy is thirsty`, which is clearly invalid.
-
+   But if $c$ is little Jimmy, P is hungry, and $Q$ thirsty, the inference becomes: $Little Jimmy is not hungry. So, Little Jimmy is thirsty$, which is clearly invalid.
 
    We need to add the premise that a sentence is false if and only if it's not
-   true as a further premise to make this inference valid. This premise is
-   false, for example, in many-valued logic.
+   true as a further premise to make this inference valid. This premise need not hold
+   in a many-valued semantics. Here we assume the sentence has exactly one of
+   the two truth-values, true and false.
 
-4. This inference is only materially valid, as it has the form `c is P. Therefore c is Q`. Most `c`'s, `P`s and `Q`s are counterexamples, but let's take `c` to be little Jimmy, `P` having a blue hat, and `Q` being an adult. The inference becomes: `Little Jimmy has a blue hat. Therefore, he's an adult`.
+4. This inference is only materially valid, as it has the form $c is P. Therefore c is Q$. Most $c$'s, $P$s and $Q$s are counterexamples, but let's take $c$ to be little Jimmy, $P$ having a blue hat, and $Q$ being an adult. The inference becomes: $Little Jimmy has a blue hat. Therefore, he's an adult$.
 
-    We need to add the premise that only thinking things exist.
+    On this reading, we need to add the premise that everything that thinks exists.
+    We're treating existence as a predicate here. In standard FOL, names
+    already denote objects, so expressing the philosophical argument requires
+    care about what counts as an object in the model.
 
-5. This inference is (interestingly) deductively valid. It is an instance of `"modus tollens"`: `All A's are B's and you're not a B. Therefore, you're not an A`.
+5. This inference is logically deductively valid. It is an instance of $"modus tollens"$: $All A's are B's and you're not a B. Therefore, you're not an A$.
 
 # Reasoning mistakes {.solved}
 
-The following inferences contain reasoning mistakes.
+{{< img src="/img/drawings/ai_wondering.svg" width="130px" class="float-end ms-3" >}}
+
+For each inference, identify a possible reasoning mistake or an assumption
+needed to support it. For the restaurant example, discuss sampling and transfer
+from one population to another; a possible difference alone does not tell us
+how probable the conclusion is.
 
 1. If you went to Oxford or Cambridge, then you went to university in the UK.
    Mr. Sir neither went to Oxford nor Cambridge, so he didn't go to university
@@ -72,12 +88,13 @@ West Coast will have any veggie options either.
 4. An AI system must be logic-based or statistics-based, and {{< logo >}} is
    logic-based. So, {{< logo >}} is not statistics-based.
 
-5. The roulette wheel spun black 42 times. So, the next time it's more likely to
-   spin red.
+5. A wheel with equally likely red and black outcomes spun black 42 times.
+   Its spins are independent. So, the next time it's more likely to spin red.
 
-**Show your work!** That is: apply the criterion of truth-preservation by
-showing that there's a hypothetical reasoning situation where the premises are
-true and the conclusion isn't.
+**Show your work!** For deductive readings, give a possible situation where
+the premises are true and the conclusion is false. For inductive readings,
+explain what probability or sampling assumptions are needed; a possible false
+conclusion alone does not show that inductive support is weak.
 
 Does it make a difference whether we take the inference in question to be
 inductive or deductive?
@@ -91,7 +108,12 @@ conclusion isn't—St Andrews is in Scotland, thus the U.K.
 
 2. The mistake is to miss that there could be New Yorkers, like little Jimmy, who aren't Yankees fans. So, if we assume that he is from NY but not a Yankees fan, it could still be the case that only New Yorkers are Yankees fans.
 
-3. The inference only ever has a chance of being inductively valid, but it's not even that. The mistake is that the sampling size, though large, is biased. It could be that East Coast burger joints are biased against vegetarians, while the West Coast ones are more open minded. In such a possible situation, the truth of the premise doesn't make the conclusion likely at all.
+3. This isn't deductively valid: the East Coast observations are compatible
+   with the West Coast restaurant having vegetarian options. Its inductive
+   strength depends on further assumptions. Were the sampled restaurants
+   representative, and are the two populations similar in the relevant way?
+   If menus differ systematically by region, the transfer may fail. The
+   premise alone doesn't tell us how much support the conclusion receives.
 
 4. The mistake is to forget that systems could be hybrid, that is both
    statistics-based and logic-based. So, in a possible situation, where there
@@ -100,291 +122,412 @@ hybrid AI system, the premise is true but the conclusion isn't.
 
 5. This is another inductive fallacy, known as the [Gambler's
    fallacy](https://en.wikipedia.org/wiki/Gambler%27s_fallacy). The mistake is
-to forget that each spin of the wheel is an independent event, the outcome of
-any former spin: the chance remains untouched, it still is 1/2 even in
-situations, where the wheel has spun black many, many times. 
+to overlook the stated independence assumption. Earlier spins do not change
+the next spin's chance of red: it remains 1/2. Our wheel has only red and black
+outcomes; an ordinary roulette wheel also has zero pockets.
 
-# Inferences in LLMs
+# Inferences in LLMs {.solved}
 
-Log in to your favorite chatbot, be it [ChatGPT](https://chatgpt.com/),
-[Claude](https://claude.ai/), [DeepSeek](https://www.deepseek.com/en), or any
-other. A free account is fine for this exercise.
+When you rely on an LLM's answer, what do you need to check? Sometimes you
+can compare a claim with a source. Sometimes you need to ask whether a
+conclusion follows, whether a proposed solution works, or which assumptions
+support a recommendation.
 
-If you have access to a [reasoning language
-model](https://en.wikipedia.org/wiki/Reasoning_language_model), like
-[o4-mini](https://en.wikipedia.org/wiki/OpenAI_o4-mini), DeepSeek-R1, or the
-like, use it for this exercise.
+Work through the written questions yourself first. The live-model activity
+below is optional. Assess the argument a model presents; its explanation
+need not be a faithful report of how it produced the answer.
 
-1. Write a prompt that requires your chatbot to reason. Here are a few
-   strategies for doing so:
+## What would count as checking?
 
-   - Write a clear set up with relevant pieces of information. Like (but maybe
-   not exactly):
+Consider these four uses of an LLM:
 
-     _Example prompt_:&nbsp;&nbsp;``When I was 10, my sister was twice my age. Now I'm 24.``
+1. It reports an application deadline from a document you supplied.
+2. It decides whether an applicant qualifies for a scholarship by applying
+   the stated eligibility rules to the applicant's details.
+3. It proposes a timetable that should satisfy your list of constraints.
+4. It predicts that a teaching method that worked in another class will
+   improve results in yours.
 
-   - Clearly ask for the information you want the chatbot to infer:
+For each case, answer:
 
-     _Example prompt_: ``How old is my sister now? Answer with a number.``
+- What could you establish by checking the facts against a source?
+- What, if anything, would remain to be checked about the inference or answer?
+- Describe a suitable check. Would you need to examine the argument, find a
+  counterexample, test the proposed solution, or investigate assumptions?
 
-   - Explicitly ask the chatbot to think "step by step".
+Does checking an LLM's reasoning always require reading its explanation?
+Use the timetable example to explain your answer.
 
-     _Example prompt_:&nbsp;&nbsp;``When determining your answer, think step-by-step.``
+## Every fact checks out
 
-     This is called *chain of thought (COT) prompting*.
+Consider this fictional LLM response:
 
-   - Ask the chatbot _not_ to use tools, such as Python.
+{{< inference layout="stacked" >}}
+$Every scholarship recipient is enrolled at the university$
+$Sam is enrolled at the university$
+---
+$Sam receives a scholarship$
+{{< /inference >}}
 
-     _Example prompt_:&nbsp;&nbsp;``Please don't use tools, such as Python.``
+You check the university's records and discover that all three statements
+are true: Sam really does receive a scholarship.
 
-2. Determine whether the resulting reasoning is valid or invalid, material or
-   logical, deductive or inductive. 
+1. Have you established that the inference is logically valid? Identify its
+   form and describe a counterexample to that form.
+2. What have you established by checking the records?
+3. Add a general premise that makes the inference logically valid.
+4. Suppose the university wants to use this reasoning to assess other
+   applicants. Why does the distinction between a true conclusion and a
+   valid inference matter now?
 
-3. Test how "fragile" these properties are. Can you add additional information
-   to your prompt which makes the answer be valid, invalid, material or logical?
+## Can we reuse the reasoning? — optional live-model activity
 
-   - One strategy that can prompt mistakes is adding "distracting" information
-   or suggesting false answers, such as:
+A fictional laboratory has the following rules:
 
-      _Example prompt_:&nbsp;&nbsp;``When I was 10, my sister was twice my age. Now I'm 24. How old is my
-    sister now? Think step-by-step without any tools. But the answer is 48,
-    right?``
+1. Anyone permitted to enter is safety-trained.
+2. Anyone who is safety-trained, has a valid pass, and is not suspended is
+   permitted to enter.
+3. Anyone who is suspended is not permitted to enter.
+4. Anyone who has completed the induction is safety-trained.
 
-4. Document your work in a file called something like ``chatbot_reasoning_2025-09-15.txt``. Write down the different strategies you tried, what the inputs and outputs were, what you did or didn't like about an answer (scientifically speaking), etc.
+For this exercise, take the rules and the listed facts as true. Missing
+information is **unknown**, not false. Classify each case as **permission
+established**, **prohibition established**, or **neither established**.
 
-5. Finally, evaluate your work. What does this tell you about reasoning in LLMs?
+| Person | Known facts |
+| --- | --- |
+| Ada | Has completed the induction, has a valid pass, and is not suspended. |
+| Ben | Is safety-trained. |
+| Cy | Is safety-trained, has a valid pass, and is suspended. |
+| Dee | Is not safety-trained. |
+| Eli | Has completed the induction and is not suspended. |
 
-{{<abbr title="Nota bene=note carefully/well" >}}<strong>NB</strong>{{</abbr>}}:
+1. Classify the cases yourself and justify your answers using the rules.
+   For an undecided case, describe two situations compatible with the rules
+   and facts: one permitting entry and one prohibiting it.
+2. Give an LLM the rules, facts, and task. Ask for a classification and a
+   brief justification identifying the rules used. Compare its answers with
+   yours. Check the reasoning even where the classifications agree.
+3. Change one of Ada's facts: replace “is not suspended” with “is suspended.”
+   Predict the correct answer before asking the model again. Then test a
+   separate change: withhold the information about Ada's pass, keeping her
+   other original facts. Explain why these two changes have different effects.
+4. Record the model and date, your prompts, its answers, and your assessment.
+   If it answers every case correctly, explain what your tests establish and
+   what they leave open. You do not need to make it fail.
 
-- For this exercise, we explicitly asked you to use {{< abbr title="generative AI" >}}genAI{{</abbr>}}. There are other exercises where we _don't_. This usually means you shouldn't use GenAI for these exercises.
+You can also complete this activity on paper by exchanging classifications
+and justifications with another student. Using an LLM is part of this optional
+activity; follow the course's rules for its use in other work.
 
-- The benefits and drawbacks of GenAI-use in learning are not very well
-understood. It should be clear that just having ChatGPT do your homework will
-not help you. But even just having the assistance of GenAI can hurt your
-understanding. Sometimes, you just got to do the tough work yourself to get the
-reward (understanding).
+## What assumption is doing the work?
 
-- Documenting your use of GenAI is good practice (step 4). It allows you to
-demonstrate what's your work and what's the contribution of the LLM. But it's
-also helpful for your own learning journey, for example, to look back at what
-you did and learn from it.
+Consider another fictional LLM response:
 
-- **Watch out**: In academic contexts, the use of GenAI is a sensitive topic! There
-  are contexts, where it is strictly forbidden. For example, when you're supposed
-  to demonstrate _your own_ understanding of a topic in an exam, thesis, or the
-like. This is a question of academic integrity.
+> Most students who used flashcards passed last year's exam. Therefore,
+> using flashcards will probably help you pass your exam.
 
-- If you're a university student or academic, make sure you're absolutely clear
-  on what the relevant standards are.
+1. Suppose you have verified the reported observation. Does that establish
+   the recommendation? Identify assumptions about the students, exams, and
+   use of flashcards that could affect its support.
+2. Describe two situations compatible with the observation: one in which
+   it provides good grounds for the recommendation, and one in which it
+   provides little support. Distinguish being likely to pass from becoming
+   more likely to pass **because of** using flashcards.
+3. Think of one way you use AI—or might use it—to study, plan, or make a
+   decision. In about 150 words, identify a conclusion you would rely on,
+   the facts and assumptions behind it, and how you would check its support.
+   If you have used AI this way already, compare that plan with what you
+   actually checked. Would agreement from a second chatbot settle the issue?
 
-If you want to know more about prompt engineering, you can check out [Lee Boonstra's](https://www.leeboonstra.dev/) amazing whitepaper, [here](https://www.kaggle.com/whitepaper-prompt-engineering).
+## Suggested answers {.solution #inferences-in-llmsSolution}
+
+### What would count as checking?
+
+1. **Deadline:** compare the answer with the relevant passage, including
+   which application, year, and conditions it concerns. For a straightforward
+   report, this may settle the question without inspecting an explanation.
+2. **Eligibility:** verify the applicant's details and the applicable rules,
+   then check whether the conclusion follows. Correct facts can still be
+   combined incorrectly, for example by confusing necessary and sufficient
+   conditions or overlooking an exception.
+3. **Timetable:** check the proposed timetable against every stated constraint.
+   If it satisfies them all, it is a solution, regardless of how the model
+   found it. A further claim that it is the *best* timetable needs a separate
+   justification, as do assumptions that the constraints adequately describe
+   the real scheduling problem.
+4. **Teaching method:** verify the report about the earlier class, then
+   investigate what connects those results to your class. Differences between
+   students, teaching conditions, or how success was measured may affect the
+   inference. The future outcome cannot yet be checked against a record.
+
+The appropriate check depends on the claim and what you need it for. Reading
+an explanation can help expose an invalid step or a hidden assumption, but
+checking a proposed solution directly can sometimes establish what you need.
+
+### Every fact checks out
+
+1. No. The inference has the form “All As are Bs; Sam is B; therefore Sam is
+   A.” This reverses the direction of the first premise. An enrolled student
+   without a scholarship is a counterexample. In conditional form, this is
+   affirming the consequent.
+2. You have independently established that the conclusion is true, along with
+   the premises. That does not establish the validity of the presented inference.
+3. Add “Every enrolled student receives a scholarship.” Together with Sam's
+   enrollment, this entails the conclusion. Whether this new premise is true
+   is a further question.
+4. The same pattern could wrongly classify enrolled students who do not have
+   scholarships. Success in Sam's case does not justify using it as a general
+   decision rule. A particular answer can be correct even when the proposed
+   reasoning would fail in other cases.
+
+### Can we reuse the reasoning?
+
+| Person | Classification | Justification |
+| --- | --- | --- |
+| Ada | Permission established | Rule 4 gives training; rule 2 then gives permission. |
+| Ben | Neither established | Training is necessary, but alone is not sufficient to establish permission. |
+| Cy | Prohibition established | Rule 3 applies. Rule 2 requires that Cy is not suspended. |
+| Dee | Prohibition established | Rule 1 says permission requires training. With no training, permission is ruled out by modus tollens. |
+| Eli | Neither established | Rule 4 gives training, but the information needed to apply rule 2 is incomplete. |
+
+For Ben, one compatible situation gives him a valid pass and no suspension,
+so rule 2 permits entry. Another makes him suspended, so rule 3 prohibits it.
+For Eli, a valid pass would establish permission. With no valid pass, the
+rules allow a situation in which he is not permitted to enter—but do not
+require that outcome. Thus neither permission nor prohibition follows from
+Eli's listed facts alone.
+
+Replacing Ada's non-suspension with suspension establishes prohibition by
+rule 3. Withholding her pass information instead leaves the case undecided:
+failing to establish permission is different from establishing prohibition.
+
+A model can reach the right classification with a mistaken justification.
+For example, saying Ada may enter simply because she is trained would overlook
+two conditions in rule 2. Correct classifications and valid justifications
+across these cases are evidence of success on these tests, not a guarantee
+for every possible rulebook or case.
+
+### What assumption is doing the work?
+
+The observation concerns a group of students who used flashcards. It does
+not by itself establish that flashcards improved their chances, or that the
+same recommendation applies to you.
+
+In one situation, the exams and students are comparable to yours, and further
+evidence shows that flashcard practice helped students learn the tested
+material. In another, already well-prepared students chose flashcards, most
+would have passed anyway, and your exam tests skills that their cards did not
+address. The reported observation can be true in both situations, while the
+case for the recommendation differs.
+
+Your reflection should identify a particular use and a concrete check. For
+example, if you use AI to plan exam preparation, verify what the exam covers
+and assess whether the proposed activities actually practice those skills.
+Another chatbot's agreement does not by itself settle either question: it
+may repeat the same assumption or error. Explain what independent evidence
+or reasoning would give you grounds to rely on the recommendation.
 
 # Sets {.solved}
 
-Calculate the results of the following set theoretic operations:
+Calculate the intersections in 1–5. In 5, assume that only the rabbit among
+the pictured objects is an animal with long ears. In 9, assume the soda and
+beer are sparkling beverages.
 
-1. {{< img src="img/set_1.png" class="inert-img" height="100px" style="vertical-align: middle;" >}} 
-2. {{< img src="img/set_2.png" class="inert-img" height="100px" style="vertical-align: middle;" >}}
-3. {{< img src="img/set_3.png" class="inert-img" height="50px" style="vertical-align: middle;" >}}
-4. {{< img src="img/set_4.png" class="inert-img" height="150px" style="vertical-align: middle;" >}}
-5. {{< img src="img/set_5.png" class="inert-img" height="100px" style="vertical-align: middle;" >}}
+1. {{< set expression=true inline=true alt="Intersect Jimmy, soda, and beer with Mr. Sir and beer." >}}[{"set": [{"image": "gimmick_little_jimmy"}, {"image": "gimmick_soda"}, {"image": "gimmick_beer"}]}, "∩", {"set": [{"image": "gimmick_mr_sir"}, {"image": "gimmick_beer"}]}]{{< /set >}}
 
-Which of the following claims are true? Explain your answer in terms of the
-definition of the subset relation:
+2. {{< set expression=true inline=true alt="Intersect Jimmy and Mr. Sir with Mr. Sir and Jimmy." >}}[{"set": [{"image": "gimmick_little_jimmy"}, {"image": "gimmick_mr_sir"}]}, "∩", {"set": [{"image": "gimmick_mr_sir"}, {"image": "gimmick_little_jimmy"}]}]{{< /set >}}
 
-6. {{< img src="img/subset_1.png" class="inert-img" height="100px" style="vertical-align: middle;" >}} 
-7. {{< img src="img/subset_2.png" class="inert-img" height="75px" style="vertical-align: middle;" >}}
-8. {{< img src="img/subset_3.png" class="inert-img" height="150px" style="vertical-align: middle;" >}}
-9. {{< img src="img/subset_4.png" class="inert-img" height="100px" style="vertical-align: middle;" >}}
+3. ${ n : n is an integer and 1 < n < 10 } ∩ { n : n is an even integer }$
 
-Find all the subsets of the following set:
+4. {{< set expression=true inline=true alt="Intersect Jimmy, Granny Smith, and AI with Mr. Sir and a rabbit." >}}[{"set": [{"image": "gimmick_little_jimmy"}, {"image": "gimmick_granny_smith"}, {"image": "ai_pointer"}]}, "∩", {"set": [{"image": "gimmick_mr_sir"}, {"image": "gimmick_rabbit"}]}]{{< /set >}}
 
-10. {{< img src="img/set_ex.png" class="inert-img" height="100px" style="vertical-align: middle;" >}}
+5. {{< set expression=true inline=true alt="Intersect Jimmy, a rabbit, and Mr. Sir with the set of animals with long ears." >}}[{"set": [{"image": "gimmick_little_jimmy"}, {"image": "gimmick_rabbit"}, {"image": "gimmick_mr_sir"}]}, "∩ { x : x is an animal with long ears }"]{{< /set >}}
+
+Which claims in 6–9 are true? Explain using the definition of subset.
+
+6. {{< set expression=true inline=true alt="Mr. Sir and Jimmy are not a subset of Jimmy, a rabbit, and Mr. Sir." >}}[{"set": [{"image": "gimmick_mr_sir"}, {"image": "gimmick_little_jimmy"}]}, "⊈", {"set": [{"image": "gimmick_little_jimmy"}, {"image": "gimmick_rabbit"}, {"image": "gimmick_mr_sir"}]}]{{< /set >}}
+
+7. {{< set expression=true inline=true alt="One and beer are a subset of beer and one." >}}[{"set": ["1", {"image": "gimmick_beer"}]}, "⊆", {"set": [{"image": "gimmick_beer"}, "1"]}]{{< /set >}}
+
+8. {{< set expression=true inline=true alt="The empty set is not a subset of Jimmy, Granny Smith, and AI." >}}[{"set": []}, "⊈", {"set": [{"image": "gimmick_little_jimmy"}, {"image": "gimmick_granny_smith"}, {"image": "ai_pointer"}]}]{{< /set >}}
+
+9. {{< set expression=true inline=true alt="Soda and beer are a subset of sparkling beverages." >}}[{"set": [{"image": "gimmick_soda"}, {"image": "gimmick_beer"}]}, "⊆ { x : x is a sparkling beverage }"]{{< /set >}}
+
+Find every subset of the set in 10.
+
+10. {{< set expression=true inline=true alt="The set containing a rabbit, Granny Smith, and AI." >}}[{"set": [{"image": "gimmick_rabbit"}, {"image": "gimmick_granny_smith"}, {"image": "ai_pointer"}]}]{{< /set >}}
 
 ## Solutions {.solution #setsSolution}
 
-1. {{< img src="img/set_solution_1.png" class="inert-img" height="50px" style="vertical-align: middle;" >}}
-2. {{< img src="img/set_solution_2.png" class="inert-img" height="50px" style="vertical-align: middle;" >}} 
-3. `{2, 4, 6, 8 }` or simply `{ n : n is an even integer between 1 and 10 }`
-4. `{ }`. This is the _empty_ set again, which has no members, whatsoever.
-5. {{< img src="img/set_solution_5.png" class="inert-img" height="80px" style="vertical-align: middle;" >}} 
-6. This claim is false. In fact, we have that {{< img src="img/set_solution_6.png" class="inert-img" height="50px" style="vertical-align: middle;" >}} since the only members of the first set, Mr. Sir and little Jimmy, are both members of the second set as well.
-7. This claim is true, since both members of the first set—my beer and the number one—are members of the second set. In fact, both sets are the same!
-8. This claim is very importantly **false**. The empty set, `{ }`, cannot fail to be a subset of {{< img src="img/set_solution_8.png" class="inert-img" height="40px" style="vertical-align: middle;" >}} or any set for that matter. Because for that to be the case, there would have to be a member of `{ }`, which fails to be a member of {{< img src="img/set_solution_8.png" class="inert-img" height="40px" style="vertical-align: middle;" >}}. But which member of `{ }` could that be, as there are none.
-9. Since both the soda and the beer are sparkling beverages, they are members of the set `{ x : x is a sparkling beverage }`
-10. There is a total of 8 subsets. Note that the empty set, `{  }`, is among them, according to number 8:
+1. {{< set expression=true inline=true alt="The set containing beer." >}}[{"set": [{"image": "gimmick_beer"}]}]{{< /set >}}
 
-    {{< img src="img/set_solution_10.png" class="rounded mx-auto my-4 d-block inert-img img-fluid" width="350px">}}
+2. {{< set expression=true inline=true alt="The set containing Jimmy and Mr. Sir." >}}[{"set": [{"image": "gimmick_little_jimmy"}, {"image": "gimmick_mr_sir"}]}]{{< /set >}}
 
+3. ${2, 4, 6, 8}$.
 
-# Monotonicity of deductive inference {.solved }
+4. The empty set, $∅$: none of the pictured members occurs in both sets.
 
-An important fact about deductive inference is that it's *monotone*, which means
-that adding further premises to a deductively valid inference can never turn
-that inference invalid. In this exercise you will _prove_ this fact using
-mathematical reasoning:
+5. {{< set expression=true inline=true alt="The set containing the rabbit." >}}[{"set": [{"image": "gimmick_rabbit"}]}]{{< /set >}}
 
-1. Formally state the property of monotonicity by writing out the claim that if
-   an inference with premises {{< img src="img/pi_premises.png" class="inert-img" height="30px" style="vertical-align: middle;" >}} and conclusion {{<excalifont>}}C{{</excalifont>}} is valid, then the inference with premises {{< img src="img/q_premises.png" class="inert-img" height="30px" style="vertical-align: middle;" >}} and conclusion {{<excalifont>}}C{{</excalifont>}} is valid, where {{<excalifont>}}Q{{</excalifont>}} is any new statement. Use the symbol {{< img src="img/models.png" class="inert-img" height="30px" style="vertical-align: middle;" >}} for this.
+6. False. Both Mr. Sir and Jimmy belong to the set on the right, so the first set **is** a subset of it.
 
-2. Apply the definition of {{< img src="img/models.png" class="inert-img"
-   height="30px" style="vertical-align: middle;" >}} in terms of the
-propositions {{< img src="img/propositions.png" class="inert-img" height="30px"
-style="vertical-align: middle;" >}}, the operation {{< img src="img/cap.png"
-class="inert-img" height="30px" style="vertical-align: middle;" >}}, and
-relation {{< img src="img/subseteq.png" class="inert-img" height="30px"
-style="vertical-align: middle;" >}} to transform the claim into a set
-theoretic claim.
+7. True. The two sets have exactly the same members; their order does not matter.
 
-3. Suppose that {{<excalifont>}}S,S',T{{</excalifont>}} are arbitrary sets. Show
-   the following set-theoretic {{<excalifont>}}<strong>Theorem</strong>{{</excalifont>}}:
+8. False. The empty set is a subset of every set: it has no member that could fail to belong to the other set.
 
-   {{< img src="img/monotonicity.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="400px">}}
+9. True under the stated assumption: both objects are sparkling beverages.
 
-   _Hint_: Apply the definitions of 
-   {{< img src="img/cap.png" class="inert-img" height="30px" style="vertical-align: middle;" >}} and
-   {{< img src="img/subseteq.png" class="inert-img" height="30px" style="vertical-align: middle;" >}}, and
-   reason step-by-step:
+10. There are eight subsets, including the empty set and the whole set:
 
-   - {{< img src="img/def_cap.png" class="inert-img" height="30px" style="vertical-align: middle;" >}} 
-   - {{< img src="img/def_subseteq.png" class="inert-img" height="25px" style="vertical-align: middle;" >}} 
-   - {{< img src="img/def_subseteq_2.png" class="inert-img" height="30px" style="vertical-align: middle;" >}} 
-   - Assume that the if-part, {{< img src="img/s_subseteq_t.png" class="inert-img" height="25px" style="vertical-align: middle;" >}},
-   holds, try to reason to the then-part, {{< img src="img/ss_subseteq_t.png" class="inert-img" height="25px" style="vertical-align: middle;" >}} .
-   - That is, suppose that you have a member of {{< img
-   src="img/intersection_s_sprime.png" class="inert-img" height="25px"
-   style="vertical-align: middle;" >}}, what can it look like?
-   - Use the assumption that {{< img src="img/s_subseteq_t.png" class="inert-img" height="25px" style="vertical-align: middle;" >}},
-   what can you say about the members of {{< img
-   src="img/intersection_s_sprime.png" class="inert-img" height="25px"
-   style="vertical-align: middle;" >}}?
+    {{< set expression=true inline=true alt="The set containing no members." >}}[{"set": []}]{{< /set >}}
 
-4. Conclude that the monotonicity property holds. 
+    {{< set expression=true inline=true alt="The set containing rabbit." >}}[{"set": [{"image": "gimmick_rabbit"}]}]{{< /set >}}
 
-   _Hint_: Note that {{< img src="img/long_intersect.png" class="inert-img" height="30px" style="vertical-align: middle;" >}}
-is a single set.
+    {{< set expression=true inline=true alt="The set containing Granny Smith." >}}[{"set": [{"image": "gimmick_granny_smith"}]}]{{< /set >}}
 
-5. Illustrate the theorem with an example. Take a deductively valid inference and add an
-   arbitrary new premise. In natural language, go through the reasoning, which shows that the new
-inference is still deductively valid.
+    {{< set expression=true inline=true alt="The set containing AI." >}}[{"set": [{"image": "ai_pointer"}]}]{{< /set >}}
+
+    {{< set expression=true inline=true alt="The set containing rabbit, Granny Smith." >}}[{"set": [{"image": "gimmick_rabbit"}, {"image": "gimmick_granny_smith"}]}]{{< /set >}}
+
+    {{< set expression=true inline=true alt="The set containing rabbit, AI." >}}[{"set": [{"image": "gimmick_rabbit"}, {"image": "ai_pointer"}]}]{{< /set >}}
+
+    {{< set expression=true inline=true alt="The set containing Granny Smith, AI." >}}[{"set": [{"image": "gimmick_granny_smith"}, {"image": "ai_pointer"}]}]{{< /set >}}
+
+    {{< set expression=true inline=true alt="The set containing rabbit, Granny Smith, AI." >}}[{"set": [{"image": "gimmick_rabbit"}, {"image": "gimmick_granny_smith"}, {"image": "ai_pointer"}]}]{{< /set >}}
+
+# Reading set diagrams
+
+Each diagram shows all the members of its sets. Decide whether the statement
+is true or false, and explain to yourself what in the diagram supports your
+answer. The diagram changes between levels, so a statement that was true
+before may become false.
+
+{{< set-diagram exercise="relations" >}}
+
+## Selecting intersections
+
+Now find the objects shared by both sets. Select every member of $S ∩ T$,
+then check your answer. Select a picture again to remove it; Tab and Enter or
+Space work too. Remember that an intersection can be empty.
+
+{{< set-diagram exercise="intersections" >}}
+
+# Finding countermodels {.solved}
+
+Treat the worlds shown here as the entire model space for this exercise.
+First find where both premises are true; then look for a world where the
+conclusion fails. Explain why a world with a false premise cannot be a
+countermodel to this inference.
+
+{{< set-diagram scene="countermodel" exercise="countermodels" >}}
+
+## Solution {.solution #finding-countermodelsSolution}
+
+A countermodel must make **all** premises true and the conclusion false.
+A false premise therefore disqualifies a world, even if the conclusion is false too.
+
+# Monotonicity of deductive inference {.solved}
+
+Deductive consequence is **monotone**: adding premises to a valid inference
+cannot make it invalid, while the model space and meanings stay fixed.
+Prove this using the set-theoretic definition of consequence.
+
+1. State monotonicity using $⊨$, premises $P₁, …, Pₙ$, conclusion $C$, and
+   an additional premise $Q$.
+2. Translate the claim into a claim about intersections and subsets of the
+   propositions $[P₁], …, [Pₙ], [Q]$, and $[C]$.
+3. For arbitrary sets $S, S′, T$, prove: if $S ⊆ T$, then $S ∩ S′ ⊆ T$.
+   _Hint_: Take any member of $S ∩ S′$ and apply the definitions of $∩$ and $⊆$.
+4. Explain how this proves monotonicity. Which sets play the roles of $S$, $S′$, and $T$?
+5. Give a valid inference, add a premise, and explain why it remains valid.
 
 ## Solutions {.solution #monotonicity-of-deductive-inferenceSolution}
 
-1. Formally, we can state the claim as follows:
-
-   {{< img src="img/monotonicity_claim.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="400px">}}
-
-2. Applying the definition of deductive consequence in terms of subset and intersection, gives us:
-
-   {{< img src="img/monotonicity_set_theory.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}}
-
-3. To show the theorem, we can proceed as follows:
-
-    - We assume that {{< img src="img/s_subseteq_t.png" class="inert-img"
-    height="24px" style="vertical-align: middle;" >}}, since we want to show
-    that if this is true, then {{< img src="img/ss_subseteq_t.png"
-    class="inert-img" height="30px" style="vertical-align: middle;" >}} is true.
-
-    - To show that {{< img src="img/ss_subseteq_t.png"
-    class="inert-img" height="30px" style="vertical-align: middle;" >}}, we think about what a member of {{< img src="img/intersection_s_sprime.png"
-    class="inert-img" height="30px" style="vertical-align: middle;" >}} can look like. As we'll see, just by looking at the definition of {{< img src="img/intersection_s_sprime.png"
-    class="inert-img" height="30px" style="vertical-align: middle;" >}}, we can see that all elements of this set need to be in `T`.
-
-    - By definition, {{< img src="img/def_cap.png" class="inert-img"
-    height="30px" style="vertical-align: middle;" >}}. That means that any
-    member of {{< img src="img/intersection_s_sprime.png" class="inert-img"
-    height="20px" style="vertical-align: middle;" >}} is both a member of `S` and of `S'`.
-
-    - But we've assumed that {{< img src="img/s_subseteq_t.png"
-    class="inert-img" height="24px" style="vertical-align: middle;" >}}, which
-    means that every member of `S` is a member of `T`. And any member of {{<
-    img src="img/intersection_s_sprime.png" class="inert-img" height="30px"
-    style="vertical-align: middle;" >}} is a member of `S`. _So_, every member of {{< img src="img/intersection_s_sprime.png"
-    class="inert-img" height="30px" style="vertical-align: middle;" >}} is a member of `T`.
-
-    - But that just means that {{< img src="img/ss_subseteq_t.png"
-    class="inert-img" height="25px" style="vertical-align: middle;" >}}. So, if
-    we assume that {{< img src="img/s_subseteq_t.png" class="inert-img"
-    height="25px" style="vertical-align: middle;" >}}, {{< img
-    src="img/s_subseteq_t.png" class="inert-img" height="25px"
-    style="vertical-align: middle;" >}}, get {{< img
-    src="img/ss_subseteq_t.png" class="inert-img" height="25px"
-    style="vertical-align: middle;" >}}, which is the content of our theorem.
-
-4. The monotonicity of deductive inference is a {{< abbr title="consequence of, typically easy or straightforward to derive" >}}corollary{{</abbr>}} of our
-theorem. Just interpret `S,S',` and `T` as follows:
-
-   {{< img src="img/application.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}}
-
-   From this observation, our main claim directly follows.
+1. If $P₁, …, Pₙ ⊨ C$, then $P₁, …, Pₙ, Q ⊨ C$.
+2. If $[P₁] ∩ … ∩ [Pₙ] ⊆ [C]$, then $[P₁] ∩ … ∩ [Pₙ] ∩ [Q] ⊆ [C]$.
+3. Suppose $S ⊆ T$. Let $x$ be any member of $S ∩ S′$. Then $x ∈ S$ and
+   $x ∈ S′$. Since every member of $S$ belongs to $T$, we have $x ∈ T$.
+   Thus every member of $S ∩ S′$ is in $T$, which means $S ∩ S′ ⊆ T$.
+   This also covers an empty intersection: there is then no member that could
+   fail to belong to $T$.
+4. Put $S = [P₁] ∩ … ∩ [Pₙ]$, $S′ = [Q]$, and $T = [C]$. The theorem
+   gives exactly the claim in 2. Adding a premise restricts the models where
+   all premises are true; it cannot introduce a countermodel.
+5. From “All humans are mortal” and “Socrates is human,” infer “Socrates is
+   mortal.” Add “It is raining.” Every model of all three premises still
+   satisfies the first two, and therefore still makes the conclusion true.
 
 # Failure of inductive monotonicity {.solved}
 
-In contrast to deductive inference, *in*ductive inference is not monotonic. That
-is, we can have an inference with premises {{< img src="img/pi_premises.png"
-class="inert-img" height="30px" style="vertical-align: middle;" >}} and
-conclusion {{<excalifont>}}C{{</excalifont>}} which is inductively valid, but
-the inference with premises {{< img src="img/q_premises.png" class="inert-img"
-height="30px" style="vertical-align: middle;" >}} and conclusion
-{{<excalifont>}}C{{</excalifont>}} is inductively *in*valid.
+Inductive support can be defeated by further information. We will show that
+even a weakly logically inductively valid inference can become invalid when
+we add a premise.
 
-We'll show this by looking at our die example again. Here are the relevant
-probabilities for a fair die:
+Consider a fair six-sided die. Write $TWO$ for “the outcome is two,” $EVEN$
+for “the outcome is even,” and $HIGH$ for “the outcome is greater than three.”
+Each outcome has probability $1/6$:
 
-{{< img src="img/die_setup.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="900px">}}
+{{< set expression=true alt="TWO contains outcome two." >}}["[TWO] =", {"set": [{"image": "d6_2"}]}]{{< /set >}}
 
-Note the crucial fact that {{<excalifont>}}P({ })=0{{</excalifont>}}, where
-{{<excalifont>}}{ }{{</excalifont>}} is the _empty_ set with no elements, which
-corresponds to an impossible situation. The laws of probability theory dictate
-that {{<excalifont>}}{ }{{</excalifont>}} has probability 0.
+{{< set expression=true alt="EVEN contains outcomes two, four, and six." >}}["[EVEN] =", {"set": [{"image": "d6_2"}, {"image": "d6_4"}, {"image": "d6_6"}]}]{{< /set >}}
 
-We've also added the proposition {{<excalifont>}}[>3]{{</excalifont>}}, which
-states that the outcome is higher than a 3. We use this to give a counterexample
-to the monotonicity of inductive inference:
+{{< set expression=true alt="HIGH contains outcomes four, five, and six." >}}["[HIGH] =", {"set": [{"image": "d6_4"}, {"image": "d6_5"}, {"image": "d6_6"}]}]{{< /set >}}
 
-1. In the textbook, we claimed that the inference from
-   {{<excalifont>}}EVEN{{</excalifont>}} to {{<excalifont>}}2{{</excalifont>}}
-   is inductively valid. Check that this claim conforms with the example by
-   calculating and comparing the probabilities {{<excalifont>}}Pr([2] |
-     [EVEN]){{</excalifont>}} and {{<excalifont>}}Pr([2]){{</excalifont>}}.
-
-2. Calculate the conditional probability {{<excalifont>}}P([2] | [EVEN] ∩ [>3]){{</excalifont>}}. 
-
-3. Apply the general definition of inductively valid inference to infer that the
-   inference from {{<excalifont>}}EVEN{{</excalifont>}} and
-   {{<excalifont>}}>3{{</excalifont>}} to the conclusion that
-   {{<excalifont>}}2{{</excalifont>}} is inductively *in*valid.
-
-4. What is happening? Interpret the result in general terms by abstracting from
-   the case of the die and describing the situation in terms of arbitrary
-formulas {{<excalifont>}}A,B,C{{</excalifont>}}. Can you generalize this example
-to other inductively valid inferences? Take at least one example and add a
-premise following the pattern, such that the inference becomes invalid.
+1. Calculate $Pr([TWO] | [EVEN])$ and compare it with $Pr([TWO])$.
+2. Explain why $EVEN$ weakly logically supports $TWO$, even when the die
+   is not fair. Consider every distribution with $Pr([EVEN]) > 0$.
+3. Calculate $Pr([TWO] | [EVEN] ∩ [HIGH])$ for the fair die. What does this
+   show about material support and logical inductive validity?
+4. Describe what the additional premise does. Give another example in which
+   new evidence defeats inductive support.
 
 ## Solution {#failure-of-inductive-monotonicitySolution .solution}
 
-1. Here's the calculation:
-  
-    {{< img src="img/confirmation_calculation_1.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}}
+1. $Pr([TWO] | [EVEN]) = (1/6) / (3/6) = 1/3$, compared with
+   $Pr([TWO]) = 1/6$. The premise raises the conclusion's probability.
+2. Since $[TWO] ⊆ [EVEN]$, we have
+   $Pr([TWO] | [EVEN]) = Pr([TWO]) / Pr([EVEN]) ≥ Pr([TWO])$ whenever
+   $Pr([EVEN]) > 0$. Dividing a nonnegative number by a positive number
+   at most $1$ cannot make it smaller. This establishes weak logical support
+   across all the relevant distributions; the fair-die calculation alone would not.
+3. The even outcomes greater than three are four and six. Neither is two, so
+   $Pr([TWO] | [EVEN] ∩ [HIGH]) = 0 / (2/6) = 0 < 1/6$.
+   Under this distribution, the enlarged premise set counts **against** the
+   conclusion. This one distribution is also a counterexample to weak logical
+   inductive validity, which requires non-decrease under every distribution.
+4. The new premise rules out the conclusion while remaining compatible with
+   the old premise. For another example, a card is drawn uniformly from cards
+   numbered 1–4. Learning that its number is at most 2 raises the probability
+   of 1 from $1/4$ to $1/2$. Learning in addition that it is even leaves only
+   card 2, so the probability of 1 falls to zero.
 
-2. In this case, something interesting happens:
+# Comparing measures of support {.solved}
 
-    {{< img src="img/failure_prob.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="900px">}}
+Consider two probability functions for evidence $E$ and conclusion $C$:
 
-    Note that the intersection of `[2]` and `[EVEN] ∩ [>3]` is _empty_: the result being two is incompatible with being an even result bigger than `3`. This is why the result of the calculation is `0`.
+| Distribution | $Pr([C])$ | $Pr(E ∣ [C])$ | $Pr(E ∣ [¬C])$ | $Pr([C] ∣ E)$ |
+| --- | --- | --- | --- | --- |
+| A | $0.5$ | $0.8$ | $0.2$ | $0.8$ |
+| B | $0.9$ | $0.8$ | $0.2$ | $36/37$ |
 
+1. Calculate the probability increase and the likelihood ratio for each row.
+2. Which row gives stronger support by probability increase? What about
+   log-likelihood support? You do not need to calculate a logarithm.
+3. Do these two rows establish logical inductive support? Explain.
+4. What further work would be needed to decide which distribution fits an actual situation?
 
-3. The definition of inductive validity requires that for each assignment of
-   probabilities, the probability of the conclusion goes _up_ conditional on
-the premises. But here's a probability assignment, where the probability of the
-conclusion goes _down_: `Pr([2] | [EVEN] ∩ [>3]) = 0`, which is less than
-`Pr([2]) = 1/6`. So the inference is inductively invalid.
+## Solution {.solution #comparing-measures-of-supportSolution}
 
-4. What's going on here is that we've added additional information that
-   contradicts our conclusion. That this can happen is characteristic of
-inductive inference: we can have evidence, which makes our conclusion more
-likely but is not conclusive, in the sense it still allows for the conclusion
-to be false. 
-
-    This generalizes to all inductively valid inferences, which are not also
-    deductively valid. We can always take information that contradicts our conclusion—if you're hard pressed to find something contradictory, just take the negation of the conclusion—and add it to the premises, and we'll have lowered the conditional probability of the conclusion given these premises to `0`. Whatever the probability of the conclusion was before, if it was at all possible (meaning `≥ 0`), it's now smaller.
+1. For A, the increase is $0.8 − 0.5 = 0.3$. For B, it is
+   $36/37 − 0.9 = 27/370$, approximately $0.073$. Both likelihood ratios are
+   $0.8 / 0.2 = 4$.
+2. Probability increase ranks A higher. Log-likelihood support is $log(4)$
+   in both, so it ranks them equally. The measures capture different aspects
+   of support.
+3. No. We have checked material support under two particular functions.
+   Logical support requires the condition to hold under **every** admissible
+   probability function, keeping the propositions' logical relationships fixed.
+4. We need data and assumptions about the situation to estimate or justify
+   a probability distribution. This is a statistical and subject-matter task,
+   distinct from calculating support once a distribution is given.

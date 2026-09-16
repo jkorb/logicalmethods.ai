@@ -1,7 +1,8 @@
 # Introductory exercise apps
 
 `notation-practice` checks conversion in both directions, preserving the exact
-AST. Conventional answers must omit every redundant pair of brackets; mere
+AST. Its two modes are always-visible buttons; switching mode clears the current
+answer and keeps the same example. Conventional answers must omit every redundant pair of brackets; mere
 logical equivalence does not count. `shunting-yard` shows immutable input,
 stack, and output snapshots. Both use the chapter parser's priorities and
 require explicit grouping for repeated equivalences. `reasoning-practice`

@@ -380,3 +380,25 @@ a.chapter-card:hover { color: var(--ink); border-color: var(--rule-strong); tran
 @media (max-height: 30rem), (max-width: 26rem) { .embed__invite-mascot { display: none; } }
 
 .hero__figure > .mascot, .outcomes__figure > .mascot { inline-size: 50%; }
+
+/* Open rule displays: the inference line is the only ruling. */
+.inference-rules { margin-block: 1.75rem; }
+.inference-rules > figcaption { font-family: var(--font-hand); font-size: var(--step-1); margin-bottom: 1rem; }
+.inference-rules__list { display: grid; gap: 1.6rem; }
+.inference-rules__item { display: grid; grid-template-columns: minmax(7rem, 1fr) minmax(0, 2fr); gap: 1.75rem; align-items: center; }
+.inference-rules__schema .inference { margin: 0; font-size: 1.2em; }
+.inference-rules__explanation > p { margin-block: .3rem; }
+.inference-rules__explanation .inference-rules__name { font-family: var(--font-hand); font-size: var(--step-1); }
+.inference-rules__explanation > p:not(.inference-rules__name) { font-size: var(--step--1); color: var(--ink-muted); }
+.set-inline { display: inline; vertical-align: baseline; }
+.set-inline > span { display: inline; }
+.set-inline .math-set { vertical-align: middle; }
+.math-set--expression { gap: .65em; }
+:root .book-figure.book-figure--themed { background: transparent; }
+@media (max-width: 600px) {
+  .inference-rules__item { grid-template-columns: minmax(5rem, .85fr) minmax(0, 1.5fr); gap: .9rem; }
+  .inference-rules__schema .inference { font-size: 1.05em; }
+}
+/* Inline illustrated expressions wrap between terms, keeping each pictured set together. */
+.set-inline .math-set--expression { flex-wrap: wrap; max-inline-size: 100%; white-space: normal; row-gap: .25em; }
+.set-inline .math-set--expression > .math-set__member { min-inline-size: 0; max-inline-size: 100%; }

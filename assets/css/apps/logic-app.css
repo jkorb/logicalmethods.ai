@@ -262,3 +262,5 @@
   [data-logic-app="parser"] .logic-app__controls { margin-block: .5rem 1rem; }
 }
 .notation-picker { position: relative; width: fit-content; max-width: 100%; margin: .5rem auto 1rem; text-align: left; }
+
+.notation-practice [data-notation-mode][aria-pressed="true"] { color: var(--blue-ink); border-color: var(--blue-ink); box-shadow: inset 0 -2px var(--blue-ink); }

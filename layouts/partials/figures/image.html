@@ -18,6 +18,7 @@
   {{/* Direct Excalidraw exports work too: normalize root metadata only, never
        child geometry. The site already supplies the drawing fonts. */}}
   {{- $svg = replaceRE `(?s)<style class="style-fonts">.*?</style>` "" $svg -}}
+  {{- if .themed }}{{ $svg = replaceRE `(stroke|fill)="#(?:000000|1e1e1e|000)"` `${1}="currentColor"` $svg }}{{ $svg = replaceRE `(stroke|fill)="#(?:ffffff|fff)"` `${1}="var(--paper)"` $svg }}{{ end -}}
   {{- $root := index (findRE `<svg\b[^>]*>` $svg 1) 0 -}}
   {{- $normalized := replaceRE `\s(?:width|height|class|role|aria-label|aria-labelledby|aria-hidden|focusable)="[^"]*"` "" $root -}}
   {{- $access := `aria-hidden="true"` -}}

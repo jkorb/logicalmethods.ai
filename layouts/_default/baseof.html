@@ -63,6 +63,10 @@
     {{ if .HasShortcode "syntax-tree" }}
     <link rel="stylesheet" href="{{ (resources.Get "css/apps/syntax-tree.css" | fingerprint).RelPermalink }}">
     {{ end }}
+    {{ if .HasShortcode "set-diagram" }}
+    <link rel="stylesheet" href="{{ (resources.Get "css/set-diagram.css" | fingerprint).RelPermalink }}">
+    <script type="module" src="{{ (resources.Get "js/set-diagram.js" | js.Build | fingerprint).RelPermalink }}"></script>
+    {{ end }}
     {{ if .HasShortcode "tree-guide" }}
     <link rel="stylesheet" href="{{ (resources.Get "css/tree-guide.css" | fingerprint).RelPermalink }}">
     <script type="module" src="{{ (resources.Get "js/tree-guide.js" | fingerprint).RelPermalink }}"></script>

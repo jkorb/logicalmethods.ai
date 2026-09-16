@@ -1,0 +1,29 @@
+{{- $exercise := dict -}}
+{{- with .Get "exercise" -}}
+  {{- $exercise = index (index hugo.Data "set-exercises") . -}}
+  {{- if not $exercise }}{{ errorf "set-diagram: unknown exercise %q (%s)" . $.Position }}{{ end -}}
+{{- end -}}
+{{- $key := .Get "scene" | default $exercise.scene | default "overlap" -}}
+{{- $scene := index (index hugo.Data "set-diagrams") $key -}}
+{{- if not $scene }}{{ errorf "set-diagram: unknown scene %q (%s)" $key .Position }}{{ end -}}
+{{- $id := printf "%s-set-diagram-%d" .Page.File.UniqueID .Ordinal -}}
+{{- if $exercise.levels -}}
+<div class="set-levels" data-set-levels>
+  <div class="set-diagram__controls" data-level-controls role="group" aria-label="Exercise levels" hidden>
+    <button type="button" data-previous-level>Previous level</button>
+    <span data-level-status role="status" aria-live="polite" aria-atomic="true"></span>
+    <button type="button" data-next-level>Next level</button>
+  </div>
+  {{ range $i, $question := $exercise.questions }}
+    {{ $levelKey := $question.scene | default $key }}
+    {{ $levelScene := index (index hugo.Data "set-diagrams") $levelKey }}
+    {{ if not $levelScene }}{{ errorf "set-diagram: unknown level scene %q" $levelKey }}{{ end }}
+    <div data-set-level>
+      {{ partial "figures/set-diagram.html" (dict "scene" $levelScene "id" (printf "%s-level-%d" $id $i) "exercise" (dict "questions" (slice $question))) }}
+    </div>
+  {{ end }}
+</div>
+{{- else -}}
+  {{- if and $exercise (ne $exercise.scene $key) }}{{ errorf "set-diagram: exercise scene mismatch" }}{{ end -}}
+  {{- partial "figures/set-diagram.html" (dict "scene" $scene "id" $id "exercise" $exercise) -}}
+{{- end -}}

@@ -1,0 +1,50 @@
+{{- $scene := .scene -}}
+{{- $id := .id -}}
+{{- $exercise := .exercise -}}
+<figure class="set-diagram" data-set-diagram {{ if $exercise }}data-set-exercise{{ end }} aria-label="{{ $scene.title }}">
+  <div class="set-diagram__controls" role="group" aria-label="Explore {{ $scene.title }}" hidden>
+    {{ if not $exercise }}{{ range $scene.steps }}<button type="button" data-step="{{ .id }}" aria-pressed="false" aria-controls="{{ $id }}-explanation">{{ .label }}</button>{{ end }}{{ end }}
+  </div>
+  <div class="set-diagram__layout">
+    <svg class="set-diagram__canvas" viewBox="0 0 600 360" role="img" aria-labelledby="{{ $id }}-svg-title {{ $id }}-svg-desc">
+      <title id="{{ $id }}-svg-title">{{ $scene.title }}</title><desc id="{{ $id }}-svg-desc">{{ $scene.description }}</desc>
+      <defs>
+        <pattern id="{{ $id }}-hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(32)"><path d="M 2 -2 Q 0 5 2 14" class="set-diagram__hatch"/></pattern>
+        {{ range $scene.sets }}<path id="{{ $id }}-shape-{{ .id }}" d="{{ .path }}"/><clipPath id="{{ $id }}-clip-{{ .id }}"><use href="#{{ $id }}-shape-{{ .id }}"/></clipPath>{{ end }}
+        {{ range $scene.steps }}{{ if .exclude }}<mask id="{{ $id }}-exclude-{{ .id }}" maskUnits="userSpaceOnUse" x="0" y="0" width="600" height="360"><rect width="600" height="360" fill="white"/>{{ range .exclude }}<use href="#{{ $id }}-shape-{{ . }}" fill="black"/>{{ end }}</mask>{{ end }}{{ end }}
+        {{/* Original book illustrations, embedded once per scene and reused as
+             SVG symbols. Their shape and color remain the author's artwork. */}}
+        {{ $icons := slice }}{{ range $scene.points }}{{ with .image }}{{ if not (in $icons .) }}{{ $icons = $icons | append . }}
+          {{ $asset := resources.Get (printf "img/drawings/%s.svg" .) }}
+          {{ $svg := $asset.Content | replaceRE `(?s)<style class="style-fonts">.*?</style>` "" }}
+          {{ $viewBox := index (findRE `viewBox="[^"]+"` $svg 1) 0 }}
+          {{ $body := $svg | replaceRE `(?s)^.*?<svg[^>]*>|</svg>\s*$` "" | replaceRE `<title>.*?</title>` "" }}
+          {{ $body = replaceRE `(stroke|fill)="#(?:000000|1e1e1e|000)"` `${1}="currentColor"` $body }}
+          {{ $body = replaceRE `(stroke|fill)="#(?:ffffff|fff)"` `${1}="var(--paper)"` $body }}
+          {{ printf `<symbol id="%s-icon-%s" %s>%s</symbol>` $id . $viewBox $body | safeHTML }}
+        {{ end }}{{ end }}{{ end }}
+        <symbol id="{{ $id }}-world" viewBox="0 0 60 60">{{ (resources.Get "img/drawings/model-world.svg").Content | replaceRE `(?s)^.*?<svg[^>]*>|</svg>\s*$` "" | safeHTML }}</symbol>
+      </defs>
+      <path class="set-diagram__universe" d="M 37 18 C 180 16 398 20 561 18 Q 582 18 581 39 L 580 320 Q 583 342 561 341 C 372 339 177 344 37 341 Q 16 342 18 321 L 19 40 Q 17 17 37 18 Z"/>
+      {{ range $scene.sets }}<use href="#{{ $id }}-shape-{{ .id }}" class="set-diagram__fill set-diagram__fill--{{ .color }}"/>{{ end }}
+      {{ range $scene.steps }}<g data-region="{{ .id }}" class="set-diagram__region" style="display:none"{{ if .exclude }} mask="url(#{{ $id }}-exclude-{{ .id }})"{{ end }}>{{ if or .include .exclude }}{{ partial "figures/set-region.html" (dict "id" $id "include" .include) }}{{ end }}</g>{{ end }}
+      {{ range $scene.sets }}<use href="#{{ $id }}-shape-{{ .id }}" class="set-diagram__outline" data-set="{{ .id }}"/><text class="set-diagram__label" x="{{ .lx }}" y="{{ .ly }}" text-anchor="middle">{{ .label }}</text>{{ end }}
+      {{ range $scene.points }}
+      <g data-point="{{ .id }}" transform="translate({{ .x }} {{ .y }})">
+        <circle class="set-diagram__halo" r="32"/>
+        {{ if .image }}<use href="#{{ $id }}-icon-{{ .image }}" x="-25" y="-27" width="50" height="54"/>
+        {{ else if .icon }}<use href="#{{ $id }}-world" x="-21" y="-21" width="42" height="42"/><text class="set-diagram__model-label" text-anchor="middle" y="{{ .labelY | default 40 }}">{{ .label }}</text>
+        {{ else }}<text class="set-diagram__object" text-anchor="middle" dy=".35em">{{ .label }}</text>{{ end }}
+      </g>{{ end }}
+    </svg>
+    <div class="set-diagram__explanation" id="{{ $id }}-explanation">
+      {{ if $exercise }}{{ partial "figures/set-exercise.html" (dict "exercise" $exercise "scene" $scene "id" $id) }}{{ else }}
+      <div data-explanations>{{ range $scene.steps }}<section data-explanation="{{ .id }}"><p class="set-diagram__step-title">{{ .title }}</p>{{ with .formula }}<p class="set-diagram__formula">{{ . }}</p>{{ end }}<p>{{ partial "figures/set-diagram-prose.html" (dict "text" .text "scene" $scene "id" (printf "%s-step-%s" $id .id)) }}</p></section>{{ end }}</div>
+      {{ end }}
+      <span data-result class="visually-hidden" role="status" aria-live="polite"></span>
+      <details><summary>Read the diagram as text</summary><p>{{ $scene.description }}</p><ul>{{ range $set := $scene.sets }}<li>{{ .label }} = { {{ $members := slice }}{{ range $scene.points }}{{ if in .sets $set.id }}{{ $members = $members | append .label }}{{ end }}{{ end }}{{ delimit $members ", " }} }</li>{{ end }}</ul></details>
+    </div>
+  </div>
+  {{ with $exercise }}<script type="application/json" data-exercise>{{ . | jsonify | safeJS }}</script>{{ end }}
+  <script type="application/json" data-scene>{{ $scene | jsonify | safeJS }}</script>
+</figure>

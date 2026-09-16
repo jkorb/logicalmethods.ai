@@ -27,7 +27,7 @@
   "conditional-probability": {
     "term": "Conditional probability",
     "definition": "The probability of one claim given another. Formally, Pr(A given B)=Pr(A∧B)/Pr(B), provided Pr(B)>0.",
-    "chapter": "logic-and-ai"
+    "chapter": "valid-inference"
   },
   "contradiction": {
     "term": "Contradiction",
@@ -37,7 +37,7 @@
   "countermodel": {
     "term": "Countermodel",
     "definition": "A model in which all the premises of an inference are true and its conclusion is not true.",
-    "chapter": "notation"
+    "chapter": "valid-inference"
   },
   "deductive-closure": {
     "term": "Deductive closure",
@@ -47,7 +47,7 @@
   "deductive-validity": {
     "term": "Deductive validity",
     "definition": "The impossibility of the premises being true and the conclusion false in the reasoning situations under consideration.",
-    "chapter": "logic-and-ai"
+    "chapter": "valid-inference"
   },
   "denotation": {
     "term": "Denotation",
@@ -77,7 +77,7 @@
   "entailment": {
     "term": "Entailment",
     "definition": "Another name for semantic consequence, written with ⊨.",
-    "chapter": "notation"
+    "chapter": "valid-inference"
   },
   "equivalence": {
     "term": "Logical equivalence",
@@ -156,8 +156,8 @@
   },
   "modus-ponens": {
     "term": "Modus ponens",
-    "definition": "The rule from A and A→B to B.",
-    "chapter": "formal-languages"
+    "definition": "The inference from A → B and A to B.",
+    "chapter": "valid-inference"
   },
   "negation": {
     "term": "Negation",
@@ -237,7 +237,7 @@
   "probability": {
     "term": "Probability",
     "definition": "A measure of the chance of an event, given by adding the masses of its outcomes in our finite models.",
-    "chapter": "notation"
+    "chapter": "valid-inference"
   },
   "identity": {
     "term": "Identity",
@@ -252,7 +252,7 @@
   "inductive-validity": {
     "term": "Inductive validity",
     "definition": "In our weak logical sense, conditioning on the premises never lowers the probability of the conclusion, for any distribution giving the premises positive probability.",
-    "chapter": "notation"
+    "chapter": "valid-inference"
   },
   "logic": {
     "term": "Logic",
@@ -499,5 +499,157 @@
     "definition": "An expression is ambiguous if it has more than one possible reading.",
     "chapter": "formal-languages",
     "anchor": "ambiguity"
+  },
+  "consequence": {
+    "term": "Logical consequence",
+    "definition": "A conclusion is a logical consequence of premises if every model making the premises true also makes the conclusion true.",
+    "chapter": "valid-inference"
+  },
+  "logical-validity": {
+    "term": "Logical validity",
+    "definition": "Validity that depends on logical form, rather than the particular subject matter of the inference.",
+    "chapter": "valid-inference"
+  },
+  "material-validity": {
+    "term": "Material validity",
+    "definition": "Correctness that depends on domain-specific meanings, facts, or assumptions; in inductive reasoning, support relative to a particular probability measure.",
+    "chapter": "valid-inference"
+  },
+  "sample-space": {
+    "term": "Sample space",
+    "definition": "The set of possible outcomes of an experiment, written Ω.",
+    "chapter": "valid-inference"
+  },
+  "logical-form": {
+    "term": "Logical form",
+    "definition": "The structure of an expression or inference that matters for logical validity, abstracting from its particular subject matter.",
+    "chapter": "valid-inference"
+  },
+  "logical-invalidity": {
+    "term": "Logical invalidity",
+    "definition": "An inference being invalid on account of its logical form: some interpretation makes the premises true and the conclusion false.",
+    "chapter": "valid-inference",
+    "anchor": "formally--logical-validity"
+  },
+  "material-invalidity": {
+    "term": "Material invalidity",
+    "definition": "An inference admitting a case where the premises are true and the conclusion false, even when the relevant meanings and background facts are respected.",
+    "chapter": "valid-inference",
+    "anchor": "formally--logical-validity"
+  },
+  "logical-space": {
+    "term": "Logical space",
+    "definition": "The collection of models considered by a semantics.",
+    "chapter": "valid-inference"
+  },
+  "proposition": {
+    "term": "Proposition",
+    "definition": "In this semantic approach, the set of models in which a formula is true.",
+    "chapter": "valid-inference"
+  },
+  "subset": {
+    "term": "Subset",
+    "definition": "S is a subset of T when every member of S belongs to T. Equality is allowed.",
+    "chapter": "valid-inference"
+  },
+  "intersection": {
+    "term": "Intersection",
+    "definition": "The set of elements belonging to every one of the sets being intersected.",
+    "chapter": "valid-inference"
+  },
+  "indefeasible": {
+    "term": "Indefeasible consequence",
+    "definition": "A consequence that cannot be defeated by adding premises while the semantics remains fixed.",
+    "chapter": "valid-inference"
+  },
+  "defeasible": {
+    "term": "Defeasible inference",
+    "definition": "An inference whose support can be overturned by additional evidence.",
+    "chapter": "valid-inference"
+  },
+  "probability-function": {
+    "term": "Probability function",
+    "definition": "A measure assigning events probabilities between 0 and 1. In a finite space, outcome masses sum to 1 and event probabilities sum the masses of their outcomes.",
+    "chapter": "valid-inference"
+  },
+  "fallacy": {
+    "term": "Fallacy",
+    "definition": "An invalid pattern of reasoning that may appear correct.",
+    "chapter": "valid-inference"
+  },
+  "enumerative-induction": {
+    "term": "Enumerative induction",
+    "definition": "Generalizing from observed instances to a universal claim about a population. The universal claim entails its instances, giving weak logical support; the degree of support and the probability of the conclusion depend on the probability function.",
+    "chapter": "valid-inference"
+  },
+  "event": {
+    "term": "Event",
+    "definition": "A set of outcomes in a probability space. In our logical treatment, propositions are events.",
+    "chapter": "valid-inference"
+  },
+  "log-likelihood-ratio": {
+    "term": "Log-likelihood ratio",
+    "definition": "The logarithm of the ratio of the likelihood of the evidence under a hypothesis to its likelihood under the alternative. Positive values favor the first hypothesis.",
+    "chapter": "valid-inference"
+  },
+  "sound-argument": {
+    "term": "Sound argument",
+    "definition": "A deductively valid argument with true premises, and therefore a true conclusion. Distinct from soundness of a proof system.",
+    "chapter": "valid-inference"
+  },
+  "inference-schema": {
+    "term": "Inference schema",
+    "definition": "A pattern of premises and conclusion with placeholders for expressions of specified grammatical categories.",
+    "chapter": "valid-inference"
+  },
+  "modus-tollens": {
+    "term": "Modus tollens",
+    "definition": "The inference from A → B and ¬B to ¬A, valid classically.",
+    "chapter": "valid-inference"
+  },
+  "disjunctive-syllogism": {
+    "term": "Disjunctive syllogism",
+    "definition": "The inference from A ∨ B and ¬A to B, valid classically.",
+    "chapter": "valid-inference"
+  },
+  "affirming-the-consequent": {
+    "term": "Affirming the consequent",
+    "definition": "The classically invalid pattern from A → B and B to A.",
+    "chapter": "valid-inference"
+  },
+  "denying-the-antecedent": {
+    "term": "Denying the antecedent",
+    "definition": "The classically invalid pattern from A → B and ¬A to ¬B.",
+    "chapter": "valid-inference"
+  },
+  "affirming-a-disjunct": {
+    "term": "Affirming a disjunct",
+    "definition": "The invalid pattern from inclusive A ∨ B and A to ¬B; both disjuncts may be true.",
+    "chapter": "valid-inference"
+  },
+  "likelihood-ratio": {
+    "term": "Likelihood ratio",
+    "definition": "The probability of the evidence if a conclusion is true, divided by its probability if the conclusion is false. Ratios above 1 favor the conclusion; ratios below 1 count against it.",
+    "chapter": "valid-inference"
+  },
+  "material-support": {
+    "term": "Material inductive support",
+    "definition": "Inductive support relative to a particular probability function and a chosen measure of support.",
+    "chapter": "valid-inference"
+  },
+  "logical-support": {
+    "term": "Logical inductive support",
+    "definition": "Support that holds across all probability functions on a fixed model space for which conditioning on the premises is defined, using a specified criterion of support.",
+    "chapter": "valid-inference"
+  },
+  "meaning-postulate": {
+    "term": "Meaning postulate",
+    "definition": "A statement included among the background assumptions to capture a relationship between the meanings of expressions.",
+    "chapter": "valid-inference"
+  },
+  "probability-raising": {
+    "term": "Probability-raising support",
+    "definition": "Support measured by the conditional probability of the conclusion given the premises minus its unconditional probability. A positive difference favors the conclusion; a negative difference counts against it.",
+    "chapter": "valid-inference"
   }
 }

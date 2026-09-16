@@ -1,8 +1,7 @@
 # Exporting from Excalidraw
 
-Direct SVG exports from Excalidraw can be placed in the page bundle or in
-`assets/img/drawings/`. Keep the editable `.excalidraw` source beside the image,
-or under `assets/img/drawings/sources/` for the shared library.
+Place SVG exports from Excalidraw in `assets/img/drawings/`. Keep their editable
+`.excalidraw` sources in `assets/img/drawings/sources/`.
 
 The renderer accepts ordinary Excalidraw exports: it removes fixed root
 sizes, supplies accessible metadata, and strips the embedded `style-fonts`

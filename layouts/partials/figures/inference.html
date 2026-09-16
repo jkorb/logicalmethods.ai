@@ -1,0 +1,19 @@
+<figure
+  class="inference{{ if eq .layout "stacked" }} inference--stacked{{ end }}{{ with .class }} {{ . }}{{ end }}"
+  role="figure"
+  aria-label="{{ .plain }}{{ with .rule }}, by {{ . }}{{ end }}"
+>
+  <div class="inference__body" aria-hidden="true">
+    <div class="inference__premises">
+      {{- range .premises }}
+        <span class="inference__premise">{{ $.page.RenderString . }}</span>
+      {{- end }}
+    </div>
+    <div class="inference__rule-line"></div>
+    <div class="inference__conclusion">{{ .page.RenderString .conclusion }}</div>
+  </div>
+
+  {{- with .rule }}
+    <figcaption class="inference__label" aria-hidden="true">{{ . }}</figcaption>
+  {{- end }}
+</figure>

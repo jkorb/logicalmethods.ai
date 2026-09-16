@@ -3,9 +3,9 @@ title: Formal languages
 author: Rick Nouwen and Johannes Korbmacher
 locked: false
 weight: 20
-params: 
+params:
   date: 09/09/2024
-  last_edited: "14/09/2026"
+  last_edited: "15/09/2026"
   id: txt-lang
 ---
 
@@ -14,7 +14,7 @@ params:
 {{< img src="/img/drawings/fl_ai_language.svg" class="rounded  float-start inert-img img-fluid m-2" width="350px">}}
 When we develop AI systems, we immediately run into an issue: computers, which
 are the basis for any modern AI technology, "speak" a different language than
-we do. They speak in the proverbial 1's and 0's. 
+we do. They speak in the proverbial 1's and 0's.
 
 That is, even if we understand what intelligent behavior is and we manage to
 break it down into instructions that a computer can, in principle, follow (two
@@ -70,21 +70,21 @@ are very young. Native speakers of English, St̓át̓imcets or Ripuarian didn't 
 their native language at school or by studying grammar books, but simply by
 being in an environment where the language was used. Because natural languages
 are acquired in this way, they are also very susceptible to change. They
-constantly evolve, just by being used and passed on to next generations. 
+constantly evolve, just by being used and passed on to next generations.
 
 {{< img src="/img/drawings/ai_learning_language.svg" class="rounded float-start inert-img img-fluid mx-2 my-1" width="450px">}}
 In contrast, nobody learns Python, propositional logic or algebraic chess
 notation simply by interacting with their parents. Also, these languages clearly
 didn't evolve naturally and while the conventions of these languages may change
 over time, they do not do so spontaneously, but rather because a community of
-users explicitly decides to make a certain change.  
+users explicitly decides to make a certain change.
 
 Having command of a natural language is an extremely powerful skill. It allows
 you to communicate with others about your desires, your thoughts, your
 observations, your plans. It allows you to learn things in school, to teach
 other people what you have learned, to enjoy art in the form of literature,
 poetry and song lyrics, to laugh at jokes, to persuade others to change their
-actions, etc. etc. 
+actions, etc. etc.
 
 Language models make use of the fact that natural language is such a pervasive
 part of our lives. Because language is everywhere, it creates
@@ -136,7 +136,7 @@ the following deductive inference pattern:
 
 {{< callout type="definition" title="Modus ponens" >}}
 {{< term "modus-ponens" "Modus ponens (MP)" >}} is the rule that licenses the
-inference from an if-then statement together with its if-part to its then-part. 
+inference from an if-then statement together with its if-part to its then-part.
 {{< /callout >}}
 
 So, for example, MP licenses the inference from "if the door is open, you can
@@ -145,14 +145,14 @@ modus ponens licenses all inferences of the following form, where $A$ and $B$
 are *any* two statements:
 
 {{< inference layout="stacked" >}}
-If A, then B
-A
----
-B
+  If A, then B
+  A
+  ---
+  B
 {{< /inference >}}
 
 Applying this principle, then, you would expect that from the two statements
-above the AI system should infer that the mushroom in question is not poisonous. 
+above the AI system should infer that the mushroom in question is not poisonous.
 
 {{< img src="/img/drawings/gimmick_mushroom.svg" class="rounded float-start inert-img img-fluid m-4" width="150px">}}
 
@@ -168,7 +168,7 @@ that have red spots and red gills are not poisonous, while $T$ is intended to
 mean that the mushroom in question has gills (gray ones, in fact) and red
 spots. In that case, modus ponens would not apply. In other words, if our AI
 system accidentally interprets these sentences not as they were intended, it
-could end up applying modus ponens and cause the users to poison themselves. 
+could end up applying modus ponens and cause the users to poison themselves.
 
 A related problem concerns the words "if" and "then" in languages like English.
 Say, I remove the ambiguity in $S$ above and instead use the following
@@ -182,10 +182,10 @@ It is now clear what this means. It tells us what is the case when a mushroom
 has the features that are mentioned. Does this tell us anything about mushrooms
 that do not have red spots and red gills? For most people, the intuition is
 that it does not: on the basis of just $S′$ I cannot conclude anything about a
-mushroom with black gills and no spots. 
+mushroom with black gills and no spots.
 
 In conversation, however, we sometimes take "if" and "then" to suggest more.
-Imagine yourself saying this to a child (or adult 🍨): 
+Imagine yourself saying this to a child (or adult 🍨):
 
 $$
 (U) If you behave well, I will buy you an ice-cream.
@@ -194,7 +194,7 @@ $$
 This clearly tells the child (via MP) what happens when they are
 well-behaved. However, in this case the child may also form an expectation
 about what happens when they do _not_ behave well. $U$ seems to suggest that if
-the child does _not_ behave well, then there _won't_ be any ice-cream. 
+the child does _not_ behave well, then there _won't_ be any ice-cream.
 
 This example raises a slightly different issue from the one involving red spots
 and gills. The child may take the promise to mean more than it literally says.
@@ -225,7 +225,7 @@ we can talk about formal languages.
 Here's an informal definition of what a set is:
 
 {{< callout type="definition" title="Set" >}}
-A {{< term "set" "set" >}} is an _abstract_ collection of objects. 
+A {{< term "set" "set" >}} is an _abstract_ collection of objects.
 {{< /callout >}}
 
 If some object $x$ is in a set, we say that $x$ is one of its **{{< term
@@ -237,20 +237,18 @@ that a set is specified _completely_ by its members. All that matters to a set
 is which objects belong to it---beyond that nothing can be said about it. So,
 for example, sets don't have locations. But, for instance, there is also no
 order to the elements in a set and an object is either in the set or not - it
-cannot be in a set multiple times. 
+cannot be in a set multiple times.
 
 It can sometimes be helpful (but also sometimes hurtful!) to think of a set as a
 "bag" of objects from an ambient "space". Consider the following illustration:
 
-{{< img src="/img/drawings/set.svg" class="rounded mx-auto my-2 d-block inert-img img-fluid" width="900px">}}
+{{< set-diagram scene="membership" >}}
 
-The yellow rectangle is our ambient space of objects, everything in its confines
-is a potential member of our set. It contains a bunch of things: animals,
-people, drinks, playing cards, numbers, …. The green area is a set in this
-space: the set that contains little Jimmy, my beer, and the number 1. It's
-important to keep in mind, though, that this is just a visualization aid. Sets
-really are mathematical objects; the drawing represents which objects belong
-to the set.
+The rectangle is our ambient space of objects. The outline groups the members
+of $S$: Little Jimmy, my beer, the number 1, and a rabbit. Select **Belongs to S** to highlight its members, or **Outside S** to see
+which objects do not belong. The text view describes the same picture.
+This is a visualization aid: sets have no physical shape or location, and the
+picture represents only which objects belong to the set.
 
 A set may contain any kind of object: numbers, symbols, people, or even other
 sets. For $S$ a set and $a$ an object, we write $$a ∈ S$$ to say that $a$ is an
@@ -259,16 +257,16 @@ $S$. If we have many objects $a₁, …, aₙ$, then we also write $$a₁, …, 
 say that $a₁ ∈ S$, $a₂ ∈ S$, …, and $aₙ ∈ S$.
 
 If the elements of a set are precisely $a₁, …, aₙ$, then we can
-denote the set by 
+denote the set by
 $${a₁, …, aₙ}$$
-This is called an **{{< term "extensional-definition" "extensional definition" >}}** 
-of the set. So, for example, the set 
+This is called an **{{< term "extensional-definition" "extensional definition" >}}**
+of the set. So, for example, the set
 {{< set alt="The set containing Little Jimmy and the set containing 1 and a beer." >}}
 [{"image":"gimmick_little_jimmy"}, {"set":["1", {"image":"gimmick_beer"}]}]
 {{< /set >}}
 contains precisely little Jimmy and the set that contains the number 1 and my
 beer as elements. The set has *two* elements: little Jimmy and another set. The
-number of elements of a set is known as its 
+number of elements of a set is known as its
 **{{< term "cardinality" "cardinality" >}}**.
 
 For most interesting sets, however, we cannot give an extensional definition.
@@ -280,8 +278,8 @@ cases, we typically use another technique to denote the set in question.
 
 To illustrate the idea, think of the set of numbers that satisfy the equation
 $$x² = 2$$ You'll probably remember that there are _two_ such numbers, namely
-$x = √2$ and $x = -√2$. So, we can denote the set we have in mind as 
-$${√2, -√2}$$ 
+$x = √2$ and $x = -√2$. So, we can denote the set we have in mind as
+$${√2, -√2}$$
 But pretend for a moment that you _don't_ remember this basic math fact.
 Then, there's still another way of denoting the set in question. The idea is to
 write $${ x ∣ x² = 2}$$ to denote the set of all $x$, such that $x² = 2$. This
@@ -308,7 +306,7 @@ membership directly. In general, a condition can define a set even when we
 have no procedure that always settles whether a given object belongs to it.
 
 An important reason why non-extensional definitions are handy is because many
-of the kinds of sets we want to study are typically infinite. For example, 
+of the kinds of sets we want to study are typically infinite. For example,
 $$
 P = {x : x is a prime number}
 $$
@@ -329,23 +327,23 @@ the primes. Set abstraction states the membership condition explicitly.
 So what exactly _is_ a formal language?
 
 {{< callout type="definition" title="Alphabet and formal language" >}}
- A {{< term "formal-language" "formal language" >}} is a 
+ A {{< term "formal-language" "formal language" >}} is a
 {{< term "set" "set" >}} of finite {{< term "string" "strings" >}} of symbols,
-which are recruited from a background set known as the language's 
+which are recruited from a background set known as the language's
 {{< term "alphabet" "alphabet">}}.
 {{< /callout >}}
 
 The alphabet of a language gives us its building blocks, its _grammar_ tells us
 how they can be combined to form expressions---which strings belong to the
-language. 
+language.
 
-### Alphabets 
+### Alphabets
 
 Sequences of symbols are recruited from an alphabet. We usually write $Σ$ to
-denote the alphabet of a language. 
+denote the alphabet of a language.
 
 It's important to note that the alphabet can be _any_ set. So, e.g., the set of
-all the digits 0--9, 
+all the digits 0--9,
 
 $$
 Σ = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9},
@@ -355,7 +353,7 @@ is a perfectly fine alphabet. We can use it to define the language of the
 _{{< term "numeral" "numerals" >}}_, which are terms for natural numbers. Let's go!
 
 A first thought might be this: Can't we just take any sequence of digits and we'll
-always have a numeral? To make this idea precise, we can use the so-called 
+always have a numeral? To make this idea precise, we can use the so-called
 {{< term "kleene-star" "Kleene star" >}}, named after the American mathematician
 [Stephen Kleene](https://en.wikipedia.org/wiki/Stephen_Cole_Kleene) and written as an
 asterisk $*$. The set $Σ*$ is the set of all sequences that you can build with
@@ -368,9 +366,9 @@ includes sequences like $000000001$ and $000881$, which we exclude from our
 language of numerals by adopting the convention that only $0$ itself may start
 with zero.
 
-Note that, here, we understand "sequence" to mean a **finite** 
-{{< term "string" "string" >}}, including the notorious 
-{{< term "empty-string" "empty string" >}}, which is denoted $ε$. 
+Note that, here, we understand "sequence" to mean a **finite**
+{{< term "string" "string" >}}, including the notorious
+{{< term "empty-string" "empty string" >}}, which is denoted $ε$.
 The empty string belongs to $Σ*$ but for most of what we're doing, it is more
 of a theoretical artifact that we'll have to occasionally handle, but doesn't
 play an important role.
@@ -379,7 +377,7 @@ The Kleene star gives us the set of all sequences made from an alphabet, but
 most formal languages we are interested in will be a smaller subset of
 $Σ*$---just like the numerals. To specify them, we need a _grammar_.
 
-### Grammar 
+### Grammar
 
 {{< callout type="definition" title="Grammar" >}}
 A {{< term "grammar" "(formal) grammar" >}} is a collection of _rules_ for
@@ -414,7 +412,7 @@ doesn't start with zero. For example, the definition shows that $120$ is a
 numeral:
 
 $$
-(Step 1):  1 is a numeral 
+(Step 1):  1 is a numeral
 (Step 2):  12 is a numeral
 (Step 3):  120 is a numeral
 $$
@@ -428,7 +426,7 @@ illustrates the power of induction very well. Note that there are _infinitely
 many_ numerals---one for every natural number. As we've observed before, this
 means that we can't write the set of numerals in a finite list, that is give an
 **{{< term "extensional-definition" "extensional definition" >}}** of the set.
-We might try to give a definition using 
+We might try to give a definition using
 **{{< term "set-abstraction" "set abstraction" >}}**
 and consider the set $$N = {x ∣ x is a numeral},$$ but then we face the obvious
 question: _When is a string a numeral?_ The inductive definition gives us a
@@ -451,19 +449,19 @@ discuss parsing.
 
 {{< img src="/img/drawings/logic_abc.svg" class="rounded  float-end inert-img img-fluid m-2" width="450px">}}
 Just like the language of numerals we just explored, the languages of logic are
-also sets of sequences of symbols. We often refer to these sequences as 
+also sets of sequences of symbols. We often refer to these sequences as
 **{{< term "formula" "formulas" >}}**, so a logical language is a formal language
 consisting of formulas. In order to specify such a
 language, we will want to specify an alphabet and a grammar so that the formulas
 that make up the formal language are well-formed sequences that are useful for
-the study of valid inference. Here, we will define the **language of 
-propositional logic**. 
+the study of valid inference. Here, we will define the **language of
+propositional logic**.
 
 Starting with the alphabet, we should first note that, in logic, not all
 elements of the alphabet play the same role. (Similarly, in the case of the
 language of numbers we saw that 0 played a different role than the other
 digits). For propositional logic, the alphabet consists of three kinds of
-symbols: 
+symbols:
 
 + {{< term "propositional-variable" "propositional variables" >}} or **atoms**:
 symbols that stand for simple propositions
@@ -482,8 +480,8 @@ The standard alphabet for the language of propositional logic is:
 
 Here:
 
-- $p₁, p₂, p₃, …$ are the _(propositional) variables_ or _atoms_, 
-- $¬, ∧, ∨, →, ↔$ are the _operators_, and 
+- $p₁, p₂, p₃, …$ are the _(propositional) variables_ or _atoms_,
+- $¬, ∧, ∨, →, ↔$ are the _operators_, and
 - $(, )$ are the auxiliaries.
 
 The index $i$ in $pᵢ$ can be any positive integer. So, $p₁₃₈$ is a member of
@@ -586,8 +584,8 @@ _form_ $(A ∧ B)$.
 While the inductive definition we've given above is the conceptual foundation
 of the grammar of propositional logic, there are different ways of writing down
 the grammar, which are useful in different contexts. A widespread notation
-that significantly simplifies the above rules is the so-called 
-**{{< term "bnf" "Backus–Naur Form (BNF)" >}}**. 
+that significantly simplifies the above rules is the so-called
+**{{< term "bnf" "Backus–Naur Form (BNF)" >}}**.
 In BNF, instead of all of the above, we can simply write the following to
 define the same language $L$:
 
@@ -653,14 +651,14 @@ check out:
 [C](https://cs.wmich.edu/~gupta/teaching/cs4850/sumII06/The%20syntax%20of%20C%20in%20Backus-Naur%20form.htm)
 is a popular low-level language,
 [Prolog](http://tau-prolog.org/files/doc/grammar-specification.pdf) is a
-logic-based language. 
+logic-based language.
 
 + The [RFC](https://datatracker.ietf.org/doc/html/rfc5322) for emails uses
 Augmented BNF (ABNF) to specify the syntax of email addresses. Check it out 🤓
 
 ## Parsing
 
-{{< img src="/img/drawings/fl_ai_confused.svg" class="rounded  float-start inert-img img-fluid m-2" width="200px" >}} 
+{{< img src="/img/drawings/fl_ai_confused.svg" class="rounded  float-start inert-img img-fluid m-2" width="200px" >}}
 We've seen how to build formulas from propositional variables using the
 clauses of an inductive definition. Now suppose we're given a string of
 symbols: how can we work out whether it's a formula, and how its parts fit
@@ -681,7 +679,7 @@ meaning to the whole expression. We'll return to this when we study
 {{< term "semantics" "semantics" >}}.
 
 To see how this works, let's go through the procedure step by step with our
-formula $((p ∧ q) → ¬r)$ as a concrete example: 
+formula $((p ∧ q) → ¬r)$ as a concrete example:
 
 1. First, write down the whole expression, $((p ∧ q) → ¬r)$.
 2. Then, we ask which inductive construction could have produced the formula.
@@ -768,8 +766,8 @@ The input is what we give the procedure to work on; the output is its result.
 For our parser, the input is a string of symbols. The output is its AST, or a
 report that the string isn't a formula.
 
-We'll write the instructions in what's known as 
-_{{< term "pseudocode" "pseudocode" >}}_: 
+We'll write the instructions in what's known as
+_{{< term "pseudocode" "pseudocode" >}}_:
 a mixture of ordinary language and programming notation,
 which precisely describes an algorithm in a human-readable way without assuming
 familiarity with the details of any specific programming language. Ours will
@@ -866,7 +864,7 @@ to termination and correctness when we meet other algorithms.
 Remember the ambiguity of "red spots and gills"? Our grammar should let us
 read each expression in exactly one way. A grammar has
 **{{< term "unique-readability" "unique readability" >}}** if every expression
-it generates has exactly one grammatical structure. 
+it generates has exactly one grammatical structure.
 A grammar is _{{< term "ambiguous-grammar" "ambiguous" >}}_ if it generates an
 expression with more than one grammatical structure.
 
@@ -951,7 +949,7 @@ negate the whole conjunction, we must write $¬(p ∧ q)$. Similarly, $(p ∨ q)
 r$ needs its inner brackets to group the disjunction together before forming
 the conjunction.
 
-Here are some more examples to illustrate the idea: 
+Here are some more examples to illustrate the idea:
 
 | Fully bracketed notation | Conventional notation |
 | ---                      | ---                   |
@@ -989,7 +987,7 @@ where vast bodies of 'expertise' in a certain domain have been translated
 into databases of formalised statements and (if-then) rules, in order to solve
 complex problems concerning the domain in question. In such systems, there are
 so many rules and facts that it is impossible for the human expert to keep track
-of everything. 
+of everything.
 
 Designing expert systems involves translating existing expert knowledge into a
 formal language that the AI expert system can work with. The process of
@@ -1046,10 +1044,10 @@ Formalization makes these choices explicit.
 Already the choice of language can be a difficult decision. We need to evaluate
 a language's expressive power against the additional complexity that comes with
 that. Sometimes, simple languages, like the language of propositional logic, are
-the right choice, sometimes we need more complex languages. 
+the right choice, sometimes we need more complex languages.
 
 Once we've formalized our claims in a suitable formal language, we collect our
-formalized knowledge in what's known as a 
+formalized knowledge in what's known as a
 **{{< term "knowledge-base" "knowledge base (KB)" >}}**. Generally
 speaking, a KB is a way of storing formalized knowledge in such a way that any
 agent—artificial or otherwise—can both **ask** the KB what is already known and
