@@ -121,13 +121,24 @@ test('binary figures and operation tables retain their teaching layout',async({p
 
 
 test('focus rings fit inside adders and arithmetic stays alongside the table',async({page},info)=>{
+ await page.evaluate(()=>document.fonts.ready);
  for(const kind of ['half','full']){
   const a=app(page,'circuit',kind);const toggle=button(a,'Toggle X');await toggle.focus();await page.keyboard.press('Space');
-  const input=await toggle.boundingBox(),canvas=await a.locator('svg.boolean-circuit').boundingBox();expect(input.y+input.height+5).toBeLessThan(canvas.y+canvas.height);
+  await expect(toggle).toBeFocused();await expect(toggle).toHaveAttribute('aria-pressed','true');
+  // Focus can start a smooth scroll. Read both rectangles in the same frame:
+  // separate protocol calls can compare positions from different scroll offsets.
+  const clearance=await toggle.evaluate(input=>{
+   const canvas=input.closest('svg.boolean-circuit');
+   return canvas.getBoundingClientRect().bottom-input.getBoundingClientRect().bottom;
+  });
+  expect(clearance,`${kind} adder leaves room for the focus outline`).toBeGreaterThan(5);
   await a.screenshot({style:'.site-header, .back-to-top {visibility:hidden!important}',path:`tmp/boolean-revision-4/${info.project.name}-focused-${kind}.png`});
  }
- const a=app(page,'two-bit');const arithmetic=await a.locator('.column-addition').boundingBox(),table=await a.locator('.function-table').boundingBox();
- expect(arithmetic.x+arithmetic.width).toBeLessThanOrEqual(table.x);expect(arithmetic.y).toBeLessThan(table.y+table.height);
+ const a=app(page,'two-bit');const spacing=await a.evaluate(root=>{
+  const arithmetic=root.querySelector('.column-addition').getBoundingClientRect(),table=root.querySelector('.function-table').getBoundingClientRect();
+  return {horizontal:table.left-arithmetic.right,vertical:table.bottom-arithmetic.top};
+ });
+ expect(spacing.horizontal).toBeGreaterThanOrEqual(0);expect(spacing.vertical).toBeGreaterThan(0);
  await expect(a.locator('.column-addition__carry')).toHaveCount(0);
  await page.emulateMedia({reducedMotion:'reduce'});await expect(button(a,'Animation off: reduced motion')).toBeDisabled();
 });

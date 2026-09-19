@@ -11,6 +11,15 @@ all twelve cases, checks review and restart, and runs an accessibility audit.
 Other tests retain their default timeout; no retries mask failures. Formula
 fitting diagnostics report the overflowing expression and measured widths.
 
+## Geometry during scrolling
+
+Measure related element rectangles in a single browser `evaluate` call. Separate
+`boundingBox()` calls can observe different frames during smooth scrolling,
+especially after keyboard focus. The 19 September CI adder failures compared
+positions thousands of pixels apart for that reason. Waiting for fonts and reading
+both rectangles together retains the clipping assertion without depending on
+runner speed. `CI=true` on macOS does not reproduce Linux timing or rendering.
+
 ## Parser accessibility checks
 
 Keep the light/dark accessibility and reflow assertions independent of review
