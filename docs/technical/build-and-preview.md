@@ -1,13 +1,19 @@
 # Build and preview
 
 The site is built with Hugo and custom templates in `layouts/`. Install the
-version in [`.hugo-version`](../../.hugo-version), then run these commands from
-the repository root:
+version in [`.hugo-version`](../../.hugo-version) and Node from
+[`.nvmrc`](../../.nvmrc), then run these commands from the repository root:
 
 ```sh
+npm ci
 hugo version
 hugo server -D
 ```
+
+Hugo bundles the app JavaScript using npm dependencies, including `html-to-image`
+for PNG exports. Run `npm ci` in each checkout or worktree before its first build,
+and again after `package-lock.json` changes. Installing dependencies in another
+worktree does not install them here.
 
 Use the preview URL printed by Hugo (normally `http://localhost:1313/`). Run
 `hugo -D` to build the site into `public/`. `-D` includes draft content. A plain
