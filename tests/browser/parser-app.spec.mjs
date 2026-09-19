@@ -1,3 +1,4 @@
+import { reviewScreenshot } from './review-screenshot.mjs';
 import { testPassword, useTestPassword } from './solution-password.mjs';
 import { test, expect, routeToTestSite } from './fixtures.mjs';
 import AxeBuilder from '@axe-core/playwright';
@@ -129,7 +130,7 @@ test('static ASTs, grammar solution, and notation appendix', async ({ page }, in
   const comparison = page.locator('.ast-comparison');
   await expect(comparison.locator('figure')).toHaveCount(2);
   await comparison.scrollIntoViewIfNeeded();
-  await comparison.screenshot({path: `tmp/content-review/formal-languages/${info.project.name}-static-trees.png`});
+  await reviewScreenshot(comparison, {path: `tmp/content-review/formal-languages/${info.project.name}-static-trees.png`});
   const headings = await page.locator('main h2, main h3').allTextContents();
   const sections = ['Natural vs. formal languages', 'Sets', 'Formal languages', 'Propositional Languages', 'Parsing', 'Unique readability', 'Conventional notation'];
   let previous = -1;
@@ -144,11 +145,11 @@ test('static ASTs, grammar solution, and notation appendix', async ({ page }, in
   await page.locator('#passwordInput').fill(testPassword);
   await page.locator('#passwordInput').press('Enter');
   await expect(page.locator('#parsingSolution figure')).toHaveCount(4);
-  await page.locator('#parsingSolution').screenshot({path: `tmp/content-review/formal-languages/${info.project.name}-exercise-trees.png`});
+  await reviewScreenshot(page.locator('#parsingSolution'), {path: `tmp/content-review/formal-languages/${info.project.name}-exercise-trees.png`});
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(page.viewportSize().width + 1);
   await page.goto('/textbook/notation/#latex-cheat-sheet');
   await expect(page.locator('#latex-cheat-sheet')).toBeVisible();
-  await page.screenshot({path: `tmp/content-review/formal-languages/${info.project.name}-cheat-sheet.png`});
+  await reviewScreenshot(page, {path: `tmp/content-review/formal-languages/${info.project.name}-cheat-sheet.png`});
 });
 
 
@@ -173,15 +174,16 @@ test('immediate conversion preserves longer commands and numeric subscripts', as
 test('formula labels preserve history and controls remain above the growing tree', async ({ page }, info) => {
   await page.goto(chapter);
   const app = page.locator('[data-logic-app="parser"]');
-  const controls = app.locator('.logic-app__controls');
   await app.scrollIntoViewIfNeeded();
-  const initial = (await controls.boundingBox()).y - (await app.boundingBox()).y;
+  await page.evaluate(() => document.fonts.ready);
+  const controlsOffset = () => app.evaluate(root => root.querySelector('.logic-app__controls').getBoundingClientRect().top - root.getBoundingClientRect().top);
+  const initial = await controlsOffset();
   await app.getByRole('button', {name: 'Last step', exact: true}).click();
-  const final = (await controls.boundingBox()).y - (await app.boundingBox()).y;
+  const final = await controlsOffset();
   expect(final).toBeCloseTo(initial, 0);
   await app.getByLabel('Show formulas at nodes', {exact: true}).check();
   await expect(app.locator('.logic-app__tree svg text').last()).toHaveText('((p ∧ q) → ¬r)');
-  await app.screenshot({path: `tmp/content-review/formal-languages/revision-3/${info.project.name}-formula-labels.png`});
+  await reviewScreenshot(app, {path: `tmp/content-review/formal-languages/revision-3/${info.project.name}-formula-labels.png`});
   await app.getByRole('button', {name: 'Previous step', exact: true}).click();
   await app.getByRole('button', {name: 'Show tree as text', exact: true}).click();
   await expect(app.locator('.logic-app__text')).toContainText('(p ∧ q)');
@@ -204,6 +206,6 @@ test('parser keeps tree and explanation side by side on smaller desktops', async
     expect(Math.abs(tree.y - explanation.y)).toBeLessThan(2);
     expect(tree.x + tree.width).toBeLessThanOrEqual(explanation.x);
     expect((await app.boundingBox()).height).toBeLessThan(680);
-    await app.screenshot({ path: testInfo.outputPath(`parser-layout-${width}.png`) });
+    await reviewScreenshot(app, { path: testInfo.outputPath(`parser-layout-${width}.png`) });
   }
 });

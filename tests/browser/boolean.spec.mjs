@@ -1,3 +1,4 @@
+import { reviewScreenshot } from './review-screenshot.mjs';
 import { test, expect } from './fixtures.mjs';
 import AxeBuilder from '@axe-core/playwright';
 const app=(page,kind,preset)=>page.locator(`[data-logic-app="boolean"][data-kind="${kind}"]${preset?`[data-preset="${preset}"]`:''}`).first();
@@ -99,24 +100,24 @@ test('model exercises check exact selections and generalize to eight worlds',asy
 for(const theme of ['light','dark'])test(`Boolean visuals and accessibility in ${theme}`,async({page},info)=>{
  await page.emulateMedia({colorScheme:theme,reducedMotion:'reduce'});await page.reload();await page.evaluate(()=>document.fonts.ready);
  await button(app(page,'derivation'),'Next step').click();await button(app(page,'evaluation'),'Last step').click();
- for(const [kind,preset]of [['derivation',''],['evaluation',''],['models',''],['circuit','implementations'],['circuit','full'],['two-bit','']])await app(page,kind,preset).screenshot({style:'.site-header, .back-to-top {visibility:hidden!important}',path:`tmp/boolean-revision-4/${info.project.name}-${theme}-${kind}-${preset||'default'}.png`});
+ for(const [kind,preset]of [['derivation',''],['evaluation',''],['models',''],['circuit','implementations'],['circuit','full'],['two-bit','']])await reviewScreenshot(app(page,kind,preset), {style:'.site-header, .back-to-top {visibility:hidden!important}',path:`tmp/boolean-revision-4/${info.project.name}-${theme}-${kind}-${preset||'default'}.png`});
  for(const path of ['/textbook/boolean/','/exercises/boolean/']){
   if(!page.url().endsWith(path))await page.goto(path);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   await page.evaluate(()=>scrollTo(0,0));const result=await new AxeBuilder({page}).include('.boolean-app').withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze();expect(result.violations.map(v=>`${v.id}: ${v.nodes.map(n=>n.target.join(' ')).join('; ')}`)).toEqual([]);
  }
- await page.locator('[data-kind="model-exercise"][data-variables="3"]').first().screenshot({style:'.site-header, .back-to-top {visibility:hidden!important}',path:`tmp/boolean-revision-4/${info.project.name}-${theme}-eight-worlds.png`});
+ await reviewScreenshot(page.locator('[data-kind="model-exercise"][data-variables="3"]').first(), {style:'.site-header, .back-to-top {visibility:hidden!important}',path:`tmp/boolean-revision-4/${info.project.name}-${theme}-eight-worlds.png`});
 });
 
 test('binary figures and operation tables retain their teaching layout',async({page},info)=>{
  for(const name of ['bool_binary_example']){
   const labels={bool_binary_example:'The binary number 1101',bool_bits_example:'The digits of 1101',bool_addition_example:'Column addition:'};
   const drawing=page.getByRole('img',{name:new RegExp(`^${labels[name]}`)}).first();
-  if(await drawing.count())await drawing.screenshot({path:`tmp/boolean-revision-4/${info.project.name}-${name}.png`});
+  if(await drawing.count())await reviewScreenshot(drawing, {path:`tmp/boolean-revision-4/${info.project.name}-${name}.png`});
  }
- await page.getByRole('region',{name:'1101 plus 1001 equals 10110, in binary',exact:true}).screenshot({path:`tmp/boolean-revision-4/${info.project.name}-13-plus-9.png`});
- await page.getByRole('figure',{name:/^Bits of 1101/}).screenshot({path:`tmp/boolean-revision-4/${info.project.name}-bit-positions.png`});
- await page.locator('.function-tables').first().screenshot({path:`tmp/boolean-revision-4/${info.project.name}-function-tables.png`});
+ await reviewScreenshot(page.getByRole('region',{name:'1101 plus 1001 equals 10110, in binary',exact:true}), {path:`tmp/boolean-revision-4/${info.project.name}-13-plus-9.png`});
+ await reviewScreenshot(page.getByRole('figure',{name:/^Bits of 1101/}), {path:`tmp/boolean-revision-4/${info.project.name}-bit-positions.png`});
+ await reviewScreenshot(page.locator('.function-tables').first(), {path:`tmp/boolean-revision-4/${info.project.name}-function-tables.png`});
 });
 
 
@@ -132,7 +133,7 @@ test('focus rings fit inside adders and arithmetic stays alongside the table',as
    return canvas.getBoundingClientRect().bottom-input.getBoundingClientRect().bottom;
   });
   expect(clearance,`${kind} adder leaves room for the focus outline`).toBeGreaterThan(5);
-  await a.screenshot({style:'.site-header, .back-to-top {visibility:hidden!important}',path:`tmp/boolean-revision-4/${info.project.name}-focused-${kind}.png`});
+  await reviewScreenshot(a, {style:'.site-header, .back-to-top {visibility:hidden!important}',path:`tmp/boolean-revision-4/${info.project.name}-focused-${kind}.png`});
  }
  const a=app(page,'two-bit');const spacing=await a.evaluate(root=>{
   const arithmetic=root.querySelector('.column-addition').getBoundingClientRect(),table=root.querySelector('.function-table').getBoundingClientRect();
@@ -148,10 +149,10 @@ test('union includes the overlap once; difference and complement remove the righ
  await expect(union.locator('[data-point].is-selected')).toHaveCount(4);await expect(union.locator('[data-point="b"]')).toHaveClass(/is-selected/);
  const diff=page.getByRole('figure',{name:'Difference of two sets',exact:true});await button(diff,'S ∖ T').click();await expect(diff.locator('[data-point].is-selected')).toHaveCount(1);
  await button(diff,'W ∖ S').click();await expect(diff.locator('[data-point].is-selected')).toHaveCount(5);
- for(const [name,diagram]of [['union',union],['difference',diff]])await diagram.screenshot({style:'.site-header, .back-to-top {visibility:hidden!important}',path:`tmp/boolean-revision-4/${info.project.name}-${name}.png`});
+ for(const [name,diagram]of [['union',union],['difference',diff]])await reviewScreenshot(diagram, {style:'.site-header, .back-to-top {visibility:hidden!important}',path:`tmp/boolean-revision-4/${info.project.name}-${name}.png`});
  const {violations}=await new AxeBuilder({page}).include('[data-set-diagram]').withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze();expect(violations).toEqual([]);
  const relay=app(page,'circuit','implementations');await button(relay,'OR').click();await button(relay,'Toggle X').click();
- await relay.screenshot({animations:'disabled',style:'.site-header, .back-to-top {visibility:hidden!important}',path:`tmp/boolean-revision-4/${info.project.name}-or-relay.png`});
+ await reviewScreenshot(relay, {animations:'disabled',style:'.site-header, .back-to-top {visibility:hidden!important}',path:`tmp/boolean-revision-4/${info.project.name}-or-relay.png`});
 });
 
 
@@ -179,7 +180,7 @@ test('exercise checkers cover three-bit addition, RGB valuations and evaluation 
  const errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto('/exercises/boolean/');
  const adder=app(page,'ripple-adder');await expect(adder).toBeHidden();await page.getByText('Check with a three-bit adder',{exact:true}).click();
  for(const n of ['X₂','X₀','Y₂','Y₁','Y₀'])await button(adder,`Toggle ${n}`).click();await expect(adder.getByRole('status')).toContainText('101 + 111 = 1100');await expect(adder.locator('.column-addition__carry')).toHaveCount(3);
- await adder.screenshot({path:`tmp/boolean-revision-4/${info.project.name}-three-bit.png`});
+ await reviewScreenshot(adder, {path:`tmp/boolean-revision-4/${info.project.name}-three-bit.png`});
  const rgb=app(page,'models','rgb');for(let n=0;n<8;n++){
   for(const [name,shift]of [['RED',2],['GREEN',1],['BLUE',0]])await rgb.getByRole('group',{name:`Value of ${name}`,exact:true}).getByRole('button',{name:String(n>>shift&1),exact:true}).click();await button(rgb,'Record this valuation').click();
  }await expect(rgb.getByRole('status')).toHaveText('8 of 8 valuations recorded.');await expect(rgb.locator('tbody tr')).toHaveCount(8);
@@ -190,17 +191,17 @@ test('exercise checkers cover three-bit addition, RGB valuations and evaluation 
 
  test('model artwork and proposition outlines match their valuations',async({page},info)=>{
  const models=app(page,'models');await button(models,'[SUN ∨ RAIN]').click();await expect(models.locator('.boolean-proposition-outline:not(.is-component)')).toHaveCount(1);await expect(models.locator('[data-world-art].is-selected')).toHaveCount(3);
- await models.screenshot({path:`tmp/boolean-revision-4/${info.project.name}-selected-union.png`});
- const fallacy=app(page,'models','fallacy');await button(fallacy,'Countermodels').click();await fallacy.screenshot({path:`tmp/boolean-revision-4/${info.project.name}-countermodel.png`});
+ await reviewScreenshot(models, {path:`tmp/boolean-revision-4/${info.project.name}-selected-union.png`});
+ const fallacy=app(page,'models','fallacy');await button(fallacy,'Countermodels').click();await reviewScreenshot(fallacy, {path:`tmp/boolean-revision-4/${info.project.name}-countermodel.png`});
  await page.goto('/exercises/boolean/');const a=page.locator('[data-kind="model-exercise"][data-variables="3"]').first();
  const ids=await a.locator('button[data-model]').evaluateAll(ns=>ns.map(n=>n.dataset.model));expect(ids).toEqual(['M₁','M₂','M₃','M₄','M₅','M₆','M₇','M₈']);
- for(const id of ['M₁','M₃'])await a.locator(`[data-model="${id}"]`).click();await a.screenshot({path:`tmp/boolean-revision-4/${info.project.name}-selected-eight-worlds.png`});
+ for(const id of ['M₁','M₃'])await a.locator(`[data-model="${id}"]`).click();await reviewScreenshot(a, {path:`tmp/boolean-revision-4/${info.project.name}-selected-eight-worlds.png`});
  });
 
 test('parallel relay branches implement XOR and model controls expose formulas',async({page},info)=>{
  const models=app(page,'models');await expect(models.locator('.boolean-model-contour')).toHaveCount(0);
  const ds=app(page,'models','ds');await button(ds,'[SUN ∨ RAIN] ∩ [¬SUN]').click();await expect(ds.locator('.boolean-proposition-outline:not(.is-component)')).toHaveCount(1);
- await ds.screenshot({path:`tmp/boolean-final-tweaks/${info.project.name}-intersection.png`});
+ await reviewScreenshot(ds, {path:`tmp/boolean-final-tweaks/${info.project.name}-intersection.png`});
  await page.goto('/exercises/boolean/');const a=app(page,'workbench','relays');await a.locator('.boolean-connections summary').click();await button(a,'2. XOR').click();
  for(const [id,inputs]of [['g1',['X (INPUT)','Y (INPUT)']],['g2',['Y (INPUT)','X (INPUT)']]]){
    await button(a,'+ Default-on relay').click();for(let i=0;i<2;i++)await a.getByRole('group',{name:`${id} input ${i+1}`,exact:true}).getByRole('button',{name:inputs[i],exact:true}).click();
@@ -208,10 +209,10 @@ test('parallel relay branches implement XOR and model controls expose formulas',
  }
  await button(a,'Check circuit').click();await expect(a.locator('[data-check-result]')).toContainText('implements XOR');await expect(a.locator('[data-target="out"]')).toHaveCount(2);
  await button(a,'Toggle X').click();await expect(a.getByRole('status')).toContainText('output = 1');
- await a.screenshot({path:`tmp/boolean-final-tweaks/${info.project.name}-relay-xor.png`});
+ await reviewScreenshot(a, {path:`tmp/boolean-final-tweaks/${info.project.name}-relay-xor.png`});
  const counter=app(page,'model-exercise');await expect(counter.locator('[data-toolbar]')).toContainText('∴ ¬RAIN');await counter.locator('[data-model="M₁"]').click();await button(counter,'Check selection').click();await expect(counter.locator('[data-toolbar]')).toContainText('✓');
- await counter.screenshot({path:`tmp/boolean-final-tweaks/${info.project.name}-countermodels.png`});
- const custom=app(page,'model-exercise','custom');await expect(custom.getByLabel('Inference',{exact:true})).toHaveAttribute('readonly','');await expect(custom.locator('[data-inspector]')).not.toContainText('SUN ∨ RAIN');await custom.screenshot({path:`tmp/boolean-final-tweaks/${info.project.name}-inference.png`});
+ await reviewScreenshot(counter, {path:`tmp/boolean-final-tweaks/${info.project.name}-countermodels.png`});
+ const custom=app(page,'model-exercise','custom');await expect(custom.getByLabel('Inference',{exact:true})).toHaveAttribute('readonly','');await expect(custom.locator('[data-inspector]')).not.toContainText('SUN ∨ RAIN');await reviewScreenshot(custom, {path:`tmp/boolean-final-tweaks/${info.project.name}-inference.png`});
 });
 
 test('switch and wiring targets are separated, and success respects reduced motion',async({page})=>{

@@ -22,12 +22,23 @@ runner speed. `CI=true` on macOS does not reproduce Linux timing or rendering.
 
 ## Parser accessibility checks
 
-Keep the light/dark accessibility and reflow assertions independent of review
-screenshots. In the 16 September Linux CI trace, each parser element screenshot
-took about 25 seconds; both accessibility audits passed, but the screenshots
-exhausted the test budget. The routine test no longer captures those images.
-CI still retains traces and failure screenshots. Capture intentional visual
-reviews separately, using `testInfo.outputPath(...)` for their artifacts.
+Routine browser tests capture review images only when `REVIEW_SCREENSHOTS=1`.
+Use `reviewScreenshot` from `tests/browser/review-screenshot.mjs` for those images;
+a unit guard rejects unconditional review captures. Failure screenshots and traces
+remain enabled in CI. Pixel comparisons that detect damaged artwork, and app PNG
+export tests, still run normally.
+
+The 19 September GitHub trace showed the mobile parser's optional formula-label
+screenshot taking 27.075 seconds, exhausting the 30-second test budget during the
+following accessibility audit. This was the same class of failure seen on
+16 September. Review capture is now opt-in across all browser specs, rather than
+removed from individual failing tests. Assertions and timeouts are unchanged.
+
+For an intentional visual review after building:
+
+```sh
+REVIEW_SCREENSHOTS=1 npm run test:browser -- tests/browser/parser-app.spec.mjs
+```
 
 ## Slide tests
 

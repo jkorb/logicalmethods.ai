@@ -1,3 +1,4 @@
+import { reviewScreenshot } from './review-screenshot.mjs';
 import { test, expect } from './fixtures.mjs';
 
 test('displays trim boundary lines, fit smaller columns and regain their size', async ({page}) => {
@@ -45,7 +46,7 @@ test('sets match display scale and accessibility control is at the lower right',
   const sizes = await set.evaluate(el => ({font:parseFloat(getComputedStyle(el).fontSize),image:el.querySelector('svg').getBoundingClientRect().height,brace:parseFloat(getComputedStyle(el.querySelector('.math-set__brace')).fontSize)}));
   expect(sizes.image / sizes.font).toBeLessThan(1.8);
   expect(sizes.brace / sizes.font).toBeLessThan(1.6);
-  await set.screenshot({path:info.outputPath('set.png')});
+  await reviewScreenshot(set, {path:info.outputPath('set.png')});
   const app = page.locator('[data-logic-app="parser"]');
   await app.scrollIntoViewIfNeeded();
   const box = await app.boundingBox();

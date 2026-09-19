@@ -1,3 +1,4 @@
+import { reviewScreenshot } from './review-screenshot.mjs';
 import { test, expect } from './fixtures.mjs';
 import AxeBuilder from '@axe-core/playwright';
 test('annotated alphabet has readable symbol groups and responsive over/underbraces', async ({ page }, testInfo) => {
@@ -16,7 +17,7 @@ test('annotated alphabet has readable symbol groups and responsive over/underbra
       const symbols = await figure.locator('.annotated-math__group--above .annotated-math__symbols').boundingBox();
       expect(top.y + top.height).toBeLessThan(symbols.y);
       expect((await new AxeBuilder({page}).include('.annotated-math').analyze()).violations).toEqual([]);
-      await figure.screenshot({path:testInfo.outputPath(`annotated-alphabet-${width}-${theme}.png`)});
+      await reviewScreenshot(figure, {path:testInfo.outputPath(`annotated-alphabet-${width}-${theme}.png`)});
     }
   }
 });

@@ -1,3 +1,4 @@
+import { reviewScreenshot } from './review-screenshot.mjs';
 import { baseTest as test, expect, routeToTestSite } from './fixtures.mjs';
 import AxeBuilder from '@axe-core/playwright';
 
@@ -35,7 +36,7 @@ for (const [slug, count] of [['logic-and-ai', 20], ['formal-languages', 20], ['v
     await expect(page.getByLabel('Next slide')).toBeDisabled();
     await page.getByLabel('Go to slide').click();
     await page.locator('[data-slide-choice="8"]').click();
-    await deck.screenshot({ path: info.outputPath(`${slug}-viewer.png`) });
+    await reviewScreenshot(deck, { path: info.outputPath(`${slug}-viewer.png`) });
     expect(errors).toEqual([]); expect(offsite).toEqual([]);
   });
 }
@@ -50,7 +51,7 @@ test('fullscreen, accessible controls, and narrow layout', async ({ page }, info
   await page.getByRole('button', { name: 'Full screen', exact: true }).click();
   await expect.poll(() => page.evaluate(() => document.fullscreenElement?.classList.contains('slide-deck'))).toBe(true);
   await page.keyboard.press('PageDown'); await expect(page).toHaveURL(/#slide-9$/);
-  await page.screenshot({ path: info.outputPath("fullscreen.png") });
+  await reviewScreenshot(page, { path: info.outputPath("fullscreen.png") });
   await page.getByRole('button', { name: 'Exit full screen', exact: true }).click();
   await expect.poll(() => page.evaluate(() => document.fullscreenElement)).toBeNull();
   await page.setViewportSize({ width: 320, height: 740 });

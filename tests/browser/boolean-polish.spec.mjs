@@ -1,3 +1,4 @@
+import { reviewScreenshot } from './review-screenshot.mjs';
 import { test, expect } from './fixtures.mjs';
 import AxeBuilder from '@axe-core/playwright';
 
@@ -12,7 +13,7 @@ test('workbench fits a half-width laptop window and edits directly on canvas',as
  await a.getByRole('button',{name:'Connect to g1 input 1',exact:true}).click();await a.getByRole('button',{name:'Disconnect g1 input 1',exact:true}).click();await expect(a.locator('[data-target="g1"]')).toHaveCount(0);
  await a.getByRole('button',{name:'Default-off relay g1',exact:true}).click();await a.getByRole('button',{name:'Remove g1',exact:true}).click();await expect(a.locator('[data-node="g1"]')).toHaveCount(0);
  await a.locator('[data-add="RELAY-ON"]').click();await a.getByRole('button',{name:'Clear',exact:true}).click();await expect(a.locator('.circuit-gate')).toHaveCount(0);
- await a.screenshot({path:`tmp/boolean-polish/${info.project.name}-workbench.png`});
+ await reviewScreenshot(a, {path:`tmp/boolean-polish/${info.project.name}-workbench.png`});
 });
 
 test('complex propositions explain set operations and preserve component outlines',async({page},info)=>{
@@ -21,7 +22,7 @@ test('complex propositions explain set operations and preserve component outline
  await expect(a.getByRole('status')).toContainText('[SUN ∨ RAIN] = [SUN] ∪ [RAIN]');
  await expect(a.locator('[data-component-set]')).toHaveCount(2);
  expect(await a.locator('.boolean-proposition-outline:not(.is-component)').getAttribute('d')).toContain('Q');
- await a.screenshot({path:`tmp/boolean-polish/${info.project.name}-sets.png`});
+ await reviewScreenshot(a, {path:`tmp/boolean-polish/${info.project.name}-sets.png`});
  await page.goto('/exercises/boolean/');
  expect(await page.locator('[data-variables="3"]').first().locator('.boolean-model-label').allTextContents()).toEqual(['M₁','M₂','M₃','M₄','M₅','M₆','M₇','M₈']);
 });
@@ -38,5 +39,5 @@ test('pseudocode checks gaps, preserves answers, and honours reduced motion',asy
  await a.locator('[data-level-picker] button').first().click();await expect(a.locator('input')).toHaveValue('def');
  await page.emulateMedia({reducedMotion:'reduce'});await page.waitForTimeout(1300);await a.getByRole('button',{name:'Check',exact:true}).click();await expect(a.locator('.logic-app__confetti')).toHaveCount(0);
  expect((await new AxeBuilder({page}).include('[data-logic-app="pseudocode-practice"]').analyze()).violations).toEqual([]);
- await a.screenshot({path:`tmp/boolean-polish/${info.project.name}-pseudocode.png`});
+ await reviewScreenshot(a, {path:`tmp/boolean-polish/${info.project.name}-pseudocode.png`});
 });

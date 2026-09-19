@@ -1,3 +1,4 @@
+import { reviewScreenshot } from './review-screenshot.mjs';
 import { test, expect } from './fixtures.mjs';
 import AxeBuilder from '@axe-core/playwright';
 
@@ -46,7 +47,7 @@ test('tree fits narrow screens and is accessible in both themes', async ({ page 
     expect(diagram.y).toBeGreaterThanOrEqual(header.y + header.height);
     const results = await new AxeBuilder({ page }).include('[data-tree-guide]').withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']).analyze();
     expect(results.violations).toEqual([]);
-    await page.screenshot({ path: testInfo.outputPath(`tree-guide-${theme}.png`) });
+    await reviewScreenshot(page, { path: testInfo.outputPath(`tree-guide-${theme}.png`) });
   }
   await page.setViewportSize({ width: 320, height: 720 });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);

@@ -1,3 +1,4 @@
+import { reviewScreenshot } from './review-screenshot.mjs';
 import { testPassword, useTestPassword } from './solution-password.mjs';
 import { test, expect } from './fixtures.mjs';
 
@@ -18,7 +19,7 @@ for (const route of ['/', '/textbook/', '/textbook/boolean/', '/exercises/logic-
     await page.waitForFunction(() => [...document.images].every(i => i.complete), null, { timeout: 15000 });
     expect(await page.locator('img').evaluateAll(images => images.filter(i => i.naturalWidth === 0).map(i => i.src))).toEqual([]);
     expect(failures).toEqual([]);
-    await page.screenshot({ path: testInfo.outputPath('page.png') });
+    await reviewScreenshot(page, { path: testInfo.outputPath('page.png') });
   });
 }
 

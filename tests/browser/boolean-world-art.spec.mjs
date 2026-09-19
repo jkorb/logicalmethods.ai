@@ -1,3 +1,4 @@
+import { reviewScreenshot } from './review-screenshot.mjs';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { test, expect } from './fixtures.mjs';
 
@@ -51,12 +52,12 @@ for(const theme of ['light','dark'])for(const section of ['textbook','exercises'
       }else {
         const worlds=app.locator('button[data-model]');
         for(let j=0;j<await worlds.count();j++){await worlds.nth(j).click();await expectIntactArtwork(app);}
-        await app.screenshot({path:`tmp/boolean-art-review/${info.project.name}-${theme}-${i}-all-selected.png`});
+        await reviewScreenshot(app, {path:`tmp/boolean-art-review/${info.project.name}-${theme}-${i}-all-selected.png`});
         for(let j=0;j<await worlds.count();j++){await worlds.nth(j).click();await expectIntactArtwork(app);}
         const tasks=app.locator('[data-toolbar] button');
         for(let j=0;j<await tasks.count();j++){await tasks.nth(j).click();await expectIntactArtwork(app);}
       }
-      await app.screenshot({path:`tmp/boolean-art-review/${info.project.name}-${theme}-${section}-${i}.png`});
+      await reviewScreenshot(app, {path:`tmp/boolean-art-review/${info.project.name}-${theme}-${section}-${i}.png`});
     }
     expect(errors).toEqual([]);
   });

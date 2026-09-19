@@ -1,3 +1,4 @@
+import { reviewScreenshot } from './review-screenshot.mjs';
 import { test, expect, routeToTestSite } from './fixtures.mjs';
 import AxeBuilder from '@axe-core/playwright';
 const active = course => course.locator('[data-set-level]:visible [data-set-exercise]');
@@ -79,7 +80,7 @@ for (const route of ['formal-languages','valid-inference']) {
     await page.setViewportSize({width:320,height:800});
     await page.evaluate(()=>document.fonts.ready);
     expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
-    await page.locator('[data-set-levels]').first().screenshot({path:testInfo.outputPath(`${route}-mobile.png`)});
+    await reviewScreenshot(page.locator('[data-set-levels]').first(), {path:testInfo.outputPath(`${route}-mobile.png`)});
   });
 }
 
