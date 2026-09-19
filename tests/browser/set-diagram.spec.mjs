@@ -6,7 +6,7 @@ test('set buttons preview, select and restore regions independently', async ({ p
   page.on('pageerror', error => errors.push(error.message));
   await page.goto('/textbook/valid-inference/');
   const diagrams = page.locator('[data-set-diagram]');
-  await expect(diagrams).toHaveCount(6);
+  await expect(diagrams).toHaveCount(4);
   const overlap = diagrams.nth(1);
   const intersection = overlap.getByRole('button', { name: 'Intersection', exact: true });
   await intersection.click();
@@ -23,6 +23,12 @@ test('set buttons preview, select and restore regions independently', async ({ p
   await page.keyboard.press('Tab');
   await expect(difference).toHaveAttribute('aria-pressed', 'true');
   const valid = diagrams.nth(2), invalid = diagrams.nth(3);
+  for (const diagram of [valid, invalid]) {
+    const premises = diagram.getByRole('button', { name: '[P] ∩ [Q]', exact: true });
+    await premises.click();
+    await expect(premises).toHaveAttribute('aria-pressed', 'true');
+    await expect(diagram.locator('[data-region="premises"]')).toBeVisible();
+  }
   await valid.getByRole('button', { name:'Countermodels', exact:true }).click();
   await expect(valid.locator('[data-explanation="countermodels"]')).toContainText('There is no countermodel');
   await expect(valid.locator('[data-point].is-selected')).toHaveCount(0);

@@ -1,0 +1,64 @@
+{
+  "relays": {
+    "gates": [
+      "RELAY-OFF",
+      "RELAY-ON"
+    ],
+    "tasks": [
+      {
+        "target": "NAND"
+      },
+      {
+        "target": "XOR"
+      },
+      {
+        "target": "XNOR"
+      }
+    ]
+  },
+  "definitions": {
+    "tasks": [
+      {
+        "target": "OR",
+        "gates": [
+          "NOT",
+          "AND"
+        ]
+      },
+      {
+        "target": "NOT",
+        "gates": [
+          "NAND"
+        ]
+      },
+      {
+        "target": "AND",
+        "gates": [
+          "NAND"
+        ]
+      },
+      {
+        "target": "OR",
+        "gates": [
+          "NAND"
+        ]
+      }
+    ]
+  },
+  "nand-circuits": {
+    "gates": [
+      "NAND"
+    ],
+    "tasks": [
+      {
+        "target": "NOR"
+      },
+      {
+        "target": "XOR"
+      },
+      {
+        "target": "XNOR"
+      }
+    ]
+  }
+}

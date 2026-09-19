@@ -7,20 +7,6 @@ params:
   id: exc-for
 ---
 
-# Members and non-members
-
-A set abstraction tells us which objects belong by describing a condition they
-must satisfy. Work through the levels below: each gives a different condition
-on the same collection of objects. Select all its members, then check your
-answer. Select a picture again to remove it; Tab and Enter or Space work too.
-The two boxes are different objects, so either or both may belong.
-
-Here “alive” means biologically alive: the mushroom is a living fungus and
-∀I is a machine. Later levels combine conditions; a set can have no members
-at all.
-
-{{< set-diagram exercise="abstraction" >}}
-
 # Ambiguity {.solved}
 
 Which of the following expressions in natural language are
@@ -104,6 +90,20 @@ $If you behave well, I will buy you an ice-cream.$
    With that further condition, the second inference also follows by
    modus ponens.
 
+# Members and non-members
+
+A set abstraction tells us which objects belong by describing a condition they
+must satisfy. Work through the levels below: each gives a different condition
+on the same collection of objects. Select all its members, then check your
+answer. Select a picture again to remove it; Tab and Enter or Space work too.
+The two boxes are different objects, so either or both may belong.
+
+Here “alive” means biologically alive: the mushroom is a living fungus and
+∀I is a machine. Later levels combine conditions; a set can have no members
+at all.
+
+{{< set-diagram exercise="abstraction" >}}
+
 # Sets {.solved}
 
 Describe the following sets using set notation:
@@ -134,6 +134,25 @@ $∀I$ and nothing else.
    $$
    { x : x is a non-empty set with only members from {1, 2, 3} }
    $$
+
+# Building formulas {#building-formulas}
+
+The inductive definition doesn't just say which strings are formulas — it says
+how each one is *made*. This builder only lets you do what the definition
+allows: start from atoms, then put formulas you already have together with an
+operator. There is no way to type a formula directly, so the only way to reach
+the target is to construct it.
+
+Work through all twelve levels. Watch what happens as the targets get deeper:
+the number of atoms you need, and the order you have to build the parts in.
+
+{{< logic-app name="builder" levels="true" variables="plain" title="Build the formula" >}}
+
+Two things are worth noticing as you go. A formula you have used is spent — it
+becomes a part of the bigger formula, and you cannot use it twice, which is why
+$(p ∧ p)$ needs *two* copies of $p$. And for the binary operators the order you
+select in is the order you get, so $(p → q)$ and $(q → p)$ take the same two
+atoms but different steps.
 
 # Parsing {.solved}
 
@@ -167,6 +186,91 @@ use $p$, $q$, $r$, and $s$ as propositional variables.
 {"label":"∧","children":[{"label":"∨","children":[{"label":"∧","children":[{"label":"p"},{"label":"q"}]},{"label":"∧","children":[{"label":"r"},{"label":"s"}]}]},{"label":"¬","children":[{"label":"∧","children":[{"label":"∧","children":[{"label":"∧","children":[{"label":"p"},{"label":"q"}]},{"label":"r"}]},{"label":"s"}]}]}]}
 {{< /syntax-tree >}}
 
+# Working with pseudocode {.solved #pseudocode}
+
+An algorithm is a list of instructions precise enough to follow without
+having to guess what to do next. Let's practise with a few everyday examples.
+You don't need to know Python: we'll use the notation introduced in the chapter,
+plus two new instructions for choosing and repeating steps.
+
+- `def` names a procedure and its inputs.
+- `if` tests a condition; `else` says what to do if that condition is false.
+- `return` gives back the result and ends the procedure.
+- `for item in items:` repeats the indented instructions for each item in a
+  finite list, in order. If the list is empty, it does nothing.
+- `=` gives a name to a result; `==` tests whether two things are equal.
+
+Indentation shows which instructions belong together. Words in quotation marks
+are text, such as a name or a message. With text, `+` joins the pieces:
+`"Hello, " + "Ada"` gives `"Hello, Ada"`. A helper such as `is_raining()` does the
+job described by its name; we don't need to write its instructions ourselves.
+
+1. Fill the gaps with keywords from the list above. Read each completed
+   procedure aloud: what does it take as input, and what does it do?
+
+   {{< logic-app name="pseudocode-practice" >}}
+
+2. Write pseudocode for the following three procedures. Use the examples
+   above as a guide. For each procedure, try the suggested inputs by hand
+   and say why it finishes.
+
+   - **Choosing a greeting.** The input is a person's name. If it is `"Ada"`,
+     give back `"Welcome back, Ada!"`. For any other name, give back `"Hello!"`.
+     Try `"Ada"` and `"Bob"`.
+   - **Counting tickets.** The input is a finite list of tickets. Start a
+     counter at zero, add one for each ticket, and give back the final count.
+     Try a list with three tickets and an empty list.
+   - **Finding a book.** The inputs are a book title and a finite list of
+     titles on a shelf. Give back `"found"` as soon as you encounter the title,
+     or `"not found"` after checking all titles. Try looking for `"Logic"`
+     in `["Poetry", "Logic", "History"]`, and then in an empty list.
+
+## Solution {.solution #pseudocodeSolution}
+
+**1.** The app checks the missing keywords. Notice where each `return` occurs:
+a `return` inside an `if` is reached only when its condition holds; a `return`
+after the loop is reached when we have finished going through the list.
+
+**2.** Here are possible solutions. Other names for the procedures and their
+inputs work just as well.
+
+```python
+def greeting(name):
+    if name == "Ada":
+        return "Welcome back, Ada!"
+    else:
+        return "Hello!"
+```
+
+For `"Ada"`, we take the first branch; for `"Bob"`, we take the second.
+There is one test and one result, so the procedure finishes in either case.
+
+```python
+def count_tickets(tickets):
+    count = 0
+    for ticket in tickets:
+        count = count + 1
+    return count
+```
+
+`count = count + 1` means: take the old count, add one, and use that as the
+new count. With three tickets, the count goes from zero to one, two, and
+three. With no tickets, the loop has no steps and the result is zero.
+The list is finite and each ticket is counted once, so the procedure finishes.
+
+```python
+def find_book(title, shelf):
+    for book in shelf:
+        if book == title:
+            return "found"
+    return "not found"
+```
+
+In the suggested list, the first comparison fails and the second succeeds.
+We return `"found"` without looking at `"History"`. With an empty list,
+we go straight to `return "not found"`. In general, we check at most as many
+titles as there are on the finite list, so the procedure finishes.
+
 # Adding and removing brackets {#omitting-brackets}
 
 Rewrite each formula in the other notation. When adding brackets, follow the
@@ -178,118 +282,6 @@ Work through the examples in both directions. Spaces don't matter. The app
 checks your answer and can show the expected formula if you get stuck.
 
 {{< logic-app name="notation-practice" >}}
-
-# A grammar for conventional notation {.solved #conventional-grammar}
-
-Let's build a grammar for conventional notation one level at a time. For
-this exercise, use just the variables $p$, $q$, and $r$. The priority order
-is $¬$, $∧$, $∨$, $→$, $↔$, from highest to lowest. Repeated $∧$ and $∨$
-group left, repeated $→$ groups right, and repeated $↔$ needs brackets.
-
-1. Start with the category $N$, for variables, negations, and bracketed
-   formulas. Complete $N ::= p | q | r | … | …$, using $F$ for a whole formula.
-2. Let $C$ be a conjunction of one or more $N$ expressions. Complete
-   $C ::= N | … ∧ …$ so that repeated conjunctions group left.
-   Hint: which side should allow a further $C$?
-3. Add a category $D$ for disjunctions of $C$ expressions, with the same
-   left grouping. Then add $I$ for conditionals, using $D → I$ to group right.
-   Finally, let $F$ allow either an $I$ or a single equivalence between two
-   $I$ expressions. Write all five rules together.
-4. Show how the grammar groups $p ∨ q ∧ r$ and $p → q → r$.
-   Explain how $(p ∨ q) ∧ r$ is possible, and why $p ↔ q ↔ r$ needs brackets.
-5. Turn these conventions into a parser. First identify the root operator in
-   $¬p ∧ q$, $p ∨ q ∧ r$, $p ∧ q ∧ r$, and $p → q → r$.
-   Hint: look outside brackets for the *lowest* priority binary operator.
-   If there is a tie, which occurrence gives the intended grouping?
-6. Write Python-like pseudocode returning an AST, following the chapter's
-   example. Handle a variable and enclosing brackets first. Then look for
-   a binary operator; only after that check for initial negation.
-   You may assume helpers that find the main operator and its left and right
-   parts according to your answer to 5. State when these helpers must fail,
-   and explain why the recursive calls terminate.
-
-## Solution {.solution #conventional-grammarSolution}
-
-**1–3.** With $F$ as the starting category:
-
-$$
-F ::= I | I ↔ I
-I ::= D | D → I
-D ::= C | D ∨ C
-C ::= N | C ∧ N
-N ::= p | q | r | ¬N | (F)
-$$
-
-These capital letters name grammatical categories; they aren't symbols of
-the language. A conjunction can continue on its left through $C ∧ N$,
-whereas a conditional can continue on its right through $D → I$.
-
-**4.** To generate $p ∨ q ∧ r$, choose $F ⟹ I ⟹ D ⟹ D ∨ C$.
-The left $D$ produces $p$; the right $C$ produces $q ∧ r$ through $C ∧ N$.
-Its fully bracketed reading is $(p ∨ (q ∧ r))$.
-
-For $p → q → r$, choose $F ⟹ I ⟹ D → I ⟹ D → D → I$.
-The categories produce $p$, $q$, and $r$, respectively. The second arrow
-belongs to the right-hand $I$, giving $(p → (q → r))$.
-
-The rule $N ::= (F)$ allows a whole disjunction inside brackets to be a
-conjunct, as in $(p ∨ q) ∧ r$. By contrast, $I$ cannot produce an unbracketed
-$↔$. The rule $F ::= I ↔ I$ therefore permits only one at that level.
-
-**5.** The roots are $∧$, $∨$, the last $∧$, and the first $→$, respectively.
-Choose the lowest priority binary operator outside brackets. Among operators
-of that priority, choose the last $∧$ or $∨$ for left grouping, and the first
-$→$ for right grouping. Reject repeated unbracketed $↔$ at that level.
-
-**6.** Use the chapter's tree-building helpers and the following helpers for
-choosing the main operator and its parts:
-
-```python
-def parse_conventional(expression):
-    if is_variable(expression):
-        return single_node(expression)
-
-    if has_matching_outer_brackets(expression):
-        smaller = remove_outer_brackets(expression)
-        return parse_conventional(smaller)
-
-    if has_binary_operator_outside_brackets(expression):
-        left = left_part_by_convention(expression)
-        right = right_part_by_convention(expression)
-        operator = main_operator_by_convention(expression)
-        left_tree = parse_conventional(left)
-        right_tree = parse_conventional(right)
-        return binary_tree(operator, left_tree, right_tree)
-
-    if begins_with_negation(expression):
-        smaller = remove_initial_negation(expression)
-        child = parse_conventional(smaller)
-        return negation_tree(child)
-
-    fail("Not a formula")
-```
-
-`has_matching_outer_brackets` checks whether one matching pair encloses the
-whole expression. `has_binary_operator_outside_brackets` checks for an
-operator outside all brackets. These checks report failure if brackets are
-unmatched. The three helpers ending in `by_convention` all use the same
-choice of main operator: lowest priority first, then the grouping rule for
-repeated operators. They report a failure if the chosen operator has no
-expression on one side, or if repeated $↔$ would require extra brackets.
-
-Notice the order of the cases: we look for a binary operator before checking
-for negation. So $¬p ∧ q$ is split into $¬p$ and $q$, and we only remove $¬$
-when parsing the left part. As in the chapter, a failed child causes the
-whole parse to fail. Try the four examples in the app, and compare $¬p ∧ q$
-with $¬(p ∧ q)$.
-
-{{< logic-app name="parser" mode="conventional" variables="plain" formula="¬p ∧ q" title="Parsing with bracket conventions" >}}
-
-
-Each recursive call receives a shorter expression: it removes outer brackets
-or a negation, or takes a proper part on one side of a binary operator.
-An empty expression fails. Since the original input is finite, the calls
-cannot continue indefinitely.
 
 # Polish notation {.solved}
 
@@ -590,25 +582,6 @@ In classical logic an inconsistent collection of premises entails every
 formula, but this doesn't establish what physically happened or how a
 particular controller handles conflicting information.
 
-# Building formulas {#building-formulas}
-
-The inductive definition doesn't just say which strings are formulas — it says
-how each one is *made*. This builder only lets you do what the definition
-allows: start from atoms, then put formulas you already have together with an
-operator. There is no way to type a formula directly, so the only way to reach
-the target is to construct it.
-
-Work through all twelve levels. Watch what happens as the targets get deeper:
-the number of atoms you need, and the order you have to build the parts in.
-
-{{< logic-app name="builder" levels="true" variables="plain" title="Build the formula" >}}
-
-Two things are worth noticing as you go. A formula you have used is spent — it
-becomes a part of the bigger formula, and you cannot use it twice, which is why
-$(p ∧ p)$ needs *two* copies of $p$. And for the binary operators the order you
-select in is the order you get, so $(p → q)$ and $(q → p)$ take the same two
-atoms but different steps.
-
 # Research {.solved}
 
 Can the grammar of _every_ formal language be given by a BNF? If so, explain
@@ -633,3 +606,114 @@ The short segment $vxy$ cannot reach both an $a$ and a $c$. Removing $v$
 and $y$ therefore changes at least one of the three counts and leaves at
 least one unchanged. The counts are no longer all equal, a contradiction.
 The pumping lemma is further material; it isn't needed for the other exercises.
+# A grammar for conventional notation {.solved #conventional-grammar}
+
+Let's build a grammar for conventional notation one level at a time. For
+this exercise, use just the variables $p$, $q$, and $r$. The priority order
+is $¬$, $∧$, $∨$, $→$, $↔$, from highest to lowest. Repeated $∧$ and $∨$
+group left, repeated $→$ groups right, and repeated $↔$ needs brackets.
+
+1. Start with the category $N$, for variables, negations, and bracketed
+   formulas. Complete $N ::= p | q | r | … | …$, using $F$ for a whole formula.
+2. Let $C$ be a conjunction of one or more $N$ expressions. Complete
+   $C ::= N | … ∧ …$ so that repeated conjunctions group left.
+   Hint: which side should allow a further $C$?
+3. Add a category $D$ for disjunctions of $C$ expressions, with the same
+   left grouping. Then add $I$ for conditionals, using $D → I$ to group right.
+   Finally, let $F$ allow either an $I$ or a single equivalence between two
+   $I$ expressions. Write all five rules together.
+4. Show how the grammar groups $p ∨ q ∧ r$ and $p → q → r$.
+   Explain how $(p ∨ q) ∧ r$ is possible, and why $p ↔ q ↔ r$ needs brackets.
+5. Turn these conventions into a parser. First identify the root operator in
+   $¬p ∧ q$, $p ∨ q ∧ r$, $p ∧ q ∧ r$, and $p → q → r$.
+   Hint: look outside brackets for the *lowest* priority binary operator.
+   If there is a tie, which occurrence gives the intended grouping?
+6. Write Python-like pseudocode returning an AST, following the chapter's
+   example. Handle a variable and enclosing brackets first. Then look for
+   a binary operator; only after that check for initial negation.
+   You may assume helpers that find the main operator and its left and right
+   parts according to your answer to 5. State when these helpers must fail,
+   and explain why the recursive calls terminate.
+
+## Solution {.solution #conventional-grammarSolution}
+
+**1–3.** With $F$ as the starting category:
+
+$$
+F ::= I | I ↔ I
+I ::= D | D → I
+D ::= C | D ∨ C
+C ::= N | C ∧ N
+N ::= p | q | r | ¬N | (F)
+$$
+
+These capital letters name grammatical categories; they aren't symbols of
+the language. A conjunction can continue on its left through $C ∧ N$,
+whereas a conditional can continue on its right through $D → I$.
+
+**4.** To generate $p ∨ q ∧ r$, choose $F ⟹ I ⟹ D ⟹ D ∨ C$.
+The left $D$ produces $p$; the right $C$ produces $q ∧ r$ through $C ∧ N$.
+Its fully bracketed reading is $(p ∨ (q ∧ r))$.
+
+For $p → q → r$, choose $F ⟹ I ⟹ D → I ⟹ D → D → I$.
+The categories produce $p$, $q$, and $r$, respectively. The second arrow
+belongs to the right-hand $I$, giving $(p → (q → r))$.
+
+The rule $N ::= (F)$ allows a whole disjunction inside brackets to be a
+conjunct, as in $(p ∨ q) ∧ r$. By contrast, $I$ cannot produce an unbracketed
+$↔$. The rule $F ::= I ↔ I$ therefore permits only one at that level.
+
+**5.** The roots are $∧$, $∨$, the last $∧$, and the first $→$, respectively.
+Choose the lowest priority binary operator outside brackets. Among operators
+of that priority, choose the last $∧$ or $∨$ for left grouping, and the first
+$→$ for right grouping. Reject repeated unbracketed $↔$ at that level.
+
+**6.** Use the chapter's tree-building helpers and the following helpers for
+choosing the main operator and its parts:
+
+```python
+def parse_conventional(expression):
+    if is_variable(expression):
+        return single_node(expression)
+
+    if has_matching_outer_brackets(expression):
+        smaller = remove_outer_brackets(expression)
+        return parse_conventional(smaller)
+
+    if has_binary_operator_outside_brackets(expression):
+        left = left_part_by_convention(expression)
+        right = right_part_by_convention(expression)
+        operator = main_operator_by_convention(expression)
+        left_tree = parse_conventional(left)
+        right_tree = parse_conventional(right)
+        return binary_tree(operator, left_tree, right_tree)
+
+    if begins_with_negation(expression):
+        smaller = remove_initial_negation(expression)
+        child = parse_conventional(smaller)
+        return negation_tree(child)
+
+    fail("Not a formula")
+```
+
+`has_matching_outer_brackets` checks whether one matching pair encloses the
+whole expression. `has_binary_operator_outside_brackets` checks for an
+operator outside all brackets. These checks report failure if brackets are
+unmatched. The three helpers ending in `by_convention` all use the same
+choice of main operator: lowest priority first, then the grouping rule for
+repeated operators. They report a failure if the chosen operator has no
+expression on one side, or if repeated $↔$ would require extra brackets.
+
+Notice the order of the cases: we look for a binary operator before checking
+for negation. So $¬p ∧ q$ is split into $¬p$ and $q$, and we only remove $¬$
+when parsing the left part. As in the chapter, a failed child causes the
+whole parse to fail. Try the four examples in the app, and compare $¬p ∧ q$
+with $¬(p ∧ q)$.
+
+{{< logic-app name="parser" mode="conventional" variables="plain" formula="¬p ∧ q" title="Parsing with bracket conventions" >}}
+
+
+Each recursive call receives a shorter expression: it removes outer brackets
+or a negation, or takes a proper part on one side of a binary operator.
+An empty expression fails. Since the original input is finite, the calls
+cannot continue indefinitely.

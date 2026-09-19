@@ -627,12 +627,8 @@ is just such a countermodel:
 
 {{< set-diagram scene="countermodel" >}}
 
-With just one premise, the joint premise region is simply $[P]$. Our general
-definition therefore gives $P ⊨ C$ iff $[P] ⊆ [C]$, with no new principle
-needed. Compare the two cases:
-
-{{< set-diagram scene="single" >}}
-{{< set-diagram scene="single-countermodel" >}}
+With just one premise, this reduces to $P ⊨ C$ iff $[P] ⊆ [C]$: every model
+of $P$ must also be a model of $C$.
 
 {{< callout type="note" title="Modeling assumptions: reading the diagrams" >}}
 Each diagram specifies a complete **finite example** of a model space; every

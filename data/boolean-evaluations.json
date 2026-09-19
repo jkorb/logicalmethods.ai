@@ -1,0 +1,6 @@
+[
+  {"formula":"SUN ∨ (RAIN ∧ ¬SUN)","valuation":{"SUN":0,"RAIN":1}},
+  {"formula":"¬(SUN ∨ RAIN)","valuation":{"SUN":0,"RAIN":0}},
+  {"formula":"(SUN ∨ RAIN) ∧ ¬(SUN ∧ RAIN)","valuation":{"SUN":1,"RAIN":1}},
+  {"formula":"(SUN ∧ WIND) ∨ RAIN","valuation":{"SUN":1,"WIND":0,"RAIN":0}}
+]

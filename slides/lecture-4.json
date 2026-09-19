@@ -2,85 +2,88 @@
   "id": "lecture-4",
   "title": "Lecture 4: Boolean algebra",
   "source": "sources/Lecture 4.excalidraw",
-  "output": "slides/unpublished/boolean/deck",
-  "publication": "unpublished",
+  "output": "content/slides/boolean/deck",
   "originalSha256": "b96338671e37bea6a9365e479cf24dc049604220d9f6286342b746866d974305",
   "slides": [
     {
-      "frameId": "5qh0qFOXVHkpK1NgTRc87",
+      "frameId": "5mKDlUuVVMtYwqrpG-5Ny",
       "title": "Logical methods for AI — Lecture 4"
     },
     {
-      "frameId": "A42d55_aSBcvP_TVTyOy6",
-      "title": "Boolean algebra"
+      "frameId": "BrpOgDDFbvnDPd9R8DJ3S",
+      "title": "What you'll be able to do"
     },
     {
-      "frameId": "0ODU8nkWaF7p14PfhTo4O",
-      "title": "Truth-values"
+      "frameId": "oHCzmTFrZDbW7-at_vRLG",
+      "title": "The logic of 0 and 1"
     },
     {
-      "frameId": "k-AkZRPGIGatM8qB5KysY",
-      "title": "Truth functions"
+      "frameId": "cR9F7rQy0-ZMYXtZzeeHa",
+      "title": "Boolean values"
     },
     {
-      "frameId": "xgLuIIEGDMn4O3kZdrPfI",
+      "frameId": "WWq0W6ev4Nh6GzXRRJpgI",
+      "title": "Boolean functions"
+    },
+    {
+      "frameId": "jzgXvBRThseQRxSuw_H6E",
       "title": "Relay switches"
     },
     {
-      "frameId": "1aapqaufXgamk-IKke1XN",
-      "title": "Relay logic"
+      "frameId": "fNduaVkhkWX6pXHpK_qhD",
+      "title": "Implementing NOT, AND, OR"
     },
     {
-      "frameId": "tBgMttuq3GSFppcOP9jIu",
+      "frameId": "Hh8DSetWwgvSjAKlpwbWb",
       "title": "Boolean laws"
     },
     {
-      "frameId": "ZZrNh6XT7eCTHpj5-34Qd",
-      "title": "Axiomatization"
+      "frameId": "M8G4K_kB_SpMjWa69yxT0",
+      "title": "Deriving new laws"
     },
     {
-      "frameId": "C7ck9Y94GT1LwAfvXIGut",
-      "title": "De Morgan Laws"
-    },
-    {
-      "frameId": "cBx__qYeP2Zu5Jv0HNyW9",
+      "frameId": "wQirgNWHOd8X1qapHexzr",
       "title": "Binary numbers"
     },
     {
-      "frameId": "HlAfRn5V1mlGOWEm_teJI",
-      "title": "Binary addition — half adder"
-    },
-    {
-      "frameId": "KPrfXoCnwgJd_w79cwtqE",
+      "frameId": "Z15kAE_EXolKJGZprcAE0",
       "title": "Binary addition"
     },
     {
-      "frameId": "Nj-b-OYMWKytp3QTXc3u2",
-      "title": "Deductive inference"
+      "frameId": "O-O87umgBcksnPHbzYPE0",
+      "title": "The half adder"
     },
     {
-      "frameId": "yKpIC2ozfifFHvTWEsf1l",
-      "title": "Boolean models and logical space"
+      "frameId": "KfgWYPeNuPiWkYzRpuXRZ",
+      "title": "The full adder"
     },
     {
-      "frameId": "i9tLcaUgrj5Rh75T2blrb",
-      "title": "Logical propositions"
+      "frameId": "1EFbClKw6qgXh_oc8c3iJ",
+      "title": "Boolean models"
     },
     {
-      "frameId": "Mxwi8vN4oyrdSiE9Fy8xK",
-      "title": "Implementing negation"
+      "frameId": "aImKAhjBum526GMdfQYue",
+      "title": "How many models?"
     },
     {
-      "frameId": "2Asq7JmW3O9gF_A4I4blA",
-      "title": "Implementing conjunction and disjunction"
+      "frameId": "XjaKQ48V5JFNZcSBnGp78",
+      "title": "Boolean evaluation"
     },
     {
-      "frameId": "J8O9GQjgGk4F-d8IAkU5_",
-      "title": "Disjunctive syllogism"
+      "frameId": "_DSSBnxOVreHjMyj9vQQz",
+      "title": "Parsing and evaluation"
     },
     {
-      "frameId": "UDxupgQZ_76QnETX9JBr0",
-      "title": "Affirming a disjunct"
+      "frameId": "skdZtdLJJiwCBq3gbRBDQ",
+      "title": "Propositions"
+    },
+    {
+      "frameId": "lDZ9DPukp1wzi7nnL16Bj",
+      "title": "Testing an inference"
+    },
+    {
+      "frameId": "07pI_J6JcPiYgekS__Les",
+      "title": "A countermodel"
     }
   ],
   "nonSlideElements": [
@@ -92,5 +95,16 @@
       "id": "X1NT0dX5LF9IyVwUkT_pW",
       "reason": "Loose rectangle outside every slide frame in the original export. Retained unchanged in the editable scene; not part of the presentation."
     }
-  ]
+  ],
+  "removedImages": {
+    "reason": "No creator, source or licence could be established for any embedded image in this lecture: portraits of Boole, Post, Shannon and De Morgan, and a scan of Shannon's thesis. The course publishes under CC BY 4.0. The image elements stay in the scene as deleted history; their bytes were dropped. The revised slides are illustrated from the book drawings in assets/img/drawings/sources/ and from Lecture 2 artwork instead.",
+    "reviewed": "2026-09-19",
+    "fileIds": [
+      "7baadb3bae755aaa4f2d68a4a3f87b9dd314c4bcc49bf2720e6bab6db5956f18b8ffdb6b8cbc9b28ebde8b461c6b2966",
+      "856f8a8aa8e780b76c8552be94a2373e33ffd47fd8089b880583cdcef80fe11bc186b50f39ad6ee52873ffe130e89f48",
+      "8fb690ad94c7b5f336e755d798462323db5563296e07e60554db26b729b477b5313364481bb0c69c755dd1ab3dd59b46",
+      "a4aa0a2f353fc51e9d317e720621bae292c3ce0c6a3082e7e9a0a02f0e517c734df0bd617d7cee44fef04be1911f31dd",
+      "a61f57137b5e8e750e6f8a58ba63ddc8279c1029ab023d755413ccd54e6e79e01193535e688171903cba15d52de49821"
+    ]
+  }
 }

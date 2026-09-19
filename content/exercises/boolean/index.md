@@ -1,319 +1,403 @@
 ---
 title: Boolean algebra
 author: Johannes Korbmacher
-locked: true
+locked: false
 weight: 40
 params:
-  legacy-notation: true
   id: exc-bool
 ---
 
 # Relay logic {.solved}
 
-In the chapter you've learned about **relay logic**, that is the implementation
-of the Boolean functions using the `default "off"` and `default "on"` relay:
+Use default-off and default-on relays to implement these truth-functions:
 
-{{< img src="img/relays.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="400px">}}
+1. $!!NAND!!$ reverses the output of $!!AND!!$.
+2. $!!XOR!!$ outputs $1$ exactly when one input is $1$.
+3. $!!XNOR!!$ outputs $1$ exactly when the inputs agree.
 
-We showed how to make circuits which behave just like !!NOT!! and !!AND!! using these relays. As a reminder, here are the concrete implementations:
+Each relay has two inputs: the magnet on the lower left and the signal supply
+on the lower right. Its output is at the top. A default-off relay passes the
+supply when the magnet is on; a default-on relay passes it when the magnet is
+off. Use POWER when a relay needs a constant supply of $1$.
 
-<div class="text-center">
-{{< img src="img/conjunction_impl.png" class="rounded mx-auto inert-img img-fluid my-4" width="400px">}}
-{{< img src="img/negation_impl.png" class="rounded mx-auto inert-img img-fluid my-4" width="400px">}}
-</div>
+Add relays, connect their ports, and test the resulting function table. To put
+branches in parallel, connect their outputs to the same input or lamp. That
+connection has power when at least one branch supplies it.
 
-Note that we've depicted all possible configurations of the relay to
-demonstrate that the circuit behaves "according to spec", that is: just like
-the corresponding Boolean truth-function.
+To connect two components, select an output dot, then an input dot. Drag a
+component to move it. Select a component or a connected input dot to show its
+removal button. The connection controls below the canvas provide the same
+operations as buttons; you can also move a focused component with the arrow keys.
 
-For this exercise, you'll implement some more Boolean truth-functions using
-relays. You can draw the diagrams in whatever way works and clearly illustrates
-the idea. To show what I mean, here's one way to simplify the diagram for the
-!!AND!!-circuit (in the configuration for both inputs being `1`):
+{{< logic-app name="boolean" kind="workbench" preset="relays" >}}
 
-{{< img src="img/simplified_circuit.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="200px">}}
+## Solution {.solution #relay-logicSolution}
 
-Make sure to verify that your circuit is according to spec! Note that you may need both kinds of relays for the implementations.
+1. Connect $X$ to the magnet of a default-off relay and $Y$ to its supply.
+   Its output is $X !!AND!! Y$. Use that output to control a default-on relay
+   supplied by POWER. The lamp then shows $!!NOT!! (X !!AND!! Y)$.
+2. Use two default-on relays. Connect the first with magnet $X$ and supply
+   $Y$, and the second with magnet $Y$ and supply $X$. Join their outputs
+   at the lamp. The two parallel branches give:
 
-1. Implement !!OR!!
+   $$
+   ( (!!NOT!! X) !!AND!! Y ) !!OR!! ( (!!NOT!! Y) !!AND!! X ) = X !!XOR!! Y
+   $$
 
-{{< img src="img/or_table.png" class="rounded mx-auto d-block inert-img img-fluid " width="200px">}}
-
-2. Implement !!NAND!!
-
-{{< img src="img/nand_table.png" class="rounded mx-auto d-block inert-img img-fluid " width="200px">}}
-
-3. Implement !!XOR!!
-
-{{< img src="img/xor_table.png" class="rounded mx-auto d-block inert-img img-fluid " width="200px">}}
-
-## Solution {.solution #relay-logicSolution }
-
-Here are _some_ implementations. They're not the only ones, they illustrate different ideas. What matters is that your circuit works:
-
-1. An !!OR!! implementation, which uses the idea that `X !!OR!! Y` is `!!NOT!! ((!!NOT!! X) !!AND!! (!!NOT!! Y))`:
-
-{{< img src="img/or_impl.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="500px">}}
-
-2. A !!NAND!! implementation, which is based on the observation that $default
-   "off"`is essentially !!AND!! and`default "on"$ essentially !!NOT!!:
-
-{{< img src="img/nand_impl.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="500px">}}
-
-3. An !!XOR!! implementation, based on the idea that `X !!XOR!! Y` is `(X !!OR!! Y) !!AND!! (X !!NAND!! Y)`:
-
-{{< img src="img/xor_impl.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="900px">}}
+3. Join the two XOR branches at the magnet input of a third default-on relay.
+   Supply it with POWER and connect its output to the lamp. This reverses
+   XOR, giving $X !!XNOR!! Y$.
 
 # Defining functions {.solved}
 
-We've mentioned the idea of truth-functional completeness: we can express _all_
-truth-functions purely in terms of !!NOT!!, !!AND!!, and !!OR!!. 
+A function may have several different implementations. The canvas below
+restricts which boxes you can use in each task. You may connect the same signal
+to both inputs of a box.
 
-To illustrate what this means, here's how we express !!OR!! in terms of !!NOT!! and !!AND!!. First, we write !!OR!! as a Boolean expression with two variables, which represent the two inputs:
+1. Define $!!OR!!$ using only $!!NOT!!$ and $!!AND!!$.
+2. Define $!!NOT!!$ using only $!!NAND!!$.
+3. Define $!!AND!!$ using only $!!NAND!!$.
+4. Define $!!OR!!$ using only $!!NAND!!$.
 
-``````
+The aim is to **write a formula** for each function using only the permitted
+operations. First build and check a circuit. Then work backward from the output:
+replace each box by its operation, with the formulas for its inputs as arguments.
+If a wire branches, repeat its formula wherever it is used. Finally, read your
+formula from the inside out to reconstruct the circuit.
 
-Using the function table for !!OR!!, we can calculate the value of this expression for all values of `X` and `Y`. The representation of !!OR!! in terms of !!NOT!! and !!AND!! is, then, the following Boolean expression:
+Write down the four formulas. What do tasks 2–4 tell
+us about the truth-functional completeness of $!!NAND!!$?
 
-```!!NOT!! ((!!NOT!! X) !!AND!! (!!NOT!! Y))```
+To connect two components, select an output dot, then an input dot. Drag a
+component to move it. Select a component or a connected input dot to show its
+removal button. The connection controls below the canvas provide the same
+operations as buttons; you can also move a focused component with the arrow keys.
 
-We (by which I mean you 😉) can verify this by going through the possible values for `X` and `Y` and checking that for each such value, we have that:
-
-```X !!OR!! Y = !!NOT!! ((!!NOT!! X) !!AND!! (!!NOT!! Y))```
-
-1. Verify this equation for all values of `X` and `Y`.
-
-2. Represent !!XOR!! in terms of !!NOT!!, !!AND!!, and !!OR!!.
-
-3. Represent !!NAND!! in terms of !!NOT!! and !!AND!!.
-
-4. Here's an interesting one: represent !!NOT!! in terms of !!NAND!!.
+{{< logic-app name="boolean" kind="workbench" preset="definitions" >}}
 
 ## Solution {.solution #defining-functionsSolution}
 
-1. Here are the calculations for all values:
+1. $X !!OR!! Y = !!NOT!! ((!!NOT!! X) !!AND!! (!!NOT!! Y))$, by De Morgan and double negation.
+2. $!!NOT!! X = X !!NAND!! X$: join $X$ to both inputs of one NAND box.
+3. If $A = X !!NAND!! Y$, then $A !!NAND!! A = !!NOT!! A = X !!AND!! Y$.
+4. $(X !!NAND!! X) !!NAND!! (Y !!NAND!! Y) = !!NOT!! ((!!NOT!! X) !!AND!! (!!NOT!! Y)) = X !!OR!! Y$.
 
-    - `X = 1, Y = 1`: &emsp; `!!NOT!! ((!!NOT!! 1) !!AND!! (!!NOT!! 1)) = !!NOT!! (0 !!AND!! 0) = !!NOT!! 0 = 1`
-
-    - `X = 0, Y = 1`: &emsp; `!!NOT!! ((!!NOT!! 0) !!AND!! (!!NOT!! 1)) = !!NOT!! (1 !!AND!! 0) = !!NOT!! 0 = 1`
-
-    - `X = 1, Y = 0`: &emsp; `!!NOT!! ((!!NOT!! 1) !!AND!! (!!NOT!! 0)) = !!NOT!! (0 !!AND!! 1) = !!NOT!! 0 = 1`
-
-    - `X = 0, Y = 0`: &emsp; `!!NOT!! ((!!NOT!! 0) !!AND!! (!!NOT!! 0)) = !!NOT!! (1 !!AND!! 1) = !!NOT!! 1 = 0`
-
-    This is exactly the distribution of !!OR!!.
-
-2. Here's a representation: `(X !!OR!! Y) !!AND!! !!NOT!! (X !!AND!! Y)`
-
-    - `X = 1, Y = 1`: &emsp; `(1 !!OR!! 1) !!AND!! !!NOT!! (1 !!AND!! 1) = 1 !!AND!! (!!NOT!! 1) = 1 !!AND!! 0 = 0`
-
-    - `X = 0, Y = 1`: &emsp; `(0 !!OR!! 1) !!AND!! !!NOT!! (0 !!AND!! 1) = 1 !!AND!! (!!NOT!! 0) = 1 !!AND!! 1 = 1`
-
-    - `X = 1, Y = 0`: &emsp; `(1 !!OR!! 0) !!AND!! !!NOT!! (1 !!AND!! 0) = 1 !!AND!! (!!NOT!! 0) = 1 !!AND!! 1 = 1`
-                                        
-    - `X = 0, Y = 0`: &emsp; `(0 !!OR!! 0) !!AND!! !!NOT!! (0 !!AND!! 0) = 0 !!AND!! (!!NOT!! 0) = 0 !!AND!! 1 = 0`
-
-
-3. Here's a representation: `!!NOT!! (X !!AND!! Y)!!`
-
-    - `X = 1, Y = 1`: &emsp; `!!NOT!! (1 !!AND!! 1)!! = !!NOT!! 1 = 0`
-                             
-    - `X = 0, Y = 1`: &emsp; `!!NOT!! (0 !!AND!! 1)!! = !!NOT!! 0 = 1`
-                            
-    - `X = 1, Y = 0`: &emsp; `!!NOT!! (1 !!AND!! 0)!! = !!NOT!! 0 = 1`
-                           
-    - `X = 0, Y = 0`: &emsp; `!!NOT!! (0 !!AND!! 0)!! = !!NOT!! 0 = 1`
-
-
-4. You can just use: ```X !!NAND!! X``` because
-
-    - `X = 1`: &emsp; `1 !!NAND!! 1 = 0`
-    - `X = 0`: &emsp; `0 !!NAND!! 0 = 1`
+We can build NOT, AND, and OR from NAND alone. Since these three functions are
+jointly complete, NAND alone is truth-functionally complete too.
 
 # Boolean laws {.solved}
 
-Use the laws of Boolean algebra to derive the following equation:
+Derive the following identities using the laws in the chapter. Name the law
+used at each step. For tasks 2 and 3, derive idempotence from the listed laws
+rather than assuming it.
 
-```X !!AND!! (X !!OR!! Y) = X !!OR!! (X !!AND!! Y)```
+1. $X !!AND!! (X !!OR!! Y) = X !!OR!! (X !!AND!! Y)$.
+2. $X !!OR!! X = X$.
+3. $X !!AND!! X = X$.
+4. $(X !!AND!! Y) !!OR!! (X !!AND!! !!NOT!! Y) = X$.
+5. $X !!AND!! (!!NOT!! X !!OR!! Y) = X !!AND!! Y$.
+6. $!!NOT!! (X !!AND!! (!!NOT!! X !!OR!! Y)) = !!NOT!! X !!OR!! !!NOT!! Y$.
 
 ## Solution {.solution #boolean-lawsSolution}
 
-This is rather straightforward: just note that both sides are equal to `X` by the law of `"Absorption"`.
+1. Both sides equal $X$ by absorption.
+
+2. Use identity and absorption:
+
+   $$
+   X !!OR!! X = X !!OR!! (X !!AND!! 1) = X
+   $$
+
+3. Similarly, using the other identity and absorption laws:
+
+   $$
+   X !!AND!! X = X !!AND!! (X !!OR!! 0) = X
+   $$
+
+4. Factor out $X$ by distributivity, then use complementation and identity:
+
+   $$
+   (X !!AND!! Y) !!OR!! (X !!AND!! !!NOT!! Y)
+   = X !!AND!! (Y !!OR!! !!NOT!! Y)
+   = X !!AND!! 1
+   = X
+   $$
+
+5. Distribute $X$, then use complementation and identity:
+
+   $$
+   X !!AND!! (!!NOT!! X !!OR!! Y)
+   = (X !!AND!! !!NOT!! X) !!OR!! (X !!AND!! Y)
+   = 0 !!OR!! (X !!AND!! Y)
+   = X !!AND!! Y
+   $$
+
+6. Substitute the result of task 5 inside the negation, then apply De Morgan:
+
+   $$
+   !!NOT!! (X !!AND!! (!!NOT!! X !!OR!! Y))
+   = !!NOT!! (X !!AND!! Y)
+   = !!NOT!! X !!OR!! !!NOT!! Y
+   $$
 
 # Addition {.solved}
 
-We've studied how you can add two numbers in binary. We'll use this to verify the equation: ```5 + 7 = 12.```
+Use Boolean calculations to verify $5 + 7 = 12$.
 
-1. Transform the summands 5 and 7 into binary notation. The result will be 3-bit
-   binary numbers.
+1. Write $5$ and $7$ as three-bit binary numbers.
+2. Starting at the rightmost column, calculate the sum and carry using
+   $S = (X !!XOR!! Y) !!XOR!! C$ and
+   $D = (X !!AND!! Y) !!OR!! (C !!AND!! (X !!XOR!! Y))$.
+   The first incoming carry is $0$. Show the calculation for each column.
+3. Convert your result back to decimal.
 
-2. Calculate each bit of the sum step by step using the Boolean functions for
-   the full adder (note that you must initialize the carry to `0` for the first
-calculation to work). 
+Once you've finished, open the circuit and enter your two summands to check
+both the answer and the carries.
+
+<details class="boolean-checker">
+<summary>Check with a three-bit adder</summary>
+
+{{< logic-app name="boolean" kind="ripple-adder" bits="3" >}}
+
+</details>
 
 ## Solution {.solution #additionSolution}
 
-1. Here are the two numbers in binary:
+The summands are $(101)₂ = 5$ and $(111)₂ = 7$.
 
-    - `5` in binary is `0101` since `(0 x 2³) + (1 x 2²) + (0 x 2¹) + (1 x 2⁰) = 0 + 4 + 0 + 1 = 5`
-  
-    - `7` in binary is `0111` since `(0 x 2³) + (1 x 2²) + (1 x 2¹) + (1 x 2⁰) = 0 + 4 + 2 + 1 = 7`
+| Position | $X$ | $Y$ | Incoming $C$ | Sum $S$ | Outgoing $D$ |
+| --- | --- | --- | --- | --- | --- |
+| $0$ | $1$ | $1$ | $0$ | $0$ | $1$ |
+| $1$ | $0$ | $1$ | $1$ | $0$ | $1$ |
+| $2$ | $1$ | $1$ | $1$ | $1$ | $1$ |
 
-2. Here are the calculations, where `dᵢ` is the `i`-th digit of `5` in binary, and `eᵢ` is the `i`-th digit of `7` in binary, and `cᵢ` is the `i`-th carry bit:
+For example, in position $1$:
 
-    - `0`-th bit:
-      - sum bit: `(d₀ !!XOR!! e₀) !!XOR!! 0 = (1 !!XOR!! 1) !!XOR!! 0 = 0 !!XOR!! 0 = 0`
-      - carry bit =`(d₀ !!AND!! e₀ ) !!OR!! (0 !!AND!! (d₀ !!XOR!! e₀)) = (1 !!AND!! 1) !!OR!! (0 !!AND!! (1 !!XOR!! 1) = 1 !!OR!! (0 !!AND!! 0) = 1 !!OR!! 0 = 1` 
-    - `1`st bit:
-      - sum bit: `(d₁ !!XOR!! e₁) !!XOR!! c₀ = (0 !!XOR!! 1) !!XOR!! 1 = 1 !!XOR!! 1 = 0`
+$$
+S = (0 !!XOR!! 1) !!XOR!! 1 = 1 !!XOR!! 1 = 0
+D = (0 !!AND!! 1) !!OR!! (1 !!AND!! (0 !!XOR!! 1)) = 0 !!OR!! 1 = 1
+$$
 
-      - carry bit = `(d₁ !!AND!! e₁ ) !!OR!! (c₁ !!AND!! (d₁ !!XOR!! e₁)) = (0 !!AND!! 1) !!OR!! (1 !!AND!! (0 !!XOR!! 1) = 0 !!OR!! (1 !!AND!! 1) = 0 !!OR!! 1 = 1`
-    - `2`nd bit:
-      - sum bit: `(d₂ !!XOR!! e₂) !!XOR!! c₁ = (1 !!XOR!! 1) !!XOR!! 1 = 0 !!XOR!! 1 = 1`
-      - carry bit = `(d₂ !!AND!! e₂ ) !!OR!! (c₁ !!AND!! (d₂ !!XOR!! e₂)) = (1 !!AND!! 1) !!OR!! (1 !!AND!! (1 !!XOR!! 1)) = 1 !!OR!! (1 !!AND!! 0) = 1 !!OR!! 0 = 1`
-    - `3`rd bit:
-      - sum bit: `(d₃ !!XOR!! e₃) !!XOR!! c₂ = (0 !!XOR!! 0) !!XOR!! 1 = 0 !!XOR!! 1 = 1`
-      - carry bit = `(d₃ !!AND!! e₃) !!OR!! (c₂ !!AND!! (d₃ !!XOR!! e₃)) =  (0 !!AND!! 0) !!OR!! (1 !!AND!! (0 !!XOR!! 0) = 0 !!OR!! (1 !!AND!! 0) = 0 !!OR!! 0 = 0`
+Keep the final carry as position $3$. The answer is $(1100)₂ = 8 + 4 = 12$.
 
-      So the result is `1100`, which is `12` since `(1 x 2³) + (1 x 2²) + (0 x 2¹) + (0 x 2⁰) = 8 + 4 + 0 + 0 = 12`.
+# Circuit construction {.solved}
+
+Now build more complex functions using **only NAND**. The constructions from
+“Defining functions” will be useful, but here every blue box must be a NAND box.
+
+1. Implement $!!NOR!!$, the negation of $!!OR!!$.
+2. Implement $!!XOR!!$ with four NAND boxes.
+3. Implement $!!XNOR!!$ with five NAND boxes.
+4. Could you instead implement $!!OR!!$ with XOR boxes alone? Explain your answer.
+
+To connect two components, select an output dot, then an input dot. Drag a
+component to move it. Select a component or a connected input dot to show its
+removal button. The connection controls below the canvas provide the same
+operations as buttons; you can also move a focused component with the arrow keys.
+
+{{< logic-app name="boolean" kind="workbench" preset="nand-circuits" >}}
+
+## Solution {.solution #circuit-constructionSolution}
+
+1. Build $A = (X !!NAND!! X) !!NAND!! (Y !!NAND!! Y)$, then connect $A$ to both
+   inputs of another NAND box. Since $A = X !!OR!! Y$, this gives NOR.
+2. Let $N = X !!NAND!! Y$, $P = X !!NAND!! N$, and $Q = Y !!NAND!! N$.
+   Then $P !!NAND!! Q = X !!XOR!! Y$.
+3. Connect the XOR output from task 2 to both inputs of one more NAND box.
+4. An XOR-only circuit computes a parity of its input occurrences. Repeated
+   occurrences cancel because $X !!XOR!! X = 0$. With inputs $X$ and $Y$, it
+   can produce only $0$, $X$, $Y$, or $X !!XOR!! Y$. None is OR. Even allowing
+   a constant $1$ adds only their complements, which still exclude OR.
 
 # Models {.solved}
 
-Suppose that we have a language `L` with three propositional variables `RED`, `BLUE`, and `GREEN`, which we use to reason about the color of a pixel in the [RGB color model](https://en.wikipedia.org/wiki/RGB_color_model).
+A pixel in the [RGB color model](https://en.wikipedia.org/wiki/RGB_color_model)
+combines red, green, and blue light. Consider a simplified pixel whose three
+channels can each be fully on or fully off. Let $RED$, $GREEN$, and $BLUE$
+express that the respective channel is on.
 
-1. Determine all the valuations for that language. 
+1. List all valuations of this language. What color does each represent?
+   Use the pixel below to check your list, recording each valuation once.
+2. Suppose we describe two pixels with variables $RED₁$, $GREEN₁$, $BLUE₁$,
+   $RED₂$, $GREEN₂$, and $BLUE₂$. How many valuations are there now? Explain
+   without listing them all.
+3. How many valuations describe a 3840×2160-pixel screen in this simplified
+   language? Give an exact expression; you needn't expand it in decimal.
+4. An ordinary RGB pixel has 256 intensities per channel. Which distinctions
+   between actual colors does our simplified language leave out?
 
-2. If we change our language `RED₁`, `BLUE₁`, and `GREEN₁` to talk about the
-   color of a first pixel, and `RED₂`, `BLUE₂`, and `GREEN₂` to talk about the
-color of a second pixel, what happens to the number of valuations? Don't determine them all, just think about what happens.
-
-3. How many valuations are there in the language that has a propositional variable for each RGB-value of each pixel on a [4K-resolution screen](https://en.wikipedia.org/wiki/4K_resolution)? (You can't actually calculate that value, but you can write an expression that represents it.)
+{{< logic-app name="boolean" kind="models" preset="rgb" >}}
 
 ## Solution {#modelsSolution .solution}
 
-1. There are `2³ = 8` total valuations for that language. We can give them in the following table:
+1. There are $2³ = 8$ valuations:
 
-    &nbsp;
-    
-     |    | `RED`   | `GREEN`   | `BLUE`   |
-     | ----- | ------- | --------- | -------- |
-     |  `v₁:` &emsp;     | 1       | 1         | 1        |
-     |  `v₂:`     | 1       | 1         | 0        |
-     |  `v₃:`     | 1       | 0         | 1        |
-     |  `v₄:`     | 1       | 0         | 0        |
-     |  `v₅:`     | 0       | 1         | 1        |
-     |  `v₆:`     | 0       | 1         | 0        |
-     |  `v₇:`     | 0       | 0         | 1        |
-     |  `v₈:`     | 0       | 0         | 0        |
+   | $v(RED)$ | $v(GREEN)$ | $v(BLUE)$ | Color |
+   | --- | --- | --- | --- |
+   | $1$ | $1$ | $1$ | White |
+   | $1$ | $1$ | $0$ | Yellow |
+   | $1$ | $0$ | $1$ | Magenta |
+   | $1$ | $0$ | $0$ | Red |
+   | $0$ | $1$ | $1$ | Cyan |
+   | $0$ | $1$ | $0$ | Green |
+   | $0$ | $0$ | $1$ | Blue |
+   | $0$ | $0$ | $0$ | Black |
 
-2. We now have `2⁶ = 64` valuations. One way of seeing this is that there are `8` ways of distributing the truth-values over `3` propositional variables. That means that if we double the number of variables to `6`, we can combine each of the original assignments with one of the new ones, which means we have `8 x 8 = 64` assignments.
+2. Each of the eight first-pixel valuations combines with any of the eight
+   second-pixel valuations: $8 × 8 = 64 = 2⁶$.
+3. There are $3 × 3840 × 2160 = 24,883,200$ propositional variables,
+   so $2²⁴⁸⁸³²⁰⁰$ valuations.
+4. Our variables distinguish only on from off. They cannot express intermediate
+   intensities or distinguish two shades with the same on/off description.
+   The granularity of the language determines the granularity of these models.
 
-3. This would give us `2` to the power of `3 x 8,294,400` many valuations. This
-   number is huge enough so that we can't write it down. Ever.
+# Following an evaluation {.solved}
 
-   Each such valuation would correspond to an image on a 4K-screen. So that's the total number of possible images on a 4K-screen 😃.
+For each case, **draw the parsing tree and evaluate it on paper first**. Write
+the assigned values at the leaves, then work toward the root. Mark one base
+case and one recursive step in each calculation.
+
+1. $SUN ∨ (RAIN ∧ ¬SUN)$, with $v(SUN) = 0$ and $v(RAIN) = 1$.
+2. $¬(SUN ∨ RAIN)$, with $v(SUN) = v(RAIN) = 0$.
+3. $(SUN ∨ RAIN) ∧ ¬(SUN ∧ RAIN)$, with $v(SUN) = v(RAIN) = 1$.
+4. $(SUN ∧ WIND) ∨ RAIN$, with $v(SUN) = 1$, $v(WIND) = v(RAIN) = 0$.
+
+Then open the evaluator and choose the corresponding example to check each
+step. Under “Your formula”, try a formula and valuation of your own.
+
+<details class="boolean-checker">
+<summary>Check the evaluations</summary>
+
+{{< logic-app name="boolean" kind="evaluation" preset="practice" >}}
+
+</details>
+
+## Solution {.solution #following-an-evaluationSolution}
+
+1. $!!NOT!! 0 = 1$, then $1 !!AND!! 1 = 1$, and finally $0 !!OR!! 1 = 1$.
+2. $0 !!OR!! 0 = 0$, then $!!NOT!! 0 = 1$.
+3. The two children of the root have values $1 !!OR!! 1 = 1$ and
+   $!!NOT!! (1 !!AND!! 1) = 0$. Their conjunction has value $0$.
+4. $1 !!AND!! 0 = 0$, then $0 !!OR!! 0 = 0$.
+
+Reading a variable's value is a base case. Applying a truth-function to the
+values returned by its children is a recursive step.
+
+# Finding countermodels {.solved}
+
+For each inference, select **all and only** the worlds with true premises and
+a false conclusion. Check your selection, then explain why those worlds refute
+the inference.
+
+{{< logic-app name="boolean" kind="model-exercise" >}}
+
+## Solution {.solution #finding-countermodelsSolution}
+
+The countermodel sets are ${M₁}$, ${M₃}$, and ${M₂}$, respectively. In the
+first task, $v₁(SUN) = v₁(RAIN) = 1$: both premises are true, while $¬RAIN$
+is false. One countermodel already suffices to show invalidity.
 
 # Deductive inference {.solved}
 
-{{< img src="img/jimmy_inference.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}}
+{{< inference layout="stacked" >}}
+Little Jimmy is not both at school and not at home.
+Little Jimmy is not at home.
+---
+Little Jimmy is at school.
+{{< /inference >}}
 
 1. Translate the inference into a suitable formal language.
-
 2. Determine whether the formal inference is valid using Boolean logic.
 
 ## Solution {#deductive-inferenceSolution .solution}
 
-1. Here's a formal representation of the inference in the propositional language with propositional variables `SCHOOL` and `HOME` to say that little Jimmy is at school and home, respectively:
+1. Use $SCHOOL$ for “Jimmy is at school” and $HOME$ for “Jimmy is at home”:
 
-    {{< img src="img/jimmy_inference_2.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="450px">}}
+   {{< inference layout="stacked" >}}
+   $¬(SCHOOL ∧ ¬HOME)$
+   $¬HOME$
+   ---
+   $SCHOOL$
+   {{< /inference >}}
 
-2. To check whether the inference is valid, we need to go through all possible valuations of the language and see if whenever the premises are true, so is the conclusion. There are four possible valuations, given by the following table:
+2. Apply $v(¬HOME) = !!NOT!! v(HOME)$ and
+   $v(¬(SCHOOL ∧ ¬HOME)) = !!NOT!! (v(SCHOOL) !!AND!! (!!NOT!! v(HOME)))$:
 
-   {{< img src="img/jimmy_valuations.png" class="rounded mx-auto d-block inert-img img-fluid my-2" width="900px">}}
+   | Valuation | $SCHOOL$ | $HOME$ | $¬(SCHOOL ∧ ¬HOME)$ | $¬HOME$ |
+   | --- | --- | --- | --- | --- |
+   | $v₁$ | $1$ | $1$ | $1$ | $0$ |
+   | $v₂$ | $1$ | $0$ | $0$ | $1$ |
+   | $v₃$ | $0$ | $1$ | $1$ | $0$ |
+   | $v₄$ | $0$ | $0$ | $1$ | $1$ |
 
-    The values of the formulas involved are calculated as follows:
+   Both premises are true at $v₄$, while the conclusion $SCHOOL$ is false.
+   Thus $v₄$ is a countermodel: Jimmy could be neither at school nor at home.
 
-   {{< img src="img/jimmy_clauses.png" class="rounded mx-auto d-block inert-img img-fluid my-2" width="800px">}}
+   $$
+   [¬(SCHOOL ∧ ¬HOME)] ∩ [¬HOME] = {v₄} ⊈ {v₁, v₂} = [SCHOOL]
+   ¬(SCHOOL ∧ ¬HOME), ¬HOME ⊭ SCHOOL
+   $$
 
-    So, for each possible `v`, we can calculate the values of the premises using Boolean algebra:
+# Models with 3 Atoms {.solved #adding-wind}
 
-   {{< img src="img/jimmy_distributions.png" class="rounded mx-auto d-block inert-img img-fluid my-2" width="900px">}}
+Now use $SUN$, $RAIN$, and $WIND$. The eight pictured worlds cover all
+combinations. Select the propositions requested in the first two tasks, then
+find all countermodels for the next two inferences. Explain why adding the
+third atom doubles the number of worlds.
 
-    Inspecting the possible values, we can find a valuation where both premises
-    are true and the conclusion is false, viz. `v₄`, where Jimmy is neither at
-    school nor at home. 
+{{< logic-app name="boolean" kind="model-exercise" variables="3" >}}
 
-    But that means that the set of valuations where both premises are true is _not_ a subset of the set of valuations where the conclusion is true:
+## Solution {.solution #adding-windSolution}
 
-    {{< img src="img/jimmy_set.png" class="rounded mx-auto d-block inert-img img-fluid my-2" width="500px">}}
+1. $[SUN ∧ WIND] = {M₁, M₃}$.
+2. $[RAIN ∨ ¬WIND] = {M₁, M₂, M₄, M₅, M₆, M₈}$.
+3. Only $M₅$ has true premises and a false conclusion.
+4. Both $M₁$ and $M₃$ are countermodels.
 
-    In other words, the inference is invalid:
+Every assignment to $SUN$ and $RAIN$ extends in two ways: with $v(WIND) = 0$
+or with $v(WIND) = 1$. Thus there are $4 × 2 = 8$ worlds.
 
-    {{< img src="img/jimmy_invalid.png" class="rounded mx-auto d-block inert-img img-fluid my-2" width="500px">}}
+# Testing your own inferences {.solved}
 
+Write premises on separate lines and put $∴$ before the conclusion. You may
+use $SUN$, $RAIN$, and $WIND$.
+
+1. Write an invalid inference with exactly two countermodels. Select them and check.
+2. Write a valid inference. Which worlds should you select as countermodels?
+3. Make the premises inconsistent, for example by including both $SUN$ and
+   $¬SUN$. Can any conclusion have a countermodel now? Explain.
+
+{{< logic-app name="boolean" kind="model-exercise" variables="3" preset="custom" >}}
+
+## Solution {.solution #testing-your-own-inferencesSolution}
+
+1. For example, $SUN ∨ RAIN, SUN ∴ ¬RAIN$ has countermodels $M₁$ and $M₂$.
+   Both are sunny and rainy, differing only on wind.
+2. For example, $SUN ∨ RAIN, ¬SUN ∴ RAIN$ is valid. Select no worlds.
+3. No valuation satisfies both $SUN$ and $¬SUN$. There can be no world with
+   true premises and a false conclusion, regardless of the conclusion.
 
 # Logical laws {.solved}
 
-So far, we've only shown of _particular_ inferences (about the weather or
-little Jimmy) that they are valid or invalid. For this exercise, you'll show
-that _all_ inferences of a certain form are valid, regardless of what they're
-about. 
+So far, we've tested particular inferences. Now show that **every** instance
+of disjunctive syllogism is valid, whatever formulas $A$ and $B$ stand for:
 
-For this, we'll focus on _disjunctive syllogism_, which we take to be the
-following inference schema, where `A` and `B` can be _any_ two formulas whatsoever:
+$$
+A ∨ B, ¬A ∴ B
+$$
 
-```A∨B, ¬A ∴B```
+1. Let $v$ be any valuation in $[A ∨ B] ∩ [¬A]$. Use the definitions of
+   intersection and $[C] = {v : v(C) = 1}$ to state the values of $A ∨ B$ and $¬A$.
+2. Apply the Boolean evaluation clauses to obtain two equations involving
+   $v(A)$ and $v(B)$.
+3. Determine $v(A)$, then $v(B)$. Explain why this establishes
+   $[A ∨ B] ∩ [¬A] ⊆ [B]$.
 
-To show that this inference is valid, following the definition of deductive
-validity, we need to show that:
+## Solution {.solution #logical-lawsSolution}
 
-```⟦A∨B⟧∩⟦¬A⟧⊆⟦B⟧```
-
-This means, according to the definition of `⊆`, that we need to show that any
-valuation `v`:
-
-```If v∈⟦A∨B⟧∩⟦¬A⟧, then v∈⟦B⟧```
-
-This is the claim we'll set out to show:
-
-1. Assume that `v` is an arbitrary valuation, meaning you don't know
-   anything about it, such as which values it assigns to which formula.
-Assume further that `v∈⟦A∨B⟧∩⟦¬A⟧`.
-Apply the definition of ```⟦A⟧ = { v : v(A) = 1},``` as well as the definition of intersection as 
-
-    ```S ∩T = { x : x ∈ S and x ∈ T}```
-
-   to infer what this means for the values of `A v B` and `¬A` under `v`.
-
-2. Using the general clauses for calculating the values under an assignment,
-
-   ```v(¬A) = !!NOT!! v(A)```
-   ```v(A∧B) = v(B) !!AND!! v(A)```
-   ```v(A∨B) = v(A) !!OR!! v(A)```
-   
-   to transform the result of the last step into two Boolean equations.
-
-3. "Solve" this Boolean equation for the value `v(B)` of `B`, that is
-   infer what that value must be. Conclude from this that `v∈⟦B⟧` and the inference is
-   valid.
-
-## Solution {#logical-lawsSolution .solution}
-
-1. Let `v` be a valuation such that `v∈⟦A∨B⟧∩⟦¬A⟧`. By the definition of `∩`, this means that `v∈⟦A∨B⟧` and `v∈⟦¬A⟧`. And by the definition of `⟦&nbsp;⟧`, this means that `v(A∨B) = 1` and `v(¬A) = 1`.
-
-2. Applying the clauses, we get:
-
-    - `v(A) !!OR!! v(B) = 1`
-
-    - `!!NOT!! v(A) = 1`
-
-
-3. From `!!NOT!! v(A) = 1`, we can infer that `v(A) = 0`. So, the first
-   equation becomes `0 !!OR!! v(B) = 1`. The only value for `v(B)`
-for which this is true is `v(B) = 1`. And if `v(B) = 1`, then `v∈⟦B⟧`. 
-
-    So, what we've seen is that for all valuations `v`, if `v∈⟦A∨B⟧∩⟦¬A⟧`, then `v∈⟦B⟧`. In other words, 
-
-    ```⟦A∨B⟧∩⟦¬A⟧⊆⟦B⟧```
-
-
+1. $v(A ∨ B) = 1$ and $v(¬A) = 1$.
+2. $v(A) !!OR!! v(B) = 1$ and $!!NOT!! v(A) = 1$.
+3. The second equation forces $v(A) = 0$. The first becomes
+   $0 !!OR!! v(B) = 1$, which forces $v(B) = 1$. Thus $v ∈ [B]$.
+   Since $v$ was any member of the intersection, every such member belongs
+   to $[B]$. This proves the required subset relation.

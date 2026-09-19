@@ -35,10 +35,49 @@ shrunken figure wearing its full-size lines, which is what makes a reused drawin
 look wrong beside the same figure in the chapter. Copied drawings also keep their
 own `roughness`; only the deck's own furniture uses the clean stroke style.
 
-Lectures 3–12 were copied byte-for-byte, without automatic font or notation
+**Lecture 3 has been revised and released** the same way against chapter 3,
+and now runs to 20 slides, the same length as Lectures 1 and 2. Learning
+goals open it; the two “Todo” frames and the duplicated “Deductive validity”
+and “Inductive validity” titles are gone. The gaps against the chapter are
+filled: correctness and the named fallacies, truth preservation and the
+hypothetical test, soundness beside validity, logical form with `∴` and `⊨`,
+material validity and Carnap's meaning postulate, indefeasibility, deduction in
+a Python program, the six schemas and fallacies side by side, models and the
+logical space, subsets and intersections in picture sets, deductive consequence
+and countermodels as set diagrams, the blueprint and its boundary cases,
+defeasible inference, enumerative induction, the die distributions, conditional
+probability and both support notions. All eight images — a portrait, two
+screenshots of AI mathematics results, one unidentified picture and four
+product logos — are removed and recorded in the manifest's `removedImages`
+block. Its artwork comes from `assets/img/drawings/sources/` and from Lecture 2's
+title card, `∀` glyph, check marks and lightbulb mascot. It carries the deck's
+third `narration.yaml`. The set diagrams use the book's own set-diagram palette
+from `assets/css/tokens.css`, and the little worlds are drawn, since
+`model-world.svg` has no Excalidraw source. Only Comic Shanns Logic carries the
+logic symbols, so every formula and example inference is set in it; it has no
+Greek, which is why the chapter's `Σ` becomes a plain name on the slides.
+
+**Lecture 4 has been revised and released** the same way against chapter 4,
+and now runs to 20 slides. Learning goals open it; the unfinished closing frame
+is gone. The gaps against the chapter are filled: why the algebra matters at
+both levels, the Boolean values and bivalence, the three function tables and
+truth-functional completeness, both relay configurations and the three
+implementations, the laws with commutativity worked through, De Morgan and the
+derivation that beats a truth table, binary notation, column addition, the half
+and full adder, Boolean valuations and the count of models, the evaluation
+clauses on a parse tree, propositions with union and difference, and both
+inference tests. All five images — portraits of Boole, Post, Shannon and De
+Morgan, and a scan of Shannon's thesis — are removed and recorded in the
+manifest's `removedImages` block. Its artwork is the chapter's own `bool_*`
+drawings plus Lecture 2's title furniture. Boolean operators are set in the
+book's blue, `--blue-ink`, as `.Boolean` does on the web. It carries the deck's
+fourth `narration.yaml`. The manifest's two `nonSlideElements` rectangles are
+untouched, and remain outside every frame as deleted history.
+
+Lectures 5–12 were copied byte-for-byte, without automatic font or notation
 replacement. Review them against the book, including historical
 staff/attendance information, terminology, proof examples, screenshots and
-image rights. Lecture 3 retains two “Todo” frames; Lecture 7 also has an
+image rights. Lecture 7 has an
 unfinished note on its proof-systems slide. Lecture 9 ends with the Lean Game
 Server screenshot. Blank-looking, closing and unnumbered frames were kept.
 

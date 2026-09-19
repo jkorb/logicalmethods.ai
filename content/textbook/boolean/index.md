@@ -1,28 +1,27 @@
 ---
 title: Boolean algebra
 author: Johannes Korbmacher
-locked: true
+locked: false
 weight: 40
 params:
-  legacy-notation: true
   date: "13/09/2024"
-  last_edited: "13/09/2024"
+  last_edited: "17/09/2026"
   id: txt-bool
 ---
 
 # Boolean algebra
 
-{{< img src="img/low_level.png" class="rounded  float-end inert-img img-fluid mx-3" width="300px">}} 
-Boolean algebra—the logic of 0's, 1's, not, and, or, …—is the ultimate logical
-foundation of modern computers, and by extension *all* AI systems. The study of
-Boolean logic has its roots in the work of [George
-Boole](https://en.wikipedia.org/wiki/George_Boole) from the mid 19th century.
-But it wasn't until AI-pioneer [Claude
+{{< img src="/img/drawings/bool_low_level.svg" class="rounded  float-end inert-img img-fluid mx-3" width="300px">}}
+Boolean algebra – the logic of 0's and 1's – is the foundation of all modern
+computer systems, and by extension *all* AI systems. The study of Boolean logic
+has its roots in the work of [George
+Boole](https://en.wikipedia.org/wiki/George_Boole) from the mid-19th century.
+But it wasn't until AI pioneer [Claude
 Shannon](https://en.wikipedia.org/wiki/Claude_Shannon) connected the theory to
-the basic workings of electronic circuits that the importance of Boolean algebra
-for the development of information technologies became apparent. While Shannon
-was investigating [relays](https://en.wikipedia.org/wiki/Relay)—essentially
-electronically operated switches—and not
+the basic workings of electronic circuits that the importance of Boolean
+algebra for the development of information technologies became apparent. While
+Shannon was investigating [relays](https://en.wikipedia.org/wiki/Relay) –
+essentially electronically operated switches – and not
 [semiconductors](https://en.wikipedia.org/wiki/Semiconductor), which are the
 actual technology used to implement computers today, the fundamental principles
 are the same. Boolean algebra is the logic of low-level computing, and the way
@@ -34,738 +33,855 @@ Propositional reasoning on all levels follows the laws of Boolean algebra.
 [Conditionals](https://en.wikipedia.org/wiki/Conditional_(computer_programming))
 in most programming languages, such as C, Python, or Java, rely on Boolean
 connectives:
-{{< img src="img/python_snippet.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="400px">}}
+
+```python
+if num % 2 == 0 and not num < 10:
+    num += 1
+```
+
+Here `num` is an integer. The condition combines two tests with `and` and `not`.
 To write good conditionals and understand code that others have written, you
-need a solid understanding of Boolean logic. 
+need a solid understanding of Boolean logic.
 
 Even on the highest level, deductive reasoning with propositional information stored in
 {{<abbr title="knowledge bases">}}KBs{{</abbr>}} follows the laws of Boolean
 algebra:
 
-{{< img src="img/mp_kb.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="400px">}}
-
-In short, the importance of Boolean logic for AI can hardly be overstated.
+{{< img src="/img/drawings/bool_mp_kb.svg" class="rounded mx-auto d-block inert-img img-fluid my-4" width="400px">}}
 
 {{< callout type="objectives" >}}
-+ explain the basic principles of Boolean algebra
+After studying this chapter, you should be able to:
 
-+ implement the Boolean truth-functions using simple circuits
+- Explain the basic ideas of Boolean algebra and their role in computing.
+- Use Boolean laws to reason about Boolean functions and circuits.
+- Explain and implement binary addition using Boolean circuits.
+- Use Boolean models to assess propositional inferences.
 
-+ derive logical laws from the Boolean laws
-
-+ build and apply adders from Boolean circuits
-
-+ test propositional inferences for deductive validity using Boolean models
 {{< /callout >}}
 
-## Boolean truth-values
 
-Boolean algebra is the logic of the proverbial 0's and 1's. That is, the Boolean
-truth-values are:
+## Boolean values
 
-```{0, 1}```
+{{< callout type="definition" title="Boolean values" >}}
+The {{< term "boolean-value" "Boolean values" >}} are $1$ and $0$.
+{{< /callout >}}
 
-These values have many different interpretations depending on the reasoning
-context we're in: on/off, high/low, true/false, …. 
+The Boolean values have many different possible interpretations: true and
+false, on and off, yes and no, … But in logic, the true/false interpretation is
+the most common. According to this interpretation, the Boolean values are {{<
+term "truth-value" "truth-values" >}}, which we can use to represent facts in a
+model.
 
-In logic, the true/false interpretation is the most common. If we're dealing
-with a propositional language that has a propositional letter
-`SUN` to express that the sun is shining,
-assigning it the value 1 means that the sun is indeed shining, while assigning
-`SUN` the value 0 means that it is not.
+For example, if $SUN$ expresses that the sun is shining,
+assigning $1$ to $SUN$ means that it is sunny, and assigning $0$
+means that it is not.
 
-{{< img src="img/sun_boolean.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="400px">}}
 
-In Boolean logic, there is no _third_ truth-value for facts that are undecided,
-unknown, indeterminate. From a logical perspective, this is a **modelling
-assumption**, which means that Boolean logic is only applicable in situations,
-where things are clear-cut, true or false. But luckily, there are many such
-situations, ranging from the behavior of semiconductors to simple facts of
-everyday life.
+| World | Description | Boolean model |
+| --- | --- | --- |
+| {{< img inline=true src="/img/drawings/sun.svg" height="48px" alt="Sunshine" >}} | The sun is shining | $SUN$ $↦$ 1 |
+| {{< img inline=true src="/img/drawings/no_sun.svg" height="48px" alt="No sunshine" >}} | The sun isn't shining | $SUN$ $↦$  0 |
 
-## Truth-functions
+In Boolean logic, we typically assume that the Boolean values are the _only_
+truth values:
 
-The basic operations of Boolean algebra are the so-called _truth-functions_.
-These are [functions](https://en.wikipedia.org/wiki/Function_(mathematics)) in
-the mathematical sense, which take one or more Boolean truth-values as input and
-return exactly one Boolean truth-value as output.
+{{< callout type="note" title="Modelling assumptions: bivalence" >}}
+{{< term "bivalence" "Bivalence" >}} is the assumption that every sentence is
+either true or false and never both.
+{{< /callout >}}
 
-For now, we'll restrict ourselves to the basic functions `!!NOT!!`, `!!AND!!`, and
-`!!OR!!`. These are not the most fundamental truth-functions in any sense of the
-word, but _are_ the most commonly used truth-functions in logical theory. In
-computer science, instead, especially when we're thinking about basic
-semiconductor circuits `!!XOR!!` and `!!NAND!!` are more commonly used as
-basic functions.
+This is one of the central assumptions of
+{{< term "classical-logic" "classical logic" >}}. It is an _idealization_, not
+an obvious fact. Future events, borderline cases, and some quantum phenomena
+challenge the assumption that every statement is either true or false.
 
-The truth-functions are given by the following functional tables, where the
-first input is in the first column and the second input in the first row. In the
-case of the binary functions—the ones with two inputs—the output is read-off by
-intersecting the two input columns:
+## Boolean functions
 
-{{< img src="img/function_tables.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="900px">}}
+{{< callout type="definition" title="Boolean function" >}}
+A {{< term "boolean-function" "Boolean function" >}} is a function that
+takes a fixed number of Boolean values as inputs and returns one Boolean value
+as the output.
+{{< /callout >}}
 
-So, for example, `!!NOT!! 0 = 1` and 
-`1 !!OR!! 0 = 1`.
+We'll begin by studying the Boolean functions $!!NOT!!$, $!!AND!!$, and
+$!!OR!!$, the functions most often used as the basis for propositional logic.
+Computer circuits, though, often use other Boolean functions such as $!!NAND!!$
+and $!!XOR!!$ as their basis, which we'll encounter below.
 
-The truth-functions `!!NOT!!`, `!!AND!!`, and `!!OR!!` are sufficient to express _any_
-truth-function whatsoever. This mathematical fact is known as the joint
-**truth-functional completeness** of these operators, and we'll investigate it
-in the exercises. `!!NOT!!`, `!!AND!!`, and `!!OR!!` are not the only collection of
-truth-functions with this property, not even the smallest one. But especially
-in logical contexts, they are the most commonly used ones, since using these
-truth-functions, we can easily describe many different important concepts and
-algorithms with relative ease.
+Our Boolean functions are given by the following function tables. For
+$!!NOT!!$, which has only one input, just read the table from left (input) to
+right (output). For the binary functions $!!AND!!$ and $!!OR!!$, look up the
+first input in the left-hand column and the second input in the top row. Where
+their row and column meet, you find the output.
 
-To get a better understanding of how these truth-functions work, we'll look at
-an implementation using
-[relays](https://en.wikipedia.org/wiki/Relay)—essentially tracing some of
-Shannon's ideas. A relay is, essentially, an electronically operated switch. For
-our purposes, we'll work with the following two kinds of relays:
+<div class="function-tables">
 
-{{< img src="img/relays.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="900px">}}
+{{< function-table name="NOT" >}}
+{"rows": ["0", "1"], "columns": [""], "values": [[1], [0]]}
+{{< /function-table >}}
 
-Both relays have two inputs and one output. One input leads to an electromagnet,
-which if it receives power exerts a magnetic force on the switch connected to
-the other input and flips it. In the {{<excalifont>}}default
-  "off"{{</excalifont>}} relay, this closes the circuit and the output receives
-power in case the input does. With the {{<excalifont>}}default
-  "on"{{</excalifont>}} relay, it's the other way around: if the electromagnet
-receives power, the output gets disconnected from the input, breaking the
-circuit.
+{{< function-table name="AND" >}}
+{"rows": ["0", "1"], "columns": ["0", "1"], "values": [[0, 0], [0, 1]]}
+{{< /function-table >}}
 
-So, if the `default  "on"` circuit receives
-constant power to the right circuit, this is how turning the power to the magnet
-off and on affects the behavior of the circuit:
+{{< function-table name="OR" >}}
+{"rows": ["0", "1"], "columns": ["0", "1"], "values": [[0, 1], [1, 1]]}
+{{< /function-table >}}
 
-{{< img src="img/relay_behavior.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="900px">}}
-
-The `default "off"` relay, of course, behaves dually.
-
-We can use these two relays to implement our three Boolean truth-functions. For
-this, we assume the following set-up:
-
-{{< img src="img/implementation_setup.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}}
-
-We have:
-
-- a constant source of power `POWER`
-
-- two switchable inputs, `X` and `Y`
-
-- a single output, which is connected to an indicator lamp 
-
-We interpret `X` being `off` as the first input being `0` and `X` being `on` as
-the first input being `1`, and analogously for `Y` and the second input. The
-lamp represents the output in the same way: if it is `off`, the output is `0`,
-if it is `on` the output is `1`. So, the set-up is depicted in the configuration
-for the first and second input both being `0`. Since we haven't implemented
-anything yet, the output is also `0`.
-
-We can implement the `!!NOT!!` function with a single `default "on"` relay:
-
-{{< img src="img/negation_impl.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="900px">}}
-
-Depicted are both states of the circuit: if the first input is `0` (`X` is
-`off`), the output is `1` (the lamp is `on`); and if the first input is `1` (`X`
-is `on`), the output is `0` (the lamp is `off`). The second input doesn't
-matter, of course.
-
-We can implement `!!AND!!` using the other kind of relay as follows:
-
-{{< img src="img/conjunction_impl.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="900px">}}
-
-There are four possible states of the circuits, but as you can see: only if both
-inputs are `1` is the output
-`1`. In all other configurations, the output is
-`0`—just like the
-`!!AND!!` function requires.
-
-Implementing the `!!OR!!` function using the relays
-is one of the exercises. If you want to try more, you can try the amazing
-[nandgame](https://nandgame.com/), which allows you to implement an entire
-computer "by hand".
-
-## The Laws of Boolean algebra
-
-{{< img src="img/laws_of_logic.png" class="rounded  float-end inert-img img-fluid mx-3" width="300px">}}
-The behavior of the Boolean truth-functions is
-governed by a series of **algebraic laws**, that is _identities_ describing
-their interaction. These identities are formulated using **variables** `X,Y,…`,
-which can assume arbitrary values from among the set `{0, 1}`. Take, for
-example, the *Boolean equation*:
-
-<div class="text-center my-4">
-`(X !!AND!! Y) = (Y !!AND!! X)`
 </div>
 
-This equation says that for any pair of values `X,Y` from {{<excalifont>}}{0,
-  1}{{</excalifont>}}, the result of applying `!!AND!!` with `X` as the first
-input and `Y` as the second is the same as applying `!!AND!!` with `Y` as the
-first input and `X` as the second.
+So, for example: $$!!NOT!! 0 = 1$$
+$$1 !!OR!! 0 = 1$$
 
-You can verify this law by inspecting the function table for `!!AND!!` and
-going through all possible values for `X` and `Y`. Here are the corresponding
+Our three functions have an important property:
+
+{{< callout type="definition" title="Truth-functional completeness" >}}
+The Boolean functions $!!NOT!!$, $!!AND!!$, and $!!OR!!$ are sufficient to
+express every Boolean function with one or more inputs. This mathematical fact
+is known as the joint
+{{< term "functional-completeness" "truth-functional completeness" >}} of these
+operators.
+{{< /callout >}}
+
+$!!NOT!!$, $!!AND!!$, and $!!OR!!$ are not the only collection of functions
+with this property, not even the smallest one. But especially in logical
+contexts, they are the most commonly used ones, since they let us describe
+many important concepts and algorithms with relative ease.
+
+## Implementing Booleans
+
+Today we normally implement Boolean functions using
+[semiconductors](https://en.wikipedia.org/wiki/Semiconductor), typically
+[MOSFETs](https://en.wikipedia.org/wiki/MOSFET): tiny electronic devices that
+can act as non-mechanical "switches" by virtue of how they conduct electricity.
+But to understand the basic ideas of implementing Booleans, we don't need to go
+into semiconductor physics. It's easier to look at an older, mechanical
+implementation using **relay switches**, which Shannon studied in his [master's
+thesis](https://en.wikipedia.org/wiki/A_Symbolic_Analysis_of_Relay_and_Switching_Circuits)
+showing their relation to logic. The physical mechanisms differ between
+semiconductors and relays, but the underlying Boolean principles are the same.
+
+A [relay](https://en.wikipedia.org/wiki/Relay) is a mechanical
+[ferromagnetic](https://en.wikipedia.org/wiki/Ferromagnetism) switch operated
+by an [electromagnet](https://en.wikipedia.org/wiki/Electromagnet). A relay has
+two inputs: one that powers the magnet, and another that supplies a signal
+that the switch can pass on to the output. When the magnet receives power, it
+attracts the (ferromagnetic) switch, thereby either opening or closing the
+connection to the output, depending on the configuration of the relay. There
+are two basic configurations:
+
++ A **default off** relay has an open contact when its magnet is off. Powering
+the magnet closes the contact, allowing the signal through. Try both switches
+to see how $X$ controls the magnet and $Y$ supplies the signal.
+
+  {{< logic-app name="boolean" kind="circuit" preset="relay-off" >}}
+
++ A **default on** relay works in the opposite way. Its contact conducts when
+  the magnet is off and opens when the magnet receives power. Try for yourself:
+
+  {{< logic-app name="boolean" kind="circuit" preset="relay-on" >}}
+
+When we're describing relays like this, we make some assumptions:
+{{< callout type="note" title="Modelling assumptions: ideal circuits" >}}
+We ignore delays, resistance, and contact bounce.
+{{< /callout >}}
+This is an _idealization_: [electronics
+engineering](https://en.wikipedia.org/wiki/Electronics_engineering) rarely
+deals with crisp 0/1 values.
+
+To implement $!!NOT!!$, connect constant power to the signal input of a default
+on relay. If $X$ is off, the contact is closed and the lamp is on. Powering $X$
+opens the contact and turns the lamp off. That's precisely the behavior of
+$!!NOT!!$.
+
+For $!!AND!!$, use a default off relay instead, with $X$ controlling the magnet
+and $Y$ supplying the signal. The lamp is on only if the contact is closed
+**and** the signal receives power: both inputs must be on.
+
+For $!!OR!!$, put two default off relays in parallel, each with a constant
+power supply. One is controlled by $X$, the other by $Y$. Either closed contact
+can supply power to the lamp. If both are closed, the lamp is still on.
+
+Check out the implementations in the following diagram:
+
+{{< logic-app name="boolean" kind="circuit" preset="implementations" >}}
+
+Compare the three circuits with their function tables. The exercises leave
+you some more functions to implement.
+
+## Boolean laws
+
+{{< img src="/img/drawings/bool_laws_of_logic.svg" class="rounded  float-end inert-img img-fluid mx-3" width="300px">}}
+
+The behavior of the Boolean functions is governed by a series of {{< term
+"boolean-identity" "algebraic laws" >}}, that is, _identities_ describing their
+interaction. These identities are formulated using **Boolean variables**
+$X,Y,…$, which can take arbitrary values from the set ${0, 1}$.
+
+{{< callout type="definition" title="Boolean laws" >}}
+A Boolean law is an equation between expressions built from Boolean variables,
+the values $0$ and $1$, and Boolean functions, which holds for every assignment
+of Boolean values to its variables.
+{{< /callout >}}
+
+Take, for example, the *Boolean equation*:
+
+$$
+(X !!AND!! Y) = (Y !!AND!! X)
+$$
+
+This equation says that for any pair of values $X,Y$ from ${0, 1}$, the result
+of applying $!!AND!!$ with $X$ as the first input and $Y$ as the second is the
+same as applying $!!AND!!$ with $Y$ as the first input and $X$ as the second.
+
+You can verify this law by inspecting the function table for $!!AND!!$ and
+going through all possible values for $X$ and $Y$. Here are the corresponding
 calculations:
 
 <div class="text-center my-4">
 
-`(0 !!AND!! 0) &nbsp; = &nbsp; (0 !!AND!! 0)`
+$(0 !!AND!! 0) &nbsp; = &nbsp; (0 !!AND!! 0)$
 
-`(0 !!AND!! 1) = 0 = (1 !!AND!! 0)`
+$(0 !!AND!! 1) = 0 = (1 !!AND!! 0)$
 
-`(1 !!AND!! 0) = 0 = (0 !!AND!! 1)`
+$(1 !!AND!! 0) = 0 = (0 !!AND!! 1)$
 
-`(1 !!AND!! 1) &nbsp; = &nbsp; (1 !!AND!! 1)`
+$(1 !!AND!! 1) &nbsp; = &nbsp; (1 !!AND!! 1)$
 
 </div>
 
-Only the second and third lines are "interesting" calculations, the first and
+Only the second and third lines are "interesting" calculations; the first and
 last are "trivial".
 
-This law is called the law of `Commutativity` for
-`!!AND!!`, which states that for
-`!!AND!!`, the order of its inputs doesn't matter.
-Many laws of Boolean algebra have such names.
+This law is called the law of $Commutativity$ for $!!AND!!$, which states that
+for $!!AND!!$, the order of its inputs doesn't matter. Many laws of Boolean
+algebra have such names.
 
-Here are the most important laws and their corresponding names:
+Here are the most important laws and their names:
 
-|                                                                                                                                                              |               |                                                      |
-| ----------------------------------------------------------------------------                                                                                 | -             | -----------------------------------------            |
-| `(X !!OR!! (Y !!OR!! Z)) = ((X !!OR!! Y) !!OR!! Z)`<br>`(X !!AND!! (Y !!AND!! Z)) = ((X !!AND!! Y) !!AND!! Z)`                 | &emsp; &emsp; | `("Associativity")`   |
-| &nbsp;                                                                                                                                                       |               |
-| `(X !!OR!! Y) = (Y !!OR!! X)`<br>`(X !!AND!! Y) = (Y !!AND!! X)`                                               |               | `("Commutativity")`   |
-| &nbsp;                                                                                                                                                       |               |
-| `(X !!OR!! (X !!AND!! Y) = X `<br>`(X !!AND!! (X !!OR!! Y) = X `                                               |               | `("Absorption")`      |
-| &nbsp;                                                                                                                                                       |               |
-| `(X !!OR!! (Y !!AND!! Z)) = ((X !!OR!! Y) !!AND!! (X !!OR!! Z) ` <br>`(X !!AND!! (Y !!OR!! Z)) = ((X !!AND!! Y) !!OR!! (X !!AND!! Z) ` |               | `("Distributivity")`  |
-| &nbsp;                                                                                                                                                       |               |
-| `(X !!OR!! !!NOT!! X) = 1 ` <br>`(X !!AND!! !!NOT!! X) = 0 `                                                   |               | `("Complementation")` |
-| &nbsp;                                                                                                                                                       |               |
-| `(X !!OR!! 0) = X ` <br> `(X !!AND!! 1) = X `                                                          |               | `("Identity")`        |
-| &nbsp;                                                                                                                                                       |               |
-| `(X !!AND!! 0) = 0 ` <br>`(X !!OR!! 1) = 1 `                                                           |               | `("Domination")`      |
-| &nbsp;                                                                                                                                                       |               |
+| Law | Identities |
+| --- | --- |
+| Associativity | $X !!OR!! (Y !!OR!! Z) = (X !!OR!! Y) !!OR!! Z$<br>$X !!AND!! (Y !!AND!! Z) = (X !!AND!! Y) !!AND!! Z$ |
+| Commutativity | $X !!OR!! Y = Y !!OR!! X$<br>$X !!AND!! Y = Y !!AND!! X$ |
+| Absorption | $X !!OR!! (X !!AND!! Y) = X$<br>$X !!AND!! (X !!OR!! Y) = X$ |
+| Distributivity | $X !!OR!! (Y !!AND!! Z) = (X !!OR!! Y) !!AND!! (X !!OR!! Z)$<br>$X !!AND!! (Y !!OR!! Z) = (X !!AND!! Y) !!OR!! (X !!AND!! Z)$ |
+| Complementation | $X !!OR!! !!NOT!! X = 1$<br>$X !!AND!! !!NOT!! X = 0$ |
+| Identity | $X !!OR!! 0 = X$<br>$X !!AND!! 1 = X$ |
+| Domination | $X !!AND!! 0 = 0$<br>$X !!OR!! 1 = 1$ |
 
 You can (and should!) verify all these laws, just like we did for
-`Commutativity`. Don't worry, you don't need to
-memorize all of these laws. But at the same time, knowing them can be incredibly
-helpful in showing facts about Boolean algebras.
+$Commutativity$. Knowing them can be incredibly helpful in showing facts about
+Boolean algebras.
 
 In particular, you can use these laws to derive other laws in an algebraic way,
 that is by manipulating equations. For example, you can derive the following
-important family of laws known as the **de Morgan laws**:
+important family of laws known as the {{< term "de-morgan-laws" "De Morgan laws" >}},
+and the law of double negation:
 
-|                                                                                                                                                              |               |                                                      |
-| ----------------------------------------------------------------------------                                                                                 | -             | -----------------------------------------            |
-| `!!NOT!! (X !!OR!! Y) = (!!NOT!! X !!AND!! !!NOT!! Y)`<br>`!!NOT!! (X !!AND!! Y) = (!!NOT!! X !!OR!! !!NOT!! Y) `                 | &emsp; &emsp; | `("De Morgan Identities")`   |
-| &nbsp;                                                                                                                                                       |               |
-| `!!NOT!! !!NOT!! X = X `                                              |               | `("Double Negation")`   |
-| &nbsp;                                                                                                                                                       |               |
+| Law | Identities |
+| --- | --- |
+| De Morgan | $!!NOT!! (X !!OR!! Y) = (!!NOT!! X) !!AND!! (!!NOT!! Y)$<br>$!!NOT!! (X !!AND!! Y) = (!!NOT!! X) !!OR!! (!!NOT!! Y)$ |
+| Double negation | $!!NOT!! !!NOT!! X = X$ |
 
-Let's look at how to derive {{<excalifont>}}("Double
-  Negation"){{</excalifont>}}:
+An identity says that two expressions always have the same value. We may
+therefore replace either expression with the other, including inside a larger
+expression. For example, $X !!OR!! !!NOT!! X = 1$ lets us replace the bracketed
+part in $Y !!AND!! (X !!OR!! !!NOT!! X)$ by $1$, giving $Y !!AND!! 1$.
+We can also use an identity from right to left.
 
-1. We start with 
+To derive double negation, first transform $!!NOT!! !!NOT!! X$ into
+$(!!NOT!! !!NOT!! X) !!AND!! X$. Then transform $X$ into the same expression.
+Each step below names the law that justifies the transformation. You can go
+back a step to compare the two expressions.
 
-   ```!!NOT!! !!NOT!! X = ((!!NOT!! !!NOT!! X) !!AND!! 1),```
+{{< logic-app name="boolean" kind="derivation" >}}
 
-    which we know by `"Identity"`.
+The key equalities are:
 
-2. We then apply the fact that `X !!OR!! !!NOT!! X = 1`, that is `"Complementation"`, which gives us that 
- 
-   ```!!NOT!! !!NOT!! X = ((!!NOT!! !!NOT!! X) !!AND!! (X !!OR!! !!NOT!! X)),```
+$$
+!!NOT!! !!NOT!! X = ( !!NOT!! !!NOT!! X ) !!AND!! X
+X = X !!AND!! ( !!NOT!! !!NOT!! X )
+$$
 
-3. By `"Distributivity"`, we have 
+Commutativity identifies the right-hand sides, so $!!NOT!! !!NOT!! X = X$.
 
-   ```((!!NOT!! !!NOT!! X) !!AND!! (X !!OR!! !!NOT!! X))= ((!!NOT!! !!NOT!! X) !!AND!! X) !!OR!! ((!!NOT!! !!NOT!! X) !!AND!! !!NOT!! X),```
-
-   so we can conclude that 
-
-   ```!!NOT!! !!NOT!! X = ((!!NOT!! !!NOT!! X) !!AND!! X) !!OR!! ((!!NOT!! !!NOT!! X) !!AND!! !!NOT!! X).```
-
-4. Now, notice that  `((!!NOT!! !!NOT!! X) !!AND!! !!NOT!! X) = 0` by `"Complementation"`. So step 3. simplifies to:
-
-   ```!!NOT!! !!NOT!! X = ((!!NOT!! !!NOT!! X) !!AND!! X) !!OR!! 0.```
-
-   which by `"Identity"` simplifies further
-   down to:
-
-   ```!!NOT!! !!NOT!! X = (!!NOT!! !!NOT!! X) !!AND!! X.```
-
-5. Going a bit faster, we can see by analogous reasoning that
-
-   ```X = X !!AND!! 1 = X !!AND!! ((!!NOT!! !!NOT!! X) !!OR!! !!NOT!! X),```
-
-   using `"Identity"` and `"Complementation"` like before.
-
-6. Using `"Distributivity"`, this gives us
-
-   ```X = (X !!AND!! !!NOT!! !!NOT!! X) !!OR!! (X !!AND!! !!NOT!! X).```
-
-7. But since `{{<excalifont >}}(X !!AND!! !!NOT!! X) = 0{{</excalifont>}}`, we now get 
-
-   ```X = (X !!AND!! (!!NOT!! !!NOT!! X))```
-   
-   using `"Identity"` and `"Complementation"`.
-
-8. But now we know that both: 
-
-   ```!!NOT!! !!NOT!! X = (!!NOT!! !!NOT!! X) !!AND!! X```
-
-   ```X = (X !!AND!! (!!NOT!! !!NOT!! X)),```
-
-  where the latter is just `X = (!!NOT!! !!NOT!! X) !!AND!!
-   X,` using `"Commutativity"` to reorder. So, we can conclude that: 
-
-   ```!!NOT!! !!NOT!! X = X```
-
-
-This derivation may seem a bit tedious—especially since we can prove the fact
-that `!!NOT!! !!NOT!! X = X` by simply inspecting
-the function tables: `!!NOT!! !!NOT!! 1 = 1`and`!!NOT!! !!NOT!! 0 = 0`.
+This derivation may seem a bit tedious – especially since we can prove the fact
+that $!!NOT!! !!NOT!! X = X$ by simply inspecting
+the function tables: $!!NOT!! !!NOT!! 1 = 1$ and $!!NOT!! !!NOT!! 0 = 0$.
 
 But there are also questions where the laws are much more efficient at giving
-you the answer than inspecting the tables. Take for example the Boolean
+you the answer than inspecting the tables. Take, for example, the Boolean
 expression:
 
-  ```X !!AND!! ((Y !!AND!! Z) !!OR!! !!NOT!! (Y !!AND!! Z))```
+  $$
+  X !!AND!! ((Y !!AND!! Z) !!OR!! !!NOT!! (Y !!AND!! Z))
+  $$
 
 It turns out that this expression reduces to simply
-`X`. To see this by truth-table inspection, we
-need to go through `2³&nbsp;=&nbsp;8` different
-combinations of truth-values for `X, Y, Z` and
-for each combination, we need to calculate `5` different operations. That's a
-lot of calculations. 
+$X$. To see this by truth-table inspection, we
+need to go through $2³&nbsp;=&nbsp;8$ different
+combinations of truth-values for $X, Y, Z$ and evaluate the expression for
+each combination. That's a lot of calculations.
 
-Using the laws of Boolean algebra, however, we can recognize that 
+Using the laws of Boolean algebra, however, we can recognize that
 
-  ```((Y !!AND!! Z) !!OR!! !!NOT!! (Y !!AND!! Z))```
+  $$
+  ((Y !!AND!! Z) !!OR!! !!NOT!! (Y !!AND!! Z))
+  $$
 
-  is of the form 
+  is of the form
 
-  ```[something] !!OR!! !!NOT!! [something],```
+  $$
+  [something] !!OR!! !!NOT!! [something],
+  $$
 
-where `[something] = (Y !!AND!! Z)`. So, by
-`"Complementation"`, we can reduce  
+where $[something] = (Y !!AND!! Z)$. So, by
+$"Complementation"$, we can reduce
 
-  ```X !!AND!! ((Y !!AND!! Z) !!OR!! !!NOT!! (Y !!AND!! Z))```
-down to 
+  $$
+  X !!AND!! ((Y !!AND!! Z) !!OR!! !!NOT!! (Y !!AND!! Z))
+  $$
 
-  ```X !!AND!! 1,```
+down to
 
-which by `"Identity"` is just `X`.
+  $$
+  X !!AND!! 1,
+  $$
 
-{{< img src="img/ai_tools.png" class="rounded  float-end inert-img img-fluid mx-3" width="100px">}} 
+which by $"Identity"$ is just $X$.
+
+{{< img src="/img/drawings/ai_tools.svg" class="rounded  float-end inert-img img-fluid mx-3" width="100px">}}
 The derivation also illustrates an important point: the above laws of Boolean
 algebra allow us to derive further laws that don't look like they're covered by
 the initial list. In fact, we can derive _all_ valid identities of Boolean
-algebra from these laws. The list of laws is **complete** in this sense. 
-Having a complete list of laws for a subject matter is an incredible feat: _all
-there is to know about Boolean algebras is encoded in these laws_. And as the
-example of `X !!AND!! ((Y !!AND!! Z) !!OR!! !!NOT!! (Y !!AND!! Z))` shows, this
-can be a handy tool in the toolbox of any AI researcher.
+algebra from these laws. The list of laws is **complete** in this sense. Having
+a complete list of laws for a subject matter is an incredible feat: _every
+valid Boolean identity follows from these laws_. And as the example of
+$$X !!AND!! ((Y !!AND!! Z) !!OR!! !!NOT!! (Y !!AND!! Z))$$
+shows, this can be a handy tool in the toolbox of any AI researcher.
 
-On a more historical note, the set of laws we've discussed is originally due to
-[Alfred North Whitehead](https://en.wikipedia.org/wiki/Alfred_North_Whitehead).
-But it is not the only collection of complete laws and certainly not the
-[minimal one](https://en.wikipedia.org/wiki/Minimal_axioms_for_Boolean_algebra).
-It turns out that the following single law is enough to derive all the other
-laws of Boolean algebra (expressed using  only
-`!!NOT!!` and `!!OR!!`): 
+There are other complete collections of laws, including collections with just
+one identity. For example, McCune and colleagues proved that the following
+single equation axiomatizes Boolean algebra using $!!NOT!!$ and $!!OR!!$.
+Their proof used automated deduction – an application of AI to logic itself.
+See [*Short Single Axioms for Boolean Algebra* (PDF)](https://www.cs.unm.edu/~mccune/papers/basax/v12.pdf), equation DN1.
 
-```!!NOT!! (!!NOT!! (!!NOT!! (X !!OR!! Y) !!OR!! Z) !!OR!! !!NOT!! (X !!OR!! !!NOT!! (!!NOT!! Z !!OR!! !!NOT!! (Z !!OR!! U)))) = Z```
+$$
+!!NOT!! (!!NOT!! (!!NOT!! (X !!OR!! Y) !!OR!! Z) !!OR!! !!NOT!! (X !!OR!! !!NOT!! (!!NOT!! Z !!OR!! !!NOT!! (Z !!OR!! U)))) = Z
+$$
 
 But that's a story for another day.
 
 ## Adders
 
-To illustrate the usefulness of Boolean algebra, let's look at an important
-application: the implementation of addition via
-[adders](https://en.wikipedia.org/wiki/Adder_(electronics)).
+{{< img src="/img/drawings/bool_ai_calculating.svg" class="float-end inert-img img-fluid mx-3" width="250px" >}}
+To illustrate the usefulness of Boolean algebra, let's look at how a computer
+adds numbers. The algorithm is closely related to the one you already know:
+write the numbers underneath one another, add a column, and carry over when
+necessary. The difference is that we have only two digits to work with.
+
+First, we need to see how those two digits can represent numbers larger than one.
+In ordinary decimal notation, the position of a digit tells us whether it counts
+ones, tens, hundreds, and so on. For example, $13$ means one ten and three ones.
+In binary notation, the places count ones, twos, fours, eights, and so on:
+each place is worth **twice** the one to its right.
+
+So the binary string $1101$ means one eight, one four, no twos, and one one.
+Adding those contributions gives us $13$:
+
+$$ (1 × 2³) + (1 × 2²) + (0 × 2¹) + (1 × 2⁰) $$
+$$ = $$
+$$ 8 + 4 + 0 + 1 = 13$$
+
+The digits $0$ and $1$ are called **bits**, short for “binary digits”. We'll
+number their positions from right to left, starting at $0$. So position $0$
+is the rightmost position, position $1$ is the next one, and so on:
+
+{{< annotated-math separator=" " title="Bits of 1101, labelled by position" >}}
+[
+  {"symbols":"…", "label":"…"},
+  {"symbols":"1", "label":"3-position"},
+  {"symbols":"1", "label":"2-position"},
+  {"symbols":"0", "label":"1-position"},
+  {"symbols":"1", "label":"0-position"}
+]
+{{< /annotated-math >}}
+
+{{< callout type="definition" title="Bits and binary representation" >}}
+A {{< term "bit" "bit" >}} is a binary digit, $0$ or $1$.
+In {{< term "binary-representation" "binary representation" >}}, the bit in
+position $n$ counts $2ⁿ$s. For example, position $0$ counts $2⁰ = 1$s and
+position $3$ counts $2³ = 8$s.
+{{< /callout >}}
+
+We sometimes add a subscript $2$ to avoid confusing binary and decimal notation:
+$(1101)₂ = 13$. With just two bits, we can represent the numbers from zero to three:
+
+| Decimal | Binary |
+| --- | --- |
+| $0$ | $00$ |
+| $1$ | $01$ |
+| $2$ | $10$ |
+| $3$ | $11$ |
+
+Now for addition. In decimal notation, if a column adds up to ten, you write
+$0$ and carry $1$ to the next column. In binary, you do that as soon as the
+column adds up to **two**. That's because the next column counts twos, rather
+than tens. Thus $1 + 1$ gives a written digit $0$ and a carry $1$: the binary
+number $10$.
+
+Here's our example, thirteen plus nine, written in columns:
+
+{{< column-addition top="1101" bottom="1001" result="10110" carries="1  1 " >}}
+
+The small red $1$s beside the second summand are the carries into those
+columns. We leave the place blank when there is no carry.
+
+Start on the right. The two $1$s make two, so write $0$ and carry $1$.
+In the next column, we have $0 + 0$, **plus the carried $1$**, giving $1$.
+The next column gives $1 + 0 = 1$. Finally, the leftmost column gives
+$1 + 1$: write $0$ and carry $1$ into a new column. Reading the result from
+left to right gives $10110$, which is $16 + 4 + 2 = 22$.
+
+What does this have to do with Boolean algebra? Take just the rightmost column.
+It has two input bits, which we'll call $X$ and $Y$. We need two outputs:
+the digit to write down and the carry to pass to the next column.
+
+The digit is $1$ if exactly one input is $1$. If both inputs are $0$, we write
+$0$; if both are $1$, we also write $0$, but now with a carry. The function
+for the written digit is {{< term "exclusive-or" "exclusive or" >}}, or $!!XOR!!$.
+The carry is $1$ only when both inputs are $1$, so its function is $!!AND!!$.
+Here are their tables:
+
+<div class="function-tables">
+
+{{< function-table name="XOR" >}}
+{"rows": ["0", "1"], "columns": ["0", "1"], "values": [[0, 1], [1, 0]]}
+{{< /function-table >}}
+
+{{< function-table name="AND" >}}
+{"rows": ["0", "1"], "columns": ["0", "1"], "values": [[0, 0], [0, 1]]}
+{{< /function-table >}}
+
+</div>
+
+Writing $SUM(X, Y)$ for the written digit and $CARRY(X, Y)$ for the carry:
+
+$$
+SUM(X, Y) = X !!XOR!! Y
+CARRY(X, Y) = X !!AND!! Y
+$$
+
+{{< callout type="definition" title="Half adder" >}}
+An {{< term "adder" "adder" >}} is a circuit that adds binary numbers.
+A {{< term "half-adder" "half adder" >}} adds two bits. It outputs the digit
+to write in the current column and the carry for the next column.
+{{< /callout >}}
 
-{{< img src="img/ai_calculating.png" class="rounded  float-end inert-img img-fluid mx-3" width="250px">}} 
-An **adder** is a circuit that performs addition on numbers. We can implement
-adders using Boolean truth-functions, but first, we need to translate the
-numbers into something a Boolean function can understand. We need to talk about
-**binary numbers**. 
+{{< img src="/img/drawings/bool_ai_half_adder.svg" class="float-start inert-img img-fluid mx-3" width="100px" >}}
+We can implement this with two blue boxes, one for $!!XOR!!$ and one for
+$!!AND!!$. Each takes the same two inputs, but calculates a different output.
+Try $X = Y = 1$: the sum lamp is off and the carry lamp is on. This is the
+$10$ that we need when we add one and one.
+
+{{< logic-app name="boolean" kind="circuit" preset="half" >}}
+
+The next column of our example has an extra input: the carry from the first
+column. So now we must add **three** bits. There are four possibilities:
 
-The fundamental idea of [binary
-numbers](https://en.wikipedia.org/wiki/Binary_number) is that we can represent
-any natural number as a sequence of `0`'s and `1`'s. Here's how this works. Take
-the string ```1101,``` for example. This string is the binary representation of
-the number `13`. Here's how this works:
+| Number of 1s | Binary total | Write | Carry |
+| --- | --- | --- | --- |
+| None | $00$ | $0$ | $0$ |
+| One | $01$ | $1$ | $0$ |
+| Two | $10$ | $0$ | $1$ |
+| Three | $11$ | $1$ | $1$ |
+
+The last row is the only new case: $1 + 1 + 1$ is three, or $11$ in binary.
+We write $1$ in this column and carry $1$ into the next.
 
-{{< img src="img/binary_example.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}}
+{{< callout type="definition" title="Full adder" >}}
+A {{< term "full-adder" "full adder" >}} adds two bits **and an incoming carry**.
+Like a half adder, it outputs a digit for the current column and a carry for
+the next column.
+{{< /callout >}}
+
+Let's call the two bits $X$ and $Y$, and the incoming carry $C$. To calculate
+the written digit, first combine $X$ and $Y$ with $!!XOR!!$, then combine that
+result with $C$ using another $!!XOR!!$. This gives $1$ when there is either
+one $1$ or three $1$s among the inputs:
+
+$$
+SUM(X, Y, C) = (X !!XOR!! Y) !!XOR!! C
+$$
+
+For the carry, either $X$ and $Y$ already supply two $1$s, or exactly one of
+them is $1$ and $C$ supplies the other. These are the two ways of making a carry:
+
+$$
+CARRY(X, Y, C) = (X !!AND!! Y) !!OR!! (C !!AND!! (X !!XOR!! Y))
+$$
+
+Here is the implementation. Each gate has two input contacts at the bottom
+and one output at the top. A dot marks a connection; a small bridge means that
+two wires cross without connecting.
+
+{{< logic-app name="boolean" kind="circuit" preset="full" >}}
+
+You can also see two half adders in this circuit: the first adds $X$ and $Y$;
+the second adds the first sum to $C$. An $!!OR!!$ gate combines their carries:
+
+{{< img src="/img/drawings/bool_ai_two_half.svg" class="mx-auto d-block inert-img img-fluid my-4" width="600px" alt="Two half adders supply the stages of a full adder." >}}
+
+Finally, we connect full adders to perform a whole addition. Each column gets
+one adder, and its carry goes into the adder for the next column. The first
+column receives no incoming carry, so we give it $0$.
+
+Let's keep the circuit small and add two-bit numbers: $00$, $01$, $10$, and
+$11$. For example, adding $11$ and $01$ means adding three and one. On the
+right, $1 + 1$ gives $0$ with a carry. On the left, $1 + 0$ plus that carry
+again gives $0$ with a carry. The result is $100$, or four. We need a third
+output bit to keep that final carry.
+
+The two full adders below carry out exactly this algorithm. Change the four
+input switches to add different numbers. When your inputs are ready, press
+“Record this sum” to fill that cell of the table. Can you complete all sixteen
+cells? The column calculation uses the same red carry notation as above.
+“Decimal table” changes only the table’s notation, so you can compare the
+binary additions with familiar decimal sums.
+
+{{< logic-app name="boolean" kind="two-bit" >}}
+
+With four adders we could perform our original $1101 + 1001$
+calculation in exactly the same way. More generally, adding two
+$k$-bit numbers may require $k + 1$ bits for the answer. If we
+throw away the final carry, we lose that part of the result. The
+circuit-building exercises let you try implementing other Boolean
+functions from the same simple components.
+
+
+## Boolean models
+
+So far, we've used Boolean algebra to describe circuits and arithmetic. But as
+we noted at the start, its importance goes well beyond low-level computing:
+it also describes reasoning with propositional information. Let's see how the
+Boolean functions connect our formulas to the logical spaces and propositions
+from {{< chapter_ref chapter="valid-inference" >}}Valid inference{{< /chapter_ref >}}.
+
+{{< img src="/img/drawings/bool_ai_key.svg" class="mx-auto d-block inert-img img-fluid my-4" width="600px" >}}
+
+Suppose we want to reason about the weather. As before, let $SUN$ say that it
+is sunny and $RAIN$ that it is raining. From a logical perspective, we have
+four relevant possibilities: sunny and rainy, sunny but not rainy, rainy but
+not sunny, and neither.
+
+We want to describe these possibilities using Boolean values. To say that it
+is sunny, we assign $1$ to $SUN$; to say that it is not sunny, we assign $0$:
+
+| Situation | Assignment |
+| --- | --- |
+| {{< img inline=true src="/img/drawings/sun.svg" height="48px" alt="Sunshine" >}} | $v(SUN) = 1$ |
+| {{< img inline=true src="/img/drawings/no_sun.svg" height="48px" alt="No sunshine" >}} | $v(SUN) = 0$ |
+
+The letter $v$ names the assignment. The notation $v(SUN)$ means “the value
+that $v$ assigns to $SUN$”. Notice the difference: $SUN$ is a formula,
+whereas $v(SUN)$ is its truth-value under this assignment.
+
+We do the same for rain:
+
+| Situation | Assignment |
+| --- | --- |
+| {{< img inline=true src="/img/drawings/rain.svg" height="48px" alt="Rain" >}} | $v(RAIN) = 1$ |
+| {{< img inline=true src="/img/drawings/no_rain.svg" height="48px" alt="No rain" >}} | $v(RAIN) = 0$ |
+
+Now combine the choices. An assignment with $v(SUN) = 1$ and $v(RAIN) = 0$
+describes a sunny situation without rain. An assignment with both values $1$
+describes sunshine and rain together. Different assignments describe different
+reasoning situations.
+
+{{< callout type="definition" title="Boolean valuation" >}}
+A {{< term "valuation" "Boolean valuation" >}} for a propositional language is
+a function that assigns precisely one Boolean value to every propositional
+variable of the language.
+{{< /callout >}}
+
+When we discuss several valuations at once, we give them subscripts. Here are
+all four for our weather language:
+
+| Valuation | $v(SUN)$ | $v(RAIN)$ | Situation |
+| --- | --- | --- | --- |
+| $v₁$ | $1$ | $1$ | Sunny and rainy |
+| $v₂$ | $1$ | $0$ | Sunny, not rainy |
+| $v₃$ | $0$ | $1$ | Rainy, not sunny |
+| $v₄$ | $0$ | $0$ | Neither sunny nor rainy |
+
+Why are there precisely four valuations? Here's an argument: Generally
+speaking, for each propositional variable – $SUN$ or $RAIN$ – we assign one of
+the two Boolean values, $1$ or $0$. And these assignments are _independent_ of each
+other: the value of $SUN$ doesn't determine the value of $RAIN$ and
+_vice versa_. So, if we start assigning values and begin with $SUN$, there are
+two choices: either we assign it $1$ or we assign it $0$. And since the value
+of $SUN$ doesn't determine the value of $RAIN$, for each of the two choices for
+$SUN$, there are again two choices of values for $RAIN$: either we assign it
+value $1$ or $0$. So, for each of the two choices there are again two choices,
+giving us $2 × 2 = 4$ ways of assigning values in total.
+
+The argument easily generalizes if we have more variables. If we also have
+$WIND$, for example, it gets either the value $1$ or $0$ independently of the
+other values. So, for each of our four ways of assigning values to $SUN$ and
+$RAIN$, we get two ways of assigning values to $WIND$, giving us $4 × 2 = 8$
+ways of assigning Boolean values to $SUN$, $RAIN$, and $WIND$. In general, if
+there are $n$ variables, we multiply $n$ factors of $2$, giving us
+$2ⁿ$ options. This is, in essence, the [multiplication
+principle](https://en.wikipedia.org/wiki/Rule_of_product) from combinatorics.
+
+Each valuation now tells us everything about a reasoning situation that our
+language can express. So, from a logical perspective, we can identify the
+models for our propositional language with Boolean valuations:
+
+{{< callout type="definition" title="Boolean model" >}}
+A {{< term "boolean-model" "Boolean model" >}} for a propositional language is a
+valuation of its propositional variables.
+{{< /callout >}}
+
+In the case of our language with just $SUN$ and $RAIN$, we'll call the
+corresponding models $M₁$, $M₂$, $M₃$, and $M₄$. Thus $M₂$, for example, is the
+model given by $v₂$: sunshine without rain.
+
+{{< callout type="note" title="Modelling assumptions: the granularity of the language" >}}
+Our language determines which differences a model can represent. A valuation
+of $SUN$ and $RAIN$ describes sunshine and rain, but says nothing about wind,
+temperature, or location. Two weather situations that agree about sunshine and
+rain have the same valuation, however much they differ in other respects.
+There is no fact about temperature within such a model: the language has no
+formula expressing it. To represent finer distinctions, we need a richer language.
+{{< /callout >}}
+
+{{< callout type="note" title="Modelling assumptions: the reasoning space" >}}
+We allow every combination of values for $SUN$ and $RAIN$, including sunshine
+and rain together. Bivalence does not make these two variables mutually
+exclusive, even if in natural language we sometimes treat them as such. Any
+constraint excluding a combination must be stated as an additional premise or a
+restriction on the model space.
+{{< /callout >}}
+
+### Boolean evaluations
+
+A valuation settles the _basic_ facts of a reasoning scenario. For example,
+$v(SUN) = 1$ and $v(RAIN) = 0$ describe a situation where the sun is shining
+and it isn't raining. But what about a complex formula like $SUN ∧ ¬RAIN$?
+We want its value to follow from the values we've already assigned to $SUN$
+and $RAIN$, using the meanings of $∧$ and $¬$.
+
+This is where the Boolean functions come in. Since $v(RAIN) = 0$, applying
+$!!NOT!!$ gives $v(¬RAIN) = 1$. Both parts of $SUN ∧ ¬RAIN$ now have value $1$,
+so applying $!!AND!!$ gives the whole formula value $1$ too. Here, we'll focus
+on formulas containing only the connectives $¬$, $∧$, and $∨$. The general
+rules are:
+
+{{< callout type="definition" title="Boolean evaluation" >}}
+Let $v$ be a Boolean valuation for a propositional language with connectives
+$¬$, $∧$, and $∨$. The **Boolean value** $v(A)$ of a formula $A$ under $v$
+is determined as follows: for a propositional variable, use the value assigned
+by $v$; for a complex formula, use these equations, which hold for all formulas
+$A$ and $B$:
+
+$$
+v(¬A) = !!NOT!! v(A)
+v(A ∧ B) = v(A) !!AND!! v(B)
+v(A ∨ B) = v(A) !!OR!! v(B)
+$$
+
+The resulting function on all formulas is the {{< term "boolean-evaluation"
+"Boolean evaluation" >}} determined by $v$.
+{{< /callout >}}
+
+We use the same letter $v$ for the original valuation and its extension to
+complex formulas. Once the values of the variables are fixed, these rules
+leave no further choices: every formula gets precisely one Boolean value.
+
+The semantic idea is simple:
+
+  - A {{< term "negation" "negation" >}} is true exactly when its argument is
+  false.
+  - A {{< term "conjunction" "conjunction" >}} is true exactly when both
+  conjuncts are true.
+  - A {{< term "disjunction" "disjunction" >}} is true exactly when *at least one* of
+  its disjuncts is true (including when both are true).
+
+The calculation rules above give us precisely this.
+
+### Parsing and valuations
+
+The clauses tell us how to evaluate a compound formula once we know the values
+of its immediate parts. This is {{< term "recursion" "recursion" >}}: solve a problem by
+applying the same procedure to smaller instances of that problem.
+
+Here the {{< term "base-case" "base case" >}} is a propositional variable: read its value from the
+valuation. In a {{< term "recursive-case" "recursive case" >}}, evaluate the immediate subformulas and apply
+the truth-function for their connective. Every call concerns a smaller formula,
+so the process eventually reaches variables and terminates.
+
+For $SUN ∨ (RAIN ∧ ¬SUN)$, the parser identifies $∨$ as the root, with children
+$SUN$ and $RAIN ∧ ¬SUN$. Evaluating the second child requires evaluating $RAIN$
+and $¬SUN$; evaluating $¬SUN$ first requires the value of $SUN$. The tree fixes
+which operation receives which inputs. Repeated occurrences of $SUN$ are
+separate leaves, but the valuation gives them the same value.
+
+{{< logic-app name="boolean" kind="evaluation" formula="SUN ∨ (RAIN ∧ ¬SUN)" >}}
+
+The annotations below the nodes give their values. At an internal node,
+$v(…)$ refers to the whole subformula rooted there; the explanation beside
+the tree writes that subformula out.
+
+This is how parsing connects to computation. As we saw in
+{{< chapter_ref chapter="formal-languages" >}}Formal languages{{< /chapter_ref >}},
+a computer needs to work out the structure of an expression before it can
+calculate its value. The parsing tree tells it which operations to perform
+and how their results fit together. In our example, we first calculate
+$!!NOT!! v(SUN)$, combine that result with $v(RAIN)$ using $!!AND!!$, and
+finally apply $!!OR!!$ to the result and $v(SUN)$. The same idea applies to
+expressions in programming languages: parsing gives us the structure that
+guides the calculation.
+
+### Propositions
+
+{{< callout type="definition" title="The proposition expressed by a formula" >}}
+The {{< term "proposition" "proposition" >}} expressed by $A$ is its set of satisfying models:
+
+$$
+[A] = {v : v(A) = 1}
+$$
+
+We write $v ⊨ A$ when $v(A) = 1$: the model satisfies the formula.
+{{< /callout >}}
+
+For example, $[SUN] = {M₁, M₂}$ and $[RAIN] = {M₁, M₃}$. To see how the evaluation
+clauses translate into operations on these sets, we need two more set operations.
+We've already used intersection: $S ∩ T$ keeps the members common to both sets.
+
+{{< callout type="definition" title="Union" >}}
+The {{< term "set-union" "union" >}} of $S$ and $T$, written $S ∪ T$, contains everything
+that belongs to **at least one** of them. This includes objects belonging to both:
+
+$$
+S ∪ T = {x : x ∈ S or x ∈ T}
+$$
+{{< /callout >}}
+
+In the familiar example below, take everyone and everything inside either
+outline. Little Jimmy belongs to both sets, but we don't count him twice:
+a set either contains an object or it doesn't.
+
+{{< set-diagram scene="union" >}}
+
+{{< callout type="definition" title="Set difference" >}}
+The {{< term "set-difference" "difference" >}} $S ∖ T$ contains the members of $S$
+that do **not** belong to $T$:
+
+$$
+S ∖ T = {x : x ∈ S and x ∉ T}
+$$
+{{< /callout >}}
+
+Start with $S$ and remove any members it shares with $T$. The order matters:
+$S ∖ T$ and $T ∖ S$ need not be the same set. If we start with the entire
+space $W$, then $W ∖ S$ contains everything outside $S$. We call this the
+{{< term "set-complement" "complement" >}} of $S$ relative to $W$.
+
+{{< set-diagram scene="difference" >}}
+
+Now let $W$ be our whole logical space. The Boolean clauses give us these
+operations on propositions:
+
+| Formula operation | Operation on propositions |
+| --- | --- |
+| Negation | $[¬A] = W ∖ [A]$ |
+| Conjunction | $[A ∧ B] = [A] ∩ [B]$ |
+| Disjunction | $[A ∨ B] = [A] ∪ [B]$ |
+
+Choose a formula below to see the proposition it expresses. For a complex
+formula, the lighter outlines show the propositions we combine to calculate it.
+The four pictured worlds are the members of this finite space; empty areas
+between them do not represent additional valuations.
+
+{{< logic-app name="boolean" kind="models" >}}
+
+The complex example now has a set calculation as well as a tree calculation:
+
+$$
+[RAIN ∧ ¬SUN] = {M₁, M₃} ∩ {M₃, M₄} = {M₃}
+[SUN ∨ (RAIN ∧ ¬SUN)] = {M₁, M₂} ∪ {M₃} = {M₁, M₂, M₃}
+$$
+
+Evaluation finds a formula's value at **one** valuation. Its proposition collects
+**all** valuations where that value is $1$. In the next chapter, truth-tables
+organize these calculations across valuations.
+
+### Testing inferences
+
+{{< callout type="definition" title="Validity and countermodels" >}}
+The inference from $A₁, …, Aₙ$ to $B$ is deductively valid in Boolean semantics,
+written $A₁, …, Aₙ ⊨ B$, exactly when every valuation making all premises true
+also makes the conclusion true:
+
+$$
+[A₁] ∩ … ∩ [Aₙ] ⊆ [B]
+$$
+
+A {{< term "countermodel" "countermodel" >}} makes every premise true and the conclusion
+false. One countermodel suffices to show invalidity.
+{{< /callout >}}
+
+Consider this instance of disjunctive syllogism:
+
+{{< inference layout="stacked" rule="DS" >}}
+$SUN ∨ RAIN$
+$¬SUN$
+---
+$RAIN$
+{{< /inference >}}
+
+The first premise permits $M₁$, $M₂$, and $M₃$. The second permits $M₃$ and
+$M₄$. Their intersection contains only $M₃$, where $RAIN$ is true:
+
+{{< logic-app name="boolean" kind="models" preset="ds" >}}
+
+$$
+[SUN ∨ RAIN] ∩ [¬SUN] = {M₃} ⊆ [RAIN]
+SUN ∨ RAIN, ¬SUN ⊨ RAIN
+$$
+
+There is no countermodel: the inference is valid. Now consider affirming a
+disjunct:
+
+{{< inference layout="stacked" >}}
+$SUN ∨ RAIN$
+$SUN$
+---
+$¬RAIN$
+{{< /inference >}}
+
+The premises allow $M₁$ and $M₂$, but the conclusion excludes $M₁$. At $M₁$
+it is both sunny and rainy: both premises are true while $¬RAIN$ is false.
+
+{{< logic-app name="boolean" kind="models" preset="fallacy" >}}
+
+$$
+M₁ ∈ [SUN ∨ RAIN] ∩ [SUN],   M₁ ∉ [¬RAIN]
+SUN ∨ RAIN, SUN ⊭ ¬RAIN
+$$
+
+The exercises ask you to find all the countermodels of an inference and to
+test inferences of your own. An inference whose premises have no common model
+is valid vacuously: there is no world with true premises and a false conclusion.
+
+The invalidity of affirming a disjunct depends on the inclusive interpretation
+of $∨$. An exclusive disjunction would rule out $M₁$; the exercises explore
+this difference.
 
-The `0`'s and `1`'s are also called
-[bits](https://en.wikipedia.org/wiki/Bit)—short for binary digits—especially in
-computer science contexts. For simplicity, we count the bits of a binary number
-backwards from the end of the string (right-to-left rather than left-to-right).
-You'll see in a second why. We also start counting at `0`, which might be
-unusual at first, but is also common in computer science. So, the first bit of `1101`, for example, is what would normally be called "the second digit from the end", i.e. `0`:
-
-{{< img src="img/bits_example.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="200px">}}
-
-To calculate the number represented by a string, you go through the digits one by one.
-Let's call the `n`th bit `dₙ`. So, in our example, we have: ```d₀ = 1, d₁ = 0, d₂ = 1, d₃ = 1```
-
-Then you multiply the `n-th` bit with the `n-th` power of `2`, that is, you
-calculate: ```(dₙ x 2ⁿ)```
-And then you sum up the results for all the digits:
-```(d₀ x 2⁰) + (d₁ x 2¹) + (d₂ x 2²) + …```
-This is the general formula for calculating the number represented by a binary
-string. In our case of `1101`, this formula gives us precisely the calculation
-from above. In more general mathematical notation, we can write this as:
-
-{{< img src="img/representation_formula.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="200px">}}
-
-But this is just "fancy notation" to say exactly the same thing we just said.
-
-The number `1101` is what's called a `4`-bit number, since it represents a
-number using four bits. Typically, we're dealing with binary numbers of a fixed
-number of bits. In implementations, this restriction is enforced by hardware
-limitations: while mathematicians are happy dealing with strings of infinite
-length in their minds, it's slightly complicated to stuff them into a computer
-chip. This is why we have [`64`-bit computing](https://en.wikipedia.org/wiki/64-bit_computing) and not "∞-bit computing".
-
-But there are also practical advantages to having a fixed bit-size. For example,
-if we have two binary numbers of the same length, they are incredibly easy to
-add. Here's an example of how this works:
-
-{{< img src="img/addition_example.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="500px">}}
-
-Essentially, what we do here is to add the two numbers by adding their binary
-components one by one, taking care along the way to "carry over" any overspill.
-The way this works is that you start from the end again and you add the two
-`0`th digits according to the following rules: 
-
-+ If one digit is a `0` and the other is a `1`, the result is `1`, since ```(0 x 2⁰) + (1 x 2⁰) = (1 x 2⁰) + (0 x 2⁰) = 1```
-
-+ If both digits are a `0`, then the result is `0`, since 
-```(0 x 2⁰) + (0 x 2⁰) = 0```
-
-+ If both digits are a `1`, then the result is `0` with a **carry** of `1` (this
-is the little red number in the next column), since 
-
-    {{< img src="img/half_adder_rule.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="500px">}}
-
-Now you might already see that what's going on here is just Boolean
-truth-functions being applied to the `0`th digit. Basically, what we have here
-are two inputs: the `0`th digit of our first number and the `0`th digit of our
-second number. Let's call them `d₀` and `e₀` respectively. What we need to
-calculate are two things: the `0`th digit of our result, and any potential
-carry.
-
-According to the rules, the first output, the `0`th digit of our addition, is
-`1` just in case exactly one (and not both) of `d₀` and `e₀` is `1`. Otherwise, if
-either `d₀ = e₀ = 0` or `d₀ = e₀ = 1`, the output is `0`. This describes a
-truth-function, which is known as `!!XOR!!` ("exclusive or"), which has the
-following function table:
-
-{{< img src="img/xor_table.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="500px">}}
-
-We can actually express this function using only `!!NOT!!, !!AND!!, !!OR!!`, but
-using `!!XOR!!` directly it's much easier.
-
-The carry, instead, is `1` just in case both `d₀` and `e₀` are `1` and `0`
-otherwise. But that's just the specification of `!!AND!!`. So, we can describe the
-rule as follows using Boolean truth-functions:
-
-+ the `0`th digit of our addition is `d₀ !!XOR!! e₀`
-
-+ the carry is `d₀ !!AND!! e₀`
-
-If we've implemented `!!XOR!!` and `!!AND!!` using relays or semiconductors, following
-the ideas sketched above, we can implement this rule using the following
-circuit known as a **half-adder**:
-
-{{< img src="img/half_adder.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="500px">}}
-
-
-{{< img src="img/ai_half_adder.png" class="rounded  float-start inert-img img-fluid mx-3" width="100px">}} 
-The idea is that the blue boxes are implementations of `!!XOR!!` and `!!AND!!`
-respectively, which take two inputs and give two outputs. The input switches
-represent `d₀` and `e₀` respectively, on meaning `1` and off meaning `0`. The
-two lamps stand for the results, the `0`th digit and the carry, respectively. A
-lamp being on means the relevant output is `1`, otherwise it's `0`. What's
-depicted here is the configuration that corresponds to our example, i.e. $d₀ =
-1`and`e₀ = 1$. 
-
-Now, let's return to the `1`st (meaning second from the end) digit of our
-result:
-
-{{< img src="img/calculation_focus.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="300px">}}
-
-You might notice that here, we no longer have just two inputs, but *three*: the
-`1`st digit of the first 
-{{<abbr title="number to be added">}}summand{{</abbr>}} (`d₁`), the `1`st digit
-of the second 
-{{<abbr  title="number to be added">}}summand{{</abbr>}} (`e₀`), *plus* the
-carry from the previous step (let's call it `c₀`). Like in the first step, we
-need to calculate two outputs: the `1`st digit of our sum, and any potential
-carry that might result.
-
-The `1`st digit of our sum is rather straightforward to calculate: it should
-be `1` just in case exactly one input is `1` _or_ all three inputs are `1`. The
-reasoning is like in the two input case from before:
-
-+ If there's no `1`, we get:
-
-    ```(0 x 2¹) + (0 x 2¹) + (0 x 2¹)```
-    {{< img src="img/addition_full_0.png" class="rounded mx-auto d-block inert-img img-fluid " width="150px">}}
-
-
-+ If there's precisely one `1`, we have:
-
-    ```(1 x 2¹) + (0 x 2¹) + (0 x 2¹)```
-    ```= (0 x 2¹) + (1 x 2¹) + (0 x 2¹)```
-    ```= (0 x 2¹) + (0 x 2¹) + (1 x 2¹)```
-    {{< img src="img/addition_full_1.png" class="rounded mx-auto d-block inert-img img-fluid " width="150px">}}
-
-+ If there's exactly two `1`'s, we get:
-
-    ```(1 x 2¹) + (1 x 2¹) + (0 x 2¹)```
-    ```= (1 x 2¹) + (0 x 2¹) + (1 x 2¹)```
-    ```= (0 x 2¹) + (1 x 2¹) + (1 x 2¹)```
-    {{< img src="img/addition_full_2.png" class="rounded mx-auto d-block inert-img img-fluid" width="300px">}}
-
-    
-+ And if there's three `1`'s, we have:
-
-    ```= (1 x 2¹) + (1 x 2¹) + (1 x 2¹)```
-    {{< img src="img/addition_full_3.png" class="rounded mx-auto d-block inert-img img-fluid" width="300px">}}
-
-The Boolean truth-function which gives us precisely the desired output for the
-`1`st digit of our computation is:
-
-```(d₁ !!XOR!! e₁ ) !!XOR!! c₀```
-
-But what should the carry be? Inspecting the cases, we can see that we should
-carry a `1` in one of two scenarios: if there's exactly two `1`'s and if there's
-precisely three. How can we express this in terms of truth-functions? While
-there are different ways of doing this, here's a common one using `!!AND!!, !!OR!!,` and
-`!!XOR!!`:
-
-```(d₁ !!AND!! e₁ ) !!OR!! (c₀ !!AND!! (d₁ !!XOR!! e₁))```
-
-The reasoning is that we can analyze our two scenarios (exactly two `1`'s and
-exactly three `1`'s) in a slightly different way: either both inputs are `1` or
-exactly one input is `1` and the carry from before is `1`. You can—and—
-should!—verify that this works.
-
-It's a bit more tedious to implement this using circuits, but of course it can
-be done:
-
-{{< img src="img/full_adder.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}}
-
-This circuit, here depicted in the configuration from our example, is called a
-**full adder**, and can also be implemented using two half adders.
-{{< img src="img/ai_two_half.png" class="rounded  float-start inert-img img-fluid mx-3" width="600px">}}
-
-We can use full adders to implement full addition on fixed-bit integers: just
-chain full adders to calculate the individual output bits, ensuring to always
-carry over when necessary. 
-
-This example shows that Boolean inference is at the very heart of computation
-and its implementation: one of the—if not *the*—most basic mathematical
-operations is implemented using Boolean logic. In fact, addition becomes a form
-of Boolean inference.
-
-## Models
-
-Turning from low-level reasoning—viz. the implementation of arithmetic—to more
-high-level reasoning, we look at deductive reasoning in propositional logic
-next. This is the kind of inference that is involved in conditionals in
-programming languages, but also in automated inference with 
-{{<abbr title="knowledge  bases">}}KB{{</abbr>}}'s, for example in expert
-systems. It is common in everyday reasoning, as well, when we make inferences
-like:
-
-{{< img src="img/ai_key.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}}
-
-We can use Boolean algebra to define the notion of a _model_ for a propositional language. This will give us the notion of deductively valid inference using the schema:
-
-{{< img src="img/deductive_inference.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}}
-
-In essence what we need to do is very similar to the case of addition above:
-before we could implement addition using Boolean algebra, we needed to
-translate numbers into something that Boolean algebra can understand.
-Essentially, we need to do the same thing for logic: before we can apply
-Boolean algebra to inferences, we need to translate the formulas of our formal
-language into something that Boolean algebra can work with—which turns out to
-be truth-values.
-
-Suppose that we have a propositional language, `L`, which has two propositional
-variables `SUN` and `RAIN`, which we interpret as saying that it's sunny and
-that it's rainy, respectively. 
-
-There are _four_ logically relevant reasoning scenarios for inference in this
-language. It could be:
-
-1. Sunny and rainy.
-
-2. Sunny, but not rainy.
-
-3. Not sunny, but rainy.
-
-4. Neither sunny, nor rainy.
-
-That is, our logical space should look something like this:
-
-{{< img src="img/logical_space.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}}
-
-Our aim is to implement a definition of a model for `L` that adequately
-reflects this idea. To achieve this goal, we'll use the thought mentioned
-before that we can *assign* truth-values to propositional variables, where
-assigning the value `1` to `SUN`, say, means that `SUN` is true (it's sunny),
-and assigning it the value `0` means that `SUN` is not true (it's not sunny).
-
-Mathematically, we typically express such an assignment of values using the function symbol `v`, like so:
-
-{{< img src="img/assignments.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="900px">}}
-
-When more than one assignment viewed as a model is under consideration at the
-same time, we disambiguate with the use of subscripts. So, for example, there
-is the assignment `v₁`, such that `v₁(SUN)=1` and `v₁(RAIN)=1`, as well as the
-assignment `v₂`, such that `v₂(SUN)=1`, but `v₂(RAIN)=0`.
-
-Since there are two propositional variables (`SUN` and `RAIN`), there are $2² =
-4`possible ways of assigning truth-values from among`{0, 1}$ in this way.
-Each of these assignments corresponds to one of our reasoning situations. More
-generally, if there are `n` propositional variables, where `n` is any number,
-then there are `2ⁿ` different ways of assigning truth-values from `{0, 1}` to
-the propositional variables. In our case, the relevant assignments and
-corresponding scenarios are:
-
- |                                                                                                    |              |                                |   |                                                                                                    |              |                                |
- | -------------------------------------------------------------------------------------------------- | -            | -----------                    | - | -                                                                                                  | -            | -                              |
- | `M₁`: {{< img src="img/m1.png" class="inert-img" height="48px" style="vertical-align: middle;" >}} | &emsp;&emsp; | `v₁(RAIN) = 1` and `v₁(SUN) = 1` | &emsp;&emsp;  | `M₃`: {{< img src="img/m3.png" class="inert-img" height="48px" style="vertical-align: middle;" >}} | &emsp;&emsp; | `v₃(RAIN) = 0` and `v₃(SUN) = 1` |  |
- | &emsp;                                                                                             |              |                                |   | &emsp;                                                                                             |              |                                |  |
- | `M₂`: {{< img src="img/m2.png" class="inert-img" height="48px" style="vertical-align: middle;" >}} | &emsp;&emsp; | `v₂(RAIN) = 1` and `v₂(SUN) = 0` |   | `M₄`: {{< img src="img/m4.png" class="inert-img" height="48px" style="vertical-align: middle;" >}} | &emsp;&emsp; | `v₄(RAIN) = 1` and `v₄(SUN) = 1` |  |
- | &emsp;                                                                                             |              |                                |   |
- 
-The idea is to _identify_ the possible reasoning scenarios—from a logical
-perspective—with these assignments. That is, we say that a **model** for the
-language `L` _is_ an assignment of Boolean truth-values to the propositional
-variables. In short: ```Mᵢ = vᵢ```
-
-Each model tells us what the truth-values for the propositional variables are.
-This allows us, for example, to determine the proposition `[SUN]` as follows:
-
-{{< img src="img/prop_sun.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="900px">}}
-
-But to determine the truth-values of complex formulas, such as $SUN v
-RAIN$, we first need to think about the connectives. For now, we'll focus on the connectives 
-{{< img src="img/negation.png" class="inert-img" height="20px" style="vertical-align: middle;" >}} ("negation"), {{< img src="img/conjunction.png" class="inert-img" height="20px" style="vertical-align: middle;" >}} ("conjunction"), and {{< img src="img/disjunction.png" class="inert-img" height="20px" style="vertical-align: middle;" >}}. 
-
-Let's start with negation. In which models should we say that 
-{{< img src="img/neg_sun.png" class="inert-img" height="28px"
-style="vertical-align: middle;" >}}, say, is true? A straightforward answer
-is: {{< img src="img/neg_sun.png" class="inert-img" height="28px"
-style="vertical-align: middle;" >}} says that it's not sunny, so the formula
-should be true in precisely those models, where `SUN` is _not_ true: ```v({{< img src="img/neg_sun.png" class="inert-img" height="34px" style="vertical-align: middle;" >}}) = 1 just in case v(SUN) = 0.```
-
-But do you recognize it? This is exactly what the Boolean truth-function `!!NOT!!`
-does! That is, we can implement the proposal using `!!NOT!!` as follows: ```v({{< img src="img/neg_sun.png" class="inert-img" height="34px" style="vertical-align: middle;" >}}) = !!NOT!! v(SUN)```
-
-This means that {{< img src="img/neg_sun.png" class="inert-img" height="34px"
-style="vertical-align: middle;" >}} gets the following semantic content:
-
-{{< img src="img/prop_neg_sun.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="900px">}}
-
-Turning to conjunction, in which models is {{< img src="img/sun_and_rain.png"
-class="inert-img" height="30px" style="vertical-align: middle;" >}} true? Since
-the formula says that it's both sunny and raining, the answer is: precisely in
-those models where both `SUN` and `RAIN` are true. In all other models, {{< img src="img/sun_and_rain.png"
-class="inert-img" height="30px" style="vertical-align: middle;" >}} is false. That is:
-
-{{< img src="img/condition_sun_and_rain.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="850px">}}
-
-But that's just what `!!AND!!` does! So, we can implement this by saying:
-
-{{< img src="img/clause_and.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}}
-
-Completely analogously, we can handle the case of disjunction. {{< img src="img/sun_and_rain.png"
-class="inert-img" height="30px" style="vertical-align: middle;" >}} says that it's either sunny or rainy. So it should be true in all and only those models where at least one of them is the case.
-
-{{< img src="img/condition_sun_or_rain.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="800px">}}
-
-This we can implement using the Boolean `!!OR!!` by saying that:
-
-{{< img src="img/clause_or.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}}
-
-In sum, {{< img src="img/sun_and_rain.png"
-class="inert-img" height="30px" style="vertical-align: middle;" >}} and {{< img src="img/sun_or_rain.png"
-class="inert-img" height="30px" style="vertical-align: middle;" >}} get the following semantic content:
-
-{{< img src="img/prop_sun_and_or_rain.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="900px">}}
-
-Using this idea, we can calculate the proposition `[A]` expressed by any
-formula `A` of our language. Just apply the following clauses to calculate the
-truth-values under an assignment:
-
-{{< img src="img/clauses.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}}
-
-For example, we can calculate the proposition expressed by {{< img src="img/complex_fml.png" class="inert-img" height="24px" style="vertical-align: middle;" >}} as follows:
-
-{{< img src="img/complex_proposition.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="900px">}}
-
-The most difficult part to work out in this example is, as you might have
-noticed, for which `v` we have $v(SUN) !!OR!! (v(RAIN) !!AND!! (!!NOT!! v(SUN))) =
-1$. Basically, you need to go through all the valuations and calculate the
-value of the Boolean expression. This is tedious work! In the next chapter,
-we'll discuss methods for making our lives a bit easier using the method of
-truth-tables for this. 
-
-This is, in a nutshell, the standard implementation of the Boolean semantics
-for propositional logic. Let's use it to check some inferences for deductive validity!
-
-We'll do two examples: 
-
-- We'll show that {{< img src="img/ds_inf.png" class="inert-img" height="38px" style="vertical-align: middle;" >}} is deductively valid, i.e. {{< img src="img/ds_val.png"
-class="inert-img" height="38px" style="vertical-align: middle;" >}}
-
-- We'll show that {{< img src="img/aff_inf.png" class="inert-img" height="38px" style="vertical-align: middle;" >}} is deductively invalid, i.e. {{< img src="img/aff_val.png"
-class="inert-img" height="38px" style="vertical-align: middle;" >}}
-
-The first inference is an instance of `Disjunctive Syllogism`, which we've
-identified as a paradigmatic example of valid inference. Here, we'll show that
-the concrete instance is valid. In the exercises, you'll show that the general
-_schema_ is valid for all instances.
-
-To test the inference for validity, what we need to do is to check whether the following condition is satisfied:
-
-{{< img src="img/ds_condition.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}}
-
-So, let's check in logical space:
-
-{{< img src="img/ds_validity.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="800px">}}
-
-Indeed! Once we've worked out the relevant propositions, we can see that the only member of {{< img src="img/proposition_intersection.png"
-class="inert-img" height="32px" style="vertical-align: middle;" >}} is `M₄`, in which it is raining, i.e. `v₄(RAIN) = 1` and so `M₄ ∈ [RAIN]`. But that just means that our condition is satisfied:
-
-{{< img src="img/ds_condition.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="500px">}}
-
-We can conclude that, indeed, {{< img src="img/ds_val.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="500px">}}
-
-The second inference is an instance of `Affirming a Disjunct`, which we've
-identified as a traditional fallacy. Let's see. For the inference to be valid, the following would need to be the case:
-
-{{< img src="img/aff_condition.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="600px">}}
-
-When we check logical space, we find the following:
-
-{{< img src="img/aff_countermodel.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="800px">}}
-
-Once we've worked out the propositions, we can see that {{< img src="img/countermodel.png"
-class="inert-img" height="40px" style="vertical-align: middle;" >}}. This makes `M₁` a **countermodel** for the inference, which shows that 
-
-{{< img src="img/aff_inval.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="500px">}}
-
-This means that, indeed: {{< img src="img/aff_val.png" class="rounded mx-auto d-block inert-img img-fluid my-4" width="500px">}}
-
-Note, however, that the invalidity crucially depends on us interpreting {{< img src="img/disjunction.png"
-class="inert-img" height="32px" style="vertical-align: middle;" >}} using `!!OR!!`. If we read the operation as an `!!XOR!!`, the story changes—which you'll see in the exercises.
 
 ## Further readings {.readings .nocount}
-- George Boole's [The Laws of Thought](https://en.wikipedia.org/wiki/The_Laws_of_Thought) is an enticing _historical_ read.
+
+- Audrey Yap and Richard Zach, [*What If?* (PDF)](https://builds.openlogicproject.org/courses/what-if/wi-screen.pdf), chapter 1, for propositional syntax and semantics.
+
+- Russell and Norvig, [*Artificial Intelligence: A Modern Approach*, 4th edition](https://www.pearson.com/en-us/subject-catalog/p/Russell-Lecture-Power-Points-for-Artificial-Intelligence-A-Modern-Approach-4th-Edition/P200000003500/9780137505135), chapter 7, for propositional reasoning by an agent.

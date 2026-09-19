@@ -554,7 +554,7 @@
       },
       {
         "id": "premises",
-        "label": "Both premises",
+        "label": "[P] ∩ [Q]",
         "title": "All premises true together",
         "text": "Keep only the worlds in both premise regions. A world outside this intersection cannot be a countermodel to the inference.",
         "include": [
@@ -745,7 +745,7 @@
       },
       {
         "id": "premises",
-        "label": "Both premises",
+        "label": "[P] ∩ [Q]",
         "title": "All premises true together",
         "text": "Keep only the worlds in both premise regions. A world outside this intersection cannot be a countermodel to the inference.",
         "include": [
@@ -1307,5 +1307,263 @@
       }
     ],
     "steps": []
+  },
+  "union": {
+    "title": "Union of two sets",
+    "description": "S contains Mr. Sir and Little Jimmy. T contains Little Jimmy, a beer and a soda. Little Jimmy belongs to both sets.",
+    "sets": [
+      {
+        "id": "S",
+        "label": "S",
+        "path": "M 152 45 L 338 45 Q 360 45 360 67 L 360 293 Q 360 315 338 315 L 152 315 Q 130 315 130 293 L 130 67 Q 130 45 152 45 Z",
+        "lx": 300,
+        "ly": 80,
+        "color": "rose"
+      },
+      {
+        "id": "T",
+        "label": "T",
+        "path": "M 272 135 L 458 135 Q 480 135 480 157 L 480 303 Q 480 325 458 325 L 272 325 Q 250 325 250 303 L 250 157 Q 250 135 272 135 Z",
+        "lx": 300,
+        "ly": 305,
+        "color": "green"
+      }
+    ],
+    "points": [
+      {
+        "id": "a",
+        "label": "Mr. Sir",
+        "x": 190,
+        "y": 90,
+        "sets": [
+          "S"
+        ],
+        "image": "gimmick_mr_sir"
+      },
+      {
+        "id": "b",
+        "label": "Little Jimmy",
+        "x": 300,
+        "y": 180,
+        "sets": [
+          "S",
+          "T"
+        ],
+        "image": "gimmick_little_jimmy"
+      },
+      {
+        "id": "c",
+        "label": "beer",
+        "x": 410,
+        "y": 180,
+        "sets": [
+          "T"
+        ],
+        "image": "gimmick_beer"
+      },
+      {
+        "id": "d",
+        "label": "mushroom",
+        "x": 80,
+        "y": 270,
+        "sets": [],
+        "image": "gimmick_mushroom"
+      },
+      {
+        "id": "soda",
+        "label": "soda",
+        "x": 410,
+        "y": 270,
+        "sets": [
+          "T"
+        ],
+        "image": "gimmick_soda"
+      },
+      {
+        "id": "mouse",
+        "label": "mouse",
+        "x": 520,
+        "y": 90,
+        "sets": [],
+        "image": "gimmick_mouse"
+      },
+      {
+        "id": "card",
+        "label": "playing card",
+        "x": 410,
+        "y": 90,
+        "sets": [],
+        "image": "gimmick_card"
+      }
+    ],
+    "steps": [
+      {
+        "id": "S",
+        "label": "Set S",
+        "title": "The members of S",
+        "text": "@{a} and @{b} belong to S. Membership in T does not prevent @{b} from belonging to S too.",
+        "include": [
+          "S"
+        ],
+        "exclude": [],
+        "view": "set:S",
+        "formula": ""
+      },
+      {
+        "id": "T",
+        "label": "Set T",
+        "title": "The members of T",
+        "text": "@{b}, the @{c} and the @{soda} belong to T. The same @{b} appears in both sets, but only once in the picture.",
+        "include": [
+          "T"
+        ],
+        "exclude": [],
+        "view": "set:T",
+        "formula": ""
+      },
+      {
+        "id": "union",
+        "label": "S ∪ T",
+        "title": "In S or in T",
+        "text": "Keep everything inside either outline, including the overlap. @{b} belongs to both sets, but occurs only once in their union.",
+        "include": [],
+        "exclude": [],
+        "union": [
+          "S",
+          "T"
+        ],
+        "view": "union",
+        "formula": "S ∪ T"
+      }
+    ]
+  },
+  "difference": {
+    "title": "Difference of two sets",
+    "description": "S contains Mr. Sir and Little Jimmy. T contains Little Jimmy, a beer and a soda. Little Jimmy belongs to both sets.",
+    "sets": [
+      {
+        "id": "S",
+        "label": "S",
+        "path": "M 152 45 L 338 45 Q 360 45 360 67 L 360 293 Q 360 315 338 315 L 152 315 Q 130 315 130 293 L 130 67 Q 130 45 152 45 Z",
+        "lx": 300,
+        "ly": 80,
+        "color": "rose"
+      },
+      {
+        "id": "T",
+        "label": "T",
+        "path": "M 272 135 L 458 135 Q 480 135 480 157 L 480 303 Q 480 325 458 325 L 272 325 Q 250 325 250 303 L 250 157 Q 250 135 272 135 Z",
+        "lx": 300,
+        "ly": 305,
+        "color": "green"
+      }
+    ],
+    "points": [
+      {
+        "id": "a",
+        "label": "Mr. Sir",
+        "x": 190,
+        "y": 90,
+        "sets": [
+          "S"
+        ],
+        "image": "gimmick_mr_sir"
+      },
+      {
+        "id": "b",
+        "label": "Little Jimmy",
+        "x": 300,
+        "y": 180,
+        "sets": [
+          "S",
+          "T"
+        ],
+        "image": "gimmick_little_jimmy"
+      },
+      {
+        "id": "c",
+        "label": "beer",
+        "x": 410,
+        "y": 180,
+        "sets": [
+          "T"
+        ],
+        "image": "gimmick_beer"
+      },
+      {
+        "id": "d",
+        "label": "mushroom",
+        "x": 80,
+        "y": 270,
+        "sets": [],
+        "image": "gimmick_mushroom"
+      },
+      {
+        "id": "soda",
+        "label": "soda",
+        "x": 410,
+        "y": 270,
+        "sets": [
+          "T"
+        ],
+        "image": "gimmick_soda"
+      },
+      {
+        "id": "mouse",
+        "label": "mouse",
+        "x": 520,
+        "y": 90,
+        "sets": [],
+        "image": "gimmick_mouse"
+      },
+      {
+        "id": "card",
+        "label": "playing card",
+        "x": 410,
+        "y": 90,
+        "sets": [],
+        "image": "gimmick_card"
+      }
+    ],
+    "steps": [
+      {
+        "id": "S",
+        "label": "Set S",
+        "title": "The members of S",
+        "text": "@{a} and @{b} belong to S. Membership in T does not prevent @{b} from belonging to S too.",
+        "include": [
+          "S"
+        ],
+        "exclude": [],
+        "view": "set:S",
+        "formula": ""
+      },
+      {
+        "id": "difference",
+        "label": "S ∖ T",
+        "title": "In S, but not in T",
+        "text": "Start with S, then remove every member that also belongs to T. This removes @{b} and leaves only @{a}.",
+        "include": [
+          "S"
+        ],
+        "exclude": [
+          "T"
+        ],
+        "view": "difference",
+        "formula": "S ∖ T"
+      },
+      {
+        "id": "complement",
+        "label": "W ∖ S",
+        "title": "Outside S, within our space",
+        "text": "Now start with the whole yellow space W and remove S. All the pictured objects outside S remain. This is the complement of S relative to W.",
+        "include": [],
+        "exclude": [
+          "S"
+        ],
+        "view": "outside:S",
+        "formula": "W ∖ S"
+      }
+    ]
   }
 }

@@ -17,7 +17,7 @@ export function mountSetDiagram(root) {
       node.classList.toggle('is-muted', step.view !== 'all' && ids.size > 0 && !ids.has(node.dataset.point));
     }
     for (const region of root.querySelectorAll('[data-region]')) region.style.display = region.dataset.region === active ? '' : 'none';
-    for (const contour of root.querySelectorAll('[data-set]')) contour.classList.toggle('is-relevant', step.include.includes(contour.dataset.set));
+    for (const contour of root.querySelectorAll('[data-set]')) contour.classList.toggle('is-relevant', [...step.include,...(step.union||[])].includes(contour.dataset.set));
     for (const explanation of root.querySelectorAll('[data-explanation]')) explanation.hidden = explanation.dataset.explanation !== active;
     for (const button of buttons) button.setAttribute('aria-pressed', String(button.dataset.step === active));
     const plainText = step.text.replace(/@\{([^}]+)\}/g, (_, id) => scene.points.find(point => point.id === id)?.label || id);

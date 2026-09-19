@@ -54,8 +54,15 @@
     <link rel="stylesheet" href="{{ (resources.Get "css/glossary.css" | fingerprint).RelPermalink }}">
     <link rel="stylesheet" href="{{ (resources.Get "css/syntax_hl.css" | fingerprint).RelPermalink }}">
     <link rel="stylesheet" href="{{ (resources.Get "css/pickers.css" | fingerprint).RelPermalink }}">
+    {{ if or (.HasShortcode "function-table") (.HasShortcode "logic-app") }}
+    <link rel="stylesheet" href="{{ (resources.Get "css/function-table.css" | fingerprint).RelPermalink }}">
+    {{ end }}
     {{ if .HasShortcode "logic-app" }}
     <link rel="stylesheet" href="{{ (resources.Get "css/apps/logic-app.css" | fingerprint).RelPermalink }}">
+    <link rel="stylesheet" href="{{ (resources.Get "css/apps/boolean.css" | fingerprint).RelPermalink }}">
+    {{ end }}
+    {{ if or (.HasShortcode "column-addition") (.HasShortcode "logic-app") }}
+    <link rel="stylesheet" href="{{ (resources.Get "css/column-addition.css" | fingerprint).RelPermalink }}">
     {{ end }}
     {{ if .HasShortcode "annotated-math" }}
     <link rel="stylesheet" href="{{ (resources.Get "css/annotated-math.css" | fingerprint).RelPermalink }}">

@@ -1,0 +1,18 @@
+{{/* A finite operation table: row argument first, column argument second.
+     Unary functions have a single output column. No inference/truth-table logic. */}}
+{{ $name := .Get "name" }}
+{{ $table := .Inner | transform.Unmarshal }}
+{{ $rows := index $table "rows" }}
+{{ $columns := index $table "columns" }}
+{{ $values := index $table "values" }}
+{{ if ne (len $rows) (len $values) }}{{ errorf "Function table %s: one output row is required per input" $name }}{{ end }}
+<div class="function-table" role="region" aria-label="{{ $name }} function table" tabindex="0">
+<table>
+  <thead><tr><th scope="col" class="function-table__name">{{ $name }}</th>{{ range $columns }}<th scope="col">{{ . }}</th>{{ end }}</tr></thead>
+  <tbody>{{ range $i, $row := $rows }}
+  {{ $outputs := index $values $i }}
+  {{ if ne (len $outputs) (len $columns) }}{{ errorf "Function table %s: incorrect output row width" $name }}{{ end }}
+  <tr><th scope="row">{{ $row }}</th>{{ range $outputs }}<td>{{ . }}</td>{{ end }}</tr>
+  {{ end }}</tbody>
+</table>
+</div>

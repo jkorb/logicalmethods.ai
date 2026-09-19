@@ -1,6 +1,6 @@
 # Images and publication review
 
-**Lectures 1 and 2 are cleared; Lectures 3–12 are not.** Every embedded image in
+**Lectures 1 to 4 are cleared; Lectures 5–12 are not.** Every embedded image in
 Lecture 1 was removed on 14 September 2026, because no creator, source or licence
 could be established for any of them and the course publishes under CC BY 4.0,
 which cannot cover third-party work. Its manifest's `removedImages` block records
@@ -16,9 +16,17 @@ The optional local preservation test enforces this route: an original image may
 only leave a source through a `removedImages` entry that names it and actually
 drops its bytes.
 
-For the other ten lectures the maintainer asked that imported images stay
+Lecture 3's eight images — a portrait, two screenshots of AI mathematics
+results, one unidentified picture and four product logos — went the same way on
+16 September 2026, recorded in `slides/lecture-3.json`.
+
+Lecture 4's five images — portraits of Boole, Post, Shannon and De Morgan,
+and a scan of Shannon's thesis — went the same way on 19 September 2026,
+recorded in `slides/lecture-4.json`.
+
+For the other eight lectures the maintainer asked that imported images stay
 visible for now, and **none of them has been marked licence-cleared**.
-`slides/image-inventory.json` now covers 74 image records across Lectures 3–12,
+`slides/image-inventory.json` covers 74 image records across Lectures 3–12,
 including unused embedded records. Each record lists slide usages, an `imagePath`
 pointing to its exact extracted file under `slides/images/`, source/licence fields
 and review status. The canonical image bytes remain embedded in each
@@ -32,7 +40,7 @@ Removing an image from a source may leave a review copy under
 Original workspace image files remain in `tmp/excalidraw_workspace_export/img/`.
 Workspace filename matches are candidates only, not evidence of authorship or
 permission. Rendering embeds the images in each SVG: ignored staged SVGs for
-Lectures 3–12. Lectures 1 and 2 no longer have any. No separate remote image
+Lectures 5–12. Lectures 1 to 4 no longer have any. No separate remote image
 host is used.
 
 ## Before releasing a lecture

@@ -59,17 +59,15 @@ test('exercise solution rejects wrong password, opens with Enter, and closes', a
 
 test('custom notation renders with the loaded faces', async ({ page }) => {
   await page.goto('/textbook/boolean/');
-  await expect(page.locator('.excalifont').first()).toBeVisible();
+  await expect(page.locator('.chapter__name')).toBeVisible();
   await expect(page.locator('.Boolean').first()).toBeVisible();
   await page.evaluate(() => document.fonts.ready);
+  expect(await page.locator('.chapter__name').evaluate(el => getComputedStyle(el).fontFamily)).toContain('Excalifont');
   expect(await page.evaluate(() => document.fonts.check('16px Excalifont'))).toBe(true);
-  // Logic symbols are text in the patched object-language face, not images.
-  // Boolean algebra spells its connectives, so the quantifier chapter is the
-  // one that exercises the added glyphs.
+  // Revised mathematical notation uses Comic Shanns Logic rather than images.
+  await expect(page.locator('.math-inline').first()).toBeVisible();
+  expect(await page.locator('.math-inline').first().evaluate(el => getComputedStyle(el).fontFamily)).toContain('Comic Shanns Logic');
   expect(await page.evaluate(() => document.fonts.check('16px "Comic Shanns Logic"'))).toBe(true);
-  expect((await page.goto('/textbook/fol/')).status()).toBe(200);
-  await page.evaluate(() => document.fonts.ready);
-  expect(await page.evaluate(() => /[∀∃∧∨→⊨]/.test(document.body.innerText))).toBe(true);
   expect(await page.locator('img[src*="/img/forall"], img[src*="/img/conjunction"]').count()).toBe(0);
 });
 
@@ -101,7 +99,7 @@ test('the chapter contents follows the reader once its box scrolls away', async 
 
   // put a section heading just below the header, so it is the one being read
   await page.evaluate(() => window.scrollTo(0,
-    document.getElementById('models').getBoundingClientRect().top + window.scrollY - 100));
+    document.getElementById('boolean-models').getBoundingClientRect().top + window.scrollY - 100));
   await expect(toggle).toBeVisible();
   await expect(panel).toBeHidden();
 
@@ -111,8 +109,8 @@ test('the chapter contents follows the reader once its box scrolls away', async 
     .toEqual(sections);
   await expect(toggle).toHaveAttribute('aria-expanded', 'true');
   // the copy tracks the section being read, exactly as the box does
-  await expect(box.getByRole('link', { name: 'Models' })).toHaveAttribute('aria-current', 'true');
-  await expect(panel.getByRole('link', { name: 'Models' })).toHaveAttribute('aria-current', 'true');
+  await expect(box.getByRole('link', { name: 'Boolean models' })).toHaveAttribute('aria-current', 'true');
+  await expect(panel.getByRole('link', { name: 'Boolean models' })).toHaveAttribute('aria-current', 'true');
 
   await page.keyboard.press('Escape');
   await expect(panel).toBeHidden();

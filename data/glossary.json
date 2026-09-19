@@ -14,10 +14,25 @@
     "definition": "Changing the propositions we accept when we receive new information, including information that conflicts with earlier beliefs.",
     "chapter": "notation"
   },
+  "bivalence": {
+    "term": "Bivalence",
+    "definition": "The assumption that each formula has exactly one of the two truth-values, true and false.",
+    "chapter": "boolean"
+  },
+  "boolean-function": {
+    "term": "Boolean function",
+    "definition": "A function that takes a fixed number of Boolean values, 0 and 1, as inputs and returns one Boolean value.",
+    "chapter": "boolean"
+  },
   "cardinality": {
     "term": "Cardinality",
     "definition": "The number of elements of a set.",
     "chapter": "formal-languages"
+  },
+  "classical-logic": {
+    "term": "Classical logic",
+    "definition": "The logical framework used in our Boolean and FOL chapters, with bivalent semantics and classical inference principles.",
+    "chapter": "boolean"
   },
   "conditional": {
     "term": "Conditional",
@@ -27,6 +42,11 @@
   "conditional-probability": {
     "term": "Conditional probability",
     "definition": "The probability of one claim given another. Formally, Pr(A given B)=Pr(A∧B)/Pr(B), provided Pr(B)>0.",
+    "chapter": "valid-inference"
+  },
+  "consequence": {
+    "term": "Logical consequence",
+    "definition": "A conclusion is a logical consequence of premises if every model making the premises true also makes the conclusion true.",
     "chapter": "valid-inference"
   },
   "contradiction": {
@@ -66,8 +86,8 @@
   },
   "disjunction": {
     "term": "Disjunction",
-    "definition": "An or-formula. Classical A∨B is true when at least one disjunct is true, including when both are.",
-    "chapter": "formal-languages"
+    "definition": "An or-formula. Classical A∨B is true exactly when at least one disjunct is true, including when both are.",
+    "chapter": "boolean"
   },
   "domain": {
     "term": "Domain",
@@ -144,6 +164,16 @@
     "definition": "A collection of represented information used as the starting point for further inference.",
     "chapter": "logic-and-ai"
   },
+  "logical-validity": {
+    "term": "Logical validity",
+    "definition": "Validity that depends on logical form, rather than the particular subject matter of the inference.",
+    "chapter": "valid-inference"
+  },
+  "material-validity": {
+    "term": "Material validity",
+    "definition": "Correctness that depends on domain-specific meanings, facts, or assumptions; in inductive reasoning, support relative to a particular probability measure.",
+    "chapter": "valid-inference"
+  },
   "model": {
     "term": "Model",
     "definition": "A mathematical representation of a possible reasoning situation; a model of premises makes those premises true.",
@@ -162,7 +192,7 @@
   "negation": {
     "term": "Negation",
     "definition": "A not-formula. Classical ¬A is true exactly when A is false.",
-    "chapter": "formal-languages"
+    "chapter": "boolean"
   },
   "premise": {
     "term": "Premise",
@@ -202,7 +232,7 @@
   "truth-value": {
     "term": "Truth-value",
     "definition": "A value assigned to a formula by a semantics, such as 0 or 1 in classical logic.",
-    "chapter": "logic-and-ai"
+    "chapter": "boolean"
   },
   "unification": {
     "term": "Unification",
@@ -215,9 +245,9 @@
     "chapter": "notation"
   },
   "valuation": {
-    "term": "Valuation",
-    "definition": "An assignment of truth-values to propositional variables, extended to formulas by the semantic clauses.",
-    "chapter": "notation"
+    "term": "Boolean valuation",
+    "definition": "A function assigning precisely one Boolean value to every propositional variable of a language.",
+    "chapter": "boolean"
   },
   "verification": {
     "term": "Verification",
@@ -232,11 +262,16 @@
   "conjunction": {
     "term": "Conjunction",
     "definition": "An and-formula. Classical A∧B is true exactly when both conjuncts are true.",
-    "chapter": "formal-languages"
+    "chapter": "boolean"
   },
   "probability": {
     "term": "Probability",
     "definition": "A measure of the chance of an event, given by adding the masses of its outcomes in our finite models.",
+    "chapter": "valid-inference"
+  },
+  "sample-space": {
+    "term": "Sample space",
+    "definition": "The set of possible outcomes of an experiment, written Ω.",
     "chapter": "valid-inference"
   },
   "identity": {
@@ -313,6 +348,11 @@
     "term": "Counterexample",
     "definition": "A case that shows a claim is false. For an inference, it is a case where the premises are true but the conclusion is false.",
     "chapter": "logic-and-ai"
+  },
+  "logical-form": {
+    "term": "Logical form",
+    "definition": "The structure of an expression or inference that matters for logical validity, abstracting from its particular subject matter.",
+    "chapter": "valid-inference"
   },
   "proof-assistant": {
     "term": "Proof assistant",
@@ -500,43 +540,6 @@
     "chapter": "formal-languages",
     "anchor": "ambiguity"
   },
-  "consequence": {
-    "term": "Logical consequence",
-    "definition": "A conclusion is a logical consequence of premises if every model making the premises true also makes the conclusion true.",
-    "chapter": "valid-inference"
-  },
-  "logical-validity": {
-    "term": "Logical validity",
-    "definition": "Validity that depends on logical form, rather than the particular subject matter of the inference.",
-    "chapter": "valid-inference"
-  },
-  "material-validity": {
-    "term": "Material validity",
-    "definition": "Correctness that depends on domain-specific meanings, facts, or assumptions; in inductive reasoning, support relative to a particular probability measure.",
-    "chapter": "valid-inference"
-  },
-  "sample-space": {
-    "term": "Sample space",
-    "definition": "The set of possible outcomes of an experiment, written Ω.",
-    "chapter": "valid-inference"
-  },
-  "logical-form": {
-    "term": "Logical form",
-    "definition": "The structure of an expression or inference that matters for logical validity, abstracting from its particular subject matter.",
-    "chapter": "valid-inference"
-  },
-  "logical-invalidity": {
-    "term": "Logical invalidity",
-    "definition": "An inference being invalid on account of its logical form: some interpretation makes the premises true and the conclusion false.",
-    "chapter": "valid-inference",
-    "anchor": "formally--logical-validity"
-  },
-  "material-invalidity": {
-    "term": "Material invalidity",
-    "definition": "An inference admitting a case where the premises are true and the conclusion false, even when the relevant meanings and background facts are respected.",
-    "chapter": "valid-inference",
-    "anchor": "formally--logical-validity"
-  },
   "logical-space": {
     "term": "Logical space",
     "definition": "The collection of models considered by a semantics.",
@@ -651,5 +654,90 @@
     "term": "Probability-raising support",
     "definition": "Support measured by the conditional probability of the conclusion given the premises minus its unconditional probability. A positive difference favors the conclusion; a negative difference counts against it.",
     "chapter": "valid-inference"
+  },
+  "functional-completeness": {
+    "term": "Truth-functional completeness",
+    "definition": "A collection of truth-functions is truth-functionally complete if every Boolean truth-function of positive finite arity can be expressed using those functions.",
+    "chapter": "boolean"
+  },
+  "boolean-identity": {
+    "term": "Boolean identity",
+    "definition": "An equation between Boolean expressions that holds for every assignment of Boolean values to its variables.",
+    "chapter": "boolean"
+  },
+  "de-morgan-laws": {
+    "term": "De Morgan laws",
+    "definition": "The identities NOT (X OR Y) = (NOT X) AND (NOT Y) and NOT (X AND Y) = (NOT X) OR (NOT Y).",
+    "chapter": "boolean"
+  },
+  "bit": {
+    "term": "Bit",
+    "definition": "A binary digit: either 0 or 1.",
+    "chapter": "boolean"
+  },
+  "binary-representation": {
+    "term": "Binary representation",
+    "definition": "Positional notation with digits 0 and 1, in which position n, counted from the right starting at 0, has place value 2 to the power n.",
+    "chapter": "boolean"
+  },
+  "adder": {
+    "term": "Adder",
+    "definition": "A circuit that computes addition on numbers in binary representation.",
+    "chapter": "boolean"
+  },
+  "half-adder": {
+    "term": "Half adder",
+    "definition": "A circuit that adds two bits, returning a sum bit and a carry bit. The sum is XOR of the inputs and the carry is AND of the inputs.",
+    "chapter": "boolean"
+  },
+  "full-adder": {
+    "term": "Full adder",
+    "definition": "A circuit that adds two bits and an incoming carry, returning a sum bit and an outgoing carry.",
+    "chapter": "boolean"
+  },
+  "exclusive-or": {
+    "term": "Exclusive or",
+    "definition": "The Boolean truth-function XOR, which returns 1 exactly when its two inputs differ.",
+    "chapter": "boolean"
+  },
+  "base-case": {
+    "term": "Base case",
+    "definition": "A case handled directly by a recursive definition or procedure, without another recursive call.",
+    "chapter": "boolean"
+  },
+  "recursive-case": {
+    "term": "Recursive case",
+    "definition": "A case handled by applying the same definition or procedure to smaller parts and combining their results.",
+    "chapter": "boolean"
+  },
+  "set-union": {
+    "definition": "The union S ∪ T contains every object belonging to S or T, including objects belonging to both.",
+    "chapter": "boolean",
+    "term": "Union"
+  },
+  "set-difference": {
+    "definition": "The difference S ∖ T contains the members of S that do not belong to T.",
+    "chapter": "boolean",
+    "term": "Set difference"
+  },
+  "set-complement": {
+    "definition": "The complement W ∖ S contains the objects in a specified universe W that do not belong to S.",
+    "chapter": "boolean",
+    "term": "Complement"
+  },
+  "boolean-evaluation": {
+    "term": "Boolean evaluation",
+    "definition": "The extension of a Boolean valuation to all formulas of a propositional language: it keeps the assigned values of variables and interprets ¬, ∧ and ∨ using NOT, AND and OR, respectively.",
+    "chapter": "boolean"
+  },
+  "boolean-value": {
+    "term": "Boolean value",
+    "definition": "One of the two values 0 and 1. In logic, they represent false and true, respectively. The Boolean value v(A) of a formula A under a valuation v is determined by the values of its variables and the Boolean functions interpreting its connectives.",
+    "chapter": "boolean"
+  },
+  "boolean-model": {
+    "term": "Boolean model",
+    "definition": "A Boolean valuation of the propositional variables of a language, used to represent a possible reasoning situation. It is a model of a formula when that formula has value 1 under the valuation.",
+    "chapter": "boolean"
   }
 }

@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { members, intersection, difference, isSubset, countermodels } from '../../assets/js/set-diagram-model.js';
+import { members, intersection, union, difference, isSubset, countermodels } from '../../assets/js/set-diagram-model.js';
 const scenes = JSON.parse(readFileSync('data/set-diagrams.json', 'utf8'));
 test('scene references are complete and IDs are unique', () => {
   for (const scene of Object.values(scenes)) {
@@ -14,7 +14,7 @@ test('scene references are complete and IDs are unique', () => {
 
     }
     for (const step of scene.steps) {
-      for (const id of [...step.include, ...step.exclude]) assert.ok(scene.sets.some(s => s.id === id));
+      for (const id of [...step.include, ...step.exclude, ...(step.union||[])]) assert.ok(scene.sets.some(s => s.id === id));
       for (const [, id] of step.text.matchAll(/@\{([^}]+)\}/g)) assert.ok(scene.points.some(p => p.id === id));
     }
   }
@@ -61,4 +61,12 @@ test('exercise answers include exact membership, multiple choices and an empty s
   assert.deepEqual(checkSelection(['a','b'], ['a','c']), {correct:false,missing:1,extra:1});
   assert.equal(checkSelection([], []).correct, true);
   assert.equal(checkSelection([], ['a']).correct, false);
+});
+
+
+test('union keeps the overlap once and excludes points outside both sets', () => {
+  assert.deepEqual(union(scenes.union,['S','T']).map(p=>p.id),['a','b','c','soda']);
+  assert.deepEqual(union(scenes.union,[]),[]);
+  assert.deepEqual(union(scenes.union,['S','S']),members(scenes.union,'S'));
+  assert.throws(()=>union(scenes.union,['missing']));
 });

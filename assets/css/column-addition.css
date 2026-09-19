@@ -1,0 +1,10 @@
+/* Static and interactive additions share column widths and carry notation. */
+.column-addition { inline-size: fit-content; max-inline-size: 100%; margin: 1.25rem auto; overflow-x: auto; font: var(--step-1)/1.5 var(--font-formal); }
+.column-addition table { border-collapse: collapse; margin: 0; font: inherit; }
+.column-addition :is(th, td) { padding: .15em .25em; text-align: center; font-weight: 400; border: 0; }
+.column-addition td { min-inline-size: 1em; position: relative; }
+.column-addition th { text-align: end; padding-inline-end: .55em; }
+.column-addition__carry { color: var(--red-ink); position: absolute; inset-inline-start: 100%; margin-inline-start: .12em; bottom: -.25em; font-size: .6em; line-height: 1; }
+.column-addition__result { border-block-start: 2px solid var(--ink); }
+
+.column-addition__digit { position: relative; display: inline-block; }

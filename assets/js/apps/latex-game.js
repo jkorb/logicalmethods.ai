@@ -1,13 +1,13 @@
 /* A timed drill: the box shows a piece of notation, you type the LaTeX that
    produces it. Anything the site's own replacement rules accept counts, so the
    drill can never ask for a command the book's inputs would reject. */
+import { celebrate as confetti } from './celebrate.js';
 import { latexToUnicode } from './latex-input.js';
 import { POOLS } from './latex-game-prompts.js';
 export { POOLS };
 
 const ROUND = 60;    // seconds
 const TARGET = 10;   // the score the exercise asks for
-const CONFETTI = ['--red-gfx', '--blue-gfx', '--green-gfx', '--orange-gfx'];
 const HINTS = {
   easy: 'Easy: one symbol, one command.',
   medium: 'Medium: expressions built out of them, and the text commands.',
@@ -53,7 +53,6 @@ export function mountLatexGame(root) {
   const status = find('[role="status"]');
   const levels = [...root.querySelectorAll('[data-game-level]')];
 
-  const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
   const level = () => levels.find(radio => radio.checked).value;
   const bestKey = () => `lm-latex-drill-${level()}`;
   const say = message => { status.textContent = message; };
@@ -95,21 +94,7 @@ export function mountLatexGame(root) {
   }
   function celebrate() {
     feedback('right');
-    if (reduced()) return;
-    const burst = document.createElement('div');
-    burst.className = 'latex-game__confetti';
-    burst.setAttribute('aria-hidden', 'true');
-    for (let i = 0; i < 18; i++) {
-      const bit = document.createElement('i');
-      bit.style.setProperty('--x', `${((Math.random() * 2 - 1) * 110).toFixed(0)}px`);
-      bit.style.setProperty('--y', `${(-40 - Math.random() * 110).toFixed(0)}px`);
-      bit.style.setProperty('--spin', `${((Math.random() * 2 - 1) * 540).toFixed(0)}deg`);
-      bit.style.setProperty('--delay', `${(Math.random() * 90).toFixed(0)}ms`);
-      bit.style.setProperty('--confetti', `var(${CONFETTI[i % CONFETTI.length]})`);
-      burst.append(bit);
-    }
-    stage.append(burst);
-    setTimeout(() => burst.remove(), 1200);
+    confetti(stage);
   }
 
   function tick() {

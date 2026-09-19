@@ -121,12 +121,12 @@
 }
 
 /* the burst rises from the middle of the box and fades on the way out */
-.latex-game__confetti { position: absolute; inset-block-start: 50%; inset-inline-start: 50%; inline-size: 0; block-size: 0; pointer-events: none; }
-.latex-game__confetti i {
+.logic-app__confetti { position: absolute; inset-block-start: 50%; inset-inline-start: 50%; inline-size: 0; block-size: 0; pointer-events: none; }
+.logic-app__confetti i {
   position: absolute; inline-size: .5rem; block-size: .75rem; background: var(--confetti);
-  animation: latex-game-confetti .9s var(--delay) ease-out forwards;
+  animation: logic-app-confetti .9s var(--delay) ease-out forwards;
 }
-@keyframes latex-game-confetti {
+@keyframes logic-app-confetti {
   from { transform: translate(0, 0) rotate(0); opacity: 1; }
   to   { transform: translate(var(--x), var(--y)) rotate(var(--spin)); opacity: 0; }
 }
@@ -264,3 +264,16 @@
 .notation-picker { position: relative; width: fit-content; max-width: 100%; margin: .5rem auto 1rem; text-align: left; }
 
 .notation-practice [data-notation-mode][aria-pressed="true"] { color: var(--blue-ink); border-color: var(--blue-ink); box-shadow: inset 0 -2px var(--blue-ink); }
+
+.logic-app__celebration-anchor { position: relative; }
+@media(prefers-reduced-motion:reduce) { .logic-app__confetti { display:none; } }
+
+.logic-app__export-controls { display: flex; align-items: center; gap: .5rem; margin-block-start: 1rem; }
+.logic-app__export-notice { font-size: var(--step--1); color: var(--ink-muted); }
+.pseudocode-practice pre { text-align: start; white-space: pre; overflow-x: auto; padding: 1rem; font-family: var(--font-code); }
+.pseudocode-practice input { font: inherit; width: 5.5em; min-height: 2.75rem; color: var(--ink); background: var(--paper-raised); border: 1px solid var(--rule); border-radius: var(--radius); }
+.pseudocode-practice input[aria-invalid="true"] { border-color: var(--red-ink); outline: 1px solid var(--red-ink); }
+.pseudocode-practice [data-feedback] { padding: .85rem; border-radius: var(--radius); text-align: start; }
+.pseudocode-practice [data-feedback="correct"] { color: var(--green-ink); background: var(--surf-green); }
+.pseudocode-practice [data-feedback="incorrect"] { color: var(--red-ink); background: var(--surf-red); }
+@media (prefers-reduced-motion: no-preference) { .pseudocode-practice .is-shaking { animation: latex-game-shake .4s ease; } }

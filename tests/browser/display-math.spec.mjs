@@ -28,7 +28,10 @@ test('displays trim boundary lines, fit smaller columns and regain their size', 
   expect(narrow.every((size,i) => size <= wide[i] + 0.05), 'a display grew as the column narrowed').toBe(true);
 
   await settle(1440);
-  (await applied()).forEach((size,i) => expect(size, `display ${i} did not regain its size`).toBeCloseTo(wide[i],1));
+  // Previously shrunken text already fits the wider column before its resize
+  // observer runs. Wait for the font sizes too, not only absence of overflow.
+  await expect.poll(async () => (await applied()).every((size,i) => Math.abs(size-wide[i]) < .05),
+    {message:'displays regain their size after widening'}).toBe(true);
   expect(await displays.locator(':scope > .math-content').allTextContents()).toEqual(originals);
   const source = page.locator('pre code').first();
   await expect(source).toBeVisible();

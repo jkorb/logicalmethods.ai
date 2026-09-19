@@ -1,0 +1,12 @@
+{{/* Present aligned, authored digits; no arithmetic evaluator in the template. */}}
+{{ $top := .Get "top" }}{{ $bottom := .Get "bottom" }}{{ $result := .Get "result" }}{{ $carries := .Get "carries" | default "" }}
+{{ $width := len $result }}
+{{ if or (not $top) (not $bottom) (not $result) }}{{ errorf "column-addition requires top, bottom and result (%s)" .Position }}{{ end }}
+<div class="column-addition" role="region" aria-label="{{ $top }} plus {{ $bottom }} equals {{ $result }}, in binary">
+<table><tbody>
+{{ range slice (dict "label" "" "digits" $top) (dict "label" "+" "digits" $bottom) (dict "label" "=" "digits" $result "class" "column-addition__result") }}
+  {{ if or (gt (len .digits) $width) (findRE `[^01 ]` .digits) }}{{ errorf "column-addition: digits must be binary and fit the result width (%s)" $.Position }}{{ end }}
+  <tr{{ with .class }} class="{{ . }}"{{ end }}><th scope="row">{{ if .label }}{{ .label }}{{ else }}<span class="visually-hidden">First summand</span>{{ end }}</th>{{ $row := . }}{{ $carryDigits := split (printf "%*s" $width $carries) "" }}{{ range $i, $digit := split (printf "%*s" $width .digits) "" }}<td><span class="column-addition__digit">{{ if eq $digit " " }}&nbsp;{{ else }}{{ $digit }}{{ end }}{{ if and (eq $row.label "+") (eq (index $carryDigits $i) "1") }}<sub class="column-addition__carry" aria-label="carry 1">1</sub>{{ end }}</span></td>{{ end }}</tr>
+{{ end }}
+</tbody></table>
+</div>

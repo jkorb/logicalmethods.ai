@@ -1,0 +1,9 @@
+/* Operation tables have exactly two separators, never a grid of cells. */
+.function-tables { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem 2.5rem; margin-block: 1.5rem; }
+.function-table { max-inline-size: 100%; overflow: auto; inline-size: fit-content; margin: 1rem auto; font-family: var(--font-formal); }
+.function-tables .function-table { margin: 0; }
+.function-table table { border-collapse: collapse; margin: 0; font-size: var(--step-0); }
+.function-table :is(th, td) { padding: .35rem .8rem; text-align: center; font-weight: 400; min-inline-size: 2.75rem; }
+.function-table thead { border-block-end: 2px solid var(--table-rule); }
+.function-table tr > :first-child { border-inline-end: 2px solid var(--table-rule); }
+.function-table__name { color: var(--blue-ink); }

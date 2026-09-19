@@ -1,0 +1,55 @@
+{{ $kind := .sc.Get "kind" | default "evaluation" }}
+{{ if not (in (slice "derivation" "evaluation" "models" "model-exercise" "circuit" "workbench" "two-bit" "ripple-adder") $kind) }}{{ errorf "Unknown Boolean app kind %q" $kind }}{{ end }}
+<section class="logic-app boolean-app" data-logic-app="boolean" data-kind="{{ $kind }}" data-preset="{{ .sc.Get "preset" }}" data-variables="{{ .sc.Get "variables" | default "2" }}" data-bits="{{ .sc.Get "bits" | default "2" }}" aria-label="{{ if eq $kind "derivation" }}Boolean derivation{{ else if in (slice "models" "model-exercise") $kind }}Boolean model space{{ else if eq $kind "circuit" }}Interactive circuit{{ else if eq $kind "workbench" }}Circuit construction exercise{{ else if in (slice "two-bit" "ripple-adder") $kind }}Binary addition{{ else }}Boolean evaluation{{ end }}">
+  {{ if eq $kind "derivation" }}
+  {{ $preset := .sc.Get "preset" | default "double-negation" }}
+  {{ $steps := index (index hugo.Data "boolean-derivations") $preset }}
+  {{ if not $steps }}{{ errorf "Unknown Boolean derivation %q" $preset }}{{ end }}
+  <script type="application/json" data-derivation>{{ $steps | jsonify | safeJS }}</script>
+  <noscript><ol>{{ range $steps }}<li><span class="boolean-app__formula">{{ index . 0 }}</span> – {{ index . 1 }}</li>{{ end }}</ol></noscript>
+  {{ end }}
+  {{ if eq $kind "evaluation" }}
+  {{ if eq (.sc.Get "preset") "practice" }}<script type="application/json" data-evaluation-examples>{{ index hugo.Data "boolean-evaluations" | jsonify | safeJS }}</script>{{ end }}
+  <form data-formula-form class="boolean-formula-form">
+    <input id="{{ .id }}-formula" class="logic-app__input" aria-label="Formula" data-formula value="{{ .sc.Get "formula" | default "SUN ∨ (RAIN ∧ ¬SUN)" }}" maxlength="512" spellcheck="false" autocomplete="off" disabled>
+    <button type="submit" aria-label="Use formula" title="Use formula" disabled>{{ partial "apps/icon.html" "play" }}</button>
+  </form>
+  {{ end }}
+  {{ range slice "edit" "play" "replay" "trash" "check" "camera" }}<template data-icon="{{ . }}">{{ partial "apps/icon.html" . }}</template>{{ end }}
+  <div data-toolbar></div>
+  {{ if in (slice "models" "model-exercise") $kind }}
+  {{ $space := cond (eq (string (.sc.Get "variables")) "3") "/img/drawings/bool_three_valued_models.svg" "/img/drawings/bool_logical_space.svg" }}
+  <template data-world-space>{{ partial "figures/image.html" (dict "page" .sc.Page "src" $space "id" .id "themed" true "class" "book-figure--themed") }}</template>
+  <template data-wind>{{ partial "figures/image.html" (dict "page" .sc.Page "src" "/img/drawings/wind.svg" "id" (printf "%s-wind" .id) "themed" true "class" "book-figure--themed") }}</template>
+  {{ end }}
+  {{ if eq $kind "workbench" }}
+  {{ with .sc.Get "preset" }}{{ $profile := index (index hugo.Data "boolean-exercises") . }}{{ if not $profile }}{{ errorf "Unknown circuit exercise %q" . }}{{ end }}<script type="application/json" data-circuit-tasks>{{ $profile | jsonify | safeJS }}</script>{{ end }}
+  <div class="boolean-app__palette" aria-label="Add a circuit component">
+    {{ $gates := slice "NOT" "AND" "OR" "XOR" "NAND" "NOR" "XNOR" }}{{ if eq (.sc.Get "preset") "relays" }}{{ $gates = slice "RELAY-OFF" "RELAY-ON" }}{{ end }}
+    {{ range $gates }}<button type="button" data-add="{{ . }}" disabled>+ {{ if eq . "RELAY-OFF" }}Default-off relay{{ else if eq . "RELAY-ON" }}Default-on relay{{ else }}{{ . }}{{ end }}</button>{{ end }}
+  </div>
+  {{ end }}
+  <div class="boolean-app__layout">
+    <div class="boolean-app__picture{{ if eq $kind "evaluation" }} logic-app__tree{{ end }}" data-picture></div>
+    <div class="boolean-app__aside">
+      <div data-valuation></div>
+      {{ if in (slice "derivation" "evaluation") $kind }}
+      <div class="logic-app__controls" data-navigation aria-label="Steps">
+        {{ range slice "first" "previous" "next" "last" }}<button type="button" data-action="{{ . }}" aria-label="{{ . | title }} step" title="{{ . | title }} step" disabled>{{ partial "apps/icon.html" . }}</button>{{ end }}
+        <span data-count></span>
+      </div>
+      {{ end }}
+      {{ if eq $kind "workbench" }}<div data-target-table></div>{{ else }}<div data-inspector></div>{{ end }}
+      <div role="status" aria-live="polite" aria-atomic="true">The interactive example is loading.</div>
+      {{ if eq $kind "workbench" }}<div class="boolean-check-controls"><button type="button" data-check aria-label="Check circuit" disabled>{{ partial "apps/icon.html" "check" }}<span>Check</span></button><button type="button" data-reset disabled>{{ partial "apps/icon.html" "replay" }}<span>Clear</span></button></div><div data-check-result hidden><p data-check-message aria-live="polite" aria-atomic="true"></p><div data-check-table></div></div>{{ end }}
+    </div>
+  </div>
+  {{ if eq $kind "workbench" }}<details class="boolean-connections"><summary>Connection controls</summary><div data-inspector></div></details>{{ end }}
+  <div data-below></div>
+  <div class="boolean-app__utilities">
+    {{ if in (slice "circuit" "workbench" "two-bit" "ripple-adder") $kind }}<button type="button" data-motion aria-label="Pause animation" title="Pause animation" aria-pressed="false" disabled><span data-motion-pause>{{ partial "apps/icon.html" "pause" }}</span><span data-motion-play hidden>{{ partial "apps/icon.html" "play" }}</span><span data-motion-label>Pause</span></button>{{ end }}
+    <button type="button" data-text-toggle aria-label="Show text alternative" title="Show text alternative" aria-expanded="false" aria-controls="{{ .id }}-text" disabled>{{ partial "apps/icon.html" "accessibility" }}</button>
+  </div>
+  <div id="{{ .id }}-text" data-text hidden role="region" aria-label="Text alternative"></div>
+  <noscript><p>The worked examples in the text can be read without JavaScript. Enable it to change inputs.</p></noscript>
+</section>

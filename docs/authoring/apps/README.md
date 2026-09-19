@@ -7,7 +7,10 @@ Shortcode-driven components used in textbook pages and exercise solutions.
 - [The parser](parser.md) — `name="parser"`, strict and conventional grammars.
 - [The LaTeX drill](latex-game.md) — `name="latex-game"`.
 - [The formula builder](formula-builder.md) — `name="builder"`.
-- [Introductory exercise apps](exercise-apps.md) — notation practice, shunting yard, reasoning practice.
+- [Introductory exercise apps](exercise-apps.md) — notation practice, pseudocode, shunting yard, reasoning practice.
+
+- [Boolean chapter apps](boolean.md) — derivations, evaluation trees, model spaces.
+- [Boolean circuits and workbench](boolean-circuits.md) — relays, adders, circuit construction.
 
 ## Standalone shortcodes
 
@@ -16,7 +19,18 @@ Shortcode-driven components used in textbook pages and exercise solutions.
 - [The tree terminology gadget](tree-guide.md) — `tree-guide`.
 - [Annotated symbol groups](annotated-math.md) — `annotated-math`.
 - [Set diagrams](set-diagrams.md) — `set-diagram`.
+- [Function tables](function-tables.md) — finite operation tables and written addition.
 - [Inference overviews](inference-rules.md) — `inference-rules`.
+
+## PNG downloads
+
+Boolean, parser, formula-builder and shunting-yard apps have a camera button
+to download their current rendered state as a PNG at twice the displayed
+resolution. `export-image.js` uses the pinned `html-to-image` dependency to
+capture the diagram area, excluding surrounding controls and feedback. Apps
+without a separate diagram area capture their working area. Hidden content, utility
+controls and confetti are omitted. Capture runs locally without changing
+the live app. PNGs are images, not editable app saves.
 
 ## Adding an app
 

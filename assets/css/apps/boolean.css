@@ -1,0 +1,181 @@
+/* Open chapter demonstrations; shared tokens match trees and finite sets. */
+.logic-app.boolean-app { border: 0; border-radius: 0; background: transparent; padding: 0; box-shadow: none; margin-block: 2rem; }
+.boolean-app .boolean-app__layout { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 1.5rem; align-items: center; margin-block: 1rem; }
+.boolean-app__picture { min-width: 0; overflow: auto; }
+.boolean-app__picture > svg { display: block; width: 100%; height: auto; }
+.boolean-app__equation { font-family: var(--font-formal); font-size: var(--step-0); white-space: pre-wrap; overflow-wrap: anywhere; color: var(--blue-ink); padding-block: 2rem; }
+.boolean-app__formula { font-family: var(--font-formal); overflow-wrap: anywhere; }
+.boolean-app__valuation, .boolean-app__palette { display: flex; flex-wrap: wrap; gap: .75rem; margin-block: 1rem; }
+.boolean-app input, .boolean-app textarea { max-width: 100%; color: var(--ink); background: var(--paper); font-family: var(--font-formal); }
+.boolean-app textarea { display: block; width: 100%; }
+.boolean-app [data-inspector] label { display: block; margin-block: .5rem; }
+.boolean-app [data-check] { margin-block: .75rem; }
+.boolean-app details { font-size: var(--step--1); color: var(--ink-muted); }
+.boolean-app :where(.boolean-circuit, .boolean-tree) text { fill: var(--ink); stroke: none; font-family: var(--font-formal); font-size: 20px; }
+.boolean-app :where(.boolean-circuit, .boolean-tree) path, .boolean-app :where(.boolean-circuit, .boolean-tree) line, .boolean-app :where(.boolean-circuit, .boolean-tree) circle, .boolean-app :where(.boolean-circuit, .boolean-tree) rect { stroke: var(--ink); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.boolean-app .boolean-tree rect { fill: var(--paper); }
+.boolean-app .is-current rect, .boolean-app .is-current .gate-box { stroke: var(--blue-ink); stroke-width: 3; stroke-dasharray: 5 4; }
+.boolean-app .signal--0 { stroke: var(--red-ink); stroke-dasharray: none; }
+.boolean-app .signal--1 { stroke: var(--green-ink); }
+.boolean-app .signal--unknown { stroke: var(--ink-muted); stroke-dasharray: 2 6; }
+.boolean-app .gate-box { fill: var(--set-world); }
+.boolean-app .bulb { fill: var(--set-universe); }
+.boolean-app .relay-coil { fill: var(--set-world); }
+.boolean-app .mechanical-link { stroke-dasharray: 2 5; }
+.boolean-app .hit-area { fill: transparent; stroke: none; }
+.boolean-app .circuit-switch, .boolean-app .circuit-gate, .boolean-app .circuit-port { cursor: pointer; }
+.boolean-app[data-kind="workbench"] .circuit-gate { touch-action: none; cursor: grab; }
+.boolean-app :where(.boolean-circuit, .boolean-tree) [role="button"]:focus { outline: 3px solid var(--focus-inner); outline-offset: 4px; }
+.boolean-app[data-kind="workbench"] .boolean-app__layout { grid-template-columns: minmax(0, 3fr) minmax(0, 1fr); align-items: start; }
+.boolean-space { position: relative; margin: .3rem; }
+.boolean-space > .book-figure { display: block; width: 100%; }
+.boolean-app .boolean-world { position: absolute; width: 25%; height: 32%; border: 2px solid transparent; background: transparent; padding: 0; border-radius: 50%; box-shadow: none; color: var(--ink); }
+.boolean-world[data-world-index="0"] { left: 15%; top: 11%; }
+.boolean-world[data-world-index="1"] { left: 59%; top: 9%; }
+.boolean-world[data-world-index="2"] { left: 13%; top: 56%; }
+.boolean-world[data-world-index="3"] { left: 58%; top: 58%; }
+.boolean-app .boolean-world.is-selected { border-color: var(--ink); border-style: dashed; background: repeating-linear-gradient(135deg, transparent, transparent 6px, var(--rule-strong) 7px, transparent 8px); }
+.boolean-app .boolean-world:not(:disabled):hover { background-color: transparent; }
+.boolean-app__layout > div { min-inline-size: 0; }
+.boolean-app [role="status"], .boolean-app [data-inspector], .boolean-app [data-text] { text-align: start; }
+.boolean-app [role="status"] { font-size: var(--step--1); }
+.boolean-app [data-picture]:focus-visible { outline: 2px solid var(--focus-inner); }
+@media (max-width: 60rem) { .boolean-app .boolean-app__layout, .boolean-app[data-kind="workbench"] .boolean-app__layout { grid-template-columns: minmax(0, 1fr); } }
+@media (forced-colors: active) { .boolean-app .signal--0, .boolean-app .signal--1 { stroke: CanvasText; } .boolean-app .gate-box, .boolean-app .bulb { fill: Canvas; } .boolean-app .boolean-world.is-selected { border-color: Highlight; } }
+
+:root .boolean-space > .book-figure { background: transparent; }
+/* Motion supplements the signal colors and static switch geometry. */
+.boolean-app .signal--1 { stroke-dasharray: 7 5; animation: boolean-current 1.2s linear infinite; }
+.boolean-app .magnetic-field { stroke: var(--blue-ink); stroke-dasharray: 3 6; animation: boolean-field 3s ease-in-out infinite; }
+@keyframes boolean-current { to { stroke-dashoffset: -24; } }
+@keyframes boolean-field { 0%, 100% { opacity: .3; } 50% { opacity: 1; } }
+.boolean-app[data-paused="true"] :is(.signal--1, .magnetic-field) { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) { .boolean-app :is(.signal--1, .magnetic-field) { animation: none; } }
+.boolean-app :is(.gate-pin, .switch-pivot, .switch-contact) { fill: var(--paper); }
+.boolean-app .wire-junction { fill: var(--ink); stroke: none; }
+.boolean-choices { display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; margin-block: .4rem .75rem; }
+.boolean-app .boolean-choices button[aria-pressed="true"] { border-color: var(--blue-ink); box-shadow: inset 0 -2px var(--blue-ink); }
+.boolean-app .boolean-choices button { font-size: var(--step--1); }
+.boolean-app [data-valuation] > div { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; }
+.boolean-app [data-valuation] .boolean-choices { margin: .3rem 0; }
+.boolean-app__utilities { display: flex; justify-content: flex-end; gap: .5rem; margin-block: .6rem; }
+.boolean-app__utilities button { padding: .4rem; }
+.boolean-app [data-text] { margin-block: 1rem; font-size: var(--step--1); }
+.boolean-app [data-toolbar] { text-align: start; }
+.boolean-app [data-inspector] .boolean-choices { max-height: 15rem; overflow: auto; }
+.boolean-app .boolean-operator { color: var(--blue-ink); }
+.boolean-app__formula { white-space: pre-wrap; }
+.boolean-formula-form { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: .5rem; }
+.boolean-formula-form input { padding-inline: .6rem; }
+.boolean-app[data-kind="evaluation"] .boolean-app__layout { align-items: start; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); }
+.boolean-app .logic-app__tree { min-block-size: 0; max-block-size: 32rem; }
+.boolean-app .tree-valuation { font-size: 18px; fill: var(--blue-ink); stroke: var(--paper); stroke-width: 4px; paint-order: stroke; }
+.boolean-app[data-kind="derivation"] .boolean-app__layout { display: block; }
+.boolean-derivation { padding: 0; list-style: none; counter-reset: derivation; text-align: start; }
+.boolean-derivation > li { counter-increment: derivation; display: grid; grid-template-columns: 1.7em minmax(0, 2fr) minmax(0, 1fr); column-gap: .75rem; margin-block: .6rem; padding: .65rem .75rem; border-radius: var(--radius); }
+.boolean-derivation > li::before { content: counter(derivation) "."; white-space: nowrap; font-family: var(--font-formal); color: var(--ink-muted); }
+.boolean-derivation > .is-current { background: var(--surf-blue); box-shadow: inset 3px 0 var(--blue-ink); }
+.boolean-derivation > .is-future, .boolean-derivation > .is-future .boolean-operator { color: var(--ink-muted); }
+.boolean-derivation .boolean-app__formula { font-size: var(--step--1); }
+.boolean-derivation__reason { font-size: var(--step--1); overflow-wrap: normal; hyphens: auto; }
+.boolean-app .boolean-world-panel > p { display: flex; align-items: center; justify-content: center; gap: .5rem; }
+.boolean-world-panel > p .book-figure { width: 2rem; margin: 0; }
+.boolean-wind { position: relative; display: inline-flex; }
+.boolean-wind--absent::after { content: ""; position: absolute; inset-inline: 0; top: 50%; border-top: 2px solid var(--red-ink); transform: rotate(-45deg); }
+.boolean-app[data-kind="model-exercise"] [data-inspector] > .boolean-app__formula { display: block; margin-block-end: 1rem; }
+.boolean-app[data-variables="3"] .boolean-app__layout { grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); }
+.boolean-app [data-below] form { text-align: start; }
+.boolean-app [data-below] textarea { font-family: var(--font-formal); margin-block: .6rem; }
+.function-table td.is-current { outline: 2px dashed var(--blue-ink); outline-offset: -3px; }
+@media (max-width: 60rem) { .boolean-app[data-kind="evaluation"] .boolean-app__layout, .boolean-app[data-variables="3"] .boolean-app__layout { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 30rem) { .boolean-derivation > li { grid-template-columns: 2em minmax(0, 1.65fr) minmax(0, 1fr); column-gap: .4rem; padding-inline: .4rem; } }
+
+.boolean-app [data-motion] { display: inline-flex; align-items: center; gap: .35rem; padding-inline: .6rem; font-size: var(--step--1); }
+.boolean-app [data-motion] [hidden] { display: none; }
+.boolean-app .boolean-circuit__instruction { margin-block-start: 1.25rem; }
+.boolean-app__picture:has(> .boolean-circuit) { padding: .4rem; }
+.boolean-app .boolean-two-bit__results { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: .75rem; align-items: center; }
+.boolean-two-bit__results .function-table { font-size: var(--step--1); margin-block: .5rem; }
+.boolean-two-bit__results .function-table table { font-size: inherit; }
+.boolean-two-bit__results .function-table :is(th, td) { min-inline-size: 0; padding: .35rem .4rem; }
+.boolean-two-bit__table-controls { display: flex; align-items: center; flex-wrap: wrap; justify-content: center; gap: .4rem; }
+.boolean-two-bit__table-controls button { font-size: var(--step--1); }
+.boolean-two-bit__table-controls button[aria-pressed="true"] { box-shadow: inset 0 -2px var(--blue-ink); }
+.boolean-two-bit__results [data-discovered] { font-size: var(--step--1); }
+@media (max-width: 30rem) {
+  .boolean-two-bit__results .column-addition { font-size: var(--step--1); }
+  .boolean-two-bit__results .function-table :is(th, td) { padding-inline: .25rem; }
+}
+
+/* Keep the growing proof's controls available while reading its later lines. */
+.boolean-app[data-kind="derivation"] [data-toolbar] { position: sticky; top: 4rem; z-index: 4; background: var(--paper); border-radius: var(--radius); padding-block: .4rem; }
+.boolean-app[data-kind="evaluation"] .boolean-app__layout { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: .75rem; }
+.boolean-app[data-kind="evaluation"] .logic-app__tree { overflow: hidden; max-block-size: none; }
+.boolean-app[data-kind="evaluation"] .logic-app__tree svg { width: 100%; max-inline-size: 100%; height: auto; }
+@media (max-width: 40rem) {
+ .boolean-app[data-kind="evaluation"] .boolean-app__aside { font-size: var(--step--1); }
+ .boolean-app[data-kind="evaluation"] .logic-app__controls { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: .25rem; }
+ .boolean-app[data-kind="evaluation"] [data-count] { grid-column: 1 / -1; text-align: center; }
+ .boolean-app[data-kind="evaluation"] [data-valuation] > div { gap: .15rem; }
+ .boolean-app[data-kind="evaluation"] [data-valuation] .boolean-choices { gap: .2rem; }
+ .boolean-app[data-kind="evaluation"] [data-valuation] button { padding-inline: .65rem; }
+}
+.boolean-app .boolean-world, .boolean-app .boolean-world.is-selected { border: 0; border-radius: 50%; background: transparent; box-shadow: none; }
+.boolean-world-halo { fill: none; stroke: none; }
+[data-world-art] { transition: transform .18s ease, filter .18s ease; }
+[data-world-art].is-selected { transform: none; filter: none; }
+[data-world-art].is-selected .boolean-world-halo { fill: none; stroke: var(--blue-ink); stroke-width: 4; stroke-dasharray: 9 7; }
+[data-world-art].is-countermodel .boolean-world-halo { fill: none; stroke: var(--red-ink); stroke-width: 5; }
+.boolean-model-label { font: 36px var(--font-formal); fill: var(--ink); }
+.boolean-model-contour rect { stroke: var(--ink-muted); stroke-width: 2; stroke-opacity: .35; }
+.boolean-model-contour text { font: 27px var(--font-formal); fill: var(--ink-muted); }
+.boolean-model-contour.is-active rect { stroke: var(--blue-ink); stroke-width: 5; stroke-opacity: 1; }
+.boolean-model-contour.is-active text { fill: var(--blue-ink); }
+.boolean-app[data-variables="3"] .boolean-app__layout { grid-template-columns: minmax(0,1fr); }
+.boolean-rgb__swatch { inline-size: 8rem; aspect-ratio: 1; border: 2px solid var(--ink-muted); border-radius: var(--radius); margin: 1rem auto; }
+.boolean-app[data-preset="rgb"] [data-picture] { text-align: center; }
+.boolean-app[data-preset="rgb"] [data-below] table { margin-inline: auto; }
+.function-table .is-incorrect { color: var(--red-ink); text-decoration: underline wavy; text-underline-offset: .2em; }
+@media (prefers-reduced-motion: reduce) { [data-world-art] { transition: none; } }
+
+.boolean-proposition-outline { fill: none; stroke: var(--blue-ink); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+
+.boolean-proposition-outline.is-countermodel { stroke: var(--red-ink); }
+.boolean-app textarea[readonly] { background: var(--paper-sunken); color: var(--ink-muted); }
+.boolean-app [data-toolbar] .boolean-choices button { white-space: pre-line; }
+
+.boolean-app[data-kind="model-exercise"] [data-toolbar] button { font-family: var(--font-formal); }
+.boolean-app[data-preset="custom"] [data-below] form { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: .5rem; align-items: end; }
+.boolean-app[data-preset="custom"] [data-below] textarea { margin-block-end: 0; }
+.boolean-app[data-kind="workbench"] .boolean-app__aside { font-size: var(--step--1); }
+.boolean-app[data-kind="workbench"] [data-check-result] .function-table { font-size: var(--step--1); }
+.boolean-app[data-kind="workbench"] [data-check-result] .function-table :is(th,td) { padding: .35rem .5rem; }
+@media(min-width:60rem) { .boolean-app[data-kind="workbench"] .boolean-app__layout { grid-template-columns: minmax(0,3fr) minmax(0,2fr); } }
+
+.boolean-app [data-feedback="correct"] { color: var(--green-ink); background: var(--surf-green); padding: .65rem; border-radius: var(--radius); font-weight: 600; }
+.boolean-app [data-feedback="correct"]::before { content: '✓ '; }
+
+.boolean-app [data-feedback] { margin-block-start: 1.1rem; padding: .85rem 1rem; border-radius: var(--radius); text-align: start; }
+.boolean-app [data-feedback="incorrect"] { color: var(--red-ink); background: var(--surf-red); }
+.boolean-app [data-check-message] { margin: 0 0 .85rem; font-weight: 600; }
+.boolean-app [data-check-result]::before { content: none; }
+.boolean-app [data-check-result] .function-table { margin-block-end: 0; }
+.boolean-app [data-check], .boolean-app [data-check-selection], .boolean-check-controls { display: inline-flex; align-items: center; gap: .5rem; }
+
+.boolean-app [data-check-table] { color: var(--ink); }
+
+/* Keep the workspace and target together on a half-width laptop window. */
+.boolean-app[data-kind="workbench"] [data-picture] { display: flex; justify-content: center; align-items: start; }
+.boolean-app[data-kind="workbench"] .boolean-circuit { height: auto; max-inline-size: 100%; }
+@media (min-width: 36rem) {
+ .boolean-app[data-kind="workbench"] .boolean-app__layout { grid-template-columns: minmax(0, 3fr) minmax(8rem, 2fr); }
+}
+.boolean-app .circuit-delete circle { fill: var(--paper); stroke: var(--red-ink); }
+.boolean-app .circuit-delete path { stroke: var(--red-ink); }
+.boolean-component-preview { width: 3.5rem; height: 3rem; }
+.boolean-component-preview :is(path,rect,circle) { fill: none; stroke: var(--ink); stroke-width: 2; }
+.boolean-component-preview .gate-box, .boolean-component-preview .relay-coil { fill: var(--set-world); }
+.boolean-component-preview text { fill: var(--ink); font: 20px var(--font-formal); }
+.boolean-app__palette button { display: inline-flex; align-items: center; gap: .3rem; }
+.boolean-connections { margin-block: 1rem; text-align: start; }
+.boolean-proposition-outline.is-component { stroke: var(--ink-muted); stroke-opacity: .5; stroke-width: 3; stroke-dasharray: 10 7; }

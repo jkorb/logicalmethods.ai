@@ -18,6 +18,16 @@ The preamble exercises use Unicode math in Comic Shanns, including HTML sub/sup
 tags where needed; literal LaTeX solutions remain in code spans. They no longer
 enable KaTeX.
 
+## Pseudocode practice
+
+`name="pseudocode-practice"` provides five keyword-gap examples from
+`data/pseudocode-practice.json`. Each example has a prompt, a code string with
+`___` gaps, exact keyword answers and a short explanation. Inputs have unique
+accessible labels. Checks mark wrong gaps and give written feedback; success
+adds a checkmark and confetti. Reduced motion disables confetti and shaking.
+Answers persist across example changes during the page visit. This app checks
+keywords only; it does not execute student code.
+
 ## Related
 
 - [The formula builder](formula-builder.md) — `variables="plain"` for exercise targets.

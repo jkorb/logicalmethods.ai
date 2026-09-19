@@ -8,6 +8,10 @@ export function intersection(scene, ids) {
   ids.forEach(id => members(scene, id));
   return scene.points.filter(point => ids.every(id => point.sets.includes(id)));
 }
+export function union(scene, ids) {
+  ids.forEach(id => members(scene, id));
+  return scene.points.filter(point => ids.some(id => point.sets.includes(id)));
+}
 export function difference(scene, left, right) {
   const excluded = new Set(members(scene, right).map(point => point.id));
   return members(scene, left).filter(point => !excluded.has(point.id));
@@ -21,6 +25,7 @@ export function selectPoints(scene, view) {
   if (view.startsWith('outside:')) return scene.points.filter(point => !point.sets.includes(view.slice(8)));
   if (view === 'subset-witness') return difference(scene, 'S', 'T');
   if (view.startsWith('set:')) return members(scene, view.slice(4));
+  if (view === 'union') return union(scene, scene.sets.map(set => set.id));
   if (view === 'intersection') return intersection(scene, scene.sets.map(set => set.id));
   if (view === 'difference') return difference(scene, scene.sets[0].id, scene.sets[1].id);
   if (view === 'premises') return intersection(scene, scene.premises);

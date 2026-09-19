@@ -2,85 +2,102 @@
   "id": "lecture-3",
   "title": "Lecture 3: Valid inference",
   "source": "sources/Lecture 3.excalidraw",
-  "output": "slides/unpublished/valid-inference/deck",
-  "publication": "unpublished",
+  "output": "content/slides/valid-inference/deck",
   "originalSha256": "0cd17f7e339be9890984186b343cacd01a70086189d322d1d2b6f765c25ae6c9",
   "slides": [
     {
-      "frameId": "qdzEYsCaS3LOiCqpSsSJo",
+      "frameId": "5mKDlUuVVMtYwqrpG-5Ny",
       "title": "Logical methods for AI — Lecture 3"
     },
     {
-      "frameId": "j3pec2tFtgc6nfXudvga4",
-      "title": "Valid inference"
+      "frameId": "-orJNOhgZgCCDhlzOz3Wc",
+      "title": "What you'll be able to do"
     },
     {
-      "frameId": "7dVkAYwJTgh5YVfJ7CaYz",
-      "title": "Hypotheticals"
+      "frameId": "rSG1GohSE8p-JrYt9Lm8D",
+      "title": "Valid and invalid"
     },
     {
-      "frameId": "1i0wQAFg5IHsX0Z_csJOR",
+      "frameId": "RezTXV-OGaK_ZaeKBFQRE",
+      "title": "Truth preservation"
+    },
+    {
+      "frameId": "RWTXPxePjBzJyaZJmzwIo",
+      "title": "Valid, sound, true"
+    },
+    {
+      "frameId": "A3l-xOYa93fIE7rNF2OuE",
       "title": "Logical form"
     },
     {
-      "frameId": "f8ybk0JaGri38a7rpNcOO",
-      "title": "Formal languages"
-    },
-    {
-      "frameId": "24Huy03ZmA_udWb8MyYPF",
+      "frameId": "1spSlsEV4a6ootxXGbyH5",
       "title": "Material validity"
     },
     {
-      "frameId": "9ccuQOebCC2iijPOcZtnM",
-      "title": "Deductive validity"
+      "frameId": "TmYSGc1FQ9BlYUotOSPW1",
+      "title": "Always: deductive validity"
     },
     {
-      "frameId": "iye0rTKNFLaPQ2Szfn8bb",
+      "frameId": "NmYn4B4GUi3ecHVx3dtIw",
+      "title": "Deduction at work"
+    },
+    {
+      "frameId": "1NLUNXy2uweJ_g7Z1IQRh",
+      "title": "Schemas and fallacies"
+    },
+    {
+      "frameId": "BWmptJ6YuHR79ZcXTtxFd",
       "title": "Models"
     },
     {
-      "frameId": "ZeCkAjnOoh_OhSlg8N_m6",
-      "title": "Sets ... again"
+      "frameId": "UYiIibRvyOXjfMRVKDkLm",
+      "title": "Sets again"
     },
     {
-      "frameId": "sHVT2GMT70fRaQIsUbsJ_",
-      "title": "Deductive validity"
+      "frameId": "WkZPOQv61DkybSzZcmqEY",
+      "title": "Deductive consequence"
     },
     {
-      "frameId": "FjkNDzmNJmfIGBf3Z1Dv-",
-      "title": "Intersections"
+      "frameId": "jlmPSKy6cdTM6pyeq2Ger",
+      "title": "Countermodels"
     },
     {
-      "frameId": "kTbnZwEmrYqdWTNWERsVS",
-      "title": "Multi-premise deductive validity"
+      "frameId": "Dv4pu_qQ5ZCzJnDsrWbUC",
+      "title": "A blueprint"
     },
     {
-      "frameId": "1-2a1xF4ew2qOpGGKYw2D",
-      "title": "Todo"
+      "frameId": "wWY6BaXixU0pzyISd_CaF",
+      "title": "Mostly: inductive validity"
     },
     {
-      "frameId": "gQyoVPYRytNVKxdzJpepU",
-      "title": "Inductive validity"
+      "frameId": "ZN6kf_nLGG2gpK9s3lGsm",
+      "title": "Enumerative induction"
     },
     {
-      "frameId": "7kqEkXQdIMZH2Seq2ZUBp",
-      "title": "Probabilities"
+      "frameId": "PjWLTQdyhKCEkonptDmNq",
+      "title": "Probabilities over models"
     },
     {
-      "frameId": "d6NuUDk5TKfPPHX2i1hzK",
-      "title": "Conditional probabilities"
+      "frameId": "sualAPl2gn5te9gCXvx3e",
+      "title": "Conditional probability"
     },
     {
-      "frameId": "Hc1edz3gP6EJCSPsI1pKl",
-      "title": "Inductive validity"
-    },
-    {
-      "frameId": "x_KCGQkECQ0QyKQIKvw_F",
-      "title": "Strength (one option)"
-    },
-    {
-      "frameId": "dLCuP7OZgW7ch6FLEcBhK",
-      "title": "Todo"
+      "frameId": "9PrC1nDjaRJQsoARO2BSc",
+      "title": "Support, and logical support"
     }
-  ]
+  ],
+  "removedImages": {
+    "reason": "No creator, source or licence could be established for any embedded image in this lecture: a portrait, two screenshots of AI mathematics results, one unidentified picture and four product logos. The course publishes under CC BY 4.0. The image elements stay in the scene as deleted history; their bytes were dropped. The revised slides are illustrated from the book drawings in assets/img/drawings/sources/ and from Lecture 1 and 2 artwork instead.",
+    "reviewed": "2026-09-16",
+    "fileIds": [
+      "11ec3268d2a8998eae60e427dc962ecf17d37c80b3c9226f3b900f36a2f382891850326470a7fb04a7ccd72a2d4434af",
+      "6cf1fd6028b0285fd736e3d2594d7a1f6899c1c794965ec91a4e9478393e0156135ed37b1d297450ec47ddf46a5bfa85",
+      "75768e5873adc438d276f7cb6dd16cd783a835fc18727a78e3d0e67cdbd1126fa0c6c455f644cef7b04118b468fcd3b0",
+      "c3d9d03f3bae7d2a8c929ca65e40735c692e89435ae19872e1da5cc147781a6fef23d850be25ae5d87623a8288e1dd59",
+      "c7cfbe18e9e2fdfbd6167001ab0bc376dc24e61e6982f8f16c6803a5f8dfbf6bdc3ceac52280977261600693787d8b97",
+      "e1c58caded494b21a642bc2bfec10f8e63227980652863c0816d0a47da35f0ce5532207af60cbb54bf8a978446c704aa",
+      "fd198ce4be45b9f876cf65b90f9046115fae68fd2611e4d6b944ad13a4b84278c2c861d6a3ed093a279acc7ca94960a4",
+      "fe35db757c768380370322d582f5fc556f291ec0264b3bdd52c078eab595a7efe378c00ba8b716cff687ac981aa48ec4"
+    ]
+  }
 }

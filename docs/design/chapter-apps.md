@@ -1,6 +1,7 @@
 # Chapter apps
 
-The `logic-app` shortcode places interactive tools in a bordered paper panel.
+The `logic-app` shortcode loads page-local interactive tools in an open notebook
+layout. Some older tools retain bordered internal controls and status panels.
 App CSS is loaded only on pages containing that shortcode, uses the site's
 color and font tokens, and stays scoped to `.logic-app`. Formula inputs and
 SVG tree labels use `--font-formal`. A dashed outline marks the current tree
@@ -31,3 +32,5 @@ to `.syntax-tree` and `.ast-comparison`. They require no JavaScript.
 
 - [Interactive chapter apps](../authoring/apps/README.md) — the shortcodes and their options.
 - [Display mathematics](display-math.md), [Pickers and compact tools](pickers.md).
+
+- [Boolean apps](../authoring/apps/boolean.md) — derivations, evaluation, model spaces, and circuits use open displays.

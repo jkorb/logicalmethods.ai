@@ -11,6 +11,7 @@
       <defs>
         <pattern id="{{ $id }}-hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(32)"><path d="M 2 -2 Q 0 5 2 14" class="set-diagram__hatch"/></pattern>
         {{ range $scene.sets }}<path id="{{ $id }}-shape-{{ .id }}" d="{{ .path }}"/><clipPath id="{{ $id }}-clip-{{ .id }}"><use href="#{{ $id }}-shape-{{ .id }}"/></clipPath>{{ end }}
+        {{ range $scene.steps }}{{ if .union }}<clipPath id="{{ $id }}-union-{{ .id }}">{{ range .union }}<use href="#{{ $id }}-shape-{{ . }}"/>{{ end }}</clipPath>{{ end }}{{ end }}
         {{ range $scene.steps }}{{ if .exclude }}<mask id="{{ $id }}-exclude-{{ .id }}" maskUnits="userSpaceOnUse" x="0" y="0" width="600" height="360"><rect width="600" height="360" fill="white"/>{{ range .exclude }}<use href="#{{ $id }}-shape-{{ . }}" fill="black"/>{{ end }}</mask>{{ end }}{{ end }}
         {{/* Original book illustrations, embedded once per scene and reused as
              SVG symbols. Their shape and color remain the author's artwork. */}}
@@ -27,7 +28,7 @@
       </defs>
       <path class="set-diagram__universe" d="M 37 18 C 180 16 398 20 561 18 Q 582 18 581 39 L 580 320 Q 583 342 561 341 C 372 339 177 344 37 341 Q 16 342 18 321 L 19 40 Q 17 17 37 18 Z"/>
       {{ range $scene.sets }}<use href="#{{ $id }}-shape-{{ .id }}" class="set-diagram__fill set-diagram__fill--{{ .color }}"/>{{ end }}
-      {{ range $scene.steps }}<g data-region="{{ .id }}" class="set-diagram__region" style="display:none"{{ if .exclude }} mask="url(#{{ $id }}-exclude-{{ .id }})"{{ end }}>{{ if or .include .exclude }}{{ partial "figures/set-region.html" (dict "id" $id "include" .include) }}{{ end }}</g>{{ end }}
+      {{ range $scene.steps }}<g data-region="{{ .id }}" class="set-diagram__region" style="display:none"{{ if .exclude }} mask="url(#{{ $id }}-exclude-{{ .id }})"{{ end }}>{{ if .union }}<g clip-path="url(#{{ $id }}-union-{{ .id }})">{{ partial "figures/set-region.html" (dict "id" $id) }}</g>{{ else if or .include .exclude }}{{ partial "figures/set-region.html" (dict "id" $id "include" .include) }}{{ end }}</g>{{ end }}
       {{ range $scene.sets }}<use href="#{{ $id }}-shape-{{ .id }}" class="set-diagram__outline" data-set="{{ .id }}"/><text class="set-diagram__label" x="{{ .lx }}" y="{{ .ly }}" text-anchor="middle">{{ .label }}</text>{{ end }}
       {{ range $scene.points }}
       <g data-point="{{ .id }}" transform="translate({{ .x }} {{ .y }})">

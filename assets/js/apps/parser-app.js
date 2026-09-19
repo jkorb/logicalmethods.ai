@@ -1,12 +1,6 @@
+import { renderTree } from './tree-renderer.js';
 import { traceParse } from '../logic/parser.js';
 import { enableLatexInput, convertInput } from './latex-input.js';
-const NS = 'http://www.w3.org/2000/svg';
-function svgElement(name, attrs, text) {
-  const el = document.createElementNS(NS, name);
-  for (const [key, value] of Object.entries(attrs)) el.setAttribute(key, value);
-  if (text !== undefined) el.textContent = text;
-  return el;
-}
 export function mountParser(root) {
   const input = root.querySelector('input');
   const status = root.querySelector('[role="status"]');
@@ -53,52 +47,7 @@ export function mountParser(root) {
     textTree.replaceChildren();
     if (!step.tree) return;
     const nodeLabel = node => formulaLabels.checked ? node.text || '?' : node.label;
-    const widths = new Map();
-    const nodeWidths = new Map();
-    const measure = node => {
-      const nodeWidth = Math.max(68, [...nodeLabel(node)].length * 15 + 28);
-      nodeWidths.set(node.id, nodeWidth);
-      const childrenWidth = node.children.reduce((sum, child) => sum + measure(child), 0) + Math.max(0, node.children.length - 1) * 28;
-      const width = Math.max(nodeWidth, childrenWidth);
-      widths.set(node.id, width);
-      return width;
-    };
-    measure(step.tree);
-    const width = Math.max(280, widths.get(step.tree.id) + 40);
-    let maxDepth = 0;
-    const positions = new Map();
-    const place = (node, x, depth) => {
-      maxDepth = Math.max(maxDepth, depth);
-      positions.set(node.id, { x, y: 40 + depth * 82 });
-      const childrenWidth = node.children.reduce((sum, child) => sum + widths.get(child.id), 0) + Math.max(0, node.children.length - 1) * 28;
-      let left = x - childrenWidth / 2;
-      for (const child of node.children) {
-        place(child, left + widths.get(child.id) / 2, depth + 1);
-        left += widths.get(child.id) + 28;
-      }
-    };
-    place(step.tree, width / 2, 0);
-    const height = 80 + maxDepth * 82;
-    const svg = svgElement('svg', { viewBox: `0 0 ${width} ${height}`, width, height, 'aria-hidden': 'true', focusable: 'false' });
-    if (width <= 550) svg.style.maxInlineSize = '100%';
-    const edges = svgElement('g', {});
-    const nodes = svgElement('g', {});
-    function draw(node) {
-      const p = positions.get(node.id);
-      for (const child of node.children) {
-        const c = positions.get(child.id);
-        edges.append(svgElement('line', { x1: p.x, y1: p.y + 19, x2: c.x, y2: c.y - 19 }));
-        draw(child);
-      }
-      const g = svgElement('g', { class: node.id === step.active ? 'is-current' : '' });
-      g.append(svgElement('title', {}, `${node.label}: ${node.text}${node.complete ? ' — complete' : ' — still being parsed'}`));
-      g.append(svgElement('rect', { x: p.x - nodeWidths.get(node.id) / 2, y: p.y - 20, width: nodeWidths.get(node.id), height: 40, rx: 6 }));
-      g.append(svgElement('text', { x: p.x, y: p.y, 'text-anchor': 'middle', 'dominant-baseline': 'central' }, nodeLabel(node)));
-      nodes.append(g);
-    }
-    draw(step.tree);
-    svg.append(edges, nodes);
-    viewport.append(svg);
+    viewport.append(renderTree(step.tree, { active: step.active, nodeLabel }));
     function describe(node) {
       const li = document.createElement('li');
       li.textContent = `${node.id === step.active ? 'Current: ' : ''}${node.label === '?' ? `Not yet parsed: ${node.text || 'empty string'}` : nodeLabel(node)}${node.complete ? ' (complete)' : ''}`;

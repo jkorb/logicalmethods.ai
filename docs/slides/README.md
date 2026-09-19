@@ -1,8 +1,8 @@
 # Self-hosted lecture slides
 
-All 12 lectures are migrated to self-hosted Excalidraw: **216 slide frames**.
-Lectures 1 and 2 (40 frames) are reviewed and released, and use the normal
-website viewer. Lectures 3–12 (176 frames) are staged locally outside Hugo's
+All 12 lectures are migrated to self-hosted Excalidraw: **217 slide frames**.
+Lectures 1 to 4 (80 frames) are reviewed and released, and use the normal
+website viewer. Lectures 5–12 (137 frames) are staged locally outside Hugo's
 published content in ignored `slides/unpublished/`, awaiting content and image
 review. Their normal website paths show a short review notice; no Excalidraw Pro
 embed remains. `locked` and `draft` are not publication barriers because CI
@@ -20,8 +20,8 @@ separate from the normal build. Ordinary `hugo -D` excludes the staged deck file
 | --- | --- | --- |
 | 1 | 20 | `/slides/logic-and-ai/` |
 | 2 | 20 | `/slides/formal-languages/` |
-| 3 | 19 | `/slides/valid-inference/` |
-| 4 | 19 | `/slides/boolean/` |
+| 3 | 20 | `/slides/valid-inference/` |
+| 4 | 20 | `/slides/boolean/` |
 | 5 | 19 | `/slides/sat/` |
 | 6 | 17 | `/slides/conditionals/` |
 | 7 | 18 | `/slides/proof/` |

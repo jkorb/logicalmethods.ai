@@ -19,10 +19,14 @@ public/
 /slides/sources/*
 !/slides/sources/Lecture 1.excalidraw
 !/slides/sources/Lecture 2.excalidraw
+!/slides/sources/Lecture 3.excalidraw
+!/slides/sources/Lecture 4.excalidraw
 /slides/unpublished/
 /content/slides/*/deck/
 !/content/slides/logic-and-ai/deck/
 !/content/slides/formal-languages/deck/
+!/content/slides/valid-inference/deck/
+!/content/slides/boolean/deck/
 /slides/local-originals/
 
 # Per-person Obsidian state for the docs/ vault. app.json is committed so every

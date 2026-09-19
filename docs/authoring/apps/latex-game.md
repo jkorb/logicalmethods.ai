@@ -22,7 +22,8 @@ a glyph in the box's font.
 Skipping never reveals the answer, because the same prompt comes round again.
 The field doubles as the start button, and the shortcuts are Shift+Enter to skip
 and Escape to end; Tab is deliberately not bound, since it is how a keyboard user
-leaves the field. A best score per difficulty is kept in `localStorage`.
+leaves the field. A best score per difficulty is kept in `localStorage`. The brief confetti burst
+uses `celebrate.js`, shared with Boolean exercises, and respects reduced motion.
 
 ## Related
 

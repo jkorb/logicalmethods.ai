@@ -1,0 +1,56 @@
+{
+  "double-negation": [
+    [
+      "NOT NOT X",
+      "Start with NOT NOT X."
+    ],
+    [
+      "NOT NOT X = (NOT NOT X) AND 1",
+      "Identity, starting from line 1."
+    ],
+    [
+      "NOT NOT X = (NOT NOT X) AND (X OR NOT X)",
+      "In line 2, replace 1 by X OR NOT X (complementation, right to left)."
+    ],
+    [
+      "NOT NOT X = ((NOT NOT X) AND X) OR\n((NOT NOT X) AND NOT X)",
+      "Distributivity in line 3."
+    ],
+    [
+      "NOT NOT X = ((NOT NOT X) AND X) OR 0",
+      "In line 4, replace (NOT NOT X) AND NOT X by 0 (complementation and commutativity)."
+    ],
+    [
+      "NOT NOT X = (NOT NOT X) AND X",
+      "Identity in line 5. Keep this equality."
+    ],
+    [
+      "X = X AND 1",
+      "Now start with X: identity."
+    ],
+    [
+      "X = X AND\n((NOT NOT X) OR NOT X)",
+      "In line 7, replace 1 by (NOT NOT X) OR NOT X (complementation and commutativity)."
+    ],
+    [
+      "X = (X AND NOT NOT X) OR\n(X AND NOT X)",
+      "Distributivity in line 8."
+    ],
+    [
+      "X = (X AND NOT NOT X) OR 0",
+      "In line 9, replace X AND NOT X by 0 (complementation)."
+    ],
+    [
+      "X = X AND NOT NOT X",
+      "Identity in line 10."
+    ],
+    [
+      "X = (NOT NOT X) AND X",
+      "Commutativity in line 11."
+    ],
+    [
+      "NOT NOT X = X",
+      "Lines 6 and 12 have the same right-hand side. Symmetry and transitivity give the result."
+    ]
+  ]
+}

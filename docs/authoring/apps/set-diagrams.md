@@ -12,13 +12,14 @@ paths and verify containment in valid examples. Keep pictures, model labels,
 and selection rings clear of contour edges and set labels.
 
 The current scenes are `membership`, `subset`, `overlap`, `consequence`,
-`countermodel`, `single`, and `single-countermodel`. Model scenes also specify
+`countermodel`, `single`, `single-countermodel`, `union`, and `difference`. Model scenes also specify
 `premises` and `conclusion` as set IDs. A point's `image` names an existing book
 illustration; `icon: "world"` draws a model using the shared `model-world.svg`
 artwork. Numeric elements stay mathematical text. Each step supplies a title,
 explanatory text, a query (`view`), and lists of contours to `include`
 (intersection) and `exclude` (difference). SVG clips and masks shade the selected
-region using those same contour paths. Set-member references such as `@{jimmy}`
+region using those same contour paths. A step with `union: ["S", "T"]` clips
+to the combined contours; `view: "union"` selects members of any set in the scene. Set-member references such as `@{jimmy}`
 in step prose render the corresponding picture with an accessible name; spoken
 results resolve them to the member's name.
 
@@ -32,7 +33,7 @@ as with the tree guide, rather than narrating button labels. Picture members
 belong in the diagram and explanation sentences, not a separate selection row.
 
 `assets/js/set-diagram-model.js` provides browser-independent membership,
-intersection, difference, subset and countermodel queries. Exercise mode reuses these queries for grading; moving objects or drawing new
+intersection, union, difference, subset and countermodel queries. Exercise mode reuses these queries for grading; moving objects or drawing new
 contours is not implemented.
 Geometric area is not probability, and sampled models cannot establish validity
 in an entire language's model space.

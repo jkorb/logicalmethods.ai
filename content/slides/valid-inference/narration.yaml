@@ -1,0 +1,364 @@
+# Written description of every slide in Lecture 3, for readers who cannot use
+# the drawn deck. `alt` names the slide image; `body` describes the whole slide
+# in reading order, including what the drawings show. Keep both in step with
+# the scene in slides/sources/Lecture 3.excalidraw after any edit.
+slides:
+  - number: 1
+    alt: Title slide for Logical methods for AI, Lecture 3, on valid inference.
+    body: |
+      A pink title card reads "Logical methods for ∀I, Lecture 3". The A of AI
+      is drawn as the upside-down A of the universal quantifier, ∀, which is
+      the course mascot's name.
+
+      Below the card: "Chapter 3: Valid inference", and the course address,
+      logicalmethods.ai. At the right the mascot ∀I holds up a green board
+      carrying the inference from all humans being mortal and Socrates being
+      human to Socrates being mortal.
+
+  - number: 2
+    alt: The five learning goals for this lecture, each tagged with a level of Bloom's taxonomy.
+    body: |
+      Heading: "What you'll be able to do". Introduction: "After this lecture
+      and chapter 3, you can:". Five goals follow, each ticked off with a green
+      check mark and tagged on the right with its level in Bloom's revised
+      taxonomy.
+
+      One: explain what makes an inference valid. Understand. Two: tell
+      deductive from inductive, logical from material. Understand and analyse.
+      Three: test an inference with a pattern or a counterexample. Apply.
+      Four: read validity off sets of models. Understand and apply. Five:
+      measure inductive support with probabilities. Apply.
+
+      Closing line: "Read chapter 3 first; exercise sheet 3 comes after the
+      lecture." The mascot ∀I stands at the right wearing a lit lightbulb.
+
+  - number: 3
+    alt: A valid inference and an invalid one that looks almost the same.
+    body: |
+      Heading: "Valid and invalid". A green box states that validity is a
+      standard of correctness, and that an invalid inference has made a
+      mistake. At the top right the mascot cycles twice: once under the sun,
+      once under a rain cloud.
+
+      Two inferences stand side by side. The green one, labelled Valid: from
+      "If it is sunny, then ∀I is cycling" and "It is sunny", infer "∀I is
+      cycling". The red one, labelled Invalid: from the same conditional and
+      "∀I is cycling", infer "It is sunny".
+
+      Under the green one: the other premise is about the weather. Under the
+      red one: ∀I also cycles in the rain.
+
+      Closing lines: "They look alike. Logic wants a test that does not depend
+      on a second look," and "This mistake has a name: affirming the
+      consequent."
+
+  - number: 4
+    alt: Validity as truth preservation, illustrated with the flying cat.
+    body: |
+      Heading: "Truth preservation". A green box gives the definition: an
+      inference is deductively valid if and only if the conclusion is true
+      under the hypothetical assumption that all the premises are true.
+
+      Three points: the test is hypothetical, so we never check the premises;
+      a valid inference can therefore have false premises; imagine a world
+      where cats fly, and there the cat flies.
+
+      A yellow box holds the inference: from "All cats can fly" and "∃I is a
+      cat", infer "∃I can fly". Beside it: cats do not fly, and the reasoning
+      is correct anyway. At the right, the drawing of a winged cat chasing a
+      mouse.
+
+      Closing line: "Validity relates truth-values. It does not report the
+      facts."
+
+  - number: 5
+    alt: Three inferences showing that truth of the premises and validity come apart.
+    body: |
+      Heading: "Valid, sound, true". A green box defines a sound argument as a
+      deductively valid argument whose premises are actually true, so its
+      conclusion must be true as well.
+
+      Three panels. First, green: all cats can fly, ∃I is a cat, so ∃I can
+      fly — false premises, valid but not sound. Second, green: all humans are
+      mortal, Socrates is human, so Socrates is mortal — true premises, valid
+      and sound. Third, red: if sunny then ∀I cycles, ∀I is cycling, so it is
+      sunny — the premises may well be true, but this is not valid and not
+      sound.
+
+      Closing lines: "Truth and validity come apart in every direction," and
+      "Logic checks the connection. Whether the premises hold is another
+      question."
+
+  - number: 6
+    alt: The same logical form behind two inferences, and the notation for inference and for validity.
+    body: |
+      Heading: "Logical form". Two points: swapping Socrates for Turing and
+      human for mathematician leaves the inference valid; and since it is
+      valid for every such swap, it is valid in virtue of form.
+
+      Two grey panels show the pair: all humans are mortal and Socrates is
+      human, so Socrates is mortal; all mathematicians are smart and Alan
+      Turing is a mathematician, so Alan Turing is smart. At the right the
+      mascot presents the shared schema on a blackboard: all As are Bs, c is
+      an A, so c is B.
+
+      A blue box separates two notations. "A, (A → B) ∴ B" is the inference.
+      "A, (A → B) ⊨ B" is the claim that it is valid. Beside it: A and B stand
+      in for any formulas at all, and some systems make the second line false.
+
+  - number: 7
+    alt: Material validity, the failed replacement, and Carnap's meaning postulate.
+    body: |
+      Heading: "Material validity". A green box contrasts the two: logically
+      valid means truth preservation depends on the form; materially valid
+      means it depends on what the words mean.
+
+      In green: from "Sam is the brother of ∀I's mother" infer "Sam is ∀I's
+      uncle". In red, with "brother" replaced by "sister": the same conclusion
+      no longer follows, because then Sam is ∀I's aunt.
+
+      A blue box, headed "Carnap: add a meaning postulate", adds the premise
+      "The brother of a person's mother is their uncle" to the first
+      inference. Beside it: now it follows by form alone; and mathematics is
+      material too, since n divisible by 4 makes n even.
+
+      Closing lines: "Logical validity is domain-general; material validity is
+      domain-specific," and "Language models do better when familiar content
+      points at the answer."
+
+  - number: 8
+    alt: Deductive validity as truth preservation in every situation, with the asteroid calculation.
+    body: |
+      Heading: "Always: deductive validity". A green box: deductively valid
+      means that necessarily, in every situation where the premises are true,
+      the conclusion is true as well.
+
+      Three points. No exceptions: one bad situation breaks it. It is
+      characteristic of mathematics, and of physics when it calculates. And it
+      is indefeasible: extra premises never undo it. At the right, the mascot
+      works an integral out at a blackboard.
+
+      Closing lines: "So we can keep adding to what we know: belief
+      accumulation," and "The prediction is only as certain as the laws and
+      observations behind it."
+
+  - number: 9
+    alt: Deduction in everyday reasoning and in a Python program.
+    body: |
+      Heading: "Deduction at work". Two points: vixens are female foxes, so a
+      vixen here means a fox here; and programming languages are formal
+      languages with deductive rules.
+
+      A grey panel holds a five-line Python program. It reads a whole number
+      with int(input(...)), and prints that the number is positive if num is
+      greater than 0, and that it is not positive otherwise.
+
+      Beside it: enter 1 and modus ponens applies, so it prints. One that only
+      mostly obeyed would sometimes say nothing.
+
+      Closing line: "Expert systems and reasoning LLMs should draw these
+      inferences too."
+
+  - number: 10
+    alt: Three valid schemas beside the three matching fallacies.
+    body: |
+      Heading: "Schemas and fallacies", in two columns.
+
+      Valid, in green: modus ponens, from (A → B) and A infer B; modus
+      tollens, from (A → B) and ¬B infer ¬A; disjunctive syllogism, from
+      (A ∨ B) and ¬A infer B.
+
+      Fallacies, in red: affirming the consequent, from (A → B) and B to A;
+      denying the antecedent, from (A → B) and ¬A to ¬B; affirming a disjunct,
+      from (A ∨ B) and A to ¬B.
+
+      Closing line: "A countermodel each: A false with B true; for the third,
+      both true."
+
+  - number: 11
+    alt: Models, the logical space, and the proposition expressed by a formula.
+    body: |
+      Heading: "Models". A green box: a model represents a possible reasoning
+      scenario, and every formula is true or false in it.
+
+      Three points: necessarily means in every model; the logical space is the
+      models we consider; a proposition is a set of models. Below them, the
+      definition "[A] = { M : M is a model in which A is true }".
+
+      At the right, the chapter's set diagram: a yellow logical space, labelled
+      below, holding twelve little worlds. A green region labelled [A] gathers
+      five of them.
+
+      Closing lines: "We have not said what a model is. Every language supplies
+      its own," and "Modelling assumption: each formula is true or false in
+      each model."
+
+  - number: 12
+    alt: Subset and intersection, shown with the book's picture sets.
+    body: |
+      Heading: "Sets again". Two green boxes: "S ⊆ T", every member of S is
+      one of T; and "S ∩ T = { a : a ∈ S and a ∈ T }".
+
+      Two rows of picture sets follow. First: the set containing Little Jimmy
+      and Mr. Sir is a subset of the set containing Little Jimmy, the set
+      containing 1 and a beer, and Mr. Sir. Second: the set containing Little
+      Jimmy and Mr. Sir, intersected with the set containing Little Jimmy and
+      1, is the set containing Little Jimmy.
+
+      Closing lines: "The beer is not an element; the set containing it is.",
+      "Several premises: the models where all of them are true at once," and
+      "That is an intersection, and validity is about to become a subset
+      claim."
+
+  - number: 13
+    alt: Deductive consequence as a subset claim about the joint premise region.
+    body: |
+      Heading: "Deductive consequence". A blue box states the definition:
+      P₁, …, Pₙ ⊨ C if and only if [P₁] ∩ … ∩ [Pₙ] ⊆ [C].
+
+      Two points: every model of all the premises is a model of C; and test
+      the intersection, not one premise at a time.
+
+      At the right, the chapter's valid-consequence diagram. Eight little
+      worlds, M₁ to M₈, sit in a yellow logical space. The regions [P] and [Q]
+      overlap, and the tall region [C] covers the whole overlap: M₁ and M₂ lie
+      in all three. M₃ is in [P] only, M₄ in [Q] only, M₆ in [C] only, and M₅,
+      M₇ and M₈ outside everything.
+
+      Closing lines: "Neither premise alone guarantees C," and "Unsatisfiable
+      premises entail everything; with no premises, ⊨ C says C holds always."
+
+  - number: 14
+    alt: A countermodel sitting inside both premise regions but outside the conclusion region.
+    body: |
+      Heading: "Countermodels". A red box: a countermodel makes every premise
+      true and the conclusion false.
+
+      Two points: one is enough to refute an inference; validity is about every
+      model, invalidity about a single one.
+
+      A grey panel shows both jobs in notation. Valid:
+      [(A ∨ B)] ∩ [¬A] ⊆ [B]. Invalid: [(A → B)] ∩ [¬A] is not a subset of
+      [¬B], the subset sign struck through.
+
+      At the right, the chapter's countermodel diagram: the same eight worlds,
+      but [C] now sits higher. M₂ lies in the overlap of [P] and [Q] and
+      outside [C] — both premises true, the conclusion false.
+
+      Closing line: "Denying the antecedent falls to a single model: A false
+      and B true."
+
+  - number: 15
+    alt: What the account of deductive validity still leaves to be supplied.
+    body: |
+      Heading: "A blueprint". Three points: we still have not said what a
+      model is; supply the models of a language and say when a formula is true
+      in one, and validity follows; that is the work of the next chapters. At
+      the right, the mascot ∀I looks on, wondering.
+
+      A yellow box headed "Still to supply" lists three things: what a model
+      for a given language is; when ¬, ∧, ∨, → and ↔ hold in one; and a way
+      to survey all of them at once.
+
+      Closing line: "Next chapter: models for the language of propositional
+      logic."
+
+  - number: 16
+    alt: Inductive validity, Sherlock Holmes, and the smoke in the woods.
+    body: |
+      Heading: "Mostly: inductive validity". A green box: inductively valid
+      means the premises make the conclusion likely, without guaranteeing it.
+
+      A grey box quotes A Study in Scarlet, 1887: "From a drop of water a
+      logician could infer the possibility of an Atlantic or a Niagara."
+      Below it: Holmes calls it deduction; almost all of it is induction.
+
+      Two points. How probable is C given the premises, and how much do the
+      premises raise it? And: induction is defeasible — smoke means fire,
+      until you hear that Mr. Sir smokes his pipe here. At the right, the
+      drawing of smoke rising behind the trees while the mascot imagines a
+      camp fire.
+
+      Closing lines: "Deduction accumulates beliefs; induction modulates
+      them," and "The evidence did not go away. It was supplemented, and that
+      changed the conclusion."
+
+  - number: 17
+    alt: The swans, the marbles, and the shared form of enumerative induction.
+    body: |
+      Heading: "Enumerative induction". Two yellow panels: from "All swans we
+      have observed so far were white" infer "All swans are white"; and from
+      "All marbles we have drawn so far were white" infer "All marbles are
+      white". At the right, a swan on a pond, and the mascot at a jar of
+      marbles announcing "They're all white!!".
+
+      A blue box, headed "the shared form", gives the schema: from "All As we
+      have observed so far were B" infer "All As are B".
+
+      One point: the observations cannot lower the probability of C.
+
+      Closing lines: "They do not make it likely either: size alone does not
+      remove selection bias," and "Careful: an inductive definition and an
+      inductive inference are different things."
+
+  - number: 18
+    alt: The six models of a die roll, and two probability functions over them.
+    body: |
+      Heading: "Probabilities over models". Two points: in inductive logic a
+      model is a way the world could turn out; one roll of a die gives six
+      models, and a proposition is a set of them.
+
+      A yellow band shows the six dice faces. The faces 2, 4 and 6 are ringed
+      in green, and labelled "[EVEN] = the models 2, 4 and 6".
+
+      A green box: a probability function gives each proposition a number
+      between 0 and 1, and the outcomes sum to 1.
+
+      Two panels give distributions. Fair die: Pr(1) = … = Pr(6) = 1/6, so
+      Pr([EVEN]) = 1/2. Loaded die: Pr(1) = … = Pr(5) = 1/10 and Pr(6) = 1/2,
+      so Pr([EVEN]) = 7/10.
+
+      Closing line: "Fixing the distribution is statistics; saying what it
+      supports is logic."
+
+  - number: 19
+    alt: The definition of conditional probability and the two dice worked through.
+    body: |
+      Heading: "Conditional probability". A blue box gives the definition:
+      Pr([A] | [B]) = Pr([A] ∩ [B]) / Pr([B]), provided Pr([B]) > 0. Beside
+      it: the part of B that is also A, measured against B.
+
+      A table with four columns — distribution, Pr(2), Pr([EVEN]) and
+      Pr(2 | [EVEN]). Fair die: 1/6, 3/6, and (1/6) / (3/6) = 1/3. Loaded die:
+      1/10, 7/10, and (1/10) / (7/10) = 1/7.
+
+      Closing lines: "Either way, learning that the roll is even raises the
+      probability of a two.", "In that sense the hypothesis supports the
+      conclusion," and "Only division by zero is ruled out: we test premises
+      with positive probability."
+
+  - number: 20
+    alt: Probability-raising support, and support that holds under every probability function.
+    body: |
+      Heading: "Support, and logical support". At the top right: "Next:
+      Boolean algebra (ch. 4)".
+
+      A blue box, headed "Probability raising", defines
+      d(C, E) = Pr([C] | E) − Pr([C]), and works it out: fair die,
+      1/3 − 1/6 = 1/6; loaded die, 1/7 − 1/10 = 3/70. Positive means support;
+      zero means the premises are irrelevant.
+
+      A green box, headed "Weak logical inductive consequence", gives the
+      definition: P₁, …, Pₙ inductively support C if and only if
+      Pr([C] | E) ≥ Pr([C]) for every probability function Pr with Pr(E) > 0.
+      The logical relations stay put; the numbers vary.
+
+      Below the boxes, E is defined as [P₁] ∩ … ∩ [Pₙ], the joint premise
+      region. Then two lines. Logical: [2] ⊆ [EVEN], so EVEN supports 2 under
+      every distribution. Material: EVEN raises HIGH on a fair die and lowers
+      it on another — same models, different probabilities. At the right, the
+      mascot ∀I looks suitably impressed.
+
+      Closing lines: "More likely than before does not mean likely: a two is
+      still only 1/3," and "'Stronger' depends on the measure: the
+      log-likelihood ratio ranks cases differently."

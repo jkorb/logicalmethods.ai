@@ -1,0 +1,372 @@
+# Written description of every slide in Lecture 4, for readers who cannot use
+# the drawn deck. `alt` names the slide image; `body` describes the whole slide
+# in reading order, including what the drawings show. Keep both in step with
+# the scene in slides/sources/Lecture 4.excalidraw after any edit.
+slides:
+  - number: 1
+    alt: Title slide for Logical methods for AI, Lecture 4, on Boolean algebra.
+    body: |
+      A pink title card reads "Logical methods for ∀I, Lecture 4". The A of AI
+      is drawn as the upside-down A of the universal quantifier, ∀, which is
+      the course mascot's name.
+
+      Below the card: "Chapter 4: Boolean algebra", and the course address,
+      logicalmethods.ai. At the right the mascot ∀I peers through a chain of
+      magnifying glasses, each one showing a smaller part of a chip.
+
+  - number: 2
+    alt: The five learning goals for this lecture, each tagged with a level of Bloom's taxonomy.
+    body: |
+      Heading: "What you'll be able to do". Introduction: "After this lecture
+      and chapter 4, you can:". Five goals follow, each ticked off with a green
+      check mark and tagged on the right with its level in Bloom's revised
+      taxonomy.
+
+      One: explain what Boolean algebra is and where it is used. Understand.
+      Two: reason about Boolean functions with the algebraic laws. Apply.
+      Three: read and build a circuit that adds binary numbers. Apply and
+      analyse. Four: evaluate a formula in a Boolean model. Apply. Five: test
+      a propositional inference for countermodels. Apply and evaluate.
+
+      Closing line: "Read chapter 4 first; exercise sheet 4 comes after the
+      lecture." The mascot ∀I stands at the right wearing a lit lightbulb.
+
+  - number: 3
+    alt: Why Boolean algebra matters, from circuits up to knowledge bases.
+    body: |
+      Heading: "The logic of 0 and 1". A green box: Boolean algebra is the
+      logic of 0 and 1, the foundation of every computer and so of every AI
+      system.
+
+      Three points: Boole worked it out and Shannon connected it to circuits;
+      the conditionals of every programming language are built from Boolean
+      connectives; and reasoning in a knowledge base follows the same laws.
+
+      A grey panel holds two lines of Python: an if-statement testing
+      "num % 2 == 0 and not num < 10", which increments num. At the right, a
+      drawing of a database feeding a chip, with IsRaining going in and IsWet
+      coming out.
+
+      Closing line: "Low level and high level: the same algebra runs through
+      both."
+
+  - number: 4
+    alt: The two Boolean values and their reading as truth-values.
+    body: |
+      Heading: "Boolean values". A green box: the Boolean values are 1 and 0.
+
+      Two points: they can be read as true and false, on and off, yes and no;
+      in logic they are truth-values, and a model uses them to record the
+      facts.
+
+      A blue panel: "SUN says that the sun is shining". Below it, a drawing of
+      the sun beside "v(SUN) = 1", and a crossed-out sun beside "v(SUN) = 0".
+      At the right, the mascot ∀I holds a pair of scales weighing a 0 against
+      a 1.
+
+      Closing lines: "Modelling assumption — bivalence: every sentence is true
+      or false, never both," and "An idealization: future events and
+      borderline cases push back."
+
+  - number: 5
+    alt: The function tables for NOT, AND and OR, and truth-functional completeness.
+    body: |
+      Heading: "Boolean functions". A green box: a Boolean function takes a
+      fixed number of Boolean values as input and returns one as output.
+
+      At the left, how to read the tables: NOT goes left to right; for the
+      binary tables, find the first input in the column and the second in the
+      row, and they meet at the output. Two examples follow, with the
+      operators in the book's blue: NOT 0 = 1, and 1 OR 0 = 1.
+
+      A green box: NOT, AND and OR are truth-functionally complete — they
+      express every Boolean function.
+
+      At the right, the book's drawing of the three function tables, with the
+      mascot pointing at them.
+
+      Closing line: "Circuits often prefer other bases, such as NAND and XOR."
+
+  - number: 6
+    alt: The two relay configurations, default off and default on.
+    body: |
+      Heading: "Relay switches". Two points: a relay is a switch operated by
+      an electromagnet; one input powers the magnet, the other carries the
+      signal.
+
+      A red box, "default off": open when the magnet is off; power the magnet
+      and it closes. A green box, "default on": closed when the magnet is off;
+      power the magnet and it opens. At the right, the book's drawing of both
+      relays in both states.
+
+      Closing lines: "Shannon studied relays; today it is semiconductors. The
+      algebra is the same," and "Modelling assumption — ideal circuits: no
+      delay, no resistance, no contact bounce."
+
+  - number: 7
+    alt: Relay circuits implementing NOT, AND and OR.
+    body: |
+      Heading: "Implementing NOT, AND, OR". Three points. NOT: constant power
+      into a default on relay. AND: a default off relay, with X working the
+      magnet and Y supplying the signal, so both must be on. OR: two default
+      off relays side by side, where either closed contact lights the lamp.
+
+      At the left, a simple circuit drawing: a battery, two switches in series
+      labelled A and B, and a lamp. Beside it: the lamp is on only if both are
+      closed. At the right, the book's drawing of the relay implementations,
+      each with inputs X, Y and POWER.
+
+      Closing lines: "Compare each circuit with its function table: they match
+      line by line," and "The exercises leave you a few more functions to
+      build."
+
+  - number: 8
+    alt: The definition of a Boolean law, commutativity worked through, and the table of laws.
+    body: |
+      Heading: "Boolean laws". A green box: a Boolean law is an equation
+      between Boolean expressions that holds for every assignment of values to
+      its variables.
+
+      A yellow box gives one: (X AND Y) = (Y AND X), named Commutativity.
+      Below it the four calculations: 0 AND 0 equals itself; 0 AND 1 = 0 =
+      1 AND 0; 1 AND 0 = 0 = 0 AND 1; and 1 AND 1 equals itself. Beside them:
+      only the middle two matter.
+
+      A blue panel lists the laws by name: associativity, commutativity,
+      absorption, distributivity, complementation, identity and domination,
+      each with its identity.
+
+      Closing lines: "Each law is checked the same way: run through every
+      combination of values.", "Every law here has a twin with AND and OR
+      swapped," and "Verify them yourself — the habit pays off later."
+
+  - number: 9
+    alt: De Morgan, double negation, and a derivation that beats the truth table.
+    body: |
+      Heading: "Deriving new laws". One point: an identity may replace either
+      side by the other, anywhere, and in either direction.
+
+      A green box gives De Morgan's two laws — NOT (X OR Y) = (NOT X) AND
+      (NOT Y), and NOT (X AND Y) = (NOT X) OR (NOT Y) — together with double
+      negation, NOT NOT X = X.
+
+      A yellow box asks why bother when tables settle it, and answers with
+      X AND ((Y AND Z) OR NOT (Y AND Z)). That is [something] OR NOT
+      [something], so Complementation gives X AND 1, and Identity gives X.
+      Eight rows avoided.
+
+      At the right, the mascot works at a blackboard. Beside it: the seven
+      laws are complete — every valid Boolean identity follows from them.
+
+      Closing line: "One equation is enough, as McCune proved — with automated
+      deduction."
+
+  - number: 10
+    alt: Binary notation, bit positions, and the numbers zero to three.
+    body: |
+      Heading: "Binary numbers". A green box: a bit is a binary digit, 0 or 1,
+      and in binary notation the bit in position n counts 2 to the n — so
+      position 0 counts ones.
+
+      Two points: each place is worth twice the one to its right; positions are
+      numbered from the right, starting at 0.
+
+      Below, the book's drawing expanding 1101 as (1 × 2³) + (1 × 2²) +
+      (0 × 2¹) + (1 × 2⁰), which is 8 + 4 + 0 + 1 = 13. At the right, a blue
+      table pairing the decimals 0 to 3 with the binary strings 00, 01, 10 and
+      11, noting that two bits reach three.
+
+      Closing line: "We write (1101)₂ = 13 when the notation could be mistaken
+      for decimal."
+
+  - number: 11
+    alt: Adding 1101 and 1001 in columns, with carries.
+    body: |
+      Heading: "Binary addition". Two points: it is the same algorithm as on
+      paper — add a column and carry when full; in decimal you carry at ten,
+      in binary at two, because the next column counts twos.
+
+      The book's worked example: 1101 (thirteen) plus 1001 (nine) gives 10110
+      (twenty-two), with the carries marked in red.
+
+      A yellow box walks through it: the right column, 1 + 1, is two, so write
+      0 and carry 1; next, 0 + 0 plus the carry is 1; then 1 + 0 is 1; and
+      finally 1 + 1 opens a new column.
+
+      Closing lines: "Thirteen plus nine is 10110: sixteen and four and two,
+      which is 22," and "Adding two k-bit numbers may need k + 1 bits. Drop the
+      last carry and you lose it."
+
+  - number: 12
+    alt: The half adder, its two formulas and its circuit.
+    body: |
+      Heading: "The half adder". A green box: a half adder adds two bits, and
+      outputs the digit for this column and the carry for the next one.
+
+      Two points: write 1 when exactly one input is 1, which is XOR; carry 1
+      only when both are 1, which is AND.
+
+      A blue box gives the formulas, the operators in the book's blue:
+      SUM(X, Y) = X XOR Y, and CARRY(X, Y) = X AND Y. At the right, the book's
+      circuit: an XOR box and an AND box sharing the same two inputs, each
+      feeding its own lamp.
+
+      Closing lines: "Set X = Y = 1: the sum lamp is off and the carry lamp is
+      on," and "That is the 10 we need when we add one and one."
+
+  - number: 13
+    alt: The full adder, built from two half adders and an OR.
+    body: |
+      Heading: "The full adder". A green box: a full adder adds two bits and
+      an incoming carry.
+
+      Two points: three bits to add, so four cases; the new case is 1 + 1 + 1,
+      which is three — write 1 and carry 1.
+
+      A blue box gives the formulas: SUM(X, Y, C) = (X XOR Y) XOR C, and
+      CARRY(X, Y, C) = (X AND Y) OR (C AND (X XOR Y)). At the right, the
+      book's full-adder circuit.
+
+      Below, the drawing of two half-adder symbols adding to a full adder,
+      with the explanation: two half adders and an OR — the first adds X and
+      Y, the second adds C, and the OR joins their carries.
+
+      Closing line: "One adder per column, its carry feeding the next."
+
+  - number: 14
+    alt: Boolean valuations for the weather language, and the four models.
+    body: |
+      Heading: "Boolean models". A green box: a Boolean valuation assigns
+      exactly one Boolean value to every propositional variable, and a Boolean
+      model is a valuation.
+
+      Two points: the weather language has SUN and RAIN; v(SUN) = 1 says it is
+      sunny, and 0 says it is not.
+
+      A blue table lists all four valuations, v₁ to v₄, with their values for
+      SUN and RAIN and the situation each describes: sunny and rainy; sunny,
+      no rain; rain, no sun; neither.
+
+      At the right, the book's drawing of the logical space: a yellow field
+      holding the four weather worlds, labelled M₁ to M₄.
+
+      Closing line: "Four valuations, so four models. We call them M₁ to M₄,
+      and they are the logical space of this little language."
+
+  - number: 15
+    alt: Counting the models of a language with n variables.
+    body: |
+      Heading: "How many models?". Two points: each variable takes a value
+      independently of the rest; two choices for SUN, and for each of those,
+      two for RAIN.
+
+      A yellow box does the arithmetic: 2 × 2 = 4 with SUN and RAIN; 4 × 2 = 8
+      once we add WIND; and 2 to the n with n variables. At the right, a
+      drawing of a chip.
+
+      Closing lines: "The count grows fast: ten variables already give 1024
+      models.", "Modelling assumption — granularity: the language fixes what a
+      model can tell apart," and "Modelling assumption — the reasoning space:
+      every combination is allowed, sun and rain together included. Ruling one
+      out takes a premise."
+
+  - number: 16
+    alt: The three evaluation clauses, worked through at one valuation.
+    body: |
+      Heading: "Boolean evaluation". A green box: a valuation fixes the
+      variables, and these equations then fix the value of every formula.
+
+      A blue box gives the three clauses, the operators in the book's blue:
+      v(¬A) = NOT v(A); v(A ∧ B) = v(A) AND v(B); v(A ∨ B) = v(A) OR v(B).
+
+      Three points: a negation is true when its argument is false; a
+      conjunction when both conjuncts are; a disjunction when at least one is.
+
+      A yellow box works it out at v₂, where v(SUN) = 1 and v(RAIN) = 0:
+      v(¬RAIN) = NOT 0 = 1, so v(SUN ∧ ¬RAIN) = 1 AND 1 = 1. Beside it: the
+      same letter v names the valuation and its extension to every formula.
+
+      Closing line: "One valuation, one value for each formula."
+
+  - number: 17
+    alt: Evaluating a formula down its parse tree.
+    body: |
+      Heading: "Parsing and evaluation". Two points: the parse tree says which
+      operation gets which inputs; and evaluation is recursion — the base case
+      is a variable, read off the valuation, and otherwise you evaluate the
+      parts and apply the function.
+
+      The formula SUN ∨ (RAIN ∧ ¬SUN), evaluated at v₃: no sun, rain. At the
+      right, its tree, with each node's value in green beside it. The SUN leaf
+      is 0; RAIN is 1; the SUN under the negation is 0, so ¬ gives 1; the
+      conjunction gives 1; and the disjunction at the root gives 1.
+
+      Beside the tree: evaluate ¬SUN, then the conjunction, then the
+      disjunction at the root. Every call gets a shorter formula, so the
+      process terminates.
+
+      Closing lines: "Repeated occurrences of SUN are separate leaves with the
+      same value," and "This is how parsing connects to computation, here and
+      in any programming language."
+
+  - number: 18
+    alt: Propositions as sets of models, and the set operations behind the connectives.
+    body: |
+      Heading: "Propositions". A green box: the proposition expressed by A is
+      its set of models, [A] = { v : v(A) = 1 }, and we write v ⊨ A when
+      v(A) = 1.
+
+      Two examples: [SUN] = { M₁, M₂ } and [RAIN] = { M₁, M₃ }.
+
+      A green box defines two set operations: union, S ∪ T = { x : x ∈ S or
+      x ∈ T }, and difference, S \ T = { x : x ∈ S and x ∉ T } — nothing
+      counted twice.
+
+      A blue box pairs each connective with its operation: negation,
+      [¬A] = W \ [A]; conjunction, [A ∧ B] = [A] ∩ [B]; disjunction,
+      [A ∨ B] = [A] ∪ [B]. W is the whole logical space.
+
+      At the right, the book's drawing of the logical space with [SUN]
+      outlined in green around M₁ and M₂.
+
+      Closing line: "Evaluation asks about one model; a proposition collects
+      them all."
+
+  - number: 19
+    alt: Disjunctive syllogism tested against the four Boolean models.
+    body: |
+      Heading: "Testing an inference". A green box: the inference from A₁, …,
+      Aₙ to B is valid iff every valuation making all premises true makes B
+      true — that is, [A₁] ∩ … ∩ [Aₙ] ⊆ [B].
+
+      A green panel holds the inference: from SUN ∨ RAIN and ¬SUN, infer
+      RAIN — disjunctive syllogism. At the right, the mascot thinks about a
+      desk with drawers, reasoning that the key is at home because it is not
+      in the backpack.
+
+      The calculation: [SUN ∨ RAIN] = { M₁, M₂, M₃ } and [¬SUN] = { M₃, M₄ },
+      so their intersection is { M₃ }, which is inside [RAIN].
+
+      Closing lines: "Only M₃ survives both premises, and RAIN is true there,"
+      and "No countermodel, so the inference is valid."
+
+  - number: 20
+    alt: Affirming a disjunct, refuted by the model where it is sunny and raining.
+    body: |
+      Heading: "A countermodel". At the top right: "Next: Boolean
+      satisfiability (ch. 5)".
+
+      A red panel holds the inference: from SUN ∨ RAIN and SUN, infer
+      ¬RAIN — affirming a disjunct.
+
+      Then: the premises allow M₁ and M₂, but the conclusion rules out M₁,
+      because there it is sunny and raining. At the right, a little world
+      labelled M₁ beside drawings of the sun and of rain.
+
+      A grey box writes it out: M₁ ∈ [SUN ∨ RAIN] ∩ [SUN], M₁ ∉ [¬RAIN], so
+      SUN ∨ RAIN, SUN ⊭ ¬RAIN. Beside it: one model is enough — sunny and
+      rainy at once makes both premises true and the conclusion false.
+
+      Closing lines: "This verdict depends on reading ∨ inclusively," and "An
+      exclusive disjunction would rule M₁ out — the exercises explore the
+      difference."

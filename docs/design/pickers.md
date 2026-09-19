@@ -11,5 +11,6 @@ so local previews cannot accidentally load an older live-site stylesheet.
 - [Chapter apps](chapter-apps.md) — the parser's side-by-side desktop layout.
 - [Local slide viewer](slide-viewer.md).
 
-Prefer visible buttons for a small fixed set of choices, as in bracket practice
-and set diagrams. Keep the slide viewer’s picker for its longer list of slides.
+Use visible buttons for chapter-app choices, as in bracket practice, Boolean
+apps and set diagrams. The slide viewer keeps its picker for its longer list
+of slides.
