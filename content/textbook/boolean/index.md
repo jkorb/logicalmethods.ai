@@ -50,7 +50,7 @@ algebra:
 {{< img src="/img/drawings/bool_mp_kb.svg" class="rounded mx-auto d-block inert-img img-fluid my-4" width="400px">}}
 
 {{< callout type="objectives" >}}
-After studying this chapter, you should be able to:
+After studying this chapter, you will be able to:
 
 - Explain the basic ideas of Boolean algebra and their role in computing.
 - Use Boolean laws to reason about Boolean functions and circuits.
