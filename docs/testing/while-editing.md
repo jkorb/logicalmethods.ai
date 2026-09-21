@@ -15,18 +15,34 @@ The browser tests use port 4173, so you can leave a Hugo preview running on 1313
 
 ## Reading a failure
 
-If a check fails, its output identifies the page, resource, or test to inspect.
-A browser failure prints the assertion, the call log and the code frame, which
-is normally enough. For more, open the report:
+A passing check prints one line. A failing check prints its own output, the path
+to its full log, and the command that re-runs it alone:
+
+```text
+✗ Generated site         exit 1                 997ms
+
+  textbook/sat/index.html: duplicate id sat
+  Generated site: 1 failure(s)
+
+  full output: tmp/logs/site.log
+  re-run only this check: npm run check:site
+```
+
+Iterate with that narrow command, not the whole suite. Checks that depend on a
+failed one are skipped and labelled; independent ones still run, so a single run
+finds everything. A browser failure prints the assertion, the call log and the
+code frame, which is normally enough. For more, open the report:
 
 ```sh
 npx playwright show-report tmp/playwright-report
 ```
 
-CI reports include failure screenshots and traces; automatic local capture is off
-by default, though individual tests may save screenshots explicitly. Keep verbose
-logs under `tmp/` and return summaries and relevant failure
-excerpts. All local reports and temporary builds also live there.
+`npm run check -- --verbose` streams every check live when a summary is not
+enough. Full output is kept in `tmp/logs/<check>.log` either way, so there is no
+need to re-run a check to see what it said. [Test output](output.md) covers the
+rest. CI reports include failure screenshots and traces; automatic local capture
+is off by default, though individual tests may save screenshots explicitly. All
+local reports and temporary builds live under `tmp/`.
 
 Do not read the `error-context.md` files a failure leaves in
 `tmp/test-results/`. They are whole-page accessibility snapshots, up to a
@@ -46,9 +62,14 @@ them in the report, where they are navigable, or not at all.
 | `npm run test:browser:desktop` | The same suite at desktop width only, in half the time. |
 | `npm run test:unit` | The validators themselves, using small test documents. |
 
+Each prints a single line when it passes. `npm run check -- --only=site,docs`
+runs a named subset through the runner instead, keeping the summary and the
+dependency skipping.
+
 `check:site` and `test:browser` use the last build. Run `npm run build:test`
 first if you have edited the site since building it.
 
 ## Related
 
+- [Test output](output.md) — quiet runs, `--verbose`, and notes for agents.
 - [Running only what your change affects](targeted-runs.md).

@@ -23,6 +23,8 @@ for (const route of ['/', '/about/', '/textbook/', '/textbook/boolean/', '/exerc
 /* Icons that only appear after an interaction cannot be found by scanning the
    built HTML. Subsetting the font once dropped bi-sun and bi-moon-stars, and
    the theme toggle rendered an empty box as soon as it was clicked. */
+const ORDER = ['system', 'light', 'dark'];
+
 test('the theme toggle keeps a visible icon in every state', async ({ page }) => {
   await page.goto('/');
   await page.evaluate(() => document.fonts.ready);
@@ -39,6 +41,7 @@ test('the theme toggle keeps a visible icon in every state', async ({ page }) =>
         icon: [...el.classList].find(c => c.startsWith('bi-')),
         content: cs.content,
         label: document.querySelector('#theme-toggle').getAttribute('aria-label'),
+        mode: document.querySelector('#theme-state').textContent.trim(),
         drawn: box.width > 0 && box.height > 0
       };
     });
@@ -47,8 +50,12 @@ test('the theme toggle keeps a visible icon in every state', async ({ page }) =>
     expect(state.drawn, `${state.icon} renders at zero size`).toBe(true);
     expect(state.label).toBeTruthy();
     seen.push(state.icon);
+    // The click handler applies the next mode synchronously and records it in
+    // #theme-state, so wait for that rather than for a fixed number of
+    // milliseconds: a loaded runner may repaint later than any sleep allows.
+    const next = ORDER[(ORDER.indexOf(state.mode) + 1) % ORDER.length];
     await toggle.click();
-    await page.waitForTimeout(120);
+    await expect(page.locator('#theme-state')).toHaveText(next);
   }
   // system -> light -> dark -> system
   expect(new Set(seen).size).toBe(3);
@@ -61,7 +68,8 @@ test('the toggle actually changes the theme', async ({ page }) => {
   const before = await ground();
   await page.locator('#theme-toggle').click();   // light
   await page.locator('#theme-toggle').click();   // dark
-  await page.waitForTimeout(150);
-  expect(await ground()).not.toBe(before);
-  expect(await page.evaluate(() => document.documentElement.getAttribute('data-theme'))).toBe('dark');
+  // Waiting on the attribute the toggle sets, rather than on a sleep, keeps the
+  // assertion about the theme instead of about how fast the machine repaints.
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+  await expect.poll(ground).not.toBe(before);
 });

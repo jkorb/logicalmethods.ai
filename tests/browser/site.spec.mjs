@@ -1,6 +1,7 @@
 import { reviewScreenshot } from './review-screenshot.mjs';
 import { testPassword, useTestPassword } from './solution-password.mjs';
 import { test, expect } from './fixtures.mjs';
+import { budget } from './budget.mjs';
 
 for (const route of ['/', '/textbook/', '/textbook/boolean/', '/exercises/logic-and-ai/', '/slides/logic-and-ai/', '/tutoraat/', '/verdiepingspakketten/']) {
   test(`page and first-party assets: ${route}`, async ({ page }, testInfo) => {
@@ -16,7 +17,7 @@ for (const route of ['/', '/textbook/', '/textbook/boolean/', '/exercises/logic-
     expect(await page.title()).not.toBe('');
     // Figures are lazy-loaded, so force them to resolve before asserting they exist.
     await page.locator('img').evaluateAll(images => images.forEach(i => { i.loading = 'eager'; }));
-    await page.waitForFunction(() => [...document.images].every(i => i.complete), null, { timeout: 15000 });
+    await page.waitForFunction(() => [...document.images].every(i => i.complete), null, { timeout: budget(15000) });
     expect(await page.locator('img').evaluateAll(images => images.filter(i => i.naturalWidth === 0).map(i => i.src))).toEqual([]);
     expect(failures).toEqual([]);
     await reviewScreenshot(page, { path: testInfo.outputPath('page.png') });

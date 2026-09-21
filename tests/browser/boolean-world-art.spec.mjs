@@ -1,6 +1,7 @@
 import { reviewScreenshot } from './review-screenshot.mjs';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { test, expect } from './fixtures.mjs';
+import { budget } from './budget.mjs';
 
 // Compare actual rendered pixels with the supplied artwork, not just selection
 // classes or element counts. Hide only our intentional overlays and lift.
@@ -37,7 +38,7 @@ async function expectIntactArtwork(app) {
 
 for(const theme of ['light','dark'])for(const section of ['textbook','exercises']) {
   test(`${section} world artwork survives every selection in ${theme}`,async({page},info)=>{
-    test.setTimeout(120000);
+    test.setTimeout(budget(120000));
     const errors=[];page.on('pageerror',e=>errors.push(e.message));
     // Regressions must not depend on a successful live SVG geometry measurement.
     await page.addInitScript(()=>{SVGGraphicsElement.prototype.getBBox=function(){throw new Error('World artwork must not be assembled from bounding boxes');};});

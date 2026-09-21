@@ -37,7 +37,14 @@ test('pseudocode checks gaps, preserves answers, and honours reduced motion',asy
   await a.getByRole('button',{name:'Check',exact:true}).click();await expect(a.getByRole('status')).toContainText('Correct.');
  }
  await a.locator('[data-level-picker] button').first().click();await expect(a.locator('input')).toHaveValue('def');
- await page.emulateMedia({reducedMotion:'reduce'});await page.waitForTimeout(1300);await a.getByRole('button',{name:'Check',exact:true}).click();await expect(a.locator('.logic-app__confetti')).toHaveCount(0);
+ // celebrate.js removes a burst 1200 ms after it appears. Wait for the burst
+ // from the answers above to actually go, rather than sleeping for slightly
+ // longer than that timer and hoping a loaded runner ran it on time.
+ await page.emulateMedia({reducedMotion:'reduce'});
+ await expect(a.locator('.logic-app__confetti')).toHaveCount(0);
+ await a.getByRole('button',{name:'Check',exact:true}).click();
+ await expect(a.getByRole('status')).toContainText('Correct.');
+ await expect(a.locator('.logic-app__confetti')).toHaveCount(0);
  expect((await new AxeBuilder({page}).include('[data-logic-app="pseudocode-practice"]').analyze()).violations).toEqual([]);
  await reviewScreenshot(a, {path:`tmp/boolean-polish/${info.project.name}-pseudocode.png`});
 });
