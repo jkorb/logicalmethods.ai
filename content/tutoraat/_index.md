@@ -126,7 +126,7 @@ section. Please take note of where you're needed and when.
 | before 07/09/26  | Tutor meets peer coaches                | T+P    |
 | 07/09/26         | Intro Day: Tutormeeting 1, LaTeX        | T+P+M  |
 | ca. 10/26        | Peer coach training 2                   | P      |
-| 09/11/25            | Break Day: Tutormeeting 2, Git workshop | T+P    |
+| 09/12/25         | Break Day: Tutormeeting 2, Git workshop | T+P    |
 | before 24/12/26  | Social Activity                         | P+M    |
 | before 01/02/27  | Peer Coach Review & Tutormeeting 3      | T+P    |
 | 05/27            | Choice Day: Tutormeeting 4, Workshop    | T+P+S  |
