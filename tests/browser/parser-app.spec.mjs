@@ -110,7 +110,7 @@ test('page without JavaScript retains the worked example and disabled app', asyn
 });
 
 test('two instances retain independent inputs and histories', async ({ page }) => {
-  await page.goto('/textbook/tools/');
+  await page.goto('/tools/propositional-parser/');
   const first = page.locator('[data-logic-app]').first();
   await expect(first).toHaveAttribute('data-mounted', 'true');
   const second = page.locator('[data-logic-app]').nth(1);

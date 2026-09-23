@@ -67,4 +67,4 @@ satisfiability but does not extract a model. The table marks witnesses.
 ## Related
 
 - [App index](README.md), [chapter-app design](../../design/chapter-apps.md).
-- [Boolean apps](boolean.md), [Tools appendix](../tools-appendix.md).
+- [Boolean apps](boolean.md), [The tools section](../tools-section.md).

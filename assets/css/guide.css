@@ -1,0 +1,10 @@
+/* ==========================================================================
+   guide.css — reference sections (tools, study guide)
+   One prose column per page: no chapter rail and no progress bar, since these
+   pages are dipped into rather than read in sequence.
+   ========================================================================== */
+.guide-shell { padding-block: 1.5rem 2rem; }
+.guide { inline-size: 100%; min-inline-size: 0; }
+@media (min-width: 48rem) {
+  .guide { padding-inline-start: 2.25rem; border-inline-start: 1px solid var(--margin-rule); }
+}

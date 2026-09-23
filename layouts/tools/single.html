@@ -1,0 +1,7 @@
+{{ define "head" }}
+<link rel="stylesheet" href="{{ (resources.Get "css/guide.css").Permalink }}">
+{{ end }}
+
+{{ define "main" }}
+{{ partial "single/guide.html" . }}
+{{ end }}

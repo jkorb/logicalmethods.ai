@@ -228,3 +228,17 @@ test('switch and wiring targets are separated, and success respects reduced moti
  await page.emulateMedia({reducedMotion:'reduce'});await button(a,'Check selection').click();await expect(a.locator('.logic-app__confetti')).toHaveCount(0);await expect(a.getByRole('status')).toContainText('Correct.');
  await a.locator('[data-model="M₂"]').click();await expect(a.getByRole('status')).not.toHaveAttribute('data-feedback','correct');
 });
+
+test('the sandbox opens with every component, no task, and a live circuit table',async({page})=>{
+ await page.goto('/tools/circuit-sandbox/');
+ const a=app(page,'workbench','sandbox');
+ for(const name of ['+ NOT','+ AND','+ OR','+ XOR','+ NAND','+ NOR','+ XNOR','+ Default-off relay','+ Default-on relay'])await expect(button(a,name)).toBeEnabled();
+ await expect(button(a,'Check circuit')).toHaveCount(0);
+ await expect(a.locator('[data-target-table]')).toContainText('?');
+ await button(a,'+ NOT').click();
+ const from=button(a,'Connect from X');await from.scrollIntoViewIfNeeded();await from.click();
+ await button(a,'Connect to g1 input 1').click();
+ await button(a,'Connect from g1').click();await button(a,'Connect to out input 1').click();
+ await expect(a.locator('[data-target-table]')).not.toContainText('?');
+ await expect(a.getByRole('status')).toContainText('output = 1');
+});

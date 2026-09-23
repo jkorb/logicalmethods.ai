@@ -3,11 +3,13 @@ import { functionTable } from './function-table.js';
 import { relayComponent } from './relay-component.js';
 import { circuitWires, portPosition } from './circuit-wires.js';
 import { mountRelay } from './boolean-relay.js';
-import { circuitPreset, evaluateCircuit, OPERATIONS, CIRCUIT_TASKS, checkCircuit } from '../logic/boolean.js';
+import { circuitPreset, evaluateCircuit, OPERATIONS, CIRCUIT_TASKS, checkCircuit, circuitTable } from '../logic/boolean.js';
 import { el, svg, activate, lamp, inputSwitch, choices, formula } from './boolean-ui.js';
 export function mountCircuit(root) {
   if (['relay-off', 'relay-on', 'not', 'and', 'or', 'implementations'].includes(root.dataset.preset)) return mountRelay(root);
-  const editable = root.dataset.kind === 'workbench',relayWorkbench=editable&&root.dataset.preset==='relays';
+  const editable = root.dataset.kind === 'workbench',sandbox=editable&&root.dataset.preset==='sandbox';
+  // The sandbox offers relays too, so it needs their supply node and parallel inputs.
+  const relayWorkbench=editable&&['relays','sandbox'].includes(root.dataset.preset);
   const picture = root.querySelector('[data-picture]');
   const status = root.querySelector('[role="status"]');
   const inspector = root.querySelector('[data-inspector]');
@@ -16,8 +18,9 @@ export function mountCircuit(root) {
   const tasks=profile.tasks;let taskIndex=0;
   const solved=new Set(),earned=new Set(profile.gates||[]),savedTasks=new Map();
   const current=()=>tasks[taskIndex];
-  const allowed=()=>new Set(profile.progressive?[...earned]:current().gates||profile.gates);
-  const fresh=()=>{const initial=circuitPreset(editable?'':root.dataset.preset);const labels=(root.dataset.inputLabels||'').split(',');if(root.dataset.inputLabels)initial.filter(n=>n.type==='INPUT').forEach((n,i)=>{n.label=labels[i]||n.label;});if(editable)for(const n of initial)if(n.type==='INPUT')n.outputOffset=80;if(relayWorkbench)initial.push({id:'POWER',type:'POWER',label:'power',x:450,y:410,inputs:[]});return initial.filter(n=>!editable||OPERATIONS[current().target].arity!==1||n.id!=='Y');};
+  const palette=()=>[...root.querySelectorAll('[data-add]')].map(b=>b.dataset.add);
+  const allowed=()=>sandbox?new Set(palette()):new Set(profile.progressive?[...earned]:current().gates||profile.gates);
+  const fresh=()=>{const initial=circuitPreset(editable?'':root.dataset.preset);const labels=(root.dataset.inputLabels||'').split(',');if(root.dataset.inputLabels)initial.filter(n=>n.type==='INPUT').forEach((n,i)=>{n.label=labels[i]||n.label;});if(editable)for(const n of initial)if(n.type==='INPUT')n.outputOffset=80;if(relayWorkbench)initial.push({id:'POWER',type:'POWER',label:'power',x:450,y:410,inputs:[]});return initial.filter(n=>!editable||sandbox||OPERATIONS[current().target].arity!==1||n.id!=='Y');};
   let nodes=fresh(),selected=null,selectedPort=null,source=null,nextId=1;
   if (!editable && root.dataset.examples === 'inputs') {
     const group=el('div',{class:'boolean-choices',role:'group','aria-label':'Input examples'});
@@ -30,6 +33,7 @@ export function mountCircuit(root) {
   }
   function taskControls() {
     if(!editable)return;
+    if(sandbox){root.querySelectorAll('[data-add]').forEach(b=>{b.disabled=false;});return;}
     const toolbar=root.querySelector('[data-toolbar]');toolbar.replaceChildren();
     const group=el('div');toolbar.append(group);
     choices(group,tasks.map((task,i)=>[i,`${i+1}. ${task.target}${solved.has(i)?' ✓':''}`]),taskIndex,i=>{
@@ -130,6 +134,7 @@ export function mountCircuit(root) {
     });
     canvas.append(edges, blocks); picture.replaceChildren(canvas);
     renderInspector();
+    if(sandbox)root.querySelector('[data-target-table]').replaceChildren(functionTable({name:'Circuit',rows:[0,1],columns:[0,1],values:circuitTable(nodes)}));
     const outputs = nodes.filter(n => n.type === 'OUTPUT');
     status.replaceChildren(formula(outputs.map(n => `${n.label} = ${values.get(n.id) ?? '? (connect all inputs)'}`).join('; ')));
     if (!editable) status.append(el('p', {class:'boolean-circuit__instruction'}, nodes.some(n=>n.type.startsWith('RELAY-')) ? 'Toggle the inputs to follow the signal through the relay contacts.' : 'Toggle the input switches to follow the signal through the blue boxes.'));

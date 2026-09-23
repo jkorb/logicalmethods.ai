@@ -27,7 +27,7 @@ function watch(page) {
 }
 
 const PAGES = ['/', '/about/', '/textbook/', '/textbook/formal-languages/', '/textbook/boolean/',
-               '/textbook/glossary/', '/textbook/tools/', '/exercises/', '/exercises/preamble/',
+               '/textbook/glossary/', '/tools/', '/tools/propositional-parser/', '/exercises/', '/exercises/preamble/',
                '/exercises/formal-languages/', '/slides/', '/slides/boolean/',
                '/tutoraat/', '/verdiepingspakketten/'];
 

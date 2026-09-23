@@ -1,0 +1,26 @@
+{{/* One entry in a section listing. Grouped sections drop the number: the group
+     heading does the organising, and "04" under a heading reads like an order
+     that isn't there. */}}
+{{- $p := .page -}}
+{{- $n := math.Div $p.Weight 10 -}}
+<li>
+  {{- if $p.Params.locked }}
+    <div class="chapter-card is-locked" aria-disabled="true">
+      {{- if .numbered }}<span class="chapter-card__num" aria-hidden="true">{{ with $p.Params.appendix }}{{ . }}{{ else }}{{ printf "%02d" $n }}{{ end }}</span>{{ end }}
+      <span class="chapter-card__body">
+        <span class="chapter-card__title">{{ if $p.Params.appendix }}Appendix: {{ end }}{{ $p.Title }}</span>
+        {{ with $p.Param "teaser" }}<span class="chapter-card__teaser">{{ . }}</span>{{ end }}
+      </span>
+      <span class="badge-soon">Coming soon</span>
+    </div>
+  {{- else }}
+    <a class="chapter-card" href="{{ $p.RelPermalink }}">
+      {{- if .numbered }}<span class="chapter-card__num" aria-hidden="true">{{ with $p.Params.appendix }}{{ . }}{{ else }}{{ printf "%02d" $n }}{{ end }}</span>{{ end }}
+      <span class="chapter-card__body">
+        <span class="chapter-card__title">{{ if $p.Params.appendix }}Appendix: {{ end }}{{ $p.Title }}</span>
+        {{ with $p.Param "teaser" }}<span class="chapter-card__teaser">{{ . }}</span>{{ end }}
+      </span>
+      <i class="bi bi-arrow-right chapter-card__go" aria-hidden="true"></i>
+    </a>
+  {{- end }}
+</li>

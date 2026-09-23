@@ -1,0 +1,15 @@
+{{/* Body shared by the reference sections: one prose column, a breadcrumb and
+     the section's own previous/next, with none of the chapter furniture. */}}
+<div class="shell guide-shell">
+  <article class="guide prose">
+    {{ partial "single/breadcrumb.html" . }}
+
+    <div class="guide__body">{{ .Content }}</div>
+
+    {{ partial "single/nav-bot" . }}
+  </article>
+</div>
+
+<button class="back-to-top" type="button">
+  <i class="bi bi-arrow-up" aria-hidden="true"></i> Back to top
+</button>

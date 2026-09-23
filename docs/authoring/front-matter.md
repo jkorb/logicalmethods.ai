@@ -25,6 +25,13 @@ numbers as well as order. IDs also connect controls and scripts: changing an
 exercise's `params.id` can break its password lookup. `draft: true` is not a
 publication barrier under the current CI build.
 
+A section can sort its listing into named categories: give the section
+`params.groups` as an ordered list of names, and every page in it a matching
+`params.group`. The listing then renders a heading per group and drops the
+`01`, `02` numbering, which would otherwise imply a reading order. A page
+without a group fails the build. Without `params.groups` the listing is one
+numbered sequence, as the textbook, exercises and slides remain.
+
 Section front matter supplies presentation metadata such as `emoji`, `icon`,
 `teaser`, `title_img`, `section-names`, and `id`; see
 [`textbook/_index.md`](../../content/textbook/_index.md). `hidden` removes a

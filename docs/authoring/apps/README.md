@@ -48,4 +48,4 @@ use the same parsing implementation.
 ## Related
 
 - [Chapter apps](../../design/chapter-apps.md) — the panel, its layout and tokens.
-- [Tools appendix](../tools-appendix.md) — which apps belong in Appendix C.
+- [The tools section](../tools-section.md) — which apps get their own page at `/tools/`.

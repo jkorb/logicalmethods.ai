@@ -2,9 +2,12 @@
      Usage: {{ partial "shared/mascot.html" (dict "name" "reading" "class" "mascot-lg" "label" "…") }}
      Pass label="" for purely decorative use (stays aria-hidden). */}}
 {{- $name := .name | default "mark" -}}
-{{- $res := resources.Get (printf "img/mascot/%s.svg" $name) -}}
+{{/* A section figure may also be one of the book's own drawings: same palette,
+     different root. Normalise it so the styling and aria handling below apply. */}}
+{{- $res := or (resources.Get (printf "img/mascot/%s.svg" $name)) (resources.Get (printf "img/drawings/%s.svg" $name)) -}}
 {{- if not $res }}{{ errorf "mascot: no such asset img/mascot/%s.svg" $name }}{{ end -}}
 {{- $svg := $res.Content -}}
+{{- $svg = replace $svg `class="figure-svg"` `class="mascot" aria-hidden="true" focusable="false"` 1 -}}
 {{- $svg = replace $svg `role="img"` (printf `role="img" data-pose="%s"` $name) 1 -}}
 {{- with .class }}{{ $svg = replace $svg `class="mascot"` (printf `class="mascot %s"` .) 1 }}{{ end -}}
 {{- with .label -}}

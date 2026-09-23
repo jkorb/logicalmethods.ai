@@ -143,6 +143,12 @@ export function checkCircuit(nodes, target) {
   const rows = [0,1].flatMap(X => [0,1].map(Y => ({ X, Y, actual: evaluateCircuit(nodes, { X,Y }).get('out'), expected: OPERATIONS[target].run(X,Y) })));
   return { rows, correct: rows.every(r => r.actual === r.expected) };
 }
+// The sandbox has no target: it reports what the circuit on the canvas computes.
+export function circuitTable(nodes) {
+  return [0,1].map(X => [0,1].map(Y => {
+    try { return evaluateCircuit(nodes, { X, Y }).get('out') ?? null; } catch { return null; }
+  }));
+}
 export function twoBitSum(X, Y) {
   const x0=X&1, y0=Y&1, x1=(X>>1)&1, y1=(Y>>1)&1;
   const low = evaluateCircuit(circuitPreset('full'), { X:x0, Y:y0, C:0 });

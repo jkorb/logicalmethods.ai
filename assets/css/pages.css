@@ -128,6 +128,11 @@
 
 /* ---- chapter cards ------------------------------------------------------ */
 .chapter-list { padding-block-end: 3rem; }
+.chapter-list__group {
+  font-family: var(--font-hand); font-size: var(--step-1); color: var(--ink-muted);
+  margin-block: 1.9rem .7rem;
+}
+.chapter-list__group:first-child { margin-block-start: 0; }
 .chapter-list ol { list-style: none; margin: 0; padding: 0; display: grid; gap: .6rem; }
 .chapter-card {
   display: flex; align-items: center; gap: 1rem;

@@ -34,7 +34,15 @@ including the final carry. Reloading resets discoveries.
 checker, without the discovery table. Exercise checkers may sit inside native
 `<details>` so readers calculate first. Switch updates preserve the viewport.
 
-`kind="workbench"` is an exercise in acyclic combinational circuits with two
+`kind="workbench" preset="sandbox"` is the open canvas behind
+[the tools section](../tools-section.md): every gate and both relays are
+available from the start, there is no task, target or Check button, and the
+table beside the canvas reports what the circuit computes for all four inputs,
+with `?` where an input is unconnected. `circuitTable` in
+`assets/js/logic/boolean.js` computes it. Like the relay profile, it supplies
+the fixed POWER source and accepts parallel sources on one input.
+
+Without `preset="sandbox"`, `kind="workbench"` is an exercise in acyclic combinational circuits with two
 inputs X/Y (or X for a unary target), one output, and up to twenty gates.
 Task profiles in `data/boolean-exercises.json` define targets, allowed gates, and
 whether successful checks unlock new gates/tasks. The presets `relays`,

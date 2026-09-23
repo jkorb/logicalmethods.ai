@@ -27,7 +27,7 @@ How to write and validate course pages.
 ## Interactive components
 
 - [Interactive chapter apps](apps/README.md) — every shortcode-driven component.
-- [Tools appendix](tools-appendix.md) — what belongs in Appendix C.
+- [The tools section](tools-section.md) — the app pages at `/tools/`, and what belongs there.
 
 ## Process
 

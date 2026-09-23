@@ -1,6 +1,6 @@
 {{/* Section masthead. Replaces the 660px *_title.png files, which baked the
      heading into raster (WCAG 1.4.5) and duplicated the page <title>. */}}
-{{- $poses := dict "textbook" "reading" "slides" "board" "exercises" "goals" "about" "wave" -}}
+{{- $poses := dict "textbook" "reading" "slides" "board" "exercises" "goals" "about" "wave" "tools" "ai_tools" -}}
 {{- $pose := .Param "mascot" | default (index $poses .Section) | default "mark" -}}
 <header class="section-head-block">
   <div class="section-head-block__text">
