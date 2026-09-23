@@ -26,6 +26,7 @@ than on `currentColor`, as `board`, `bulb`, `goals`, `heart`, `reading` and
  | `goals.svg`   | exercises section                           |
  | `bulb.svg`    | home learning goals, the solution button    |
  | `ai_tools`    | tools section (a drawing, not a pose asset) |
+ | `excalidraw_coffee` | study section (likewise a drawing)    |
  | `sign.svg`    | former assignments section (retained asset) |
  | `wave.svg`    | about section                               |
  | `ann.svg`     | AI disclosure page                          |

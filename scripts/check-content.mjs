@@ -14,7 +14,7 @@ export function inspectContent(source, file, passwords = {}) {
   if (!['content/tutoraat/_index.md', 'content/unlock/_index.md', 'content/verdiepingspakketten/_index.md'].includes(file) && (!data || typeof data.title !== 'string' || !data.title.trim())) fail('title must be a nonempty string');
   for (const key of ['draft', 'locked', 'hidden']) if (data?.[key] !== undefined && typeof data[key] !== 'boolean') fail(`${key} must be boolean`);
   if (data?.params?.math !== undefined && typeof data.params.math !== 'boolean') fail('params.math must be boolean');
-  if (data?.build?.render !== 'never' && /content\/(textbook|exercises|slides|tools)\/[^/]+\/index.md$/.test(file)) {
+  if (data?.build?.render !== 'never' && /content\/(textbook|exercises|slides|tools|study)\/[^/]+\/index.md$/.test(file)) {
     if (!Number.isInteger(data?.weight)) fail('weight must be an integer');
     if (typeof data?.params?.id !== 'string' || !data.params.id.trim()) fail('params.id must be a nonempty string');
   }

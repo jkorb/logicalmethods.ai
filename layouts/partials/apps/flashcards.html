@@ -1,0 +1,125 @@
+{{- $app := .id -}}
+{{- $page := .sc.Page -}}
+{{- $cards := dict -}}
+{{- $chapters := slice -}}
+{{- $seen := slice -}}
+{{- range $key, $entry := hugo.Data.glossary -}}
+  {{- $cards = merge $cards (dict $key (dict "term" $entry.term "definition" $entry.definition "chapter" $entry.chapter)) -}}
+  {{- if not (in $seen $entry.chapter) -}}
+    {{- $seen = $seen | append $entry.chapter -}}
+    {{- $chapter := site.GetPage (printf "/textbook/%s" $entry.chapter) -}}
+    {{- if not $chapter }}{{ errorf "flashcards: no chapter page for glossary entry %q" $key }}{{ end -}}
+    {{- $chapters = $chapters | append (dict "id" $entry.chapter "title" $chapter.Title
+        "n" (math.Div $chapter.Weight 10) "locked" (eq $chapter.Params.locked true)) -}}
+  {{- end -}}
+{{- end -}}
+{{- $chapters = sort $chapters "n" -}}
+<section class="logic-app flashcards" data-logic-app="flashcards" aria-label="Flashcards">
+  <script type="application/json" data-glossary>{{ $cards | jsonify | safeJS }}</script>
+  <script type="application/json" data-chapters>{{ $chapters | jsonify | safeJS }}</script>
+
+  <div class="flashcards__frame" data-frame tabindex="-1">
+    <div class="flashcards__bar">
+      <button type="button" data-back hidden disabled>Back</button>
+      <p class="flashcards__screen-title" data-screen-title>Flashcards</p>
+      <span class="flashcards__bar-end">
+        <span class="flashcards__deck-line" data-deck-line></span>
+        <button type="button" data-fullscreen aria-label="Full screen" title="Full screen (F)" hidden disabled>Full screen</button>
+      </span>
+    </div>
+
+    <div class="flashcards__screen" data-screen="menu">
+      <div class="flashcards__menu">
+        <button type="button" data-start disabled>Start a round</button>
+        <button type="button" data-write hidden disabled>Write my cards</button>
+        <button type="button" data-new-open disabled>Add a card of my own</button>
+        <button type="button" data-go="boxes" disabled>Card boxes</button>
+        <button type="button" data-go="settings" disabled>Settings</button>
+      </div>
+      <form class="flashcards__new" data-new hidden>
+        <label for="{{ $app }}-new">The concept on the front</label>
+        <input id="{{ $app }}-new" data-new-input autocomplete="off" maxlength="120" disabled>
+        <button type="submit" disabled>Add</button>
+        <button type="button" data-new-cancel disabled>Cancel</button>
+      </form>
+    </div>
+
+    <div class="flashcards__screen" data-screen="settings" hidden>
+      <fieldset class="flashcards__chapters">
+        <legend>Chapters</legend>
+        <label class="flashcards__all"><input type="checkbox" data-all disabled> All unlocked chapters</label>
+        {{- range $chapters }}
+        <label{{ if .locked }} class="is-locked"{{ end }}>
+          <input type="checkbox" data-chapter value="{{ .id }}" id="{{ $app }}-ch-{{ .id }}" disabled{{ if .locked }} data-locked{{ end }}>
+          {{ .n }}. {{ .title }}{{ if .locked }} <span>(locked)</span>{{ end }}
+        </label>
+        {{- end }}
+      </fieldset>
+      <fieldset class="flashcards__mode">
+        <legend>The back of each card</legend>
+        <label><input type="radio" name="{{ $app }}-mode" value="book" data-mode checked disabled> Our definition</label>
+        <label><input type="radio" name="{{ $app }}-mode" value="own" data-mode disabled> A definition I write myself</label>
+      </fieldset>
+      <fieldset class="flashcards__time">
+        <legend>Time per card</legend>
+        <label for="{{ $app }}-time">A countdown while you answer</label>
+        <select id="{{ $app }}-time" data-time disabled>
+          <option value="0">Off</option>
+          <option value="30">30 seconds</option>
+          <option value="60">1 minute</option>
+          <option value="120">2 minutes</option>
+        </select>
+      </fieldset>
+      <div class="flashcards__storage">
+        <p>Your cards are kept in this browser only. Save them to a file to keep them.</p>
+        <div class="logic-app__controls">
+          <button type="button" data-export disabled>Save to a file</button>
+          <label class="flashcards__upload" for="{{ $app }}-import">Load a file</label>
+          <input id="{{ $app }}-import" type="file" accept="application/json,.json" data-import disabled>
+          <button type="button" data-clear disabled>Clear everything</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="flashcards__screen" data-screen="study" hidden>
+      <p class="flashcards__clock" data-clock hidden></p>
+      <div class="flashcards__card" data-card>
+        <p class="flashcards__side">Front</p>
+        <p class="flashcards__front" data-front></p>
+        <p class="flashcards__chapter" data-card-chapter></p>
+      </div>
+      <form class="flashcards__answer" data-answer>
+        <label for="{{ $app }}-answer" data-answer-label>Write the definition from memory</label>
+        <textarea id="{{ $app }}-answer" data-answer-input rows="3" maxlength="600" spellcheck="false" disabled></textarea>
+        <div class="logic-app__controls">
+          <button type="submit" data-check disabled>Check</button>
+          <button type="button" data-save hidden disabled>Save this card</button>
+          <button type="button" data-skip disabled>Skip</button>
+          <button type="button" data-remove disabled>Remove card</button>
+        </div>
+      </form>
+      <div class="flashcards__verdict" data-verdict hidden>
+        <p class="flashcards__match" data-match></p>
+        <p class="flashcards__back"><span>On the back</span> <span data-back-text></span></p>
+        <p class="flashcards__caveat">Wording is a hint, not a mark. You decide whether you had it.</p>
+        <div class="flashcards__filing logic-app__controls" data-filing></div>
+      </div>
+    </div>
+
+    <div class="flashcards__screen flashcards__boxes" data-screen="boxes" hidden>
+      {{- range $i, $box := slice "Keep practising" "Getting there" "Known" }}
+      <div class="flashcards__box" data-box="{{ add $i 1 }}">
+        {{ partial "figures/image.html" (dict "page" $page "src" "/img/drawings/gimmick_box.svg"
+            "id" (printf "%s-box-%d" $app (add $i 1)) "width" "72px" "class" "flashcards__box-art" "themed" true) }}
+        <p class="flashcards__box-count" data-box-count="{{ add $i 1 }}">0</p>
+        <p class="flashcards__box-label">{{ $box }}</p>
+      </div>
+      {{- end }}
+    </div>
+
+    <p class="logic-app__status" role="status" aria-live="polite" aria-atomic="true" data-status></p>
+  </div>
+
+  <noscript><p>The flashcards need JavaScript. The glossary in Appendix B has every definition, and
+    covering it with your hand is the same exercise.</p></noscript>
+</section>

@@ -7,6 +7,7 @@ Shortcode-driven components used in textbook pages and exercise solutions.
 - [The parser](parser.md) — `name="parser"`, strict and conventional grammars.
 - [The LaTeX drill](latex-game.md) — `name="latex-game"`.
 - [The formula builder](formula-builder.md) — `name="builder"`.
+- [The flashcards app](flashcards.md) — `name="flashcards"`, the study section's deck.
 - [Introductory exercise apps](exercise-apps.md) — notation practice, pseudocode, shunting yard, reasoning practice.
 
 - [SAT exercises](sat-practice.md) — table construction, gaps, mystery formulas, and student-controlled resolution.

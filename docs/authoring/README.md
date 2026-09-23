@@ -28,6 +28,7 @@ How to write and validate course pages.
 
 - [Interactive chapter apps](apps/README.md) — every shortcode-driven component.
 - [The tools section](tools-section.md) — the app pages at `/tools/`, and what belongs there.
+- [The study section](study-section.md) — study advice, and what belongs there.
 
 ## Process
 

@@ -1,0 +1,93 @@
+/* ==========================================================================
+   flashcards.css — the study section's card box
+   One framed panel with a screen at a time: menu, settings, a card, the boxes.
+   The sketched radius is the .btn-hand trick — one large and one small radius
+   per corner.
+   ========================================================================== */
+.flashcards__frame {
+  display: grid; gap: .9rem; align-content: start;
+  min-block-size: 24rem; padding: .9rem 1rem 1.1rem;
+  background: var(--paper); border: 1px solid var(--rule-strong); border-radius: var(--radius);
+}
+.flashcards__bar {
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: .6rem;
+  padding-block-end: .6rem; border-block-end: 1px solid var(--rule);
+}
+.flashcards__bar [data-back] { justify-self: start; }
+.flashcards__screen-title { grid-column: 2; margin: 0; text-align: center; font-family: var(--font-hand); font-size: var(--step-1); }
+.flashcards__bar-end { display: flex; align-items: center; gap: .5rem; justify-self: end; }
+.flashcards__deck-line { font-size: var(--step--2); color: var(--ink-muted); text-align: end; }
+.flashcards__bar-end button { font-size: var(--step--2); padding: .25rem .5rem; }
+.flashcards__screen { display: grid; gap: .8rem; align-content: start; }
+
+/* Full screen: the frame becomes the page, and the card takes the room. */
+.flashcards__frame:fullscreen {
+  inline-size: 100%; block-size: 100%; border: 0; border-radius: 0;
+  padding: 1rem clamp(1rem, 6vw, 5rem); background: var(--paper);
+  grid-template-rows: auto 1fr auto; align-content: stretch;
+}
+.flashcards__frame:fullscreen .flashcards__screen { align-content: center; }
+.flashcards__frame:fullscreen .flashcards__card { max-inline-size: 40rem; padding: 2.4rem 2rem; }
+.flashcards__frame:fullscreen .flashcards__front { font-size: var(--step-3); }
+
+.flashcards__clock {
+  margin: 0 auto; font-family: var(--font-code); font-size: var(--step-0); color: var(--ink-muted);
+}
+.flashcards__clock[data-low="true"] { color: var(--red-ink); font-weight: 700; }
+
+.flashcards__time label { display: block; font-size: var(--step--1); color: var(--ink-muted); margin-block-end: .3rem; }
+.flashcards__time select { font: inherit; padding: .25rem .4rem; background: var(--paper); color: var(--ink); border: 1px solid var(--rule-strong); border-radius: var(--radius); }
+
+.flashcards__menu { display: grid; gap: .5rem; justify-content: center; padding-block: 1rem; }
+.flashcards__menu button { min-inline-size: 15rem; }
+
+.flashcards fieldset { border: 1px solid var(--rule); border-radius: var(--radius); padding: .6rem .8rem; margin: 0; }
+.flashcards legend { font-family: var(--font-hand); padding-inline: .3rem; }
+.flashcards__chapters { display: grid; gap: .1rem .9rem; }
+@media (min-width: 34rem) { .flashcards__chapters { grid-template-columns: 1fr 1fr; } }
+.flashcards__chapters label, .flashcards__mode label {
+  display: flex; align-items: baseline; gap: .45rem; font-size: var(--step--1);
+}
+.flashcards__all { grid-column: 1 / -1; font-weight: 700; padding-block-end: .2rem; }
+.flashcards__chapters .is-locked { color: var(--ink-muted); }
+.flashcards__chapters .is-locked span { font-size: var(--step--2); }
+
+.flashcards__new { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .4rem; }
+.flashcards__new input { flex: 1 1 14rem; min-inline-size: 0; }
+
+.flashcards__card {
+  max-inline-size: 28rem; margin-inline: auto; padding: 1.2rem 1.4rem; text-align: center;
+  background: var(--paper-raised); color: var(--ink);
+  border: 2px solid var(--ink); border-radius: 255px 14px 225px 16px / 16px 225px 16px 255px;
+  box-shadow: 3px 3px 0 var(--ink);
+}
+.flashcards__side { margin: 0; font-size: var(--step--2); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); }
+.flashcards__front { margin: .35rem 0 .25rem; font-family: var(--font-hand); font-size: var(--step-2); line-height: 1.2; }
+.flashcards__chapter { margin: 0; font-size: var(--step--1); color: var(--ink-muted); }
+
+.flashcards__answer { display: grid; gap: .45rem; max-inline-size: 32rem; margin-inline: auto; inline-size: 100%; }
+.flashcards__answer textarea {
+  inline-size: 100%; font: inherit; padding: .5rem .6rem;
+  background: var(--paper); color: var(--ink); border: 1px solid var(--rule-strong); border-radius: var(--radius);
+}
+.flashcards__verdict { max-inline-size: 32rem; margin-inline: auto; display: grid; gap: .45rem; inline-size: 100%; }
+.flashcards__match { margin: 0; font-weight: 700; }
+.flashcards__match[data-same="true"] { color: var(--green-ink); }
+.flashcards__back { margin: 0; padding: .55rem .75rem; background: var(--paper-sunken); border-radius: var(--radius); }
+.flashcards__back span:first-child { display: block; font-size: var(--step--2); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-muted); }
+.flashcards__caveat { margin: 0; font-size: var(--step--1); color: var(--ink-muted); }
+.flashcards__filing [data-suggested] { border-color: var(--green-ink); box-shadow: 2px 2px 0 var(--green-ink); }
+
+/* The boxes are the book's cardboard-box drawing, one hue apart. */
+.flashcards__boxes { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .8rem; align-content: center; }
+.flashcards__box { text-align: center; }
+.flashcards__box-art { display: block; margin-inline: auto; }
+.flashcards__box[data-box="1"] .flashcards__box-art { filter: hue-rotate(-30deg) saturate(1.25); }
+.flashcards__box[data-box="2"] .flashcards__box-art { filter: none; }
+.flashcards__box[data-box="3"] .flashcards__box-art { filter: hue-rotate(95deg) saturate(.8); }
+.flashcards__box-count { margin: .2rem 0 0; font-family: var(--font-hand); font-size: var(--step-2); }
+.flashcards__box-label { margin: 0; font-size: var(--step--2); color: var(--ink-muted); }
+
+.flashcards__storage p { margin-block: 0 .5rem; font-size: var(--step--1); color: var(--ink-muted); }
+.flashcards__upload { cursor: pointer; }
+.flashcards input[type="file"] { max-inline-size: 100%; font-size: var(--step--1); }

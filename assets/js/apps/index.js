@@ -10,7 +10,8 @@ import { mountNotationPractice } from './notation-practice.js';
 import { mountShuntingYard } from './shunting-yard.js';
 import { mountReasoningPractice } from './reasoning-practice.js';
 import { mountBoolean } from './boolean-app.js';
-const apps = { 'sat-practice': mountSATPractice, sat: mountSAT, 'pseudocode-practice': mountPseudocode, boolean: mountBoolean, parser: mountParser, 'latex-game': mountLatexGame, builder: mountFormulaBuilder, 'notation-practice': mountNotationPractice, 'shunting-yard': mountShuntingYard, 'reasoning-practice': mountReasoningPractice };
+import { mountFlashcards } from './flashcards.js';
+const apps = { 'sat-practice': mountSATPractice, sat: mountSAT, 'pseudocode-practice': mountPseudocode, boolean: mountBoolean, parser: mountParser, 'latex-game': mountLatexGame, builder: mountFormulaBuilder, 'notation-practice': mountNotationPractice, 'shunting-yard': mountShuntingYard, 'reasoning-practice': mountReasoningPractice, flashcards: mountFlashcards };
 for (const root of document.querySelectorAll('[data-logic-app]')) {
   if (root.dataset.mounted) continue;
   const mount = apps[root.dataset.logicApp];
