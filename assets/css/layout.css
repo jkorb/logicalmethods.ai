@@ -64,6 +64,10 @@ img { min-inline-size: 0; }
 .navbar-main__links a[aria-current] { font-weight: 700; }
 .navbar-main__links a[aria-current]::after { content: ""; }
 
+/* The home link and the theme toggle read as one pair of site controls. */
+.navbar-main__tools { display: flex; align-items: center; gap: .1rem; flex: none; }
+.home-link { text-decoration: none; }
+
 .btn-icon { color: var(--ink); border: 1px solid transparent; background: none; border-radius: var(--radius); }
 .btn-icon:hover { background: var(--paper-sunken); border-color: var(--rule); color: var(--ink); }
 

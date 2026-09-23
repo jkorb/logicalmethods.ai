@@ -1,0 +1,6 @@
+{{/* Students kept missing the brand as the way back, so the house sits with the
+     theme toggle, where they already look for the site's own controls. */}}
+<a class="btn btn-icon home-link" href="{{ "/" | relURL }}"
+   aria-label="Home"{{ if .IsHome }} aria-current="page"{{ end }} title="Home">
+  <i class="bi bi-house" aria-hidden="true"></i>
+</a>
