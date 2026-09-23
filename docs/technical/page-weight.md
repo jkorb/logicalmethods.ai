@@ -21,6 +21,13 @@ and the theme toggle rendered an empty box as soon as it was clicked.
 `tests/browser/icons.spec.mjs` covers both cases — every icon on a page, and the
 toggle through all three of its states.
 
+The generated `@font-face` carries the font's content hash as a `?v=` cache key.
+Hugo fingerprints the subset CSS filename but serves the font from a fixed static
+path, so without it a regenerated subset reached browsers still holding the old
+font: the new rules resolved to codepoints that font lacked, and each newly added
+icon drew as a tofu box with its codepoint inside. `tests/unit/icon-subset.test.mjs`
+fails if the key stops matching the shipped font.
+
 **Bootstrap's own CSS is the remaining bulk.** Measured with Chromium coverage
 across nine routes, 227&nbsp;KB ships and about 3% of it matches anything. What
 the site actually needs is a couple of dozen spacing and image utilities (many of

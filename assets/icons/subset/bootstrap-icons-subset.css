@@ -4,7 +4,7 @@
 @font-face {
   font-family: "bootstrap-icons";
   font-display: block;
-  src: url("/icons/subset/bootstrap-icons-subset.woff2") format("woff2");
+  src: url("/icons/subset/bootstrap-icons-subset.woff2?v=949398fc5e0b3814") format("woff2");
 }
 .bi::before, [class^="bi-"]::before, [class*=" bi-"]::before {
   display: inline-block;
