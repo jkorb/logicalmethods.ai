@@ -1,0 +1,375 @@
+# Written description of every slide in Lecture 5, for readers who cannot use
+# the drawn deck. `alt` names the slide image; `body` describes the whole slide
+# in reading order, including what the drawings show. Keep both in step with
+# the scene in slides/sources/Lecture 5.excalidraw after any edit.
+slides:
+  - number: 1
+    alt: Title slide for Logical methods for AI, Lecture 5, on Boolean SAT.
+    body: |
+      A pink title card reads "Logical methods for ∀I, Lecture 5". The A of AI
+      is drawn as the upside-down A of the universal quantifier, ∀, which is
+      the course mascot's name.
+
+      Below the card: "Chapter 5: Boolean SAT", and the course address,
+      logicalmethods.ai. At the right, the chapter's opening drawing: a figure
+      consulting a manual labelled "Reasoning: How To".
+
+  - number: 2
+    alt: The five learning goals for this lecture, each tagged with a level of Bloom's taxonomy.
+    body: |
+      Heading: "What you'll be able to do". Introduction: "After this lecture
+      and chapter 5, you can:". Five goals follow, each ticked off with a green
+      check mark and tagged on the right with its level in Bloom's revised
+      taxonomy.
+
+      One: represent validity and circuit verification as satisfiability
+      problems. Understand and apply. Two: apply the truth-table algorithm to
+      formulas and inferences. Apply. Three: convert propositional formulas
+      into CNF and DNF. Apply. Four: apply formula-based resolution to decide
+      satisfiability. Apply. Five: compare the costs and explanatory outputs of
+      SAT algorithms. Analyse and evaluate.
+
+      Closing line: "Read chapter 5 first; exercise sheet 5 comes after the
+      lecture." The mascot ∀I stands at the right wearing a lit lightbulb.
+
+  - number: 3
+    alt: Why automated reasoning matters, from hand calculation to SAT solving.
+    body: |
+      Heading: "Automating the hard work". A green box: in chapter 4 we did it
+      all by hand — list the models, calculate the values, hunt for a
+      countermodel.
+
+      Three points follow. Let the machine do it. SAT solving asks one
+      question: can one valuation make all of these true? And two reasoning
+      problems reduce to it.
+
+      At the right, the book's drawing of a faulty processor: "2 + 2 =" goes
+      into a chip labelled CPU, and a 5 comes out.
+
+      Closing line: "Reduce the problem to SAT, then run an algorithm on it."
+
+  - number: 4
+    alt: The definition of satisfiability, worked through one satisfiable and one unsatisfiable formula.
+    body: |
+      Heading: "Satisfiability". A green definition box: a propositional
+      formula is satisfiable iff there is a Boolean valuation under which it is
+      true; unsatisfiable iff there is no such valuation.
+
+      Two panels side by side. The blue panel on the left takes SUN ∧ ¬RAIN
+      with v(SUN) = 1 and v(RAIN) = 0, which calculates as 1 AND (NOT 0) = 1.
+      Verdict, in green: satisfiable.
+
+      The yellow panel on the right takes SUN ∧ ¬SUN. Both cases fail:
+      1 AND (NOT 1) = 0, and 0 AND (NOT 0) = 0. Verdict, in red:
+      unsatisfiable.
+
+      Closing lines: one valuation settles "satisfiable"; bivalence leaves no
+      third case, so two calculations settle "unsatisfiable" here — in general,
+      every valuation must fail.
+
+  - number: 5
+    alt: Joint satisfiability and the statement of the SAT problem.
+    body: |
+      Heading: "The SAT problem". A green definition box: a finite set or list
+      of propositional formulas A₁, …, Aₙ is jointly satisfiable iff its
+      conjunction A₁ ∧ … ∧ Aₙ is satisfiable.
+
+      Two worked rows. SUN ∨ RAIN together with ¬SUN is satisfiable, by
+      v(SUN) = 0 and v(RAIN) = 1. Adding ¬RAIN leaves no valuation, so the
+      three together are unsatisfiable. A note: each of the three can be
+      satisfied on its own.
+
+      A yellow box gives the chapter's definition: a Boolean satisfiability
+      problem, or SAT, asks whether a given propositional formula, or a finite
+      set of propositional formulas, is satisfiable.
+
+  - number: 6
+    alt: The NAND circuit and its specification, reduced to a satisfiability question about not (S if and only if C).
+    body: |
+      Heading: "Reduction 1: circuit verification".
+
+      Across the top left, a drawing of the circuit: the wires INPUT₁ and
+      INPUT₂ join and feed a blue box labelled "default-off, AND", whose output
+      feeds a second blue box labelled "default-on, NOT", which feeds a lamp.
+
+      Below it, the specification table for NAND, with columns INPUT₁, INPUT₂
+      and output: 0 0 gives 1, 0 1 gives 1, 1 0 gives 1, and 1 1 gives 0.
+
+      On the right, the two formulas. Reading the wiring gives
+      C = ¬(INPUT₁ ∧ INPUT₂). Excluding the row with output 0 gives
+      S = ¬INPUT₁ ∨ ¬INPUT₂. Should be on, versus is on — so we ask where they
+      disagree, and a yellow box holds the question: SAT? ¬(S ↔ C).
+
+      Beside it, the book's verification drawing: a figure comparing a circuit
+      against a blueprint and saying "Um......".
+
+      Closing lines: satisfiable means that valuation is an input where the
+      circuit is wrong; unsatisfiable means the circuit implements the
+      specification.
+
+  - number: 7
+    alt: Validity as unsatisfiability, with a valid and an invalid weather inference.
+    body: |
+      Heading: "Reduction 2: deductive validity". A yellow theorem box: an
+      inference A₁, …, Aₙ ∴ B is deductively valid iff (A₁ ∧ … ∧ Aₙ) ∧ ¬B is
+      unsatisfiable.
+
+      Two panels. The blue panel on the left takes SUN ∨ RAIN, ¬SUN ∴ RAIN.
+      Premises, then the negated conclusion, give
+      (SUN ∨ RAIN) ∧ ¬SUN ∧ ¬RAIN. No countermodel, so the inference is valid.
+
+      The red panel on the right takes SUN ∨ RAIN, SUN ∴ ¬RAIN. We negate the
+      conclusion again, though it starts with ¬, giving
+      (SUN ∨ RAIN) ∧ SUN ∧ ¬¬RAIN. Setting v(SUN) = v(RAIN) = 1 gives a
+      countermodel.
+
+      Below, the book's drawing of a coin whose two sides read "EX SAT" and
+      "E Pluribus Unum — In SAT We Trust". Beside it, the closing lines: both
+      reductions hand a SAT solver the same kind of question, so one algorithm
+      answers both.
+
+  - number: 8
+    alt: Truth-tables as a brute-force search, beside the book's three-variable table.
+    body: |
+      Heading: "Truth-tables: brute force". A green definition box: a
+      truth-table lists the value of one or more propositional formulas under
+      every assignment to the variables occurring in them.
+
+      Four points. For n variables, 2ⁿ assignments. Count from 0 in binary to
+      list them all. Evaluate the formula in each row. And there is no
+      preparation: the formula goes in as it stands.
+
+      At the right, the book's three-variable truth-table drawing, with columns
+      SUN, RAIN and WIND and its eight rows numbered 0 to 7, running from
+      0 0 0 down to 1 1 1.
+
+      Closing line: three variables give eight rows; ten give 1024.
+
+  - number: 9
+    alt: The evaluate procedure in pseudocode, beside a parse tree evaluated from the leaves upward.
+    body: |
+      Heading: "Evaluating a row". A grey code panel holds the chapter's
+      `evaluate` procedure. It takes a tree and a valuation v. If the tree is a
+      variable, it returns v of that variable. If the operator is ¬, it returns
+      NOT of the value of the child. Otherwise it evaluates the left and right
+      children, then returns AND for ∧, OR for ∨, and XNOR otherwise.
+
+      Below the panel, the three clauses it implements: v(¬A) = NOT v(A),
+      v(A ∧ B) = v(A) AND v(B), and v(A ∨ B) = v(A) OR v(B).
+
+      At the right, the formula SUN ∨ (¬RAIN ∧ ¬WIND) drawn as a parse tree.
+      The root ∨ has SUN on the left and ∧ on the right; that ∧ has a ¬ over
+      RAIN and a ¬ over WIND. A green arrow runs up the side of the tree,
+      labelled "evaluate upward".
+
+      Closing line: every call gets a smaller tree, so evaluation terminates.
+
+  - number: 10
+    alt: The truth_table_sat procedure beside the completed table for the valid weather inference.
+    body: |
+      Heading: "Searching the table". A grey code panel holds the chapter's
+      `truth_table_sat` procedure: parse the formula, list its variables, and
+      for each binary assignment v, if evaluate returns 1, return "satisfiable"
+      together with v; otherwise, after the last row, return "unsatisfiable".
+
+      Below it, the SAT input for the valid inference:
+      (SUN ∨ RAIN) ∧ ¬SUN ∧ ¬RAIN.
+
+      At the right, the completed table. Its columns are SUN, RAIN, SUN ∨ RAIN,
+      ¬SUN, ¬RAIN and the conjunction of all three. The four rows read
+      0 0 0 1 1 0, then 0 1 1 1 0 0, then 1 0 1 0 1 0, then 1 1 1 0 0 0. The
+      last column is boxed in red and labelled "every row 0".
+
+      Closing lines: unsatisfiable, so the inference is valid. A 1 would stop
+      the search early; "unsatisfiable" costs every row.
+
+  - number: 11
+    alt: The definition of a decision procedure and why truth-table search is one.
+    body: |
+      Heading: "A decision procedure". A green definition box: a decision
+      procedure is an algorithm that terminates on every allowed input with the
+      correct yes-or-no answer, and such a problem is decidable.
+
+      Three points. Finitely many rows, so the search finishes. A returned
+      valuation makes the formula true. And "unsatisfiable" means every
+      valuation was checked.
+
+      A blue box: so SAT is decidable — and the finished table also shows a
+      tautology (all 1s) or a contradiction (all 0s).
+
+  - number: 12
+    alt: The exponential cost of truth-table search, with a table of rows against variables.
+    body: |
+      Heading: "The cost of brute force". A green box: for n variables and m
+      operators, truth-table search has worst-case time complexity — and below
+      it, in large notation, O(2ⁿ(m + 1)). A note explains: at most 2ⁿ rows,
+      m + 1 steps per row.
+
+      A small table gives rows against variables: 3 variables, 8 rows; 10
+      variables, 1 024 rows; 20 variables, 1 048 576 rows; 40 variables, over a
+      trillion.
+
+      At the right, the book's drawing of the exponential curve, with
+      #variables along the bottom and #valuations up the side.
+
+      Closing lines: combinatorial explosion — one more variable doubles the
+      work. Can we settle a problem without writing out all those rows? —
+      Sometimes.
+
+  - number: 13
+    alt: Literals, DNF and CNF, with a table classifying five formulas.
+    body: |
+      Heading: "Normal forms". A green definition box: a literal is a
+      propositional variable or the negation of a propositional variable.
+
+      A blue box: a formula is in disjunctive normal form (DNF) iff it is a
+      disjunction of conjunctions of literals. A yellow box: a formula is in
+      conjunctive normal form (CNF) iff it is a conjunction of disjunctive
+      clauses.
+
+      At the right, a table with columns formula, DNF? and CNF?. SUN ∨ ¬RAIN:
+      yes, yes. SUN ∧ ¬RAIN: yes, yes. SUN ∨ (RAIN ∧ WIND): yes, no.
+      (SUN ∨ RAIN) ∧ WIND: no, yes. ¬(SUN ∧ RAIN): no, no.
+
+      Closing lines: a DNF lists alternative ways to satisfy the formula; a CNF
+      lists requirements that all have to be met. Resolution needs CNF.
+
+  - number: 14
+    alt: The seven rewrite rules, plus the rule removing the biconditional.
+    body: |
+      Heading: "Rewriting into normal form". A note: each rule replaces a
+      subformula by an equivalent one.
+
+      On the left, "push negations inward": r₁ rewrites ¬¬A to A; r₂ rewrites
+      ¬(A ∧ B) to ¬A ∨ ¬B; r₃ rewrites ¬(A ∨ B) to ¬A ∧ ¬B. The result is
+      negation normal form.
+
+      On the right, "distribute — for CNF": r₄ rewrites A ∨ (B ∧ C) to
+      (A ∨ B) ∧ (A ∨ C); r₅ rewrites (A ∧ B) ∨ C to (A ∨ C) ∧ (B ∨ C). For DNF,
+      the other way: r₆ rewrites A ∧ (B ∨ C) to (A ∧ B) ∨ (A ∧ C); r₇ rewrites
+      (A ∨ B) ∧ C to (A ∧ C) ∨ (B ∧ C).
+
+      A yellow box at the bottom left: first remove every ↔, rewriting (A ↔ B)
+      to (¬A ∨ B) ∧ (¬B ∨ A).
+
+      Closing line: the Boolean laws of chapter 4, used in one direction only.
+
+  - number: 15
+    alt: The normal_form procedure beside a formula rewritten step by step into CNF.
+    body: |
+      Heading: "The rewriting algorithm". A grey code panel holds the chapter's
+      `normal_form` procedure, which takes a formula and a target. While the
+      formula contains a biconditional, it rewrites the first one. While a
+      negation rewrite applies, it rewrites the first one. While a distribution
+      rewrite applies for the target, it rewrites the first one. Then it
+      returns the formula. Below the panel: each helper rewrites the first
+      matching subformula.
+
+      At the right, the worked rewrite towards CNF. Starting from
+      ¬¬SUN ∨ ¬(RAIN ∨ ¬SUN), rule r₁ gives SUN ∨ ¬(RAIN ∨ ¬SUN); rule r₃ gives
+      SUN ∨ (¬RAIN ∧ ¬¬SUN); rule r₁ gives SUN ∨ (¬RAIN ∧ SUN); rule r₄ gives
+      (SUN ∨ ¬RAIN) ∧ (SUN ∨ SUN); and idempotence gives
+      (SUN ∨ ¬RAIN) ∧ SUN, repeated in a green box as the result.
+
+      Closing line: every step preserves truth-values, so the result is
+      equivalent.
+
+  - number: 16
+    alt: How CNF conversion by distribution blows up exponentially.
+    body: |
+      Heading: "Preprocessing is the expensive part". A green box: distribution
+      copies subformulas, so a compact input can produce exponentially many
+      clauses.
+
+      The worked example: (SUN ∧ WARM) ∨ (RAIN ∧ WIND) becomes four clauses —
+      (SUN ∨ RAIN) ∧ (SUN ∨ WIND) ∧ (WARM ∨ RAIN) ∧ (WARM ∨ WIND).
+
+      A short tally: 2 pairs, 4 clauses; 3 pairs, 8 clauses; 4 pairs, 16
+      clauses; n pairs, 2ⁿ clauses, printed in red. At the right, the book's
+      "naive approach" drawing.
+
+      Closing line: truth-tables pay at search time, resolution pays before the
+      search starts.
+
+  - number: 17
+    alt: The resolution rule, its general schema, and the two-step refutation of the weather inference.
+    body: |
+      Heading: "The resolution rule". A green definition box: the resolution
+      rule takes two clauses containing complementary literals, removes that
+      pair, and disjoins the remaining literals — their resolvent.
+
+      In a blue panel, the general schema, written as an inference: from A ∨ p
+      and ¬p ∨ B, infer A ∨ B. The pivot is p.
+
+      At the right, the same rule in two steps. From SUN ∨ RAIN and ¬SUN, infer
+      RAIN. From RAIN and ¬RAIN, infer ⊥ — a refutation.
+
+      A yellow box: the empty clause ⊥ is a disjunction with no literals, and
+      its value is 0 under every valuation. Beside it, a red warning: remove
+      only one complementary pair at a time.
+
+      Closing line: deriving ⊥ shows no valuation satisfies the starting
+      clauses.
+
+  - number: 18
+    alt: The resolution_sat procedure, with saturation, termination and the completeness theorem.
+    body: |
+      Heading: "Refutation search". A grey code panel holds the chapter's
+      `resolution_sat` procedure: convert the formula to CNF, drop the
+      tautological conjuncts, and start an empty list of checked pairs. While
+      an unchecked pair remains, take the shortest one; for each complementary
+      pivot, resolve and remove repetitions; return "unsatisfiable" if the
+      result is the empty clause; otherwise add it when it is neither a
+      tautology nor already listed. Record the pair as checked. If the loop
+      ends, return "satisfiable".
+
+      At the right, two notes. Saturation: every pair gives a tautology or a
+      known clause. And at most 3ⁿ clauses, so the search terminates. The
+      book's little mouse sits above a yellow box stating the theorem: a
+      propositional formula in CNF is unsatisfiable iff resolution can derive
+      the empty clause from it.
+
+      Closing lines: ⊥ means unsatisfiable, saturation without it means
+      satisfiable, so exhaustive resolution is a decision procedure too.
+
+  - number: 19
+    alt: The Tseytin transformation in pseudocode, with its naming clauses and linear growth.
+    body: |
+      Heading: "Tseytin: cheap preprocessing". A green box: give each
+      subformula a fresh name and constrain its value, instead of copying it.
+
+      A grey code panel holds the chapter's `tseytin` procedure. It walks the
+      parse tree children first. At a variable it records the variable as its
+      own name; otherwise it takes a fresh variable, records it as the node's
+      name, and adds that node's local clauses. Finally it adds the name of the
+      root and returns the conjunction of all the constraints.
+
+      Below the panel: name SUN ∧ RAIN by a fresh u, then add
+      (¬u ∨ SUN) ∧ (¬u ∨ RAIN) ∧ (u ∨ ¬SUN ∨ ¬RAIN).
+
+      At the right, a yellow box: two formulas are equisatisfiable iff both are
+      satisfiable or both are not. Below it: one fresh variable and at most four
+      clauses per connective, so the CNF grows linearly.
+
+  - number: 20
+    alt: The NAND circuit refuted in two resolution steps, beside the faulty circuit that saturates.
+    body: |
+      Heading: "Worked case: verifying the NAND circuit". At the top left, the
+      circuit drawing again: INPUT₁ and INPUT₂ into the default-off AND relay,
+      then the default-on NOT relay, then the lamp. At the top right, the
+      question SAT? ¬(S ↔ C), and the clauses preprocessing keeps:
+      (¬INPUT₁ ∨ ¬INPUT₂) ∧ INPUT₁ ∧ (INPUT₁ ∨ INPUT₂) ∧ INPUT₂.
+
+      The blue panel on the left runs the search as one derivation. From
+      ¬INPUT₁ ∨ ¬INPUT₂ and INPUT₁, infer ¬INPUT₂; from that and INPUT₂, infer
+      ⊥. Two steps; the clause INPUT₁ ∨ INPUT₂ is never needed.
+
+      The red panel on the right redraws the circuit with the lamp wired
+      straight off the first relay, the second relay greyed out and bypassed by
+      a red wire, so C′ = INPUT₁ ∧ INPUT₂. Saturation arrives with no ⊥, so the
+      formula is satisfiable: both inputs off is an input where it fails.
+
+      Closing lines: unsatisfiable on the left means the circuit meets its
+      specification; satisfiable on the right means the valuation names an
+      input where it fails. And finally: two resolution steps decide it — all
+      the work was in preparing the clauses.

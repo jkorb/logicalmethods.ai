@@ -27,5 +27,5 @@ uses `celebrate.js`, shared with Boolean exercises, and respects reduced motion.
 
 ## Related
 
-- [Tools appendix](../tools-appendix.md) — why the drill stays out of Appendix C.
+- [The tools section](../tools-section.md) — why the drill has no page at `/tools/`.
 - [Glossary and notation](../glossary.md) — the cheat sheet it must agree with.

@@ -34,3 +34,17 @@ to `.syntax-tree` and `.ast-comparison`. They require no JavaScript.
 - [Display mathematics](display-math.md), [Pickers and compact tools](pickers.md).
 
 - [Boolean apps](../authoring/apps/boolean.md) — derivations, evaluation, model spaces, and circuits use open displays.
+
+## Input height and SAT tables
+
+Textareas throughout the site use content sizing: one line for short input,
+growing for wrapping and explicit line breaks, and shrinking when text is removed.
+A shared fallback handles input, width changes, and newly revealed controls in
+browsers without native content sizing. Single-formula rewrites use an input field.
+
+SAT tables rule the boundary between valuation columns and formula columns.
+Three-variable or long-formula examples use numbered formula keys with a visible
+legend beside the table. Values retain their normal font size; large custom tables
+can scroll internally. Row numbers are quiet native buttons, with keyboard focus
+and selected state. Current rows and rewrite lines use the Boolean derivation's
+blue wash, rounded ends, and left-edge stroke; the current value has an underline.

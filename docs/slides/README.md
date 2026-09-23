@@ -1,8 +1,8 @@
 # Self-hosted lecture slides
 
-All 12 lectures are migrated to self-hosted Excalidraw: **217 slide frames**.
-Lectures 1 to 4 (80 frames) are reviewed and released, and use the normal
-website viewer. Lectures 5–12 (137 frames) are staged locally outside Hugo's
+All 12 lectures are migrated to self-hosted Excalidraw: **218 slide frames**.
+Lectures 1 to 5 (100 frames) are reviewed and released, and use the normal
+website viewer. Lectures 6–12 (118 frames) are staged locally outside Hugo's
 published content in ignored `slides/unpublished/`, awaiting content and image
 review. Their normal website paths show a short review notice; no Excalidraw Pro
 embed remains. `locked` and `draft` are not publication barriers because CI
@@ -22,7 +22,7 @@ separate from the normal build. Ordinary `hugo -D` excludes the staged deck file
 | 2 | 20 | `/slides/formal-languages/` |
 | 3 | 20 | `/slides/valid-inference/` |
 | 4 | 20 | `/slides/boolean/` |
-| 5 | 19 | `/slides/sat/` |
+| 5 | 20 | `/slides/sat/` |
 | 6 | 17 | `/slides/conditionals/` |
 | 7 | 18 | `/slides/proof/` |
 | 8 | 20 | `/slides/FOL/` |
@@ -33,6 +33,7 @@ separate from the normal build. Ordinary `hugo -D` excludes the staged deck file
 
 ## Notes
 
+- [Lecture standards](lecture-standards.md) — what a revised deck has to look like.
 - [Efficient slide work](agent-workflow.md) — scope reading, edits and visual review.
 - [Teach and read](teaching.md) — navigation, `narration.yaml`, no-JavaScript.
 - [Install the local authoring tools](authoring-setup.md) — the editor and saving.

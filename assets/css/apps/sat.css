@@ -1,0 +1,151 @@
+.logic-app.sat-app { border: 0; background: transparent; box-shadow: none; padding: 0; text-align: start; }
+.sat-app [data-input-form] { display: flex; gap: .5rem; align-items: center; }
+.sat-app textarea { flex: 1; min-width: 0; resize: vertical; font-family: var(--font-formal); color: var(--ink); background: var(--paper); }
+.sat-app textarea[readonly] { background: var(--paper-sunken); color: var(--ink-muted); }
+.sat-app .sat-help { font-size: var(--step--2); color: var(--ink-muted); margin-block: .4rem; }
+.sat-app .sat-layout { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 1rem; align-items: start; }
+.sat-app .sat-work { overflow: auto; max-height: 55vh; min-width: 0; position: relative; }
+.sat-app .sat-aside { min-width: 0; }
+.sat-app .logic-app__tree { min-height: 0; max-height: 34vh; padding: .4rem; }
+.sat-app .logic-app__tree svg { display: block; max-height: 30vh; width: auto; margin-inline: auto; }
+.sat-app [role="status"], .sat-app details { font-size: var(--step--1); margin-block: .5rem; overflow-wrap: anywhere; }
+.sat-app .sat-table { width: max-content; min-width: 100%; font-family: var(--font-formal); font-size: var(--step--1); border-collapse: collapse; }
+.sat-app .sat-table caption { font-family: var(--font-prose); font-size: var(--step--2); caption-side: bottom; }
+.sat-app .sat-table :is(th, td) { padding: .35rem .55rem; text-align: center; white-space: nowrap; border: 0; }
+.sat-app .sat-table thead { position: sticky; top: 0; background: var(--paper); z-index: 1; border-bottom: 2px solid var(--ink); }
+.sat-app .sat-table button { min-width: 2rem; min-height: 2rem; padding: .15rem; }
+.sat-app .sat-table .is-current { background: var(--surf-blue); }
+.sat-app .sat-table td.is-current { outline: 2px dashed var(--blue-ink); outline-offset: -2px; }
+.sat-app .sat-table .is-witness { background: var(--surf-green); }
+.sat-app .sat-table .is-witness > :first-child { box-shadow: inset 3px 0 var(--green-ink); border-radius: var(--radius) 0 0 var(--radius); }
+.sat-app .sat-table .is-witness > :last-child { border-radius: 0 var(--radius) var(--radius) 0; }
+.sat-app .sat-rewrites, .sat-app .sat-clauses { padding-inline-start: 2rem; font-size: var(--step--1); }
+.sat-app :is(.sat-rewrites, .sat-clauses) li { padding: .5rem; overflow-wrap: anywhere; }
+.sat-app [aria-current="step"] { background: var(--surf-blue); border-radius: var(--radius); }
+.sat-app [data-target] { display: flex; gap: .4rem; margin-block: .5rem; }
+.sat-app [data-target] [aria-pressed="true"] { border-color: var(--blue-ink); box-shadow: inset 0 -2px var(--blue-ink); }
+.sat-app .sat-proof { width: max-content; min-width: 100%; padding: .6rem; font-size: var(--step--1); }
+.sat-app .sat-proof-parents { display: flex; gap: .8rem; justify-content: center; align-items: end; }
+.sat-app .sat-proof-node { text-align: center; }
+.sat-app .sat-proof-formula { border-top: 2px solid var(--ink); margin-top: .3rem; padding: .3rem; white-space: nowrap; }
+.sat-app .sat-proof-node > .sat-proof-formula:first-child { border-top: 0; }
+.sat-app .sat-proof small { color: var(--ink-muted); }
+.sat-app [hidden] { display: none; }
+@media (max-width: 60rem) { .sat-app .sat-layout { grid-template-columns: minmax(0, 1fr); } }
+@media (forced-colors: active) { .sat-app [aria-current="step"], .sat-app .sat-table .is-current { outline: 2px dashed Highlight; } }
+/* Compact formula keys keep the three-variable calculation beside its tree. */
+.sat-app [data-input] { flex: 1; padding: .4rem .6rem; font-size: var(--step-0); }
+.sat-app .sat-table :is(th, td) { padding: .25rem .35rem; }
+.sat-app .sat-table .sat-formula-boundary { border-inline-start: 2px solid var(--ink); }
+.sat-app .sat-table button { border: 0; background: transparent; border-radius: 0; box-shadow: none; color: var(--ink-muted); font-size: var(--step--2); font-family: var(--font-formal); min-width: 1.5rem; min-height: 1.5rem; padding: 0; vertical-align: sub; }
+.sat-app .sat-table button:not(:disabled):hover { background: transparent; color: var(--ink); text-decoration: underline; }
+.sat-app .sat-table tr.is-current > :first-child { box-shadow: inset 3px 0 var(--blue-ink); border-radius: var(--radius) 0 0 var(--radius); }
+.sat-app .sat-table tr.is-current > :last-child { border-radius: 0 var(--radius) var(--radius) 0; }
+.sat-app .sat-table td.is-current { outline: none; box-shadow: inset 0 -2px var(--blue-ink); }
+.sat-app :is(.sat-rewrites, .sat-clauses) [aria-current="step"] { box-shadow: inset 3px 0 var(--blue-ink); }
+.sat-app .sat-columns { font-size: var(--step--2); }
+.sat-app .sat-columns dl { display: grid; grid-template-columns: max-content minmax(0,1fr); gap: .15rem .5rem; margin-block: .5rem; }
+.sat-app .sat-columns :is(dt, dd) { margin: 0; overflow-wrap: anywhere; }
+.sat-app .sat-columns dt.is-current { color: var(--blue-ink); box-shadow: inset 0 -2px var(--blue-ink); }
+.sat-app .sat-preparation { padding: .7rem; background: var(--surf-blue); border-radius: var(--radius); box-shadow: inset 3px 0 var(--blue-ink); font-size: var(--step--1); }
+.sat-app .boolean-operator { color: var(--blue-ink); }
+.sat-app .sat-columns:empty { display: none; }
+
+.sat-examples { display: flex; flex-wrap: wrap; gap: .35rem; margin-block-end: .6rem; }
+.sat-examples button { font-size: var(--step--1); padding: .2rem .5rem; }
+.sat-examples button[aria-pressed="true"] { background: var(--surf-blue); border-color: var(--blue-ink); }
+.sat-bindings { display: grid; grid-template-columns: max-content minmax(0,1fr); gap: .25rem .75rem; }
+.sat-bindings dd { overflow-wrap: anywhere; margin: 0; }
+.sat-input-clauses, .sat-pair-checks { margin-block-end: .75rem; }
+.sat-pair-checks p { overflow-wrap: anywhere; }
+
+.sat-app .sat-table.is-dense { font-size: var(--step--2); }
+.sat-app .sat-table.is-dense :is(th, td) { padding-inline: .15rem; }
+
+.sat-app .sat-example-description, .sat-app .sat-problem { font-size: var(--step--1); margin-block: .35rem; }
+.sat-app .sat-problem p { margin-block: .2rem; overflow-wrap: anywhere; }
+.sat-app .sat-table-summary { width: 100%; min-width: 0; table-layout: fixed; font-size: var(--step--2); }
+.sat-app .sat-table-summary :is(th,td) { white-space: normal; overflow-wrap: anywhere; padding: .25rem .15rem; }
+.sat-app .sat-table-summary th:first-child { width: 2rem; }
+.sat-app .sat-table-summary th .boolean-app__formula { white-space: normal; overflow-wrap: anywhere; }
+.sat-app .sat-trace-mode { display: block; font-size: var(--step--1); margin-block: .4rem; }
+.sat-app .sat-trace-mode input { width: auto; min-height: 0; }
+.sat-app .sat-row-calculation p { margin-block: .25rem; }
+.sat-app .sat-cnf-preparation li { overflow-wrap: anywhere; }
+.sat-app .logic-app__tree svg { max-inline-size: 100%; max-height: 23vh; }
+.sat-app .sat-work { max-height: 43vh; }
+.sat-app [role="status"] { max-height: 9rem; overflow: auto; }
+
+.sat-current-formula { background: var(--surf-blue); box-shadow: inset 0 -2px var(--blue-ink); border-radius: var(--radius); }
+
+.sat-app .sat-proof-local { width: 100%; min-width: 0; box-sizing: border-box; padding: .3rem; font-size: var(--step--2); }
+.sat-app .sat-proof-local .sat-proof-parents > * { min-width: 0; flex: 1; }
+.sat-app .sat-proof-local .sat-proof-formula { white-space: normal; overflow-wrap: anywhere; }
+.sat-app .sat-table-summary .sat-result-column { width: 30%; }
+.sat-app .sat-pair-checks[open] { max-height: 20vh; overflow: auto; }
+.sat-app .sat-proof-local { font-size: var(--step--1); }
+.sat-app .sat-proof-local > .sat-proof-formula { text-align: center; }
+.sat-app .sat-proof-local > .sat-proof-formula { font-size: var(--step-0); }
+.sat-app[data-kind="truth-table"] .logic-app__tree svg { max-height: 20vh; }
+
+/* Exercise state is separate from the worked-example players. */
+.sat-practice [data-question] { margin-block: .5rem; overflow-wrap: anywhere; }
+.sat-practice form { display: flex; flex-wrap: wrap; align-items: end; gap: .6rem; margin-block: .5rem; }
+.sat-practice label { display: flex; flex-direction: column; gap: .2rem; font-size: var(--step--1); max-width: 100%; }
+.sat-practice input { min-width: 0; max-width: 100%; font-family: var(--font-formal); }
+.sat-practice .practice-table { width: 100%; table-layout: fixed; font-size: var(--step--2); }
+.sat-practice .practice-table th { white-space: normal; overflow-wrap: anywhere; }
+.sat-practice .practice-table input { width: 2rem; min-height: 2rem; padding: .1rem; text-align: center; }
+.sat-practice input[aria-invalid="true"] { border: 2px dashed var(--red-ink); }
+.sat-practice [data-controls] > button { margin: .2rem; }
+.sat-practice .sat-clauses { margin: 0; }
+.sat-practice .sat-clauses button { font-family: var(--font-formal); text-align: start; overflow-wrap: anywhere; }
+.sat-practice .sat-clauses button[aria-pressed="true"] { background: var(--surf-blue); box-shadow: inset 3px 0 var(--blue-ink); }
+.sat-practice .sat-clauses small { display: block; }
+.sat-practice [data-extra] details[open] { max-height: 25vh; overflow: auto; }
+.sat-practice .sat-work { max-height: 48vh; }
+
+.sat-practice input, .sat-practice select, .sat-practice textarea { color: var(--ink); background: var(--paper); border: 1px solid var(--ink-muted); border-radius: var(--radius); text-align: center; }
+.sat-practice textarea[readonly] { background: var(--paper-sunken); }
+.sat-practice .sat-examples, .sat-practice [data-controls], .sat-practice form { justify-content: center; text-align: center; }
+.sat-practice [data-controls] { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem; }
+.sat-practice [data-controls] > p { flex-basis: 100%; }
+.sat-practice button > svg { width: 1.1em; height: 1.1em; vertical-align: middle; margin-inline-end: .25em; }
+.sat-practice [data-level] { border-radius: var(--radius); }
+.sat-practice [data-level][aria-pressed="true"] { background: var(--surf-blue); box-shadow: inset 3px 0 var(--blue-ink); }
+.sat-practice .practice-solved { color: var(--green-ink); }
+.sat-practice .practice-targets { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); }
+.sat-practice .practice-targets button { text-align: start; font-size: var(--step--2); }
+.sat-practice .practice-targets .boolean-app__formula { margin-inline-start: .5rem; }
+.sat-practice .practice-tree { padding: .25rem; overflow: auto; }
+.sat-practice .practice-tree svg { max-height: 25vh; max-inline-size: 100%; width: auto; margin-inline: auto; }
+.sat-practice .practice-tree [role="button"] { cursor: pointer; }
+.sat-practice .practice-tree [role="button"]:focus { outline: 2px dashed var(--blue-ink); }
+.sat-practice [data-question] { text-align: center; }
+.sat-practice[data-kind="mystery"] th:last-child { width: 45%; }
+.sat-practice[data-kind="mystery"] th form, .sat-practice[data-kind="mystery"] th label, .sat-practice[data-kind="mystery"] th input { width: 100%; margin: 0; }
+.sat-practice[data-kind="circuit"] .boolean-app__layout { display: block; }
+.sat-practice[data-kind="circuit"] .boolean-circuit { max-height: 48vh; }
+.sat-practice[data-kind="circuit"] .boolean-app__aside { display: none; }
+.sat-practice[data-kind="circuit"] .sat-work { max-height: 60vh; }
+.pseudocode-practice form + [role="status"] { margin-block-start: 1rem; }
+@media (max-width: 40rem) { .sat-practice .practice-targets { grid-template-columns: minmax(0,1fr); } }
+
+.sat-practice .practice-actions { display: flex; flex-basis: 100%; flex-wrap: wrap; align-items: center; justify-content: center; gap: .4rem; }
+.sat-practice[data-kind="circuit"] [data-setup] label,
+.sat-practice[data-kind="normal-form"] label { width: 100%; }
+.sat-practice[data-kind="circuit"] [data-setup] input,
+.sat-practice[data-kind="normal-form"] input { width: 100%; font-size: var(--step-0); padding: .4rem .6rem; }
+.sat-practice[data-kind="normal-form"] .sat-layout { display: block; }
+.sat-practice[data-kind="normal-form"] .sat-work { min-height: 0; }
+.sat-practice[data-kind="resolution"] .sat-layout { grid-template-columns: minmax(0,1fr); }
+.sat-practice .sat-clauses { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,14rem),1fr)); gap: .3rem 1.6rem; padding-inline-start: 1.8rem; }
+.sat-practice .sat-clauses li { margin: 0; padding: 0; }
+.sat-practice .sat-clauses button { width: 100%; padding: .15rem .4rem; font-size: var(--step--1); }
+.sat-practice .sat-clauses small { font-size: var(--step--2); }
+.sat-practice .practice-actions label { flex-direction: row; align-items: center; gap: .4rem; }
+.sat-practice[data-kind="resolution"] [data-controls] > p { margin-block: .3rem; }
+
+.sat-practice .sat-clauses .practice-discarded { list-style: none; color: var(--ink-muted); padding: .15rem .4rem; border: 1px dashed var(--ink-muted); border-radius: var(--radius); font-size: var(--step--1); }
+.sat-practice .practice-discarded .boolean-operator { color: inherit; }
+.sat-practice .practice-discarded svg { width: 1em; height: 1em; vertical-align: middle; }

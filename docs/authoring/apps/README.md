@@ -7,8 +7,11 @@ Shortcode-driven components used in textbook pages and exercise solutions.
 - [The parser](parser.md) — `name="parser"`, strict and conventional grammars.
 - [The LaTeX drill](latex-game.md) — `name="latex-game"`.
 - [The formula builder](formula-builder.md) — `name="builder"`.
+- [The flashcards app](flashcards.md) — `name="flashcards"`, the study section's deck.
 - [Introductory exercise apps](exercise-apps.md) — notation practice, pseudocode, shunting yard, reasoning practice.
 
+- [SAT exercises](sat-practice.md) — table construction, gaps, mystery formulas, and student-controlled resolution.
+- [SAT apps](sat.md) — truth-tables, normal-form rewriting, formula-based resolution, Tseytin conversion.
 - [Boolean chapter apps](boolean.md) — derivations, evaluation trees, model spaces.
 - [Boolean circuits and workbench](boolean-circuits.md) — relays, adders, circuit construction.
 
@@ -46,4 +49,4 @@ use the same parsing implementation.
 ## Related
 
 - [Chapter apps](../../design/chapter-apps.md) — the panel, its layout and tokens.
-- [Tools appendix](../tools-appendix.md) — which apps belong in Appendix C.
+- [The tools section](../tools-section.md) — which apps get their own page at `/tools/`.

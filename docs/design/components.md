@@ -2,9 +2,9 @@
 
  | Component             | Where                                                              | Notes                                                                       |
  | ---                   | ---                                                                | ---                                                                         |
- | Header                | `partials/baseof/navbar.html`                                      | text brand, section links, theme toggle, chapter-tree button                |
+ | Header                | `partials/baseof/navbar.html`                                      | text brand, section links, home link, theme toggle, chapter-tree button     |
  | Course panel          | `partials/baseof/offcanvas-nav.html`                               | full chapter tree; `aria-current` marks position                            |
- | Breadcrumb            | `partials/single/breadcrumb.html`                                  | replaces the old unreachable house icon                                     |
+ | Breadcrumb            | `partials/single/breadcrumb.html`                                  | the trail back up; the header house is the one-hop way home                 |
  | Chapter rail          | `partials/single/chapter-rail.html`                                | sticky, ≥75rem                                                              |
  | On this page          | `partials/single/on-this-page.html`                                | `IntersectionObserver` marks the current section; degrades to plain anchors |
  | Prev / next           | `partials/single/nav-bot.html`                                     | derived from **weight**, since `PrevInSection` runs the other way           |

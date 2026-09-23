@@ -26,10 +26,15 @@ before pushing:
 | Release state: unlocking a chapter | `release`, `keyboard` |
 | The route stub or a shared fixture | the whole browser suite |
 
-The local reporter prints one character per passing test and the full failure
-block for each failure; `CI=1` restores the per-test listing, traces and
-failure screenshots that GitHub Actions uploads. The test server is reused
-between local runs, so leaving one up costs nothing.
+The reporter prints one character per passing test and the full failure block
+for each failure, locally and on CI alike; `CI=1` adds the traces, failure
+screenshots and GitHub annotations that the workflow uploads. The test server is
+reused between local runs, so leaving one up costs nothing.
+
+Through the runner, `npm run check -- --only=<names>` restricts a run to named
+checks — `unit`, `build`, `content`, `site`, `docs`, `markdown`, `browser` —
+while keeping the summary and the dependency skipping. `npm test -- --desktop`
+runs the browser suites at desktop width only. See [Test output](output.md).
 
 Prose-only edits need browser or screenshot review only for a concrete rendering
 concern. After required checks pass, stop unless further edits, a failure, or a
@@ -38,10 +43,12 @@ named unresolved concern justify another run.
 For Codex command approvals, invoke named npm scripts directly. Shell wrappers,
 environment assignments and log redirection can prevent a saved prefix approval
 from matching; changing an approved wrapper's log filename can prompt again.
-Keep verbose output in `tmp/` through the calling tool when supported. See
+Redirection is no longer needed to keep output small: the runner writes each
+check's full output to `tmp/logs/` and prints a summary. See
 [Codex rules](https://learn.chatgpt.com/docs/agent-configuration/rules).
 
 ## Related
 
+- [Test output](output.md) — `--only`, `--verbose`, and notes for agents.
 - [Browser suites](browser-suites.md) — what each named suite guards.
 - [While editing](while-editing.md) — the individual check commands.

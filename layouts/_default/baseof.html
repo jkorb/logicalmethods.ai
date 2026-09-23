@@ -60,6 +60,8 @@
     {{ if .HasShortcode "logic-app" }}
     <link rel="stylesheet" href="{{ (resources.Get "css/apps/logic-app.css" | fingerprint).RelPermalink }}">
     <link rel="stylesheet" href="{{ (resources.Get "css/apps/boolean.css" | fingerprint).RelPermalink }}">
+    <link rel="stylesheet" href="{{ (resources.Get "css/apps/sat.css" | fingerprint).RelPermalink }}">
+    <link rel="stylesheet" href="{{ (resources.Get "css/apps/flashcards.css" | fingerprint).RelPermalink }}">
     {{ end }}
     {{ if or (.HasShortcode "column-addition") (.HasShortcode "logic-app") }}
     <link rel="stylesheet" href="{{ (resources.Get "css/column-addition.css" | fingerprint).RelPermalink }}">
@@ -108,6 +110,7 @@
     </footer>
 
     <script src="{{ (resources.Get "js/helpers.js" | fingerprint).RelPermalink }}"></script>
+    <script type="module" src="{{ (resources.Get "js/textarea-size.js" | fingerprint).RelPermalink }}"></script>
     <script type="module" src="{{ (resources.Get "js/glossary.js" | fingerprint).RelPermalink }}"></script>
     <script type="module" src="{{ (resources.Get "js/display-math.js" | fingerprint).RelPermalink }}"></script>
     <script src="{{ (resources.Get "bootstrap/dist/js/bootstrap.bundle.min.js" | fingerprint).RelPermalink }}"></script>

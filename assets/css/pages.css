@@ -128,6 +128,11 @@
 
 /* ---- chapter cards ------------------------------------------------------ */
 .chapter-list { padding-block-end: 3rem; }
+.chapter-list__group {
+  font-family: var(--font-hand); font-size: var(--step-1); color: var(--ink-muted);
+  margin-block: 1.9rem .7rem;
+}
+.chapter-list__group:first-child { margin-block-start: 0; }
 .chapter-list ol { list-style: none; margin: 0; padding: 0; display: grid; gap: .6rem; }
 .chapter-card {
   display: flex; align-items: center; gap: 1rem;
@@ -402,3 +407,8 @@ a.chapter-card:hover { color: var(--ink); border-color: var(--rule-strong); tran
 /* Inline illustrated expressions wrap between terms, keeping each pictured set together. */
 .set-inline .math-set--expression { flex-wrap: wrap; max-inline-size: 100%; white-space: normal; row-gap: .25em; }
 .set-inline .math-set--expression > .math-set__member { min-inline-size: 0; max-inline-size: 100%; }
+
+.chapter-reference__label { font-size: var(--step--1); font-weight: normal; }
+
+.truth-table-example .table-scroll table :is(th, td)::after { display: none; }
+.truth-table-example .table-scroll table :is(th, td):nth-child(2)::after { display: block; }

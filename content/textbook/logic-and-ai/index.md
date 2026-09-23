@@ -14,6 +14,8 @@ params:
 Logic and AI are intimately connected. In this chapter you'll learn how.
 
 {{< callout type="objectives" >}}
+After studying this chapter, you will be able to:
+
 - Define logic and artificial intelligence as scientific disciplines.
 - Describe how logical systems model valid inference.
 - Explain the three main roles of logic in AI, using examples.

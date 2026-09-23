@@ -14,6 +14,15 @@ Import `routeToTestSite` directly where a test builds its own context, or pass
 resolve. `privacy.spec.mjs` is the deliberate exception: it records and aborts
 off-site requests to prove the site makes none.
 
+A new spec must not wait for a duration. `waitForTimeout` appears nowhere in
+`tests/browser/` and should not be added: a fixed sleep fails whenever the
+machine needs one millisecond longer than the number you guessed. Wait for the
+condition instead — `expect(locator)` and `expect.poll` retry until it holds.
+Where a test needs its own ceiling, import `budget` from
+[`tests/browser/budget.mjs`](../../tests/browser/budget.mjs) rather than writing
+a number, so it scales on a slow runner. [Matching CI locally](ci-parity.md)
+gives the worked examples.
+
 Browser tests must route production-domain asset requests to the local test
 server, as the parser and site suites do. The normal Hugo test build retains
 production absolute URLs. A preview built with a localhost base URL can mask
@@ -53,3 +62,5 @@ full suite after upgrades and the prose tests after Vale changes.
 ## Related
 
 - [Browser suites](browser-suites.md), [Staged release](../authoring/staged-release.md).
+- [Matching CI locally](ci-parity.md) — writing a spec that does not depend on machine speed.
+- [Test output](output.md) — how the runner reports a check you add.

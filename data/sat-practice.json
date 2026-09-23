@@ -1,0 +1,210 @@
+{
+  "table": [
+    {
+      "formula": "SUN ∧ ¬RAIN"
+    },
+    {
+      "formula": "¬(SUN ∧ RAIN)"
+    },
+    {
+      "formula": "(SUN ∨ RAIN) ∧ ¬SUN"
+    },
+    {
+      "formula": "SUN ↔ RAIN"
+    },
+    {
+      "formula": "SUN ∨ (¬RAIN ∧ WIND)"
+    },
+    {
+      "formula": "(SUN ∨ RAIN) ∧ ¬SUN ∧ ¬RAIN"
+    }
+  ],
+  "gaps": [
+    {
+      "formula": "¬(SUN ∧ RAIN)"
+    },
+    {
+      "formula": "(SUN ∨ RAIN) ∧ ¬SUN"
+    },
+    {
+      "formula": "SUN ↔ ¬RAIN"
+    },
+    {
+      "formula": "(SUN ∧ WIND) ∨ ¬RAIN"
+    }
+  ],
+  "mystery": [
+    {
+      "formula": "¬SUN",
+      "names": [
+        "SUN"
+      ]
+    },
+    {
+      "formula": "SUN ∧ RAIN",
+      "names": [
+        "RAIN",
+        "SUN"
+      ]
+    },
+    {
+      "formula": "SUN ∨ RAIN",
+      "names": [
+        "RAIN",
+        "SUN"
+      ]
+    },
+    {
+      "formula": "¬(SUN ∧ RAIN)",
+      "names": [
+        "RAIN",
+        "SUN"
+      ]
+    },
+    {
+      "formula": "(SUN ∧ ¬RAIN) ∨ (¬SUN ∧ RAIN)",
+      "names": [
+        "RAIN",
+        "SUN"
+      ]
+    },
+    {
+      "formula": "SUN ↔ RAIN",
+      "names": [
+        "RAIN",
+        "SUN"
+      ]
+    },
+    {
+      "formula": "SUN ∨ ¬WIND",
+      "names": [
+        "RAIN",
+        "SUN",
+        "WIND"
+      ]
+    },
+    {
+      "formula": "(SUN ∧ RAIN) ∨ WIND",
+      "names": [
+        "RAIN",
+        "SUN",
+        "WIND"
+      ]
+    }
+  ],
+  "resolution": [
+    {
+      "formula": "(SUN ∨ RAIN) ∧ ¬SUN ∧ ¬RAIN"
+    },
+    {
+      "formula": "(SUN ∨ RAIN ∨ ¬WIND) ∧ (SUN ∨ ¬RAIN ∨ ¬WIND)"
+    },
+    {
+      "formula": "(¬SUN ∨ ¬RAIN ∨ WIND) ∧ (¬SUN ∨ ¬RAIN ∨ ¬WIND)"
+    },
+    {
+      "formula": "(SUN ∨ RAIN) ∧ (SUN ∨ ¬RAIN) ∧ (¬SUN ∨ RAIN) ∧ (¬SUN ∨ ¬RAIN)"
+    },
+    {
+      "formula": "SUN ∧ (SUN ∨ RAIN) ∧ RAIN"
+    },
+    {
+      "formula": "(SUN ∨ RAIN) ∧ (¬SUN ∨ ¬RAIN)"
+    },
+    {
+      "formula": "(SUN ∨ RAIN ∨ WIND) ∧ (¬SUN ∨ ¬RAIN) ∧ ¬WIND ∧ SUN ∧ RAIN"
+    },
+    {
+      "formula": "(SUN ∨ RAIN) ∧ (¬SUN ∨ WIND) ∧ (¬RAIN ∨ WIND) ∧ (¬WIND ∨ SNOW) ∧ ¬SNOW"
+    }
+  ],
+  "circuit": [
+    {
+      "preset": "nand-faulty",
+      "formula": "INPUT₁ ∧ INPUT₂"
+    },
+    {
+      "preset": "nand",
+      "formula": "¬(INPUT₁ ∧ INPUT₂)"
+    },
+    {
+      "preset": "negated-input",
+      "formula": "¬INPUT₁ ∧ INPUT₂"
+    },
+    {
+      "preset": "sat-three",
+      "formula": "¬(INPUT₁ ∧ INPUT₂) ∧ INPUT₃"
+    },
+    {
+      "preset": "sat-branch",
+      "formula": "¬(INPUT₁ ∧ INPUT₂) ∧ ¬(INPUT₂ ∧ INPUT₃)"
+    }
+  ],
+  "equivalence": [
+    {
+      "formula": "¬(SUN ↔ RAIN)",
+      "names": [
+        "RAIN",
+        "SUN"
+      ],
+      "prompt": "Negate one input of XNOR. Describe the resulting function without ↔.",
+      "allowed": [
+        "¬",
+        "∧",
+        "∨"
+      ]
+    },
+    {
+      "formula": "SUN ↔ RAIN",
+      "names": [
+        "RAIN",
+        "SUN"
+      ],
+      "prompt": "Negate both inputs of XNOR. Give a formula for the resulting function."
+    },
+    {
+      "formula": "(SUN ↔ RAIN) ∧ (RAIN ↔ WIND)",
+      "names": [
+        "RAIN",
+        "SUN",
+        "WIND"
+      ],
+      "prompt": "Give a formula which is true exactly when all three inputs agree."
+    }
+  ],
+  "inference": [
+    {
+      "inference": "¬RAIN ∴ RAIN ∨ (¬RAIN ∧ SUN)"
+    },
+    {
+      "inference": "RAIN ∨ (RAIN ∧ WIND) ∴ RAIN ∨ SUN"
+    },
+    {
+      "inference": "SUN ∨ RAIN, ¬SUN ∨ WIND, ¬RAIN ∨ WIND ∴ WIND"
+    },
+    {
+      "inference": "SUN ∨ RAIN, ¬SUN ∨ WIND ∴ WIND"
+    },
+    {
+      "inference": "SUN ∨ RAIN, ¬SUN ∨ WIND, ¬RAIN ∨ SNOW ∴ WIND ∨ SNOW"
+    }
+  ],
+  "normal-form": [
+    {
+      "label": "AND",
+      "formula": "INPUT₁ ∧ INPUT₂"
+    },
+    {
+      "label": "XOR",
+      "formula": "(INPUT₁ ∧ ¬INPUT₂) ∨ (¬INPUT₁ ∧ INPUT₂)"
+    },
+    {
+      "label": "XNOR",
+      "formula": "(INPUT₁ ∧ INPUT₂) ∨ (¬INPUT₁ ∧ ¬INPUT₂)"
+    },
+    {
+      "label": "NOR",
+      "formula": "¬INPUT₁ ∧ ¬INPUT₂"
+    }
+  ]
+}

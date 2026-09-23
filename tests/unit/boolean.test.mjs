@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { parseBoolean, evaluateTrace, proposition, WORLDS, circuitPreset, evaluateCircuit, inferenceScene, worldsFor, readInference, twoBitSum, rippleSum, checkCircuit } from '../../assets/js/logic/boolean.js';
+import { parseBoolean, evaluateTrace, proposition, WORLDS, circuitPreset, evaluateCircuit, inferenceScene, worldsFor, readInference, twoBitSum, rippleSum, checkCircuit, circuitTable } from '../../assets/js/logic/boolean.js';
 import { countermodels } from '../../assets/js/set-diagram-model.js';
 
 test('Boolean evaluation follows parsed dependencies, with consistent repeated atoms', () => {
@@ -118,4 +118,13 @@ test('relay networks implement NAND, XOR and XNOR with parallel branches',()=>{
  const branches=[...base,relay('a','RELAY-ON','X','Y'),relay('b','RELAY-ON','Y','X')];
  for(const [target,nodes]of [['NAND',nand],['XOR',[...branches,out(['a','b'])]],['XNOR',[...branches,relay('c','RELAY-ON',['a','b'],'POWER'),out('c')]]])assert.equal(checkCircuit(nodes,target).correct,true);
  assert.throws(()=>evaluateCircuit([...base,relay('a','RELAY-OFF',['X','a'],'POWER')]),/Feedback loop/);
+});
+
+test('the sandbox table reports what a circuit computes, and null where it cannot', () => {
+  const base = circuitPreset('');
+  // Nothing is wired to the output yet, so every entry is unknown.
+  assert.deepEqual(circuitTable(base), [[null, null], [null, null]]);
+  const wired = circuitPreset('').map(n => n.id === 'out' ? { ...n, inputs: ['and'] } : n);
+  wired.push({ id: 'and', type: 'AND', x: 180, y: 260, inputs: ['X', 'Y'], label: 'and', value: 0 });
+  assert.deepEqual(circuitTable(wired), [[0, 0], [0, 1]]);
 });

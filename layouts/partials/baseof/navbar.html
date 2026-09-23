@@ -19,6 +19,9 @@
       {{- end -}}
     </ul>
 
-    {{ partial "baseof/theme-toggle.html" . }}
+    <div class="navbar-main__tools">
+      {{ partial "baseof/home-link.html" . }}
+      {{ partial "baseof/theme-toggle.html" . }}
+    </div>
   </div>
 </nav>

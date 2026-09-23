@@ -102,6 +102,16 @@ export function evaluateCircuit(nodes, inputs = {}) {
 export function circuitPreset(kind) {
   const n = (id, type, x, y, inputs = [], label = id) => ({ id, type, x, y, inputs, label, value: 0 });
   const inputs = [n('X', 'INPUT', 100, 410), n('Y', 'INPUT', 270, 410)];
+  if (kind === 'sat-three') return [n('X','INPUT',60,530),n('Y','INPUT',210,530),n('Z','INPUT',440,530),n('POWER','POWER',550,530),n('a','RELAY-OFF',130,390,['X','Y']),n('b','RELAY-ON',200,260,['a','POWER']),n('c','RELAY-OFF',340,130,['b','Z']),n('out','OUTPUT',340,20,['c'],'output')];
+  if (kind === 'sat-branch') return [n('X','INPUT',60,620),n('Y','INPUT',270,620),n('Z','INPUT',460,620),n('POWER','POWER',550,620),n('a','RELAY-OFF',130,450,['X','Y']),n('b','RELAY-OFF',380,450,['Y','Z']),n('c','RELAY-ON',130,300,['a','POWER']),n('d','RELAY-ON',380,300,['b','POWER']),n('e','RELAY-OFF',270,150,['c','d']),n('out','OUTPUT',270,30,['e'],'output')];
+  if (kind === 'negated-input') return [...inputs, n('POWER','POWER',480,410), n('not','RELAY-ON',100,280,['X','POWER']), n('and','RELAY-OFF',270,160,['not','Y']), n('out','OUTPUT',270,40,['and'],'output')];
+  if (kind === 'nand-faulty') return [...inputs, n('and','RELAY-OFF',180,280,['X','Y']), n('out','OUTPUT',180,110,['and'],'output')];
+  if (kind === 'nand') return [...inputs,
+    n('POWER', 'POWER', 480, 410),
+    n('and', 'RELAY-OFF', 180, 280, ['X', 'Y']),
+    n('not', 'RELAY-ON', 290, 165, ['and', 'POWER']),
+    n('out', 'OUTPUT', 290, 45, ['not'], 'NAND')];
+
   if (kind === 'half') return [...inputs, n('xor', 'XOR', 100, 225, ['X', 'Y']), n('and', 'AND', 340, 225, ['X', 'Y']), n('sum', 'OUTPUT', 100, 65, ['xor'], 'sum'), n('carry', 'OUTPUT', 340, 65, ['and'], 'carry')];
   if (kind === 'full') return [n('X','INPUT',80,440),n('Y','INPUT',250,440),n('C','INPUT',500,440),n('xor1','XOR',160,325,['X','Y']),n('and1','AND',370,325,['X','Y']),n('xor2','XOR',110,195,['xor1','C']),n('and2','AND',300,195,['xor1','C']),n('or','OR',420,95,['and1','and2']),n('sum','OUTPUT',110,65,['xor2'],'sum'),n('carry','OUTPUT',420,15,['or'],'carry')];
   return [...inputs, n('out', 'OUTPUT', 280, 65, [], 'output')];
@@ -132,6 +142,12 @@ export const CIRCUIT_TASKS = ['XOR', 'NAND', 'NOR', 'XNOR'];
 export function checkCircuit(nodes, target) {
   const rows = [0,1].flatMap(X => [0,1].map(Y => ({ X, Y, actual: evaluateCircuit(nodes, { X,Y }).get('out'), expected: OPERATIONS[target].run(X,Y) })));
   return { rows, correct: rows.every(r => r.actual === r.expected) };
+}
+// The sandbox has no target: it reports what the circuit on the canvas computes.
+export function circuitTable(nodes) {
+  return [0,1].map(X => [0,1].map(Y => {
+    try { return evaluateCircuit(nodes, { X, Y }).get('out') ?? null; } catch { return null; }
+  }));
 }
 export function twoBitSum(X, Y) {
   const x0=X&1, y0=Y&1, x1=(X>>1)&1, y1=(Y>>1)&1;

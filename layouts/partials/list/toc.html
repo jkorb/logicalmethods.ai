@@ -1,29 +1,22 @@
 {{- $cur := .Page -}}
+{{- $groups := $cur.Param "groups" -}}
 <nav class="chapter-list" aria-label="{{ $cur.Title }} contents">
-  <ol>
-    {{- range $cur.Pages.ByWeight }}
-      {{- $n := math.Div .Weight 10 -}}
-      <li>
-        {{- if .Params.locked }}
-          <div class="chapter-card is-locked" aria-disabled="true">
-            <span class="chapter-card__num" aria-hidden="true">{{ with .Params.appendix }}{{ . }}{{ else }}{{ printf "%02d" $n }}{{ end }}</span>
-            <span class="chapter-card__body">
-              <span class="chapter-card__title">{{ if .Params.appendix }}Appendix: {{ end }}{{ .Title }}</span>
-              {{ with .Param "teaser" }}<span class="chapter-card__teaser">{{ . }}</span>{{ end }}
-            </span>
-            <span class="badge-soon">Coming soon</span>
-          </div>
-        {{- else }}
-          <a class="chapter-card" href="{{ .RelPermalink }}">
-            <span class="chapter-card__num" aria-hidden="true">{{ with .Params.appendix }}{{ . }}{{ else }}{{ printf "%02d" $n }}{{ end }}</span>
-            <span class="chapter-card__body">
-              <span class="chapter-card__title">{{ if .Params.appendix }}Appendix: {{ end }}{{ .Title }}</span>
-              {{ with .Param "teaser" }}<span class="chapter-card__teaser">{{ . }}</span>{{ end }}
-            </span>
-            <i class="bi bi-arrow-right chapter-card__go" aria-hidden="true"></i>
-          </a>
-        {{- end }}
-      </li>
-    {{- end }}
-  </ol>
+  {{- if $groups -}}
+    {{- range $cur.Pages -}}
+      {{- if not .Params.group }}{{ errorf "%s declares params.groups, so %q needs a params.group" $cur.RelPermalink .Title }}{{ end -}}
+    {{- end -}}
+    {{- range $groups -}}
+      {{- $name := . -}}
+      {{- with where $cur.Pages.ByWeight "Params.group" $name -}}
+        <h2 class="chapter-list__group">{{ $name }}</h2>
+        <ol>
+          {{- range . }}{{ partial "list/card.html" (dict "page" . "numbered" false) }}{{ end -}}
+        </ol>
+      {{- end -}}
+    {{- end -}}
+  {{- else -}}
+    <ol>
+      {{- range $cur.Pages.ByWeight }}{{ partial "list/card.html" (dict "page" . "numbered" true) }}{{ end -}}
+    </ol>
+  {{- end -}}
 </nav>

@@ -18,5 +18,6 @@ publication steps.
 
 ## Related
 
+- [Lecture standards](../slides/lecture-standards.md) — length, shape and images of a revised deck.
 - [Sources and generated files](../slides/files.md), [Image review](../slides/image-review.md).
 - [References and links](references-and-links.md) — the `iframe` shortcode for external embeds.

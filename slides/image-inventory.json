@@ -1,5 +1,5 @@
 {
-  "policy": "Review image sources and licences before publication; matching a workspace filename does not establish rights. Lectures 1 to 4 are cleared: every embedded image without a rights record was removed, and each decision is recorded in the lecture's manifest. Lectures 5-12 keep their images visible at the maintainer request and are still unreviewed.",
+  "policy": "Review image sources and licences before publication; matching a workspace filename does not establish rights. Lectures 1 to 5 are cleared: every embedded image without a rights record was removed, and each decision is recorded in the lecture's manifest. Lectures 6-12 keep their images visible at the maintainer request and are still unreviewed.",
   "images": [
     {
       "fileId": "6c96834c33c7511b9ddec8ac5a34bc759c19bbb3ebd457d654c1a2d5c7de5aa130abda02bbe5817d09cbccbeecd92a7c",
@@ -38,7 +38,7 @@
           ]
         }
       ],
-      "reviewStatus": "unverified",
+      "reviewStatus": "removed: no rights record, bytes dropped 2026-09-22",
       "sourceURL": null,
       "license": null,
       "workspaceMatch": {
@@ -362,7 +362,7 @@
           ]
         }
       ],
-      "reviewStatus": "unverified",
+      "reviewStatus": "removed: no rights record, bytes dropped 2026-09-22",
       "sourceURL": null,
       "license": null,
       "workspaceMatch": {

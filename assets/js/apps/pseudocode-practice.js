@@ -10,7 +10,7 @@ export function mountPseudocode(root) {
     picker();code.replaceChildren();status.textContent='';delete status.dataset.feedback;
     const level=levels[current];root.querySelector('[data-prompt]').textContent=level.prompt;
     level.code.split('___').forEach((part,i)=>{
-      if(i){const input=el('input',{type:'text','aria-label':`Missing keyword ${i}`,autocomplete:'off',autocapitalize:'off',spellcheck:'false',maxlength:12,size:6});input.value=saved[current][i-1]||'';
+      if(i){const input=el('input',{type:'text','aria-label':`Missing entry ${i}`,autocomplete:'off',autocapitalize:'off',spellcheck:'false',maxlength:12,size:6});input.value=saved[current][i-1]||'';
         input.addEventListener('input',()=>{saved[current][i-1]=input.value;input.removeAttribute('aria-invalid');status.textContent='';delete status.dataset.feedback;});code.append(input);}
       code.append(document.createTextNode(part));
     });

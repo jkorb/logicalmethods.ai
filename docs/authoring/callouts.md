@@ -34,4 +34,5 @@ for programs, not as substitutes for example sentences.
 
 ## Related
 
+- [Chapter standards](chapter-standards.md) — which definitions get a callout, and what may go in one.
 - [Components](../design/components.md) — the surfaces these render onto.

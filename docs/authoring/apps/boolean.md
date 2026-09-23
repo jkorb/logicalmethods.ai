@@ -52,3 +52,6 @@ color swatch and an explicitly recorded valuation table.
 Pure semantics live in `assets/js/logic/boolean.js`. App state is local to each
 root, with no saved browser state. Without JavaScript, the chapter's definitions,
 worked calculations and valuation table remain available.
+
+For the two-variable model demonstration, `examples="inferences"` adds
+buttons switching between the valid and invalid weather inferences.

@@ -16,7 +16,7 @@
   },
   "bivalence": {
     "term": "Bivalence",
-    "definition": "The assumption that each formula has exactly one of the two truth-values, true and false.",
+    "definition": "The assumption that each formula has exactly one of the two Boolean truth-values, true or false.",
     "chapter": "boolean"
   },
   "boolean-function": {
@@ -28,6 +28,11 @@
     "term": "Cardinality",
     "definition": "The number of elements of a set.",
     "chapter": "formal-languages"
+  },
+  "clause": {
+    "term": "Clause",
+    "definition": "A disjunctive clause is a disjunction of literals. A conjunctive clause is a conjunction of literals. A single literal counts as either. In resolution, an unqualified clause means a disjunctive clause.",
+    "chapter": "sat"
   },
   "classical-logic": {
     "term": "Classical logic",
@@ -44,6 +49,12 @@
     "definition": "The probability of one claim given another. Formally, Pr(A given B)=Pr(A∧B)/Pr(B), provided Pr(B)>0.",
     "chapter": "valid-inference"
   },
+  "conjunctive-normal-form": {
+    "term": "Conjunctive normal form",
+    "definition": "A conjunction of disjunctions of literals, abbreviated CNF.",
+    "chapter": "sat",
+    "anchor": "normal-forms"
+  },
   "consequence": {
     "term": "Logical consequence",
     "definition": "A conclusion is a logical consequence of premises if every model making the premises true also makes the conclusion true.",
@@ -52,12 +63,18 @@
   "contradiction": {
     "term": "Contradiction",
     "definition": "A formula that is false in every model of the logic under discussion.",
-    "chapter": "notation"
+    "chapter": "sat",
+    "anchor": "truth-tables"
   },
   "countermodel": {
     "term": "Countermodel",
     "definition": "A model in which all the premises of an inference are true and its conclusion is not true.",
     "chapter": "valid-inference"
+  },
+  "decision-procedure": {
+    "term": "Decision procedure",
+    "definition": "An algorithm that terminates on every allowed input with the correct yes-or-no answer.",
+    "chapter": "sat"
   },
   "deductive-closure": {
     "term": "Deductive closure",
@@ -89,20 +106,38 @@
     "definition": "An or-formula. Classical A∨B is true exactly when at least one disjunct is true, including when both are.",
     "chapter": "boolean"
   },
+  "disjunctive-normal-form": {
+    "term": "Disjunctive normal form",
+    "definition": "A disjunction of conjunctions of literals, abbreviated DNF.",
+    "chapter": "sat",
+    "anchor": "normal-forms"
+  },
   "domain": {
     "term": "Domain",
     "definition": "The nonempty set of objects over which an FOL model interprets names, predicates, functions, and quantifiers.",
     "chapter": "notation"
+  },
+  "empty-clause": {
+    "term": "Empty clause",
+    "definition": "A disjunction with no literals, written ⊥. Its value is 0 under every Boolean valuation.",
+    "chapter": "sat",
+    "anchor": "resolution"
   },
   "entailment": {
     "term": "Entailment",
     "definition": "Another name for semantic consequence, written with ⊨.",
     "chapter": "valid-inference"
   },
+  "equisatisfiable": {
+    "term": "Equisatisfiable",
+    "definition": "Two formulas are equisatisfiable iff they are either both satisfiable or both unsatisfiable.",
+    "chapter": "sat"
+  },
   "equivalence": {
     "term": "Logical equivalence",
     "definition": "Two formulas are logically equivalent if they have the same truth-value in every model of the logic.",
-    "chapter": "notation"
+    "chapter": "sat",
+    "anchor": "normal-forms"
   },
   "existential-quantifier": {
     "term": "Existential quantifier",
@@ -164,6 +199,12 @@
     "definition": "A collection of represented information used as the starting point for further inference.",
     "chapter": "logic-and-ai"
   },
+  "literal": {
+    "term": "Literal",
+    "definition": "An atomic formula or the negation of an atomic formula.",
+    "chapter": "sat",
+    "anchor": "normal-forms"
+  },
   "logical-validity": {
     "term": "Logical validity",
     "definition": "Validity that depends on logical form, rather than the particular subject matter of the inference.",
@@ -209,6 +250,24 @@
     "definition": "A precise description of an algorithm written for readers, using programming-like notation without requiring a complete executable program.",
     "chapter": "formal-languages"
   },
+  "refutation": {
+    "term": "Refutation",
+    "definition": "A derivation of a contradiction from a set of formulas, establishing that the set is unsatisfiable.",
+    "chapter": "sat",
+    "anchor": "resolution"
+  },
+  "resolution": {
+    "term": "Resolution",
+    "definition": "An inference rule that removes one complementary pair of literals from two clauses and forms the disjunction of the remaining literals.",
+    "chapter": "sat",
+    "anchor": "resolution"
+  },
+  "satisfiability": {
+    "term": "Satisfiability",
+    "definition": "A propositional formula is satisfiable iff some Boolean valuation makes it true. A set of formulas is jointly satisfiable iff one Boolean valuation makes all its formulas true.",
+    "chapter": "sat",
+    "anchor": "sat"
+  },
   "semantics": {
     "term": "Semantics",
     "definition": "The component of a logical system that specifies interpretations and truth conditions.",
@@ -227,7 +286,8 @@
   "tautology": {
     "term": "Tautology",
     "definition": "A formula true in every valuation of the propositional logic under discussion.",
-    "chapter": "notation"
+    "chapter": "sat",
+    "anchor": "truth-tables"
   },
   "truth-value": {
     "term": "Truth-value",
@@ -288,6 +348,11 @@
     "term": "Inductive validity",
     "definition": "In our weak logical sense, conditioning on the premises never lowers the probability of the conclusion, for any distribution giving the premises positive probability.",
     "chapter": "valid-inference"
+  },
+  "theorem": {
+    "term": "Mathematical theorem",
+    "definition": "A mathematical fact whose truth is established by a gapless, rigorous mathematical proof or argument.",
+    "chapter": "sat"
   },
   "logic": {
     "term": "Logic",
@@ -353,6 +418,18 @@
     "term": "Logical form",
     "definition": "The structure of an expression or inference that matters for logical validity, abstracting from its particular subject matter.",
     "chapter": "valid-inference"
+  },
+  "logical-invalidity": {
+    "term": "Logical invalidity",
+    "definition": "An inference being invalid on account of its logical form: some interpretation makes the premises true and the conclusion false.",
+    "chapter": "valid-inference",
+    "anchor": "formally--logical-validity"
+  },
+  "material-invalidity": {
+    "term": "Material invalidity",
+    "definition": "An inference admitting a case where the premises are true and the conclusion false, even when the relevant meanings and background facts are respected.",
+    "chapter": "valid-inference",
+    "anchor": "formally--logical-validity"
   },
   "proof-assistant": {
     "term": "Proof assistant",
@@ -456,7 +533,7 @@
   },
   "rewrite-rule": {
     "term": "Rewrite rule",
-    "definition": "An instruction specifying how one string of symbols may be replaced by another when generating expressions.",
+    "definition": "A rule specifying how to replace an expression or a matching part of an expression.",
     "chapter": "formal-languages"
   },
   "parsing": {
@@ -739,5 +816,100 @@
     "term": "Boolean model",
     "definition": "A Boolean valuation of the propositional variables of a language, used to represent a possible reasoning situation. It is a model of a formula when that formula has value 1 under the valuation.",
     "chapter": "boolean"
+  },
+  "sat-solving": {
+    "term": "SAT solving",
+    "definition": "Using an algorithm to decide whether a propositional formula or finite set of propositional formulas is satisfiable.",
+    "chapter": "sat"
+  },
+  "unsatisfiable": {
+    "term": "Unsatisfiable",
+    "definition": "A propositional formula is unsatisfiable iff no Boolean valuation makes it true. A set of formulas is unsatisfiable iff no Boolean valuation makes all of them true.",
+    "chapter": "sat"
+  },
+  "sat-problem": {
+    "term": "Boolean satisfiability problem",
+    "definition": "The problem of deciding whether a given propositional formula or finite set of propositional formulas is satisfiable.",
+    "chapter": "sat"
+  },
+  "hardware-verification": {
+    "term": "Hardware verification",
+    "definition": "Checking whether a hardware implementation meets its specification.",
+    "chapter": "sat"
+  },
+  "truth-table": {
+    "term": "Truth-table",
+    "definition": "A table listing the values of one or more propositional formulas under every assignment to their variables.",
+    "chapter": "sat"
+  },
+  "decidable": {
+    "term": "Decidable",
+    "definition": "A problem is decidable if an algorithm terminates on every allowed input with the correct yes-or-no answer.",
+    "chapter": "sat"
+  },
+  "time-complexity": {
+    "term": "Time complexity",
+    "definition": "The running time of an algorithm as a function of its input size.",
+    "chapter": "sat"
+  },
+  "combinatorial-explosion": {
+    "term": "Combinatorial explosion",
+    "definition": "Rapid growth in the number of combinations to consider as the number of choices increases.",
+    "chapter": "sat"
+  },
+  "normal-form": {
+    "term": "Normal form",
+    "definition": "A prescribed syntactic shape for expressions.",
+    "chapter": "sat"
+  },
+  "negation-normal-form": {
+    "term": "Negation normal form",
+    "definition": "A propositional formula built from literals using only conjunction and disjunction.",
+    "chapter": "sat"
+  },
+  "canonical-normal-form": {
+    "term": "Canonical normal form",
+    "definition": "For a fixed ordered variable list, the canonical DNF lists the full terms describing true rows; the canonical CNF lists the full clauses excluding false rows. Components follow binary row order and literals follow variable order.",
+    "chapter": "sat"
+  },
+  "complementary-literals": {
+    "term": "Complementary literals",
+    "definition": "A pair consisting of a propositional variable and its negation.",
+    "chapter": "sat"
+  },
+  "resolution-pivot": {
+    "term": "Resolution pivot",
+    "definition": "The variable whose positive and negative literals are removed in one resolution step.",
+    "chapter": "sat"
+  },
+  "resolvent": {
+    "term": "Resolvent",
+    "definition": "The disjunction of the literals remaining after one complementary pair is removed from two parent clauses, with repetitions removed.",
+    "chapter": "sat"
+  },
+  "resolution-saturation": {
+    "term": "Saturation under resolution",
+    "definition": "A clause list is saturated if every resolvent is tautological or already present, after ordering and removing repetitions.",
+    "chapter": "sat"
+  },
+  "refutation-completeness": {
+    "term": "Refutation completeness",
+    "definition": "The property that every unsatisfiable input has a derivation of a contradiction in the given proof system.",
+    "chapter": "sat"
+  },
+  "tseytin-transformation": {
+    "term": "Tseytin transformation",
+    "definition": "A linear-size CNF encoding that gives subformulas fresh variables, constrains their values, and asserts the original formula through its name.",
+    "chapter": "sat"
+  },
+  "iff": {
+    "definition": "An abbreviation of “if and only if”, asserting both directions of a condition.",
+    "chapter": "valid-inference",
+    "term": "iff"
+  },
+  "conjunctive-clause": {
+    "term": "Conjunctive clause",
+    "definition": "A conjunction of literals, also called a term. A single literal counts as a conjunctive clause.",
+    "chapter": "sat"
   }
 }

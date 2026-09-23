@@ -15,6 +15,11 @@ dependency or uncertainty.
 | [Slides](docs/slides/README.md) | [slides/](docs/slides/README.md) | Self-hosted lectures, the local editor, image review. |
 | [Testing](docs/testing/README.md) | [testing/](docs/testing/README.md) | Running checks, prose, CI, maintaining the suites. |
 
+Revising a chapter or a lecture has a written standard:
+[Chapter standards](docs/authoring/chapter-standards.md) and
+[Lecture standards](docs/slides/lecture-standards.md). Read the one that matches
+the task; it replaces a long prompt.
+
 Edit source files, not generated `public/` output. Preserve existing page paths,
 anchors, and IDs unless the task calls for changing them. Treat bundled libraries
 as dependencies; prefer project CSS, JavaScript, and templates for site changes.
@@ -34,11 +39,24 @@ passwords do not provide access control.
   Avoid duplicate runs on unchanged source. Run the full `npm test` before pushing.
 - After required checks pass, finish. Repeat or broaden validation only because
   of further edits, a failure, or a named unresolved concern.
-- Keep verbose logs in `tmp/`; return summaries and relevant failure excerpts.
-  Read browser failures from the assertion and code frame, not the whole-page
+- Both commands print one line per check and stay under about twenty lines, even
+  with a failure. Prefer them over the individual scripts: a failure reports the
+  assertion plus the command that re-runs that check alone. Iterate with that
+  command, not the whole suite.
+- Do not pass `--verbose`, and do not read `tmp/logs/*.log`, unless a summary has
+  already proven insufficient for a specific failure. Never read the whole-page
   `error-context.md` dumps under `tmp/test-results/`.
 - Invoke named npm scripts directly so command-prefix approvals can match; avoid
-  shell wrappers and redirection when requesting test execution outside the sandbox.
+  shell wrappers and redirection when requesting test execution outside the
+  sandbox. The runner already keeps full output in `tmp/logs/`, so redirection
+  buys nothing.
+- Never make a browser test wait for a duration. `waitForTimeout` is absent from
+  `tests/browser/` by design; wait for the condition, and import `budget` from
+  `tests/browser/budget.mjs` where a test needs its own ceiling. A test that
+  depends on machine speed fails on GitHub runners and not here.
+
+[Test output](docs/testing/output.md) and [Matching CI locally](docs/testing/ci-parity.md)
+cover both rules in full.
 
 ## Commits
 

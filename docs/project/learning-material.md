@@ -5,6 +5,8 @@
 | [`content/textbook/`](../../content/textbook/)       | Reading before class; explanations, examples, and learning objectives. |
 | [`content/slides/`](../../content/slides/)           | Released self-hosted lecture material and review notices.              |
 | [`content/exercises/`](../../content/exercises/)     | Tutorial practice and solutions.                                       |
+| [`content/tools/`](../../content/tools/)             | One page per reusable app, with its chapter links.                     |
+| [`content/study/`](../../content/study/)             | Study advice: learning goals, recall, chatbots, flashcards.            |
 | [`content/about/`](../../content/about/)             | Course description, credits, and licensing information.                |
 
 The textbook moves through logic and AI, valid inference, formal languages,

@@ -1,0 +1,17 @@
+{{ $kind := .sc.Get "kind" | default "table" }}
+{{ if not (in (slice "table" "gaps" "mystery" "resolution" "circuit" "normal-form") $kind) }}{{ errorf "Unknown SAT practice kind %q" $kind }}{{ end }}
+{{ $deck := .sc.Get "deck" | default $kind }}
+{{ if not (index (index hugo.Data "sat-practice") $deck) }}{{ errorf "Unknown SAT practice deck %q" $deck }}{{ end }}
+<section class="logic-app sat-app sat-practice" data-logic-app="sat-practice" data-kind="{{ $kind }}" data-deck="{{ $deck }}" data-formula="{{ .sc.Get "formula" }}" aria-label="{{ $kind }} practice {{ add .sc.Ordinal 1 }}">
+  <script type="application/json" data-levels>{{ index (index hugo.Data "sat-practice") $deck | jsonify | safeJS }}</script>
+  {{ range slice "check" "replay" "play" "undo" "edit" "trash" }}<template data-icon="{{ . }}">{{ partial "apps/icon.html" . }}</template>{{ end }}
+  {{ if eq $kind "circuit" }}<template data-circuit>{{ partial "apps/boolean.html" . }}</template>{{ end }}
+  <div class="sat-examples" data-level-controls role="group" aria-label="Levels"></div>
+  <div data-question></div>
+  <div data-setup></div>
+  <div class="sat-layout">
+    <div class="sat-work" data-work tabindex="0" role="region" aria-label="{{ $kind }} workspace {{ add .sc.Ordinal 1 }}"></div>
+    <div class="sat-aside"><div data-controls></div><p role="status" aria-live="polite" aria-atomic="true">Choose a level to begin.</p><div data-extra></div></div>
+  </div>
+  <noscript><p>Use the formulas, tables, and solutions below to work on paper.</p></noscript>
+</section>

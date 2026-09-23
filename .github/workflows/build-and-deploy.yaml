@@ -21,7 +21,9 @@ jobs:
   verify:
     name: Tests
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    # Headroom for a slow runner and for the one retry the browser suites get.
+    # A genuine hang is caught by the per-test budget long before this fires.
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -39,6 +41,11 @@ jobs:
       - run: npm run setup:browsers -- --with-deps
       - name: Run required tests
         run: npm test
+      # Reads tmp/playwright-results.json into the job summary, so a red run can
+      # be understood from the run page without downloading the HTML report.
+      - name: Summarise the browser run
+        if: always()
+        run: npm run report:ci
       - name: Upload browser diagnostics
         if: always()
         uses: actions/upload-artifact@v4

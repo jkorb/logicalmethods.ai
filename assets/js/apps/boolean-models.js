@@ -13,7 +13,7 @@ export function mountModels(root) {
   const picture=root.querySelector('[data-picture]'), status=root.querySelector('[role="status"]');
   const toolbar=root.querySelector('[data-toolbar]'), below=root.querySelector('[data-below]');
   let selected=new Set(), stages=[], expected=[], taskIndex=0;
-  const mode=root.dataset.preset||'propositions';
+  let mode=root.dataset.preset||'propositions';
   const valuationText=w=>['SUN','RAIN',...(variables===3?['WIND']:[])].map(name=>`v(${name}) = ${w[name]}`).join(', ');
   const tasks=mode==='custom' ? [{label:'Your inference',custom:true}] : variables===3 ? [
     {label:'1. A proposition',formula:'SUN ∧ WIND'},
@@ -49,6 +49,11 @@ export function mountModels(root) {
     ];
   }
   function demonstrate() {
+    if(root.dataset.examples === 'inferences') {
+      let description=root.querySelector('[data-inference-description]');
+      if(!description){description=el('p',{'data-inference-description':''});toolbar.before(description);}
+      description.replaceChildren(formula(mode==='ds'?'SUN ∨ RAIN; ¬SUN ⊨ RAIN':'SUN ∨ RAIN; SUN ⊭ ¬RAIN'));
+    }
     const propositionList=['SUN','RAIN','¬SUN','¬RAIN','SUN ∧ RAIN','SUN ∨ RAIN','RAIN ∧ ¬SUN','SUN ∨ (RAIN ∧ ¬SUN)'];
     stages=mode==='propositions' ? [{label:'',ids:[],initial:true,text:'Four assignments, one for each combination of truth-values. Choose a proposition to see its members.'},...propositionList.map(f=>({label:`[${f}]`,ids:proposition(f),formula:f,text:f==='SUN'?'The sunny worlds.':f==='RAIN'?'The rainy worlds.':f==='¬SUN'?'Take the complement of [SUN].':f==='¬RAIN'?'Take the complement of [RAIN].':f.includes('∨')?'Take the union of the two propositions.':'Take the intersection of the two propositions.'}))] : inferenceStages(['SUN ∨ RAIN',mode==='ds'?'¬SUN':'SUN'],mode==='ds'?'RAIN':'¬RAIN');
     const tabs=el('div');toolbar.querySelector('[data-propositions]')?.remove();tabs.dataset.propositions='';toolbar.append(tabs);
@@ -98,5 +103,12 @@ export function mountModels(root) {
     choices(toolbar,tasks.map((t,i)=>[i,`${completed.has(i)?'✓ ':''}${t.formula?`[${t.formula}]`:t.inference.replace(/\n(?!∴)/g,', ').replace('\n∴',' ∴')}`]),taskIndex,i=>{taskIndex=i;loadTask();},'Model exercise');
   }
   if(exercise) {taskButtons();loadTask();}
-  else demonstrate();
+  else {
+    if (root.dataset.examples === 'inferences') {
+      const examples=el('div',{class:'boolean-choices'}); toolbar.before(examples);
+      const renderExamples=()=>choices(examples,[['ds','Valid inference'],['fallacy','Invalid inference']],mode,next=>{mode=next;demonstrate();renderExamples();},'Inference examples');
+      renderExamples();
+    }
+    demonstrate();
+  }
 }

@@ -14,6 +14,13 @@ The script removes an allowlist, never the whole directory, and reports what it
 kept. Every entry names the script, config or test that writes it; check that
 the writer still exists before adding one.
 
+`tmp/logs/` holds the full output of each check from the last `npm run check` or
+`npm test`, one file per check, written whether it passed or failed. That is
+where a one-line summary sends you when you want the detail; see
+[Test output](output.md). It is regenerated output, so `npm run clean` reclaims
+it.
+
 ## Related
 
+- [Test output](output.md) — what the per-check logs contain.
 - [Temporary working files](../technical/temporary-files.md).

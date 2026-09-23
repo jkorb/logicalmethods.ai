@@ -2,9 +2,15 @@
 
 How to write and validate course pages.
 
+## The standard
+
+- [Chapter standards](chapter-standards.md) — what a revised textbook chapter has to look like.
+- [House voice](voice.md) — how the course writes, and the phrasings to avoid.
+
 ## Writing a page
 
 - [Pages and front matter](front-matter.md) — bundles, weights, IDs, `last_edited`.
+- [Pseudocode](pseudocode.md) — Python-like algorithms, notation, and checks.
 - [Notation](notation.md) — dollar math, symbols, escapes, `params.latex`.
 - [References and links](references-and-links.md) — `chapter_ref`, anchors, images.
 - [Callouts](callouts.md) — definitions, examples, warnings, example sentences.
@@ -21,7 +27,8 @@ How to write and validate course pages.
 ## Interactive components
 
 - [Interactive chapter apps](apps/README.md) — every shortcode-driven component.
-- [Tools appendix](tools-appendix.md) — what belongs in Appendix C.
+- [The tools section](tools-section.md) — the app pages at `/tools/`, and what belongs there.
+- [The study section](study-section.md) — study advice, and what belongs there.
 
 ## Process
 

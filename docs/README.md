@@ -20,6 +20,8 @@ note you need. Do not read the whole vault.
 ## Common entry points
 
 - Previewing the site: [Build and preview](technical/build-and-preview.md)
+- Revising a chapter: [Chapter standards](authoring/chapter-standards.md), [House voice](authoring/voice.md)
+- Revising a lecture: [Lecture standards](slides/lecture-standards.md)
 - Writing a chapter: [Pages and front matter](authoring/front-matter.md), [Notation](authoring/notation.md)
 - Adding a figure: [Figures](authoring/figures.md)
 - Adding an interactive component: [Interactive chapter apps](authoring/apps/README.md)

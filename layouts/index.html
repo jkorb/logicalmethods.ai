@@ -2,7 +2,7 @@
 {{- $textbook := site.GetPage "/textbook" -}}
 {{- $first := "" -}}
 {{- with $textbook }}{{ range .Pages.ByWeight }}{{ if and (not $first) (not .Params.locked) }}{{ $first = . }}{{ end }}{{ end }}{{ end -}}
-{{- $poses := dict "textbook" "reading" "slides" "board" "exercises" "goals" -}}
+{{- $poses := dict "textbook" "reading" "slides" "board" "exercises" "goals" "tools" "ai_tools" "study" "excalidraw_coffee" -}}
 
 <div class="shell">
 

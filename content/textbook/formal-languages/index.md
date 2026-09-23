@@ -47,6 +47,8 @@ In this chapter, we'll study formal languages, how they are defined
 mathematically, and how they are used in logical theory and AI.
 
 {{< callout type="objectives" >}}
+After studying this chapter, you will be able to:
+
 - Explain why formal languages are useful in logic and AI.
 - Define formal languages using alphabets and grammars.
 - Apply parsing algorithms to logical formulas.

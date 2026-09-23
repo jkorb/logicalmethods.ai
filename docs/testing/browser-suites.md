@@ -45,8 +45,9 @@ button's lower-right placement.
 `tests/unit/rendering.test.mjs` builds an isolated Hugo fixture to check the
 shared math hook, literal code, escaped dollars and color qualifiers, together
 with direct SVG exports and repeated-image IDs. The app independence test uses
-the two real instances in Appendix C. Accessibility and reflow checks include
-Formal Languages and the Tools appendix.
+the two real parser instances on `/tools/propositional-parser/`. Accessibility and reflow
+checks include Formal Languages, the tools index, and a tool page carrying an
+app.
 
 ## Related
 
