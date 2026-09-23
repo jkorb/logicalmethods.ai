@@ -43,13 +43,13 @@ for (const route of PAGES) {
 
 test('released slides stay local and deferred slides expose no embed', async ({ page }) => {
   const offsite = watch(page);
-  for (const slug of ['logic-and-ai', 'formal-languages', 'valid-inference', 'boolean']) {
+  for (const slug of ['logic-and-ai', 'formal-languages', 'valid-inference', 'boolean', 'sat']) {
     expect((await page.goto(`/slides/${slug}/`)).status()).toBe(200);
     await expect(page.locator('[data-slide-deck]')).toHaveAttribute('data-ready', 'true');
     await page.getByLabel('Next slide', { exact: true }).click();
     await expect(page).toHaveURL(/#slide-2$/);
   }
-  expect((await page.goto('/slides/sat/')).status()).toBe(200);
+  expect((await page.goto('/slides/conditionals/')).status()).toBe(200);
   await expect(page.locator('iframe, [data-embed], [data-slide-deck]')).toHaveCount(0);
   await expect(page.locator('main')).toContainText('awaiting content and image review');
   expect(offsite).toEqual([]);

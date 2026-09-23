@@ -1,12 +1,12 @@
 # Lecture standards
 
-What a revised lecture deck has to look like. Lectures 1 to 4 are the worked
+What a revised lecture deck has to look like. Lectures 1 to 5 are the worked
 examples; [Content review](content-review.md) records what each revision
-changed. This note is the forward-looking spec for Lectures 5 to 12.
+changed. This note is the forward-looking spec for Lectures 6 to 12.
 
 ## Length
 
-**Twenty slides, maximum**, sized for a 90-minute lecture. Lectures 1 to 4 each
+**Twenty slides, maximum**, sized for a 90-minute lecture. Lectures 1 to 5 each
 land on exactly twenty. That is roughly four minutes of talking per slide, which
 is what a slide carrying one idea is worth. A deck that will not fit is a deck
 whose chapter has not been compressed yet, not a deck that needs slide 21.
@@ -56,8 +56,14 @@ source and license we cannot state does not go in a released deck. Removing one
 is recorded in the manifest's `removedImages`; see [Image review](image-review.md).
 
 Scale a reused book drawing **with its stroke widths**, the way a browser scales
-the chapter's SVG. Copied drawings keep their own `roughness`; only the deck's
-own furniture uses the clean stroke style.
+the chapter's SVG, and flatten a scaled copy to `roughness: 0`: rough.js wobbles
+by an absolute amount, so a shrunken figure otherwise keeps full-size wobble and
+reads as sketchy. A copy at natural size keeps its own `roughness`; the deck's
+own furniture always uses the clean stroke style.
+
+Where a circuit, tree or table makes a step visible, draw it. A slide that only
+tells the reader what the chapter's diagram showed is a slide missing its
+diagram.
 
 ## Notation
 

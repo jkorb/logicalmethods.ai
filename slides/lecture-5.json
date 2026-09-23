@@ -2,85 +2,96 @@
   "id": "lecture-5",
   "title": "Lecture 5: Boolean satisfiability",
   "source": "sources/Lecture 5.excalidraw",
-  "output": "slides/unpublished/sat/deck",
-  "publication": "unpublished",
+  "output": "content/slides/sat/deck",
   "originalSha256": "562d0d38abf3ca039dd63896369e2ade18d1e0c2acf5819b7954112467a7dd79",
   "slides": [
     {
-      "frameId": "z5LJyeALumYHSlfgYQfUI",
+      "frameId": "Unajei61hBtnAXvLGNmYV",
       "title": "Logical methods for AI — Lecture 5"
     },
     {
-      "frameId": "u7EUUm07yttdxEp2TARp8",
-      "title": "Attendance"
+      "frameId": "oq3o25kbO5-kZw-Yanvbl",
+      "title": "What you'll be able to do"
     },
     {
-      "frameId": "ZA7kes_5QnSs_MmcdE1-k",
+      "frameId": "zNyBR1cnDWlQfnavcPAK8",
+      "title": "Automating the hard work"
+    },
+    {
+      "frameId": "RO78qPdmFT4TGZ4BrQOuw",
       "title": "Satisfiability"
     },
     {
-      "frameId": "fx4SWLAeNRw7H95k5Rv5f",
-      "title": "SAT"
+      "frameId": "e7PpyuXLtD-Bts-t5P9Yu",
+      "title": "The SAT problem"
     },
     {
-      "frameId": "UtAsG42pgoECyIsPiB3Qu",
-      "title": "Verification"
+      "frameId": "ToeYtVKVJz3DxcpiU-_tx",
+      "title": "Reduction 1: circuit verification"
     },
     {
-      "frameId": "cVxl20GZNegwtLGfb7F9h",
-      "title": "Deductive inference"
+      "frameId": "X1KQwAkM5WwaSfcLc1M5O",
+      "title": "Reduction 2: deductive validity"
     },
     {
-      "frameId": "SjP7ERPsP5KTHmAzhEf0F",
-      "title": "Falsification-based inference"
+      "frameId": "GTtHhC_KpduxXvuf5S5NX",
+      "title": "Truth-tables: brute force"
     },
     {
-      "frameId": "dOVSYKqUtolLphX_7STKY",
-      "title": "Truth tables"
+      "frameId": "HyFQWzQtt2zgtMu8hkT-0",
+      "title": "Evaluating a row"
     },
     {
-      "frameId": "wesOyMLw68sjSivkbw2WE",
-      "title": "Method"
+      "frameId": "XeWZwZmamLLyxcmVuIcL0",
+      "title": "Searching the table"
     },
     {
-      "frameId": "QI5BcCf8Wno2XVaPKJt-H",
-      "title": "Normal Forms"
+      "frameId": "GzQgwAT-YS48Ylkj3xCIK",
+      "title": "A decision procedure"
     },
     {
-      "frameId": "RFtVuqjqjECv1-xtxuk65",
-      "title": "Truth-tables"
+      "frameId": "UQhJ37T4Pbs-sV9mxukre",
+      "title": "The cost of brute force"
     },
     {
-      "frameId": "bXp520-WgdjRxzLjnBTje",
-      "title": "\"Menu\""
+      "frameId": "DR2PehLWVF4CuLonpnjMa",
+      "title": "Normal forms"
     },
     {
-      "frameId": "Zc8s_Sibgj1aKKfvsE_8T",
-      "title": "Transforming into NF"
+      "frameId": "6nTuoibeKCxHv8J3xoQzP",
+      "title": "Rewriting into normal form"
     },
     {
-      "frameId": "yctVTapUIbBI0qN5kPzPw",
-      "title": "Canonical NFs"
+      "frameId": "xbng0j1NK0tPxwAJX11A5",
+      "title": "The rewriting algorithm"
     },
     {
-      "frameId": "GZru__0Ox8eCbM-f_BQoq",
-      "title": "Resolution"
+      "frameId": "DWE8KNBu82Yy133vwHOEs",
+      "title": "Preprocessing is the expensive part"
     },
     {
-      "frameId": "8_mJQ0rGOWW-qJf7O19Gy",
-      "title": "Invalid inference"
+      "frameId": "0ipWeMxc_sWTiwF0RO-oy",
+      "title": "The resolution rule"
     },
     {
-      "frameId": "NMwexv4n5WQdlCrux1SXp",
-      "title": "Convert to CNF"
+      "frameId": "F5_TZ56JD7Gb8MHxgD3Gd",
+      "title": "Refutation search"
     },
     {
-      "frameId": "k8hTxV0BJT-dTIhxyx27I",
-      "title": "Worked example (continued)"
+      "frameId": "iiwuoX5cUoy15dfeclMDA",
+      "title": "Tseytin: cheap preprocessing"
     },
     {
-      "frameId": "PB_EnOxIc83eIPbZbNsBP",
-      "title": "Resolution"
+      "frameId": "OskjYAyGuyfGgCLGc1FI7",
+      "title": "Worked case: verifying the NAND circuit"
     }
-  ]
+  ],
+  "removedImages": {
+    "reason": "No creator, source or licence could be established for either embedded image in this lecture: a QR code on the attendance slide and an imported \"all the things\" meme on the truth-tables slide. The course publishes under CC BY 4.0. Both image elements stay in the scene as deleted history; their bytes were dropped. The attendance slide is gone with the revision, and the revised slides are illustrated from the chapter's own drawings in assets/img/drawings/sources/ and from Lecture 4 artwork instead.",
+    "reviewed": "2026-09-22",
+    "fileIds": [
+      "3d12224bf815e3583c69faaa9f936ec2c67cda77411817b77bfe601d0cf3dcd253818b25fb7e3e3a061628673ffdccaf",
+      "37ff72be623b2169378aa9e3ba6d5cc87097726bb55f73eaac50fb00684ea7318bfedb256c8bb3144c66552760413217"
+    ]
+  }
 }

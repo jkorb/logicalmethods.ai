@@ -32,8 +32,14 @@ Cascadia, which the exporter embeds like the other faces.
 A book drawing placed on a slide has to be scaled **with its stroke widths**, the
 way a browser scales the chapter's SVG. Scaling the geometry alone leaves a
 shrunken figure wearing its full-size lines, which is what makes a reused drawing
-look wrong beside the same figure in the chapter. Copied drawings also keep their
-own `roughness`; only the deck's own furniture uses the clean stroke style.
+look wrong beside the same figure in the chapter.
+
+A **scaled** copy also has to drop to `roughness: 0`. rough.js displaces each
+point by an absolute amount — `maxRandomnessOffset` of 2, times the element's
+`roughness` — so a drawing shrunk to a third of its size keeps full-size wobble
+on a third-size figure and reads as sketchy beside the same drawing in the book,
+which the browser scales whole. A copy placed at natural size keeps its own
+`roughness`, and only the deck's own furniture uses the clean stroke style.
 
 **Lecture 3 has been revised and released** the same way against chapter 3,
 and now runs to 20 slides, the same length as Lectures 1 and 2. Learning
@@ -74,7 +80,43 @@ book's blue, `--blue-ink`, as `.Boolean` does on the web. It carries the deck's
 fourth `narration.yaml`. The manifest's two `nonSlideElements` rectangles are
 untouched, and remain outside every frame as deleted history.
 
-Lectures 5–12 were copied byte-for-byte, without automatic font or notation
+**Lecture 5 has been revised and released** the same way against chapter 5,
+and now runs to 20 slides. Learning goals open it, and the attendance slide is
+gone. The deck
+follows the chapter's two lines of thought. First the reduction: satisfiability
+and joint satisfiability, the SAT problem, circuit verification through
+`¬(S ↔ C)`, and validity as unsatisfiability. Then the cost: truth-tables as
+brute force, `O(2ⁿ(m + 1))` and combinatorial explosion, normal forms and the
+rewrite rules, distribution's exponential blow-up, resolution with its
+two-step refutation, and the Tseytin transformation's linear growth. The
+chapter's five central algorithms are on the slides as pseudocode —
+`evaluate`, `truth_table_sat`, `normal_form`, `resolution_sat` and `tseytin` —
+set in Cascadia, with their `¬ ∧ ∨` glyphs placed in Comic Shanns Logic inside
+their own monospace cells, since Cascadia carries no `∧` or `∨`. The closing
+slide is a worked case: the NAND circuit refuted in two resolution steps, and
+the faulty circuit that saturates instead. Both images — an attendance QR code
+and an imported "all the things" meme — are removed and recorded in the
+manifest's `removedImages` block. Its artwork is the chapter's own `sat_*`
+drawings plus `gimmick_mouse` and Lecture 4's title card and lightbulb mascot.
+It carries the deck's fifth `narration.yaml`.
+
+A second pass lightened it: the prose is down to about 50 words a slide, boxes
+are sized to their contents rather than to a fixed width, the scaled book
+drawings are flattened to `roughness: 0`, and two diagrams were added in the
+deck's own clean style — the chapter's NAND circuit, drawn as the default-off
+relay feeding the default-on one and again with the lamp wired before the
+second relay, and the parse tree for `SUN ∨ (¬RAIN ∧ ¬WIND)` with an arrow up
+it. The book's own three-variable truth-table drawing replaced a hand-built
+table.
+
+Comic Shanns Logic has no subscript or superscript digits, so `INPUT₁`, `A₁`,
+`2ⁿ` and `3ⁿ` are set as separate smaller runs, lifted or dropped from the
+baseline, rather than as inline characters that would fall back to the reader's
+own font. Virgil carries no logic symbols at all: prose containing `∧`, `↔`,
+`⊥` or `∴` is laid out as alternating prose and Comic Shanns runs on one
+baseline.
+
+Lectures 6–12 were copied byte-for-byte, without automatic font or notation
 replacement. Review them against the book, including historical
 staff/attendance information, terminology, proof examples, screenshots and
 image rights. Lecture 7 has an
