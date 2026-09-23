@@ -11,8 +11,9 @@ import { budget, SLOW } from '../browser/budget.mjs';
 const specs = async () => (await readdir('tests/browser')).filter(n => n.endsWith('.spec.mjs')).sort();
 
 test('the CI budget scales, and only upwards', () => {
-  assert.equal(SLOW, 1, 'SLOW is 1 unless CI is set; this suite does not run with CI set');
-  assert.equal(budget(30000), 30000);
+  const expectedScale = process.env.CI ? 3 : 1;
+  assert.equal(SLOW, expectedScale, 'CI increases the budget; local runs keep the written value');
+  assert.equal(budget(30000), 30000 * expectedScale);
   assert.ok(budget(1000) >= 1000, 'a budget may never shrink below its written value');
 });
 
