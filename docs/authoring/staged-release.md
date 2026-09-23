@@ -1,9 +1,9 @@
 # Staged release
 
-Textbook chapters and exercises through Boolean Algebra are unlocked. Later
+Textbook chapters and exercises through Boolean algebra are unlocked. Later
 chapters and exercises are marked `locked: true`: navigation is grayed out,
 while direct URLs still work. Slides have a separate review and release schedule;
-slides through Boolean Algebra are unlocked.
+slides through Boolean algebra are unlocked.
 Unrevised textbook and exercise sources use `params.legacy-notation: true` and
 the compatibility renderer in `layouts/partials/legacy-content.html`.
 Remove that parameter when converting a page to the current notation format.

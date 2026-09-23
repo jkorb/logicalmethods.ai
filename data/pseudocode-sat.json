@@ -1,0 +1,45 @@
+[
+  {
+    "title": "Repeat while needed",
+    "prompt": "The input is a nonnegative whole number. Repeatedly subtract 1 until it is zero, then return it. Fill the gaps with while and =.",
+    "code": "def count_down(number):\n    ___ number > 0:\n        number ___ number - 1\n    return number",
+    "answers": [
+      "while",
+      "="
+    ],
+    "explanation": "while checks the condition before each repetition. The assignment changes number; without it, a positive input would keep the loop running."
+  },
+  {
+    "title": "Collect matching values",
+    "prompt": "The input is a list of zeros and ones. Collect its ones in a new list. empty_list() creates a list with no entries; add(list, item) adds an item to that list. Fill the gaps with empty_list, ==, and add.",
+    "code": "def keep_ones(values):\n    result = ___()\n    for value in values:\n        if value ___ 1:\n            ___(result, value)\n    return result",
+    "answers": [
+      "empty_list",
+      "==",
+      "add"
+    ],
+    "explanation": "== tests each value. add changes result, which can contain repeated entries. An empty input gives an empty result."
+  },
+  {
+    "title": "Record checked pairs",
+    "prompt": "Each item in pairs contains two clause numbers. first_member(pair) and second_member(pair) return these numbers. check_pair examines the clauses; add records the pair. Fill the gaps with for, in, and add.",
+    "code": "def check_pairs(pairs):\n    checked = empty_list()\n    ___ pair ___ pairs:\n        first = first_member(pair)\n        second = second_member(pair)\n        check_pair(first, second)\n        ___(checked, pair)\n    return checked",
+    "answers": [
+      "for",
+      "in",
+      "add"
+    ],
+    "explanation": "The helpers return one member of the pair each. After checking those clauses, we record the original pair in checked."
+  },
+  {
+    "title": "Name the parts first",
+    "prompt": "children_first(tree) visits each child before its parent. record_name keeps a label beside a node. Variables keep their own names; connectives receive fresh ones. Fill the gaps with for, if, and else.",
+    "code": "def name_parts(tree):\n    ___ node in children_first(tree):\n        ___ is_variable(node):\n            record_name(node, variable(node))\n        ___:\n            record_name(node, fresh_variable())\n    return name_of(root(tree))",
+    "answers": [
+      "for",
+      "if",
+      "else"
+    ],
+    "explanation": "A connective is named only after its children. This records names but does not yet add Tseytin constraints or require the root to be true."
+  }
+]

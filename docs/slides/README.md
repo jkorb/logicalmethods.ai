@@ -33,6 +33,8 @@ separate from the normal build. Ordinary `hugo -D` excludes the staged deck file
 
 ## Notes
 
+- [Lecture standards](lecture-standards.md) — what a revised deck has to look like.
+
 - [Efficient slide work](agent-workflow.md) — scope reading, edits and visual review.
 - [Teach and read](teaching.md) — navigation, `narration.yaml`, no-JavaScript.
 - [Install the local authoring tools](authoring-setup.md) — the editor and saving.

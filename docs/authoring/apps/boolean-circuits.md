@@ -2,9 +2,19 @@
 
 Use `logic-app name="boolean" kind="circuit" preset="…"` for a fixed circuit.
 Presets are `relay-off`, `relay-on`, `not`, `and`, `or`, `implementations`, `half`,
-and `full`. `implementations` provides NOT/AND/OR buttons. Relay diagrams show
+`full`, `nand`, `nand-faulty`, `negated-input`, `sat-three`, and `sat-branch`.
+The SAT presets compute ¬(X ∧ Y) ∧ Z and ¬(X ∧ Y) ∧ ¬(Y ∧ Z); their
+canvas height includes the lower inputs. `negated-input` combines a
+powered default-on relay with a default-off relay to compute ¬X ∧ Y. The faulty NAND preset connects the lamp
+directly to the default-off relay, implementing AND. The NAND preset connects a default-off relay to a
+powered default-on relay, with the same rendering and input switches. `implementations` provides NOT/AND/OR buttons. Relay diagrams show
 magnetic arcs only while the magnet is powered; the normally closed contact
 opens toward the magnet.
+
+Use `title="Circuit A"` to give repeated circuit panels distinct accessible names.
+Fixed circuits accept `input-labels="INPUT₁,INPUT₂"` to relabel their input
+switches. For the NAND illustration, `examples="inputs"` adds buttons for
+the four assignments. Internal circuit identifiers are unchanged.
 
 Signals travel upward, function boxes are blue, and powered lamps gain rays.
 Powered wires are green with moving dashes; unpowered wires are solid red.

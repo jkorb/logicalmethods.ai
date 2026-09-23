@@ -21,7 +21,10 @@ enable KaTeX.
 ## Pseudocode practice
 
 `name="pseudocode-practice"` provides five keyword-gap examples from
-`data/pseudocode-practice.json`. Each example has a prompt, a code string with
+`data/pseudocode-practice.json`. Set `deck="sat"` for the four examples in
+`data/pseudocode-sat.json`, covering while loops, list helpers, pairs, and
+children-first traversal. Gaps can ask for operators or helper names as well
+as keywords. Each example has a prompt, a code string with
 `___` gaps, exact keyword answers and a short explanation. Inputs have unique
 accessible labels. Checks mark wrong gaps and give written feedback; success
 adds a checkmark and confetti. Reduced motion disables confetti and shaking.

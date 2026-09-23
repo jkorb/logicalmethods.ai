@@ -1,5 +1,5 @@
 {{- $name := .Get "name" | default "parser" -}}
-{{- $apps := slice "pseudocode-practice" "boolean" "parser" "latex-game" "builder" "notation-practice" "shunting-yard" "reasoning-practice" -}}
+{{- $apps := slice "sat-practice" "sat" "pseudocode-practice" "boolean" "parser" "latex-game" "builder" "notation-practice" "shunting-yard" "reasoning-practice" -}}
 {{- if not (in $apps $name) }}{{ errorf "Unknown logic app %q" $name }}{{ end -}}
 {{/* One entry point, one CSS/JS gate (see baseof); the markup per app lives in
      layouts/partials/apps/. */}}

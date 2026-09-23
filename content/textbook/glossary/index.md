@@ -11,7 +11,7 @@ params:
 # Glossary
 
 Forgot what a countermodel is, or how a term differs from a formula? Here's a
-quick reference to the concepts needed for chapters 1–4 and the notation appendix. The definitions follow our
+quick reference to the main concepts from the book. The definitions follow our
 use of the terms; where a choice of logic matters, we've said which one we mean.
 
 You can search the terms and their definitions below. For symbols, see the

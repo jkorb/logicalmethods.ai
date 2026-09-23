@@ -1,0 +1,38 @@
+{{ $kind := .sc.Get "kind" | default "truth-table" }}
+{{ if not (in (slice "truth-table" "rewrite" "resolution" "tseytin") $kind) }}{{ errorf "Unknown SAT app kind %q" $kind }}{{ end }}
+{{ $initial := cond (eq $kind "rewrite") "¬¬p ∨ ¬(q ∨ ¬p)" "SUN ∨ RAIN, ¬SUN ∴ RAIN" }}
+{{ if eq (.sc.Get "blank") "true" }}{{ $initial = "" }}{{ end }}
+{{ $label := .sc.Get "title" | default (printf "%s example %d" $kind (add .sc.Ordinal 1)) }}
+<section class="logic-app sat-app" data-logic-app="sat" data-kind="{{ $kind }}" aria-label="{{ $label }}">
+  <div class="sat-examples" role="group" aria-label="Examples">
+    {{ range index (index hugo.Data "sat-examples") $kind }}<button type="button" data-example="{{ .formula }}" data-description="{{ .description }}" title="{{ .description }}" aria-pressed="false" disabled>{{ .label }}</button>{{ end }}
+  </div>
+  <p class="sat-example-description" data-example-description></p>
+  <form data-input-form>
+    <label class="visually-hidden" for="{{ .id }}-input">{{ if in (slice "rewrite" "tseytin") $kind }}Formula{{ else }}Formula or inference{{ end }}</label>
+    {{ if in (slice "rewrite" "tseytin") $kind }}
+    <input id="{{ .id }}-input" class="logic-app__input" data-input maxlength="512" spellcheck="false" aria-describedby="{{ .id }}-help" value="{{ .sc.Get "formula" | default $initial }}" disabled>
+    {{ else }}
+    <textarea id="{{ .id }}-input" class="logic-app__input" data-input rows="1" maxlength="4608" spellcheck="false" aria-describedby="{{ .id }}-help" disabled>{{ .sc.Get "formula" | default $initial }}</textarea>
+    {{ end }}
+    <button type="submit" data-use disabled aria-label="Use input" title="Use input">{{ partial "apps/icon.html" "play" }}</button>
+    <button type="button" data-edit disabled aria-label="Edit input" title="Edit input" hidden>{{ partial "apps/icon.html" "edit" }}</button>
+  </form>
+  <p id="{{ .id }}-help" class="sat-help">{{ if in (slice "rewrite" "tseytin") $kind }}Use one formula with ¬, ∧, ∨, ↔ or →.{{ else }}Use ¬, ∧, ∨, ↔ or →. Separate formulas with commas or new lines; put ∴ before a conclusion.{{ end }}</p>
+  {{ if eq $kind "rewrite" }}<div data-target role="group" aria-label="Normal form"><button type="button" data-mode="CNF" aria-pressed="true" disabled>CNF</button><button type="button" data-mode="DNF" aria-pressed="false" disabled>DNF</button></div>{{ end }}
+  <div class="sat-problem" data-problem></div>
+  <div class="sat-layout">
+    <div class="sat-work" data-work tabindex="0" role="region" aria-label="Calculation: {{ $label }}"></div>
+    <div class="sat-aside">
+      <div class="logic-app__controls" data-navigation aria-label="Calculation steps">
+        {{ range slice "first" "previous" "next" "last" }}<button type="button" data-action="{{ . }}" aria-label="{{ . | title }} step" title="{{ . | title }} step" disabled>{{ partial "apps/icon.html" . }}</button>{{ end }}
+        <span data-count></span>
+      </div>
+      <div role="status" aria-live="polite" aria-atomic="true">The interactive example is loading.</div>
+      <div data-columns class="sat-columns"></div>
+      <div class="logic-app__tree" data-tree tabindex="0" role="region" aria-label="Parse tree: {{ $label }}" hidden></div>
+      <details data-alternative hidden><summary>Text tree</summary><div data-text-tree></div></details>
+    </div>
+  </div>
+  <noscript><p>The worked calculations in the chapter are available without JavaScript.</p></noscript>
+</section>

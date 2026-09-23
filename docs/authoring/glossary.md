@@ -4,7 +4,9 @@ The glossary definitions live in `data/glossary.json`. Each entry has a stable
 key, `term`, `definition` (plain text), and `chapter` (textbook bundle name).
 Keep the key stable: chapter links and external links use it as an anchor.
 Glossary return links go to the first `term` shortcode for that key in the
-entry's `chapter`. The shortcode supplies a unique `term-<key>-<ordinal>` anchor.
+entry's `chapter`. Term-link IDs normally use `term-<key>-<ordinal>`. Repeated
+`iff` links also include parent shortcode ordinals, so occurrences in different
+callouts have distinct IDs. Glossary return links resolve either form.
 An optional `anchor` field overrides this with a heading or other existing ID
 (without `#`), for example when the definition has no marked term yet. Prefer
 the section that explains the concept over an incidental early mention.
@@ -47,5 +49,6 @@ books; label PDF links and distinguish publisher pages from freely available PDF
 
 ## Related
 
+- [Chapter standards](chapter-standards.md) — what a gloss says, and how it relates to the chapter's definition.
 - [Glossary interaction](../design/glossary.md), [Further readings](../design/further-readings.md).
 - [Staged release](staged-release.md) — which entries the released glossary contains.

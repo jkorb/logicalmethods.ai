@@ -15,6 +15,11 @@ dependency or uncertainty.
 | [Slides](docs/slides/README.md) | [slides/](docs/slides/README.md) | Self-hosted lectures, the local editor, image review. |
 | [Testing](docs/testing/README.md) | [testing/](docs/testing/README.md) | Running checks, prose, CI, maintaining the suites. |
 
+Revising a chapter or a lecture has a written standard:
+[Chapter standards](docs/authoring/chapter-standards.md) and
+[Lecture standards](docs/slides/lecture-standards.md). Read the one that matches
+the task; it replaces a long prompt.
+
 Edit source files, not generated `public/` output. Preserve existing page paths,
 anchors, and IDs unless the task calls for changing them. Treat bundled libraries
 as dependencies; prefer project CSS, JavaScript, and templates for site changes.

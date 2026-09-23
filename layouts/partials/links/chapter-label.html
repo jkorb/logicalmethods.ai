@@ -1,0 +1,5 @@
+{{- $text := .text -}}
+{{- if not (findRE "(?i)\\b(chapter\\s+[0-9]+|appendix\\s+[a-z])\\b" ($text | plainify)) -}}
+<span class="chapter-reference__label">{{ if .page.Params.appendix }}Appendix {{ .page.Params.appendix }}{{ else }}Chapter {{ div .page.Weight 10 }}{{ end }} · </span>
+{{- end -}}
+{{- $text | safeHTML -}}

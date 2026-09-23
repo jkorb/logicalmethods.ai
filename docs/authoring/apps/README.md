@@ -9,6 +9,8 @@ Shortcode-driven components used in textbook pages and exercise solutions.
 - [The formula builder](formula-builder.md) — `name="builder"`.
 - [Introductory exercise apps](exercise-apps.md) — notation practice, pseudocode, shunting yard, reasoning practice.
 
+- [SAT exercises](sat-practice.md) — table construction, gaps, mystery formulas, and student-controlled resolution.
+- [SAT apps](sat.md) — truth-tables, normal-form rewriting, formula-based resolution, Tseytin conversion.
 - [Boolean chapter apps](boolean.md) — derivations, evaluation trees, model spaces.
 - [Boolean circuits and workbench](boolean-circuits.md) — relays, adders, circuit construction.
 

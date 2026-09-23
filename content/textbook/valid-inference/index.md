@@ -148,7 +148,7 @@ kind of world, it has to be true that ∃I flies.
 This is the basic idea of truth-preservation:
 
 {{< callout type="definition" title="Validity (truth preservation)" >}}
-  An inference is deductively valid iff (if and only if) the
+  An inference is deductively valid {{< term "iff" "iff" >}} the
   conclusion is true under the (hypothetical) assumption that all the premises
   are true.
 {{</callout>}}
@@ -522,7 +522,7 @@ For several premises, we need the models where **all** premises are true
 together. Two set-theoretic ideas let us say this precisely.
 
 {{< callout type="definition" title="Subset" >}}
-$S$ is a {{< term "subset" "subset" >}} of $T$, written $S ⊆ T$, iff every
+$S$ is a {{< term "subset" "subset" >}} of $T$, written $S ⊆ T$, {{< term "iff" "iff" >}} every
 member of $S$ is a member of $T$. We write $S ⊈ T$ if some member of $S$ does
 not belong to $T$. Equality is allowed: every set is a subset of itself.
 {{< /callout >}}
@@ -596,9 +596,9 @@ $E = [P₁] ∩ … ∩ [Pₙ]$. We call $E$ the **joint premise region**.
 
 {{< callout type="definition" title="Deductive consequence" >}}
 $C$ is a {{< term "deductive-validity" "deductive consequence" >}} of premises
-$P₁, …, Pₙ$ iff every model in which all premises are true also makes $C$ true:
+$P₁, …, Pₙ$ {{< term "iff" "iff" >}} every model in which all premises are true also makes $C$ true:
 
-$$P₁, …, Pₙ ⊨ C iff [P₁] ∩ … ∩ [Pₙ] ⊆ [C].$$
+$$P₁, …, Pₙ ⊨ C {{< term "iff" "iff" >}} [P₁] ∩ … ∩ [Pₙ] ⊆ [C].$$
 
 This relation is also called {{< term "entailment" "entailment" >}}.
 
@@ -627,7 +627,7 @@ is just such a countermodel:
 
 {{< set-diagram scene="countermodel" >}}
 
-With just one premise, this reduces to $P ⊨ C$ iff $[P] ⊆ [C]$: every model
+With just one premise, this reduces to $P ⊨ C$ {{< term "iff" "iff" >}} $[P] ⊆ [C]$: every model
 of $P$ must also be a model of $C$.
 
 {{< callout type="note" title="Modeling assumptions: reading the diagrams" >}}
@@ -1053,7 +1053,7 @@ inductive validity.
 
 {{< callout type="definition" title="Weak logical inductive consequence" >}}
 An inference is {{< term "inductive-validity" "(weakly) logically inductively valid" >}},
-written $P₁, …, Pₙ$ {{< approx >}} $C$, iff, for _every_ probability function
+written $P₁, …, Pₙ$ {{< approx >}} $C$, {{< term "iff" "iff" >}}, for _every_ probability function
 $Pr$ on the model space with $Pr(E) > 0$,
 
 $$Pr([C] | E) ≥ Pr([C]),    where E = [P₁] ∩ … ∩ [Pₙ].$$

@@ -25,6 +25,10 @@ It has no block margins and scales to the given height.
 Both formats use the same light paper surface in dark mode, with no extra
 padding. Internal SVG IDs and references are prefixed for each occurrence.
 
+Drawings illustrate; they do not carry mathematics. A figure containing a
+formula, a truth table, a syntax tree or an inference gets rebuilt so the
+mathematics is dollar math or a shortcode and the drawing keeps the picture.
+
 SVG is the target format for all illustrations. Convert remaining PNGs chapter
 by chapter, update references explicitly, and remove replaced files only from
 the chapter being revised. Formal Languages and Valid Inference now have no textbook PNG assets.

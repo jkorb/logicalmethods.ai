@@ -1,0 +1,105 @@
+{
+  "truth-table": [
+    {
+      "label": "Valid inference",
+      "formula": "SUN ∨ RAIN, ¬SUN ∴ RAIN",
+      "description": "From SUN ∨ RAIN and ¬SUN, infer RAIN. Test the premises together with ¬RAIN."
+    },
+    {
+      "label": "Invalid inference",
+      "formula": "SUN ∨ RAIN, SUN ∴ ¬RAIN",
+      "description": "From SUN ∨ RAIN and SUN, infer ¬RAIN. Test the premises together with ¬¬RAIN."
+    },
+    {
+      "label": "Circuit verification",
+      "formula": "¬((¬INPUT₁ ∨ ¬INPUT₂) ↔ ¬(INPUT₁ ∧ INPUT₂))",
+      "description": "Compare the NAND specification S with the relay circuit C = ¬(INPUT₁ ∧ INPUT₂). Test ¬(S ↔ C), with S and C expanded below."
+    },
+    {
+      "label": "Faulty circuit",
+      "formula": "¬((¬INPUT₁ ∨ ¬INPUT₂) ↔ (INPUT₁ ∧ INPUT₂))",
+      "description": "The lamp is connected before the negating relay. Compare this circuit with the same NAND specification."
+    },
+    {
+      "label": "Three variables",
+      "formula": "SUN ∨ (¬RAIN ∧ ¬WIND), SUN ∴ WIND",
+      "description": "From SUN ∨ (¬RAIN ∧ ¬WIND) and SUN, infer WIND. Test the premises together with ¬WIND."
+    },
+    {
+      "label": "Circuit: DNF specification",
+      "formula": "¬(((¬INPUT₁ ∧ ¬INPUT₂) ∨ (¬INPUT₁ ∧ INPUT₂) ∨ (INPUT₁ ∧ ¬INPUT₂)) ↔ ¬(INPUT₁ ∧ INPUT₂))",
+      "description": "Use the true-row descriptions S₁ for the same NAND specification. Compare the result with Circuit verification, which uses S."
+    }
+  ],
+  "resolution": [
+    {
+      "label": "Valid inference",
+      "formula": "SUN ∨ RAIN, ¬SUN ∴ RAIN",
+      "description": "From SUN ∨ RAIN and ¬SUN, infer RAIN. Test the premises together with ¬RAIN."
+    },
+    {
+      "label": "Invalid inference",
+      "formula": "SUN ∨ RAIN, SUN ∴ ¬RAIN",
+      "description": "From SUN ∨ RAIN and SUN, infer ¬RAIN. Test the premises together with ¬¬RAIN."
+    },
+    {
+      "label": "Circuit verification",
+      "formula": "¬((¬INPUT₁ ∨ ¬INPUT₂) ↔ ¬(INPUT₁ ∧ INPUT₂))",
+      "description": "Compare the NAND specification S with the relay circuit C = ¬(INPUT₁ ∧ INPUT₂). Test ¬(S ↔ C), with S and C expanded below."
+    },
+    {
+      "label": "Faulty circuit",
+      "formula": "¬((¬INPUT₁ ∨ ¬INPUT₂) ↔ (INPUT₁ ∧ INPUT₂))",
+      "description": "The lamp is connected before the negating relay. Compare this circuit with the same NAND specification."
+    }
+  ],
+  "rewrite": [
+    {
+      "label": "Negations",
+      "formula": "¬¬SUN ∨ ¬(RAIN ∨ ¬SUN)",
+      "description": "Push negations inward, then convert to CNF or DNF."
+    },
+    {
+      "label": "CNF distribution",
+      "formula": "(p ∧ q) ∨ r",
+      "description": "Distribute ∨ over ∧ to obtain CNF."
+    },
+    {
+      "label": "DNF distribution",
+      "formula": "(p ∨ q) ∧ r",
+      "description": "Select DNF to distribute ∧ over ∨."
+    },
+    {
+      "label": "Distribution growth",
+      "formula": "(SUN ∧ WARM) ∨ (RAIN ∧ WIND) ∨ (SNOW ∧ COLD)",
+      "description": "Three conjunctions joined by ∨: compare ordinary distribution with fresh subformula names."
+    },
+    {
+      "label": "Circuit verification",
+      "formula": "¬((¬INPUT₁ ∨ ¬INPUT₂) ↔ ¬(INPUT₁ ∧ INPUT₂))",
+      "description": "Compare the NAND specification S with the relay circuit C = ¬(INPUT₁ ∧ INPUT₂). Test ¬(S ↔ C), with S and C expanded below."
+    }
+  ],
+  "tseytin": [
+    {
+      "label": "Conjunction and disjunction",
+      "formula": "(SUN ∧ RAIN) ∨ WIND",
+      "description": "Name SUN ∧ RAIN first, then name its disjunction with WIND."
+    },
+    {
+      "label": "Contradiction",
+      "formula": "SUN ∧ ¬SUN",
+      "description": "Transform SUN ∧ ¬SUN and assert the root; the resulting CNF is unsatisfiable too."
+    },
+    {
+      "label": "Distribution growth",
+      "formula": "(SUN ∧ WARM) ∨ (RAIN ∧ WIND) ∨ (SNOW ∧ COLD)",
+      "description": "Three conjunctions joined by ∨: compare ordinary distribution with fresh subformula names."
+    },
+    {
+      "label": "Circuit verification",
+      "formula": "¬((¬INPUT₁ ∨ ¬INPUT₂) ↔ ¬(INPUT₁ ∧ INPUT₂))",
+      "description": "Compare the NAND specification S with the relay circuit C = ¬(INPUT₁ ∧ INPUT₂). Test ¬(S ↔ C), with S and C expanded below."
+    }
+  ]
+}

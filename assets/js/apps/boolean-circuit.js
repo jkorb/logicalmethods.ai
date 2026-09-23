@@ -17,8 +17,17 @@ export function mountCircuit(root) {
   const solved=new Set(),earned=new Set(profile.gates||[]),savedTasks=new Map();
   const current=()=>tasks[taskIndex];
   const allowed=()=>new Set(profile.progressive?[...earned]:current().gates||profile.gates);
-  const fresh=()=>{const initial=circuitPreset(editable?'':root.dataset.preset);if(editable)for(const n of initial)if(n.type==='INPUT')n.outputOffset=80;if(relayWorkbench)initial.push({id:'POWER',type:'POWER',label:'power',x:450,y:410,inputs:[]});return initial.filter(n=>!editable||OPERATIONS[current().target].arity!==1||n.id!=='Y');};
+  const fresh=()=>{const initial=circuitPreset(editable?'':root.dataset.preset);const labels=(root.dataset.inputLabels||'').split(',');if(root.dataset.inputLabels)initial.filter(n=>n.type==='INPUT').forEach((n,i)=>{n.label=labels[i]||n.label;});if(editable)for(const n of initial)if(n.type==='INPUT')n.outputOffset=80;if(relayWorkbench)initial.push({id:'POWER',type:'POWER',label:'power',x:450,y:410,inputs:[]});return initial.filter(n=>!editable||OPERATIONS[current().target].arity!==1||n.id!=='Y');};
   let nodes=fresh(),selected=null,selectedPort=null,source=null,nextId=1;
+  if (!editable && root.dataset.examples === 'inputs') {
+    const group=el('div',{class:'boolean-choices',role:'group','aria-label':'Input examples'});
+    for (const [x,y] of [[0,0],[0,1],[1,0],[1,1]]) {
+      const button=el('button',{type:'button'},x+' , '+y);
+      button.addEventListener('click',()=>{nodes.find(n=>n.id==='X').value=x;nodes.find(n=>n.id==='Y').value=y;render();});
+      group.append(button);
+    }
+    root.querySelector('[data-toolbar]').before(group);
+  }
   function taskControls() {
     if(!editable)return;
     const toolbar=root.querySelector('[data-toolbar]');toolbar.replaceChildren();
@@ -48,10 +57,10 @@ export function mountCircuit(root) {
   }
   function render(focusKey) {
     values = evaluateCircuit(nodes);
-    const height=editable?Math.max(relayWorkbench?760:640,...nodes.filter(n=>!['INPUT','OUTPUT','POWER'].includes(n.type)).map(n=>n.y+300)):550;
+    const height=editable?Math.max(relayWorkbench?760:640,...nodes.filter(n=>!['INPUT','OUTPUT','POWER'].includes(n.type)).map(n=>n.y+300)):Math.max(550,...nodes.map(n=>n.y+70));
     if(editable)for(const n of nodes)if(['INPUT','POWER'].includes(n.type))n.y=height-90;
     const minY=relayWorkbench?190:160,maxY=height-300,minX=relayWorkbench?75:55,maxX=relayWorkbench?505:525;
-    const canvas = svg('svg', { viewBox: editable?`0 0 580 ${height}`:root.dataset.preset === 'full' ? '0 -55 580 610' : '0 -30 580 570', class: 'boolean-circuit', role: 'group', 'aria-label': editable ? 'Circuit canvas' : 'Adder circuit' });
+    const canvas = svg('svg', { viewBox: editable?`0 0 580 ${height}`:root.dataset.preset === 'full' ? '0 -55 580 610' : `0 -30 580 ${height+20}`, class: 'boolean-circuit', role: 'group', 'aria-label': editable ? 'Circuit canvas' : root.dataset.preset.startsWith('nand') ? 'Relay circuit for NAND verification' : nodes.some(n=>n.type.startsWith('RELAY-')) ? 'Relay circuit' : 'Adder circuit' });
     if(editable)canvas.style.width=`min(100%, calc(60svh * 580 / ${height}))`;
     let edges = circuitWires(nodes, values, editable ? '' : root.dataset.preset);
     const blocks = svg('g');
@@ -105,7 +114,7 @@ export function mountCircuit(root) {
           activate(port, () => { if (source) connect(n,i); else { selected=n.id;selectedPort=i;render(`to-${n.id}-${i}`); } }); g.append(port);
         }
       }
-      if (!editable && !['INPUT','OUTPUT'].includes(n.type)) {
+      if (!editable && !['INPUT','OUTPUT'].includes(n.type) && !n.type.startsWith('RELAY-')) {
         for(let i=0;i<OPERATIONS[n.type].arity;i++)g.append(svg('circle',{cx:portX(n,i),cy:n.y+25,r:4,class:'gate-pin'}));
         g.append(svg('circle',{cx:n.x,cy:n.y-25,r:4,class:'gate-pin'}));
       }
@@ -123,7 +132,7 @@ export function mountCircuit(root) {
     renderInspector();
     const outputs = nodes.filter(n => n.type === 'OUTPUT');
     status.replaceChildren(formula(outputs.map(n => `${n.label} = ${values.get(n.id) ?? '? (connect all inputs)'}`).join('; ')));
-    if (!editable) status.append(el('p', {class:'boolean-circuit__instruction'}, 'Toggle the input switches to follow the signal through the blue boxes.'));
+    if (!editable) status.append(el('p', {class:'boolean-circuit__instruction'}, nodes.some(n=>n.type.startsWith('RELAY-')) ? 'Toggle the inputs to follow the signal through the relay contacts.' : 'Toggle the input switches to follow the signal through the blue boxes.'));
     root.querySelector('[data-text]').replaceChildren(...nodes.map(n => el('p', {}, `${n.label}${n.type !== 'INPUT' && n.type !== 'OUTPUT' ? ` (${n.type})` : ''}: ${n.inputs.length ? `inputs ${n.inputs.join(', ')}; ` : ''}value ${values.get(n.id) ?? 'unknown'}.`)));
     if (focusKey) root.querySelector(`[data-focus="${focusKey}"]`)?.focus({preventScroll:true});
   }

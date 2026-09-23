@@ -301,3 +301,6 @@ body {
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) { --set-universe: #39331f; --set-green: #28543c; --set-rose: #60373c; --set-violet: #493953; --set-world: #427a9d; --set-highlight: #e9b545; }
 }
+
+/* Start multiline fields at the height their content needs. */
+textarea { field-sizing: content; min-block-size: 0; block-size: auto; box-sizing: border-box; overflow-y: hidden; resize: none; }

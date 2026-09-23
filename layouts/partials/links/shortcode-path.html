@@ -1,0 +1,5 @@
+{{- $path := printf "%d" .Ordinal -}}
+{{- with .Parent -}}
+  {{- $path = printf "%s-%s" (partial "links/shortcode-path.html" .) $path -}}
+{{- end -}}
+{{- return $path -}}

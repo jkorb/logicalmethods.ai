@@ -1,8 +1,12 @@
-<section class="logic-app pseudocode-practice" data-logic-app="pseudocode-practice" aria-label="Pseudocode keywords">
-<script type="application/json" data-levels>{{ index hugo.Data "pseudocode-practice" | jsonify | safeJS }}</script>
+{{ $deck := .sc.Get "deck" | default "formal-languages" }}
+{{ if not (in (slice "formal-languages" "sat") $deck) }}{{ errorf "Unknown pseudocode deck %q" $deck }}{{ end }}
+{{ $data := "pseudocode-practice" }}
+{{ if eq $deck "sat" }}{{ $data = "pseudocode-sat" }}{{ end }}
+<section class="logic-app pseudocode-practice" data-logic-app="pseudocode-practice" aria-label="Pseudocode practice: {{ $deck }}">
+<script type="application/json" data-levels>{{ index hugo.Data $data | jsonify | safeJS }}</script>
 <div data-level-picker></div>
 <p data-prompt></p>
 <form><pre data-code aria-label="Complete the pseudocode"></pre><button type="submit" disabled>{{ partial "apps/icon.html" "check" }} Check</button></form>
 <p role="status" aria-live="polite" aria-atomic="true"></p>
-<noscript>Enable JavaScript to fill and check the gaps. For practice, name the keywords that define a procedure, test a condition, and give back its result: def, if, return.</noscript>
+<noscript>Enable JavaScript to fill and check the gaps. The written exercises and solutions below can also be worked on paper.</noscript>
 </section>

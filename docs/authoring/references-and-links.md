@@ -23,3 +23,12 @@ host only on request. No lecture currently relies on an external slide embed.
 
 - [Solutions and passwords](solutions.md) — the heading-ID convention for exercises.
 - [Render hooks](../design/render-hooks.md) — what the link hook adds to anchors.
+
+## Chapter labels
+
+Cross-chapter links made with `chapter_ref` or root-relative Markdown links
+under `/textbook/` display “Chapter N ·” (or “Appendix X ·”) before the
+authored text. Existing text that names the chapter number is not prefixed
+again. Links within the current chapter keep their ordinary Markdown label.
+The number comes from the chapter weight, and appendix letters from front matter.
+Use a section anchor when the reference concerns a particular concept.

@@ -1,9 +1,15 @@
 {{- $u := urls.Parse .Destination -}}
+{{- $chapter := false -}}
+{{- if and (not $u.IsAbs) (hasPrefix $u.Path "/textbook/") -}}
+  {{- with site.GetPage $u.Path -}}
+    {{- if and .IsPage (ne .RelPermalink $.Page.RelPermalink) -}}{{- $chapter = . -}}{{- end -}}
+  {{- end -}}
+{{- end -}}
 <a href="{{ .Destination | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}
-   {{- if $u.IsAbs }} class="link-out" target="_blank" rel="external noopener noreferrer"{{ end }}>
+   {{- if $chapter }} class="chapter-reference"{{ else if $u.IsAbs }} class="link-out" target="_blank" rel="external noopener noreferrer"{{ end }}>
   {{- if $u.IsAbs -}}
     <i class="bi bi-box-arrow-up-right link-external" aria-hidden="true"></i>
   {{- end -}}
-  {{- .Text | safeHTML -}}
+  {{- if $chapter -}}{{- partial "links/chapter-label.html" (dict "page" $chapter "text" .Text) -}}{{- else -}}{{- .Text | safeHTML -}}{{- end -}}
   {{- if $u.IsAbs }}<span class="visually-hidden"> (opens in a new tab)</span>{{ end -}}
 </a>

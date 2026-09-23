@@ -1,6 +1,6 @@
 // Shared visual grammar for parsing and evaluation trees.
-import { svg as svgElement } from './boolean-ui.js';
-export function renderTree(tree, { active, nodeLabel = n => n.label, annotation, compact = false } = {}) {
+import { svg as svgElement, activate } from './boolean-ui.js';
+export function renderTree(tree, { active, nodeLabel = n => n.label, annotation, compact = false, onSelect, nodeDescription = n => n.label } = {}) {
     const gap = compact ? 10 : 28;
     const widths = new Map();
     const nodeWidths = new Map();
@@ -28,7 +28,7 @@ export function renderTree(tree, { active, nodeLabel = n => n.label, annotation,
     };
     place(tree, width / 2, 0);
     const height = (annotation ? 110 : 80) + maxDepth * (annotation ? 100 : 82);
-    const svg = svgElement('svg', { viewBox: `0 0 ${width} ${height}`, width, height, 'aria-hidden': 'true', focusable: 'false' });
+    const svg = svgElement('svg', { viewBox: `0 0 ${width} ${height}`, width, height, ...(onSelect ? {role:'group','aria-label':'Parse tree'} : {'aria-hidden':'true',focusable:'false'}) });
     if (width <= 550) svg.style.maxInlineSize = '100%';
     const edges = svgElement('g', {});
     const nodes = svgElement('g', {});
@@ -40,7 +40,8 @@ export function renderTree(tree, { active, nodeLabel = n => n.label, annotation,
         draw(child);
       }
       const g = svgElement('g', { class: node.id === active ? 'is-current' : '' });
-      g.append(svgElement('title', {}, annotation ? nodeLabel(node) : `${node.label}: ${node.text}${node.complete ? ' — complete' : ' — still being parsed'}`));
+      if(onSelect) { g.setAttribute('role','button'); g.setAttribute('tabindex','0'); g.setAttribute('aria-label',nodeDescription(node)); g.setAttribute('data-tree-node',node.id); activate(g,()=>onSelect(node)); }
+      g.append(svgElement('title', {}, onSelect ? nodeDescription(node) : annotation ? nodeLabel(node) : `${node.label}: ${node.text}${node.complete ? ' — complete' : ' — still being parsed'}`));
       g.append(svgElement('rect', { x: p.x - nodeWidths.get(node.id) / 2, y: p.y - 20, width: nodeWidths.get(node.id), height: 40, rx: 6 }));
       g.append(svgElement('text', { x: p.x, y: p.y, 'text-anchor': 'middle', 'dominant-baseline': 'central' }, nodeLabel(node)));
       if (annotation?.(node)) g.append(svgElement('text', { x: p.x, y: p.y + 39, 'text-anchor': 'middle', class: 'tree-valuation' }, annotation(node)));
