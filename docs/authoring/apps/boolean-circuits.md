@@ -46,7 +46,8 @@ Without `preset="sandbox"`, `kind="workbench"` is an exercise in acyclic combina
 inputs X/Y (or X for a unary target), one output, and up to twenty gates.
 Task profiles in `data/boolean-exercises.json` define targets, allowed gates, and
 whether successful checks unlock new gates/tasks. The presets `relays`,
-`definitions` and `nand-circuits` select these profiles; without a preset the
+`definitions`, `nand-circuits` and `conditionals` select these profiles. The
+conditional profile offers IF and XNOR with NOT/AND, then NAND gates; without a preset the
 original progressive XOR/NAND/NOR/XNOR sequence applies. Each target has a
 function table. Checking shows the circuit's function table with incorrect
 outputs red and underlined. Task switching retains circuits during the page visit.
@@ -73,3 +74,8 @@ signal-supply ports, plus a fixed POWER source. A relay input may join several
 source wires in parallel (Boolean OR); ordinary gate profiles retain one source
 per input. Clicking a connected source in the inspector disconnects that branch.
 All branches participate in cycle detection. The tasks remain NAND, XOR and XNOR.
+
+The conditionals exercise labels each level by its allowed gates. Its third
+level supplies XOR gates and a constant-1 source for constructing XNOR; the
+fourth permits NAND and AND. A task's optional `power: true` supplies the fixed
+source, and `label` gives its level-button text.

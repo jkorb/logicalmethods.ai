@@ -1,0 +1,215 @@
+.logic-app.conditional-app { border: 0; box-shadow: none; background: transparent; padding: 0; text-align: start; }
+.conditional-app :is(input,textarea,select) { width: 100%; font-family: var(--font-formal); font-size: var(--step--1); background: var(--paper); color: var(--ink); border: 1px solid var(--rule-strong); border-radius: var(--radius); padding: .4rem; }
+.conditional-app :is(input,textarea)[readonly] { background: var(--paper-sunken); color: var(--ink-muted); }
+.conditional-app label { display: block; font-size: var(--step--1); }
+.conditional-app [data-kb] { max-height: 9rem; overflow: auto; }
+.conditional-app .conditional-fields { display: flex; flex-wrap: wrap; gap: .6rem; align-items: end; }
+.conditional-app .conditional-fields label { flex: 1 1 10rem; min-width: 0; }
+.conditional-app .conditional-fields label:has([data-horizon]) { flex: 0 1 5rem; }
+.conditional-app .conditional-help { font-size: var(--step--2); color: var(--ink-muted); margin-block: .4rem; }
+.conditional-app .conditional-layout { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: .8rem; align-items: start; }
+.conditional-app .conditional-work { min-width: 0; overflow: auto; max-height: 20rem; }
+.conditional-app .conditional-work svg { display: block; margin-inline: auto; font-family: var(--font-formal); }
+.conditional-app .conditional-work > svg :is(line,rect) { stroke: var(--ink); fill: var(--paper); stroke-width: 1.5; }
+.conditional-app .conditional-work > svg text { fill: var(--ink); }
+.conditional-app .conditional-aside { min-width: 0; font-size: var(--step--1); }
+.conditional-app [role=status] { margin-top: 0; }
+.conditional-app[data-logic-app=conditionals] [role=status]:not(:empty) { background: var(--surf-blue); box-shadow: inset 3px 0 var(--blue-ink); border-radius: var(--radius); padding: .55rem .75rem; color: var(--ink); font-size: var(--step-0); line-height: 1.4; }
+.conditional-app .conditional-rules { max-height: 14rem; overflow: auto; padding-inline-start: 1.6rem; font-family: var(--font-formal); font-size: var(--step--2); }
+.conditional-app .conditional-rules li { padding: .15rem .35rem; overflow-wrap: anywhere; }
+.conditional-app .conditional-rules small { color: var(--ink-muted); font-family: var(--font-prose); }
+.conditional-app [aria-current=step] { background: var(--surf-blue); box-shadow: inset 3px 0 var(--blue-ink); border-radius: var(--radius); }
+.conditional-app .conditional-formula { font-family: var(--font-formal); overflow-wrap: anywhere; }
+.conditional-app .logic-app__controls { display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem; margin-block: .6rem; }
+.conditional-app .planning-stage { height: 12rem; position: relative; background: var(--figure-paper); border-radius: var(--radius); }
+.conditional-app .planning-table { position: absolute; inset: 67% 3% 0 17%; }
+.conditional-app .planning-ai { position: absolute; width: 23%; left: 0; bottom: 12%; }
+.conditional-app .planning-stage .book-figure { margin: 0; }
+.conditional-app .planning-stage svg { width: 100%; height: auto; }
+.conditional-app .planning-block { position: absolute; width: 18%; height: 19%; display: grid; place-items: center; border: 2px solid var(--ink); border-radius: 10% 5% 8% 3%; font-family: var(--font-hand); color: var(--ink); }
+.conditional-app .block-R { background: var(--surf-red); }
+.conditional-app .block-G { background: var(--surf-green); }
+.conditional-app .block-B { background: var(--surf-blue); }
+.conditional-app .monkey-scene { position: relative; height: 12rem; border-bottom: 2px solid var(--ink); font-size: var(--step-3); }
+.conditional-app .monkey-scene span { position: absolute; transform: translateX(-50%); }
+.conditional-app .monkey-box { bottom: 4%; font-size: var(--step-4); }
+.conditional-app [hidden] { display: none; }
+@media (max-width: 45rem) { .conditional-app .conditional-layout { grid-template-columns: minmax(0,1fr); } }
+@media (forced-colors: active) { .conditional-app [aria-current=step] { outline: 2px dashed Highlight; } }
+
+.conditional-app p { margin-block: .35rem; }
+.conditional-app [data-description] { font-size: var(--step--1); }
+
+.conditional-app .conditional-work > svg .is-current rect { stroke: var(--blue-ink); stroke-width: 2; stroke-dasharray: 5 3; fill: var(--surf-blue); }
+/* Inference lines use the same premises-above-conclusion convention as SAT. */
+.conditional-app .conditional-inference { display: inline-flex; flex-direction: column; align-items: stretch; text-align: center; font-family: var(--font-formal); padding: .3rem; font-size: var(--step--1); }
+.conditional-app .conditional-premises { display: flex; align-items: end; justify-content: center; gap: .6rem; }
+.conditional-app .conditional-rule { max-width: 19ch; padding: .3rem; }
+.conditional-app .conditional-conclusion { border-top: 2px solid var(--ink); padding: .3rem; }
+.conditional-app .conditional-inference.is-pending > .conditional-conclusion { border-top-style: dashed; }
+.conditional-app .conditional-inference small { font-family: var(--font-prose); color: var(--ink-muted); font-size: var(--step--2); }
+.conditional-app .conditional-work > .conditional-inference { min-width: 100%; }
+.conditional-app .conditional-code { font-family: var(--font-code); font-size: var(--step--2); background: var(--paper-sunken); border-radius: var(--radius); padding: .3rem .5rem; overflow-wrap: anywhere; }
+.conditional-app .conditional-code:empty { display: none; }
+.conditional-app [data-proofs] { max-height: 14rem; overflow: auto; }
+.conditional-app [data-proofs] details { padding: .2rem; }
+.conditional-app .conditional-comparison { grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
+.conditional-app .conditional-comparison > section { min-width: 0; }
+.conditional-app .conditional-comparison h4 { font-family: var(--font-hand); font-size: var(--step-0); margin: .4rem 0; }
+.conditional-app .conditional-comparison .conditional-layout { display: block; }
+.conditional-app .conditional-comparison .conditional-work { max-height: 13rem; }
+.conditional-app .conditional-comparison .conditional-rules { max-height: 7rem; }
+.conditional-app .conditional-comparison [data-path] { font-family: var(--font-formal); font-size: var(--step--2); overflow-wrap: anywhere; }
+.conditional-inference-chain { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .4rem; font-size: var(--step--1); }
+.conditional-inference-chain .inference { max-width: 100%; }
+.conditional-app[data-kind=planning] [data-frame] { min-height: 3.5rem; field-sizing: fixed; height: 3.5rem; resize: vertical; overflow: auto; }
+.conditional-app .planning-complete { display: flex; align-items: center; gap: .4rem; margin: .4rem 0; font-size: var(--step--2); }
+.conditional-app .planning-complete input { width: auto; accent-color: var(--blue-ink); }
+.conditional-app .planning-stage { height: 11rem; max-width: 26rem; margin-inline: auto; overflow: hidden; }
+.conditional-app .planning-table { inset: auto 3% 0 18%; height: 42%; }
+.conditional-app .planning-table .book-figure, .conditional-app .planning-table svg { height: 100%; }
+.conditional-app .planning-ai { width: 20%; bottom: 8%; }
+.conditional-app .planning-stack { position: absolute; left: 23%; right: 22%; bottom: 23%; height: 70%; }
+.conditional-app .planning-cube { position: absolute; width: 2.8rem; height: 3rem; transform: translateX(-50%); }
+.conditional-app .planning-cube svg { width: 100%; height: 100%; }
+.conditional-app .planning-goal { position: absolute; width: 25%; right: 2%; top: 0; }
+.conditional-app .planning-goal-pictures { position: absolute; inset: 22% 10% 13%; display: flex; align-items: end; }
+.conditional-app .planning-stack--mini { position: relative; inset: auto; height: 100%; flex: 1; }
+.conditional-app .planning-stack--mini .planning-cube { width: 1.4rem; height: 1.55rem; }
+.conditional-app .planning-goal-pictures:has(> :nth-child(2)) .planning-cube { width: .95rem; height: 1.05rem; }
+@media (max-width: 45rem) { .conditional-app .conditional-comparison { grid-template-columns: minmax(0,1fr); } .conditional-inference-chain { grid-template-columns: minmax(0,1fr); } }
+
+/* Keep the complete KB visible while the input is frozen. */
+.conditional-app .conditional-kb-preview,
+.conditional-app .conditional-rules { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,15rem),1fr)); gap: .15rem .7rem; max-height: none; overflow: visible; }
+.conditional-app .conditional-kb-preview { list-style: none; padding: .4rem; margin: .3rem 0; background: var(--paper-sunken); border-radius: var(--radius); font-family: var(--font-formal); font-size: var(--step--1); }
+.conditional-app .conditional-kb-preview li { overflow-wrap: anywhere; }
+.conditional-app [data-kb] { max-height: none; }
+.conditional-app:not([data-kind=planning]) > .conditional-layout:not(.conditional-comparison) { grid-template-columns: minmax(0,1fr); }
+.conditional-app:not([data-kind=planning]) .conditional-work { max-height: none; overflow: visible; }
+.conditional-app .conditional-inference { font-size: inherit; padding: .15rem; min-width: 0; max-width: 100%; }
+.conditional-app .conditional-work { font-size: var(--step--1); }
+.conditional-app .conditional-premises { gap: .3rem; }
+.conditional-app .is-wrapped .conditional-premises { flex-wrap: wrap; }
+.conditional-app .conditional-rule { overflow-wrap: anywhere; }
+.conditional-app .conditional-comparison .conditional-rules { max-height: none; }
+.conditional-app .planning-stage { height: 9rem; }
+.conditional-app .planning-stack { --cube-rise: 1rem; }
+.conditional-app .planning-cube { width: 1.8rem; height: 2rem; }
+.conditional-app .planning-stack--mini { --cube-rise: .55rem; }
+.conditional-app .planning-stack--mini .planning-cube { width: 1rem; height: 1.1rem; }
+.conditional-app .planning-goal-pictures:has(> :nth-child(2)) .planning-stack { --cube-rise: .4rem; }
+.conditional-app .planning-goal-pictures:has(> :nth-child(2)) .planning-cube { width: .75rem; height: .85rem; }
+.conditional-app[data-kind=planning] .conditional-help { margin-block: .2rem; }
+.conditional-app[data-kind=planning] .logic-app__controls { margin-block: .35rem; }
+.conditional-app [hidden] { display: none; }
+
+@media (min-width: 45rem) {
+  .conditional-app[data-kind=planning] [data-form] { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .25rem .7rem; }
+  .conditional-app[data-kind=planning] [data-form] > :not(label:has([data-frame])) { grid-column: 1 / -1; }
+}
+
+.conditional-app .conditional-facts { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem; font-size: var(--step--2); }
+.conditional-app .conditional-facts ul { display: flex; flex-wrap: wrap; gap: .25rem .8rem; list-style: none; padding: 0; margin: .2rem 0; font-family: var(--font-formal); }
+
+/* Preserve the setup drawing's 423.2 × 504.4 coordinate proportions. */
+.conditional-app .planning-stage { width: min(100%,9rem); height: auto; aspect-ratio: 423.2 / 504.4; container-type: inline-size; overflow: visible; }
+.conditional-app .planning-table { left: 13.75%; right: 0; bottom: 0; height: 60.57%; }
+.conditional-app .planning-stage .book-figure { width: 100%; max-width: none; height: 100%; }
+.conditional-app .planning-stage .book-figure svg { display: block; width: 100%; height: 100%; }
+.conditional-app .planning-ai { left: 0; bottom: 20%; width: 25%; }
+.conditional-app .planning-stack { left: 42%; right: 14%; bottom: 47%; height: 30%; --cube-rise: 4.35cqw; }
+.conditional-app .planning-cube { width: 7.56cqw; height: 8.27cqw; }
+.conditional-app .planning-goal { top: 2%; right: 4%; width: 35%; }
+.conditional-app .planning-stack--mini { inset: auto; height: 100%; --cube-rise: 2.2cqw; }
+.conditional-app .planning-stack--mini .planning-cube { width: 4cqw; height: 4.4cqw; }
+.conditional-app .planning-goal-pictures:has(> :nth-child(2)) .planning-stack { --cube-rise: 1.5cqw; }
+.conditional-app .planning-goal-pictures:has(> :nth-child(2)) .planning-cube { width: 2.7cqw; height: 3cqw; }
+.conditional-app[data-kind=planning] [data-frame] { min-height: 5rem; height: auto; field-sizing: content; }
+
+.conditional-practice .practice-rule-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,13rem),1fr)); gap: .35rem; margin-block: .5rem; }
+.conditional-practice [aria-pressed=true] { background: var(--surf-blue); box-shadow: inset 3px 0 var(--blue-ink); }
+.conditional-practice button { color: var(--ink); background-color: var(--paper); border: 1px solid var(--rule-strong); border-radius: var(--radius); padding: .4rem .6rem; }
+.conditional-practice button svg { width: 1.1em; height: 1.1em; vertical-align: middle; margin-inline-end: .3rem; }
+.conditional-practice [data-feedback=correct] { color: var(--green-ink); }
+.conditional-practice [data-feedback=incorrect] { color: var(--red-ink); }
+.conditional-practice .horn-options { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,16rem),1fr)); gap: .5rem; }
+.conditional-practice .horn-options label { display: flex; gap: .5rem; align-items: baseline; }
+.conditional-practice .horn-options input { width: auto; accent-color: var(--blue-ink); }
+.conditional-practice form { margin-block: 1rem; }
+.conditional-practice .wason-board { position: relative; }
+.conditional-practice .wason-art .book-figure { margin: 0; }
+.conditional-practice .wason-cards { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: .25rem; }
+.conditional-practice .wason-cards button { background: transparent; display: flex; align-items: end; justify-content: center; border: 2px solid transparent; color: var(--ink); }
+.conditional-practice .wason-cards button[aria-pressed=true] { border-color: var(--blue-ink); box-shadow: inset 0 -4px var(--blue-ink); }
+.conditional-app .monkey-box { width: 3.5rem; height: 4rem; }
+.conditional-app .monkey-banana { width: 2rem; height: 2rem; }
+.conditional-app .monkey-scene .book-figure { margin: 0; width: 100%; height: 100%; }
+.conditional-app .monkey-scene svg { width: 100%; height: 100%; }
+
+.conditional-app [data-navigation] .logic-app__export-controls { margin: 0; }
+.conditional-practice.is-shaking { animation: latex-game-shake .25s ease-in-out; }
+@media (prefers-reduced-motion: reduce) { .conditional-practice.is-shaking { animation: none; } }
+/* Compact exercise controls keep the notebook colours, including native inputs. */
+.conditional-app select { appearance: none; padding-inline-end: 2rem; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m4 6 4 4 4-4' fill='none' stroke='%23777777' stroke-width='1.5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-size: 1rem; background-position: right .6rem center; }
+.conditional-app select option { color: var(--ink); background: var(--paper); }
+.conditional-app input[type=checkbox] { appearance: none; flex: 0 0 1.1rem; width: 1.1rem; height: 1.1rem; min-height: 0; padding: 0; border: 1px solid var(--ink-muted); border-radius: .2rem; background: var(--paper); position: relative; }
+.conditional-app input[type=checkbox]:checked { background: var(--surf-blue); border-color: var(--blue-ink); }
+.conditional-app input[type=checkbox]:checked::after { content: ''; position: absolute; left: 28%; top: 10%; width: 35%; height: 60%; border: solid var(--blue-ink); border-width: 0 2px 2px 0; transform: rotate(45deg); }
+.conditional-practice .practice-rule-grid { grid-template-columns: repeat(auto-fit,minmax(min(100%,12rem),1fr)); gap: .2rem; }
+.conditional-practice .practice-rule-grid button { padding: .2rem .4rem; font-size: var(--step--1); }
+.conditional-practice .practice-facts { display: flex; flex-wrap: wrap; gap: .3rem; }
+.conditional-practice [data-setup] { display: flex; gap: .3rem; }
+.conditional-practice .wason-cards button:is(:hover,:focus,:active,[aria-pressed]) { background: transparent !important; box-shadow: none; }
+.conditional-practice .wason-cards button { border: 0; padding: 0; }
+.conditional-practice .wason-cards button span { padding: .2rem .5rem; border-radius: var(--radius); background: var(--paper); }
+.conditional-practice .wason-cards button[aria-pressed=true] span { background: var(--surf-blue); box-shadow: inset 0 -3px var(--blue-ink); }
+.conditional-practice .wason-art svg [stroke]:not([stroke=none]) { vector-effect: non-scaling-stroke; stroke-width: 1.5px; }
+.conditional-app .planning-task-pictures { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .6rem; }
+.conditional-app .planning-task-pictures figure { margin: 0; min-width: 0; }
+.conditional-app .planning-task-pictures figcaption { text-align: center; font-family: var(--font-hand); }
+.conditional-app .planning-task-pictures .planning-stage { width: min(100%,8rem); }
+.conditional-app .planning-task-pictures .monkey-scene { height: 8rem; }
+.conditional-app .planning-task-pictures .monkey-box { width: 2rem; height: 2.5rem; }
+.conditional-app .planning-language { display: flex; flex-wrap: wrap; align-items: end; gap: .4rem; }
+.conditional-app .planning-language label { flex: 1 1 15rem; }
+.conditional-app [data-language-feedback] { width: 100%; font-size: var(--step--1); }
+.conditional-app [data-feedback=correct] { color: var(--green-ink); }
+.conditional-app [data-feedback=incorrect] { color: var(--red-ink); }
+@media (prefers-reduced-motion: no-preference) { .conditional-app.is-shaking { animation: latex-game-shake .25s ease-in-out; } }
+@media (forced-colors: active) { .conditional-app input[type=checkbox] { appearance: auto; } .conditional-app input[type=checkbox]::after { display: none; } }
+/* Visible roles distinguish the choices without repeating whole instructions. */
+.conditional-app .practice-label { display: block; color: var(--ink-muted); font-family: var(--font-prose); font-size: var(--step--1); margin-block: .35rem .2rem; }
+.conditional-practice .practice-algorithms { display: flex; flex-wrap: wrap; gap: .3rem; }
+.conditional-practice .practice-fact { padding: .15rem .45rem; border-radius: var(--radius); background: var(--surf-green); font-family: var(--font-formal); }
+.conditional-practice[data-kind=chaining] .practice-facts { margin-bottom: .35rem; }
+
+.conditional-app[data-kind=planning] [data-frame] { min-height: 4rem; }
+@media (min-width: 45rem) { .conditional-app[data-kind=planning] [data-form] { row-gap: .15rem; } }
+.boolean-app[data-preset=conditionals] .boolean-app__layout { margin-block: 0; }
+.boolean-app[data-preset=conditionals] .boolean-app__palette { margin-block: .35rem; gap: .5rem; }
+.boolean-app[data-preset=conditionals] .boolean-circuit__instruction { margin-block-start: .5rem; }
+.boolean-app[data-preset=conditionals] .boolean-connections { margin-block: .25rem; }
+.conditional-app[data-kind=planning] .planning-complete { margin-block: .15rem; }
+.conditional-app[data-kind=planning] .logic-app__controls { margin-block: .1rem; }
+.conditional-practice[data-kind=chaining] [data-setup] { align-items: center; gap: .7rem; }
+.conditional-practice[data-kind=chaining] [data-levels] { gap: .5rem; margin-block: .25rem; }
+.conditional-practice[data-kind=chaining] .practice-algorithms { margin-block: .25rem; }
+.conditional-practice[data-kind=chaining] .logic-app__controls { margin-block: .25rem; }
+.conditional-practice[data-kind=chaining] [data-prompt] { text-align: center; font-family: var(--font-formal); color: var(--blue-ink); background: var(--surf-blue); border-radius: var(--radius); padding: .35rem; margin-block: .35rem; }
+.conditional-app .conditional-proof-panel { border: 1px solid var(--rule-strong); border-radius: var(--radius); padding: .5rem; text-align: center; margin-block: .5rem; }
+.conditional-app .conditional-text-controls { display: flex; justify-content: flex-end; margin-block: .3rem; }
+.conditional-app .conditional-text-controls button { padding: .35rem; }
+.conditional-app .conditional-text-controls svg { width: 1.2em; height: 1.2em; margin: 0; }
+.conditional-practice[data-kind=equivalence] form { display: flex; flex-direction: column; align-items: center; gap: .75rem; }
+.conditional-practice[data-kind=equivalence] form label { width: 100%; }
+
+.conditional-practice[data-kind=equivalence], .conditional-practice[data-kind=horn][data-part=examples] { margin-block-start: .3rem; }
+.conditional-practice[data-kind=equivalence] form, .conditional-practice[data-kind=horn][data-part=examples] form { margin-block-start: 0; }
+.conditional-practice[data-kind=horn][data-part=examples] form { display: flex; flex-direction: column; align-items: center; gap: .65rem; }
+.conditional-practice[data-kind=horn][data-part=examples] form label { width: 100%; }
+.sat-practice[data-deck=conditional-inference] [data-setup] form { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; }
+.sat-practice[data-deck=conditional-inference] [data-setup] textarea { flex-basis: 100%; }
+.conditional-app .conditional-runbar { justify-content: flex-start; }
+.conditional-app .conditional-runbar > [data-navigation] { margin: 0 0 0 auto; gap: .3rem; }
+.conditional-app .conditional-runbar > [data-navigation] [data-count] { align-self: center; font-size: var(--step--2); }

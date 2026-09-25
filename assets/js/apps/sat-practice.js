@@ -4,7 +4,7 @@ import { mountBoolean } from './boolean-app.js';
 import { el, formula } from './boolean-ui.js';
 import { enableLatexInput, convertInput } from './latex-input.js';
 import { parseBoolean, evaluateTrace, circuitPreset, evaluateCircuit } from '../logic/boolean.js';
-import { printFormula, formatFormula, valuations, readProblem } from '../logic/sat.js';
+import { printFormula, formatFormula, valuations, readProblem, rewriteTrace } from '../logic/sat.js';
 import { tableExercise, checkVariables, checkMystery, checkNormalForm, createResolutionSession, resolutionChoices, resolutionOutcome, applyResolutionChoice } from '../logic/sat-practice.js';
 
 export function mountSATPractice(root) {
@@ -169,15 +169,28 @@ export function mountSATPractice(root) {
     controls.append(iconButton('Check',check));form.addEventListener('submit',e=>{e.preventDefault();check();});say('Describe the lamp using '+names.join(', ')+' with ¬ and ∧.');
   }
   function mountInference() {
-    const item=levels[level];question.append(formula(item.inference));
-    const form=el('form'), input=el('textarea',{'aria-label':'CNF clauses',rows:1,maxlength:4608});
-    form.append(input);const use=iconButton('Start',()=>{},'play');use.type='submit';const edit=iconButton('Edit',()=>{input.readOnly=false;use.hidden=false;edit.hidden=true;work.replaceChildren();extra.replaceChildren();controls.replaceChildren();say('Edit the CNF clauses, then start again.');input.focus();},'edit');edit.hidden=true;form.append(use,edit);setup.append(form);
-    enableLatexInput(input,()=>{});say('Enter the clauses for your SAT problem. Separate them with commas, or join them with ∧.');
+    const item=levels[level],automaticCNF=root.dataset.deck==='conditional-inference';question.append(formula(item.inference));
+    const cnf=el('p',{'data-cnf':'',class:'sat-cnf'});cnf.hidden=true;
+    const restart=iconButton('Restart',()=>start(level),'replay');
+    if(automaticCNF)controls.replaceChildren();
+    const form=el('form'), input=el('textarea',{'aria-label':automaticCNF?'SAT formula':'CNF clauses',rows:1,maxlength:4608});
+    form.append(input);const use=iconButton('Start',()=>{},'play');use.type='submit';const edit=iconButton('Edit',()=>{input.readOnly=false;use.hidden=false;edit.hidden=true;restart.hidden=false;cnf.hidden=true;work.replaceChildren();extra.replaceChildren();controls.replaceChildren();say(automaticCNF?'Edit the SAT formula, then start again.':'Edit the CNF clauses, then start again.');input.focus();},'edit');edit.hidden=true;const actions=el('div',{class:'practice-actions'});actions.append(use,edit);if(automaticCNF)actions.append(restart);form.append(actions);setup.append(form,cnf);
+    enableLatexInput(input,()=>{});say(automaticCNF?'Enter the SAT formula. CNF conversion is automatic.':'Enter the clauses for your SAT problem. Separate them with commas, or join them with ∧.');
     form.addEventListener('submit',e=>{e.preventDefault();try {
-      convertInput(input);createResolutionSession(input.value);
+      convertInput(input);
+      const submitted=readProblem(input.value);
+      if(submitted.inference)throw new Error('Enter a SAT formula rather than the inference.');
+      let source=input.value;
+      if(automaticCNF) {
+        const rewritten=rewriteTrace(submitted.conjunction,'CNF');
+        if(!rewritten.complete)throw new Error(rewritten.reason);
+        source=printFormula(rewritten.tree);
+      }
+      createResolutionSession(source);
       const problem=readProblem(item.inference), result=checkMystery(printFormula(readProblem(input.value).conjunction),problem.conjunction,problem.names);
-      if(!result.correct)throw new Error('These clauses do not express the right SAT problem. Recheck your formula and its conversion.');
-      input.readOnly=true;use.hidden=true;edit.hidden=false;mountResolution(input.value,true);
+      if(!result.correct)throw new Error('This does not express the right SAT problem. Recheck your formula.');
+      if(automaticCNF){cnf.replaceChildren(document.createTextNode('CNF: '),formula(formatFormula(readProblem(source).conjunction)));cnf.hidden=false;}
+      input.readOnly=true;use.hidden=true;edit.hidden=false;restart.hidden=true;mountResolution(source,true);
     }catch(error){buzz(error.message);}});
   }
   function mountResolution(source=levels[level].formula,inference=false) {

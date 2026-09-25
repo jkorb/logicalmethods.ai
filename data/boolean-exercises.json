@@ -60,5 +60,40 @@
         "target": "XNOR"
       }
     ]
+  },
+  "conditionals": {
+    "tasks": [
+      {
+        "target": "IF",
+        "gates": [
+          "NOT",
+          "AND"
+        ],
+        "label": "IF \u00b7 NOT, AND"
+      },
+      {
+        "target": "IF",
+        "gates": [
+          "NAND"
+        ],
+        "label": "IF \u00b7 NAND"
+      },
+      {
+        "target": "XNOR",
+        "gates": [
+          "XOR"
+        ],
+        "power": true,
+        "label": "XNOR \u00b7 XOR, 1"
+      },
+      {
+        "target": "XNOR",
+        "gates": [
+          "NAND",
+          "AND"
+        ],
+        "label": "XNOR \u00b7 NAND, AND"
+      }
+    ]
   }
 }

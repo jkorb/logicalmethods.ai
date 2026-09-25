@@ -36,13 +36,13 @@ test('pseudocode check catches the notation regressions without requiring execut
 });
 
 test('pseudocode exercise decks have complete answers conforming to the same notation',async()=>{
-  for(const name of ['pseudocode-practice','pseudocode-sat']) {
+  for(const name of ['pseudocode-practice','pseudocode-sat','pseudocode-conditionals']) {
     const levels=JSON.parse(await readFile(new URL('../../data/'+name+'.json',import.meta.url),'utf8'));
     for(const level of levels) {
       assert.equal(level.code.split('___').length-1,level.answers.length,level.title);
       let i=0;const completed=level.code.replaceAll('___',()=>level.answers[i++]);
       assert.deepEqual(pseudocodeIssues(fence(completed)),[],level.title);
-      assert.ok(level.answers.every(a=>a.length<=12),level.title);
+      assert.ok(level.answers.every(a=>a.length<=(level.maxEntry || 12)),level.title);
     }
   }
 });

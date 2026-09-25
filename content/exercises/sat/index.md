@@ -14,8 +14,8 @@ Apply both techniques from {{< chapter_ref chapter="sat" id="checking-a-circuit"
 Use $INPUT₁$ for the input down the left and $INPUT₂$ for the input
 across the top.
 
-1. Describe each row with output $1$ by a conjunction, then disjoin the descriptions to obtain DNF.
-2. Exclude each row with output $0$ by a disjunction, then conjoin these clauses to obtain CNF.
+1. Describe each row with output $1$ by a conjunction, then disjoin the descriptions to obtain {{< term "disjunctive-normal-form" "DNF" >}}.
+2. Exclude each row with output $0$ by a disjunction, then conjoin these clauses to obtain {{< term "conjunctive-normal-form" "CNF" >}}.
 3. Simplify where possible. Explain why the two descriptions have the same truth-values.
 
 <div class="function-tables">
@@ -194,12 +194,12 @@ explain the helpers used in each example.
    be reached.
 5. The visit order and names are $SUN$: $SUN$; $¬SUN$: $u₁$;
    $RAIN$: $RAIN$; $¬SUN ∨ RAIN$: $u₂$. The procedure returns $u₂$.
-   Names alone impose no truth-value requirements. Tseytin conversion
+   Names alone impose no truth-value requirements. {{< term "tseytin-transformation" "Tseytin" >}} conversion
    must also add the local constraints and the root clause.
 
 # Truth tables {.solved}
 
-Use the app to construct a truth-table for each of the formulas shown
+Use the app to construct a {{< term "truth-table" "truth-table" >}} for each of the formulas shown
 in its level buttons. First identify the distinct variables: enter their
 names separated by commas, for example `SUN, RAIN`. How many rows do we need?
 
@@ -215,7 +215,7 @@ Which formulas are satisfiable? Which are tautologies?
 
 There are four rows for levels 1–4 and 6, and eight for level 5. The
 formulas in levels 1–5 are satisfiable; level 6 is unsatisfiable. None
-is a tautology. Here are the completed tables, with variables in the
+is a {{< term "tautology" "tautology" >}}. Here are the completed tables, with variables in the
 same alphabetical order as the app:
 
 Level 1:
@@ -362,7 +362,7 @@ for every level, though it need not be the shortest one.
 # Normal Forms {.solved}
 
 Rewrite each formula into DNF and CNF. Name the laws you use. You may
-simplify repetitions, contradictions, and tautological clauses, but these
+simplify repetitions, contradictions, and {{< term "tautological-clause" "tautological clauses" >}}, but these
 simplifications are not required merely to reach normal form.
 
 1. $RAIN ∧ ¬(SUN ∨ ¬RAIN)$
@@ -398,8 +398,9 @@ simplifications are not required merely to reach normal form.
 
 # Resolution {.solved}
 
-Each level starts with a CNF. Its conjuncts appear as numbered clauses.
-Select two clauses, choose one pivot, and apply resolution. Keep going
+Each level starts with a CNF. Its conjuncts appear as numbered
+{{< term "clause" "disjunctive clauses" >}}.
+Select two clauses, choose one {{< term "resolution-pivot" "pivot" >}}, and apply {{< term "resolution" "resolution" >}}. Keep going
 until you derive $⊥$, or until every possible resolution has been checked.
 In the latter case, use the Saturated? button. The app keeps the parents
 and records checks which give tautologies or clauses already present.
@@ -435,10 +436,77 @@ For each satisfiable input, also give a satisfying valuation on paper.
    Resolve $SUN ∨ RAIN$ with $¬SUN$ to get $RAIN$, then with $¬RAIN$
    to get $⊥$.
 
+# Countermodels after resolution {.solved}
+
+The following refutation searches are complete. Every possible resolution
+has been checked, and none adds a new non-tautological clause. No search
+derives $⊥$.
+
+For each inference, use the final clauses to find a
+{{< term "countermodel" "countermodel" >}}. Begin with any {{< term "unit-clause" "unit clauses" >}},
+then choose values for the remaining atoms. Check that all the clauses are
+true, all the original premises are true, and the conclusion is false.
+You don't need to construct a full truth-table.
+
+1. $SUN → RAIN, ¬SUN ∴ ¬RAIN$
+
+   | Line | Clause | Source |
+   | --- | --- | --- |
+   | 1 | $¬SUN ∨ RAIN$ | First premise |
+   | 2 | $¬SUN$ | Second premise |
+   | 3 | $RAIN$ | Negated conclusion |
+
+   There are no complementary literals between clauses.
+
+2. $SUN ↔ RAIN ∴ SUN$
+
+   | Line | Clause | Source |
+   | --- | --- | --- |
+   | 1 | $¬SUN ∨ RAIN$ | Premise, in CNF |
+   | 2 | $SUN ∨ ¬RAIN$ | Premise, in CNF |
+   | 3 | $¬SUN$ | Negated conclusion |
+   | 4 | $¬RAIN$ | Lines 2 and 3, pivot $SUN$ |
+
+   The other resolutions produce tautologies or clauses already listed.
+
+3. $SUN ∨ RAIN ∴ SUN ∧ RAIN$
+
+   | Line | Clause | Source |
+   | --- | --- | --- |
+   | 1 | $SUN ∨ RAIN$ | Premise |
+   | 2 | $¬SUN ∨ ¬RAIN$ | Negated conclusion, in CNF |
+
+   Resolving on either variable gives a tautology. There are no unit
+   clauses. Find both countermodels. Why does setting both atoms false
+   fail? Why does setting both true fail?
+
+Would finding no contradiction after just a few resolution steps have
+been enough to conclude that these inferences are invalid? Explain.
+
+## Solution {.solution #countermodels-after-resolutionSolution}
+
+1. Line 2 fixes $SUN = 0$; line 3 fixes $RAIN = 1$. Line 1 is true
+   because both its literals are true. In the original inference,
+   $SUN → RAIN$ and $¬SUN$ are true, but $¬RAIN$ is false.
+2. Line 3 fixes $SUN = 0$. Line 2 then requires $RAIN = 0$, which
+   line 4 also tells us. Line 1 is true because $¬SUN$ is true.
+   The two atoms agree, so the premise $SUN ↔ RAIN$ is true, while
+   the conclusion $SUN$ is false.
+3. The first clause requires at least one atom to be true. The second
+   requires at least one to be false. Choose $SUN = 1, RAIN = 0$,
+   or $SUN = 0, RAIN = 1$. Each choice makes the premise true and
+   the conclusion false. Setting both false violates line 1; setting
+   both true violates line 2. We cannot choose values independently
+   for each clause: one valuation must satisfy them all.
+
+An unfinished search might still derive $⊥$ later. Saturation without
+$⊥$ establishes satisfiability; a checked countermodel directly establishes
+invalidity, even if we haven't completed the search.
+
 # Valid inference {.solved}
 
 Check each inference shown in the app by truth-table and by resolution.
-Decide which SAT problem will tell you whether the inference is valid. For an invalid inference, give a countermodel.
+Decide which SAT problem will tell you whether the inference is valid. For an invalid inference, give a {{< term "countermodel" "countermodel" >}}.
 
 For resolution, convert your SAT formula to CNF and enter its clauses in
 the input field. You can join them with $∧$, or separate them with commas.
@@ -462,7 +530,7 @@ formula to put in before you start.
 
 1. Test $¬RAIN ∧ ¬(RAIN ∨ (¬RAIN ∧ SUN))$. Its CNF simplifies to
    $¬RAIN ∧ (RAIN ∨ ¬SUN)$. Resolution gives $¬SUN$ and then
-   saturates. The countermodel $RAIN = SUN = 0$ makes the premise
+   {{< term "resolution-saturation" "saturates" >}}. The countermodel $RAIN = SUN = 0$ makes the premise
    true and conclusion false.
 2. Test $(RAIN ∨ (RAIN ∧ WIND)) ∧ ¬(RAIN ∨ SUN)$. Its CNF is
    $RAIN ∧ (RAIN ∨ WIND) ∧ ¬RAIN ∧ ¬SUN$. Resolve $RAIN$ and
@@ -532,7 +600,7 @@ $0$. The fourth has just one satisfying row: $RAIN = 1$, $SUN = WIND = 0$.
 
 # Tseytin transformation {.solved}
 
-Apply the chapter's algorithm to the formulas below. Work from the leaves
+Apply the {{< term "tseytin-transformation" "Tseytin transformation" >}} to the formulas below. Work from the leaves
 upward, visiting the left child before the right. Use fresh names $u₁$,
 $u₂$, … in that order. Write the local constraints and the final clause
 which requires the root to be true.
@@ -545,7 +613,7 @@ which requires the root to be true.
 
 For each satisfiable formula, extend one satisfying valuation to the
 fresh variables. Explain why we cannot omit the final root clause, and
-why the result is equisatisfiable rather than logically equivalent over
+why the result is {{< term "equisatisfiable" "equisatisfiable" >}} rather than logically equivalent over
 the expanded vocabulary. For formula 4, also compare the result with the
 CNF obtained by distribution: which uses fewer clauses here? What if we
 keep adding disjuncts consisting of two fresh atoms?

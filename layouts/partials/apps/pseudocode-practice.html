@@ -1,7 +1,8 @@
 {{ $deck := .sc.Get "deck" | default "formal-languages" }}
-{{ if not (in (slice "formal-languages" "sat") $deck) }}{{ errorf "Unknown pseudocode deck %q" $deck }}{{ end }}
+{{ if not (in (slice "formal-languages" "sat" "conditionals") $deck) }}{{ errorf "Unknown pseudocode deck %q" $deck }}{{ end }}
 {{ $data := "pseudocode-practice" }}
 {{ if eq $deck "sat" }}{{ $data = "pseudocode-sat" }}{{ end }}
+{{ if eq $deck "conditionals" }}{{ $data = "pseudocode-conditionals" }}{{ end }}
 <section class="logic-app pseudocode-practice" data-logic-app="pseudocode-practice" aria-label="Pseudocode practice: {{ $deck }}">
 <script type="application/json" data-levels>{{ index hugo.Data $data | jsonify | safeJS }}</script>
 <div data-level-picker></div>

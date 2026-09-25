@@ -156,8 +156,8 @@ atoms but different steps.
 
 # Parsing {.solved}
 
-Parse the following formulas according to the grammar of propositional logic.
-Give an abstract syntax tree for each formula. For these four formulas,
+Parse the following formulas according to the {{< term "grammar" "grammar" >}} of propositional logic.
+Give an {{< term "abstract-syntax-tree" "abstract syntax tree" >}} for each formula. For these four formulas,
 use $p$, $q$, $r$, and $s$ as propositional variables.
 
 1. $(¬p → ¬q)$
@@ -210,7 +210,7 @@ job described by its name; we don't need to write its instructions ourselves.
 
    {{< logic-app name="pseudocode-practice" >}}
 
-2. Write pseudocode for the following three procedures. Use the examples
+2. Write {{< term "pseudocode" "pseudocode" >}} for the following three procedures. Use the examples
    above as a guide. For each procedure, try the suggested inputs by hand
    and say why it finishes.
 
@@ -296,11 +296,11 @@ it.
 Use $p$, $q$, and $r$ as variables. We'll keep the usual connective symbols
 $¬$, $∧$, $∨$, $→$, and $↔$, changing only where they are written.
 
-Polish notation puts each operator *before* its parts. For example,
+{{< term "prefix-notation" "Prefix, or Polish, notation" >}} puts each operator *before* its parts. For example,
 $((p ∧ (p → q)) → ¬q)$ becomes $→∧p→pq¬q$.
 
-1. Determine the grammar of Polish notation both in terms of recursive clauses
-   and as a BNF.
+1. Determine the grammar of Polish notation both in terms of {{< term "recursion" "recursive" >}} clauses
+   and as a {{< term "bnf" "BNF" >}}.
 
 2. Determine the corresponding re-write rules and generate the abstract syntax tree for
 $→∧p→pq¬q$.
@@ -309,7 +309,7 @@ $→∧p→pq¬q$.
    formula in Polish notation.
 
 4. Go back to the example from the textbook which illustrated the need for
-   parentheses when using infix notation and write the corresponding formulas in
+   parentheses when using {{< term "infix-notation" "infix notation" >}} and write the corresponding formulas in
    Polish notation. Explain with the example why we no longer need parentheses
 in Polish notation.
 
@@ -359,14 +359,14 @@ without brackets.
 
 # A stack of operators {.solved #shunting-yard}
 
-In *postfix* or *reverse Polish* notation, an operator comes after its parts:
+In {{< term "postfix-notation" "postfix, or reverse Polish, notation" >}}, an operator comes after its parts:
 $(p ∧ q)$ becomes $pq∧$, and $¬p$ becomes $p¬$. Keep the symbols $¬$, $∧$,
 $∨$, $→$, and $↔$ for this exercise.
 
-The shunting-yard algorithm converts infix to postfix notation. It reads the
-input from left to right and keeps an output and a *stack* of waiting operators.
+The {{< term "shunting-yard" "shunting-yard algorithm" >}} converts infix to postfix notation. It reads the
+input from left to right and keeps an output and a {{< term "stack" "stack" >}} of waiting operators.
 Think of a stack of plates: you add to the top and remove from the top.
-Adding an item is called *pushing*; removing the top item is called *popping*.
+Adding an item is called {{< term "push" "pushing" >}}; removing the top item is called {{< term "pop" "popping" >}}.
 Here we write the stack from left to right, with its top at the right.
 
 For a well-formed input, use these rules:
@@ -541,7 +541,7 @@ succeeded.
 | $v$      | The command to request assistance is issued. |
 | $w$      | The command to shut down is issued.          |
 
-The knowledge base contains these rules, in conventional notation:
+The {{< term "knowledge-base" "knowledge base" >}} contains these rules, in conventional notation:
 
 $$
 p → t

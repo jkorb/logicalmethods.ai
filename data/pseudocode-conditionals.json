@@ -1,0 +1,45 @@
+[
+  {
+    "title": "Process each fact once",
+    "prompt": "An agenda may contain repeats. Complete the conditions and arguments so that each distinct fact is reported once. Helpers: is_empty, take_first (removes the first item), contains, add and report. known is initially empty.",
+    "maxEntry": 64,
+    "code": "def process(agenda, known):\n    while ___:\n        fact = take_first(agenda)\n        if ___:\n            add(___, ___)\n            report(fact)",
+    "answers": [
+      "not is_empty(agenda)",
+      "not contains(known, fact)",
+      "known",
+      "fact"
+    ],
+    "explanation": "The loop removes every agenda entry, but records and reports only facts not already known."
+  },
+  {
+    "title": "A premise counter",
+    "prompt": "One previously unprocessed premise of rule has become known. Decrease its counter; when all premises are known, record its head if it is new. Helpers: head(rule) gives the conclusion; contains tests membership; add records a fact; enqueue adds to the agenda.",
+    "maxEntry": 64,
+    "code": "def process_premise(rule, remaining, known, agenda):\n    remaining = ___\n    if ___:\n        fact = head(rule)\n        if ___:\n            add(known, fact)\n            enqueue(___, ___)\n    return remaining",
+    "answers": [
+      "remaining - 1",
+      "remaining == 0",
+      "not contains(known, fact)",
+      "agenda",
+      "fact"
+    ],
+    "explanation": "A counter of zero means that every premise has been processed. The membership check prevents the same conclusion from being queued twice."
+  },
+  {
+    "title": "Try another rule",
+    "prompt": "Complete backward search. rules_for(goal, rules) lists rules with that conclusion; premises(rule) gives their antecedents. prove_all checks every premise, and extend makes a separate branch list. Decide where a failed rule should allow another attempt.",
+    "maxEntry": 64,
+    "code": "def backward(goal, facts, rules, active):\n    if contains(facts, goal):\n        return ___\n    if contains(active, goal):\n        return ___\n    branch = extend(___, ___)\n    for rule in rules_for(goal, rules):\n        if prove_all(premises(rule), facts, rules, ___):\n            return ___\n    return ___",
+    "answers": [
+      "True",
+      "False",
+      "active",
+      "goal",
+      "branch",
+      "True",
+      "False"
+    ],
+    "explanation": "Only exhausting all matching rules justifies the final False. A failed attempt does not prevent the next rule from succeeding."
+  }
+]

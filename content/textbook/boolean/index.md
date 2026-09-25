@@ -273,6 +273,14 @@ You can (and should!) verify all these laws, just like we did for
 $Commutativity$. Knowing them can be incredibly helpful in showing facts about
 Boolean algebras.
 
+Note that in all of these laws, you can substitute _any_ Boolean expression for
+the variables $X$, $Y$, and $Z$. For example, if you take the law of Domination
+$$X !!OR!! 1 = 1$$ you may replace the $X$ with any Boolean expression
+involving any variables you like -- even including the Boolean values $0$ and
+$1$ themselves. So, you know, for example, that $(!!NOT!! !!NOT!! X) !!OR!! 1 =
+1$ and that $0 !!OR!! 1 = 1$. In fact, we'll do something like this in the
+example derivation below.
+
 In particular, you can use these laws to derive other laws in an algebraic way,
 that is by manipulating equations. For example, you can derive the following
 important family of laws known as the {{< term "de-morgan-laws" "De Morgan laws" >}},
@@ -287,7 +295,12 @@ An identity says that two expressions always have the same value. We may
 therefore replace either expression with the other, including inside a larger
 expression. For example, $X !!OR!! !!NOT!! X = 1$ lets us replace the bracketed
 part in $Y !!AND!! (X !!OR!! !!NOT!! X)$ by $1$, giving $Y !!AND!! 1$.
-We can also use an identity from right to left.
+We can also use an identity from right to left. The letters in a law stand
+for arbitrary Boolean values, so we may put a whole expression in their place.
+For example, write Identity as $Y !!AND!! 1 = Y$ and replace both occurrences
+of $Y$ by $!!NOT!! !!NOT!! X$. This gives
+$(!!NOT!! !!NOT!! X) !!AND!! 1 = !!NOT!! !!NOT!! X$, without yet telling us
+whether $!!NOT!! !!NOT!! X = X$.
 
 To derive double negation, first transform $!!NOT!! !!NOT!! X$ into
 $(!!NOT!! !!NOT!! X) !!AND!! X$. Then transform $X$ into the same expression.

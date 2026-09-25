@@ -9,7 +9,7 @@ params:
 
 # Material and logical validity {.solved}
 
-For each of the following inferences, determine whether it is logically or only materially valid:
+For each of the following inferences, determine whether it is {{< term "logical-validity" "logically valid" >}} or only {{< term "material-validity" "materially valid" >}}:
 
 1. Little Jimmy's parents are members of the club, so he's a member. For this
    fictional club, assume that children of members are automatically members.
@@ -23,7 +23,7 @@ For each of the following inferences, determine whether it is logically or only 
 
 5. Courage requires fear and you're not afraid. So, you're not courageous.
 
-**Show your work!** That is: identify the schematic logical form of each
+**Show your work!** That is: identify the schematic {{< term "logical-form" "logical form" >}} of each
 inference and check whether there are invalid inferences of this form.
 
 For the materially valid inferences, identify a premise you could add to turn
@@ -94,7 +94,7 @@ West Coast will have any veggie options either.
 **Show your work!** For deductive readings, give a possible situation where
 the premises are true and the conclusion is false. For inductive readings,
 explain what probability or sampling assumptions are needed; a possible false
-conclusion alone does not show that inductive support is weak.
+conclusion alone does not show that {{< term "inductive-support" "inductive support" >}} is weak.
 
 Does it make a difference whether we take the inference in question to be
 inductive or deductive?
@@ -120,7 +120,7 @@ conclusion isn't—St Andrews is in Scotland, thus the U.K.
 are only the two paradigms (statistics and logic-based), but {{<logo>}} is a
 hybrid AI system, the premise is true but the conclusion isn't.
 
-5. This is another inductive fallacy, known as the [Gambler's
+5. This is another inductive {{< term "fallacy" "fallacy" >}}, known as the [Gambler's
    fallacy](https://en.wikipedia.org/wiki/Gambler%27s_fallacy). The mistake is
 to overlook the stated independence assumption. Earlier spins do not change
 the next spin's chance of red: it remains 1/2. Our wheel has only red and black
@@ -344,7 +344,7 @@ beer are sparkling beverages.
 
 5. {{< set expression=true inline=true alt="Intersect Jimmy, a rabbit, and Mr. Sir with the set of animals with long ears." >}}[{"set": [{"image": "gimmick_little_jimmy"}, {"image": "gimmick_rabbit"}, {"image": "gimmick_mr_sir"}]}, "∩ { x : x is an animal with long ears }"]{{< /set >}}
 
-Which claims in 6–9 are true? Explain using the definition of subset.
+Which claims in 6–9 are true? Explain using the definition of {{< term "subset" "subset" >}}.
 
 6. {{< set expression=true inline=true alt="Mr. Sir and Jimmy are not a subset of Jimmy, a rabbit, and Mr. Sir." >}}[{"set": [{"image": "gimmick_mr_sir"}, {"image": "gimmick_little_jimmy"}]}, "⊈", {"set": [{"image": "gimmick_little_jimmy"}, {"image": "gimmick_rabbit"}, {"image": "gimmick_mr_sir"}]}]{{< /set >}}
 
@@ -409,7 +409,7 @@ before may become false.
 
 Now find the objects shared by both sets. Select every member of $S ∩ T$,
 then check your answer. Select a picture again to remove it; Tab and Enter or
-Space work too. Remember that an intersection can be empty.
+Space work too. Remember that an {{< term "intersection" "intersection" >}} can be empty.
 
 {{< set-diagram exercise="intersections" >}}
 
@@ -418,7 +418,7 @@ Space work too. Remember that an intersection can be empty.
 Treat the worlds shown here as the entire model space for this exercise.
 First find where both premises are true; then look for a world where the
 conclusion fails. Explain why a world with a false premise cannot be a
-countermodel to this inference.
+{{< term "countermodel" "countermodel" >}} to this inference.
 
 {{< set-diagram scene="countermodel" exercise="countermodels" >}}
 
@@ -429,7 +429,7 @@ A false premise therefore disqualifies a world, even if the conclusion is false 
 
 # Monotonicity of deductive inference {.solved}
 
-Deductive consequence is **monotone**: adding premises to a valid inference
+Deductive consequence is {{< term "monotonicity" "monotone" >}}: adding premises to a valid inference
 cannot make it invalid, while the model space and meanings stay fixed.
 Prove this using the set-theoretic definition of consequence.
 
@@ -511,7 +511,7 @@ Consider two probability functions for evidence $E$ and conclusion $C$:
 | A | $0.5$ | $0.8$ | $0.2$ | $0.8$ |
 | B | $0.9$ | $0.8$ | $0.2$ | $36/37$ |
 
-1. Calculate the probability increase and the likelihood ratio for each row.
+1. Calculate the probability increase and the {{< term "likelihood-ratio" "likelihood ratio" >}} for each row.
 2. Which row gives stronger support by probability increase? What about
    log-likelihood support? You do not need to calculate a logarithm.
 3. Do these two rows establish logical inductive support? Explain.

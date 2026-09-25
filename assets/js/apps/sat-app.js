@@ -10,6 +10,7 @@ export function mountSAT(root) {
   const status = root.querySelector('[role="status"]'), use = root.querySelector('[data-use]'), edit = root.querySelector('[data-edit]');
   const treeArea = root.querySelector('[data-tree]'), alternative = root.querySelector('[data-alternative]');
   const kind = root.dataset.kind;
+  root.querySelector('[data-input-form]').append(root.querySelector('[data-navigation]'));
   let target = 'CNF';
   root.querySelectorAll('button, textarea, input').forEach(n => { n.disabled = false; });
   function clear() {
@@ -30,7 +31,7 @@ export function mountSAT(root) {
       convertInput(input);
       const problem = readProblem(input.value);
       const chosen = [...root.querySelectorAll('[data-example]')].find(b => b.dataset.example === input.value);
-      root.querySelector('[data-example-description]').textContent = chosen?.dataset.description || (problem.inference ? 'Check the inference entered below.' : 'Test the formula entered below.');
+      root.querySelector('[data-example-description]').textContent = chosen?.dataset.description || '';
       if (['truth-table','resolution'].includes(kind)) {
         const summary = root.querySelector('[data-problem]');
         if(problem.inference) {
@@ -173,10 +174,10 @@ function mountResolution(root, problem) {
     const list=el('ol',{class:'sat-clauses','aria-label':'Clauses'});
     clauses.forEach(c=>{
       const li=el('li',c.id===current?.id?{'aria-current':'step'}:{});
-      li.append(formula(c.formula),el('small',{},c.parents?' — '+c.parents.join(', ')+'; pivot '+c.pivot:' — input'));
+      li.append(formula(c.formula),el('small',{},c.parents?'From '+c.parents.join(', ')+' · pivot '+c.pivot:'Input clause'));
       list.append(li);
     });
-    fragment.append(list); work.replaceChildren(fragment);
+    fragment.append(el('p',{class:'sat-section-label'},'Clauses'),list); work.replaceChildren(fragment);
     if(current) work.scrollTop=work.scrollHeight;
     side.replaceChildren();
     if(current) {
@@ -189,6 +190,8 @@ function mountResolution(root, problem) {
     }
     const traceEnd=final?result.steps.length:current?result.steps.findIndex(s=>s.clause?.id===current.id)+1:0;
     const checked=result.steps.slice(0,traceEnd).filter(s=>s.checkedPair);
+    const discarded=result.steps.slice(0,traceEnd).filter(s=>s.discarded);
+    for(const step of discarded){const item=el('li',{class:'practice-discarded'});item.append(formula(step.resolvent),el('small',{},'Discarded tautology · from '+step.pair.join(', ')));list.append(item);}
     const history=el('details',{class:'sat-pair-checks'});history.append(el('summary',{},checked.length+' clause pairs checked'),el('p',{},checked.map(s=>'('+s.checkedPair.join(', ')+')').join(' · ')||'No pair has been fully checked yet.'));side.append(history);
     if(problem.inference) root.querySelector('[data-inference]').replaceChildren(formula(problem.sources.slice(0,-1).join('; ')+' '+(final&&result.outcome!=='unknown'?result.outcome==='unsatisfiable'?'⊨':'⊭':'∴')+' '+problem.sources.at(-1)));
     if(final) {

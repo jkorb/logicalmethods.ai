@@ -10,6 +10,9 @@ Shortcode-driven components used in textbook pages and exercise solutions.
 - [The flashcards app](flashcards.md) — `name="flashcards"`, the study section's deck.
 - [Introductory exercise apps](exercise-apps.md) — notation practice, pseudocode, shunting yard, reasoning practice.
 
+- [Conditional exercises](conditional-practice.md) — student chaining, Horn formulas, and card selection.
+- [Conditional reasoning](conditionals.md) — chaining, search comparisons, and Horn SAT.
+- [Conditional planning](conditional-planning.md) — bounded models, frame conditions, and block drawings.
 - [SAT exercises](sat-practice.md) — table construction, gaps, mystery formulas, and student-controlled resolution.
 - [SAT apps](sat.md) — truth-tables, normal-form rewriting, formula-based resolution, Tseytin conversion.
 - [Boolean chapter apps](boolean.md) — derivations, evaluation trees, model spaces.
@@ -27,7 +30,7 @@ Shortcode-driven components used in textbook pages and exercise solutions.
 
 ## PNG downloads
 
-Boolean, parser, formula-builder and shunting-yard apps have a camera button
+Boolean, parser, formula-builder, shunting-yard and conditional planning apps have a camera button
 to download their current rendered state as a PNG at twice the displayed
 resolution. `export-image.js` uses the pinned `html-to-image` dependency to
 capture the diagram area, excluding surrounding controls and feedback. Apps

@@ -1,0 +1,12 @@
+{{ $kind := .sc.Get "kind" | default "chaining" }}
+{{ if not (in (slice "chaining" "horn" "wason" "equivalence") $kind) }}{{ errorf "Unknown conditional practice kind %q" $kind }}{{ end }}
+<section class="logic-app conditional-app conditional-practice" data-logic-app="conditional-practice" data-kind="{{ $kind }}" data-part="{{ .sc.Get "part" }}" data-kb="{{ .sc.Get "kb" }}" data-goal="{{ .sc.Get "goal" }}" aria-label="{{ $kind }} {{ .sc.Get "part" | default "practice" }} exercise">
+  {{ range slice "check" "replay" "undo" "play" "accessibility" }}<template data-icon="{{ . }}">{{ partial "apps/icon.html" . }}</template>{{ end }}
+  <div data-levels class="sat-examples" role="group" aria-label="Exercises"></div>
+  <div data-setup></div><p data-prompt></p><div data-work></div>
+  <div data-controls class="logic-app__controls"></div><p role="status" aria-live="polite"></p>
+  {{ if eq $kind "wason" }}
+  {{ range slice "wason" "wason_domain" }}<template data-art="{{ . }}">{{ partial "figures/image.html" (dict "page" $.sc.Page "id" (printf "%s-%s" $.id .) "src" (printf "/img/drawings/%s.svg" .) "alt" "" "width" "100%") }}</template>{{ end }}
+  {{ end }}
+  <noscript><p>Work through the questions on paper and compare your answers with the solutions below.</p></noscript>
+</section>

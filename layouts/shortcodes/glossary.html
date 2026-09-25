@@ -10,7 +10,7 @@
     {{- $entries = $entries | append (merge $entry (dict "id" $key)) -}}
   {{- end -}}
   {{- range sort $entries "term" -}}
-    {{- $chapter := site.GetPage (printf "/textbook/%s" .chapter) -}}
+    {{- $chapter := site.GetPage (.page | default (printf "/textbook/%s" .chapter)) -}}
     {{- if not $chapter }}{{ errorf "Missing glossary chapter for %s" .id }}{{ end -}}
     {{- $anchor := .anchor | default "" -}}
     {{- if not $anchor -}}

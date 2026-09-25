@@ -32,3 +32,13 @@ authored text. Existing text that names the chapter number is not prefixed
 again. Links within the current chapter keep their ordinary Markdown label.
 The number comes from the chapter weight, and appendix letters from front matter.
 Use a section anchor when the reference concerns a particular concept.
+Prefer `chapter_ref` for textbook prose; relative links such as `../sat/`
+do not receive the chapter label. Do not recreate the badge or write the
+chapter number by hand. For example:
+
+```go-html-template
+{{</* chapter_ref chapter="sat" id="normal-forms" */>}}Normal forms{{</* /chapter_ref */>}}
+```
+
+This retains the published `.chapter-reference` design and generates its number
+from the target page.
