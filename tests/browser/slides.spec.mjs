@@ -75,7 +75,7 @@ test('no JavaScript leaves every slide and its text available', async ({ browser
 
 
 test('unreviewed lecture decks remain outside the normal build', async ({ page, request }) => {
-  for (const slug of ['conditionals', 'proof', 'fol', 'fol-inference', 'many-valued', 'probability', 'anns']) {
+  for (const slug of ['proof', 'fol', 'fol-inference', 'many-valued', 'probability', 'anns']) {
     expect((await page.goto(`/slides/${slug}/`)).status()).toBe(200);
     await expect(page.locator('[data-slide-deck], iframe, [data-embed]')).toHaveCount(0);
     await expect(page.locator('main')).toContainText('awaiting content and image review');

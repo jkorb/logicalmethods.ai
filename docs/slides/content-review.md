@@ -129,6 +129,18 @@ circuit's `¬(S ↔ C)`; its "Faulty circuit" example gives the saturating case.
 together do not fit a slide. The evaluated parse tree and the coin drawing are
 cut. The Excalidraw scene, exports and `narration.yaml` remain.
 
+**Lecture 6 was written in Reveal.js** against the revised chapter 6, following
+the order of the staged Excalidraw draft: 20 slides, with the goals and their
+Bloom levels, the material conditional, rewriting, modus ponens and the
+counterfactual caveat, the weather knowledge base, forward and backward
+chaining, direction against order, Horn clauses, Horn SAT, and planning with
+its miracle model and frame conditions. The chapter's apps carry the steps:
+rewriting, forward and backward chaining, the side-by-side search comparison,
+Horn SAT with counters, and the closing worked-out example, the two-block plan. The
+`forward`, `backward` and `horn_sat` pseudocode is left to the chapter, whose
+apps name each instruction as it runs. The Excalidraw source and staged copy are
+untouched.
+
 Lectures 6–12 were copied byte-for-byte, without automatic font or notation
 replacement. Review them against the book, including historical
 staff/attendance information, terminology, proof examples, screenshots and

@@ -17,7 +17,8 @@ shortcodes and apps in an Excalidraw-styled theme. Start there for any deck work
 All 12 lectures are migrated to self-hosted Excalidraw: **218 slide frames**.
 Lectures 1 to 5 (100 frames) are reviewed and released. Lectures 1 to 4 use
 the Excalidraw viewer; Lecture 5 has since been migrated to Reveal.js, and its
-Excalidraw scene and exports are kept until the format is retired. Lectures 6–12 (118 frames) are staged locally outside Hugo's
+Excalidraw scene and exports are kept until the format is retired. Lecture 6
+is published as a Reveal.js deck; its staged Excalidraw copy stays local. Lectures 6–12 (118 frames) are staged locally outside Hugo's
 published content in ignored `slides/unpublished/`, awaiting content and image
 review. Their normal website paths show a short review notice; no Excalidraw Pro
 embed remains. `locked` and `draft` are not publication barriers because CI
