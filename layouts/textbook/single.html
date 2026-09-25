@@ -2,6 +2,10 @@
 <link href="{{ (resources.Get "css/textbook.css").Permalink }}" rel="stylesheet">
 {{- end -}}
 
+{{- define "header" -}}
+{{ partial "single/reading-bar.html" . }}
+{{- end -}}
+
 {{ define "style" }}:root { --chapter: "{{ .Params.appendix | default (math.Div .Weight 10) }}"; }{{ end }}
 
 {{- define "main" -}}

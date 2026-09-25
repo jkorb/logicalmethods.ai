@@ -86,23 +86,27 @@ a.chapter-rail__item:hover { background: var(--paper-sunken); color: var(--ink);
   .progress-rail__fill {
     position: absolute; inset-inline-start: 0; inline-size: 1px; inset-block-start: 0;
   }
-  .progress-rail__track { block-size: 100%; background: var(--margin-rule); }
-  .progress-rail__fill  { block-size: 0; background: var(--red-gfx); inline-size: 2px;
+  .progress-rail__track { block-size: 100%; background: var(--margin-rule-faint); }
+  /* the margin line inks itself in as you read, in the same rule as the bar
+     under the header: one indicator in two places, and one color for both */
+  .progress-rail__fill  { block-size: 0; background: var(--margin-rule); inline-size: 2px;
                           inset-inline-start: -.5px; transition: block-size .12s linear; }
   .progress-rail__tick {
     position: absolute; inset-inline-start: 50%; inline-size: 1.5rem; block-size: 1.5rem;
     transform: translate(-50%, -50%); padding: 0; border: 0; background: none;
-    cursor: pointer; border-radius: 50%; color: var(--margin-rule);
+    cursor: pointer; border-radius: 50%; color: var(--margin-rule-faint);
   }
   .progress-rail__tick::before {
     content: ""; position: absolute; inset: 50% auto auto 50%;
     inline-size: .42rem; block-size: .42rem; transform: translate(-50%, -50%);
     border-radius: 50%; background: var(--paper); border: 1.5px solid currentColor;
   }
-  .progress-rail__tick.is-read { color: var(--red-gfx); }
-  .progress-rail__tick.is-current { color: var(--red-ink); }
-  .progress-rail__tick.is-current::before { background: var(--red-ink); inline-size: .55rem; block-size: .55rem; }
-  .progress-rail__tick:hover::before { background: var(--red-gfx); }
+  /* read, and the section you are in, are told apart by fill and size rather
+     than by a second color — which is also what keeps them legible unfilled */
+  .progress-rail__tick.is-read,
+  .progress-rail__tick.is-current { color: var(--margin-rule); }
+  .progress-rail__tick.is-current::before { background: var(--margin-rule); inline-size: .55rem; block-size: .55rem; }
+  .progress-rail__tick:hover::before { background: var(--margin-rule); }
   .progress-rail__label {
     position: absolute; inset-inline-start: 1.4rem; inset-block-start: 50%;
     transform: translateY(-50%);
@@ -118,6 +122,26 @@ a.chapter-rail__item:hover { background: var(--paper-sunken); color: var(--ink);
   .progress-rail__fill, .progress-rail__label { transition: none; }
 }
 @media print { .progress-rail { display: none !important; } }
+
+/* ==========================================================================
+   Reading bar
+   A rule under the header that inks in from the left as the chapter scrolls
+   past, so the reader can see how much of it is left without a margin to
+   look at. The rail above is the same reading, kept in the margin; this one
+   is the only indicator a phone gets, where there is no margin to draw in.
+   ========================================================================== */
+.reading-bar {
+  block-size: 3px;
+  /* the header floats over the page, so the bar carries its own ground */
+  background: var(--paper-sunken);
+}
+.reading-bar__fill {
+  display: block; inline-size: 0; block-size: 100%;
+  /* the margin line's own ink: at full width this crosses the whole screen, so
+     it takes the quietest rule the theme has rather than the graphic red */
+  background: var(--margin-rule);
+}
+@media print { .reading-bar { display: none !important; } }
 
 /* ==========================================================================
    The contents, in the corner

@@ -253,6 +253,39 @@
   });
 })();
 
+/* ---- reading progress under the header --------------------------------
+   The margin rail marks which section you are in; this one answers the other
+   question, how much chapter is left, and it is the only answer on a phone,
+   where the margin is too narrow to draw a rail in. */
+(function () {
+  var bar = document.querySelector("[data-reading-bar]");
+  var article = document.querySelector(".chapter");
+  if (!bar || !article) return;
+
+  var fill = bar.querySelector(".reading-bar__fill");
+  var header = document.querySelector(".site-header");
+
+  function update() {
+    // the header is sticky and wraps to a second row on a narrow screen, so
+    // its height is measured rather than assumed
+    var top = header ? header.offsetHeight : 0;
+    var box = article.getBoundingClientRect();
+    // empty when the chapter's first line clears the header, full when its
+    // last line rests on the bottom of the window. A chapter shorter than the
+    // window never scrolls, so it stays empty rather than dividing by nothing.
+    var run = box.height - (window.innerHeight - top);
+    var pct = run > 0 ? (top - box.top) / run : 0;
+    fill.style.inlineSize = (Math.max(0, Math.min(1, pct)) * 100).toFixed(2) + "%";
+  }
+
+  update();
+  window.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", update, { passive: true });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(update);
+  // images, embeds and an opened solution all change the height under the reader
+  if ("ResizeObserver" in window) new ResizeObserver(update).observe(article);
+})();
+
 /* ---- embedded decks load only when asked ------------------------------
    An <iframe> fetches from someone else's server the moment the page opens.
    These stay an invitation until the reader presses it. The deck is a web app
