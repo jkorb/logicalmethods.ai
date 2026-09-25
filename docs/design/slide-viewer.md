@@ -1,5 +1,10 @@
 # Local slide viewer
 
+> **Deprecated** with the Excalidraw decks. A Reveal.js deck keeps this viewer's
+> frame, toolbar, keys and `#slide-N` URLs under its own names; see
+> [The Excalidraw theme](../slides/reveal/theme.md) and
+> [Teaching with a deck](../slides/reveal/teaching.md).
+
 Self-hosted lecture frames keep their original white canvas and colours in both
 themes. The page uses standard paper/ink tokens for the surrounding controls,
 with visible Previous, Next, slide selection and Full screen controls. A frame

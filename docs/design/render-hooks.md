@@ -13,6 +13,7 @@ their anchors remain available in the chapter.
 | `_default/_markup/render-table.html` | wraps tables in a uniquely-named, focusable scroll region; empty header cells become `<td>` |
 | `textbook/_markup/render-heading.html` | level 1 emits the chapter eyebrow, `h1`, metadata and contents; all levels get a self-link |
 | `exercises/_markup/render-heading.html` | questions are `h2`, sub-parts and solutions `h3`; numbering is CSS counters |
+| `slides/_markup/render-heading.html` | slide headings with an `id` and no self-link; a level-1 heading fails the build |
 
 The exercise hook closes the previous block and opens a new one, so each question
 becomes its own container and the wrapper opened by the template balances the final

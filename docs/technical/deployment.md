@@ -6,6 +6,9 @@ Its test job must pass before the deployment job can publish to GitHub Pages.
 The deployment uses the files produced and checked by that run. Pull requests
 run the same tests without publishing.
 
+The same build also writes `tmp/fixture-site/`, the site plus a sample
+Reveal.js deck for the browser tests; it is never uploaded.
+
 The workflow uploads `tmp/site/` with `actions/upload-pages-artifact` and publishes
 it with `actions/deploy-pages` to the `github-pages` environment. Generated files
 are stored in a Pages artifact rather than committed to a deployment branch.

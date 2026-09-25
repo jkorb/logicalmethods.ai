@@ -11,7 +11,9 @@
  | [`static/`](../../static/)                                                 | Files copied directly, including `CNAME`.                               |
  | [`docs/`](../README.md)                                                    | Contributor knowledge base; not part of the generated site.             |
 
-Bootstrap, Bootstrap Icons, Reveal.js, and KaTeX are bundled under `assets/`.
+Bootstrap, Bootstrap Icons, and KaTeX are bundled under `assets/`.
 Their files are checked into the repository, even though `.gitmodules` lists
-some of them. Package manifests inside these directories belong to the libraries;
-you do not need to install their dependencies to work on the site.
+some of them. Package manifests inside these directories belong to the
+libraries; you do not need to install their dependencies to work on the site.
+Reveal.js is not under `assets/`: the lecture decks bundle it from the pinned npm
+package, like `html-to-image`; see [Reveal.js decks](../slides/reveal/README.md).

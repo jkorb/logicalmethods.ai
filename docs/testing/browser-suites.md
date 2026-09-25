@@ -34,6 +34,12 @@ losing the trace. Controls are checked for a stable position above the tree.
 The notation appendix's cheat sheet should agree with
 `assets/js/apps/latex-input.js`; unit checks cover its conversion examples.
 
+`tests/browser/slides-reveal.spec.mjs` checks the Reveal.js deck framework
+against a sample deck built into the never-deployed fixture site, and every real
+deck in that format; see [Testing the framework](../slides/reveal/testing.md).
+`tests/unit/reveal-deck.test.mjs` builds an isolated Hugo fixture to check how
+the deck is cut into slides and what the build refuses.
+
 The glossary's persistent-hover test intentionally skips the mobile project:
 touch has no persistent hover. The other glossary checks run on both projects.
 

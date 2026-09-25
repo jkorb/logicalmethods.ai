@@ -82,7 +82,7 @@ export function mountConditionals(root) {
     if(kind==='comparison') {
       comparisonLayout.replaceChildren();status.textContent=`ASK(KB, ${goal}). Step through either search independently.`;
       for(const method of ['forward','backward']) {
-        const panel=el('section',{'aria-label':method==='forward'?'Forward search':'Backward search'}),heading=el('h4',{},method==='forward'?'Forward · breadth first':'Backward · depth first');
+        const panel=el('div',{role:'region','aria-label':method==='forward'?'Forward search':'Backward search'}),heading=el('h4',{},method==='forward'?'Forward · breadth first':'Backward · depth first');
         const controls=nav.cloneNode(true);controls.hidden=false;
         const body=prototype.cloneNode(true);body.querySelector('[data-work]').setAttribute('aria-label',`${method} search derivation`);
         panel.append(heading,controls,body);comparisonLayout.append(panel);

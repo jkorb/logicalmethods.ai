@@ -14,8 +14,11 @@ function fit(block, force = false) {
   // Glyph rounding, tab stops and fixed spacing need not scale proportionally.
   // Measure the result of each correction, including painted text overflow.
   // Bound the work so an unscalable image can still use the scroll fallback.
+  // A lecture slide is scaled as a whole; painted sizes are divided by that
+  // scale so the formula is measured in the same pixels as its column.
+  const scale = block.getBoundingClientRect().width / block.offsetWidth || 1;
   for (let attempt = 0; attempt < 8; attempt++) {
-    const measured = Math.max(inner.scrollWidth, inner.getBoundingClientRect().width);
+    const measured = Math.max(inner.scrollWidth, inner.getBoundingClientRect().width / scale);
     if (measured <= width) break;
     size *= Math.max(1, width - 1) / measured;
     inner.style.fontSize = `${size}px`;
@@ -24,7 +27,10 @@ function fit(block, force = false) {
 const refresh = () => displays.forEach(block => fit(block, true));
 refresh();
 if ('ResizeObserver' in window) {
-  const observer = new ResizeObserver(entries => entries.forEach(({target}) => fit(target)));
+  // A frame later: refitting inside the callback resizes the observed block,
+  // a loop WebKit reports as an error. It happens when a hidden block is
+  // first shown, as on a lecture slide.
+  const observer = new ResizeObserver(entries => requestAnimationFrame(() => entries.forEach(({target}) => fit(target))));
   displays.forEach(block => observer.observe(block));
 }
 window.addEventListener('resize', refresh, {passive: true});

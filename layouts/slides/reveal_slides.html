@@ -1,10 +1,8 @@
-{{- /* Deprecated: the Excalidraw deck format. Lectures 1 to 4 keep it for the
-       current course run, and every deck keeps it until it is migrated to
-       reveal_slides.html; see docs/slides/reveal/migrating.md. */ -}}
+{{- /* A lecture deck in Reveal.js: Markdown slides that use the book's own
+       shortcodes and apps. See docs/slides/reveal/README.md. Lectures 1 to 4
+       keep excalidraw_slides.html until they are migrated. */ -}}
 {{ define "head" }}
-{{ if .Params.selfHosted }}
-<link rel="stylesheet" href="{{ (resources.Get "css/slides.css" | fingerprint).RelPermalink }}">
-{{ end }}
+<link rel="stylesheet" href="{{ (resources.Get "css/slides-reveal.css" | css.Build (dict "minify" true) | fingerprint).RelPermalink }}">
 {{ end }}
 {{ define "main" }}
 <div class="shell slides-shell">
@@ -19,8 +17,7 @@
       <span>Lecture slides</span>
     </p>
 
-    {{ if .Params.selfHosted }}{{ partial "slides-viewer.html" . }}{{ end }}
-    {{ .Content }}
+    {{ partial "slides/reveal-deck.html" . }}
 
     {{ with .Param "highlights" }}
       <section class="highlights" aria-labelledby="highlights-title">
@@ -29,12 +26,6 @@
           {{ range . }}<li><strong>{{ .keyword }}</strong>{{ with .note }} — {{ . }}{{ end }}</li>{{ end }}
         </ul>
       </section>
-    {{ else }}{{ if not .Params.selfHosted }}
-      <p class="highlights-missing">
-        A written summary of this lecture has not been added yet. The slides above are
-        currently the only version of this material.
-      </p>
-    {{ end }}
     {{ end }}
 
     {{ partial "single/nav-bot" . }}
@@ -43,7 +34,5 @@
 {{ end }}
 
 {{ define "footer" }}
-{{ if .Params.selfHosted }}
-<script type="module" src="{{ (resources.Get "js/slides.js" | fingerprint).RelPermalink }}"></script>
-{{ end }}
+<script type="module" src="{{ (resources.Get "js/slides-reveal.js" | js.Build (dict "targetPath" "js/slides-reveal.js" "minify" true) | fingerprint).RelPermalink }}"></script>
 {{ end }}

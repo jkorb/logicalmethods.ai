@@ -12,7 +12,7 @@ dependency or uncertainty.
 | [Technical](docs/technical/README.md) | [technical/](docs/technical/README.md) | Hugo, source layout, build, deployment. |
 | [Design](docs/design/README.md) | [design/](docs/design/README.md) | Tokens, layout, notation, components, interaction. |
 | [Authoring](docs/authoring/README.md) | [authoring/](docs/authoring/README.md) | Front matter, notation, figures, shortcodes, apps. |
-| [Slides](docs/slides/README.md) | [slides/](docs/slides/README.md) | Self-hosted lectures, the local editor, image review. |
+| [Slides](docs/slides/README.md) | [slides/](docs/slides/README.md) | Lecture decks: [Reveal.js](docs/slides/reveal/README.md) (current); Excalidraw (deprecated). |
 | [Testing](docs/testing/README.md) | [testing/](docs/testing/README.md) | Running checks, prose, CI, maintaining the suites. |
 
 Revising a chapter or a lecture has a written standard:

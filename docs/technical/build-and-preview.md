@@ -11,7 +11,8 @@ hugo server -D
 ```
 
 Hugo bundles the app JavaScript using npm dependencies, including `html-to-image`
-for PNG exports. Run `npm ci` in each checkout or worktree before its first build,
+for PNG exports, and bundles the lecture decks' JavaScript and CSS from the
+pinned `reveal.js` package (`js.Build` and `css.Build`). Run `npm ci` in each checkout or worktree before its first build,
 and again after `package-lock.json` changes. Installing dependencies in another
 worktree does not install them here.
 

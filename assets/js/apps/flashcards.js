@@ -256,6 +256,9 @@ export function mountFlashcards(root) {
     if (event.key !== 'f' && event.key !== 'F') return;
     if (event.altKey || event.ctrlKey || event.metaKey || event.defaultPrevented) return;
     if (event.target.closest('input, select, textarea, [contenteditable="true"], summary')) return;
+    // On a lecture slide, F belongs to the deck, unless the cards themselves
+    // are in full screen; the button still works either way.
+    if (frame.closest('[data-reveal-deck]') && document.fullscreenElement !== frame) return;
     const rect = frame.getBoundingClientRect();
     if (document.fullscreenElement !== frame && (rect.bottom < 100 || rect.top > innerHeight / 2)) return;
     event.preventDefault();

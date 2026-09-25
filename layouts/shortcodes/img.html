@@ -1,1 +1,3 @@
+{{- /* A lecture slide's drawing needs words for the deck's text view. */ -}}
+{{- if and (eq .Page.Layout "reveal_slides") (not (.Get "alt")) }}{{ errorf "%s: a drawing on a slide needs alt, which the deck's text view reads out" .Position }}{{ end -}}
 {{- partial "figures/image.html" (dict "page" .Page "src" (.Get "src") "alt" (.Get "alt") "width" (.Get "width") "height" (.Get "height") "inline" (.Get "inline") "class" (.Get "class") "style" (.Get "style") "id" (printf "%s-%d" .Page.File.UniqueID .Ordinal) "position" .Position) -}}

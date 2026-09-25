@@ -1,5 +1,9 @@
 # Rendering
 
+> **Deprecated.** This note covers the Excalidraw deck format, which Lectures 1
+> to 4 keep for the current course run and every other deck keeps until it is
+> migrated. New and migrated decks use [Reveal.js](reveal/README.md).
+
 After a batch of scene edits, render only the lecture you changed:
 
 ```sh

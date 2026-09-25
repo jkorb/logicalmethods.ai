@@ -1,8 +1,23 @@
-# Self-hosted lecture slides
+# Lecture slides
+
+Lecture decks come in two formats. **New and migrated decks use
+[Reveal.js](reveal/README.md)**: Markdown slides that render the book's own
+shortcodes and apps in an Excalidraw-styled theme. Start there for any deck work.
+
+> **Deprecated: the Excalidraw format.** Everything below this line, and every
+> note in this folder except [`reveal/`](reveal/README.md),
+> [Lecture standards](lecture-standards.md) and
+> [Content review](content-review.md), describes the Excalidraw decks. Lectures 1 to 4 keep that format for the current course run;
+> Lecture 5 onward move to Reveal.js one deck at a time, and each Excalidraw deck
+> stays in place until its lecture is migrated. See
+> [Migrating a deck](reveal/migrating.md). Do not start a new Excalidraw deck.
+
+## Excalidraw decks
 
 All 12 lectures are migrated to self-hosted Excalidraw: **218 slide frames**.
-Lectures 1 to 5 (100 frames) are reviewed and released, and use the normal
-website viewer. Lectures 6–12 (118 frames) are staged locally outside Hugo's
+Lectures 1 to 5 (100 frames) are reviewed and released. Lectures 1 to 4 use
+the Excalidraw viewer; Lecture 5 has since been migrated to Reveal.js, and its
+Excalidraw scene and exports are kept until the format is retired. Lectures 6–12 (118 frames) are staged locally outside Hugo's
 published content in ignored `slides/unpublished/`, awaiting content and image
 review. Their normal website paths show a short review notice; no Excalidraw Pro
 embed remains. `locked` and `draft` are not publication barriers because CI
@@ -33,7 +48,12 @@ separate from the normal build. Ordinary `hugo -D` excludes the staged deck file
 
 ## Notes
 
-- [Lecture standards](lecture-standards.md) — what a revised deck has to look like.
+- [Reveal.js decks](reveal/README.md) — the current format, its theme and migration.
+- [Lecture standards](lecture-standards.md) — what a revised deck has to look like, in either format.
+- [Content review](content-review.md) — what each lecture's revision changed, in either format.
+
+Deprecated, for the Excalidraw decks:
+
 - [Efficient slide work](agent-workflow.md) — scope reading, edits and visual review.
 - [Teach and read](teaching.md) — navigation, `narration.yaml`, no-JavaScript.
 - [Install the local authoring tools](authoring-setup.md) — the editor and saving.
@@ -43,7 +63,6 @@ separate from the normal build. Ordinary `hugo -D` excludes the staged deck file
 - [Sources and generated files](files.md) — what lives where and what Git ignores.
 - [The export pipeline](export-pipeline.md) — how a frame becomes an SVG.
 - [Image review](image-review.md) — licence clearance before release.
-- [Content review](content-review.md) — what each lecture still needs.
 - [Publishing a lecture](publishing.md) — the release checklist.
 - [Validation](validation.md) — select checks for the changed lecture or tool.
 - [Slide test coverage](test-coverage.md) — what the optional suites exercise.

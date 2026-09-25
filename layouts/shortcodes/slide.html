@@ -1,0 +1,18 @@
+{{- /* Starts a slide of a Reveal.js deck; the slide runs to the next one. See
+       docs/slides/reveal/authoring.md. It is a separator, not a wrapper, so
+       the slide's Markdown and shortcodes render exactly as in a chapter:
+       Hugo runs Markdown over the output of shortcodes nested in a {{% %}}
+       wrapper, which breaks the apps' HTML. The marker is turned into a
+       <section> by layouts/partials/slides/reveal-deck.html. */ -}}
+{{- if .Parent -}}{{ errorf "%s: a slide cannot sit inside another shortcode" .Position }}{{- end -}}
+{{- if ne .Page.Layout "reveal_slides" -}}{{ errorf "%s: slide belongs only on a page with layout reveal_slides" .Position }}{{- end -}}
+{{- $classes := slice "slide" -}}
+{{- with .Get "layout" -}}
+  {{- if not (in (slice "title" "section" "center" "split" "app") .) -}}
+    {{- errorf "%s: unknown slide layout %q; use title, section, center, split or app" $.Position . -}}
+  {{- end -}}
+  {{- $classes = $classes | append (printf "slide--%s" .) -}}
+{{- end -}}
+{{- with .Get "class" }}{{ $classes = $classes | append . }}{{ end -}}
+{{- with .Get "scale" }}{{ errorf "%s: scale is gone: every slide is fitted to the canvas automatically" $.Position }}{{ end -}}
+<hr data-deck-slide class="{{ delimit $classes " " }}"{{ with .Get "title" }} data-title="{{ . }}"{{ end }}>

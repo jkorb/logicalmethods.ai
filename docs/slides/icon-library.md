@@ -1,5 +1,9 @@
 # The icon library
 
+> **Deprecated.** This note covers the Excalidraw deck format, which Lectures 1
+> to 4 keep for the current course run and every other deck keeps until it is
+> migrated. New and migrated decks use [Reveal.js](reveal/README.md).
+
 The supplied icon library (219 items at import, 225 now) is copied to
 `slides/library.excalidrawlib` and loaded automatically. **Open icon library**
 opens Excalidraw's library panel. Use **Import / update icons** to merge another

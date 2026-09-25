@@ -1,0 +1,226 @@
+/* ==========================================================================
+   slides-reveal.css — the Excalidraw theme for Reveal.js lecture decks.
+
+   css.Build bundles Reveal.js's core layout (the pinned npm package) with this
+   theme. Every colour and face comes from tokens.css, so a slide uses the
+   chapter's fonts, follows the reader's light or dark theme, and shows an app
+   exactly as the chapter does. See docs/slides/reveal/theme.md.
+   ========================================================================== */
+@import "reveal.js/reveal.css";
+
+/* ---- The deck on the page ------------------------------------------------
+   The same frame as the Excalidraw viewer, under its own names: the old
+   viewer's styles size every svg inside it, which would shrink app diagrams. */
+.reveal-deck {
+  margin-block: 1.5rem; border-radius: .85rem; background: var(--paper-raised);
+  box-shadow: 0 8px 30px rgb(0 0 0 / .12);
+}
+.reveal-deck__toolbar {
+  position: relative; z-index: 6; display: flex; flex-wrap: wrap; align-items: center; gap: .4rem;
+  padding: .65rem; border-bottom: 1px solid var(--rule); border-radius: .85rem .85rem 0 0; background: var(--paper-raised);
+}
+.reveal-deck__toolbar[hidden], .reveal-deck__help[hidden] { display: none; }
+.reveal-deck__toolbar .btn {
+  display: grid; place-items: center; inline-size: 44px; min-block-size: 44px; padding: 0;
+  border: 0; border-radius: .5rem; color: var(--ink); transition: none;
+}
+.reveal-deck__toolbar .btn:hover:not(:disabled) { background: var(--picker-surface); color: var(--ink); }
+.reveal-deck__toolbar svg {
+  inline-size: 22px; block-size: 22px; flex-shrink: 0;
+  fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+}
+.reveal-deck__jump { position: relative; flex: 1; min-inline-size: 0; margin: 0; font-size: .9rem; }
+.reveal-deck__jump summary span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.reveal-deck__jump nav button span { min-inline-size: 1.5em; color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+/* A flip-chart pad: the sheets underneath show as edges below the current one. */
+.reveal-deck__stage {
+  position: relative; background: var(--paper-raised);
+  box-shadow:
+    0 4px 0 -1px var(--paper-raised), 0 4px 0 0 var(--rule),
+    0 8px 0 -2px var(--paper-raised), 0 8px 0 -1px var(--rule);
+}
+.reveal-deck[data-deck-ready] .reveal-deck__stage { margin-block-end: 10px; }
+.reveal-deck[data-deck-ready] .reveal-deck__stage { aspect-ratio: 16 / 9; }
+.reveal-deck__help {
+  margin: 0; padding: .8rem 1rem; border-top: 1px solid var(--rule); border-radius: 0 0 .85rem .85rem;
+  font-size: .85rem; color: var(--ink-muted);
+}
+.reveal-deck:fullscreen {
+  display: flex; flex-direction: column; inline-size: 100%; block-size: 100%;
+  margin: 0; border-radius: 0; background: var(--paper);
+}
+.reveal-deck:fullscreen .reveal-deck__toolbar { border-radius: 0; }
+.reveal-deck:fullscreen .reveal-deck__stage { flex: 1; min-block-size: 0; aspect-ratio: auto; }
+.reveal-deck:fullscreen .reveal-deck__help { display: none; }
+
+/* ---- The canvas ------------------------------------------------------------
+   Reveal.js lays slides out on a fixed 960 × 540 canvas and scales it to fit,
+   so sizes inside a slide are canvas pixels, not rem. The page is squared
+   paper; a slide is a plain flip-chart sheet, perforated below its top edge
+   where it tears off the pad, so the deck reads as a flip chart standing on
+   the page rather than more of the page. */
+.deck-canvas.reveal, .deck-canvas.reveal-viewport {
+  color: var(--ink);
+  background: var(--paper-raised);
+  font-family: var(--font-prose);
+  line-height: 1.4;
+}
+.deck-canvas.reveal::before {
+  content: ""; position: absolute; inset: 9px 0 auto; z-index: 2; pointer-events: none;
+  border-block-start: 2px dotted var(--rule-strong);
+}
+.deck-canvas.reveal .slides { text-align: start; font-size: 22px; }
+.deck-canvas.reveal .slides > section {
+  box-sizing: border-box; block-size: 100%; padding: 28px 48px 32px;
+  overflow-y: auto; overscroll-behavior: contain;
+}
+/* Where the deck really has to scroll — a slide, an app, the slide menu — the
+   scrollbar is thin and drawn in the deck's own colours. The page declares
+   both colour schemes, so the browser would otherwise draw it for the reader's
+   system theme: black on a light sheet. slides-reveal.js clips regions that
+   overflow only by rounding. */
+.reveal-deck { color-scheme: light; scrollbar-color: var(--rule-strong) transparent; }
+:root[data-theme="dark"] .reveal-deck { color-scheme: dark; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .reveal-deck { color-scheme: dark; } }
+.reveal-deck, .reveal-deck * { scrollbar-width: thin; }
+.deck-canvas.reveal .slide__body { min-block-size: 100%; }
+/* slides-reveal.js fits each slide to the canvas by zooming part of it. On a
+   slide with an app, only the apps are zoomed, so its text keeps the deck's
+   size; elsewhere, everything after the title, which keeps its size too.
+   "reflow" keeps the full width and lets the content re-lay out; "shrink"
+   also narrows it, for content whose height follows its width, such as a
+   circuit, and centres it. */
+.deck-canvas.reveal [data-fit][data-fit-scope="all"] :is(.slide__body > :not(h2:first-child, .slide__column), .slide__column > *),
+.deck-canvas.reveal [data-fit][data-fit-scope="apps"] .logic-app { zoom: var(--deck-zoom); }
+.deck-canvas.reveal [data-fit="shrink"][data-fit-scope="all"] :is(.slide__body > :not(h2:first-child, .slide__column), .slide__column > *),
+.deck-canvas.reveal [data-fit="shrink"][data-fit-scope="apps"] .logic-app {
+  inline-size: calc(100% * var(--deck-zoom)); margin-inline: auto;
+}
+
+/* ---- Type: the chapter's faces at projection size ------------------------- */
+.deck-canvas.reveal .slide :is(h2, h3, h4) {
+  margin: 0 0 .5em; font-family: var(--font-hand); font-weight: 400; line-height: 1.15;
+  color: var(--ink); text-wrap: balance;
+  /* Excalifont has one weight; a hairline stroke thickens it evenly, as on the site. */
+  -webkit-text-stroke: .016em currentColor; paint-order: stroke fill;
+}
+.deck-canvas.reveal .slide h2 { position: relative; inline-size: fit-content; max-inline-size: 100%; margin-block-end: 20px; padding-block-end: 8px; font-size: 40px; }
+.deck-canvas.reveal .slide h3 { font-size: 30px; }
+.deck-canvas.reveal .slide h4 { font-size: 24px; -webkit-text-stroke: .012em currentColor; }
+/* The slide title is underlined by hand, with the site's squiggle. */
+.deck-canvas.reveal .slide h2::after {
+  content: ""; position: absolute; inset-inline-start: 0; inset-block-end: 0;
+  inline-size: 100%; block-size: 12px; background-color: var(--blue-gfx);
+  -webkit-mask-image: var(--squiggle); mask-image: var(--squiggle);
+  -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+}
+.deck-canvas.reveal .slide :is(p, ul, ol, dl, blockquote, table, figure, pre, .highlight, .code-block, .callout, .book-figure) { margin-block: 0 .5em; }
+/* A book drawing is sized by its width in the chapter, and most are tall: on a
+   slide its height is capped too, and it keeps its proportions. */
+.deck-canvas.reveal .slide { --figure-height: 320px; }
+.deck-canvas.reveal .slide :is(ul, ol) { padding-inline-start: 1.2em; }
+.deck-canvas.reveal .slide li + li { margin-block-start: .3em; }
+.deck-canvas.reveal .slide li::marker { color: var(--blue-gfx); }
+.deck-canvas.reveal .slide a { color: var(--blue-ink); }
+.deck-canvas.reveal .slide :is(pre, code) { font-family: var(--font-code); }
+.deck-canvas.reveal .slide pre { font-size: 16px; line-height: 1.4; }
+
+/* Apps, callouts and the book's figures keep the chapter's own sizing: they are
+   set in rem, and a slide shows them as a chapter does, scaled with the canvas. */
+.deck-canvas.reveal .slide :is(.logic-app, .set-figure, .tree-guide) { font-size: var(--step-0); line-height: var(--leading-prose); }
+.deck-canvas.reveal .slide .logic-app { margin-inline: auto; }
+
+/* A learning goal carries its Bloom level after it, as in "… (apply)". The
+   chapter's goal list lays each item out as a flex row, which would set the
+   level apart as a column; on a slide it runs on as ordinary text. */
+.deck-canvas .callout--objectives .callout__body li { display: block; position: relative; padding-inline-start: 1.6em; }
+.deck-canvas .callout--objectives .callout__body li::before { position: absolute; inset-inline-start: 0; }
+.deck-canvas .callout--objectives .callout__body li > em:last-child { color: var(--ink-muted); }
+/* A chain of inferences is set a step down in the chapter; on a slide it is
+   the content, so it takes the slide's size. */
+.deck-canvas.reveal .conditional-inference-chain { font-size: 20px; row-gap: 20px; }
+/* A syntax tree is drawn with nested lists: the slide's list spacing would
+   shift its second children down, off their connecting lines. Tighter
+   sibling spacing lets a tree fit a column of a split slide. */
+.deck-canvas.reveal .slide .syntax-tree ul { padding-inline-start: 0; margin-block: 0; }
+.deck-canvas.reveal .slide .syntax-tree li { padding-inline: .35rem; margin-block: 0; }
+/* Nodes with a "step" light up one step at a time, as slides-reveal.js makes
+   them fragments: the current node filled, the ones visited before tinted. */
+.deck-canvas.reveal .syntax-tree span.tree-step { transition: background-color .2s, color .2s; }
+.deck-canvas.reveal .syntax-tree span.tree-step.visible { background: var(--surf-blue); border-color: var(--blue-gfx); }
+.deck-canvas.reveal .syntax-tree span.tree-step.current-fragment { background: var(--blue-gfx); border-color: var(--blue-gfx); color: var(--paper-raised); }
+
+/* On a slide an app keeps what a lecture walks through, and drops what serves
+   a reader working alone: input help, example descriptions, the text
+   alternative, the PNG export and the animation switch. The chapter keeps
+   them all, and the deck's text view names every app. */
+.deck-canvas .logic-app :is(.logic-app__help, .sat-help, .sat-example-description, .boolean-circuit__instruction,
+  .conditional-help, .conditional-app [data-description],
+  .boolean-app__utilities, .logic-app__export-controls, [data-alternative], [data-text], [data-text-toggle]),
+.deck-canvas .sat-app table > caption { display: none !important; }
+/* Without its instructions, a circuit's side panel holds only its status line,
+   so the status goes under the drawing and the circuit takes the full width. */
+.deck-canvas .boolean-app[data-kind="circuit"] .boolean-app__layout { grid-template-columns: minmax(0, 1fr); }
+/* A circuit's height follows its width; capped like a book drawing, it leaves
+   its buttons at a readable size instead of being zoomed down with them. */
+.deck-canvas.reveal .boolean-app[data-kind="circuit"] svg.boolean-circuit { display: block; inline-size: auto; max-inline-size: 100%; max-block-size: 300px; margin-inline: auto; }
+.deck-canvas.reveal .boolean-app[data-kind="circuit"] :is(.boolean-choices, .boolean-app__aside) { justify-content: center; text-align: center; }
+
+/* ---- Layouts ---------------------------------------------------------------- */
+.deck-canvas.reveal :is(.slide--title, .slide--section, .slide--center) .slide__body {
+  display: flex; flex-direction: column; justify-content: center;
+}
+.deck-canvas.reveal :is(.slide--title, .slide--section) .slide__body { align-items: flex-start; padding-inline-start: 24px; }
+.deck-canvas.reveal .slide--title .slide__body { flex-direction: row; align-items: center; justify-content: space-between; gap: 32px; }
+.deck-canvas.reveal .slide--title .mascot { flex-shrink: 0; inline-size: 300px; }
+.deck-canvas.reveal .slide--title .slide__title { font-size: 64px; margin-block-end: 24px; }
+.deck-canvas.reveal .slide--title .slide__title::after { block-size: 16px; }
+.deck-canvas.reveal .slide__kicker { margin: 0 0 12px; font-family: var(--font-hand); font-size: 28px; color: var(--ink-muted); }
+.deck-canvas.reveal .slide__meta { margin: 0; color: var(--ink-muted); }
+.deck-canvas.reveal .slide--section h2 { font-size: 56px; }
+
+.deck-canvas.reveal .slide--split .slide__body {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 40px; align-content: start;
+}
+.deck-canvas.reveal .slide--split .slide__body > :not(.slide__column) { grid-column: 1 / -1; }
+.deck-canvas.reveal .slide__column > :last-child { margin-block-end: 0; }
+
+/* An app slide gives the app the room: a smaller title, a narrower margin. */
+.deck-canvas.reveal .slides > section.slide--app { padding: 24px 40px 28px; }
+.deck-canvas.reveal .slide--app h2 { margin-block-end: 16px; font-size: 34px; }
+
+/* ---- Reveal.js furniture ---------------------------------------------------- */
+/* Bootstrap styles .progress too: undo its radius, clipping and font size. */
+.deck-canvas.reveal .progress {
+  block-size: 4px; border-radius: 0; overflow: visible; font-size: inherit;
+  color: var(--blue-gfx); background: color-mix(in srgb, var(--blue-gfx) 15%, transparent);
+}
+
+/* ---- Without JavaScript, or before it runs: the slides as a sequence ------- */
+.deck-canvas:not(.reveal) .slides > section {
+  margin-block: 1rem; padding: 1.25rem 1.5rem;
+  border: 1px solid var(--rule); border-radius: var(--radius); background: var(--paper-raised);
+}
+.deck-canvas:not(.reveal) aside.notes { display: none; }
+
+/* ---- The text of every slide, below the deck ------------------------------- */
+.deck-text { margin-block: 1rem 2rem; padding: .25rem 1rem; border: 1px solid var(--rule); border-radius: .75rem; background: var(--paper-raised); }
+.deck-text[hidden] { display: none; }
+.deck-text summary { display: flex; align-items: center; gap: .65rem; min-block-size: 52px; cursor: pointer; font-weight: 700; color: var(--blue-ink); }
+.deck-text summary svg { inline-size: 22px; block-size: 22px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.deck-text__hint { margin-inline-start: auto; font-size: .8rem; font-weight: 400; color: var(--ink-muted); }
+.deck-text section { max-inline-size: var(--measure); }
+.deck-text h2 { font-size: var(--step-1); margin-block: 1.4em .4em; }
+.deck-text__app, .deck-text__figure { color: var(--ink-muted); }
+
+@media (forced-colors: active) {
+  .deck-canvas.reveal .slide h2::after { display: none; }
+}
+@media (max-width: 40rem) {
+  .reveal-deck__toolbar { justify-content: space-between; }
+}
+@media print {
+  .reveal-deck__toolbar, .reveal-deck__help { display: none !important; }
+  .reveal-deck { box-shadow: none; }
+}

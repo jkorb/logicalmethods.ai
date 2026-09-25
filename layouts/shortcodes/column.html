@@ -1,0 +1,6 @@
+{{- /* Starts a column of a slide with layout="split"; the column runs to the
+       next column or slide. Everything before the first column spans the
+       slide. See docs/slides/reveal/authoring.md. */ -}}
+{{- if .Parent -}}{{ errorf "%s: a column cannot sit inside another shortcode" .Position }}{{- end -}}
+{{- if ne .Page.Layout "reveal_slides" -}}{{ errorf "%s: column belongs only on a page with layout reveal_slides" .Position }}{{- end -}}
+<hr data-deck-column>

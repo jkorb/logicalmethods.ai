@@ -54,7 +54,7 @@
 .conditional-app [data-proofs] { max-height: 14rem; overflow: auto; }
 .conditional-app [data-proofs] details { padding: .2rem; }
 .conditional-app .conditional-comparison { grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
-.conditional-app .conditional-comparison > section { min-width: 0; }
+.conditional-app .conditional-comparison > [role="region"] { min-width: 0; }
 .conditional-app .conditional-comparison h4 { font-family: var(--font-hand); font-size: var(--step-0); margin: .4rem 0; }
 .conditional-app .conditional-comparison .conditional-layout { display: block; }
 .conditional-app .conditional-comparison .conditional-work { max-height: 13rem; }

@@ -43,7 +43,7 @@ for (const route of PAGES) {
 
 test('released slides stay local and deferred slides expose no embed', async ({ page }) => {
   const offsite = watch(page);
-  for (const slug of ['logic-and-ai', 'formal-languages', 'valid-inference', 'boolean', 'sat']) {
+  for (const slug of ['logic-and-ai', 'formal-languages', 'valid-inference', 'boolean']) {
     expect((await page.goto(`/slides/${slug}/`)).status()).toBe(200);
     await expect(page.locator('[data-slide-deck]')).toHaveAttribute('data-ready', 'true');
     await page.getByLabel('Next slide', { exact: true }).click();

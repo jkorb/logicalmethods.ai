@@ -1,5 +1,9 @@
 # Teach and read
 
+> **Deprecated.** This note covers the Excalidraw deck format, which Lectures 1
+> to 4 keep for the current course run and every other deck keeps until it is
+> migrated. New and migrated decks use [Reveal.js](reveal/README.md).
+
 Open a lecture page and select **Full screen**. Use arrow keys, Page Up / Page
 Down (including clickers that send those keys), or Space / Shift+Space. Home and
 End select the first and last slide. F toggles full screen; Escape leaves it.

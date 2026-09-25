@@ -1,5 +1,9 @@
 # Install the local authoring tools
 
+> **Deprecated.** This note covers the Excalidraw deck format, which Lectures 1
+> to 4 keep for the current course run and every other deck keeps until it is
+> migrated. New and migrated decks use [Reveal.js](reveal/README.md).
+
 From the repository root, with the project's Node version installed:
 
 ```sh

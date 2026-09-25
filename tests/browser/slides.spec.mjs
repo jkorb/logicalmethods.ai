@@ -5,7 +5,7 @@ import AxeBuilder from '@axe-core/playwright';
 // A deck must load from the local build alone, so an offsite request fails here
 // rather than quietly resolving against a stub.
 test.beforeEach(async ({ context }) => { await routeToTestSite(context, { offsite: 'abort' }); });
-for (const [slug, count] of [['logic-and-ai', 20], ['formal-languages', 20], ['valid-inference', 20], ['boolean', 20], ['sat', 20]]) {
+for (const [slug, count] of [['logic-and-ai', 20], ['formal-languages', 20], ['valid-inference', 20], ['boolean', 20]]) {
   test(`${slug}: all slides load locally and keyboard/clicker navigation works`, async ({ page }, info) => {
     const errors = []; const offsite = [];
     page.on('pageerror', e => errors.push(e.message));
@@ -89,7 +89,6 @@ for (const [slug, numbers, [drawn, text]] of [
   ['formal-languages', [1, 11, 20], [['#slide-text-5', 'mushrooms'], ['#slide-text-17', 'signals']]],
   ['valid-inference', [1, 11, 20], [['#slide-text-3', 'rain cloud'], ['#slide-text-17', 'marbles']]],
   ['boolean', [1, 12, 20], [['#slide-text-4', 'scales'], ['#slide-text-19', 'drawers']]],
-  ['sat', [1, 12, 20], [['#slide-text-3', 'faulty processor'], ['#slide-text-7', 'coin']]],
 ]) test(`${slug}: an authored deck description names its slides and replaces the extraction`, async ({ page }) => {
   await page.goto(`/slides/${slug}/`);
   const deck = page.locator('[data-slide-deck]');
