@@ -1,377 +1,477 @@
 ---
 title: Logical conditionals
 author: Johannes Korbmacher
-locked: true
+locked: false
 weight: 60
 params:
-  legacy-notation: true
+  last_edited: 25/09/2026
   id: exc-if
 ---
 
 # Boolean conditional {.solved}
 
-We've interpreted the conditional symbol → using the Booleans !!NOT!!
-and !!OR!!. But we could also have directly defined a Boolean function !!IF!!
-with the following truth-table:
+Implement the illustrated truth-functions using only the allowed gates.
+_Hint for level 4_: For $!!XNOR!!$, combine two $!!IF!!$ circuits, one in each direction.
 
-{{< img src="img/if_table.png" class="mx-auto d-block rounded inert-img img-fluid" width="200px">}}
-
-Note that ``X !!IF!! Y`` is the conditional from the value of `X` to the value
-of `Y` to make the reading of the Boolean align with its natural reading.
-
-Find a representation of this Boolean function using only !!NOT!! and !!AND!!. That is find a Boolean expression `exp` in the two variables `X` and `Y`, which contains only the Boolean functions !!NOT!! and !!AND!!, and which meets the specification that for all values of `X` and `Y`, we have:
-
-```exp = X !!IF!! Y.```
-
-Verify your work! That is don't just provide an expression, but show that for all values of `X` and `Y` the above equation holds.
+{{< logic-app name="boolean" kind="workbench" preset="conditionals" title="Conditional circuits" >}}
 
 ## Solution {.solution #boolean-conditionalSolution}
 
-The most straightforward solution is:
+1. The conditional is false just when $X=1$ and $Y=0$. Feed $Y$ through
+   $!!NOT!!$, combine that output with $X$ using $!!AND!!$, and negate the
+   result:
 
-```!!NOT!!(Y !!AND!! (!!NOT!! X))```
+   $$
+   X !!IF!! Y = !!NOT!!(X !!AND!! (!!NOT!! Y)).
+   $$
 
-Here's a truth-table to show that `!!NOT!!(Y !!AND!! (!!NOT!! X)) = X !!IF!! Y`:
+2. A NAND box with both inputs connected to $Y$ computes $!!NOT!! Y$.
+   Feed this output and $X$ into another NAND box:
 
+   $$
+   X !!IF!! Y = X !!NAND!! (Y !!NAND!! Y).
+   $$
 
-{{< img src="img/table_solution.png" class="mx-auto d-block rounded inert-img img-fluid" width="400px">}}
+3. First compute $X !!XOR!! Y$, then feed it and the power source $1$
+   into a second XOR box. XOR with $1$ reverses the output, so
+   $(X !!XOR!! Y) !!XOR!! 1 = X !!XNOR!! Y$.
+
+4. Build $A=X !!IF!! Y$ and $B=Y !!IF!! X$. The output $A !!AND!! B$
+   is true when both inputs are $0$ or both are $1$. When they differ,
+   one of the two conditionals is false. Build each conditional with
+   two NAND boxes, as in level 2, then join their outputs to an AND box.
+
+   | $X$ | $Y$ | $A$ | $B$ | $A !!AND!! B$ |
+   | --- | --- | --- | --- | --- |
+   | $0$ | $0$ | $1$ | $1$ | $1$ |
+   | $0$ | $1$ | $1$ | $0$ | $0$ |
+   | $1$ | $0$ | $0$ | $1$ | $0$ |
+   | $1$ | $1$ | $1$ | $1$ | $1$ |
 
 # Equivalence {.solved}
 
-Remember the truth-table for `XNOR` from the last exercise set:
+The circuits suggest that $RAIN ↔ SUN$ is equivalent to
+$(RAIN → SUN) ∧ (SUN → RAIN)$.
 
-{{< img src="img/xnor_table.png" class="mx-auto d-block rounded inert-img img-fluid" width="200px">}}
+1. Rewrite the latter formula into {{< term "disjunctive-normal-form" "DNF" >}} and explain its two disjuncts.
 
-Find a formula representation of this Boolean truth-function using only the
-propositional variables `p` and `q` and the connectives `∧` and `→`! That is, find a formula `A` satisfying these constraints such that, for all assignments `v` of truth-values to `p` and `q`, we have:
+{{< logic-app name="conditional-practice" kind="equivalence" >}}
 
-```v(A) = v(p) !!XNOR!! v(q).```
-
-Verify your work! That is don't just provide a
-formula, but show that for each assignment the above
-equation holds.
+2. Is $(RAIN → SUN) ∨ (SUN → RAIN)$ equivalent to it too? Explain.
 
 ## Solution {#equivalenceSolution .solution}
 
-One of the conceptually clearest solutions is the formula:
+1. Eliminate the two arrows and distribute:
 
-```(p → q) ∧ (q → p)```
+   $$
+   (¬RAIN ∨ SUN) ∧ (¬SUN ∨ RAIN)
+   ≡ (¬RAIN ∧ ¬SUN) ∨ (¬RAIN ∧ RAIN) ∨ (SUN ∧ ¬SUN) ∨ (SUN ∧ RAIN).
+   $$
 
-Here's a truth-table to verify our work:
-
-{{< img src="img/table_solution_2.png" class="mx-auto d-block rounded inert-img img-fluid" width="300px">}}
+   The middle two conjunctions are always false. We are left with
+   $(¬RAIN ∧ ¬SUN) ∨ (SUN ∧ RAIN)$: either neither phenomenon occurs,
+   or both occur. This is exactly when the biconditional is true.
+2. No. The disjunction rewrites to $¬RAIN ∨ SUN ∨ ¬SUN ∨ RAIN$,
+   which is always true because it contains $SUN ∨ ¬SUN$.
+   For example, with rain but no sun, one conditional is false and the
+   other true. Their disjunction is true, but their conjunction is false.
 
 # Conditional inferences {.solved}
 
-{{< img src="img/sun.png" class="rounded  float-start inert-img img-fluid m-2" width="100px" >}} 
+Use {{< term "resolution" "resolution" >}} to check the five inferences in the app.
+For each one, first write the formula whose unsatisfiability would establish
+validity. Enter it in the app, which converts it to
+{{< term "conjunctive-normal-form" "CNF" >}}. Select two clauses and a
+{{< term "resolution-pivot" "pivot" >}} for each resolution.
+For an invalid inference, check every remaining resolution and give a {{< term "countermodel" "countermodel" >}}.
+Record your derivation and explain its result.
 
-Check the following conditional inferences for deductive validity using
-`SAT`-solving. You can use truth-tables or resolution, as you prefer.
+{{< logic-app name="sat-practice" kind="resolution" deck="conditional-inference" >}}
 
-1. `(RAIN→WIND), ¬RAIN ∴ ¬WIND` 
-
-2. `(RAIN→WIND)  ∴(¬WIND → ¬RAIN)`
-
-3. `(¬ RAIN→ RAIN)  ∴RAIN`
-
-4. `(RAIN →( SUN → RAINBOW)) ∴ ((RAIN ∧ SUN) → RAINBOW)`
-
-5. `¬ (RAIN → WIND) ∴ RAIN`
-
-{{< img src="img/rain_wind.png" class="rounded  float-end inert-img img-fluid m-2" width="100px" >}} 
-Document your work carefully, that is explain each step you're carrying out,
-and why the work you did shows that the inference in question is valid or invalid.
 
 ## Solution {#conditional-inferencesSolution .solution}
 
-1. `(RAIN→WIND), ¬RAIN ⊭ ¬WIND`. We show this using resolution.
+1. Invalid. The premises and negated conclusion give the CNF
+   $(¬RAIN ∨ WIND) ∧ ¬RAIN ∧ WIND$. Set $RAIN$ false and $WIND$ true:
+   both premises are true and the conclusion is false. None of these three
+   clauses has a complementary literal in another clause, so there is no
+   resolution to perform: this input is already saturated.
 
-    The aim is to show that `{(RAIN→WIND), ¬RAIN , ¬¬WIND }` is satisfiable.
+2. Valid. The negated conclusion $¬(¬WIND → ¬RAIN)$ is equivalent to
+   $¬WIND ∧ RAIN$. The SAT formula is therefore
+   $(¬RAIN ∨ WIND) ∧ ¬WIND ∧ RAIN$. Resolve the first clause with $RAIN$
+   to derive $WIND$, then with $¬WIND$ to derive $⊥$.
 
-    First, we transform into CNF. The conditional becomes $¬ RAIN 
-    ∨ WIND`using`r₀`, and`¬¬WIND }`becomes`WIND`using`r₁$.
+3. Valid. Resolve $RAIN ∨ RAIN$ with $¬RAIN$ on $RAIN$ to obtain $⊥$.
+   Both copies of the pivot are removed. $¬RAIN → RAIN$ is equivalent to
+   $¬¬RAIN ∨ RAIN$, which has the
+   same truth-values as $RAIN$. The SAT formula is false on both rows:
 
-    This leaves us with the sets ```{ ¬RAIN, WIND }&emsp; { ¬ RAIN } &emsp; { WIND }.``` No resolution is possible, and we can read off a
-    counter-model where `v(RAIN) = 0` and `v(WIND) = 1`.
+   | $RAIN$ | $¬RAIN → RAIN$ | $¬RAIN$ | $(¬RAIN → RAIN) ∧ ¬RAIN$ |
+   | --- | --- | --- | --- |
+   | $1$ | $1$ | $0$ | $0$ |
+   | $0$ | $0$ | $1$ | $0$ |
 
-2. `(RAIN→WIND)  ⊨(¬WIND → ¬RAIN)`. We show this using resolution.
+4. Valid. Rewriting the premise gives $¬RAIN ∨ ¬SUN ∨ RAINBOW$.
+   Rewriting the negated conclusion gives $RAIN ∧ SUN ∧ ¬RAINBOW$.
+   Resolve the first clause successively with $RAIN$, $SUN$, and
+   $¬RAINBOW$. The results are $¬SUN ∨ RAINBOW$, $RAINBOW$, and $⊥$.
 
-    The aim is to show that `{ (RAIN→WIND), ¬(¬WIND → ¬RAIN) }` is unsatisfiable.
-
-    First, we transform into CNF, beginning by transforming the conditionals
-    using `r₀`, giving us `¬RAIN∨WIND` 
-    and `¬(¬¬WIND ∨ ¬RAIN)`.
-
-    Applying `r₁` and `r₃` recursively to the latter, we obtain $¬WIND
-    ∧ RAIN$. This gives us the sets: ```{ ¬ RAIN, WIND }&emsp; { ¬ WIND }&emsp; { RAIN }```.
-
-    We derive the empty set `{ }` in two steps:
-
-    - With `{ ¬ RAIN, WIND }` and `{ ¬ WIND }`, we resolve
-    to `{ ¬ RAIN}`.
-
-    - With `{ ¬ RAIN}` and `{ RAIN }`, we resolve to the empty set ${
-    }$ proving the unsatisfiability of the set.
-
-3. `(¬ RAIN→ RAIN)  ⊨RAIN`. We show this using
-   truth-tables.
-
-   The aim is to show that `{(¬ RAIN→ RAIN),  ¬RAIN }` is
-   unsatisfiable. Here's the truth-table to the effect:
-
-   {{< img src="img/tt_neg.png" class="mx-auto d-block rounded inert-img img-fluid" width="400px">}}
-
-    In fact, you can see that `¬RAIN → RAIN` is equivalent to
-    `RAIN`. In logical theory, this is called [Clavius'
-    Law](https://en.wikipedia.org/wiki/Consequentia_mirabilis).
-
-4. `(RAIN →( SUN → RAINBOW)) ⊨ ((RAIN ∧ SUN) → RAINBOW)`. We use resolution.
-
-    The task is to show that ```{ (RAIN →( SUN → RAINBOW)), ¬ ((RAIN ∧ SUN) → RAINBOW) }``` is not satisfiable.
-
-    First, we transform to CNF. Recursively applying `r₀`, we get ```¬RAIN ∨ ¬ SUN ∨ RAINBOW``` from ```RAIN →( SUN → RAINBOW).```
-
-    For the second formula, ```¬ ((RAIN ∧ SUN) → RAINBOW),``` we get ```¬ (¬(RAIN ∧ SUN) ∨ RAINBOW)``` using `r₀` and then ```¬¬(RAIN ∧ SUN) ∧ ¬RAINBOW)``` using `r₂` Finally, `r₁` gives us:
-    ```RAIN ∧ SUN ∧¬RAINBOW```
-
-    This gives us the sets: ```{¬RAIN, ¬ SUN, RAINBOW }&emsp; { RAIN } &emsp; { SUN } &emsp;{¬RAINBOW }```
-
-    The derivation of `{ }` using resolution is a simple, three-step affair:
-
-    - `{¬RAIN, ¬ SUN, RAINBOW}` and `{ RAIN }` give us `{¬ SUN, RAINBOW}`.
-
-    - `{¬ SUN, RAINBOW}` and `{ SUN }` give us `{ RAINBOW }`
-
-    - `{ RAINBOW }` and `{¬RAINBOW }` give us `{ }`.
-
-5. `¬ (RAIN → WIND) ⊨ RAIN`, which we show using
-   truth-tables.
-
-   The aim is to show that `{¬ (RAIN → WIND), ¬ RAIN }` is unsatisfiable.
-
-   Here's the table:
-
-   {{< img src="img/tt_something.png" class="mx-auto d-block rounded inert-img img-fluid" width="400px">}}
-
-   Since there's no row where both `¬ (RAIN → WIND)` and `¬ RAIN` are `1`, the set is unsatisfiable.
- 
+5. Valid. $¬(RAIN → WIND)$ is equivalent to $RAIN ∧ ¬WIND$. The SAT
+   formula is $RAIN ∧ ¬WIND ∧ ¬RAIN$, which is unsatisfiable: resolve
+   $RAIN$ with $¬RAIN$ to derive $⊥$.
 
 # Valid inference and conditionals {.solved}
 
-There's a deep connection between deductively valid inference in Boolean logic
-and material conditionals, which is given by the following important
-equivalence:
+A {{< term "tautology" "logical truth" >}} is true under every valuation.
+Prove the following equivalence using rewriting and the reduction to SAT:
 
-```P₁, P₂, … ⊨ C&emsp; if and only if &emsp; <span class="dark-red shanns">not-SAT</span>{¬((P₁∧ P₂ ∧… )→ C)}```
+$$
+P₁,…,Pₙ ⊨ C &emsp; iff &emsp; (P₁ ∧ … ∧ Pₙ) → C is a logical truth.
+$$
 
-1. A logical formula `A` is called a **logical truth** iff for all assignments `v` of truth-values to its propositional variables, the formula is true, i.e. `v(A) = 1`. Verify that the simple formula ```(RAIN ∨ ¬RAIN)``` is a logical truth in this sense.
-
-2. Rephrase the right-hand side of the above equivalence in terms of the logical truth rather than unsatisfiability.
-
-3. Give an argument that the above equivalence is true. 
-
-    _Hint_: To do so, you need to use the general form of the reduction of valid inference to unsatisfiability, which we've discussed in the lecture ```P₁, P₂, … ⊨ C&emsp; if and only if &emsp; <span class="dark-red shanns">not-SAT</span> { P₁, P₂, … , ¬C }``` Think about what the latter condition means for the truth of the corresponding conditional.
+1. Write the SAT problem that tests the inference on the left.
+2. Negate the conditional on the right. Eliminate → and move the negation
+   inward. Compare the resulting formula with your answer to task 1.
+3. Explain why unsatisfiability of this formula establishes both sides.
+4. Do the premises or conclusion have to be Horn formulas? Does being able
+   to rewrite the problem as a conditional make Horn-SAT applicable?
 
 ## Solution {#valid-inference-and-conditionalsSolution .solution}
 
-1. We _could_ do a truth-table, but let's do a step-by step calculation,
-   instead, where we go through the two possibilities: `v(RAIN) = 1` or $v(RAIN)
-   = 0$:
+1. Test $P₁ ∧ … ∧ Pₙ ∧ ¬C$ for satisfiability. A satisfying valuation
+   would make all premises true and the conclusion false.
+2. Write $A$ temporarily for the conjunction of premises. Then:
 
-   - If `v(RAIN) = 1`, then ```v(RAIN ∨¬RAIN) = v(RAIN) !!OR!! v(¬RAIN)= ...```
-   ```... = v(RAIN) !!OR!! (!!NOT!! v(RAIN)) = 1 !!OR!! (!!NOT!! 1) = 1 !!OR!! 0 = 1```.
+   $$
+   ¬(A → C) ≡ ¬(¬A ∨ C) ≡ ¬¬A ∧ ¬C ≡ A ∧ ¬C.
+   $$
 
-   - If `v(RAIN) = 0`, then ```v(RAIN ∨¬RAIN) = v(RAIN) !!OR!! v(¬RAIN)= ...```
-   ```... = v(RAIN) !!OR!! (!!NOT!! v(RAIN)) = 0 !!OR!! (!!NOT!! 0) = 0 !!OR!! 1 = 1```.
-
-    So, in all possible cases, we have `v(RAIN ∨¬RAIN) = 1`.
-
-2. First, note that `<span class="dark-red shanns">not-SAT</span>{¬((P₁∧ P₂ ∧… )→ C)}` means that the formula
-   `¬((P₁∧ P₂ ∧… )→ C)` is
-   unsatisfiable, meaning it has value `0` under every valuation. But the
-   formula starts with a `¬` and so ```v(¬((P₁∧ P₂ ∧… )→ C)) = !!NOT!! v((P₁∧ P₂ ∧…)→ C)``` But if we know that this expression evaluates to `0`
-   under each valuation, this means that $v((P₁∧ P₂ ∧…
-   )→ C) = 1$ under each valuation. In other words, ```(P₁∧ P₂ ∧… )→ C``` is a logical truth. This gives us an alternative
-   criterion for valid inference according to which: ```P₁, P₂, … ⊨ C&emsp; if and only if (P₁∧ P₂ ∧… )→ C is a logical truth``` This criterion shows the particularly deep connection between
-   valid inference and conditionals.
-
-3. This is the hardest part and requires more advanced logical reasoning. One way to
-   proceed is to start from the known criterion that ```P₁, P₂, … ⊨ C&emsp; if and only if &emsp; <span class="dark-red shanns">not-SAT</span> { P₁, P₂, … , ¬C }.``` Let's think about $<span class="dark-red
-   shanns">not-SAT</span> { P₁, P₂, … , ¬C }$. This means that for
-each valuation, either `v(P₁) = 0, v(P₂) = 0, … ,` or  `v(¬C) = 0`.
-Using transformations, we can see that `(P₁∧ P₂ ∧…)→ C` is equivalent to `¬P₁ ∨¬P₂ ∨ … ∨C.` That is: ```v((P₁∧ P₂ ∧… )→ C) = v(¬P₁ ∨¬P₂ ∨ … ∨C).``` Using the recursive rules, we get: ```v(¬P₁ ∨¬P₂ ∨ … ∨C) = (!!NOT!! v(P₁)) !!OR!! (!!NOT!! v(P₂)) !!OR!! … !!OR!! v(C)```
-But if `v(P₁) = 0`, then ```(!!NOT!! v(P₁)) !!OR!! (!!NOT!! v(P₂)) !!OR!! … !!OR!! v(C) = …``` ```… =  (!!NOT!! 0) !!OR!! (!!NOT!! v(P₂)) !!OR!! … !!OR!! v(C) = …``` ```… = 1 !!OR!! !!OR!! (!!NOT!! v(P₂)) !!OR!! … !!OR!! v(C) = 1``` Similarly, if `v(P₂) = 0`, then ```(!!NOT!! v(P₁)) !!OR!! (!!NOT!! v(P₂)) !!OR!! … !!OR!! v(C) = …``` ```… = (!!NOT!! v(P₂)) !!OR!! (!!NOT!! 0) !!OR!!  … !!OR!! v(C) = …``` ```… = 1 !!OR!! !!OR!! (!!NOT!! v(P₂)) !!OR!! … !!OR!! v(C) = 1``` And so on. Finally, if `v(¬C) = 0`, then `v(C) = 1` and so ```(!!NOT!! v(P₁)) !!OR!! (!!NOT!! v(P₂)) !!OR!! … !!OR!! v(C) = …``` ```… =  (!!NOT!! v(P₁)) !!OR!! (!!NOT!! v(P₂)) !!OR!! … !!OR!! 1 = 1.```
-Since these are all the possibilities if $<span
-class="dark-red shanns">not-SAT</span> { P₁, P₂, … , ¬C }$, we know
-that `v((P₁∧ P₂ ∧… )→ C) = 1` for all valuations.
-By similar reasoning, we can see that if `v((P₁∧ P₂ ∧… )→ C) = 1` for all valuations, then $<span
-class="dark-red shanns">not-SAT</span> { P₁, P₂, … , ¬C }$ since
-otherwise, there would be a valuation `v` with `v((P₁∧ P₂ ∧… )→ C) = 0`.
+   The steps use the conditional rewrite, De Morgan, and double negation.
+   Putting the conjunction back in place of $A$ gives the formula in task 1.
+3. If this formula is unsatisfiable, there is no countermodel to the
+   inference. There is also no valuation making the conditional false,
+   so it is a logical truth. Conversely, a satisfying valuation would
+   falsify the conditional and be a countermodel to the inference.
+4. No Horn assumption is needed for any of these equivalences. $Pᵢ$ and $C$
+   may be arbitrary propositional formulas. An arrow alone does not make
+   a formula Horn: $RAIN → (SUN ∨ SNOW)$ is a counterexample. Horn-SAT
+   applies when the complete SAT input can be given as a Horn formula.
 
 # Chaining {.solved}
 
-Consider the following {{< abbr title="knowledge base">}}KB{{< /abbr>}}:
+The KB in the app describes a little weather system. $RAIN$ and $SNOW$ are
+known. There are two routes to $CLOUDS$, a circular pair of rules, and some
+rules for which we lack the required facts.
 
-- `RAIN → CLOUDS`
-- `(CLOUDS ∧ SNOW) → STORM`
-- `RAIN → PUDDLES`
-- `PUDDLES → HUMID`
-- `HUMID → CLOUDS`
-- `SUN → DRY`
-- `(WIND ∧ SNOW) → DRIFTING`
+Complete each level in both directions. Compare the proofs you obtain,
+and explain any failed or circular attempts.
 
-We add to this {{< abbr title="knowledge base">}}KB{{< /abbr>}} the following two facts:
-
-```RAIN, SNOW```
-
-1. Run the forward-chaining and the backward-chaining algorithm to show that we can derive `STORM` from the KB. That is, describe the steps you'd take for each algorithm one-by-one, and why at some point you hit the termination condition.
-
-2. Use the example to illustrate how forward-chaining can find shorter derivations than backward-chaining. 
-
-3. Use both forward and backward-chaining to show that we can't derive `DRIFTING` from the KB using the facts. Does one algorithm outperform the other?
+{{< logic-app name="conditional-practice" kind="chaining" >}}
 
 ## Solution {#chainingSolution .solution}
 
-1. Our goal is to derive `STORM`. The facts are `RAIN` and `SNOW`. First, we use forward chaining:
+1. _Storm._ Forward: $RAIN$ gives $PUDDLES$, which gives $HUMID$, which gives
+   $CLOUDS$. Together with the given $SNOW$, this gives $STORM$.
+   Backward: to prove $STORM$, prove $CLOUDS$ and $SNOW$. The latter is
+   given. Reduce $CLOUDS$ to $HUMID$, then to $PUDDLES$, then to $RAIN$,
+   which is also given. Reading these steps back supplies the same proof.
+   The shorter proof uses $RAIN → CLOUDS$ directly, then
+   $(CLOUDS ∧ SNOW) → STORM$. The app allows either order of the two
+   subgoals; to follow {{< term "depth-first-search" "depth-first search" >}}, finish one branch before the other.
+2. _A circular attempt._ Trying $CLOUDS → HUMID$ while proving
+   $CLOUDS$ via $HUMID → CLOUDS$ asks for $CLOUDS$ while we are already trying to prove
+   $CLOUDS$ on that branch. Mark the repeated goal as a failed attempt.
+   Back at $HUMID$, try $PUDDLES → HUMID$. This route ends at the given
+   $RAIN$. A circular attempt is not a proof, but it need not be the only attempt.
+3. _Blizzard._ Forward chaining derives $PUDDLES,HUMID,CLOUDS,STORM$ in addition to
+   the two given facts. No remaining rule adds anything. Backward chaining
+   needs both $STORM$ and $WIND$; there is no fact or rule for $WIND$.
+   Neither search proves $¬BLIZZARD$. The KB has models with $WIND$ and
+   $BLIZZARD$ true, and models with both false.
+4. _Circular rules._ There is no fact from which to apply MP. Backward chaining returns to
+   its initial goal along the same branch. Changing the order supplies no
+   new premise, so it does not help.
 
-    -  So, in the first iteration, we run through all the conditionals and
-    see if we can derive anything from those facts using `genMP`. We come
-    across the two conditionals `RAIN →CLOUDS` and `RAIN→PUDDLES`. We derive `CLOUDS` and `PUDDLES` and add them to our facts. But our goal is not reached.
+# Horn clauses {.solved}
 
-    - So, in the second step, the facts are `RAIN, SNOW, CLOUDS,` and
-      `PUDDLES`. Again, we check the conditionals for possible `MP`
-    applications and find `(CLOUDS ∧ SNOW) → STORM`
-    and `PUDDLES → HUMID`. We derive both `STORM` and `HUMID`. Our
-    goal is reached and we terminate the search.
+1. Select every formula in the app that is equivalent to a
+   {{< term "horn-formula" "Horn formula" >}} over the same atoms. For each
+   selected formula, write a conjunction of {{< term "horn-clause" "Horn clauses" >}} on paper.
+{{< logic-app name="conditional-practice" kind="horn" part="selection" >}}
 
-    Next, we use backward chaining:
+2. Find three formulas over $RAIN,SUN,SNOW$ that are _not_ equivalent to
+   any Horn formula.
 
-    - Our goal is `STORM`, so we inspect the conditionals until we find
-      one that contains `STORM` as the consequent. We find $(CLOUDS
-    ∧ SNOW)→STORM`. We recognize that`SNOW$ is
-    already among our facts, so we replace the goal `STORM` temporarily
-    with `CLOUDS`. Since we still have goals, we continue.
+{{< logic-app name="conditional-practice" kind="horn" part="examples" >}}
 
-    - We inspect the rules for one with `CLOUDS` in the consequent
-    and find `RAIN → CLOUDS`. Since `RAIN` is among our facts, we
-    have no goals left and terminate the search.
+3. Why does the {{< term "horn-sat" "Horn-SAT" >}} algorithm set all underived atoms to $0$?
+   Explain why the same strategy fails for $RAIN ∨ SUN$.
 
-    Both algorithms lead to the same result and, in fact, give the same
-    derivation.
+## Solution {#horn-clausesSolution .solution}
 
-2. In the forward-chaining algorithm, there were no choices involved and we
-   simply looked through all chainings of `MP` by length until we found one.
-   Since we went through the derivations by length starting with the
-shortest derivations, we were guaranteed to come across the shortest
-derivation first (if there is one).
+1. Select formulas 1, 2, 4, 5, 7 and 8. Horn forms are:
 
-    For backward-chaining, finding this particular derivation depended on
-    the order in which we looked through the rules. If, for some
-    implementation reason, we would have first come across `HUMID → CLOUDS` in the second step, we would have added `HUMID` to our goals rather than `RAIN`. Then, we'd have continued two more iterations going through `PUDDLES→HUMID` and `RAIN→PUDDLES` until we hit a known fact. This would have led to a much longer derivation. This means that with backward-chaining, whether we come across the shortest derivation first, highly depends on external factors, like the ordering of the conditionals in our `KB`.
+   | Formula | Horn form |
+   | --- | --- |
+   | $(RAIN ∧ SUN) → SNOW$ | $¬RAIN ∨ ¬SUN ∨ SNOW$ |
+   | $RAIN → (SUN ∧ SNOW)$ | $(¬RAIN ∨ SUN) ∧ (¬RAIN ∨ SNOW)$ |
+   | $¬(RAIN ∧ SUN ∧ SNOW)$ | $¬RAIN ∨ ¬SUN ∨ ¬SNOW$ |
+   | $RAIN ↔ SUN$ | $(¬RAIN ∨ SUN) ∧ (¬SUN ∨ RAIN)$ |
+   | $(RAIN → SUN) ∧ (SUN → SNOW) ∧ ¬SNOW$ | $(¬RAIN ∨ SUN) ∧ (¬SUN ∨ SNOW) ∧ ¬SNOW$ |
+   | $(RAIN ∨ SUN) ∧ ¬RAIN$ | $SUN ∧ ¬RAIN$ |
 
-3. To test this with forward-chaining, we go through all possible derivations. We've described the first two steps above, which gave us `STORM` and `PUDDLES`. Continuing further, we derive `HUMID` using `PUDDLES` and `PUDDLES →HUMID` and then `CLOUDS` from `HUMID` and `HUMID→CLOUDS`. At this point, we have `RAIN, SNOW, STORM, PUDDLES, HUMID,` and `CLOUDS` among our facts and can't apply `genMP` anymore. Since `DRIFTING` isn't among these facts, we conclude it can't be derived.
+   Formula 8 forces $RAIN$ false, so its disjunction forces $SUN$ true.
+   Formula 3 rewrites to $¬RAIN ∨ SUN ∨ SNOW$, and formula 6 is
+   $RAIN ∨ SUN$. Both require a choice between positive literals that
+   cannot be expressed by Horn clauses over the same atoms.
+2. Examples are $RAIN ∨ SUN$, $RAIN ∨ SNOW$, and $SUN ∨ SNOW$.
+   Each has two positive literals. The app checks that none has an
+   equivalent Horn formula. Their tables differ: making only $RAIN$
+   true satisfies the first two but not the third; making only $SUN$
+   true satisfies the first and third but not the second.
+3. At termination, whenever all premises of a rule are true its conclusion
+   has already been derived. Other rules have a false antecedent, and no
+   constraint has all its premises true. Setting the remaining atoms false
+   therefore gives a model. For $RAIN ∨ SUN$, neither atom is forced on
+   its own, but setting both false violates the clause.
 
-    With backward-chaining, instead, we check for conditionals involving `DRIFTING` in the consequent and only find `(WIND ∧SNOW → DRIFTING)`. This adds `WIND` to our goals, since `SNOW` is already a fact. In the second iteration, we can't find a conditional that has `WIND` in the consequent, so we terminate our search and conclude that `DRIFTING` can't be derived. 
+# Missing facts {.solved}
 
-    Here, backward-chaining was way more efficient. This is because forward-chaining needs to go through _all_ possible derivations to determine whether there is one, which derives our desired goal. Backward-chaining is more "surgical" in that it only looks through promising candidates and terminates earlier because there are none. 
+A weather KB contains $RAIN → WET$ and no facts about rain.
+
+1. Does $ASK(KB, RAIN)$ succeed? Does $KB ⊨ ¬RAIN$?
+2. Give two models that justify your answers.
+3. If we add $RAIN$, what can {{< term "forward-chaining" "forward chaining" >}} now derive? Have we
+   contradicted anything in the original KB?
+
+## Solution {.solution #missing-factsSolution}
+
+1. Chaining cannot derive $RAIN$. But the KB does not entail $¬RAIN$ either.
+2. One model makes both $RAIN$ and $WET$ true; another makes both false.
+   Each satisfies the rule. The first rules out entailment of $¬RAIN$;
+   the second rules out entailment of $RAIN$.
+3. We now derive $WET$. This contradicts nothing: the original KB left
+   the truth of $RAIN$ open. Absence from the KB is not the same as falsity.
+
+# Pseudocode {.solved}
+
+Complete the gaps. Then work through the questions below on paper.
+
+{{< logic-app name="pseudocode-practice" deck="conditionals" >}}
+
+1. Trace your completed `process` with `RAIN, CLOUDS, RAIN` in the
+   agenda and no known facts. Which entries are removed, and which are
+   reported? What happens if `take_first` doesn't remove its item?
+2. A rule has two premises and concludes $STORM$. Trace `process_premise`
+   after each premise becomes known. What changes if $STORM$ is already
+   known? What goes wrong if the same premise is counted twice?
+3. Suppose `rules_for` returns $CLOUDS → WIND$ before $RAIN → WIND$,
+   and only $RAIN$ is a fact. Explain why returning `False` inside the
+   `for` loop after its first failed attempt would give the wrong answer.
+4. Why must `extend(active, goal)` make a separate branch list?
+
+## Solution {#pseudocodeSolution .solution}
+
+The completed conditions and arguments are:
+
+| Level | Gaps, in order |
+| --- | --- |
+| Process each fact once | `not is_empty(agenda)`; `not contains(known, fact)`; `known`; `fact` |
+| A premise counter | `remaining - 1`; `remaining == 0`; `not contains(known, fact)`; `agenda`; `fact` |
+| Try another rule | `True`; `False`; `active`; `goal`; `branch`; `True`; `False` |
+
+1. Remove the first $RAIN$, add it to the known facts and report it.
+   Do the same for $CLOUDS$. Remove the second $RAIN$ but don't report
+   it again: it is already known. The agenda is now empty. Without
+   removal, the loop would keep inspecting its first entry forever.
+2. The counter goes from $2$ to $1$, then to $0$. Only at $0$ do we
+   add $STORM$ to the known facts and agenda. If it is already known,
+   we add nothing. Counting a premise twice could reduce the counter to
+   $0$ before the other premise is known, allowing an unjustified conclusion.
+3. Failing to prove $CLOUDS$ rules out the first attempt, but the next
+   rule succeeds using the given $RAIN$. Only after every matching rule
+   has failed may the procedure return `False`.
+4. The list records goals on the current branch. A goal that occurred in
+   a failed attempt may still have a proof by a different rule. A permanent
+   list of all visited goals would wrongly block such alternatives.
 
 # Planning {.solved}
 
-We've made things more difficult for {{< logo >}}&ThinSpace; by introducing a third block into the puzzle:
+We've added a blue block to the chapter's two-block world. The pictures
+show the starting configuration and the required goal. Use four action steps.
 
-{{< img src="img/planning_3.png" class="mx-auto d-block rounded inert-img img-fluid" width="400px">}}
+1. We already have $On(R,G,t)$ and $On(G,R,t)$. Which additional basic
+   propositions do we need? List the missing ones in the language field,
+   with time variable $t$. The checker also accepts names without the index.
+2. Translate the two pictures into initial and goal conditions. Use $R,G,B$
+   for red, green and blue. Use time $0$ for the initial state and $4$ for the goal.
+   Unlisted initial atoms are false. An omitted index means the time shown
+   by that field; spaces, commas and semicolons can separate propositions.
+3. Which state constraints and action preconditions must be extended for
+   three blocks? Are additional frame conditions needed, or do the two
+   chapter schemata suffice? Enter your frame conditions yourself.
+4. Find a plan and record the true state facts at each time. The app already
+   includes the state constraints and action rules; it checks your language
+   and state descriptions before looking for a model.
+5. Set the horizon to $2$. If the app finds no two-step plan, could a
+   longer plan still work? Explain using your four-step plan.
 
-Adjust our planning solution to accommodate the more complicated setup. That is:
-
-1. Determine how we need to adjust the language to accommodate the third block?
-
-2. Which rules do we need to add to our KB to accommodate the third block?
-
-3. Represent the initial setup state and the goal state in the language.
-
-4. Find a model that satisfies the KB, as well as the setup and goal state. Then read off a course of action. You don't need to do this formally—using resolution or chaining—but just find such a model using _human_ intelligence.
+{{< logic-app name="conditionals" kind="planning" example="three" exercise="true" title="Three-block planning exercise" >}}
 
 ## Solution {#planningSolution .solution}
 
-1. On the language side, we need to add all the instances of the schemata
-   `On(X,Y,t), Stack(X,Y,t), Unstack(X,Y,t)` for `X,Y∈{R,G,B}` and
-`t∈{0, 1, 2, ...}`, where the statements involving `B` represent the
-facts involving the new blue block.
+1. Add $On(R,B,t)$, $On(G,B,t)$, $On(B,R,t)$ and $On(B,G,t)$.
+   Together with the two existing atoms, these describe every ordered
+   pair of distinct blocks. Use times $0,…,4$ for states and $0,…,3$
+   for actions.
+2. Initially $On(G,B,0)$ and $On(B,R,0)$ are true; all other $On$ facts
+   are false. Require $On(B,G,4) ∧ On(G,R,4)$ as the goal.
+3. Exclude three-block cycles as well as two-block cycles and self-stacking.
+   No block may rest directly on two blocks or have two blocks directly
+   on it. A moving block and its destination must be clear; stacking also
+   requires that the moving block is on the table. These conditions now
+   range over all three blocks. The two frame schemata still suffice:
+   they have more instances, since $X,Y$ can now also involve $B$, but
+   we need no new kind of frame condition.
+4. Enter the same two frame conditions as in the chapter. They now apply
+   to all distinct pairs of the three blocks:
 
-2. In terms of the rules, all previous rules can remain the same just involving
-   `B`, so `¬On(X,X)` for `X∈{R,B,G}`, and so on. We do need
-to add principles that exclude new weird configurations that are logically
-possible, such as `On(R,G,t)∧On(G, B,t)∧On(B,R,t)` for
-some time `t`. Our previous rules only excluded 2-step loops, like `On(R,G,t)∧On(G,R,t)`, but not 3-step loops like the one above. We _could_ just add the schema:
+   $$
+   On(X,Y,t) ∧ ¬Unstack(X,Y,t) → On(X,Y,t+1)
+   $$
 
-    ```On(X,Y,t)∧On(Y, Z,t)→¬On(Z,X,t)```
+   $$
+   ¬On(X,Y,t) ∧ ¬Stack(X,Y,t) → ¬On(X,Y,t+1).
+   $$
 
-    There is one kind of rule that we would need to include concerning the
-    actions that wasn't relevant before. Now that there are three blocks, we
-    should watch out that we can only unstack one block from another if there's
-    no other block on the top. That is, we need to postulate, 
+   One plan is:
 
-    ```Unstack(R,G,t)→¬On(B,R,t)```
-    ```Unstack(R,B,t)→¬On(G,R,t)```
-    ```Unstack(G,B,t)→¬On(R,G,t)```
-    ```...```
+   | Time | True state facts | Action |
+   | --- | --- | --- |
+   | $0$ | $On(G,B,0), On(B,R,0)$ | $Unstack(G,B,0)$ |
+   | $1$ | $On(B,R,1)$ | $Unstack(B,R,1)$ |
+   | $2$ | None | $Stack(G,R,2)$ |
+   | $3$ | $On(G,R,3)$ | $Stack(B,G,3)$ |
+   | $4$ | $On(B,G,4), On(G,R,4)$ | — |
 
-    Similarly, we can only stack one block on top of another, if there's no
-    other block on top yet:
+   All unlisted state facts are false. Each moved block and each stacking
+   destination is clear at the relevant time.
+5. Unsatisfiability rules out histories of the chosen length. The four-step
+   plan above still exists. To rule out all plans would require a further
+   argument covering every possible length.
 
-    ```Stack(R,G,t)→¬On(B,G,t)```
-    ```Stack(R,B,t)→¬On(G,B,t)```
-    ```...```
+# Wason selection task {.solved #discussion}
 
-    The persistence conditions remain the same.
+Try both card tasks before reading the solution. Each card gives one half
+of the information needed to test the rule; its other side is hidden.
+Select exactly the cards you would need to turn over.
 
-3. Our set-up, then is:
+{{< logic-app name="conditional-practice" kind="wason" >}}
 
-    ```On(G,B,0)∧On(B,R,0)```
+1. Explain each of your selections. What would have to be on the other
+   side to violate the rule? Why are the other cards unnecessary?
+2. Read the [Wason selection task](https://en.wikipedia.org/wiki/Wason_selection_task)
+   article, especially its discussion of social rules. Write both tasks
+   as $A → B$. Do they have the same logical form?
+3. Did one version seem easier? Describe one explanation discussed in the
+   article. Does a difference in performance establish that people use
+   different logics in the two cases?
 
-    And the goal state is:
+## Solution {#discussionSolution .solution}
 
-    ```On(B,G,t)∧On(G,R,t)```
+1. In the number task, turn over $8$ and the red card. The $8$ could have
+   red on its back; the red card could have an even number. Either would
+   violate the rule. An odd number is unrestricted, and blue is allowed
+   with either kind of number. In the social task, inspect the beer and
+   $16$ cards. Beer could be paired with an age below $18$, and $16$ with
+   beer. Soda and $25$ cannot reveal a violation of the stated rule.
+2. For the first task, $A$ says the number is even and $B$ says the colour
+   is blue. For the second, $A$ says the drink is beer and $B$ says the age
+   is at least $18$. Both ask us to look for $A$ true and $B$ false.
+3. Answers about personal experience will differ. One proposed explanation
+   is that a familiar social rule makes violations easier to identify.
+   That does not establish a different logic: understanding the task,
+   interpreting its rule, and deciding what information is relevant can
+   all affect the choices. The article discusses competing explanations;
+   one small classroom comparison cannot decide between them.
 
-    for some suitable `t`. As you can see, we can achieve this for `t=4` (five steps).
+# Monkey and banana {.solved}
 
-4. Here's one strategy. I only note the relevant formulas, all unnamed formulas are assumed to be false:
+A monkey wants a banana hanging from the ceiling. It can reach it only
+by standing on a box beneath it. Initially, the monkey stands beside the box. The pictures show the initial situation
+and the goal: possession of the banana, with other facts left unrestricted.
 
-    - First step: 
+1. Choose three state atoms from this vocabulary:
+   $BoxUnderBanana$, $OnBox$, $HasBanana$, $BananaOnBox$, $BoxOpen$.
+   Which three describe the facts needed for this problem? Explain their
+   meanings, list them in the app, and translate the initial and goal states.
+   Use time $0$ for the initial state and the horizon for the goal.
+   Write `none` if no initial atom is true. Missing indices are accepted
+   with the same meaning as in the block exercise.
+2. Find a model with both frame fields empty. Explain why its actions
+   need not constitute an executable plan.
+3. Write frame conditions for each of the three state atoms. Once a fact
+   becomes true, it stays true: none of the actions undoes it. And a
+   false fact stays false unless its action occurs. For example, which
+   action can change $HasBanana$ from false to true?
+   Put the three conditions preserving true facts in the positive frame
+   box and the three preserving false facts in the negative frame box,
+   one per line. Use $t$ and $t+1$ for consecutive times, and write actions
+   with a time too, for example $TakeBanana(t)$.
+4. Find a plan with the corrected encoding. What is the shortest horizon?
+   Explain why fewer steps cannot suffice.
 
-        - State: `On(G,B,0), On(B,R,0)`
+The app includes the following actions. Only one occurs at a time; waiting
+is also allowed. The monkey stays with the box. There is no action for climbing down, moving
+the box back or dropping the banana.
 
-        - Action: `Unstack(G,B,0)` (possible because neither `On(R,G,0)` nor `On(B,G,0)`)
+| Action | Required situation | Result |
+| --- | --- | --- |
+| $PushBox$ | On the floor; box away from banana | Box under banana |
+| $Climb$ | On the floor; box under banana | On the box |
+| $TakeBanana$ | On the box beneath the banana | Has banana |
 
-    - Second step: 
+{{< logic-app name="conditionals" kind="planning" example="monkey" exercise="true" title="Monkey and banana planning exercise" >}}
 
-        - State: `¬On(G,B,1), On(B,R,1)`
+## Solution {#monkey-and-bananaSolution .solution}
 
-        - Action: `Unstack(B,R,1)` (possible because now `¬On(G,B,1)`)
+1. Use $BoxUnderBanana$ (box beneath the banana),
+   $OnBox$ (standing on the box), and $HasBanana$ (holding the banana).
+   All three are initially false. The goal requires just $HasBanana$.
+   Whether the box is open and whether a banana rests on it play no role.
+2. The model can choose $Wait$ at every time and make $HasBanana$ true at
+   the end. The action rules say what must happen _if_ an action occurs.
+   Alone, they don't require an action to explain a change.
+3. The positive frame conditions are:
 
-    - Third step:
+   $$
+   BoxUnderBanana(t) → BoxUnderBanana(t+1)
+   $$
+   $$
+   OnBox(t) → OnBox(t+1)
+   $$
+   $$
+   HasBanana(t) → HasBanana(t+1).
+   $$
 
-        - State: `¬On(G,B,2), ¬On(B,R,2)`
+   The negative frame conditions are:
 
-        - Action: `Stack(B,R,2)` (possible because at this point neither `On(G,R,2)` nor `On(B,R,2)`)
+   $$
+   ¬BoxUnderBanana(t) ∧ ¬PushBox(t) → ¬BoxUnderBanana(t+1)
+   $$
+   $$
+   ¬OnBox(t) ∧ ¬Climb(t) → ¬OnBox(t+1)
+   $$
+   $$
+   ¬HasBanana(t) ∧ ¬TakeBanana(t) → ¬HasBanana(t+1).
+   $$
 
-    - Fourth step:
-
-        - State: `On(B,R,3), ¬On(B,R,3)`
-
-        - Action: `Stack(G,B,3)` 
-
-    - Fifth step:
-
-        - State: `On(G,B,4), ¬On(B,R,4)`
-
-
-You can straightforwardly check that all conditions are satisfied.
-
-# Discussion
-
-Check out the [Wason selection
-task](https://en.wikipedia.org/wiki/Wason_selection_task) on Wikipedia.
-
-Some researchers have argued that the experiment shows that people don't reason with
-the material conditional in this case. Do you agree? Why?
+   For example, the last condition says: if the monkey doesn't have the
+   banana and doesn't take it, it still won't have it at the next time.
+   Each line applies at every action time.
+4. $PushBox$, $Climb$, $TakeBanana$, in that order. After
+   each step, one more of the three fluents is true. The shortest horizon is
+   three: taking requires climbing, and climbing requires first pushing the
+   box beneath the banana. The one-action
+   condition prevents combining these steps.

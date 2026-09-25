@@ -149,3 +149,25 @@
 .sat-practice .sat-clauses .practice-discarded { list-style: none; color: var(--ink-muted); padding: .15rem .4rem; border: 1px dashed var(--ink-muted); border-radius: var(--radius); font-size: var(--step--1); }
 .sat-practice .practice-discarded .boolean-operator { color: inherit; }
 .sat-practice .practice-discarded svg { width: 1em; height: 1em; vertical-align: middle; }
+
+/* Chapter examples share the exercise controls and clause layout. */
+.logic-app .app-picker-label { font-family: var(--font-prose); color: var(--ink-muted); font-size: var(--step--1); align-self: center; margin-inline-end: .25rem; }
+.sat-app .sat-example-description:empty { display: none; }
+.sat-app[data-logic-app=sat] [data-input-form] { flex-wrap: nowrap; gap: .5rem; }
+.sat-app[data-logic-app=sat] [data-input-form] .logic-app__input { flex: 1; min-width: 0; width: 0; }
+.sat-app[data-logic-app=sat] .logic-app__controls { justify-content: center; }
+.sat-app[data-logic-app=sat] [data-target] { justify-content: flex-start; }
+.sat-app[data-logic-app=sat] [data-inference] { text-align: center; color: var(--blue-ink); background: var(--surf-blue); border-radius: var(--radius); padding: .35rem; }
+.sat-app[data-logic-app=sat][data-kind=resolution] .sat-layout { grid-template-columns: minmax(0,1fr); gap: .5rem; }
+.sat-app[data-logic-app=sat][data-kind=resolution] .sat-clauses { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,14rem),1fr)); gap: .3rem 1.6rem; margin-block: .3rem; padding-inline-start: 1.8rem; }
+.sat-app[data-logic-app=sat][data-kind=resolution] .sat-clauses li { padding: .2rem .35rem; margin: 0; }
+.sat-app[data-logic-app=sat][data-kind=resolution] .sat-clauses small { display: block; font-size: var(--step--2); color: var(--ink-muted); }
+.sat-app .sat-section-label { font-family: var(--font-prose); color: var(--ink-muted); font-size: var(--step--1); margin: 0; }
+.sat-app .sat-proof-local { border: 1px solid var(--rule-strong); border-radius: var(--radius); padding: .5rem; }
+.sat-app .sat-clauses .practice-discarded { list-style: none; color: var(--ink-muted); border: 1px dashed var(--ink-muted); border-radius: var(--radius); }
+.sat-app[data-logic-app=sat] [data-input-form] [data-navigation] { display: flex; flex: 0 0 auto; flex-wrap: nowrap; gap: .3rem; margin: 0 0 0 .75rem; }
+.sat-app[data-logic-app=sat] [data-input-form] [data-count] { white-space: nowrap; align-self: center; font-size: var(--step--2); }
+@media (max-width: 45rem) {
+  .sat-app[data-logic-app=sat] [data-input-form] { flex-wrap: wrap; }
+  .sat-app[data-logic-app=sat] [data-input-form] [data-navigation] { flex-basis: 100%; justify-content: flex-end; margin: 0; }
+}

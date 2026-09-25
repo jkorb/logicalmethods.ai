@@ -7,6 +7,10 @@ Glossary return links go to the first `term` shortcode for that key in the
 entry's `chapter`. Term-link IDs normally use `term-<key>-<ordinal>`. Repeated
 `iff` links also include parent shortcode ordinals, so occurrences in different
 callouts have distinct IDs. Glossary return links resolve either form.
+An optional `page` field gives an explicit page path, such as
+`/exercises/formal-languages`, when a concept is first taught in an exercise.
+Keep `chapter` for chapter-based filtering. The glossary return link then uses
+that page and its introduction or explicit anchor.
 An optional `anchor` field overrides this with a heading or other existing ID
 (without `#`), for example when the definition has no marked term yet. Prefer
 the section that explains the concept over an incidental early mention.
@@ -30,8 +34,11 @@ At the first substantial introduction of a concept, use:
 {{< term "countermodel" "countermodel" >}}
 ```
 
-The second argument is optional and preserves the wording or inflection needed
-in the sentence. The link previews the definition on hover or keyboard focus
+The second argument preserves the wording or inflection needed in the sentence.
+Use an explicit lowercase label mid-sentence when the stored term is title-cased;
+retain capitals in names such as Horn. Before adding an entry or definition,
+check earlier chapters. Reuse the existing entry and point its return link to
+the chapter that introduces the concept rather than defining it again. The link previews the definition on hover or keyboard focus
 and opens the glossary entry in a new tab. Do not wrap it in another Markdown
 link. Without JavaScript, the ordinary link and native title remain available;
 all glossary entries remain readable. Search matches words in terms and their

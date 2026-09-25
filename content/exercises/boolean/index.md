@@ -9,7 +9,7 @@ params:
 
 # Relay logic {.solved}
 
-Use default-off and default-on relays to implement these truth-functions:
+Use default-off and default-on relays to implement these {{< term "boolean-function" "truth-functions" >}}:
 
 1. $!!NAND!!$ reverses the output of $!!AND!!$.
 2. $!!XOR!!$ outputs $1$ exactly when one input is $1$.
@@ -77,7 +77,7 @@ operations as buttons; you can also move a focused component with the arrow keys
 
 ## Solution {.solution #defining-functionsSolution}
 
-1. $X !!OR!! Y = !!NOT!! ((!!NOT!! X) !!AND!! (!!NOT!! Y))$, by De Morgan and double negation.
+1. $X !!OR!! Y = !!NOT!! ((!!NOT!! X) !!AND!! (!!NOT!! Y))$, by {{< term "de-morgan-laws" "De Morgan" >}} and double negation.
 2. $!!NOT!! X = X !!NAND!! X$: join $X$ to both inputs of one NAND box.
 3. If $A = X !!NAND!! Y$, then $A !!NAND!! A = !!NOT!! A = X !!AND!! Y$.
 4. $(X !!NAND!! X) !!NAND!! (Y !!NAND!! Y) = !!NOT!! ((!!NOT!! X) !!AND!! (!!NOT!! Y)) = X !!OR!! Y$.
@@ -88,7 +88,7 @@ jointly complete, NAND alone is truth-functionally complete too.
 # Boolean laws {.solved}
 
 Derive the following identities using the laws in the chapter. Name the law
-used at each step. For tasks 2 and 3, derive idempotence from the listed laws
+used at each step. For tasks 2 and 3, derive {{< term "idempotence" "idempotence" >}} from the listed laws
 rather than assuming it.
 
 1. $X !!AND!! (X !!OR!! Y) = X !!OR!! (X !!AND!! Y)$.
@@ -100,21 +100,33 @@ rather than assuming it.
 
 ## Solution {.solution #boolean-lawsSolution}
 
-1. Both sides equal $X$ by absorption.
+A {{< term "boolean-identity" "Boolean identity" >}} can be read in either
+direction. Its letters are placeholders: a whole expression may take the place
+of a letter, provided we replace every occurrence of that letter in the same way.
+Each step below preserves the value of the expression.
 
-2. Use identity and absorption:
+1. Absorption gives $X !!AND!! (X !!OR!! Y)=X$. Its other form gives
+   $X !!OR!! (X !!AND!! Y)=X$. Since both expressions equal $X$, they
+   equal each other.
+
+2. Rewrite only the second occurrence of $X$ using Identity, read from
+   right to left: $X=X !!AND!! 1$. Then use absorption with $Y=1$:
 
    $$
    X !!OR!! X = X !!OR!! (X !!AND!! 1) = X
    $$
 
-3. Similarly, using the other identity and absorption laws:
+3. This time, rewrite the second $X$ as $X !!OR!! 0$ using Identity.
+   Absorption with $Y=0$ then gives the last equality:
 
    $$
    X !!AND!! X = X !!AND!! (X !!OR!! 0) = X
    $$
 
-4. Factor out $X$ by distributivity, then use complementation and identity:
+4. Read distributivity from right to left to combine the two occurrences
+   of $X$ into one factor. In that law, the place for $Z$ is occupied here
+   by $!!NOT!! Y$. Next replace $Y !!OR!! !!NOT!! Y$ with $1$ by
+   complementation. Finally use Identity:
 
    $$
    (X !!AND!! Y) !!OR!! (X !!AND!! !!NOT!! Y)
@@ -123,7 +135,9 @@ rather than assuming it.
    = X
    $$
 
-5. Distribute $X$, then use complementation and identity:
+5. Distributivity replaces $!!AND!!$ with a disjunction by the two corresponding
+   $!!AND!!$ expressions. Complementation makes the first one $0$. Swapping the
+   two disjuncts and using Identity removes that $0$:
 
    $$
    X !!AND!! (!!NOT!! X !!OR!! Y)
@@ -132,7 +146,9 @@ rather than assuming it.
    = X !!AND!! Y
    $$
 
-6. Substitute the result of task 5 inside the negation, then apply De Morgan:
+6. Task 5 established that the expression inside the negation has the
+   same value as $X !!AND!! Y$. We may therefore replace it even inside
+   the larger expression. {{< term "de-morgan-laws" "De Morgan" >}} then gives the last line:
 
    $$
    !!NOT!! (X !!AND!! (!!NOT!! X !!OR!! Y))
@@ -204,7 +220,7 @@ operations as buttons; you can also move a focused component with the arrow keys
 2. Let $N = X !!NAND!! Y$, $P = X !!NAND!! N$, and $Q = Y !!NAND!! N$.
    Then $P !!NAND!! Q = X !!XOR!! Y$.
 3. Connect the XOR output from task 2 to both inputs of one more NAND box.
-4. An XOR-only circuit computes a parity of its input occurrences. Repeated
+4. An XOR-only circuit computes a {{< term "parity" "parity" >}} of its input occurrences. Repeated
    occurrences cancel because $X !!XOR!! X = 0$. With inputs $X$ and $Y$, it
    can produce only $0$, $X$, $Y$, or $X !!XOR!! Y$. None is OR. Even allowing
    a constant $1$ adds only their complements, which still exclude OR.
@@ -217,7 +233,7 @@ channels can each be fully on or fully off. Let $RED$, $GREEN$, and $BLUE$
 express that the respective channel is on.
 
 1. List all valuations of this language. What color does each represent?
-   Use the pixel below to check your list, recording each valuation once.
+   Use the pixel below to check your list, recording each {{< term "valuation" "valuation" >}} once.
 2. Suppose we describe two pixels with variables $RED₁$, $GREEN₁$, $BLUE₁$,
    $RED₂$, $GREEN₂$, and $BLUE₂$. How many valuations are there now? Explain
    without listing them all.
@@ -249,7 +265,7 @@ express that the respective channel is on.
    so $2²⁴⁸⁸³²⁰⁰$ valuations.
 4. Our variables distinguish only on from off. They cannot express intermediate
    intensities or distinguish two shades with the same on/off description.
-   The granularity of the language determines the granularity of these models.
+   The granularity of the language determines the granularity of these {{< term "boolean-model" "models" >}}.
 
 # Following an evaluation {.solved}
 
@@ -293,7 +309,7 @@ the inference.
 
 ## Solution {.solution #finding-countermodelsSolution}
 
-The countermodel sets are ${M₁}$, ${M₃}$, and ${M₂}$, respectively. In the
+The {{< term "countermodel" "countermodel" >}} sets are ${M₁}$, ${M₃}$, and ${M₂}$, respectively. In the
 first task, $v₁(SUN) = v₁(RAIN) = 1$: both premises are true, while $¬RAIN$
 is false. One countermodel already suffices to show invalidity.
 

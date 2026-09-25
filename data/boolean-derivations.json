@@ -2,11 +2,11 @@
   "double-negation": [
     [
       "NOT NOT X",
-      "Start with NOT NOT X."
+      "We want to show that this expression has the same value as X. We will rewrite it using the laws above."
     ],
     [
       "NOT NOT X = (NOT NOT X) AND 1",
-      "Identity, starting from line 1."
+      "Identity says Y AND 1 = Y for any Boolean value Y. Put NOT NOT X in both places occupied by Y, then read the equality from right to left. We have only added AND 1; we have not assumed that NOT NOT X = X."
     ],
     [
       "NOT NOT X = (NOT NOT X) AND (X OR NOT X)",
@@ -18,7 +18,7 @@
     ],
     [
       "NOT NOT X = ((NOT NOT X) AND X) OR 0",
-      "In line 4, replace (NOT NOT X) AND NOT X by 0 (complementation and commutativity)."
+      "In line 4, use complementation with Y = NOT X: Y AND NOT Y = 0. The two factors are in the opposite order, so use commutativity too."
     ],
     [
       "NOT NOT X = (NOT NOT X) AND X",
@@ -26,11 +26,11 @@
     ],
     [
       "X = X AND 1",
-      "Now start with X: identity."
+      "Now rewrite X using Identity, X = X AND 1. We will reach the expression saved in line 6."
     ],
     [
       "X = X AND\n((NOT NOT X) OR NOT X)",
-      "In line 7, replace 1 by (NOT NOT X) OR NOT X (complementation and commutativity)."
+      "In line 7, use complementation with Y = NOT X: Y OR NOT Y = 1. Read it right to left and swap the two terms to replace 1 by (NOT NOT X) OR NOT X."
     ],
     [
       "X = (X AND NOT NOT X) OR\n(X AND NOT X)",

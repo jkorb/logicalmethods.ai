@@ -7,6 +7,7 @@
  | Breadcrumb            | `partials/single/breadcrumb.html`                                  | the trail back up; the header house is the one-hop way home                 |
  | Chapter rail          | `partials/single/chapter-rail.html`                                | sticky, ≥75rem                                                              |
  | On this page          | `partials/single/on-this-page.html`                                | `IntersectionObserver` marks the current section; degrades to plain anchors |
+ | Reading bar           | `partials/single/reading-bar.html`                                 | under the header on chapters; how much chapter is left, at every width      |
  | Prev / next           | `partials/single/nav-bot.html`                                     | derived from **weight**, since `PrevInSection` runs the other way           |
  | Callout               | `shortcodes/callout.html`                                          | `definition`, `example`, `theorem`, `warning`, `note`, `objectives`         |
  | Chapter / route cards | `partials/list/toc.html`, `layouts/index.html`                     | whole card is the target                                                    |

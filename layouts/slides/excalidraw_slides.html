@@ -1,3 +1,6 @@
+{{- /* Deprecated: the Excalidraw deck format. Lectures 1 to 4 keep it for the
+       current course run, and every deck keeps it until it is migrated to
+       reveal_slides.html; see docs/slides/reveal/migrating.md. */ -}}
 {{ define "head" }}
 {{ if .Params.selfHosted }}
 <link rel="stylesheet" href="{{ (resources.Get "css/slides.css" | fingerprint).RelPermalink }}">

@@ -1,0 +1,49 @@
+{{ $kind := .sc.Get "kind" | default "chaining" }}
+{{ if not (in (slice "chaining" "comparison" "horn" "planning") $kind) }}{{ errorf "Unknown conditional app kind %q" $kind }}{{ end }}
+<section class="logic-app conditional-app" data-logic-app="conditionals" data-kind="{{ $kind }}" data-method="{{ .sc.Get "method" }}" data-frames="{{ .sc.Get "frames" }}" data-exercise="{{ .sc.Get "exercise" }}" data-example="{{ .sc.Get "example" }}" data-kb="{{ .sc.Get "kb" }}" data-goal="{{ .sc.Get "goal" }}" aria-label="{{ .sc.Get "title" | default (printf "%s example" $kind) }}">
+  <template data-icon="accessibility">{{ partial "apps/icon.html" "accessibility" }}</template>
+  <div data-examples class="sat-examples" role="group" aria-label="Examples"></div>
+  <p data-description></p>
+  <form data-form>
+    {{ if eq $kind "planning" }}
+    {{ if eq (.sc.Get "exercise") "true" }}
+    <div data-task-pictures class="planning-task-pictures"></div>
+    <div class="planning-language"><label>{{ if eq (.sc.Get "example") "three" }}Missing basic propositions{{ else }}State vocabulary{{ end }} <input data-language maxlength="300" spellcheck="false" disabled></label><button type="button" data-check-language disabled>{{ partial "apps/icon.html" "check" }} Check language</button><p data-language-feedback role="status"></p></div>
+    {{ end }}
+    <div class="conditional-fields">
+      <label>Initial · time 0 <input data-initial spellcheck="false" disabled></label>
+      <label>Goal · horizon <input data-goal spellcheck="false" disabled></label>
+      <label>Horizon <input data-horizon type="text" inputmode="numeric" pattern="[1-6]" maxlength="1" disabled></label>
+    </div>
+    <label class="planning-complete"><input data-complete type="checkbox" checked disabled> Complete initial state (unlisted atoms are false)</label>
+    <label>Positive frame condition <textarea data-frame="0" rows="2" maxlength="500" spellcheck="false" disabled></textarea></label>
+    <label>Negative frame condition <textarea data-frame="1" rows="2" maxlength="500" spellcheck="false" disabled></textarea></label>
+    <p data-state-help class="conditional-help"></p><details class="conditional-help"><summary>Frame notation</summary><p data-frame-help></p></details>
+    {{ else }}
+    <label for="{{ .id }}-kb">Knowledge base</label>
+    <textarea id="{{ .id }}-kb" data-kb rows="1" maxlength="6000" spellcheck="false" disabled></textarea>
+    {{ if in (slice "chaining" "comparison") $kind }}<div class="conditional-fields"><label>ASK: goal <input data-goal spellcheck="false" disabled></label>{{ if and (eq $kind "chaining") (not (.sc.Get "method")) }}<label>Algorithm <select data-method disabled><option value="forward">Forward chaining</option><option value="backward">Backward chaining</option></select></label>{{ end }}</div>{{ end }}
+    {{ end }}
+    <div class="logic-app__controls">
+      <button type="submit" data-run disabled>{{ partial "apps/icon.html" "play" }} {{ if eq $kind "planning" }}Plan!{{ else }}Start{{ end }}</button>
+      <button type="button" data-edit disabled>{{ partial "apps/icon.html" "edit" }} Edit</button>
+      {{ if eq $kind "planning" }}{{ if ne (.sc.Get "exercise") "true" }}<button type="button" data-frames disabled>Use chapter frames</button>{{ end }}<button type="button" data-clear-frames disabled>Clear frames</button>{{ end }}
+    </div>
+  </form>
+  <div class="logic-app__controls" data-navigation aria-label="Steps">
+    {{ range slice "first" "previous" "next" "last" }}<button type="button" data-action="{{ . }}" aria-label="{{ . | title }} step" title="{{ . | title }} step" disabled>{{ partial "apps/icon.html" . }}</button>{{ end }}
+    <span data-count></span>{{ if eq $kind "planning" }}<span class="boolean-app__utilities"></span>{{ end }}
+  </div>
+  <div class="conditional-layout" {{ if eq $kind "planning" }}data-picture{{ end }}>
+    <div data-work class="conditional-work" tabindex="0" role="region" aria-label="{{ .sc.Get "title" | default $kind }}: {{ if eq $kind "planning" }}model{{ else }}derivation{{ end }}"></div>
+    <div class="conditional-aside"><p role="status" aria-live="polite" aria-atomic="true">The example is loading.</p><p data-code class="conditional-code"></p><p data-path></p><div data-rules></div><details data-history><summary>Derivations found</summary><div data-proofs></div></details><div data-text hidden><div data-text-tree></div></div></div>
+  </div>
+  {{ if eq $kind "planning" }}
+  <template data-table>{{ partial "figures/image.html" (dict "page" .sc.Page "id" (printf "%s-table" .id) "src" "/img/drawings/con_ai_plan_table.svg" "alt" "" "width" "100%") }}</template>
+  {{ range slice "box_closed" "banana" }}<template data-monkey-art="{{ . }}">{{ partial "figures/image.html" (dict "page" $.sc.Page "id" (printf "%s-%s" $.id .) "src" (printf "/img/drawings/cond_ex_%s.svg" .) "alt" "" "width" "100%") }}</template>{{ end }}
+  <template data-ai>{{ partial "figures/image.html" (dict "page" .sc.Page "id" (printf "%s-ai" .id) "src" "/img/drawings/con_ai_thinking.svg" "alt" "" "width" "100%") }}</template>
+  <template data-box-art>{{ partial "figures/image.html" (dict "page" .sc.Page "id" (printf "%s-boxes" .id) "src" "/img/drawings/con_ai_plan_blocks_red_on_green.svg" "alt" "" "width" "100%") }}</template>
+  <template data-board>{{ partial "figures/image.html" (dict "page" .sc.Page "id" (printf "%s-board" .id) "src" "/img/drawings/con_ai_plan_instructions_empty.svg" "alt" "" "width" "100%") }}</template>
+  {{ end }}
+  <noscript>The worked examples and exercise solutions can also be followed on paper.</noscript>
+</section>

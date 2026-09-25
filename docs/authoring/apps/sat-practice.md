@@ -32,7 +32,11 @@ Written solutions remain on the sheet.
   checking every pair/pivot choice, including choices involving new clauses.
 - The `inference` resolution deck first asks for CNF clauses, separated by commas
   or conjoined. It checks their equivalence to premises plus negated conclusion
-  before starting the proof. The field stays read-only until Edit is selected.
+  before starting the proof. The `conditional-inference` deck instead accepts
+  the SAT formula and converts it to CNF automatically before displaying the
+  clauses. The resulting CNF stays visible above the clause choices until Edit
+  is selected. Both check the student's reduction before starting. The field stays
+  read-only until Edit is selected.
 
 ## Reuse
 

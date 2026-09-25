@@ -24,6 +24,7 @@ export const OPERATIONS = {
   NOT: { arity: 1, run: a => 1 - a },
   AND: { arity: 2, run: (a, b) => a & b },
   OR: { arity: 2, run: (a, b) => a | b },
+  IF: { arity: 2, run: (a, b) => (1-a) | b },
   XNOR: { arity: 2, run: (a, b) => Number(a === b) },
   XOR: { arity: 2, run: (a, b) => a ^ b },
   NAND: { arity: 2, run: (a, b) => 1 - (a & b) },

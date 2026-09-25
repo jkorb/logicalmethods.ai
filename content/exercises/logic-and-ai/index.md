@@ -11,7 +11,7 @@ params:
 
 _Note_: A definition needs to fully explain the meaning of a concept. This is
 typically done by saying under which precise conditions the concept applies.
-That is, the answer should have the form like "An inference is ... and consists of..." or "An AI system is symbolic just in case ...".
+That is, the answer should have the form like "An {{< term "inference" "inference" >}} is ... and consists of..." or "An AI system is symbolic just in case ...".
 
 1. *Inference.*
 
@@ -27,8 +27,8 @@ That is, the answer should have the form like "An inference is ... and consists 
 These are examples of good answers.
 
 1. An inference is a piece of reasoning in which one or more statements,
-   the premises, are put forward as reasons for accepting another statement, the
-   conclusion. An inference can be valid or invalid: what makes it an inference
+   the {{< term "premise" "premises" >}}, are put forward as reasons for accepting another statement, the
+   {{< term "conclusion" "conclusion" >}}. An inference can be {{< term "validity" "valid or invalid" >}}: what makes it an inference
    is that the premises are offered in support of the conclusion, whether or not
    they actually support it.
 
@@ -36,7 +36,7 @@ These are examples of good answers.
    This is a deductively valid inference: the premises cannot be true while the
    conclusion is false.
 
-   An example of inductive inference is: the last hundred swans observed in this
+   An example of {{< term "inductive-support" "inductive" >}} inference is: the last hundred swans observed in this
    region were white; so the next swan observed here will also be white. The
    observations are offered as evidence for the prediction, but they do not
    guarantee it.
@@ -54,7 +54,7 @@ These are examples of good answers.
 
    A rule-based expert system is an example. It stores facts and rules and
    uses an inference engine to draw conclusions from them. A pattern-matching
-   chatbot is another example; a separate knowledge base isn't required for
+   chatbot is another example; a separate {{< term "knowledge-base" "knowledge base" >}} isn't required for
    every symbolic system.
 
    A neural network that learns to classify pictures from numerical weights is
@@ -66,10 +66,10 @@ These are examples of good answers.
 
 Give at least 5 examples of:
 
-1. premise indicators,
+1. {{< term "premise-indicator" "premise indicators" >}},
 
 
-2. inference indicators.
+2. {{< term "inference-indicator" "inference indicators" >}}.
 
 
 ## Solution {#examples-of-indicatorsSolution .solution}
@@ -232,10 +232,10 @@ Below are technical descriptions of different AI systems taken from Wikipedia. I
 
 Give at least 3 examples of system 1 and system 2 thinking and explain why.
 
-1. System 1
+1. {{< term "system-1" "System 1" >}}
 
 
-2. System 2
+2. {{< term "system-2" "System 2" >}}
 
 
 ## Solution {#thinking-fast-and-slowSolution .solution}
@@ -336,7 +336,7 @@ academic sources. You need to reference your sources!
 ## Solution {#researchSolution .solution}
 These are examples of possible answers.
 
-1. No. For example, classical propositional validity is decidable.
+1. No. For example, classical propositional validity is {{< term "decidable" "decidable" >}}.
    Each formula contains only finitely many variables, even though the language
    has infinitely many available. We can check all truth assignments to the
    variables in that formula. It is valid exactly when every assignment makes

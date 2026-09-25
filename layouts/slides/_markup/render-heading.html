@@ -1,7 +1,4 @@
-</section>
-<section>
-  <h{{ .Level }} {{with index .Attributes "id"}}id="{{ . }}"{{end}} {{ with index .Attributes "class"}}class="{{.}}"{{end}}>
-  {{- .Text | safeHTML -}}   
-  </h{{ .Level }}>
-
-
+{{- /* Slide headings: no section anchors, since a slide is addressed as a
+       whole (#slide-N). The page title is the only h1. */ -}}
+{{- if eq .Level 1 -}}{{ errorf "%s: use ## for a slide title; the lecture title is the page's only h1" .Page.File.Path }}{{- end -}}
+<h{{ .Level }} id="{{ .Anchor }}"{{ with index .Attributes "class" }} class="{{ . }}"{{ end }}>{{ .Text | safeHTML }}</h{{ .Level }}>

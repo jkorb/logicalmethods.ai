@@ -185,7 +185,7 @@ export function resolutionTrace(problem, { maxClauses = 160, maxPairs = 20000, r
       const clause = remaining.length ? normalizeClause(join(remaining, '∨')) : { literals: [], key: '', tautology: false };
       const added = add(clause, [a.id, b.id], literalKey(literal).replace(/^¬/, ''));
       if (added === null) return result('unknown', 'Clause limit reached; the result is undecided.');
-      if (added === false) steps.push({ count: clauses.length, pair: [a.id, b.id], explanation: clause.tautology ? 'The resolvent is a tautology; discard it.' : 'The ordered resolvent is already on the list; do not add it again.' });
+      if (added === false) steps.push({ count: clauses.length, pair: [a.id, b.id], discarded: clause.tautology, resolvent: clause.key, explanation: clause.tautology ? 'The resolvent is a tautology; discard it.' : 'The ordered resolvent is already on the list; do not add it again.' });
       if (!clause.literals.length) return result('unsatisfiable', 'The empty clause ⊥ is false under every valuation.');
     }
     steps.push({ count: clauses.length, checkedPair: [a.id, b.id], checked: pairs, explanation: 'Finished checking lines ' + a.id + ' and ' + b.id + ': every complementary pivot has been considered.' });

@@ -10,14 +10,14 @@ export function mountPseudocode(root) {
     picker();code.replaceChildren();status.textContent='';delete status.dataset.feedback;
     const level=levels[current];root.querySelector('[data-prompt]').textContent=level.prompt;
     level.code.split('___').forEach((part,i)=>{
-      if(i){const input=el('input',{type:'text','aria-label':`Missing entry ${i}`,autocomplete:'off',autocapitalize:'off',spellcheck:'false',maxlength:12,size:6});input.value=saved[current][i-1]||'';
+      if(i){const input=el('input',{type:'text','aria-label':`Missing entry ${i}`,autocomplete:'off',autocapitalize:'off',spellcheck:'false',maxlength:level.maxEntry || 12,size:level.maxEntry?Math.min(24,Math.max(8,level.answers[i-1].length)):6});input.value=saved[current][i-1]||'';
         input.addEventListener('input',()=>{saved[current][i-1]=input.value;input.removeAttribute('aria-invalid');status.textContent='';delete status.dataset.feedback;});code.append(input);}
       code.append(document.createTextNode(part));
     });
   }
   root.querySelector('form').addEventListener('submit',event=>{
     event.preventDefault();const inputs=[...code.querySelectorAll('input')];
-    const wrong=inputs.filter((input,i)=>{const bad=input.value.trim()!==levels[current].answers[i];input.setAttribute('aria-invalid',String(bad));return bad;});
+    const wrong=inputs.filter((input,i)=>{const bad=(levels[current].maxEntry?input.value.replace(/\s/gu,''):input.value.trim())!==(levels[current].maxEntry?levels[current].answers[i].replace(/\s/gu,''):levels[current].answers[i]);input.setAttribute('aria-invalid',String(bad));return bad;});
     status.dataset.feedback=wrong.length?'incorrect':'correct';
     status.textContent=wrong.length?'Not quite. Check the marked gaps and try again.':`Correct. ${levels[current].explanation}`;
     if(wrong.length){wrong[0].focus({preventScroll:true});code.classList.remove('is-shaking');void code.offsetWidth;code.classList.add('is-shaking');}

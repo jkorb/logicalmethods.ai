@@ -45,7 +45,8 @@ a token.
 
 - [Chapter apps](chapter-apps.md) — the `logic-app` panel and static trees.
 - [Glossary](glossary.md) — term links, previews, and search.
-- [Local slide viewer](slide-viewer.md).
+- [Reveal.js deck theme](../slides/reveal/theme.md) — lecture slides in the book's style.
+- [Local slide viewer](slide-viewer.md) — the deprecated Excalidraw viewer.
 - [Pickers and compact tools](pickers.md).
 - [Finite set diagrams](set-diagrams.md).
 

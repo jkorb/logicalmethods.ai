@@ -1,0 +1,22 @@
+[
+  {
+    "label": "Conditional",
+    "formula": "RAIN → WIND",
+    "description": "Eliminate → to obtain a disjunction."
+  },
+  {
+    "label": "Conjunctive antecedent",
+    "formula": "(RAIN ∧ SUN) → RAINBOW",
+    "description": "A conjunction in the antecedent: eliminate →, then move the negation inward."
+  },
+  {
+    "label": "Negated conditional",
+    "formula": "¬(RAIN → WIND)",
+    "description": "Negating a conditional requires a true antecedent and a false consequent."
+  },
+  {
+    "label": "Nested conditional",
+    "formula": "RAIN → (SUN → RAINBOW)",
+    "description": "Eliminate both occurrences of →."
+  }
+]

@@ -18,6 +18,10 @@
   --paper-sunken: #F2EFE7;   /* wells, code blocks                         */
   --grid:         #EDEAE0;   /* 1.16:1 against paper — never affects text  */
   --margin-rule:  #E3A7AC;   /* the red margin line of a German exercise book */
+  /* the same rule, stepped back: where a reading indicator is drawn on top of
+     the margin line, the line ahead of the reader takes this. Derived, so it
+     follows both tokens into dark mode without a second definition. */
+  --margin-rule-faint: color-mix(in srgb, var(--margin-rule) 45%, var(--paper));
   --rule:         #DDD8CC;   /* hairlines, borders                          */
   --table-rule:   #847C6D;   /* hand-drawn table rules — 3.99:1 on paper    */
   --rule-strong:  #C3BCAB;

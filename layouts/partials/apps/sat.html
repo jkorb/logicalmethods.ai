@@ -5,20 +5,22 @@
 {{ $label := .sc.Get "title" | default (printf "%s example %d" $kind (add .sc.Ordinal 1)) }}
 <section class="logic-app sat-app" data-logic-app="sat" data-kind="{{ $kind }}" aria-label="{{ $label }}">
   <div class="sat-examples" role="group" aria-label="Examples">
-    {{ range index (index hugo.Data "sat-examples") $kind }}<button type="button" data-example="{{ .formula }}" data-description="{{ .description }}" title="{{ .description }}" aria-pressed="false" disabled>{{ .label }}</button>{{ end }}
+    <span class="app-picker-label" title="Examples">Ex.</span>
+    {{ $examples := index (index hugo.Data "sat-examples") $kind }}
+    {{ if eq (.sc.Get "examples") "conditionals" }}{{ $examples = index hugo.Data "sat-conditional-examples" }}{{ end }}
+    {{ range $examples }}<button type="button" data-example="{{ .formula }}" data-description="{{ .description }}" title="{{ .description }}" aria-pressed="false" disabled>{{ .label }}</button>{{ end }}
   </div>
   <p class="sat-example-description" data-example-description></p>
   <form data-input-form>
     <label class="visually-hidden" for="{{ .id }}-input">{{ if in (slice "rewrite" "tseytin") $kind }}Formula{{ else }}Formula or inference{{ end }}</label>
     {{ if in (slice "rewrite" "tseytin") $kind }}
-    <input id="{{ .id }}-input" class="logic-app__input" data-input maxlength="512" spellcheck="false" aria-describedby="{{ .id }}-help" value="{{ .sc.Get "formula" | default $initial }}" disabled>
+    <input id="{{ .id }}-input" class="logic-app__input" data-input maxlength="512" spellcheck="false" value="{{ .sc.Get "formula" | default $initial }}" disabled>
     {{ else }}
-    <textarea id="{{ .id }}-input" class="logic-app__input" data-input rows="1" maxlength="4608" spellcheck="false" aria-describedby="{{ .id }}-help" disabled>{{ .sc.Get "formula" | default $initial }}</textarea>
+    <textarea id="{{ .id }}-input" class="logic-app__input" data-input rows="1" maxlength="4608" spellcheck="false" disabled>{{ .sc.Get "formula" | default $initial }}</textarea>
     {{ end }}
     <button type="submit" data-use disabled aria-label="Use input" title="Use input">{{ partial "apps/icon.html" "play" }}</button>
     <button type="button" data-edit disabled aria-label="Edit input" title="Edit input" hidden>{{ partial "apps/icon.html" "edit" }}</button>
   </form>
-  <p id="{{ .id }}-help" class="sat-help">{{ if in (slice "rewrite" "tseytin") $kind }}Use one formula with ¬, ∧, ∨, ↔ or →.{{ else }}Use ¬, ∧, ∨, ↔ or →. Separate formulas with commas or new lines; put ∴ before a conclusion.{{ end }}</p>
   {{ if eq $kind "rewrite" }}<div data-target role="group" aria-label="Normal form"><button type="button" data-mode="CNF" aria-pressed="true" disabled>CNF</button><button type="button" data-mode="DNF" aria-pressed="false" disabled>DNF</button></div>{{ end }}
   <div class="sat-problem" data-problem></div>
   <div class="sat-layout">

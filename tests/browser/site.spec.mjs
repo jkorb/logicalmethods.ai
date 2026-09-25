@@ -174,3 +174,31 @@ test('code blocks fit their column, and the language badge is clear of them', as
   expect(scrolling).toEqual([]);
   expect(badges, 'no language badges were checked').toBeGreaterThan(0);
 });
+
+/* The margin rail says which section you are in. The bar under the header says
+   how much chapter is left, and it is the only such indicator on a phone. */
+test('the reading bar tracks how far through the chapter the reader is', async ({ page }) => {
+  await page.goto('/textbook/boolean/');
+  await page.evaluate(() => document.fonts.ready);
+  const filled = () => page.locator('.reading-bar__fill').evaluate(el =>
+    el.getBoundingClientRect().width / el.parentElement.getBoundingClientRect().width);
+
+  await expect(page.locator('.reading-bar')).toBeVisible();
+  expect(await filled()).toBe(0);
+
+  // the bar is full when the chapter's last line reaches the bottom of the window
+  const end = await page.evaluate(() => {
+    const box = document.querySelector('.chapter').getBoundingClientRect();
+    return box.bottom + window.scrollY - window.innerHeight;
+  });
+  await page.evaluate(y => window.scrollTo(0, y / 2), end);
+  expect(await filled()).toBeGreaterThan(0.3);
+  expect(await filled()).toBeLessThan(0.7);
+
+  await page.evaluate(y => window.scrollTo(0, y), end);
+  expect(await filled()).toBeGreaterThan(0.99);
+
+  // chapters only: elsewhere there is no single run of reading to measure
+  await page.goto('/exercises/boolean/');
+  await expect(page.locator('.reading-bar')).toHaveCount(0);
+});

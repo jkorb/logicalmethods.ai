@@ -54,16 +54,16 @@ export function mountModels(root) {
       if(!description){description=el('p',{'data-inference-description':''});toolbar.before(description);}
       description.replaceChildren(formula(mode==='ds'?'SUN ∨ RAIN; ¬SUN ⊨ RAIN':'SUN ∨ RAIN; SUN ⊭ ¬RAIN'));
     }
-    const propositionList=['SUN','RAIN','¬SUN','¬RAIN','SUN ∧ RAIN','SUN ∨ RAIN','RAIN ∧ ¬SUN','SUN ∨ (RAIN ∧ ¬SUN)'];
-    stages=mode==='propositions' ? [{label:'',ids:[],initial:true,text:'Four assignments, one for each combination of truth-values. Choose a proposition to see its members.'},...propositionList.map(f=>({label:`[${f}]`,ids:proposition(f),formula:f,text:f==='SUN'?'The sunny worlds.':f==='RAIN'?'The rainy worlds.':f==='¬SUN'?'Take the complement of [SUN].':f==='¬RAIN'?'Take the complement of [RAIN].':f.includes('∨')?'Take the union of the two propositions.':'Take the intersection of the two propositions.'}))] : inferenceStages(['SUN ∨ RAIN',mode==='ds'?'¬SUN':'SUN'],mode==='ds'?'RAIN':'¬RAIN');
+    const propositionList=root.dataset.examples==='conditionals'?['RAIN','SUN','¬SUN','¬RAIN ∨ SUN','RAIN → SUN']:['SUN','RAIN','¬SUN','¬RAIN','SUN ∧ RAIN','SUN ∨ RAIN','RAIN ∧ ¬SUN','SUN ∨ (RAIN ∧ ¬SUN)'];
+    stages=mode==='propositions' ? [{label:'',ids:[],initial:true,text:'Four assignments, one for each combination of truth-values. Choose a proposition to see its members.'},...propositionList.map(f=>({label:`[${f}]`,ids:proposition(f),formula:f,text:f.includes('→')?'The conditional is false only in the rainy world without sun.':f==='SUN'?'The sunny worlds.':f==='RAIN'?'The rainy worlds.':f==='¬SUN'?'Take the complement of [SUN].':f==='¬RAIN'?'Take the complement of [RAIN].':f.includes('∨')?'Take the union of the two propositions.':'Take the intersection of the two propositions.'}))] : inferenceStages(['SUN ∨ RAIN',mode==='ds'?'¬SUN':'SUN'],mode==='ds'?'RAIN':'¬RAIN');
     const tabs=el('div');toolbar.querySelector('[data-propositions]')?.remove();tabs.dataset.propositions='';toolbar.append(tabs);
     function render(i) {
       const stage=stages[i];
       choices(tabs,stages.map((s,j)=>[j,s.label]).filter(([,label])=>label),i,j=>{render(j);tabs.querySelector(`[data-choice="${j}"]`)?.focus({preventScroll:true});},'Select a proposition or calculation');
       draw(stage.ids,w=>{status.replaceChildren(formula(`${w.id}: ${valuationText(w)}`));if(stage.formula)status.append(el('p',{},`v(${stage.formula}) = ${Number(stage.ids.includes(w.id))}.`));},stage.formula||'',stage.countermodels);
-      status.replaceChildren();if(stage.label)status.append(formula(stage.label));status.append(el('p',{},stage.text));if(stage.formula){const tree=parseBoolean(stage.formula).tree,parts=tree.children.map(n=>printFormula(n).replace(/^\((.*)\)$/,'$1'));if(parts.length)status.append(formula(`[${stage.formula}] = ${parts.length===1?`W ∖ [${parts[0]}]`:parts.map(p=>`[${p}]`).join(tree.label==='∧'?' ∩ ':' ∪ ')}`));}if(!stage.initial)status.append(formula(`{${stage.ids.join(', ')}}`));
+      status.replaceChildren();if(stage.label)status.append(formula(stage.label));status.append(el('p',{},stage.text));if(stage.formula){const tree=parseBoolean(stage.formula).tree,parts=tree.children.map(n=>printFormula(n).replace(/^\((.*)\)$/,'$1'));if(!parts.length)status.append(formula(`[${stage.formula}]`));if(parts.length)status.append(formula(`[${stage.formula}] = ${parts.length===1?`W ∖ [${parts[0]}]`:tree.label==='→'?`(W ∖ [${parts[0]}]) ∪ [${parts[1]}]`:parts.map(p=>`[${p}]`).join(tree.label==='∧'?' ∩ ':' ∪ ')}`));}if(!stage.initial)status.append(formula(`${stage.formula?' = ':''}{${stage.ids.join(', ')}}`));
     }
-    render(0);
+    render(root.dataset.examples==='conditionals'?stages.length-1:0);
   }
   let custom;
   function loadTask() {
@@ -106,7 +106,7 @@ export function mountModels(root) {
   else {
     if (root.dataset.examples === 'inferences') {
       const examples=el('div',{class:'boolean-choices'}); toolbar.before(examples);
-      const renderExamples=()=>choices(examples,[['ds','Valid inference'],['fallacy','Invalid inference']],mode,next=>{mode=next;demonstrate();renderExamples();},'Inference examples');
+      const renderExamples=()=>{choices(examples,[['ds','Valid inference'],['fallacy','Invalid inference']],mode,next=>{mode=next;demonstrate();renderExamples();},'Inference examples');examples.prepend(el('span',{class:'app-picker-label',title:'Examples'},'Ex.'));};
       renderExamples();
     }
     demonstrate();

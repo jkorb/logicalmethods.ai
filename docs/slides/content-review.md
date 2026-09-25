@@ -116,6 +116,31 @@ own font. Virgil carries no logic symbols at all: prose containing `∧`, `↔`,
 `⊥` or `∴` is laid out as alternating prose and Comic Shanns runs on one
 baseline.
 
+**Lecture 5 was then migrated to Reveal.js.** It keeps the Excalidraw deck's
+order and its 20 slides, with the title slide and its mascot generated and the
+learning goals in the chapter's objectives callout. Definitions, the theorem
+boxes, inferences and rewrite rules are the chapter's own shortcodes. Apps
+replace drawn diagrams where they show the step better: the NAND circuit on the
+circuit-verification slide, truth-table search, normal-form rewriting and
+resolution, and the closing worked-out example, which is the resolution app on the
+circuit's `¬(S ↔ C)`; its "Faulty circuit" example gives the saturating case.
+`evaluate` stays as pseudocode; `truth_table_sat`, `normal_form`,
+`resolution_sat` and `tseytin` are left to the chapter, since code and app
+together do not fit a slide. The evaluated parse tree and the coin drawing are
+cut. The Excalidraw scene, exports and `narration.yaml` remain.
+
+**Lecture 6 was written in Reveal.js** against the revised chapter 6, following
+the order of the staged Excalidraw draft: 20 slides, with the goals and their
+Bloom levels, the material conditional, rewriting, modus ponens and the
+counterfactual caveat, the weather knowledge base, forward and backward
+chaining, direction against order, Horn clauses, Horn SAT, and planning with
+its miracle model and frame conditions. The chapter's apps carry the steps:
+rewriting, forward and backward chaining, the side-by-side search comparison,
+Horn SAT with counters, and the closing worked-out example, the two-block plan. The
+`forward`, `backward` and `horn_sat` pseudocode is left to the chapter, whose
+apps name each instruction as it runs. The Excalidraw source and staged copy are
+untouched.
+
 Lectures 6–12 were copied byte-for-byte, without automatic font or notation
 replacement. Review them against the book, including historical
 staff/attendance information, terminology, proof examples, screenshots and

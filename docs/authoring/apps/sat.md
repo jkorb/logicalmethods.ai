@@ -20,8 +20,13 @@ on the left, controls and explanations on the right, stacked on mobile.
 Internal scrolling contains wide tables and derivations. The truth-table's
 current cell has an underline, and row buttons select assignments.
 The tree has a nested text alternative. Resolution starts with the retained
-CNF clauses, then shows one inference at a time beside a numbered clause ledger
-with parent/pivot references. Preprocessing runs in the engine but is not part
+CNF clauses, then shows one inference at a time below a compact grid of numbered clauses
+with parent/pivot references. Discarded tautological resolvents appear muted
+and labelled. Chapter pickers use the compact label Ex. (Examples); custom inputs have no generic
+example-description filler. Edit and play actions sit beside the input, with step navigation on the same
+row to the right. Navigation wraps below on narrow screens. CNF/DNF choices
+stay left-aligned.
+The chapter fields omit the repeated notation hints. Preprocessing runs in the engine but is not part
 of the displayed trace. An expandable history records fully checked pairs.
 Inference summaries use ∴ during calculation and ⊨ or ⊭ at completion.
 
@@ -68,3 +73,7 @@ satisfiability but does not extract a model. The table marks witnesses.
 
 - [App index](README.md), [chapter-app design](../../design/chapter-apps.md).
 - [Boolean apps](boolean.md), [The tools section](../tools-section.md).
+
+For a rewrite player devoted to conditionals, use `examples="conditionals"`.
+Its buttons load a conditional, a negated conditional, and a nested conditional;
+the ordinary SAT deck is unchanged.

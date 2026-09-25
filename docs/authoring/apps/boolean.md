@@ -55,3 +55,7 @@ worked calculations and valuation table remain available.
 
 For the two-variable model demonstration, `examples="inferences"` adds
 buttons switching between the valid and invalid weather inferences.
+
+For the conditional proposition in the following chapter, use `kind="models"`
+with `examples="conditionals"`. It selects `[RAIN → SUN]` initially and also
+offers its antecedent, consequent, and equivalent disjunction.

@@ -4,7 +4,7 @@ author: Johannes Korbmacher
 locked: false
 weight: 50
 params:
-  last_edited: "22/09/2026"
+  last_edited: "25/09/2026"
   id: txt-sat
 ---
 
@@ -609,7 +609,7 @@ Rewriting lets us change the shape of
 a formula while preserving its truth-value under every valuation.
 
 {{< callout type="definition" title="Logical equivalence" >}}
-Two propositional formulas are {{< term "equivalence" "logically equivalent" >}} iff they have the same truth-value under every Boolean valuation.
+Two propositional formulas are {{< term "equivalence" "logically equivalent" >}} iff they have the same truth-value under every Boolean valuation. We write $A ≡ B$ for this relation.
 {{< /callout >}}
 
 The Boolean laws give us equivalent formulas. For example, $¬(SUN ∧ RAIN)$
@@ -628,7 +628,11 @@ of a propositional variable.
 {{< /callout >}}
 
 Thus $SUN$ and $¬RAIN$ are literals, while $¬¬SUN$ and $¬(SUN ∧ RAIN)$
-are not. A variable and its negation, such as $SUN$ and $¬SUN$, are
+are not. An unnegated variable such as $SUN$ is a
+{{< term "positive-literal" "positive literal" >}}; a negated variable such as
+$¬RAIN$ is a {{< term "negative-literal" "negative literal" >}}. Either can be
+true or false, depending on the valuation. A variable and its negation, such as
+$SUN$ and $¬SUN$, are
 {{< term "complementary-literals" "complementary literals" >}}: making
 one true makes the other false.
 
@@ -687,7 +691,7 @@ is a conjunction of disjunctive clauses.
 {{< /callout >}}
 
 From now on, when we say *clause* without qualification, we mean a
-disjunctive clause. A clause with one literal is called a *unit clause*.
+disjunctive clause. A clause with one literal is called a {{< term "unit-clause" "unit clause" >}}.
 So $SUN$ is a clause, as is $SUN ∨ ¬RAIN$.
 A CNF may consist of one clause. We leave out brackets along a chain of
 the same connective, using associativity as in the Boolean chapter.
@@ -1030,7 +1034,8 @@ formulas, and they must all be true under the same valuation.
 A disjunctive clause containing complementary literals is always true:
 one of the two literals must be true, whatever the valuation. For example,
 $$SUN ∨ ¬SUN ∨ RAIN$$ is a {{< term "tautology" "tautology" >}} regardless
-of the weather. Such a clause puts no restriction on our choices, so we
+of the weather. We call it a {{< term "tautological-clause" "tautological clause" >}}.
+Such a clause puts no restriction on our choices, so we
 discard it. We also keep only one copy of each clause, ignoring order and
 repetitions as agreed above.
 
@@ -1087,9 +1092,9 @@ The test `new not in clauses` uses our convention: clauses with the same
 literals count as the same clause, regardless of order or repetitions.
 
 The app performs CNF preprocessing before the first displayed step.
-The numbered list shows the resulting clauses; Next then applies resolution.
-Each new line records its parents and pivot, and the diagram beside the
-list shows that inference. Open the checked-pairs list to see which pairs
+The numbered clause cards show the resulting clauses; Next then applies resolution.
+Each new clause records its parents and pivot, and the diagram below the
+clauses shows that inference. Open the checked-pairs list to see which pairs
 have been examined, including those that produced no new clause. To
 inspect the preprocessing itself, use the rewriting app above.
 
@@ -1107,8 +1112,14 @@ without deriving $⊥$. Select Invalid inference in our app to investigate this
 yourself.
 
 Here we can read off a satisfying assignment: $v(SUN) = v(RAIN) = 1$.
-For other satisfiable examples, the truth-table app can help us find
-a satisfying assignment after resolution has established that one exists.
+A {{< term "unit-clause" "unit clause" >}} fixes the value of its variable. Use these values in the
+remaining clauses: a true literal satisfies its clause, while a false literal
+leaves the other literals to satisfy it. If no unit fixes the remaining values,
+we may need to try a choice and change it if it leads to a conflict. Check the
+completed valuation against every input clause. For an inference, also check
+that it makes every premise true and the conclusion false. The truth-table app
+can help with this last check. Merely stopping a search before it is saturated
+doesn't establish that a countermodel exists.
 
 For the circuit verification problem, select Circuit verification in
 the same app. It expands $¬(S ↔ C)$, converts it to CNF, and lists the
@@ -1366,7 +1377,7 @@ alone can be satisfied for *any* input assignment by giving the fresh
 variables the calculated values. We must assert the root to encode
 satisfiability of the input formula.
 
-### A worked transformation
+### A worked-out transformation {#a-worked-transformation}
 
 Return to $(SUN ∧ RAIN) ∨ WIND$. The full algorithm gives $SUN ∧ RAIN$ the name
 $u₁$, then gives $u₁ ∨ WIND$ the name $u₂$. We obtain

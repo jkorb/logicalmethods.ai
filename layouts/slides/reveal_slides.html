@@ -1,0 +1,38 @@
+{{- /* A lecture deck in Reveal.js: Markdown slides that use the book's own
+       shortcodes and apps. See docs/slides/reveal/README.md. Lectures 1 to 4
+       keep excalidraw_slides.html until they are migrated. */ -}}
+{{ define "head" }}
+<link rel="stylesheet" href="{{ (resources.Get "css/slides-reveal.css" | css.Build (dict "minify" true) | fingerprint).RelPermalink }}">
+{{ end }}
+{{ define "main" }}
+<div class="shell slides-shell">
+  <article class="prose">
+    {{ partial "single/breadcrumb.html" . }}
+    <p class="chapter__num">
+      {{ with .CurrentSection.Param "section-names" }}{{ . }} {{ math.Div $.Weight 10 }}{{ end }}
+    </p>
+    <h1 class="chapter__name">{{ .Title }}</h1>
+    <p class="chapter__meta">
+      {{ with .Params.author }}<span>{{ . }}</span>{{ end }}
+      <span>Lecture slides</span>
+    </p>
+
+    {{ partial "slides/reveal-deck.html" . }}
+
+    {{ with .Param "highlights" }}
+      <section class="highlights" aria-labelledby="highlights-title">
+        <h2 id="highlights-title">Key points from this lecture</h2>
+        <ul>
+          {{ range . }}<li><strong>{{ .keyword }}</strong>{{ with .note }} — {{ . }}{{ end }}</li>{{ end }}
+        </ul>
+      </section>
+    {{ end }}
+
+    {{ partial "single/nav-bot" . }}
+  </article>
+</div>
+{{ end }}
+
+{{ define "footer" }}
+<script type="module" src="{{ (resources.Get "js/slides-reveal.js" | js.Build (dict "targetPath" "js/slides-reveal.js" "minify" true) | fingerprint).RelPermalink }}"></script>
+{{ end }}

@@ -47,10 +47,16 @@ export default defineConfig({
   ],
   // serve.mjs reads from disk per request, so a server left running from an
   // earlier run is never stale and saves a startup on each local iteration.
-  webServer: {
+  webServer: [{
     command: 'npm run serve:test',
     url: 'http://127.0.0.1:4173',
     reuseExistingServer: !ci,
     timeout: budget(60_000)
-  }
+  }, {
+    // tmp/fixture-site: the site plus the sample Reveal.js deck, never deployed.
+    command: 'npm run serve:test -- --fixture',
+    url: 'http://127.0.0.1:4174',
+    reuseExistingServer: !ci,
+    timeout: budget(60_000)
+  }]
 });

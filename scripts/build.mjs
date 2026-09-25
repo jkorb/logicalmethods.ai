@@ -7,25 +7,34 @@ const installed = execFileSync('hugo', ['version'], { encoding: 'utf8' });
 if (!matchesHugoVersion(installed, version)) {
   throw new Error(`Use Hugo ${version} (see .hugo-version). Found: ${installed.trim()}`);
 }
-// Only this dedicated, ignored output directory is removed.
-rmSync('tmp/site', { recursive: true, force: true });
-mkdirSync('tmp/site', { recursive: true });
+// Only these dedicated, ignored output directories are removed.
+for (const dir of ['tmp/site', 'tmp/fixture-site']) {
+  rmSync(dir, { recursive: true, force: true });
+  mkdirSync(dir, { recursive: true });
+}
 
 /* A successful build has one fact worth printing: it built, and how much. Hugo's
    stats table says the same thing in fifteen lines, so it is captured and kept
    for a failure, where every line of it matters. `--panicOnWarning` means a
    warning already exits non-zero, so nothing diagnostic is being swallowed. */
 const verbose = process.argv.includes('--verbose') || process.env.VERBOSE === '1';
-const build = spawnSync('hugo', ['-D', '--panicOnWarning', '--destination', 'tmp/site'], {
-  encoding: 'utf8',
-  stdio: verbose ? 'inherit' : ['ignore', 'pipe', 'pipe']
-});
+const hugo = args => {
+  const result = spawnSync('hugo', ['-D', '--panicOnWarning', ...args], {
+    encoding: 'utf8',
+    stdio: verbose ? 'inherit' : ['ignore', 'pipe', 'pipe']
+  });
+  if (result.error) throw result.error;
+  if (result.status !== 0) {
+    if (!verbose) process.stderr.write(`${result.stdout ?? ''}${result.stderr ?? ''}`);
+    process.exit(result.status ?? 1);
+  }
+  return result;
+};
 
-if (build.error) throw build.error;
-if (build.status !== 0) {
-  if (!verbose) process.stderr.write(`${build.stdout ?? ''}${build.stderr ?? ''}`);
-  process.exit(build.status ?? 1);
-}
+// tmp/site is what CI deploys. The fixture site adds a sample Reveal.js deck
+// for tests/browser/slides-reveal.spec.mjs, and is never deployed.
+const build = hugo(['--destination', 'tmp/site']);
+hugo(['--config', 'hugo.toml,hugo.reveal-fixture.toml', '--destination', 'tmp/fixture-site']);
 if (!verbose) {
   const out = build.stdout ?? '';
   const pages = out.match(/^\s*Pages\s*│\s*(\d+)/m)?.[1];

@@ -206,5 +206,22 @@
       "label": "NOR",
       "formula": "¬INPUT₁ ∧ ¬INPUT₂"
     }
+  ],
+  "conditional-inference": [
+    {
+      "inference": "RAIN → WIND; ¬RAIN ∴ ¬WIND"
+    },
+    {
+      "inference": "RAIN → WIND ∴ ¬WIND → ¬RAIN"
+    },
+    {
+      "inference": "¬RAIN → RAIN ∴ RAIN"
+    },
+    {
+      "inference": "RAIN → (SUN → RAINBOW) ∴ (RAIN ∧ SUN) → RAINBOW"
+    },
+    {
+      "inference": "¬(RAIN → WIND) ∴ RAIN"
+    }
   ]
 }

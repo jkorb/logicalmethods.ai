@@ -1,0 +1,24 @@
+# Test build only (scripts/build.mjs): the normal site plus a sample Reveal.js
+# deck at /slides/reveal-fixture/. Never deploy this output.
+[module]
+[[module.mounts]]
+source = "assets/katex/fonts"
+target = "static/katex/fonts"
+[[module.mounts]]
+source = "assets/icons/font/fonts"
+target = "static/icons/font/fonts"
+[[module.mounts]]
+source = "assets/icons/subset"
+target = "static/icons/subset"
+[[module.mounts]]
+source = "assets/bootstrap/dist"
+target = "static/bootstrap/dist"
+[[module.mounts]]
+source = "assets/fonts"
+target = "static/fonts"
+[[module.mounts]]
+source = "content"
+target = "content"
+[[module.mounts]]
+source = "tests/fixtures/reveal-deck"
+target = "content/slides/reveal-fixture"

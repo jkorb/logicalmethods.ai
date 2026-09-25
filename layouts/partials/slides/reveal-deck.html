@@ -1,0 +1,124 @@
+{{- /* A Reveal.js deck built from the page's Markdown; see
+       docs/slides/reveal/README.md. The slide and column shortcodes leave
+       <hr data-deck-slide …> and <hr data-deck-column> markers, and this cuts
+       the rendered page at them.
+
+       Reveal.js treats every <section> under .slides as a slide, and would
+       hide or disable the <section> elements that apps and some shortcodes
+       render. So only the slides are sections: every other section becomes a
+       <div>, keeping its region role where it was named.
+
+       The build fails where a cut would leave broken HTML or lose content
+       silently: Markdown before the first slide, or a marker inside a
+       paragraph or list, which happens when a line of text or another
+       shortcode follows it without a blank line. It also enforces two lecture
+       standards: slide 2 holds the learning goals, and every picture is one
+       of the course's own drawings (docs/slides/lecture-standards.md). */ -}}
+{{- $html := string .Content -}}
+{{- $html = replaceRE `<section(\s[^>]*?aria-label)` `<div role="region"$1` $html -}}
+{{- $html = replaceRE `<section([\s>])` `<div$1` $html -}}
+{{- $html = replace $html `</section>` `</div>` -}}
+
+{{- $parts := split $html `<hr data-deck-slide` -}}
+{{- if lt (len $parts) 2 -}}
+  {{- errorf "%s: a Reveal.js deck needs at least one {{< slide >}}" .File.Path -}}
+{{- end -}}
+{{- if trim (index $parts 0) " \t\r\n" -}}
+  {{- errorf "%s: the Markdown before the first {{< slide >}} belongs to no slide" .File.Path -}}
+{{- end -}}
+
+{{- range findRESubmatch `<img\b[^>]*?\ssrc="([^"]*)"` $html -1 -}}
+  {{- if not (strings.Contains (index . 1) "/img/drawings/") -}}
+    {{- errorf "%s: slides show only the course's own drawings from assets/img/drawings/, not %s" $.File.Path (index . 1) -}}
+  {{- end -}}
+{{- end -}}
+{{- with findRE `<(video|picture|audio|iframe|object|embed)[\s>]` $html 1 -}}
+  {{- errorf "%s: slides embed no media (%s); use the course's own drawings" $.File.Path (index . 0) -}}
+{{- end -}}
+
+{{- /* Hugo's automatic summary of a deck, used by the feeds, is raw slide
+       markup, so a deck states its own. */ -}}
+{{- if strings.Contains (string .Summary) "data-deck-slide" -}}
+  {{- errorf "%s: a deck needs a summary in its front matter, for the site's feeds" .File.Path -}}
+{{- end -}}
+
+{{- $titleSlide := ne (.Param "titleSlide") false -}}
+{{- $goals := cond $titleSlide 0 1 -}}
+{{- if or (le (len (after 1 $parts)) $goals) (not (strings.Contains (index (after 1 $parts) $goals) "callout--objectives")) -}}
+  {{- errorf "%s: slide 2 must hold the learning goals, in {{< callout type=\"objectives\" >}}" .File.Path -}}
+{{- end -}}
+{{- $offset := cond $titleSlide 2 1 -}}
+{{- $tags := slice "p" "li" "ul" "ol" "dl" "blockquote" "table" "div" "figure" "details" -}}
+{{- $slides := slice -}}
+{{- range $i, $part := after 1 $parts -}}
+  {{- $number := add $i $offset -}}
+  {{- $match := index (findRESubmatch `^([^>]*)>` $part 1) 0 -}}
+  {{- $attributes := index $match 1 -}}
+  {{- $body := strings.TrimPrefix (index $match 0) $part -}}
+  {{- $pieces := split $body `<hr data-deck-column>` -}}
+  {{- $split := in $attributes "slide--split" -}}
+  {{- if and (gt (len $pieces) 1) (not $split) -}}
+    {{- errorf "%s: slide %d has a {{< column >}} but not layout=\"split\"" $.File.Path $number -}}
+  {{- end -}}
+  {{- if and $split (lt (len $pieces) 2) -}}
+    {{- errorf "%s: slide %d has layout=\"split\" but no {{< column >}}" $.File.Path $number -}}
+  {{- end -}}
+  {{- range $pieces -}}
+    {{- $piece := . -}}
+    {{- range $tags -}}
+      {{- if ne (len (findRE (printf `<%s[\s>]` .) $piece)) (len (findRE (printf `</%s>` .) $piece)) -}}
+        {{- errorf "%s: slide %d cuts through a <%s>: give each {{< slide >}} and {{< column >}} its own line, with a blank line after it" $.File.Path $number . -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if $split -}}
+    {{- $body = index $pieces 0 -}}
+    {{- range after 1 $pieces -}}
+      {{- $body = printf `%s<div class="slide__column">%s</div>` $body . -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $slides = $slides | append (printf `<section id="slide-%d"%s><div class="slide__body">%s</div></section>` $number $attributes $body) -}}
+{{- end -}}
+
+<section class="reveal-deck" data-reveal-deck aria-label="Lecture slides" tabindex="0">
+  <div class="reveal-deck__toolbar" data-deck-controls hidden>
+    <button type="button" class="btn" data-deck-prev aria-label="Previous slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button>
+    <details class="reveal-deck__jump course-picker" data-deck-menu>
+      <summary aria-label="Go to slide"><span data-deck-current></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></summary>
+      <nav class="course-picker__options" aria-label="Choose a slide" data-deck-choices></nav>
+    </details>
+    <button type="button" class="btn" data-deck-next aria-label="Next slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg></button>
+    <button type="button" class="btn" data-deck-fullscreen aria-label="Full screen" title="Full screen (F)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4H4v5m11-5h5v5M4 15v5h5m11-5v5h-5"/></svg></button>
+  </div>
+  <div class="reveal-deck__stage">
+    <div class="deck-canvas" data-reveal-root>
+      <div class="slides">
+        {{- if $titleSlide }}
+        <section id="slide-1" class="slide slide--title" data-title="{{ .Title }}">
+          <div class="slide__body">
+            <div class="slide__heading">
+              <p class="slide__kicker">Logical methods for AI</p>
+              <h2 class="slide__title">{{ .Title }}</h2>
+              {{/* No author: anyone may teach from the deck. */}}
+              {{ with .CurrentSection.Param "section-names" }}<p class="slide__meta">{{ . }} {{ math.Div $.Weight 10 }}</p>{{ end }}
+            </div>
+            {{ partial "shared/mascot.html" (dict "name" (.Params.mascot | default "board")) }}
+          </div>
+        </section>
+        {{- end }}
+        {{ range $slides }}{{ . | safeHTML }}
+        {{ end }}
+      </div>
+    </div>
+  </div>
+  <p class="visually-hidden" role="status" aria-live="polite" data-deck-status></p>
+  <p class="reveal-deck__help" data-deck-controls hidden>Use ← / →, Page Up / Page Down, or Space to navigate. While you work in an app, only Page Up / Page Down change the slide. Press F for full screen and Esc to exit. Each slide has a shareable URL.</p>
+</section>
+{{/* The slides as one text, rebuilt from them by slides-reveal.js: only the
+     current slide can be read in the deck. Without JavaScript the slides are
+     already a sequence, so this stays hidden. */}}
+<details class="deck-text" data-deck-text hidden>
+  <summary><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="4" r="2"/><path d="M4 9h16m-8-2v8m0-2-5 8m5-8 5 8"/></svg>What is on the slides<span class="deck-text__hint">Text of every slide</span></summary>
+  <p><strong>The text of every slide, in order.</strong> Drawings are described in words, and interactive apps are named{{ with .Params.chapter }}{{ with site.GetPage (printf "/textbook/%s" .) }}; the <a href="{{ .RelPermalink }}">textbook chapter</a> has each of them in full{{ end }}{{ end }}.</p>
+  <div data-deck-text-slides></div>
+</details>

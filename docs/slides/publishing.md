@@ -1,5 +1,9 @@
 # Publishing a lecture
 
+> **Deprecated.** This note covers the Excalidraw deck format, which Lectures 1
+> to 4 keep for the current course run and every other deck keeps until it is
+> migrated. New and migrated decks use [Reveal.js](reveal/README.md).
+
 To publish a reviewed lecture, move its staged page, deck and any
 `narration.yaml` into the corresponding `content/slides/<topic>/` bundle,
 replacing the review-notice page: drop the notice and `locked`, and add

@@ -18,6 +18,9 @@ if (terms.length) {
   const show = term => {
     close();
     active = term;
+    // Only the full-screen element is drawn in full screen, as in a lecture deck.
+    const layer = document.fullscreenElement ?? document.body;
+    if (preview.parentElement !== layer) layer.append(preview);
     preview.textContent = term.dataset.glossaryDefinition;
     term.setAttribute('aria-describedby', preview.id);
     preview.hidden = false;

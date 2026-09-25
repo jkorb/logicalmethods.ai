@@ -8,7 +8,9 @@ separate consideration there.
 
 Templates use `resources.Get` for global assets and page resources for bundled
 images. Explicit mounts in `hugo.toml` publish KaTeX fonts, icon fonts, Bootstrap
-distribution files, and project fonts as static resources. Preserve these URL
+distribution files, and project fonts as static resources. The two config
+overlays, `hugo.slides-preview.toml` and the test-only `hugo.reveal-fixture.toml`,
+repeat those mounts and add one of their own. Preserve these URL
 relationships when moving assets. Several paths are rooted at `/`, so deploying
 under a URL subdirectory would require an audit.
 

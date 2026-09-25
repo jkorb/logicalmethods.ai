@@ -1,23 +1,27 @@
 # Slides
 
-The local slide tools render available Excalidraw scenes in `slides/sources/`.
-Use `npm run slides:edit` to edit and **Save library** to retain icon-library edits.
-`npm run slides:render` regenerates decks whose sources are present. A lecture can
-carry a hand-written `narration.yaml` beside its `index.md` describing every slide,
-including its drawings; the viewer uses it for image `alt` text and for the reading
-view. Keep it in step with the scene. Illustrate slides from the book's own scenes in
-`assets/img/drawings/sources/` and from the icon library, which is where new
-course drawings belong too. Only Lecture 1 is released. Lectures 2–12
-are staged locally in ignored `slides/unpublished/` and stay outside normal
-builds, including `hugo -D`. Unreviewed sources, image extracts and archives
-are also Git-ignored, not distributed with a fresh clone.
-`npm run slides:preview` mounts them for local review.
+A lecture deck is written like a chapter. The page
+`content/slides/<topic>/index.md` sets `layout: 'reveal_slides'`, and its body
+is Markdown in which each `{{< slide >}}` starts a slide. Every shortcode a
+chapter uses — `callout`, `term`, `$…$`, `inference`, `img`, `logic-app` —
+works on a slide and looks as it does in the chapter. `hugo new content
+slides/<topic>` starts one. See [Writing a deck](../slides/reveal/authoring.md).
 
-See [Slides](../slides/README.md) for preservation, image locations and
-publication steps.
+## The Excalidraw decks (deprecated)
+
+Lectures 1 to 4 stay Excalidraw decks for the current course run, and every
+other lecture keeps its Excalidraw deck until it is migrated; see
+[Migrating a deck](../slides/reveal/migrating.md). Their local tools render the
+Excalidraw scenes in `slides/sources/`: `npm run slides:edit` edits them,
+`npm run slides:render` regenerates their SVG decks, and each carries a
+hand-written `narration.yaml` describing every slide. Lectures 1 to 5 are
+released; Lectures 6 to 12 are staged in ignored `slides/unpublished/`, which
+`npm run slides:preview` mounts for local review. See
+[Lecture slides](../slides/README.md) for preservation, image locations and
+publication.
 
 ## Related
 
 - [Lecture standards](../slides/lecture-standards.md) — length, shape and images of a revised deck.
-- [Sources and generated files](../slides/files.md), [Image review](../slides/image-review.md).
+- [Reveal.js decks](../slides/reveal/README.md) — how a deck is built, its theme and tests.
 - [References and links](references-and-links.md) — the `iframe` shortcode for external embeds.

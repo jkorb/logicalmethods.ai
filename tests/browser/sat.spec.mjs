@@ -252,3 +252,20 @@ test('DNF circuit specification agrees and the resolution conclusion is centered
   await expect(conclusion).toHaveCSS('text-align','center');
   expect(await conclusion.evaluate(n=>parseFloat(getComputedStyle(n).fontSize))).toBeGreaterThanOrEqual(14);
 });
+
+test('chapter example controls and compact resolution remain readable without captures',async({page})=>{
+  await page.setViewportSize({width:1366,height:768});
+  const a=app(page,'resolution');await expect(a.locator('.app-picker-label')).toHaveText('Ex.');
+  await expect(a.locator('[data-example-description]')).not.toContainText('Test the formula');
+  await expect(a.locator('.sat-help')).toHaveCount(0);
+  const field=await a.locator('[data-input]').boundingBox(),edit=await button(a,'Edit input').boundingBox();
+  const nav=await a.locator('[data-navigation]').boundingBox();expect(nav.x).toBeGreaterThan(edit.x);expect(nav.y).toBeLessThan(field.y+field.height);
+  expect(edit.x).toBeGreaterThanOrEqual(field.x+field.width);expect(edit.y).toBeLessThan(field.y+field.height);
+  const rewrite=app(page,'rewrite'),target=await rewrite.locator('[data-target]').boundingBox(),cnf=await button(rewrite,'CNF').boundingBox();expect(Math.abs(cnf.x-target.x)).toBeLessThan(2);
+  await button(a,'Edit input').click();await a.locator('[data-input]').fill('(SUN ∨ RAIN) ∧ (¬SUN ∨ ¬RAIN)');await button(a,'Use input').click();await button(a,'Last step').click();
+  await expect(a.getByRole('status')).toContainText('Satisfiable');await expect(a.locator('.practice-discarded')).toHaveCount(2);
+  await button(a,'Circuit verification').click();await button(a,'Last step').click();
+  expect((await a.boundingBox()).height).toBeLessThan(740);
+  expect(await a.evaluate(n=>n.scrollWidth<=n.clientWidth+1)).toBe(true);
+  const result=await new AxeBuilder({page}).include('[data-logic-app="sat"]').analyze();expect(result.violations).toEqual([]);
+});

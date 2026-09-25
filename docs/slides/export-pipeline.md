@@ -1,5 +1,9 @@
 # The export pipeline
 
+> **Deprecated.** This note covers the Excalidraw deck format, which Lectures 1
+> to 4 keep for the current course run and every other deck keeps until it is
+> migrated. New and migrated decks use [Reveal.js](reveal/README.md).
+
 Each export renders one explicit frame through Excalidraw's `exportToSvg`, with
 the frame's original dimensions, clipping, background, element order and image
 files. Fonts and images are embedded in the SVG, so it renders independently

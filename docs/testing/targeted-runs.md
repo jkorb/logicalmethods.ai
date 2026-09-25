@@ -21,8 +21,10 @@ before pushing:
 | Documentation notes under `docs/` | `npm run check:docs` |
 | Styles or page furniture | `a11y`, `keyboard`, `reflow`, `display-math` |
 | An interactive app | its own spec, then `a11y` |
-| Slide deck content or narration | Target lecture checks in [Slide validation](../slides/validation.md) |
-| Slide viewer, deck shortcode or publication state | `slides`, `privacy` |
+| Reveal.js deck content | `npm run check`, then `slides-reveal` |
+| Reveal.js theme, deck partial, `slide` or `column` | `npm run test:unit`, `slides-reveal`, then `a11y`, `keyboard`; see [Testing the framework](../slides/reveal/testing.md) |
+| Excalidraw deck content or narration | Target lecture checks in [Slide validation](../slides/validation.md) |
+| Excalidraw viewer, deck shortcode or publication state | `slides`, `privacy` |
 | Release state: unlocking a chapter | `release`, `keyboard` |
 | The route stub or a shared fixture | the whole browser suite |
 

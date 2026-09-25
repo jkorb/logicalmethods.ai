@@ -1,5 +1,9 @@
 # Images and publication review
 
+> **Deprecated.** This note covers the Excalidraw deck format, which Lectures 1
+> to 4 keep for the current course run and every other deck keeps until it is
+> migrated. New and migrated decks use [Reveal.js](reveal/README.md).
+
 **Lectures 1 to 5 are cleared; Lectures 6–12 are not.** Every embedded image in
 Lecture 1 was removed on 14 September 2026, because no creator, source or licence
 could be established for any of them and the course publishes under CC BY 4.0,

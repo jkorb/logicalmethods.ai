@@ -1,5 +1,9 @@
 # Validation
 
+> **Deprecated.** This note covers the Excalidraw deck format, which Lectures 1
+> to 4 keep for the current course run and every other deck keeps until it is
+> migrated. New and migrated decks use [Reveal.js](reveal/README.md).
+
 Select checks by the change; this is not a checklist to run after every edit.
 Batch edits and follow [Efficient slide work](agent-workflow.md) for visual review.
 

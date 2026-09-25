@@ -42,7 +42,7 @@
   "conditional": {
     "term": "Conditional",
     "definition": "An if-then statement. In classical logic, A→B is false exactly when A is true and B is false.",
-    "chapter": "logic-and-ai"
+    "chapter": "conditionals"
   },
   "conditional-probability": {
     "term": "Conditional probability",
@@ -196,8 +196,9 @@
   },
   "knowledge-base": {
     "term": "Knowledge base",
-    "definition": "A collection of represented information used as the starting point for further inference.",
-    "chapter": "logic-and-ai"
+    "definition": "A set of statements represented in a formal language, which an agent can ASK for consequences and TELL new information.",
+    "chapter": "formal-languages",
+    "anchor": "knowledge-representation"
   },
   "literal": {
     "term": "Literal",
@@ -553,7 +554,7 @@
   },
   "recursion": {
     "term": "Recursion",
-    "definition": "Defining or carrying out a procedure in terms of further calls to that same procedure.",
+    "definition": "Defining or carrying out a procedure through further calls to itself, directly or through other procedures.",
     "chapter": "formal-languages"
   },
   "operator-precedence": {
@@ -889,7 +890,7 @@
   },
   "resolution-saturation": {
     "term": "Saturation under resolution",
-    "definition": "A clause list is saturated if every resolvent is tautological or already present, after ordering and removing repetitions.",
+    "definition": "A clause list is saturated under resolution iff every resolvent is tautological or already present, ignoring the order and repetition of literals.",
     "chapter": "sat"
   },
   "refutation-completeness": {
@@ -910,6 +911,213 @@
   "conjunctive-clause": {
     "term": "Conjunctive clause",
     "definition": "A conjunction of literals, also called a term. A single literal counts as a conjunctive clause.",
+    "chapter": "sat"
+  },
+  "horn-clause": {
+    "term": "Horn clause",
+    "definition": "A disjunctive clause containing at most one positive literal.",
+    "chapter": "conditionals"
+  },
+  "forward-chaining": {
+    "term": "Forward chaining",
+    "definition": "Starting with known facts and repeatedly applying rules to derive new facts.",
+    "chapter": "conditionals"
+  },
+  "backward-chaining": {
+    "term": "Backward chaining",
+    "definition": "Starting with a goal and searching for rules whose premises would establish it.",
+    "chapter": "conditionals"
+  },
+  "expert-system": {
+    "term": "Expert system",
+    "definition": "A system for reasoning or decision making in a particular area, typically combining a knowledge base of expert rules and facts with an inference engine.",
+    "chapter": "logic-and-ai",
+    "anchor": "logic-and-ai"
+  },
+  "antecedent": {
+    "term": "Antecedent",
+    "definition": "The if-part A of a conditional A → B.",
+    "chapter": "conditionals"
+  },
+  "consequent": {
+    "term": "Consequent",
+    "definition": "The then-part B of a conditional A → B.",
+    "chapter": "conditionals"
+  },
+  "counterfactual-conditional": {
+    "term": "Counterfactual conditional",
+    "definition": "A conditional describing what would be the case under a supposition that may differ from the actual situation.",
+    "chapter": "conditionals"
+  },
+  "fact": {
+    "term": "Fact",
+    "definition": "In a propositional rule base, an atom given as known information.",
+    "chapter": "conditionals"
+  },
+  "depth-first-search": {
+    "term": "Depth-first search",
+    "definition": "A search that follows one branch as far as possible before returning to try an alternative.",
+    "chapter": "conditionals"
+  },
+  "breadth-first-search": {
+    "term": "Breadth-first search",
+    "definition": "A search that explores every possibility at one depth before moving to the next depth.",
+    "chapter": "conditionals"
+  },
+  "definite-clause": {
+    "term": "Definite clause",
+    "definition": "A disjunctive clause containing exactly one positive literal.",
+    "chapter": "conditionals"
+  },
+  "horn-formula": {
+    "term": "Horn formula",
+    "definition": "A conjunction of Horn clauses.",
+    "chapter": "conditionals"
+  },
+  "goal-clause": {
+    "term": "Goal clause",
+    "definition": "A disjunctive clause with no positive literal, expressing that its underlying atoms cannot all be true. The empty clause is included.",
+    "chapter": "conditionals"
+  },
+  "horn-sat": {
+    "term": "Horn SAT",
+    "definition": "The problem of deciding whether a finite conjunction of Horn clauses is satisfiable.",
+    "chapter": "conditionals"
+  },
+  "least-model": {
+    "term": "Least model",
+    "definition": "A model whose true atoms are contained among the true atoms of every model of the same formulas.",
+    "chapter": "conditionals"
+  },
+  "agenda": {
+    "term": "Agenda",
+    "definition": "A collection of items awaiting processing by a reasoning procedure.",
+    "chapter": "conditionals"
+  },
+  "queue": {
+    "term": "Queue",
+    "definition": "A list processed in first-in, first-out order: new items enter at the end and the first item is removed next.",
+    "chapter": "conditionals"
+  },
+  "plan": {
+    "term": "Plan",
+    "definition": "For a fixed horizon, a model of a planning knowledge base together with its initial and goal conditions, assigning values to state and action atoms at each time point.",
+    "chapter": "conditionals"
+  },
+  "fluent": {
+    "term": "Fluent",
+    "definition": "A feature of a world whose truth may change over time; a propositional planning encoding uses a separate atom for its value at each time point.",
+    "chapter": "conditionals"
+  },
+  "frame-condition": {
+    "term": "Frame condition",
+    "definition": "A formula specifying when a fluent retains its value from one time point to the next.",
+    "chapter": "conditionals"
+  },
+  "sat-planning": {
+    "term": "Bounded SAT planning",
+    "definition": "Encoding an initial state, a goal, and permitted transitions over a fixed finite horizon as a propositional formula whose satisfying assignments describe plans.",
+    "chapter": "conditionals"
+  },
+  "frame-problem": {
+    "term": "Frame problem",
+    "definition": "The problem of representing what remains unchanged when an action occurs without explicitly describing every unaffected feature.",
+    "chapter": "conditionals"
+  },
+  "prefix-notation": {
+    "term": "Prefix (Polish) notation",
+    "definition": "Notation in which each operator is written before its arguments. Fixed operator arities determine how the expression is grouped.",
+    "chapter": "formal-languages",
+    "page": "/exercises/formal-languages",
+    "anchor": "polish-notation"
+  },
+  "postfix-notation": {
+    "term": "Postfix (reverse Polish) notation",
+    "definition": "Notation in which each operator is written after its arguments. Fixed operator arities determine how the expression is grouped.",
+    "chapter": "formal-languages",
+    "page": "/exercises/formal-languages",
+    "anchor": "shunting-yard"
+  },
+  "infix-notation": {
+    "term": "Infix notation",
+    "definition": "Notation in which a binary operator is written between its two arguments. Brackets or precedence conventions specify grouping.",
+    "chapter": "formal-languages",
+    "page": "/exercises/formal-languages",
+    "anchor": "polish-notation"
+  },
+  "stack": {
+    "term": "Stack",
+    "definition": "A collection in which items are added and removed at one end, the top. The last item added is the first removed.",
+    "chapter": "formal-languages",
+    "page": "/exercises/formal-languages",
+    "anchor": "shunting-yard"
+  },
+  "push": {
+    "term": "Push",
+    "definition": "To add an item to the top of a stack.",
+    "chapter": "formal-languages",
+    "page": "/exercises/formal-languages",
+    "anchor": "shunting-yard"
+  },
+  "pop": {
+    "term": "Pop",
+    "definition": "To remove and return the top item of a nonempty stack.",
+    "chapter": "formal-languages",
+    "page": "/exercises/formal-languages",
+    "anchor": "shunting-yard"
+  },
+  "monotonicity": {
+    "term": "Monotonicity of consequence",
+    "definition": "The property that adding premises to a valid inference preserves its validity, with interpretations and the model space held fixed.",
+    "chapter": "valid-inference",
+    "page": "/exercises/valid-inference",
+    "anchor": "monotonicity-of-deductive-inference"
+  },
+  "idempotence": {
+    "term": "Idempotence",
+    "definition": "For a binary operation, the property that applying it to two copies of the same input returns that input.",
+    "chapter": "boolean",
+    "page": "/exercises/boolean",
+    "anchor": "boolean-laws"
+  },
+  "parity": {
+    "term": "Parity",
+    "definition": "Whether a whole number is even or odd. The parity of a list of bits is 0 when it contains an even number of 1s and 1 otherwise.",
+    "chapter": "boolean",
+    "page": "/exercises/boolean",
+    "anchor": "circuit-construction"
+  },
+  "planning-horizon": {
+    "term": "Planning horizon",
+    "definition": "The chosen number of action steps in a bounded planning problem. A SAT encoding tests for a plan within that bound.",
+    "chapter": "conditionals",
+    "anchor": "planning"
+  },
+  "shunting-yard": {
+    "term": "Shunting-yard algorithm",
+    "definition": "An algorithm that converts infix expressions to postfix notation, using a stack to hold operators until precedence and grouping allow them to be written to the output.",
+    "chapter": "formal-languages",
+    "page": "/exercises/formal-languages",
+    "anchor": "shunting-yard"
+  },
+  "unit-clause": {
+    "term": "Unit clause",
+    "definition": "A disjunctive clause consisting of a single literal. Satisfying it requires that literal to be true.",
+    "chapter": "sat"
+  },
+  "tautological-clause": {
+    "term": "Tautological clause",
+    "definition": "A disjunctive clause containing a literal and its negation. It is true under every valuation and imposes no constraint on a satisfying valuation.",
+    "chapter": "sat"
+  },
+  "positive-literal": {
+    "term": "Positive literal",
+    "definition": "An unnegated atomic formula. Positive describes its syntactic form, not its truth-value.",
+    "chapter": "sat"
+  },
+  "negative-literal": {
+    "term": "Negative literal",
+    "definition": "The negation of an atomic formula. Negative describes its syntactic form, not its truth-value.",
     "chapter": "sat"
   }
 }
