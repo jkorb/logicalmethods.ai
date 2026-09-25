@@ -1,8 +1,8 @@
 # Lecture standards
 
 What a lecture deck has to look like. It is the spec for every deck written or
-migrated in the [Reveal.js format](reveal/README.md); Lecture 5 is the worked
-example, and [Content review](content-review.md) records what each revision
+migrated in the [Reveal.js format](reveal/README.md); Lectures 5 and 6 are the
+worked examples, and [Content review](content-review.md) records what each revision
 changed. The rules that apply only to the deprecated Excalidraw decks are at
 the end.
 
@@ -124,11 +124,10 @@ slides themselves: it names each app by its `title` and reads each drawing's
 
 ## Prompting an agent
 
-> Migrate Lecture 6 (`conditionals`) to the Reveal.js format, to
-> `docs/slides/lecture-standards.md`, against
-> `content/textbook/conditionals/index.md`. Follow
-> `docs/slides/reveal/migrating.md`, and keep every Excalidraw file. Report
-> what you cut.
+> Write Lecture 7 (`proof` slides, `proofs` textbook) in the Reveal.js format,
+> to `docs/slides/lecture-standards.md`, against
+> `content/textbook/proofs/index.md`. Follow `docs/slides/reveal/migrating.md`,
+> and keep every Excalidraw file. Report what you cut.
 
 ## Excalidraw decks (deprecated)
 

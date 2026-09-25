@@ -4,7 +4,7 @@
 > to 4 keep for the current course run and every other deck keeps until it is
 > migrated. New and migrated decks use [Reveal.js](reveal/README.md).
 
-**Lectures 1 to 5 are cleared; Lectures 6–12 are not.** Every embedded image in
+**Lectures 1 to 6 are cleared; Lectures 7–12 are not.** Every embedded image in
 Lecture 1 was removed on 14 September 2026, because no creator, source or licence
 could be established for any of them and the course publishes under CC BY 4.0,
 which cannot cover third-party work. Its manifest's `removedImages` block records
@@ -33,7 +33,10 @@ meme — went the same way on 22 September 2026, recorded in
 `slides/lecture-5.json`. Its released SVGs under `content/slides/sat/deck/`
 embed no images at all.
 
-For the other seven lectures the maintainer asked that imported images stay
+Lecture 6's one image — a portrait of Alfred Horn — went the same way on
+24 September 2026, recorded in `slides/lecture-6.json`.
+
+For the other six lectures the maintainer asked that imported images stay
 visible for now, and **none of them has been marked licence-cleared**.
 `slides/image-inventory.json` covers 74 image records across Lectures 3–12,
 including unused embedded records. Each record lists slide usages, an `imagePath`
@@ -49,7 +52,7 @@ Removing an image from a source may leave a review copy under
 Original workspace image files remain in `tmp/excalidraw_workspace_export/img/`.
 Workspace filename matches are candidates only, not evidence of authorship or
 permission. Rendering embeds the images in each SVG: ignored staged SVGs for
-Lectures 6–12. Lectures 1 to 5 no longer have any. No separate remote image
+Lectures 7–12. Lectures 1 to 6 no longer have any. No separate remote image
 host is used.
 
 ## Before releasing a lecture

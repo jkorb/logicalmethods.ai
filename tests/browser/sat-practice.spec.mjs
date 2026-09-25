@@ -87,7 +87,7 @@ test('practice fits laptop width and has accessible states without screenshots',
 });
 test('every revised exercise has a working solution control',async({page})=>{
   await useTestPassword(page);await page.reload();
-  const buttons=page.locator('button[aria-controls$="Solution"]');await expect(buttons).toHaveCount(12);
+  const buttons=page.locator('button[aria-controls$="Solution"]');await expect(buttons).toHaveCount(13);
   await buttons.first().click();await expect(page.locator('#passwordInput')).toBeFocused();await page.locator('#passwordInput').fill(testPassword);await page.locator('#passwordInput').press('Enter');
   await expect(page.locator('#passwordModal')).toBeHidden();
   await expect(page.locator('#truth-function-representationsSolution')).toBeVisible();
@@ -144,7 +144,7 @@ test('circuit levels check descriptions and equivalence has its own tasks',async
 });
 test('inference practice requires the SAT clauses before resolution and permits editing',async({page})=>{
   const a=app(page,'resolution','inference');
-  await a.getByLabel('CNF clauses').fill('RAIN');await button(a,'Start').click();await expect(a.getByRole('status')).toContainText('do not express');
+  await a.getByLabel('CNF clauses').fill('RAIN');await button(a,'Start').click();await expect(a.getByRole('status')).toContainText('does not express');
   await a.getByLabel('CNF clauses').fill('¬RAIN, RAIN ∨ ¬SUN');await button(a,'Start').click();
   await expect(a.getByLabel('CNF clauses')).toHaveAttribute('readonly','');
   await button(a,'Clause 1: ¬RAIN').click();await button(a,'Clause 2: RAIN ∨ ¬SUN').click();await button(a,'Resolve').click();

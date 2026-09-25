@@ -1,4 +1,5 @@
 import { test, expect } from './fixtures.mjs';
+import {monkeyFrames} from '../../assets/js/logic/planning.js';
 import AxeBuilder from '@axe-core/playwright';
 const app=(page,kind)=>page.locator(`[data-logic-app="conditionals"][data-kind="${kind}"]`).first();
 const button=(root,name)=>root.getByRole('button',{name,exact:true});
@@ -40,7 +41,7 @@ test('two-block planning starts editable with frames and supports partial initia
 });
 test('exercise planning is blank; student chaining has a direction selector',async({page})=>{
   await page.goto('/exercises/conditionals/');const three=page.locator('[data-kind="planning"][data-example="three"]'),monkey=page.locator('[data-kind="planning"][data-example="monkey"]');
-  for(const a of [three,monkey]) {await expect(a.locator('[data-frame="0"]')).toHaveValue('');await expect(button(a,'Use chapter frames')).toHaveCount(0);const threeBlocks=a===three;await a.locator('[data-language]').fill(threeBlocks?'On(R,B);On(G,B);On(B,R);On(B,G)':'AtBox;BoxUnderBanana;OnBox;HasBanana');await button(a,'Check language').click();await a.locator('[data-initial]').fill(threeBlocks?'On(G,B);On(B,R)':'none');await a.locator('[data-goal]').fill(threeBlocks?'On(B,G);On(G,R)':'HasBanana');await a.locator('[data-frame="0"]').fill(threeBlocks?'On(X,Y,t) ∧ ¬Unstack(X,Y,t) → On(X,Y,t+1)':'F(t) ∧ ¬Remove(F,t) → F(t+1)');await a.locator('[data-frame="1"]').fill(threeBlocks?'¬On(X,Y,t) ∧ ¬Stack(X,Y,t) → ¬On(X,Y,t+1)':'¬F(t) ∧ ¬Add(F,t) → ¬F(t+1)');await button(a,'Plan!').click();await button(a,'Last step').click();}
+  for(const a of [three,monkey]) {await expect(a.locator('[data-frame="0"]')).toHaveValue('');await expect(button(a,'Use chapter frames')).toHaveCount(0);const threeBlocks=a===three;await a.locator('[data-language]').fill(threeBlocks?'On(R,B);On(G,B);On(B,R);On(B,G)':'BoxUnderBanana;OnBox;HasBanana');await button(a,'Check language').click();await a.locator('[data-initial]').fill(threeBlocks?'On(G,B);On(B,R)':'none');await a.locator('[data-goal]').fill(threeBlocks?'On(B,G);On(G,R)':'HasBanana');await a.locator('[data-frame="0"]').fill(threeBlocks?'On(X,Y,t) ∧ ¬Unstack(X,Y,t) → On(X,Y,t+1)':monkeyFrames[0]);await a.locator('[data-frame="1"]').fill(threeBlocks?'¬On(X,Y,t) ∧ ¬Stack(X,Y,t) → ¬On(X,Y,t+1)':monkeyFrames[1]);await button(a,'Plan!').click();await button(a,'Last step').click();}
   await expect(three.locator('[data-rules]')).toContainText('On(B,G,4)');await expect(monkey.locator('[data-rules]')).toContainText('HasBanana');
   const chaining=page.locator('[data-logic-app="conditional-practice"][data-kind="chaining"]');await button(chaining,'Backward').click();await expect(button(chaining,'Reason backwards')).toBeEnabled();
 });

@@ -2,77 +2,95 @@
   "id": "lecture-6",
   "title": "Lecture 6: Logical conditionals",
   "source": "sources/Lecture 6.excalidraw",
-  "output": "slides/unpublished/conditionals/deck",
-  "publication": "unpublished",
+  "output": "content/slides/conditionals/deck",
   "originalSha256": "333d3e31df4cc3f4e4eabb5ef7d4e2b9dcd6b8c03cc95412276e28803d4694c5",
   "slides": [
     {
-      "frameId": "hjt-MohjOHeML6nWwAN5k",
+      "frameId": "Unajei61hBtnAXvLGNmYV",
       "title": "Logical methods for AI — Lecture 6"
     },
     {
-      "frameId": "rfcRz9kZwTKtlHGk_Q1ls",
-      "title": "Conditionals"
+      "frameId": "2ptBESf6shBYO0tdiIgXy",
+      "title": "What you'll be able to do"
     },
     {
-      "frameId": "3wvB_CqdGPRqTnwWZ80oA",
-      "title": "Boolean implementation"
+      "frameId": "HHXZndFUHC3C6KfZwzyPa",
+      "title": "Much of what we know is if-then"
     },
     {
-      "frameId": "9546zb5-Sd6wBYz7bgkHw",
-      "title": "Sanity check!"
+      "frameId": "FQwYGJH_Qsy0Zv9rYZCZg",
+      "title": "The material conditional"
     },
     {
-      "frameId": "8BJN6FH8QZG2yg694aTBn",
-      "title": "Resolution and modus ponens"
+      "frameId": "HGpMVVf-UeM3KnPB9Gn5i",
+      "title": "Default-true"
     },
     {
-      "frameId": "TSDMmXPMinh1V7apSYmwP",
-      "title": "Non-material conditionals"
+      "frameId": "jJf6rkvWg_uo2_4q0-wjX",
+      "title": "Rewriting the arrow away"
     },
     {
-      "frameId": "2AL4DsavMAECQFFRkz_oz",
-      "title": "Conditional reasoning"
+      "frameId": "zF8IH4H0Iyt9FIZpBNfSn",
+      "title": "Modus ponens"
     },
     {
-      "frameId": "FXWUFZhVGUJ0dQbjV11Na",
-      "title": "Resolution with Horn clauses"
+      "frameId": "VVUSZHxuhm6dox0sG5nZI",
+      "title": "A knowledge base of rules"
     },
     {
-      "frameId": "_Fs74UtBrIS3KpWbNLy2m",
-      "title": "(Re)solution"
+      "frameId": "mFp9SmQ3TMMeXrUsnP7XF",
+      "title": "Forward chaining"
     },
     {
-      "frameId": "2WE53dW8DeGkAvNPWbnqB",
-      "title": "Analysis using gen-MP"
+      "frameId": "yA9EXtiEMuDIV3RAlmRZ5",
+      "title": "Chaining forwards"
     },
     {
-      "frameId": "8q8dqu4oMOUrEe5-bZEWV",
-      "title": "Forward-chaining"
+      "frameId": "9-1af0mrFD6YCQhDFe1gP",
+      "title": "Backward chaining"
     },
     {
-      "frameId": "z6fpT_YTVesyx9tYBQYSq",
-      "title": "Planning"
+      "frameId": "oGfKGLCC5Ipp3cJfgVzaD",
+      "title": "Chaining backwards"
     },
     {
-      "frameId": "U5IL85QPqwEItcbykX6FV",
-      "title": "Satplan"
+      "frameId": "wGklJu8-rhnnSBJVnkStp",
+      "title": "Direction and order"
     },
     {
-      "frameId": "EqjlwKrX1UoV5EHYnzTXL",
-      "title": "HORN-SAT planning"
+      "frameId": "8ZYMH8FXmrdHEkf3u5Dce",
+      "title": "Horn clauses"
     },
     {
-      "frameId": "yDlzSBtYO00cjVYBQwTUS",
-      "title": "A Plan"
+      "frameId": "G3VvHBlKLESUt8nrxBbSu",
+      "title": "Horn SAT"
     },
     {
-      "frameId": "vnoVSHlYbshdmfLPelsLY",
-      "title": "\"Miracles\""
+      "frameId": "SN0aUK3jps-z_8YuYALWg",
+      "title": "Counters and an agenda"
     },
     {
-      "frameId": "xYEfGNiQwZNSSYWfFlbZY",
-      "title": "Frame problem"
+      "frameId": "M5WwaSfcLc1M5O9kjDnNI",
+      "title": "Planning by SAT solving"
+    },
+    {
+      "frameId": "BP_spQuOJ7PH9WFXVfVRg",
+      "title": "What the KB has to say"
+    },
+    {
+      "frameId": "cpaC1XnvzmbKpz2qRbuzT",
+      "title": "Miracles"
+    },
+    {
+      "frameId": "a68l4-Ko_jNRNU4wb9Jvb",
+      "title": "Worked case: a two-block plan"
     }
-  ]
+  ],
+  "removedImages": {
+    "reason": "No creator, source or licence could be established for the one embedded image in this lecture: a portrait of Alfred Horn on the conditional-reasoning slide. The course publishes under CC BY 4.0. The image element stays in the scene as deleted history; its bytes were dropped. The revised slides are illustrated from the chapter's own con_* drawings and from Lecture 4 artwork instead.",
+    "reviewed": "2026-09-24",
+    "fileIds": [
+      "6c2b7e545ed5a1d8a574877124ab85d87cb8ea00be7c56651503960b88aa8ec5b2421b87adb6a5c39bac75dc65f13c33"
+    ]
+  }
 }

@@ -1,0 +1,340 @@
+# Written description of every slide in Lecture 6, for readers who cannot use
+# the drawn deck. `alt` names the slide image; `body` describes the whole slide
+# in reading order, including what the drawings show. Keep both in step with
+# the scene in slides/sources/Lecture 6.excalidraw after any edit.
+slides:
+  - number: 1
+    alt: Title slide for Logical methods for AI, Lecture 6, on logical conditionals.
+    body: |
+      A pink title card reads "Logical methods for ∀I, Lecture 6". The A of AI
+      is drawn as the upside-down A of the universal quantifier, ∀, which is
+      the course mascot's name.
+
+      Below the card: "Chapter 6: Logical conditionals", and the course
+      address, logicalmethods.ai. At the right, the mascot ∀I wondering,
+      with a thought reading "What if ...".
+
+  - number: 2
+    alt: The six learning goals for this lecture, each tagged with a level of Bloom's taxonomy.
+    body: |
+      Heading: "What you'll be able to do". Introduction: "After this lecture
+      and chapter 6, you can:". Six goals follow, each ticked off with a green
+      check mark and tagged on the right with its level in Bloom's revised
+      taxonomy.
+
+      One: explain the Boolean interpretation of the material conditional.
+      Understand. Two: apply forward and backward chaining to a knowledge
+      base. Apply. Three: compare depth-first and breadth-first search in
+      conditional reasoning. Analyse. Four: use the Horn-SAT algorithm to
+      decide satisfiability. Apply. Five: represent a bounded planning problem
+      using propositional formulas. Apply and create. Six: explain the role of
+      frame conditions in SAT planning. Understand and evaluate.
+
+      Closing line: "Read chapter 6 first; exercise sheet 6 comes after the
+      lecture."
+
+  - number: 3
+    alt: Conditionals as rules, modus ponens, and the expert system that applies them.
+    body: |
+      Heading: "Much of what we know is if-then". A green box: conditionals are
+      rules; combined with facts about a situation, they let us infer what our
+      knowledge entails about it.
+
+      At the left, modus ponens drawn as an inference figure: from A → B and A,
+      infer B.
+
+      Two points at the right. Expert systems: a knowledge base of rules and
+      facts, an inference engine that applies them. And: rain and a low sun
+      give a rainbow — tell the KB the facts, and it predicts. Beside them, the
+      expert-system mascot.
+
+      Closing lines: we can reduce all of this to SAT, as in chapter 5, but
+      following the rules directly turns out to be cheaper — under the right
+      restriction.
+
+  - number: 4
+    alt: The material conditional's clause, with the truth-table for RAIN implies WIND.
+    body: |
+      Heading: "The material conditional". A green definition box: given a
+      Boolean valuation v, interpret the material conditional A → B by
+      v(A → B) = NOT v(A) OR v(B), with NOT and OR in the book's blue.
+
+      A note: in A → B the antecedent is A and the consequent is B; it is false
+      iff its antecedent is true and its consequent is false.
+
+      Below, the book's drawing of the truth-table for RAIN → WIND. Its columns
+      are RAIN, WIND and (RAIN → WIND), with the rows 0 0 giving 1, 0 1 giving
+      1, 1 0 giving 0, and 1 1 giving 1. A pink panel beside it works each row
+      out: (NOT 0) OR 0 = 1 OR 0 = 1, and so on down to (NOT 1) OR 1 = 0 OR 1
+      = 1. The mascot ∀I watches from the left.
+
+  - number: 5
+    alt: A program rule that says nothing about the other cases, and the default-true reading.
+    body: |
+      Heading: "Default-true". A note: a rule in a program says nothing about
+      the other cases.
+
+      The book's drawing shows the Python rule — if day.name = "monday", then
+      day.number = 1 — and then the Tuesday case, where assigning 1 and
+      assigning 2 both leave the rule intact.
+
+      A green box: default-true — the value is 1 unless there is a
+      counterexample; with two truth-values, that exhausts the options.
+
+  - number: 6
+    alt: The rewrite rule turning an arrow into a disjunction, applied to the weather rules.
+    body: |
+      Heading: "Rewriting the arrow away". A yellow box holds the rule:
+      (A → B) ⟹ (¬A ∨ B). Beside it: eliminate conditionals before moving
+      negations inward and distributing.
+
+      The book's drawing shows the weather rules rewritten this way, each
+      conditional beside its disjunctive form.
+
+      Below: the biconditional rule follows — (A ↔ B) ⟹ (¬A ∨ B) ∧ (¬B ∨ A).
+
+      Closing line: the rule introduces negations, so it has to run before the
+      negation rules.
+
+  - number: 7
+    alt: The modus ponens theorem checked by refutation, with the counterfactual caveat.
+    body: |
+      Heading: "Modus ponens". A yellow theorem box: for arbitrary Boolean
+      formulas A and B, A, (A → B) ⊨ B.
+
+      Test it by refutation, as in chapter 5, on
+      RAIN ∧ (¬RAIN ∨ WIND) ∧ ¬WIND. Two inference figures follow: from RAIN
+      and ¬RAIN ∨ WIND, infer WIND; from WIND and ¬WIND, infer ⊥.
+      Unsatisfiable, so the inference is valid — and the first step is MP in
+      disguise.
+
+      At the right, the book's drawing of ∀I standing with a ball in front of a
+      window. Below it, a red box: not every if-then is material — a
+      counterfactual can be false even when its antecedent is.
+
+  - number: 8
+    alt: The weather knowledge base beside the generalized modus ponens rule.
+    body: |
+      Heading: "A knowledge base of rules". At the left, the book's drawing of
+      the weather KB: MORNING → DAY and EVENING → DAY; (CLEAR ∧ DAY) → SUN;
+      (MORNING ∧ SUN) → LOW_SUN and (EVENING ∧ SUN) → LOW_SUN; and
+      (RAIN ∧ LOW_SUN) → RAINBOW.
+
+      At the right, generalized modus ponens as an inference figure: from
+      A₁, …, Aₙ and (A₁ ∧ … ∧ Aₙ) → B, infer B.
+
+      Below: the facts are MORNING, CLEAR and RAIN, and we ask whether RAINBOW
+      follows. A drawing of a database sits beside the question.
+
+      Closing lines: facts are atoms and every rule concludes an atom, so each
+      application supplies something we can use at once.
+
+  - number: 9
+    alt: Forward chaining defined, with the four-step chain from morning to rainbow.
+    body: |
+      Heading: "Forward chaining". A green definition box: forward chaining
+      starts with known facts and repeatedly applies rules whose premises are
+      known to derive new facts.
+
+      The book's drawing shows the chain as four inference figures, linked by a
+      drawn chain. From MORNING and MORNING → DAY, infer DAY. From CLEAR, DAY
+      and (CLEAR ∧ DAY) → SUN, infer SUN. From MORNING, SUN and
+      (MORNING ∧ SUN) → LOW_SUN, infer LOW_SUN. From RAIN, LOW_SUN and
+      (RAIN ∧ LOW_SUN) → RAINBOW, infer RAINBOW.
+
+  - number: 10
+    alt: The forward procedure in pseudocode, with notes on why it repeats and why it stops.
+    body: |
+      Heading: "Chaining forwards". A grey code panel holds the chapter's
+      `forward` procedure. It copies the facts into `known` and loops while
+      something changed: if the goal is known it returns True; otherwise it
+      goes through every rule, and whenever all of a rule's premises are known
+      it adds that rule's conclusion. At the end it reports whether the goal is
+      among the known facts.
+
+      Two notes at the right. An addition can enable a rule we have already
+      passed, so we pass again. And each addition is a new atom, of which there
+      are finitely many, so it stops. Below them: derived in order — DAY, SUN,
+      LOW_SUN, RAINBOW.
+
+      Closing lines: in, the facts, rules and an atomic goal; out, whether the
+      goal follows. Inspecting every rule on every pass does unnecessary work —
+      counters fix that.
+
+  - number: 11
+    alt: Backward chaining defined, with the table of queries replaced rule by rule.
+    body: |
+      Heading: "Backward chaining". A green definition box: backward chaining
+      starts with a goal and searches for rules whose premises would establish
+      it, treating those premises as further goals.
+
+      A table with two columns, the rule used backward and the remaining
+      queries. Start: RAINBOW. Using (RAIN ∧ LOW_SUN) → RAINBOW leaves
+      LOW_SUN, since RAIN is known. Using (MORNING ∧ SUN) → LOW_SUN leaves SUN,
+      since MORNING is known. Using (CLEAR ∧ DAY) → SUN leaves DAY, since CLEAR
+      is known. Using MORNING → DAY leaves none, since MORNING is known.
+
+      Closing lines: the same inferences as the forward chain, found by working
+      back from the query; each row replaces one query by the premises that
+      answer it.
+
+  - number: 12
+    alt: The backward and prove_all procedures in pseudocode, with notes on recursion and branches.
+    body: |
+      Heading: "Chaining backwards". A grey code panel holds the chapter's two
+      procedures. `backward` returns True if the goal is already a fact and
+      False if it is on the current branch; otherwise it extends the branch
+      with the goal and tries each rule for that goal, succeeding if
+      `prove_all` establishes the rule's premises. `prove_all` calls `backward`
+      on each goal in turn and fails as soon as one fails.
+
+      Three notes at the right. The two procedures call each other: recursion
+      again. A rule needs every premise, so a failed one sends us to the next
+      rule. And the branch list stops circular searches and lets a failed
+      attempt be abandoned cleanly.
+
+      Closing line: in, a goal, the facts and rules, and the goals on the
+      current branch.
+
+  - number: 13
+    alt: Depth-first against breadth-first, and the difference between direction and order.
+    body: |
+      Heading: "Direction and order". A green box: forward and backward
+      describe the direction of reasoning; depth-first and breadth-first
+      describe the order of search.
+
+      Two panels. The blue one, depth-first: follow one attempted proof as far
+      as it goes, then try another — the backward procedure, as written. The
+      yellow one, breadth-first: explore the immediate possibilities, then
+      those one level deeper — forward in rounds, giving DAY, SUN, LOW_SUN,
+      RAINBOW. The book's detective drawing stands at the right.
+
+      Closing lines: they are not interchangeable names — a backward search can
+      explore its alternative attempts breadth first too, if it remembers the
+      unfinished ones.
+
+  - number: 14
+    alt: Horn clauses defined, with a table of disjunctive and conditional forms.
+    body: |
+      Heading: "Horn clauses". A green definition box: a Horn clause is a
+      disjunctive clause containing at most one positive literal; a definite
+      clause contains exactly one positive literal; a Horn formula is a
+      conjunction of Horn clauses.
+
+      A table with three columns — disjunctive form, conditional form, use.
+      ¬CLEAR ∨ ¬DAY ∨ SUN is (CLEAR ∧ DAY) → SUN, which derives a fact. SUN is
+      SUN, an initial fact with no premises. ¬SUN ∨ ¬RAIN is (SUN ∧ RAIN) → ⊥,
+      which forbids a combination. ¬SUN is SUN → ⊥, which forbids a fact. At
+      the right, the book's horned mascot for Alfred Horn.
+
+      Closing lines: exactly one positive literal is what lets a rule keep
+      supplying single facts. RAIN → (WIND ∨ SNOW) has two, and chaining has no
+      single fact to add.
+
+  - number: 15
+    alt: The Horn SAT problem and the procedure that decides it, ending in the least model.
+    body: |
+      Heading: "Horn SAT". A green definition box: Horn SAT is the problem of
+      deciding whether a finite conjunction of Horn clauses is satisfiable.
+
+      Four points. Start from the facts. Whenever all premises of a rule are
+      known, add its conclusion. If that makes a constraint's premises true,
+      derive ⊥: unsatisfiable. Otherwise satisfiable — 1 for every derived
+      atom, 0 for the rest.
+
+      A blue box: those atoms are true in every model, so this is the least
+      model; it makes no additional atom true.
+
+  - number: 16
+    alt: The horn_sat procedure with counters and an agenda, and the linear-time bound.
+    body: |
+      Heading: "Counters and an agenda". A grey code panel holds the chapter's
+      `horn_sat` procedure. It prepares the counters and premise lists, records
+      every rule that is ready at the start, and then takes facts off the
+      agenda one at a time. Processing a fact decreases the counter of each
+      rule that uses it; when a counter reaches zero the rule's conclusion is
+      recorded. A conclusion of ⊥ returns False, meaning unsatisfiable; an
+      empty agenda returns True.
+
+      Two notes at the right: a counter of unmet premises for each rule, and an
+      agenda of facts waiting to be processed; and processing a fact only
+      inspects the rules that use it.
+
+      A yellow theorem box: Horn satisfiability can be decided in time
+      O(m + 1), where m is the total number of literal occurrences in the input
+      clauses.
+
+      Closing lines: compare the 2ⁿ rows of a truth-table. No polynomial bound
+      is known for general SAT.
+
+  - number: 17
+    alt: The two-block planning set-up, with fluents, actions and the initial and goal states.
+    body: |
+      Heading: "Planning by SAT solving". At the left, the book's drawing of
+      the set-up: ∀I stands at a table with a green block stacked on a red one,
+      and instructions on the wall asking for the stacking to be inverted.
+
+      A green definition box: a fluent describes a feature of a world whose
+      truth may change over time; a separate atom represents its value at each
+      time point.
+
+      Three atom families follow: On(X, Y, t), X is on Y at time t;
+      Stack(X, Y, t), put X on Y at time t; and Unstack(X, Y, t), take X off Y
+      at time t. A blue box gives the initial state On(G, R, 0) and the goal
+      state On(R, G, 2).
+
+      Closing lines: a model assigns a value to every state and action atom at
+      every time point — a full history. The plan is what its true action atoms
+      say.
+
+  - number: 18
+    alt: The planning knowledge base, in three groups, all of them Horn clauses.
+    body: |
+      Heading: "What the KB has to say". Three groups of formulas.
+
+      How the world works: ¬On(X, X, t), and On(X, Y, t) → ¬On(Y, X, t).
+
+      What an action does: Stack(X, Y, t) → On(X, Y, t+1), and
+      Unstack(X, Y, t) → ¬On(X, Y, t+1).
+
+      When an action may be taken: Unstack(X, Y, t) → On(X, Y, t) — you can
+      only unstack blocks that are actually stacked.
+
+      A green box: every one of these is a Horn clause, with one positive
+      literal in disjunctive form. So far, the encoding is Horn.
+
+  - number: 19
+    alt: The miracle model, and the frame conditions that exclude it.
+    body: |
+      Heading: "Miracles". At the left, the book's drawing of the miracle
+      history: at timestamp 0 the green block is on the red one and no action
+      is taken; at timestamp 1 nothing has been done either; and at timestamp 2
+      the red block is somehow on the green one, with a "???" above ∀I's head.
+      Below it: nobody acts, and the blocks rearrange themselves.
+
+      At the right, a green definition box: a frame condition is a formula
+      specifying when a fluent retains its value from one time point to the
+      next. Then the two conditions:
+      On(X, Y, t) ∧ ¬Unstack(X, Y, t) → On(X, Y, t+1), and
+      ¬On(X, Y, t) ∧ ¬Stack(X, Y, t) → ¬On(X, Y, t+1).
+
+      A red box: two positive literals each, so the Horn guarantee is gone.
+
+      Closing line: these exclude the miracle model — at a price.
+
+  - number: 20
+    alt: The two-block plan read off a model, and why the encoding leaves Horn.
+    body: |
+      Heading: "Worked case: a two-block plan". The book's drawing shows the
+      history across three time points. At timestamp 0 the green block is on
+      the red one, On(G, R, 0), and the action Unstack(G, R, 0) is taken. At
+      timestamp 1 the green block is no longer on the red one, and the action
+      Stack(R, G, 1) is taken. At timestamp 2 the red block is on the green
+      one, On(R, G, 2) — the goal.
+
+      Below: read off the true action atoms — Unstack(G, R, 0), then
+      Stack(R, G, 1).
+
+      Closing lines: the encoding leaves Horn for two reasons — choosing one
+      action per step, and the frame conditions. Saying what stays unchanged is
+      the frame problem.

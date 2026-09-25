@@ -22,8 +22,8 @@ archive present:
 
 ```sh
 npm run test:browser -- tests/browser/slides.spec.mjs --grep 'logic-and-ai:'
-npm run slides:test:preview -- --grep 'Lecture 6:'
-node --test --test-name-pattern '^Lecture 6 ' tools/slides/preservation.test.mjs
+npm run slides:test:preview -- --grep 'Lecture 7:'
+node --test --test-name-pattern '^Lecture 7 ' tools/slides/preservation.test.mjs
 ```
 
 These are separate examples, not three checks for every lecture. Update affected

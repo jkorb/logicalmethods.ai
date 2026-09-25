@@ -25,7 +25,7 @@ beside its `index.md`. Each entry has a `number`, a one-sentence `alt` that
 becomes the slide image's accessible name, and a `body` whose blank-line-separated
 paragraphs say what the slide shows, drawings and diagrams included. Where that
 file exists, the viewer uses it in place of the extracted text and links each
-image to its description with `aria-describedby`; Lectures 1 to 5 have one.
+image to its description with `aria-describedby`; Lectures 1 to 6 have one.
 Without it the expandable text extraction is used instead, which helps search
 and copy but
 is **not** a transcript: its reading order interleaves columns, and hand-drawn

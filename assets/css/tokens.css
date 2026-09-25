@@ -308,3 +308,12 @@ body {
 
 /* Start multiline fields at the height their content needs. */
 textarea { field-sizing: content; min-block-size: 0; block-size: auto; box-sizing: border-box; overflow-y: hidden; resize: none; }
+
+/* Native scroll surfaces follow the notebook in both color themes. */
+* { scrollbar-color:var(--ink-muted) var(--paper-sunken); scrollbar-width:thin; }
+@supports not (scrollbar-color: auto) {
+  ::-webkit-scrollbar { width:.65rem; height:.65rem; }
+  ::-webkit-scrollbar-track, ::-webkit-scrollbar-corner { background:var(--paper-sunken); }
+  ::-webkit-scrollbar-thumb { background:var(--ink-muted); border:2px solid var(--paper-sunken); border-radius:.5rem; }
+}
+@media (forced-colors:active) { * { scrollbar-color:auto; scrollbar-width:auto; } }

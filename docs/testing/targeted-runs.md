@@ -49,6 +49,11 @@ Redirection is no longer needed to keep output small: the runner writes each
 check's full output to `tmp/logs/` and prints a summary. See
 [Codex rules](https://learn.chatgpt.com/docs/agent-configuration/rules).
 
+When a separate checkout already owns port 4173, use a temporary Playwright
+configuration with its own server port and `baseURL`. Set `TEST_ORIGIN` to that
+same origin so the shared fixture also routes production asset URLs to the
+correct checkout. The default remains `http://127.0.0.1:4173`.
+
 ## Related
 
 - [Test output](output.md) — `--only`, `--verbose`, and notes for agents.

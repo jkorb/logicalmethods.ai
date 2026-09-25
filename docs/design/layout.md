@@ -17,6 +17,10 @@ Three things must scroll inside themselves rather than widening the page:
 table render hook) and display formulas. This is enforced by
 `tests/browser/reflow.spec.mjs` at 320&nbsp;px.
 
+Native scrollbars use muted ink on sunken paper throughout the site, including
+app panels and code. `tokens.css` supplies standard scrollbar properties and a
+WebKit fallback; forced-colors mode keeps the system colors and width.
+
 ## Related
 
 - [Code blocks](code-blocks.md), [Tables](tables.md), [Display mathematics](display-math.md).

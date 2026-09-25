@@ -2,7 +2,7 @@ import { test as base, expect } from '@playwright/test';
 import { readdir, readFile } from 'node:fs/promises';
 import { parse } from 'yaml';
 
-export const TEST_ORIGIN = 'http://127.0.0.1:4173';
+export const TEST_ORIGIN = process.env.TEST_ORIGIN || 'http://127.0.0.1:4173';
 const SITE_HOSTS = ['logicalmethods.ai', 'www.logicalmethods.ai'];
 
 /* The normal Hugo test build keeps production absolute URLs, so a browser test

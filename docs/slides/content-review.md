@@ -116,6 +116,25 @@ own font. Virgil carries no logic symbols at all: prose containing `∧`, `↔`,
 `⊥` or `∴` is laid out as alternating prose and Comic Shanns runs on one
 baseline.
 
+**Lecture 6 has been revised and released** the same way against chapter 6,
+and now runs to 20 slides, up from 17. Learning goals open it — six of them,
+the chapter's own. The deck follows the chapter's line: conditionals as rules
+and modus ponens; the material conditional and its default-true reading; the
+rewrite `(A → B) ⟹ (¬A ∨ B)`; then the weather KB with gen-MP, forward and
+backward chaining with both procedures in pseudocode, and direction against
+order of search; then Horn clauses, Horn SAT, and `horn_sat` with its counters,
+agenda and linear-time bound; and finally SAT planning, the miracle model, the
+frame conditions that exclude it, and the worked two-block plan. The one
+image — a portrait of Alfred Horn — is removed and recorded in the manifest's
+`removedImages` block.
+
+This deck is the first that is mostly the chapter's own drawings rather than
+deck furniture: `con_to_table`, `con_python_ex_1`, `con_kb-rewrite`,
+`con_kb_rainbow`, `con_horn_chaining`, `con_ai_plan_setup`, `con_ai_miracle`
+and `con_ai_plan` carry the truth-table, the program rule, the rewritten rules,
+the KB, the chain, the planning set-up, the miracle history and the plan. It
+carries the deck's sixth `narration.yaml`.
+
 **Lecture 5 was then migrated to Reveal.js.** It keeps the Excalidraw deck's
 order and its 20 slides, with the title slide and its mascot generated and the
 learning goals in the chapter's objectives callout. Definitions, the theorem
@@ -129,19 +148,20 @@ circuit's `¬(S ↔ C)`; its "Faulty circuit" example gives the saturating case.
 together do not fit a slide. The evaluated parse tree and the coin drawing are
 cut. The Excalidraw scene, exports and `narration.yaml` remain.
 
-**Lecture 6 was written in Reveal.js** against the revised chapter 6, following
-the order of the staged Excalidraw draft: 20 slides, with the goals and their
+**Lecture 6 was then written in Reveal.js** against the revised chapter 6,
+following the Excalidraw deck's order: 20 slides, with the goals and their
 Bloom levels, the material conditional, rewriting, modus ponens and the
 counterfactual caveat, the weather knowledge base, forward and backward
-chaining, direction against order, Horn clauses, Horn SAT, and planning with
-its miracle model and frame conditions. The chapter's apps carry the steps:
-rewriting, forward and backward chaining, the side-by-side search comparison,
-Horn SAT with counters, and the closing worked-out example, the two-block plan. The
-`forward`, `backward` and `horn_sat` pseudocode is left to the chapter, whose
-apps name each instruction as it runs. The Excalidraw source and staged copy are
-untouched.
+chaining, search order, Horn clauses, Horn SAT, and planning with its miracle
+model and frame conditions. The chapter's apps carry the steps: rewriting,
+forward and backward chaining, Horn SAT with counters, and the closing
+worked-out example, the two-block plan. The search-order slide steps two small
+trees through depth-first and breadth-first order. The `forward`, `backward`
+and `horn_sat` pseudocode is left to the chapter, whose apps name each
+instruction as it runs. The Excalidraw scene, exports and `narration.yaml`
+remain.
 
-Lectures 6–12 were copied byte-for-byte, without automatic font or notation
+Lectures 7–12 were copied byte-for-byte, without automatic font or notation
 replacement. Review them against the book, including historical
 staff/attendance information, terminology, proof examples, screenshots and
 image rights. Lecture 7 has an

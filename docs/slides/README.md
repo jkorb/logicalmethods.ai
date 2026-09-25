@@ -14,11 +14,11 @@ shortcodes and apps in an Excalidraw-styled theme. Start there for any deck work
 
 ## Excalidraw decks
 
-All 12 lectures are migrated to self-hosted Excalidraw: **218 slide frames**.
-Lectures 1 to 5 (100 frames) are reviewed and released. Lectures 1 to 4 use
-the Excalidraw viewer; Lecture 5 has since been migrated to Reveal.js, and its
-Excalidraw scene and exports are kept until the format is retired. Lecture 6
-is published as a Reveal.js deck; its staged Excalidraw copy stays local. Lectures 6–12 (118 frames) are staged locally outside Hugo's
+All 12 lectures are migrated to self-hosted Excalidraw: **222 slide frames**.
+Lectures 1 to 6 (120 frames) are reviewed and released. Lectures 1 to 4 use
+the Excalidraw viewer; Lectures 5 and 6 have since moved to Reveal.js, and their
+Excalidraw scenes and exports are kept until the format is retired. Lectures
+7–12 (102 frames) are staged locally outside Hugo's
 published content in ignored `slides/unpublished/`, awaiting content and image
 review. Their normal website paths show a short review notice; no Excalidraw Pro
 embed remains. `locked` and `draft` are not publication barriers because CI
@@ -39,7 +39,7 @@ separate from the normal build. Ordinary `hugo -D` excludes the staged deck file
 | 3 | 20 | `/slides/valid-inference/` |
 | 4 | 20 | `/slides/boolean/` |
 | 5 | 20 | `/slides/sat/` |
-| 6 | 17 | `/slides/conditionals/` |
+| 6 | 20 | `/slides/conditionals/` |
 | 7 | 18 | `/slides/proof/` |
 | 8 | 20 | `/slides/FOL/` |
 | 9 | 16 | `/slides/FOL-inference/` |
