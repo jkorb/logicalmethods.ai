@@ -84,6 +84,7 @@ export function evaluateCircuit(nodes, inputs = {}) {
     else {
       const op = OPERATIONS[n.type];
       if (!op) throw new Error(`Unknown gate: ${n.type}`);
+      if (n.type === 'OUTPUT' && (n.inputs.length > 1 || Array.isArray(n.inputs[0]) && n.inputs[0].length > 1)) throw new Error('The lamp accepts only one connection.');
       const args = Array.from({ length: op.arity }, (_, i) => signal(n.inputs[i]));
       value = args.includes(null) ? null : op.run(...args);
     }
@@ -103,6 +104,7 @@ export function evaluateCircuit(nodes, inputs = {}) {
 export function circuitPreset(kind) {
   const n = (id, type, x, y, inputs = [], label = id) => ({ id, type, x, y, inputs, label, value: 0 });
   const inputs = [n('X', 'INPUT', 100, 410), n('Y', 'INPUT', 270, 410)];
+  if (kind === 'or') return [n('X','INPUT',100,610),n('Y','INPUT',340,610),n('POWER','POWER',520,610),n('notX','RELAY-ON',100,470,['X','POWER']),n('notY','RELAY-ON',340,470,['Y','POWER']),n('and','RELAY-OFF',220,310,['notX','notY']),n('not','RELAY-ON',220,150,['and','POWER']),n('out','OUTPUT',220,35,['not'],'output')];
   if (kind === 'sat-three') return [n('X','INPUT',60,530),n('Y','INPUT',210,530),n('Z','INPUT',440,530),n('POWER','POWER',550,530),n('a','RELAY-OFF',130,390,['X','Y']),n('b','RELAY-ON',200,260,['a','POWER']),n('c','RELAY-OFF',340,130,['b','Z']),n('out','OUTPUT',340,20,['c'],'output')];
   if (kind === 'sat-branch') return [n('X','INPUT',60,620),n('Y','INPUT',270,620),n('Z','INPUT',460,620),n('POWER','POWER',550,620),n('a','RELAY-OFF',130,450,['X','Y']),n('b','RELAY-OFF',380,450,['Y','Z']),n('c','RELAY-ON',130,300,['a','POWER']),n('d','RELAY-ON',380,300,['b','POWER']),n('e','RELAY-OFF',270,150,['c','d']),n('out','OUTPUT',270,30,['e'],'output')];
   if (kind === 'negated-input') return [...inputs, n('POWER','POWER',480,410), n('not','RELAY-ON',100,280,['X','POWER']), n('and','RELAY-OFF',270,160,['not','Y']), n('out','OUTPUT',270,40,['and'],'output')];

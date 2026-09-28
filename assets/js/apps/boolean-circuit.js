@@ -55,7 +55,7 @@ export function mountCircuit(root) {
   function invalidateCheck() { const check = root.querySelector('[data-check-result]'); if (check){check.hidden=true;check.querySelector('[data-check-message]').textContent='';check.querySelector('[data-check-table]').replaceChildren();delete check.dataset.feedback;} }
   function connect(target, port) {
     if (!source) { announce('Select an output dot first, then an input dot.'); return; }
-    const old = target.inputs[port]; target.inputs[port] = relayWorkbench?[...new Set([...(Array.isArray(old)?old:old?[old]:[]),source])]:source;
+    const old = target.inputs[port]; target.inputs[port] = relayWorkbench&&target.type!=='OUTPUT'?[...new Set([...(Array.isArray(old)?old:old?[old]:[]),source])]:source;
     try { evaluateCircuit(nodes); }
     catch (e) { target.inputs[port] = old; renderInspector(); announce(e.message); source = null; return; }
     source = null; invalidateCheck(); render();
@@ -160,7 +160,8 @@ export function mountCircuit(root) {
     const node = nodes.find(n => n.id === selected);
     if (!node || ['INPUT','POWER'].includes(node.type)) { inspector.append(el('p', {}, 'Select a gate or the output input dot to edit its connections.')); return; }
     inspector.append(el('p', {}, `${OPERATIONS[node.type].label||node.type} · ${node.id}`));
-    if(relayWorkbench)inspector.append(el('p',{},'Connect several outputs to one input for parallel branches. Select a connected source again to disconnect it.'));
+    if(node.type==='OUTPUT')inspector.append(el('p',{},'The lamp accepts one connection. Choosing another source replaces it.'));
+    else if(relayWorkbench)inspector.append(el('p',{},'Connect several outputs to one input for parallel branches. Select a connected source again to disconnect it.'));
     for (let i = 0; i < OPERATIONS[node.type].arity; i++) {
       const group=el('div'); inspector.append(el('p',{},node.type.startsWith('RELAY-')?(i?'Signal supply':'Magnet'):`Input ${i+1}`),group);
       const options=[['','Disconnect'],...nodes.filter(n=>n.id!==node.id&&n.type!=='OUTPUT').map(n=>[n.id,`${n.id} (${OPERATIONS[n.type]?.label||n.type})`])];

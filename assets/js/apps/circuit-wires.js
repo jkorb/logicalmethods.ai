@@ -7,7 +7,11 @@ export function portPosition(node, input) {
   return input===undefined ? [node.x,node.y-offset] : [node.x+(OPERATIONS[node.type]?.arity===2?(input?1:-1)*(relay?35:20):0),node.y+offset];
 }
 export function circuitWires(nodes, values, preset) {
-  const routes = preset === 'full' ? {
+  const routes = preset === 'or' ? {
+    'notX:1': [[520,585],[520,560],[135,560],[135,525]],
+    'notY:1': [[520,585],[520,560],[375,560],[375,525]],
+    'not:1': [[520,585],[520,215],[255,215],[255,205]]
+  } : preset === 'full' ? {
     'xor1:0': [[80,415],[80,385],[140,385],[140,350]],
     'xor1:1': [[250,415],[250,370],[180,370],[180,350]],
     'and1:0': [[80,415],[80,398],[350,398],[350,350]],

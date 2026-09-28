@@ -29,8 +29,9 @@ combinations of $X$ and $Y$, and updates as you wire.
 Every component is available from the start: the seven gates, and both relays
 with the fixed power supply below them. Drag a component to move it, or nudge a
 selected one with the arrow keys; Escape cancels a wire you started by mistake.
-An input can take several sources at once, which puts them in parallel — the
-relay reading of $!!OR!!$. Unconnected inputs leave the output unknown, shown as
+A component input can take several sources at once, which puts them in parallel — the
+relay reading of $!!OR!!$. The lamp accepts only one connection; choosing
+another source replaces it. Unconnected inputs leave the output unknown, shown as
 `?` in the table, and feedback loops are rejected: these circuits are
 combinational, with no memory of earlier inputs.
 

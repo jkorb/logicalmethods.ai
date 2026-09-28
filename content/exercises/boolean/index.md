@@ -21,8 +21,9 @@ supply when the magnet is on; a default-on relay passes it when the magnet is
 off. Use POWER when a relay needs a constant supply of $1$.
 
 Add relays, connect their ports, and test the resulting function table. To put
-branches in parallel, connect their outputs to the same input or lamp. That
-connection has power when at least one branch supplies it.
+branches in parallel, connect their outputs to the same relay input. That
+connection has power when at least one branch supplies it. The lamp accepts
+only one connection; choosing another source replaces the existing one.
 
 To connect two components, select an output dot, then an input dot. Drag a
 component to move it. Select a component or a connected input dot to show its
@@ -38,7 +39,8 @@ operations as buttons; you can also move a focused component with the arrow keys
    supplied by POWER. The lamp then shows $!!NOT!! (X !!AND!! Y)$.
 2. Use two default-on relays. Connect the first with magnet $X$ and supply
    $Y$, and the second with magnet $Y$ and supply $X$. Join their outputs
-   at the lamp. The two parallel branches give:
+   at the magnet input of a third, default-off relay supplied by POWER.
+   Connect its output to the lamp. The two parallel branches give:
 
    $$
    ( (!!NOT!! X) !!AND!! Y ) !!OR!! ( (!!NOT!! Y) !!AND!! X ) = X !!XOR!! Y

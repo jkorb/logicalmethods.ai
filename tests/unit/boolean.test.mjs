@@ -116,7 +116,7 @@ test('relay networks implement NAND, XOR and XNOR with parallel branches',()=>{
  const out=input=>({id:'out',type:'OUTPUT',inputs:[input]});
  const nand=[...base,relay('a','RELAY-OFF','X','Y'),relay('b','RELAY-ON','a','POWER'),out('b')];
  const branches=[...base,relay('a','RELAY-ON','X','Y'),relay('b','RELAY-ON','Y','X')];
- for(const [target,nodes]of [['NAND',nand],['XOR',[...branches,out(['a','b'])]],['XNOR',[...branches,relay('c','RELAY-ON',['a','b'],'POWER'),out('c')]]])assert.equal(checkCircuit(nodes,target).correct,true);
+ for(const [target,nodes]of [['NAND',nand],['XOR',[...branches,relay('c','RELAY-OFF',['a','b'],'POWER'),out('c')]],['XNOR',[...branches,relay('c','RELAY-ON',['a','b'],'POWER'),out('c')]]])assert.equal(checkCircuit(nodes,target).correct,true);
  assert.throws(()=>evaluateCircuit([...base,relay('a','RELAY-OFF',['X','a'],'POWER')]),/Feedback loop/);
 });
 
@@ -127,4 +127,20 @@ test('the sandbox table reports what a circuit computes, and null where it canno
   const wired = circuitPreset('').map(n => n.id === 'out' ? { ...n, inputs: ['and'] } : n);
   wired.push({ id: 'and', type: 'AND', x: 180, y: 260, inputs: ['X', 'Y'], label: 'and', value: 0 });
   assert.deepEqual(circuitTable(wired), [[0, 0], [0, 1]]);
+});
+
+
+test('OR uses relay negation and conjunction with one lamp source',()=>{
+ const nodes=circuitPreset('or');
+ assert.equal(checkCircuit(nodes,'OR').correct,true);
+ assert.equal(nodes.filter(n=>n.type==='RELAY-ON').length,3);
+ assert.equal(nodes.filter(n=>n.type==='RELAY-OFF').length,1);
+ assert.ok(nodes.every(n=>n.inputs.every(input=>!Array.isArray(input))));
+});
+
+test('parallel wires cannot implement OR at the lamp',()=>{
+ const nodes=circuitPreset('');
+ nodes.find(n=>n.id==='out').inputs=[['X','Y']];
+ assert.throws(()=>checkCircuit(nodes,'OR'),/lamp accepts only one connection/);
+ assert.deepEqual(circuitTable(nodes),[[null,null],[null,null]]);
 });

@@ -5,7 +5,7 @@ locked: false
 weight: 40
 params:
   date: "13/09/2024"
-  last_edited: "17/09/2026"
+  last_edited: "28/09/2026"
   id: txt-bool
 ---
 
@@ -198,9 +198,13 @@ For $!!AND!!$, use a default off relay instead, with $X$ controlling the magnet
 and $Y$ supplying the signal. The lamp is on only if the contact is closed
 **and** the signal receives power: both inputs must be on.
 
-For $!!OR!!$, put two default off relays in parallel, each with a constant
-power supply. One is controlled by $X$, the other by $Y$. Either closed contact
-can supply power to the lamp. If both are closed, the lamp is still on.
+For $!!OR!!$, combine these implementations to compute
+$!!NOT!! ((!!NOT!! X) !!AND!! (!!NOT!! Y))$. Two default on relays, each
+supplied by constant power, negate $X$ and $Y$. Feed their outputs into the
+magnet and signal inputs of a default off relay. Its output is
+$(!!NOT!! X) !!AND!! (!!NOT!! Y)$. A final default on relay with constant
+power negates that result: the lamp is off exactly when both inputs are off.
+This gives the circuit a single output, with one connection into the lamp.
 
 Check out the implementations in the following diagram:
 

@@ -7,7 +7,8 @@ The SAT presets compute ¬(X ∧ Y) ∧ Z and ¬(X ∧ Y) ∧ ¬(Y ∧ Z); their
 canvas height includes the lower inputs. `negated-input` combines a
 powered default-on relay with a default-off relay to compute ¬X ∧ Y. The faulty NAND preset connects the lamp
 directly to the default-off relay, implementing AND. The NAND preset connects a default-off relay to a
-powered default-on relay, with the same rendering and input switches. `implementations` provides NOT/AND/OR buttons. Relay diagrams show
+powered default-on relay, with the same rendering and input switches. `implementations` provides NOT/AND/OR buttons. OR uses three default-on relays
+and one default-off relay to compute NOT (NOT X AND NOT Y), with one lamp connection. Relay diagrams show
 magnetic arcs only while the magnet is powered; the normally closed contact
 opens toward the magnet.
 
@@ -72,7 +73,8 @@ in the live output message.
 The relay profile offers only default-off/on relays, with separate magnet and
 signal-supply ports, plus a fixed POWER source. A relay input may join several
 source wires in parallel (Boolean OR); ordinary gate profiles retain one source
-per input. Clicking a connected source in the inspector disconnects that branch.
+per input. The lamp always accepts only one source; connecting a new source
+replaces the previous one. The evaluator rejects multiple lamp sources. Clicking a connected source in the inspector disconnects that branch.
 All branches participate in cycle detection. The tasks remain NAND, XOR and XNOR.
 
 The conditionals exercise labels each level by its allowed gates. Its third

@@ -41,16 +41,18 @@ test('three independent model walkthroughs sit beside their explanations',async(
  await expect(button(a,'First step')).toHaveCount(0);await button(a,'[¬RAIN]').click();await expect(a.locator('[data-model-set="¬RAIN"]')).toHaveClass(/is-active/);await expect(fallacy.locator('[data-world-art].is-countermodel')).toHaveCount(1);
 });
 
-test('relays animate live supplies and pull normally closed contacts toward magnets',async({page})=>{
+test('relays animate live supplies and pull normally closed contacts toward magnets',async({page},info)=>{
  const a=app(page,'circuit','relay-on');await expect(a.locator('.magnetic-field')).toHaveCount(0);
  await button(a,'Toggle X').click();await expect(a.locator('.magnetic-field')).toHaveCount(3);
  expect(await a.locator('.relay-contact').getAttribute('d')).toContain('L262');
  await expect(a.locator('.circuit-switch .signal--1')).not.toHaveCount(0);
  const impl=app(page,'circuit','implementations');await button(impl,'OR').click();
+ await expect(impl.locator('.relay-contact')).toHaveCount(4);await expect(impl.locator('[data-target="out"]')).toHaveCount(1);
  for(const [x,y] of [[0,0],[1,0],[1,1],[0,1]]){
   for(const [n,v]of [['X',x],['Y',y]])if(await button(impl,`Toggle ${n}`).getAttribute('aria-pressed')!==String(Boolean(v)))await button(impl,`Toggle ${n}`).click();
   await expect(impl.getByRole('status')).toContainText(`${x} OR ${y} = ${x|y}`);
  }
+ await reviewScreenshot(impl.locator('[data-picture]'), {path:`tmp/boolean-or-hotfix-${info.project.name}.png`});
  await button(impl,'Pause animation').click();await expect(impl).toHaveAttribute('data-paused','true');await expect(button(impl,'Play animation')).toBeVisible();
  expect(await impl.locator('.signal--1').first().evaluate(n=>getComputedStyle(n).animationPlayState)).toBe('paused');
  await button(impl,'Play animation').click();await expect(impl).toHaveAttribute('data-paused','false');
@@ -205,9 +207,12 @@ test('parallel relay branches implement XOR and model controls expose formulas',
  await page.goto('/exercises/boolean/');const a=app(page,'workbench','relays');await a.locator('.boolean-connections summary').click();await button(a,'2. XOR').click();
  for(const [id,inputs]of [['g1',['X (INPUT)','Y (INPUT)']],['g2',['Y (INPUT)','X (INPUT)']]]){
    await button(a,'+ Default-on relay').click();for(let i=0;i<2;i++)await a.getByRole('group',{name:`${id} input ${i+1}`,exact:true}).getByRole('button',{name:inputs[i],exact:true}).click();
-   await button(a,`Connect from ${id}`).click();await button(a,'Connect to out input 1').click();
  }
- await button(a,'Check circuit').click();await expect(a.locator('[data-check-result]')).toContainText('implements XOR');await expect(a.locator('[data-target="out"]')).toHaveCount(2);
+ await button(a,'+ Default-off relay').click();
+ for(const name of ['g1 (Default-on relay)','g2 (Default-on relay)'])await a.getByRole('group',{name:'g3 input 1',exact:true}).getByRole('button',{name,exact:true}).click();
+ await a.getByRole('group',{name:'g3 input 2',exact:true}).getByRole('button',{name:'POWER (POWER)',exact:true}).click();
+ await button(a,'Connect from g3').click();await button(a,'Connect to out input 1').click();
+ await button(a,'Check circuit').click();await expect(a.locator('[data-check-result]')).toContainText('implements XOR');await expect(a.locator('[data-target="out"]')).toHaveCount(1);
  await button(a,'Toggle X').click();await expect(a.getByRole('status')).toContainText('output = 1');
  await reviewScreenshot(a, {path:`tmp/boolean-final-tweaks/${info.project.name}-relay-xor.png`});
  const counter=app(page,'model-exercise');await expect(counter.locator('[data-toolbar]')).toContainText('∴ ¬RAIN');await counter.locator('[data-model="M₁"]').click();await button(counter,'Check selection').click();await expect(counter.locator('[data-toolbar]')).toContainText('✓');
@@ -241,4 +246,19 @@ test('the sandbox opens with every component, no task, and a live circuit table'
  await button(a,'Connect from g1').click();await button(a,'Connect to out input 1').click();
  await expect(a.locator('[data-target-table]')).not.toContainText('?');
  await expect(a.getByRole('status')).toContainText('output = 1');
+});
+
+
+test('the lamp keeps one source through canvas and inspector connections',async({page})=>{
+ for(const [path,preset] of [['/exercises/boolean/','relays'],['/exercises/boolean/','definitions'],['/tools/circuit-sandbox/','sandbox']]){
+  await page.goto(path);const a=app(page,'workbench',preset);
+  for(const id of ['X','Y']){await button(a,`Connect from ${id}`).click();await button(a,'Connect to out input 1').click();}
+  await expect(a.locator('[data-target="out"]')).toHaveCount(1);
+  await expect(a.locator('[data-target="out"]')).toHaveAttribute('data-source','Y');
+  await button(a,'Connect to out input 1').click();await a.locator('.boolean-connections').evaluate(n=>n.open=true);
+  await a.getByRole('group',{name:'out input 1',exact:true}).getByRole('button',{name:'X (INPUT)',exact:true}).click();
+  await expect(a.locator('[data-target="out"]')).toHaveCount(1);
+  await expect(a.locator('[data-target="out"]')).toHaveAttribute('data-source','X');
+  if(preset!=='sandbox'){await button(a,'Check circuit').click();await expect(a.locator('[data-check-result]')).toHaveAttribute('data-feedback','incorrect');}
+ }
 });
