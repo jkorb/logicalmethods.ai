@@ -161,6 +161,23 @@ and `horn_sat` pseudocode is left to the chapter, whose apps name each
 instruction as it runs. The Excalidraw scene, exports and `narration.yaml`
 remain.
 
+**Lecture 7 was then written in Reveal.js** against chapter 7, in 20 slides,
+replacing the review notice. It follows the chapter's line rather than the
+Excalidraw deck's tour of Hilbert systems, sequent calculi and tableaux: the
+heating argument step by step, proof systems, derivability with soundness and
+completeness, natural deduction through its rules, discharge, cases and the
+classical rule, then finding a derivation, theorem provers, types and type
+checking, the heating proof in Lean, Curry–Howard, and `grind`. The worked
+derivations, the rule reference, the construction canvas and the Lean
+walkthrough are the chapter's apps; the closing worked-out example is the
+strategies deck's indirect proof of `¬(A ∧ B) ⊢ ¬A ∨ ¬B`, which `grind` finds
+on the slide before. The pictures are the chapter's own drawings: the
+portraits, the Office-assistant parody and the playground screenshots are gone.
+Cut: the axioms and sequent and tableau rules, vacuous discharge, the Mathlib
+Euclid proof, the Lean conjunction, disjunction and negation examples, and the
+Lean translator app, which fits a slide only at about 40%. The Excalidraw
+scene, manifest and staged exports remain.
+
 Lectures 7–12 were copied byte-for-byte, without automatic font or notation
 replacement. Review them against the book, including historical
 staff/attendance information, terminology, proof examples, screenshots and
