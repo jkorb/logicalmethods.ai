@@ -68,6 +68,7 @@
      face built for reading code, so the two roles have separate tokens. */
   --font-formal: "Comic Shanns Logic", "Comic Shanns", ui-monospace, SFMono-Regular, Menlo, monospace;
   --font-code:   "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --inline-code-size: .85em;
 
   --step--2: clamp(0.72rem, 0.70rem + 0.10vw, 0.79rem);
   --step--1: clamp(0.83rem, 0.80rem + 0.17vw, 0.94rem);

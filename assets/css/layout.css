@@ -143,11 +143,11 @@ div.excalifont, .math-display { overflow-x: auto; overscroll-behavior-x: contain
 code, kbd, samp, pre, pre code, .chroma, .highlight { font-family: var(--font-code); font-style: normal; }
 /* Ordinary Markdown code keeps its programming face; dollar math uses Shanns. */
 code { color: inherit; background: none; border: 0; padding: 0;
-       font-size: 1.02em; overflow-wrap: break-word; }
+       font-size: var(--inline-code-size); overflow-wrap: break-word; }
 pre { background: var(--paper-sunken); border: 1px solid var(--rule); border-radius: var(--radius);
       padding: .9rem 1rem; overflow-x: auto; max-inline-size: 100%;
       font-size: .92em; line-height: 1.6; tab-size: 2; }
-pre code { background: none; border: 0; padding: 0; }
+pre code { background: none; border: 0; padding: 0; font-size: 1.02em; }
 
 /* Chroma emits line numbers as a table inside div.highlight; the wrapper has to
    be the scroller or long code lines push the whole page sideways. */
