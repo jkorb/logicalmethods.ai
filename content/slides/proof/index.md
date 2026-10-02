@@ -224,6 +224,24 @@ its type.
 
 {{< logic-app name="deduction" kind="lean-walkthrough" title="Following the Lean heating proof through its goals" >}}
 
+{{< slide title="Finding a proof in Lean" >}}
+## Finding a proof in Lean
+
+```lean
+variable (A B : Prop)
+
+example : A → (B → (A ∧ B)) := by
+  intro a
+  intro b
+  apply And.intro
+  · sorry
+  · sorry
+```
+
+- $intro a$: assume $a : A$; the goal becomes $B → (A ∧ B)$.
+- $apply And.intro$: one goal per conjunct.
+- $sorry$: a placeholder, not a proof. Here: $exact a$, $exact b$.
+
 {{< slide title="Curry–Howard" >}}
 ## Curry–Howard
 
@@ -243,18 +261,3 @@ Propositions are types; proofs are programs: the
 ## Derivation and Lean
 
 {{< logic-app name="deduction" kind="lean" example="conditional" title="Natural deduction and Lean: translating a derivation into Lean and back" >}}
-
-{{< slide title="Automated proving in Lean" >}}
-## Automated proving in Lean
-
-```lean
-variable (RAIN WIND COLD HEATING : Prop)
-
-example (rain : RAIN)
-    (if_rain_or_wind_then_cold : RAIN ∨ WIND → COLD)
-    (if_cold_then_heating : COLD → HEATING) : HEATING := by
-  grind
-```
-
-- $grind$ adds $¬HEATING$ and searches for a contradiction.
-- The kernel checks the proof term it finds.

@@ -167,17 +167,17 @@ Excalidraw deck's tour of Hilbert systems, sequent calculi and tableaux: the
 heating argument step by step, proof systems, derivability with soundness and
 completeness, natural deduction through its rules, discharge, cases and the
 classical rule, then finding a derivation, theorem provers, types and type
-checking, the heating proof in Lean, Curry–Howard with the Lean translator,
-and `grind` on the heating argument as the last slide. The worked derivations,
-the rule reference, the construction canvas, the Lean walkthrough and the
-translator are the chapter's apps. At the author's request the deck ends on
-automated proving rather than a worked-out example. The pictures are the chapter's own drawings: the
-portraits, the Office-assistant parody and the playground screenshots are gone.
-Cut: the axioms and sequent and tableau rules, vacuous discharge, the Mathlib
-Euclid proof, and the Lean conjunction, disjunction and negation examples. The
-translator fits its slide at about 40%; its canvas has a full-screen button.
-The Excalidraw
-scene, manifest and staged exports remain.
+checking, the heating proof in Lean, finding a proof in Lean with `sorry`, and
+Curry–Howard, ending on the Lean translator. The worked derivations, the rule
+reference, the construction canvas, the Lean walkthrough and the translator
+are the chapter's apps. At the author's request the deck ends on the
+translator rather than a worked-out example. The pictures are the chapter's
+own drawings: the portraits, the Office-assistant parody and the playground
+screenshots are gone. Cut: the axioms and sequent and tableau rules, vacuous
+discharge, the Mathlib Euclid proof, the Lean conjunction, disjunction and
+negation examples, and automated proving with `grind`. The translator fits its
+slide at about 40%; its canvas has a full-screen button. The Excalidraw scene,
+manifest and staged exports remain.
 
 Lectures 7–12 were copied byte-for-byte, without automatic font or notation
 replacement. Review them against the book, including historical
