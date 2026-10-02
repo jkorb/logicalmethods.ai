@@ -239,21 +239,22 @@ Propositions are types; proofs are programs: the
 | $→ Intro$ | $intro a$, then prove $B$ |
 | $→ Elim$ | $exact f a$ |
 
+{{< slide layout="app" title="Derivation and Lean" >}}
+## Derivation and Lean
+
+{{< logic-app name="deduction" kind="lean" example="conditional" title="Natural deduction and Lean: translating a derivation into Lean and back" >}}
+
 {{< slide title="Automated proving in Lean" >}}
 ## Automated proving in Lean
 
 ```lean
-variable (A B : Prop)
+variable (RAIN WIND COLD HEATING : Prop)
 
-example (h : ¬(A ∧ B)) : ¬A ∨ ¬B := by
+example (rain : RAIN)
+    (if_rain_or_wind_then_cold : RAIN ∨ WIND → COLD)
+    (if_cold_then_heating : COLD → HEATING) : HEATING := by
   grind
 ```
 
-- $grind$ assumes the negation of the conclusion and searches for a
-  contradiction.
+- $grind$ adds $¬HEATING$ and searches for a contradiction.
 - The kernel checks the proof term it finds.
-
-{{< slide layout="app" title="Worked-out example: an indirect proof" >}}
-## Worked-out example: an indirect proof
-
-{{< logic-app name="deduction" kind="worked" deck="strategies" example="indirect" title="An indirect proof of ¬(A ∧ B) ⊢ ¬A ∨ ¬B" >}}
