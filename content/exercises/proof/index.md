@@ -1,206 +1,122 @@
 ---
 title: Logical proofs
 author: Johannes Korbmacher
-locked: true
+locked: false
 weight: 70
 params:
-  legacy-notation: true
   id: exc-proof
 ---
 
-# Proof systems {.solved}
+# Natural deduction {.solved}
 
-Let's trial run the different proof systems. For each of the following, provide
-a logical proof in our Hilbert calculus, sequent calculus, and tableaux.
+Construct a derivation for each inference in the app. The tabs group the
+exercises by connective; the numbered buttons select the inference. Your
+work is kept when you move between levels. Use Save to keep it for another
+visit.
 
-1. `A ⊢ A ∨(A∧B)`
+For each derivation, identify its open assumptions and note whether it uses
+the classical rule $¬⊥$. Try to avoid that rule when you can.
 
-2. `A ∨(A∧B) ⊢A`
-
-## Solution {.solution #proof-systemsSolution}
-
-1. Here we go:
-
-    - Hilbert:
-  
-      1. `A` <span class="right-justified">(Premise)</span>
-      2. `A → (A ∨ (A ∧ B))` <span class="right-justified">(Axiom 6 with `B = A ∧ B`)</span>
-      3. `(A ∨ (A ∧ B))` <span class="right-justified">(1., 2., MP)</span>
-
-    - Sequent:
-
-      {{< img src="img/sequent_1.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
-
-    - Tableaux:
-
-      {{< img src="img/tableaux_1.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
-
-2. Here we go:
-
-    - Hilbert:
-
-      1. `A ∨(A ∧ B)` <span class="right-justified">(Premise)</span>
-      2. `(A →A) → (((A ∧ B) → A)→((A ∨(A ∧ B))→ A))` <span class="right-justified">(Axiom 7.)</span>
-
-      3. `(A →A)` <span class="right-justified">(Theorem from textbook)</span>
-      4. `((A ∧ B) → A)→((A ∨(A ∧ B))→ A)`<span class="right-justified">(2., 3., MP)</span>
-      5. `(A ∧ B) → A)` <span class="right-justified">(Axiom 5.)</span>
-      6. `((A ∨(A ∧ B))→ A)`<span class="right-justified">(4., 5., MP)</span>
-      7. `A` <span class="right-justified">(1., 6., MP)</span>
-
-    - Sequent:
-
-      {{< img src="img/sequent_2.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
-
-    - Tableaux:
-
-      {{< img src="img/tableaux_2.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
-
-# Natural deduction { .solved }
-
-For this exercise, you do a deep dive into natural deduction: below are a series
-of laws to prove for arbitrary formulas `A,B,C`. Some require the rule 
-¬⊥, take note of which ones.
-
-## Conjunction and Disjunction
-
-1. `A ∨ (B ∧ C) ⊢ (A ∨ B)∧(A ∨ C)`
-
-2. `(A ∨ B)∧(A ∨ C)⊢ A ∨ (B ∧ C)`
-
-3. `A ∧ (B ∨ C) ⊢ (A ∧ B)∨(A ∧ C)`
-
-4. `(A ∧ B)∨(A ∧ C)⊢  A∧ (B ∨ C)`
-
-## Negation
-
-1. `A ⊢¬¬ A`
-
-2. `¬¬ A⊢ A`
-
-3. `¬(A ∧B) ⊢ ¬A ∨¬B`
-
-4. `¬A ∨¬B ⊢  ¬(A ∧B)`
-
-5. `¬(A ∨B) ⊢ ¬A ∧¬B`
-
-6. `¬A ∧¬B ⊢ ¬(A ∨B)`
-
-## Conditionals
-
-1. `¬A ∨ B⊢A→B`
-
-2. `A → B ⊢¬A ∨ B`
-
-3. `(¬A→ A) ⊢ A`
-
-4. `(A→B)⊢(¬B →¬A)`
-
-5. (`¬B →¬A)⊢(A → B)`
+{{< logic-app name="deduction" kind="practice" deck="exercises" title="Natural deduction exercises" >}}
 
 ## Solution {#natural-deductionSolution .solution}
 
-*Conjunction and Disjunction*
+The app below shows one derivation for each inference. Other derivations may
+work too. Before stepping through a solution, look at the main connective of
+the conclusion and decide which introduction rule might finish the proof.
 
-1. `A ∨ (B ∧ C) ⊢ (A ∨ B)∧(A ∨ C)`
+{{< logic-app name="deduction" kind="worked" deck="exercises" title="Natural deduction solutions" >}}
 
-    This solution is interactive! Click through the slides to get an explanation of how to find the derivation:
+The distribution laws can be proved by extracting conjuncts and considering
+both cases of a disjunction. In each case split, check that both branches
+reach the same conclusion before discharging their assumptions.
 
-    {{<iframe src="https://link.excalidraw.com/p/readonly/foQADbq8hXxQlzw0Qznf" >}}
+Of the negation exercises, $¬¬A ⊢ A$ and $¬(A ∧ B) ⊢ ¬A ∨ ¬B$ require
+classical reasoning. The others can be proved with the intuitionistic rules.
+For $A ⊢ ¬¬A$, for example, assume $¬A$, derive $⊥$ using the given $A$,
+and discharge $¬A$. The given assumption $A$ remains open.
 
-2. `(A ∨ B)∧(A ∨ C)⊢ A ∨ (B ∧ C)`
+Of the conditional exercises, $A → B ⊢ ¬A ∨ B$, $(¬A → A) ⊢ A$, and
+$(¬B → ¬A) ⊢ (A → B)$ require classical reasoning. For the last one, assume
+$A$, then temporarily assume $¬B$. The premise gives $¬A$, contradicting
+$A$. Discharge $¬B$ by the classical rule to obtain $B$, then discharge
+$A$ by $→ Intro$.
 
-    {{< img src="img/distribution_two_rtl.png" class="mx-auto rounded d-block inert-img img-fluid" width="700px">}}
+The solutions adapt the Lean proofs contributed by Alexander Apers.
 
-3. `A ∧ (B ∨ C) ⊢ (A ∧ B)∨(A ∧ C)`
+# Assumptions and discharge {.solved #proof-systems}
 
-    This solution is interactive! Click through the slides to get an explanation of how to find the derivation:
+1. Someone argues as follows: “Assume $A ∨ B$. In the first case, assume $A$
+   and derive $A$. In the second case, assume $B$ and use the $A$ we obtained
+   in the first case. Both cases give $A$, so $A ∨ B ⊢ A$.” Where does this
+   go wrong? Give a countermodel to the claimed inference.
+2. From an assumption $A$, we temporarily assume $B$, repeat $A$, and use
+   $→ Intro$ to conclude $B → A$. Which assumption remains open? What
+   would we need to do to obtain a formula with no open assumptions?
+3. Can a checked proof have a false conclusion? Explain how your answer
+   depends on its open assumptions.
 
-    {{<iframe src="https://link.excalidraw.com/p/readonly/bI3TWrMYvvnheKW6gr2i" >}}
+## Solution {.solution #proof-systemsSolution}
 
+1. The $A$ in the first case depends on that case's assumption. It is not
+   available as a given fact in the second case. Using it there leaves an
+   extra $A$ open, so the argument has not derived $A$ from $A ∨ B$ alone.
+   Set $v(A)=0$ and $v(B)=1$: the premise is true and the conclusion false.
+2. $A$ remains open. Discharging $B$ is permitted even though we never used
+   it: this is {{< term "vacuous-discharge" "vacuous discharge" >}}. Discharge
+   $A$ in a second application of $→ Intro$ to obtain $A → (B → A)$.
+3. Yes, when its open assumptions are false. A proof establishes that the
+   conclusion follows from the assumptions. For example, $RAIN$ follows
+   from the assumption $RAIN$ even on a sunny day when it isn't raining.
+   In a sound system, true open assumptions cannot lead to a false
+   conclusion. A proof with no open assumptions establishes a logically
+   valid formula.
 
-4. `(A ∧ B)∨(A ∧ C)⊢  A∧ (B ∨ C)`
+# Derived rules {.solved}
 
-    {{< img src="img/distribution_one_rtl.png" class="mx-auto rounded d-block inert-img img-fluid" width="700px">}}
+1. Derive $B$ from $A ∨ B$ and $¬A$. Save the derivation as a rule named
+   “Disjunctive syllogism”. Its open assumptions become its premises.
+2. Use your saved rule to derive $SNOW$ from $(RAIN ∧ WIND) ∨ SNOW$ and
+   $¬(RAIN ∧ WIND)$. Which formulas replace the
+   {{< term "metavariable" "metavariables" >}} $A$ and $B$?
+3. Save the workspace, restart, and load its lemmas into a fresh workspace.
+   Does reusing the rule introduce any new open assumptions beyond the
+   premises you supply?
 
-*Negation*
+{{< logic-app name="deduction" kind="sandbox" title="Proving and reusing derived rules" >}}
 
-1. `A ⊢¬¬ A`
+## Solution {.solution #derived-rulesSolution}
 
-    This solution is interactive! Click through the slides to get an explanation of how to find the derivation:
-
-    {{<iframe src="https://link.excalidraw.com/p/readonly/zIdmhCzAWfvGW2H619CA" >}}
-
-    This is perhaps the most difficult one of this set.
-
-
-2. `¬¬ A⊢ A`
-
-    {{< img src="img/double_negation_rtl.png" class="mx-auto rounded d-block inert-img img-fluid" width="200px">}}
-
-    Note that this derivation requires classicality.
-
-3. `¬(A ∧B) ⊢ ¬A ∨¬B`
-
-    {{< img src="img/de_morgan_one_ltr.png" class="mx-auto rounded d-block inert-img img-fluid" width="500px">}}
-
-4. `¬A ∨¬B ⊢  ¬(A ∧B)`
-
-    {{< img src="img/de_morgan_one_rtl.png" class="mx-auto rounded d-block inert-img img-fluid" width="500px">}}
-
-5. `¬(A ∨B) ⊢ ¬A ∧¬B`
-
-    {{< img src="img/de_morgan_two_ltr.png" class="mx-auto rounded d-block inert-img img-fluid" width="500px">}}
-
-6. `¬A ∧¬B ⊢ ¬(A ∨B)`
-
-    {{< img src="img/de_morgan_two_rtl.png" class="mx-auto rounded d-block inert-img img-fluid" width="500px">}}
-
-*Conditionals*
-
-
-1. `¬A ∨ B⊢A→B`
-
-    This solution is interactive! Click through the slides to get an explanation of how to find the derivation:
-
-    {{<iframe src="https://link.excalidraw.com/p/readonly/kYgz1Qljtf4yMChwYvTk" >}}
-
-
-2. `A → B ⊢¬A ∨ B`
-
-    {{< img src="img/cond_def_rtl.png" class="mx-auto rounded d-block inert-img img-fluid" width="500px">}}
-
-3. `(¬A→ A) ⊢ A`
-
-    {{< img src="img/consequentia_mirabilis.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
-
-4. `(A→B)⊢(¬B →¬A)`
-
-    {{< img src="img/contrapos_ltr.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
-
-5. (`¬B →¬A)⊢(A → B)`
-
-    {{< img src="img/contrapos_rtl.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
+1. Split $A ∨ B$ into two cases. Under $A$, use $¬A$ to obtain $⊥$,
+   then use $Ex falso$ to obtain $B$. Under $B$, the conclusion is already
+   available. Apply $∨ Elim$ and discharge both case assumptions. The
+   original $A ∨ B$ and $¬A$ remain open. Select the final $B$ and save it.
+2. Here $A$ is replaced by $RAIN ∧ WIND$, and $B$ by $SNOW$. Add the two
+   premises, select them in the saved rule's order, and click its button.
+   The app substitutes these formulas throughout the checked derivation.
+3. No. The rule's two premises are supplied by the selected derivations.
+   Their open assumptions are the only assumptions that can remain open.
+   The temporary assumptions inside the saved proof are still discharged.
+   “Load lemmas” imports the proved rules without replacing your current
+   canvas.
 
 # Lean verification {.solved}
 
 For this exercise, you verify your natural deduction inferences using Lean.
-Below are templates for the code to use. The proofs are replaced by `<span
-class="dark-red">sorry</span>`, which makes Lean not complain about the missing
-proof. The `sorry`-tactic is very useful when writing a proof, because it makes
-Lean "shut up", while allowing you to type your proof. You need to replace each
-`<span class="dark-red">sorry</span>` with the correct proof, of course.
+Below are templates for the code to use. Each $sorry$ marks an admitted hole,
+not a checked proof. Replace every one before submitting your work.
 
-Note that some of the proofs below require `<span class="dark-blue">open</span>
-Classical`. Which ones?
+Some proofs use classical reasoning. You can call $Classical.byContradiction$
+explicitly, or write $open Classical$ to use its shorter name. Which proofs
+actually need the classical principle?
 
-In your proofs, you can use previous theorems using `apply`. Note that theorems
-like `distribution_one_rtl` need to be passed a proof term `h`.
+In your proofs, you can use previous theorems using $apply$. Note that theorems
+like $distribution_one_rtl$ need to be passed a proof term $h$.
 
 ## Conjunction and Disjunction
 
 {{< lean_logo >}}
-~~~lean4
+```lean
   variable (A B C : Prop)
 
   theorem distribution_one_ltr (h : (A ∧ (B ∨ C))) : (A ∧ B) ∨ (A ∧ C) := by
@@ -215,15 +131,11 @@ like `distribution_one_rtl` need to be passed a proof term `h`.
   theorem distribution_two_rtl (h : (A ∨ B) ∧ (A ∨ C) ) : (A ∨ (B ∧ C)) := by
     sorry
 
-~~~
-Click this
-[link](https://live.lean-lang.org/#codez=ATBuEMCcEtwIwDYFNgAoCCwBCwDCwAuYABUgHsAHASgCgaQAXACyTMiQFtgATaAZwYw4AVwbQyAOwD6kpFISC0TQmkyByIjQ5AFER4qelRmAasVYDsMbcpggF5gcAJ70QwPm0hPnzVuy68BQqLi0rJSkAwISgbq2KbmMVbA1qpGmma61naOziBukB50jCxsnDz8gtAiYpJSDADuZPKKqMpEhuY4lnrJ7bGpvYm29k4uru6eRT6l/hVVwbUNYRFRbZg6Jv1ruknR6aidGYRZIy55HkA)
-to open the browser playground. 
-
+```
 ## Negation:
 
 {{< lean_logo >}}
-~~~lean4
+```lean
   variable (A B : Prop)
 
   theorem double_negation_ltr (h: ¬¬ A) : A := by
@@ -244,15 +156,11 @@ to open the browser playground.
   theorem de_morgan_two_rtl (h : (¬ A ∧ ¬ B)) :  ¬(A ∨ B) := by
     sorry
 
-~~~
-Click this
-[link](https://live.lean-lang.org/#codez=ATBuEMCcEtwIwDYFNgAoCCwBCwBcwAFSAewAcBKAKEpABcALJYyJAW2ABNiBXRJAfQB2SAObha0YoP4JakNPXwAapcHTk8avAF5gcAJ40QwAM7NIhowyYt2XXsiGjxk6ZFoIFm9ZpVbcugZGIGaQFtR0jMxsnAKszGLSUgKy8qj0vhjAgORE2OQa+KiqmIAURMCqWAWBhsam5paRNjEccQngScL87p7pmkVaZRX5mZi5lTp6Ncah4VZRtrH88ZCJ/LQA7sQycl7KWWWVBWjFOeV5E0G1Mw3A1tF2rSvta5tdHrvHWrlDR+X75wFJsE6mF9EA)
-to open the browser playground. 
-
+```
 ## Conditionals
 
 {{< lean_logo >}}
-~~~lean4
+```lean
   variable (A B : Prop)
 
   theorem cond_def_ltr (h : ¬A ∨ B) : A → B := by
@@ -270,207 +178,114 @@ to open the browser playground.
   theorem contrapos_rtl (h: ¬B → ¬A) : A → B := by
     sorry
 
-~~~
-Click this
-[link](https://live.lean-lang.org/#codez=ATBuEMCcEtwIwDYFNgAoCCwBCwBcwAFSAewAcBKAKEpABcALJYyJAW2AGNiA7AEwH1eSAGb8EtSGnp5gAGsyAKImzkZmQEmE2PAF5gcAJ40QwAM7NIBwwyYt2XPoJH9ItBFNXANOFfnnAlObV0DIxMzCzpGZjZOHmMkAEcAVyRuWlh+VmhIeGgEaGM3H2B1Yu9iwP1DEFNIc2oI62i7CXBSYmMxCULyzzLZHA1fXB1KkJq6y0ibGNTsto7nV1R6HwG5dDKSnGGgqtDavSA)
-to open the browser playground. 
+```
 
 ## Solution {.solution #lean-verificationSolution}
 
-Credit: Alexander Apers
+Select each inference. “Lean → ND” draws its proof as a derivation;
+“Open in Lean” sends the code to the playground for checking by Lean itself.
+The translator accepts the small propositional language used in the chapter.
 
-{{<lean_logo>}}
-~~~~lean4
-  variable (A B C : Prop)
+{{< logic-app name="deduction" kind="lean" deck="exercises" title="Lean exercise solutions" >}}
 
-  theorem distribution_one_ltr (h : (A ∧ (B ∨ C))) : (A ∧ B) ∨ (A ∧ C) := by
-    apply Or.elim (And.right h)
-    · intro b
-      apply Or.inl
-      apply And.intro
-      · exact And.left h
-      · exact b
-    · intro c
-      apply Or.inr
-      apply And.intro
-      · exact And.left h
-      · exact c
+For contraposition, assume $¬B$, then assume $A$. Apply the given conditional
+to obtain $B$, which contradicts $¬B$. Discharging $A$ gives $¬A$; discharging
+$¬B$ gives the required conditional. The Lean proof is:
 
-  theorem distribution_one_rtl (h : (A ∧ B) ∨ (A ∧ C) ) : (A ∧ (B ∨ C)) := by
-    apply And.intro
-    apply Or.elim h
-    · intro a_and_b
-      apply And.left a_and_b
-    · intro a_and_c
-      apply And.left a_and_c
-    apply Or.elim h
-    · intro a_and_b
-      apply Or.inl
-      apply And.right a_and_b
-    · intro a_and_c
-      apply Or.inr
-      apply And.right a_and_c
+```lean
+variable (A B : Prop)
 
-  theorem distribution_two_ltr (h : (A ∨ (B ∧ C))) : (A ∨ B) ∧ (A ∨ C) := by
-    apply And.intro
-    apply Or.elim h
-    · intro a
-      apply Or.inl a
-    · intro b_and_c
-      apply Or.inr
-      · exact And.left b_and_c
-    apply Or.elim h
-    · intro a
-      apply Or.inl a
-    · intro b_and_c
-      apply Or.inr
-      · exact And.right b_and_c
-
-  theorem distribution_two_rtl (h : (A ∨ B) ∧ (A ∨ C) ) : (A ∨ (B ∧ C)) := by
-    apply Or.elim (And.left h)
-    · intro a
-      apply Or.inl a
-    · intro b
-      apply Or.elim (And.right h)
-      · intro a
-        apply Or.inl a
-      · intro c
-        apply Or.inr
-        apply And.intro
-        · exact b
-        · exact c
-
-  open Classical
-
-  variable (A B : Prop)
-
-  theorem double_negation_ltr (h: ¬¬ A) : A := by
-    apply byContradiction
-    apply h
-
-  theorem double_negation_rtl (h : A) : ¬¬ A := by
-    intro a
-    apply a
-    exact h
-
-  theorem de_morgan_one_ltr (h : ¬(A ∧ B)) : (¬ A ∨ ¬ B) := by
-    apply byContradiction
-    intro neg_goal
-    apply h
-    apply And.intro
-    apply byContradiction
-    intro neg_a
-    apply neg_goal
-    apply Or.inl neg_a
-    apply byContradiction
-    intro neg_b
-    apply neg_goal
-    apply Or.inr neg_b
-
-  theorem de_morgan_one_rtl (h : (¬ A ∨ ¬ B)) : ¬(A ∧ B) := by
-    apply Or.elim h
-    · intro neg_a
-      · intro a_and_b
-        apply neg_a
-        apply And.left a_and_b
-    · intro neg_b
-      · intro a_and_b
-        apply neg_b
-        apply And.right a_and_b
-
-  theorem de_morgan_two_ltr (h : ¬(A ∨ B)) : (¬ A ∧ ¬ B) := by
-    apply And.intro
-    · intro a
-      apply h
-      apply Or.inl a
-    · intro b
-      apply h
-      apply Or.inr b
-
-  theorem de_morgan_two_rtl (h : (¬ A ∧ ¬ B)) :  ¬(A ∨ B) := by
-    intro a_or_b
-    apply Or.elim a_or_b
-    · intro a
-      apply And.left h
-      exact a
-    · intro b
-      apply And.right h
-      exact b
-
-  variable (A B : Prop)
-
-  theorem cond_def_ltr (h : ¬A ∨ B) : A → B := by
-    intro a
-    apply Or.elim h
-    · intro neg_a
-      apply False.elim
-      apply neg_a
-      exact a
-    · intro b
-      exact b
-
-  theorem cond_def_rtl (h : A → B ) : ¬A ∨ B  := by
-    apply byContradiction
-    intro neg_goal
-    · apply neg_goal
-      apply Or.inl
-      · intro a
-        apply neg_goal
-        apply Or.inr
-        apply h
-        exact a
-
-  theorem consequentia_mirabilis (h : ¬ A → A) : A := by
-    apply byContradiction
-    intro neg_a
-    apply neg_a
-    apply h
-    apply neg_a
-
-  theorem contrapos_ltr (h : A → B) : ¬B → ¬A := by
-    intro neg_b
-    · intro a
-      apply neg_b
-      apply h
-      exact a
-
-  theorem contrapos_rtl (h: ¬B → ¬A) : A → B := by
-    intro a
-    apply byContradiction
-    · intro neg_b
-      apply h
-      apply neg_b
-      exact a 
-~~~~
-
-You can review the code in the Lean playground by following this [link](https://live.lean-lang.org/#codez=AQNwhgTglmBGA2BTYAKAgsAQsAwsAXMAAoQD2ADgJQBQ1wwALgBaKkSIC2wAJlAM4NosAK4MopAHYB9SYinxBqJgVQZA5ESpsgCiJclPSvTANmSsB2GNOU/gC8wWAE869YGHLl4D4AHkIAOkR4KC50CW4/aABzJgZgJhoXYAB24CgJQVJ7Z0S3Dy9fPzT4bJdcz2A0MML0smAS+hTEAA8wAGNYyvCkADNY5Xrk4Ga22NgSlLSM4FaBsvz/NIhZ93LO6oyBxpb2iqqevs2h7diZ52ZWdi5eASFRcWlZKQgGeCUDdSxTcw+rYGtVIyaMy6ax2RwlOa7cKTMgQlbzAJBLhMcapGqZMBSMBhKRjRL0SFrfauLE4vEuCboknY7hSGb41zwqF+YmYml0uF5Hz+QLBOKomEY0m08k5JkFIrLLlrKIxalkgVUtk4+n4yESiRLBmEqqy2LK2mnejnNicHj8QRQERiSRSBgAd1I8kUKGUhEM5mwlj0/w9n0Bft+tnsTjF0qqgs55QKvORiqmYCl0YWEleicSlKmsGFHO14pTEDqDK2I2ZxOz7NVBPziL5KIzaITSYRRVc8dqFZVze51ULh2GOxlUGioxzRsYLFNVwttxt0gdTuer1d72BJgDGB0v19m6B3tBIajCNjqj2iF6cQSFMbtXTaprrbvDRvmVFpRrJ9C4T1l8OgrbDLVlyGppn+VJVvewEFgMQGrBGVIwYMA6jIhJY7BB9DOBQiASLg8BgHwfBQK0YDFIkzjgNAcBIAC2CECQFA0Gck6XDwpDCAgcgSIgkRgHOzqFq6hAADXCRU/wYMG4JhuUjg4JIghgLw7T3Ee/LMRcZrcOxnFSNxvH8UubyEGg/yiRUBBgqGLj/k+jJcnZyHqcaLFaXIHBsLxDzcQJxnAMJFifL6Ym7mJ65SdZsFeHJCkQEpxFziU/76VIkSkKRan1u+4bQghMnRQ48k1PFKmSElVIpXZkIpWlGX5T2raVWpMXFcpiWJMlPG4mpNXpWR2XJr2wApWMtAuZpVzuZ52IyD5Rkru6IXAmF+giYF4VWWpMZIvyDadZEWJgQmOZvvVTWAfZcFdOe+one2mQjUdt53Rd1VdadA1eEOI7yiKY0ThNPBTRAXl2o6vkLf5fomMFFkaCtlmHvVayRntSrdll9UgQB17/h9kKY59DWalk/0mqx3DA6DC5PC8fkoEt8NBSoUO7htSM2UqMgQN1WM8jtmJsLzuPo3mOUsjdu34k5dmZh23bfXKhP0E5o30JRMCcbRKgMVQZOuVwrSSLSlPdBDbr+WzEnAIASYRYIj0mc02fO1nGaNTOdkHlAAYqRfCIK7RZe14nuJDL91ZAyqu0BpU7TMbUim7Ty4WxgdvYGZbP0BFzWFbFJXtU7tS9XV15vQdtX9S7rZPRiiHl6lfX1w+JPN1yysuOHsesUbEj+wAjsIOFiJiHBQHFsBQEEfB+UtdumSokmbfVLWKW1qkdRVXVVUyoeXV4hMN4m3dmr3inkKQfDm4vtv+iJ2B28JS8c/Q+3C8+tndo9YvlB3XfjXHM+cUL5X3mkwe+t8n7W3Tg7SKL4cZRRDEVNeCUN4iw9u9DGQczqYKjscVwQA).
-
+example (h : A → B) : ¬B → ¬A := by
+  intro not_b
+  intro a
+  exact not_b (h a)
+```
 
 # Interpreting Lean {.solved}
 
-Consider the following two Lean proofs. Translate them into natural deduction
-proofs:
+Translate these proofs into natural deduction. Work through them yourself first;
+afterwards, you can check with the Lean correspondence app in the chapter. For each $intro$, identify
+where the assumption is discharged. Then explain how the conclusion is
+obtained from the assumptions.
 
-{{< lean_logo >}}
-~~~lean4
-  variable (A B : Prop)
+```lean
+variable (A B : Prop)
 
-  theorem absorption_one_ltr : (A ∧ (A ∨ B)) → A := by
-    intro h
-    apply And.left 
-    exact h
+example : (A ∧ (A ∨ B)) → A := by
+  intro h
+  exact And.left h
 
-  theorem absorption_one_rtl : A → (A ∧ (A ∨ B)) := by
-    intro hA
-    apply And.intro
-    · exact hA
-    · exact Or.inl hA
+example : A → (A ∧ (A ∨ B)) := by
+  intro a
+  apply And.intro
+  · exact a
+  · exact Or.inl a
+```
 
-~~~
-Click this
-[link](https://live.lean-lang.org/#codez=ATBuEMCcEtwIwDYFNgAoCCwBCwBcwAFSAewAcBKAKEpABcALJYyJAW2HgGdnTbpiAdgH1BSIQlqQ8aTIHIiGcEAURNnLlggJMJgmXAF5gcAJ40QwaAMnFg9YyHClSCA1oEATAHTIAZrWA3gSAA9wAGMfa2MGJhZ2Lh4+QREBMUhaBGlMTQxgeSzlLFU8PUM/MwsrdD87Byd0VzdSkj8Adv8g0PLm1pCfAHlIeoE0+nQgA)
-to open the browser playground. 
+```lean
+variable (A B C : Prop)
+
+example : A → (B → A) := by
+  intro a
+  intro b
+  exact a
+
+example (h : A ∨ B) (f : A → C) (g : B → C) : C := by
+  apply Or.elim h
+  · intro a
+    exact f a
+  · intro b
+    exact g b
+
+example (h : ¬¬A) : A := by
+  apply Classical.byContradiction
+  intro not_a
+  exact h not_a
+```
 
 ## Solution {#interpreting-leanSolution .solution}
 
-{{< img src="img/lean_correspondence.png" class="mx-auto rounded d-block inert-img img-fluid" width="700px">}}
+In the first proof, assume $A ∧ (A ∨ B)$. Use $∧ Elim$ to obtain $A$,
+then discharge the assumption with $→ Intro$. The Lean proof extracts the first conjunct from the assumed conjunction.
+
+In the second, assume $A$. Use $∨ Intro$ to obtain $A ∨ B$, combine this
+with $A$ using $∧ Intro$, and discharge $A$ with $→ Intro$. The proof
+uses the assumption twice: once as the first part of the conjunction, and once
+to introduce the disjunction in the second part. There is one assumption
+label, whose uses are discharged together.
+
+The first two completed derivations have no open assumptions.
+
+In the third proof, assume $A$, then $B$. Repeat $A$ and discharge $B$
+vacuously to get $B → A$. Discharge $A$ to finish. The proof assumes both formulas, but only uses the first.
+
+In the fourth, split $A ∨ B$ into cases. Under $A$, apply $A → C$; under
+$B$, apply $B → C$. Both give $C$, so discharge the two case assumptions.
+The three given premises remain open. In each case, the proof uses the conditional whose antecedent matches
+the case assumption.
+
+In the fifth, assume $¬A$. Applying $¬¬A$ gives $⊥$. Discharge $¬A$ by the
+classical rule to conclude $A$. The given $¬¬A$ remains open. This proof uses
+$Classical.byContradiction$ in addition to the introduction and elimination
+operations.
+
+# Classical reasoning {.solved}
+
+1. In the solution of $¬¬A ⊢ A$, locate the classical step. What would
+   $¬ Intro$ give us from the same contradiction instead?
+2. Derive $¬¬A ⊢ ¬¬¬¬A$ without the classical rule. Compare the two proofs:
+   what changed about the assumption you discharged and the conclusion?
+3. Would failing to find a proof without the classical rule establish that
+   no such proof exists? Explain.
+
+## Solution {.solution #classical-reasoningSolution}
+
+1. After assuming $¬A$ and deriving $⊥$, the classical rule concludes $A$.
+   $¬ Intro$ would instead conclude $¬¬A$, repeating the premise. The two
+   rules discharge the same assumption here, but have different conclusions.
+2. Assume $¬¬¬A$. This contradicts the given $¬¬A$. Discharge $¬¬¬A$ by
+   $¬ Intro$ to obtain $¬¬¬¬A$. We have introduced a negation, rather than
+   removed two negations from the premise.
+3. No. We might simply have missed a proof. Showing that an inference
+   cannot be derived with a collection of rules requires a mathematical
+   argument about those rules. A failed attempt does not provide one.

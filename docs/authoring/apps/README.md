@@ -18,6 +18,9 @@ Shortcode-driven components used in textbook pages and exercise solutions.
 - [Boolean chapter apps](boolean.md) — derivations, evaluation trees, model spaces.
 - [Boolean circuits and workbench](boolean-circuits.md) — relays, adders, circuit construction.
 
+- [Natural deduction and Lean](deduction.md) — checked proof canvases, worked-out examples, and a bounded Lean translator.
+
+
 ## Standalone shortcodes
 
 - [Static syntax trees](syntax-trees.md) — `syntax-tree`.
@@ -53,3 +56,5 @@ use the same parsing implementation.
 
 - [Chapter apps](../../design/chapter-apps.md) — the panel, its layout and tokens.
 - [The tools section](../tools-section.md) — which apps get their own page at `/tools/`.
+
+- [Goals and canvas layout](deduction-goals.md) — backward proof plans, fullscreen, and Lean holes.

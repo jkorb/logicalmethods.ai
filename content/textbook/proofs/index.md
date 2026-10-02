@@ -1,1209 +1,1011 @@
 ---
 title: Logical proofs
 author: Johannes Korbmacher
-locked: true
+locked: false
 weight: 70
 params:
-  legacy-notation: true
-  last_edited: 03/10/2025         
+  last_edited: "01/10/2026"
   id: txt-proof
 ---
 
 # Logical proofs
 
-A _logical proof_ is a chaining of inference rules applied to logical formulas,
-which models natural language step-by-step reasoning. We've already seen a
-simple example of a proof, when we discussed the chaining methods. The following
-structure, for example, is a logical proof that *derives* `RAINBOW` from the
-assumptions ```MORNING, CLEAR, RAIN, MORNING → DAY, (CLEAR ∧ DAY)→ SUN, ...``` ```... (MORNING ∧ SUN)→ LOW_SUN, (RAIN ∧ LOW_SUN)→ RAINBOW``` using just the rule of {{<abbr
-  title="generalized MP">}}genMP{{</abbr>}}:
+{{< img src="/img/drawings/proof_euclid.svg" class="rounded float-start inert-img img-fluid m-2" width="180px" >}}
 
-{{< img src="img/horn_chaining.png" class="mx-auto rounded d-block inert-img img-fluid" width="500px">}}
+In {{< chapter_ref chapter="logic-and-ai" >}}Logic and AI{{< /chapter_ref >}},
+we introduced proof theory as a model of stepwise inference. In this chapter,
+we'll look at how so-called _proof systems_ make that model precise, how they
+work, and how they are used in AI research.
 
-But the proofs we've seen so far are rather limited in scope: using genMP, we
-can only reason with conditionals where the {{< abbr
-title="if-part">}}antecedent{{< /abbr >}} is a conjunction of formulas. We can't
-use it, for example, to infer `WET` from ```(RAIN ∨SWIM) →WET``` and `RAIN`. But clearly that inference is valid: if I get wet if it
-rains or I go swimming, and it does rain, then it follows that I do get wet.
+Proof systems specify which inferences we may draw from a given set of
+assumptions by means of clearly defined inference rules. In this way, proof
+systems make valid reasoning both _explicit_ and _verifiable_ -- they force us
+to explicitly justify our reasoning in terms of their rules, enabling us to
+check whether the rules have been applied correctly. This approach to reasoning
+has deep roots in mathematics: [Euclid’s
+Elements](https://en.wikipedia.org/wiki/Euclid%27s_Elements) is an early and
+influential example of deriving conclusions from stated assumptions through
+explicit arguments. Since the nineteenth century, mathematicians have
+explicitly studied formal proof systems to clarify the foundations of
+mathematics, giving rise to the field of [proof
+theory](https://en.wikipedia.org/wiki/Proof_theory).
 
-Systems for logical proofs, also called [**proof
-calculi**](https://en.wikipedia.org/wiki/Proof_calculus), solve this issue by
-introducing principles and inference rules that can handle different kinds of
-inferences in one single system. The ultimate theoretical aim is to develop
-proof systems, which are
-[**complete**](https://en.wikipedia.org/wiki/Completeness_(logic)) in the sense
-that with their rules we can re-construct _all_ valid inferences. Gödel's
-[completeness
-theorem](https://en.wikipedia.org/wiki/G%C3%B6del%27s_completeness_theorem)—not
-to be confused with his [*in*completeness
-theorem](https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems)—is
-one of the main achievements of 20th century logical theory.
+{{< img src="/img/drawings/proof_ai_goedel.svg" class="rounded float-end inert-img img-fluid m-2" width="140px" >}}
 
-{{< img src="img/euclid.png" class="rounded  float-start inert-img img-fluid m-2" width="200px" >}} 
-Proof systems have their origin in mathematics: [Euclid's
-*Elements*](https://en.wikipedia.org/wiki/Euclid%27s_Elements) is often credited
-with making rigorous proof the primary method of mathematical research.
-Especially since the 19th century, mathematicians have been paying special
-attention to proof systems in the context of the [foundations of
-mathematics](https://en.wikipedia.org/wiki/Foundations_of_mathematics), where
-their study is aimed at solving issues concerning the very nature of
-mathematical thought. This is the birth of [mathematical
-logic](https://en.wikipedia.org/wiki/Mathematical_logic), which is the
-sub-discipline of logic that has gifted us results like Gödel's [incompleteness
-theorems](https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems)
-and theories like [set theory](https://en.wikipedia.org/wiki/Set_theory), which
-is ubiquitous in mathematics and the sciences.
+The study of proofs as mathematical objects has led to a wealth of insights
+into the foundations of human reasoning. But from a more practical perspective,
+this chapter will highlight how explicitness and verifiability allow humans
+and computers to reason together.
 
-{{< img src="img/ai_goedel.png" class="rounded  float-end inert-img img-fluid m-2" width="150px" >}} 
-But the use of proof systems has long transcended the realm of pure mathematics.
-Soon after they became the focus of logical attention, the relevance of proof
-systems to the theory of computation was discovered, leading to observations
-like the [Curry-Howard
-correspondence](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence),
-which establishes a direct relationship between logical proofs and computer
-programs. As such, the study of logical proofs is also part of the foundations
-of computer science. But also in AI-research specifically, applications abound.
+The precision of formal inference rules makes it possible to implement them
+in a computer program. We've already seen this with
+{{< chapter_ref chapter="sat" id="searching-for-a-refutation" >}}refutation search{{< /chapter_ref >}},
+{{< chapter_ref chapter="conditionals" id="forward-chaining" >}}forward chaining{{< /chapter_ref >}},
+and {{< chapter_ref chapter="conditionals" id="backward-chaining" >}}backward chaining{{< /chapter_ref >}}.
+Once we've specified the problem and the permitted rules, a computer can search
+for a proof on its own. A successful search gives us a record of how the
+conclusion follows from the assumptions.
 
-There are, for example, applications that are perhaps best described as
-[intelligence amplification
-(IA)](https://en.wikipedia.org/wiki/Intelligence_amplification) rather than
-artificial intelligence (AI), even though the lines are a bit blurry here. The
-idea is that since logical proofs are rigorously defined mathematical models of
-natural language inference, we can use computational implementations of proof
-systems to check or **verify** our natural language inferences. This is the idea
-underlying [proof assistants](https://en.wikipedia.org/wiki/Proof_assistant),
-which can guide and correct the process of developing logically valid proofs. In
-this chapter, you'll learn about [Lean](https://lean-lang.org/), which is one
-powerful example of such a proof assistant. {{< img src="img/jimmy_pi.png"
-class="rounded  float-end inert-img img-fluid m-2" width="250px" >}}
+But computers can also help us construct proofs. A _proof assistant_ can keep
+track of our assumptions, suggest a next step, or fill in parts of an argument.
+It also forces us to be explicit: a step that we find obvious still needs to be
+justified by the rules. Famous examples of [computer-assisted
+proofs](https://en.wikipedia.org/wiki/Computer-assisted_proof) include the
+[four color theorem](https://en.wikipedia.org/wiki/Four_color_theorem), about
+the possible ways of coloring a map, and the [Kepler
+conjecture](https://en.wikipedia.org/wiki/Kepler_conjecture), about the
+possible packings of spheres. In both proofs, computers checked large
+collections of cases that were impractical to check by hand. Both results were
+later given fully formal, computer-checked proofs.
 
-Since proof assistants interface with their users in formal languages and {{<
-abbr title="generative AI">}}genAI{{< /abbr>}}-systems, such as ChatGPT, Gemini,
-Claude, Llama, et al., are very good at learning formal languages, [hybrid AI
-systems](https://en.wikipedia.org/wiki/Hybrid_intelligent_system) using an
-architecture involving {{< abbr title="large language models">}}LLMs{{<
-/abbr>}} together with proof assistants have yielded promising results in
-"artificial mathematics"—the project of developing human or super human-level
-AI-systems for logical and mathematical reasoning.
+The interaction also goes in the other direction. When a computer produces a
+proof -- like how chatbots can be used to generate natural language
+mathematical proofs -- we want to know whether its reasoning is correct. An
+explicit argument allows us to inspect the assumptions and follow the inference
+steps. For a long proof, we can also use a proof checker to verify each
+application of a rule. This is especially useful for AI-generated mathematics:
+a generative AI model can propose an argument, which we then submit to formal
+verification. We still need to check that the formal statement expresses the
+mathematical claim we intended to prove.
 
-In fact, proof systems are the playground for a certain kind of [automated
-theorem prover (ATP)](https://en.wikipedia.org/wiki/Automated_theorem_proving).
-State of the art ATPs often use methods we've already discussed, such as
-resolution or `SAT`-solving. But there are also ATPs which are expert systems
-for **proof search**, i.e. the activity of searching through logical proofs in
-well-designed proof systems, using knowledge bases that contain expert knowledge
-on logical proofs. An example of this approach is
-[MUSCADET](https://github.com/theoremprover-museum/muscadet).
-
-Today, these kinds of expert system architectures are virtually extinct in
-ATP-contexts, but there's an intriguing way of thinking about what's going on in
-genAI-research on mathematical proofs in terms of proof search: effectively,
-LLM-based theorem provers are reasoning _inductively_ about proofs, rather than
-deductively, like expert systems. But before we can go into more details, we
-need to better understand how logical proofs work in their standard
-applications.
+[Lean](https://en.wikipedia.org/wiki/Lean_(proof_assistant)) has become a gold
+standard for verifying AI-generated mathematical proofs. For example,
+[AlphaProof](https://deepmind.google/blog/ai-solves-imo-problems-at-silver-medal-level/)
+uses Lean to check the proofs it finds. This is why we'll look at Lean's basic
+way of working in this chapter. We'll begin with natural deduction, a proof
+system closely modeled on familiar reasoning with assumptions and cases.
+Then we'll see how to express these proofs in Lean, and how checking a proof
+is related to checking the type of a computer program.
 
 {{< callout type="objectives" >}}
-- explain the concept of a formal proof in a calculus
-- name important kinds of proof systems with their advantages and drawbacks
-- construct logical proofs in the natural deduction calculus for intuitionistic
-and classical propositional logic
-- verify simple natural deduction arguments in the Lean proof assistant
-- explain the core idea behind the Curry-Howard correspondence
+After studying this chapter, you will be able to:
+
+- Explain how a proof system represents step-by-step reasoning.
+- Distinguish proof search from proof checking.
+- Construct natural deduction proofs with temporary assumptions and cases.
+- Describe how types organize terms and their uses.
+- Verify propositional arguments in Lean.
+- Explain the Curry–Howard correspondence using a derivation and a typed term.
 {{< /callout >}}
 
 ## Proof systems
 
-Over the years, logical research generated _many_ different kinds of proof
-systems. For the purposes of AI-research, you don't need to know the ins and
-outs of all these different systems. But it is useful to have an overview of the
-most important kinds of systems and their different use-cases. We'll begin by
-reviewing the following important families of proof systems, highlighting their
-specific uses for AI purposes:
-
-1. Axiomatic proof systems, such as [Hilbert systems](https://en.wikipedia.org/wiki/Hilbert_system).
-2. Structural proof systems, such as [sequent calculi](https://en.wikipedia.org/wiki/Sequent_calculus).
-3. Algorithmic proof systems, such as [tableaux](https://en.wikipedia.org/wiki/Method_of_analytic_tableaux)-systems and [resolution](https://en.wikipedia.org/wiki/Resolution_(logic))-style systems.
-
-Then we'll do a deep dive into a particularly important kind of proof system, which
-is both useful for practical reasoning with logical formulas and for AI
-applications, which are:
-
-4. Natural deduction systems
-
-As a running example for our discussion, let's consider the following inference
-in natural language, carried out by {{< logo >}}:
-
-```{{< img src="img/ai_nuclear.png" class="rounded float-end inert-img img-fluid m-2" width="300px" >}} If it's windy or rainy, then I get cold, and if I get cold, I need my heating unit. I see that it's rainy. So, I need my heating unit.```
-
-The first step whenever we want to do anything using logical methods in natural
-language contexts is to represent the inference in a formal language using our
-by now familiar knowledge representation techniques. For the premises, we get:
-
-```((RAIN ∨ WIND) → COLD)&emsp; (COLD →HEATING)&emsp; RAIN```
-
-The conclusion is simply: `HEATING.`
-
-So, the entire formal inference, therefore, becomes:
-
-```((RAIN ∨ WIND) → COLD), (COLD →HEATING), RAIN ∴HEATING```
-
-Using our established methods, such as truth-tables or resolution, we can see
-that this inference is deductively valid:
-
-```((RAIN ∨ WIND) → COLD), (COLD →HEATING), RAIN ⊨HEATING```
-
-But in this chapter, we're interested in a different perspective on the
-inference, namely how we can see its validity via step-by-step arguments. That's
-what proof systems are for.
-
-To say that there exists a formal, step-by-step argument from the premises to
-the conclusion, we use the symbol ⊢, called the "turnstile". So, in
-our example, we would write 
-
-```((RAIN ∨ WIND) → COLD), (COLD →HEATING), RAIN ⊢HEATING```
-
-to say that there exists a step-by-step argument—a *logical proof*—from the
-premises to the conclusion.
-
-It's important to realize that the symbols ⊨ and ⊢ say
-different things: the former, ⊨, says that an inference is valid;
-the latter, ⊢ says that there exists a logical proof from the
-premises to the conclusion. We *want* the two to coincide, and in most systems
-they do. This is the content of the
-[soundness](https://en.wikipedia.org/wiki/Soundness) and
-[completeness](https://en.wikipedia.org/wiki/Completeness_(logic)) theorems for
-a logic, which state that for all inferences:
-
-```P₁, P₂, … ⊢ C &emsp; if and only if P₁, P₂, … ⊨ C```
-
-Most logical systems you'll come across in AI applications have this property,
-especially when we're dealing with basic systems for classical propositional
-logic, like below. But it's also important to know that there *are* logical
-systems where no complete proof system exists—where not for every valid
-inference there exists a step-by-step proof. An example is [second-order
-logic](https://en.wikipedia.org/wiki/Second-order_logic).
-
-Returning to our main topic, different proof systems have different ways of
-showing that: 
-```((RAIN ∨ WIND) → COLD), (COLD →HEATING), RAIN ⊢HEATING.```
-
-Let's check out how.
-
-## Axiomatic systems
-
-[Axiomatic systems](https://en.wikipedia.org/wiki/Axiomatic_system) are modelled
-after the approach of Euclid's elements, which starts from basic laws or
-[*axioms*](https://en.wikipedia.org/wiki/Axiom) and constructs logical proofs by
-deriving consequences using simple inference rules. In logical theory, axiomatic
-systems are typically called [**Hilbert systems**](https://en.wikipedia.org/wiki/Hilbert_system).
-
-Here's how a logical proof for our inference would look like in a Hilbert system for
-propositional logic:
-
-1. `RAIN` <span class="right-justified">(Premise)</span>
-2. `(RAIN → (RAIN ∨ WIND))` <span class="right-justified">(Axiom)</span>
-3. `(RAIN ∨ WIND)` <span class="right-justified">(1., 2., MP)</span>
-4. `((RAIN ∨ WIND) → COLD)`  <span class="right-justified">(Premise)</span>
-5. `COLD` <span class="right-justified">(3., 4., MP)</span>
-6. `(COLD → HEATING)`  <span class="right-justified">(Premise)</span>
-7. `HEATING` <span class="right-justified">(5., 6., MP)</span>
-
-Only one rule of inference is used in this derivation, namely MP, which is
-characteristic of Hilbert calculi. Typically Hilbert calculi have only one or
-two rules of inference and rely on the axioms to do the "heavy lifting".
-
-The only axiom in this derivation is 2. $(RAIN → (RAIN ∨
-WIND))$, which expresses the thought that if one disjunct is true the
-disjunction is true as well. The axioms of a Hilbert calculus for propositional
-logic are **logical truths**, that is formulas which are true in every model.
-The challenge when formulating a Hilbert calculus is to find a collection of
-logical truths of the logic, which allow for the derivation of all valid
-consequences. We've already encountered this idea in Boolean algebra, where we
-looked at how to derive Boolean laws from others.
-
-Here's a list of axioms, which together with the rule of MP form a sound and
-complete Hilbert calculus for classical Boolean logic, where `A,B,C` can be any
-formula:
-
-+ `(A →(B → A))`
-+ `((A → (B → C)) →((A→B)→(A → C)))`
-+ `((¬B →¬A)→(A →B))`
-+ `((A ∧ B)→ A)` and `((A ∧ B)→ B)`
-+ `(A →(B → (A∧ B))`
-+ `(A →(A∨ B))` and `(B →(A∨ B))`
-+ `((A →C)→((B→C)→((A∨B)→ C)))`
-
-That is for all and only the valid inferences, we can derive the conclusion from
-the premises in this calculus.
-
-As you can see in this example, Hilbert calculi are typically quite "compact".
-They manage to compress a lot of logical information into a few basic axioms and
-a couple of inference rules.
-
-{{< img src="img/ai_panic.png" class="rounded  float-end inert-img img-fluid m-2" width="150px" >}} 
-While this is certainly memory efficient, it is *terrible* for automated
-reasoning. Proofs in Hilbert calculi are typically quite hard to find and can
-get unreasonably long. 
-
-Here's an example to illustrate both points, by showing that the condition
-```RAIN→RAIN``` is derivable from no assumptions in this calculus. The
-conditional is, of course, a logical truth: if it rains, then it rains. This
-should be easy to see. But see for yourself:
-
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-
-1. `((RAIN → ((RAIN → RAIN) → RAIN)) → ((RAIN → (RAIN → RAIN)) → (RAIN → RAIN)))` 
-
-    &nbsp; <span class="right-justified">(Axiom 2. with `A = RAIN, B = (RAIN→ RAIN),` and `C = RAIN`)</span>
-
-
-2. `(RAIN → ((RAIN → RAIN) → RAIN))` 
-
-    &nbsp; <span class="right-justified"> (Axiom 1. with `A = RAIN` and `B = (RAIN→ RAIN)`)</span>
-
-3. `((RAIN → (RAIN → RAIN)) → (RAIN → RAIN))` 
-
-    &nbsp; <span class="right-justified"> (1., 2., MP)</span>
-
-4. `(RAIN → (RAIN → RAIN))` 
-
-    &nbsp; <span class="right-justified"> (Axiom 1. with `A = RAIN` and `B = RAIN`.)</span>
-
-5. `(RAIN → RAIN)`
-
-    &nbsp; <span class="right-justified"> (3., 4., MP)</span>
-
-&nbsp;
-
-While providing Hilbert-style logical proofs is certainly a learnable skill, it
-is not an easy thing to do—not even for computers. To find the above proof in an
-algorithmic fashion, one has to systematically search through _all_ possible
-values that `A,B,C` could take in the axioms. Not a good starting point.
-
-Hilbert calculi are a common starting point for logical inquiry in AI. For
-example, proof systems for [modal
-logics](https://en.wikipedia.org/wiki/Modal_logic), which are very important in
-more complex hardware and software verification settings, are typically
-presented Hilbert-style. The computationally more tractable approaches to proof
-systems that we look at next don't work for some logics. Instead, Hilbert
-systems are the "tried and true" go-to method, which often yields the desired
-results.
-
-## Sequent calculi
-
-Sequent calculi take a fundamentally different approach to logical proofs.
-Rather than directly working with formulas, they work with so-called
-**sequents**. Sequents are "meta"-statements of sorts, which are formal claims
-of valid inference using the *sequent arrow*, ⟹. For our
-example, then, the aim is to derive the following sequent:
-
-```RAIN, ((RAIN ∨ WIND) → COLD), (COLD →HEATING) ⟹HEATING.```
-
-Such a derivation will then be the proof corresponding to the claim that:
-
-```((RAIN ∨ WIND) → COLD), (COLD →HEATING), RAIN ⊢HEATING``` 
-
-Here's how a standard sequent calculus for classical propositional
-logic would derive this sequent:
-
-{{< img src="img/sequent_derivation.png" class="mx-auto rounded d-block inert-img img-fluid" width="800px">}}
-
-The derivation begins with `RAIN ⟹ RAIN`, which is called an "initial
-sequent"—essentially an _axiom_ of sequent calculus. These initial sequents
-express the basic logical fact that every statement logically entails itself: if
-it rains, then it rains. We could also think of this as a _trivial_ inference.
-
-From these kinds of basic inferences, the sequent calculus proof constructs more
-complex sequents from the simple ones by applying **sequent rules**. For
-example, the inference from `RAIN ⟹ RAIN` to 
-`RAIN ⟹ (RAIN ∨ WIND)` uses the rule 
-`∨R`, which in general looks like this, where `Γ` is any collection of
-premises and `A,B` any formulas:
-
-{{< img src="img/lor_right.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
-
-The idea of this rule is that if the `Γ`'s logically imply `A`, then they also
-logically imply `(A∨B)`, since `A` implies `(A∨B)`.
-
-There are many different ways of constructing a sequent calculus for classical
-propositional logic, but one is this:
-
-{{< img src="img/sequent_calculus.png" class="mx-auto rounded d-block inert-img img-fluid" width="800px">}}
-
-As you can see, there are a lot of rules here. For each logical connective there
-are rules that introduce the connective on the left side of ⟹ 
-(here in <span class="dark-red">red</span>) and rules that introduce the
-connective on the right side of ⟹ (here in <span
-  class="dark-green">green</span>). The so-called "left-rules" for a connective
-tell us what follows from a formula involving the connective based on the
-consequences of the formulas the connective is operating on. The "right-rules"
-for a connective, instead, tell us what a formula involving the connective
-follows from given what its parts follow from.
-
-The symbol ⊥, which occurs in the rules for negation, for example, is
-a special "contradiction"-symbol, which is also called **falsum**. It is a
-special propositional variable which is false in every model. It is extremely
-useful in proof-theoretic contexts, where `Γ, A ⟹ ⊥` 
-says that we can derive a contradiction from `A` and `Γ`. From this we infer
-that the formulas in `Γ` must entail `¬A`.
-
-Additionally, there are principles that express basic logical facts (here in
-<span class="dark-orange">orange</span>), and so-called "structural" rules,
-which don't involve any connectives at all (here in <span
-  class="dark-blue">blue</span>). So in contrast to Hilbert calculi, which have
-many axioms and few rules, in sequent calculi, we have few axioms and many
-rules. But these rules serve a specific purpose.
-
-Together these rules allow us to recursively construct complex implications from
-simpler ones, as in the case of our example. In this way, sequent calculus
-proofs give us insights into how different valid inferences hang together or
-interact. This observation is the starting point for [structural proof
-theory](https://en.wikipedia.org/wiki/Structural_proof_theory), which
-investigates how alternative formulations of the sequent calculus rules can help
-us better understand the nature of deductively valid inference.
-
-From this perspective, the role of sequent calculi in logical research is
-primarily foundational. In fact, sequent calculi have been instrumental in the
-obtaining of fundamental results in mathematical logic, such as [Gentzen's
-consistency proof](https://en.wikipedia.org/wiki/Gentzen%27s_consistency_proof)
-for the standard theory of natural numbers, which shows that you can't prove in
-that theory mathematical falsehoods like `0 = 1`.
-
-In the context of AI-research, you will therefore mainly come across sequent
-calculi in foundational papers. But they are also useful for another reason: in
-contrast to Hilbert calculi, in sequent calculi, we can typically carry out
-efficient **proof searches**. The way this works is that from any sequent we'd
-like to prove, we can try to work _backwards_ through the rules until we,
-hopefully, hit initial sequents. How well such proof searches work depends a lot
-on the concrete formulation of the calculus in question. But we shall not go
-into too much depth here, as the algorithmic systems we'll move to next are more
-robust implementations of this idea.
-
-## Algorithmic systems
-
-There are many different kinds of algorithmic systems, but many of them are
-`SAT`-based. That is, they are built on the idea we discussed before that we can
-reduce valid inference to the unsatisfiability of the premises with the negation
-of the conclusion:
-
-```P₁, P₂, … ⊨ C &emsp; if and only if <span class="dark-red">not SAT</span> { P₁, P₂, … ,¬C}```
-
-The [analytic tableau
-method](https://en.wikipedia.org/wiki/Method_of_analytic_tableaux) works by
-recursively unfolding formulas according to their truth-conditions, producing a
-[tree](https://en.wikipedia.org/wiki/Tree_(graph_theory))-representation of the
-possible ways those conditions might be satisfied.  A **tree** in the
-mathematical sense is simply a structure of the following kind:
-
-{{< img src="img/tree.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
-
-The circles are called **nodes**, the top-most node is the **root** (here in
-<span class="dark-red">red</span>), the outermost nodes are **leaves** (here in
-<span class="dark-blue">blue</span>), and a way of getting from the root to a leaf is called a path (like the <span class="dark-green">green</span> path from
-the root to the right-most leaf). It's a defining characteristic of trees in the
-mathematical sense that there's a unique path from the root to every leaf. By
-the way, our parsing trees from syntax-theory are also trees in this
-precise mathematical sense.
-
-In a tableau, the nodes are populated with formulas and each branch corresponds
-to a different way in which the formulas at the root could be true. Here's what
-this looks like in our example inference:
-
-{{< img src="img/tableau_derivation.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
-
-What's going on here is that we start with the premises and negation of the
-conclusion of our inference and then recursively unfold the truth-conditions for
-the formulas involved. For example, the first "branching" to the formulas `¬(RAIN ∨ WIND)` and `COLD` unfolds the two ways in which the
-conditional `((RAIN ∨ WIND)→ COLD)` could be true. By our
-Boolean implementation of →, we have: ```v(((RAIN ∨ WIND)→ COLD)) = (!!NOT!! v(RAIN ∨ WIND)) !!OR!! v(COLD)``` If we set
-this equation to `1` (i.e. *true*), we can see that there are only two
-possibilities, either `!!NOT!! v(RAIN ∨ WIND) = 1`  or `v(COLD)`. And
-since `!!NOT!! v(RAIN ∨ WIND) = 1` is the same as $v(¬(RAIN
-∨ WIND)) = 1$, the two branches in our tree represent the two *a
-priori* possible ways the formula `((RAIN ∨ WIND)→ COLD)`
-could be true.
-
-In a similar fashion, `¬(WIND ∨ RAIN)` gets unfolded to `¬RAIN` and `¬WIND`. If we assume that 
-```v(¬(RAIN ∨ WIND)) = !!NOT!!(v(RAIN) !!OR!! v(WIND)) = 1,```
-we can "solve" for `v(RAIN)` and `v(WIND)` and see that they both need to be
-`0`, which in turn means that `¬RAIN` and `¬WIND` both are
-`1`.
-
-All the other tableau rules are motivated by completely analogous arguments.
-Here is a complete set for classical propositional logic:
-
-{{< img src="img/tableau.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
-
-To generate a tableau, one simply recursively applies these rules by extending
-every branch that passes through the formula according to the rule.
-
-If a branch contains a contradiction, it is eliminated—*closed off* as we say.
-If this happens to every branch in a complete tableau, like in our example, we
-consider this the proof that the formulas at the root aren't jointly
-satisfiable—which means that the inference in question is valid. That is, the tableau above is the logical proof that:
-
-```((RAIN ∨ WIND) → COLD), (COLD →HEATING), RAIN ⊢HEATING.```
-
-If there are branches that don't close off, this shows that there exists a
-countermodel to the inference in question. Here's a case where this happens,
-which shows that 
-
-```((RAIN ∨ WIND) → COLD), (COLD →HEATING), SUN ⊬HEATING.```
-
-{{< img src="img/tableau_invalid.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
-
-All rules have been applied and some branches close off. But the left-most one
-(here indicated in <span class="green">green</span>) remains "open". A great
-advantage of the tableau-method is that we can directly "read off" a
-countermodel from it. Here, the corresponding countermodel is given by 
-```v(COLD) = 0, v(WIND) = 0, v(RAIN) = 0```
-It's easy to check that all the formulas on the green branch are true, and so
-the inference in question is invalid.
-
-What makes tableaux particularly fruitful for AI-research is their algorithmic
-nature: they are effectively an algorithm for countermodel search. Moreover,
-they can easily be made more efficient, for example, by checking for
-contradictions after each rule application, to eliminate branches early.
-Tableau systems that are optimized in this way are the basis for many {{< abbr
-title="automated theorem prover">}}ATP{{< /abbr >}}-applications. 
-
-The main drawback of tableaux is that they are essentially `SAT`-solving
-algorithms in disguise. As a consequence, they are not very "natural" in the
-sense that it can sometimes be hard to see what's going on in a given tableau
-and it's not straightforward to go back and forth between natural language
-arguments and tableau proofs—they are simply not a great model of natural
-language step-by-step inference. This makes them less useful for use in proof
-assistants, for example, which are supposed to be formalized augmented
-intelligence systems that can help us verify our natural language inferences
-each step along the way.
+In {{< chapter_ref chapter="logic-and-ai" >}}Logic and AI{{< /chapter_ref >}},
+we introduced proof theory as a model of stepwise inference. That model builds
+on our model of language from
+{{< chapter_ref chapter="formal-languages" >}}Formal languages{{< /chapter_ref >}}:
+proof systems operate on _formulas_. So, in this setting, an inference rule
+tells us which formulas we may infer from which other formulas.
+
+{{< img src="/img/drawings/proof_ai_radiator.svg" class="rounded float-end inert-img img-fluid m-2" width="130px" >}}
+
+Take our robot's heating argument. We know that it rains, that rain or wind
+makes the robot cold, and that a cold robot needs heating. We can work towards
+the conclusion in small steps. First, from $RAIN$ we infer $RAIN ∨ WIND$:
+
+{{< inference >}}
+$RAIN$
+---
+$RAIN ∨ WIND$
+{{< /inference >}}
+
+Then we use the first conditional to infer $COLD$:
+
+{{< inference >}}
+$RAIN ∨ WIND$
+$(RAIN ∨ WIND) → COLD$
+---
+$COLD$
+{{< /inference >}}
+
+Finally, we use the second conditional to infer $HEATING$:
+
+{{< inference >}}
+$COLD$
+$COLD → HEATING$
+---
+$HEATING$
+{{< /inference >}}
+
+Each conclusion can be used in a later step. A proof system, also called a
+_(proof_ calculus_, specifies the rules that justify these inference steps.
+
+{{< callout type="definition" title="Proof system" >}}
+A {{< term "proof-calculus" "proof system" >}} specifies the permitted starting
+points and inference rules for constructing derivations in a formal language.
+A {{< term "proof" "logical proof" >}} or
+{{< term "proof" "derivation" >}} is a finite construction of formulas by these
+rules, with its assumptions recorded.
+{{< /callout >}}
+
+There are many ways to organize proofs. That is: there are many different
+_kinds_ of proof systems. Some of the important examples are:
+
+- <span id="axiomatic-systems"></span>[Axiomatic systems](https://en.wikipedia.org/wiki/Hilbert_system), such as Hilbert systems,
+  begin with {{< term "axiom" "axioms" >}} and use relatively few inference
+  rules. They are useful for studying which principles suffice for a logic.
+- <span id="sequent-calculi"></span>[Sequent calculi](https://en.wikipedia.org/wiki/Sequent_calculus) work with entire judgments
+  about assumptions and conclusions. Their rules let us study the structure
+  of proofs and organize proof search.
+- <span id="algorithmic-systems"></span>Algorithmic systems, such as [tableaux](https://en.wikipedia.org/wiki/Method_of_analytic_tableaux)
+  and [resolution](https://en.wikipedia.org/wiki/Resolution_(logic)), organize proofs around systematic search. We've used
+  resolution to search for refutations in
+  {{< chapter_ref chapter="sat" >}}SAT{{< /chapter_ref >}}.
+- [Natural deduction](https://en.wikipedia.org/wiki/Natural_deduction) uses rules for introducing and using the connectives,
+  including rules for reasoning under temporary assumptions. We'll concentrate
+  on this system, since it closely follows familiar reasoning.
+
+All these systems let us ask whether a conclusion can be derived from given
+assumptions. We use a new symbol for this:
+
+{{< callout type="definition" title="Derivability" >}}
+$Γ ⊢ A$ means that there is a formal proof of $A$ from assumptions in $Γ$ in
+the chosen proof system. This relation is called
+{{< term "derivability" "derivability" >}}.
+{{< /callout >}}
+
+Here $Γ$ is a convenient name for a collection of assumptions. We already know
+$Γ ⊨ A$: every model of $Γ$ makes $A$ true. We want our proofs to establish that their conclusions follow from their
+assumptions in this semantic sense too.
+
+{{< callout type="definition" title="Soundness and completeness" >}}
+A proof system is called {{< term "soundness" "sound" >}} iff $Γ ⊨ A$ whenever
+$Γ ⊢ A$. And a proof system is called {{< term "completeness" "complete" >}}
+iff $Γ ⊢ A$ whenever $Γ ⊨ A$.
+{{< /callout >}}
+
+Soundness ensures that following the rules never takes us from true assumptions
+to a false conclusion. Completeness ensures that all semantic consequences can
+indeed be established by the rules. Note that _finding_ such a proof is another
+question: even when we know that one exists,
+{{< term "proof-search" "proof search" >}} may be still be -- and typically
+_is_ -- hard.
 
 ## Natural deduction
 
-The system of [natural
-deduction](https://en.wikipedia.org/wiki/Natural_deduction) was specifically
-developed with rigorous natural language inference as a target in mind. The
-system has no axioms, only inference rules. The idea is that each inference rule
-corresponds to a basic natural language inference involving the connectives.
-Here's how this plays out for our running example:
+The main proof system we'll be working with in this book is known as {{< term
+"natural-deduction" "natural deduction" >}}. Historically, this system was
+specifically developed with rigorous natural language inference as a target in
+mind. The system has no axioms, only inference rules. And the idea is that each
+rule corresponds to a basic natural language inference involving the
+connectives. This makes natural deduction a good starting point for studying
+formal proofs.
 
-{{< img src="img/natural_deduction_derivation.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
+To illustrate, let's revisit our heating example. If it's rainy or windy, our
+robot gets cold; if it gets cold, it needs heating. It is raining. So it needs
+heating. So, our formal premises, then, are: $(RAIN ∨ WIND) → COLD$, $COLD →
+HEATING$, and $RAIN$. Here is a derivation of $HEATING$ from these assumptions
+using the rules of natural deduction:
 
-What's going on here is that our premises are **assumptions** in a proof
-tree, where we apply inference rules to derive conclusions until we eventually
-bottom-out at our desired conclusion. There are rules that introduce
-connectives, like `∨ Intro`, which we use to infer 
-`(RAIN∨WIND)` from `RAIN`. Then there are rules like `→Elim`,
-which eliminate connectives from the derivation. Here, for example, we use it to
-infer `COLD` from `RAIN∨WIND` and $(RAIN∨WIND)→
-COLD)$—which is essentially just MP, I'm sure you noticed.
+{{< logic-app name="deduction" kind="worked" display="full" example="heating" title="A derivation of HEATING" >}}
 
-In the standard natural deduction calculus for classical propositional logic,
-each connective has two corresponding kinds of rules, its **introduction rules**
-and its **elimination rules**. Here they are:
+Our assumptions are on the nodes at the top of this proof tree. The tree
+applies natural deduction inference rules -- which we'll study in detail
+momentarily --- until we reach the desired conclusion at the bottom. First, $∨
+Intro$ lets us infer $RAIN ∨ WIND$ from $RAIN$. Then $→ Elim$ lets us infer
+$COLD$ from that disjunction and $(RAIN ∨ WIND) → COLD$. . A second application
+gives $HEATING$. By the way: the rule $→ Elim$ is just
+{{< term "modus-ponens" "modus ponens" >}}, I'm sure you noticed 😃
 
-{{< img src="img/natural_deduction_rules.png" class="mx-auto rounded d-block inert-img img-fluid" width="800px">}}
+### Rules
 
-Some of these rules require a bit more explanation. Take the rule `→Introduction`, 
-for example. This rule has corner brackets around its premise, `[A]`. What this
-means is that the assumption `A` is **discharged** in the application of 
-`→Introduction`—after the application of the rule, `A` no longer counts
-among the assumptions of the proof.
+So, let's go through the rules of natural deduction in
+detail. In the system, each connective has rules that
+introduce it and rules that let us use a formula
+containing it.
 
-Applying this rule, we can for example reason as follows:
-{{< img src="img/or_intro_axiom.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
+{{< callout type="definition" title="Introduction and elimination" >}}
+An {{< term "introduction-rule" "introduction rule" >}} derives a formula
+with the relevant connective as its main connective. An
+{{< term "elimination-rule" "elimination rule" >}} uses a formula with that
+main connective to derive a conclusion.
+{{< /callout >}}
 
-We assume that it rains. From this we infer that it's rainy or windy. So, even
-without the assumption, we know that _if_ it rains, then it's rainy or windy. In
-other words, what this derivation establishes is that `(RAIN →(RAIN ∨WIND))` can be derived _without any assumptions_: ```⊢(RAIN →(RAIN ∨WIND))``` Maybe you remember from before that this was
-an _axiom_ of Hilbert's axiomatization of propositional logic, which we used in
-our Hilbert-style derivation for our example inference. It turns out that in a
-similar way, all the axioms of Hilbert's calculus can be derived without any
-assumptions. This is a sense in which they are _logical laws_.
+Here are the rules for our propositional system, grouped by connective. $A$,
+$B$, and $C$ stand for arbitrary formulas. A vertical $⋮$ stands for a
+derivation, which may contain several steps. Bracketed assumptions are
+discharged at the rule carrying their number. In $∨ Elim$, for example, both
+case assumptions are discharged.
 
-In rules like `∨Elim`, this hypothetical reasoning with discharging
-assumptions is taken to the next level. This rule captures **case-by-case
-reasoning**, which we can use, for example, to show the validity of our previous
-example for disjunctive syllogism in natural deduction:
+{{< logic-app name="deduction" kind="rules" title="Natural deduction rules" >}}
 
-{{< img src="img/disjunction_elimination.png" class="mx-auto rounded d-block inert-img img-fluid" width="600px">}}
+We include $↔$ for convenience. Its rules express that $A ↔ B$ gives us both
+$A → B$ and $B → A$, and that proving both conditionals establishes the
+biconditional. $⊤ Intro$ has no premises: the always-true formula needs no
+assumptions. The other rules require the premises shown above their lines.
 
-What's going on here is that we assume both `(SUN ∨RAIN)` and `¬ SUN`.
-We know that the disjunction means that there are two possible cases, either
-`SUN` or `RAIN`, so we think both through. We assume sun in addition to our
-other assumptions, and note that we got a contradiction with our other
-assumption `¬SUN`, which yields `⊥`. From this, we can use
-the [principle of
-explosion](https://en.wikipedia.org/wiki/Principle_of_explosion), which we've
-captured in the rule `Ex falso` to infer that `RAINS`. That leaves only the
-other possible case. If we assume that it rains, it rains, so we can discharge
-the assumption directly. We infer that it must be raining. This proof shows that 
+Some rules require a bit more explanation to get the idea, while some rules are
+relatively self-explanatory. For example, $∧ Intro$ says that you can infer $A
+∧ B$ being true from both $A$ and $B$ being true. Sure. It's a bit more
+complicated, though, to see what's going on in $→ Intro$, $∨ Elim$, and $Ex
+falso$. So, let's go through these in turn. Take $→ Intro$ first. In this rule,
+we temporarily assume $A$ and derive $B$. The rule then establishes $A → B$,
+ending our dependence on that temporary assumption.
 
-```(SUN ∨RAIN), ¬ SUN ⊢ RAIN```
+{{< callout type="definition" title="Discharge" >}}
+An {{< term "open-assumption" "open assumption" >}} is an assumption on which
+a derivation still depends. To {{< term "discharge" "discharge" >}} an
+assumption is to remove that dependency by an application of a rule that
+permits it. Discharge is marked in a natural deduction proof by surrounding the
+assumption with brackets $[ ]$.
+{{< /callout >}}
 
-The rules `Ex falso` and `¬⊥` deserve special attention
-since they capture logical laws that are only valid in very specific logical
-contexts or systems. The principle of explosion, which we've just used to prove disjunctive
-syllogism, for example, is valid in Boolean logic. Here, we can derive the falsum ⊥ from any contradiction, like `SUN` and `¬SUN`. This is because
-`SUN` cannot both be true and false at the same time. But that means that if we
-assume that it is, we get ⊥ and "anything goes", so if both `SUN` and
-`¬SUN`, then `RAIN`. 
+We use labels like $h0$, $h1$, and so on to keep track of and identify
+assumptions. Note that two assumptions can have the same formula and different
+labels. Discharging one removes that labeled assumption from the derivation in
+question; any others remain open.
 
-Or think about it the other way around. The only way for the inference from
-`SUN` and `¬SUN` to `RAIN` to be *in*valid is for both `SUN` and
-`¬SUN` to be `1`, while `RAIN` is `0`. But in Boolean logic that's
-excluded. So the inference must be valid.—If we move to a [paraconsistent
-logic](https://en.wikipedia.org/wiki/Paraconsistent_logic), however, where statements can
-be both true and false at the same time, things change. Such logics are very
-important when combining potentially contradictory information from different
-databases, but that's a story for later on.
+We may use an assumption more than once; discharging its label discharges
+all those uses in the relevant subderivation. This is called {{< term "multiple-discharge" "multiple discharge" >}}. For
+example, assume $RAIN$ with label $h$. Use it twice in $∧ Intro$ to obtain
+$RAIN ∧ RAIN$, then discharge $h$ to obtain $RAIN → (RAIN ∧ RAIN)$. Both
+occurrences carry the same label, so neither remains open.
 
-The case of ¬⊥ is equally fraught with logical and
-philosophical issues, but suffice it to say here, that it is required to derive
-`¬¬RAIN ⊢ RAIN`. This principle fails, for
-example, in [intuitionistic
-logic](https://en.wikipedia.org/wiki/Intuitionistic_logic), which is of
-paramount importance in the foundations of computation. We won't be able to go
-into the full details here, but we'll see that these special rules play an
-important role, for example, when we move to proof assistants.
+### Temporary assumptions
 
-There's one more stumbling block for natural deduction, which is worth
-mentioning. Though perhaps strange, the following is a valid derivation in
-natural deduction:
+Let's look at an example: Assume that it rains. From this we infer that it's
+rainy or windy. So, even without the assumption, we know that *if* it rains,
+then it's rainy or windy:
 
-{{< img src="img/vacuous_discharge.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
+{{< logic-app name="deduction" kind="worked" example="conditional" title="Discharging an assumption" >}}
 
-What's going on here is that in the first application of `→ Intro`,
-the assumption `WIND` is discharged even though it's not written down anywhere.
-This is called **vacuous discharge** and without it, we couldn't prove laws
-like the one from the derivation, which is one of Hilbert's axioms. The
-assumption `RAIN`, then, can be discharged as normal.
+What this establishes is that $RAIN → (RAIN ∨ WIND)$ can be derived without
+any open assumptions:
 
-It's also worth pointing out that there are actually many different
-notational systems for natural deduction: we use the
-[Gentzen-Prawitz-style](https://en.wikipedia.org/wiki/Natural_deduction#Gentzen-style_propositional_logic),
-but there are also
-[Fitch-notation](https://en.wikipedia.org/wiki/Fitch_notation), [Suppes-Lemmon
-notation](https://en.wikipedia.org/wiki/Suppes%E2%80%93Lemmon_notation), and
-many others.
+$$
+⊢ RAIN → (RAIN ∨ WIND)
+$$
 
-As we said, natural deduction attempts to model the most basic, small-step
-inferences we make in natural language reasoning. At the same time, as any math
-student can attest, making good small-step inferences is hard work—even in
-natural language. So, it should come as no surprise that learning to make
-correct natural deduction inferences is hard work. And unfortunately,
-there's no shortcut around just trying one's hand at this. Luckily, there are
-tools that allow us to check our own work: these are the proof assistants we've
-mentioned before and will talk about next.
+We didn't claim that it rains; we established what would follow *if* it did.
+Every other open assumption used in deriving the consequent would remain open.
 
-## Proof assistants: Lean
+There's one more stumbling block. We can derive $RAIN → (WIND → RAIN)$:
+assume $RAIN$, temporarily assume $WIND$, and repeat $RAIN$. Discharge $WIND$
+and then $RAIN$. The assumption $WIND$ was never needed. This is called
+{{< term "vacuous-discharge" "vacuous discharge" >}}. The next derivation shows the steps. The conclusion says that if it rains, it rains
+regardless of whether it is windy.
 
-A [proof assistant](https://en.wikipedia.org/wiki/Proof_assistant) is a piece of
-software that helps develop logical proofs in a kind of human-machine
-collaboration. The idea is that to interact with a proof assistant, we write
-down our proofs in a specialized formal language, which the proof assistant can easily
-parse and then check for formal reasoning mistakes—that is, check whether we've
-applied the rules and conditions for logical proofs correctly. This is a
-paradigm case of [intelligence amplification
-(IA)](https://en.wikipedia.org/wiki/Intelligence_amplification), where we
-"outsource" the verification of our arguments to a specialized computer program.
+{{< logic-app name="deduction" kind="worked" example="vacuous" title="Vacuous discharge" >}}
 
-What might seem like a very dry and nitpicky activity at first, turns out to be
-an incredibly helpful and powerful logical tool for research in disciplines that
-rely heavily on the correctness of mathematical arguments, such as pure and
-applied math, physics, economics, and others. While trained mathematicians are
-experts at giving logical proofs, mistakes do happen. Mathematicians are human
-after all. To find these mistakes is the aim of [peer
-review](https://en.wikipedia.org/wiki/Peer_review), but the more advanced the
-work, the fewer peers there are. When it comes to cutting-edge research
-mathematics, it's not at all uncommon that there are only a handful of people
-in the world who fully grasp the arguments of a research paper.
+Next, we turn to the $∨ Elim$ rule. This rule is a formal form of _reasoning by cases_. Let's look at an example.
 
-As a result, there are often only few people who can spot mistakes. And these
-are typically people that do similar work as the author, and so are more likely
-to "think just like them"—and as a consequence make the same kind of mistakes.
-This is an in principle problem when we're working with fallible reviewers in
-highly-specialized disciplines like mathematics. Proof assistants can help
-mitigate these issues. In fact, there are several [high-profile
-cases](https://nautil.us/in-mathematics-mistakes-arent-what-they-used-to-be-235407/),
-where proof assistants both helped spot and fix errors in the work of [Fields
-medalists](https://en.wikipedia.org/wiki/Fields_Medal) and other high-profile
-mathematicians.
+### Reasoning by cases
 
-[Terence Tao](https://en.wikipedia.org/wiki/Terence_Tao) has [recently
-argued](https://terrytao.wordpress.com/2024/09/25/a-pilot-project-in-universal-algebra-to-explore-new-ways-to-collaborate-and-use-machine-assistance/)
-that the added certainty that a verification by a proof assistant adds is a
-great boon for mathematical collaboration, since you no longer need to
-carefully check all the proofs of your potential collaborators—the computer
-does that for you. This opens up the possibility of new kinds of collaboration.
+In $∨ Elim$, hypothetical reasoning is taken a step further. Suppose we know
+$SUN ∨ RAIN$ and $¬SUN$. The disjunction gives two possible cases, so we think
+both through. In the first case, assume $SUN$. Together with $¬SUN$ this gives
+$⊥$. The rule $Ex falso$ allows us to infer $RAIN$ from $⊥$. In the second
+case, assume $RAIN$. That already gives the conclusion we need.
 
-{{< img src="img/ai_clippy.png" class="rounded  float-start inert-img img-fluid m-2" width="200px" >}} 
-At the same time, the way that proof assistants interface with natural language
-proofs is very adaptable to the way that 
-{{< abbr title="large language models">}}LLMs{{< /abbr >}} treat texts. 
-This opens up the possibility of GenAI-technologies, like ChatGPT, Claude,
-Gemini, and others, using proof assistants to formulate and verify their
-reasoning. The potential for applications of this observation in machine
-learning and practice is endless. What we see in practice already is that
-AI-tools like [GitHub Copilot](https://en.wikipedia.org/wiki/GitHub_Copilot) can
-complete some simple mathematical arguments while they are being typed in
-`LaTeX` source code by an author. 
+{{< logic-app name="deduction" kind="worked" example="cases" title="Disjunctive syllogism by cases" >}}
 
-There are many proof assistants out there, such as
-[Agda](https://en.wikipedia.org/wiki/Agda_(programming_language)),
-[Isabelle/HOL](https://en.wikipedia.org/wiki/Isabelle_(proof_assistant)), and
-[Coq](https://en.wikipedia.org/wiki/Coq_(software)). But in this course we'll be
-working with the [Lean](https://en.wikipedia.org/wiki/Lean_(proof_assistant))
-proof assistant, which has gotten a lot of traction in the mathematical
-community recently. This is in part because of the ease of working with Lean,
-and in part because of the incredible
-[community](https://leanprover-community.github.io/) surrounding the proof
-assistant. There is a lot of documentation, examples, and huge libraries, like
-[mathlib](https://leanprover-community.github.io/mathlib-overview.html), which
-contains proofs for a vast amount of important mathematical theorems, fully
-formalized and verified in Lean.
+Both cases lead to $RAIN$, so we conclude $RAIN$ and discharge both case
+assumptions. The original $SUN ∨ RAIN$ and $¬SUN$ remain open. We have shown
 
-Lean is, in effect, a programming language. To verify a proof, you essentially
-write a computer program in the Lean programming language, which when run will
-return errors if there are mistakes in the proof. The details are, of course,
-a bit more complicated, but for our purposes, this picture is enough for now.
+$$
+SUN ∨ RAIN, ¬SUN ⊢ RAIN.
+$$
 
-Lean-code can be [compiled](https://en.wikipedia.org/wiki/Compiler) into a
-stand-alone program or it can be run directly in your text-editor by an
-[interpreter](https://en.wikipedia.org/wiki/Interpreter_(computing)). Using an
-interpreter means that we can write a proof-as-code and get live feedback on our
-work while writing it. Amazing! Of course, you can
-[install](https://lean-lang.org/install/) lean on your own computer, but for
-your first steps in the language, you can also use the [lean
-playground](https://live.lean-lang.org/), which runs directly in your browser.
+We cannot infer $SUN$ from the disjunction by choosing the first case and
+ignoring the second. $∨ Elim$ requires the same conclusion in both cases.
 
-The Lean language is based on Thierry Coquand's [calculus of
-constructions (COC)](https://en.wikipedia.org/wiki/Calculus_of_constructions). It is a
-full-fledged [functional programming
-language](https://en.wikipedia.org/wiki/Functional_programming). And of course,
-we won't be able to give a comprehensive tutorial here. But what we _can_ do is
-look at the way we can verify basic logical proofs in propositional logic in
-Lean, live in your browser.
+In this example, we already used reasoning with negation, which deserves a little bit more thought.
 
-Here is a verification of our running example in Lean:
+### Negation and classical reasoning
 
-~~~lean4
-variable (RAIN WIND COLD HEATING: Prop)
+The rule $Ex falso$ is a formal form of the
+{{< term "explosion" "principle of explosion" >}}: from $⊥$, any formula follows. In Boolean logic, no valuation makes $⊥$ true. So there cannot be a
+countermodel with a true premise $⊥$ and a false conclusion. This explains why
+the rule is sound. Logics designed to reason with inconsistent information
+may handle contradictions differently; we'll return to that later.
+
+The rule $¬⊥$ allows us to derive $A$ when a temporary assumption $¬A$ leads
+to $⊥$. In particular, we can derive $RAIN$ from $¬¬RAIN$. The following derivation shows this argument. This is the rule for {{< term "classical-logic" "classical reasoning" >}} in our
+calculus. If we leave it out, we get
+{{< term "intuitionistic-logic" "intuitionistic propositional logic" >}},
+where that inference is not generally available. The other rules, including
+explosion, remain available.
+
+{{< logic-app name="deduction" kind="worked" example="classical" title="Double-negation elimination" >}}
+
+This concludes our overview of the rules. A particularly pleasing aspect of the natural deduction calculus is that for each connective, we have introduction and elimination rules that tell us how to reason with formulas involving this connective. It turns out that the calculus we've just discussed is -- in a precise mathematical sense -- enough for _all_ reasoning in classical Boolean logic. Because we can show:
+
+{{< callout type="theorem" title="Soundness and completeness" >}}
+The natural deduction system displayed here, including $¬⊥$, is sound and
+complete for classical propositional logic: $Γ ⊢ A$ iff $Γ ⊨ A$.
+{{< /callout >}}
+
+ The claim concerns _all_ formulas and _all_ collections of assumptions, so
+ checking a few derivations would not establish it. We won't prove it here, but
+ rest assured that this is a this is a
+ {{< term "theorem" "mathematical theorem" >}} about the system.
+
+### Finding a derivation
+
+Making good, small-step inferences is hard work, even in natural language. And
+there simply is no shortcut around trying your own hands at it. _But_ there are
+some helpful tricks and strategies, determined by the shape of the conclusion,
+which often gives us a good starting point. The idea is that we can work
+backwards: treat the conclusion as a _goal_ and ask which rule could give us
+that goal. On this way of thinking, the premises of such a rule then become _smaller_ goals. More specifically, if your conclusion is …
+
+- … a conjunction, work on each conjunct separately and then use $∧ Intro$.
+- … a conditional, temporarily assume its antecedent and work towards its
+  consequent. Finish with $→ Intro$.
+- … a negation, temporarily assume the unnegated formula and work towards
+  $⊥$. Finish with $¬ Intro$.
+
+But you can look at the premises, too. A conjunction gives you two formulas to
+use. A conditional suggests looking for its antecedent. A disjunction may
+require a case split. The heating example combines these directions: starting
+from the goal $HEATING$, we look for $COLD$; starting from the premise $RAIN$,
+we derive $RAIN ∨ WIND$ and then $COLD$.
+
+In the case of the conditional idea of these strategies is, in essence, what we
+implemented algorithmically in the {{< term "forward-chaining"
+"forward-chaining" >}} and {{< term "backward-chaining" "backward-chaining" >}}
+we explored in {{< chapter_ref chapter="conditionals"
+id="conditional-reasoning" >}}Logical conditionals{{< /chapter_ref >}}.
+
+
+The following examples combine these moves. Dashed formulas are goals, not yet
+established conclusions. Each backward step proposes an inference; once its
+premises have proofs, we can carry out that inference. In the first, start with
+the disjunctive premise and handle each case separately. Within each case, the
+goal is a conjunction, so there are two intermediate goals.
+
+{{< logic-app name="deduction" kind="worked" deck="strategies" example="distribution-cases" title="Finding a derivation: worked-out strategies" >}}
+
+“Cases and discharge” combines a case split with conditional introduction.
+In its second case, we already have the consequent. We use vacuous
+discharge to obtain the conditional, without using its antecedent.
+
+In “An indirect proof”, the premise $¬(A ∧ B)$ gives us no
+conjuncts to extract. We assume the negation of the goal and try to obtain
+$A ∧ B$, which would contradict the premise. To get its two conjuncts, we
+use the classical rule again. For each conjunct, we temporarily assume its negation. These additional
+assumptions let us derive the contradictions needed to establish both conjuncts.
+
+Try these moves below. Select proved formulas and click a rule to reason
+forwards. For $∧ Intro$, their order determines the order of the conjuncts;
+for $→ Elim$, either selection order works. The ×2 button selects a formula a second
+time when a rule uses it twice. If a formula or a discharge choice is needed,
+a panel on the canvas asks for the formula, or lets you select the assumptions
+to discharge directly in the derivation. The app
+checks each step and records its open assumptions. A derivation counts as a
+solution only if its conclusion is the goal and its remaining assumptions are
+among the given premises.
+
+Turn on “Goals” to put the conclusion on the canvas as a goal. Select
+a dashed formula and use the same rule buttons to work backwards. For
+example, $∧ Intro$ replaces a conjunctive goal with its two conjuncts;
+$→ Intro$ introduces a temporary assumption and makes the consequent the
+new goal. “+ Goal” adds another goal. A matching derivation closes a goal
+only when it uses assumptions available in that branch. “Hint” suggests
+a next move for the selected goal.
+
+If a derivation becomes too wide, use the fullscreen button or press F
+while the canvas has focus. You can also fold a branch at its conclusion
+and unfold it again when you need the details.
+
+{{< logic-app name="deduction" kind="canvas" example="swap" title="Construct a natural deduction proof" >}}
+
+The assumption rule adds a formula to the canvas. Clicking an empty
+part of the canvas opens the same dialog. Select a formula and use its × to
+delete that step and any steps depending on it.
+
+A {{< term "lemma" "lemma" >}} is a proved result used in another proof.
+“Save lemma” adds the selected derivation as a reusable rule: its open
+assumptions become the rule's premises. Single capital letters such as $A$,
+$B$, and $C$ are treated as {{< term "metavariable" "metavariables" >}} in
+saved rules, so we can substitute formulas for them. The app matches these to
+the selected premises when applying the rule. Names such as $RAIN$ and $SUN$
+keep their literal meaning. “Save” downloads your work and saved rules;
+“Load” restores them, and “Load lemmas” imports only the proved rules.
+
+But keep in mind that these are strategies and not foolproof methods or
+algorithms. Choosing the wrong disjunct, for example, can leave us with a goal
+that doesn't follow from our premises. This is where one last tip comes in
+hand: If your attempts keep getting stuck, try proof by contradiction: assume
+the negation of the goal and try to derive $⊥$. We still need judgment about
+which rules and intermediate formulas to try. Other calculi, including sequent
+calculi, organize the search so that we can specify an algorithm more directly.
+
+The natural deduction rules we use are known as _Gentzen–Prawitz-style_ proof
+trees. Other presentations, such as [Fitch-style
+proofs](https://en.wikipedia.org/wiki/Fitch_notation), arrange assumptions and
+inferences in different ways. But, while the layout changes, we still  record
+where each assumption is used and where it is discharged. It's just a matter of notation.
+
+## Theorem provers
+
+There are different ways in which computers can help us prove things. Our
+natural deduction canvas, for example, checks the steps we select and gives
+hints about which rules to try. It is a simple
+{{< term "proof-assistant" "proof assistant" >}}. Other examples are
+[Lean](https://lean-lang.org/), [Rocq](https://rocq-prover.org/), and
+[Isabelle](https://isabelle.in.tum.de/). They let us guide the construction of
+a proof, supply intermediate claims, and choose methods for proving them.
+And they support much more mathematics than propositional logic.
+
+But computers can also search for proofs themselves.
+{{< term "automated-theorem-prover" "Automated theorem provers" >}} try to
+construct a proof from a stated problem. We've already studied one approach
+in {{< chapter_ref chapter="sat" id="resolution" >}}SAT solving{{< /chapter_ref >}}:
+add the negation of the conclusion to the premises and search for a
+refutation. SAT solving and resolution are central techniques in automated
+reasoning. Systems such as [Vampire](https://vprover.github.io/) extend
+refutation search to richer languages and more complex problems.
+
+A proof assistant can call an automated prover to fill in steps, so we can
+combine guided proof construction with automated search. In this chapter,
+though, we'll focus on proof assistants. Their ability to check proofs is
+particularly useful when we want to verify mathematical reasoning produced
+by an LLM. Once the claim and proposed proof are expressed in the assistant's
+formal language, it can check whether the proof establishes that conclusion
+from the given assumptions.
+
+{{< img src="/img/drawings/proof_jimmy_pi.svg" class="rounded float-end inert-img img-fluid m-2" width="200px" >}}
+
+Proof assistants can also provide the environment in which a neural network
+learns to construct proofs. For example,
+[AlphaProof](https://research.google/pubs/olympiad-level-formal-mathematical-reasoning-with-reinforcement-learning/)
+learned to find mathematical proofs in Lean through reinforcement learning.
+Here the AI system proposes formal proof steps, and Lean checks them. The
+results of these checks guide the search and provide feedback for learning.
+So proof assistants can help both with verifying AI-generated reasoning and
+with training systems to produce it.
+
+We'll learn how Lean works using the propositional natural deduction
+arguments we've just learned to construct. Lean checks each proposed proof
+using its {{< term "kernel" "kernel" >}}, a small part of the prover that
+implements its basic checking rules. The same kernel checks the short
+proofs we'll write here and proofs with thousands of steps. In Lean, proof checking is a form of _type
+checking_. To understand how that works, we first need to talk about types
+and terms.
+
+## Types and type checking
+
+“Let $n$ be a natural number.” You've probably seen this instruction in math.
+It tells us what kind of object $n$ is, and what we can do with it. We can add
+another natural number to $n$, for example. Many programming languages record
+such information with types: an integer or a string has a type that
+determines how it can be used.
+
+{{< callout type="definition" title="Types and terms" >}}
+A {{< term "type" "type" >}} classifies terms and determines which
+constructions and operations are permitted on them. The judgment $t : A$
+says that the {{< term "typed-term" "term" >}} $t$ has type $A$.
+{{< /callout >}}
+
+We can write $n : ℕ$ for “$n$ is a natural number”. An expression such as
+$n + 1$ is also a term of type $ℕ$. Adding two natural numbers gives us another
+natural number; trying to add a natural number to a string would require
+some further convention.
+
+A {{< term "constructor" "constructor" >}} tells us how to build a term of a
+type. For natural numbers, we can start with $0$ and repeatedly add $1$.
+In Lean, a proposition $A$ can itself be used as a type. A term $a : A$
+is then a {{< term "proof-term" "proof term" >}}: a formal representation of
+a proof of $A$. So proving $A$ means constructing a term of type $A$.
+Assuming $A$ means assuming that we have such a term, which we can name $a$
+and use in further constructions. Any proof we construct using this
+assumption still depends on it until we discharge it, just as in natural
+deduction.
+
+For proofs, the constructors follow the introduction rules we've just studied:
+
+- Given a proof of $A$ and a proof of $B$, we can combine them into a proof
+  of $A ∧ B$. The combined proof contains both parts, and we can extract
+  either one with an elimination rule.
+- Given a proof of $A$, we can construct a proof of $A ∨ B$, recording that
+  we have proved the left disjunct. A proof of $B$ works in the same way on
+  the right. To use such a proof, we must handle both possible cases.
+- To construct a proof of $A → B$, we describe how to obtain a proof of $B$
+  from an assumed proof of $A$. We temporarily assume such a proof and
+  use other proof constructions to obtain a proof of $B$. This is the
+  construction corresponding to $→ Intro$.
+- For a proof of $¬A$, we likewise assume a proof of $A$, but aim for a
+  contradiction. Lean writes $False$ for $⊥$ and treats $¬A$ as
+  $A → False$. So negation uses the same construction as a conditional,
+  with $False$ as the conclusion. There is no introduction rule for
+  $False$ itself.
+
+For example, to prove $RAIN → (RAIN ∧ RAIN)$, assume a proof of $RAIN$
+and use it twice to construct the conjunction. To prove
+$RAIN → (WIND → RAIN)$, assume proofs of $RAIN$ and $WIND$, then repeat
+the proof of $RAIN$. The second assumption is unused, just as in our example
+of vacuous discharge.
+
+{{< callout type="definition" title="Type checking" >}}
+{{< term "type-checking" "Type checking" >}} checks whether a term has a
+specified type according to the rules of the type system.
+{{< /callout >}}
+
+To check a constructed proof of a conjunction, we check that its two parts
+prove the required conjuncts. When we use a proof of $A → B$ to obtain
+a proof of $B$, we check that the accompanying proof really has type $A$. These
+checks follow the structure of the term, much like the recursive calculations
+we've already used for formulas.
+
+To verify a proof of $A$, then, Lean checks that the term we've constructed
+has type $A$, using the types of any assumed proofs. This is how type checking
+implements proof checking. Lean's type theory also covers quantifiers and
+much more mathematics. Here we'll stay with propositional proofs.
+
+## Lean {#proof-assistants-lean}
+
+So, let's look at how Lean works. For this, we return to our heating argument.
+Here's what that argument looks like written in Lean 4 (styled $L∃∀N$):
+
+```lean
+variable (RAIN WIND COLD HEATING : Prop)
 
 example (rain : RAIN)
-        (if_rain_or_wind_then_cold : (RAIN ∨ WIND) → COLD)
-        (if_cold_then_heating : COLD → HEATING) :
-    HEATING := by
+    (if_rain_or_wind_then_cold : RAIN ∨ WIND → COLD)
+    (if_cold_then_heating : COLD → HEATING) : HEATING := by
   apply if_cold_then_heating
   apply if_rain_or_wind_then_cold
-  apply Or.inl rain
-~~~
-Click this
-[link](https://live.lean-lang.org/#codez=G4QwTgliBGA2CmACAFAJQIIEkByiDqOAIogMIDyAMsQBICi6AKjgOIBciACmAPYAOAlAChB8AB4gAtrwQowICADtE7DDiGINmjcggAzAPpzF+7mH0B3RQBN9AFwAW8BfoDG3WFeUpVuQBRE+In5EQCTCUkpCdS1NHQM3DztHZ0cQW0UAcy9yKhDEOkYWINZBLTymbGZlAF5EaABPYsQQXmlaxD1XdxsHJ31k1IU0hqaWtoMjZ1MLawSeuKsh5thWsjAAOkVYRHGgA)
-to run this code in your browser. As you can see, no error messages are
-returned, the proof is correct. 
-
-Let's unfold what's going on here. 
-
-In the first line 
-<!-- {{< lean_logo >}} -->
-~~~lean4 
- variable (RAIN WIND COLD HEATING: Prop)
-~~~
-
-we declare the variables `RAIN, WIND, COLD, HEATING` to be of
-[type](https://en.wikipedia.org/wiki/Type_system) `<span
-class="dark-red">Prop</span>`. The background theory of Lean is a powerful
-system of types, the aforementioned COC, but all we need to know here is that
-the syntax here means that `RAIN, WIND, COLD, HEATING` are `<span
-class="dark-red">Prop</span>`s and `<span class="dark-red">Prop</span>` is
-Lean's type for propositions, which can be either true or false.
-
-Next, we declare that we're trying to prove an `<span
-class="dark-blue">example</span>`:
-
-~~~lean4 {linenostart=3}
-example (rain : RAIN)
-        (if_rain_or_wind_then_cold : (RAIN ∨ WIND) → COLD)
-        (if_cold_then_heating : COLD → HEATING) :
-    HEATING := by
-~~~
-
-This declaration has itself a complex structure. It begins with the
-straightforward keyword `<span class="dark-blue">example</span>` to indicate
-that we're dealing with an example. This is immediately followed by a sequence of
-additional declarations:
-
-~~~lean4 {lineNos = false }
-  (rain : RAIN) 
-  (if_rain_or_wind_then_cold : (RAIN ∨ WIND) → COLD) 
-  (if_cold_then_heating : COLD → HEATING)
-~~~
-
-To understand what's going on here, we need to talk about how Lean works "under
-the hood". What we're saying here is, essentially: suppose that `rain` is a
-proof of the proposition `RAIN`, `if_rain_or_wind_then_cold` is a proof of
-`(RAIN∨WIND)→COLD`, and `if_cold_then_heating` is a proof of
-`COLD→HEATING`. Our aim is to show how we can transform these proofs
-into a proof of `HEATING`, this is what we declare by following this declaration
-by "`: HEATING`".
-
-One of the ideas underlying Lean is that saying that a proposition is true and
-that there exists a proof of it are, in many contexts, exchangeable. So,
-basically, by "witnessing" each of our propositional variables by a proof (which
-we indicate in lowercase), we're assuming that these propositions are true. And
-what our ultimate inference does is to convert these proofs into a proof of
-`HEATING`—which means we show that `HEATING` is true if the premises are. In
-other words, we show that our inference is valid.
-
-What follows next is the formal proof in Lean. It follows our declared goal
-`HEATING`:
-~~~lean4 {linenostart=6}
-    HEATING := by
-  apply if_cold_then_heating
-  apply if_rain_or_wind_then_cold
-  apply Or.inl rain
-~~~
-The `:=` here indicates that a proof begins. The `<span
-class="dark-blue">by</span>` indicates that we're using what's known as **tactic
-mode**. We already mentioned that in Lean, we're basically converting proofs of
-assumptions into proofs of our conclusion. This works by means of proof
-_constructions_ (whence the name "Calculus of Constructions"), which we can
-write down in different ways. We can directly apply the constructions of COC,
-leading to expressions in what's known as [typed lambda calculus](https://en.wikipedia.org/wiki/Typed_lambda_calculus). These
-expressions are the formal foundation of what's going on "under the hood", but
-they are very difficult to understand for humans.
-
-Luckily, Lean (like many other proof assistants) has the tactic mode. This is
-essentially a more human-readable way of expressing formal arguments. We
-indicate that we want to use this mode by using the keyword `<span
-class="dark-blue">by</span>`.
-
-What comes next is the actual proof. It's best to read that proof from bottom to
-the top. The line 
-
-~~~lean4 {linenostart=9}
-  apply Or.inl rain
-~~~
-
-takes the proof of `RAIN` and applies to it (what's effectively) the natural
-deduction rule `∨ Intro`. That is, this line represents the natural
-deduction inference:
-
-{{< img src="img/nd_step_1.png" class="mx-auto rounded d-block inert-img img-fluid" width="200px">}}
-
-Note that we don't need to tell Lean that we want the other disjunct to be
-`WIND`. It will figure this out by itself using automated reasoning techniques, which
-we'll discuss later in the course.
-
-The next line working backwards is:
-~~~lean4 {linenostart=8}
-  apply if_rain_or_wind_then_cold
-~~~
-
-Note that the `apply` keyword, which took 2 arguments in line `9`, only seems to
-have one argument here. We're applying the proof `if_rain_or_wind_then_cold` for
-`(RAIN ∨WIND)→ COLD`. But to what? 
-
-The answer is that we apply it to the next line, that is line no `9`. The
-expression here is parsed just like the following one-liner:
-~~~lean4 {lineNos = false}
-  apply if_rain_or_wind_then_cold (apply Or.inl rain)
-~~~
-That is Lean recursively applies the proof for `(RAIN ∨WIND)→
-COLD` to the result of applying the `∨Intro`-rule to the proof for
-`RAIN`. 
-
-But what does it mean to apply a proof for `(RAIN ∨WIND)→
-COLD` to a proof for `(RAIN ∨WIND)→ COLD`? The answer is
-rather obvious: apply MP to infer `COLD`—which is precisely what Lean does here.
-That is, at this point, we've constructed in Lean the following natural
-deduction proof:
-
-{{< img src="img/nd_step_2.png" class="mx-auto rounded d-block inert-img img-fluid" width="500px">}}
-
-Now it should be clear how the proof finishes. The last `apply` takes the proof
-for `COLD→HEATING` to our proof for `COLD`. That is, reading the lines 
-
-~~~lean4 {linenostart=7}
-  apply if_cold_then_heating
-  apply if_rain_or_wind_then_cold
-  apply Or.inl rain
-~~~
-
-as 
-
-~~~lean4 {lineNos = false}
-  apply if_cold_then_heating (apply if_rain_or_wind_then_cold (apply Or.inl rain))
-~~~
-
-we've constructed our full natural deduction proof:
-
-{{< img src="img/natural_deduction_derivation.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
-
-Lean is happy. It says that all goals are satisfied and doesn't return an error.
-We've verified our natural deduction inference using Lean 🎉 (Note: This emoji
-is used by many Lean interpreters to indicate success. It's also a [party
-popper](https://en.wikipedia.org/wiki/Party_popper).)
-
-Running through the example, we've uncovered one of the most fundamental
-principles of the theory of computation, which underlies the way Lean verifies
-proofs: the so-called [**Curry-Howard
-correspondence**](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence).
-Simply put, the Curry-Howard correspondence states that there's an equivalence
-between computer programs and mathematical proofs. The way this shows up here is
-that the Lean constructions, which are essentially (and very practically)
-computer programs correspond in a one-to-one fashion to natural deduction
-inference rules. This correspondence allows us to go back and forth between
-natural deduction proofs and Lean programs and it's the very foundation of how
-Lean ultimately works.
-
-The correspondence is most clearly visible in the case of conjunctions and
-disjunctions. For each of the corresponding introduction and elimination rules,
-there are corresponding Lean tactics:
-
-+ `∧-Intro` corresponds to `And<span class="dark-green">.</span>intro`, which `applied` to the proofs of
-two propositions yields a proof of their conjunction.
-+ `∧-Elim` corresponds to the two tactics `And<span class="dark-green">.</span>left` and `And<span class="dark-green">.</span>right`,
-which when `applied` to proofs of a conjunction yield proofs of the left or right
-conjunct respectively.
-+ `∨-Intro` correspond to `Or<span class="dark-green">.</span></span>inl` and `Or<span class="dark-green">.</span>inr`, which when `applied` to
-proofs of a proposition yield the disjunction with _some_ other formula on the
-left or on the right (Lean figures out which one you mean).
-+ `∨-Elim` corresponds  `Or<span class="dark-green">.</span>elim`, which when `applied` to two proofs of a
-  given conclusion from each of two disjuncts, gives a proof of that conclusion
-  from the disjunction itself.
-
-Here's a simple example to illustrate how this works for `∧-Intro/Elim` and `∨-Intro`:
-
-~~~lean4
-(variable RAIN WIND SUN : Prop)
-
-example (rain_and_wind : RAIN ∧ WIND) : (RAIN ∨ SUN) ∧ (WIND ∨ SUN) := by 
-  apply And.Intro
-  apply Or.intro 
-  apply And.left rain_and_wind
-  apply Or.intro
-  apply And.right rain_and_wind
-
-~~~
-Click this
-[link](https://live.lean-lang.org/#codez=G4QwTgliBGA2CmACAFAJQIIEkByiDqOAIogMoCquAXIgApgD2ADgJQBQr8AHiALaMIowICADsA+iBEATMQHdRUxNQw5EgciJ8RZkpQrcgCiJSFbRuQFsxQ+WzbKAXkTQAnolaJEIRvxfppAOlEAFwY3Dy9YFwB5MACRWFd3T29EXyk/BAAzQMQhUQlpOQVQpIjEaNjYYvCff0gAcwALbNzxSRl5aSA
-) to run this code in your browser. 
-
-This code verifies the following natural deduction proof:
-
-```(RAIN ∧WIND)⊢(RAIN ∨SUN)∧(WIND∨SUN)```
-
-{{< img src="img/nd_conjunction_disjunction.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
-
-Before we can talk about `∨-Elim`, we need to talk about the
-conditional. We've actually already discussed how `→-Elim` works in
-Lean: if we have a proof of a conditional, we can directly `apply` it to a proof
-of its antecedent to obtain a proof of the consequent. So, how do we do `→-Intros`?
-
-Remember that `→-Intro` works by hypothetical reasoning: to prove `A→B`, we derive `B` from the assumption that `A`, which we discharge in the
-process. In Lean, we introduce an assumption like this using the `intro` tactic.
-Here's how this works in practice:
-
-~~~lean4
-(variable RAIN WIND: Prop)
-
-example : RAIN → (RAIN ∨ WIND) := by 
-  intro rain
   apply Or.inl
   exact rain
-~~~
-Click this
-[link](https://live.lean-lang.org/#codez=BQNwhgTglmBGA2BTABAJQIIEkByyDqOAIgFzIAKEA9gA4CUAUPYgB5gC21SypGOygSYTJgvXIAoifEVrcAvMlgBPZPWTIoAOwAuVZBDDrlyMNU6KA8hAB06+AZZgAxhp161QA) to run this code in your browser. 
+```
 
-This is the Lean verification of our earlier natural deduction proof for `⊢RAIN → (RAIN ∨ WIND)`:
-{{< img src="img/or_intro_axiom.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
+In this code, `Prop` is Lean's type of propositions. So the first line
+declares `RAIN`, `WIND`, `COLD`, and `HEATING` as propositional variables.
+This gives us propositions to reason about; it doesn't yet assume any of
+them to be true.
 
-The `intro`-tactic introduces a new hypothesis into the space, which we give the
-name `rain`. Lean figures out by itself that this is supposed to be the hypothesis for the
-if part of the conditional `RAIN → (RAIN ∨ WIND)`—i.e. for
-`RAIN`—since that's what we need to prove at this point.
+Next, the keyword `example` indicates that we're providing an example proof.
+Later, we'll see `theorem`, which lets us give a proof a name. The declarations
+in parentheses after `example` express our assumptions. For example,
+`(rain : RAIN)` assumes a proof of the proposition `RAIN` and calls it `rain`.
+Likewise, `if_rain_or_wind_then_cold` names an assumed proof of
+$RAIN ∨ WIND → COLD$, and `if_cold_then_heating` names an assumed proof of
+$COLD → HEATING$. These are our three premises. We can use their named proofs
+to construct further proofs.
 
-Note that in the last line we write `exact rain`. We could also write
-`apply rain`: at this point, `rain` already proves the current goal, so either
-tactic closes it. The difference is that `apply` can leave new goals for the
-premises of a rule, while `exact` requires a complete proof of the current goal.
-For example, `apply Or.inl` leaves us to prove the left disjunct; `exact rain`
-then supplies that proof. Using `exact` makes our intention to finish the current
-goal explicit and gives an error if the supplied term doesn't prove it.
+The colon `:` after the assumptions introduces our conclusion, `HEATING`.
+So we need to construct a term of this type from the assumed proofs.
+The sequence `:=` introduces the proof, and `by` indicates that we'll use
+{{< term "tactic" "tactics" >}}: instructions for constructing it.
 
-A bare `rain` is a proof term, not a tactic. We can use it directly after `:=`
-when its type matches the statement being proved, but inside a `by` block we
-need a tactic such as `exact`. See Lean's
-[tactic tutorial](https://lean-lang.org/theorem_proving_in_lean4/Tactics/)
-for more examples.
+The proof follows the backwards approach we tried on the canvas. Lean starts
+with the goal `HEATING`. With `apply if_cold_then_heating`, we tell it to use
+our proof of $COLD → HEATING$. To obtain a proof of $HEATING$ this way, we
+still need a proof of $COLD$. Lean therefore makes `COLD` the new goal.
+This is $→ Elim$ used backwards to find the missing premise.
 
-With this in hand, we can move to `Or<span class="dark-green">.</span>elim`. To
-illustrate, let's look at a more complex example. Let's verify the following in
-Lean:
+Next, `apply if_rain_or_wind_then_cold` uses our other conditional in the
+same way. The goal becomes `RAIN ∨ WIND`. With `apply Or.inl`, we choose
+$∨ Intro$ on the left: we'll prove the disjunction by proving `RAIN`.
+That leaves just one goal, and we already have the assumed proof `rain`.
+The command `exact rain` supplies it and closes the goal.
 
-```⊢RAIN ∧ (WIND ∨ SUN) → ((RAIN ∧ WIND) ∨ (RAIN ∧ SUN))```
+All the missing premises have now been supplied. Lean can assemble a proof
+of $RAIN ∨ WIND$, then of $COLD$, and finally of $HEATING$. Each step uses
+one of our natural deduction rules. The app below follows the goals through
+these steps and shows where each command belongs in the derivation.
 
-Here is the Lean code:
+Try this in the Lean playground using the link below the code. Move the
+cursor through the proof, line by line, and watch the _Infoview_ beside the
+editor. It shows the assumptions available at the cursor's position and
+the current goal after $⊢$. Follow how the goal changes as each tactic is
+applied, until there are no goals left.
 
-~~~lean4
-variable (RAIN WIND SUN : Prop)
+You can also follow these steps alongside the natural deduction derivation:
 
-example : RAIN ∧ (WIND ∨ SUN) → (RAIN ∧ WIND) ∨ (RAIN ∧ SUN) := by
-  intro rain_and_wind_or_sun
-  apply Or.elim (And.right rain_and_wind_or_sun)
-  · intro wind
-    apply Or.inl
-    apply And.intro
-    · exact And.left rain_and_wind_or_sun
-    · exact wind
-  · intro sun
-    apply Or.inr
-    apply And.intro
-    · exact And.left rain_and_wind_or_sun
-    · exact sun
-~~~
-Click this
-[link](https://live.lean-lang.org/#codez=G4QwTgliBGA2CmACAFAJQIIEkByiDqOAIogMoCquAXIgApgD2ADgJQBQr8AHiALaMKJqGHIkDkRCgLZigCiJSFZokBJhCmG5xkwgtlosaudgWUAvImgBPVokQQAdgBcGiMCFsB9EDYAmrgO63v9GCuAM4ArjaWiCCM/GaIAPJgAHTwsBA8KOheSZAA5gAWdk4uNu5evv6ugSHhbFYA7db2jn5ekVbRsQnJtrDtUTGwcVmeSbYO9P2NXCAAxkUjSQgAZkXObh7erQFBYRFWDYgz84jbkY3jjnv9nUPdYzZgN4PD2ZeTB4jT3CeLK2slMpbSrVa6fb5zIp7IA) to run this code in your browser. 
+{{< logic-app name="deduction" kind="lean-walkthrough" code="previous" title="Following the Lean heating proof" >}}
 
-This code corresponds to the following derivation in natural deduction:
+The tactics construct a proof term, which Lean checks against the required
+type, `HEATING`. We can also supply the term directly with `exact`:
 
-{{< img src="img/nd_complex.png" class="mx-auto rounded d-block inert-img img-fluid" width="900px">}}
+```lean
+variable (RAIN WIND COLD HEATING : Prop)
 
-There are a few things going on here. As we've discussed before, Lean can
-work out itself that the following line
-~~~lean4 {linenostart=4}
-  intro rain_and_wind_or_sun
-~~~
-introduces the assumption that `RAIN ∧ (WIND ∨ SUN)`. Lean
-"knows" this because we're trying to prove the conditional:
+example (rain : RAIN)
+    (if_rain_or_wind_then_cold : RAIN ∨ WIND → COLD)
+    (if_cold_then_heating : COLD → HEATING) : HEATING := by
+  exact if_cold_then_heating
+    (if_rain_or_wind_then_cold (Or.inl rain))
+```
 
-```RAIN ∧ (WIND ∨ SUN) → ((RAIN ∧ WIND) ∨ (RAIN ∧ SUN))```
+Here $Or.inl rain$ is a proof of $RAIN ∨ WIND$. We pass it to the first
+conditional to obtain a proof of $COLD$, then pass that proof to the second
+conditional to obtain a proof of $HEATING$. A proof of $A → B$ can be applied
+to a proof of $A$: this is $→ Elim$ expressed as a construction of proof terms.
 
-and the assumption we have to make for this is that `RAIN ∧ (WIND ∨ SUN)`.
+Lean is a very powerful proof proof checker with an extensive library of
+established proofs. The community maintained
+[Mathlib](https://leanprover-community.github.io/) contains definitions and
+proofs for a wide range of core mathematical results. For example, here's
+mathlib's proof of [Euclid's
+theorem](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Data/Nat/Prime/Infinite.html#Nat.exists_infinite_primes):
+there are infinitely many primes. Its formulation says that for any natural
+number $n$, there is a prime $p$ with $n ≤ p$. The proof below is taken from
+[mathlib's
+source](https://github.com/leanprover-community/mathlib4/blob/master/Mathlib/Data/Nat/Prime/Infinite.lean),
+with the theorem declaration changed to an $example$ so we can run it
+separately:
 
-Correspondingly, when we apply `And<span class="dark-green">.</span>right` to
-this assumption, this gives us a proof of the disjunction `(WIND ∨
-SUN)` in
-~~~lean4 {linenostart=5}
-  apply Or.elim (And.right rain_and_wind_or_sun)
-~~~
+```lean
+import Mathlib.Data.Nat.Prime.Infinite
 
-To this disjunction, we apply the rule `OR<span class="dark-green">.</span>elim`. But the tactic needs two more arguments, which is what's provided next:
-~~~lean4 {linenostart=6}
-  · intro wind
-    apply Or.inl
-    apply And.intro
-    · exact And.left rain_and_wind_or_sun
-    · exact wind
-  · intro sun
-    apply Or.inr
-    apply And.intro
-    · exact And.left rain_and_wind_or_sun
-    · exact sun
-~~~
+open Nat
 
-The bullet points `<span class="dark-green">·</span>` are, again, "syntactic
-sugar" (you can typeset them by typing "`\\.`" in the online text-editor). They
-structure the sub-proof in such a way that we can more easily see what's going
-on—which is that we have two proofs, one from `WIND` and one from `SUN` both
-ending in `((RAIN ∧ WIND) ∨ (RAIN ∧ SUN))`, as
-desired. 
+-- From mathlib, Mathlib/Data/Nat/Prime/Infinite.lean (Apache 2.0).
+-- Authors: Leonardo de Moura, Jeremy Avigad, Mario Carneiro.
+example (n : ℕ) : ∃ p, n ≤ p ∧ Prime p :=
+  let p := minFac (n ! + 1)
+  have f1 : n ! + 1 ≠ 1 := ne_of_gt <| succ_lt_succ <| factorial_pos _
+  have pp : Prime p := minFac_prime f1
+  have np : n ≤ p :=
+    le_of_not_ge fun h =>
+      have h₁ : p ∣ n ! := dvd_factorial (minFac_pos _) h
+      have h₂ : p ∣ 1 := (Nat.dvd_add_iff_right h₁).2 (minFac_dvd _)
+      pp.not_dvd_one h₂
+  ⟨p, np, pp⟩
+```
 
-Note that also here, Lean can work out by itself that `wind` is a proof of
-`WIND` and `sun` a proof of `SUN`. In fact, we don't need to use the mnemonic
-names here, the following code provides the exact same result:
+Don't worry, you don't need to work through this proof now. The point is that
+Lean can express and verify all sorts of mathematical reasoning. In the
+following, we'll focus on basic propositional reasoning to understand the basic
+workings of the software. So let's look at how we construct Lean proofs more generally.
 
-~~~lean4
-variable (RAIN WIND SUN : Prop)
+### Finding a proof in Lean
 
-example : RAIN ∧ (WIND ∨ SUN) → (RAIN ∧ WIND) ∨ (RAIN ∧ SUN) := by
-  intro h
-  apply Or.elim (And.right h)
-  · intro i
-    apply Or.inl
-    apply And.intro
-    · exact And.left h
-    · exact i
-  · intro j
-    apply Or.inr
-    apply And.intro
-    · exact And.left h
-    · exact j
-~~~
-Click this
-[link](https://live.lean-lang.org/#codez=G4QwTgliBGA2CmACAFAJQIIEkByiDqOAIogMoCquAXIgApgD2ADgJQBQr8AHiALaMKJqGHIkDkRCgLZigCiJSFZokBJhCmG5xkwgtlosaudgWUAvImgBPVokQQAdgBcGiABaXEIRvzOIA8mAB08LAQPCjoNgAmfpAA5k52zmxWAO3W9o4Qrlbunj7+trCZbh6wXmGRtg70hSlcIADG8WV+CABm8S5WyYi1DdauKRWOAFaF2SW5frZgo8WlEZNpVZ2INdy9Ta3t1d1r8UNAA) to run this code in your browser. 
+We can approach a Lean proof just as we approached a natural deduction
+derivation: start with the goal, look at its main connective, and ask which
+rule could establish it. $intro$ lets us assume the antecedent of a conditional;
+$apply And.intro$ replaces a conjunctive goal by its two conjuncts.
 
-The structure of the derivation is enough for Lean to work out what `h,i,` and
-`j` stand for. 
+While working on a proof, we can write $sorry$ for a part we haven't found
+yet. Lean accepts this placeholder with a warning. It does not establish
+the claim: every $sorry$ must eventually be replaced by a proof. For example,
+we can begin a proof of $A → (B → (A ∧ B))$ like this:
 
-So far, we've been dealing with `<span class="dark-blue">example</span>` kind of
-declarations. But once we start building a more extensive
-[library](https://en.wikipedia.org/wiki/Library_(computing)) of Lean code, we
-want to start naming our results. The standard way of doing this is using the 
-`<span class="dark-blue">theorem</span>` declaration followed by a name. The
-following code gives an example:
+```lean
+variable (A B : Prop)
 
-~~~lean4
-theorem absorption_right_to_left (A B : Prop): A ∨ (A ∧ B) → A := by
-  intro a_or_a_and_b
-  apply Or.elim a_or_a_and_b
+example : A → (B → (A ∧ B)) := by
+  intro a
+  intro b
+  apply And.intro
+  · sorry
+  · sorry
+```
+
+The first command, $intro a$, assumes a proof $a : A$ and leaves the goal
+$B → (A ∧ B)$. The second assumes $b : B$, leaving $A ∧ B$.
+Now $apply And.intro$ asks for the two proofs needed to construct this
+conjunction: one of $A$ and one of $B$. The dots begin the separate subproofs.
+We can work on either one while leaving the other as $sorry$. Here our
+assumptions already supply both proofs: replace the first $sorry$ by
+$exact a$ and the second by $exact b$. This completes the construction
+under the two temporary assumptions and establishes the original conditional.
+
+The other strategies carry over too. Use the components of a conjunctive
+assumption, consider both cases of a disjunction, or look for a conditional
+whose consequent is your goal. If direct attempts keep getting stuck, try
+proof by contradiction. We'll see the Lean commands for these moves below.
+
+### Introducing and using conjunctions
+
+In natural deduction, we prove $A ∧ B$ by proving $A$ and $B$ and applying
+$∧ Intro$. In Lean, $And.intro$ combines the two proofs in the same way.
+We can supply them directly with $exact And.intro a b$, or work backwards
+with $apply And.intro$ to make the two conjuncts our goals. To use a proof
+of a conjunction, $And.left$ and $And.right$ extract its components, just
+as the two $∧ Elim$ rules do. Capitalization matters!
+
+```lean
+variable (A B : Prop)
+
+example (a : A) (b : B) : A ∧ B := by
+  exact And.intro a b
+
+example (h : A ∧ B) : B ∧ A := by
+  apply And.intro
+  · exact And.right h
+  · exact And.left h
+```
+
+In the first example, $a$ and $b$ name the assumed proofs. The term
+$And.intro a b$ combines them and has type $A ∧ B$, so $exact$ closes the goal.
+
+In the second, $h$ names an assumed proof of $A ∧ B$, while our goal is
+$B ∧ A$. After $apply And.intro$, the first goal is therefore $B$.
+$And.right h$ extracts the proof of $B$ from $h$, and $exact$ supplies it.
+The second goal is $A$, which we obtain with $And.left h$. The dots keep
+these two subproofs separate.
+
+### Conditionals and temporary assumptions
+
+In natural deduction, $→ Intro$ lets us establish $A → B$ by deriving
+$B$ under a temporary assumption $A$. In Lean, if our goal is $A → B$,
+$intro a$ introduces the assumed proof $a : A$ and changes the goal to
+$B$. Completing that proof establishes the conditional.
+
+```lean
+variable (A B : Prop)
+
+example : A → A ∨ B := by
+  intro a
+  exact Or.inl a
+```
+
+Here the example begins without any assumed proofs. Its goal is the
+conditional $A → (A ∨ B)$. With $intro a$, we temporarily assume a proof
+$a : A$ and try to construct a proof of $A ∨ B$. The term $Or.inl a$
+does exactly that, so $exact Or.inl a$ finishes the proof.
+
+Compare this with $→ Intro$ in natural deduction: the assumption $A$ is
+discharged when we establish the conditional. Likewise, $a : A$ is local
+to this construction. The completed proof of $A → (A ∨ B)$ has no open
+assumptions.
+
+### Disjunctions and cases
+
+In natural deduction, either $∨ Intro$ rule can establish a disjunction:
+we choose which disjunct to prove. In Lean, $apply Or.inl$ changes the goal
+$A ∨ B$ to $A$, while $apply Or.inr$ changes it to $B$. If we already have
+a proof $a : A$, we can finish directly with $exact Or.inl a$.
+
+When using an assumed disjunction, we don't get to choose which disjunct
+is true. Natural deduction uses $∨ Elim$ to handle both cases. Analogously,
+$apply Or.elim h$ in Lean asks us to prove the goal under each of the two
+case assumptions:
+
+```lean
+variable (A B : Prop)
+
+example (h : A ∨ B) : B ∨ A := by
+  apply Or.elim h
   · intro a
-    exact a
-  · intro a_and_b
-    apply And.left a_and_b
-~~~
-Click this
-[link](https://live.lean-lang.org/#codez=C4Cwpg9gTmC2AEBDARgZ2gB2ASwgOwH0psBzEYA4CAgGzADNh4AKAQXgCF4AueABSgQMASl7tAFEQt2gciJOw+ICTCeO24BeeMgCeAKHjxseYIKQFoBRObwATAsl1IMGGpvgB5KADowNbAgtmLRGtbewB2/UNjRHs9MAAPRABjJmi9cIMjCBMgmzs9PURHZ2VrDzpGbODkIA) to run this code in your browser. 
+    exact Or.inr a
+  · intro b
+    exact Or.inl b
+```
 
-Note that in this proof we also declare our variables inside the name
-declaration, which also works with `<span
-class="dark-blue">example</span>`-style declarations. And we used non-mnemonic
-variables `A` and `B`, which is more common when you're proving general logical
-laws. 
+Here $h$ is our assumed proof of $A ∨ B$. The command $apply Or.elim h$
+asks us to establish two conditionals: $A → (B ∨ A)$ and $B → (B ∨ A)$.
+In the first branch, $intro a$ assumes a proof of $A$. Since $A$ is the
+right disjunct of our goal, $Or.inr a$ supplies a proof of $B ∨ A$.
+In the second branch, $intro b$ assumes a proof of $B$, and $Or.inl b$
+proves the same disjunction using its left disjunct.
 
-Once we have a name for a theorem, we can use it in later proofs (which, of
-course, need to load the earlier proof as well). That is, if we have the
-previous code, we can simply `apply absorption_right_to_left` to a proof of
-`A∨ (A∧ B)` to obtain a proof of `A`.
+Each temporary assumption belongs to its own branch. Once both branches
+are complete, we have proved $B ∨ A$ from $h$ alone. Both must establish
+the same conclusion: proving $A$ from the temporary assumption $A$ would
+not entitle us to infer $A$ from $A ∨ B$!
 
-This gives you an idea of how to verify proofs in Boolean propositional logic
-involving ∧, ∨, and → using tactics-based Lean
-code. Of course, Lean is much, _much_ more powerful than that: it can verify
-logical proofs from even the most cutting-edge areas of mathematics and
-physics with relative ease—this is part of its appeal to mathematicians!
+### Negation in Lean
 
-You'll learn more advanced Lean techniques later in this course, but before we
-move on to other logical systems, we should discuss how the negation operator
-¬ works in Lean.
+In natural deduction, $¬ Intro$ establishes $¬A$ by deriving $⊥$ under
+a temporary assumption $A$. Lean treats $¬A$ as $A → False$, so $intro a$
+changes a negated goal to $False$ and gives us the assumption $a : A$.
+To use a negation, combine it with a proof of $A$ to obtain $False$,
+just as in $¬ Elim$.
 
-For this, let's inspect the natural deduction rules for ¬:
+```lean
+variable (A B : Prop)
 
-{{< img src="img/negation_rules.png" class="mx-auto rounded d-block inert-img img-fluid" width="600px">}}
+example (h : A → B) : ¬B → ¬A := by
+  intro not_b
+  intro a
+  exact not_b (h a)
 
-The thing to note here is that `¬A` behaves _exactly_ like 
-`A → ⊥`, where `⊥` is the special _falsum_
-constant. Lean takes this to be the defining feature of negation, which is an
-idea that traces back to Lean's
-[intuitionistic](https://en.wikipedia.org/wiki/Intuitionistic_logic)-roots,
-which we don't have time to look into now.
+example (a : A) (not_a : ¬A) : B := by
+  exact False.elim (not_a a)
+```
 
-This means that we can `apply` formulas of the form `¬A` to formulas
-of the form `A` to obtain a proof of ⊥, and if we can derive 
-⊥ from a formula `A`, this gives us a proof of `¬ A`. Here is
-an example that illustrates both ideas at the same time:
+In the first example, $h$ names an assumed proof of $A → B$.
+The command $intro not_b$ assumes a proof of $¬B$, leaving the goal $¬A$.
+Since this means $A → False$, another $intro$ assumes $a : A$ and leaves
+$False$ as the goal. Now $h a$ gives us a proof of $B$. Combining it with
+$not_b$ gives us $False$: the term $not_b (h a)$ has exactly the type we
+need. This completes the proof of $¬B → ¬A$ under the original assumption $h$.
 
-~~~lean4
-theorem de_morgan_one_ltr (A B : Prop): ¬(A ∨ B) → (¬A ∧ ¬ B) := by
-   intro not_a_or_b
-   apply And.intro
-   · intro a
-     apply not_a_or_b
-     apply Or.inl
-     exact a
-   · intro b
-     apply not_a_or_b
-     apply Or.inr
-     exact b
-~~~
-Click this
-[link](https://live.lean-lang.org/#codez=C4Cwpg9gTmC2AEATMB9W0DmBDAdiiOqANsFPABQCC8AQvAFzwAKUEADgJSMA1V8gFES0O8QEmEFbtUDkRPG5CGAXngAjAJ4AoeJoCWOUhHg4IwFFnxQUSjZqxs2RFfEo5EAOh16r8AO3x3reFie1rb2BkYmZhZBASEOAPJQbjhE0WAAHlgAxsABnj5++paaxTZ2DobGptBRxcFl8AlJUKkZ2cpAA) to run this code in your browser. 
+The second example starts with assumed proofs $a : A$ and $not_a : ¬A$.
+Together they give the term $not_a a$ of type $False$. The constructor
+$False.elim$ lets us obtain a proof of our goal $B$ from this contradiction.
+This is explosion. Lean accepting the proof shows that $B$ follows from
+the inconsistent assumptions; it doesn't show that those assumptions are true.
 
-Under the ideas just outlined, this code corresponds to the following natural deduction proof:
+For double-negation elimination, we need the classical rule. In Lean,
+we can use $Classical.byContradiction$:
 
-{{< img src="img/de_morgan_nd.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
+```lean
+variable (A : Prop)
 
-Note that in our Lean derivation, we didn't need to write out ⊥, but
-if you ever have to, it works by writing `False`. That is, you can write "`A
-<span class="dark-green">→</span> False`" instead of "`<span class="dark-green">¬</span>A`" and say the same thing.
+example (h : ¬¬A) : A := by
+  apply Classical.byContradiction
+  intro not_a
+  exact h not_a
+```
 
-The principle `Ex falso`, which states that you can derive any consequence from
-a contradiction has the equivalent Lean tactic `False.elim`, which you can also
-refer to by `absurd`. So, we can prove the law:
+Our goal is $A$, and $h$ is an assumed proof of $¬¬A$.
+$apply Classical.byContradiction$ asks us to prove $False$ under the
+additional assumption $¬A$. The command $intro not_a$ introduces that
+assumed proof. Since $h$ proves the negation of $¬A$, combining it with
+$not_a$ gives $False$. Thus $exact h not_a$ completes the contradiction,
+and the classical rule establishes $A$.
 
-~~~lean4
-theorem ex_falso_quodlibet (A C : Prop) : (A ∧ ¬ A) → C := by
-  intro a_and_neg_a
-  apply False.elim
-  apply And.right a_and_neg_a
-  exact And.left a_and_neg_a
-~~~
-Click this
-[link](https://live.lean-lang.org/#codez=C4Cwpg9gTmC2AEYAeB9AZgQwDYGcIoEcBXCAEywEsAjMYeACgEF4BheALngAUoIAHAJQcGzQORE8ADXxGQwEmErDgF54VAJ4AoePAoA7YL3gYUGHaRQ6wAc2ObDfPllXwAYthxgAdGEqxbGe47Sph5QFJYgdEYmZhbWGLbIGADGdIzBWGBokcam5lbGQA) to run this code in your browser. 
+This corresponds to the classical rule $¬⊥$ in our natural deduction calculus.
+$open Classical$ merely lets us write names such as $byContradiction$ without
+the prefix. It doesn't itself prove anything or add a new inference step.
+The tactic $classical$ makes classical decidability available when a tactic
+needs it; many of our proofs don't need it.
 
-What's left is to discuss the rule ¬⊥, which is peculiar in
-natural deduction, as in Lean:
+### Proof checking {#what-has-lean-verified}
 
-{{< img src="img/neg_bot.png" class="mx-auto rounded d-block inert-img img-fluid" width="100px">}}
+Lean's kernel performs {{< term "proof-checking" "proof checking" >}} by
+checking that the proof term has the stated proposition as its type. Our
+tactics tell Lean how to construct that term. To finish a proof, we must
+replace every $sorry$ with a proof of the corresponding goal.
 
-This rule is _not_ standardly available in Lean. This again has to do with
-Lean's roots in intuitionistic logic, where the rule fails. But we can _load_
-the rule by the line `<span class="dark-blue">open</span> Classical`. The rule is needed, for example, to
-derive the law of double negation elimination:
+We also need to check that the assumptions and conclusion express the
+inference we intended. In the heating example, $HEATING$ must follow from
+the three given premises. If we accidentally include $heating : HEATING$
+among the assumptions, Lean will accept $exact heating$ as a proof.
+That proof correctly derives $HEATING$ from itself. We still have to check
+that we've asked Lean to prove the right claim.
 
-~~~lean4
-open Classical
+## Curry–Howard {#concrete-curryhoward-correspondence}
 
-theorem double_negation_elim (A : Prop) : ¬¬A → A := by
-  intro not_not_a
-  apply byContradiction
-  apply not_not_a
-~~~
-Click this
-[link](https://live.lean-lang.org/#codez=PYBwpgdgBAwgNgQwM5IJYGMFwFDYC4AWYwATmALZQAmwArgEZxgD6EYA5gnqsBM2HFSUAFAEEoALigAFEqACUkqABrl4wEmEUcRIC8UegE9sUKKgh45UCMDysbzBMagIQIOAf0GYvCwioZuXicXNw9rW3CHIA) to run this code in your browser. 
+We've now seen how Lean's tactics let us construct proofs using the same
+steps as natural deduction. Introducing a conjunction combines two proofs;
+introducing a conditional lets us work under a temporary assumption. Lean
+records these constructions as terms, with the propositions they prove as
+their types. We can also read such a term as a proof and its type as the
+proposition proved.
 
-What's going on here is that by the line `<span class="dark-blue">open</span>
-Classical`, we make the new tactic `byContradiction` available, which allows us
-to derive `A` from a proof of `⊥` from the assumption that `<span
-class="dark-green">¬</span>A`. This is precisely what's going on here:
+This connection is called the
+{{< term "curry-howard" "Curry–Howard correspondence" >}}
+([Wikipedia](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence)).
+It connects logic with typed programming: propositions correspond to types,
+and proofs correspond to programs of those types. A type tells us what a
+program must produce. Read as a proposition, it tells us what the
+corresponding proof must establish. In this sense, proofs and programs are
+two sides of the same coin.
 
-~~~lean4 {linenostart=4}
-  intro not_not_a
-  apply byContradiction
-  apply not_not_a
-~~~
+Take our proof of $A → (A ∧ A)$. We assume a proof of $A$ and use it twice
+to construct a proof of $A ∧ A$. Viewed as a program, the same construction
+takes an input of type $A$ and pairs it with itself. Viewed as a proof, it
+establishes the conditional. The type records the construction in either
+reading.
 
-The tactic `byContradiction` introduces the hypothesis `not_a`, which is a proof
-of `<span class="dark-green">¬</span>A`. We apply our previous assumption
-`not_not_a` to this to obtain `False` via MP, which is enough to infer `A`
-according to the idea underlying ¬⊥.
+This is the foundation of theorem proving in Lean: constructing a proof
+means constructing a term of the required type, and checking the proof
+means checking that the term has that type. In computer science, the
+correspondence guides the design of typed programming languages and methods
+for verifying programs. In AI, it also lets us treat the search for a formal
+proof as the task of generating a program whose type the prover can check.
 
-This concludes our teaser of Lean for proof verification in classical Boolean
-logic. This is just the very beginning of a huge field of active AI research,
-which has the potential to change the way we use mathematics in our research.
-There are attempts to use traditional ATP-techniques "proof search" to automate
-the search for proofs via tactics like `exact?`, which searches the
-`mathlib`-library for any theorem that fits all the open assumptions we
-currently have. This could help researchers find results even if they've never
-heard of them.
+For the propositional rules we've studied, the correspondence looks like this:
 
-At the same time, Lean is a playground for GenAI techniques, which in 2024 helped
-researchers at Google's _DeepMind_ research group develop an AI-system that
-achieved [silver-medal standard at IMO
-problems](https://deepmind.google/discover/blog/ai-solves-imo-problems-at-silver-medal-level/).
+| Natural deduction | Proof construction | Lean command |
+| --- | --- | --- |
+| Infer $A ∧ B$ from $A$ and $B$. | Combine a proof of $A$ with a proof of $B$. | $exact And.intro a b$ |
+| Infer either conjunct from $A ∧ B$. | Extract the proof of the chosen conjunct. | $exact And.left h$, $exact And.right h$ |
+| Infer $A ∨ B$ from either $A$ or $B$. | Construct a proof of the disjunction from a proof of the chosen disjunct. | $exact Or.inl a$, $exact Or.inr b$ |
+| Infer $C$ from $A ∨ B$ and derivations of $C$ under each case assumption, discharging those assumptions. | Prove the same conclusion in both cases. | $apply Or.elim h$, then prove both cases. |
+| Infer $A → B$ from a derivation of $B$ under assumption $A$, discharging that assumption. | Assume a proof of $A$ and construct a proof of $B$. | $intro a$, then prove $B$. |
+| Infer $B$ from $A → B$ and $A$. | Combine a proof of the conditional with a proof of its antecedent. | $exact f a$ |
+
+Here $A$, $B$, and $C$ are formulas. In the Lean commands, $a$ and $b$
+name proofs of $A$ and $B$, $h$ names a proof of the relevant conjunction
+or disjunction, and $f$ names a proof of $A → B$. The commands construct
+proof terms, which Lean checks against the stated proposition. We don't
+need to write those terms out ourselves: $intro a$, for example, lets us
+work under an assumed proof $a : A$, just as we worked under a temporary
+assumption in natural deduction.
+
+Negation fits too: $¬A$ is $A → False$. To prove $¬A$, we derive falsity under an assumed proof of $A$. Since there is no constructor of $False$, a closed
+proof of it cannot be built from the intuitionistic rules. The classical
+rule uses an additional principle, $Classical.byContradiction$; it is not
+supplied by the conditional, conjunction, and disjunction constructions alone.
+
+Use the app to translate a derivation into Lean, or edit the Lean proof and
+translate it back. Both directions use the same natural deduction steps.
+Try “Temporary assumption” first: $intro$ opens an assumption, and completing
+the proof of the consequent discharges it. Then try “Two cases”. Each branch
+has its own assumption, and both branches prove $RAIN$.
+
+{{< logic-app name="deduction" kind="lean" example="conditional" title="Natural deduction and Lean" >}}
+
+The translator accepts one $example$, propositional variables, named
+assumptions, and the commands $intro$, $apply$, and $exact$. It accepts the
+proof constructors used above, including nested applications. When
+importing Lean, it rejects unfinished proofs and commands
+outside this small language. It runs our natural deduction checker in the
+browser; to have Lean's kernel check the generated code, paste it into the
+[Lean playground](https://live.lean-lang.org/). The Euclid example uses
+more of Lean and is outside the translator's scope.
+
+When exporting a derivation with open goals, the app writes $sorry$ for
+each missing proof. Lean accepts this as a placeholder and issues a warning.
+It lets us work on one part of a proof while leaving another for later, but
+a proof containing $sorry$ does not establish the theorem. Every placeholder
+needs to be replaced by a proof. The reverse translator accepts completed
+proofs in the supported fragment; it won't turn $sorry$ into a proved node.
+
+Whether we construct the argument ourselves or ask an AI agent to do so, we
+can submit the resulting proof term to Lean. Its type states the claim; the
+kernel checks that the term proves it from the stated assumptions.
+
+## Automated theorem proving in Lean
+
+So far, we've told Lean which proof steps to take. But we've already
+studied algorithms for finding proofs, too. Our resolution algorithm,
+for example, searches for a refutation using the premises and the negation
+of the conclusion. We can use automated methods in Lean as well.
+
+One of Lean's tactics for automated reasoning is $grind$. In the heating
+example, we can replace all our proof steps with this one command:
+
+```lean
+variable (RAIN WIND COLD HEATING : Prop)
+
+example (rain : RAIN)
+    (if_rain_or_wind_then_cold : RAIN ∨ WIND → COLD)
+    (if_cold_then_heating : COLD → HEATING) : HEATING := by
+  grind
+```
+
+We can do the same with the indirect proof we worked through earlier:
+
+```lean
+variable (A B : Prop)
+
+example (h : ¬(A ∧ B)) : ¬A ∨ ¬B := by
+  grind
+```
+
+$grind$ assumes the negation of the conclusion and searches for a
+contradiction. In the heating example, it adds $¬HEATING$ to our three
+premises. We can see why this leads to a contradiction: from $RAIN$ we
+can infer $RAIN ∨ WIND$, then $COLD$, and finally $HEATING$. This
+contradicts the added assumption $¬HEATING$.
+
+The approach is familiar from
+{{< chapter_ref chapter="sat" id="resolution" >}}SAT solving{{< /chapter_ref >}},
+though $grind$ combines several methods. It draws consequences from the
+available facts, splits the search into cases, and uses procedures for
+equality and arithmetic. The
+[Lean reference](https://lean-lang.org/doc/reference/latest/The--grind--tactic/)
+describes these methods in detail. When $grind$ succeeds, it supplies a
+proof term for the goal. Lean's kernel checks that term in the same way
+as one constructed with our individual tactics.
+
+$grind$ won't finish every proof for us. Its search can run out of
+resources, and we may need to prove an intermediate claim before it can
+proceed. Lean also has tactics for more specialized problems: $bv_decide$,
+for example, uses an external SAT solver for Boolean and bit-vector
+problems and checks the certificate it returns. We won't study these
+further methods here, but they give us another way to use the SAT-solving
+techniques from the earlier chapters.
 
 ## Further readings {.readings .nocount}
-An excellent introduction to [structural proof
-theory](https://en.wikipedia.org/wiki/Structural_proof_theory) is Sara Negri and
-Jan van Plato's [Structural Proof
-Theory](https://www.cambridge.org/core/books/structural-proof-theory/487F9F5F1E6174867B458B819043C36B).
-CUP 2010.
 
-If you want to learn more about [Lean](https://lean-lang.org/) and its use for
-proof verification, a great place to start is [Theorem Proving in Lean
-4](https://leanprover.github.io/theorem_proving_in_lean4/) by  Jeremy Avigad,
-Leonardo de Moura, Soonho Kong, Sebastian Ullrich, and contributions from the
-broader Lean Community.
-
-A great "playground" is the [natural number
-game](https://adam.math.hhu.de/#/g/leanprover-community/nng4). In general, the
-[Lean Game Server](https://adam.math.hhu.de/) contains an awesome collection of
-_gamified_ introductions to Lean. 
-
-You can find an amazing talk about how AI can influence science and mathematics,
-in part using proof systems under <https://www.youtube.com/watch?v=_sTDSO74D8Q>.
+- Richard Zach, [*Sets, Logic, Computation* (PDF)](https://slc.openlogicproject.org/slc-screen.pdf), chapter 11, especially §§11.1–11.5, for natural deduction and worked-out derivations.
+- Jeremy Avigad, Leonardo de Moura, Soonho Kong, and Sebastian Ullrich, [*Theorem Proving in Lean 4*](https://docs.lean-lang.org/theorem_proving_in_lean4/), chapters 2–5, for dependent type theory, propositions as types, and tactic proofs.

@@ -16,6 +16,15 @@ Chroma has no usable Lean lexer — it marks tactics as plain names — so
 and tags every block with its language. Authors no longer need to place a
 language logo beside a code block; if you find one in the content, delete it.
 
+Inline code uses `--inline-code-size` (0.85em) relative to its surrounding
+text. Code inside `pre` keeps its block sizing.
+
 ## Related
 
 - [The notation font](notation-font.md) — why code is not in the hand.
+
+Lean blocks in the proofs chapter, its exercises, and the Lean tool link to the
+playground below the code. These links use the formal-font L∃∀N wordmark, the external-link
+indicator, and an accessible new-tab notice. Links sit below the code, right
+aligned in smaller type; the translator places its link below the app. Mathlib imports select the
+playground’s mathlib project.

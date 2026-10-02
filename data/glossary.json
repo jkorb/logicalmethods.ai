@@ -37,7 +37,8 @@
   "classical-logic": {
     "term": "Classical logic",
     "definition": "The logical framework used in our Boolean and FOL chapters, with bivalent semantics and classical inference principles.",
-    "chapter": "boolean"
+    "chapter": "proofs",
+    "anchor": "negation-and-classical-reasoning"
   },
   "conditional": {
     "term": "Conditional",
@@ -94,7 +95,8 @@
   "derivability": {
     "term": "Derivability",
     "definition": "The existence of a formal proof of a conclusion from given assumptions, written with ⊢.",
-    "chapter": "notation"
+    "chapter": "proofs",
+    "anchor": "proof-systems"
   },
   "designated-value": {
     "term": "Designated value",
@@ -242,9 +244,9 @@
     "chapter": "logic-and-ai"
   },
   "proof": {
-    "term": "Logical proof",
+    "term": "Logical proof. Alt: derivation",
     "definition": "A chaining of inference rules applied to logical formulas, with assumptions tracked through the derivation.",
-    "chapter": "logic-and-ai"
+    "chapter": "proofs"
   },
   "pseudocode": {
     "term": "Pseudocode",
@@ -1119,5 +1121,135 @@
     "term": "Negative literal",
     "definition": "The negation of an atomic formula. Negative describes its syntactic form, not its truth-value.",
     "chapter": "sat"
+  },
+  "automated-theorem-prover": {
+    "term": "Automated theorem prover",
+    "definition": "Software that searches for formal proofs of specified claims from given assumptions.",
+    "chapter": "proofs"
+  },
+  "axiom": {
+    "term": "Axiom",
+    "definition": "A formula accepted as a starting point in a proof system or theory.",
+    "chapter": "proofs",
+    "anchor": "axiomatic-systems"
+  },
+  "completeness": {
+    "term": "Completeness",
+    "definition": "A proof system is complete if every semantic consequence can be derived in it.",
+    "chapter": "proofs"
+  },
+  "constructor": {
+    "term": "Constructor",
+    "definition": "An operation for building a term of a type from specified inputs.",
+    "chapter": "proofs"
+  },
+  "curry-howard": {
+    "term": "Curry–Howard correspondence",
+    "definition": "The correspondence between propositions and types, and between proofs and terms of those types.",
+    "chapter": "proofs"
+  },
+  "discharge": {
+    "term": "Discharge",
+    "definition": "Ending a temporary assumption's role as an open assumption by applying a rule that permits it, such as conditional introduction.",
+    "chapter": "proofs",
+    "anchor": "natural-deduction"
+  },
+  "elimination-rule": {
+    "term": "Elimination rule",
+    "definition": "An inference rule using a formula with the relevant main connective to derive a conclusion.",
+    "chapter": "proofs"
+  },
+  "explosion": {
+    "term": "Explosion",
+    "definition": "The inference principle that any conclusion follows from a contradiction.",
+    "chapter": "proofs",
+    "anchor": "negation-and-classical-reasoning"
+  },
+  "introduction-rule": {
+    "term": "Introduction rule",
+    "definition": "An inference rule deriving a formula with the relevant connective as its main connective.",
+    "chapter": "proofs"
+  },
+  "intuitionistic-logic": {
+    "term": "Intuitionistic logic",
+    "definition": "A logic whose natural deduction rules omit classical proof by contradiction; double-negation elimination is not generally available.",
+    "chapter": "proofs"
+  },
+  "kernel": {
+    "term": "Kernel",
+    "definition": "The component of a proof assistant that checks proofs according to its basic rules.",
+    "chapter": "proofs"
+  },
+  "lemma": {
+    "term": "Lemma",
+    "definition": "A proved result used in another proof.",
+    "chapter": "proofs"
+  },
+  "multiple-discharge": {
+    "term": "Multiple discharge",
+    "definition": "Discharging several occurrences of an assumption with the same label in one rule application.",
+    "chapter": "proofs"
+  },
+  "natural-deduction": {
+    "term": "Natural deduction",
+    "definition": "A proof system with introduction and elimination rules, including rules for reasoning with and discharging temporary assumptions.",
+    "chapter": "proofs"
+  },
+  "open-assumption": {
+    "term": "Open assumption",
+    "definition": "An assumption on which a derivation still depends.",
+    "chapter": "proofs"
+  },
+  "proof-calculus": {
+    "term": "Proof calculus",
+    "definition": "A system of rules for constructing logical proofs.",
+    "chapter": "proofs"
+  },
+  "proof-checking": {
+    "term": "Proof checking",
+    "definition": "Checking that a supplied formal proof obeys the rules and establishes its stated conclusion from its stated assumptions.",
+    "chapter": "proofs",
+    "anchor": "what-has-lean-verified"
+  },
+  "proof-search": {
+    "term": "Proof search",
+    "definition": "Searching for a formal derivation of a conclusion from assumptions.",
+    "chapter": "proofs",
+    "anchor": "proof-systems"
+  },
+  "proof-term": {
+    "term": "Proof term",
+    "definition": "A typed term representing a formal proof, whose type expresses the proposition proved.",
+    "chapter": "proofs"
+  },
+  "soundness": {
+    "term": "Soundness",
+    "definition": "A proof system is sound if everything derivable from assumptions is a semantic consequence of those assumptions.",
+    "chapter": "proofs"
+  },
+  "tactic": {
+    "term": "Tactic",
+    "definition": "An instruction for constructing a proof in a proof assistant, often by reducing a goal to simpler goals.",
+    "chapter": "proofs"
+  },
+  "type": {
+    "term": "Type",
+    "definition": "A classification of terms that determines which constructions and operations are permitted on them.",
+    "chapter": "proofs"
+  },
+  "type-checking": {
+    "term": "Type checking",
+    "definition": "Checking whether a term has a specified type according to the rules of the type system.",
+    "chapter": "proofs"
+  },
+  "typed-term": {
+    "term": "Typed term",
+    "definition": "An expression assigned a type by the rules of a type system; t : A states that t has type A.",
+    "chapter": "proofs"
+  },
+  "vacuous-discharge": {
+    "term": "Vacuous discharge",
+    "definition": "Discharge of an assumption that was not used in the derivation.",
+    "chapter": "proofs"
   }
 }

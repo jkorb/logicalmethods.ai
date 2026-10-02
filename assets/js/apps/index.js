@@ -1,3 +1,4 @@
+import { mountDeduction } from './deduction.js';
 import { mountConditionalPractice } from './conditional-practice.js';
 import { mountConditionals } from './conditionals.js';
 import { mountSATPractice } from './sat-practice.js';
@@ -13,9 +14,9 @@ import { mountShuntingYard } from './shunting-yard.js';
 import { mountReasoningPractice } from './reasoning-practice.js';
 import { mountBoolean } from './boolean-app.js';
 import { mountFlashcards } from './flashcards.js';
-const apps = { 'conditional-practice': mountConditionalPractice, conditionals: mountConditionals, 'sat-practice': mountSATPractice, sat: mountSAT, 'pseudocode-practice': mountPseudocode, boolean: mountBoolean, parser: mountParser, 'latex-game': mountLatexGame, builder: mountFormulaBuilder, 'notation-practice': mountNotationPractice, 'shunting-yard': mountShuntingYard, 'reasoning-practice': mountReasoningPractice, flashcards: mountFlashcards };
+const apps = { deduction: mountDeduction, 'conditional-practice': mountConditionalPractice, conditionals: mountConditionals, 'sat-practice': mountSATPractice, sat: mountSAT, 'pseudocode-practice': mountPseudocode, boolean: mountBoolean, parser: mountParser, 'latex-game': mountLatexGame, builder: mountFormulaBuilder, 'notation-practice': mountNotationPractice, 'shunting-yard': mountShuntingYard, 'reasoning-practice': mountReasoningPractice, flashcards: mountFlashcards };
 for (const root of document.querySelectorAll('[data-logic-app]')) {
   if (root.dataset.mounted) continue;
   const mount = apps[root.dataset.logicApp];
-  if (mount) { mount(root); if (['boolean', 'parser', 'builder', 'shunting-yard'].includes(root.dataset.logicApp) || root.dataset.logicApp==='conditionals' && root.dataset.kind==='planning') mountImageExport(root); root.dataset.mounted = 'true'; }
+  if (mount) { mount(root); if (root.dataset.logicApp==='deduction' && root.dataset.kind!=='rules' || ['boolean', 'parser', 'builder', 'shunting-yard'].includes(root.dataset.logicApp) || root.dataset.logicApp==='conditionals' && root.dataset.kind==='planning') mountImageExport(root); root.dataset.mounted = 'true'; }
 }

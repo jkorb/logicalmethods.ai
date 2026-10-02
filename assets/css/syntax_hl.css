@@ -106,3 +106,6 @@
    without them .chroma is the <pre> itself and would swallow the padding. */
 .code-block.has-lang-icon > .highlight { padding-block-start: 1.6rem; }
 .lang-icon-inline { display: inline-block; inline-size: 1.15em; vertical-align: -.2em; }
+
+.lean-playground-link { text-align:right; font-size:var(--step--1); margin-block:.3rem .8rem; }
+.lean-playground-link .lean-wordmark { font-family:var(--font-formal); }
