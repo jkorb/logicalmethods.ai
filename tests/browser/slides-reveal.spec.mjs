@@ -287,18 +287,33 @@ for (const { slug } of decks) {
     // Each slide is fitted to its canvas, but not below 40%: a slide that still
     // scrolls holds too much. On a phone an app takes its narrow, taller
     // layout, and a slide with an app may scroll there.
-    const overflowing = [];
     const scrolling = [];
     for (let i = 1; i <= count; i++) {
       await page.evaluate(i => { location.hash = `#slide-${i}`; }, i);
       await expect(page.locator(`#slide-${i}`)).toBeVisible();
       if (info.project.name === 'mobile' && await page.locator(`#slide-${i} .logic-app`).count()) continue;
-      if (!await page.locator(`#slide-${i}`).evaluate(fits)) overflowing.push(i);
+      await expect.poll(() => page.locator(`#slide-${i}`).evaluate(fits),
+        `slide ${i} must fit ${info.project.name} after formula layout settles`).toBe(true);
       const regions = await page.locator(`#slide-${i}`).evaluate(scrollbars);
       if (regions.length) scrolling.push(`${i}: ${regions.join(', ')}`);
     }
-    expect(overflowing, `slides that do not fit ${info.project.name}: cut them or split them`).toEqual([]);
     expect(scrolling, 'regions that show a scrollbar before anything unfolds').toEqual([]);
     expect(errors).toEqual([]); expect(offsite).toEqual([]);
   });
 }
+
+
+test('text slides refit when a displayed formula grows after navigation', async ({ page }) => {
+  await page.goto('/slides/conditionals/#slide-18');
+  await expect(page.locator('[data-reveal-deck]')).toHaveAttribute('data-deck-ready', 'true');
+  const slide = page.locator('#slide-18');
+  await page.evaluate(() => document.fonts.ready);
+  await expect.poll(() => slide.evaluate(fits)).toBe(true);
+  // Formula layout settles separately from slide navigation. Force a later
+  // height change so the regression does not depend on font or CPU timing.
+  await slide.locator('.math-display > *').first().evaluate(formula => {
+    formula.style.lineHeight = '3';
+  });
+  await expect.poll(() => slide.evaluate(fits)).toBe(true);
+  await expect.poll(() => slide.evaluate(scrollbars)).toEqual([]);
+});

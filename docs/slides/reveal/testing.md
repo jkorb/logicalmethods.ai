@@ -19,6 +19,10 @@ Playwright serves it at `http://127.0.0.1:4174` (`npm run serve:test -- --fixtur
 | `tests/browser/slides-reveal.spec.mjs` | On the fixture: rendering, apps mounted, keys, clicker, menu and URLs, fragments, app key handling, fitting every slide, app chrome hidden, mascot and goals, the text view, axe in both themes and in full screen, a 320px page, no JavaScript. |
 | the same spec, per real deck | Every page with `layout: reveal_slides` loads without errors or offsite requests, mounts its apps, carries a text entry per slide, fits each slide in its canvas, and shows no scrollbar before anything unfolds, on desktop and phone. |
 
+Display formulas can resize after navigation. The real-deck checks wait for
+the slide to fit, and a regression check grows a formula after navigation to
+verify that text slides are fitted again.
+
 The suites run in Chromium only. Zoom and text layout differ slightly in
 WebKit (Safari), which is where phantom scrollbars and an overflowing text
 column first showed; after a change to fitting, run this spec once in WebKit

@@ -106,7 +106,10 @@ function fit(slide, ceiling) {
    text too small to read. */
 function refitGrowing(slide) {
   const shown = { mode: slide.dataset.fit, zoom: Number(slide.style.getPropertyValue('--deck-zoom')) || 1, scope: slide.dataset.fitScope };
-  if (slide.dataset.hasApp === undefined || shown.scope !== 'apps') { settle(slide); return; }
+  // Formula fitting runs after navigation too. A text slide needs another
+  // full fit when its display blocks change height, not just pixel clipping.
+  if (slide.dataset.hasApp === undefined) { fit(slide, Math.min(shown.zoom, 1)); return; }
+  if (shown.scope !== 'apps') { settle(slide); return; }
   slide.dataset.shownZoom ??= String(shown.zoom);
   const floor = Math.max(MIN_ZOOM, Math.min(UNFOLD_MIN_ZOOM, Number(slide.dataset.shownZoom)));
   const reflow = largest(slide, 'reflow', floor, shown.zoom);
