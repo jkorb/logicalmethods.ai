@@ -193,7 +193,7 @@ it checks every step. Lean, Rocq, Isabelle.
 ### Automated provers
 
 An {{< term "automated-theorem-prover" "automated theorem prover" >}} searches
-for the proof itself: resolution, SAT solving.
+for the proof itself: resolution, SAT solving. Vampire; SMT solvers such as Z3.
 
 {{< slide layout="split" title="Types and type checking" >}}
 ## Types and type checking
