@@ -440,7 +440,7 @@ the box back or dropping the banana.
    $OnBox$ (standing on the box), and $HasBanana$ (holding the banana).
    All three are initially false. The goal requires just $HasBanana$.
    Whether the box is open and whether a banana rests on it play no role.
-2. The model can choose $Wait$ at every time and make $HasBanana$ true at
+2. The model can make every action atom false and make $HasBanana$ true at
    the end. The action rules say what must happen _if_ an action occurs.
    Alone, they don't require an action to explain a change.
 3. The positive frame conditions are:

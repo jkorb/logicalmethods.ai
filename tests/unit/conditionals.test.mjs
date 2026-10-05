@@ -48,7 +48,7 @@ test('planning frames exclude miracle models and every returned assignment satis
   for(const example of ['two','three','monkey']) {
     const absent=plan({example});
     assert.equal(absent.status,'sat');assert.ok(absent.miracles.length);
-    assert.ok(absent.states.slice(0,-1).every(s=>s.action==='Wait'));
+    assert.ok(absent.states.slice(0,-1).every(s=>s.action===null));
     const full=plan({example,frames:example==='monkey'?monkeyFrames:blockFrames});
     assert.equal(full.status,'sat');assert.equal(full.miracles.length,0);
     assert.ok(full.cnf.every(c=>c.some(l=>full.model[Math.abs(l)]===(l>0?1:-1))));

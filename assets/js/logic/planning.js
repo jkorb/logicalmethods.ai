@@ -49,8 +49,7 @@ function world(example) {
     actions:[
       {name:'PushBox',pre:['¬OnBox','¬BoxUnderBanana'],add:['BoxUnderBanana'],remove:[]},
       {name:'Climb',pre:['BoxUnderBanana','¬OnBox'],add:['OnBox'],remove:[]},
-      {name:'TakeBanana',pre:['OnBox','BoxUnderBanana'],add:['HasBanana'],remove:[]},
-      {name:'Wait',pre:[],add:[],remove:[]}
+      {name:'TakeBanana',pre:['OnBox','BoxUnderBanana'],add:['HasBanana'],remove:[]}
     ], constraints:[]
   };
   const blocks = example.blocks, fluents = blocks.flatMap(x=>blocks.filter(y=>y!==x).map(y=>`On(${x},${y})`));
@@ -59,7 +58,6 @@ function world(example) {
     actions.push({name:`Stack(${x},${y})`,pre:[...blocks.filter(z=>z!==x).map(z=>`¬On(${x},${z})`),...blocks.filter(z=>z!==x).map(z=>`¬On(${z},${x})`),...blocks.filter(z=>z!==y).map(z=>`¬On(${z},${y})`)],add:[`On(${x},${y})`],remove:[]});
     actions.push({name:`Unstack(${x},${y})`,pre:[`On(${x},${y})`,...blocks.filter(z=>z!==x).map(z=>`¬On(${z},${x})`)],add:[],remove:[`On(${x},${y})`]});
   }
-  actions.push({name:'Wait',pre:[],add:[],remove:[]});
   const constraints = [];
   for (let i=0;i<fluents.length;i++) for(let j=i+1;j<fluents.length;j++) {
     const a=fluents[i].match(/On\((.),(.)\)/u),b=fluents[j].match(/On\((.),(.)\)/u);
@@ -97,9 +95,9 @@ export function plan(options) {
   const preferred=[];
   for(let t=0;t<horizon;t++) {
     const actions=domain.actions.map(a=>lit(a.name,t));
-    add(actions);
     for(let i=0;i<actions.length;i++) for(let j=i+1;j<actions.length;j++) add([-actions[i],-actions[j]]);
-    preferred.push(lit('Wait',t),...domain.actions.filter(a=>a.name!=='Wait').map(a=>lit(a.name,t)));
+    // Prefer no action when possible, so missing frames expose miracle models.
+    preferred.push(...actions.map(a=>-a));
     for(const a of domain.actions) {
       const action=lit(a.name,t);
       a.pre.forEach(f=>add([-action,lit(f,t)]));
@@ -142,7 +140,7 @@ export function plan(options) {
           return `V${id(`${name}@${time}`)}`;
         });
       } else {
-        text=text.replace(/\b(BoxUnderBanana|OnBox|HasBanana|PushBox|Climb|TakeBanana|Wait)\s*\(\s*t\s*(\+\s*1)?\s*\)/gu,(_,name,next)=>{
+        text=text.replace(/\b(BoxUnderBanana|OnBox|HasBanana|PushBox|Climb|TakeBanana)\s*\(\s*t\s*(\+\s*1)?\s*\)/gu,(_,name,next)=>{
           if(next && !domain.fluents.includes(name))throw new Error('Actions in frame conditions occur at t; state atoms may use t or t+1.');
           return `V${lit(name,t+(next?1:0))}`;
         });
@@ -159,11 +157,11 @@ export function plan(options) {
   const solved=solveCNF(clauses,names.length,preferred,3000000);
   if(!solved.model) return {status:'unsat',horizon,variables:names.length,clauses:clauses.length};
   const value=(name,t)=>solved.model[id(`${name}@${t}`)]===1;
-  const states=Array.from({length:horizon+1},(_,t)=>({time:t,true:domain.fluents.filter(f=>value(f,t)),action:t<horizon?domain.actions.find(a=>value(a.name,t))?.name:null}));
+  const states=Array.from({length:horizon+1},(_,t)=>({time:t,true:domain.fluents.filter(f=>value(f,t)),action:t<horizon?(domain.actions.find(a=>value(a.name,t))?.name ?? null):null}));
   const miracles=[];
   for(let t=0;t<horizon;t++) {
     const a=domain.actions.find(a=>a.name===states[t].action);
-    for(const f of domain.fluents) if(value(f,t)!==value(f,t+1) && !(value(f,t+1)?a.add:a.remove).includes(f)) miracles.push({time:t+1,fluent:f});
+    for(const f of domain.fluents) if(value(f,t)!==value(f,t+1) && !(value(f,t+1)?a?.add || []:a?.remove || []).includes(f)) miracles.push({time:t+1,fluent:f});
   }
   return {status:'sat',states,miracles,horizon,variables:names.length,clauses:clauses.length,model:solved.model,cnf:clauses};
 }

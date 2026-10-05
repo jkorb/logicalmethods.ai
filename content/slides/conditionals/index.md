@@ -199,6 +199,8 @@ RAINBOW
 {{< slide layout="app" title="Forward chaining, step by step" >}}
 ## Forward chaining, step by step
 
+Try “Rainbow”, then “Missing fact”: the same KB without $CLEAR$.
+
 {{< logic-app name="conditionals" kind="chaining" method="forward" title="Forward chaining on the weather knowledge base" >}}
 
 {{< slide title="Backward chaining" >}}
@@ -220,6 +222,8 @@ as further goals.
 
 {{< slide layout="app" title="Backward chaining, step by step" >}}
 ## Backward chaining, step by step
+
+Try the same query without $CLEAR$. Where does the search get stuck?
 
 {{< logic-app name="conditionals" kind="chaining" method="backward" title="Backward chaining on the weather knowledge base" >}}
 
@@ -280,7 +284,7 @@ Horn satisfiability can be decided in time $O(m+1)$, where $m$ is the total
 number of literal occurrences in the input clauses.
 {{< /callout >}}
 
-Against $2ⁿ$ rows for general SAT.
+Truth-tables: $2ⁿ$ rows. Will our planning formulas be Horn?
 
 {{< slide layout="app" title="Counters and an agenda" >}}
 ## Counters and an agenda
@@ -289,12 +293,14 @@ A counter of unmet premises for each rule; an {{< term "agenda" "agenda" >}} of 
 
 {{< logic-app name="conditionals" kind="horn" title="Horn satisfiability with counters" >}}
 
-{{< slide layout="split" title="Planning" >}}
-## Planning
+{{< slide layout="split" title="Planning problem" >}}
+## Planning problem
 
 {{< column >}}
 
-{{< img src="/img/drawings/con_ai_plan_setup.svg" width="300px" alt="Green is on red; the instructions ask for red on green." >}}
+{{< img src="/img/drawings/con_ai_plan_setup.svg" width="280px" alt="Green is on red; the instructions ask for red on green." >}}
+
+Green on red $⟶$ red on green. Two action steps.
 
 {{< column >}}
 
@@ -304,59 +310,70 @@ may change over time. In a propositional planning language, a separate atom
 represents its value at each time point.
 {{< /callout >}}
 
-- State: $On(X, Y, t)$
-- Actions: $Stack(X, Y, t)$, $Unstack(X, Y, t)$
-- Initial $On(G, R, 0)$; goal $On(R, G, 2)$
+{{< callout type="definition" title="Action" >}}
+An {{< term "planning-action" "action" >}} is an operation an agent can perform
+in the world. An action atom states that a particular action occurs at a
+particular time.
+{{< /callout >}}
 
-{{< slide layout="split" title="Actions" >}}
-## Actions
+{{< slide layout="split" title="Formalization and SATPLAN" >}}
+## Formalization and SATPLAN
 
 {{< column >}}
 
-How the world works:
+{{< callout type="definition" title="SATPLAN" >}}
+{{< term "sat-planning" "Bounded SAT planning" >}} encodes an initial state,
+a goal, and permitted transitions over a fixed finite horizon as a
+propositional formula. A satisfying assignment describes a plan relative to
+that encoding.
+{{< /callout >}}
+
+### States
 
 $$
 ¬On(X, X, t)
 On(X, Y, t) → ¬On(Y, X, t)
 $$
 
-What actions do:
+Initial and goal:
 
 $$
+I = On(G, R, 0) ∧ ¬On(R, G, 0)
+G = On(R, G, 2)
+$$
+
+{{< column >}}
+
+### Preconditions and effects
+
+$$
+Stack(X, Y, t) → ¬On(X, Y, t)
+Stack(X, Y, t) → ¬On(Y, X, t)
+Unstack(X, Y, t) → On(X, Y, t)
 Stack(X, Y, t) → On(X, Y, t+1)
 Unstack(X, Y, t) → ¬On(X, Y, t+1)
-Unstack(X, Y, t) → On(X, Y, t)
 $$
 
-{{< column >}}
-
-A model with the initial state and the goal is a history: read the plan off its
-true actions.
-
-All Horn clauses so far.
-
-{{< slide layout="split" title="Miracles" >}}
-## "Miracles"
-
-{{< img src="/img/drawings/con_ai_miracle.svg" width="620px" alt="The miracle history: nobody acts at timestamps 0 and 1, yet at timestamp 2 red is on green, to the mascot's puzzlement." >}}
-
-{{< column >}}
+{{< slide layout="app" title="Frame conditions and miracles" >}}
+## Frame conditions and miracles
 
 {{< callout type="definition" title="Frame condition" >}}
 A {{< term "frame-condition" "frame condition" >}} is a formula specifying
 when a fluent retains its value from one time point to the next.
 {{< /callout >}}
 
-{{< column >}}
+{{< logic-app name="conditionals" kind="planning" view="frames" autostart="true" title="A miracle model, then the two frame conditions that exclude it" >}}
+
+{{< slide layout="app" title="Frame problem" >}}
+## Frame problem
+
+How do we represent what stays unchanged?
 
 $$
-On(X, Y, t) ∧ ¬Unstack(X, Y, t) → On(X, Y, t+1)
-¬On(X, Y, t) ∧ ¬Stack(X, Y, t) → ¬On(X, Y, t+1)
+¬On(X, Y, t) ∨ Unstack(X, Y, t) ∨ On(X, Y, t+1)
 $$
 
-Two positive literals each: Horn is gone.
+Two positive literals: this frame clause is non-Horn. The $O(m+1)$ guarantee
+no longer applies.
 
-{{< slide layout="app" title="Worked-out example: two blocks" >}}
-## Worked-out example: two blocks
-
-{{< logic-app name="conditionals" kind="planning" frames="chapter" title="Planning the two-block inversion by SAT solving" >}}
+{{< logic-app name="conditionals" kind="planning" frames="chapter" view="model" autostart="true" title="The complete encoding: unstack green, then stack red" >}}

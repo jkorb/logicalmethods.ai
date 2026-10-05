@@ -9,7 +9,7 @@ const examples={
   rainbow:{label:'Rainbow',source:weather,goal:'RAINBOW',description:'Morning, clear skies and rain: can we derive RAINBOW?'},
   alternatives:{label:'Alternatives',source:'RAIN\nSNOW\nHUMID → CLOUDS\nRAIN → CLOUDS\nRAIN → PUDDLES\nPUDDLES → HUMID\nRAIN → WET_GROUND\nSNOW → COLD\nCOLD → FROST\n(CLOUDS ∧ SNOW) → STORM',goal:'STORM',description:'Two routes to CLOUDS. Compare their order in the two algorithms.'},
   cycle:{label:'Circular rules',source:'RAIN\nCLOUDS → HUMID\nHUMID → CLOUDS\nRAIN → CLOUDS',goal:'HUMID',description:'A circular attempt can fail even though another rule supplies a proof.'},
-  missing:{label:'Missing fact',source:'SNOW\n(WIND ∧ SNOW) → DRIFTING',goal:'DRIFTING',description:'SNOW is known. There is no fact or rule supplying WIND.'},
+  missing:{label:'Missing fact',source:weather.replace('CLEAR\n',''),goal:'RAINBOW',description:'The rainbow knowledge base without CLEAR. Which steps can each search still complete?'},
   sat:{label:'Satisfiable',source:'RAIN\nRAIN → CLOUDS\n(CLOUDS ∧ SNOW) → STORM\nSTORM → ⊥',description:'The constraint forbids STORM. Does RAIN force it?'},
   unsat:{label:'Unsatisfiable',source:'RAIN\nSNOW\nRAIN → CLOUDS\n(CLOUDS ∧ SNOW) → STORM\nSTORM → ⊥',description:'Now SNOW is also a fact. Watch the counter of the constraint.'},
   refutation:{label:'Forecast refutation',source:weather+'\nRAINBOW → ⊥',description:'Add ¬RAINBOW, written RAINBOW → ⊥, to test the forecast by refutation.'}

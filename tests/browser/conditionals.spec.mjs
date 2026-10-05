@@ -35,13 +35,13 @@ test('two-block planning starts editable with frames and supports partial initia
   await expect(a.locator('.planning-goal')).toHaveCount(1);await expect(a.locator('.planning-cube svg path')).not.toHaveCount(0);
   await button(a,'Last step').click();await expect(a.getByRole('status')).toContainText('goal conditions hold');
   await button(a,'Clear frames').click();await button(a,'Plan!').click();await button(a,'Last step').click();await expect(a.getByRole('status')).toContainText('Unexplained change');
-  await button(a,'Use chapter frames').click();await a.locator('[data-horizon]').fill('1');await button(a,'Plan!').click();await expect(a.getByRole('status')).toContainText('No model');
+  await button(a,'Add frame conditions').click();await a.locator('[data-horizon]').fill('1');await button(a,'Plan!').click();await expect(a.getByRole('status')).toContainText('No model');
   await a.locator('[data-initial]').fill('');await a.locator('[data-complete]').uncheck();await button(a,'Plan!').click();await expect(a.locator('[data-rules]')).toContainText('one of the permitted initial states');
   await button(a,'Both on table').click();await button(a,'Plan!').click();await button(a,'Last step').click();await expect(a.getByRole('status')).toContainText('goal conditions hold');
 });
 test('exercise planning is blank; student chaining has a direction selector',async({page})=>{
   await page.goto('/exercises/conditionals/');const three=page.locator('[data-kind="planning"][data-example="three"]'),monkey=page.locator('[data-kind="planning"][data-example="monkey"]');
-  for(const a of [three,monkey]) {await expect(a.locator('[data-frame="0"]')).toHaveValue('');await expect(button(a,'Use chapter frames')).toHaveCount(0);const threeBlocks=a===three;await a.locator('[data-language]').fill(threeBlocks?'On(R,B);On(G,B);On(B,R);On(B,G)':'BoxUnderBanana;OnBox;HasBanana');await button(a,'Check language').click();await a.locator('[data-initial]').fill(threeBlocks?'On(G,B);On(B,R)':'none');await a.locator('[data-goal]').fill(threeBlocks?'On(B,G);On(G,R)':'HasBanana');await a.locator('[data-frame="0"]').fill(threeBlocks?'On(X,Y,t) ∧ ¬Unstack(X,Y,t) → On(X,Y,t+1)':monkeyFrames[0]);await a.locator('[data-frame="1"]').fill(threeBlocks?'¬On(X,Y,t) ∧ ¬Stack(X,Y,t) → ¬On(X,Y,t+1)':monkeyFrames[1]);await button(a,'Plan!').click();await button(a,'Last step').click();}
+  for(const a of [three,monkey]) {await expect(a.locator('[data-frame="0"]')).toHaveValue('');await expect(button(a,'Add frame conditions')).toHaveCount(0);const threeBlocks=a===three;await a.locator('[data-language]').fill(threeBlocks?'On(R,B);On(G,B);On(B,R);On(B,G)':'BoxUnderBanana;OnBox;HasBanana');await button(a,'Check language').click();await a.locator('[data-initial]').fill(threeBlocks?'On(G,B);On(B,R)':'none');await a.locator('[data-goal]').fill(threeBlocks?'On(B,G);On(G,R)':'HasBanana');await a.locator('[data-frame="0"]').fill(threeBlocks?'On(X,Y,t) ∧ ¬Unstack(X,Y,t) → On(X,Y,t+1)':monkeyFrames[0]);await a.locator('[data-frame="1"]').fill(threeBlocks?'¬On(X,Y,t) ∧ ¬Stack(X,Y,t) → ¬On(X,Y,t+1)':monkeyFrames[1]);await button(a,'Plan!').click();await button(a,'Last step').click();}
   await expect(three.locator('[data-rules]')).toContainText('On(B,G,4)');await expect(monkey.locator('[data-rules]')).toContainText('HasBanana');
   const chaining=page.locator('[data-logic-app="conditional-practice"][data-kind="chaining"]');await button(chaining,'Backward').click();await expect(button(chaining,'Reason backwards')).toBeEnabled();
 });
@@ -82,5 +82,49 @@ test('long chaining proofs and frozen knowledge bases fit their available width'
     await expect.poll(()=>a.locator('[data-work]').evaluate(n=>n.scrollWidth<=n.clientWidth+1)).toBe(true);
     expect(await a.locator('.conditional-kb-preview').evaluate(n=>n.scrollHeight<=n.clientHeight+1)).toBe(true);
     expect(await a.locator('[data-work] > .conditional-inference').evaluate(n=>parseFloat(getComputedStyle(n).fontSize))).toBeGreaterThanOrEqual(14);
+  }
+});
+
+test('missing CLEAR stops both rainbow searches after intermediate work',async({page})=>{
+  await page.goto('/textbook/conditionals/');
+  for(const method of ['forward','backward']) {
+    const a=page.locator(`[data-kind="chaining"][data-method="${method}"]`);
+    await button(a,'Missing fact').click();
+    await expect(a.locator('[data-goal]')).toHaveValue('RAINBOW');
+    const lines=(await a.locator('[data-kb]').inputValue()).split('\n');
+    expect(lines).toContain('MORNING');expect(lines).toContain('RAIN');expect(lines).not.toContain('CLEAR');
+    if(method==='backward') {
+      const paths=[];
+      while(await button(a,'Next step').isEnabled()) {
+        paths.push(await a.locator('[data-path]').textContent());
+        await button(a,'Next step').click();
+      }
+      expect(paths.some(p=>['RAINBOW','LOW_SUN','SUN','CLEAR'].every(atom=>p.includes(atom)))).toBe(true);
+    } else {
+      await button(a,'Last step').click();await button(a,'Show text alternative').click();
+      await expect(a.locator('[data-history]')).toContainText('DAY');
+    }
+    await expect(a.getByRole('status')).toContainText('not derivable');
+  }
+});
+
+test('planning slides contrast actions, miracles, and restored frames',async({page})=>{
+  await page.goto('/slides/conditionals/');
+  await expect(page.locator('[data-reveal-deck]')).toHaveAttribute('data-deck-ready','true');
+  const cases=[[19,'frames',true],[20,'model',false]];
+  for(const [slide,view,miracle] of cases) {
+    await page.evaluate(n=>{location.hash=`#slide-${n}`;},slide);
+    const a=page.locator(`#slide-${slide} [data-kind="planning"]`);
+    await expect(a).toHaveAttribute('data-view',view);
+    await expect(a.locator('[data-initial]')).toBeHidden();
+    await expect(a.getByRole('status')).toContainText(miracle?'No action.':'Next action: Unstack(G,R)');
+    await button(a,'Last step').click();
+    if(miracle)await expect(a.getByRole('status')).toContainText('Unexplained change');
+    else await expect(a.getByRole('status')).not.toContainText('Unexplained change');
+    if(view==='frames') {
+      await expect(a.locator('[data-frame="0"]')).toBeVisible();
+      await button(a,'Add frame conditions').click();await button(a,'Plan!').click();await button(a,'Last step').click();
+      await expect(a.getByRole('status')).not.toContainText('Unexplained change');
+    }
   }
 });

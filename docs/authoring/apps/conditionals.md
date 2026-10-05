@@ -10,7 +10,8 @@ omitting it shows an always-enabled algorithm selector. Start/Edit and step navi
 separate step controls for its two searches. **Edit** enables KB
 and query changes. Supply `kb="…"` (semicolon-separated entries) and `goal="…"`
 for an authored exercise. Otherwise `example="rainbow"`, `"alternatives"`,
-`"cycle"`, or `"missing"` chooses a preset.
+`"cycle"`, or `"missing"` chooses a preset. The missing-fact preset is the
+rainbow KB without `CLEAR`, with `RAINBOW` still the query.
 
 Forward mode follows the chapter's repeated-scan pseudocode. Backward mode uses
 depth-first search and branch-local cycle detection. `kind="comparison"` places

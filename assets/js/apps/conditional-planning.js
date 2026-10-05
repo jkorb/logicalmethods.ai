@@ -38,7 +38,7 @@ export function mountPlanning(root) {
   q('[data-description]').textContent=example==='monkey'?'The monkey begins beside the box, without the banana.':'R is red, G green'+(domain.blocks.length===3?' and B blue':'')+'. A block with nothing beneath it stands on the table.';
   q('[data-state-help]').textContent='Time: initial = 0, goal = horizon; omitted indices are inferred. Separate atoms with spaces, commas or semicolons. Write none if all initial atoms are false.';
   q('[data-frame-help]').textContent=example==='monkey'?'One condition per line. Use the state and action names from the exercise, with t and t+1 for consecutive times. Every line applies at each action time. Empty boxes impose no persistence.':'X and Y range over distinct blocks; t ranges over action times. Both formulas apply to every such choice. Empty boxes impose no persistence.';
-  if(q('[data-frames]'))q('[data-frames]').onclick=()=>{root.querySelectorAll('[data-frame]').forEach((n,i)=>n.value=frames[i]);clear('Chapter frames restored. Press Plan! to solve again.');};
+  if(q('[data-frames]'))q('[data-frames]').onclick=()=>{root.querySelectorAll('[data-frame]').forEach((n,i)=>n.value=frames[i]);clear('Frame conditions added. Press Plan! to solve again.');};
   q('[data-clear-frames]').onclick=()=>{root.querySelectorAll('[data-frame]').forEach(n=>n.value='');clear('Both frame conditions are absent. Press Plan! to investigate the resulting model.');};
   let previousHorizon=domain.horizon;
   q('[data-horizon]').addEventListener('input',()=>{
@@ -65,11 +65,22 @@ export function mountPlanning(root) {
     navigation(root,result.states.length,index=>{
       const state=result.states[index],changes=result.miracles.filter(m=>m.time===index);
       work.replaceChildren(scene(root,state,domain,goal));
-      status.textContent=`Time ${index}. ${state.action?'Next action: '+state.action+'.':'The goal conditions hold.'} ${changes.length?'Unexplained change: '+changes.map(c=>c.fluent).join(', ')+'. No chosen action produced it.':index===0 && result.miracles.length?'This model contains unexplained changes; step forward to inspect them.':''}`;
+      status.textContent=`Time ${index}. ${index<result.horizon?(state.action?'Next action: '+state.action+'.':'No action.'):'The goal conditions hold.'} ${changes.length?'Unexplained change: '+changes.map(c=>c.fluent).join(', ')+'. No chosen action produced it.':index===0 && result.miracles.length?'This model contains unexplained changes; step forward to inspect them.':''}`;
       q('[data-rules]').replaceChildren(el('p',{class:'conditional-formula'},state.true.map(f=>timedAtom(f,state.time)).join('; ') || 'All state atoms are false.'),el('p',{class:'conditional-help'},'Unlisted atoms are false in this model.'+(q('[data-complete]').checked?'':' The solver chose one of the permitted initial states.')));
     });
   } catch(error){if(exercise)feedback(status,error.message,false);else status.textContent=error.message;}};
   load(0);
+  // Authored lecture views retain the same SAT encoding and step controls.
+  if(!exercise && ['model','frames'].includes(root.dataset.view)) {
+    q('[data-examples]').hidden=true;
+    q('.conditional-fields').hidden=true;
+    q('.planning-complete').hidden=true;
+    if(root.dataset.view==='model') {
+      root.querySelectorAll('[data-frame]').forEach(n=>n.closest('label').hidden=true);
+      q('[data-frames]').hidden=true;q('[data-clear-frames]').hidden=true;
+    }
+  }
+  if(!exercise && root.dataset.autostart==='true')q('[data-form]').requestSubmit();
 }
 const stateParts=planningAtoms;
 // Isolate the top red cube's three original groups. Geometry is untouched;

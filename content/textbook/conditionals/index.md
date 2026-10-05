@@ -5,7 +5,7 @@ locked: false
 weight: 60
 params:
   date: 25/09/2025
-  last_edited: 25/09/2026
+  last_edited: 02/10/2026
   id: txt-if
 ---
 
@@ -514,8 +514,11 @@ event; it isn't a measure of running time.
 
 {{< img src="/img/drawings/con_ai_night_rainbow.svg" class="float-end ms-3" width="240px" >}}
 For these finite rule bases, both algorithms find a proof whenever one exists.
-But suppose neither $MORNING$ nor $EVENING$ were known, and no rule established
-them. We couldn't derive $RAINBOW$ by chaining. Would that mean we'd derived
+Choose “Missing fact” to try the rainbow KB without $CLEAR$. Forward chaining
+still derives $DAY$, but cannot establish $SUN$ or $LOW_SUN$. Backward chaining
+works from $RAINBOW$ through $LOW_SUN$ to $SUN$, where it needs the missing
+$CLEAR$. The alternative rule for $LOW_SUN$ needs $EVENING$, which isn't known
+either. Both searches fail to derive $RAINBOW$. Would that mean we'd derived
 $¬RAINBOW$? No. The KB leaves room for both possibilities. We'll return to
 this distinction between false and unprovable in
 {{< chapter_ref chapter="many-valued" >}}Many-valued logic{{< /chapter_ref >}}.
@@ -696,7 +699,9 @@ Our planning example will illustrate why.
 We've seen how the form of a conditional KB can make reasoning more efficient.
 In the final section, we'll use conditionals to describe how actions change a
 world. The task is to find actions that take us from an initial state to a goal.
-This brings together our Boolean semantics, conditional rules, and SAT solving.
+This gives us another reduction to SAT: we encode the planning problem as a
+propositional formula and ask a SAT solver for a model. The model tells us
+which actions to perform.
 
 We begin by describing a very simple set-up: $∀I$ stands in
 front of a table, on which there are two blocks, a red one and a green one. The
@@ -707,11 +712,14 @@ wall, telling $∀I$ to invert the stacking:
 
 It seems that $∀I$ needs to make a plan.
 
-There is an AI approach to planning that involves $SAT$-solving and knowledge
-representation using conditionals. The approach is known as [$Satplan$](https://en.wikipedia.org/wiki/Satplan) or "Planning as satisfaction."
+This approach is known as [SATPLAN](https://en.wikipedia.org/wiki/Satplan),
+or “planning as satisfiability”. We fix a number of action steps, the
+_horizon_, and describe the initial state, the goal, and the permitted changes
+with propositional formulas. A plan within that horizon exists iff their
+conjunction is satisfiable, provided the formulas describe the problem
+correctly. This is the reduction we need to construct.
 
-The idea is to describe the planning situation using a suitable propositional
-language. Here are the basic components of such a language for our problem:
+The first step is to choose a suitable propositional language. Here are the basic components of such a language for our problem:
 
 {{< callout type="definition" title="Fluent" >}}
 A {{< term "fluent" "fluent" >}} describes a feature of a world whose truth
@@ -736,8 +744,14 @@ that the _green_ block is on top of the _red_ one at the first
 time-stamp. Of course, in a realistic model, only one of the two can be
 true at the same time, more on that later.
 
-The actions are propositional variables whose truth expresses that $∀I$
-carries out a specific action. Again for each combination of $X,Y ∈ { R,
+{{< callout type="definition" title="Action" >}}
+An {{< term "planning-action" "action" >}} is an operation an agent can perform
+in the world. An action atom states that a particular action occurs at a
+particular time.
+{{< /callout >}}
+
+For $∀I$, these operations are stacking and unstacking blocks. We use
+propositional variables to state when each occurs. Again for each combination of $X,Y ∈ { R,
 G}$ and for each action time $t$ in $0,…,h−1$, we have the variable
 
 $$
@@ -884,9 +898,12 @@ $$
 $$
 
 which has two positive literals. The second also has two positive literals
-in disjunctive form. The Horn-SAT guarantee therefore no longer applies.
-Conditionals can express the required persistence, but they take us outside
-the restricted kind of conditional we used for chaining.
+in disjunctive form. We needed these formulas to say what stays unchanged,
+but they take us outside Horn SAT. So we can no longer use the $O(m+1)$ bound
+from the previous section for this encoding. We still have a SAT problem;
+we need a solver that can handle these non-Horn clauses. This doesn't mean
+that every such instance is difficult, only that the Horn-SAT bound no longer
+settles its running time.
 
 Let's finish the encoding for our two-block example. Fix $h=2$, so there are
 three states and two action times. Take the initial facts to be:
@@ -909,13 +926,14 @@ In this tiny world, two unstacked blocks are both on the table and available
 for stacking. Unstacking puts the removed block on the table. We don't model
 a gripper or the table as additional objects.
 
-At each action time, choose exactly one of $Stack(R, G, t)$, $Stack(G, R, t)$,
-$Unstack(R, G, t)$, $Unstack(G, R, t)$, and $Wait(t)$. To express this, add their
-disjunction and, for every two distinct actions $A, B$ in this list, add
-$¬(A ∧ B)$. $Wait$ changes nothing. The two frame formulas above preserve
-both $On$ facts whenever no corresponding stack or unstack action occurs.
+At each action time, allow at most one of $Stack(R, G, t)$, $Stack(G, R, t)$,
+$Unstack(R, G, t)$, and $Unstack(G, R, t)$. For every two distinct actions
+$A, B$ in this list, add $¬(A ∧ B)$. If all four are false, $∀I$ does
+nothing at that time. The two frame formulas then preserve both $On$ facts.
 Keep the action effects and state constraints already given, and require the
-goal $On(R, G, 2)$.
+goal $On(R, G, 2)$. The SAT input is the conjunction of the initial and
+goal conditions with all these state constraints, action preconditions,
+effects, action restrictions, and frame conditions.
 
 We can now give a precise definition of a plan for this encoding.
 
@@ -929,9 +947,8 @@ The course of action is read off from the true action atoms. With our complete
 KB, a satisfying assignment gives us:
 $Unstack(G, R, 0)$ followed by $Stack(R, G, 1)$. The miracle model fails the
 frame formulas, stacking too early fails a precondition, and doing two things
-at once fails the action constraints. The requirement to choose an action also contains several positive literals.
-So the complete encoding leaves Horn SAT for two reasons: action choice and
-the frame conditions.
+at once fails the action constraints. The frame conditions are the non-Horn
+clauses in this encoding.
 
 ### Models and plans
 
@@ -951,8 +968,8 @@ satisfy the description. The solver then chooses one such state; it doesn't
 find a course of action guaranteed to work from every possible initial state.
 
 The goal conditions need only describe what must hold at the end. The horizon
-specifies the number of action steps, with $Wait$ available to fill an unused
-step. Failure to find a model means no plan satisfies these formulas _within
+specifies the number of available action steps. We can leave a step unused
+by making all its action atoms false. Failure to find a model means no plan satisfies these formulas _within
 this horizon_. A longer plan may still exist. In the exercises, we'll extend
 the encoding to three blocks.
 
@@ -967,8 +984,12 @@ The underlying difficulty is known as the {{< term "frame-problem" "frame proble
 how do we represent what remains unchanged when an action occurs, without
 having to describe every unaffected feature of the world over and over?
 Our small model handles it with two schemata, instantiated for every pair of
-blocks and every action time. Richer worlds require more work, both in choosing
-an adequate representation and in reasoning with it.
+blocks and every action time. We have seen a computational cost of this
+solution: the persistence clauses are non-Horn, so adding them takes away
+the linear-time Horn-SAT guarantee. The frame problem concerns how to represent
+these unchanged facts; the resulting formulas also determine which reasoning
+algorithms we can use. In a larger world, there are many more unaffected
+facts to account for.
 
 With Horn rules, an expert system can derive facts efficiently by chaining.
 Our planning problem needs more expressive formulas, but it still reduces to

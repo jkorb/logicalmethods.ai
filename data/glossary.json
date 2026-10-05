@@ -1251,5 +1251,11 @@
     "term": "Vacuous discharge",
     "definition": "Discharge of an assumption that was not used in the derivation.",
     "chapter": "proofs"
+  },
+  "planning-action": {
+    "term": "Action",
+    "definition": "An operation an agent can perform in the world. An action atom states that a particular action occurs at a particular time.",
+    "chapter": "conditionals",
+    "anchor": "planning"
   }
 }

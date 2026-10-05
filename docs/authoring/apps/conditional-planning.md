@@ -18,9 +18,10 @@ partial. This is existential bounded planning, not a plan guaranteed to succeed
 from every permitted initial state.
 
 `assets/js/logic/planning.js` encodes state constraints, action preconditions
-and effects, exactly one action, and the instantiated frame formulas. Tseytin
-encoding feeds bounded DPLL with unit propagation. Wait is preferred when
-permitted, exposing missing frames. Unexplained state changes are marked in the
+and effects, at most one action per time, and the instantiated frame formulas. Tseytin
+encoding feeds bounded DPLL with unit propagation. The solver prefers false
+action atoms when permitted, exposing missing frames. No action is represented
+by all action atoms being false, without a separate waiting atom. Unexplained state changes are marked in the
 model. Resource exhaustion is distinct from unsatisfiability at a given horizon.
 
 The model uses the supplied table, mascot and instruction-board SVGs. Table
@@ -33,6 +34,15 @@ The monkey exercise uses the supplied `cond_ex_box_closed.svg` and
 `cond_ex_banana.svg` drawings. A camera button downloads the currently displayed
 model through the shared local PNG exporter. Neither renderer
 changes the logical encoding.
+
+## Lecture views
+
+`view="model"` hides state and frame inputs, leaving the model and solving/step
+controls. `view="frames"` shows the frame inputs while keeping the initial state
+and goal fixed. Both omit initial-configuration presets. `autostart="true"`
+solves the configured example on mount. “Add frame conditions” fills both
+frame boxes with the example’s persistence formulas. These options use the same encoding as
+the full app; exercise mode ignores them.
 
 ## Exercise mode
 
@@ -49,7 +59,7 @@ the student's responsibility: absent or insufficient frames can still permit
 miracle models, which the exercise asks them to diagnose.
 
 The monkey starts beside the box. Its three actions are PushBox, Climb and
-TakeBanana, with a default horizon of three; Wait is also available.
+TakeBanana, with a default horizon of three; a time step may also have no action.
 The monkey exercise uses three explicit conditions in each frame box, one per
 line (semicolons also separate conditions). State and action names take `t` or,
 for the next state, `t+1`. Trailing full stops are accepted. The older
