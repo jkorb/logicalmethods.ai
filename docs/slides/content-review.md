@@ -179,6 +179,24 @@ negation examples, and automated proving with `grind`. The translator fits its
 slide at about 40%; its canvas has a full-screen button. The Excalidraw scene,
 manifest and staged exports remain.
 
+**Lecture 8 was then written in Reveal.js** against the revised chapter 8, in
+20 slides, replacing the review notice. It follows the chapter's four stages:
+syntax (the Socrates inference, the alphabet and signature, terms in the
+parser, the formula grammar and atomic formulas, scope and open formulas in the
+binding app, iterated
+quantifiers), models (the chapter's three-world figure, the model definition,
+the people model, and the four modeling assumptions as a table), truth
+(denotation, satisfaction, extensions and quantifiers in the model app; finite
+and infinite models), and databases (relational queries beside Codd's theorem).
+The worked-out example is the formula–SQL app on `LocatedIn(x, Europe)`; the
+chapter's capital query fits a slide only at about 45%. The pictures are the
+chapter's: the old slides' screenshots and portrait of Codd are gone. Cut:
+substitution, vacuous quantification, the ground-term definition, the
+formula parser, the separate domain, constant, function and predicate apps, the
+atomic diagram, the database-initialization app, and the step-by-step SQL
+translation. The theme now shows a SQL pane's whole query on a slide. The
+Excalidraw scene, manifest and staged exports remain.
+
 Lectures 7–12 were copied byte-for-byte, without automatic font or notation
 replacement. Review them against the book, including historical
 staff/attendance information, terminology, proof examples, screenshots and

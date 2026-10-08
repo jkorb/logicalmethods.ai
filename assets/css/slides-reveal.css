@@ -166,6 +166,9 @@
    its buttons at a readable size instead of being zoomed down with them. */
 .deck-canvas.reveal .boolean-app[data-kind="circuit"] svg.boolean-circuit { display: block; inline-size: auto; max-inline-size: 100%; max-block-size: 300px; margin-inline: auto; }
 .deck-canvas.reveal .boolean-app[data-kind="circuit"] :is(.boolean-choices, .boolean-app__aside) { justify-content: center; text-align: center; }
+/* The chapter caps generated SQL and lets it scroll; on a slide the whole
+   query shows, and fitting zooms the app instead. */
+.deck-canvas.reveal .fol-app[data-kind="sql"] .fol-code .chroma { max-height: none; overflow: visible; }
 
 /* ---- Layouts ---------------------------------------------------------------- */
 .deck-canvas.reveal :is(.slide--title, .slide--section, .slide--center) .slide__body {

@@ -19,8 +19,8 @@ Lectures 1 to 6 (120 frames) are reviewed and released. Lectures 1 to 4 use
 the Excalidraw viewer; Lectures 5 and 6 have since moved to Reveal.js, and their
 Excalidraw scenes and exports are kept until the format is retired. Lectures
 7–12 (102 frames) are staged locally outside Hugo's
-published content in ignored `slides/unpublished/`. Lecture 7 has since been
-written in Reveal.js; its staged Excalidraw copy is kept. Lectures 8–12 await
+published content in ignored `slides/unpublished/`. Lectures 7 and 8 have since
+been written in Reveal.js; their staged Excalidraw copies are kept. Lectures 9–12 await
 content and image review: their normal website paths show a short review
 notice, and no Excalidraw Pro embed remains. `locked` and `draft` are not publication barriers because CI
 builds with `-D`.

@@ -80,6 +80,8 @@ working alone: input help, example descriptions, table captions, the text
 alternative, the PNG export and the animation switch. The chapter keeps them
 all. A relay circuit's side panel holds only its status there, so it goes under
 the drawing, which is capped at 300px tall like a book drawing and centred.
+The formula–SQL app shows its whole query, where the chapter caps the SQL pane
+and lets it scroll; fitting zooms the app instead.
 
 ## Collisions it guards against
 
