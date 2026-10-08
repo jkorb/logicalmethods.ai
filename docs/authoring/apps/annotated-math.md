@@ -21,3 +21,9 @@ The figure exposes a complete labelled description to assistive technology and
 can scroll horizontally on narrow screens. It works without JavaScript and
 needs no Excalidraw export. Its stylesheet loads only on pages using the
 shortcode.
+
+Use `wrap=true` for longer alphabets: whole labeled groups wrap together,
+retaining their separators, instead of requiring horizontal scrolling.
+Each group can set `color` to `blue`, `red`, `green`, `violet`, `orange`, `teal`,
+`olive`, or `pink`. The eight FOL alphabet categories use distinct colors;
+annotation inks adapt to the light and dark themes.

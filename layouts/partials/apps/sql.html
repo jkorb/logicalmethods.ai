@@ -1,0 +1,20 @@
+{{- $title := .title | default (.sc.Get "title") -}}
+{{- $config := index hugo.Data.fol (.sc.Get "model" | default "world") -}}
+{{- if not $config }}{{ errorf "Unknown SQL example model" }}{{ end -}}
+<section class="logic-app fol-app sql-app" data-logic-app="sql" data-empty="{{ .sc.Get "empty" | default "false" }}" aria-label="{{ $title | default "SQL example" }}">
+  <script type="application/json" data-sql-config>{{ $config | jsonify | safeJS }}</script>
+  <div class="code-block fol-code has-lang-icon">
+    <div class="fol-code-header">
+    {{ partial "apps/sql-badge.html" . }}
+    <div class="fol-code-tools">
+      <button type="button" data-edit-sql aria-label="Edit SQL" title="Edit SQL" disabled>{{ partial "apps/icon.html" "edit" }}</button>
+      <button type="button" data-reset-sql aria-label="Reset SQL" title="Reset SQL" disabled>{{ partial "apps/icon.html" "replay" }}</button>
+    </div>
+    </div>
+    <div class="highlight" data-sql-highlight><pre class="chroma" tabindex="0" aria-label="SQL source"><code data-sql-code>{{ .code | strings.TrimSpace }}</code></pre></div>
+    <label class="visually-hidden" for="{{ .id }}-sql">SQL</label>
+    <textarea id="{{ .id }}-sql" data-sql-source rows="8" maxlength="100000" spellcheck="false" hidden></textarea>
+  </div>
+  {{ partial "apps/sql-runtime.html" (dict "note" (cond (eq (.sc.Get "empty") "true") "Each run starts with an empty database." "Each run starts with the example database.")) }}
+  <p data-app-fallback>Enable JavaScript to edit and run this SQL.</p>
+</section>

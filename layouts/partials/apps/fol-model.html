@@ -1,0 +1,129 @@
+{{- $title := .title | default (.sc.Get "title") -}}
+{{- $key := .sc.Get "model" | default "people" -}}
+{{- $config := index hugo.Data.fol $key -}}
+{{- if not $config }}{{ errorf "Unknown FOL model %q" $key }}{{ end -}}
+{{- $objects := slice -}}
+{{- $appID := .id -}}
+{{- $structureOnly := in (slice "model" "database") (.sc.Get "kind" | default "model") -}}
+{{- range $config.objects -}}
+  {{- $object := . -}}
+  {{- with .image -}}
+    {{- $resource := resources.Get . -}}
+    {{- if not $resource }}{{ errorf "Missing FOL object drawing %q" . }}{{ end -}}
+    {{- $object = merge $object (dict "image" $resource.RelPermalink "symbol" (printf "%s-object-%s" $appID $object.id)) -}}
+  {{- end -}}
+  {{- $objects = $objects | append $object -}}
+{{- end -}}
+{{- $config = merge $config (dict "objects" $objects) -}}
+<section class="logic-app fol-app" data-logic-app="fol-model" data-kind="{{ .sc.Get "kind" | default "model" }}" data-editable="{{ .sc.Get "editable" | default "true" }}" data-view="{{ .sc.Get "view" | default "graph" }}" aria-label="{{ $title | default "First-order model" }}">
+  <svg class="fol-artwork" width="0" height="0" aria-hidden="true" focusable="false"><defs>
+  {{ range (index hugo.Data.fol $key).objects }}{{ $object := . }}{{ with .image }}
+    {{ $asset := resources.Get . }}
+    {{ $source := $asset.Content | replaceRE `(?s)<style class="style-fonts">.*?</style>` "" }}
+    {{ $viewBox := index (findRE `viewBox="[^"]+"` $source 1) 0 }}
+    {{ $body := $source | replaceRE `(?s)^.*?<svg[^>]*>|</svg>\s*$` "" | replaceRE `<title>.*?</title>` "" }}
+    {{ $body = replaceRE `(stroke|fill)="#(?:000000|1e1e1e|000)"` `${1}="currentColor"` $body }}
+    {{ printf `<symbol id="%s-object-%s" %s>%s</symbol>` $appID $object.id $viewBox $body | safeHTML }}
+  {{ end }}{{ end }}
+  </defs></svg>
+  <script type="application/json" data-fol-config>{{ $config | jsonify | safeJS }}</script>
+  <template data-edit-icon>{{ partial "apps/icon.html" "edit" }}</template>
+  <div class="fol-correspondence" {{ if $structureOnly }}hidden{{ end }}>
+    <form data-evaluate>
+      <label class="visually-hidden" for="{{ .id }}-formula">Formula</label>
+      <div class="logic-app__input-row">
+      <div class="fol-formula-field logic-app__input-wrap"><button type="button" class="logic-app__edit" data-edit-formula aria-label="Edit formula" title="Edit formula">{{ partial "apps/icon.html" "edit" }}</button>
+      <textarea id="{{ .id }}-formula" class="logic-app__input" data-formula rows="2" maxlength="512" spellcheck="false" autocomplete="off" disabled>{{ .sc.Get "formula" | default "∀x (Human(x) → Mortal(x))" }}</textarea></div>
+            <button type="submit" aria-label="{{ if in (slice "query" "sql") (.sc.Get "kind") }}Run query{{ else }}Check{{ end }}" title="{{ if in (slice "query" "sql") (.sc.Get "kind") }}Run query{{ else }}Check{{ end }}" disabled>{{ if in (slice "query" "sql") (.sc.Get "kind") }}<span class="fol-query-icon" aria-hidden="true">?</span> Query{{ else }}{{ partial "apps/icon.html" "check" }} Check{{ end }}</button>
+      </div>
+      <div class="fol-toolbar" data-examples></div>
+      <div class="fol-toolbar" data-assignments></div>
+
+    </form>
+
+  </div>
+  <div class="fol-walkthrough">
+  <div class="fol-workspace">
+    <div class="fol-canvas-tools">
+      <button type="button" data-show-extension aria-label="Show query extension" title="Show query extension" aria-pressed="true" hidden>⟦A⟧</button>
+      <button type="button" data-menu="model" aria-expanded="false" aria-controls="{{ .id }}-model-menu" aria-label="Modify" title="Modify" disabled>{{ partial "apps/icon.html" "edit" }}</button>
+      <button type="button" data-menu="view" aria-expanded="false" aria-controls="{{ .id }}-view-menu" aria-label="View" title="Presentations" disabled>{{ partial "apps/icon.html" "eye" }}</button>
+      <button type="button" data-menu="zoom" aria-expanded="false" aria-controls="{{ .id }}-zoom-menu" aria-label="Zoom" title="Zoom">{{ partial "apps/icon.html" "zoom" }}</button>
+      <button type="button" data-fullscreen aria-label="Fullscreen" aria-pressed="false" title="Fullscreen (F)">{{ partial "apps/icon.html" "fullscreen" }}</button>
+    </div>
+    <div class="fol-menu" id="{{ .id }}-model-menu" data-panel="model" hidden>
+      <button type="button" class="fol-close" data-close="model" aria-label="Close modify menu">×</button>
+
+      <div data-editor>
+        <details class="fol-component" data-domain-menu><summary>Domain</summary><div class="fol-palette" data-palette role="group" aria-label="Add domain objects"></div></details>
+        <div data-symbols role="group" aria-label="Language symbols"></div>
+
+        <div class="fol-menu-footer"><button type="button" data-reset aria-label="Reset model" title="Reset model">{{ partial "apps/icon.html" "replay" }}</button><span data-model-health role="status"></span></div>
+      </div>
+      <div data-language-summary></div>
+
+    </div>
+    <div class="fol-menu" id="{{ .id }}-view-menu" data-panel="view" hidden>
+      <button type="button" class="fol-close" data-close="view" aria-label="Close view menu">×</button>
+
+      <div class="fol-toolbar" role="group" aria-label="Model views">
+        {{ if in (slice "query" "sql") (.sc.Get "kind") }}<button type="button" data-view="domain" aria-label="Candidate domain" title="Candidate domain">{{ partial "apps/icon.html" "domain" }}<span>Domain</span></button>{{ end }}
+        <button type="button" data-view="facts" aria-label="Semantic facts" title="Semantic facts">{{ partial "apps/icon.html" "facts" }}<span>Facts</span></button>
+        <button type="button" data-view="tables" aria-label="Tables" title="Tables">{{ partial "apps/icon.html" "database" }}<span>Tables</span></button>
+        <button type="button" data-view="graph" aria-label="Knowledge graph" title="Knowledge graph">{{ partial "apps/icon.html" "graph" }}<span>Graph</span></button>
+        <button type="button" data-view="sets" aria-label="Set diagram" title="Set diagram">{{ partial "apps/icon.html" "sets" }}<span>Sets</span></button>
+      </div>
+
+    </div>
+    <div class="fol-menu fol-zoom-menu" id="{{ .id }}-zoom-menu" data-panel="zoom" hidden>
+      <button type="button" data-zoom-change="-.25" aria-label="Zoom out">−</button><output data-zoom-value>100%</output><button type="button" data-zoom-change=".25" aria-label="Zoom in">+</button><button type="button" data-zoom-fit aria-label="Reset zoom" title="Reset zoom">{{ partial "apps/icon.html" "fullscreen" }}</button>
+    </div>
+    <div class="fol-tabs" data-set-predicates role="group" aria-label="Displayed extension" hidden></div>
+    <div class="fol-menu fol-context" data-context role="group" aria-label="Selected object" hidden></div>
+    <div class="fol-display" data-display role="region" aria-label="{{ $title | default "First-order model" }}: canvas" tabindex="0"></div>
+
+    <div class="fol-selection" data-edit-help role="status" hidden></div>
+  </div>
+    <div class="fol-explanation" {{ if $structureOnly }}hidden{{ end }}>
+  <div class="logic-app__status" data-calculation role="status" aria-live="polite" aria-atomic="true"></div>
+  <div data-query-result></div>
+  <div data-answer></div>
+    </div>
+  </div>
+  <div class="fol-toolbar fol-navigation" {{ if $structureOnly }}hidden{{ end }} role="group" aria-label="Calculation steps">
+    <button type="button" data-step="first" aria-label="First step" title="First step" disabled>{{ partial "apps/icon.html" "first" }}</button>
+    <button type="button" data-step="previous" aria-label="Previous step" title="Previous step" disabled>{{ partial "apps/icon.html" "previous" }}</button>
+    <span data-count></span>
+    <button type="button" data-step="next" aria-label="Next step" title="Next step" disabled>{{ partial "apps/icon.html" "next" }}</button>
+    <button type="button" data-step="last" aria-label="Last step" title="Last step" disabled>{{ partial "apps/icon.html" "last" }}</button>
+  </div>
+
+  <div data-sql hidden>
+    <button type="button" data-reset-correspondence aria-label="Reset app" title="Reset app">{{ partial "apps/icon.html" "replay" }}</button>
+    <div class="fol-code-tabs" role="group" aria-label="Logical and database representations">
+      <span>{{ if $structureOnly }}Model{{ else }}Formula{{ end }}</span>
+      <span class="fol-conversions">
+        <button type="button" data-to-sql aria-label="{{ if $structureOnly }}Model → Database{{ else }}Formula → SQL{{ end }}" title="{{ if $structureOnly }}Model → Database{{ else }}Formula → SQL{{ end }}">→</button>
+        <button type="button" data-from-sql aria-label="{{ if $structureOnly }}Database → Model{{ else }}SQL → Formula{{ end }}" title="{{ if $structureOnly }}Database → Model{{ else }}SQL → Formula{{ end }}">←</button>
+      </span>
+      <span>{{ if $structureOnly }}Database{{ else }}SQL{{ end }}</span>
+    </div>
+    <div class="code-block fol-code has-lang-icon">
+    <div class="fol-code-header">
+      {{ partial "apps/sql-badge.html" . }}
+      <div class="fol-code-tools">
+      <button type="button" data-edit-sql aria-label="Edit SQL" title="Edit SQL">{{ partial "apps/icon.html" "edit" }}</button>
+      <button type="button" data-copy-code aria-label="Copy code" title="Copy code">{{ partial "apps/icon.html" "copy" }}</button>
+      <button type="button" data-download-code aria-label="Download code" title="Download code">{{ partial "apps/icon.html" "save" }}</button>
+      </div>
+    </div>
+      <div class="highlight" data-sql-highlight><pre class="chroma"><code data-sql-code class="language-sql" tabindex="0" aria-label="SQL code"></code></pre></div>
+      <label class="visually-hidden" for="{{ .id }}-sql">SQL</label>
+      <textarea id="{{ .id }}-sql" data-sql-source rows="8" maxlength="12000" spellcheck="false" hidden></textarea>
+    </div>
+    {{ partial "apps/sql-runtime.html" (dict "note" (cond $structureOnly "Each run starts with an empty database." "Each query starts from the displayed model.")) }}
+    <p class="fol-code-notice" data-code-notice role="status" aria-live="polite"></p>
+
+  </div>
+  <p data-app-fallback>Enable JavaScript to use the model canvas. The definitions and worked examples remain available.</p>
+</section>

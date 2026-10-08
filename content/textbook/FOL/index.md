@@ -1,39 +1,35 @@
 ---
 title: FOL
 author: Johannes Korbmacher
-locked: true
+locked: false
 weight: 80
 params:
-  legacy-notation: true
-  last_edited: 08/10/2025
+  last_edited: "08/10/2026"
   id: txt-fol
 ---
 
-# First-Order Logic
+# First-order logic
 
-{{< img src="img/ai_talking_fol.png" class="rounded  float-end inert-img img-fluid m-2" width="200px" >}} 
-[First-order logic (FOL)](https://en.wikipedia.org/wiki/First-order_logic) is
-one of the most powerful logical systems in common use today. Part of its
-strength derives from its [expressive
-power](https://en.wikipedia.org/wiki/Expressive_power_(computer_science)): its
-ability to express complex ideas in syntactically straightforward and logically
-tractable ways. In fact, FOL-style syntax is the effective paradigm in which
-most of modern mathematics, physics, economics, and other formal theories are
-formulated.
 
-This makes reasoning in FOL a natural target for AI research into automated
-reasoning techniques, proof verification, etc. And, in fact, we'll be looking at
-these topics in the _next_ chapter. In this chapter, we'll explore an even
-deeper connection between FOL and AI, which has to do with the way we formalize
-and store knowledge. We've already explored the idea of {{< abbr
-title="knowledge bases">}}KBs{{< /abbr >}}, which are sets of formulas that we
-use to represent knowledge about the world. When we're using propositional
-logic, these representations are typically rather simplistic, which has to do
-with the lack of expressive power in propositional logic.
+{{< img src="/img/drawings/fol_ai_talking_fol.svg" class="float-end ms-3" width="110px" alt="Socrates." >}}
+{{< term "first-order-logic" "First-order logic (FOL)" >}} is the logic of relations
+and {{< term "quantification" "quantification" >}} over objects.
+In natural language, [quantifiers](https://en.wikipedia.org/wiki/Quantifier_(linguistics))
+such as "all", "some", and "most" tell us how many individuals satisfy a condition.
+FOL gives precise meanings to "all" and "some". It is a standard
+framework for expressing the claims of science and mathematics in a
+{{< term "formal-language" "formal language" >}}. Its roots lie in the work of
+[Gottlob Frege](https://en.wikipedia.org/wiki/Gottlob_Frege) and
+[Charles Sanders Peirce](https://en.wikipedia.org/wiki/Charles_Sanders_Peirce)
+on logic and the foundations of mathematics. Today, it is also a language for
+{{< term "knowledge-representation-and-reasoning" "KRR" >}} in AI. Our question
+in this chapter is how FOL lets us represent knowledge about objects and their
+relationships.
 
-For example, propositional logic doesn't have the expressive power to properly
-capture the content of "all humans are mortal" from our paradigmatic deductive
-inference:
+{{< img src="/img/drawings/fol_socrates.svg" class="float-start m-3" width="50px" alt="Socrates." >}}
+Much of FOL's usefulness comes from its _expressive power_. Consider our
+inference about Socrates:
+
 {{< inference >}}
 All humans are mortal
 Socrates is human
@@ -41,1040 +37,1185 @@ Socrates is human
 Socrates is mortal
 {{< /inference >}}
 
-What we *can* write in propositional logic is something like 
+In propositional logic, we could use $HUMAN$ for 'Socrates is human' and
+$MORTAL$ for 'Socrates is mortal'. Then $HUMAN → MORTAL$ says that if Socrates
+is human, he is mortal. But the first premise says something about *all*
+humans, including people we haven't named. Giving that premise its own
+propositional variable would leave its connection to Socrates unexpressed.
 
-```HUMAN →MORTAL``` 
+If we wanted to add a premise like 'Xanthippe is human', we couldn't reuse
+$HUMAN$: it already stands for a claim about Socrates. We'd need a new variable,
+say $HUMAN₂$, another for 'Xanthippe is mortal', and a separate conditional
+$HUMAN₂ → MORTAL₂$. The similar names don't tell propositional logic that
+these claims concern the same properties. We could list a conditional for
+each person in a fixed finite domain, but we'd have to extend the list whenever
+we added someone.
 
-which expresses a rule-like connection between being human and being mortal.
-But what's lacking here is the idea that this is a connection that holds for
-_all_ humans, and so Socrates in particular. FOL has syntactic devices to
-express this kind of generality, the so-called "quantifiers", 
-∀&ThinSpace; (read: "for all") and 
-∃&ThinSpace; (read "exists").
-The standard way to represent the claim that all humans are mortal in FOL is
-something like the following formula:
+FOL makes the shared structure explicit: $Human(Socrates)$ and
+$Human(Xanthippe)$ apply the same predicate to different objects. We can
+represent the general claim once, as:
 
-```∀x(Human x →Mortal x)```
+$$
+∀x (Human(x) → Mortal(x))
+$$
 
-This formula says that any arbitrary object, `x`, if it has the property of
-being human, then it has the property of being mortal. This general formula we
-can particularize to Socrates by taking its instance:
+Here $∀x$ says that the condition applies to every object. We can also combine
+quantifiers to express dependencies, such as every number having a larger
+number. Mathematical concepts such as the
+[continuity of functions](https://en.wikipedia.org/wiki/Continuous_function)
+use this kind of nested quantification. Representing these claims precisely
+is part of the work required to check mathematical reasoning with AI.
 
-```Human(Socrates) →Mortal(Socrates)```
-
-Then, adding the additional premise that `Human(Socrates)`, we can perform our
-desired inference using MP. Crucially, however, we can do this for _anything_
-whatsoever: 
-+ $All humans are mortal, Ada Lovelace is human ∴Ada
-Lovelace is mortal$
-+ `All humans are mortal, Alan Turing is human ∴Alan Turing is mortal` 
-+ …
-
-When analyzed in FOL these inferences use the same representation of the fact
-that all humans are mortal, viz.: `∀x(Human x →Mortal x)`.
-
-{{< img src="img/db_wisdom.png" class="rounded  float-start inert-img img-fluid m-2" width="200px" >}} 
-The increase in expressive power from propositional logic to FOL is immense. In
-fact, FOL can express almost _any_ kind of fact about the world we'd want to
-include in our KB in a straightforward and logically tractable fashion.
-Historically, the need for the expressive power was first noticed in
-mathematics, where it became apparent in the 19th century that the rigorous,
-axiomatic treatment of basic concepts like
-[continuity](https://en.wikipedia.org/wiki/Continuous_function) required
-quantifiers. But today, we make use of this expressive power in virtually all
-contexts where we have to store information in databases. As it turns out, FOL
-is the logical foundation for [database theory](https://en.wikipedia.org/wiki/Database_theory).
-
-That is, from a logical perspective, we can look at [databases
-(DBs)](https://en.wikipedia.org/wiki/Database) as a special form of FOL models,
-where [querying](https://en.wikipedia.org/wiki/Query_language) a
-database—automatically retrieving information from it—ultimately boils down to
-interpreting FOL formulas in DBs. This is, effectively, the content of [Codd's
-theorem](https://en.wikipedia.org/wiki/Codd%27s_theorem), which makes FOL one of
-the most important logical tools for AI: it's the way we interact with KBs and,
-more generally, DBs. And this is not only an academic curiosity. As you'll see
-in this chapter, FOL is the ultimate logical basis for some of the most
-important and widely used query languages, such as [SQL](https://en.wikipedia.org/wiki/SQL). 
+FOL also connects to a familiar way of storing knowledge in a computer:
+{{< term "relational-database" "relational databases" >}}. We will develop the
+language first, then models that record objects and their properties and
+relations. Sets, tables, and knowledge graphs display this information;
+formulas express conditions we can check against it. Database queries bring
+the two together: [Codd's theorem](https://en.wikipedia.org/wiki/Codd%27s_theorem)
+connects conditions written as formulas to
+operations on stored tables. This chapter develops these ways of representing
+and querying knowledge. {{< chapter_ref chapter="FOL-inference" >}}FOL Inference{{< /chapter_ref >}} takes up
+reasoning: what follows from a knowledge base, and how we can prove it.
 
 {{< callout type="objectives" >}}
-+ define FOL languages and parse FOL formulas
-+ explain the concept of an FOL model 
-+ determine the objects satisfying a formula in an FOL model
-+ represent databases as FOL models
-+ query databases using FOL formulas
+After studying this chapter, you will be able to:
+
+- Parse first-order terms and formulas, including quantifier scopes and free variables.
+- Represent general claims and dependencies using quantified formulas.
+- Construct first-order models using sets, tables, and knowledge graphs.
+- Determine the truth of sentences and the extensions of open formulas in a finite model.
+- Compare finite and infinite models as representations of knowledge.
+- Use the correspondence between FOL and SQL to query a relational database.
 {{< /callout >}}
 
 ## Syntax
 
-The language of FOL is a formal language. So, we need to provide an alphabet and
-a grammar. As a motivating example, let's take our representation of "all humans
-are mortal":
-
-```∀x(Human x →Mortal x)```
-
-There are a few new kinds of symbols in this formula. The first is the
-[**quantifier**](https://en.wikipedia.org/wiki/Quantifier_(logic)) 
-`∀`, which we read simply as "all". This quantifier
-is followed by the
-[**variable**](https://en.wikipedia.org/wiki/Variable_(mathematics)) `x`, to
-indicate that we're saying something about all things `x`. In general, variables
-stand for unspecified objects. They are sometimes likened to
-[pronouns](https://en.wikipedia.org/wiki/Pronoun), like "he", "she", "it", or
-the singular "they", which stand for concrete but unspecified (by the term)
-objects. What follows is a formula involving that variable `x`, which here takes
-the form: ```(Human x →Mortal x)``` What this formula says is that if `x`
-is human, then `x` is mortal. The use of the conditional → should be
-clear, but what's crucial is the use of the two
-[**predicates**](https://en.wikipedia.org/wiki/Predicate_(logic)) `Human x` and
-`Mortal x`. These are formal expressions that express properties: `Human x`
-says that the object `x` is human, and likewise `Mortal x` says that `x` is
-mortal. More generally, predicates can also express
-[relations](https://en.wikipedia.org/wiki/Relation_(mathematics)), such as the
-relation of being bigger than. To say that `x` is bigger than `y`, for example,
-we might use the predicate `BiggerThan xy` or, in the case of numbers,
-sometimes expressions like `x ≥ y` (which uses [infix
-notation](https://en.wikipedia.org/wiki/Infix_notation), rather than the [prefix
-notation](https://en.wikipedia.org/wiki/Polish_notation) of `BiggerThan xy`.
-
-There are a few other kinds of symbols worth discussing. If we want to say that
-Socrates is human, we use the formula ```Human(Socrates)``` Here, `Socrates` is a
-[**constant**](https://en.wikipedia.org/wiki/Constant_(mathematics)), which is a
-term that stands for one concrete object, like a proper name. If we have an
-object (or a sequence of objects), and we want to talk about an object that's
-uniquely determined for this object (or group of objects), we use [**function
-symbols**](https://en.wikipedia.org/wiki/Function_symbol). For example, if we want
-to say that [Socrates' wife](https://en.wikipedia.org/wiki/Xanthippe) is a
-midwife, we can use the formula: ```Midwife(wifeOf(Socrates))``` 
-
-Having multiple objects be related to something is common in mathematics, where
-we want to talk, for example, about the
-[product](https://en.wikipedia.org/wiki/Product_(mathematics)) of two numbers,
-which we can do using infix notation and write `x × y` or prefix notation like
-`×(x,&nbsp;y)`.
-
-In FoL, there's also a special predicate `=` that allows us to say that two things
-are identical, such as: ```wifeOf(Socrates) = Xanthippe``` Typically, this is used
-in infix notation, but we can also use prefix, as in: ```×(2,2) = 4``` 
-
-We haven't mentioned yet the other quantifier `∃`, which we read as
-"exists" or "there is". So, to say that for every number there's a bigger
-number, we might use the formula: ```∀x ∃y BiggerThan yx```
-
-The ability to have these kinds of **nested** quantifiers is one of the strengths
-of FOL, and the need for them in mathematics—for example in the definition of
-[continuity](https://en.wikipedia.org/wiki/Continuous_function)—was one of the
-reasons FOL was discovered.
-
-Oh, and the usual propositional connectives ¬, ∧, 
-∨, and → are also part of FOL, of course.
-
-So, in general, the alphabet of FOL looks something like this:
-
-{{< img src="img/alphabet.png" class="mx-auto rounded d-block inert-img img-fluid" width="900px">}}
-
-Here, we use abstract placeholders or
-[metavariables](https://en.wikipedia.org/wiki/Metavariable) to talk about
-variables, constants, function symbols, and predicates. In concrete knowledge
-engineering situations, however, these expressions will typically be mnemonic,
-like `fatherOf x`, `distanceBetween xy`, `Human`, `BiggerThan`, etc.
+To represent claims about objects, we need expressions for the objects and
+for their properties and relations. Recall from
+{{< chapter_ref chapter="formal-languages" >}}Formal Languages{{< /chapter_ref >}}
+that we define a formal language by giving an alphabet and a grammar. In FOL,
+the grammar distinguishes two kinds of expression: *terms* name objects, while
+*formulas* make claims about them. We keep the propositional connectives and
+add quantifiers to express claims about every object or at least one object.
+
+### Alphabet
+
+In $Human(Socrates)$, the {{< term "constant" "constant" >}} $Socrates$ names
+an object and the {{< term "predicate" "predicate" >}} $Human$ expresses a
+property. In $BiggerThan(MrSir, LittleJimmy)$, the predicate expresses a
+relation between two objects. The order of the arguments is important here:
+the formula says that Mr Sir is bigger than Little Jimmy, not that Little
+Jimmy is bigger than Mr Sir.
+
+A {{< term "function-symbol" "function symbol" >}} builds another expression
+for an object. For example, $fatherOf(Socrates)$ names Socrates' father. The
+term $distanceBetween(x, y)$, instead, names the distance between two objects
+$x$ and $y$. The {{< term "arity" "arity" >}} of a function or predicate symbol
+is the number of its argument places. The function symbols $fatherOf$ and
+$Human$ are _unary_, while $distanceBetween$ and $BiggerThan$ are _binary_. We
+sometimes indicate arity with a superscript, as in $Human¹$ or $BiggerThan²$.
+
+A variable such as $x$ stands for _some_ object without specifying which one it is.
+The {{< term "universal-quantifier" "universal quantifier" >}} $∀$ says that a
+condition holds for every object. The
+{{< term "existential-quantifier" "existential quantifier" >}} $∃$ says that a condition
+holds for at least one object. So, for example,
+
+$$
+∀x ∃y BiggerThan(y, x)
+$$
+
+says that for every object there is (at least) a bigger one. Nested quantifiers
+let us express dependencies of this kind: the choice of $y$ can depend on $x$.
+
+Here are the kinds of symbols in our alphabet. The dots indicate that a
+language can have more symbols of the indicated kind:
+
+{{< annotated-math prefix="Σ = {" suffix="}" wrap=true title="A first-order alphabet" >}}
+[
+  {
+    "symbols": "x, y, z, …",
+    "label": "variables",
+    "position": "below",
+    "color": "blue"
+  },
+  {
+    "symbols": "a, b, c, …",
+    "label": "constants",
+    "position": "above",
+    "color": "red"
+  },
+  {
+    "symbols": "f¹, g², …",
+    "label": "functions",
+    "position": "below",
+    "color": "green"
+  },
+  {
+    "symbols": "P¹, R², …",
+    "label": "predicates",
+    "position": "above",
+    "color": "violet"
+  },
+  {
+    "symbols": "¬, ∧, ∨, →, ↔",
+    "label": "connectives",
+    "position": "below",
+    "color": "orange"
+  },
+  {
+    "symbols": "∀, ∃",
+    "label": "quantifiers",
+    "position": "above",
+    "color": "teal"
+  },
+  {
+    "symbols": "=",
+    "label": "identity",
+    "position": "below",
+    "color": "olive"
+  },
+  {
+    "symbols": "(, ), ,",
+    "label": "punctuation",
+    "position": "above",
+    "color": "pink"
+  }
+]
+{{< /annotated-math >}}
+
+The superscripts record arities; they needn't be typed in formulas. Names such
+as $Human$ and $fatherOf$ make a language easier to read, but their spelling
+will not force a particular interpretation.
+
+{{< callout type="definition" title="First-order signature" >}}
+A {{< term "signature" "first-order signature" >}} specifies the constant,
+function, and predicate symbols of a language, with a fixed arity for each
+function and predicate symbol.
+{{< /callout >}}
+
+Our language also has variables, the logical symbols listed above, and identity.
+Different knowledge representation tasks can use different signatures. A
+language for family relationships might include $ParentOf$; one for geography
+might include $CapitalOf$. We fix the signature before interpreting its symbols.
 
-For the function symbols and predicates, especially when using metavariables, we
-need to indicate their [**arity**](https://en.wikipedia.org/wiki/Arity), that is,
-how many terms can "legally" follow them. For example, the `fatherOf` function
-symbol is _unary_, since we can write `fatherOf Socrates` but `fatherOf x y`
-makes no sense if `x` and `y` aren't related. The function `distanceBetween xy`,
-instead, is _binary_ since distance is defined between two points. Etc.
-Similarly, for predicates, we can write `Human x`,  but not `Human xy`. 
+### Terms and formulas
 
-We sometimes indicate a term's arity using superscripts, like `fatherOf¹`,
-`distanceBetween²`, `Human¹`, `BiggerThan²`, etc. But often, the arity of a term
-is clear from the context, and then we leave it out.
+To define the grammar, we first need expressions for objects.
 
-Defining a grammar which generates all the formulas we've mentioned so-far in a
-precise, recursive fashion is more difficult than, for example, in the case of
-propositional logic. 
+{{< callout type="definition" title="Term" >}}
+A {{< term "term" "term" >}} of a first-order language is a variable, a constant,
+or an expression $f(t₁, …, tₙ)$, where $f$ is an $n$-ary function symbol and each
+$tᵢ$ is a term.
+{{< /callout >}}
+
+In BNF, with $a$ ranging over constants and $x$ over variables:
 
-First, we need to define the notion of a
-[**term**](https://en.wikipedia.org/wiki/Term_(logic)), which is a possibly
-complex expression for an object. Examples of terms are the variable `x`, the
-constant `Socrates`, but also complex expressions like
+$$
+t ::= a ∣ x ∣ f(t₁, …, tₙ)
+$$
 
-```fatherOf motherOf Xanthippe```
-
-The following {{< abbr title="Backus-Naur-Form">}}BNF{{< /abbr>}} covers all
-these cases:
-
-```t ::= a ∣ x ∣ fⁿ t₁…tₙ```
-
-That is, a term is a constant, a variable, or an `n`-ary function symbol
-followed by `n` terms. Even though our syntax doesn't officially require
-parentheses in function symbol applications, we sometimes include them to
-increase legibility. For example, instead of 
+The last rule is recursive: function arguments can themselves contain function
+applications. For example,
 
-```distanceBetween birthplaceOf Socrates capitalOf x```
+$$
+distanceBetween(birthplaceOf(Socrates), capitalOf(x))
+$$
 
-we also write something like
+is a term. It names the distance between Socrates' birthplace and the capital
+of whatever object $x$ stands for. We can omit the application brackets and
+commas if the arities are fixed and the symbol boundaries remain clear:
 
-```distanceBetween(birthplaceOf (Socrates), capitalOf(x))```
+$$
+distanceBetween birthplaceOf Socrates capitalOf x
+$$
 
-This grammar gives us the following rewrite rules:
+As in the propositional parser from
+{{< chapter_ref chapter="formal-languages" >}}Formal Languages{{< /chapter_ref >}}, the grammar determines
+the children of each node. At the root,
+$distanceBetween$ requires two term children. The left child begins with the
+unary function $birthplaceOf$ and ends at the constant $Socrates$. The right
+child begins with $capitalOf$ and ends at the variable $x$. Each application of a grammar rule fixes the next children.
 
-+ `r₀: t ⟹ c`
-+ `r₁: t ⟹ x`
-+ `r₂: t ⟹ ft₁…tₙ`
+{{< logic-app name="parser" language="fol" kind="term" formula="distanceBetween(birthplaceOf(Socrates), capitalOf(x))" title="Parsing a first-order term" >}}
 
-Let's apply these rules to generate the parsing tree for our term:
+Replacing $x$ by $Greece$ removes the last variable from our term.
+The model can then determine its denotation without any further values supplied.
+We give such terms a name:
 
-```distanceBetween(birthplaceOf (Socrates), capitalOf(x))```
+{{< callout type="definition" title="Ground term" >}}
+A {{< term "ground-term" "ground term" >}} is a term containing no variables.
+{{< /callout >}}
 
-We get:
+Terms fill the argument places in formulas. With $t₁, …, tₙ$ ranging over terms,
+our formula grammar is:
 
-{{< img src="img/term-parsing.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
+$$
+A ::= P(t₁, …, tₙ) ∣ t₁ = t₂ ∣ ¬A ∣ (A ∧ A) ∣ (A ∨ A) ∣ (A → A) ∣ (A ↔ A) ∣ ∀x A ∣ ∃x A
+$$
 
-There exists a special class of terms that will be important later, which are
-called [**ground terms**](https://en.wikipedia.org/wiki/Ground_expression).
-These are basically terms without variables, such as:
-```distanceBetween(birthplaceOf (Socrates), capitalOf(Greece))```
+{{< callout type="definition" title="Atomic formula" >}}
+An {{< term "fol-atomic-formula" "atomic formula" >}} of a first-order language
+is $P(t₁, …, tₙ)$, where $P$ is an $n$-ary predicate and its arguments are terms,
+or an identity $t₁ = t₂$ between terms.
+{{< /callout >}}
 
-Their grammar, however, is easy: we just drop variables from the general
-grammar and obtain the BNF:
+$Human(Socrates)$ and $motherOf(x) = y$ are atomic formulas.
+We abbreviate $¬(t₁ = t₂)$ by $t₁ ≠ t₂$.
+$fatherOf(Socrates)$ is a term, so it cannot occupy a formula's place after a
+connective. Likewise, $Human(Socrates)$ cannot be an argument of $fatherOf$:
+we need an object-denoting term there, not a claim.
 
-```t ::= a ∣ fⁿ t₁…tₙ```
+Consider our example of a human mother:
 
-with corresponding re-write rules `r₀` and `r₂`.
+$$
+∀x (Human(x) → ∃y (Human(y) ∧ motherOf(x) = y))
+$$
 
-This gives us the grammar for terms, which can fill the argument places of
-function symbols and predicates. We use the notion of a term in the
-specification of the grammar for FOL formulas. In BNF, the grammar is:
+The root is $∀x$, with one formula child, its scope. That child's main
+connective is $→$. Predicates and identity lead from the formula part of the
+tree into its term parts. This is why the parser must keep track of whether
+it expects a formula or a term.
 
-```A::= Pⁿt₁…tₙ ∣ t₁ = t₂ ∣  ¬A ∣ (A∧A) ∣ (A∨A)∣ (A→A) ∣ ∀xA ∣ ∃xA```
+{{< logic-app name="parser" language="fol" formula="∀x (Human(x) → ∃y (Human(y) ∧ motherOf(x) = y))" title="Parsing a first-order formula" >}}
 
-Formulas of the form `Pⁿt₁…tₙ` and `t₁ = t₂` are also called [atomic
-formulas](https://en.wikipedia.org/wiki/Atomic_formula), which express basic
-facts like `Human(Socrates)`, `Mortal(fatherOf(x))`. The grammar, then,
-generates the FOL formulas much like in propositional logic, just with more
-operations. 
+Try removing an argument of $motherOf$ or adding a second one. The parser
+rejects both strings because the signature fixes its arity at one. As in Formal
+Languages, the fully bracketed grammar gives each binary connective its own
+brackets. Parentheses around function and predicate arguments serve a different
+purpose: they delimit a list of terms.
 
-We obtain the following re-write rules:
+The language already gives us a way to represent knowledge: collect formulas
+into a knowledge base, as we did with propositional logic. For example,
+${Human(Socrates), ∀x (Human(x) → Mortal(x))}$ records a fact and a general
+condition. The language can also express contradictory information, such as
+$Human(Socrates)$ together with $¬Human(Socrates)$.
 
-+ `r₃: A ⟹ Pⁿt₁…tₙ`
-+ `r₄: A ⟹ t₁ = t₂`
-+ `r₅: A ⟹ ¬A`
-+ `r₆: A ⟹ (A∧A)`
-+ `r₇: A ⟹ (A∨A)`
-+ `r₈: A ⟹ (A→A)`
-+ `r₉: A ⟹ ∀x A`
-+ `r₁₀: A ⟹ ∃x A`
+Before we can say when these formulas are true, we need to distinguish claims
+about particular objects from conditions whose variables still need values.
 
-We can combine these rules with the term rewriting rules to parse an entire
-formula and its terms at the same time. For example, for the formula,
+## Scope and open formulas {#scope-binding-and-substitution}
 
-```∀ x (Human x → ∃y (Human y ∧ motherOf x = y))```
+$Human(x)$ expresses a condition on an object, but it does not say which object
+$x$ stands for. In $∃x Human(x)$, the quantifier binds that occurrence of $x$.
+We need to identify such bindings before we can evaluate a formula.
 
-we get:
+{{< callout type="definition" title="Scope and binding" >}}
+The {{< term "quantifier-scope" "scope" >}} of a quantifier is its formula child
+in the syntax tree. A {{< term "bound-variable" "bound occurrence" >}} of a
+variable belongs to the nearest enclosing quantifier for that variable. A
+{{< term "free-variable" "free occurrence" >}} has no such enclosing quantifier.
+{{< /callout >}}
 
-{{< img src="img/formula-parsing.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
+In our formula about human mothers, the two scopes are:
 
-As you can see, the grammar of FOL formulas can get rather complex.
+{{< logic-app name="fol-scope" formula="∀x (Human(x) → ∃y (Human(y) ∧ motherOf(x) = y))" title="Quantifiers and their bound occurrences" >}}
 
-Before we move on to working with FOL formulas, we need to discuss one important
-syntactic issue. To illustrate the idea, consider the following formula
+The arrows connect each quantifier with its bound occurrences. The scope of
+$∀x$ is the whole conditional; the scope of $∃y$ is its right-hand conjunction.
 
-```Human x```
+The $x$ inside $motherOf(x)$ belongs to $∀x$, even though it also lies inside
+the scope of $∃y$. Binding requires the *same* variable.
 
-So far, we've paraphrased it as saying that `x` is human. But what is `x`? Well,
-we don't know. If there would be a quantifier at the beginning of the formula,
-as in
+Reusing a variable can hide a different binding. In
 
-```∃x Human x```
+{{< logic-app name="fol-scope" formula="∃x (Human(x) ∧ ∀x (Human(x) → Mortal(x)))" title="Nested binding" >}}
 
-We'd be saying that there is a human or, a bit closer to the surface syntax of
-the formula, there exists an object such that it is human. But without the
-quantifier expression to "act" on the variable, the `x` is a term that stands
-for some unspecified object.
+the first occurrence in $Human(x)$ belongs to $∃x$. The occurrences in the
+inner conditional belong to $∀x$. Renaming the inner bound variable makes the
+structure easier to see without changing what the formula says:
 
-A formula like `Human(x)`, where some variable isn't "captured" by any
-quantifier— where some variable is
-[**free**](https://en.wikipedia.org/wiki/Free_variables_and_bound_variables)—is
-called an [**open formula**](https://en.wikipedia.org/wiki/Open_formula). In
-contrast, a formula like `∃x Human x`, where all variables are
-captured by some quantifier expression is called a **closed formula** or
-[**sentence**](https://en.wikipedia.org/wiki/Sentence_(mathematical_logic)).
-Open formulas play a crucial role in database theory, so let's look at them a
-bit more closely. 
+$$
+∃x (Human(x) ∧ ∀y (Human(y) → Mortal(y)))
+$$
 
-It turns out that saying _precisely_ and rigorously under which condition a
-variable is free and under which condition it is bound (in such a way that a
-computer could answer the question by parsing) is a rather subtle logical issue.
-We won't go into the full details, but it's important to be aware of the
-stumbling blocks.
+{{< callout type="definition" title="Open formula and sentence" >}}
+An {{< term "open-formula" "open formula" >}} has at least one free variable
+occurrence. A {{< term "sentence" "sentence" >}}, or closed formula, has none.
+{{< /callout >}}
 
-At first glance, the way variable binding works might seem rather obvious. Take
-our formula from above, for example:
+An open formula acts as a complex predicate. $Human(x)$ expresses a property
+of one object; $(Human(x) ∧ ¬Mortal(x))$ expresses the more specific property
+of being human and immortal. $(BiggerThan(x, y) ∧ Human(x))$ expresses a
+relation between two objects. The free variables mark the places whose
+values are still needed. Quantifying a variable closes that place.
 
-```∀ x (Human x → ∃y (Human y ∧ motherOf x = y))```
+A variable can have free and bound occurrences in the same formula. For example,
+$(Human(x) ∧ ∀x Mortal(x))$ is open because its first occurrence of $x$ is free.
 
-Here it seems rather clear which variable quantifier pairs belong together. We
-can illustrate this, for example, in the following "wire diagram":
+{{< logic-app name="fol-scope" formula="(Human(x) ∧ ∀x Mortal(x))" title="Free and bound occurrences together" >}}
 
-{{< img src="img/binding.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
+A quantifier cannot bind occurrences outside its scope. In the following
+formula, the two quantifiers use the same variable name, but each binds only
+the occurrence in its own conjunct:
 
-The idea is, roughly, that a variable is bound by a quantifier just in case the
-variable "comes after" the quantifier in the formula and the variable is the
-same as the one that directly follows the quantifier—we say that it's the
-variable that the quantifier _ranges_ over.
+{{< logic-app name="fol-scope" formula="(∀x Human(x) ∧ ∃x Mortal(x))" title="Separate scopes with the same variable" >}}
 
-{{< img src="img/scope.png" class="rounded  float-start inert-img img-fluid m-2" width="150px" >}} 
-In logical terminology, the idea that a variable "comes after" a quantifier in a
-formula is expressed by saying that the variable is in the quantifier's
-[**scope**](https://en.wikipedia.org/wiki/Scope_(logic)). More generally, the
-scope of a quantifier is the formula that directly follows it in the recursive
-parsing of the expression. That is, in our example, the scope of the 
-`∀x` is the open (!) formula:
+A quantifier can also be {{< term "vacuous-quantifier" "vacuous" >}}: its scope contains no free occurrence of
+the variable it quantifies. In $∀x Human(y)$, there is no $x$ to bind, and
+$y$ remains free. With our nonempty-domain convention, adding this quantifier
+does not change the condition on $y$.
 
-```Human x → ∃y (Human y ∧ motherOf x = y)```
+{{< logic-app name="fol-scope" formula="∀x Human(y)" title="Vacuous quantification" >}}
 
-We might be tempted to think that that's all there is to say about binding: a
-variable is bound by a quantifier just in case the variable is the one the
-quantifier ranges over and the variable is in the quantifier's scope. But look
-at the following FOL formula:
 
-```∃x (Human x ∧ ∀x (Human x → Mortal x))```
+### Substitution
 
-This is a perfectly fine FOL formula. It parses and has the content that there
-exists a human such that all humans are mortal. _But_ we've used the same
-variable twice in nested quantifications. While this is not illegal, it creates
-issues when we think about binding. 
+We can fill a free variable's place with a term. This lets us turn a condition
+such as $Human(x)$ into the claim $Human(Socrates)$, or into another open
+formula such as $Human(fatherOf(y))$.
 
-The following diagram indicates the correct bindings in the formula:
+{{< callout type="definition" title="Substitution" >}}
+The {{< term "substitution" "substitution" >}} $A[x/t]$ replaces the free
+occurrences of $x$ in $A$ by the term $t$, renaming bound variables when necessary
+to prevent any variable in $t$ from becoming bound.
+{{< /callout >}}
 
-{{< img src="img/capture.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
+For instance,
 
-That is, even though the red `<span class="dark-red">x</span>`'s are in the
-scope of the existential `∃x`, they are not bound by it. They are
-bound by the later universal `∀x`, which is "closer" to them and
-binds them "first". It's possible to formulate a mathematically precise
-condition to exclude such cases, but for us the bottom line is that we've got to
-be careful: variables bind to the _first_ quantifier that scopes them.
+$$
+(Human(x) ∧ ∀x Mortal(x))[x/Socrates]
+= (Human(Socrates) ∧ ∀x Mortal(x))
+$$
 
-Open formulas are at the center of database theory. We can think of them as
-expressing properties of objects. They can be simple, like `Human(x)`, which
-expresses the property of being human. Or they can be complex, like 
-```Human x ∧ ∃y (Human y ∧ motherOf x = y)```
-which expresses the property of being a human that has a human mother.
+The bound occurrences stay unchanged. There is a second precaution, needed for
+{{< chapter_ref chapter="FOL-inference" >}}FOL Inference{{< /chapter_ref >}}: replacing $x$ by $y$ in $∃y BiggerThan(x, y)$ must not produce
+$∃y BiggerThan(y, y)$. That would capture the newly inserted $y$. Rename the
+bound variable to a fresh $z$ first:
 
-We can also "apply" open formulas to terms, as it were. For example, to apply
-the open formula
+$$
+(∃y BiggerThan(x, y))[x/y] = ∃z BiggerThan(y, z)
+$$
 
-```Human x ∧ ∃y (Human y ∧ motherOf x = y)```
+The resulting formula still has a free $y$. Binding and substitution are facts
+about the syntax tree; they do not depend on a model.
 
-to the term `Socrates`, for example, we simply replace the unbound `x`'s with
-`Socrates` to obtain
+### Iterated quantifiers {#iterated-quantifiers}
+
+Some claims relate a choice for one variable to a choice for another.
+We express these dependencies with {{< term "iterated-quantifiers" "iterated quantifiers" >}},
+where one quantifier occurs within another's scope. Suppose we're talking about the natural
+numbers $ℕ = {0, 1, 2, …}$. We use a binary predicate $LessThan$ for the usual
+strict ordering and write
+$x < y$ as shorthand for $LessThan(x, y)$. Then
 
-```Human Socrates ∧ ∃y (Human y ∧ motherOf Socrates = y)```
+$$
+∀x ∃y (x < y)
+$$
 
-This sentence then says that Socrates is human, as is his mother.
-
-The operation that we've applied here is called
-[**substitution**](https://en.wikipedia.org/wiki/Substitution_(logic)#First-order_logic):
-we've substituted the free variable `x` with the constant `Socrates`. For an
-arbitrary formula `A`, free variable `x`, and term `t`, we denote this operation by
-writing `A[x/t]`. That is:
-
-```(Human x ∧ ∃y (Human y ∧ motherOf x = y))[x/Socrates]```
-```=```
-```Human Socrates ∧ ∃y (Human y ∧ motherOf Socrates = y)```
-
-As you'll see, substitution plays a crucial role in FOL reasoning. The only very
-important caveat here is that the operation does not apply to bound variables.
-That is, for example:
-
-```(Human x ∧ ∀x (Human x → Mortal x))[x/Socrates]```
-```=```
-```Human Socrates ∧ ∀x (Human x → Mortal x)```
-And not:
-```Human Socrates ∧ ∀x (Human <span class="dark-red">Socrates</span> → Mortal <span class="dark-red">Socrates</span>)```
-
-## Models 
-
-A model for a formal language, remember, is a representation of a possible
-reasoning scenario. In propositional logic, we could identify models with simple
-0/1 assignments to the basic propositional formulas, the propositional
-variables. From this, we could determine all the other truth-values using
-Boolean functions. While Boolean functions still play a role in the semantics
-for FOL, the simple approach no longer works here.
-
-When we consider a formula like `∀x (Human x → Mortal x)`,
-we're saying something about _all things_. To determine whether such a statement
-is true in a given reasoning scenario, we need to know which things exist in the
-scenario. This is determined by providing what's called a [**domain of
-discourse**](https://en.wikipedia.org/wiki/Domain_of_discourse) or simply
-**domain** for our language.
-
-A domain is simply put just a (non-empty) set of objects. So, it could be, for
-example:
-
-{{< img src="img/domain_big.png" class="mx-auto rounded d-block inert-img img-fluid" width="900px">}}
-
-This domain is very populated, it contains many of our old friends: little
-Jimmy, Mr Sir, and Granny Smith, but also the numbers `1,2,3` and the Mighty Box
-from when {{< logo >}}&ThinSpace;tried magic in chapter 2. And many other
-things. Specifying a domain is the first step towards providing a model for FOL.
-We typically denote the domain of a model by `D`.
-
-But simply knowing what's in the domain is not enough to determine the
-truth-values of our formula. We also need to know what the constants, function
-symbols, and predicates of our language express over this domain. We indicate
-the interpretation of a term over a model using so-called **semantic brackets**
-`⟦`&ThinSpace;and&ThinSpace;`⟧`. That is `⟦a⟧` is the interpretation of the constant `a`, also
-called its **denotation**, `⟦f⟧` is the
-interpretation of the function symbol `f`, and `⟦R⟧` is the interpretation of the predicate symbol `R`, also called its
-[**extension**](https://en.wikipedia.org/wiki/Extension_(predicate_logic)).
-
-Let's look at the constants first. These are expressions like `Socrates` and
-`Xanthippe`, or, depending on our language, names like `littleJimmy` and
-`MrSir`. The idea is that constants are proper names, that is, they denote
-objects. So, `⟦Socrates⟧` is simply going to be
-a member of the domain, the thing that is called `Socrates` in that model. So in
-the model that corresponds to reality, we would have, for example:
-
-{{< img src="img/socrates_name.png" class="mx-auto rounded d-block inert-img img-fluid" width="200px">}}
-
-But there are, of course, reasoning scenarios where `Socrates` denotes little Jimmy:
-
-{{< img src="img/socrates_jimmy.png" class="mx-auto rounded d-block inert-img img-fluid" width="200px">}}
-
-We might even call the light bulb `Socrates`:
-{{< img src="img/socrates_bulb.png" class="mx-auto rounded d-block inert-img img-fluid" width="200px">}}
-
-Next, there are function symbols, like `fatherOf`, `birthplaceOf`,
-`distanceBetween`, etc. While the idea for how to interpret them is
-straightforward, they also present some difficulties. Function symbols stand for
-functions, so we interpret them as such: as [mathematical
-functions](https://en.wikipedia.org/wiki/Function_(mathematics)) which are
-defined on the domain. 
-
-The easiest way of specifying such an interpretation is by means of a function
-table, like we used for the truth-functions in Boolean algebra. In the case of a
-unary function symbol, like `fatherOf`, we could have:
-
-{{< img src="img/fatherOf.png" class="mx-auto rounded d-block inert-img img-fluid" width="250px">}}
-
-That is, we say that Mr Sir is the father of both little Jimmy and Linus,
-Mad Man is the father of Mr Sir, Socrates is the father of Granny Smith, and so
-on. 
-
-{{< img src="img/ai_father.png" class="rounded  float-start inert-img img-fluid m-2" width="200px" >}} 
-But now the issues begin. In classical FOL, the function symbols need to denote
-**total** functions, that is, functions which give an output for _every_ input.
-This creates some obvious problems with `fatherOf`. Which value should we assign
-to the light bulb, to the Mighty Box, or to the number one? In fact, if our
-domain only contains finitely many things there will be a family "loop", where
-someone is their own grandⁿ-father. 
-
-We could use [partial
-functions](https://en.wikipedia.org/wiki/Function_(mathematics))—functions that
-are sometimes *undefined*—to solve the issue, but that would mean we'd move out
-of the realm of classical logic. If the father of Socrates would be undefined,
-which truth-value should we assign to the claim that his father is human?
-Neither `0` nor `1` are good options, so we seem to want to say that it's
-_undefined_ as well. But handling undefined truth-values requires different
-techniques, so we'll postpone that to later.
-
-For now, we basically treat these resulting oddities as a side-effect of our
-modeling: they are simplifying assumptions, which we know not to be adequate,
-but which we can handle if we are aware of them. For example, we use a function
-symbol like `fatherOf` only in a language that talks exclusively about humans,
-perhaps we introduce an idealized first human who's their own father, and so on.
-
-In fact, these kinds of issues persist on various levels. For example, the
-following is, from a logical perspective, a perfectly valid interpretation of
-the `distanceBetween` function symbol:
-{{< img src="img/distanceBetween.png" class="mx-auto rounded d-block inert-img img-fluid" width="700px">}}
-
-_Any_ object in the domain is a valid output for the function. What it means to
-say that the distance between little Jimmy and himself is a soda I don't know—
-but it _can_ happen in an FOL model. You need to be aware of such issues when
-you're knowledge engineering with FOL.
-
-One thing that will be important is that once we've interpreted the constants
-and function symbols, we can recursively calculate the denotation of
-all—possibly complex—{{< abbr title="terms without variables">}}ground terms
-{{</abbr>}}. Take the term
-```distanceBetween(birthplaceOf (Socrates), capitalOf(Greece))```
-for example. Its denotation is given by the following simple calculation:
-```⟦distanceBetween(birthplaceOf (Socrates), capitalOf(Greece))⟧```
-```=```
-```⟦distanceBetween⟧(⟦birthplaceOf⟧(⟦Socrates⟧), ⟦capitalOf⟧(⟦Greece⟧))⟧```
-That is, to calculate the distance between Socrates' birthplace and the capital
-of Greece in a model, we check which functions `distanceBetween`, `birthplaceOf`, and
-`capitalOf` express in the model and what the denotation of the constants
-`Socrates` and `Greece` is and then we just apply these functions to find out
-the value. More generally, we have the following recursive equation:
-
-```⟦f t₁…tₙ⟧ = ⟦f⟧(⟦t₁⟧, …, ⟦tₙ⟧)```
-
-This leaves only the predicates uninterpreted. We begin with _unary_
-predicates—that is, predicates with one place, like `Human` and `Mortal` from
-our formula `∀x (Human x → Mortal x)`. The idea is that
-the interpretation in a model is simply the set of objects from the domain,
-which, according to the model, have the property expressed by the predicate.
-Here's an example of how such an interpretation could work out:
-
-{{< img src="img/extensions_1.png" class="mx-auto rounded d-block inert-img img-fluid" width="800px">}}
-
-This is, in a sense, the most natural interpretation of the predicates: `Human`
-applies to all the things that we normally think of as humans, and `Mortal` to
-all the things we normally take to be mortal. Humans and animals are mortal,
-boxes, numbers, and beers are not. As you can probably tell already, in this
-model `∀x (Human x → Mortal x)` will turn out to be true.
-
-It's important to remark, though, that other interpretations are possible. We're
-modeling possible reasoning situations—hypotheticals. So, we could have a model
-where, for example, little Jimmy, Mr Sir, and {{< there_is >}}&ThinSpace;aren't
-mortal, but the rabbit and lamp are human:
-{{< img src="img/extensions_weird.png" class="mx-auto rounded d-block inert-img img-fluid" width="800px">}}
-
-This is a perfectly valid FOL model. And as you can probably tell already, in
-this model `∀x (Human x → Mortal x)` will turn out to be
-false since little Jimmy is human but immortal.
-
-We can generalize this idea to predicates with more than one place, like the binary
-`BiggerThan` or the ternary `LiesBetween`. In order to interpret them, we use
-[**tuples**](https://en.wikipedia.org/wiki/Tuple) of objects in the domain. A
-tuple is essentially an ordered
-[list](https://en.wikipedia.org/wiki/List_(abstract_data_type)) of objects of
-finite length. Here are a few examples of tuples over our domain with their
-respective lengths using Python-style list notation: {{< img src="img/lists.png"
-class="mx-auto rounded d-block inert-img img-fluid" width="700px">}}
-
-Note that with lists, order and multiplicity matter: although both lists have
-length 2, the list with Granny Smith in first and Linus in second place is
-different from the list with Linus in first and Granny Smith in second place.
-And the list with the Ace of Spades in place 1 and 3 still has length 3.
-
-The idea is that we can interpret predicates _in general_ as sets of lists:
-the lists of objects that satisfy the predicate. So, for example, the
-interpretation of `BiggerThan`, will be the set of lists of length 2 such that
-the first element of any list is bigger than the second thing in the list.
-Here's an example of how this could work over our domain:
-
-{{< img src="img/BiggerThan.png" class="mx-auto rounded d-block inert-img img-fluid" width="700px">}}
-
-This would mean that Linus is bigger than little Jimmy, Mr Sir is bigger than
-Linus and little Jimmy, little Jimmy is bigger than the Mighty Box, and so on.
-As in the unary case, the interpretation of `BiggerThan` can be natural as in
-the example, or "weird" as in the following:
-
-{{< img src="img/BiggerThan_weird.png" class="mx-auto rounded d-block inert-img img-fluid" width="700px">}}
-
-Here the Mighty Box is bigger than *everything*—including itself.
-
-Note that, in contrast to function symbols, the interpretations of predicates
-don't need to be _total_: not everything needs to be related to everything. For
-example, if we have the binary predicate `Sibling` to say that two things are
-siblings, the following is a perfectly fine interpretation:
-
-{{< img src="img/Siblings.png" class="mx-auto rounded d-block inert-img img-fluid" width="500px">}}
-
-That is, it's fine to say that Linus and little Jimmy are each other's siblings
-and no one else in the domain is thusly related. Note that this doesn't create
-_undefined_ values, as any pair that's not in the set is simply _not_ related,
-which means `0` and not _undefined_.
-
-This idea, then, generalizes to ternary predicates like `LiesBetween`, where
-`[LiesBetween]` will be a set of lists of length 3, where the first item in
-every list lies between the second and the third item. 
-
-In fact, the idea generalizes to _all_ predicates. We can say, in general, that
-the interpretation of an `n`-ary predicate—a predicate with `n` places—is a set
-of lists of length `n`. Note that this even works in the case of unary
-predicates, like `Human` and `Mortal`. We can just think of sets of objects
-equivalently as sets of lists of length 1. That is, we don't really need to
-distinguish:
-
-{{< img src="img/set_of_objects.png" class="mx-auto rounded d-block inert-img img-fluid" width="500px">}}
-```vs.```
-{{< img src="img/set_of_lists.png" class="mx-auto rounded d-block inert-img img-fluid" width="600px">}}
-
-There are two ways of representing the interpretations of the predicates that
-are very common in computer science and AI contexts. First, if we're dealing
-with unary and binary predicates only, we can straightforwardly represent the
-interpretation using
-[**graphs**](https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)). Here's
-how this works:
-
-{{< img src="img/knowledge_graph.png" class="mx-auto rounded d-block inert-img img-fluid" width="900px">}}
-
-What's going on here is that the interpretations of unary predicates are
-represented as sets and we're using arrows to indicate that a relation holds
-between two objects with the arrow pointing from the first 
-{{< abbr title="thing that is related">}}relatum{{< /abbr >}} to the second.
-
-This way of representing models makes them special cases of so-called
-[**knowledge graphs**](https://en.wikipedia.org/wiki/Knowledge_graph), which are
-an important technology that's been used by search engines like
-[Google](https://www.google.com) and others to structure data.
-
-The other way of representing the information in a model is crucial for
-[database theory](https://en.wikipedia.org/wiki/Database_theory). The idea is
-that we can alternatively write a set of lists as a
-[table](https://en.wikipedia.org/wiki/Table_(information)). Here's how this
-plays out with our interpretations for `Human`, `BiggerThan`, and `Sibling` from
-before:
-
-{{< img src="img/tables.png" class="mx-auto rounded d-block inert-img img-fluid" width="900px">}}
-
-In these tables, each row corresponds to a list and in this way represents a
-basic relational fact. The first table is basically just a list of humans. The
-second table gives us the interpretation of `BiggerThan` with the bigger thing
-occupying the first column and the smaller object the second, as suggested by
-their headers. The `bigger` and `smaller` in the header go by different names:
-"attributes", "identifiers", ... but what's important here is that this naming
-is "internal" to the table and not officially part of the interpretation. It
-just clarifies what the table does. 
-
-This gives us the basic ingredients for an FOL model:
-
-+ a (non-empty) **domain** `D`,
-
-+ a **denotation** `⟦a⟧ ∈ D` for each constant `a`,
-
-+ a **mathematical function** `⟦f⟧` for each function symbol `f`, which maps
-inputs from the domain to outputs from the domain,
-
-+ an **extension** `⟦R⟧` for each predicate symbol.
-
-When we're dealing with different models, we often name them, like `M` and `N`
-or `M₁` and `M₂` etc., and we superscript the domains and interpretations by
-that name. So `Dᴹ` is the domain of model `M` and `Dᴺ` the domain of model `N`,
-`⟦Socrates⟧ᴹ` is the denotation of `Socrates` in
-model `M` and `⟦Socrates⟧ᴺ` is the denotation of
-`Socrates` in model `N`, and so on.
-
-## Truth and Satisfaction
-
-It's time to turn to _truth_. The information provided by an FOL model is enough
-to calculate the truth-values for all the formulas in its language. Let's figure
-out how.
-
-In FOL, we typically write 
-
-```M⊨ A```
-
-to say that the formula `A` is true according to the model `M`. If we want to
-directly talk about the truth-value of a formula, we denote it by  `⟦A⟧`. Since we're working in classical logic, we'll
-assume that `⟦A⟧∈{ 0, 1}`. The two
-notations are related by the following equivalence: 
-```M⊨ A &emsp; if and only if &emsp; ⟦A⟧ = 1```
-
-Our aim right now is to define `M⊨ A` for all formulas `A`.
-
-The simplest case is the so-called [ground
-formulas](https://en.wikipedia.org/wiki/Ground_expression), which are atomic
-formulas—a predicate applied to terms—without any variables in them. Take the
-ground formula `Human LittleJimmy`, for example. The natural thought is that
-this sentence ought to be true in a model just in case the denotation of
-`LittleJimmy` is in the extension of `Human` in that model. This gives us the
-first basic truth-condition:
-```M⊨ Human LittleJimmy &emsp; if and only if &emsp; ⟦LittleJimmy⟧ ∈ ⟦Human⟧```
-
-{{< img src="img/SirSocrates.png" class="rounded  float-end inert-img img-fluid m-2" width="100px" >}} 
-This idea generalizes quite straightforwardly to binary predicates and ground
-expressions involving complex ground terms. For the formula ```BiggerThan Socrates fatherOf LittleJimmy``` which says that Socrates is bigger than little
-Jimmy's father, we get:
-```M⊨ BiggerThan Socrates fatherOf LittleJimmy```
-```if and only if```
-```[ ⟦ Socrates⟧, ⟦fatherOf⟧(⟦LittleJimmy ⟧)] ∈ ⟦BiggerThan⟧```
-That is, the formula is true if the list containing the value of `Socrates` in first place and the value of $fatherOf
-LittleJimmy$ in second place is part of the lists of objects such that the first
-is bigger than the second according to the model.
-
-As a general formula, we get:
-
-```M ⊨ P t₁…tₙ &emsp; if and only if &emsp;  [ ⟦t₁⟧, … , ⟦tₙ⟧] ∈ ⟦P⟧```
-
-{{< img src="img/jimmySir.png" class="rounded  float-start inert-img img-fluid m-2" width="100px" >}} 
-The case of identity claims with ground terms is equally straightforward. Take,
-for example, the formula: ```MrSir = fatherOf LittleJimmy``` This formula should
-be true just in case the denotation of `MrSir` in the model _is_ the value of
-the `fatherOf`-function applied to the denotation of `LittleJimmy`—in other
-words: if _according to the model_ Mr Sir is the father of Little Jimmy.
-Expressed formally, this becomes:
-
-```M ⊨ Socrates = fatherOf LittleJimmy```
-```if and only if```
-```⟦Socrates⟧ = ⟦fatherOf⟧(⟦LittleJimmy⟧)```
-
-Note that the `=` in the formula and the `=` in the condition are different uses
-of =: the first is a formal symbol, which we interpret using the "real" identity
-relation `=`.
-
-Once we've calculated the truth-values of the basic formulas, we can calculate
-the truth-values of their truth-functional combinations—formulas constructed
-using `¬, ∧, ∨, →`—in the familiar recursive
-fashion we know from Boolean logic:
-
-| | | |
-|-|-|-|
-|`M ⊨ ¬A` | &emsp; &emsp; if and only if &emsp; &emsp;  | `!!NOT!! ⟦A⟧ = 1`| 
-|`M ⊨(A ∧ B )` | &emsp; &emsp; if and only if &emsp; &emsp;  | `⟦A⟧ !!AND!! ⟦B⟧ = 1`| 
-|`M ⊨(A ∨ B )` | &emsp; &emsp; if and only if &emsp; &emsp;  | `⟦A⟧ !!OR!! ⟦B⟧ = 1`| 
-|`M ⊨(A → B )` | &emsp; &emsp; if and only if &emsp; &emsp;  | `((!!NOT!! ⟦A⟧) !!OR!! ⟦B⟧) = 1`| 
-| &nbsp; | |
-
-In fact, by some simple Boolean reasoning, we can directly give a recursive
-definition of `M ⊨A` as follows:
-
-| | | |
-|-|-|-|
-|`M ⊨ ¬A` | &emsp; &emsp; if and only if &emsp; &emsp;  | `M ⊭ ¬A`| 
-|`M ⊨(A ∧ B )` | &emsp; &emsp; if and only if &emsp; &emsp;  | `M ⊨A` and `M ⊨B`|
-|`M ⊨(A ∨ B )` | &emsp; &emsp; if and only if &emsp; &emsp;  |`M ⊨A` or `M ⊨B` |
-|`M ⊨(A → B )` | &emsp; &emsp; if and only if &emsp; &emsp;  |`M ⊭A` or `M ⊨B` |
-| &nbsp; | |
-
-
-In this sense, what we're doing in FOL is an _extension_ of the framework of
-Boolean algebra.
-
-The main question is how to interpret quantifiers `∀` and `∃`. But before we can do that, we need to talk about the variables $x,
-y, z, …$. Logical theory knows different ways of handling the variables of FOL.
-There are approaches that take them to be denoting terms, which requires the use
-of so-called **variable assignments**. These work in a similar way as variable
-assignments in programming languages, where you can set the values of `x, y, z`
-to something like so:
-~~~python3 {lineNos = false }
-x = socrates
-Y = little_jimmy
-z = mr_sir
-~~~
-And then, later, you can set the values to something else:
-~~~python3 {lineNos = false }
-x = little_jimmy
-Y = little_jimmy
-z = little_jimmy
-~~~
-Working with assignments has a series of advantages from a logical perspective.
-Most importantly, it allows us to assign truth-values to open formulas like
-```(Human x ∧ Mortal x)``` and directly involve them in deductive reasoning. But from an
-algorithmic AI perspective, assignments are not great to work with, which is why
-we'll work with an alternative approach that uses specialized constants instead
-to interpret the quantifiers.
-
-Here's how this works. We've already mentioned the idea that an open formula
-like `(Human x ∧ Mortal x)` expresses a property—in this case the
-complex property of being human and mortal. Another way of putting the idea is
-to say that open formulas express **conditions** that objects can satisfy: any
-object in our domain either is or isn't a mortal human. 
-
-A natural idea, therefore, is that the semantic value 
-`⟦(Human x ∧ Mortal x)⟧`
-of the open formula `(Human x ∧ Mortal x)` is not a truth-value but a
-_set of objects_: those objects that satisfy in the model the condition
-expressed by it. Let's work this idea out in some more detail.
-
-Suppose we have some object `d ∈D`, which lives in our domain. To check
-whether the object satisfies `(Human x ∧ Mortal x)` what we can do is
-to add a new constant `d` to our language with the stipulation that: 
-
-```⟦ d⟧ = 1``` 
-
-{{< img src="img/immortal_jimmy.png" class="rounded  float-start inert-img img-fluid m-2" width="100px" >}} 
-That is, we give the object an *ad hoc* name, which makes it possible for us to
-talk about `d` in our formulas. Then, we can say that `d` *satisfies* the open
-formula `(Human x ∧ Mortal x)` just in case replacing `x` with the
-new term for `d` gives us a true formula, that is:
-
-```M ⊨(Human x ∧ Mortal x)[x/d]```
-
-The _crucial_ point here is that if we replace the `x` with `d`, we obtain a
-**ground formula**—here `(Human d ∧Mortal d)`— whose truth we can
-determine using the methods we're already familiar with.
-
-In practice, we sometimes use the object itself as a constant that denotes
-itself. So, we write things like:
-
-{{< img src="img/constant_jimmy.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
-
-The truth-conditions then work out to:
-
-{{< img src="img/valuation_jimmy.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
-
-That is, in our normal model, where all humans are mortal, little Jimmy
-satisfies the open formula, in the model with immortal Jimmy, he doesn't.
-
-It's worth remarking that this approach, though common in AI practice, is on
-shaky logical footing and requires a lot of technical care to be worked out
-rigorously—it can be done, but we won't go into the logical details. When it
-comes to DBs, however, we'll see a non-shaky version of it.
-
-The idea of satisfaction allows us also to define the very useful notion of the
-**extension** of an open formula: the set of objects satisfying a predicate. In
-the case of `(Human x ∧ Mortal x)`, for example, this works out to:
-
-```⟦(Human x ∧ Mortal x)⟧ = { d ∈ D | M ⊨ (Human x ∧ Mortal x)[x / d] }```
-
-More generally, if `A(x)` is _any_ open formula with exactly one free variable, we can define:
-
-```⟦A(x)⟧ = { d ∈ D | M ⊨ A[x / d] }```
-
-This approach can also be generalized to open formulas with more than one
-free variable. Take the following formula, for example:  
-
-```BiggerThan x y ∧Human x```
-
-This formula is not satisfied by a single object, but by a _list_ of objects
-from the domain `[d, e]` satisfies the formula just in case 
-
-```M ⊨(BiggerThan x y ∧Human x)[x /d, y /e]```
-```if and only if```
-```M ⊨(BiggerThan d e ∧Human d)```
-
-where we give *ad hoc* names to both `d` and `e` and substitute them in for `x`
-and `y` in our free formula. This gives us the notion of an extension for this
-formula as well:
-
-```⟦(BiggerThan x y ∧Human x)⟧```
-```=```
-```{ [d, e] | M ⊨(BiggerThan x y ∧Human x)[x / d, y / e]}```
-
-A crucial observation that we'll refer back to later is that just like the
-interpretations of predicates, we can represent the extensions of open formulas
-as tables. The extension of open formulas with one variable is just a table with
-one column, like this table, which gives the extension of 
-`Human x ∧Mortal x` in the model with immortal Jimmy:
-
-{{< img src="img/extension_mortal_human.png" class="mx-auto rounded d-block inert-img img-fluid" width="200px">}}
-
-Note that little Jimmy is immortal in this model and thus not in the extension
-of the predicate.
-
-And for binary predicates, we get tables with multiple columns. Here's (part of)
-the table for `⟦(BiggerThan x y ∧Human x)⟧` in the model we've described earlier:
-
-{{< img src="img/extension_BiggerThan_Human.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
-
-What's going on here is that we've eliminated all the rows where the first
-column had a non-human in it, like Mighty Box.
-
-This notion of **satisfaction** of an open formula by objects in a model is a
-core notion in database theory and is what ultimately underpins database
-queries.
-
-But before we go into this, we need to talk about the truth-conditions for
-quantifiers. But the notion of satisfaction makes quick work of this. Let's take
-again our formula: ```∀x (Human x → Mortal x)``` The idea is that
-this formula is true in a model just in case _all_ objects in the domain satisfy
-the open formula  `(Human x → Mortal x)`. In other words:
-```M ⊨∀x (Human x → Mortal x) &emsp; if and only if &emsp;⟦(Human x → Mortal x)⟧ = D```
-
-This idea generalizes rather nicely. If `A` is a formula with precisely one free
-variable, we can also write `A(x)` to indicate this. We can then write our
-clause as follows:
-```M ⊨∀x A(x) &emsp; if and only if &emsp; ⟦A(x)⟧ = { d ∈ D | M ⊨ (A(x))[x/d] } = D```
-
-This works exactly analogously for the existential quantifier ∃&ThinSpace;.
-Take the formula ```∃x (Human x ∧¬ Mortal x)```
-This formula says that there is some immortal human. So, it should be true just
-in case the extension $⟦(Human x ∧¬ Mortal
-x)⟧`of the open formula`(Human x ∧¬ Mortal
-x)$ has at least one element, just in case it's _non-empty_, that is: 
-```M ⊨∃x (Human x ∧¬ Mortal x)``` 
-```if and only if```
-```⟦(Human x ∧¬ Mortal x)⟧ ≠  { }```
-We can generalize this to the case of a formula `∃x A(x)`, where
-`A(x)` has precisely one free variable just like in the case of the universal
-quantifier. We get:
-```M ⊨∃x A(x) &emsp; if and only if &emsp; ⟦A(x)⟧ ≠ { }```
-
-For the recursive evaluation of formulas, it's helpful to slightly rewrite the
-resulting clauses. To see how this works, think about under which conditions we
-have that `⟦A(x)⟧ = D`, and under which `⟦A(x)⟧ ≠ { }`. For concreteness, let's take
-the formula `Mortal x` as `A(x)`. For $⟦Mortal x⟧ =
-D`, what needs to be the case is that for _all_ objects`d∈D$, we have
-that `M⊨Mortal d`, that is, we have to have: 
-```M⊨Mortal {{< little_jimmy >}} and M ⊨Mortal{{< mr_sir>}} and …```
-Analogously, `⟦Mortal x⟧ ≠ { }` means that
-there exists _some_ `d∈D`, such that `M⊨Mortal d`, that
-is:```M⊨Mortal {{< little_jimmy >}} or M ⊨Mortal{{< mr_sir>}} or …```
-
-This gives us two very clearly recursive clauses for the truth of quantified sentences:
-
-| | | |
-|-|-|-|
-|`M ⊨ ∃x A` | &emsp; &emsp; if and only if &emsp; &emsp;  | for some `d∈D`, `M ⊨ A[x/d]`| 
-|`M ⊨ ∀x A` | &emsp; &emsp; if and only if &emsp; &emsp;  | for every `d∈D`, `M ⊨ A[x/d]`| 
-| &nbsp; | |
-
-
-This gives us the concepts of a model and truth in a model for FOL. We are now
-in a position to investigate how valid inference in FOL works. But given its
-unique combination of practical importance—in math, science, and AI—with
-technical … trickiness, we dedicate an entire chapter to this. What we'll look
-at now is a connection of FOL models to AI research that is on a much lower
-level: the relation to databases—the way we store knowledge and _any_ kind of
-data in complex computer systems.
-
-## Databases and FOL
-
-{{< img src="img/db_proceed.png" class="rounded  float-start inert-img img-fluid m-2" width="200px" >}} 
-Roughly speaking a [**database (DB)**](https://en.wikipedia.org/wiki/Database)
-is an organized collection of
-[data](https://en.wikipedia.org/wiki/Data_(computer_science)). Data can
-essentially be _any_ sequence of symbols, but we'll look at data that is a bit
-more structured. Our running example will involve information about the capitals
-of different countries, in which part of the world they are located, which languages are spoken there.
-
-We'll store this data as plain text in a
-[SQL](https://en.wikipedia.org/wiki/SQL) database, which is by far the most
-widely used database system. If you've ever heard of someone professionally
-using a database, chances are it was some form of a SQL database. SQL is a
-[domain-specific programming
-language](https://en.wikipedia.org/wiki/Domain-specific_language), which in
-contrast to general purpose programming languages, is used for one specific
-purpose: to interact with data.
-
-In SQL, data is stored in **tables**. Before we can put data in those tables, we
-need to `<span class="dark-blue">CREATE</span>` them. Here's some SQL code that
-sets up three tables, one for storing information about the capitals of
-countries, one for storing information about where those countries are located,
-and one for the language spoken in the country:
-
-~~~sql
-CREATE TABLE CapitalOf (
-  country TEXT PRIMARY KEY,
-  capital TEXT NOT NULL
-);
-
-CREATE TABLE LocatedIn (
-  country TEXT PRIMARY KEY,
-  continent TEXT NOT NULL
-);
-
-CREATE TABLE LanguageOf (
-  country TEXT,
-  language TEXT
-);
-~~~
-
-Don't worry, you don't need to install anything. In a moment, there will be a
-link that allows you to interactively execute the code in the browser.
-
-In any case, running this code doesn't do much, it just sets up the three
-tables. Next, we need to populate them, we need to `<span
-class="dark-blue">INSERT</span>` data `<span class="dark-blue">INTO</span>` the
-tables. Here's how that goes:
-
-~~~sql{linenostart=15}
-
-INSERT INTO CapitalOf VALUES
-  ('United States', 'Washington D.C.'),
-  ('Netherlands',   'Amsterdam'),
-  ('Germany',       'Berlin'),
-  ('Italy',         'Rome'),
-  ('Japan',         'Tokyo');
-
-INSERT INTO LocatedIn VALUES
-  ('United States', 'North America'),
-  ('Netherlands',   'Europe'),
-  ('Germany',       'Europe'),
-  ('Italy',         'Europe'),
-  ('Japan',         'Asia');
-
-INSERT INTO LanguageOf VALUES
-  ('United States', 'English'),
-  ('Netherlands', 'Dutch'),
-  ('Germany', 'German'),
-  ('Italy', 'Italian'),
-  ('Japan', 'Japanese');
-~~~
-
-Running _this_ code also doesn't return anything (other than some success
-message), it just populates our tables with data. This data is now ready to be
-interacted with: we can store it, update it, or _query_ it, which is to ask the
-DB for information.
-
-Here's a very simple `<span class="dark-blue">QUERY</span>`, which returns
-all the data in our table:
-
-~~~sql
-
-SELECT * FROM CapitalOf;
-SELECT * FROM LocatedIn;
-SELECT * FROM LanguageOf;
-~~~
-
-To run this code click `RUN` after following this [link](https://www.db-fiddle.com/f/bTqC7rED8PrABxDyhN766d/2).
-
-The output looks something like this:
-
-{{< img src="img/db_tables.png" class="mx-auto rounded d-block inert-img img-fluid" width="900px">}}
-
-But wait a second, that looks suspiciously like the specification of an FOL
-model using tables! In fact, it _is_ a model for a language with three binary
-predicates: 
-
-```CapitalOf², LocatedIn², LanguageOf²```
-
-It turns out that this is not by chance. On the low level, there is a very deep
-correspondence between FOL syntax and models and the way SQL databases work. In
-fact, SQL was originally developed on the basis of [relational
-algebra](https://en.wikipedia.org/wiki/Relational_algebra), which [Codd's
-theorem](https://en.wikipedia.org/wiki/Codd%27s_theorem) proves to be
-"essentially equivalent" to FOL. This result is analogous to the relationship
-between logical proofs and computer programs, which we've observed in the [Curry
-Howard
-Correspondence](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence)
-and which is the basis for proof assistants like Lean. In an analogous way, FOL
-is the basis for DB theory. Let's explore this idea a bit further by looking at
-a more complicated query:
-
-~~~sql
-
-SELECT country
+says that every number has a larger number. To check what it requires, take
+any value $n$ for $x$. The inner existential asks for a value of $y$ larger
+than $n$. We can always use $n + 1$: for $x$ assigned $0$, use $1$; for $x$
+assigned $1$, use $2$; and so on. The witness for $y$ can depend on the value
+of $x$.
+
+Reversing the quantifiers changes that dependency:
+
+$$
+∃y ∀x (x < y)
+$$
+
+This says that there is a number larger than every number. Now we must choose
+one value for $y$ that works for every value of $x$. No natural number does:
+if we choose $n$ for $y$, assigning $n$ to $x$ already makes $x < y$ false.
+For the natural numbers, the first sentence is true and the second is false.
+
+Two universal quantifiers, as in $∀x ∀y A(x, y)$, require every pair of values
+to work. Two existential quantifiers require at least one pair. Exchanging
+quantifiers of the same kind preserves these conditions. With mixed
+quantifiers, the order determines which choices may depend on which others.
+
+No finite, nonempty set of numbers with its usual ordering makes
+$∀x ∃y (x < y)$ true: its largest member has no larger member in the domain.
+The choice of objects therefore affects which claims are true. We will return
+to this example when we compare finite and infinite models.
+
+Open formulas express properties and relations; sentences make claims with
+no free places left to fill. Either way, writing a formula does not guarantee
+that it describes a possible scenario. A knowledge base can describe one
+scenario, many of them, or none. Models will give us a precise representation
+of these scenarios.
+
+## Models
+
+In {{< chapter_ref chapter="valid-inference" >}}Valid inference{{< /chapter_ref >}},
+we treated models as possible worlds without analyzing their contents.
+{{< chapter_ref chapter="boolean" >}}Boolean algebra{{< /chapter_ref >}} then
+represented a world's basic facts by truth-values. FOL lets us look further
+inside: we distinguish objects and record their properties and relations.
+
+{{< fol-worlds >}}
+
+A model is a possible reasoning scenario. In propositional logic, a scenario
+specifies which basic claims are true. A first-order scenario also tells us
+which objects there are, what our names denote, and which properties and
+relations those objects have.
+
+Suppose Socrates is human. We can represent this information by placing him
+inside a set labeled $Human$, listing him in a table of humans, or attaching
+$Human$ to his node in a knowledge graph. For relational information, such as
+Mr Sir being bigger than Jimmy, we can list an ordered pair or draw a labeled
+arrow. These presentations record the same information. The mathematical
+notion of a model collects what they have in common.
+
+{{< callout type="definition" title="First-order model" >}}
+A {{< term "fol-model" "first-order model" >}} $M$ for a signature consists of
+a nonempty {{< term "domain" "domain" >}} $D$ and an
+{{< term "interpretation" "interpretation" >}} assigning:
+
+- an object $⟦a⟧ᴹ ∈ D$ to each constant $a$;
+- a total function $⟦f⟧ᴹ: Dⁿ → D$ to each $n$-ary function symbol $f$;
+- a relation $⟦R⟧ᴹ ⊆ Dⁿ$ to each $n$-ary predicate symbol $R$.
+{{< /callout >}}
+
+Here $Dⁿ$ contains the ordered $n$-tuples from $D$. The semantic brackets
+$⟦…⟧ᴹ$ indicate interpretation in $M$; we omit the superscript when only one
+model is under discussion.
+
+For a finite model, we can record these interpretations in tables. This gives
+us a relational database: a way of storing the scenario's information in a
+computer. Constants and functions require tables too, with constraints that
+ensure they pick out the right number of values. Later we will use formulas
+to query that information.
+
+{{< callout type="note" title="Modeling assumptions: classical FOL" >}}
+As in {{< chapter_ref chapter="logic-and-ai" >}}Logic and AI{{< /chapter_ref >}},
+our representation involves modeling assumptions. Classical FOL assumes a
+nonempty domain, a denotation for every name, total functions, and a definite
+truth-value for every predicate applied to domain objects. We will examine
+these assumptions as we introduce the components.
+{{< /callout >}}
+
+### Domains {#nonempty-domains}
+
+We first choose which objects our scenario contains. A model of a family
+might contain people; a model of arithmetic might contain numbers. This set
+of objects is the domain, and it fixes what our quantifiers range over.
+We can also mix kinds of objects. Our
+example contains Little Jimmy, Mr Sir, Granny Smith, Socrates, and a box:
+
+{{< logic-app name="fol-model" model="people-domain" view="sets" title="Choose a domain" >}}
+
+The pictures represent the objects themselves. The domain is a set, so its
+order does not matter, and each object occurs only once. Which objects we
+include is a modeling choice: leaving someone out means our claims about
+*every object* will not range over that person.
+
+{{< callout type="note" title="Modeling assumptions: a nonempty domain" >}}
+We assume $D ≠ ∅$. This does not require every property to have an instance:
+a domain can contain people even when its set of unicorns is empty. The
+nonemptiness assumption also affects inference. If every object has a
+property, there is an object with that property, because we have an object to
+start with. We keep this convention in
+{{< chapter_ref chapter="FOL-inference" >}}FOL Inference{{< /chapter_ref >}}.
+{{< /callout >}}
+
+Domains need not be finite. The natural numbers, integers, or real numbers can
+be a domain. Arithmetic uses such infinite scenarios, and some first-order
+theories can only be represented by infinite models. Our finite examples let
+us display every object; they do not limit the definition of a model.
+
+### Constants {#constants-and-functions}
+
+Having chosen the objects, we can give them names. We might let $Socrates$
+name the pictured Socrates. That object is the constant's
+{{< term "denotation" "denotation" >}} in this scenario:
+
+{{< set expression=true alt="Socrates denotes the pictured Socrates." >}}
+[{"op":"⟦Socrates⟧ ="}, {"image":"fol_socrates"}]
+{{< /set >}}
+
+The labeled objects below show the denotations of our three constants. A table
+can record the same assignments, one constant and its denotation per row.
+
+{{< logic-app name="fol-model" model="people-constants" view="graph" title="Interpret constants" >}}
+
+{{< callout type="note" title="Modeling assumptions: every name denotes" >}}
+Every constant must denote exactly one domain object. Classical FOL has no
+empty names: if our language includes $Socrates$, we must give it a denotation,
+even in a fictional scenario. A different model can assign that name to Jimmy.
+An object need not have a name, and two names may denote the same object. The
+assumption that every name denotes is separate from the optional assumption
+that different names denote different objects.
+{{< /callout >}}
+
+### Functions {#interpreting-functions}
+
+We can also refer to an object through its relation to another: Jimmy's father,
+for example. The term $fatherOf(LittleJimmy)$ does this by applying a function
+to Jimmy. To interpret it, we need the denotation of $LittleJimmy$ and a
+function on the domain.
+
+{{< callout type="definition" title="Total function" >}}
+A {{< term "total-function" "total function" >}} assigns exactly one output to
+every input in its domain.
+{{< /callout >}}
+
+For a unary function, a table has one row for every domain object. An arrow
+diagram gives each object exactly one outgoing arrow with the function's
+label. Both represent the same function. In the example, the row beginning
+with Jimmy ends with Mr Sir:
+
+{{< logic-app name="fol-model" model="people-functions" view="tables" title="Interpret functions" >}}
+
+{{< callout type="note" title="Modeling assumptions: total functions" >}}
+FOL requires functions to be total. The table therefore needs a value for the
+box, as well as for Socrates. This is awkward for $fatherOf$: a box has no
+father, and our information about Socrates' father may be incomplete. Leaving
+a row blank gives a partial interpretation, which is not yet a model of this
+language. We must supply a value, change the domain, or use another way to
+represent the information.
+{{< /callout >}}
+
+Our example assigns the box to itself and Socrates to himself. These choices
+complete the function, but they do not fit the intended family story. Following
+a unary function repeatedly in any finite domain eventually revisits an
+object. An acyclic ancestry chain would require a different representation.
+A binary predicate $ParentOf$ can record parent pairs without assigning every
+object a parent. We will discuss what an absent pair means in the next section.
+
+For a binary function, we need a value for every ordered pair in $D²$; for an
+$n$-ary function, for every tuple in $Dⁿ$. Every value must also belong to $D$.
+The name alone imposes no further constraint. In a domain containing Jimmy
+and a soda, even this is allowed:
+
+{{< set expression=true alt="The distanceBetween function applied to Little Jimmy twice returns a soda." >}}
+[{"op":"⟦distanceBetween⟧("}, {"image":"gimmick_little_jimmy"}, {"op":","}, {"image":"gimmick_little_jimmy"}, {"op":") ="}, {"image":"gimmick_soda"}]
+{{< /set >}}
+
+We need additional conditions to rule out interpretations that disagree with
+what we intend to represent.
+
+### Predicates {#predicates-and-tuples}
+
+We also need to record which objects are human. We collect Jimmy, Mr Sir,
+Granny Smith, and Socrates in a set, leaving the box outside it. This is
+$⟦Human⟧$, the {{< term "extension" "extension" >}} of $Human$: the set of
+objects to which the predicate applies. A set diagram shows these
+memberships spatially; a one-column table lists the members.
+
+{{< callout type="note" title="Modeling assumptions: bivalence" >}}
+For each object, there are exactly two possibilities: it belongs to the
+extension or it does not. This is the
+{{< term "bivalence" "bivalence" >}} assumption from {{< chapter_ref chapter="boolean" >}}Boolean algebra{{< /chapter_ref >}}, now applied to claims about objects. An absent object is
+not an unknown entry. In this model, the predicate is false of it.
+{{< /callout >}}
+
+Relational information needs more than a set of individual objects. To record
+that Mr Sir is bigger than Jimmy, we must keep the two objects together and
+remember their order. We use the fixed-length lists called tuples.
+
+{{< callout type="definition" title="Tuple" >}}
+An {{< term "tuple" "ordered tuple" >}} $[d₁, …, dₙ]$ is a sequence of $n$
+objects, with order and repetitions retained.
+{{< /callout >}}
+
+The extension of a binary predicate is a set of ordered pairs. A table puts
+each pair in a row, with its first object in the first column and its second
+object in the second column. A graph draws an arrow from the first to the
+second. Here $⟦BiggerThan⟧$ contains the pairs from Mr Sir to Jimmy, from Jimmy
+to the box, and from Mr Sir to the box:
+
+{{< logic-app name="fol-model" model="people-relations" view="tables" title="Interpret predicates" >}}
+
+Reversing a pair changes its meaning. Including $[Jimmy, MrSir]$ in $⟦Sibling⟧$
+does not automatically include $[MrSir, Jimmy]$. Symmetry is an additional
+condition we might impose. The starting $Sibling$ extension is empty.
+
+An $n$-ary predicate has a set of $n$-tuples as its extension, represented by a
+table with $n$ columns. A ternary $LiesBetween$ needs three columns. We identify
+unary extensions with sets of one-tuples when writing them as tables. Every
+tuple is either in the extension or outside it. If we only have incomplete
+information about a relation, a single complete model commits to more than
+we know; a set of possible models can leave those choices open.
+
+### Models as knowledge bases {#one-model-different-displays}
+
+A complete model specifies the basic information about a scenario. That
+information can serve as a knowledge base. We have several ways to present it:
+
+1. **Semantic equations** specify the domain, denotations, function values,
+   and predicate extensions using sets and functions.
+2. **{{< term "set-diagram" "Set diagrams" >}}** place objects or tuples inside their extensions. Overlap
+   shows shared membership, as in [Euler diagrams](https://en.wikipedia.org/wiki/Euler_diagram).
+   A diagram of one extension shows one part of the model.
+3. **Tables** store extensions as rows. Together with tables for the domain,
+   constants, and functions, they encode a finite model as a
+   {{< term "relational-database" "relational database" >}}
+   ([Wikipedia](https://en.wikipedia.org/wiki/Relational_database)).
+4. **{{< term "knowledge-graph" "Knowledge graphs" >}}** represent objects as
+   nodes, with property labels and relation arrows
+   ([Wikipedia](https://en.wikipedia.org/wiki/Knowledge_graph)). For relations
+   with more than two places, we must also record the argument positions.
+5. **Formulas** record the model's basic facts in an expanded language with a
+   name for every object. We will describe this collection below.
+
+These presentations must record the same domain and interpretations to
+represent the same model. Changing a membership or denotation changes the
+scenario itself.
+
+{{< logic-app name="fol-model" model="people" view="graph" title="A model as a knowledge base" >}}
+
+For the database presentation, predicate extensions become relation tables.
+A function becomes a table of argument tuples followed by their values, with
+exactly one value for each argument tuple. Constants require denotation
+entries, and a domain table records all objects, including those absent from
+every predicate extension. These tables encode the whole finite structure.
+We will use the same representation for database queries below.
+
+We can also describe a model syntactically. Give every object a name, adding
+names if necessary, and record its basic facts as atomic formulas and negated
+atomic formulas. For example, $Human(Socrates)$ records a membership and
+$¬Sibling(Socrates, LittleJimmy)$ records a non-membership. Equations
+such as $fatherOf(LittleJimmy) = MrSir$ record function values. Model theory
+calls the full collection of true atomic and negated atomic sentences in this
+expanded language the {{< term "model-diagram" "atomic diagram" >}} of the model.
+
+The diagram includes identities and inequalities between names. To specify a
+finite model exactly, we also say that every object is one of the named
+objects; the atomic diagram alone does not exclude additional unnamed objects.
+This is another way to represent the scenario's information with formulas.
+A general knowledge base can leave some facts open, allowing several models.
+A complete model settles them all. Satisfaction will tell us precisely how to
+check a formula against such a scenario.
+
+## Truth and satisfaction {#truth-and-satisfaction}
+
+A knowledge base should help us answer questions. Once we have recorded who
+is human, who is mortal, and who is bigger than whom, we can ask which humans
+are mortal or which humans are bigger than the box. We need not store a
+separate predicate for every question: open formulas express these complex
+conditions using the information already in the model.
+
+Before checking a formula, we need to know what its terms denote. A model
+fixes $⟦LittleJimmy⟧$ and the function $⟦fatherOf⟧$, but it cannot tell us what
+$fatherOf(x)$ denotes until we give $x$ a value.
+
+{{< callout type="definition" title="Variable assignment" >}}
+A {{< term "variable-assignment" "variable assignment" >}} $v$ in a model with
+domain $D$ assigns an object of $D$ to each variable.
+{{< /callout >}}
+
+We use $v$, as for
+{{< chapter_ref chapter="boolean" id="parsing-and-valuations" >}}Boolean valuations{{< /chapter_ref >}}.
+Here, its values are objects.
+
+With these values supplied, denotation follows the term's construction:
+
+{{< callout type="definition" title="Denotation under an assignment" >}}
+In a model $M$ under an assignment $v$, the {{< term "denotation" "denotation" >}}
+$⟦t⟧ᴹᵥ$ of a term $t$ is defined recursively:
+
+$$
+⟦x⟧ᴹᵥ = v(x)
+⟦a⟧ᴹᵥ = ⟦a⟧ᴹ
+⟦f(t₁, …, tₙ)⟧ᴹᵥ = ⟦f⟧ᴹ(⟦t₁⟧ᴹᵥ, …, ⟦tₙ⟧ᴹᵥ)
+$$
+
+Here $x$ is a variable, $a$ a constant, and $f$ an $n$-ary function symbol.
+{{< /callout >}}
+
+For a ground term, no variable lookup is needed. Its denotation depends only
+on $M$, so we omit $v$.
+
+Start at the leaves: look up variables in $v$ and constants in $M$. Then
+apply each function to the values of its arguments. If $v(x)$ is Jimmy,
+$fatherOf(fatherOf(x))$ first gives Mr Sir, then Socrates in our example model.
+Change the value of $x$ and follow the calculation:
+
+{{< logic-app name="fol-model" model="people" kind="term" editable="false" view="tables" formula="fatherOf(fatherOf(x))" title="Calculating a term's denotation" >}}
+
+### Atomic and compound formulas
+
+Once we know what the terms denote, we can check a claim about those objects.
+For $Human(Socrates)$, we look for Socrates in $⟦Human⟧$. For
+$BiggerThan(MrSir, LittleJimmy)$, we look for the ordered pair in
+$⟦BiggerThan⟧$. We then combine the answers using the same truth-functions
+as in {{< chapter_ref chapter="boolean" >}}Boolean algebra{{< /chapter_ref >}}. Satisfaction records the result of these checks.
+
+{{< callout type="definition" title="Satisfaction" >}}
+An assignment $v$ {{< term "satisfaction" "satisfies" >}} a formula $A$ in $M$,
+written $M, v ⊨ A$, according to the following recursive clauses:
+
+- $M, v ⊨ P(t₁, …, tₙ)$ iff $[⟦t₁⟧ᴹᵥ, …, ⟦tₙ⟧ᴹᵥ] ∈ ⟦P⟧ᴹ$.
+- $M, v ⊨ t₁ = t₂$ iff $⟦t₁⟧ᴹᵥ = ⟦t₂⟧ᴹᵥ$.
+- $M, v ⊨ ¬A$ iff $M, v ⊭ A$.
+- $M, v ⊨ (A ∧ B)$ iff $M, v ⊨ A$ and $M, v ⊨ B$.
+- $M, v ⊨ (A ∨ B)$ iff $M, v ⊨ A$ or $M, v ⊨ B$.
+- $M, v ⊨ (A → B)$ iff $M, v ⊭ A$ or $M, v ⊨ B$.
+- $M, v ⊨ (A ↔ B)$ iff ($M, v ⊨ A$ iff $M, v ⊨ B$).
+{{< /callout >}}
+
+{{< term "identity" "Identity" >}} compares the objects denoted by two terms.
+In our starting model, $$MrSir = fatherOf(LittleJimmy)$$ is true because both
+terms denote Mr Sir. The names do not have to look alike. Conversely, a
+predicate atom is true only when its whole ordered tuple belongs to the
+predicate's extension.
+
+A {{< term "ground-formula" "ground formula" >}} contains no variables. Take, for example:
+$$(Human(LittleJimmy) ∧ Mortal(LittleJimmy))$$ This is an example of a non-atomic ground formula.
+Every ground formula is a sentence, since it has no free variables. The
+converse fails: $∀x Human(x)$ is a sentence containing a variable.
+
+Recall that a sentence is a *closed formula*: it has no free variable
+occurrences. An assignment affects satisfaction only through the values of
+free variables. So for a closed $A$, any two assignments $v$ and $w$ agree
+on whether it is satisfied:
+
+$$
+M, v ⊨ A  iff  M, w ⊨ A
+$$
+
+A closed formula is therefore satisfied under one assignment iff it is
+satisfied under every assignment. Take $∀x Human(x)$: whatever $v(x)$ was,
+the quantifier checks *every* object. The box makes this sentence false in
+our model regardless of the starting assignment. For the open formula
+$Human(x)$, by contrast, the choice of $v(x)$ matters.
+
+{{< callout type="definition" title="Truth in a model" >}}
+A sentence $A$ is {{< term "truth-in-a-model" "true in a model" >}} $M$, written
+$M ⊨ A$, if $M, v ⊨ A$ for every variable assignment $v$ in $M$.
+{{< /callout >}}
+
+This is why we can omit the assignment for a sentence. For open formulas we
+keep it explicit. The same convention will apply in
+{{< chapter_ref chapter="FOL-inference" >}}FOL Inference{{< /chapter_ref >}}, where we
+compare truth across models to study valid inference.
+
+### Extensions of open formulas
+
+An open formula defines a complex property or relation in a model. To find
+its extension, we go through the possible values of its free variables and
+keep the objects or tuples for which the formula is true.
+
+Write $A(x₁, …, xₙ)$ to list all the free variables of $A$ in a chosen order.
+An {{< term "assignment-prescription" "assignment prescription" >}} $[x₁ ↦ d₁, …, xₙ ↦ dₙ]$ gives each of them a
+value. These are the only values satisfaction depends on.[^prescription]
+
+{{< callout type="definition" title="Satisfying tuples and extensions" >}}
+Let $x₁, …, xₙ$ be exactly the distinct free variables of $A$. In a model $M$
+with domain $D$, the tuple $[d₁, …, dₙ] ∈ Dⁿ$ **satisfies** $A(x₁, …, xₙ)$,
+written $M ⊨ A(d₁, …, dₙ)$, iff
+
+$$
+M, [x₁ ↦ d₁, …, xₙ ↦ dₙ] ⊨ A(x₁, …, xₙ).
+$$
+
+The {{< term "formula-extension" "extension of A" >}} is
+
+$$
+⟦A(x₁, …, xₙ)⟧ᴹ = {[d₁, …, dₙ] ∈ Dⁿ | M ⊨ A(d₁, …, dₙ)}.
+$$
+{{< /callout >}}
+
+Here $A(d₁, …, dₙ)$ is semantic shorthand: the objects need not have names
+in our language.
+
+[^prescription]: Formally, complete the prescription to any assignment on all
+    variables. Every completion gives the same result, since all free variables
+    already have their values.
+
+For one free variable, we identify a one-tuple $[d]$ with its object $d$.
+For example, $⟦(Human(x) ∧ Mortal(x))⟧$ contains all four humans in the starting
+model. If Jimmy becomes immortal, it contains only Mr Sir, Granny Smith,
+and Socrates. For two free variables, we try the ordered pairs $[d, e] ∈ D²$,
+assigning $d$ to $x$ and $e$ to $y$ for each check.
+
+The extension of $(BiggerThan(x, y) ∧ Human(x))$ keeps the $BiggerThan$ rows
+whose first object is human. There are three such pairs in our starting model:
+
+{{< logic-app name="fol-model" model="people-relations" kind="query" editable="false" view="domain" formula="(BiggerThan(x, y) ∧ Human(x))" title="The extension of an open formula" >}}
+
+These sets of satisfying tuples will become our database query answers.
+A required positive atom lets us skip tuples absent from its relation; negation
+and unrestricted formulas can still require the whole domain.
+
+### Quantifiers and truth in a model
+
+The extension makes the quantifiers easy to read. An existential claim says
+that the extension has a member; a universal claim says it fills the domain.
+
+For a formula with $x$ as its only free variable:
+
+$$
+M ⊨ ∀x A(x)  iff  ⟦A(x)⟧ᴹ = D
+M ⊨ ∃x A(x)  iff  ⟦A(x)⟧ᴹ ≠ ∅
+$$
+
+In $∃y Sibling(x, y)$, we still need a value for $x$: whose siblings are
+we asking about? The quantifier changes the value of $y$ while keeping $x$
+fixed. We implement this by updating an assignment with a prescription:
+
+{{< callout type="definition" title="Assignment variant" >}}
+The {{< term "assignment-variant" "assignment variant" >}} $v[x ↦ d]$ assigns
+$d ∈ D$ to $x$ and agrees with $v$ on every other variable. A prescription
+with several distinct variables updates all their values at once.
+{{< /callout >}}
+
+{{< callout type="definition" title="Quantifier clauses" >}}
+For a model $M$ with domain $D$ and an assignment $v$:
+
+- $M, v ⊨ ∃x A$ iff $M, v[x ↦ d] ⊨ A$ for some $d ∈ D$.
+- $M, v ⊨ ∀x A$ iff $M, v[x ↦ d] ⊨ A$ for every $d ∈ D$.
+{{< /callout >}}
+
+
+An existential quantifier tries possible values for its variable. One witness
+is enough. A universal quantifier requires every value to work; one
+counterexample is enough to refute it. In either case, the other variables keep
+their current assignments.
+
+In the model below, each human belongs to $⟦Mortal⟧$. For each object we
+check the whole conditional $Human(x) → Mortal(x)$. A false antecedent makes
+the conditional true; a human outside $⟦Mortal⟧$ would make it false. Once all
+five objects pass this check, the universal sentence is true.
+
+{{< logic-app name="fol-model" model="people-relations" kind="evaluate" view="sets" formula="∀x (Human(x) → Mortal(x))" title="Truth in a finite model" >}}
+
+## Finite and infinite models {#finite-models}
+
+Our examples use finite lists of objects, but FOL can also describe the whole
+set of natural numbers. A {{< term "finite-model" "finite model" >}} has finitely
+many domain objects; an {{< term "infinite-model" "infinite model" >}} has
+infinitely many. Infinite models are indispensable in logic and mathematics. Some axioms even *require* an infinite model: a strict,
+transitive ordering in which every object has a larger one cannot be finite.
+
+Concrete databases, by contrast, contain finitely many records. Many AI tasks
+also concern a finite collection of objects: people in a register, parts in a
+warehouse, or countries on a map. The study of finite models is therefore
+central to [database theory](https://en.wikipedia.org/wiki/Database_theory).
+
+<span id="checking-a-finite-model"></span>
+For a finite model, the satisfaction clauses give us an algorithm for
+{{< term "model-checking" "model checking" >}}: evaluate atoms, combine their
+truth-values using the connectives, and check domain objects for the quantifiers.
+Every search finishes, though nested quantifiers can require many checks.
+On an infinite domain, we cannot generally settle a quantified claim by
+running through all the objects. We may need a proof instead.
+
+## Databases and FOL {#databases-and-fol}
+
+A finite model's predicate extensions can be stored as database tables. We
+can then use formulas to ask questions about the stored information. Let's
+build a database and see how this works.
+
+### From a model to a database
+
+{{< img src="/img/drawings/gimmick_database.svg" class="float-start me-3" width="140px" alt="A database." >}}
+Suppose we want to record countries, their capitals, their continents, and
+languages spoken there. We can describe this information as a model, then
+store its relations as tables in a
+{{< term "relational-database" "relational database" >}}. Our example uses a
+small dataset; it does not attempt to list every language spoken in each country.
+Choosing which objects and relations to represent is part of
+{{< term "knowledge-engineering" "knowledge engineering" >}}.
+
+We use the binary predicates $CapitalOf$, $CityIn$, $LocatedIn$, and $LanguageOf$.
+$CapitalOf(country, capital)$ puts the country first. The domain consists of
+18 objects, each identified by a distinct text value. Constants such as
+$Europe$ and $Japan$ denote the corresponding objects. New York appears in
+$CityIn$; Washington D.C. appears as the United States' capital.
+
+Each predicate extension becomes a table with one column per argument place
+and one row per tuple. For example, $[France, Paris] ∈ ⟦CapitalOf⟧$ gives a
+row with `France` in the `country` column and `Paris` in the `capital` column.
+SQL has no built-in table of all domain objects. When exporting a model, we
+explicitly create $Domain(value)$, including objects absent from every relation.
+Without this table, we read a database's domain as the union of the values in
+its relation columns, its **active domain**. An empty union needs a nonempty
+$Domain$ table to give a model in our sense. Constants must denote objects in
+the chosen domain; there are no function symbols here.
+
+The database needs both a table structure and its contents. In SQL,
+`CREATE TABLE` declares the columns of an initially empty table; `INSERT INTO`
+adds its rows. `TEXT` makes the entries text identifiers, and `NOT NULL`
+requires a value in each column. A `PRIMARY KEY` covering all columns prevents
+duplicate rows, so the table represents a set of tuples.
+
+{{< logic-app name="fol-model" model="world" kind="database" view="tables" title="From a model to a database" >}}
+
+With $Domain$ included, the round trip preserves otherwise unused objects.
+Without it, the app uses the active domain. Constant denotations stay fixed.
+Each SQL example starts from its own database.
+
+### From formulas to queries {#asking-questions-of-the-database}
+
+With the model stored, we can ask for the countries in Europe or their capitals.
+An open formula specifies the condition, and its extension gives the answer.
+This is the connection between the syntactic and semantic approaches to
+knowledge representation: a formula picks out information in a stored model.
+
+{{< callout type="definition" title="Relational query" >}}
+A {{< term "relational-query" "relational query" >}} specified by a formula
+returns the tuples of domain objects that satisfy the formula when assigned
+to its free variables, in the specified order.
+{{< /callout >}}
+
+For instance, $LocatedIn(x, Europe)$ asks for the countries in Europe. Its
+answer in our database is France, the United Kingdom, and Greece. The formula
+
+$$
+∃y (CapitalOf(y, x) ∧ LocatedIn(y, Europe))
+$$
+
+asks for their capitals. A candidate value of $x$ is kept when some $y$ relates
+to it through $CapitalOf$ and also relates to $Europe$ through $LocatedIn$.
+The answer is Paris, London, and Athens.
+
+For $LocatedIn(x, Europe)$, consider France as a value of $x$. The
+pair $[France, Europe]$ occurs in $⟦LocatedIn⟧$, so we keep France.
+Japan fails the same test: its recorded continent is Asia. Each candidate is
+checked against the stored relation, and the successful candidates form the
+answer table.
+
+{{< logic-app name="fol-model" model="world" kind="query" editable="false" view="domain" formula="LocatedIn(x, Europe)" title="Query a relational database" >}}
+
+The negated query $¬LocatedIn(Japan, x)$ returns every domain object
+except Asia, including objects that are not continents. Negation takes its
+complement relative to the whole domain. If we want continents only, we must
+express that further restriction.
+
+<span id="formulas-to-sql"></span>
+
+In SQL, we can retrieve the extension of $LocatedIn(x, Europe)$ as follows:
+
+{{< sql-app model="world" title="Querying European countries" >}}
+SELECT DISTINCT country
 FROM LocatedIn
 WHERE continent = 'Europe';
-~~~
+{{< /sql-app >}}
 
-If you copy-paste this code into the Query field of our
-[db-fiddle](https://www.db-fiddle.com/f/bTqC7rED8PrABxDyhN766d/2), you'll get a
-table like this:
+{{< callout type="note" title="Our database assumptions" >}}
+Values are non-NULL text identifiers, one per object. Tables give complete
+predicate extensions: an absent tuple is false in this model. Query answers
+are sets, obtained in SQL with $DISTINCT$. Quantifiers range over the explicit
+finite table $Domain(value)$, including objects absent from all relation
+extensions.
+{{< /callout >}}
 
-{{< img src="img/db_query_1.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
+#### Atomic queries
 
-But hang on, the similarities continue. Suppose that our language had constants
-for the countries (`UnitedStates, Netherlands, Germany, Italy,Japan`),
-continents (`NorthAmerica, Europe, Asia`), and languages (`English, Dutch,
-German, Italian, and Japanese`), with the stipulation that these constants
-indeed denote the corresponding countries, this table gives the extension of the
-open formula:
+We now go through the syntactic operations one by one. Each rule translates
+a formula using the translations of its immediate parts. The reverse problem,
+finding a formula for a query built from table operations, leads to Codd's theorem.
 
-```sql LocatedIn(x, Europe)```
+The short query above reads $LocatedIn$ directly. For a recursive translation,
+we use a uniform outer query: range over the possible values of
+each free variable and test the formula as an SQL condition. For one free
+variable $x$, the outer query has this form:
 
-We can carry this idea _much_ further:
+```sql
+SELECT DISTINCT d.value AS x
+FROM Domain AS d
+WHERE /* condition for the formula */;
+```
 
- {{< sql_logo >}}
-~~~sql
-SELECT CapitalOf.capital
-FROM CapitalOf
-JOIN LocatedIn ON CapitalOf.country = LocatedIn.country
-WHERE LocatedIn.continent = 'Europe';
-~~~
+This is a template: the comment must be replaced by a condition. `d` is an
+alias, a local name for a row of $Domain$. Its `value` column supplies the
+current value of $x$. With two free variables $x, y$, we use two aliases:
+`FROM Domain AS d CROSS JOIN Domain AS e`. The product visits every ordered
+pair of domain values. `SELECT DISTINCT d.value AS x, e.value AS y` returns
+the pairs that pass the condition, without repetitions.
 
-This returns: 
+A predicate atom asks whether a particular row exists. For $LocatedIn(x, Europe)$,
+we search $LocatedIn$ for the current value of $x$ paired with Europe:
 
-{{< img src="img/db_query_2.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
+{{< sql-app model="world" title="An atomic row test" >}}
+SELECT DISTINCT d.value AS x
+FROM Domain AS d
+WHERE EXISTS (
+    SELECT 1 FROM LocatedIn AS r
+    WHERE r.country = d.value
+      AND r.continent = 'Europe'
+);
+{{< /sql-app >}}
 
-But this is just the extension of 
+`EXISTS` is true when its inner query returns at least one row. `SELECT 1`
+puts a placeholder value in that row: here we only need to know whether a
+matching row exists. A constant becomes its text identifier, such as
+`'Europe'`; a variable becomes its current domain value, such as `d.value`.
+Thus $x = Japan$ translates to `d.value = 'Japan'`. If a variable occurs twice,
+both occurrences use the same value: $LocatedIn(x, x)$ requires both columns
+of a relation row to equal `d.value`.
 
-```∃y (CapitalOf(x,y) ∧ LocatedIn(y,Europe))```
+#### Propositional connectives
 
-If we systematically explore these observations, we find that there is a direct
-correspondence between SQL queries and open FOL formulas: this is a core idea of
-Codd's theorem. This correspondence carries on to a very low level: the
-algorithms SQL implementations use to return data for queries _are_ algorithms
-for FOL model checking. Much more could be said about this, but that's the
-content of a course on DB theory. What the take home message is for today is
-that the way we store knowledge in computer systems and query that knowledge is
-intimately related to FOL, making it one of the core logical methods for AI.
+Suppose we have already translated $A$ and $B$ to SQL conditions. We combine
+those conditions according to the main connective, just as in recursive
+formula evaluation. Write `query(A)` for the SQL condition translating $A$, including any inner
+queries:
+
+| FOL | SQL condition |
+| --- | --- |
+| $¬A$ | {{< sql-condition "NOT (query(A))" >}} |
+| $A ∧ B$ | {{< sql-condition "(query(A)) AND (query(B))" >}} |
+| $A ∨ B$ | {{< sql-condition "(query(A)) OR (query(B))" >}} |
+| $A → B$ | {{< sql-condition "(NOT (query(A))) OR (query(B))" >}} |
+
+For example, $LocatedIn(x, Europe) ∧ ¬LanguageOf(x, English)$ has conjunction
+as its main connective. Translate the two atoms first, negate the second
+condition, and join them with `AND`:
+
+{{< sql-app model="world" title="Conjunction and negation" >}}
+SELECT DISTINCT d.value AS x
+FROM Domain AS d
+WHERE EXISTS (
+    SELECT 1 FROM LocatedIn AS r
+    WHERE r.country = d.value
+      AND r.continent = 'Europe'
+)
+AND NOT EXISTS (
+    SELECT 1 FROM LanguageOf AS l
+    WHERE l.country = d.value
+      AND l.language = 'English'
+);
+{{< /sql-app >}}
+
+The answer is France and Greece. Replacing `AND` with `OR` changes the
+formula's main connective and therefore its answer. Notice that `NOT` rejects
+a candidate exactly when the condition inside it succeeds. Because candidates
+come from $Domain$, negation can also retain cities, languages, and continents.
+Restricting a variable to countries takes another condition; its name alone
+doesn't restrict its range.
+
+#### Quantifiers
+
+An existential quantifier introduces another search over $Domain$. For each
+current value of $x$, $∃y A(x, y)$ asks whether *some* value of $y$ makes $A$
+true. Give $y$ a fresh domain alias, translate $A$ using that alias, and put
+the condition inside `EXISTS`.
+
+For $∃y (CapitalOf(y, x) ∧ LocatedIn(y, Europe))$, the recursion has three
+steps: translate the two atoms, combine them with `AND`, then search for a
+value of $y$ satisfying that conjunction. The outer alias `d` supplies $x$;
+the inner alias `e` supplies $y$:
+
+{{< sql-app model="world" title="An existential query" >}}
+SELECT DISTINCT d.value AS x
+FROM Domain AS d
+WHERE EXISTS (
+    SELECT 1 FROM Domain AS e
+    WHERE EXISTS (
+        SELECT 1 FROM CapitalOf AS c
+        WHERE c.country = e.value
+          AND c.capital = d.value
+    )
+    AND EXISTS (
+        SELECT 1 FROM LocatedIn AS r
+        WHERE r.country = e.value
+          AND r.continent = 'Europe'
+    )
+);
+{{< /sql-app >}}
+
+Only $x$ appears in the result. The inner value of $y$ supplies a witness;
+it isn't a free variable of the whole formula.
+
+A universal quantifier asks whether every value passes. SQL can express this
+by looking for a failure: $∀y A$ is true exactly when $∃y ¬A$ is false.
+Translate $A$, negate its condition, search for such a value of $y$, and
+negate the search result:
+
+| FOL | SQL condition template |
+| --- | --- |
+| $∃y A$ | {{< sql-condition "EXISTS (SELECT 1 FROM Domain AS e WHERE query(A))" >}} |
+| $∀y A$ | {{< sql-condition "NOT EXISTS (SELECT 1 FROM Domain AS e WHERE NOT (query(A)))" >}} |
+
+Here `query(A)` uses `e.value` for $y$; the notation is a placeholder, not an SQL function.
+For example, $∀y (LocatedIn(x, y) → y = Europe)$ asks for objects whose
+recorded locations, if any, are all Europe. A counterexample would be a
+location other than Europe:
+
+{{< sql-app model="world" title="A universal query" >}}
+SELECT DISTINCT d.value AS x
+FROM Domain AS d
+WHERE NOT EXISTS (
+    SELECT 1 FROM Domain AS e
+    WHERE EXISTS (
+        SELECT 1 FROM LocatedIn AS r
+        WHERE r.country = d.value
+          AND r.continent = e.value
+    )
+    AND NOT (e.value = 'Europe')
+);
+{{< /sql-app >}}
+
+France, the United Kingdom, and Greece pass. Objects with no recorded location
+also pass: they supply no counterexample to the conditional. The United States
+and Japan fail. To ask specifically for European countries, the earlier
+positive atomic query is a better choice.
+
+With iterated quantifiers, repeat the construction. Each quantifier gets a
+fresh alias, and the scope is translated using that alias for its bound
+variable. An inner quantifier for the same variable temporarily replaces its
+outer alias; outside that scope, the outer alias still applies. The parse
+tree determines where each translation step belongs. This gives us a procedure
+for translating formulas of any depth in our relational language.
+
+### Codd's theorem {#codd-and-curry-howard}
+
+We can now translate a formula by translating its parts. Can we go back as
+well, from a computation on tables to a formula? Codd's theorem gives us this
+connection between logic and databases.
+
+We need one qualification. A query is *domain-independent* if adding unused
+objects to the domain, while leaving the stored relations and constant
+denotations unchanged, leaves its answer unchanged. Asking for European
+capitals has this property: adding an object to no relation cannot make it
+a European capital.
+
+{{< callout type="theorem" title="Codd's theorem" >}}
+The domain-independent queries expressible by FOL formulas are exactly the
+queries computable from relation tables by selecting rows, projecting columns,
+renaming columns, taking products and unions, and subtracting one set of rows
+from another.
+{{< /callout >}}
+
+Selecting rows tests their values; projecting columns keeps only the requested
+columns. Products combine rows from two tables, and subtraction removes rows
+found in the second table. These operations form
+{{< term "relational-algebra" "relational algebra" >}}; describing queries
+with FOL formulas is called {{< term "relational-calculus" "relational calculus" >}}.
+We use SQL to write the table operations. Codd's theorem says that we can
+translate between these computations and formulas without changing the answer
+on any database.
+
+Our negated query, $¬LocatedIn(Japan, x)$, explains the domain-independence
+qualification: adding an unused object changes its answer. Our recursive
+translation handles such formulas too because it explicitly queries $Domain$.
+Codd's theorem concerns queries that need no such dependence on unused objects.
+
+This recalls the {{< term "curry-howard" "Curry–Howard correspondence" >}} from
+{{< chapter_ref chapter="proofs" id="concrete-curryhoward-correspondence" >}}Logical proofs{{< /chapter_ref >}}. There, a formula becomes a type, and a
+proof becomes a program of that type. Here, a model becomes a database, and
+an open formula becomes a query on that database:
+
+| | Logical representation | Computational representation |
+| --- | --- | --- |
+| Curry–Howard | Formula | Type |
+| | Proof of the formula | Program of that type |
+| Databases and FOL | Model | Database |
+| | Open formula evaluated in the model | Query evaluated on the database |
+
+Both connections let us move between logical and computational representations.
+A type specifies what a proof program must establish; an open formula
+specifies which tuples a query must return. Codd's theorem tells us that the
+table operations can compute exactly the relations specified by the
+appropriate formulas. Unlike a proof, a query does not establish its formula
+in general: its answer depends on the database we give it.
+
+{{< logic-app name="fol-model" model="world" kind="sql" editable="false" view="domain" formula="∃y (CapitalOf(y, x) ∧ LocatedIn(y, Europe))" title="Formulas and SQL" >}}
+
+Going back from SQL can introduce or rename bound variables. The resulting
+formula needn't be spelled like the original; it must return the same relation.
+SQL also has features outside this correspondence, such as duplicates, NULLs,
+and aggregates. The translation here covers the FOL fragment.
+
+A database query concerns one specified model. A knowledge base can describe
+many possible models. {{< chapter_ref chapter="FOL-inference" >}}FOL Inference{{< /chapter_ref >}} asks which conclusions hold in every
+model of its premises and develops inference rules for reasoning about them.
+
+## Further readings {.readings .nocount}
+
+- Richard Zach, [*Sets, Logic, Computation* (PDF)](https://slc.openlogicproject.org/slc-screen.pdf), chapters 6–7, for first-order syntax, structures, and variable assignments.
+- Russell and Norvig, [*Artificial Intelligence: A Modern Approach*, 4th edition](https://www.pearson.com/en-us/subject-catalog/p/Russell-Lecture-Power-Points-for-Artificial-Intelligence-A-Modern-Approach-4th-Edition/P200000003500/9780137505135), chapter 8, for first-order knowledge representation.

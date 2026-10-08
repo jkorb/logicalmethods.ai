@@ -1,19 +1,19 @@
 {{/* Parser app. The shortcode hands over its own context as .sc, so the
      app-specific parameters are read and validated here. */}}
-{{- $mode := .sc.Get "mode" | default "strict" -}}
+{{- $mode := .sc.Get "mode" | default (cond (eq (.sc.Get "language") "fol") "conventional" "strict") -}}
 {{- if not (in (slice "strict" "conventional") $mode) }}{{ errorf "Unknown parser mode %q" $mode }}{{ end -}}
 {{- $id := .id -}}
-<section class="logic-app" data-logic-app="parser" data-mode="{{ $mode }}" aria-label="{{ .sc.Get "title" | default "Abstract syntax trees" }}">
+<section class="logic-app" data-logic-app="parser" data-mode="{{ $mode }}" data-language="{{ .sc.Get "language" | default "propositional" }}" data-kind="{{ .sc.Get "kind" | default "formula" }}" aria-label="{{ .sc.Get "title" | default "Abstract syntax trees" }}">
+{{ with .sc.Get "signature" }}<script type="application/json" data-fol-language>{{ index hugo.Data.fol_languages . | jsonify | safeJS }}</script>{{ end }}
   <form class="logic-app__form">
     <div class="logic-app__input-wrap">
-      <input id="{{ $id }}-input" class="logic-app__input" aria-label="Formula" type="text" value="{{ .sc.Get "formula" | default "((p ∧ q) → ¬r)" }}" autocomplete="off" spellcheck="false" maxlength="512" aria-describedby="{{ $id }}-help" disabled>
+      <textarea data-submit-enter id="{{ $id }}-input" class="logic-app__input" aria-label="Formula" autocomplete="off" spellcheck="false" maxlength="512" {{ if ne (.sc.Get "language") "fol" }}aria-describedby="{{ $id }}-help"{{ end }} rows="1" disabled>{{ .sc.Get "formula" | default "((p ∧ q) → ¬r)" }}</textarea>
       <button type="button" class="logic-app__edit" aria-label="Edit formula" title="Edit formula" disabled>{{ partial "apps/icon.html" "edit" }}</button>
     </div>
-    <p id="{{ $id }}-help" class="logic-app__help">{{ if eq (.sc.Get "variables") "plain" }}Use p, q, and r as variables.{{ else }}Use p₁, p₂, … or the shorthand p, q, r as variables.{{ end }} LaTeX commands turn into symbols as you type. <a href="{{ "textbook/notation/#latex-cheat-sheet" | relURL }}">LaTeX cheat sheet</a></p>
+    {{ if ne (.sc.Get "language") "fol" }}<p id="{{ $id }}-help" class="logic-app__help">{{ if eq (.sc.Get "language") "fol" }}Use the example language; LaTeX commands convert as you type.{{ else if eq (.sc.Get "variables") "plain" }}Use p, q, and r as variables.{{ else }}Use p₁, p₂, … or the shorthand p, q, r as variables.{{ end }}{{ if ne (.sc.Get "language") "fol" }} LaTeX commands turn into symbols as you type.{{ end }} <a href="{{ "textbook/notation/#latex-cheat-sheet" | relURL }}">LaTeX cheat sheet</a></p>{{ end }}
     <button class="logic-app__use" type="submit" disabled>Start parsing</button>
   </form>
-  <p class="logic-app__mode">{{ if eq $mode "strict" }}Full brackets: each binary formula has its own pair of brackets.{{ else }}Conventional notation: ¬, ∧, ∨, →, ↔ in decreasing priority; ∧ and ∨ group left, → groups right. Bracket repeated ↔ explicitly.{{ end }}</p>
-  <label class="logic-app__labels"><input type="checkbox" data-formula-labels disabled> Show formulas at nodes</label>
+  {{ if ne (.sc.Get "language") "fol" }}<p class="logic-app__mode">{{ if eq $mode "strict" }}Full brackets: each binary formula has its own pair of brackets.{{ else }}Conventional notation: ¬, ∧, ∨, →, ↔ in decreasing priority; ∧ and ∨ group left, → groups right. Bracket repeated ↔ explicitly.{{ end }}</p>{{ end }}
   <div class="logic-app__controls" aria-label="Parsing steps">
     <button type="button" data-action="first" aria-label="First step" title="First step" disabled>{{ partial "apps/icon.html" "first" }}</button>
     <button type="button" data-action="previous" aria-label="Previous step" title="Previous step" disabled>{{ partial "apps/icon.html" "previous" }}</button>
@@ -22,8 +22,14 @@
     <button type="button" data-action="last" aria-label="Last step" title="Last step" disabled>{{ partial "apps/icon.html" "last" }}</button>
   </div>
   <div class="logic-app__parse-result">
-  <div class="logic-app__tree" role="region" aria-label="Parsing tree; scroll to view a larger tree" tabindex="0"></div>
-  <div id="{{ $id }}-text" class="logic-app__text" role="region" aria-label="Parsing tree as text" hidden><div></div></div>
+  <div class="parser-canvas">
+  <div class="parser-tools" data-export-controls role="group" aria-label="Tree display and export">
+    <button type="button" data-formula-labels aria-label="Show formulas at nodes" title="Show formulas at nodes" aria-pressed="false" disabled>{{ partial "apps/icon.html" "tree-labels" }}</button>
+    <button type="button" data-export-latex aria-label="Download tree as LaTeX" title="Download tree as LaTeX" disabled>TeX</button>
+  </div>
+  <div class="logic-app__tree" role="region" aria-label="{{ if eq (.sc.Get "language") "fol" }}{{ .sc.Get "title" }}: {{ end }}Parsing tree" tabindex="0"></div>
+  <div id="{{ $id }}-text" class="logic-app__text" role="region" aria-label="{{ if eq (.sc.Get "language") "fol" }}{{ .sc.Get "title" }}: {{ end }}Parsing tree as text" hidden><div></div></div>
+  </div>
   <div class="logic-app__status" role="status" aria-live="polite" aria-atomic="true">The interactive tree is loading. The explanation in the chapter can also be followed without it.</div>
   </div>
   <button type="button" class="logic-app__text-toggle" aria-label="Show tree as text" title="Show tree as text" aria-expanded="false" aria-controls="{{ $id }}-text" disabled>{{ partial "apps/icon.html" "accessibility" }}</button>

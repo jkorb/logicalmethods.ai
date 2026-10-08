@@ -1,8 +1,11 @@
 import { renderTree } from './tree-renderer.js';
 import { traceParse } from '../logic/parser.js';
+import { traceFOL } from '../logic/fol-parser.js';
 import { enableLatexInput, convertInput } from './latex-input.js';
+import { treeToLatex } from '../logic/tree-latex.js';
+import { downloadText } from './download-text.js';
 export function mountParser(root) {
-  const input = root.querySelector('input');
+  const input = root.querySelector('.logic-app__input');
   const status = root.querySelector('[role="status"]');
   const viewport = root.querySelector('.logic-app__tree');
   const count = root.querySelector('.logic-app__count');
@@ -15,6 +18,24 @@ export function mountParser(root) {
   let result;
   let index = 0;
   let dirty = false;
+  let treeSizes = [];
+  const scale = root.dataset.language === 'fol' ? .72 : 1;
+  const nodeLabel = node => formulaLabels.getAttribute('aria-pressed') === 'true' ? node.text || '?' : node.label;
+  function sizeCanvas() {
+    const width = viewport.clientWidth;
+    if (!width || !treeSizes.length) return;
+    // Reserve the largest step at the current width before the walkthrough starts.
+    const height = Math.max(...treeSizes.map(([w, h]) => h * Math.min(scale, width / w)));
+    viewport.style.minBlockSize = `${Math.ceil(height)}px`;
+  }
+  function measureTrace() {
+    treeSizes = result.steps.filter(step => step.tree).map(step => {
+      const drawing = renderTree(step.tree, { nodeLabel });
+      return [Number(drawing.getAttribute('width')), Number(drawing.getAttribute('height'))];
+    });
+    sizeCanvas();
+  }
+  new ResizeObserver(sizeCanvas).observe(viewport);
   function render() {
     const step = result.steps[index];
     count.textContent = `${index + 1} / ${result.steps.length}`;
@@ -46,8 +67,9 @@ export function mountParser(root) {
     const textTree = root.querySelector('.logic-app__text > div');
     textTree.replaceChildren();
     if (!step.tree) return;
-    const nodeLabel = node => formulaLabels.checked ? node.text || '?' : node.label;
-    viewport.append(renderTree(step.tree, { active: step.active, nodeLabel }));
+    const drawing = renderTree(step.tree, { active: step.active, nodeLabel });
+    drawing.style.width = `${Number(drawing.getAttribute('width')) * scale}px`; drawing.style.maxInlineSize = '100%';
+    viewport.append(drawing);
     function describe(node) {
       const li = document.createElement('li');
       li.textContent = `${node.id === step.active ? 'Current: ' : ''}${node.label === '?' ? `Not yet parsed: ${node.text || 'empty string'}` : nodeLabel(node)}${node.complete ? ' (complete)' : ''}`;
@@ -62,18 +84,28 @@ export function mountParser(root) {
     ul.append(describe(step.tree));
     textTree.append(ul);
   }
+  root.querySelector('[data-export-latex]').addEventListener('click', () => {
+    const tree = result?.steps[index]?.tree;
+    if (!dirty && tree) downloadText('parsing-tree.tex', treeToLatex(tree, formulaLabels.getAttribute('aria-pressed') === 'true'));
+  });
   function start() {
     convertInput(input);
     dirty = false;
+    root.querySelector('[data-export-latex]').disabled = false;
     input.readOnly = true;
     use.hidden = true;
     edit.hidden = false;
-    result = traceParse(input.value, { mode: root.dataset.mode });
+    result = root.dataset.language === 'fol'
+      ? traceFOL(input.value, { mode: root.dataset.mode, kind: root.dataset.kind, language: root.querySelector("[data-fol-language]") ? JSON.parse(root.querySelector("[data-fol-language]").textContent) : undefined })
+      : traceParse(input.value, { mode: root.dataset.mode });
     index = 0;
+    measureTrace();
     render();
   }
   function edited() {
     dirty = true;
+    treeSizes = []; viewport.style.minBlockSize = '';
+    root.querySelector('[data-export-latex]').disabled = true;
     for (const button of Object.values(controls)) button.disabled = true;
     viewport.replaceChildren();
     root.querySelector('.logic-app__text > div').replaceChildren();
@@ -90,7 +122,12 @@ export function mountParser(root) {
     edited();
     input.focus();
   });
-  formulaLabels.addEventListener('change', () => { if (!dirty) render(); });
+  formulaLabels.addEventListener('click', () => {
+    const on = formulaLabels.getAttribute('aria-pressed') !== 'true';
+    formulaLabels.setAttribute('aria-pressed', String(on));
+    formulaLabels.title = on ? 'Show abstract syntax tree' : 'Show formulas at nodes';
+    if (!dirty) { measureTrace(); render(); }
+  });
   textToggle.addEventListener('click', () => {
     const showText = textView.hidden;
     textView.hidden = !showText;
@@ -105,7 +142,7 @@ export function mountParser(root) {
     index = action === 'first' ? 0 : action === 'last' ? result.steps.length - 1 : index + (action === 'next' ? 1 : -1);
     render();
   });
-  root.querySelectorAll('button, input').forEach(el => { el.disabled = false; });
+  root.querySelectorAll('button, input, textarea').forEach(el => { el.disabled = false; });
   start();
   root.querySelector('[data-app-fallback]')?.remove();
 }

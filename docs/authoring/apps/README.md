@@ -4,6 +4,7 @@ Shortcode-driven components used in textbook pages and exercise solutions.
 
 ## The `logic-app` family
 
+- [Scope and binding](fol-scope.md) — quantifier arrows and checked binding practice.
 - [The parser](parser.md) — `name="parser"`, strict and conventional grammars.
 - [The LaTeX drill](latex-game.md) — `name="latex-game"`.
 - [The formula builder](formula-builder.md) — `name="builder"`.
@@ -20,12 +21,19 @@ Shortcode-driven components used in textbook pages and exercise solutions.
 
 - [Natural deduction and Lean](deduction.md) — checked proof canvases, worked-out examples, and a bounded Lean translator.
 
+- [SQL correspondence](fol-sql.md) — translate formulas and relational queries in both directions.
+- [Model data](fol-data.md) — per-instance languages, object palettes, and interpretations.
+- [First-order models and queries](fol.md) — pictured domains, interpretations, truth traces, and database queries.
 
 ## Standalone shortcodes
+
+- [Executable SQL](sql.md) — local SQLite editors for queries and initialization.
 
 - [Static syntax trees](syntax-trees.md) — `syntax-tree`.
 - [Sets with pictures](sets.md) — `set`, including `expression=true`.
 - [The tree terminology gadget](tree-guide.md) — `tree-guide`.
+- [Model worlds](fol-worlds.md) — the progression from scenarios to structured models.
+- [Binding diagrams](binding-diagrams.md) — formula text with quantifier arrows.
 - [Annotated symbol groups](annotated-math.md) — `annotated-math`.
 - [Set diagrams](set-diagrams.md) — `set-diagram`.
 - [Function tables](function-tables.md) — finite operation tables and written addition.
@@ -58,3 +66,5 @@ use the same parsing implementation.
 - [The tools section](../tools-section.md) — which apps get their own page at `/tools/`.
 
 - [Goals and canvas layout](deduction-goals.md) — backward proof plans, fullscreen, and Lean holes.
+
+- [FOL exercises](fol-practice.md) — typed construction, model building, and graded SQL.

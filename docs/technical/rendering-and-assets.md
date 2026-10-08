@@ -27,6 +27,10 @@ modules. Section templates can add scripts, such as exercise interactions.
 The exercise script uses a relative URL with a content fingerprint, so previews
 load their own password hashes and password changes invalidate cached scripts.
 
+Executable SQL examples publish the pinned sql.js loader and WASM binary as
+fingerprinted resources. The worker loads them on demand from this origin;
+see [SQL runtime](../authoring/apps/sql.md#runtime).
+
 ## Related
 
 - [Render hooks](../design/render-hooks.md) — what each hook emits.

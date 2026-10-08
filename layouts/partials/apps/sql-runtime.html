@@ -1,0 +1,16 @@
+{{- $worker := resources.Get "js/apps/sql-worker.js" | js.Build (dict "targetPath" "js/sql-worker.js" "format" "iife" "minify" true) | fingerprint -}}
+{{- $loader := resources.Get "vendor/sql.js/sql-wasm.js" | fingerprint -}}
+{{- $wasm := resources.Get "vendor/sql.js/sql-wasm.wasm" | fingerprint -}}
+{{- $license := resources.FromString "vendor/sql.js/LICENSE.txt" (printf "%s\n\nAUTHORS\n=======\n%s" (resources.Get "vendor/sql.js/LICENSE").Content (resources.Get "vendor/sql.js/AUTHORS").Content) -}}
+<div class="sql-runtime" data-sql-runtime data-worker="{{ $worker.RelPermalink }}" data-loader="{{ $loader.RelPermalink }}" data-wasm="{{ $wasm.RelPermalink }}">
+  <div class="sql-run-controls">
+    <button type="button" data-run-sql disabled>{{ partial "apps/icon.html" "play" }} Run</button>
+    <button type="button" data-stop-sql hidden>{{ partial "apps/icon.html" "stop" }} Stop</button>
+    <span class="sql-run-note">{{ .note }}</span>
+    <a class="sql-license" href="{{ $license.RelPermalink }}" title="sql.js license">Powered by sql.js</a>
+  </div>
+  <div class="sql-output" data-sql-output hidden>
+    <p data-sql-status role="status" aria-live="polite"></p>
+    <div data-sql-results></div>
+  </div>
+</div>

@@ -1,0 +1,186 @@
+{
+  "language": {
+    "constants": [
+      "jimmy",
+      "linus",
+      "sir",
+      "lady",
+      "gran",
+      "ny",
+      "london",
+      "soccer"
+    ],
+    "functions": {},
+    "predicates": {
+      "Loves": 2,
+      "IsFrom": 2,
+      "LivesIn": 2,
+      "ParentOf": 2
+    }
+  },
+  "objects": [
+    {
+      "id": "jimmy",
+      "label": "Little Jimmy",
+      "emoji": "👦"
+    },
+    {
+      "id": "linus",
+      "label": "Linus",
+      "emoji": "🧑"
+    },
+    {
+      "id": "sir",
+      "label": "Mr Sir",
+      "emoji": "👨"
+    },
+    {
+      "id": "lady",
+      "label": "Lady Dame",
+      "emoji": "👩"
+    },
+    {
+      "id": "gran",
+      "label": "Granny Smith",
+      "emoji": "👵"
+    },
+    {
+      "id": "ny",
+      "label": "New York",
+      "emoji": "🗽"
+    },
+    {
+      "id": "london",
+      "label": "London",
+      "emoji": "🎡"
+    },
+    {
+      "id": "soccer",
+      "label": "Soccer",
+      "emoji": "⚽"
+    }
+  ],
+  "model": {
+    "domain": [
+      "jimmy",
+      "linus",
+      "sir",
+      "lady",
+      "gran",
+      "ny",
+      "london",
+      "soccer"
+    ],
+    "constants": {
+      "jimmy": "jimmy",
+      "linus": "linus",
+      "sir": "sir",
+      "lady": "lady",
+      "gran": "gran",
+      "ny": "ny",
+      "london": "london",
+      "soccer": "soccer"
+    },
+    "functions": {},
+    "predicates": {
+      "Loves": [
+        [
+          "jimmy",
+          "soccer"
+        ],
+        [
+          "linus",
+          "soccer"
+        ],
+        [
+          "gran",
+          "soccer"
+        ]
+      ],
+      "IsFrom": [
+        [
+          "jimmy",
+          "london"
+        ],
+        [
+          "linus",
+          "london"
+        ],
+        [
+          "sir",
+          "london"
+        ],
+        [
+          "lady",
+          "ny"
+        ],
+        [
+          "gran",
+          "london"
+        ]
+      ],
+      "LivesIn": [
+        [
+          "jimmy",
+          "ny"
+        ],
+        [
+          "linus",
+          "ny"
+        ],
+        [
+          "sir",
+          "ny"
+        ],
+        [
+          "lady",
+          "ny"
+        ],
+        [
+          "gran",
+          "london"
+        ]
+      ],
+      "ParentOf": [
+        [
+          "sir",
+          "jimmy"
+        ],
+        [
+          "sir",
+          "linus"
+        ],
+        [
+          "lady",
+          "jimmy"
+        ],
+        [
+          "lady",
+          "linus"
+        ],
+        [
+          "gran",
+          "sir"
+        ]
+      ]
+    }
+  },
+  "columns": {
+    "Loves": [
+      "person",
+      "object"
+    ],
+    "IsFrom": [
+      "person",
+      "place"
+    ],
+    "LivesIn": [
+      "person",
+      "place"
+    ],
+    "ParentOf": [
+      "parent",
+      "child"
+    ]
+  }
+}

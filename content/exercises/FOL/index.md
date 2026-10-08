@@ -1,28 +1,51 @@
 ---
-locked: true
 title: FOL
 author: Johannes Korbmacher
 weight: 80
 params:
-  legacy-notation: true
+  last_edited: "07/10/2026"
   id: exc-fol
 ---
+
+# Building formulas {#building-formulas}
+
+Build each target from terms and formulas using the formation rules. Select
+arguments in order before choosing a function, predicate, or connective.
+For quantification, select a formula and the variable to bind. The first level
+asks for a term; the remaining levels ask for formulas.
+
+{{< logic-app name="fol-practice" exercise="builder" title="Building FOL formulas" >}}
+
+# Scope and binding {#scope-and-binding}
+
+Mark every quantifier's bindings. Select a quantifier, then the variable
+occurrences it binds; select another quantifier to continue. Leave free
+occurrences unconnected. Visit a vacuous quantifier too, but give it no arrows.
+Check the completed diagram.
+
+{{< logic-app name="fol-scope" mode="practice" title="Scope and binding practice" >}}
 
 # Decoding FOL {.solved}
 
 Paraphrase the following FOL formulas in natural language:
 
-1. `∃x (FatherOf x brotherOf jimmy ∧ ¬
-   FatherOf x jimmy)`
+1. $∃x (FatherOf(x, brotherOf(jimmy)) ∧ ¬FatherOf(x, jimmy))$
 
-2. `∀x ( Fish x → ∃y (Fish y ∧
-   BiggerThan y x ))`
+2. $∀x (Fish(x) → ∃y (Fish(y) ∧ BiggerThan(y, x)))$
 
-3. `∃ x SiblingOf jimmy x → ∃ x( SiblingOf
-   jimmy x ∧ ∀y ( Sibling x y → YoungerThan y
-x))`
+3. $(∃x Sibling(jimmy, x) → ∃x (Sibling(jimmy, x) ∧ ∀y (Sibling(x, y) → YoungerThan(y, x))))$
 
-4. `∃x∃y (Thief x ∧ Thief y ∧ ¬ x = y)`
+4. $∃x ∃y (Thief(x) ∧ Thief(y) ∧ x ≠ y)$
+
+5. $∃y ∀x Likes(x, y)$
+
+6. $∀x ∃y Likes(x, y)$
+
+7. $∃x (Key(x) ∧ Opens(x, door) ∧ ∀y ((Key(y) ∧ Opens(y, door)) → y = x))$
+
+8. $¬∃x (Human(x) ∧ ∀y Knows(x, y))$
+
+9. $∀x (Sibling(x, jimmy) → x ≠ jimmy)$
 
 ## Solution { #decoding-folSolution .solution }
 
@@ -33,6 +56,66 @@ x))`
 3. If Jimmy has a sibling at all, then one of Jimmy's siblings is older than all of their siblings.
 
 4. There are at least two different thieves.
+5. There is someone whom everyone likes.
+6. Everyone likes someone, possibly a different person in each case.
+7. Exactly one key opens the door.
+8. No human knows everyone.
+9. None of Jimmy's siblings is Jimmy himself.
+
+# Substitution {.solved}
+
+Substitution replaces the **free** occurrences of a variable by a term.
+Let's work out its recursive definition. Write $E[t/x]$ for replacing $x$
+by $t$ in a term or formula $E$.
+
+1. Parse $R(g(x, a), f(x))$. Replace $x$ by $f(y)$ at the leaves and
+   rebuild the tree upward. What happens at a variable different from $x$?
+   At a constant?
+
+    {{< logic-app name="parser" language="fol" formula="R(g(x, a), f(x))" title="Following a substitution" >}}
+
+2. Write recursive clauses for variables, constants, function applications,
+   predicate applications, identity, and the propositional connectives.
+   Which clauses have the same pattern?
+3. Consider $(P(x) ∧ ∀x Q(x))[a/x]$. Which occurrence changes, and why must
+   substitution stop at the quantifier?
+4. Now try $(∃y R(x, y))[y/x]$. Blind replacement gives $∃y R(y, y)$.
+   Why is this wrong? Compare “the object assigned to $y$ relates to
+   something” with “something relates to itself”. Rename the bound $y$
+   to a fresh $z$ before substituting. What condition tells us that such
+   renaming is needed?
+5. Combine your clauses in the algorithm below. Here an *application* includes
+   function and predicate applications and identity; `rebuild` keeps the
+   original operator and uses the new children. `free_variables` applies to
+   both terms and formulas. `rename_free(B, y, z)` renames the free occurrences
+   of $y$ in $B$, stopping at inner quantifiers that bind $y$.
+   `fresh_variable(E, t, x)` chooses a variable absent from $E$ and $t$ and
+   different from $x$. Why is no renaming needed when $x$ is not free in $B$?
+
+{{< logic-app name="fol-practice" exercise="substitution" title="Substitution pseudocode" >}}
+
+## Solution {#substitutionSolution .solution}
+
+1. The result is $R(g(f(y), a), f(f(y)))$. Replace a variable equal to $x$
+   by $t$; leave other variables and constants alone.
+2. Substitute recursively in every immediate child, then rebuild the
+   application or connective with those children. For example,
+
+    $$
+    f(u₁, …, uₙ)[t/x] = f(u₁[t/x], …, uₙ[t/x])
+    (A ∧ B)[t/x] = (A[t/x] ∧ B[t/x]).
+    $$
+
+3. Only the first occurrence is free, so the result is $(P(a) ∧ ∀x Q(x))$.
+4. The inserted $y$ must remain free. Rename the existential binder first,
+   obtaining $∃z R(x, z)$, then substitute to get $∃z R(y, z)$.
+   Renaming is needed when substitution reaches a quantifier whose variable
+   is free in the replacement term.
+5. For $Q ∈ {∀, ∃}$, leave $Qy B$ unchanged when $y = x$ or $x$ is not free
+   in $B$. Otherwise, if $y$ is free in $t$, first rename its bound
+   occurrences to a fresh variable. Then substitute in the scope and
+   restore the quantifier. If $x$ is absent, nothing is inserted, so nothing
+   can be captured.
 
 # Knowledge Engineering in FOL {.solved}
 
@@ -55,15 +138,16 @@ Picking the right language is closely related to finding a suitable
 problem. That is, we need to say which objects exist in the information, which
 functions and properties are at play. We also need to answer questions like
 whether we can reduce some properties to others to have a simpler language. For
-example, should we have a separate predicate for `Uncle²` or should we define it
-using `Male¹`, `Sibling²`, and `Parent²`, where rather than `Uncle x y` we use:
+example, should we have a separate predicate for $Uncle²$ or should we define it
+using $Male¹$, $Sibling²$, and $Parent²$, where rather than $Uncle(x, y)$ we use:
 
-```Male y ∧ ∃z (Parent z x ∧ Sibling y z)```
+$$
+Male(y) ∧ ∃z (Parent(z, x) ∧ Sibling(y, z))
+$$
 
-`Uncle x y` is much simpler, but the previous formula contains more information.
+$Uncle(x, y)$ is much simpler, but the previous formula contains more information.
 There is a trade-off that needs to be weighed carefully for every proposed
 knowledge engineering solution.
-
 
 The second step in FOL knowledge engineering is to take the given information
 and to encode it with FOL formulas. Here, the main challenge is adequacy: we
@@ -77,11 +161,11 @@ marketing information about {{< logo >}}&ThinSpace; provided by its developer:
 *Our {{< logo >}}&ThinSpace;is the top-of-the-line AI system from AI-Labs. It is
 a hybrid system that has both symbolic and sub-symbolic sub-routines. This means
 that {{< logo >}}&ThinSpace;is both capable of carrying out all traditional
-reasoning tasks, such as natural deduction or `SAT` solving, as well as
+reasoning tasks, such as natural deduction or $SAT$ solving, as well as
 different learned tasks, such as image and voice recognition. This is in
-contrast to its predecessor model `KnowIt∀`, which only had symbolic routines
+contrast to its predecessor model $KnowIt∀$, which only had symbolic routines
 and could only carry out reasoning tasks. It also makes {{<logo>}} superior to
-the competition's model, `DeepL`, which is a purely sub-symbolic AI-system and
+the competition's model, $DeepL$, which is a purely sub-symbolic AI-system and
 while able to carry out all learned tasks, can only carry out some simple
 reasoning tasks.*
 
@@ -91,55 +175,57 @@ reasoning tasks.*
 2. Encode as much information as possible from the advert as FOL formulas. Is
    there information you chose not to include? If so, why?
 
-3. It's a bad idea to include a function symbol `makerOf` in this language.
-   Explain why.
+3. What assumptions would a total function $makerOf$ impose? Compare it with
+   a binary relation $IsMakerOf$. Which suits the information given?
 
 ## Solution {#knowledge-engineering-in-folSolution .solution}
 
 1. There are different ways of doing this. One way to go is this:
 
-    - Constants: `∀I`, `KnowIt∀`, `DeepL`, `image_recognition`, `voice_recognition`, `natural_deduction`, `sat_solving`
+    - Constants: $AllAI$, $KnowItAll$, $DeepL$, $imageRecognition$, $voiceRecognition$, $naturalDeduction$, $satSolving$
 
-    - Predicates: `IsSymbolic²`, `IsSubSymbolic²`, `IsReasoningTask¹`, `IsLearnedTask¹`, `IsCapableOf²`
+    - Predicates: $IsSymbolic¹$, $IsSubSymbolic¹$, $IsReasoningTask¹$, $IsLearnedTask¹$, $IsCapableOf²$
 
     This language has _names_ for certain tasks, like voice recognition or
     natural deduction, which means that it includes them in its ontology. This
     means, for example, that in models of that language these tasks will be
     objects in the domain. An alternative approach would be to include
-    corresponding properties, like `IsCapableOfNaturalDeduction¹`, which however
+    corresponding properties, like $IsCapableOfNaturalDeduction¹$, which however
     leads to a proliferation of predicates.
 
-2. At a minimum, the following information should be included:
+2. Using $AllAI$ and $KnowItAll$ as constants for the advertised systems, we can write:
 
-    - `IsSymbolic ∀I ∧ IsSubSymbolic ∀I`
-    - `∀x (IsReasoningTask x → IsCapableOf ∀I x)`
-    - `∃x (IsLearnedTask x ∧ IsCapableOf ∀I x)`
-    - `IsCapableOf ∀I natural_deduction`, `IsCapableOf ∀I sat_solving`
-    - `IsCapableOf ∀I voice_recognition`, `IsCapableOf ∀I image_recognition`
-    - `IsSymbolic KnowIt∀ ∧ ¬IsSubSymbolic KnowIt∀`
-    - `∀x (IsCapableOf KnowIt∀ x → IsReasoningTask x)`
-    - `¬IsSymbolic DeepL ∧ IsSubSymbolic DeepL`
-    - `∀x (IsLearnedTask x → IsCapableOf ∀I x)`
-    - `∃x (IsReasoningTask x ∧ IsCapableOf ∀I x)`
+    - $IsSymbolic(AllAI) ∧ IsSubSymbolic(AllAI)$
+    - $∀x (IsReasoningTask(x) → IsCapableOf(AllAI, x))$
+    - $∃x (IsLearnedTask(x) ∧ IsCapableOf(AllAI, x))$
+    - $IsCapableOf(AllAI, naturalDeduction)$, $IsCapableOf(AllAI, satSolving)$
+    - $IsCapableOf(AllAI, voiceRecognition)$, $IsCapableOf(AllAI, imageRecognition)$
+    - $IsSymbolic(KnowItAll) ∧ ¬IsSubSymbolic(KnowItAll)$
+    - $∀x (IsCapableOf(KnowItAll, x) → IsReasoningTask(x))$
+    - $¬IsSymbolic(DeepL) ∧ IsSubSymbolic(DeepL)$
+    - $∀x (IsLearnedTask(x) → IsCapableOf(DeepL, x))$
+    - $∃x (IsReasoningTask(x) ∧ IsCapableOf(DeepL, x))$
     
-    Implied but not explicitly stated is: `∃x (IsReasoningTask x ∧ ¬IsCapableOf ∀I x)`
+    Reading “some” as “some but not all” adds: $∃x (IsReasoningTask(x) ∧ ¬IsCapableOf(DeepL, x))$
 
-3. We might add a constant `ai_labs` and a predicate `IsMakerOf²` to the
+3. We might add a constant $aiLabs$ and a predicate $IsMakerOf²$ to the
    language to say that:
 
-    - `IsMakerOf ai_labs ∀I`
+    - $IsMakerOf(aiLabs, AllAI)$
 
-    The alternative of adding a function symbol `makerOf` and writing `makerOf
-    ∀I = ai_labs` is a bad idea since then we'd have to account for the meaning
-    of terms like `makerOf ai_labs`, which have unclear meaning.
+    The alternative of adding a function symbol $makerOf$ and writing $makerOf(AllAI) = aiLabs$ requires exactly one maker for *every* object in the domain, including
+    $aiLabs$ itself. That's a modeling assumption, not a mistake in the
+    syntax. If objects can have no maker or several makers, the binary relation
+    is a better fit. A suitably restricted domain could make the function
+    appropriate.
 
 # Knowledge Representation with FOL Models {.solved}
 
 For this exercise, we are working with an FOL language with the following vocabulary:
 
-+ Constants: `jimmy`, `linus`, `sir`, `sir`,`lady`, `gran`, `ny`, `london`, `soccer`
++ Constants: $jimmy$, $linus$, $sir$, $lady$, $gran$, $ny$, $london$, $soccer$
 
-+ Predicates: `Loves²`, `IsFrom²`, `ParentOf²`, `LivesIn²` 
++ Predicates: $Loves²$, $IsFrom²$, $ParentOf²$, $LivesIn²$
 
 Now consider the following facts about our protagonist, little Jimmy:
 
@@ -153,10 +239,9 @@ children and their grandmother love soccer, unlike their parents.*
    terms, as a knowledge graph, and in table form. Make sure to include the
 information about which constant denotes which object.
 
-2. Go to [https://www.db-fiddle.com/](https://www.db-fiddle.com/) and, taking
-   the code from the textbook as a template, create a SQL database that
-contains the information about the model. Make sure to select `SQLite v3.46` on
-the top left for the language, otherwise the code won't run. Verify your code by running a query that prints all tables.
+2. Write the SQL statements that create and populate the relation tables.
+   Use the same column order as your model. The DB initialization exercise
+   below lets you practice this step with automatic feedback.
 
 3. In logic, there is the concept of a
    [diagram](https://en.wikipedia.org/wiki/Diagram_(mathematical_logic)), which
@@ -168,391 +253,261 @@ different from any of the other methods of representing the model?
 
 ## Solution {#knowledge-representation-with-fol-modelsSolution .solution}
 
-1. Here are three representations of the model:
+1. These presentations specify the same model. An absent tuple is false;
+   this completes the information supplied by the description.
 
-    {{< img src="img/model_sets.png" class="mx-auto rounded d-block inert-img img-fluid" width="600px">}}
-    {{< img src="img/model_graph.png" class="mx-auto rounded d-block inert-img img-fluid" width="600px">}}
-    {{< img src="img/model_tables.png" class="mx-auto rounded d-block inert-img img-fluid" width="600px">}}
+    {{< logic-app name="fol-model" model="family" kind="model" editable="false" view="tables" title="Jimmy's family model" >}}
 
-2. Here's a [db-fiddle](https://www.db-fiddle.com/f/9dB7kAjwcypFWLSgEiSS7E/0) with the corresponding tables.
+2. Create one table for each of $Loves$, $IsFrom$, $LivesIn$, and $ParentOf$,
+   with two text columns and a composite primary key. Insert the rows shown
+   above. Add $Domain(value)$ if queries should range over all eight objects.
+   For example:
+
+    {{< sql-app model="family" empty="true" title="Storing the loves relation" >}}
+    CREATE TABLE Loves (
+        person TEXT NOT NULL,
+        object TEXT NOT NULL,
+        PRIMARY KEY (person, object)
+    );
+    INSERT INTO Loves (person, object) VALUES
+        ('jimmy', 'soccer'),
+        ('linus', 'soccer'),
+        ('gran', 'soccer');
+    {{< /sql-app >}}
 
 3. It's not really different from any of the previous methods. Here's what we
    get:
 
-    - `Loves jimmy soccer`
-    - `Loves linus soccer`
-    - `Loves gran soccer`
-    - `IsFrom jimmy london`
-    - `IsFrom linus london`
-    - `IsFrom sir london`
-    - `IsFrom lady ny`
-    - `IsFrom gran london`
-    - `LivesIn jimmy ny`
-    - `LivesIn linus ny`
-    - `LivesIn sr ny`
-    - `LivesIn lady ny`
-    - `LivesIn gran london`
-    - `ParentOf sir jimmy`
-    - `ParentOf sir linus`
-    - `ParentOf lady jimmy`
-    - `ParentOf lady linus`
-    - `ParentOf gran sir`
+    - $Loves(jimmy, soccer)$
+    - $Loves(linus, soccer)$
+    - $Loves(gran, soccer)$
+    - $IsFrom(jimmy, london)$
+    - $IsFrom(linus, london)$
+    - $IsFrom(sir, london)$
+    - $IsFrom(lady, ny)$
+    - $IsFrom(gran, london)$
+    - $LivesIn(jimmy, ny)$
+    - $LivesIn(linus, ny)$
+    - $LivesIn(sir, ny)$
+    - $LivesIn(lady, ny)$
+    - $LivesIn(gran, london)$
+    - $ParentOf(sir, jimmy)$
+    - $ParentOf(sir, linus)$
+    - $ParentOf(lady, jimmy)$
+    - $ParentOf(lady, linus)$
+    - $ParentOf(gran, sir)$
 
-    The full atomic diagram, however, is much larger, since there are
-    plenty of false atoms, like `ParentOf soccer ny`, so their negations
-    are all true, including `¬ParentOf soccer ny`.
+    Identity contributes $c = c$ for each of the eight constants $c$.
+    Distinct constants denote distinct objects in this model.
+
+    The full atomic diagram is much larger, since there are
+    plenty of false atoms, like $ParentOf(soccer, ny)$, so their negations
+    are all true, including $¬ParentOf(soccer, ny)$.
 
 # Denotation {.solved}
 
 Suppose that we're working with an FOL language that has the single constant
-`null`, as well as the function symbols `succ¹` and `prod²`.
+$null$, as well as the function symbols $succ¹$ and $prod²$.
 
-Consider the model whose domain `D = { 0, 1, 2, ... }` is the set of natural
+Consider the model whose domain $D = { 0, 1, 2, … }$ is the set of natural
 numbers and where:
 
-+ `⟦null⟧ = 0`
-+ `⟦succ⟧` is defined by the equation `⟦succ⟧(n) = n + 1` for all `n ∈ { 0 , 1, 2, ... }`.
-+ `⟦prod  ⟧` is defined by the equation `⟦prod⟧(n,m) = n × m` for all `n, m ∈ { 0 , 1, 2, ... }`.
++ $⟦null⟧ = 0$
++ $⟦succ⟧$ is defined by the equation $⟦succ⟧(n) = n + 1$ for all $n ∈ { 0, 1, 2, … }$.
++ $⟦prod⟧$ is defined by the equation $⟦prod⟧(n, m) = n × m$ for all $n, m ∈ { 0, 1, 2, … }$.
 
-In this model, determine: 
+In this model, determine:
 
-```⟦ prod succ null  prod succ succ null succ null ⟧```
+$$
+⟦prod(succ(null), prod(succ(succ(null)), succ(null)))⟧
+$$
 
-For this purpose:
-
-1. Parse the expression according to the grammar for FOL terms.
-
-2. Recursively calculate the values of each term, following the term's parsing
-   tree.
+Parse the term, then calculate its value from the leaves upward.
 
 ## Solution {#denotationSolution .solution}
 
-1. Here's the parse tree:
+{{< logic-app name="parser" language="fol" signature="arithmetic" kind="term" formula="prod(succ(null), prod(succ(succ(null)), succ(null)))" title="Parsing the arithmetic term" >}}
 
-    {{< img src="img/term_tree.png" class="mx-auto rounded d-block inert-img img-fluid" width="600px">}}
+The calculation follows the same tree:
 
-2. Here's the calculation:
+| Term $t$ | Value $⟦t⟧$ |
+| --- | --- |
+| $null$ | $0$ |
+| $succ(null)$ | $0 + 1 = 1$ |
+| $succ(succ(null))$ | $1 + 1 = 2$ |
+| $prod(succ(succ(null)), succ(null))$ | $2 × 1 = 2$ |
+| $prod(succ(null), prod(succ(succ(null)), succ(null)))$ | $1 × 2 = 2$ |
 
-    - `⟦null⟧ = 0`
-    - `⟦suc null⟧ = ⟦suc ⟧(⟦null⟧) = 0 + 1 = 1`
-    - `⟦succ suc null⟧ = ⟦suc ⟧(⟦succ null⟧) = 1 + 1 = 2`
-    - `⟦prod succ suc null succ null⟧ = ⟦prod ⟧(⟦succ succ null⟧, ⟦succ null⟧) = 2 x 1 = 2`
-    - `⟦prod succ null prod succ suc null succ null⟧ = ⟦prod ⟧(⟦succ null⟧, ⟦prod succ suc null succ null⟧) = 1 x 2 = 2`
+# Building models {#building-models}
 
+Build a model in which the formula has the requested truth value. The pictures
+identify objects; you choose the constants' denotations and predicate
+extensions. An object's appearance imposes no further conditions on the model.
+If no model can have the requested truth value, choose Impossible and explain
+why. You may use loops in $BiggerThan$: the name alone imposes no restrictions.
 
-# Satisfaction {.solved}
+{{< logic-app name="fol-practice" exercise="model" model="people-relations" kind="model" view="tables" title="Building FOL models" >}}
 
-In the model you've characterized in exercise 3, determine the extensions of the
-following open formulas. Give them in table form:
+# Extensions {#satisfaction}
 
-1. `Loves x soccer ∧ IsFrom x ny`
+Select the extension of each formula in Jimmy's family model. The model's
+tables show the relevant information; the selection canvas contains the
+domain or its product. A selected pair is ordered: its first object supplies
+the value of $x$, its second the value of $y$.
 
-2. `IsFrom x y ∧ ParentOf x sir`
+{{< logic-app name="fol-practice" exercise="extensions" model="family" title="Selecting extensions" >}}
 
-3. `∃y ParentOf y x ∧ ∃ z ParentOf z y`
+<span id="satisfactionSolution"></span>
 
-4. `IsFrom x y ∧ LivesIn x y`
+# Extensions and set operations {.solved}
 
-## Solution {#satisfactionSolution .solution}
+Suppose $A(x)$ and $B(x)$ each have just $x$ free. Prove the following using
+the satisfaction clauses. Start with an arbitrary $d ∈ D$ and ask when it
+belongs to each side.
 
-1. {{< img src="img/table_1.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
-1. {{< img src="img/table_2.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
-1. {{< img src="img/table_3.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
-1. {{< img src="img/table_4.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
+1. $⟦A(x) ∧ B(x)⟧ᴹ = ⟦A(x)⟧ᴹ ∩ ⟦B(x)⟧ᴹ$.
+2. $⟦A(x) ∨ B(x)⟧ᴹ = ⟦A(x)⟧ᴹ ∪ ⟦B(x)⟧ᴹ$.
+3. $⟦¬A(x)⟧ᴹ = D ∖ ⟦A(x)⟧ᴹ$.
 
-# SQL Queries {.solved}
+## Solution {#extensions-and-set-operationsSolution .solution}
 
-We've mentioned that there is a one-to-one correspondence between SQL queries.
-In this exercise, we'll explore this connection a bit more. 
+For conjunction, $d ∈ ⟦A(x) ∧ B(x)⟧ᴹ$ iff $M ⊨ A(d) ∧ B(d)$, iff both
+$M ⊨ A(d)$ and $M ⊨ B(d)$, iff $d$ belongs to both extensions. This is
+membership in their intersection. For disjunction, replace “both” by
+“at least one”, giving the union. For negation, $d$ satisfies $¬A$ exactly
+when it does not satisfy $A$, giving the complement within $D$.
 
-We return to our country DB from the textbook. You can open it again under
-[db-fiddle](https://www.db-fiddle.com/f/bTqC7rED8PrABxDyhN766d/2).
+# DB initialization {#db-initialization}
 
-I should preface this by saying that what we're doing here is _not_ great SQL practice.
-We're writing code that might seem unnatural in SQL and there certainly are
-better ways to code the queries. The point here is to get the idea of the
-correspondence across and then worry about learning to code "clean" SQL later
-(if you want to). 
+Create the tables shown in each level and insert exactly their rows. Use the
+displayed table and column names, with text identifiers for the objects.
+The first levels ask for one relation; the last asks for the whole database,
+including $Domain(value)$. Run checks the resulting tables.
 
-So: SQL is a rich and powerful domain-specific language, and there are
-much easier ways to make some of these queries.
+{{< logic-app name="fol-practice" exercise="initialize" model="world" title="DB initialization practice" >}}
 
-With this disclaimer out of the way, the starting point for our discussion of
-the relation between DB queries and open FOL formulas was the observation that the
-SQL query
+# SQL queries {#sql-queries .solved}
 
-{{< sql_logo >}}
-~~~sql
-SELECT country
-FROM LocatedIn
-WHERE continent = 'Europe';
-~~~
+Translate each formula into a query returning its extension. The database is
+already initialized. Quantifiers and free variables range over all 18 objects
+in $Domain$, including cities, continents, and languages. Follow the displayed
+column order and return each tuple only once.
 
-directly corresponds to the open formula:
+The levels progress from atoms through the connectives and quantifiers to
+compound queries. Work recursively: translate the immediate parts of the
+formula, then combine their conditions using the rule for the main operator.
+Run checks your answer on this database.
 
-```LocatedIn x Europe```
-
-This correspondence consists in the fact that the table returned by the query is
-precisely the extension of the formula. To begin with, let's see if you can formulate queries that correspond to other atoms:
-
-1. Write SQL queries that correspond to the following atomic open formulas:
-    
-    - `LanguageOf UnitedStates x`
-    - `LocatedIn Japan x`
-    - `LocatedIn x x`
-
-Verify your results using the db-fiddle.
-
-We form complex formulas using the logical operators. These syntactic operations
-are mirrored by operations on the queries. 
-
-Let's talk about the negation operator ¬ first. To negate our atomic
-query for `LocatedIn(x,Europe)`, we'd use the `<span class="dark-blue">WHERE
-NOT EXISTS</span>` sub-query, such that
-
-{{< sql_logo >}}
-~~~sql
-SELECT country
-FROM LocatedIn
-WHERE continent = 'Europe';
-~~~
-
-becomes
-
-{{< sql_logo >}}
-~~~sql
-SELECT country
-FROM CapitalOf
-WHERE NOT EXISTS (
-  SELECT *
-  FROM LocatedIn
-  WHERE LocatedIn.country = CapitalOf.country
-    AND continent = 'Europe'
-);
-~~~
-
-So, the idea is that we can look for the countries from the `CapitalOf` table,
-for which the query corresponding to our unnegated query _doesn't return any
-value_. Note that this assumes that all countries occur in the `CapitalOf` and
-in the `LocatedIn` table. If that's not the case, we'd need a domain table, but
-that's another story.
-
-To test the understanding of this:
-
-2. Write SQL queries that correspond to the following negations:
-    
-    - `¬LanguageOf UnitedStates x`
-    - `¬LocatedIn Japan x`
-    - `¬LocatedIn x x`
-
-To conclude our little journey into queries as FOL formulas, let's
-talk about conjunction. One approach to form the conjunction is to make
-sub-queries for each conjunct as follows:
-
-{{< sql_logo >}}
-~~~sql
-SELECT country
-FROM CapitalOf AS c
-WHERE EXISTS (
-  SELECT *
-  FROM LocatedIn
-  WHERE LocatedIn.country = c.country
-    AND continent = 'Europe'
-)
-AND EXISTS (
-  SELECT *
-  FROM CapitalOf
-  WHERE CapitalOf.country = c.country
-    AND capital = 'Amsterdam'
-);
-~~~
-
-The only thing to watch out for here is that we need to coordinate the variables
-across the sub-queries. This is what the `<span class="dark-blue">FROM</span>
-CapitalOf AS c` and later `c.country` syntax does. Let's see if you can apply
-this:
-
-3. Write SQL queries that correspond to the following conjunctions:
-
-    - `LocatedIn x Europe ∧ ¬LanguageOf x Dutch`
-    - `¬LocatedIn Japan x ∧ ¬CapitalOf x WashingtonDC`
-
-We can go on from here and cover disjunction, conditionals, and existentials,
-but I hope that the sub-pattern strategy has become clear. This is one
-way to obtain SQL queries for every FOL formula. There is much more to be said
-about this, but let's leave it here.
-
-As a final brain teaser:
-
-4. Write SQL queries that correspond to `LocatedIn x Europe ∨
-   LanguageOf x English` using _only_ the patterns for ¬ and ∧ we've already discussed.
+{{< logic-app name="fol-practice" exercise="query" model="world" title="SQL query practice" >}}
 
 ## Solution {#sql-queriesSolution .solution}
 
-1. Here's a list of queries that work:
+For $LocatedIn(x, Europe)$, one solution is:
 
-    - `LanguageOf UnitedStates x`
-        
-        {{< sql_logo >}}
-        ~~~sql
-        SELECT language
-        FROM LanguageOf
-        WHERE country = 'United States';
-        ~~~
+```sql
+SELECT DISTINCT d.value AS x
+FROM Domain AS d
+WHERE EXISTS (
+    SELECT 1 FROM LocatedIn AS r
+    WHERE r.country = d.value AND r.continent = 'Europe'
+);
+```
 
-    - `LocatedIn Japan x`
+This returns France, the United Kingdom, and Greece. For $x = Japan$, replace
+the condition by `d.value = 'Japan'`. To negate an atom, put `NOT` before its
+`EXISTS` test. Translate conjunction and disjunction by combining the complete
+conditions with `AND` and `OR`; use `(NOT a) OR b` for implication and
+`(a AND b) OR ((NOT a) AND (NOT b))` for the biconditional.
 
-        {{< sql_logo >}}
-        ~~~sql
-        SELECT continent
-        FROM LocatedIn
-        WHERE country = 'Japan';
-        ~~~
+For $∃y CapitalOf(y, x)$, search for a value of $y$:
 
-    - `LocatedIn x x`
-
-        {{< sql_logo >}}
-        ~~~sql
-        SELECT country, continent
-        FROM LocatedIn
-        WHERE country = continent;
-        ~~~
-
-2. Here we go:
-
-    - `¬LanguageOf UnitedStates x`
-        
-        {{< sql_logo >}}
-        ~~~sql
-        SELECT language
-        FROM Language
-        WHERE NOT EXISTS (
-          SELECT *
-          FROM Language
-          WHERE country = 'United States'
-            AND Language.language = language
-        );
-        ~~~
-
-    - `¬ LocatedIn Japan x`
-
-        {{< sql_logo >}}
-        ~~~sql
-        SELECT DISTINCT continent
-        FROM LocatedIn
-        WHERE NOT EXISTS (
-          SELECT *
-          FROM LocatedIn
-          WHERE country = 'Japan'
-            AND LocatedIn.continent = continent
-        );
-        ~~~
-
-    - `¬ LocatedIn x x`
-
-        {{< sql_logo >}}
-        ~~~sql
-        SELECT continent
-        FROM LocatedIn
-        WHERE NOT EXISTS (
-          SELECT *
-          FROM LocatedIn
-          WHERE country = 'Japan'
-            AND LocatedIn.continent = continent
-        );
-        ~~~
-
-3. And the last
-
-    - `LocatedIn x Europe ∧ ¬LanguageOf x Dutch`
-
-        {{< sql_logo >}}
-        ~~~sql
-        SELECT country
-        FROM CapitalOf AS outer
-        WHERE
-          -- LocatedIn(x, 'Europe')
-          EXISTS (
-            SELECT *
-            FROM LocatedIn
-            WHERE country = outer.country
-              AND continent = 'Europe'
-          )
-          -- ¬Language(x, 'Dutch')
-          AND NOT EXISTS (
-            SELECT *
-            FROM LanguageOf
-            WHERE country = outer.country
-              AND language = 'Dutch'
-          );
-         ~~~
-
-    - `¬LocatedIn Japan x ∧ ¬CapitalOf x WashingtonDC`
-
-        {{< sql_logo >}}
-        ~~~sql
-        SELECT country
-        FROM CapitalOf AS outer
-        WHERE
-          -- ¬ LocatedIn Japan x
-          NOT EXISTS (
-            SELECT *
-            FROM LocatedIn
-            WHERE country = 'Japan'
-              AND continent = outer.country     
-          )
-          -- ¬CapitalOf x Washington D.C.
-          AND NOT EXISTS (
-            SELECT *
-            FROM CapitalOf
-            WHERE country = outer.country
-              AND capital = 'Washington D.C.'
-          );
-         ~~~
-
-4. Here we go:
-
-{{< sql_logo >}}
-~~~sql
-SELECT country
-FROM CapitalOf AS outer
-WHERE NOT (
-    NOT EXISTS (
-      SELECT *
-      FROM LocatedIn
-      WHERE country = outer.country
-        AND continent = 'Europe'
-    )
-    AND
-    NOT EXISTS (
-      SELECT *
-      FROM LanguageOf
-      WHERE country = outer.country
-        AND language = 'English'
+```sql
+SELECT DISTINCT d.value AS x
+FROM Domain AS d
+WHERE EXISTS (
+    SELECT 1 FROM Domain AS e
+    WHERE EXISTS (
+        SELECT 1 FROM CapitalOf AS c
+        WHERE c.country = e.value AND c.capital = d.value
     )
 );
-~~~
+```
 
-Much simpler code uses `<span class="dark-red">OR</span>`, but that wasn't the
-question:
+The answer contains the five capitals. For a universal quantifier, search for
+a counterexample with `NOT EXISTS (... WHERE NOT (...))`. Each further
+quantifier adds its own domain alias. The worked universal query and the
+nested European-capital query in the textbook illustrate the remaining steps.
 
-{{< sql_logo >}}
-~~~sql
+A successful run establishes agreement on the displayed database. A correct
+translation must return the formula's extension in every database with this
+language and these conventions; explain why your construction does so.
 
-SELECT country
-FROM CapitalOf AS outer
-WHERE
-  EXISTS (
-    SELECT *
-    FROM LocatedIn
-    WHERE country = outer.country
-      AND continent = 'Europe'
-  )
-  OR
-  EXISTS (
-    SELECT *
-    FROM LanguageOf
-    WHERE country = outer.country
-      AND language = 'English'
-  );
-~~~
+# Queries with JOIN {.solved}
+
+SQL offers shorter ways to express some queries. In the country database,
+use `JOIN LocatedIn ON CapitalOf.country = LocatedIn.country` to combine
+rows that agree on the country. Add a `WHERE` condition to return just
+the European capitals. Compare the result with the recursive translation
+of $∃y (CapitalOf(y, x) ∧ LocatedIn(y, Europe))$.
+
+{{< sql-app model="world" title="Trying a join" >}}
+SELECT DISTINCT CapitalOf.capital
+FROM CapitalOf;
+{{< /sql-app >}}
+
+## Solution {#queries-with-joinSolution .solution}
+
+The join supplies the shared country; the condition restricts its continent:
+
+{{< sql-app model="world" title="Joining countries and capitals" >}}
+SELECT DISTINCT CapitalOf.capital
+FROM CapitalOf
+JOIN LocatedIn ON CapitalOf.country = LocatedIn.country
+WHERE LocatedIn.continent = 'Europe';
+{{< /sql-app >}}
+
+
+# Requiring an infinite model {#requiring-an-infinite-model .solved}
+
+Use a language with one binary predicate $<$, written between its arguments.
+Its interpretation need not be the usual less-than relation.
+
+1. In the standard number model, $D = ℕ$ and $⟦<⟧$ is the usual less-than
+   relation. Explain why $∀x ∃y (x < y)$ is true. Given a value $n$ for $x$,
+   which value can you choose for $y$?
+2. Find a *finite* model of the same sentence. Try one object first. Which
+   ordered pairs must belong to $⟦<⟧$? Why does the predicate's name not
+   prevent this interpretation?
+3. Add the requirement that $<$ is **irreflexive**: nothing is related to
+   itself. Write it as a formula. Can two objects still give a finite model
+   of both sentences? Draw its arrows.
+4. Also require **transitivity**: if $x < y$ and $y < z$, then $x < z$.
+   Write this as a formula. What does transitivity do to a cycle of arrows?
+   Why does irreflexivity then rule the cycle out?
+5. Collect your three sentences into a knowledge base. Explain why it has
+   an infinite model but no finite model. Hint: keep following the witnesses
+   supplied by the first sentence. What must happen in a finite domain?
+
+## Solution {#requiring-an-infinite-modelSolution .solution}
+
+1. For each $n ∈ ℕ$, choose $n + 1$. This gives a witness for the existential
+   quantifier, whatever value the universal quantifier supplies.
+2. Take $D = {d}$ and $⟦<⟧ = {[d, d]}$. The only object supplies its own
+   witness. FOL imposes no ordering conditions on a predicate just because
+   we write it as $<$.
+3. Irreflexivity is $∀x ¬(x < x)$. The two-object model with
+   $⟦<⟧ = {[d, e], [e, d]}$ satisfies this and $∀x ∃y (x < y)$.
+   Each object has a successor, and neither is related to itself.
+4. Transitivity is $∀x ∀y ∀z ((x < y ∧ y < z) → x < z)$.
+   Repeatedly applying it to a cycle gives a relation from its starting
+   object back to itself, contradicting irreflexivity.
+5. The knowledge base is:
+
+    $$
+    {∀x ∃y (x < y), ∀x ¬(x < x), ∀x ∀y ∀z ((x < y ∧ y < z) → x < z)}.
+    $$
+
+    The standard number model satisfies all three sentences. In a finite
+    nonempty domain, repeatedly choosing a successor eventually revisits
+    an object. That creates a cycle, which the other two sentences exclude.
+    So every model of this knowledge base is infinite.

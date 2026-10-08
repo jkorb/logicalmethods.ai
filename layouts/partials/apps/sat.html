@@ -13,13 +13,16 @@
   <p class="sat-example-description" data-example-description></p>
   <form data-input-form>
     <label class="visually-hidden" for="{{ .id }}-input">{{ if in (slice "rewrite" "tseytin") $kind }}Formula{{ else }}Formula or inference{{ end }}</label>
+    <div class="logic-app__input-wrap">
     {{ if in (slice "rewrite" "tseytin") $kind }}
-    <input id="{{ .id }}-input" class="logic-app__input" data-input maxlength="512" spellcheck="false" value="{{ .sc.Get "formula" | default $initial }}" disabled>
+    <textarea id="{{ .id }}-input" class="logic-app__input" data-input data-submit-enter maxlength="512" spellcheck="false" disabled rows="1">{{ .sc.Get "formula" | default $initial }}</textarea>
     {{ else }}
     <textarea id="{{ .id }}-input" class="logic-app__input" data-input rows="1" maxlength="4608" spellcheck="false" disabled>{{ .sc.Get "formula" | default $initial }}</textarea>
     {{ end }}
+    <button type="button" class="logic-app__edit" data-edit disabled aria-label="Edit input" title="Edit input" hidden>{{ partial "apps/icon.html" "edit" }}</button>
+    </div>
     <button type="submit" data-use disabled aria-label="Use input" title="Use input">{{ partial "apps/icon.html" "play" }}</button>
-    <button type="button" data-edit disabled aria-label="Edit input" title="Edit input" hidden>{{ partial "apps/icon.html" "edit" }}</button>
+
   </form>
   {{ if eq $kind "rewrite" }}<div data-target role="group" aria-label="Normal form"><button type="button" data-mode="CNF" aria-pressed="true" disabled>CNF</button><button type="button" data-mode="DNF" aria-pressed="false" disabled>DNF</button></div>{{ end }}
   <div class="sat-problem" data-problem></div>

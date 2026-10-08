@@ -1,0 +1,328 @@
+{
+  "language": {
+    "constants": [
+      "UnitedStates",
+      "France",
+      "UnitedKingdom",
+      "Greece",
+      "Japan",
+      "WashingtonDC",
+      "Paris",
+      "London",
+      "Athens",
+      "Tokyo",
+      "NewYork",
+      "NorthAmerica",
+      "Europe",
+      "Asia",
+      "English",
+      "French",
+      "Greek",
+      "Japanese"
+    ],
+    "functions": {},
+    "predicates": {
+      "CapitalOf": 2,
+      "CityIn": 2,
+      "LocatedIn": 2,
+      "LanguageOf": 2
+    }
+  },
+  "objects": [
+    {
+      "id": "United States",
+      "label": "United States",
+      "emoji": "🇺🇸",
+      "group": "country",
+      "badge": ""
+    },
+    {
+      "id": "France",
+      "label": "France",
+      "emoji": "🇫🇷",
+      "group": "country",
+      "badge": ""
+    },
+    {
+      "id": "United Kingdom",
+      "label": "United Kingdom",
+      "emoji": "🇬🇧",
+      "group": "country",
+      "badge": ""
+    },
+    {
+      "id": "Greece",
+      "label": "Greece",
+      "emoji": "🇬🇷",
+      "group": "country",
+      "badge": ""
+    },
+    {
+      "id": "Japan",
+      "label": "Japan",
+      "emoji": "🇯🇵",
+      "group": "country",
+      "badge": ""
+    },
+    {
+      "id": "Washington D.C.",
+      "label": "Washington D.C.",
+      "emoji": "🏛️",
+      "group": "city",
+      "badge": ""
+    },
+    {
+      "id": "Paris",
+      "label": "Paris",
+      "emoji": "🖼️",
+      "group": "city",
+      "badge": ""
+    },
+    {
+      "id": "London",
+      "label": "London",
+      "emoji": "🎡",
+      "group": "city",
+      "badge": ""
+    },
+    {
+      "id": "Athens",
+      "label": "Athens",
+      "emoji": "🏛️",
+      "group": "city",
+      "badge": ""
+    },
+    {
+      "id": "Tokyo",
+      "label": "Tokyo",
+      "emoji": "🗼",
+      "group": "city",
+      "badge": ""
+    },
+    {
+      "id": "New York",
+      "label": "New York",
+      "emoji": "🗽",
+      "group": "city",
+      "badge": ""
+    },
+    {
+      "id": "North America",
+      "label": "North America",
+      "emoji": "🌎",
+      "group": "continent",
+      "badge": ""
+    },
+    {
+      "id": "Europe",
+      "label": "Europe",
+      "emoji": "🌍",
+      "group": "continent",
+      "badge": ""
+    },
+    {
+      "id": "Asia",
+      "label": "Asia",
+      "emoji": "🌏",
+      "group": "continent",
+      "badge": ""
+    },
+    {
+      "id": "English",
+      "label": "English",
+      "emoji": "💬",
+      "group": "language",
+      "badge": "EN"
+    },
+    {
+      "id": "French",
+      "label": "French",
+      "emoji": "💬",
+      "group": "language",
+      "badge": "FR"
+    },
+    {
+      "id": "Greek",
+      "label": "Greek",
+      "emoji": "💬",
+      "group": "language",
+      "badge": "EL"
+    },
+    {
+      "id": "Japanese",
+      "label": "Japanese",
+      "emoji": "💬",
+      "group": "language",
+      "badge": "JA"
+    }
+  ],
+  "model": {
+    "domain": [
+      "United States",
+      "France",
+      "United Kingdom",
+      "Greece",
+      "Japan",
+      "Washington D.C.",
+      "Paris",
+      "London",
+      "Athens",
+      "Tokyo",
+      "New York",
+      "North America",
+      "Europe",
+      "Asia",
+      "English",
+      "French",
+      "Greek",
+      "Japanese"
+    ],
+    "constants": {
+      "UnitedStates": "United States",
+      "France": "France",
+      "UnitedKingdom": "United Kingdom",
+      "Greece": "Greece",
+      "Japan": "Japan",
+      "WashingtonDC": "Washington D.C.",
+      "Paris": "Paris",
+      "London": "London",
+      "Athens": "Athens",
+      "Tokyo": "Tokyo",
+      "NewYork": "New York",
+      "NorthAmerica": "North America",
+      "Europe": "Europe",
+      "Asia": "Asia",
+      "English": "English",
+      "French": "French",
+      "Greek": "Greek",
+      "Japanese": "Japanese"
+    },
+    "functions": {},
+    "predicates": {
+      "CapitalOf": [
+        [
+          "United States",
+          "Washington D.C."
+        ],
+        [
+          "France",
+          "Paris"
+        ],
+        [
+          "United Kingdom",
+          "London"
+        ],
+        [
+          "Greece",
+          "Athens"
+        ],
+        [
+          "Japan",
+          "Tokyo"
+        ]
+      ],
+      "CityIn": [
+        [
+          "Washington D.C.",
+          "United States"
+        ],
+        [
+          "Paris",
+          "France"
+        ],
+        [
+          "London",
+          "United Kingdom"
+        ],
+        [
+          "Athens",
+          "Greece"
+        ],
+        [
+          "Tokyo",
+          "Japan"
+        ],
+        [
+          "New York",
+          "United States"
+        ]
+      ],
+      "LocatedIn": [
+        [
+          "United States",
+          "North America"
+        ],
+        [
+          "France",
+          "Europe"
+        ],
+        [
+          "United Kingdom",
+          "Europe"
+        ],
+        [
+          "Greece",
+          "Europe"
+        ],
+        [
+          "Japan",
+          "Asia"
+        ]
+      ],
+      "LanguageOf": [
+        [
+          "United States",
+          "English"
+        ],
+        [
+          "France",
+          "French"
+        ],
+        [
+          "United Kingdom",
+          "English"
+        ],
+        [
+          "Greece",
+          "Greek"
+        ],
+        [
+          "Japan",
+          "Japanese"
+        ]
+      ]
+    }
+  },
+  "columns": {
+    "CapitalOf": [
+      "country",
+      "capital"
+    ],
+    "CityIn": [
+      "city",
+      "country"
+    ],
+    "LocatedIn": [
+      "country",
+      "continent"
+    ],
+    "LanguageOf": [
+      "country",
+      "language"
+    ]
+  },
+  "queries": [
+    {
+      "label": "European countries",
+      "formula": "LocatedIn(x, Europe)"
+    },
+    {
+      "label": "European capitals",
+      "formula": "∃y (CapitalOf(y, x) ∧ LocatedIn(y, Europe))"
+    },
+    {
+      "label": "Negated query",
+      "formula": "¬LocatedIn(Japan, x)"
+    }
+  ]
+}
