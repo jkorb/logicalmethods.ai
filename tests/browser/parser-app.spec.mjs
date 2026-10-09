@@ -181,13 +181,13 @@ test('formula labels preserve history and controls remain above the growing tree
   await app.getByRole('button', {name: 'Last step', exact: true}).click();
   const final = await controlsOffset();
   expect(final).toBeCloseTo(initial, 0);
-  await app.getByLabel('Show formulas at nodes', {exact: true}).check();
+  await app.getByRole('button', {name: 'Show formulas at nodes', exact: true}).click();
   await expect(app.locator('.logic-app__tree svg text').last()).toHaveText('((p ∧ q) → ¬r)');
-  await reviewScreenshot(app, {path: `tmp/content-review/formal-languages/revision-3/${info.project.name}-formula-labels.png`});
+  await reviewScreenshot(app, {path: `tmp/fol-review/revision-8/${info.project.name}-formula-labels.png`});
   await app.getByRole('button', {name: 'Previous step', exact: true}).click();
   await app.getByRole('button', {name: 'Show tree as text', exact: true}).click();
   await expect(app.locator('.logic-app__text')).toContainText('(p ∧ q)');
-  await app.getByLabel('Show formulas at nodes', {exact: true}).uncheck();
+  await app.getByRole('button', {name: 'Show formulas at nodes', exact: true}).click();
   await expect(app.locator('.logic-app__text')).toContainText('→');
   const results = await new AxeBuilder({page}).include('[data-logic-app="parser"]').analyze();
   expect(results.violations).toEqual([]);
@@ -201,11 +201,23 @@ test('parser keeps tree and explanation side by side on smaller desktops', async
     const app = page.locator('[data-logic-app="parser"]');
     await expect(app).toHaveAttribute('data-mounted', 'true');
     await app.getByRole('button', { name: 'Last step', exact: true }).click();
-    const tree = await app.locator('.logic-app__tree').boundingBox();
+    const tree = await app.locator('.parser-canvas').boundingBox();
     const explanation = await app.getByRole('status').boundingBox();
     expect(Math.abs(tree.y - explanation.y)).toBeLessThan(2);
     expect(tree.x + tree.width).toBeLessThanOrEqual(explanation.x);
     expect((await app.boundingBox()).height).toBeLessThan(680);
     await reviewScreenshot(app, { path: testInfo.outputPath(`parser-layout-${width}.png`) });
   }
+});
+
+test('tree tools float together and export the current labels as LaTeX',async({page},info)=>{
+  await page.goto('/textbook/fol/');const app=page.getByRole('region',{name:'Parsing a first-order formula',exact:true});
+  await expect(app.locator('[data-tree-fit], input[type="checkbox"]')).toHaveCount(0);
+  await app.getByRole('button',{name:'Last step',exact:true}).click();await app.getByRole('button',{name:'Show formulas at nodes',exact:true}).click();
+  const tools=app.locator('.parser-tools');await expect(tools.getByRole('button',{name:'Download PNG',exact:true})).toBeVisible();
+  await expect(tools.getByRole('button',{name:'Show formulas at nodes',exact:true})).toHaveAttribute('aria-pressed','true');
+  const canvas=await app.locator('.parser-canvas').boundingBox(),toolbar=await tools.boundingBox();expect(toolbar.x+toolbar.width).toBeLessThanOrEqual(canvas.x+canvas.width);expect(toolbar.y-canvas.y).toBeLessThan(12);
+  const pending=page.waitForEvent('download');await tools.getByRole('button',{name:'Download tree as LaTeX',exact:true}).click();const file=await pending;expect(file.suggestedFilename()).toBe('parsing-tree.tex');
+  await reviewScreenshot(app,{path:`tmp/fol-review/revision-8/parser-complete-${info.project.name}.png`});
+  await app.getByRole('button',{name:'Edit formula',exact:true}).click();await expect(tools.getByRole('button',{name:'Download tree as LaTeX',exact:true})).toBeDisabled();
 });

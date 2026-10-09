@@ -1,0 +1,12 @@
+<figure class="fol-worlds" aria-label="From unanalyzed scenarios, through Boolean facts, to objects and relations">
+{{ range $i, $label := slice "Reasoning scenario" "Basic facts" "Objects and relations" }}
+{{ if $i }}<span class="fol-worlds-arrow" aria-hidden="true">→</span>{{ end }}
+<div class="fol-world-stage">
+<div class="fol-world-picture">
+<svg class="fol-world-outline" viewBox="0 0 60 60" aria-hidden="true"><path d="M30 5 C45 3 55 15 55 30 C57 45 43 56 29 55 C13 56 4 44 5 29 C3 15 15 4 30 5Z"/></svg>
+{{ if eq $i 0 }}<svg class="fol-world-meridians" viewBox="0 0 60 60" aria-hidden="true"><path d="M29 6 C12 22 15 44 30 54 M32 6 C47 24 44 42 30 54 M7 22 Q29 30 53 22 M7 39 Q30 32 53 39"/></svg>{{ end }}
+{{ if eq $i 1 }}<div class="fol-world-facts">{{ range $fact := slice (dict "image" "sun" "name" "SUN") (dict "image" "rain" "name" "RAIN") }}<span>{{ partial "figures/image.html" (dict "page" $.Page "position" $.Position "src" (printf "/img/drawings/%s.svg" $fact.image) "alt" $fact.name "inline" true "themed" true) }}<span>{{ $fact.name }} ↦ 1</span></span>{{ end }}</div>{{ end }}
+{{ if eq $i 2 }}<div class="fol-world-objects"><div class="fol-world-human"><span>⟦Human⟧</span>{{ range slice "gimmick_mr_sir" "gimmick_little_jimmy" }}{{ partial "figures/image.html" (dict "page" $.Page "position" $.Position "src" (printf "/img/drawings/%s.svg" .) "alt" "" "inline" true "themed" true) }}{{ end }}</div><svg class="fol-world-relation" viewBox="0 0 100 100" aria-hidden="true"><defs><marker id="{{ $.Page.File.UniqueID }}-world-{{ $.Ordinal }}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10Z"/></marker></defs><path class="fol-world-edge" d="M35 43 C12 53 27 84 61 84" marker-end="url(#{{ $.Page.File.UniqueID }}-world-{{ $.Ordinal }})"/><text x="0" y="66">⟦BiggerThan⟧</text></svg>{{ partial "figures/image.html" (dict "page" $.Page "position" $.Position "src" "/img/drawings/gimmick_box.svg" "alt" "" "inline" true "themed" true "class" "fol-world-box") }}</div>{{ end }}
+</div><figcaption>{{ $label }}</figcaption>
+</div>{{ end }}
+</figure>

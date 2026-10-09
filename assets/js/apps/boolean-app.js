@@ -6,7 +6,7 @@ import { mountCircuit } from './boolean-circuit.js';
 import { mountModels } from './boolean-models.js';
 import { mountTwoBit } from './boolean-two-bit.js';
 export function mountBoolean(root) {
-  root.querySelectorAll('button, input').forEach(n => { n.disabled = false; });
+  root.querySelectorAll('button, input, textarea').forEach(n => { n.disabled = false; });
   const textToggle = root.querySelector('[data-text-toggle]');
   textToggle.addEventListener('click', () => {
     const show = root.querySelector('[data-text]').hidden;

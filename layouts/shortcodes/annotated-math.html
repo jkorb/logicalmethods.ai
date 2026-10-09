@@ -12,10 +12,11 @@
   {{- with .label }}{{ $description = printf "%s (%s)" $description . }}{{ end -}}
   {{- $descriptions = $descriptions | append $description -}}
 {{- end -}}
-<figure class="annotated-math" role="figure" tabindex="0" aria-label="{{ with .Get "title" }}{{ . }}: {{ end }}{{ $prefix }} {{ delimit $descriptions $separator }} {{ $suffix }}">
+<figure class="annotated-math{{ if .Get "wrap" }} annotated-math--wrap{{ end }}" role="figure" tabindex="0" aria-label="{{ with .Get "title" }}{{ . }}: {{ end }}{{ $prefix }} {{ delimit $descriptions $separator }} {{ $suffix }}">
   <div class="annotated-math__row" aria-hidden="true">
     {{ with $prefix }}<span class="annotated-math__edge">{{ . }}</span>{{ end }}
     {{ range $i, $group := $groups }}
+      {{ if $.Get "wrap" }}<span class="annotated-math__item">{{ end }}
       {{ if $i }}<span class="annotated-math__edge">{{ $separator }}</span>{{ end }}
       <span class="annotated-math__group annotated-math__group--{{ .position | default "below" }}{{ with .color }} annotated-math__group--{{ . }}{{ end }}">
         <span class="annotated-math__symbols">{{ .symbols }}</span>
@@ -24,6 +25,7 @@
           <span class="annotated-math__label">{{ . }}</span>
         {{ end }}
       </span>
+      {{ if $.Get "wrap" }}</span>{{ end }}
     {{ end }}
     {{ with $suffix }}<span class="annotated-math__edge">{{ . }}</span>{{ end }}
   </div>

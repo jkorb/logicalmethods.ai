@@ -12,7 +12,9 @@ per input should remain Markdown tables.
 ```
 
 For unary operations, use `"columns":["output"]` and one output per row.
-The shortcode validates row lengths. Wrap adjacent tables in
+Cells may also be objects with `image` (a drawing name without its extension)
+and `alt` fields. An empty column label gives a unary table without a visible
+value heading. The shortcode validates row lengths. Wrap adjacent tables in
 `<div class="function-tables">` to arrange them side by side with wrapping.
 The addition apps reuse the same CSS for discovered sums; `function-table.js`
 provides the DOM renderer for circuit targets and checked outputs.

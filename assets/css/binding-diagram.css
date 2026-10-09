@@ -1,0 +1,6 @@
+.binding-diagram { margin:1.5rem auto; max-width:100%; }
+.binding-diagram svg { display:block; width:100%; height:auto; }
+.binding-diagram text { font:22px var(--font-formal); fill:var(--ink); }
+.binding-diagram__wire path { fill:none; stroke:var(--blue-ink); stroke-width:1.5; }
+.binding-diagram__wire--1 path { stroke:var(--red-ink); stroke-dasharray:5 3; }
+.binding-diagram marker path { fill:var(--ink); }

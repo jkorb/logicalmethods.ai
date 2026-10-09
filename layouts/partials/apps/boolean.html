@@ -12,7 +12,7 @@
   {{ if eq $kind "evaluation" }}
   {{ if eq (.sc.Get "preset") "practice" }}<script type="application/json" data-evaluation-examples>{{ index hugo.Data "boolean-evaluations" | jsonify | safeJS }}</script>{{ end }}
   <form data-formula-form class="boolean-formula-form">
-    <input id="{{ .id }}-formula" class="logic-app__input" aria-label="Formula" data-formula value="{{ .sc.Get "formula" | default "SUN ∨ (RAIN ∧ ¬SUN)" }}" maxlength="512" spellcheck="false" autocomplete="off" disabled>
+    <textarea data-submit-enter id="{{ .id }}-formula" class="logic-app__input" aria-label="Formula" data-formula maxlength="512" spellcheck="false" autocomplete="off" disabled rows="1">{{ .sc.Get "formula" | default "SUN ∨ (RAIN ∧ ¬SUN)" }}</textarea>
     <button type="submit" aria-label="Use formula" title="Use formula" disabled>{{ partial "apps/icon.html" "play" }}</button>
   </form>
   {{ end }}

@@ -22,6 +22,15 @@ On desktop viewports at least 60rem wide, the parser places its scrollable tree
 and current-step explanation side by side below the controls. Smaller viewports
 stack them.
 
+## Input and edit controls
+
+Formula fields use `logic-app__input-wrap` with an inline `logic-app__edit`
+pencil at the right edge. Parser, SAT, FOL satisfaction, and exercise binding
+fields hide that pencil while editing and restore it after submission. Query
+fields remain editable. Conditional knowledge bases place their pencil inside
+the displayed knowledge base; it also unlocks the goal. Planning uses one form
+control for its multiple inputs. SQL and Lean retain their code-block pencils.
+
 ## Static syntax trees
 
 Static `syntax-tree` figures use nested HTML lists and CSS edges, with the
@@ -40,7 +49,10 @@ to `.syntax-tree` and `.ast-comparison`. They require no JavaScript.
 Textareas throughout the site use content sizing: one line for short input,
 growing for wrapping and explicit line breaks, and shrinking when text is removed.
 A shared fallback handles input, width changes, and newly revealed controls in
-browsers without native content sizing. Single-formula rewrites use an input field.
+browsers without native content sizing. Formula bars use compact textareas; frozen fields cannot receive pointer or
+keyboard focus. The in-field pencil enables editing. Their shared helper also
+resizes programmatic example changes and handles Enter submission for former
+single-line inputs.
 
 SAT tables rule the boundary between valuation columns and formula columns.
 Three-variable or long-formula examples use numbered formula keys with a visible

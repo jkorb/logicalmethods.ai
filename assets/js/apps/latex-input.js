@@ -3,6 +3,8 @@ export const latexMap = {
   "\\nvdash": "⊬", "\\therefore": "∴", "\\in": "∈", "\\notin": "∉",
   "\\subseteq": "⊆", "\\emptyset": "∅", "\\cap": "∩", "\\cup": "∪",
   "\\Gamma": "Γ", "\\Sigma": "Σ", "\\Omega": "Ω", "\\omega": "ω", "\\mu": "μ",
+  "\\neq": "≠",
+  "\\ne": "≠",
   "\\forall": "∀",
   "\\exists": "∃",
   "\\neg": "¬",

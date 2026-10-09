@@ -2,7 +2,7 @@ import { toSvg } from 'html-to-image';
 
 // Capture the rendered state without changing the live diagram or its controls.
 export function mountImageExport(root) {
-  const controls = root.querySelector('.boolean-app__utilities') || root.appendChild(document.createElement('div'));
+  const controls = root.querySelector('[data-export-controls], .boolean-app__utilities') || root.appendChild(document.createElement('div'));
   controls.classList.add('logic-app__export-controls');
   const button = document.createElement('button');
   button.type = 'button';

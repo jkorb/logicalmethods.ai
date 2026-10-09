@@ -1,0 +1,32 @@
+{{ $kind := .sc.Get "exercise" | default "builder" }}
+<section class="logic-app fol-app fol-practice" data-logic-app="fol-practice" data-exercise="{{ $kind }}" aria-label="{{ .sc.Get "title" | default "FOL practice" }}">
+  <div class="fol-practice-toolbar"><div data-levels class="builder__levels" role="group" aria-label="Exercise levels"></div></div>
+  <div data-task class="fol-practice-task"></div>
+  {{ if eq $kind "model" }}
+    {{ partial "apps/fol-model.html" (dict "sc" .sc "id" .id "title" (printf "%s: model" (.sc.Get "title"))) }}
+    <div class="fol-toolbar"><button type="button" data-check>{{ partial "apps/icon.html" "check" }} Check</button><button type="button" data-impossible>Impossible</button></div>
+  {{ else if eq $kind "extensions" }}
+    {{ $config := index hugo.Data.fol (.sc.Get "model") }}
+    {{ $objects := slice }}
+    {{ range $config.objects }}
+      {{ $object := . }}
+      {{ with .image }}{{ $object = merge $object (dict "image" (resources.Get .).RelPermalink) }}{{ end }}
+      {{ $objects = $objects | append $object }}
+    {{ end }}
+    <script type="application/json" data-extension-config>{{ merge $config (dict "objects" $objects) | jsonify | safeJS }}</script>
+    <div data-extension-workspace class="fol-extension-workspace"></div>
+    <div class="fol-toolbar"><button type="button" data-check>{{ partial "apps/icon.html" "check" }} Check</button></div>
+  {{ else if eq $kind "substitution" }}
+    <pre class="fol-gap-code"><code data-gap-code></code></pre>
+    <div class="fol-toolbar"><button type="button" data-check>{{ partial "apps/icon.html" "check" }} Check</button></div>
+  {{ else if in (slice "initialize" "query") $kind }}
+    <div data-target class="fol-practice-target" role="region" aria-label="{{ .sc.Get "title" }}: model tables" tabindex="0"></div>
+    {{ partial "apps/sql.html" (dict "sc" .sc "id" .id "code" "-- Write your SQL here." "title" (printf "%s: SQL editor" (.sc.Get "title"))) }}
+  {{ else }}
+    <div class="fol-builder-tools" data-build-tools></div>
+    <div data-builder-board class="builder__board" role="region" aria-label="Formula construction" tabindex="0"></div>
+    <div class="fol-toolbar"><button type="button" data-undo aria-label="Undo construction">{{ partial "apps/icon.html" "undo" }}</button><button type="button" data-reset-builder aria-label="Reset construction">{{ partial "apps/icon.html" "replay" }}</button></div>
+  {{ end }}
+  <p data-practice-feedback role="status" aria-live="polite"></p>
+  <p data-app-fallback>Enable JavaScript to use these exercises.</p>
+</section>

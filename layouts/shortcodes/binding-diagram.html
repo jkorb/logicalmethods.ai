@@ -1,0 +1,22 @@
+{{- $data := .Inner | transform.Unmarshal -}}
+{{- $id := printf "%s-binding-%d" .Page.File.UniqueID .Ordinal -}}
+{{- $positions := dict -}}{{- $x := 16 -}}
+{{- range $data.tokens -}}
+  {{- $width := mul (strings.RuneCount .text) 13 -}}
+  {{- $positions = merge $positions (dict .id (add $x (div $width 2))) -}}
+  {{- $x = add $x $width -}}
+{{- end -}}
+<figure class="binding-diagram" role="figure" aria-label="{{ .Get "alt" }}">
+<svg viewBox="0 0 {{ add $x 16 }} 130" role="img" aria-label="{{ .Get "alt" }}">
+  <defs><marker id="{{ $id }}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z"/></marker></defs>
+  {{ range $i, $binding := $data.bindings }}
+    {{ $from := index $positions .from }}{{ $height := add 12 (mul $i 28) }}
+    <g class="binding-diagram__wire binding-diagram__wire--{{ $i }}">
+    {{ range .to }}{{ $to := index $positions . }}
+      <path d="M {{ $from }} 88 V {{ $height }} H {{ $to }} V 88" marker-end="url(#{{ $id }})"/>
+    {{ end }}
+    </g>
+  {{ end }}
+  {{ range $data.tokens }}<text x="{{ index $positions .id }}" y="112" text-anchor="middle">{{ .text }}</text>{{ end }}
+</svg>
+</figure>

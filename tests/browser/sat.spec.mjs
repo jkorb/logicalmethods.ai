@@ -142,7 +142,7 @@ test('resolution prepares a single conjunction and handles the larger inference'
   await expect(a.locator('.sat-proof')).toContainText('⊥');
 });
 
-test('textareas grow and shrink with content and rewriting uses a field', async ({page}) => {
+test('textareas grow and shrink with content and rewriting uses a wrapping field', async ({page}) => {
   const a = app(page,'truth-table');
   await button(a,'Edit input').click();
   const field = a.locator('textarea');
@@ -152,7 +152,7 @@ test('textareas grow and shrink with content and rewriting uses a field', async 
   await expect.poll(() => field.evaluate(n => n.getBoundingClientRect().height)).toBeGreaterThan(short * 2);
   await field.fill('p');
   await expect.poll(() => field.evaluate(n => n.getBoundingClientRect().height)).toBeLessThan(short + 2);
-  await expect(app(page,'rewrite').locator('input[data-input]')).toHaveCount(1);
+  await expect(app(page,'rewrite').locator('textarea[data-input]')).toHaveCount(1);
 });
 
 test('chapter references identify their destinations', async ({page}) => {
@@ -260,7 +260,7 @@ test('chapter example controls and compact resolution remain readable without ca
   await expect(a.locator('.sat-help')).toHaveCount(0);
   const field=await a.locator('[data-input]').boundingBox(),edit=await button(a,'Edit input').boundingBox();
   const nav=await a.locator('[data-navigation]').boundingBox();expect(nav.x).toBeGreaterThan(edit.x);expect(nav.y).toBeLessThan(field.y+field.height);
-  expect(edit.x).toBeGreaterThanOrEqual(field.x+field.width);expect(edit.y).toBeLessThan(field.y+field.height);
+  expect(edit.x).toBeGreaterThanOrEqual(field.x);expect(edit.x+edit.width).toBeLessThanOrEqual(field.x+field.width);expect(edit.y).toBeLessThan(field.y+field.height);
   const rewrite=app(page,'rewrite'),target=await rewrite.locator('[data-target]').boundingBox(),cnf=await button(rewrite,'CNF').boundingBox();expect(Math.abs(cnf.x-target.x)).toBeLessThan(2);
   await button(a,'Edit input').click();await a.locator('[data-input]').fill('(SUN ∨ RAIN) ∧ (¬SUN ∨ ¬RAIN)');await button(a,'Use input').click();await button(a,'Last step').click();
   await expect(a.getByRole('status')).toContainText('Satisfiable');await expect(a.locator('.practice-discarded')).toHaveCount(2);

@@ -1,0 +1,110 @@
+{
+  "language": {
+    "constants": [
+      "LittleJimmy",
+      "MrSir",
+      "Socrates"
+    ],
+    "functions": {
+      "fatherOf": 1
+    },
+    "predicates": {}
+  },
+  "objects": [
+    {
+      "id": "jimmy",
+      "label": "Little Jimmy",
+      "image": "img/drawings/gimmick_little_jimmy.svg"
+    },
+    {
+      "id": "sir",
+      "label": "Mr Sir",
+      "image": "img/drawings/gimmick_mr_sir.svg"
+    },
+    {
+      "id": "granny",
+      "label": "Granny Smith",
+      "image": "img/drawings/gimmick_granny_smith.svg"
+    },
+    {
+      "id": "socrates",
+      "label": "Socrates",
+      "image": "img/drawings/fol_socrates.svg"
+    },
+    {
+      "id": "box",
+      "label": "Mighty Box",
+      "image": "img/drawings/gimmick_box.svg"
+    },
+    {
+      "id": "rabbit",
+      "label": "Rabbit",
+      "image": "img/drawings/gimmick_rabbit.svg"
+    },
+    {
+      "id": "lamp",
+      "label": "Lamp",
+      "image": "img/drawings/fol_lamp.svg"
+    },
+    {
+      "id": "ann",
+      "label": "Ann",
+      "image": "img/drawings/gimmick_ann.svg"
+    },
+    {
+      "id": "mouse",
+      "label": "Mouse",
+      "image": "img/drawings/gimmick_mouse.svg"
+    },
+    {
+      "id": "mushroom",
+      "label": "Mushroom",
+      "image": "img/drawings/gimmick_mushroom.svg"
+    },
+    {
+      "id": "soda",
+      "label": "Soda",
+      "image": "img/drawings/gimmick_soda.svg"
+    }
+  ],
+  "model": {
+    "domain": [
+      "jimmy",
+      "sir",
+      "granny",
+      "socrates",
+      "box"
+    ],
+    "constants": {
+      "LittleJimmy": "jimmy",
+      "MrSir": "sir",
+      "Socrates": "socrates"
+    },
+    "functions": {
+      "fatherOf": {
+        "[\"jimmy\"]": "sir",
+        "[\"sir\"]": "socrates",
+        "[\"granny\"]": "socrates",
+        "[\"socrates\"]": "socrates",
+        "[\"box\"]": "box"
+      }
+    },
+    "predicates": {}
+  },
+  "columns": {
+    "Human": [
+      "human"
+    ],
+    "Mortal": [
+      "mortal"
+    ],
+    "BiggerThan": [
+      "bigger",
+      "smaller"
+    ],
+    "Sibling": [
+      "sibling\u2081",
+      "sibling\u2082"
+    ]
+  }
+}

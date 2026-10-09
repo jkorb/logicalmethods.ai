@@ -1,7 +1,7 @@
 <section class="logic-app shunting-yard" data-logic-app="shunting-yard" aria-label="Shunting-yard steps">
   <form class="logic-app__form">
     <label for="{{ .id }}-formula">Formula in conventional notation</label>
-    <input id="{{ .id }}-formula" class="logic-app__input" value="{{ .sc.Get "formula" | default "p ∨ q ∧ r" }}" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="512" aria-describedby="{{ .id }}-help" disabled>
+    <textarea data-submit-enter id="{{ .id }}-formula" class="logic-app__input" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="512" aria-describedby="{{ .id }}-help" disabled rows="1">{{ .sc.Get "formula" | default "p ∨ q ∧ r" }}</textarea>
     <div class="logic-app__controls"><button type="submit" disabled>Start</button></div>
   </form>
   <p class="logic-app__help" id="{{ .id }}-help">Use p, q, and r. <a href="{{ "textbook/notation/#latex-cheat-sheet" | relURL }}">LaTeX cheat sheet</a></p>

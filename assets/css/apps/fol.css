@@ -1,0 +1,459 @@
+.logic-app.fol-app { --fol-object-size:2.5rem; text-align:start; padding-block-end:0; }
+.fol-app .fol-toolbar:empty { display:none; }
+.fol-app [hidden] { display:none !important; }
+.fol-app .fol-toolbar, .fol-app .fol-palette { display:flex; flex-wrap:wrap; align-items:center; gap:.4rem; margin-block:.4rem; }
+.fol-app button { min-height:2.4rem; max-width:100%; }
+.fol-app button[aria-pressed="true"] { background:var(--surf-blue); border-color:var(--blue-ink); }
+.fol-app .fol-workspace { position:relative; }
+.fol-app .fol-canvas-tools { position:absolute; inset:.5rem .5rem auto auto; z-index:3; display:flex; gap:.35rem; }
+.fol-app .fol-menu { position:absolute; z-index:5; top:3.3rem; right:.5rem; width:min(20rem,calc(100% - 1rem)); max-height:23rem; overflow:auto; padding:.7rem; border:1px solid var(--rule-strong); border-radius:.5rem; background:var(--paper); box-shadow:var(--shadow-sm); }
+.fol-app .fol-menu-heading { margin:0 0 .5rem; font-weight:600; }
+.fol-app .fol-close { position:absolute; top:.15rem; right:.25rem; border:0; padding:.15rem; }
+.fol-app .fol-display { height:28rem; min-height:18rem; max-height:65rem; overflow:auto; resize:vertical; border:1px solid var(--rule-strong); border-radius:.5rem; padding:3.5rem .75rem 2.5rem; }
+.fol-app .fol-selection { position:absolute; bottom:.4rem; left:.5rem; max-width:calc(100% - 1rem); padding:.25rem .5rem; border-radius:.3rem; background:var(--paper); border:1px solid var(--rule); font-family:var(--font-formal); box-shadow:var(--shadow-sm); }
+.fol-app .fol-object { display:inline-flex; align-items:center; justify-content:center; vertical-align:middle; }
+.fol-app button.fol-object { padding:.15rem; background:transparent; border:1px solid transparent; position:relative; }
+.fol-app button.fol-object:hover, .fol-app button.fol-object[aria-pressed="true"] { background:var(--surf-blue); border-color:var(--blue-ink); }
+.fol-app .fol-object img { width:var(--fol-object-size); height:var(--fol-object-size); object-fit:contain; background:var(--figure-paper); border-radius:.2rem; }
+.fol-app .fol-order { position:absolute; top:-.3rem; right:-.3rem; color:var(--blue-ink); background:var(--paper); font-size:var(--step--2); }
+.fol-app .fol-domain, .fol-app .fol-facts { display:flex; flex-wrap:wrap; align-items:center; gap:.5rem 1.2rem; margin:.5rem 0 1rem; font-family:var(--font-formal); }
+.fol-app .fol-facts { flex-direction:column; align-items:stretch; }
+.fol-app .fol-fact { display:flex; align-items:center; gap:.35rem; }
+.fol-app .fol-fact > dt { min-width:8rem; font-weight:400; flex:none; }
+.fol-app .fol-fact > dd { margin:0; flex:1; min-width:0; display:block; }
+.fol-app .fol-tuple { display:inline-flex; align-items:center; white-space:nowrap; }
+.fol-app .fol-tables { display:flex; flex-wrap:wrap; gap:1.5rem; align-items:start; justify-content:center; }
+.fol-app .function-table { margin:.5rem 0; }
+.fol-app .function-table table { width:auto; border-collapse:collapse; }
+.fol-app .function-table caption { caption-side:top; color:var(--ink); text-align:center; font:inherit; padding:.25rem; }
+.fol-app .function-table th, .fol-app .function-table td { padding:.2rem .55rem; font-weight:400; text-align:center; }
+.fol-app .function-table thead { border-bottom:2px solid var(--table-rule); }
+.fol-app .function-table tr > :first-child { border-right:2px solid var(--table-rule); }
+.fol-app .fol-relation th { color:var(--blue-ink); }
+.fol-app .fol-relation th:nth-child(2) { color:var(--green-ink); }
+.fol-app .fol-relation.fol-unary tr > :first-child { border-right:0; }
+.fol-app .fol-graph, .fol-app .fol-sets { display:block; width:100%; max-height:24rem; min-height:16rem; color:var(--ink); }
+.fol-app .fol-edge path, .fol-app svg line { fill:none; stroke:currentColor; stroke-width:2; }
+.fol-app .fol-function-edge { stroke-dasharray:5 4; }
+.fol-app svg text { fill:currentColor; font:14px var(--font-formal); paint-order:stroke; stroke:var(--paper); stroke-width:4px; stroke-linejoin:round; }
+.fol-app svg rect { fill:var(--paper); stroke:var(--rule-strong); }
+.fol-app svg .fol-image-paper { fill:var(--figure-paper); stroke:none; }
+.fol-app svg marker path { fill:currentColor; }
+.fol-app svg [role="button"] { cursor:pointer; }
+.fol-app svg [role="button"]:focus rect, .fol-app svg [aria-pressed="true"] rect { stroke:var(--blue-ink); stroke-width:3; }
+.fol-app .fol-sets ellipse { fill:none; stroke:var(--blue-ink); stroke-width:2; }
+.fol-app .fol-sets ellipse:nth-of-type(2) { stroke:var(--red-ink); stroke-dasharray:6 3; }
+.fol-app .fol-set-region { border:2px solid var(--blue-ink); border-radius:45%; padding:1rem; min-width:8rem; text-align:center; }
+.fol-app .fol-correspondence { display:grid; gap:1rem; margin-top:.8rem; }
+.fol-app[data-kind="sql"] .fol-correspondence { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.fol-app textarea:not(.logic-app__input) { display:block; width:100%; max-width:100%; min-width:0; text-align:start; background:var(--paper); color:var(--ink); border:1px solid var(--rule-strong); border-radius:.3rem; padding:.45rem; font-family:var(--font-formal); }
+.fol-app [data-sql-source] { font:var(--step--1) var(--font-code); min-height:12rem; max-height:24rem; overflow:auto; }
+.fol-app label { display:block; font-size:var(--step--1); margin-block:.3rem; }
+.fol-app .fol-navigation { justify-content:center; }
+.fol-app .fol-navigation button { width:2.5rem; padding:.3rem; }
+.fol-app .logic-app__status { font-size:var(--step--1); margin-block:.5rem; padding:.5rem .7rem; }
+.fol-app .logic-app__status p { margin:.25rem 0; }
+.fol-app .fol-symbols { display:flex; flex-wrap:wrap; gap:.25rem; margin:.4rem 0; }
+.fol-app .fol-symbols button { font:var(--step--1) var(--font-formal); }
+.fol-app [data-model-health], .fol-app details { font-size:var(--step--1); }
+.fol-app [data-assignments] fieldset { display:flex; gap:.25rem; flex-wrap:wrap; }
+@media(max-width:40rem) { .fol-app[data-kind="sql"] .fol-correspondence { grid-template-columns:minmax(0,1fr); } .fol-app .fol-fact { flex-wrap:wrap; } .fol-app .fol-display { padding-inline:.4rem; } }
+
+.fol-app [data-answer] .function-table { min-width:9rem; }
+.fol-app [data-answer] table { width:100%; }
+/* The canvas grows with its model; the explanation follows the set-diagram layout. */
+.fol-app .fol-display { height:auto; min-height:14rem; max-height:none; resize:none; padding-bottom:1rem; }
+.fol-app .fol-walkthrough { display:grid; grid-template-columns:minmax(0,1.6fr) minmax(14rem,1fr); gap:1rem; align-items:start; }
+.fol-app .fol-explanation { border-inline-start:3px solid var(--blue-ink); padding-inline-start:.7rem; min-width:0; }
+.fol-app .fol-explanation .logic-app__status { background:transparent; padding:0; margin-top:0; }
+.fol-app .fol-step-claim { font-family:var(--font-formal); overflow-wrap:anywhere; }
+.fol-app .fol-assignment { font-family:var(--font-formal); }
+.fol-app .fol-correspondence, .fol-app[data-kind="sql"] .fol-correspondence { display:block; margin-block:.5rem 1rem; }
+.fol-app .fol-formula-field { position:relative; }
+.fol-app .fol-formula-field textarea { padding-right:3rem; min-height:3rem; resize:vertical; }
+.fol-app textarea[readonly] { resize:none; }
+.fol-app [data-edit-sql] { position:absolute; right:.2rem; top:.2rem; width:2.4rem; padding:.35rem; z-index:2; }
+.fol-app .fol-code { position:relative; margin:0; }
+.fol-app .fol-code .chroma { text-align:start; max-height:18rem; overflow:auto; padding-top:3rem; }
+.fol-app .fol-code code { text-align:start; white-space:pre-wrap; overflow-wrap:anywhere; font-size:var(--step--1); }
+.fol-app [data-sql-source] { padding-top:3rem; position:relative; z-index:0; }
+.fol-app [data-edit-sql] { right:2.6rem; }
+.fol-app .fol-conversions { justify-content:center; margin:.35rem 0; }
+.fol-app .fol-conversions button { font:1.5rem var(--font-prose); padding:.2rem .8rem; }
+.fol-app .fol-graph, .fol-app .fol-sets { min-height:0; max-height:none; height:auto; }
+.fol-app .fol-graph { min-width:0; }
+.fol-app .fol-sets text { font-size:21px; stroke-width:0; }
+.fol-app svg .fol-set-universe { fill:var(--set-universe); stroke:var(--ink); stroke-width:2.3; }
+.fol-app svg .fol-set-contour { fill:var(--set-green); stroke:var(--ink); stroke-width:2.1; }
+.fol-app .fol-empty-extension { padding:.6rem; align-self:center; font-family:var(--font-formal); }
+.fol-app .fol-object-selection { position:relative; display:inline-flex; }
+.fol-app .fol-delete { min-height:1.5rem; width:1.5rem; line-height:1; padding:0; border-radius:50%; border:1px solid var(--red-ink); background:var(--paper); color:var(--red-ink); }
+.fol-app .fol-object-selection > .fol-delete { position:absolute; right:-.5rem; top:-.4rem; z-index:1; }
+.fol-app svg .fol-selection-ring { fill:none; stroke:var(--blue-ink); stroke-width:2.5; pointer-events:none; }
+.fol-app .fol-svg-delete circle { fill:var(--paper); stroke:var(--red-ink); stroke-width:1.5; }
+.fol-app .fol-svg-delete text { fill:var(--red-ink); stroke:none; font:20px var(--font-prose); }
+.fol-app .fol-selectable-tuple { cursor:pointer; }
+.fol-app .fol-selectable-tuple.is-selected { background:var(--surf-blue); outline:1px solid var(--blue-ink); }
+.fol-app .fol-edge--0 { color:var(--blue-ink); }
+.fol-app .fol-edge--1 { color:var(--red-ink); }
+.fol-app .fol-edge--2 { color:var(--green-ink); }
+.fol-app svg .fol-edge-hit { stroke:transparent; stroke-width:18; pointer-events:stroke; }
+.fol-app .fol-edge[aria-pressed="true"] > .fol-edge-label { text-decoration:underline; }
+.fol-app .fol-zoom { display:flex; justify-content:end; gap:.2rem; margin-top:.3rem; }
+.fol-app .fol-zoom button { width:2.4rem; }
+.fol-app .fol-context { display:flex; flex-direction:column; gap:.3rem; }
+.fol-app .fol-current-object { outline:2px dashed var(--blue-ink); outline-offset:2px; }
+.fol-app svg .fol-current-object { outline:none; }
+.fol-app svg .fol-current-object rect { stroke:var(--blue-ink); stroke-dasharray:4 3; }
+@media(max-width:48rem) { .fol-app .fol-walkthrough { grid-template-columns:minmax(0,1fr); } }
+@media(max-width:40rem) { .fol-app .fol-explanation { padding-inline-start:.5rem; } }
+.fol-app .fol-graph text { font-size:19px; }
+.fol-app .fol-graph .fol-svg-delete text { font-size:20px; }
+.fol-app[data-editable="false"] .fol-tables { gap:.75rem; }
+.fol-app[data-editable="false"] .fol-tables table { font-size:var(--step--1); }
+.fol-app[data-editable="false"] .fol-tables th, .fol-app[data-editable="false"] .fol-tables td { padding:.15rem .35rem; }
+.fol-app .fol-explanation .logic-app__status { border:0; }
+.fol-app .fol-selection { position:static; margin-top:.4rem; max-width:100%; width:fit-content; }
+.fol-app .fol-edge text { pointer-events:all; cursor:pointer; }
+/* Compact canvas tools and component menus. */
+.fol-app .fol-canvas-tools > button { width:2.6rem; padding:.35rem; display:inline-flex; align-items:center; justify-content:center; }
+.fol-app .fol-menu { width:min(22rem,calc(100% - 1rem)); max-height:min(32rem,70vh); padding:.6rem; }
+.fol-app [data-panel="view"] { width:fit-content; max-width:calc(100% - 1rem); padding:.55rem; }
+.fol-app [data-panel="view"] .fol-toolbar { gap:.3rem; margin:0; padding-top:1rem; }
+.fol-app [data-view] { display:flex; flex-direction:column; align-items:center; gap:.1rem; font-size:.72rem; padding:.25rem .45rem; }
+.fol-app .fol-zoom-menu { width:fit-content; display:flex; align-items:center; gap:.3rem; }
+.fol-app .fol-zoom-menu button { width:2.4rem; padding:.25rem; }
+.fol-app .fol-component { margin:.2rem 0 .5rem; border-bottom:1px solid var(--rule); padding-bottom:.4rem; }
+.fol-app .fol-component summary { font:var(--step--2) var(--font-prose); color:var(--ink-muted); cursor:pointer; }
+.fol-app .fol-symbols { gap:.2rem; margin:.3rem 0 0; }
+.fol-app .fol-symbols button { padding:.25rem .4rem; min-height:2rem; font-size:.85rem; }
+.fol-app .fol-palette { gap:.3rem; }
+.fol-app .fol-palette > button { padding:.2rem; position:relative; border-color:transparent; }
+.fol-app .fol-palette > button:disabled { display:none; }
+.fol-app .fol-add-mark { position:absolute; right:-.05rem; top:-.2rem; font:bold 1rem var(--font-prose); color:var(--green-ink); background:var(--paper); border-radius:50%; line-height:1; }
+.fol-app .fol-menu-footer { display:flex; align-items:center; gap:.5rem; }
+.fol-app .fol-menu-footer button { padding:.25rem; flex:none; }
+.fol-app [data-model-health] { font-size:.72rem; color:var(--ink-muted); }
+.fol-app .fol-formula-field textarea { text-align:center; padding:.6rem 3rem; resize:none; }
+.fol-app .fol-check, .fol-app [data-examples], .fol-app [data-assignments] { justify-content:center; }
+.fol-app:is([data-kind="model"],[data-kind="database"]) .fol-walkthrough { display:block; }
+.fol-app[data-kind="model"] .fol-display { min-height:15rem; }
+.fol-app .fol-display { max-height:none; padding-top:3.7rem; }
+.fol-app .fol-tabs { display:flex; flex-wrap:wrap; gap:.2rem .6rem; margin:0 0 .5rem; }
+.fol-app .fol-tabs button { border:0; border-radius:0; border-bottom:2px solid transparent; background:transparent; padding:.25rem .1rem; font:var(--step--1) var(--font-formal); }
+.fol-app .fol-tabs button[aria-pressed="true"] { border-color:var(--blue-ink); background:transparent; }
+.fol-app .fol-scene { min-width:0; }
+.fol-app .fol-scene > svg { max-width:52rem; margin-inline:auto; }
+.fol-app button.fol-symbol-label { padding:.1rem .2rem; min-height:1.5rem; border:0; border-radius:0; background:transparent; font:inherit; color:inherit; }
+.fol-app button.fol-symbol-label:hover, .fol-app button.fol-symbol-label:focus-visible { text-decoration:underline; color:var(--blue-ink); }
+.fol-app .fol-active-interpretation { outline:2px solid var(--blue-ink); outline-offset:3px; background:var(--surf-blue); }
+.fol-app svg .fol-active-interpretation, .fol-app svg .fol-active-denotation { outline:none; background:none; }
+.fol-app svg .fol-active-interpretation > .fol-edge-label { text-decoration:underline; }
+.fol-app svg rect.fol-active-interpretation { stroke:var(--blue-ink); stroke-width:4; }
+.fol-app .fol-active-denotation { outline:2px solid var(--blue-ink); outline-offset:2px; }
+.fol-app svg .fol-active-denotation rect { stroke:var(--blue-ink); stroke-width:3; }
+.fol-app .fol-sets .fol-image-paper { fill:transparent; stroke:none; }
+.fol-app .fol-emoji { font-family:system-ui,"Apple Color Emoji","Segoe UI Emoji",sans-serif; font-size:1.8rem; line-height:1.1; }
+.fol-app svg text.fol-emoji { font-family:system-ui,"Apple Color Emoji","Segoe UI Emoji",sans-serif; font-size:37px; stroke:none; }
+.fol-app .fol-emoji-badge { font:.6rem var(--font-prose); margin-left:-.6rem; align-self:end; background:var(--paper); border-radius:.15rem; }
+.fol-app .fol-query-extension { margin-top:1rem; padding:.5rem; border:2px solid var(--green-ink); border-radius:.4rem; font:var(--step--1) var(--font-formal); }
+.fol-app .fol-in-extension { outline:2px solid var(--green-ink); outline-offset:2px; background:var(--set-green); }
+.fol-app svg .fol-in-extension { outline:none; background:none; }
+.fol-app svg .fol-in-extension rect { stroke:var(--green-ink); stroke-width:4; }
+.fol-app svg .fol-in-extension > path:not(.fol-edge-hit) { stroke:var(--green-ink); }
+.fol-app:fullscreen, .fol-app.fol-fullscreen { width:100vw; height:100dvh; max-width:none; margin:0; padding:1rem; overflow:auto; background:var(--paper); }
+.fol-app.fol-fullscreen { position:fixed; inset:0; z-index:2000; }
+.fol-app:fullscreen .fol-display, .fol-app.fol-fullscreen .fol-display { max-height:calc(100dvh - 12rem); min-height:55vh; }
+.fol-app[data-kind="model"]:fullscreen .fol-display, .fol-app[data-kind="model"].fol-fullscreen .fol-display { max-height:calc(100dvh - 3rem); min-height:85vh; }
+@media(max-width:40rem) { .fol-app .fol-canvas-tools { gap:.2rem; }.fol-app .fol-canvas-tools > button { width:2.25rem; }.fol-app .fol-menu { right:.25rem; }.fol-app:fullscreen, .fol-app.fol-fullscreen { padding:.35rem; } }
+
+.fol-app .fol-artwork { position:absolute; width:0; height:0; overflow:hidden; }
+.fol-app .fol-edge--3 { color:#7544a3; }
+:root[data-theme="dark"] .fol-app .fol-edge--3 { color:#c5a0ef; }
+@media(prefers-color-scheme:dark) { :root:not([data-theme="light"]) .fol-app .fol-edge--3 { color:#c5a0ef; } }
+/* Binding is derived from the syntax tree; the formula remains selectable text. */
+
+.fol-scope .scope-toolbar { display:flex; justify-content:center; gap:.5rem; margin:.6rem; }
+.fol-scope .scope-canvas { overflow:auto; border:1px solid var(--rule); border-radius:.4rem; padding:.8rem; }
+.fol-scope .scope-line { position:relative; width:max-content; min-width:100%; padding-top:100px; white-space:pre; font:var(--step--1) var(--font-formal); }
+.fol-scope .scope-line button { font:inherit; padding:.15rem; border:1px solid transparent; background:transparent; min-height:2rem; }
+.fol-scope .scope-line button[aria-pressed="true"] { border-color:var(--blue-ink); background:var(--surf-blue); }
+.fol-scope .scope-line button.scope-is-free { border-bottom:2px dotted var(--orange-ink); }
+.fol-scope .scope-wires { position:absolute; top:0; left:0; pointer-events:none; overflow:visible; }
+.fol-scope .scope-wire { stroke:var(--blue-ink); stroke-width:1.5; fill:none; }
+.fol-scope .scope-color-1 { stroke:var(--red-ink); stroke-dasharray:5 3; }
+.fol-scope .scope-color-2 { stroke:var(--green-ink); }
+.fol-scope marker path { fill:var(--ink); }
+.fol-scope [data-feedback], .fol-scope .scope-free { font-size:var(--step--1); margin:.6rem 0; }
+.fol-app .fol-selection { position:sticky; bottom:0; margin:.5rem auto 0; z-index:2; font-size:var(--step--1); }
+.fol-app .fol-next-slot { color:var(--blue-ink); border-bottom:2px solid var(--blue-ink); padding:.2rem; }
+.fol-app .fol-add-row { border-top:1px dashed var(--rule-strong); }
+.fol-app .fol-tuple-plus { color:var(--green-ink); margin-right:.3rem; min-height:1.8rem; padding:0 .4rem; }
+.fol-app .fol-set-add circle { fill:var(--paper); stroke:var(--green-ink); }
+.fol-app .fol-set-add text { fill:var(--green-ink); }
+.fol-app svg .fol-overlap-0 { fill:var(--set-green); fill-opacity:.6; }
+.fol-app svg .fol-overlap-1 { fill:var(--set-rose); fill-opacity:.6; }
+.fol-app [data-query-result] { margin:.6rem 0; }
+.fol-app [data-query-result]:empty { display:none; }
+.fol-app .fol-query-extension { margin:.4rem 0; }
+.fol-app .fol-check button { display:inline-flex; align-items:center; gap:.4rem; }
+.fol-worlds { display:flex; align-items:center; gap:.25rem; margin:1.5rem 0; }
+.fol-world-stage { flex:1; min-width:0; text-align:center; }
+.fol-world-stage figcaption { font-size:var(--step--1); }
+.fol-world-picture { position:relative; aspect-ratio:1; }
+.fol-world-outline, .fol-world-meridians { position:absolute; inset:0; width:100%; height:100%; }
+.fol-world-outline path { fill:var(--set-world); stroke:var(--ink); stroke-width:1.2; }
+.fol-world-meridians path { fill:none; stroke:var(--ink); stroke-width:.8; opacity:.6; }
+.fol-world-facts { position:absolute; inset:20%; display:flex; flex-direction:column; align-items:center; justify-content:center; font:var(--step-0) var(--font-formal); }
+.fol-world-objects { position:absolute; inset:15%; font:var(--step--2) var(--font-formal); }
+.fol-world-human { position:absolute; inset:0 5% 42%; border:1px solid var(--ink); border-radius:40%; background:var(--set-green); display:flex; justify-content:center; align-items:end; }
+.fol-world-human > span:first-child { position:absolute; top:0; }
+.fol-worlds .book-figure { background:transparent; margin:0; }
+.fol-world-human .book-figure { width:25%; height:65%; }
+.fol-worlds .book-figure svg { height:100%; width:100%; }
+.fol-world-relation { position:absolute; inset:0; width:100%; height:100%; overflow:visible; }
+.fol-world-relation .fol-world-edge { fill:none; stroke:var(--blue-ink); stroke-width:1.2; }
+.fol-world-relation marker path { fill:var(--blue-ink); }
+.fol-world-relation text { fill:var(--ink); font:8px var(--font-formal); }
+.fol-world-box { position:absolute; right:20%; bottom:0; width:25%; height:30%; }
+.fol-worlds-arrow { font:var(--step-2) var(--font-formal); }
+@media(max-width:40rem) { .fol-worlds { flex-direction:column; }.fol-world-stage { width:15rem; }.fol-worlds-arrow { transform:rotate(90deg); } }
+/* Small database relations fit together without a nested vertical scrollbar. */
+.fol-app[data-object-style="emoji"] .fol-display { max-height:none; }
+.fol-app[data-object-style="emoji"] .fol-tables { gap:.5rem 1rem; }
+.fol-app[data-object-style="emoji"] .fol-tables .fol-emoji { font-size:1.35rem; }
+.fol-app[data-object-style="emoji"] .fol-tables td { padding:.08rem .3rem; }
+.fol-app[data-object-style="emoji"] .fol-tables th { font-size:var(--step--2); }
+.fol-app[data-object-style="emoji"] .fol-tables .fol-object { min-height:1.5rem; }
+.fol-app .fol-candidate { font-family:var(--font-formal); padding:.35rem; background:var(--surf-blue); border-radius:var(--radius); }
+.fol-scope[data-mode="display"] { margin-block:1.2rem; padding:0; }
+.fol-scope[data-mode="display"] .scope-line { font-size:var(--step-0); }
+.fol-world-facts { inset:22% 12%; gap:.35rem; font-size:var(--step--2); }
+.fol-world-facts > span { display:flex; align-items:center; gap:.3rem; white-space:nowrap; }
+.fol-world-facts .book-figure { width:2rem; height:2rem; }
+.fol-world-relation .fol-world-edge { stroke-width:2; }
+.fol-world-relation text { paint-order:stroke; stroke:var(--set-world); stroke-width:3; stroke-linejoin:round; }
+.fol-candidate-domain { background:var(--set-universe); border:2px solid var(--ink); border-radius:1.4rem; padding:.7rem; min-height:12rem; }
+.fol-domain-heading { display:flex; flex-wrap:wrap; gap:.4rem; align-items:baseline; font-family:var(--font-formal); margin-bottom:.7rem; }
+.fol-domain-power { font-size:var(--step-1); }
+.fol-domain-window { margin-left:auto; font:var(--step--2) var(--font-prose); }
+.fol-candidate-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,var(--candidate-width)),1fr)); gap:.45rem .3rem; }
+.fol-app button.fol-domain-candidate { position:relative; padding:.15rem .1rem; min-height:2rem; min-width:0; border:1px solid transparent; background:transparent; border-radius:.45rem; }
+.fol-domain-tuple { display:flex; flex-wrap:nowrap; align-items:center; justify-content:center; font:var(--step--2) var(--font-formal); }
+.fol-candidate-domain .fol-object { --fol-object-size:1.2rem; }
+.fol-candidate-domain .fol-object-art { width:1.2rem; height:1.4rem; color:var(--ink); }
+.fol-candidate-domain .fol-emoji { font-size:1.2rem; }
+.fol-candidate-domain .fol-emoji-badge { font-size:.5rem; }
+.fol-candidate-mark { position:absolute; right:.1rem; top:-.25rem; font-size:.7rem; }
+.fol-app button.fol-domain-candidate.fol-in-extension { background:var(--set-green); outline:none; border-color:var(--green-ink); }
+.fol-app button.fol-domain-candidate[aria-current="step"] { border:2px solid var(--blue-ink); box-shadow:0 0 0 1px var(--paper); }
+.fol-app button.fol-domain-candidate:focus-visible { outline:2px dashed var(--blue-ink); outline-offset:2px; }
+
+.fol-app .logic-app__input-row > button { min-height:2.75rem; }
+.fol-app .fol-query-interpretations { margin-bottom:.8rem; padding-bottom:.5rem; border-bottom:1px solid var(--rule); }
+.fol-app .fol-query-interpretations:has(.fol-tables:empty), .fol-app .fol-query-interpretations:empty { display:none; }
+.fol-app .fol-query-interpretations .fol-tables { gap:.4rem 1rem; }
+.fol-app .fol-query-constants { flex-basis:100%; display:flex; flex-wrap:wrap; justify-content:center; gap:.4rem 1rem; font:var(--step--1) var(--font-formal); }
+.fol-app .fol-query-interpretations .fol-object { --fol-object-size:1.7rem; }
+.fol-app .fol-query-interpretations td, .fol-app .fol-query-interpretations th { padding:.1rem .25rem; }
+.fol-app:has(.fol-candidate-domain) .fol-display { max-height:none; }
+.fol-app .fol-candidate-domain { min-height:0; }
+.fol-app .fol-code-tabs { display:flex; gap:.4rem; justify-content:center; margin:.5rem 0; }
+.fol-app .fol-code-tools { position:absolute; top:.2rem; left:.2rem; display:flex; gap:.25rem; z-index:2; }
+.fol-app .fol-code-tools button { position:static; width:2.4rem; padding:.35rem; }
+.fol-app .fol-code > .lang-badge { inset-inline-start:auto; inset-inline-end:.5rem; }
+.fol-app .fol-query-icon { font:700 1.25em var(--font-formal); }
+.fol-app .fol-explanation { font-size:var(--step--1); }
+.fol-app .fol-explanation [data-query-result] { border-top:1px solid var(--rule); padding-top:.6rem; }
+.fol-app .fol-explanation .fol-object { --fol-object-size:1.6rem; }
+.fol-app .fol-query-interpretations { --fol-object-size:1.6rem; }
+.fol-app .fol-query-interpretations .fol-tables { gap:.5rem; }
+.fol-app .fol-query-interpretations .function-table { font-size:var(--step--1); }
+.fol-app .fol-query-interpretations .function-table :is(th,td) { padding:.1rem .35rem; }
+.fol-app .fol-query-interpretations .function-table caption { padding:.1rem; }
+.fol-app .fol-query-interpretations .function-table { line-height:1.25; }
+.fol-app .fol-domain-tuple { line-height:1; }
+.fol-app .fol-domain-heading { margin-bottom:.3rem; line-height:1.2; }
+.fol-app .fol-query-interpretations .function-table { margin-block:.25rem; }
+.fol-app .fol-candidate-grid { gap:.2rem; }
+.fol-app:is([data-kind="query"],[data-kind="sql"]) .fol-display { padding-block:3.4rem .5rem; }
+.fol-app [data-examples] { font-size:var(--step--1); }
+.fol-app .fol-code-notice { font-size:var(--step--1); }
+.fol-app .fol-playground-link { text-align:center; margin:.7rem 0; font-size:var(--step--1); }
+@media(max-width:40rem) { .fol-app .fol-formula-field textarea { padding-inline:.35rem 2.4rem; font-size:var(--step--1); } }
+.fol-app .fol-playground-help { text-align:center; font-size:var(--step--1); margin:.4rem auto 1rem; max-width:38rem; }
+
+/* SQL executes locally; code, controls and results stay in the same example. */
+.fol-app .sql-run-controls { display:flex; flex-wrap:wrap; align-items:center; gap:.5rem; margin:.5rem 0; }
+.fol-app .sql-run-controls button { display:inline-flex; align-items:center; gap:.25rem; }
+.fol-app .sql-run-note { font-size:var(--step--2); color:var(--ink-muted); }
+.fol-app [data-sql-status] { font-size:var(--step--1); margin:.4rem 0; overflow-wrap:anywhere; }
+.fol-app [data-sql-status]:empty { display:none; }
+.fol-app [data-sql-status][data-state="error"] { color:var(--red-ink); }
+.fol-app .sql-result-table { max-width:100%; max-height:14rem; overflow:auto; margin:.5rem 0; }
+.fol-app .sql-result-table table { border-collapse:collapse; font-size:var(--step--1); width:100%; }
+.fol-app .sql-result-table :is(td,th) { border:0; padding:.25rem .5rem; text-align:start; overflow-wrap:anywhere; max-width:24rem; }
+.fol-app .sql-result-table th { background:none; }
+.fol-app .sql-result-table caption { caption-side:top; color:var(--ink-muted); font-size:var(--step--2); padding:.25rem 0; }
+.fol-app .sql-null { font-style:italic; color:var(--ink-muted); }
+.fol-app .fol-external-sql { margin-block:.5rem; }
+.fol-app.sql-app [data-sql-source] { min-height:10rem; }
+.fol-app .sql-license { margin-inline-start:auto; font-size:var(--step--2); }
+
+/* SQL keeps its editor controls on the code shell and results close below. */
+.fol-app .fol-code-tabs { justify-content:flex-start; flex-wrap:wrap; align-items:center; }
+.fol-app .fol-conversions { display:inline-flex; gap:.25rem; margin-inline-end:auto; }
+.fol-app .fol-code .sql-run-controls { padding:.3rem .5rem; margin:0; justify-content:flex-end; background:var(--paper-sunken); border:1px solid var(--rule); border-top:0; border-radius:0 0 .25rem .25rem; }
+.fol-app .sql-run-controls .sql-run-note { margin-inline-end:auto; }
+.fol-app .sql-license { order:-1; margin-inline-start:0; margin-inline-end:auto; }
+.fol-app .sql-run-controls button { order:2; }
+.fol-app .sql-run-note { display:none; }
+.fol-app .sql-result-table table { margin:0; }
+.fol-app .sql-result-table :is(th,td) { min-width:0; }
+.fol-app .fol-code-notice:empty { display:none; }
+.fol-practice-toolbar { display:flex; flex-wrap:wrap; gap:.5rem; align-items:center; justify-content:space-between; margin-bottom:.5rem; }
+.fol-practice-toolbar [data-levels] { display:flex; flex-wrap:wrap; gap:.25rem; }
+.fol-practice-task { margin:.5rem 0; }
+.fol-practice-task small { display:block; font-size:var(--step--1); margin-top:.3rem; }
+.fol-practice .fol-formula { font-family:var(--font-formal); }
+.fol-practice > .logic-app { border:0; padding:0; margin:.5rem 0; }
+.fol-practice [data-practice-feedback], .fol-scope [data-practice-feedback] { font-size:var(--step--1); margin:.5rem 0; }
+[data-practice-feedback][data-feedback="correct"] { color:var(--green-ink); }
+[data-practice-feedback][data-feedback="incorrect"] { color:var(--red-ink); }
+.fol-builder-tools { display:flex; flex-wrap:wrap; gap:.5rem; }
+.fol-builder-tools fieldset { border:1px solid var(--rule); border-radius:.3rem; padding:.3rem; min-width:0; }
+.fol-builder-tools legend { float:none; width:auto; font-size:var(--step--2); margin:0; }
+.fol-builder-tools button { font-family:var(--font-formal); margin:.1rem; }
+.fol-practice [data-builder-board] { min-height:8rem; padding:.75rem; border:1px solid var(--rule); overflow:auto; display:flex; gap:1rem; }
+.fol-practice [data-target] { max-height:22rem; overflow:auto; }
+.fol-scope [data-visited="true"] { text-decoration:underline; text-decoration-color:var(--blue-ink); }
+.fol-practice .fol-sql-object-name { display:block; font:var(--step--2) var(--font-code); }
+.fol-practice [data-target] .fol-object { display:inline-flex; flex-direction:column; height:auto; }
+.fol-app .fol-code.has-lang-icon > .highlight { padding-block-start:0; }
+.fol-app[data-kind="sql"] [data-examples] { display:none; }
+.fol-app[data-kind="sql"] .fol-code .chroma { max-height:12rem; }
+.fol-app .fol-code > .lang-badge { inline-size:3.2rem; block-size:2.5rem; }
+.fol-practice .builder__level, .fol-scope .builder__level { min-width:2.2rem; min-height:2.2rem; padding:.15rem .35rem; }
+.fol-practice .builder__level[aria-current="true"], .fol-scope .builder__level[aria-current="true"] { border:2px solid var(--blue-ink); }
+@media (prefers-reduced-motion: no-preference) {
+  .fol-practice.is-shaking, .fol-scope.is-shaking { animation:latex-game-shake .4s ease; }
+}
+.fol-app[data-kind="sql"] .fol-correspondence { margin-bottom:.4rem; }
+.fol-app[data-kind="sql"] .fol-code .chroma { max-height:10.5rem; }
+.fol-practice .fol-code .chroma { max-height:12rem; }
+
+/* The language badge belongs to the header, outside the scrolling source. */
+.fol-app .fol-code-header { display:flex; align-items:center; justify-content:space-between; min-height:3rem; padding:.2rem .5rem; border:1px solid var(--rule); border-bottom:0; background:var(--paper-sunken); }
+.fol-app .fol-code-header .fol-code-tools { position:static; order:-1; }
+.fol-app .fol-code-header .lang-badge { position:static; inline-size:5rem; block-size:2.5rem; margin:0; flex:none; }
+.fol-app .fol-code .chroma, .fol-app .fol-code textarea { padding-top:.65rem; }
+.fol-app .fol-bridge { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:1rem; align-items:start; }
+.fol-app .fol-bridge > *, .fol-app .fol-logic-side { min-width:0; }
+.fol-app .fol-code-tabs { justify-content:center; position:relative; padding-inline:2.75rem; }
+.fol-app .fol-code-tabs [data-fullscreen] { position:absolute; right:0; }
+.fol-app .fol-conversions { margin:0; }
+.fol-app .fol-bridge .fol-walkthrough { display:block; }
+.fol-app .fol-query-model summary { font-size:var(--step--1); cursor:pointer; margin-block:.5rem; }
+.fol-app .fol-bridge .fol-explanation { margin-top:.5rem; }
+.fol-app .fol-bridge .fol-display { min-height:0; }
+.fol-app .fol-table-tabs { display:flex; flex-wrap:wrap; justify-content:center; gap:.25rem; margin-bottom:.5rem; }
+.fol-app .fol-table-tabs button { font-size:var(--step--2); padding:.2rem .35rem; }
+.fol-app .fol-table-tabs button[aria-pressed="true"] { border-color:var(--blue-ink); background:var(--surf-blue); }
+.fol-app .fol-bridge .fol-correspondence { margin-top:0; }
+.fol-app .fol-bridge .fol-correspondence .logic-app__input-row { flex-wrap:wrap; justify-content:center; }
+.fol-app .fol-bridge .fol-correspondence .logic-app__input-wrap { flex-basis:100%; }
+.fol-app[data-kind="database"] .fol-code .chroma { max-height:26rem; }
+.fol-app[data-kind="sql"] .fol-code .chroma { max-height:12rem; }
+.fol-app:is(:fullscreen,.fol-fullscreen) .fol-code .chroma { max-height:65vh; }
+@media(max-width:48rem) { .fol-app .fol-bridge { grid-template-columns:minmax(0,1fr); } }
+.fol-practice [data-target] { max-height:none; }
+.fol-practice-table { max-height:20rem; overflow:auto; }
+.fol-practice-table .fol-tables { justify-content:flex-start; }
+.fol-practice-table .fol-object { min-height:0; }
+.fol-practice-table .fol-emoji { font-size:1.3rem; }
+.fol-practice-table :is(td,th) { padding:.15rem .4rem; }
+@media (min-width:60rem) {
+  .fol-practice[data-exercise="initialize"] { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.2fr); gap:.6rem; align-items:start; }
+  .fol-practice[data-exercise="initialize"] > :is(.fol-practice-toolbar,[data-task],[data-practice-feedback]) { grid-column:1 / -1; }
+  .fol-practice[data-exercise="initialize"] > .sql-app { margin:0; }
+}
+
+/* Paired headings sit over their panes; the arrows join the two headings. */
+.fol-app .fol-code-tabs { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:1rem; padding:0; min-height:3.4rem; }
+.fol-app .fol-code-tabs > span:not(.fol-conversions) { text-align:center; padding:.55rem 2.8rem .55rem .5rem; border-bottom:2px solid var(--rule); font-weight:600; }
+.fol-app .fol-code-tabs > span:first-child { padding-inline:.5rem 2.8rem; }
+.fol-app .fol-code-tabs .fol-conversions { position:absolute; left:50%; top:.2rem; transform:translateX(-50%); background:var(--paper); padding-inline:.2rem; }
+.fol-app .fol-code-tabs [data-fullscreen] { top:.2rem; }
+.fol-app .sql-output { margin-top:.5rem; padding:.5rem .65rem; border:1px solid var(--rule); border-radius:.4rem; background:var(--paper); box-shadow:0 2px 4px var(--rule); }
+.fol-app .sql-output [data-sql-status] { margin:0; padding:.3rem .5rem; border-radius:.25rem; }
+.fol-app .sql-output [data-sql-status][data-state="success"] { color:var(--green-ink); background:var(--surf-green); border-inline-start:3px solid var(--green-ink); }
+.fol-app .sql-output [data-sql-status][data-state="error"] { color:var(--red-ink); background:var(--surf-red); border-inline-start:3px solid var(--red-ink); }
+.fol-app .sql-result-table table { width:auto; margin:.3rem auto; font-family:var(--font-formal); }
+.sql-condition.chroma { background:transparent; white-space:normal; font-size:var(--step--1); }
+.sql-condition.chroma .line { display:inline; }
+.fol-app .fol-pruned-note { display:block; color:var(--ink-muted); font-size:var(--step--2); margin:.25rem 0; }
+.fol-app[data-kind="term"] .fol-assignment { display:flex; align-items:center; }
+@media(max-width:48rem) {
+  .fol-app .fol-code-tabs > span:not(.fol-conversions) { grid-row:1; }
+  .fol-app .fol-code-tabs > span:first-child { grid-column:1; padding-inline:.5rem; }
+  .fol-app .fol-code-tabs > span:nth-child(3) { grid-column:2; padding-inline:.2rem 3rem; }
+  .fol-app .fol-code-tabs .fol-conversions { position:static; transform:none; grid-row:2; grid-column:1 / -1; justify-self:center; }
+}
+
+/* Compact, shared formula fields and assignment choices. */
+.fol-app .logic-app__input, .fol-scope .logic-app__input { font-size:var(--step--1); line-height:1.5; min-height:2.75rem; }
+.fol-app .fol-assignment-choices { display:flex; flex-wrap:wrap; align-items:center; gap:.2rem; font-family:var(--font-formal); }
+.fol-app .fol-assignment-choices > span { white-space:nowrap; margin-right:.3rem; }
+.fol-app .fol-assignment-choices button { padding:.15rem; }
+.fol-app .fol-assignment-choices button[aria-pressed="false"] .fol-object { opacity:.35; filter:grayscale(1); }
+.fol-app .fol-assignment-choices button[aria-pressed="true"] { border-color:var(--blue-ink); background:var(--surf-blue); }
+.fol-app .fol-term-tree { padding:.2rem; min-height:0; overflow:visible; }
+.fol-app .fol-term-tree > svg { display:block; width:100%; height:auto; max-height:20rem; }
+.fol-app .fol-term-tree foreignObject { overflow:visible; }
+.fol-app .fol-term-tree foreignObject .fol-object { display:flex; width:56px; height:46px; justify-content:center; align-items:center; }
+.fol-app .fol-term-tree foreignObject svg { width:38px; height:38px; }
+.fol-app .fol-verdict { padding:.5rem .75rem; border:1px solid var(--green-ink); border-inline-start-width:4px; border-radius:.3rem; background:var(--surf-green); color:var(--green-ink); }
+.fol-app .fol-verdict[data-value="false"] { color:var(--red-ink); border-color:var(--red-ink); background:var(--surf-red); }
+.fol-level-label { align-self:center; color:var(--ink-muted); font-size:var(--step--2); margin-inline-end:.3rem; }
+
+/* The two directions share a column; utilities have their own row. */
+.fol-app .fol-code-tabs { grid-template-columns:minmax(0,1fr) auto minmax(0,1fr); gap:.2rem .65rem; }
+.fol-app .fol-code-tabs > span:first-child { grid-column:1; grid-row:2; padding:.5rem; }
+.fol-app .fol-code-tabs > span:nth-child(3) { grid-column:3; grid-row:2; padding:.5rem; }
+.fol-app .fol-code-tabs .fol-conversions { position:static; transform:none; grid-column:2; grid-row:2; display:flex; flex-direction:column; padding:0; gap:.15rem; }
+.fol-app .fol-conversions button { padding:0 .5rem; font-size:1.1rem; min-height:1.8rem; }
+.fol-app .fol-bridge-utilities { grid-row:1; grid-column:1 / -1; display:flex; justify-content:flex-end; gap:.25rem; }
+.fol-app .fol-code-tabs .fol-bridge-utilities [data-fullscreen] { position:static; }
+.fol-app:is(:fullscreen,.fol-fullscreen) .fol-display { min-height:0; max-height:none; }
+.fol-app:is(:fullscreen,.fol-fullscreen) .fol-bridge { align-items:start; }
+.fol-app:is(:fullscreen,.fol-fullscreen) .fol-code .chroma { max-height:calc(100dvh - 18rem); }
+.fol-app:is(:fullscreen,.fol-fullscreen) .fol-walkthrough { grid-template-columns:minmax(0,1.3fr) minmax(18rem,1fr); }
+.fol-app:is(:fullscreen,.fol-fullscreen) .fol-graph { max-height:calc(100dvh - 12rem); }
+@media(max-width:48rem) { .fol-app:is(:fullscreen,.fol-fullscreen) .fol-walkthrough { grid-template-columns:minmax(0,1fr); } }
+.fol-extension-workspace { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:.75rem; align-items:start; }
+.fol-extension-workspace > * { min-width:0; }
+.fol-extension-candidates { border:1px solid var(--rule); border-radius:.4rem; padding:.5rem; }
+.fol-extension-candidates > p { margin:0 0 .3rem; text-align:center; }
+.fol-app .fol-extension-candidates button[aria-pressed="true"] { border-color:var(--blue-ink); background:var(--surf-blue); }
+.fol-extension-model .fol-object { width:2rem; height:2.5rem; }
+.fol-extension-model .fol-tables { gap:.6rem; }
+.fol-gap-code { font-size:var(--step--2); padding:.75rem; background:var(--paper-sunken); border:1px solid var(--rule); border-radius:.3rem; overflow:auto; }
+.fol-gap-code input { font:inherit; background:var(--paper); color:var(--ink); border:1px solid var(--blue-ink); border-radius:.2rem; max-width:18rem; padding:.15rem; }
+.fol-gap-code input[aria-invalid="true"] { border:2px solid var(--red-ink); background:var(--surf-red); }
+@media(max-width:48rem) { .fol-extension-workspace { grid-template-columns:minmax(0,1fr); } }
+
+.fol-app .fol-extension-candidates .fol-domain-power { font:var(--step--2) var(--font-formal); }
+.fol-extension-matrix { table-layout:fixed; width:100%; border-collapse:collapse; }
+.fol-extension-matrix :is(th,td) { padding:.1rem 0; text-align:center; border:1px solid var(--rule); }
+.fol-extension-matrix :is(thead th,tbody th) { background:var(--paper-sunken); }
+.fol-extension-matrix .fol-object { display:inline-flex; justify-content:center; width:1.4rem; height:1.6rem; vertical-align:middle; }
+.fol-extension-matrix .fol-emoji { font-size:1.2rem; }
+.fol-extension-matrix .fol-emoji-badge { display:none; }
+.fol-app .fol-extension-matrix button.fol-domain-candidate { width:100%; min-height:1.6rem; border-radius:.15rem; font-size:var(--step--2); padding:0; }
+.fol-app:is(:fullscreen,.fol-fullscreen) .fol-bridge .fol-walkthrough { display:block; }
+
+@media(min-width:48rem) {
+  .fol-app:is(:fullscreen,.fol-fullscreen) .fol-bridge .fol-correspondence .logic-app__input-row { flex-wrap:nowrap; }
+  .fol-app:is(:fullscreen,.fol-fullscreen) .fol-bridge .fol-correspondence .logic-app__input-wrap { flex-basis:0; flex-grow:1; }
+  .fol-app:is(:fullscreen,.fol-fullscreen) .fol-query-model .fol-display { padding-top:2.75rem; padding-bottom:.5rem; }
+}

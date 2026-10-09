@@ -154,7 +154,8 @@
 .logic-app .app-picker-label { font-family: var(--font-prose); color: var(--ink-muted); font-size: var(--step--1); align-self: center; margin-inline-end: .25rem; }
 .sat-app .sat-example-description:empty { display: none; }
 .sat-app[data-logic-app=sat] [data-input-form] { flex-wrap: nowrap; gap: .5rem; }
-.sat-app[data-logic-app=sat] [data-input-form] .logic-app__input { flex: 1; min-width: 0; width: 0; }
+.sat-app[data-logic-app=sat] [data-input-form] .logic-app__input-wrap { flex:1; min-width:0; }
+.sat-app[data-logic-app=sat] [data-input-form] .logic-app__input { width:100%; padding:.6rem 3rem; }
 .sat-app[data-logic-app=sat] .logic-app__controls { justify-content: center; }
 .sat-app[data-logic-app=sat] [data-target] { justify-content: flex-start; }
 .sat-app[data-logic-app=sat] [data-inference] { text-align: center; color: var(--blue-ink); background: var(--surf-blue); border-radius: var(--radius); padding: .35rem; }

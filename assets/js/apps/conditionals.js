@@ -26,7 +26,7 @@ export function mountConditionals(root) {
   const inputs=[...root.querySelectorAll('form input,form textarea,form select')];
   const kbPreview=el('ul',{class:'conditional-kb-preview','aria-label':'Knowledge base'});
   q('[data-kb]').after(kbPreview);
-  function freeze(on) {q('[data-kb]').hidden=on;kbPreview.hidden=!on;kbPreview.replaceChildren(...q('[data-kb]').value.split('\n').filter(s=>s.trim()).map(s=>el('li',{},s)));inputs.forEach(n=>{if(n.tagName!=='SELECT')n.readOnly=on;});q('[data-edit]').disabled=!on;}
+  function freeze(on) {q('[data-kb]').hidden=on;kbPreview.hidden=!on;kbPreview.replaceChildren(...q('[data-kb]').value.split('\n').filter(s=>s.trim()).map(s=>el('li',{},s)));inputs.forEach(n=>{if(n.tagName!=='SELECT')n.readOnly=on;});q('[data-edit]').disabled=!on;q('[data-edit]').hidden=!on;}
   function clear() {root.querySelectorAll('[data-work],[data-rules],[data-text-tree],[data-proofs],[data-code],[data-path]').forEach(n=>n.replaceChildren());root.querySelectorAll('[data-count]').forEach(n=>n.textContent='');root.querySelectorAll('[data-action]').forEach(b=>b.disabled=true);}
   q('[data-edit]').onclick=()=>{freeze(false);clear();status.textContent='Edit the input, then start a new calculation.';inputs[0].focus();};
   let selected=root.dataset.example || (kind==='horn'?'sat':'rainbow');

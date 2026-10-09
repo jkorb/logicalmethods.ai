@@ -54,10 +54,11 @@
     <link rel="stylesheet" href="{{ (resources.Get "css/glossary.css" | fingerprint).RelPermalink }}">
     <link rel="stylesheet" href="{{ (resources.Get "css/syntax_hl.css" | fingerprint).RelPermalink }}">
     <link rel="stylesheet" href="{{ (resources.Get "css/pickers.css" | fingerprint).RelPermalink }}">
-    {{ if or (.HasShortcode "function-table") (.HasShortcode "logic-app") }}
+    {{ if or (.HasShortcode "function-table") (or (.HasShortcode "logic-app") (.HasShortcode "sql-app")) }}
     <link rel="stylesheet" href="{{ (resources.Get "css/function-table.css" | fingerprint).RelPermalink }}">
     {{ end }}
-    {{ if .HasShortcode "logic-app" }}
+    {{ if or (.HasShortcode "logic-app") (.HasShortcode "sql-app") }}
+    <link rel="stylesheet" href="{{ (resources.Get "css/apps/fol.css" | fingerprint).RelPermalink }}">
     <link rel="stylesheet" href="{{ (resources.Get "css/apps/logic-app.css" | fingerprint).RelPermalink }}">
     <link rel="stylesheet" href="{{ (resources.Get "css/apps/boolean.css" | fingerprint).RelPermalink }}">
     <link rel="stylesheet" href="{{ (resources.Get "css/apps/sat.css" | fingerprint).RelPermalink }}">
@@ -65,8 +66,11 @@
     <link rel="stylesheet" href="{{ (resources.Get "css/apps/conditionals.css" | fingerprint).RelPermalink }}">
     <link rel="stylesheet" href="{{ (resources.Get "css/apps/flashcards.css" | fingerprint).RelPermalink }}">
     {{ end }}
-    {{ if or (.HasShortcode "column-addition") (.HasShortcode "logic-app") }}
+    {{ if or (.HasShortcode "column-addition") (or (.HasShortcode "logic-app") (.HasShortcode "sql-app")) }}
     <link rel="stylesheet" href="{{ (resources.Get "css/column-addition.css" | fingerprint).RelPermalink }}">
+    {{ end }}
+    {{ if .HasShortcode "binding-diagram" }}
+    <link rel="stylesheet" href="{{ (resources.Get "css/binding-diagram.css" | fingerprint).RelPermalink }}">
     {{ end }}
     {{ if .HasShortcode "annotated-math" }}
     <link rel="stylesheet" href="{{ (resources.Get "css/annotated-math.css" | fingerprint).RelPermalink }}">
@@ -121,7 +125,7 @@
         {{ with resources.Get . }}<script type="module" src="{{ .RelPermalink }}"></script>{{ end }}
       {{ end }}
     {{ end }}
-    {{ if .HasShortcode "logic-app" }}
+    {{ if or (.HasShortcode "logic-app") (.HasShortcode "sql-app") }}
       {{ $apps := resources.Get "js/apps/index.js" | js.Build (dict "targetPath" "js/logic-apps.js" "minify" true) }}
       <script type="module" src="{{ ($apps | fingerprint).RelPermalink }}"></script>
     {{ end }}

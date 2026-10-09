@@ -89,8 +89,8 @@
   },
   "denotation": {
     "term": "Denotation",
-    "definition": "The object or function assigned to a term symbol by an interpretation.",
-    "chapter": "notation"
+    "definition": "The value of an expression under an interpretation; a term denotes an object, with variable values supplied by an assignment.",
+    "chapter": "FOL"
   },
   "derivability": {
     "term": "Derivability",
@@ -117,7 +117,7 @@
   "domain": {
     "term": "Domain",
     "definition": "The nonempty set of objects over which an FOL model interprets names, predicates, functions, and quantifiers.",
-    "chapter": "notation"
+    "chapter": "FOL"
   },
   "empty-clause": {
     "term": "Empty clause",
@@ -144,7 +144,8 @@
   "existential-quantifier": {
     "term": "Existential quantifier",
     "definition": "The symbol ∃, used to say that at least one object in the domain satisfies a condition.",
-    "chapter": "notation"
+    "chapter": "FOL",
+    "anchor": "syntax"
   },
   "expansion": {
     "term": "Expansion",
@@ -169,7 +170,8 @@
   "free-variable": {
     "term": "Free variable",
     "definition": "An occurrence of a variable not governed by a quantifier for that variable.",
-    "chapter": "notation"
+    "chapter": "FOL",
+    "anchor": "scope-binding-and-substitution"
   },
   "fuzzy-predicate": {
     "term": "Fuzzy predicate",
@@ -226,7 +228,8 @@
   "model-checking": {
     "term": "Model checking",
     "definition": "Determining whether a formula is true in a specified model.",
-    "chapter": "notation"
+    "chapter": "FOL",
+    "anchor": "checking-a-finite-model"
   },
   "modus-ponens": {
     "term": "Modus ponens",
@@ -279,7 +282,7 @@
   "substitution": {
     "term": "Substitution",
     "definition": "Replacing free occurrences of a variable by a term, while avoiding variable capture.",
-    "chapter": "notation"
+    "chapter": "FOL"
   },
   "syntax": {
     "term": "Syntax",
@@ -305,7 +308,8 @@
   "universal-quantifier": {
     "term": "Universal quantifier",
     "definition": "The symbol ∀, used to say that every object in the domain satisfies a condition.",
-    "chapter": "notation"
+    "chapter": "FOL",
+    "anchor": "syntax"
   },
   "valuation": {
     "term": "Boolean valuation",
@@ -340,7 +344,8 @@
   "identity": {
     "term": "Identity",
     "definition": "Sameness of objects: a=b is true when the two terms denote the same object.",
-    "chapter": "notation"
+    "chapter": "FOL",
+    "anchor": "truth-and-satisfaction"
   },
   "set": {
     "term": "Set",
@@ -1257,5 +1262,229 @@
     "definition": "An operation an agent can perform in the world. An action atom states that a particular action occurs at a particular time.",
     "chapter": "conditionals",
     "anchor": "planning"
+  },
+  "bound-variable": {
+    "term": "Bound variable",
+    "definition": "An occurrence of a variable governed by the nearest enclosing quantifier for that variable.",
+    "chapter": "FOL",
+    "anchor": "scope-binding-and-substitution"
+  },
+  "constant": {
+    "term": "Constant",
+    "definition": "A name in a formal language; in an FOL model it denotes an object in the domain.",
+    "chapter": "FOL"
+  },
+  "extension": {
+    "term": "Extension",
+    "definition": "The objects, or tuples of objects, to which a predicate applies in a model.",
+    "chapter": "FOL"
+  },
+  "first-order-logic": {
+    "term": "First-order logic",
+    "definition": "A logic with names, predicates, function symbols, and quantifiers over objects.",
+    "chapter": "FOL",
+    "anchor": "syntax"
+  },
+  "ground-term": {
+    "term": "Ground term",
+    "definition": "A term containing no variables.",
+    "chapter": "FOL",
+    "anchor": "syntax"
+  },
+  "interpretation": {
+    "term": "Interpretation",
+    "definition": "An assignment of meanings to the nonlogical vocabulary of a formal language over a domain.",
+    "chapter": "FOL",
+    "anchor": "models"
+  },
+  "knowledge-engineering": {
+    "term": "Knowledge engineering",
+    "definition": "Choosing a representation and encoding the information needed for a reasoning task.",
+    "chapter": "FOL",
+    "anchor": "databases-and-fol"
+  },
+  "predicate": {
+    "term": "Predicate",
+    "definition": "A symbol expressing a property of objects or a relation among them.",
+    "chapter": "FOL",
+    "anchor": "syntax"
+  },
+  "sentence": {
+    "term": "Sentence",
+    "definition": "A formula with no free variables.",
+    "chapter": "FOL"
+  },
+  "term": {
+    "term": "Term",
+    "definition": "An expression for an object, built in FOL from variables, constants, and function symbols.",
+    "chapter": "FOL"
+  },
+  "total-function": {
+    "term": "Total function",
+    "definition": "A function that assigns exactly one output to every input in its domain.",
+    "chapter": "FOL",
+    "anchor": "models"
+  },
+  "function-symbol": {
+    "term": "Function symbol",
+    "definition": "A symbol of fixed arity that forms an object-denoting term when applied to that many terms.",
+    "chapter": "FOL",
+    "anchor": "syntax"
+  },
+  "arity": {
+    "term": "Arity",
+    "definition": "The number of argument places of a function or predicate symbol.",
+    "chapter": "FOL",
+    "anchor": "syntax"
+  },
+  "signature": {
+    "term": "First-order signature",
+    "definition": "The constants, function symbols, and predicate symbols of a language, with a fixed arity for each function and predicate symbol.",
+    "chapter": "FOL",
+    "anchor": "syntax"
+  },
+  "fol-atomic-formula": {
+    "term": "First-order atomic formula",
+    "definition": "A predicate applied to the appropriate number of terms, or an identity between two terms.",
+    "chapter": "FOL",
+    "anchor": "syntax"
+  },
+  "quantifier-scope": {
+    "term": "Quantifier scope",
+    "definition": "The formula that is the immediate child of a quantifier in a syntax tree.",
+    "chapter": "FOL",
+    "anchor": "scope-binding-and-substitution"
+  },
+  "open-formula": {
+    "term": "Open formula",
+    "definition": "A formula with at least one free variable occurrence.",
+    "chapter": "FOL",
+    "anchor": "scope-binding-and-substitution"
+  },
+  "fol-model": {
+    "term": "First-order model",
+    "definition": "A nonempty domain with a denotation for each constant, a total function for each function symbol, and a relation for each predicate symbol.",
+    "chapter": "FOL",
+    "anchor": "models"
+  },
+  "knowledge-graph": {
+    "term": "Knowledge graph",
+    "definition": "A graph representing objects as nodes and relations among them through labeled links.",
+    "chapter": "FOL",
+    "anchor": "models"
+  },
+  "variable-assignment": {
+    "term": "Variable assignment",
+    "definition": "A mapping from variables to objects in the domain of a model.",
+    "chapter": "FOL",
+    "anchor": "truth-and-satisfaction"
+  },
+  "satisfaction": {
+    "term": "Satisfaction",
+    "definition": "The relation between a model, a variable assignment, and a formula that is true under that assignment in the model.",
+    "chapter": "FOL",
+    "anchor": "truth-and-satisfaction"
+  },
+  "ground-formula": {
+    "term": "Ground formula",
+    "definition": "A formula containing no variables.",
+    "chapter": "FOL",
+    "anchor": "truth-and-satisfaction"
+  },
+  "truth-in-a-model": {
+    "term": "Truth in a model",
+    "definition": "A sentence is true in a model if it is satisfied under every variable assignment in that model.",
+    "chapter": "FOL",
+    "anchor": "truth-and-satisfaction"
+  },
+  "relational-database": {
+    "term": "Relational database",
+    "definition": "A database that stores relations as tables.",
+    "chapter": "FOL",
+    "anchor": "databases-and-fol"
+  },
+  "relational-query": {
+    "term": "Relational query",
+    "definition": "A request for the assignments to a formula’s free variables that satisfy it in a database model.",
+    "chapter": "FOL",
+    "anchor": "databases-and-fol"
+  },
+  "relational-calculus": {
+    "term": "Domain relational calculus",
+    "definition": "A language for relational queries in which variables stand for domain objects and formulas specify satisfying assignments.",
+    "chapter": "FOL",
+    "anchor": "databases-and-fol"
+  },
+  "relational-algebra": {
+    "term": "Relational algebra",
+    "definition": "A language that forms relational queries using operations on tables.",
+    "chapter": "FOL",
+    "anchor": "databases-and-fol"
+  },
+  "tuple": {
+    "term": "Ordered tuple",
+    "definition": "A finite sequence of objects, with order and repetitions retained.",
+    "chapter": "FOL",
+    "anchor": "models"
+  },
+  "assignment-prescription": {
+    "term": "Assignment prescription",
+    "definition": "A list [x₁ ↦ d₁, …, xₙ ↦ dₙ] specifying values for distinct variables. When these include every free variable of a formula, they suffice to determine its satisfaction.",
+    "chapter": "FOL",
+    "anchor": "extensions-of-open-formulas"
+  },
+  "assignment-variant": {
+    "term": "Assignment variant",
+    "definition": "The assignment v[x ↦ d] sends x to d and agrees with v on every other variable.",
+    "chapter": "FOL",
+    "anchor": "quantifiers-and-truth-in-a-model"
+  },
+  "model-diagram": {
+    "term": "Atomic diagram",
+    "definition": "The set of all atomic and negated atomic sentences true in a model after adding a name for every domain object.",
+    "chapter": "FOL",
+    "anchor": "one-model-different-displays"
+  },
+  "set-diagram": {
+    "term": "Set diagram",
+    "definition": "A diagram representing sets by regions and membership by placement inside those regions.",
+    "chapter": "FOL",
+    "anchor": "one-model-different-displays"
+  },
+  "formula-extension": {
+    "term": "Extension of an open formula",
+    "definition": "The set of ordered tuples of domain objects that satisfy a formula when assigned to its free variables in a specified order.",
+    "chapter": "FOL",
+    "anchor": "extensions-of-open-formulas"
+  },
+  "quantification": {
+    "term": "Quantification",
+    "definition": "The expression of how many individuals satisfy a condition. Universal and existential quantification concern all individuals and at least one individual, respectively.",
+    "chapter": "FOL",
+    "anchor": "quantifiers-and-truth-in-a-model"
+  },
+  "finite-model": {
+    "term": "Finite model",
+    "definition": "A model with a finite domain.",
+    "chapter": "FOL",
+    "anchor": "finite-models"
+  },
+  "iterated-quantifiers": {
+    "term": "Iterated quantifiers",
+    "definition": "Quantifiers occurring within the scopes of other quantifiers.",
+    "chapter": "FOL",
+    "anchor": "iterated-quantifiers"
+  },
+  "infinite-model": {
+    "term": "Infinite model",
+    "definition": "A model with an infinite domain.",
+    "chapter": "FOL",
+    "anchor": "finite-models"
+  },
+  "vacuous-quantifier": {
+    "term": "Vacuous quantifier",
+    "definition": "A quantifier whose scope contains no free occurrence of the variable it quantifies.",
+    "chapter": "FOL",
+    "anchor": "scope-binding-and-substitution"
   }
 }

@@ -1,0 +1,3 @@
+{{- if reflect.IsMap .value -}}
+  {{- partial "figures/image.html" (dict "src" (printf "/img/drawings/%s.svg" .value.image) "alt" .value.alt "inline" true "height" "2.5em" "id" .id) -}}
+{{- else -}}{{ .value }}{{- end -}}

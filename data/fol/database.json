@@ -1,0 +1,243 @@
+{
+  "language": {
+    "constants": [
+      "UnitedStates",
+      "WashingtonDC",
+      "Netherlands",
+      "Amsterdam",
+      "Germany",
+      "Berlin",
+      "Italy",
+      "Rome",
+      "Japan",
+      "Tokyo",
+      "NorthAmerica",
+      "Europe",
+      "Asia",
+      "English",
+      "Dutch",
+      "German",
+      "Italian",
+      "Japanese"
+    ],
+    "functions": {},
+    "predicates": {
+      "CapitalOf": 2,
+      "LocatedIn": 2,
+      "LanguageOf": 2
+    }
+  },
+  "objects": [
+    {
+      "id": "United States",
+      "label": "United States"
+    },
+    {
+      "id": "Washington D.C.",
+      "label": "Washington D.C."
+    },
+    {
+      "id": "Netherlands",
+      "label": "Netherlands"
+    },
+    {
+      "id": "Amsterdam",
+      "label": "Amsterdam"
+    },
+    {
+      "id": "Germany",
+      "label": "Germany"
+    },
+    {
+      "id": "Berlin",
+      "label": "Berlin"
+    },
+    {
+      "id": "Italy",
+      "label": "Italy"
+    },
+    {
+      "id": "Rome",
+      "label": "Rome"
+    },
+    {
+      "id": "Japan",
+      "label": "Japan"
+    },
+    {
+      "id": "Tokyo",
+      "label": "Tokyo"
+    },
+    {
+      "id": "North America",
+      "label": "North America"
+    },
+    {
+      "id": "Europe",
+      "label": "Europe"
+    },
+    {
+      "id": "Asia",
+      "label": "Asia"
+    },
+    {
+      "id": "English",
+      "label": "English"
+    },
+    {
+      "id": "Dutch",
+      "label": "Dutch"
+    },
+    {
+      "id": "German",
+      "label": "German"
+    },
+    {
+      "id": "Italian",
+      "label": "Italian"
+    },
+    {
+      "id": "Japanese",
+      "label": "Japanese"
+    }
+  ],
+  "model": {
+    "domain": [
+      "United States",
+      "Washington D.C.",
+      "Netherlands",
+      "Amsterdam",
+      "Germany",
+      "Berlin",
+      "Italy",
+      "Rome",
+      "Japan",
+      "Tokyo",
+      "North America",
+      "Europe",
+      "Asia",
+      "English",
+      "Dutch",
+      "German",
+      "Italian",
+      "Japanese"
+    ],
+    "constants": {
+      "UnitedStates": "United States",
+      "WashingtonDC": "Washington D.C.",
+      "Netherlands": "Netherlands",
+      "Amsterdam": "Amsterdam",
+      "Germany": "Germany",
+      "Berlin": "Berlin",
+      "Italy": "Italy",
+      "Rome": "Rome",
+      "Japan": "Japan",
+      "Tokyo": "Tokyo",
+      "NorthAmerica": "North America",
+      "Europe": "Europe",
+      "Asia": "Asia",
+      "English": "English",
+      "Dutch": "Dutch",
+      "German": "German",
+      "Italian": "Italian",
+      "Japanese": "Japanese"
+    },
+    "functions": {},
+    "predicates": {
+      "CapitalOf": [
+        [
+          "United States",
+          "Washington D.C."
+        ],
+        [
+          "Netherlands",
+          "Amsterdam"
+        ],
+        [
+          "Germany",
+          "Berlin"
+        ],
+        [
+          "Italy",
+          "Rome"
+        ],
+        [
+          "Japan",
+          "Tokyo"
+        ]
+      ],
+      "LocatedIn": [
+        [
+          "United States",
+          "North America"
+        ],
+        [
+          "Netherlands",
+          "Europe"
+        ],
+        [
+          "Germany",
+          "Europe"
+        ],
+        [
+          "Italy",
+          "Europe"
+        ],
+        [
+          "Japan",
+          "Asia"
+        ]
+      ],
+      "LanguageOf": [
+        [
+          "United States",
+          "English"
+        ],
+        [
+          "Netherlands",
+          "Dutch"
+        ],
+        [
+          "Germany",
+          "German"
+        ],
+        [
+          "Italy",
+          "Italian"
+        ],
+        [
+          "Japan",
+          "Japanese"
+        ]
+      ]
+    }
+  },
+  "queries": [
+    {
+      "label": "European countries",
+      "formula": "LocatedIn(x, Europe)"
+    },
+    {
+      "label": "European capitals",
+      "formula": "∃y (CapitalOf(y, x) ∧ LocatedIn(y, Europe))"
+    },
+    {
+      "label": "Negated query",
+      "formula": "¬LocatedIn(Japan, x)"
+    }
+  ],
+  "columns": {
+    "CapitalOf": [
+      "country",
+      "capital"
+    ],
+    "LocatedIn": [
+      "country",
+      "continent"
+    ],
+    "LanguageOf": [
+      "country",
+      "language"
+    ]
+  }
+}

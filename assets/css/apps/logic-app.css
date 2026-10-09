@@ -49,6 +49,7 @@
 
 .logic-app [hidden] { display: none !important; }
 .logic-app__input-wrap { position: relative; }
+.logic-app__input-wrap > .logic-app__input { display:block; }
 .logic-app .logic-app__edit { position: absolute; inset-inline-end: .2rem; inset-block-start: 50%; transform: translateY(-50%); border: 0; background: transparent; }
 .logic-app__controls button { display: inline-flex; justify-content: center; align-items: center; min-inline-size: 44px; padding: .5rem; }
 .logic-app__controls { margin-block: 1rem; }
@@ -277,3 +278,22 @@
 .pseudocode-practice [data-feedback="correct"] { color: var(--green-ink); background: var(--surf-green); }
 .pseudocode-practice [data-feedback="incorrect"] { color: var(--red-ink); background: var(--surf-red); }
 @media (prefers-reduced-motion: no-preference) { .pseudocode-practice .is-shaking { animation: latex-game-shake .4s ease; } }
+
+.logic-app[data-language="fol"] .logic-app__tree { min-block-size:0; }
+
+.parser-canvas { position:relative; min-inline-size:0; padding-block-start:3.6rem; border:1px solid var(--rule); border-radius:var(--radius); }
+.logic-app .parser-tools { position:absolute; inset:.4rem .4rem auto auto; display:flex; align-items:center; gap:.3rem; margin:0; z-index:1; }
+.logic-app .parser-tools button { display:inline-flex; align-items:center; justify-content:center; min-inline-size:2.75rem; padding:.35rem; transition:none; }
+.logic-app .parser-tools [aria-pressed="true"] { border-color:var(--blue-ink); background:var(--surf-blue); }
+.parser-tools .logic-app__export-notice { position:absolute; right:0; top:100%; white-space:nowrap; background:var(--paper); }
+.parser-tools .logic-app__export-notice:empty { display:none; }
+[data-logic-app="parser"] .logic-app__tree,
+[data-logic-app="parser"] .logic-app__text { max-block-size:none; }
+.logic-app__input-row { display:flex; align-items:center; gap:.5rem; min-width:0; }
+.logic-app__input-row > .logic-app__input-wrap { flex:1; min-width:0; }
+.logic-app__input-row > button { flex:none; display:inline-flex; align-items:center; gap:.3rem; white-space:nowrap; }
+
+.logic-app .logic-app__input { font-size:var(--step--1); line-height:1.5; }
+.logic-app textarea.logic-app__input { font-size:var(--step--1); min-height:2.75rem; max-height:none; resize:none; overflow:hidden; white-space:pre-wrap; overflow-wrap:anywhere; }
+.logic-app :is(input,textarea)[readonly] { pointer-events:none; user-select:none; caret-color:transparent; }
+.logic-app .logic-app__edit { width:2.4rem; height:2.4rem; padding:.3rem; }

@@ -8,11 +8,11 @@
 {{ if ne (len $rows) (len $values) }}{{ errorf "Function table %s: one output row is required per input" $name }}{{ end }}
 <div class="function-table" role="region" aria-label="{{ $name }} function table" tabindex="0">
 <table>
-  <thead><tr><th scope="col" class="function-table__name">{{ $name }}</th>{{ range $columns }}<th scope="col">{{ . }}</th>{{ end }}</tr></thead>
+  <thead><tr><th scope="col" class="function-table__name">{{ $name }}</th>{{ range $columns }}<th scope="col">{{ if . }}{{ . }}{{ else }}<span class="visually-hidden">{{ $name }} value</span>{{ end }}</th>{{ end }}</tr></thead>
   <tbody>{{ range $i, $row := $rows }}
   {{ $outputs := index $values $i }}
   {{ if ne (len $outputs) (len $columns) }}{{ errorf "Function table %s: incorrect output row width" $name }}{{ end }}
-  <tr><th scope="row">{{ $row }}</th>{{ range $outputs }}<td>{{ . }}</td>{{ end }}</tr>
+  <tr><th scope="row">{{ partial "figures/function-cell.html" (dict "value" $row "id" (printf "%s-row-%d-%d" $.Page.File.UniqueID $.Ordinal $i)) }}</th>{{ range $j, $value := $outputs }}<td>{{ partial "figures/function-cell.html" (dict "value" $value "id" (printf "%s-cell-%d-%d-%d" $.Page.File.UniqueID $.Ordinal $i $j)) }}</td>{{ end }}</tr>
   {{ end }}</tbody>
 </table>
 </div>

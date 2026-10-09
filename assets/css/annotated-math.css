@@ -16,3 +16,24 @@
 .annotated-math__group { color: var(--annotation-ink, var(--ink)); }
 .annotated-math__group .annotated-math__brace { stroke: var(--annotation-ink, var(--blue-ink)); }
 .annotated-math__group .annotated-math__label { color: var(--annotation-ink, var(--blue-ink)); }
+
+.annotated-math--wrap .annotated-math__row { flex-wrap:wrap; inline-size:auto; min-inline-size:0; }
+.annotated-math__item { display:inline-flex; align-items:center; gap:.25em; }
+/* Eight alphabet roles, each with its own annotation ink. */
+.annotated-math__group--violet { --annotation-ink:#7544a3; }
+.annotated-math__group--orange { --annotation-ink:#a64c00; }
+.annotated-math__group--teal { --annotation-ink:#006e73; }
+.annotated-math__group--olive { --annotation-ink:#666800; }
+.annotated-math__group--pink { --annotation-ink:#a13276; }
+:root[data-theme="dark"] .annotated-math__group--violet { --annotation-ink:#c5a0ef; }
+:root[data-theme="dark"] .annotated-math__group--orange { --annotation-ink:#ffad64; }
+:root[data-theme="dark"] .annotated-math__group--teal { --annotation-ink:#68d1ce; }
+:root[data-theme="dark"] .annotated-math__group--olive { --annotation-ink:#cbd275; }
+:root[data-theme="dark"] .annotated-math__group--pink { --annotation-ink:#efa0d5; }
+@media(prefers-color-scheme:dark) {
+  :root:not([data-theme="light"]) .annotated-math__group--violet { --annotation-ink:#c5a0ef; }
+  :root:not([data-theme="light"]) .annotated-math__group--orange { --annotation-ink:#ffad64; }
+  :root:not([data-theme="light"]) .annotated-math__group--teal { --annotation-ink:#68d1ce; }
+  :root:not([data-theme="light"]) .annotated-math__group--olive { --annotation-ink:#cbd275; }
+  :root:not([data-theme="light"]) .annotated-math__group--pink { --annotation-ink:#efa0d5; }
+}

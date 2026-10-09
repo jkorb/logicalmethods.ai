@@ -21,12 +21,12 @@
     <p data-state-help class="conditional-help"></p><details class="conditional-help"><summary>Frame notation</summary><p data-frame-help></p></details>
     {{ else }}
     <label for="{{ .id }}-kb">Knowledge base</label>
-    <textarea id="{{ .id }}-kb" data-kb rows="1" maxlength="6000" spellcheck="false" disabled></textarea>
+    <div class="logic-app__input-wrap"><textarea id="{{ .id }}-kb" data-kb rows="1" maxlength="6000" spellcheck="false" disabled></textarea><button type="button" class="logic-app__edit" data-edit aria-label="Edit" title="Edit knowledge base and goal" disabled>{{ partial "apps/icon.html" "edit" }}</button></div>
     {{ if in (slice "chaining" "comparison") $kind }}<div class="conditional-fields"><label>ASK: goal <input data-goal spellcheck="false" disabled></label>{{ if and (eq $kind "chaining") (not (.sc.Get "method")) }}<label>Algorithm <select data-method disabled><option value="forward">Forward chaining</option><option value="backward">Backward chaining</option></select></label>{{ end }}</div>{{ end }}
     {{ end }}
     <div class="logic-app__controls">
       <button type="submit" data-run disabled>{{ partial "apps/icon.html" "play" }} {{ if eq $kind "planning" }}Plan!{{ else }}Start{{ end }}</button>
-      <button type="button" data-edit disabled>{{ partial "apps/icon.html" "edit" }} Edit</button>
+      {{ if eq $kind "planning" }}<button type="button" data-edit aria-label="Edit" title="Edit planning inputs" disabled>{{ partial "apps/icon.html" "edit" }}</button>{{ end }}
       {{ if eq $kind "planning" }}{{ if ne (.sc.Get "exercise") "true" }}<button type="button" data-frames disabled>Add frame conditions</button>{{ end }}<button type="button" data-clear-frames disabled>Clear frames</button>{{ end }}
     </div>
   </form>
