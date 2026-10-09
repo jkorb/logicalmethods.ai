@@ -1,6 +1,6 @@
 ---
 title: Circuit sandbox
-weight: 70
+weight: 80
 params:
   id: tls-circuit-sandbox
   group: Circuits

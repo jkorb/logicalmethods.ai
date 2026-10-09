@@ -25,7 +25,7 @@ Step through the conversion and watch the two halves move: the operator stack
 on one side, the growing output on the other. The formula below turns on
 precedence, since $∧$ binds more tightly than $∨$.
 
-{{< logic-app name="shunting-yard" formula="p ∨ q ∧ r" >}}
+{{< logic-app name="shunting-yard" >}}
 
 ## Using it
 

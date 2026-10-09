@@ -1,23 +1,34 @@
 ---
-title: Propositional natural deduction
-weight: 90
+title: Natural deduction
+weight: 120
+aliases:
+  - /tools/first-order-natural-deduction/
 params:
   id: tls-natural-deduction
-  group: Automated reasoning
+  group: Proof construction
   teaser: 'Construct checked proof trees, save derived rules, and export your derivations.'
 ---
 
-# Propositional natural deduction
+# Natural deduction
 
 Build a derivation from your own assumptions. Each rule application is checked,
 including the scope of discharged assumptions. You can save a proved rule and
 apply it in another derivation.
 
-**Scope.** Classical and intuitionistic propositional natural deduction.
-Quantifier rules are not included. This canvas checks the steps you choose;
-it does not search for a proof automatically.
+**Scope.** Classical and intuitionistic natural deduction, with propositional,
+quantifier, and identity rules. Each canvas checks the steps you choose.
+
+## Propositional logic
 
 {{< logic-app name="deduction" kind="sandbox" title="Propositional proof canvas" >}}
+
+## First-order logic
+
+Terms and atoms use argument brackets. The rule menu starts with quantifiers
+and identity; the propositional rules remain available. Rule checks include
+variable capture and the conditions on arbitrary objects and witnesses.
+
+{{< logic-app name="deduction" language="fol" kind="sandbox" title="First-order proof canvas" >}}
 
 ## Using it
 
@@ -43,7 +54,15 @@ a selected derivation for the `proof.sty` package. Nothing is uploaded.
 
 ## Rule reference
 
+### Propositional rules
+
 {{< logic-app name="deduction" kind="rules" title="Propositional rule reference" >}}
+
+### Quantifier and identity rules
+
+{{< logic-app name="deduction" language="fol" kind="rules" title="First-order rule reference" >}}
+
+For proof translation, use [natural deduction and Lean](../lean-correspondence/).
 
 ## In the book
 
@@ -51,3 +70,7 @@ a selected derivation for the `proof.sty` package. Nothing is uploaded.
   explains the rules and assumption discharge.
 - {{< chapter_ref chapter="proofs" id="finding-a-derivation" >}}Finding a derivation{{< /chapter_ref >}}
   develops techniques through worked-out examples.
+- {{< chapter_ref chapter="FOL-inference" id="natural-deduction-and-lean" >}}First-order natural deduction{{< /chapter_ref >}}
+  explains quantifier rules and their side conditions.
+- {{< chapter_ref chapter="FOL-inference" id="equality-inference" >}}Identity{{< /chapter_ref >}}
+  adds reflexivity and substitution.

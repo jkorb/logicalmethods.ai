@@ -8,22 +8,22 @@ params:
   toc-title: 'Tools'
   groups:
     - Syntax
-    - Semantics
+    - Models and semantics
+    - Normal forms
     - Automated reasoning
+    - Proof construction
     - Circuits
-  teaser: "The book's apps, one page each, to run your own examples through."
+  teaser: "Tools for syntax, models, normal forms, automated reasoning, proofs, and circuits."
   md-title: 'The book’s **tools**'
   license: 'CC-BY-4.0'
 ---
 
-Each page here holds one of the book's apps: what it calculates, how to drive
-it, and where the chapters explain the idea behind it. Use them on examples of
-your own, or to check work you did by hand.
+Enter your own formulas, models, and proofs, or check work you did by hand.
+The tools are grouped by task. Resolution, natural deduction, and Lean each
+bring their propositional and first-order versions together on one page.
 
-Each page says what it covers. Today's tools work with propositional syntax, Boolean semantics,
-and propositional proofs. The categories are named for the logical job rather
-than the language, so first-order tools will join the same ones as the book
-reaches them.
+Each page states its supported language and inputs and links to the relevant
+chapter explanations.
 
 The apps run in your browser. Saved workspaces are files on your device.
 The Lean translator sends code to the external playground only when you follow

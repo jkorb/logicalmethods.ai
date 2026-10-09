@@ -1,51 +1,72 @@
 ---
 title: Resolution
 weight: 60
+aliases:
+  - /tools/first-order-resolution/
 params:
   id: tls-resolution
   group: Automated reasoning
-  teaser: 'Refute a propositional clause set, and read validity off the empty clause.'
+  teaser: 'Search for refutations in propositional and first-order logic, or choose first-order resolution steps yourself.'
 ---
 
 # Resolution
 
-Resolution replaces the search through all $2ⁿ$ valuations with a search for a
-contradiction. Two clauses containing complementary literals can be
-combined into a third by resolving on that variable; derive the empty clause and the
-set is unsatisfiable. To test an inference, negate its conclusion and add it to
-the premises: a refutation of the result is a proof that no model makes the
-premises true and the conclusion false, which is validity. Failing that, the
-search saturates and the inference is invalid.
+Enter formulas to test satisfiability, or premises and a conclusion separated
+by `∴` to test validity. For an inference, the search adds the negated conclusion
+to the premises and tries to derive the empty clause.
 
-**Scope.** Propositional resolution. First-order resolution needs unification
-to work out which literals can be resolved against each other, and is not
-covered here.
+**Scope.** Propositional and first-order resolution. Each calculation begins by
+converting the input to clauses.
 
-Enter formulas to test satisfiability, or an inference with $∴$ to test
-validity.
+## Propositional resolution
 
-{{< logic-app name="sat" kind="resolution" formula="p ∨ q, ¬p ∴ q" >}}
+The search resolves complementary literals until it derives `⊥` or reaches
+saturation. Saturation establishes satisfiability without constructing a model;
+use [truth tables](../truth-tables/) to find a satisfying valuation.
+
+{{< logic-app name="sat" kind="resolution" title="Propositional resolution" >}}
+
+### Choose the inferences
+
+Select complementary literals in two clauses, then Resolve. The input is
+converted to CNF before you begin. Undo and Restart let you revise your choices;
+Saturated? checks whether every clause pair and pivot has been tried.
+
+{{< logic-app name="sat-practice" kind="resolution" title="Propositional resolution workspace" >}}
+
+## First-order resolution
+
+Use closed formulas with explicit argument brackets. This calculus supports
+predicates and functions; identity requires additional rules.
+The search stops after at most 16 inferences. A stopped search without `⊥`
+leaves validity undecided.
+
+{{< logic-app name="sat" language="fol" kind="resolution" title="First-order resolution search" >}}
+
+### Choose the inferences
+
+Select two opposite-sign literals and choose Resolve. For Factor, select two
+same-sign literals in one clause. The unifier applies to the entire resulting
+clause. Undo removes the last inference; Restart returns to the input clauses.
+The workspace allows up to 80 clauses.
+
+{{< logic-app name="sat-practice" language="fol" kind="resolution" title="First-order resolution workspace" >}}
 
 ## Using it
 
-The app converts every target to conjunctive normal form first, then checks
-pairs of clauses, giving priority to unit clauses and shorter parents.
-It skips tautologies and duplicates. The walkthrough starts with the prepared
-CNF clauses and shows resolution inferences. Use the [rewriting app](../normal-forms/)
-to examine the preliminary conversion separately. The ledger numbers each
-clause and records its parents and pivot; the diagram shows the current
-inference. Expand the checked-pairs history to review the search.
+Separate premises with semicolons and put `∴` before the conclusion. Omit the
+conclusion to test satisfiability. Start the calculation, then use the step
+arrows to follow the search. The pencil unlocks the input for a new problem.
+Fullscreen makes room for wider first-order derivations.
 
-A finished search decides satisfiability, but it does not hand you a model: a
-refutation shows that no model exists, and saturation shows that one does
-without constructing it. Use the [truth table](../truth-tables/) when you want
-the witness itself.
+Use [normal forms](../normal-forms/), [Skolemization](../skolemization/), and
+[unification](../unification/) to inspect the supporting calculations.
 
 ## In the book
 
-- {{< chapter_ref chapter="sat" id="resolution" >}}Resolution{{< /chapter_ref >}}
+- {{< chapter_ref chapter="sat" id="resolution" >}}Propositional resolution{{< /chapter_ref >}}
   introduces the rule and the empty clause.
 - {{< chapter_ref chapter="sat" id="searching-for-a-refutation" >}}Searching for a refutation{{< /chapter_ref >}}
-  turns the rule into a decision procedure and explains why it finishes.
-- {{< chapter_ref chapter="sat" id="normal-forms" >}}Normal forms{{< /chapter_ref >}}
-  is the shape the search needs its input in.
+  explains why the propositional search finishes.
+- {{< chapter_ref chapter="FOL-inference" id="fol-resolution" >}}FOL resolution{{< /chapter_ref >}}
+  adds unification and factoring.

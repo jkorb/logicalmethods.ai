@@ -3,7 +3,7 @@ title: Tseytin transformation
 weight: 70
 params:
   id: tls-tseytin
-  group: Automated reasoning
+  group: Normal forms
   teaser: 'Convert a propositional formula to an equisatisfiable CNF using fresh variables.'
 ---
 
@@ -18,7 +18,7 @@ subformulas over one another.
 512 characters and eight input variables. Fresh names are introduced by
 the algorithm. This tool constructs the CNF; it does not solve it.
 
-{{< logic-app name="sat" kind="tseytin" formula="(p ∧ q) ∨ r" >}}
+{{< logic-app name="sat" kind="tseytin" >}}
 
 ## Using it
 

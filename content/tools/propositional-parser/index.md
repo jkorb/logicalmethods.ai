@@ -17,9 +17,8 @@ truth table and a proof all follow the structure the parser finds, which is why
 an ambiguous formula is useless to a logician and to a compiler alike.
 
 **Scope.** The propositional language of chapter 2: the variables `p`, `q` and
-`r`, or `p` with a subscript index. Quantifiers, predicates and terms are not
-part of that language, so a first-order parser will be its own tool rather than
-a mode of this one.
+`r`, or `p` with a subscript index. For quantifiers, predicates, and terms, use the
+[first-order parser](../first-order-parser/).
 
 ## Full brackets
 
@@ -27,7 +26,7 @@ Strict mode follows the fully bracketed grammar, in which every connective
 carries its own pair of brackets and no formula needs a precedence rule. Click
 through the steps, or use the pencil to enter a formula of your own.
 
-{{< logic-app name="parser" formula="((p ∧ q) → ¬r)" title="Parsing with full brackets" >}}
+{{< logic-app name="parser" title="Parsing with full brackets" >}}
 
 ## Bracket conventions
 
@@ -36,7 +35,7 @@ with the brackets that precedence already determines left out. Try the same
 formula in both apps: the trees agree, and the brackets you dropped are the
 ones the convention puts back.
 
-{{< logic-app name="parser" mode="conventional" formula="p ∧ q → ¬r" title="Parsing with bracket conventions" >}}
+{{< logic-app name="parser" mode="conventional" title="Parsing with bracket conventions" >}}
 
 ## Using it
 

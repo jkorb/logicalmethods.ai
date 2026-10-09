@@ -1,6 +1,6 @@
 # The tools section
 
-`content/tools/` is a top-level section with one page per app, listed in the
+`content/tools/` is a top-level section with pages grouped by task, listed in the
 main navigation beside the textbook. It replaces Appendix C, which carried
 every app on a single page.
 
@@ -41,19 +41,29 @@ Reuse the `logic-app` and `set-diagram` shortcodes with their parameters; never
 copy app markup or JavaScript into a page. Several instances on one page are
 fine, and the browser suites rely on the parser page carrying two.
 
-**Name a page for the scope it has, not the one it suggests.** Every app here
-is tied to one language, and the section will grow first-order tools beside the
-propositional ones, so `Propositional parser` and `Boolean evaluation` are the
-honest titles and `Parser` and `Formula evaluation` are not. Where the title is
-already the name of an algorithm — `Resolution` — the teaser and the Scope
-line carry the restriction instead.
+Related propositional and first-order tools share a page, with a separate
+heading and scope for each language. Resolution, natural deduction, and Lean
+follow this pattern. Retain former page URLs as aliases when combining pages.
+
+Tool instances receive `data-tool="true"` from their embedding page. They start
+with editable empty inputs and hide example and level pickers. Chapter and
+exercise initialization is unchanged. Model tools retain their documented
+signature and object palette but start with an empty interpretation; planning
+retains its action vocabulary and horizon, with blank state and frame inputs.
+Lean starts with an empty proof canvas and code editor.
 
 The section sorts its pages into categories by the logical work they do —
-syntax, semantics, automated reasoning, circuits — through `params.groups` on
+syntax, models and semantics, normal forms, automated reasoning, proof construction, circuits — through `params.groups` on
 the section and `params.group` on each page; see
 [Pages and front matter](front-matter.md). Name a category after the logical
-job, not the chapter, so that a first-order parser can join the syntax group
-later without renaming anything.
+job, not the chapter, so propositional and first-order parsers share the syntax group.
+
+Resolution has propositional and first-order search players and manual workspaces.
+Unification and Skolemization pair demonstrations with selectable operations;
+truth tables and normal forms also offer practice on custom input. These
+instances start without an exercise deck. Partial
+model reasoning accepts custom premises and a conclusion, infers their signature,
+and runs the bounded consequence search. Fixed model-reasoning levels and countermodel tasks remain exercises.
 
 These pages are not chapters. The section sets no `section-names`, so nothing is
 labelled "Tool 3", and `layouts/tools/single.html` renders a single prose column

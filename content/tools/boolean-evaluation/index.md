@@ -3,7 +3,7 @@ title: Boolean evaluation
 weight: 30
 params:
   id: tls-boolean-evaluation
-  group: Semantics
+  group: Models and semantics
   teaser: 'Set a Boolean valuation and watch a formula work out its own value.'
 ---
 
@@ -25,7 +25,7 @@ is covered here.
 Type a formula, set a valuation with the $0$ and $1$ buttons, and step through
 the calculation.
 
-{{< logic-app name="boolean" kind="evaluation" formula="SUN ∨ (RAIN ∧ ¬SUN)" >}}
+{{< logic-app name="boolean" kind="evaluation" >}}
 
 ## Using it
 
