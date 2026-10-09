@@ -180,29 +180,69 @@ slide at about 40%; its canvas has a full-screen button. The Excalidraw scene,
 manifest and staged exports remain.
 
 **Lecture 8 was then written in Reveal.js** against the revised chapter 8, in
-20 slides, replacing the review notice. It follows the chapter's four stages:
-syntax (the Socrates inference, the alphabet and signature, terms in the
-parser, the formula grammar and atomic formulas, scope and open formulas in the
-binding app, iterated
-quantifiers), models (the chapter's three-world figure, the model definition,
-the people model, and the four modeling assumptions as a table), truth
-(denotation, satisfaction, extensions and quantifiers in the model app; finite
-and infinite models), and databases (relational queries beside Codd's theorem).
-The worked-out example is the formula–SQL app on `LocatedIn(x, Europe)`; the
-chapter's capital query fits a slide only at about 45%. The pictures are the
-chapter's: the old slides' screenshots and portrait of Codd are gone. Cut:
-substitution, vacuous quantification, the ground-term definition, the
-formula parser, the separate domain, constant, function and predicate apps, the
-atomic diagram, the database-initialization app, and the step-by-step SQL
-translation. The theme now shows a SQL pane's whole query on a slide. The
+20 slides, replacing the review notice, and revised in a second pass with the
+author. It follows the chapter's four stages. Syntax: the Socrates inference,
+the alphabet and signature, a condensed term definition above the parser, the
+formula grammar as a stacked, labelled definition with examples, then scope and binding in the scope app's lecture mode, where
+the lecturer draws the bindings and tabs switch between a sentence and an open
+formula. From models on, each step
+shows the app first, alone under its title, and then the definitions that make
+it precise. Models: the chapter's three-world figure, the people model as a
+knowledge graph, then the model definition, condensed to its formulas, beside
+the chapter's drawing of a domain and the classical assumptions in one line. Truth: a term's denotation, then assignments and denotation;
+model checking, with the model beside its calculation, then the satisfaction
+clauses, then assignment variants and the quantifier clauses, beside the mouse;
+truth in a model is left to the chapter. Databases: the extension app under a
+definition callout holding two lines, shortened from the chapter's callout at
+the author's request, then models as databases (the people model's tables beside
+their SQL), queries as open formulas, the recursive translation of formulas to
+SQL conditions, and relational queries beside Codd's theorem. The deck ends
+there, without a worked-out example: the author found the negated query on the
+formula–SQL app unhelpful, and the extension slide needed its place. The
+pictures are the chapter's: the old slides' screenshots and portrait of Codd
+are gone. Cut: substitution, vacuous quantification, iterated quantifiers, the
+ground-term definition, the formula parser, the separate domain, constant,
+function and predicate apps, the atomic diagram, and the database-setup app,
+whose whole script fits a slide only at about 40%. The Excalidraw scene,
+manifest and staged exports remain.
+
+**Lecture 9 was then written in Reveal.js** against the revised chapter 9, in
+20 slides, replacing the review notice, in the condensed style of Lecture 8:
+definitions cut to their formulas, apps first where the chapter has one. It
+follows the chapter's sections. Valid inference: the Socrates and successor
+inferences, the definition of consequence beside the consequence app on an
+arbitrary model of the Socrates premises, the countermodel app on the reversed
+inference, and undecidability and
+semidecidability beside the chapter's Turing machine. Unification: unifiers and
+MGUs with three examples, then Robinson's algorithm in its app, whose examples
+now include a late occurs check: $Related(x, fatherOf(x))$ and
+$Related(fatherOf(y), y)$ fail only after $[x/fatherOf(y)]$. Normal forms:
+first-order CNF, equisatisfiability beside the mouse, the Skolemization rule
+beside the chapter's quantifier-eliminating robot, then the Skolemization app.
+Resolution: the reduction to unsatisfiability above the resolution and
+factoring rules, the resolution app on Socrates and PolyphemOS, and refutation
+completeness with standardizing apart, factoring and fair search. Natural
+deduction: the rules app under the completeness theorem, the side conditions
+as the chapter's counterexamples drawn as blocked inferences, and the
+two-quantifier proof. Lean: the
+existential-witness walkthrough, and, as the worked-out example, the chapter's
+Boolean law, abbreviated to its first and last steps, with a link that opens
+the full proof in Lean. Cut: the successor app, the infinite-model argument and its drawing, the occurs
+check and composition (both remain among the unification app's examples), the
+pseudocode, chaining with instantiated rules, prenex form, the CNF conversion
+example, FOL SAT and equality in resolution, the other natural deduction
+examples, quantifier duality, the identity rules beyond the rules app, Lean's
+declarations, currying, `Inhabited`, classical and identity steps, the
+Curry–Howard table and the hybrid-AI drawing. The old deck's Lean Game Server
+screenshot and its drawings in the superseded notation are gone. The
 Excalidraw scene, manifest and staged exports remain.
 
 Lectures 7–12 were copied byte-for-byte, without automatic font or notation
 replacement. Review them against the book, including historical
 staff/attendance information, terminology, proof examples, screenshots and
 image rights. Lecture 7 has an
-unfinished note on its proof-systems slide. Lecture 9 ends with the Lean Game
-Server screenshot. Blank-looking, closing and unnumbered frames were kept.
+unfinished note on its proof-systems slide. Lecture 9's Excalidraw copy ends
+with the Lean Game Server screenshot. Blank-looking, closing and unnumbered frames were kept.
 
 Lecture 4's two loose rectangles sit outside every frame. They remain unchanged
 in the source and archive, and are explicitly recorded in the manifest's

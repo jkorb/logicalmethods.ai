@@ -120,9 +120,14 @@
    slide its height is capped too, and it keeps its proportions. */
 .deck-canvas.reveal .slide { --figure-height: 320px; }
 .deck-canvas.reveal .slide :is(ul, ol) { padding-inline-start: 1.2em; }
+/* The resolution and unification apps number their lists outside the list,
+   in their own indent: the slide's narrower list indent would clip the numbers. */
+.deck-canvas.reveal .sat-app :is(.sat-rewrites, .sat-clauses) { padding-inline-start: 2rem; }
+.deck-canvas.reveal .fol-inference-app .finf-equations { padding-inline-start: 3.5ch; }
 .deck-canvas.reveal .slide li + li { margin-block-start: .3em; }
 .deck-canvas.reveal .slide li::marker { color: var(--blue-gfx); }
 .deck-canvas.reveal .slide a { color: var(--blue-ink); }
+.deck-canvas.reveal .lean-playground-link { font-size: 20px; }
 .deck-canvas.reveal .slide :is(pre, code) { font-family: var(--font-code); }
 .deck-canvas.reveal .slide pre { font-size: 16px; line-height: 1.4; }
 
@@ -169,6 +174,36 @@
 /* The chapter caps generated SQL and lets it scroll; on a slide the whole
    query shows, and fitting zooms the app instead. */
 .deck-canvas.reveal .fol-app[data-kind="sql"] .fol-code .chroma { max-height: none; overflow: visible; }
+/* The parser sets its tree beside the step's explanation only in a window at
+   least 60rem wide. A slide is always 960px wide, so there they sit side by
+   side whatever the window, as in the chapter on a desktop. */
+.deck-canvas.reveal .logic-app__parse-result { grid-template-columns: minmax(0, 1.35fr) minmax(15rem, 1fr); }
+.deck-canvas.reveal .logic-app__parse-result :is(.logic-app__tree, .logic-app__text) { grid-column: 1; grid-row: 1; max-block-size: 24rem; overflow: auto; margin: 0; }
+.deck-canvas.reveal .logic-app__parse-result .logic-app__status { grid-column: 2; grid-row: 1; margin: 0; padding: .7rem .85rem; font-size: var(--step--1); }
+.deck-canvas.reveal .logic-app__parse-result .logic-app__details { grid-template-columns: 1fr; gap: .2rem; margin-block: .6rem; }
+.deck-canvas.reveal .logic-app__parse-result .logic-app__details dd + dt { margin-block-start: .5rem; }
+.deck-canvas.reveal .logic-app__parse-result .logic-app__explanation { margin-block: .6rem 0; }
+.deck-canvas.reveal [data-logic-app="parser"] .logic-app__mode { margin-block: .5rem; }
+.deck-canvas.reveal [data-logic-app="parser"] .logic-app__controls { margin-block: .5rem 1rem; }
+/* A model's set or graph drawing grows with its width. Capped, a set drawing
+   leaves the model and its calculation side by side at a readable size, and a
+   square graph no longer forces its whole app, buttons included, to shrink. */
+.deck-canvas.reveal .fol-app .fol-sets { max-block-size: 260px; }
+.deck-canvas.reveal .fol-app .fol-graph { max-block-size: 420px; }
+/* A graph alone fills its slide: the square drawing leaves the frame's sides
+   empty, so its tool buttons float there instead of above it. In a column
+   the frame is narrow, and the buttons keep their room above the drawing. */
+.deck-canvas.reveal .slide--app .fol-app .fol-display:has(> .fol-scene > .fol-graph) { padding-block: 8px; }
+/* A model walkthrough puts the model and its calculation side by side, in
+   equal halves, with the calculation at body size: the room reads both. */
+.deck-canvas.reveal .fol-app .fol-walkthrough { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; }
+.deck-canvas.reveal .fol-app :is(.fol-explanation, .fol-explanation .logic-app__status) { font-size: var(--step-0); }
+/* Each step of a calculation is one short line: spaced as lines, not as
+   paragraphs, a long one still leaves the app at a readable size. */
+.deck-canvas.reveal .fol-app .fol-explanation .logic-app__status > p { margin-block: 0 .15em; line-height: 1.4; }
+.deck-canvas.reveal .fol-app .fol-display { min-height: 0; }
+/* A formula explored for its scopes is what the room reads: set it large. */
+.deck-canvas.reveal .fol-scope[data-mode="explore"] .scope-line { font-size: 30px; }
 
 /* ---- Layouts ---------------------------------------------------------------- */
 .deck-canvas.reveal :is(.slide--title, .slide--section, .slide--center) .slide__body {
@@ -183,15 +218,38 @@
 .deck-canvas.reveal .slide__meta { margin: 0; color: var(--ink-muted); }
 .deck-canvas.reveal .slide--section h2 { font-size: 56px; }
 
+/* class="slide--centred" on a centre slide centres its blocks too: an opening
+   inference, larger, with its bullets set well below it. */
+.deck-canvas.reveal .slide--centred .slide__body { align-items: center; justify-content: flex-start; }
+.deck-canvas.reveal .slide--centred .slide__body > h2 { align-self: flex-start; }
+.deck-canvas.reveal .slide--centred .slide__body > h2 + * { margin-block-start: auto; }
+.deck-canvas.reveal .slide--centred .slide__body > :last-child { margin-block-end: auto; }
+.deck-canvas.reveal .slide--centred .inference { font-size: 30px; }
+.deck-canvas.reveal .slide--centred .slide__body > ul { margin-block-start: 48px; }
+/* class="deck-corner" on an img pins a drawing to the slide's top corner,
+   beside the title, out of the content's way. */
+.deck-canvas.reveal .slides > section .deck-corner { position: absolute; inset-block-start: 20px; inset-inline-end: 48px; margin: 0; }
+.deck-canvas.reveal .slide__body > p:has(> .deck-corner:only-child) { margin: 0; }
+
 .deck-canvas.reveal .slide--split .slide__body {
   display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 40px; align-content: start;
 }
 .deck-canvas.reveal .slide--split .slide__body > :not(.slide__column) { grid-column: 1 / -1; }
+/* slide--wide-right: a narrow first column, say a definition beside its app. */
+.deck-canvas.reveal .slide--split.slide--wide-right .slide__body { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); column-gap: 32px; }
+/* An inference overview: the room reads the explanations, so they keep the
+   body size and ink rather than the chapter's small muted print. */
+.deck-canvas.reveal .inference-rules { margin-block: 0; }
+.deck-canvas.reveal .inference-rules__list { gap: 20px; }
+.deck-canvas.reveal .inference-rules__explanation > p:not(.inference-rules__name) { font-size: 20px; color: var(--ink); }
 .deck-canvas.reveal .slide__column > :last-child { margin-block-end: 0; }
 
 /* An app slide gives the app the room: a smaller title, a narrower margin. */
 .deck-canvas.reveal .slides > section.slide--app { padding: 24px 40px 28px; }
 .deck-canvas.reveal .slide--app h2 { margin-block-end: 16px; font-size: 34px; }
+/* class="slide--snug" drops the chapter's margins around an app, which a
+   callout above it or a square drawing in it would otherwise make costly. */
+.deck-canvas.reveal .slide--snug .slide__body > .logic-app { margin-block: 12px 0; }
 
 /* ---- Reveal.js furniture ---------------------------------------------------- */
 /* Bootstrap styles .progress too: undo its radius, clipping and font size. */

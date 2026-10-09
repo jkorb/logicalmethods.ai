@@ -13,7 +13,7 @@ The style borrows from the
 words, large, one idea at a time. The lecturer speaks the sentences; the slide
 holds what the room has to see. Unlike Takahashi slides, ours are not bare text.
 A slide is carried by the course's own material: a hand-lettered title, one of
-the book's drawings, a formula, a definition quoted from the chapter, or an app
+the book's drawings, a formula, a definition cut to its formulas, or an app
 to work through live.
 
 - **One idea per slide**: a claim, a definition, a diagram, a worked step.
@@ -22,8 +22,8 @@ to work through live.
   A title is not a sentence, and never a contrast of the kind "X is not Y";
   see [House voice](../authoring/voice.md).
 - **Phrases and formulas, not paragraphs.** At most three short bullets, or
-  one definition, or one drawing with a line under it, or one app. The one
-  paragraph a slide may carry is a definition quoted from the chapter.
+  one definition, or one drawing with a line under it, or one app. A slide
+  carries no paragraph, not even the chapter's definition in full.
 - **A single statement is a slide.** `layout="section"` sets one large line
   alone: the purest Takahashi slide, and a good way to mark a turn.
 - **Room is part of the design.** A text slide that has to be zoomed below full
@@ -66,9 +66,10 @@ step visible, one worked-out example per hard step. Everything else is in the bo
 Not every topic in a chapter gets a slide, and that is the point.
 
 Where the chapter's own headings name the stages of the argument, keep those
-stages recognizable on the slides. A definition on a slide is the chapter's
-definition, word for word, in the chapter's callout; slides do not invent a
-second wording for the same notion.
+stages recognizable on the slides. A definition on a slide sits in a
+definition callout, so the room sees that it is one, but it is condensed:
+its formulas, or one short line, with as few words around them as possible.
+The chapter keeps the full wording, and the slide must agree with it.
 
 ## Pictures: only the course's own
 
@@ -117,7 +118,7 @@ slides themselves: it names each app by its `title` and reads each drawing's
 1. Twenty slides or fewer; title, goals, motivation in the first three.
 2. Goals on slide 2 in the objectives callout, matching the chapter's, with Bloom levels.
 3. The deck's sequence is the chapter's through-line, compressed.
-4. One idea per slide; short titles; phrases, not paragraphs; definitions quoted.
+4. One idea per slide; short titles; phrases, not paragraphs; definitions condensed.
 5. Only the course's own drawings, each with an `alt`.
 6. Every app has a `title`; every slide fits its canvas without shrinking its text.
 7. Checks from [Testing the framework](reveal/testing.md) pass.

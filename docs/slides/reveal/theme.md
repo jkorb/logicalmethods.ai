@@ -41,6 +41,17 @@ Keep patterns off the sheet: a grid or dots on it clash with the page's squares.
 | `split` | Two or more equal columns under a full-width title. |
 | `app` | A smaller title and margins, to leave the app the room. |
 
+Classes, given with the slide's `class`, adjust a layout:
+
+| `class` | Does |
+| --- | --- |
+| `slide--centred` | On a `center` slide: keeps the title at the top and centres the blocks below it, with a list set well below what precedes it. |
+| `slide--snug` | On an `app` slide: drops the chapter's margins around the app, for an app under a callout or holding a square drawing. |
+| `slide--wide-right` | On a `split` slide: a one-third column, then a two-thirds one, say a definition beside its app. |
+
+An `img` with `class="deck-corner"` is pinned to the slide's top corner,
+beside the title.
+
 ## Fitting
 
 `slides-reveal.js` fits each slide to the canvas when it is shown, when the
@@ -81,7 +92,20 @@ alternative, the PNG export and the animation switch. The chapter keeps them
 all. A relay circuit's side panel holds only its status there, so it goes under
 the drawing, which is capped at 300px tall like a book drawing and centred.
 The formula–SQL app shows its whole query, where the chapter caps the SQL pane
-and lets it scroll; fitting zooms the app instead.
+and lets it scroll; fitting zooms the app instead. A first-order model's set
+drawing is capped at 260px tall, and its square graph at 420px, so the graph's
+buttons are not shrunk with it; on an `app` slide the graph's tool buttons
+float beside the square drawing rather than above it, while in a column they
+keep their room above it. The parser sets its tree beside the
+step's explanation on every slide: in a chapter that needs a 60rem window, but
+a slide is always 960px wide, whatever the window. A model walkthrough (evaluation, terms,
+queries) splits into equal halves, the model beside its calculation, which is
+set at body size, its steps spaced as lines rather than paragraphs. A scope-exploration formula is set at 30px. A resolution
+app keeps its own 2rem indent for its numbered clauses, and a unification app
+its 3.5ch for its numbered equations, which the slide's narrower list indent
+would clip. An inference overview (`inference-rules`) sets its explanations at
+20px in the body ink, where the chapter prints them small and muted. A Lean
+playground link is set at 20px.
 
 ## Collisions it guards against
 

@@ -24,10 +24,11 @@ After this lecture and chapter 8, you will be able to:
 - Use the correspondence between FOL and SQL to query a relational database. *(apply)*
 {{< /callout >}}
 
-{{< slide layout="split" title="All humans are mortal" >}}
-## All humans are mortal
+{{< slide layout="center" class="slide--centred" title="All humans are mortal" >}}
 
-{{< column >}}
+{{< img src="/img/drawings/fol_ai_talking_fol.svg" width="150px" class="deck-corner" alt="Two course mascots talk in first-order formulas: one says for all x and y, F(x, y) = −F(y, x); the other answers with the epsilon-delta definition of continuity." >}}
+
+## All humans are mortal
 
 {{< inference >}}
 All humans are mortal
@@ -36,16 +37,8 @@ Socrates is human
 Socrates is mortal
 {{< /inference >}}
 
-- Propositional: $HUMAN → MORTAL$, then $HUMAN₂ → MORTAL₂$, …
-- First-order, once for every object:
-
-$$
-∀x (Human(x) → Mortal(x))
-$$
-
-{{< column >}}
-
-{{< img src="/img/drawings/fol_ai_talking_fol.svg" width="240px" alt="Two course mascots talk in first-order formulas: one says for all x and y, F(x, y) = −F(y, x); the other answers with the epsilon-delta definition of continuity." >}}
+- Propositional logic: $HUMAN₁ → MORTAL₁$, $HUMAN₂ → MORTAL₂$, …
+- First-order logic: $∀x (Human(x) → Mortal(x))$
 
 {{< slide title="Alphabet" >}}
 ## Alphabet
@@ -69,32 +62,32 @@ function, and predicate symbols of a language, with a fixed arity for each
 function and predicate symbol.
 {{< /callout >}}
 
-{{< slide layout="app" title="Terms" >}}
+{{< slide layout="app" class="slide--snug" title="Terms" >}}
 ## Terms
 
 {{< callout type="definition" title="Term" >}}
-A {{< term "term" "term" >}} of a first-order language is a variable, a constant,
-or an expression $f(t₁, …, tₙ)$, where $f$ is an $n$-ary function symbol and each
-$tᵢ$ is a term.
+A {{< term "term" "term" >}} is a variable, a constant, or $f(t₁, …, tₙ)$ for an
+$n$-ary function symbol $f$ and terms $t₁, …, tₙ$.
 {{< /callout >}}
 
 {{< logic-app name="parser" language="fol" kind="term" formula="distanceBetween(birthplaceOf(Socrates), capitalOf(x))" title="Parsing distanceBetween(birthplaceOf(Socrates), capitalOf(x))" >}}
 
-{{< slide title="Formulas" >}}
+{{< slide layout="center" class="slide--centred" title="Formulas" >}}
 ## Formulas
 
-$$
-A ::= P(t₁, …, tₙ) ∣ t₁ = t₂ ∣ ¬A ∣ (A ∧ A) ∣ (A ∨ A)
-∣ (A → A) ∣ (A ↔ A) ∣ ∀x A ∣ ∃x A
-$$
-
-{{< callout type="definition" title="Atomic formula" >}}
-An {{< term "fol-atomic-formula" "atomic formula" >}} of a first-order language
-is $P(t₁, …, tₙ)$, where $P$ is an $n$-ary predicate and its arguments are terms,
-or an identity $t₁ = t₂$ between terms.
+{{< callout type="definition" title="Formula" >}}
+{{< annotated-math prefix="A ::=" separator="∣" stack=true title="The grammar of first-order formulas" >}}
+[
+  {"symbols": "P(t₁, …, tₙ) ∣ t₁ = t₂", "label": "atomic", "color": "violet"},
+  {"symbols": "¬A ∣ (A ∧ A) ∣ (A ∨ A) ∣ (A → A) ∣ (A ↔ A)", "label": "connectives", "color": "orange"},
+  {"symbols": "∀x A ∣ ∃x A", "label": "quantifiers", "color": "teal"}
+]
+{{< /annotated-math >}}
 {{< /callout >}}
 
-$Human(Socrates)$ and $motherOf(x) = y$ are atomic; $fatherOf(Socrates)$ is a term.
+- Atomic: $Human(Socrates)$, $motherOf(x) = y$
+- Quantified: $∀x (Human(x) → Mortal(x))$
+- A term, not a formula: $fatherOf(Socrates)$
 
 {{< slide layout="app" title="Scope and binding" >}}
 ## Scope and binding
@@ -106,90 +99,73 @@ variable belongs to the nearest enclosing quantifier for that variable. A
 {{< term "free-variable" "free occurrence" >}} has no such enclosing quantifier.
 {{< /callout >}}
 
-{{< logic-app name="fol-scope" formula="∀x (Human(x) → ∃y (Human(y) ∧ motherOf(x) = y))" title="Quantifiers and their bound occurrences" >}}
-
-{{< slide layout="app" title="Open formulas" >}}
-## Open formulas
-
-{{< callout type="definition" title="Open formula and sentence" >}}
-An {{< term "open-formula" "open formula" >}} has at least one free variable
-occurrence. A {{< term "sentence" "sentence" >}}, or closed formula, has none.
-{{< /callout >}}
-
-{{< logic-app name="fol-scope" formula="(Human(x) ∧ ∀x Mortal(x))" title="Free and bound occurrences of x together" >}}
-
-{{< slide layout="split" title="Iterated quantifiers" >}}
-## Iterated quantifiers
-
-Over $ℕ = {0, 1, 2, …}$:
-
-{{< column >}}
-
-$$
-∀x ∃y (x < y)
-$$
-
-True: for $x ↦ n$, take $y ↦ n + 1$. The witness depends on $x$.
-
-{{< column >}}
-
-$$
-∃y ∀x (x < y)
-$$
-
-False: no single $y$ beats every $x$.
+{{< logic-app name="fol-scope" mode="explore" formulas="∀x (Human(x) → ∃y (Human(y) ∧ motherOf(x) = y)) | (Human(x) ∧ ∀x Mortal(x))" labels="Sentence | Open formula" title="Scope and binding in a sentence and in an open formula" >}}
 
 {{< slide layout="center" title="Models" >}}
 ## Models
 
 {{< fol-worlds >}}
 
-A scenario: which objects there are, what names denote, which properties and
-relations the objects have.
+{{< slide layout="app" class="slide--snug" title="First-order models" >}}
+## First-order models
 
-{{< slide title="First-order model" >}}
-## First-order model
+{{< logic-app name="fol-model" model="people" view="graph" title="A first-order model of people and a box" >}}
+
+{{< slide layout="split" title="Domain and interpretation" >}}
+## Domain and interpretation
+
+{{< column >}}
 
 {{< callout type="definition" title="First-order model" >}}
-A {{< term "fol-model" "first-order model" >}} $M$ for a signature consists of
-a nonempty {{< term "domain" "domain" >}} $D$ and an
-{{< term "interpretation" "interpretation" >}} assigning:
+A {{< term "fol-model" "model" >}} $M$: a nonempty {{< term "domain" "domain" >}} $D$ and
+an {{< term "interpretation" "interpretation" >}}
 
-- an object $⟦a⟧ᴹ ∈ D$ to each constant $a$;
-- a total function $⟦f⟧ᴹ: Dⁿ → D$ to each $n$-ary function symbol $f$;
-- a relation $⟦R⟧ᴹ ⊆ Dⁿ$ to each $n$-ary predicate symbol $R$.
+- $⟦a⟧ᴹ ∈ D$ for each constant $a$
+- $⟦f⟧ᴹ: Dⁿ → D$ for each function symbol $f$
+- $⟦R⟧ᴹ ⊆ Dⁿ$ for each predicate $R$
 {{< /callout >}}
 
-{{< slide layout="app" title="Models as knowledge bases" >}}
-## Models as knowledge bases
+{{< column >}}
 
-Sets, tables, a knowledge graph: one model, many displays.
+{{< img src="/img/drawings/fol_domain_big.svg" width="300px" alt="A domain drawn as a yellow card full of objects: people, a rabbit, a box, playing cards, numbers, a can of soda." >}}
 
-{{< logic-app name="fol-model" model="people" view="sets" title="The people model, shown as sets" >}}
-
-{{< slide title="Modeling assumptions" >}}
-## Modeling assumptions
-
-| Classical FOL assumes | So |
-| --- | --- |
-| A nonempty domain | If everything is $P$, something is $P$. |
-| Every name denotes | No empty names, even in fiction. |
-| Total functions | $fatherOf$ needs a value for the box. |
-| Bivalence | An absent tuple is false, not unknown. |
+Classical FOL assumes **nonempty domains**, **a referent for every name**,
+**total functions** and **a truth-value for every atom**: idealizations.
 
 {{< slide layout="app" title="Denotation" >}}
 ## Denotation
 
-A {{< term "variable-assignment" "variable assignment" >}} $v$ gives each variable an object; $v(x)$ = Jimmy.
-
 {{< logic-app name="fol-model" model="people" kind="term" editable="false" view="tables" formula="fatherOf(fatherOf(x))" title="Calculating the denotation of fatherOf(fatherOf(x))" >}}
+
+{{< slide title="Assignments and denotation" >}}
+## Assignments and denotation
+
+{{< callout type="definition" title="Variable assignment" >}}
+A {{< term "variable-assignment" "variable assignment" >}} $v$ in a model with
+domain $D$ assigns an object of $D$ to each variable.
+{{< /callout >}}
+
+{{< callout type="definition" title="Denotation under an assignment" >}}
+In a model $M$ under an assignment $v$, the
+{{< term "denotation" "denotation" >}} $⟦t⟧ᴹᵥ$ of a term $t$ is defined recursively:
+
+$$
+⟦x⟧ᴹᵥ = v(x)
+⟦a⟧ᴹᵥ = ⟦a⟧ᴹ
+⟦f(t₁, …, tₙ)⟧ᴹᵥ = ⟦f⟧ᴹ(⟦t₁⟧ᴹᵥ, …, ⟦tₙ⟧ᴹᵥ)
+$$
+{{< /callout >}}
+
+{{< slide layout="app" title="Model checking" >}}
+## Model checking
+
+{{< logic-app name="fol-model" model="people-relations" kind="evaluate" view="sets" formula="∀x (Human(x) → Mortal(x))" title="Checking ∀x (Human(x) → Mortal(x)) in a finite model" >}}
 
 {{< slide title="Satisfaction" >}}
 ## Satisfaction
 
 {{< callout type="definition" title="Satisfaction" >}}
-An assignment $v$ {{< term "satisfaction" "satisfies" >}} a formula $A$ in $M$,
-written $M, v ⊨ A$, according to the following recursive clauses:
+$M, v ⊨ A$ ({{< term "satisfaction" "satisfaction" >}}) is defined by:
 
 - $M, v ⊨ P(t₁, …, tₙ)$ iff $[⟦t₁⟧ᴹᵥ, …, ⟦tₙ⟧ᴹᵥ] ∈ ⟦P⟧ᴹ$.
 - $M, v ⊨ t₁ = t₂$ iff $⟦t₁⟧ᴹᵥ = ⟦t₂⟧ᴹᵥ$.
@@ -200,36 +176,79 @@ written $M, v ⊨ A$, according to the following recursive clauses:
 - $M, v ⊨ (A ↔ B)$ iff ($M, v ⊨ A$ iff $M, v ⊨ B$).
 {{< /callout >}}
 
-{{< slide layout="app" title="Extensions" >}}
+{{< slide layout="split" title="Quantifiers" >}}
+## Quantifiers
+
+{{< callout type="definition" title="Assignment variant" >}}
+The {{< term "assignment-variant" "assignment variant" >}} $v[x ↦ d]$ assigns
+$d ∈ D$ to $x$ and agrees with $v$ on every other variable.
+{{< /callout >}}
+
+{{< callout type="definition" title="Quantifier clauses" >}}
+- $M, v ⊨ ∃x A$ iff $M, v[x ↦ d] ⊨ A$ for some $d ∈ D$.
+- $M, v ⊨ ∀x A$ iff $M, v[x ↦ d] ⊨ A$ for every $d ∈ D$.
+{{< /callout >}}
+
+{{< column >}}
+
+- $∃x$: one witness is enough.
+- $∀x$: one counterexample refutes it.
+
+{{< column >}}
+
+{{< img src="/img/drawings/gimmick_mouse.svg" width="90px" alt="A grey cartoon mouse with round ears and a pink-tipped tail." >}}
+
+{{< slide layout="app" class="slide--snug" title="Extensions" >}}
 ## Extensions
 
-$⟦A(x₁, …, xₙ)⟧ᴹ$: the tuples that satisfy $A$.
+{{< callout type="definition" title="Extension" >}}
+$M ⊨ A(d₁, …, dₙ)$ iff $M, [x₁ ↦ d₁, …, xₙ ↦ dₙ] ⊨ A(x₁, …, xₙ)$\
+$⟦A(x₁, …, xₙ)⟧ᴹ = {[d₁, …, dₙ] ∈ Dⁿ | M ⊨ A(d₁, …, dₙ)}$
+{{< /callout >}}
 
 {{< logic-app name="fol-model" model="people-relations" kind="query" editable="false" view="domain" formula="(BiggerThan(x, y) ∧ Human(x))" title="The extension of (BiggerThan(x, y) ∧ Human(x))" >}}
 
-{{< slide layout="app" title="Quantifiers" >}}
-## Quantifiers
-
-$M ⊨ ∀x A(x)$ iff $⟦A(x)⟧ᴹ = D$; $M ⊨ ∃x A(x)$ iff $⟦A(x)⟧ᴹ ≠ ∅$.
-
-{{< logic-app name="fol-model" model="people-relations" kind="evaluate" view="sets" formula="∀x (Human(x) → Mortal(x))" title="Checking ∀x (Human(x) → Mortal(x)) in a finite model" >}}
-
-{{< slide layout="split" title="Finite and infinite models" >}}
-## Finite and infinite models
+{{< slide layout="split" title="Models as databases" >}}
+## Models as databases
 
 {{< column >}}
 
-### Finite
-
-- Databases, registers, maps.
-- {{< term "model-checking" "Model checking" >}}: every search finishes.
+{{< logic-app name="fol-model" model="people-relations" view="tables" title="The people model as tables" >}}
 
 {{< column >}}
 
-### Infinite
+```sql
+CREATE TABLE BiggerThan (
+  bigger TEXT NOT NULL,
+  smaller TEXT NOT NULL,
+  PRIMARY KEY (bigger, smaller)
+);
+INSERT INTO BiggerThan VALUES
+  ('sir', 'jimmy'),
+  ('jimmy', 'box'),
+  ('sir', 'box');
+```
 
-- $ℕ$ makes $∀x ∃y (x < y)$ true; no finite ordering does.
-- No search through all objects: we may need a proof.
+An extension becomes a table; a tuple, a row.
+
+{{< slide layout="app" title="Queries as open formulas" >}}
+## Queries as open formulas
+
+{{< logic-app name="fol-model" model="world" kind="query" editable="false" view="domain" formula="LocatedIn(x, Europe)" title="Querying LocatedIn(x, Europe)" >}}
+
+{{< slide title="Formulas to SQL" >}}
+## Formulas to SQL
+
+Each free variable ranges over `Domain`; `query(A)` is the condition for $A$.
+
+| FOL | SQL condition |
+| --- | --- |
+| $LocatedIn(x, Europe)$ | {{< sql-condition "EXISTS (SELECT 1 FROM LocatedIn AS r WHERE r.country = d.value AND r.continent = 'Europe')" >}} |
+| $¬A$ | {{< sql-condition "NOT (query(A))" >}} |
+| $A ∧ B$ | {{< sql-condition "(query(A)) AND (query(B))" >}} |
+| $A ∨ B$ | {{< sql-condition "(query(A)) OR (query(B))" >}} |
+| $∃y A$ | {{< sql-condition "EXISTS (SELECT 1 FROM Domain AS e WHERE query(A))" >}} |
+| $∀y A$ | {{< sql-condition "NOT EXISTS (SELECT 1 FROM Domain AS e WHERE NOT (query(A)))" >}} |
 
 {{< slide layout="split" title="Queries and Codd's theorem" >}}
 ## Queries and Codd's theorem
@@ -252,8 +271,3 @@ queries computable from relation tables by selecting rows, projecting columns,
 renaming columns, taking products and unions, and subtracting one set of rows
 from another.
 {{< /callout >}}
-
-{{< slide layout="app" title="Worked-out example: European countries" >}}
-## Worked-out example: European countries
-
-{{< logic-app name="fol-model" model="world" kind="sql" editable="false" view="domain" formula="LocatedIn(x, Europe)" title="LocatedIn(x, Europe) as a formula and as SQL" >}}

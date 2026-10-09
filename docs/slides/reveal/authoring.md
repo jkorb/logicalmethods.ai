@@ -59,9 +59,15 @@ a slide title and `###` below it; the lecture title is the page's only `h1`.
 Everything a chapter uses works on a slide, and the same way: `$…$`
 notation, `!!AND!!`, callouts, `term`, `inference`, `syntax-tree`, `img` with
 the course's drawings, code blocks, tables and every `logic-app`. Write them as
-in the chapter; copy the chapter's definition word for word. Give every `img`
+in the chapter, but condense a definition to its formulas (see
+[Lecture standards](../lecture-standards.md)). Give every `img`
 an `alt` and every `logic-app` a `title`: the text view below the deck reads
 them out.
+
+Keep a `{{< term >}}` inside its line, followed by a space and a word. Its
+output ends in a line break: at the end of a source line it starts a new
+paragraph, and before punctuation it leaves a space, or, before a colon, turns
+the rest into a definition list.
 
 ## Columns
 
