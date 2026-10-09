@@ -13,7 +13,7 @@ restarts the trace. Descriptions identify the inference or circuit being tested.
 app also offers its equivalent DNF specification. Tseytin examples use weather
 atoms for the input and fresh indexed names for subformulas.
 
-Use `blank="true"` to start with an empty, editable field (for exercise tools).
+Tool pages start blank and hide preset buttons. Use `blank="true"` to start with an empty, editable field (for exercise tools).
 Otherwise apps start with applied, read-only input; the pencil clears the calculation
 and enables editing. Native first/previous/next/last buttons navigate. Work is
 on the left, controls and explanations on the right, stacked on mobile.

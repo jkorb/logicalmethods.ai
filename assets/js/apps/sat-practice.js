@@ -1,3 +1,4 @@
+import {mountResolutionTool} from './resolution-tool.js';
 import { celebrate } from './celebrate.js';
 import { renderTree } from './tree-renderer.js';
 import { mountBoolean } from './boolean-app.js';
@@ -9,7 +10,8 @@ import { tableExercise, checkVariables, checkMystery, checkNormalForm, createRes
 
 export function mountSATPractice(root) {
   const kind=root.dataset.kind;
-  const levels=root.dataset.formula&&kind!=='mystery'?[{formula:root.dataset.formula}]:JSON.parse(root.querySelector('[data-levels]').textContent);
+  if(root.dataset.tool==='true'&&kind==='resolution')return mountResolutionTool(root);
+  const levels=root.dataset.tool==='true'?[{formula:'',label:'your formula'}]:root.dataset.formula&&kind!=='mystery'?[{formula:root.dataset.formula}]:JSON.parse(root.querySelector('[data-levels]').textContent);
   const work=root.querySelector('[data-work]'), controls=root.querySelector('[data-controls]'), setup=root.querySelector('[data-setup]'), extra=root.querySelector('[data-extra]'), question=root.querySelector('[data-question]'), status=root.querySelector('[role="status"]');
   const nav=root.querySelector('[data-level-controls]'), solved=new Set();
   let level=0;
@@ -21,7 +23,7 @@ export function mountSATPractice(root) {
   function finish(text) {
     if(!solved.has(level))celebrate(root);
     solved.add(level);const b=nav.querySelector('[data-level="'+level+'"]');
-    if(!b.querySelector('.practice-solved'))b.append(el('span',{class:'practice-solved','aria-label':'completed'},' ✓'));
+    if(b&&!b.querySelector('.practice-solved'))b.append(el('span',{class:'practice-solved','aria-label':'completed'},' ✓'));
     say(text);
   }
   function start(index) {
@@ -142,7 +144,7 @@ export function mountSATPractice(root) {
     const check=()=>{let correct=true;const messages=[];
       for(const answer of answers) {
         try {
-          convertInput(answer.input);const result=checkNormalForm(answer.input.value,target,answer.name);
+          convertInput(answer.input);const result=checkNormalForm(answer.input.value,target,answer.name,root.dataset.tool==='true'?parseBoolean(item.formula).names:undefined);
           answer.input.setAttribute('aria-invalid',String(!result.correct||!result.normal));
           if(!result.correct){correct=false;messages.push(answer.name+': different value when '+Object.entries(result.counterexample).map(([n,v])=>n+' = '+v).join(', ')+'.');}
           else if(!result.normal){correct=false;messages.push('Equivalent, but not in '+answer.name+' yet.');}
@@ -150,7 +152,7 @@ export function mountSATPractice(root) {
       }
       if(correct)finish('Correct: both descriptions give '+item.label+' in the requested normal form.');else buzz(messages.join(' '));
     };
-    controls.prepend(iconButton('Check',check));form.addEventListener('submit',e=>{e.preventDefault();check();});say('Describe '+item.label+' using INPUT₁ and INPUT₂.');
+    controls.prepend(iconButton('Check',check));form.addEventListener('submit',e=>{e.preventDefault();check();});say(root.dataset.tool==='true'?'Enter equivalent DNF and CNF formulas.':'Describe '+item.label+' using INPUT₁ and INPUT₂.');
   }
   function mountCircuitExercise() {
     const item=levels[level], fragment=root.querySelector('[data-circuit]').content.cloneNode(true), circuit=fragment.querySelector('[data-logic-app="boolean"]');
@@ -229,5 +231,17 @@ export function mountSATPractice(root) {
     }
     render();
   }
-  start(0);
+  if(root.dataset.tool==='true'){
+    nav.hidden=true;
+    const form=el('form'),input=el('textarea',{'aria-label':'Practice input',class:'logic-app__input',rows:1,maxlength:4608});
+    const use=iconButton('Use input',()=>{},'play');use.type='submit';
+    const edit=iconButton('Edit input',()=>{input.readOnly=false;use.hidden=false;edit.hidden=true;[work,controls,setup,extra,question].forEach(n=>n.replaceChildren());say('Enter a new problem.');input.focus();},'edit');edit.hidden=true;edit.classList.add('logic-app__edit');
+    const wrap=el('div',{class:'logic-app__input-wrap'});wrap.append(input,edit);form.append(wrap,use);nav.before(form);
+    enableLatexInput(input);say('Enter your formula'+(kind==='table'?' or inference':'')+' to begin.');
+    form.onsubmit=event=>{event.preventDefault();try{
+      convertInput(input);const problem=readProblem(input.value);
+      if(kind==='normal-form'&&(problem.inference||problem.trees.length!==1))throw Error('Enter one formula to rewrite.');
+      levels[0].formula=input.value;solved.clear();start(0);input.readOnly=true;use.hidden=true;edit.hidden=false;
+    }catch(error){buzz(error.message);}};
+  }else start(0);
 }

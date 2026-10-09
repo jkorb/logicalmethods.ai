@@ -1,0 +1,54 @@
+{
+  "language": {
+    "constants": [],
+    "functions": {},
+    "predicates": {
+      "Sibling": 2
+    }
+  },
+  "objects": [],
+  "model": {
+    "domain": [],
+    "constants": {},
+    "functions": {},
+    "predicates": {
+      "Sibling": []
+    }
+  },
+  "premises": [
+    "∃x ∀y Sibling(x,y)"
+  ],
+  "goal": "∀y ∃x Sibling(x,y)",
+  "arbitrary": [
+    "a",
+    "d"
+  ],
+  "walkthrough": [
+    {
+      "formula": "Take any model M of ∃x ∀y Sibling(x,y).",
+      "explanation": "Choose a witness a: it is related by Sibling to every domain object.",
+      "arbitrary": "a"
+    },
+    {
+      "formula": "Let d be an arbitrary object of the domain.",
+      "explanation": "The witness a has already been chosen. It works for this choice of d too.",
+      "arbitrary": "d"
+    },
+    {
+      "formula": "Sibling(a,d)",
+      "explanation": "The universal claim about a applies to d.",
+      "known": [
+        "Sibling(a,d)"
+      ]
+    },
+    {
+      "formula": "∃x Sibling(x,d)",
+      "explanation": "Choose a as the existential witness."
+    },
+    {
+      "formula": "∀y ∃x Sibling(x,y)",
+      "explanation": "The choice of d was arbitrary, and M was any model of the premise.",
+      "result": "true"
+    }
+  ]
+}

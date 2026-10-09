@@ -9,6 +9,12 @@
     "definition": "A precise, step-by-step procedure that takes an input and produces an output in finitely many steps.",
     "chapter": "formal-languages"
   },
+  "axiom": {
+    "term": "Axiom",
+    "definition": "A formula accepted as a starting point in a proof system or theory.",
+    "chapter": "proofs",
+    "anchor": "axiomatic-systems"
+  },
   "belief-revision": {
     "term": "Belief revision",
     "definition": "Changing the propositions we accept when we receive new information, including information that conflicts with earlier beliefs.",
@@ -23,6 +29,12 @@
     "term": "Boolean function",
     "definition": "A function that takes a fixed number of Boolean values, 0 and 1, as inputs and returns one Boolean value.",
     "chapter": "boolean"
+  },
+  "bound-variable": {
+    "term": "Bound variable",
+    "definition": "An occurrence of a variable governed by the nearest enclosing quantifier for that variable.",
+    "chapter": "FOL",
+    "anchor": "scope-binding-and-substitution"
   },
   "cardinality": {
     "term": "Cardinality",
@@ -39,6 +51,11 @@
     "definition": "The logical framework used in our Boolean and FOL chapters, with bivalent semantics and classical inference principles.",
     "chapter": "proofs",
     "anchor": "negation-and-classical-reasoning"
+  },
+  "completeness": {
+    "term": "Completeness",
+    "definition": "A proof system is complete if every semantic consequence can be derived in it.",
+    "chapter": "proofs"
   },
   "conditional": {
     "term": "Conditional",
@@ -60,6 +77,11 @@
     "term": "Logical consequence",
     "definition": "A conclusion is a logical consequence of premises if every model making the premises true also makes the conclusion true.",
     "chapter": "valid-inference"
+  },
+  "constant": {
+    "term": "Constant",
+    "definition": "A name in a formal language; in an FOL model it denotes an object in the domain.",
+    "chapter": "FOL"
   },
   "contradiction": {
     "term": "Contradiction",
@@ -103,6 +125,12 @@
     "definition": "A truth value counted as acceptable in defining a consequence relation; in K3, only 1 is designated.",
     "chapter": "notation"
   },
+  "discharge": {
+    "term": "Discharge",
+    "definition": "Ending a temporary assumption's role as an open assumption by applying a rule that permits it, such as conditional introduction.",
+    "chapter": "proofs",
+    "anchor": "natural-deduction"
+  },
   "disjunction": {
     "term": "Disjunction",
     "definition": "An or-formula. Classical A∨B is true exactly when at least one disjunct is true, including when both are.",
@@ -118,6 +146,11 @@
     "term": "Domain",
     "definition": "The nonempty set of objects over which an FOL model interprets names, predicates, functions, and quantifiers.",
     "chapter": "FOL"
+  },
+  "eigenvariable": {
+    "term": "Eigenvariable",
+    "definition": "A fresh name or variable used for an arbitrary object in a quantifier proof, subject to the rule's freshness conditions.",
+    "chapter": "FOL-inference"
   },
   "empty-clause": {
     "term": "Empty clause",
@@ -152,6 +185,28 @@
     "definition": "Adding a formula and all its consequences together with the old beliefs: KB+A=Cn(KB∪{A}).",
     "chapter": "notation"
   },
+  "explosion": {
+    "term": "Explosion",
+    "definition": "The inference principle that any conclusion follows from a contradiction.",
+    "chapter": "proofs",
+    "anchor": "negation-and-classical-reasoning"
+  },
+  "extension": {
+    "term": "Extension",
+    "definition": "The objects, or tuples of objects, to which a predicate applies in a model.",
+    "chapter": "FOL"
+  },
+  "fair-search": {
+    "term": "Fair search",
+    "definition": "A search strategy that does not postpone any eligible inference forever.",
+    "chapter": "FOL-inference"
+  },
+  "first-order-logic": {
+    "term": "First-order logic",
+    "definition": "A logic with names, predicates, function symbols, and quantifiers over objects.",
+    "chapter": "FOL",
+    "anchor": "syntax"
+  },
   "formal-language": {
     "term": "Formal language",
     "definition": "A set of finite strings of symbols from an alphabet.",
@@ -183,6 +238,17 @@
     "definition": "Rules for generating the expressions of a formal language.",
     "chapter": "formal-languages"
   },
+  "ground-term": {
+    "term": "Ground term",
+    "definition": "A term containing no variables.",
+    "chapter": "FOL",
+    "anchor": "syntax"
+  },
+  "horn-clause": {
+    "term": "Horn clause",
+    "definition": "A disjunctive clause containing at most one positive literal.",
+    "chapter": "conditionals"
+  },
   "idealization": {
     "term": "Idealization",
     "definition": "Representing a situation in a simplified form that need not reproduce all its real features.",
@@ -198,11 +264,23 @@
     "definition": "A piece of reasoning from premises to a conclusion.",
     "chapter": "logic-and-ai"
   },
+  "interpretation": {
+    "term": "Interpretation",
+    "definition": "An assignment of meanings to the nonlogical vocabulary of a formal language over a domain.",
+    "chapter": "FOL",
+    "anchor": "models"
+  },
   "knowledge-base": {
     "term": "Knowledge base",
     "definition": "A set of statements represented in a formal language, which an agent can ASK for consequences and TELL new information.",
     "chapter": "formal-languages",
     "anchor": "knowledge-representation"
+  },
+  "knowledge-engineering": {
+    "term": "Knowledge engineering",
+    "definition": "Choosing a representation and encoding the information needed for a reasoning task.",
+    "chapter": "FOL",
+    "anchor": "databases-and-fol"
   },
   "literal": {
     "term": "Literal",
@@ -236,10 +314,31 @@
     "definition": "The inference from A → B and A to B.",
     "chapter": "valid-inference"
   },
+  "most-general-unifier": {
+    "term": "Most general unifier",
+    "definition": "A unifier from which every other unifier is obtained by further substitution.",
+    "chapter": "FOL-inference"
+  },
+  "natural-deduction": {
+    "term": "Natural deduction",
+    "definition": "A proof system with introduction and elimination rules, including rules for reasoning with and discharging temporary assumptions.",
+    "chapter": "proofs"
+  },
   "negation": {
     "term": "Negation",
     "definition": "A not-formula. Classical ¬A is true exactly when A is false.",
     "chapter": "boolean"
+  },
+  "occurs-check": {
+    "term": "Occurs check",
+    "definition": "The unification check that rejects replacing a variable by a term containing that same variable properly.",
+    "chapter": "FOL-inference"
+  },
+  "predicate": {
+    "term": "Predicate",
+    "definition": "A symbol expressing a property of objects or a relation among them.",
+    "chapter": "FOL",
+    "anchor": "syntax"
   },
   "premise": {
     "term": "Premise",
@@ -250,6 +349,18 @@
     "term": "Logical proof. Alt: derivation",
     "definition": "A chaining of inference rules applied to logical formulas, with assumptions tracked through the derivation.",
     "chapter": "proofs"
+  },
+  "proof-checking": {
+    "term": "Proof checking",
+    "definition": "Checking that a supplied formal proof obeys the rules and establishes its stated conclusion from its stated assumptions.",
+    "chapter": "proofs",
+    "anchor": "what-has-lean-verified"
+  },
+  "proof-search": {
+    "term": "Proof search",
+    "definition": "Searching for a formal derivation of a conclusion from assumptions.",
+    "chapter": "proofs",
+    "anchor": "proof-systems"
   },
   "pseudocode": {
     "term": "Pseudocode",
@@ -279,6 +390,26 @@
     "definition": "The component of a logical system that specifies interpretations and truth conditions.",
     "chapter": "logic-and-ai"
   },
+  "semidecidability": {
+    "term": "Semidecidability",
+    "definition": "The availability of a procedure that eventually confirms every positive instance, but may not terminate on a negative instance.",
+    "chapter": "FOL-inference"
+  },
+  "sentence": {
+    "term": "Sentence",
+    "definition": "A formula with no free variables.",
+    "chapter": "FOL"
+  },
+  "skolemization": {
+    "term": "Skolemization",
+    "definition": "Replacing existentially quantified variables with fresh witness functions or constants, preserving satisfiability in an expanded language.",
+    "chapter": "FOL-inference"
+  },
+  "soundness": {
+    "term": "Soundness",
+    "definition": "A proof system is sound if everything derivable from assumptions is a semantic consequence of those assumptions.",
+    "chapter": "proofs"
+  },
   "substitution": {
     "term": "Substitution",
     "definition": "Replacing free occurrences of a variable by a term, while avoiding variable capture.",
@@ -289,11 +420,27 @@
     "definition": "The component of a logical system that specifies which expressions are well formed.",
     "chapter": "logic-and-ai"
   },
+  "tactic": {
+    "term": "Tactic",
+    "definition": "An instruction for constructing a proof in a proof assistant, often by reducing a goal to simpler goals.",
+    "chapter": "proofs"
+  },
   "tautology": {
     "term": "Tautology",
     "definition": "A formula true in every valuation of the propositional logic under discussion.",
     "chapter": "sat",
     "anchor": "truth-tables"
+  },
+  "term": {
+    "term": "Term",
+    "definition": "An expression for an object, built in FOL from variables, constants, and function symbols.",
+    "chapter": "FOL"
+  },
+  "total-function": {
+    "term": "Total function",
+    "definition": "A function that assigns exactly one output to every input in its domain.",
+    "chapter": "FOL",
+    "anchor": "models"
   },
   "truth-value": {
     "term": "Truth-value",
@@ -303,7 +450,7 @@
   "unification": {
     "term": "Unification",
     "definition": "Finding a substitution that makes two expressions syntactically identical.",
-    "chapter": "notation"
+    "chapter": "FOL-inference"
   },
   "universal-quantifier": {
     "term": "Universal quantifier",
@@ -357,10 +504,35 @@
     "definition": "In our weak logical sense, conditioning on the premises never lowers the probability of the conclusion, for any distribution giving the premises positive probability.",
     "chapter": "valid-inference"
   },
+  "proof-calculus": {
+    "term": "Proof calculus",
+    "definition": "A system of rules for constructing logical proofs.",
+    "chapter": "proofs"
+  },
   "theorem": {
     "term": "Mathematical theorem",
     "definition": "A mathematical fact whose truth is established by a gapless, rigorous mathematical proof or argument.",
     "chapter": "sat"
+  },
+  "curry-howard": {
+    "term": "Curry–Howard correspondence",
+    "definition": "The correspondence between propositions and types, and between proofs and terms of those types.",
+    "chapter": "proofs"
+  },
+  "forward-chaining": {
+    "term": "Forward chaining",
+    "definition": "Starting with known facts and repeatedly applying rules to derive new facts.",
+    "chapter": "conditionals"
+  },
+  "backward-chaining": {
+    "term": "Backward chaining",
+    "definition": "Starting with a goal and searching for rules whose premises would establish it.",
+    "chapter": "conditionals"
+  },
+  "factoring": {
+    "term": "Factoring",
+    "definition": "Unifying same-sign literals within a clause and retaining one copy, with the substitution applied to the whole clause.",
+    "chapter": "FOL-inference"
   },
   "logic": {
     "term": "Logic",
@@ -920,21 +1092,6 @@
     "definition": "A conjunction of literals, also called a term. A single literal counts as a conjunctive clause.",
     "chapter": "sat"
   },
-  "horn-clause": {
-    "term": "Horn clause",
-    "definition": "A disjunctive clause containing at most one positive literal.",
-    "chapter": "conditionals"
-  },
-  "forward-chaining": {
-    "term": "Forward chaining",
-    "definition": "Starting with known facts and repeatedly applying rules to derive new facts.",
-    "chapter": "conditionals"
-  },
-  "backward-chaining": {
-    "term": "Backward chaining",
-    "definition": "Starting with a goal and searching for rules whose premises would establish it.",
-    "chapter": "conditionals"
-  },
   "expert-system": {
     "term": "Expert system",
     "definition": "A system for reasoning or decision making in a particular area, typically combining a knowledge base of expert rules and facts with an inference engine.",
@@ -1127,77 +1284,14 @@
     "definition": "The negation of an atomic formula. Negative describes its syntactic form, not its truth-value.",
     "chapter": "sat"
   },
-  "automated-theorem-prover": {
-    "term": "Automated theorem prover",
-    "definition": "Software that searches for formal proofs of specified claims from given assumptions.",
-    "chapter": "proofs"
-  },
-  "axiom": {
-    "term": "Axiom",
-    "definition": "A formula accepted as a starting point in a proof system or theory.",
-    "chapter": "proofs",
-    "anchor": "axiomatic-systems"
-  },
-  "completeness": {
-    "term": "Completeness",
-    "definition": "A proof system is complete if every semantic consequence can be derived in it.",
-    "chapter": "proofs"
-  },
-  "constructor": {
-    "term": "Constructor",
-    "definition": "An operation for building a term of a type from specified inputs.",
-    "chapter": "proofs"
-  },
-  "curry-howard": {
-    "term": "Curry–Howard correspondence",
-    "definition": "The correspondence between propositions and types, and between proofs and terms of those types.",
-    "chapter": "proofs"
-  },
-  "discharge": {
-    "term": "Discharge",
-    "definition": "Ending a temporary assumption's role as an open assumption by applying a rule that permits it, such as conditional introduction.",
-    "chapter": "proofs",
-    "anchor": "natural-deduction"
-  },
-  "elimination-rule": {
-    "term": "Elimination rule",
-    "definition": "An inference rule using a formula with the relevant main connective to derive a conclusion.",
-    "chapter": "proofs"
-  },
-  "explosion": {
-    "term": "Explosion",
-    "definition": "The inference principle that any conclusion follows from a contradiction.",
-    "chapter": "proofs",
-    "anchor": "negation-and-classical-reasoning"
-  },
   "introduction-rule": {
     "term": "Introduction rule",
     "definition": "An inference rule deriving a formula with the relevant connective as its main connective.",
     "chapter": "proofs"
   },
-  "intuitionistic-logic": {
-    "term": "Intuitionistic logic",
-    "definition": "A logic whose natural deduction rules omit classical proof by contradiction; double-negation elimination is not generally available.",
-    "chapter": "proofs"
-  },
-  "kernel": {
-    "term": "Kernel",
-    "definition": "The component of a proof assistant that checks proofs according to its basic rules.",
-    "chapter": "proofs"
-  },
-  "lemma": {
-    "term": "Lemma",
-    "definition": "A proved result used in another proof.",
-    "chapter": "proofs"
-  },
-  "multiple-discharge": {
-    "term": "Multiple discharge",
-    "definition": "Discharging several occurrences of an assumption with the same label in one rule application.",
-    "chapter": "proofs"
-  },
-  "natural-deduction": {
-    "term": "Natural deduction",
-    "definition": "A proof system with introduction and elimination rules, including rules for reasoning with and discharging temporary assumptions.",
+  "elimination-rule": {
+    "term": "Elimination rule",
+    "definition": "An inference rule using a formula with the relevant main connective to derive a conclusion.",
     "chapter": "proofs"
   },
   "open-assumption": {
@@ -1205,51 +1299,9 @@
     "definition": "An assumption on which a derivation still depends.",
     "chapter": "proofs"
   },
-  "proof-calculus": {
-    "term": "Proof calculus",
-    "definition": "A system of rules for constructing logical proofs.",
-    "chapter": "proofs"
-  },
-  "proof-checking": {
-    "term": "Proof checking",
-    "definition": "Checking that a supplied formal proof obeys the rules and establishes its stated conclusion from its stated assumptions.",
-    "chapter": "proofs",
-    "anchor": "what-has-lean-verified"
-  },
-  "proof-search": {
-    "term": "Proof search",
-    "definition": "Searching for a formal derivation of a conclusion from assumptions.",
-    "chapter": "proofs",
-    "anchor": "proof-systems"
-  },
-  "proof-term": {
-    "term": "Proof term",
-    "definition": "A typed term representing a formal proof, whose type expresses the proposition proved.",
-    "chapter": "proofs"
-  },
-  "soundness": {
-    "term": "Soundness",
-    "definition": "A proof system is sound if everything derivable from assumptions is a semantic consequence of those assumptions.",
-    "chapter": "proofs"
-  },
-  "tactic": {
-    "term": "Tactic",
-    "definition": "An instruction for constructing a proof in a proof assistant, often by reducing a goal to simpler goals.",
-    "chapter": "proofs"
-  },
-  "type": {
-    "term": "Type",
-    "definition": "A classification of terms that determines which constructions and operations are permitted on them.",
-    "chapter": "proofs"
-  },
-  "type-checking": {
-    "term": "Type checking",
-    "definition": "Checking whether a term has a specified type according to the rules of the type system.",
-    "chapter": "proofs"
-  },
-  "typed-term": {
-    "term": "Typed term",
-    "definition": "An expression assigned a type by the rules of a type system; t : A states that t has type A.",
+  "multiple-discharge": {
+    "term": "Multiple discharge",
+    "definition": "Discharging several occurrences of an assumption with the same label in one rule application.",
     "chapter": "proofs"
   },
   "vacuous-discharge": {
@@ -1257,73 +1309,50 @@
     "definition": "Discharge of an assumption that was not used in the derivation.",
     "chapter": "proofs"
   },
-  "planning-action": {
-    "term": "Action",
-    "definition": "An operation an agent can perform in the world. An action atom states that a particular action occurs at a particular time.",
-    "chapter": "conditionals",
-    "anchor": "planning"
+  "intuitionistic-logic": {
+    "term": "Intuitionistic logic",
+    "definition": "A logic whose natural deduction rules omit classical proof by contradiction; double-negation elimination is not generally available.",
+    "chapter": "proofs"
   },
-  "bound-variable": {
-    "term": "Bound variable",
-    "definition": "An occurrence of a variable governed by the nearest enclosing quantifier for that variable.",
-    "chapter": "FOL",
-    "anchor": "scope-binding-and-substitution"
+  "lemma": {
+    "term": "Lemma",
+    "definition": "A proved result used in another proof.",
+    "chapter": "proofs"
   },
-  "constant": {
-    "term": "Constant",
-    "definition": "A name in a formal language; in an FOL model it denotes an object in the domain.",
-    "chapter": "FOL"
+  "automated-theorem-prover": {
+    "term": "Automated theorem prover",
+    "definition": "Software that searches for formal proofs of specified claims from given assumptions.",
+    "chapter": "proofs"
   },
-  "extension": {
-    "term": "Extension",
-    "definition": "The objects, or tuples of objects, to which a predicate applies in a model.",
-    "chapter": "FOL"
+  "kernel": {
+    "term": "Kernel",
+    "definition": "The component of a proof assistant that checks proofs according to its basic rules.",
+    "chapter": "proofs"
   },
-  "first-order-logic": {
-    "term": "First-order logic",
-    "definition": "A logic with names, predicates, function symbols, and quantifiers over objects.",
-    "chapter": "FOL",
-    "anchor": "syntax"
+  "type": {
+    "term": "Type",
+    "definition": "A classification of terms that determines which constructions and operations are permitted on them.",
+    "chapter": "proofs"
   },
-  "ground-term": {
-    "term": "Ground term",
-    "definition": "A term containing no variables.",
-    "chapter": "FOL",
-    "anchor": "syntax"
+  "typed-term": {
+    "term": "Typed term",
+    "definition": "An expression assigned a type by the rules of a type system; t : A states that t has type A.",
+    "chapter": "proofs"
   },
-  "interpretation": {
-    "term": "Interpretation",
-    "definition": "An assignment of meanings to the nonlogical vocabulary of a formal language over a domain.",
-    "chapter": "FOL",
-    "anchor": "models"
+  "constructor": {
+    "term": "Constructor",
+    "definition": "An operation for building a term of a type from specified inputs.",
+    "chapter": "proofs"
   },
-  "knowledge-engineering": {
-    "term": "Knowledge engineering",
-    "definition": "Choosing a representation and encoding the information needed for a reasoning task.",
-    "chapter": "FOL",
-    "anchor": "databases-and-fol"
+  "type-checking": {
+    "term": "Type checking",
+    "definition": "Checking whether a term has a specified type according to the rules of the type system.",
+    "chapter": "proofs"
   },
-  "predicate": {
-    "term": "Predicate",
-    "definition": "A symbol expressing a property of objects or a relation among them.",
-    "chapter": "FOL",
-    "anchor": "syntax"
-  },
-  "sentence": {
-    "term": "Sentence",
-    "definition": "A formula with no free variables.",
-    "chapter": "FOL"
-  },
-  "term": {
-    "term": "Term",
-    "definition": "An expression for an object, built in FOL from variables, constants, and function symbols.",
-    "chapter": "FOL"
-  },
-  "total-function": {
-    "term": "Total function",
-    "definition": "A function that assigns exactly one output to every input in its domain.",
-    "chapter": "FOL",
-    "anchor": "models"
+  "proof-term": {
+    "term": "Proof term",
+    "definition": "A typed term representing a formal proof, whose type expresses the proposition proved.",
+    "chapter": "proofs"
   },
   "function-symbol": {
     "term": "Function symbol",
@@ -1427,6 +1456,12 @@
     "chapter": "FOL",
     "anchor": "models"
   },
+  "planning-action": {
+    "term": "Action",
+    "definition": "An operation an agent can perform in the world. An action atom states that a particular action occurs at a particular time.",
+    "chapter": "conditionals",
+    "anchor": "planning"
+  },
   "assignment-prescription": {
     "term": "Assignment prescription",
     "definition": "A list [x₁ ↦ d₁, …, xₙ ↦ dₙ] specifying values for distinct variables. When these include every free variable of a formula, they suffice to determine its satisfaction.",
@@ -1486,5 +1521,105 @@
     "definition": "A quantifier whose scope contains no free occurrence of the variable it quantifies.",
     "chapter": "FOL",
     "anchor": "scope-binding-and-substitution"
+  },
+  "unifier": {
+    "term": "Unifier",
+    "definition": "A substitution that makes two expressions syntactically identical.",
+    "chapter": "FOL-inference"
+  },
+  "alpha-renaming": {
+    "term": "Alpha-renaming",
+    "definition": "Changing a bound variable and its bound occurrences to a fresh variable without changing meaning.",
+    "chapter": "FOL-inference"
+  },
+  "currying": {
+    "term": "Currying",
+    "definition": "Representing a function of several arguments as nested functions, each taking one argument.",
+    "chapter": "FOL-inference",
+    "anchor": "quantifiers-in-lean"
+  },
+  "dependent-function": {
+    "term": "Dependent function",
+    "definition": "A function whose output type can depend on its input.",
+    "chapter": "FOL-inference"
+  },
+  "existential-witness": {
+    "term": "Existential witness",
+    "definition": "An object that satisfies the quantified scope of an existential claim.",
+    "chapter": "FOL-inference"
+  },
+  "fol-clause": {
+    "term": "First-order clause",
+    "definition": "A finite disjunction of first-order literals, with all free variables universally quantified; the empty disjunction is ⊥.",
+    "chapter": "FOL-inference"
+  },
+  "fol-cnf": {
+    "term": "First-order CNF",
+    "definition": "A conjunction of first-order clauses, each with its free variables understood as universally quantified.",
+    "chapter": "FOL-inference",
+    "anchor": "fol-normal-forms"
+  },
+  "fol-consequence": {
+    "term": "First-order consequence",
+    "definition": "A formula C is a first-order consequence of premises Γ if every first-order model and variable assignment satisfying all formulas in Γ also satisfies C.",
+    "chapter": "FOL-inference",
+    "anchor": "valid-inference"
+  },
+  "fol-literal": {
+    "term": "First-order literal",
+    "definition": "An atomic first-order formula or its negation.",
+    "chapter": "FOL-inference"
+  },
+  "fol-resolution": {
+    "term": "First-order resolution",
+    "definition": "An inference from freshly renamed clauses with opposite-sign literals whose atoms unify, deleting those literals and applying their most general unifier to the remaining literals.",
+    "chapter": "FOL-inference"
+  },
+  "free-for": {
+    "term": "Free for",
+    "definition": "A term is free for a variable in a formula when substituting it for that variable captures none of the term’s variables.",
+    "chapter": "FOL-inference"
+  },
+  "halting-problem": {
+    "term": "Halting problem",
+    "definition": "The problem of determining whether a given program will eventually stop on a given input.",
+    "chapter": "FOL-inference"
+  },
+  "skolem-constant": {
+    "term": "Skolem constant",
+    "definition": "A fresh constant used as an existential witness with no universally quantified variables in scope.",
+    "chapter": "FOL-inference"
+  },
+  "skolem-function": {
+    "term": "Skolem function",
+    "definition": "A fresh function symbol used to choose an existential witness as a function of the universally quantified variables in scope.",
+    "chapter": "FOL-inference"
+  },
+  "standardizing-apart": {
+    "term": "Standardizing apart",
+    "definition": "Renaming variables in separate clause uses so that those uses have disjoint variable sets.",
+    "chapter": "FOL-inference"
+  },
+  "undecidable": {
+    "term": "Undecidable",
+    "definition": "A decision problem is undecidable when no algorithm terminates on every input and correctly answers every instance.",
+    "chapter": "FOL-inference"
+  },
+  "universal-closure": {
+    "term": "Universal closure",
+    "definition": "The sentence obtained by universally quantifying all free variables of a formula.",
+    "chapter": "FOL-inference"
+  },
+  "fol-sat": {
+    "term": "FOL SAT problem",
+    "definition": "The problem of determining whether a given finite set of first-order sentences has a model.",
+    "chapter": "FOL-inference",
+    "anchor": "fol-resolution"
+  },
+  "fol-satisfiability": {
+    "term": "First-order satisfiability",
+    "definition": "A set of first-order sentences is satisfiable if some first-order model makes all of them true.",
+    "chapter": "FOL-inference",
+    "anchor": "fol-resolution"
   }
 }

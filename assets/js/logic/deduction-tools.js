@@ -4,7 +4,7 @@ const requireThat=(ok,message)=>{if(!ok)throw Error(message);};
 export function deleteStep(data,id){
   const proof=validateProof(data),removed=new Set([id]),mapping=new Map();let result=emptyProof();
   for(const n of proof.nodes){if(removed.has(n.id)||[...n.parents,...n.discharge].some(i=>removed.has(i))){removed.add(n.id);continue;}
-    mapping.set(n.id,result.nodes.length);result=n.rule==='assumption'?addAssumption(result,n.formula):infer(result,n.rule,n.parents.map(i=>mapping.get(i)),{formula:n.extra,discharge:n.discharge.map(i=>mapping.get(i))});}
+    mapping.set(n.id,result.nodes.length);result=n.rule==='assumption'?addAssumption(result,n.formula):infer(result,n.rule,n.parents.map(i=>mapping.get(i)),{term:n.term,variable:n.variable,formula:n.extra,discharge:n.discharge.map(i=>mapping.get(i))});}
   return result;
 }
 const isMeta=t=>!t.children.length&&/^[A-Z]$/.test(t.label);
@@ -40,10 +40,10 @@ export function applyLemma(data,lemma,selected,provided={}){
     }
     const discharge=n.discharge.map(old=>{const fresh=proof.nodes.length;proof=addAssumption(proof,substitute(saved.proof.nodes[old].formula));return fresh;});
     const parents=n.parents.map((parent,index)=>{const scope=new Map(bound);
-      n.discharge.forEach((old,i)=>{if(n.rule!=='orE'||index===i+1)scope.set(old,discharge[i]);});
+      n.discharge.forEach((old,i)=>{if(!['orE','existsE'].includes(n.rule)||index===i+1)scope.set(old,discharge[i]);});
       return replay(parent,scope);
     });
-    proof=infer(proof,n.rule,parents,{formula:n.extra?printFormula(substitute(formula(n.extra))):'',discharge});
+    proof=infer(proof,n.rule,parents,{term:n.term,variable:n.variable,formula:n.extra?printFormula(substitute(formula(n.extra))):'',discharge});
     const result=proof.nodes.length-1;memo.set(key,result);return result;
   }
   const root=replay(saved.root);
@@ -56,12 +56,13 @@ export function loadWorkspace(data){
 }
 const texOps={'∧':'\\land','∨':'\\lor','→':'\\to','↔':'\\leftrightarrow','¬':'\\neg','⊥':'\\bot','⊤':'\\top'};
 export function formulaTeX(t){
+  if(/^[∀∃]/u.test(t.label))return (t.label[0]==='∀'?'\\forall ':'\\exists ')+t.label.slice(1)+' '+formulaTeX(t.children[0]);
   if(!t.children.length){if(texOps[t.label])return texOps[t.label];const s=t.label.replace(/_/g,'\\_').replace(/[₀₁₂₃₄₅₆₇₈₉]/g,c=>'0123456789'['₀₁₂₃₄₅₆₇₈₉'.indexOf(c)]);return s.length===1?s:`\\mathrm{${s}}`;}
   if(t.label==='¬')return '\\neg '+formulaTeX(t.children[0]);return '('+t.children.map(formulaTeX).join(' '+texOps[t.label]+' ')+')';
 }
 export function toProofSty(data,root=data.nodes.length-1){
   const proof=validateProof(data);requireThat(proof.nodes[root],'Select a conclusion to export.');let visits=0;
-  const labels={andI:'\\land I',andL:'\\land E',andR:'\\land E',orL:'\\lor I',orR:'\\lor I',orE:'\\lor E',impI:'\\to I',impE:'\\to E',notI:'\\neg I',notE:'\\neg E',falseE:'\\bot E',raa:'\\mathrm{RAA}',trueI:'\\top I',iffI:'\\leftrightarrow I',iffL:'\\leftrightarrow E',iffR:'\\leftrightarrow E'};
+  const labels={eqI:'=I',eqE:'=E',forallI:'\\forall I',forallE:'\\forall E',existsI:'\\exists I',existsE:'\\exists E',andI:'\\land I',andL:'\\land E',andR:'\\land E',orL:'\\lor I',orR:'\\lor I',orE:'\\lor E',impI:'\\to I',impE:'\\to E',notI:'\\neg I',notE:'\\neg E',falseE:'\\bot E',raa:'\\mathrm{RAA}',trueI:'\\top I',iffI:'\\leftrightarrow I',iffL:'\\leftrightarrow E',iffR:'\\leftrightarrow E'};
   function tree(id,bound=new Set()){
     requireThat(++visits<4000,'Export a smaller derivation.');const n=proof.nodes[id],f=formulaTeX(n.formula);
     if(n.rule==='assumption')return (bound.has(id)?'['+f+']':f)+`^{h_{${id}}}`;

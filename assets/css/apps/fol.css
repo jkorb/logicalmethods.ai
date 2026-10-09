@@ -94,6 +94,9 @@
 .fol-app .fol-svg-delete text { fill:var(--red-ink); stroke:none; font:20px var(--font-prose); }
 .fol-app .fol-selectable-tuple { cursor:pointer; }
 .fol-app .fol-selectable-tuple.is-selected { background:var(--surf-blue); outline:1px solid var(--blue-ink); }
+.fol-app .fol-membership-label[role="button"] { cursor:pointer; }
+.fol-app .fol-membership-label:is(:focus-visible,[aria-pressed="true"]) { fill:var(--blue-ink); text-decoration:underline; }
+.fol-app .fol-sets .fol-membership-label { font-size:18px; }
 .fol-app .fol-edge--0 { color:var(--blue-ink); }
 .fol-app .fol-edge--1 { color:var(--red-ink); }
 .fol-app .fol-edge--2 { color:var(--green-ink); }
@@ -120,7 +123,7 @@
 .fol-app .fol-menu { width:min(22rem,calc(100% - 1rem)); max-height:min(32rem,70vh); padding:.6rem; }
 .fol-app [data-panel="view"] { width:fit-content; max-width:calc(100% - 1rem); padding:.55rem; }
 .fol-app [data-panel="view"] .fol-toolbar { gap:.3rem; margin:0; padding-top:1rem; }
-.fol-app [data-view] { display:flex; flex-direction:column; align-items:center; gap:.1rem; font-size:.72rem; padding:.25rem .45rem; }
+.fol-app button[data-view] { display:flex; flex-direction:column; align-items:center; gap:.1rem; font-size:.72rem; padding:.25rem .45rem; }
 .fol-app .fol-zoom-menu { width:fit-content; display:flex; align-items:center; gap:.3rem; }
 .fol-app .fol-zoom-menu button { width:2.4rem; padding:.25rem; }
 .fol-app .fol-component { margin:.2rem 0 .5rem; border-bottom:1px solid var(--rule); padding-bottom:.4rem; }
@@ -181,9 +184,11 @@
 .fol-scope .scope-line button.scope-is-free { border-bottom:2px dotted var(--orange-ink); }
 .fol-scope .scope-wires { position:absolute; top:0; left:0; pointer-events:none; overflow:visible; }
 .fol-scope .scope-wire { stroke:var(--blue-ink); stroke-width:1.5; fill:none; }
-.fol-scope .scope-color-1 { stroke:var(--red-ink); stroke-dasharray:5 3; }
+.fol-scope .scope-color-1 { stroke:var(--red-ink); }
 .fol-scope .scope-color-2 { stroke:var(--green-ink); }
-.fol-scope marker path { fill:var(--ink); }
+.fol-scope .scope-head { fill:var(--blue-ink); stroke:none; }
+.fol-scope .scope-head.scope-color-1 { fill:var(--red-ink); }
+.fol-scope .scope-head.scope-color-2 { fill:var(--green-ink); }
 .fol-scope [data-feedback], .fol-scope .scope-free { font-size:var(--step--1); margin:.6rem 0; }
 .fol-app .fol-selection { position:sticky; bottom:0; margin:.5rem auto 0; z-index:2; font-size:var(--step--1); }
 .fol-app .fol-next-slot { color:var(--blue-ink); border-bottom:2px solid var(--blue-ink); padding:.2rem; }
@@ -456,4 +461,39 @@
   .fol-app:is(:fullscreen,.fol-fullscreen) .fol-bridge .fol-correspondence .logic-app__input-row { flex-wrap:nowrap; }
   .fol-app:is(:fullscreen,.fol-fullscreen) .fol-bridge .fol-correspondence .logic-app__input-wrap { flex-basis:0; flex-grow:1; }
   .fol-app:is(:fullscreen,.fol-fullscreen) .fol-query-model .fol-display { padding-top:2.75rem; padding-bottom:.5rem; }
+}
+
+/* The consequence walkthrough uses the same model canvas and controls. */
+.fol-consequence-app .fol-given { display:flex; flex-wrap:wrap; gap:.4rem; align-items:center; margin-block:.7rem; }
+.fol-consequence-app .fol-given button { font-family:var(--font-formal); text-align:start; overflow-wrap:anywhere; }
+.fol-consequence-app .fol-given button[aria-pressed="false"] { text-decoration:line-through; }
+.fol-consequence-app .fol-given button[aria-pressed="true"] { background:var(--surf-blue); }
+.fol-consequence-app .fol-set-universe { stroke-dasharray:6 5; }
+.fol-consequence-app .fol-fragment-note { color:var(--ink-muted); font-size:var(--step--1); }
+.fol-consequence-app .fol-partial-sets { display:grid; grid-template-columns:minmax(0,1fr); gap:.4rem; }
+@media(max-width:36rem) { .fol-consequence-app .fol-partial-sets { grid-template-columns:1fr; } }
+
+/* Scope drawing for lectures: tabs and a Clear button above the formula; the
+   selected quantifier's scope is tinted while the lecturer draws its arrows. */
+.fol-scope[data-mode="explore"] .scope-line { font-size:var(--step-0); }
+.fol-scope .scope-toolbar .sat-examples { margin:0; }
+.fol-scope .scope-line .scope-in-scope { background:var(--surf-blue); }
+.fol-scope[data-mode="explore"] .scope-line button { padding:.1em .05em; min-height:0; }
+
+/* A model exercise keeps its question and feedback in fullscreen. */
+.fol-practice:is(:fullscreen,.fol-fullscreen) > .fol-app { width:100%; }
+.fol-practice:is(:fullscreen,.fol-fullscreen) > .fol-app .fol-walkthrough { display:block; width:100%; }
+.fol-practice:is(:fullscreen,.fol-fullscreen) > .fol-app .fol-display { min-height:55vh; }
+
+
+.fol-practice [data-requirements] { display:flex; flex-direction:column; gap:.35rem; }
+.fol-practice .fol-requirement { font-family:var(--font-formal); text-align:start; overflow-wrap:anywhere; }
+.fol-practice .fol-requirement[data-expanded="true"] { border-style:dashed; }
+.fol-practice [data-truth-condition] { margin-block:.7rem; font-size:var(--step--1); }
+.fol-practice [data-task] { overflow-wrap:anywhere; }
+.fol-app.fol-reasoning-model .fol-walkthrough { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
+.fol-practice:is(:fullscreen,.fol-fullscreen) > .fol-reasoning-model .fol-walkthrough { display:grid; grid-template-columns:minmax(0,1.3fr) minmax(0,1fr); }
+@media(max-width:48rem) {
+  .fol-app.fol-reasoning-model .fol-walkthrough,
+  .fol-practice:is(:fullscreen,.fol-fullscreen) > .fol-reasoning-model .fol-walkthrough { grid-template-columns:minmax(0,1fr); }
 }

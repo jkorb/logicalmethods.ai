@@ -10,6 +10,7 @@ export function mountSAT(root) {
   const status = root.querySelector('[role="status"]'), use = root.querySelector('[data-use]'), edit = root.querySelector('[data-edit]');
   const treeArea = root.querySelector('[data-tree]'), alternative = root.querySelector('[data-alternative]');
   const kind = root.dataset.kind;
+  if(root.dataset.tool==='true'){input.value='';root.querySelector('.sat-examples').hidden=true;}
   root.querySelector('[data-input-form]').append(root.querySelector('[data-navigation]'));
   let target = 'CNF';
   root.querySelectorAll('button, textarea, input').forEach(n => { n.disabled = false; });

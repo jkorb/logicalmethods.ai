@@ -1,0 +1,64 @@
+{
+  "language": {
+    "constants": [
+      "Socrates"
+    ],
+    "functions": {},
+    "predicates": {
+      "Human": 1,
+      "Mortal": 1
+    }
+  },
+  "objects": [
+    {
+      "id": "socrates",
+      "label": "Socrates",
+      "image": "img/drawings/fol_socrates.svg"
+    }
+  ],
+  "model": {
+    "domain": [
+      "socrates"
+    ],
+    "constants": {
+      "Socrates": "socrates"
+    },
+    "functions": {},
+    "predicates": {
+      "Human": [],
+      "Mortal": []
+    }
+  },
+  "premises": [
+    "∀x (Human(x) → Mortal(x))",
+    "Human(Socrates)"
+  ],
+  "goal": "Mortal(Socrates)",
+  "depiction": "socrates",
+  "walkthrough": [
+    {
+      "formula": "Take any model M of the premises.",
+      "explanation": "The picture shows only the object named Socrates. M may contain other objects."
+    },
+    {
+      "formula": "M ⊨ Human(Socrates)",
+      "explanation": "The second premise puts this object in the extension of Human."
+    },
+    {
+      "formula": "M ⊨ Human(Socrates) → Mortal(Socrates)",
+      "explanation": "The universal premise applies to every object of M, including the object named Socrates."
+    },
+    {
+      "formula": "M ⊨ Mortal(Socrates)",
+      "explanation": "Human(Socrates) is true. For the conditional to be true, Mortal(Socrates) must be true too. We can now add that membership to the picture.",
+      "known": [
+        "Mortal(Socrates)"
+      ]
+    },
+    {
+      "formula": "∀x (Human(x) → Mortal(x)), Human(Socrates) ⊨ Mortal(Socrates)",
+      "explanation": "We chose an arbitrary model of the premises. The same reasoning works in every such model.",
+      "result": "true"
+    }
+  ]
+}

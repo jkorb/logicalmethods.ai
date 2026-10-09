@@ -10,6 +10,8 @@ Markdown strings), `conclusion`, and `explanation`. Give it a `caption`:
 ```
 
 The open display places each inference left of its name and explanation.
+A row with `"invalid": true` is drawn as a blocked inference, as with
+`inference invalid=true`; Lecture 9's side-conditions slide uses this.
 The inference line is its only ruling; there is no table grid. It uses
 `partials/figures/inference.html`, shared with `inference`. This component
 organizes schemas, not proof trees or derivation checking. State the intended

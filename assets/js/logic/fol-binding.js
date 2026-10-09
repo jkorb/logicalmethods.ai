@@ -1,4 +1,5 @@
 // Renderable occurrences with lexical binders, derived from the shared FOL tree.
+// A quantifier token's scope runs from the token after it to its scopeEnd.
 export function bindingTokens(ast) {
   const tokens = [], quantifiers = [];
   const add = (text, extra = {}) => { const token = { text, id: tokens.length, ...extra }; tokens.push(token); return token; };
@@ -7,7 +8,7 @@ export function bindingTokens(ast) {
     if (n.kind === 'constant') { add(n.name); return; }
     if (n.kind === 'quantifier') {
       const q=add(n.name+n.variable,{kind:'quantifier',variable:n.variable}); quantifiers.push(q);
-      const local=new Map(env);local.set(n.variable,q.id);add(' ');visit(n.children[0],local);return;
+      const local=new Map(env);local.set(n.variable,q.id);add(' ');visit(n.children[0],local);q.scopeEnd=tokens.length-1;return;
     }
     if (['predicate','function'].includes(n.kind)) {
       add(n.name+'(');n.children.forEach((c,i)=>{if(i)add(', ');visit(c,env);});add(')');return;

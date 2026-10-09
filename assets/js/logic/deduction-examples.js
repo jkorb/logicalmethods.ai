@@ -1,3 +1,4 @@
+import {FOL_EXERCISES} from './deduction-fol-exercises.js';
 import {fromLean} from './deduction-lean.js';
 export const EXAMPLES=[
  {id:'heating',label:'Heating',premises:['RAIN','(RAIN ∨ WIND) → COLD','COLD → HEATING'],goal:'HEATING',hint:'Work back from HEATING: we need COLD. The other conditional asks for RAIN ∨ WIND, which we can introduce from RAIN.',code:`variable (RAIN WIND COLD HEATING : Prop)
@@ -102,3 +103,56 @@ example (h : ¬(A ∧ B)) : ¬A ∨ ¬B := by
     intro not_b
     exact neg_goal (Or.inr not_b)`}
 ];
+
+const folHeader='variable (Domain : Type)\nvariable (Human Mortal Black White : Domain → Prop)\nvariable (Socrates : Domain)\n';
+export const FOL_EXAMPLES=[
+ {id:'socrates',label:'Socrates',premises:['∀x (Human(x) → Mortal(x))','Human(Socrates)'],goal:'Mortal(Socrates)',hint:'Instantiate the universal at Socrates, then use → Elim.',code:folHeader+`example (h : ∀ x, Human x → Mortal x) (hs : Human Socrates) : Mortal Socrates := by
+  apply h Socrates
+  exact hs`},
+ {id:'universal',label:'An arbitrary object',premises:[],goal:'∀x (Human(x) → Human(x))',hint:'Assume Human(x), discharge that assumption, then generalize x.',code:folHeader+`example : ∀ x, Human x → Human x := by
+  intro x
+  intro hx
+  exact hx`},
+ {id:'distribution',label:'Distribute ∀ over ∧',premises:['∀x (Black(x) ∧ White(x))'],goal:'(∀x Black(x)) ∧ (∀x White(x))',hint:'Instantiate at x, project each conjunct, and generalize each result.',code:folHeader+`example (h : ∀ x, Black x ∧ White x) : (∀ x, Black x) ∧ (∀ x, White x) := by
+  apply And.intro
+  · intro x
+    exact And.left (h x)
+  · intro x
+    exact And.right (h x)`},
+ {id:'existential',label:'Supply a witness',premises:['Human(Socrates)'],goal:'∃x Human(x)',hint:'Use Socrates as the witness for ∃ Intro.',code:folHeader+`example (hs : Human Socrates) : ∃ x, Human x := by
+  apply Exists.intro Socrates
+  exact hs`},
+ {id:'witness',label:'Use an unknown witness',premises:['∃x Black(x)'],goal:'∃x (Black(x) ∨ White(x))',hint:'Assume Black(z) for a fresh z. Derive the existential conclusion, then discharge Black(z).',code:folHeader+`example (h : ∃ x, Black x) : ∃ x, Black x ∨ White x := by
+  apply Exists.elim h
+  intro z hz
+  apply Exists.intro z
+  apply Or.inl
+  exact hz`}
+];
+SCHEMATA.push(
+ tree('∀x A(x)','∀ Intro · x arbitrary',leaf('A(x)')),
+ tree('A[x/t]','∀ Elim · t free for x',leaf('∀x A')),
+ tree('∃x A','∃ Intro · t free for x',leaf('A[x/t]')),
+ tree('C','∃ Elim · 1, z fresh',leaf('∃x A'),sub('A[x/z]','C'))
+);
+
+FOL_EXAMPLES.push(
+ {...FOL_EXERCISES[0],label:'Classical duality'},
+ {...FOL_EXERCISES[8],label:'Nonempty domain'},
+ {...FOL_EXERCISES[9],label:'Plan quantified goals'},
+ {id:'equality',label:'Substitute equals',premises:['a = b','Human(a)'],goal:'Human(b)',hint:'Use = Elim with the substitution formula Human(x) and placeholder x.',code:`variable (Domain : Type)
+variable (Human : Domain → Prop) (a b : Domain)
+example (heq : a = b) (ha : Human a) : Human b := by
+  exact Eq.subst heq ha`},
+ {id:'reflexivity',label:'Reflexivity',premises:[],goal:'a = a',hint:'= Intro needs no premises. Supply the term a.',code:`variable (Domain : Type) (a : Domain)
+example : a = a := by
+  rfl`}
+);
+SCHEMATA.push(tree('t = t','= Intro'),tree('A[x/t]','= Elim',leaf('s = t'),leaf('A[x/s]')));
+
+FOL_EXAMPLES.push({id:'symmetry',label:'Symmetry of identity',premises:['a = b'],goal:'b = a',hint:'Prove a = a by = Intro, then use = Elim with x = a.',code:`variable (Domain : Type) (a b : Domain)
+example (heq : a = b) : b = a := by
+  have ha : a = a := by
+    rfl
+  let property (x : Domain) : Prop := x = a
+  exact Eq.subst (motive := property) heq ha`});

@@ -1,0 +1,6 @@
+{{/* A link that opens Lean code in the Lean 4 web editor, which checks it.
+     Takes "code" and an optional "text" before the Lean wordmark. Code that
+     imports Mathlib opens in the Mathlib project. */}}
+{{- $project := "" -}}
+{{- if strings.Contains .code "import Mathlib" }}{{ $project = "project=mathlib-stable&" }}{{ end -}}
+<p class="lean-playground-link"><a href="{{ printf "https://live.lean-lang.org/#%scode=%s" $project (replace (urlquery .code) "+" "%20") | safeURL }}" class="link-out" target="_blank" rel="external noopener noreferrer"><i class="bi bi-box-arrow-up-right link-external" aria-hidden="true"></i> {{ .text | default "Open this code in" }} <span class="lean-wordmark" aria-label="Lean">L∃∀N</span><span class="visually-hidden"> (opens in a new tab)</span></a></p>

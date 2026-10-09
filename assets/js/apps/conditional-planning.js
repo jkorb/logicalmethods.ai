@@ -69,7 +69,10 @@ export function mountPlanning(root) {
       q('[data-rules]').replaceChildren(el('p',{class:'conditional-formula'},state.true.map(f=>timedAtom(f,state.time)).join('; ') || 'All state atoms are false.'),el('p',{class:'conditional-help'},'Unlisted atoms are false in this model.'+(q('[data-complete]').checked?'':' The solver chose one of the permitted initial states.')));
     });
   } catch(error){if(exercise)feedback(status,error.message,false);else status.textContent=error.message;}};
-  load(0);
+  if(root.dataset.tool==='true'){
+    q('[data-examples]').hidden=true;q('[data-initial]').value='';q('[data-goal]').value='';q('[data-horizon]').value=domain.horizon;q('[data-complete]').checked=true;
+    root.querySelectorAll('[data-frame]').forEach(n=>n.value='');clear('Enter an initial state, a goal, and frame conditions, then Plan!');
+  }else load(0);
   // Authored lecture views retain the same SAT encoding and step controls.
   if(!exercise && ['model','frames'].includes(root.dataset.view)) {
     q('[data-examples]').hidden=true;

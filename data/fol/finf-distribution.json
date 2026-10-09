@@ -1,0 +1,56 @@
+{
+  "language": {
+    "constants": [],
+    "functions": {},
+    "predicates": {
+      "Human": 1,
+      "Mortal": 1
+    }
+  },
+  "objects": [],
+  "model": {
+    "domain": [],
+    "constants": {},
+    "functions": {},
+    "predicates": {
+      "Human": [],
+      "Mortal": []
+    }
+  },
+  "premises": [
+    "∀x (Human(x) ∧ Mortal(x))"
+  ],
+  "goal": "(∀x Human(x)) ∧ (∀x Mortal(x))",
+  "arbitrary": [
+    "a",
+    "d"
+  ],
+  "walkthrough": [
+    {
+      "formula": "Take any model M of ∀x (Human(x) ∧ Mortal(x)).",
+      "explanation": "Let d be an arbitrary object of its domain.",
+      "arbitrary": "d"
+    },
+    {
+      "formula": "Human(d) ∧ Mortal(d)",
+      "explanation": "The premise holds at d. Both predicate memberships follow.",
+      "known": [
+        "Human(d)",
+        "Mortal(d)"
+      ]
+    },
+    {
+      "formula": "∀x Human(x)",
+      "explanation": "The object d was arbitrary, so every domain object belongs to Human."
+    },
+    {
+      "formula": "∀x Mortal(x)",
+      "explanation": "The same reasoning shows that every domain object belongs to Mortal."
+    },
+    {
+      "formula": "(∀x Human(x)) ∧ (∀x Mortal(x))",
+      "explanation": "Both conjuncts are true in every model of the premise.",
+      "result": "true"
+    }
+  ]
+}

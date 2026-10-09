@@ -98,6 +98,7 @@ export function mountConditionals(root) {
   choices(q('[data-examples]'),keys.map(k=>[k,deck[k].label]),selected,load,'Knowledge bases');
   q('[data-examples]').prepend(el('span',{class:'app-picker-label',title:'Examples'},'Ex.'));
   q('[data-form]').onsubmit=e=>{e.preventDefault();run();};
-  if(q('[data-method]'))q('[data-method]').onchange=run;
-  load(selected);
+  if(q('[data-method]'))q('[data-method]').onchange=()=>{if(q('[data-kb]').value.trim())run();};
+  if(root.dataset.tool==='true'){q('[data-examples]').hidden=true;q('[data-kb]').value='';if(q('[data-goal]'))q('[data-goal]').value='';freeze(false);clear();status.textContent='Enter a knowledge base'+(kind==='horn'?'':' and a goal')+', then Start.';}
+  else load(selected);
 }

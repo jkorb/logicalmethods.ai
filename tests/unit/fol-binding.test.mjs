@@ -9,3 +9,9 @@ test('binding arrows respect shadowing, free occurrences and variables in terms'
   assert.equal(tokens.map(t=>t.text).join(''),'(Human(x) ∧ ∃x (Human(x) ∧ ∀x motherOf(x) = x))');
   const vacuous=bindingTokens(parseFOL('∀x Human(y)'));assert.equal(vacuous.tokens.filter(t=>t.binder===vacuous.quantifiers[0].id).length,0);
 });
+test('a quantifier records where its scope ends',()=>{
+  const {tokens,quantifiers}=bindingTokens(parseFOL('∀x (Human(x) → ∃y (Human(y) ∧ motherOf(x) = y))'));
+  const scope=q=>tokens.slice(q.id+1,q.scopeEnd+1).map(t=>t.text).join('').trim();
+  assert.equal(scope(quantifiers[0]),'(Human(x) → ∃y (Human(y) ∧ motherOf(x) = y))');
+  assert.equal(scope(quantifiers[1]),'(Human(y) ∧ motherOf(x) = y)');
+});

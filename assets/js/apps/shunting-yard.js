@@ -23,5 +23,6 @@ export function mountShuntingYard(root) {
   root.querySelector('form').addEventListener('submit', e => { e.preventDefault(); start(); });
   back.addEventListener('click', () => { if(index > 0) { index--; draw(); } });
   forward.addEventListener('click', () => { if(index < steps.length - 1) { index++; draw(); } });
-  start();
+  if(root.dataset.tool==='true'){input.value='';back.disabled=forward.disabled=true;status.textContent='Enter a formula, then press Start.';}
+  else start();
 }

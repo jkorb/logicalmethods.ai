@@ -28,8 +28,6 @@
   {{- $rendered | safeHTML -}}
 </div>
 
-{{- if and (eq $family "lean") (in (slice "txt-proof" "exc-proof" "tls-lean-correspondence") .Page.Params.id) -}}
-  {{- $project := "" -}}
-  {{- if strings.Contains .Inner "import Mathlib" }}{{ $project = "project=mathlib-stable&" }}{{ end -}}
-  <p class="lean-playground-link"><a href="{{ printf "https://live.lean-lang.org/#%scode=%s" $project (replace (urlquery .Inner) "+" "%20") | safeURL }}" class="link-out" target="_blank" rel="external noopener noreferrer"><i class="bi bi-box-arrow-up-right link-external" aria-hidden="true"></i> Open this code in <span class="lean-wordmark" aria-label="Lean">L∃∀N</span><span class="visually-hidden"> (opens in a new tab)</span></a></p>
+{{- if and (eq $family "lean") (in (slice "txt-proof" "exc-proof" "txt-finf" "exc-finf" "tls-lean-correspondence") .Page.Params.id) -}}
+  {{- partial "links/lean-playground.html" (dict "code" .Inner) -}}
 {{- end -}}

@@ -1,9 +1,12 @@
+{{ if eq (.sc.Get "language") "fol" }}
+{{ partial "apps/fol-inference.html" . }}
+{{ else }}
 {{ $kind := .sc.Get "kind" | default "truth-table" }}
 {{ if not (in (slice "truth-table" "rewrite" "resolution" "tseytin") $kind) }}{{ errorf "Unknown SAT app kind %q" $kind }}{{ end }}
 {{ $initial := cond (eq $kind "rewrite") "¬¬p ∨ ¬(q ∨ ¬p)" "SUN ∨ RAIN, ¬SUN ∴ RAIN" }}
 {{ if eq (.sc.Get "blank") "true" }}{{ $initial = "" }}{{ end }}
 {{ $label := .sc.Get "title" | default (printf "%s example %d" $kind (add .sc.Ordinal 1)) }}
-<section class="logic-app sat-app" data-logic-app="sat" data-kind="{{ $kind }}" aria-label="{{ $label }}">
+<section class="logic-app sat-app" data-tool="{{ eq .sc.Page.Section "tools" }}" data-logic-app="sat" data-kind="{{ $kind }}" aria-label="{{ $label }}">
   <div class="sat-examples" role="group" aria-label="Examples">
     <span class="app-picker-label" title="Examples">Ex.</span>
     {{ $examples := index (index hugo.Data "sat-examples") $kind }}
@@ -41,3 +44,5 @@
   </div>
   <noscript><p>The worked calculations in the chapter are available without JavaScript.</p></noscript>
 </section>
+
+{{ end }}

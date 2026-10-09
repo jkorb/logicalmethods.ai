@@ -1,0 +1,9 @@
+{{ $kind := .sc.Get "kind" | default "unify" }}
+{{ if eq (.sc.Get "name") "sat-practice" }}{{ $kind = "practice" }}{{ end }}
+{{ $mode := .sc.Get "mode" | default "demo" }}
+{{ if eq $kind "practice" }}{{ $mode = "practice" }}{{ end }}
+<section class="logic-app sat-app nd-app fol-inference-app" data-tool="{{ eq .sc.Page.Section "tools" }}" data-logic-app="fol-inference" data-kind="{{ $kind }}" data-mode="{{ $mode }}" data-deck="{{ .sc.Get "deck" }}" data-formula="{{ .sc.Get "formula" }}" aria-label="{{ .sc.Get "title" | default "First-order inference" }}">
+  {{ range slice "play" "edit" "first" "previous" "next" "last" "replay" "undo" "check" "trash" "graph" "fullscreen" }}<template data-icon="{{ . }}">{{ partial "apps/icon.html" . }}</template>{{ end }}
+  <div data-finf-mount></div>
+  <noscript>Enable JavaScript to perform the calculations. The surrounding text explains the transformations and their side conditions.</noscript>
+</section>

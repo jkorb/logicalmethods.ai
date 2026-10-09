@@ -1,903 +1,1249 @@
 ---
-title: FOL Inference
+title: FOL inference
 author: Johannes Korbmacher
-locked: true
+locked: false
 weight: 90
 params:
-  legacy-notation: true
-  last_edited: 10/13/2025
+  last_edited: "09/10/2026"
   id: txt-finf
 ---
 
 # FOL Inference
 
-It turns out that automating inference in FOL is a _hard_ problem.
+In {{< chapter_ref chapter="fol" >}}FOL{{< /chapter_ref >}}, we introduced the
+concept of an FOL model and studied it as a form of knowledge representation. A
+model specifies which objects there are, what their properties are, and which
+relations they stand in. In this way, we can think of the models as storing
+information about the world. As we've seen, this information can be "queried"
+using FOL formulas.
 
-Take our standard inference, for example:
+We now turn to the _logical_ purpose of FOL models: to define valid FOL
+inference. Following the definition pattern from {{< chapter_ref
+chapter="valid-inference" >}}Valid inference{{< /chapter_ref >}}, we ask: Does
+every model that makes our premises true also make the conclusion true? To
+illustrate, consider Socrates again:
 
-{{< img src="img/socrates_inference.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
+{{< img src="/img/drawings/fol_socrates.svg" class="float-end ms-3" width="55px" alt="Socrates." >}}
 
-It's actually rather straightforward to see that this inference is deductively
-valid in FOL. Suppose, we've got a model, `M`, where both premises are true,
-that is:
+$$
+∀x (Human(x) → Mortal(x)), Human(Socrates) ∴ Mortal(Socrates).
+$$
 
-- `M ⊨∀x (Human x → Mortal x)`
-- `M ⊨ Human Socrates`
+The premises tell us that Socrates is human and that all humans are mortal.
+Whatever else a model contains, those two facts require Socrates to be mortal.
+The same kind of reasoning appears in mathematics. If every number is smaller
+than its successor $S(x)$, then every number has a larger number:
 
-If we unfold the former using the truth-conditions in models, we get:
+$$
+∀x (x < S(x)) ∴ ∀x ∃y (x < y).
+$$
 
-- For all `d ∈D`, `M ⊨Human d → Mortal d`.
-
-But `⟦Socrates⟧∈D`. Since `Socrates` is
-a name for `⟦Socrates⟧`—by definition—we know
-that:
-
-- `M⊨Human Socrates →Mortal Socrates`
-
-But the second premise was that `M ⊨Human Socrates`. So by simple
-Boolean reasoning—essentially just MP—we know that:
-
-- `M ⊨Mortal Socrates`.
-
-For this line of reasoning, we didn't need to think about what our domain looks
-like, what the extensions of `Socrates`, `Human`, and `Mortal` are. What we've
-seen is that regardless of all these things: the truth of the premises in any
-FOL model is sufficient for the truth of the conclusion. In other words, the
-inference is deductively valid:
-
-```∀x (Human x → Mortal x), Human Socrates ⊨Mortal Socrates```
-
-The relative ease with which we showed the inference's validity might spark the
-hope for a relatively straightforward theory of mechanized FOL inference. We've
-developed a series of inference techniques for Boolean and propositional
-reasoning, such as truth-tables, `SAT`-solving, and natural deduction. We might
-hope, at this point, that they just carry over to FOL _modulo_ some adjustments
-for the more complicated syntax and semantics.
-
-But appearances are deceiving. First, note that we needed to think in a very
-_human_ way through the truth-conditions to see that the inference is valid. For
-example, we realized that the denotation of `Socrates` lives in our domain, and
-therefore satisfies the open formula `Human x→Mortal x`. But how could
-a machine do that? Or, put differently, how can we _algorithmically_ check for
-the validity of an FOL inference?
-
-{{< img src="img/model_tower.png" class="rounded  float-start inert-img img-fluid m-2" width="200px" >}} 
-This is where the trouble begins. In propositional logic, we could just [brute
-force search](https://en.wikipedia.org/wiki/Brute-force_search) through all the
-models of the premises using the truth-tables. But this doesn't work in FOL.
-While in propositional logic, all that mattered for the truth of a formula is
-which of its propositional variables are true, in FOL, we need to know more:
-which objects there are, what the terms denote, and what the properties express. 
-But that means that not only do we need to search through all distributions of
-truth-values over the atoms, we need to search through all possible
-_domains_ and interpretations of vocabularies across them.
-
-But there are _many_ possible domains. _Every_ set of objects could be the
-domain of a model. And the [universe of
-sets](https://en.wikipedia.org/wiki/Von_Neumann_universe) is ... enormous to put
-it mildly. At the very least, it's infinite, so we simply can't search through
-it in finite time complexity. 
-
-That rules out brute force, but perhaps there could be _some_ smart algorithm,
-some [effective method](https://en.wikipedia.org/wiki/Effective_method) that
-solves the problem for us, that can figure out for any given FOL inference, in a
-finite amount of time whether the inference is valid.—It turns out that the
-answer is: there can't be!
-
-{{< img src="img/halting_problem.png" class="rounded  float-end inert-img img-fluid m-2" width="300px" >}} 
-This is a consequence of Church and [Turing's
-answer](https://en.wikipedia.org/wiki/Turing%27s_proof) to the [halting
-problem](https://en.wikipedia.org/wiki/Halting_problem). Without going into too
-much detail, Church and Turing independently showed that there can't be a single
-algorithm that determines in a finite amount of time whether any given computer
-program "halts"—meaning it doesn't get stuck in an "[infinite
-loop](https://en.wikipedia.org/wiki/Infinite_loop)". The model of computation
-that they used in this proof—the [lambda
-calculus](https://en.wikipedia.org/wiki/Lambda_calculus) in Church's case and
-[Turing machines](https://en.wikipedia.org/wiki/Turing_machine) in Turing's
-case—is so general in nature that it encompasses any reasonable form of AI
-algorithm we can think of. The details of the proof are out of scope for us, but
-roughly the idea is that we can reduce the halting problem to a validity problem
-in FOL. This proof is one of the great intellectual achievements of the
-twentieth century and one of the ways in which research in pure logical theory
-is highly relevant to current AI-research: we know that we shouldn't even try to
-fully automate FOL inference.
-
-What we _can_ do is to deal with the consequences: we can tackle the question
-what, given that we can't fully automate FOL inference, we can still achieve.
-And it turns out that there's quite something. AI research has yielded a
-toolbox of techniques for FOL reasoning, partially and fully automated, theorem
-proving and checking. These tools are the basis for many recent advances in
-domain-specific reasoning.
+How can a computer establish such inferences? Having defined validity for FOL
+inference, we quickly meet a _fundamental_ computational limit: as a matter of
+mathematical fact, no algorithm can decide every case. Yet FOL remains a
+standard for rigorous reasoning in mathematics and AI. So, we need methods for
+finding and checking proofs --- even if they cannot settle _every_ question. In
+this chapter, we will extend the resolution algorithm to FOL, we'll extend
+natural deduction and Lean to quantifiers, and we'll use Lean to verify a _bona
+fide_ mathematical argument from Boolean algebra.
 
 {{< callout type="objectives" >}}
-- use the method of
-[unification](https://en.wikipedia.org/wiki/Unification_(computer_science)) to
-find applications of FOL inference rules to quantified FOL formulas
+After studying this chapter, you will be able to:
 
-- transform FOL formulas into CNF and apply the resolution method to search for
-  countermodels 
-
-- use natural deduction rules for the quantifiers to find logical proofs in FOL 
-
-- verify such proofs in Lean
+- Define first-order consequence and explain the limits of deciding it.
+- Apply Robinson's algorithm to find a most general unifier or detect failure.
+- Transform first-order sentences into equisatisfiable clause form.
+- Use first-order resolution and factoring to construct refutations.
+- Construct natural deduction proofs with the quantifier rules and their side conditions.
+- Verify quantified inferences and a Boolean algebra argument in Lean.
 {{< /callout >}}
+
+## Valid inference {#valid-inference}
+
+Our definition pattern for valid inference is the one from {{< chapter_ref
+chapter="valid-inference" id="always--deductive-validity" >}}Valid inference{{<
+/chapter_ref >}}: whenever the premises are true, the conclusion must be true
+too. {{< chapter_ref chapter="fol" >}}FOL{{< /chapter_ref >}} supplied the
+definition of FOL models and the truth conditions for FOL formulas in a model
+under a variable assignment. We get:
+
+{{< callout type="definition" title="First-order consequence" >}}
+$A$ is a {{< term "fol-consequence" "first-order consequence" >}} of premises
+$Γ$, written $Γ ⊨ A$, iff every model and variable assignment satisfying
+all formulas in $Γ$ also satisfies $A$. Formally, for every $M$ and $v$:
+
+$$
+If M,v ⊨ B for all B ∈ Γ, then M,v ⊨ A.
+$$
+{{< /callout >}}
+
+Note that for sentences, we can omit the assignment: every model of the
+premises must make the conclusion true. As in {{< chapter_ref
+chapter="valid-inference" >}}Valid inference{{< /chapter_ref >}}, the symbol
+$∴$ indicates an inference, while the symbol $⊨$ asserts that it is valid.
+
+<span id="socrates-in-any-model"></span>
+
+To illustrate, take any model that makes the premises of our Socrates
+inference true. This means that in the model, all humans are mortal, and the
+object named $Socrates$ is among its humans. So that object is mortal. Inspect
+the diagram below to convince yourself of the fact that our definitions give
+us precisely this result. Note that in the model there may be other objects,
+and $Socrates$ may denote a different object in another model; the argument
+still works.
+
+{{< logic-app name="fol-model" kind="consequence" model="finf-socrates" title="Socrates in an arbitrary model" >}}
+
+The diagram shows only what the premises tell us about an arbitrary model.
+
+A {{< term "countermodel" "countermodel" >}} makes the premises true and the
+conclusion false. Reverse the Socrates inference:
+
+$$
+∀x (Human(x) → Mortal(x)), Mortal(Socrates) ⊭ Human(Socrates).
+$$
+
+Here is a complete countermodel with one mortal object and no humans: a model
+where the premises of the inference are true but the conclusion is false.
+
+{{< logic-app name="fol-model" model="finf-countermodel" kind="evaluate" editable="false" view="sets" formula="((∀x (Human(x) → Mortal(x)) ∧ Mortal(Socrates)) ∧ ¬Human(Socrates))" title="A countermodel to the reversed Socrates inference" >}}
+
+<span id="a-mathematical-example"></span>
+
+Our mathematical example uses the same method. In any model of
+$∀x (x < S(x))$, take an arbitrary object $d$. The premise says that
+$d < S(d)$, so $S(d)$ supplies the existential witness. This works for
+every object $d ∈ D$:
+
+$$
+∀x (x < S(x)) ⊨ ∀x ∃y (x < y).
+$$
+
+{{< logic-app name="fol-model" kind="consequence" model="finf-successor" title="A witness for each arbitrary object" >}}
+
+As in {{< chapter_ref chapter="fol" >}}FOL{{< /chapter_ref >}}, we write $LessThan(x, y)$ for $x < y$.
+Interpreting $S(n)$ as $n + 1$ and $<$ as the usual ordering gives our
+natural-number example. The inference itself needs only the stated premise.
+Neither symbol has its intended mathematical meaning built into FOL.
+
+We cannot exchange the quantifiers in the conclusion. On the natural numbers,
+each $x$ has a larger number, but no one number is larger than them all:
+
+$$
+∀x ∃y (x < y) ⊭ ∃y ∀x (x < y).
+$$
+
+The witness may depend on $x$. We'll return to this restriction when we
+introduce the quantifier rules.
+
+<span id="why-brute-force-does-not-suffice"></span>
+
+{{< img src="/img/drawings/finf_infinities.svg" class="float-end ms-3" width="180px" alt="Models with finite, countably infinite, and uncountable domains." >}}
+Could we automate validity by checking models? In propositional logic, a
+truth-table lists all assignments to the finitely many variables. FOL has
+models of arbitrarily large finite size, and infinite models too.
+
+
+Checking size one, then two, and so on never reaches an infinite model.
+Some FOL sentences have only infinite models, as we saw in {{< chapter_ref chapter="fol" id="finite-models" >}}FOL{{< /chapter_ref >}}.
+Their negations hold in every finite model but can still fail in an infinite
+one. Finite testing can therefore miss a countermodel altogether.
+
+{{< callout type="theorem" title="Undecidability of first-order inference" >}}
+First-order consequence is {{< term "undecidable" "undecidable" >}}:
+no algorithm always terminates and correctly decides whether $Γ ⊨ C$
+for an arbitrary finite list of FOL premises $Γ$ and conclusion $C$.
+{{< /callout >}}
+
+{{< img src="/img/drawings/finf_turing.svg" class="float-start me-3" width="210px" alt="A Turing machine asks whether it will ever stop." >}}
+
+This is the limit established by Church and Turing's work on the
+[decision problem](https://en.wikipedia.org/wiki/Entscheidungsproblem).
+The {{< term "halting-problem" "halting problem" >}} can be encoded in
+first-order inference: a general decision procedure for these inferences
+would also decide whether any given program stops. Turing showed that no
+algorithm can do that. See Wikipedia's
+[halting problem article](https://en.wikipedia.org/wiki/Halting_problem).
+
+<span id="searching-for-proofs"></span>
+
+Proofs still give us a way to automate inference. They are finite, and checking
+their steps can be mechanical. A complete calculus guarantees a proof for
+every valid inference. Searching all candidate proofs will eventually find it.
+
+{{< callout type="theorem" title="Semidecidability" >}}
+First-order consequence is {{< term "semidecidability" "semidecidable" >}}:
+an algorithm can confirm every valid inference from finitely many premises,
+while never accepting an invalid one. On invalid inputs it may run forever.
+{{< /callout >}}
+
+We will study resolution for automated proof search, then natural deduction
+and Lean for constructing and checking proofs. Both need to handle the
+objects inside our formulas. Even Socrates's inference requires matching the
+general claim about $Human(x)$ with the particular fact $Human(Socrates)$.
+Finding such substitutions is our first computational task.
 
 ## Unification
 
-Let's begin by looking at our example inference again:
-
-```∀x (Human x → Mortal x), Human Socrates ∴Mortal Socrates```
-
-We've seen that the inference is valid using semantic reasoning, but now we'll
-investigate how to show this using inference rules.
-
-The aim is to apply _something like_ MP to obtain the desired result. The idea
-is to focus on the reasoning that if $∀x (Human x → Mortal
-x)`is true, then`Human x →Mortal x`is true for all values of`x$. So
-if we set the value of `x` to the denotation of `Socrates`, we can use this to
-infer that `Human Socrates →Mortal Socrates` is true. Then, since $Human
-Socrates`is true, we can use MP to infer that`Mortal Socrates$ is true as well.
-
-To cash this out, we need to think about how to reason with universally
-quantified variables, like the `x` in this case. The powerful idea we'll be
-developing throughout this chapter is that we can drop the quantifier 
-∀&ThinSpace; and reason with the open formula 
-```Human x →Mortal x``` instead. That is, our inference becomes:
-
-```(Human x → Mortal x), Human Socrates ∴Mortal Socrates```
-
-What remains to be done is to find a mechanizable way of determining that we
-should set the value of `x` to Socrates. The way this works, formally, is using
-the method of [unification](https://en.wikipedia.org/wiki/Unification_(computer_science)).
-
-What we need to do in order to be able to apply `MP` is to
-set the value of `x` in such a way that the `Human x` in 
-`Human x →Mortal x` becomes `Human Socrates`. The obvious way of doing
-this is to replace the `x` with the constant `Socrates` to obtain $Human
-Socrates →Mortal Socrates$. Formally, this happens with the operation
-of [term substitution](https://en.wikipedia.org/wiki/Substitution_(logic)),
-which we looked at in the syntax of FOL. That is the substitution $[x /
-Socrates]$ gives us:
-
-```(Human x → Mortal x)[x / Socrates] = Human Socrates →Mortal Socrates```
-
-where our premise `Human Socrates` is *syntactically identical* to—not only
-equivalent, but _literally identical_ to—the antecedent of the conditional. A
-substitution that has this property is called a **unifier** of the two
-formulas with the **unification partners** `[Human Socrates, Human x]`. 
-
-That is, we can understand our inference as an instance of a special MP
-variant for FOL:
-
-{{< img src="img/unified_mp.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
-
-That is, FOL allows us to infer the consequent of an open conditional with free
-variable `x` from a 
-{{< abbr title="closed formula without free variables">}}sentence{{< /abbr >}} 
-if there is a unifier which makes the antecedent of the conditional and the
-sentence syntactically identical.
-
-It's rather straightforward to generalize this rule to antecedents with
-multiple variables in the premise and antecedent. Take the following deductively
-valid inference, for example:
-{{< img src="img/ai_brothers.png" class="mx-auto rounded d-block inert-img img-fluid" width="600px">}}
-
-To apply the method we've just described, we'd simply drop both universals and
-use the unifier 
-```[x / ∀I, y / KnowIt<span style="margin-left:-0.5em"></span>∀&ThinSpace;]```
-which is a "double substitution", where both `x` and `y` are simultaneously
-replaced, to apply the rule as follows:
-
-{{< img src="img/ai_brothers_inf.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
-
-This gives us a first shot at FOL inference: we can generalize MP to inferences
-with universally quantified conditionals using unification. It turns out that
-unification is an extremely powerful method for automated inference. It is, for
-example, also the method that underpins how
-[Lean](https://leanprover-community.github.io/) figures out "under the hood"
-which disjunction you wanted to use in an application of `Or<span
-class="dark-green">.</span></span>inl`, for example.
-
-Remember that the natural deduction inference from `A` to `A ∨B` using
-`∨ Intro` corresponds to the lean `apply Or<span
-class="dark-green">.</span></span>inl h`, where `h : A` is a proof of `A`. Note
-that you don't need to tell Lean here that your other disjunct is supposed to
-be `B`. If you later want to `apply` MP-style reasoning with some premise `g : (A <span
-class="dark-green">∨</span> B) <span class="dark-green">→</span> C` to obtain a
-proof of `C`, you do this with code like this:
-
-~~~lean
-apply g 
-apply Or.inl h
-~~~
-
-Lean figures out that the other disjunct in your application of `Or<span
-class="dark-green">.</span></span>inl` must have been `B` using unification.
-Under the hood, when you apply the rule, it infers a proof of `A ∨ X`
-for a meta-variable `X`. Then, when you tell it to apply the proof of the
-conditional `(A <span class="dark-green">∨</span> B) <span
-class="dark-green">→</span> C`, lean uses a unification algorithm to infer that
-if `X` is `B`, the application is valid, and so it applies the unification and
-continues. This is just one of the ways, in which unification-based algorithms
-make our lives a little bit easier in artificial inference. It also allows us to
-use the [backward chaining](https://en.wikipedia.org/wiki/Backward_chaining) and
-[forward chaining](https://en.wikipedia.org/wiki/Forward_chaining) algorithms
-when our KB contains suitable conditionals.
-
-In practice, there are different algorithms for efficiently searching for unifiers
-for two first-order terms. The most basic one, due to
-[Robinson](https://en.wikipedia.org/wiki/John_Alan_Robinson), you will explore
-in the exercises. Importantly, the unifiability of two terms is a [decidable
-problem](https://en.wikipedia.org/wiki/Decidability_(logic)): we can correctly
-tell with a single algorithm in finitely many steps whether any two terms can be
-unified or not.
-
-But just like with propositional chaining, there are limitations to this method.
-In propositional logic, we looked at conditionals with disjunctive antecedents
-as an example, like in the inference:
-
-```((RAIN ∨ WIND) → COLD)&emsp; (COLD →HEATING)&emsp; RAIN```
-
-In FOL, we also have ∨, so we have these kinds of inferences, but
-there are also problems with quantifiers in conditionals. Consider the following
-inference, for example:
-
-{{< img src="img/giant_inference.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
-
-This inference is straightforwardly seen to be valid: If it's true that anyone
-bigger than everyone is a giant, and `PolyphemOS` is bigger than everybody, then
-`PolyphemOS` is a giant. In fact, applying our strategy of dropping all the
-universals ∀, we might think we could do the following:
-
-{{< img src="img/giant_unification.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
-
-This _looks_ like a logical proof of the validity of the inference, but actually
-something went wrong. To see this, consider the following inference:
-
-{{< img src="img/there_is_inference.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
-
-This inference is clearly deductively invalid: Even if it's true that anyone
-bigger than everyone is a giant, the fact that {{< there_is >}}&ThinSpace; is
-bigger than `tinymouse` doesn't mean that {{< there_is >}}&ThinSpace;is a giant.
-It's rather simple to find a formal FOL countermodel to the inference.
-
-But if we could just drop all universals like we just did for the inference
-involving `PolyphemOS`, the following would seem to show that the inference is
-valid:
-
-{{< img src="img/there_is_unification.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
-
-What went wrong here is that the `∀y` was nested in the conditional
-antecedent and doesn't really work like a "real" universal. To see this, we
-transform the premise using the equivalence of `A→B` and $¬A
-∨B$, which also holds in FOL:
-
-+ `∀x (∀y BiggerThan x y → Giant x)` is
-equivalent to `∀x(¬∀ x Bigger Than x y ∨ Giant x)`.
-
-That is, the premise says that everything is either _not_ bigger than everything
-or a giant. In fact, we can use the following FOL equivalence to transform this
-even further:
-
-+ `¬∀y BiggerThan x y` is equivalent to `∃y¬ BiggerThan xy`
-
-To say that `x` is not bigger than everything is to say that there's something
-that `x` is not bigger than. Using this equivalence: 
-
-+ `∀x(¬∀ x Bigger Than x y ∨ Giant x)`, and thus `∀x (∀y BiggerThan x y → Giant x)`, is
-equivalent to `∀x(∃y¬ Bigger Than x y ∨ Giant x)`.
-
-Either there exists something that `x` is not bigger than, or `x` is a giant.
-
-Writing the premise in this form explains why the simple unification-based
-FOL-MP cannot be applied here, since an existential is involved. To
-handle such more general inferences, we need to move to a more powerful system.
-
-## FOL Resolution
-
-While there is no brute force, truth-table-style method for FOL, we _can_ use
-resolution to check for satisfiability and thus consequence—although there are
-some caveats.
-
-Note that once we've defined the notion of a model and truth in a model for FOL,
-we get the same relation between deductively valid inference and satisfiability
-that we had in propositional logic:
-
-```P₁, P₂, … ⊨C &emsp; if and only if &emsp; not SAT{P₁, P₂, …, ¬C }```
-
-Here, `P₁, P₂, …, C` can be any FOL formulas and the notion of a set being
-satisfiable (or `SAT`) is simply that there's a model, in which all the formulas
-are true.—FOL resolution is a method for checking for `SAT` in this sense.
-
-{{< img src="img/derivation_search.png" class="rounded  float-start inert-img img-fluid m-2" width="200px" >}} 
-So, just like in propositional logic, we can check for satisfiability to check
-whether an inference is valid. And that's what FOL resolution does. The only
-caveat here is that while in propositional logic, resolution is a decision
-procedure—that is, it correctly tells us in finitely many steps _whether_ a set
-is satisfiable/an inference is valid—in FOL, the method is "only" sound and
-complete: _if_ we can derive an empty clause or contradiction from a set using
-resolution, we know it's unsatisfiable, and for each unsatisfiable set _there is_
-such a derivation. But crucially, as a consequence of Church and Turing's
-theorem, there is no algorithm that in general is guaranteed to find this
-derivation—even if it exists. We still need to be "smart" about it. This puts a
-damper on the ambition of fully automating FOL reasoning, but it also presents
-an opportunity to develop smart algorithms that imitate human-level
-skills—or even achieve *super*human abilities—at finding FOL derivations.
-
-So, here's how FOL resolution works. In the simplest cases, we've actually
-already seen resolution at work in the FOL-MP with modus ponens: just like in
-propositional logic, the simplest applications of resolution are just cases of
-MP. The first step for implementing this involves re-writing. If we take our
-inferences involving Socrates, after dropping the universal, we can transform
-the conditional into a disjunction using the well-established equivalence
-between `A→B` and `¬A ∨B`. We get:
-
-```¬Human x∨Mortal x```
-
-The other premise and negation are already of the right form:
-
-```Human Socrates &emsp; ¬Mortal Socrates```
-
-With these transformations in place, we can move to sets like in the
-propositional case and apply resolution rules to derive the empty clause `{ }`:
-
-{{< img src="img/socrates_resolution.png" class="mx-auto rounded d-block inert-img img-fluid" width="500px">}}
-
-The idea here is that we can resolve _on_ two formulas just in case they can
-be unified using a substitution such that the one becomes the negation of the
-other. Here, we resolve on `Human Socrates` and `¬Human x` using the
-substitution `[x/Socrates]`. This substitution needs to be applied to all the
-remaining formulas in the two sets that we're resolving, which is why we retain
-`Mortal Socrates` from `(Mortal x)[x/Socrates]`. Sometimes, there is no
-substantial unification necessary, since the formulas are already resolved, as
-in the last inference. The formulas we're eliminating in the resolution is also
-called the **pivot** of the application. 
-
-For the general form of resolution, we need to talk about CNFs for FOL. Remember
-that the resolution system assumes that all formulas are in {{< abbr
-title="conjunctive normal form">}}CNF{{< /abbr >}}, which means that they are
-conjunctions of disjunctions of literals. To carry this notion over to FOL, we
-just need to adjust the notion of a
-[literal](https://en.wikipedia.org/wiki/Literal_(mathematical_logic)). In
-propositional logic, a literal is a propositional variable or its negation. In
-FOL, it's simply an atomic formula or its negation. That is ```Human x, ¬x = Socrates, BiggerThan Socrates fatherOf(y), ...``` are all
-literals in the sense of FOL. That's it, this gives us the notion of a CNF for
-FOL. 
-
-There is also a corresponding notion of a 
-{{< abbr title="disjunctive normal form">}}DNF{{< /abbr >}}, 
-which in AI and automated inference is not as important as the CNF. This is
-mainly because there is no truth-table style method for `SAT`-solving in FOL,
-which is one of the main things that DNFs are good for in propositional logic.
-So, we'll focus on CNFs.
-
-Just like in propositional logic, there's a re-write algorithm for transforming
-any formula into CNF. Crucially, this transformation doesn't give us an
-_equivalent_ formula, but an
-[**equi-satisfiable**](https://en.wikipedia.org/wiki/Equisatisfiability)
-formula, meaning that the CNF is satisfiable if and only if the original formula
-is. The reason why we don't get full equivalence has to do with quantifiers.
-
-{{< img src="img/ai_quantifier_elimination.png" class="rounded  float-start inert-img img-fluid m-2" width="200px" >}} 
-Note that CNFs are, by definition, free of quantifiers. This means that when
-we transform a formula into CNF, we need to [eliminate the
-quantifiers](https://en.wikipedia.org/wiki/Quantifier_elimination)—and this
-cannot, in general, be done in such a way as to preserve strict equivalence. But
-we _can_ preserve satisfiability, which is all we need for our `SAT`-based
-approach.
-
-Enough theory, let's look at how this works in practice. The algorithm is a
-recursive re-writing with rules, just like before. In fact, all the re-write
-rules from the propositional algorithm are also rules in FOL, we just add to
-them. To remind ourselves, here's how the rewriting works in propositional
-logic:
-
-1. We recursively rewrite all conditionals into disjunctions using: 
-    ```r₀: A →B ⟹ ¬ A ∨B```
-
-2. We recursively push all negations inward using:
-
-    ```r₁: ¬¬A⟹ A```
-    ```r₂: ¬(A∧B)⟹ ¬A∨¬B```
-    ```r₃: ¬(A∨B)⟹ ¬A∧¬B```
-
-3. We recursively transform disjunctions of conjunctions into conjunctions of disjunctions
-   using:
-
-    ```r₄: A ∨(B ∧C)⟹(A∨B)∧(A∨C)```
-    ```r₄': (A ∧B)∨C⟹(A∨C)∧(B∨C)```
-
-To handle the quantifiers, we need to add new re-write rules. We discuss them in
-turn. The conditional re-writing step, 1., stays the same. For the second step,
-we add two quantifier rules:
-
-2.  We recursively push negations inward using `r₁—r₃` plus:
-
-    ```r₆: ¬∀x A⟹ ∃x ¬A```
-    ```r₇: ¬∃x A⟹ ∀x ¬A```
-
-Now, before we can go on, we need to make sure that there cannot be any
-confusion about quantifier binding. Remember that formulas like the following
-are valid FOL expressions:
-
-```∃x (Human x ∧ ∀x(Human x →Mortal x))```
-
-That is, different quantifiers can use the same variable. This can lead to
-confusion when we drop quantifiers and needs to be avoided. The solution is to
-re-formulate all formulas (equivalently) in such a way that each quantifier
-occurrence in the formula uses a unique variable. So, for example, instead of
-the previous formula, we write:
-
-```∃x (Human x ∧ ∀y(Human y →Mortal y))```
-
-This sort of variable renaming is called **α-renaming** and happens in its own
-step. In order to implement this, we first create two [stacks](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)) of pairwise
-distinct variables 
-
-```varx = [x₁, x₂, x₃, …] vary = [y₁, y₂, y₃, …]```
-
-In practice, we just need for every quantifier occurrence in the formula a
-separate variable, but for simplicity, we just assume that there's an infinite
-stack. We use the operation called `pop` to remove the first element from the
-stack and return it. That is, `pop [x₁, x₂, x₃, …]` returns `x₁` and leaves the
-stack as `[x₂, x₃, …]`. Using this machinery, we implement the following re-write step:
-
-3. We recursively re-name the variables using:
-
-    ```r₈: ∀x A⟹∀α A[x / α]$, where α = pop varx```
-    ```r₉: ∃x A⟹∃α A[x / α]$, where α = pop vary```
-
-That is, if at some point we come across a quantifier expression, we replace the
-variable quantified over with the first variable from our stack and replace all
-free occurrences of the variable originally quantified over with that variable
-as well.
-
-This re-write step gives us, for example:
-
-```∃x (Human x ∧ ∀x(Human x →Mortal x))⟹∃y₁ (Human y₁ ∧ ∀x₁(Human x₁ →Mortal x₁))``` 
-
-If there are more variables involved, the variable naming gets more complex,
-but every quantifier gets its own variable:
-
-```∀x( Human x→∃y (∀z(ParentOf x z → ParentOf y z))) …```
-```…⟹…```
-```∀x₁( Human x₁→∃y₁ (∀x₂(ParentOf x₁ x₂ → ParentOf y₁ x₂)))```
-
-
-There is a small complication, when we apply this step in resolution
-`SAT`-solving. We need the variables to be unique not only _within_ a formula,
-as in our example, but also _across_ formulas. That is, when we have in our set
-`∀x Human x` and `∀x Mortal x` as separate formulas,
-we need to transform them into something like `∀x₁ Human x₁` and
-`∀x₂ Mortal x₂` (results may vary depending on how many other
-variables occur in other formulas "in between").
-
-We solve this by applying the entire algorithm to all formulas in our set
-simultaneously, moving through the steps in unison and then sharing the variable
-stack across the different formulas. The use of `pop` prevents us from ever
-using the same variable twice in the transformation.
-
-So far, all our transformations were equivalent transformations in the sense
-that the formula that comes out the other end is deductively equivalent to the
-original formula—it always has the same truth-value in all models. This changes
-in the next step, where we [eliminate the
-quantifiers](https://en.wikipedia.org/wiki/Quantifier_elimination).
-
-The process for eliminating universals `∀xᵢ` will be simple: we'll
-just drop them. But first, we have to deal with the existentials using a
-procedure known as
-[Skolemization](https://en.wikipedia.org/wiki/Skolem_normal_form), after the
-logician [Thoralf Skolem](https://en.wikipedia.org/wiki/Thoralf_Skolem). This
-procedure is rather complex and in practice, you'll typically "play it by ear"
-and not apply the recursive algorithm we'll describe now. At the same time, it's
-important to understand how the algorithm works to understand what happens in
-resolution-based `SAT`-solvers for FOL.
-
-To illustrate the idea, let's take our formula from earlier:
-
-```∀x (∀y BiggerThan x y → Giant x)```
-
-After running through the transformation steps up to α-renaming, we arrive at
-the formula:
-
-```∀x₁(∃x₂¬ Bigger Than x₁ x₂ ∨ Giant x₁)```
-
-What this formula says is that for each `x₁` either there exists an `x₂` which
-`x₁` is not bigger than or, otherwise, `x₁` is a giant. We want to re-write this
-fact—if not equivalently, at least
-[equi-satisfiably](https://en.wikipedia.org/wiki/Equisatisfiability)—without using existential quantifiers. The crucial insight of Skolem's that
-makes this possible is that all we need to do is to pick _some_ object for each
-`x₁`. That is, dependent on any value for `x₁`, we need to get an object that
-behaves according to the formula. In mathematical terms, this means that there's
-a [function](https://en.wikipedia.org/wiki/Function_(mathematics)), which picks
-for every value of `x₁` such an object. This function, we can represent using a
-so-called **Skolem-function**, which we shall write (in this case) as `skolem¹`.
-That is, we can write the formula as:
-
-```∀x₁(¬ Bigger Than x₁ skolem(x₁) ∨ Giant x₁)```
-
-While this formula is not equivalent to our original formula, it is
-equi-satisfiable—there exists a model where the one is true iff there is one
-where the other is. And if we now drop the universal quantifier, we're left with
-a completely quantifier free formula:
-
-```¬ Bigger Than x₁ skolem(x₁) ∨ Giant x₁```
-
-This is the formula we can use for FOL resolution.
-
-But in the more general case, a few things can happen that we need to discuss.
-First, when there's more than one existential quantifier in a formula, then we
-need to have different `skolem`-functions for each of them to guarantee
-equi-satisfiability. Take the following, for example:
-
-```∀x₁(∃y₁ BrotherOf x₁ y₁ ∧ ¬∃y₂ SisterOf x₁ y₂)```
-
-This formula says that everybody either has a brother or a sister.
-After Skolemization, the formula becomes:
-
-```∀x₁(SiblingOf x₁ skolem₁ x₁ ∨ ¬∃y₂ SisterOf x₁ skolem₂ x₁)```
-
-The use of different `skolem`-functions is necessary since if we'd use the same
-function, we'd get:
-
-```∀x₁(SiblingOf x₁ skolem x₁ ∨ ¬∃y₂ SisterOf x₁ skolem x₁)```
-
-This would make the brother and sister the same person, since—obviously—`skolem x₁ = skolem x₁`.
-
-And then, there's dependence on more than one universally quantified variable:
-
-```∀x₁∀x₂∃y₁ CommonAncestor x₁ x₂ y₁```
-
-Every two people have a common ancestor. The Skolemization of this formula is:
-
-```∀x₁∀x₂ CommonAncestor x₁ x₂ (skolem x₁ x₂)```
-
-Note: The parentheses are added for readability only.
-
-We can now describe the general re-write rule of Skolemization. Watch out, this
-will be rather complex. As I said, in practice, you mostly won't work through
-the complex algorithm but transform directly. We assume that
-for each arity `n`, we have a list of Skolem functions:
-
-```skolemⁿ = [skolemⁿ₁, skolemⁿ₂, ...]```
-
-In the case where `n = 0`, we call them Skolem _constants_ and treat them as such.
-
-Further, for the purpose of the recursion, we need to keep track of the
-universally quantified variables that an existential depends on. We denote the
-list of these variables (in order) by `deps`. That is, in 
-
-```∀x₁(∀x₂ FriendOf x₁ x₂ ∨ ∀x₃∃y₁ CommonEnemyOf x₁₃ x₃ y₁)```
-once we get to the existential `∃y₁`, we have `deps = [ x₁, x₃ ]`.
-
-Note that if `deps = [ ]`, then we use Skolem constants. For example, 
-
-```∃y₁ Human y₁ ∧∃y₂ Human y₂⟹ Human skolem⁰₁ ∧ Human skolem⁰₂```
-
-4. We recursively Skolemize the existential quantifiers using:
-
-  ```r₁₀: ∃yᵢ A⟹ A[ yᵢ / skolemᵢdeps]```
-
-As we said, this re-write rule is rather complex, in practice relatively
-straightforward to work out.
-
-Now that we've eliminated the existentials, we can drop all the universals:
-
-5. We recursively drop the universal quantifiers using:
-
-  ```r₁₁: ∀xᵢ A⟹ A```
-
-In the very last step, we distribute if necessary:
-
-6. We recursively transform disjunctions of conjunctions into conjunctions of disjunctions
-   using:
-
-    ```r₄: A ∨(B ∧C)⟹(A∨B)∧(A∨C)```
-    ```r₄': (A ∧B)∨C⟹(A∨C)∧(B∨C)```
-
-Applying rules 1—6 of this algorithm simultaneously for all formulas in a set,
-yields a set of CNF formulas. As before, we can turn each conjunct into a clause (a set of literals)
-and start applying resolution to the resulting collection of clauses.
-
-Take, for example, in our inference about `PolyphemOS`:
-
-```∀x(∀y BiggerThan x y → Giant x), ∀x BiggerThan PolyphemOS x∴Giant PolyphemOS```
-
-In order to check this inference for validity, we check the following set for
-satisfiability using FOL-resolution:
-
-```{ ∀x(∀y BiggerThan x y → Giant x), ∀x BiggerThan PolyphemOS x, ¬Giant PolyphemOS }```
-
-
-We get the following CNF formulas:
-
-```¬BiggerThan x₁ skolem x₁ ∨ Giant x₁```
-```BiggerThan PolyphemOS x₂```
-```¬Giant PolyphemOS```
-
-Using FOL-resolution, we derive the empty clause in two steps:
-
-{{< img src="img/polyphemOS_resolution.png" class="mx-auto rounded d-block inert-img img-fluid" width="600px">}}
-
-If, instead, the second premise would have been $BiggerThan `{{< there_is >}}`
-tinymouse$, we'd have ended up with:
-
-```¬BiggerThan x₁ skolem x₁ ∨ Giant x₁```
-```BiggerThan {{< there_is >}} tinymouse```
-```¬Giant {{< there_is >}}```
-
-And the resolution algorithm would have stopped after one application: 
-
-{{< img src="img/failure_resolution.png" class="mx-auto rounded d-block inert-img img-fluid" width="600px">}}
-
-Thus, we can prove that the inference is invalid, as desired.
-
-To conclude the discussion, here's how FOL resolution can be formalized as a
-general FOL inference rule:
-
-{{< img src="img/resolution.png" class="mx-auto rounded d-block inert-img img-fluid" width="600px">}}
-
-Here `σ = [ x₁ / t₁ , x₂ / t₂ , ...]` is a substitution, which unifies `B` and
-`C`, that is: ```B σ = C σ```
-
-These are the basics of FOL resolution. Before we conclude our discussion, it's
-worth remarking that FOL resolution is a sound and complete proof system for
-FOL. That is, there is a derivation of the empty clause from the CNFs of the
-premises and the CNF of the negation of the conclusion if and only if the inference
-is valid. But in contrast to propositional logic, the system is _not_ a decision
-procedure: we cannot fully automate it as an algorithm and trust that it will
-return the correct answer—valid or invalid—for any given inference. Let's try to
-understand what can go wrong.
-
-The problem is with inferences where the countermodel is necessarily infinite.
-Take the following FOL formulas written in infix notation using the binary
-predicate ≤, for example:
-
-1. `∀x∃y x ≤ y`
-2. `∀x¬ (x ≤ x)`
-3. `∀x∀y∀z((x ≤ y ∧ y ≤ z) →x ≤ z)`
-
-If you think about what a model of these formulas looks like, you  notice that
-it must contain an infinite sequence of objects, which successively get bigger
-and bigger. The following is a graph-representation of such a model, where the
-domain consists of the natural numbers `{0, 1, 2, ...}` and `⟦≤⟧` is simply the "real" smaller than relation on the numbers:
-
-{{< img src="img/inf_model.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
-
-Now, add any statement to 1.—3. that _doesn't_ follow from them. For example,
-`1 ≤ 0`. It really doesn't matter what this statement is, since if we apply
-the resolution algorithm to the set containing 1., 2., 3., and $¬Prime
-3$, it will never terminate. To see this, let's first transform the statements
-into CNF set form. We get:
-
-```{¬ (1 ≤ 0) }```
-```{ x₁ ≤ (skolem x₁) } &emsp; { ¬( x₂ ≤ x₂) }```
-```{ ¬ (x₃ ≤ x₄), ¬ ( x₄ ≤ x₅), x₃ ≤ x₅ }```
-
-Now suppose we implement our algorithm such that it always first tries to resolve on  `{ x₁ ≤ (skolem x₁) }` and it begins with `{ ¬ (x₃ ≤ x₄), ¬ ( x₄ ≤ x₅), x₃ ≤ x₅ }`. The following happens:
-
-{{< img src="img/infinite_loop.png" class="mx-auto rounded d-block inert-img img-fluid" width="600px">}}
-
-We got stuck in an [infinite loop](https://en.wikipedia.org/wiki/Infinite_loop), which
-means the algorithm never terminates and we never get the answer that the
-conclusion doesn't follow. This doesn't mean that it _does_ follow, we can easily
-construct a countermodel, such as the one we've just described above. But the
-algorithm doesn't find it. Of course, with our superior human-intelligence™️, we
-can see that this loop will occur and try to avoid it, but the bottom line of
-the Church-Turing theorem is that we can't find a systematic, algorithmic way of
-excluding such loops.
-
-As you can see, the resolution algorithm gets quite involved and complex, even
-at the general, example-driven level of description we've used here. This is why
-it's best left to computers. There are various industry-level implementations,
-with various optimizations, which perform well at the tasks involved—much better
-than humans could. For example, the method of validity checking we've just
-described is the basis for [Prover9](https://en.wikipedia.org/wiki/Prover9),
-which is often used as a
-[benchmark](https://en.wikipedia.org/wiki/Benchmark_(computing)) for FOL
-automated theorem provers.
-
-## Natural deduction and Lean
-
-While FOL resolution is useful for computer implementations, it's not the most
-straightforward to work with when trying to write logical proofs in a
-human-readable way. For this, we need to look to natural deduction. There are
-also sound and complete Hilbert calculi, sequent calculi, and tableaux systems
-for FOL, but natural deduction is the system that most closely resembles
-human-style inference. As such, it is the system that is most frequently used in
-AI applications, such as [proof verification in
-mathematics](https://en.wikipedia.org/wiki/Formal_verification) or the more
-recent advances in artificial mathematical reasoning using hybrid LLM-proof
-assistant systems.
-
-The natural deduction system for FOL extends the system for propositional logic
-with four new rules:
-
-{{< img src="img/natural_deduction_rules.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
-
-Each of these rules has some special side-conditions, which require some
-explanation. Let's discuss them in turn.
-
-The first rule, `∀&ThinSpace;Intro`, has the side-condition that
-the variable `x` may not occur free in any undischarged assumption that we've
-used to derive `A(x)`. The idea is that if we can derive `A(x)` without making any
-assumptions about `x`, this means that the argument holds for _any_ `x`. Here's
-an example of the rule at work:
-
-{{< img src="img/forall_intro.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
-
-This is a rather trivial inference, but it illustrates the idea well. We can
-show that if `x` is human, then `x` is human without any open assumptions left
-using `→Intro`. Since this proof doesn't assume anything about `x`, we
-conclude that it holds for _all_ `x`. Every human is human is a logical truth
-we can prove without any undischarged assumptions.
-
-For a slightly more interesting application, we first need to talk about `∀ Elim`. This rule is perhaps the most straightforward one: it allows
-us to infer from a universal statement that holds for all `x`, that it holds for
-any specific object, designated by any term `t`. For example, it gives us the
-inference:
-
-{{< img src="img/forall_elim.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
-
-There is a side-condition with this rule as well: we can use any term `t` _as
-long as_ it is not bound after the substitution. This blocks, for example, the
-following invalid inference from being an instance of `∀ Elim`:
-
-{{< img src="img/variable_capture.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
-
-From everyone being the child of someone, it doesn't follow that someone is their own child. The side-condition blocks this invalid rule application.
-
-In combination, `∀ Intro` and `∀ Elim` can be used to
-prove some more interesting logical laws of FOL, such as the following:
-
-```∀x(Black x ∧ White x)⊢∀x Black x ∧ ∀x White x```
-
-{{< img src="img/and_distribution.png" class="mx-auto rounded d-block inert-img img-fluid" width="800px">}}
-
-The rule `∃&ThinSpace;Intro` is also relatively straightforward:
-it allows us to infer that there exists an object satisfying a property from
-any concrete object instantiating that property. For example, we have:
-
-{{< img src="img/existential_intro.png" class="mx-auto rounded d-block inert-img img-fluid" width="500px">}}
-
-There are no side-conditions for this rule. There _are_ conditions for the `∃Elim` rule. This rule captures the idea that what we can infer from an
-existential claim is what we can infer from some arbitrary instance of the
-existential. All we know is that _some_ object satisfies the property. If from
-this assumption, without assuming anything else about that object, we can derive
-a conclusion, we can infer that conclusion from the existential. This idea is
-captured in the side-condition that the constant `c` in the assumption, may not
-be used anywhere else in the derivation.
-
-Here's a valid inference using the rule:
-
-```∃x Black x⊢∃x (Black x ∨ White x)```
-
-{{< img src="img/existential_elim.png" class="mx-auto rounded d-block inert-img img-fluid" width="400px">}}
-
-If there's a black object, then there's an object that is black or white—namely
-that unspecified object that is black.
-
-The introduction and elimination rules for ∀ and ∃ are
-together sound and complete for FOL: [Gödel's completeness
-theorem](https://en.wikipedia.org/wiki/G%C3%B6del%27s_completeness_theorem)
-entails that for every deductively valid inference there exists a corresponding
-natural deduction derivation and _vice versa_. Of course, there cannot be a
-sure-fire way of finding such a derivation as this would contradict the
-Church-Turing theorem.
-
-To conclude our discussion of FOL—and classical deductive logic in general—let's
-look at how we can verify FOL inference in Lean. The [Curry-Howard
-Correspondence](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence),
-which we've taken as the starting point for our ventures into proof verification
-in propositional logic, extends in a natural way to FOL.
-
-Remember that in propositional logic, we used the type `<span
-class="dark-red">Prop</span>` to model propositions that are true or false in
-Lean. In FOL, we need to extend this setting with terms and predicates that we
-apply to them. For this purpose, we introduce a new kind of type, the
-`Term`-type, which contains all the objects that we talk about. A _(unary)
-predicate_, then, can be understood as a function from terms to propositions,
-formally an object of the type `Term&nbsp;<span
-class="dark-green">→</span>&nbsp;<span class="dark-red">Prop</span>`. The idea
-is if we apply a predicate, like `Human`, to a term, like `Socrates`, then we
-obtain a proposition, namely `Human Socrates`. Here is how we'd declare `Black`
-and `White` as unary predicates in Lean. 
-
-~~~lean
- variable ( Term : Type ) (Black White : Term → Prop)
-~~~
-
-Just like for each intro and elim rule of natural deduction there was a
-corresponding pair of Lean rules, we have Lean rules for the introduction and
-elimination rules for the quantifiers.
-
-Let's begin with `∀Intro`. Essentially, Lean treats the universal
-quantifier much like a conditional: what we need to show is that from the
-assumption of an arbitrary `x`, we can derive a proof of the proposition in
-question—then we can conclude that the property holds for all `x`. Here's the
-Lean proof that corresponds to our simple inference which shows that all humans
-are human:
-
-~~~lean
-variable ( Term : Type ) (Human : Term → Prop)
-
-example : ∀ x, Human x → Human x := by
-  intro x
-  intro human_x
-  exact human_x
-~~~
-Click this
-[link](https://live.lean-lang.org/#codez=G4QwTgliBGA2CmACAFIgKvMBbRAudAngA5ICUKAEgK5YgB2e6mOgSYSIAKYA9kaQFB94ADxBYiCRoAAiREIA0iarQZDEbRfRl4AvImgE+iRBDoAXbjINHT5gBY16AfSGXhIAMYnEdpU6A)
-to run this code in your browser. 
-
-That is, Lean treats a proof of a universally quantified statement as a kind of
-conditional: if `x` is an arbitrary object, then `x` is human if it is human.
-
-Correspondingly, the rule of `∀Elim` corresponds to application:
-to infer an instance of a universal statement, we apply its proof to the
-relevant term.
-
-Here, for example, is the Lean verification of our inference:
-
-```∀x(Human x→Mortal x)⊢Human Socrates→ Mortal Socrates```
-
-~~~lean
-variable ( Term : Type ) (Human Mortal : Term → Prop)
-
-example (Socrates : Term) (h : ∀ x, Human x → Mortal x) : Human Socrates → Mortal Socrates:= by
-  apply h
-~~~
-Click this
-[link](https://live.lean-lang.org/#codez=G4QwTgliBGA2CmACAFIgKvMBbRAudAngA5ICUKAEgK5YgB2iAsgPZgAuIse6mOgSYSIACmGZFSAKHHwAHiCxEEKAMrMAxmBBt4AZ24Zs5ZAAtugACJE0gDSJqtBtMQCW7ThfL5b9RCvWadjplYOLh8NLW1cAF5EaAJxREQQIgUCRCMgA)
-to run this code in your browser. 
-
-Our more complex proof of everything's black and everything's white from
-everything's black and white is verified like this:
-
-~~~lean
-variable ( Term : Type ) (Black White : Term → Prop)
-
-example (h : ∀ x, Black x ∧ White x ) : (∀ x, Black x) ∧ (∀ x, White x) := by
-  apply And.intro
-  · intro x
-    apply And.left 
-    exact h x
-  · intro x
-    apply And.right 
-    exact h x
-~~~
-Click this
-[link](https://live.lean-lang.org/#codez=G4QwTgliBGA2CmACAFIgKvMBbRAudAngA5ICUKAQrCAMYDWiA6gBYQAuS+G2igSYSIAFMAHsipAFDj4ADxBYiCFMzyJAAESJpAGkRVaDaYkDkRE1YcNicvmTqtO6vQ3lj1jdpbsk0ywF5E0AuKIiCBECgSIAIIAdgAmAHQQUWwigYgA7YiJycIaqUEhYZGxcQgAZmyIeYgytBXK0qkZWSK5QfmhsOHR8ZAA5swVVTU0dRpAA)
-to run this code in your browser. 
-
-Finally, for the existential quantifier, we have the tactics `Exists<span
-class="dark-green">.</span>intro` and `Exists<span
-class="dark-green">.</span>elim`. The tactic `Exists<span
-class="dark-green">.</span>elim` takes as arguments a proof of an existential statement and
-a proof that the desired conclusion follows from any witness having the
-property in question. In a tactic proof, we introduce the witness and the
-assumption that it has the property using `intro`. `Exists<span
-class="dark-green">.</span>intro` takes a witness and a proof that it has
-the property; with `apply Exists.intro`, we can supply the witness first and
-prove the property as the remaining goal.
-
-Here's how they work in action in our combined inference to show that if there's
-a black thing, there's a black or white thing:
-
-~~~lean
-variable ( Term : Type ) (Black White : Term → Prop)
-
-example (h : ∃ x, Black x) : ∃x, Black x ∨ White x := by
+To apply modus ponens to the Socrates premises, we first instantiate the bound
+variable in the universal premise with the {{< term "constant" "constant" >}} $Socrates$. That gives us
+$Human(Socrates) → Mortal(Socrates)$, to which we can apply modus ponens.
+
+{{< logic-app name="deduction" language="fol" kind="worked" display="full" example="socrates" title="Socrates by universal instantiation and modus ponens" >}}
+
+The choice of term came from matching $Human(x)$ with $Human(Socrates)$.
+We want an algorithm to find such matches even when the terms contain functions
+or several variables.
+
+{{< callout type="definition" title="Unifier" >}}
+A {{< term "unifier" "unifier" >}} of expressions $A$ and $B$ is a
+substitution $σ$ such that $Aσ$ and $Bσ$ are syntactically identical.
+{{< /callout >}}
+
+Here $σ = [x/Socrates]$. We use the
+{{< term "substitution" "substitution" >}} convention from {{< chapter_ref chapter="fol" id="substitution" >}}FOL{{< /chapter_ref >}}:
+$[x/t]$ replaces free occurrences of $x$ by the {{< term "term" "term" >}}
+$t$. It must not capture variables. For unification, we'll initially work with
+terms and atomic formulas, which contain no quantifier binders.
+
+A substitution can replace several variables simultaneously. For example,
+$R(x,y)$ and $R(a,f(a))$ have the unifier $[x/a,y/f(a)]$. Constants and
+{{< term "function-symbol" "function symbols" >}} remain fixed. We can't
+unify $Human(a)$ with $Mortal(a)$ by replacing the predicate $Human$.
+
+{{< callout type="definition" title="Most general unifier" >}}
+A {{< term "most-general-unifier" "most general unifier" >}} (MGU) of two
+expressions is a unifier from which every other unifier can be obtained by
+further substitution.
+{{< /callout >}}
+
+For $R(x,y)$ and $R(z,z)$, the substitution $[x/z,y/z]$ is an MGU. The
+substitution $[x/a,y/a,z/a]$ also unifies them, but makes an additional choice
+-- viz. $[z/a]$. An MGU leaves such a choice available for later inference
+steps.
+
+### Robinson's algorithm {#robinsons-algorithm}
+
+The first algorithm for {{< term "unification" "unification" >}} is due to
+[John Alan Robinson](https://en.wikipedia.org/wiki/John_Alan_Robinson), who
+also developed the resolution method we'll study next. The algorithm builds
+a substitution by comparing the expressions a pair of terms at a time.
+
+Suppose we want to unify $LiesBetween(Munich, y, z)$ and
+$LiesBetween(x, Milan, Rome)$. Before comparing their arguments, we check:
+
+1. **Do the signs agree?** Both literals are positive. A positive literal
+   and a negative one, such as $Human(x)$ and $¬Human(Socrates)$, cannot
+   become identical by substituting terms.
+2. **Do the predicates agree?** Both use the three-place predicate
+   $LiesBetween$. Substitution cannot change a predicate symbol or its arity;
+   for example, it cannot turn $Human(x)$ into $Mortal(x)$.
+
+Our two literals pass both checks.
+We need to make the corresponding arguments agree too: $Munich$ with $x$,
+$y$ with $Milan$, and $z$ with $Rome$. Record these requirements in a list:
+
+$$
+Eq = [Munich ≐ x, y ≐ Milan, z ≐ Rome].
+$$
+
+Here $s ≐ t$ asks for a substitution that makes $s$ and $t$ syntactically
+identical. $≐$ records a syntactic matching requirement; $=$ expresses identity
+between objects in a model. We start with the empty substitution $σ = []$
+and go through the pairs in $Eq$.
+
+For each pair $s ≐ t$, distinguish the following cases:
+
+- **Delete.** If $s$ and $t$ are already identical, delete the pair. There is nothing
+  to do for $x ≐ x$ or $Munich ≐ Munich$.
+- **Occurs check / Eliminate.** If only $s$ is a variable, say $x$, check whether it occurs in $t$. If it
+  does, stop: no unifier exists. This is called the
+  {{< term "occurs-check" "occurs check" >}}. If the occurs check passes,
+  replace $x$ by $t$ in all other pairs and in the terms already recorded in
+  $σ$. Add $[x/t]$ to $σ$ and delete the pair $s ≐ t$ from $Eq$.
+- **Eliminate.** If $s$ and $t$ are distinct variables, say $x ≐ y$, replace $x$ by $y$
+  throughout the other pairs and the terms already recorded in $σ$.
+  Add $[x/y]$ to $σ$ and remove the pair from $Eq$.
+- **Orient.** If only $t$ is a variable, swap the sides and use the case where the first term
+  is a variable. Our pair $Munich ≐ x$, for example, becomes $x ≐ Munich$.
+- **Clash / Decompose.** If neither term is a variable, compare their outer symbols and arities. A
+  constant counts as a symbol with no arguments. If the symbols or arities
+  differ, stop --- they cannot be unified. If they agree, replace
+  the pair by its corresponding argument pairs. For example, $fatherOf(x) ≐
+  fatherOf(y)$ becomes $x ≐ y$.
+- Distinct constants, such as $Munich$ and $Milan$, also give a symbol clash.
+
+Repeat this procedure until a failure occurs or the list is empty. In our
+example, we successively record $[x/Munich]$, $[y/Milan]$, and $[z/Rome]$. No
+pairs remain, so their combination unifies the original literals. In general,
+successful termination gives a most general unifier.
+
+{{< logic-app name="fol-inference" kind="unify" formula="LiesBetween(Munich, y, z); LiesBetween(x, Milan, Rome)" title="Robinson's algorithm" >}}
+
+Decompose compares the arguments of the two expressions. The remaining
+equations and the substitution $σ$ record what still needs to be matched
+and what we have established so far.
+
+The {{< term "occurs-check" "occurs check" >}} prevents a variable from
+being replaced by a term containing that same variable. Try $x$ and $fatherOf(x)$.
+Whatever finite term replaces $x$, the right side still has an extra
+$fatherOf$ around it. They cannot become identical. We delete $x ≐ x$
+before this check because identical terms need no replacement.
+Wikipedia's [occurs check](https://en.wikipedia.org/wiki/Occurs_check)
+article explains the consequences of omitting it.
+
+Updating earlier replacements is called *composition*. In Nested functions,
+we first record $[y/motherOf(x)]$, then discover $[x/London]$. The final
+substitution must send $y$ directly to $motherOf(London)$.
+
+For resolution, we want opposite-sign literals with *matching atoms*.
+We therefore apply the algorithm to those atoms, leaving their signs alone.
+The term comparisons are exactly the same.
+
+Here is the algorithm in the Python-like
+{{< chapter_ref chapter="formal-languages" id="algorithms-and-pseudocode" >}}pseudocode{{< /chapter_ref >}}
+introduced in {{< chapter_ref chapter="formal-languages" >}}Formal languages{{< /chapter_ref >}}. `take_equation` removes the first equation; `left` and
+`right` read its two sides. `substitute_all` replaces the variable throughout
+the remaining equations. `compose` makes the same replacement in recorded
+terms and adds the new binding. `argument_equations` supplies the pairs of
+arguments, and `prepend` puts them at the front of the list.
+
+```python
+def unify(equations):
+    substitution = empty_substitution()
+    while not is_empty(equations):
+        equation = take_equation(equations)
+        first = left(equation)
+        second = right(equation)
+        if first == second:
+            continue
+        if is_variable(second) and not is_variable(first):
+            equation = reverse(equation)
+            first = left(equation)
+            second = right(equation)
+        if is_variable(first):
+            if occurs(first, second):
+                return failure
+            equations = substitute_all(equations, first, second)
+            substitution = compose(substitution, first, second)
+        else:
+            if not matching_heads(first, second):
+                return failure
+            equations = prepend(argument_equations(first, second), equations)
+    return substitution
+```
+
+`matching_heads` checks the fixed symbol, its kind, and its arity. Each
+elimination removes a variable from the unsolved equations. Between eliminations,
+decomposition reduces the expressions to their parts. Thus the algorithm
+terminates. Its steps preserve the possible solutions, and successful
+termination supplies an MGU. Unification itself is decidable even though
+unrestricted first-order validity is not.
+
+Wikipedia's [unification article](https://en.wikipedia.org/wiki/Unification_(computer_science)#Unification_algorithms)
+compares Robinson's procedure with later algorithms.
+
+<span id="where-instantiation-applies"></span>
+
+Universally quantified rules such as
+$∀x∀y (Sibling(x,y) → Sibling(y,x))$ can be used by instantiating both
+variables. A match with $Sibling(a,b)$ supplies $[x/a,y/b]$ and gives
+$Sibling(b,a)$ by modus ponens. This supports first-order forward and backward
+chaining on suitable rule sets.
+
+We cannot delete quantifiers wherever they occur. Consider:
+
+$$
+∀x ((∀y BiggerThan(x,y)) → Giant(x)).
+$$
+
+This says that anyone bigger than everything is a giant. Together with
+$∀y BiggerThan(PolyphemOS,y)$, it entails $Giant(PolyphemOS)$.
+The single fact $BiggerThan(PolyphemOS,tinymouse)$ does not suffice.
+A domain with two objects $p,m$, with $BiggerThan$ true only of $(p,m)$ and
+$Giant$ true of nothing, gives a countermodel to that second inference.
+Interpret $PolyphemOS$ as $p$ and $tinymouse$ as $m$.
+
+The inner universal occurs in a conditional antecedent. Rewriting the
+conditional exposes its role:
+
+$$
+∀x ((∀y BiggerThan(x,y)) → Giant(x))
+≡ ∀x ((∃y ¬BiggerThan(x,y)) ∨ Giant(x)).
+$$
+
+The rewritten formula contains an existential quantifier. Before applying
+resolution, we need to replace it in a way that preserves satisfiability.
+
+## Normal forms {#fol-normal-forms}
+
+Resolution, like the other algorithms we've studied, expects its input in a
+particular form. In {{< chapter_ref chapter="sat" >}}Boolean SAT{{< /chapter_ref >}},
+that form was CNF: a conjunction of clauses. First-order resolution also works
+with clauses, but their atoms can now contain predicates, variables, and
+function terms. The clauses have no written quantifiers; their variables
+are understood as universally quantified.
+
+{{< callout type="definition" title="First-order CNF" >}}
+A {{< term "fol-literal" "first-order literal" >}} is an atomic FOL formula
+or its negation. A {{< term "fol-clause" "first-order clause" >}} is a finite
+disjunction of such literals, with all free variables understood as universally
+quantified. A single literal is a clause; the empty disjunction is $⊥$.
+A {{< term "fol-cnf" "first-order CNF" >}} is a conjunction of these clauses.
+{{< /callout >}}
+
+How do we put a quantified formula into this form? In propositional logic,
+we could use equivalent rewrites throughout. In FOL, we cannot generally
+eliminate existential quantifiers that way. For example, $∃x Human(x)$ says
+that there is a human, but does not name one. Replacing it with $Human(a)$
+would make a claim about a particular object, which might not be human.
+We need a different guarantee for this preprocessing step.
+
+Other first-order normal forms organize quantifiers differently.
+[Prenex normal form](https://en.wikipedia.org/wiki/Prenex_normal_form), for
+example, puts all quantifiers at the front. We won't study those forms here;
+our aim is the clause form required by resolution.
+
+### Equisatisfiability {#equisatisfiability}
+
+For a satisfiability test, we need to preserve whether a model exists.
+We met this requirement in the optional discussion of Tseytin conversion in
+{{< chapter_ref chapter="sat" >}}Boolean SAT{{< /chapter_ref >}}:
+
+{{< callout type="definition" title="Equisatisfiability" >}}
+Two formulas are {{< term "equisatisfiable" "equisatisfiable" >}} if either
+both have a model or neither has a model. Their languages may differ.
+{{< /callout >}}
+
+{{< term "equivalence" "Logical equivalence" >}} requires the same truth-value
+in every model. Equisatisfiability requires only agreement on whether there
+is a model at all. That is enough for a refutation: if the rewritten input
+has no model, neither does the original input.
+
+Consider $∃x Human(x)$ again. This time, introduce a *fresh* constant $sk₁$
+and replace the sentence by $Human(sk₁)$. If there is a human, we can
+interpret $sk₁$ as that human. Conversely, if $Human(sk₁)$ is true, there
+is a human. The two sentences are therefore equisatisfiable.
+
+They are not equivalent. In a model containing a human and a nonhuman,
+$∃x Human(x)$ is true. Interpreting $sk₁$ as the nonhuman makes
+$Human(sk₁)$ false. We can make it true by choosing the human instead.
+
+Freshness lets us make this choice without changing the interpretation of
+any symbol in the original input. Thus we can preserve satisfiability of
+the premises *together with* the negated conclusion, which is what a
+refutation needs. For example, if we also have $¬Human(a)$, using $a$ as
+the witness would introduce a contradiction; a fresh $sk₁$ can name
+someone else.
+
+### Skolemization {#skolemization}
+
+The trick for eliminating existential quantifiers is called
+{{< term "skolemization" "Skolemization" >}}. We give each existential a
+fresh name for its witness. The result is equisatisfiable with the original
+formula, which is enough for testing satisfiability and consequence.
+When a witness depends on another object, its name must be a function term.
+
+{{< img src="/img/drawings/finf_ai_quantifier_elimination.svg" width="180px" class="float-end ms-3" alt="A robot ushers the quantifiers out." >}}
+
+We prepare the formula and eliminate its existentials in this order:
+
+1. **Eliminate $→$ and $↔$.** Use the same equivalences as in propositional
+   CNF conversion, starting with $A → B ≡ ¬A ∨ B$.
+2. **Move negations to atoms.** Use De Morgan's laws, remove double negations,
+   and rewrite $¬∀x A$ as $∃x¬A$ and $¬∃x A$ as $∀x¬A$.
+   This gives {{< term "negation-normal-form" "negation normal form" >}}:
+   negations apply only to atoms. A negated universal has now become an
+   existential, so it too needs a witness.
+3. **Give distinct quantifiers distinct variables.** This is
+   {{< term "alpha-renaming" "α-renaming" >}}. For example,
+   $∃x(Human(x) ∧ ∀x Mortal(x))$ becomes
+   $∃x(Human(x) ∧ ∀y Mortal(y))$. Choose names unused elsewhere in the input.
+   The renamed occurrences still belong to the same quantifiers.
+4. **Replace each existential by a fresh witness.** Work from the outside in.
+   List the universal variables whose scopes contain that existential; they
+   become the arguments of its witness function. If there are none, use a
+   constant. Apply the following rule until no existential quantifiers remain.
+
+{{< callout type="definition" title="Skolemization rule" >}}
+In a sentence in negation normal form with distinct bound variables, let
+$∃y B$ have no enclosing existential and lie in the scopes of
+$∀x₁, …, ∀xₙ$. Replace this occurrence by
+
+$$
+∃y B ⟹ B[y/skᵢ(x₁, …, xₙ)],
+$$
+
+where $skᵢ$ is a fresh function symbol. If $n = 0$, use a fresh constant
+$skᵢ$ and replace $∃y B$ by $B[y/skᵢ]$.
+{{< /callout >}}
+
+Here $⟹$ marks an equisatisfiable transformation of the whole sentence.
+The substitution replaces the free occurrences of $y$ in $B$; the new
+symbol must be unused throughout the input. The first three preparation
+steps preserve equivalence. The witness replacement preserves satisfiability.
+
+For $∀x∃y R(x,y)$, the witness for $y$ may depend on $x$. A fresh
+{{< term "skolem-function" "Skolem function" >}} $sk₁$ records that choice:
+
+$$
+∀x∃y R(x,y) ⟹ ∀x R(x,sk₁(x)).
+$$
+
+For $∃y∀x R(x,y)$, we must choose one witness before considering $x$.
+In this separate example, $sk₁$ is a fresh
+{{< term "skolem-constant" "Skolem constant" >}}:
+
+$$
+∃y∀x R(x,y) ⟹ ∀x R(x,sk₁).
+$$
+
+The difference is visible in a two-object model where $R$ is identity.
+Every object is related to itself, so the first sentence is true. No one
+object is related to both objects, so the second is false. Using a constant
+for the first sentence would incorrectly require a shared witness.
+
+Each existential gets its own fresh symbol. For example,
+$∀x(∃y R(x,y) ∧ ∃z R(z,x))$ becomes
+$∀x(R(x,sk₁(x)) ∧ R(sk₂(x),x))$. Different symbols allow different choices;
+$sk₁(d)$ and $sk₂(d)$ may still denote the same object. Only enclosing
+universal quantifiers supply arguments: in
+$∀x((∀y R(x,y)) ∨ ∃z R(x,z))$, the witness for $z$ is $sk₁(x)$.
+The quantifier $∀y$ belongs to the other branch.
+
+The following examples show the four steps, one rewrite at a time:
+
+{{< logic-app name="fol-inference" kind="skolem" title="Skolemization, one rewrite at a time" >}}
+
+### CNF conversion {#clause-form}
+
+Skolemization leaves us with universal quantifiers and a formula built from
+literals using $∧$ and $∨$. We still need a conjunction of clauses.
+The full conversion procedure is:
+
+1. Eliminate arrows, move negations inward, rename bound variables, and
+   Skolemize, following the four steps above.
+2. Leave the remaining universal quantifiers implicit. Since their variables
+   are distinct and only $∧$ and $∨$ connect their scopes, we can read all
+   remaining variables as universally quantified.
+3. Distribute $∨$ over $∧$, using the propositional CNF equivalences.
+4. Take each conjunct as a clause. Its
+   {{< term "universal-closure" "universal closure" >}} quantifies all its
+   free variables; each clause has its own variable scope.
+
+For example, start with:
+
+$$
+∀x∃y (R(x,y) ∨ (P(x) ∧ Q(y))).
+$$
+
+There are no arrows or negations to change, and the bound variables are
+already distinct. Skolemization gives:
+
+$$
+∀x (R(x,sk₁(x)) ∨ (P(x) ∧ Q(sk₁(x)))).
+$$
+
+Leave $∀x$ implicit and distribute the disjunction. The resulting CNF is:
+
+$$
+(R(x,sk₁(x)) ∨ P(x)) ∧ (R(x,sk₁(x)) ∨ Q(sk₁(x))).
+$$
+
+Both clauses are understood as universally closed. The conjunction is
+satisfiable exactly when the original sentence is. We can now pass these
+clauses to resolution.
+
+<span id="resolution-and-factoring"></span>
+
+## FOL resolution {#fol-resolution}
+
+With the input in clause form, we can use unification to extend resolution
+to FOL. As in {{< chapter_ref chapter="sat" >}}Boolean SAT{{< /chapter_ref >}},
+we test an inference by looking for a contradiction in its premises together
+with the negated conclusion.
+
+{{< callout type="definition" title="First-order satisfiability" >}}
+A set of FOL sentences is {{< term "fol-satisfiability" "satisfiable" >}} iff some
+first-order model makes them all true. The {{< term "fol-sat" "FOL SAT problem" >}} asks whether
+a given finite set of FOL sentences is satisfiable.
+{{< /callout >}}
+
+For an inference, add the negation of the conclusion to the premises:
+
+$$
+P₁, …, Pₙ ⊨ C  iff  {P₁, …, Pₙ, ¬C} is unsatisfiable.
+$$
+
+A model of these sentences would be a countermodel to the inference.
+A {{< term "refutation" "refutation" >}} rules out such a model. This is
+the same reduction we used in {{< chapter_ref chapter="sat" >}}SAT{{<
+/chapter_ref >}}, now over FOL models. The undecidability result rules out a
+general decision procedure for FOL SAT too.
+
+For Socrates, the premises and negated conclusion have the clause form:
+
+$$
+(¬Human(x) ∨ Mortal(x));&emsp; Human(Socrates);&emsp; ¬Mortal(Socrates).
+$$
+
+The semicolons separate conjuncts. The first clause means
+$∀x(¬Human(x) ∨ Mortal(x))$. As in
+{{< chapter_ref chapter="conditionals" >}}Conditionals{{< /chapter_ref >}},
+associativity, commutativity, and idempotence let us ignore brackets, order,
+and repeated identical literals within a clause. The
+{{< term "empty-clause" "empty clause" >}} $⊥$ is false in every model;
+deriving it establishes that the clauses cannot all be true.
+
+In {{< chapter_ref chapter="sat" >}}SAT{{< /chapter_ref >}}, resolution cancelled an atom against its negation. In FOL,
+we first use unification to make the selected atoms match. For instance,
+$Human(x)$ matches $Human(Socrates)$ under $[x/Socrates]$.
+
+The rule for {{< term "fol-resolution" "first-order resolution" >}} is:
+
+{{< logic-app name="fol-inference" kind="resolution-rule" title="Resolution and factoring rules" >}}
+
+In Resolution, $B$ and $D$ are atoms, and $σ$ is their MGU. The other
+literals form $C$ and $E$; either part can be empty. Remove the two
+opposite-sign literals, join what remains, and apply $σ$ throughout.
+The Factoring rule beneath it combines matching literals of the same sign
+within one clause. We'll use that rule shortly.
+
+The selected opposite-sign literals are the
+{{< term "resolution-pivot" "pivots" >}}. Their atoms must unify. Apply the
+substitution to *every* remaining literal in both clauses. Resolving
+$(¬Human(x) ∨ Mortal(x))$ with $Human(Socrates)$ therefore gives
+$Mortal(Socrates)$. Resolving that with $¬Mortal(Socrates)$ gives the
+empty clause.
+
+{{< logic-app name="sat" language="fol" kind="resolution" title="First-order resolution: Socrates and PolyphemOS" >}}
+
+Each use of a clause needs fresh variables. This is called
+{{< term "standardizing-apart" "standardizing apart" >}}. For example,
+$P(x)$ and $¬P(f(x))$ have separate universal scopes. Renaming the second
+variable to $y$ permits the unifier $[x/f(y)]$ and an empty resolvent.
+Treating the two printed occurrences of $x$ as one variable would incorrectly
+make the occurs check block that inference.
+
+{{< term "factoring" "Factoring" >}} unifies two same-sign literals in one
+clause, applies the unifier to the whole clause, and retains one copy of the
+resulting duplicate literal.
+
+The clauses $(P(x) ∨ P(y))$ and $(¬P(u) ∨ ¬P(v))$ are jointly unsatisfiable.
+Factoring gives the unit clauses $P(y)$ and $¬P(v)$, which resolve to the
+empty clause. Binary resolution alone is insufficient for completeness;
+factoring supplies the required same-clause inferences.
+
+{{< logic-app name="sat" language="fol" kind="resolution" formula="∀x ∀y (P(x) ∨ P(y)); ∀x ∀y (¬P(x) ∨ ¬P(y))" title="Resolution with factoring" >}}
+
+<span id="resolution-workflow"></span>
+
+Return to our inference about PolyphemOS: it is bigger than everything, and
+anyone bigger than everything is a giant. To show that $Giant(PolyphemOS)$
+follows, we prepare a refutation:
+
+The premises are $∀x((∀y BiggerThan(x,y)) → Giant(x))$ and
+$∀z BiggerThan(PolyphemOS,z)$; add $¬Giant(PolyphemOS)$.
+Our normal-form procedure gives these three clauses:
+
+$$
+(¬BiggerThan(x,sk₁(x)) ∨ Giant(x));&emsp; BiggerThan(PolyphemOS,z);&emsp; ¬Giant(PolyphemOS).
+$$
+
+The first premise's inner $∀y$ became an existential when we moved its
+negation inward. Its fresh witness $sk₁(x)$ depends on $x$.
+
+Resolve the first two clauses on $BiggerThan$. Their atoms require
+$[x/PolyphemOS,z/sk₁(PolyphemOS)]$; the remaining clause is $Giant(PolyphemOS)$.
+Resolving it with the negated conclusion gives $⊥$.
+
+Since the prepared clauses are unsatisfiable, the premises together with the
+negated conclusion are unsatisfiable too. Thus the conclusion follows in every
+model of the original premises. The Skolem function was an auxiliary symbol
+used in the refutation. Knowing only that PolyphemOS is bigger than tinymouse
+would not supply the needed instance $BiggerThan(PolyphemOS,sk₁(PolyphemOS))$.
+
+{{< callout type="theorem" title="Refutation completeness" >}}
+For equality-free first-order clauses, resolution with most general unifiers,
+standardizing apart, and factoring is sound and refutation-complete: every
+unsatisfiable finite clause set has a finite derivation of the empty clause.
+{{< /callout >}}
+
+{{< term "fair-search" "Fair search" >}} eventually considers every eligible
+inference, so it eventually finds such a refutation. A satisfiable input may
+keep generating clauses such as $P(a), P(f(a)), P(f(f(a))), …$. Stopping
+after a fixed number of steps leaves the answer undecided.
+
+With identity, we need rules that respect its fixed interpretation. For
+example, $a=b$ and $P(a)$ entail $P(b)$. Treating $=$ as an arbitrary predicate
+would miss this. Equality axioms can be added, while automated provers commonly
+use specialized equality inferences such as paramodulation or superposition.
+
+## Natural deduction {#natural-deduction-and-lean}
+
+Resolution supplies refutations. To build proofs directly from quantified
+premises, we extend the natural deduction rules from
+{{< chapter_ref chapter="proofs" >}}Proofs{{< /chapter_ref >}}. The propositional
+rules still apply. Four quantifier rules control when we may introduce an
+arbitrary object, instantiate a general claim, supply a witness, or reason
+from an unknown witness.
+
+{{< logic-app name="deduction" language="fol" kind="rules" title="Quantifier and identity rules" >}}
+
+### Quantifier rules {#universal-introduction-and-elimination}
+
+*Universal introduction* lets us infer $∀x A$ from a derivation of $A$, provided $x$
+is not free in any undischarged assumption on which the derivation depends.
+
+The variable $x$ stands for an arbitrary object. Such a variable is often
+called an {{< term "eigenvariable" "eigenvariable" >}}. The side condition
+ensures that our argument has not assumed anything special about that object.
+For example, from the open assumption $x < z$, we cannot infer $∀x (x < z)$:
+$x$ is free in an assumption on which the conclusion depends. In the natural
+numbers, assigning $0$ to $x$ and $1$ to $z$ makes the assumption true, but
+$∀x (x < z)$ is false. In particular, $1$ is not smaller than itself.
+
+This blocks the attempted quantifier swap from our earlier example.
+From $∀x∃y (x < y)$, we may instantiate at $x$ and reason temporarily with
+$x < z$, where $z$ names a witness larger than $x$. We may not generalize
+that temporary assumption to $∀x (x < z)$. The assumption $x < z$ is still
+open, so the chosen witness may depend on $x$. Calling $x$ arbitrary does not
+remove that dependence.
+
+Once an assumption has been discharged, it no longer restricts universal
+introduction. The next proof first discharges $Human(x)$ to obtain
+$Human(x) → Human(x)$. No open assumption contains $x$, so generalization
+is then allowed:
+
+{{< logic-app name="deduction" language="fol" kind="worked" example="universal" title="Generalize after discharging the assumption" >}}
+
+*Universal elimination* lets us infer $A[x/t]$ from $∀x A$, provided the term $t$ is
+free for $x$ in $A$.
+
+{{< term "free-for" "Free for" >}} means that no variable in the replacing
+term becomes bound when we substitute it for a free occurrence of $x$ in $A$.
+Consider $∀x∃y (x < y)$. If we replace $x$ by $y$ in its displayed scope
+without checking this condition, we get $∃y (y < y)$. The original sentence
+is true in the natural numbers, but this supposed instance is false: no number
+is smaller than itself. The inserted $y$ was captured by the existential
+quantifier.
+
+We can use $y$ as the term after renaming the conflicting binder. Write the
+premise as $∀x∃z (x < z)$; universal elimination now gives $∃z (y < z)$.
+Here $y$ remains free, and the conclusion says that the object assigned to it
+has a larger object.
+
+Together, these rules let us distribute the universal quantifier over a
+conjunction. Instantiate the premise at an arbitrary $x$, project each
+conjunct, and generalize each result:
+
+{{< logic-app name="deduction" language="fol" kind="worked" example="distribution" title="Universal quantification distributes over conjunction" >}}
+
+<span id="existential-introduction-and-elimination"></span>
+
+*Existential introduction* lets us infer $∃x A$ from $A[x/t]$, provided $t$ is free
+for $x$ in $A$.
+
+The term $t$ supplies a {{< term "existential-witness" "witness" >}}.
+The free-for condition is the same as for universal elimination. For a
+counterexample, take $A$ to be $∀y (x = y)$ and try to use $y$ as the term
+replacing $x$. Substituting without renaming would give $∀y (y = y)$.
+The resulting inference is invalid:
+
+$$
+∀y (y = y) ⊭ ∃x∀y (x = y).
+$$
+
+The left sentence is true in every model. The right sentence says that one
+object is identical to every object, which is false in any domain with at
+least two objects. The attempted substitution captured $y$. After renaming
+the bound variable, the required instance would be $∀z (y = z)$, which the
+reflexivity sentence does not give us.
+
+For example, from $Human(Socrates)$ we obtain $∃x Human(x)$ using $Socrates$:
+
+{{< logic-app name="deduction" language="fol" kind="worked" display="full" example="existential" title="Socrates supplies an existential witness" >}}
+
+*Existential elimination* uses $∃x A$ and a derivation of $C$ under the
+temporary assumption $A[x/z]$. It infers $C$ and discharges that assumption. The witness
+variable $z$ must be free for $x$ in $A$ and must not occur free in $C$, in
+$∃x A$, or in any remaining undischarged assumption of the inference.
+
+The temporary assumption lets us reason about a witness without knowing which
+object it is. Discharging that assumption must leave a conclusion independent
+of the name we chose. Each freshness condition prevents a different mistake:
+
+- The witness variable must not be free in the conclusion $C$. From
+  $∃y (x < y)$, we can open a subproof with $x < z$, but we cannot export
+  $x < z$ as its conclusion. The premise is true in the natural numbers;
+  $x < z$ is false when both free variables are assigned $0$. The premise
+  promises a larger object, without saying that an independently chosen $z$
+  names it.
+- The witness variable must not be free in another assumption that remains
+  open. Suppose we also assume $¬(x < z)$. Using this same $z$ as the witness
+  for $∃y (x < y)$ would produce a contradiction from $x < z$ and
+  $¬(x < z)$. But both original premises are true when $x$ and $z$ are
+  assigned $0$: there is a number larger than $0$, and $0$ is not larger
+  than itself. A fresh witness variable avoids that false identification.
+- The witness variable must not be free in the existential premise itself.
+  From $∃y (z < y)$, choosing $z$ as the witness for $y$ would give the
+  temporary assumption $z < z$. The premise is true in the natural numbers,
+  while that assumption is impossible there. We must give the witness a
+  fresh name.
+
+The substitution $A[x/z]$ must also be free of capture. Rename any conflicting
+bound variables before opening the subproof. Then discharge the witness
+assumption when applying existential elimination; any other assumptions used
+by the subproof remain open.
+
+For example, $∃x Black(x)$ lets us establish
+$∃x(Black(x) ∨ White(x))$. The temporary witness proves the disjunction, and
+we existentially quantify it before closing the subproof. The final conclusion
+contains no free occurrence of its name:
+
+{{< logic-app name="deduction" language="fol" kind="worked" example="witness" title="Reason from an unknown witness and discharge its assumption" >}}
+
+<span id="quantifier-proof-strategy"></span>
+
+The {{< chapter_ref chapter="proofs" >}}proof strategies{{< /chapter_ref >}}
+extend to quantified goals. A universal goal suggests introducing an arbitrary
+object. An existential goal asks for a witness and a proof of its instance.
+The premises help determine which object to use: a universal premise can be
+instantiated at a useful term, while an existential premise opens a temporary
+subproof with an unknown witness.
+
+For example, from $∃x∀y R(x,y)$ we want $∀y∃x R(x,y)$. Start with the
+universal goal and take an arbitrary $y$. The existential premise supplies
+an unknown $x$ together with $∀y R(x,y)$. Instantiate that assumption at our
+chosen $y$, then use $x$ as the witness for $∃x R(x,y)$. This conclusion has
+no free $x$, so we can close the witness subproof and generalize $y$.
+The reverse inference would require one witness that works for every $y$;
+separate witnesses do not guarantee that. For a countermodel to the reverse
+inference, interpret $R(x,y)$ as $y < x$ in the natural numbers, as in our
+[earlier example](#a-mathematical-example).
+
+{{< logic-app name="deduction" language="fol" kind="worked" example="switcheroo" title="Plan a proof with two quantifiers" >}}
+
+The [natural deduction exercises](/exercises/fol-inference/#natural-deduction)
+let you construct these proofs, with the quantifier side conditions checked
+at each step.
+
+<span id="classical-quantifiers"></span>
+
+The four quantifier rules can be used together with either intuitionistic or
+classical propositional rules. Here we use the classical rule
+from {{< chapter_ref chapter="proofs" >}}Logical proofs{{< /chapter_ref >}}.
+One place we need it is the inference from $¬∀x A(x)$ to $∃x¬A(x)$.
+
+Assume temporarily that $∃x¬A(x)$ is false. For an arbitrary $x$, the
+assumption $¬A(x)$ would provide exactly such a witness and lead to a
+contradiction. Classical reasoning gives $A(x)$. Generalizing gives $∀x A(x)$,
+contradicting the premise. A second classical step discharges the temporary
+assumption and establishes the existential conclusion.
+
+{{< logic-app name="deduction" language="fol" kind="worked" example="duality-one-ltr" title="Classical quantifier duality" >}}
+
+The converse, from $∃x¬A(x)$ to $¬∀x A(x)$, needs no classical step: an
+unknown counterexample contradicts a universal claim instantiated there.
+Both directions between $¬∃x A(x)$ and $∀x¬A(x)$ also have intuitionistic
+proofs. In the exercises, identify which rule closes each contradiction;
+negation introduction and the classical rule have different conclusions.
+
+### Identity {#equality-inference}
+
+{{< chapter_ref chapter="fol" id="truth-and-satisfaction" >}}FOL{{< /chapter_ref >}} interprets {{< term "identity" "identity" >}} as sameness of domain
+objects. If $a=b$ and $Human(a)$, then $Human(b)$: the two names denote one
+object. Reflexivity and substitution express this interpretation in proofs.
+
+Identity introduction infers $t=t$ without premises. Identity elimination
+infers $A[x/t]$ from $s=t$ and $A[x/s]$, provided both substitutions are free
+for $x$ in $A$.
+
+The free-for condition applies to identity substitution too. Suppose we have
+$a = y$ and $∀y R(a,y)$. Replacing $a$ directly by $y$ would give
+$∀y R(y,y)$, capturing the free variable from the identity. Rename the bound
+variable first: from $∀z R(a,z)$ we obtain $∀z R(y,z)$. The free $y$
+continues to denote the object identified with $a$.
+
+{{< logic-app name="deduction" language="fol" kind="worked" example="equality" title="Substitute identical objects" >}}
+
+Identity elimination can replace selected occurrences. From $a=b$ and
+$R(a,a)$, using $R(a,x)$ as the substitution formula gives $R(a,b)$.
+You can try this in the [identity exercises](/exercises/fol-inference/#identity-exercises).
+
+With these rules, natural deduction covers FOL with identity. Resolution
+requires the additional equality rules discussed above.
+Unification compares syntactic expressions, so distinct constants $a$ and $b$
+still fail to unify even when an assumption states $a=b$.
+
+{{< callout type="theorem" title="First-order completeness" >}}
+Classical natural deduction with the quantifier and identity rules is sound
+and complete for first-order logic with identity: $Γ ⊢ A$ if and only if $Γ ⊨ A$.
+{{< /callout >}}
+
+This is Gödel's completeness theorem. Every first-order consequence has a proof,
+but completeness gives us no algorithm that always decides whether a proof exists.
+This is the distinction between semidecidability and decidability from the
+[opening section](#searching-for-proofs).
+
+## Lean {#quantifiers-in-lean}
+
+We can also write these proofs in Lean, as in {{< chapter_ref chapter="proofs" >}}Logical proofs{{< /chapter_ref >}}. There we
+represented propositions by Lean types in `Prop`. For FOL we also need a type
+of objects and predicates on those objects:
+
+```lean
+variable (Domain : Type)
+variable (Human Mortal : Domain → Prop)
+variable (Socrates : Domain)
+```
+
+These declarations mirror the semantic values we assign in a structure.
+`Domain` represents its domain $D$; `Socrates : Domain` supplies the object
+interpreting the constant $Socrates$. `Human : Domain → Prop` represents the
+predicate interpretation: `Human d` is the proposition that the object `d`
+belongs to its extension. A function symbol would have a declaration such as
+`fatherOf : Domain → Domain`, representing its total function on domain objects.
+
+FOL terms are syntactic expressions denoting those objects. The Lean variables
+here supply their semantic interpretations. A declaration `x : Domain` gives
+an object; a declaration `hx : Human x` gives a proof of a proposition about
+that object. The quantifier rules use both kinds of declaration.
+
+A binary predicate such as $LessThan(x, y)$ takes two objects. We can supply
+these one at a time: after choosing $x$, we have the unary predicate
+"is greater than $x$", waiting for its argument $y$. For example, fixing
+$x$ at $3$ gives the property of being greater than $3$.
+
+This way of representing a function of two arguments is called
+{{< term "currying" "currying" >}}, after
+[Haskell Curry](https://en.wikipedia.org/wiki/Haskell_Curry). The curried
+function takes the first object and returns a unary function that takes the
+second. For a predicate `R`, we therefore write
+`R : Domain → (Domain → Prop)`. Lean allows us to omit these brackets:
+`R : Domain → Domain → Prop`. Given `a : Domain`, `R a` is the unary
+predicate waiting for its second object; `R a b` supplies that object and
+expresses the proposition $R(a, b)$.
+
+Let's use this to express an inference with $∀x∃y R(x,y)$. If every object
+is related to some object, then the particular object $a$ is related to
+some object. With $R$ interpreted as $<$, this says: if every number has
+a larger number, then $a$ has a larger number.
+
+```lean
+variable (Domain : Type)
+variable (R : Domain → Domain → Prop) (a : Domain)
+
+example (h : ∀ x, ∃ y, R x y) : ∃ y, R a y := by
+  exact h a
+```
+
+Open this code in Lean. The premise `h` supplies a proof of `∃ y, R x y`
+for any object `x`; `h a` supplies it for `a`. We don't need to choose the
+witness ourselves. Try changing the conclusion to `∃ y, ∀ x, R x y`:
+`h a` no longer proves it. The premise allows a different witness for each
+object, whereas the changed conclusion requires one witness for them all.
+
+To prove a universal claim, introduce an arbitrary object. To use one, apply
+its proof to an object. The Socrates proof has two applications:
+
+```lean
+variable (Domain : Type) (Human Mortal : Domain → Prop)
+variable (Socrates : Domain)
+
+example (h : ∀ x, Human x → Mortal x) (hs : Human Socrates) : Mortal Socrates := by
+  apply h Socrates
+  exact hs
+```
+
+`h Socrates` has type `Human Socrates → Mortal Socrates`. Applying that proof
+to `hs` gives the conclusion. These are universal and conditional elimination.
+
+{{< logic-app name="deduction" language="fol" kind="lean-walkthrough" example="socrates" code="previous" title="Lean and the Socrates derivation" >}}
+
+For existential elimination, introduce an object and assume that it has the
+required property. To introduce an existential, give a witness and a proof
+that the property holds of it:
+
+```lean
+variable (Domain : Type) (Black White : Domain → Prop)
+
+example (h : ∃ x, Black x) : ∃ x, Black x ∨ White x := by
   apply Exists.elim h
-  · intro c black_c
-    apply Exists.intro
-    apply Or.inl black_c
-~~~
-Click this
-[link](https://live.lean-lang.org/#codez=G4QwTgliBGA2CmACAFIgKvMBbRAudAngA5ICUKAQrCAMYDWiA6gBYQAuS+G2igSYSIAFMAHsipAFDj4ADxBYiCFMzyJAwESJpAGkRVaDaeXyqtO6vQ2JAFERNWHC7gC8iaAXGJEIIgoKIAotIgAZzZAgDp4WAgcZjdEAHbECAA7NhFEGmczOgB9Glj3T28/AOCw5NThfI8vWB8AeTBQ5NhMvVygA)
-to run this code in your browser. 
+  intro z hz
+  apply Exists.intro z
+  apply Or.inl
+  exact hz
+```
 
-There is, of course, much more to know about the use of classical deductive
-logic in AI and its verification, but we'll leave it at that. Next, we turn to
-different realms—namely _non-classical_ logic.
+After `intro z hz`, `z : Domain` is the unknown witness and `hz : Black z` is
+the assumption about it. `Exists.intro z` leaves the goal `Black z ∨ White z`.
+`Or.inl` selects its left disjunct, which `hz` proves. The exported conclusion
+contains no free occurrence of `z`.
+
+{{< logic-app name="deduction" language="fol" kind="lean-walkthrough" example="witness" code="previous" title="Lean and an unknown existential witness" >}}
+
+Our FOL models have {{< chapter_ref chapter="fol" id="nonempty-domains" >}}nonempty
+domains{{< /chapter_ref >}}. Lean allows empty
+types, so `Domain : Type` alone does not impose this modelling assumption.
+We supply it with `[Inhabited Domain]`, placed after the domain declaration:
+
+```lean
+variable (Domain : Type) [Inhabited Domain]
+variable (A : Domain → Prop)
+
+example (h : ∀ x, A x) : ∃ x, A x := by
+  apply Exists.intro (default : Domain)
+  exact h default
+```
+
+`[Inhabited Domain]` is an assumption supplying a selected object of `Domain`.
+Lean retrieves that object with `default`; `(default : Domain)` states its
+type explicitly. We do not need to know which object was supplied. Since `h`
+applies to every object, `h default` proves the required instance. The first
+command chooses the witness and the second proves that it has $A$.
+
+{{< logic-app name="deduction" language="fol" kind="lean-walkthrough" example="nonempty" code="previous" title="Supply the nonempty-domain assumption" >}}
+
+This is the convention used in the Lean exercises. It includes a choice of
+object as well as nonemptiness. The Socrates example already has a named object,
+and an existential premise supplies a witness inside its subproof; those
+particular proofs can proceed without using `default`.
+
+Classical reasoning appears explicitly in Lean as `apply Classical.byContradiction`.
+For quantifier duality, we use proof by contradiction twice:
+
+```lean
+variable (Domain : Type)
+variable (A : Domain → Prop)
+
+example (h : ¬∀ x, A x) : ∃ x, ¬A x := by
+  apply Classical.byContradiction
+  intro hn
+  apply h
+  intro x
+  apply Classical.byContradiction
+  intro hx
+  apply hn
+  apply Exists.intro x
+  exact hx
+```
+
+{{< logic-app name="deduction" language="fol" kind="lean-walkthrough" example="duality-one-ltr" code="previous" title="Locate the classical steps in Lean" >}}
+
+As in {{< chapter_ref chapter="proofs" >}}Logical proofs{{< /chapter_ref >}}, `open Classical` only allows names from that namespace to be
+written without their prefix. The command `classical` supplies classical
+decidability where needed. In this proof, the two applications of
+`Classical.byContradiction` identify the classical inferences themselves.
+
+Lean also checks the identity rules. The tactic `rfl` proves reflexivity:
+
+```lean
+example (Domain : Type) (a : Domain) : a = a := by
+  rfl
+```
+
+Both sides are the same term, so no premise is needed. `Eq.subst` uses an
+identity to transport a proof to the corresponding instance:
+
+```lean
+variable (Domain : Type)
+variable (Human : Domain → Prop) (a b : Domain)
+
+example (heq : a = b) (ha : Human a) : Human b := by
+  exact Eq.subst heq ha
+```
+
+{{< logic-app name="deduction" language="fol" kind="lean-walkthrough" example="equality" code="previous" title="Identity elimination in Lean" >}}
+
+### Curry–Howard {#fol-curry-howard}
+
+The {{< term "curry-howard" "Curry–Howard correspondence" >}} extends to these
+quantifier rules. A proof of $∀x A(x)$ takes an object $x$ and returns a proof
+of $A(x)$. The return type depends on the input, so this is a
+{{< term "dependent-function" "dependent function" >}}.
+
+| Logical construction | Lean proof construction |
+| --- | --- |
+| Introduce $∀x A(x)$ | `intro x`, then prove the instance for arbitrary `x`. |
+| Use $∀x A(x)$ at $t$ | Apply its proof `h` to `t`, as in `exact h t`. |
+| Introduce $∃x A(x)$ | `apply Exists.intro t`, then prove the witness instance. |
+| Use $∃x A(x)$ | `apply Exists.elim h`, then `intro x hx` to open the witness subproof. |
+
+The witness supplied to existential introduction is an object of `Domain`;
+the accompanying proof inhabits a proposition about it. Existential elimination
+opens both parts within a subproof whose conclusion is independent of the
+witness. Lean's `Exists` belongs to `Prop`, so this logical use of a witness
+does not provide unrestricted extraction of computational data.
+
+The [Lean exercises](/exercises/fol-inference/#lean) let you construct
+quantifier proofs and compare them with the natural deduction rules.
+
+{{< img src="/img/drawings/finf_hybrid.svg" width="100px" alt="A neural system and an expert system working together." >}}
+
+A hybrid AI system can propose proof steps with a learned model and check them
+with a formal prover. In mathematics, this requires stating the definitions
+and assumptions on which the proposed theorem depends. Our example with $<$
+used $∀x (x < S(x))$ as a premise; a checker would need it to justify
+choosing $S(x)$ as the witness. A checked proof establishes the formal conclusion
+from the formal assumptions. We must also check that those formulas express the
+mathematical claim we intended.
+
+### Example: Boolean Law {#verifying-boolean-algebra}
+
+We now know enough Lean to verify a mathematical argument. Take our 13-line
+derivation of $!!NOT!! !!NOT!! X = X$ in
+{{< chapter_ref chapter="boolean" >}}Boolean algebra{{< /chapter_ref >}}.
+An AI could have proposed this argument. We can check that every step is
+justified by the Boolean laws.
+
+Lean supplies the type `Bool` and its Boolean operations. Our notation
+corresponds to Lean as follows:
+
+| Boolean notation | Lean expression |
+| --- | --- |
+| $0$ | `false` |
+| $1$ | `true` |
+| $X$ | `x : Bool` |
+| $!!NOT!! X$ | `!x` |
+| $X !!AND!! Y$ | `x && y` |
+| $X !!OR!! Y$ | `x ∣∣ y` |
+| $!!NOT!! !!NOT!! X = X$ | `(!!x) = x` |
+
+A Boolean value belongs to `Bool`; an equation between Boolean values is a
+proposition in `Prop`. We state the law with an explicit quantifier:
+`∀ x : Bool, (!!x) = x`.
+
+We can split a proof into subproofs using `have`. Writing
+`have step_1 : (!!x) = (!!x) := by` opens a proof of that identity.
+The indented `rfl` proves it. Afterward, `step_1` names the result, so later
+steps can use it. Each numbered subproof below states its identity before
+proving it; the numbers follow our original derivation.
+
+We use Lean's [Boolean laws](https://lean-lang.org/doc/api/Init/Data/Bool.html)
+by instantiation: `Bool.and_true x`, for example, proves `(x && true) = x`.
+`Eq.symm` reverses an equality.
+
+<span id="boolean-laws-in-lean"></span>
+
+Here are the laws from
+{{< chapter_ref chapter="boolean" id="boolean-laws" >}}Boolean algebra{{< /chapter_ref >}}
+in Lean. The last column gives a proof of the displayed identity for
+`x y z : Bool`; use it after `exact` or as an argument to `Eq.subst`.
+Lean states associativity in the reverse direction, so those entries use
+`Eq.symm`. For absorption, `orAbsorption` and `andAbsorption` are the names
+of the premises supplied in the [verification exercises](/exercises/fol-inference/#verify-boolean-derivations),
+not library theorem names.
+
+| Law | Boolean identity | Lean proof |
+| --- | --- | --- |
+| Associativity | $X !!OR!! (Y !!OR!! Z) = (X !!OR!! Y) !!OR!! Z$ | `Eq.symm (Bool.or_assoc x y z)` |
+| Associativity | $X !!AND!! (Y !!AND!! Z) = (X !!AND!! Y) !!AND!! Z$ | `Eq.symm (Bool.and_assoc x y z)` |
+| Commutativity | $X !!OR!! Y = Y !!OR!! X$ | `Bool.or_comm x y` |
+| Commutativity | $X !!AND!! Y = Y !!AND!! X$ | `Bool.and_comm x y` |
+| Absorption | $X !!OR!! (X !!AND!! Y) = X$ | `orAbsorption` |
+| Absorption | $X !!AND!! (X !!OR!! Y) = X$ | `andAbsorption` |
+| Distributivity | $X !!OR!! (Y !!AND!! Z) = (X !!OR!! Y) !!AND!! (X !!OR!! Z)$ | `Bool.or_and_distrib_left x y z` |
+| Distributivity | $X !!AND!! (Y !!OR!! Z) = (X !!AND!! Y) !!OR!! (X !!AND!! Z)$ | `Bool.and_or_distrib_left x y z` |
+| Complementation | $X !!OR!! !!NOT!! X = 1$ | `Bool.or_not_self x` |
+| Complementation | $X !!AND!! !!NOT!! X = 0$ | `Bool.and_not_self x` |
+| Identity | $X !!OR!! 0 = X$ | `Bool.or_false x` |
+| Identity | $X !!AND!! 1 = X$ | `Bool.and_true x` |
+| Domination | $X !!AND!! 0 = 0$ | `Bool.and_false x` |
+| Domination | $X !!OR!! 1 = 1$ | `Bool.or_true x` |
+| De Morgan | $!!NOT!! (X !!OR!! Y) = (!!NOT!! X) !!AND!! (!!NOT!! Y)$ | `Bool.not_or x y` |
+| De Morgan | $!!NOT!! (X !!AND!! Y) = (!!NOT!! X) !!OR!! (!!NOT!! Y)$ | `Bool.not_and x y` |
+| Double negation | $!!NOT!! !!NOT!! X = X$ | `Bool.not_not x` |
+
+The derivation below also uses complementation with the negated input first:
+`Bool.not_or_self x` proves `(!x || x) = true`, and `Bool.not_and_self x`
+proves `(!x && x) = false`. In the exercises, use only the laws allowed by
+the task: quoting the theorem you are asked to derive would skip the argument.
+
+Some steps replace an expression inside AND or OR. We can justify this
+using the equality rules we already know: if `a = b`, then `f a = f b`.
+Here is the proof for functions on Boolean values:
+
+```lean
+example (f : Bool → Bool) (a b : Bool) (h : a = b) : f a = f b := by
+  apply Eq.subst h
+  rfl
+```
+
+`apply Eq.subst h` reduces the goal `f a = f b` to `f a = f a`.
+Then `rfl` finishes the proof. This use of substitution is called
+*congruence*. Lean's library supplies the same result under the name
+`congrArg`: `congrArg f h` proves `f a = f b`. We can use that name because
+we have just proved the fact it expresses.
+
+For example, `Bool.and (!!x)` is the function that takes a Boolean value
+and ANDs it with `!!x`. Applying congruence to
+`Eq.symm (Bool.or_not_self x)` gives
+`((!!x) && true) = ((!!x) && (x || !x))`. In `step_3` below, `Eq.subst`
+uses this equality to replace the right-hand side of `step_2`.
+
+```lean
+example : ∀ x : Bool, (!!x) = x := by
+  intro x
+  have step_1 : (!!x) = (!!x) := by
+    rfl
+  have step_2 : (!!x) = ((!!x) && true) := by
+    exact Eq.subst (Eq.symm (Bool.and_true (!!x))) step_1
+  have step_3 : (!!x) = ((!!x) && (x || !x)) := by
+    exact Eq.subst (congrArg (Bool.and (!!x)) (Eq.symm (Bool.or_not_self x))) step_2
+  have step_4 : (!!x) = (((!!x) && x) || ((!!x) && !x)) := by
+    exact Eq.subst (Bool.and_or_distrib_left (!!x) x (!x)) step_3
+  have step_5 : (!!x) = (((!!x) && x) || false) := by
+    exact Eq.subst (congrArg (Bool.or ((!!x) && x)) (Bool.not_and_self (!x))) step_4
+  have step_6 : (!!x) = ((!!x) && x) := by
+    exact Eq.subst (Bool.or_false ((!!x) && x)) step_5
+  have step_7 : x = (x && true) := by
+    exact Eq.symm (Bool.and_true x)
+  have step_8 : x = (x && ((!!x) || !x)) := by
+    exact Eq.subst (congrArg (Bool.and x) (Eq.symm (Bool.not_or_self (!x)))) step_7
+  have step_9 : x = ((x && (!!x)) || (x && !x)) := by
+    exact Eq.subst (Bool.and_or_distrib_left x (!!x) (!x)) step_8
+  have step_10 : x = ((x && (!!x)) || false) := by
+    exact Eq.subst (congrArg (Bool.or (x && (!!x))) (Bool.and_not_self x)) step_9
+  have step_11 : x = (x && (!!x)) := by
+    exact Eq.subst (Bool.or_false (x && (!!x))) step_10
+  have step_12 : x = ((!!x) && x) := by
+    exact Eq.subst (Bool.and_comm x (!!x)) step_11
+  have step_13 : (!!x) = x := by
+    exact Eq.subst (Eq.symm step_12) step_6
+  exact step_13
+```
+
+`step_6` and `step_12` have the same right-hand side. The final subproof
+substitutes `x` for that expression in `step_6`, giving `step_13`.
+`exact step_13` finishes the proof. Open the code in Lean and try replacing
+one Boolean law with an inappropriate one: Lean will reject the step.
+
+Here we have taken a **meta-perspective** on Boolean logic: we quantify over
+truth-values and prove an identity between the functions that interpret its
+connectives. Those truth-values are now the objects of our mathematical
+argument. Lean makes the move between syntax and semantics explicit through
+types. It supports valid FOL reasoning within a richer type theory, in which
+we can also define formal languages, their models, and their proof systems
+and reason mathematically about them. The same proof-checking machinery
+applies to other mathematics.
+
+Lean can also find a proof of our law automatically:
+
+```lean
+example : ∀ x : Bool, (!!x) = x := by simp
+```
+
+The `simp` tactic uses registered simplification laws to construct a proof,
+which the kernel checks. Understanding how to guide this automation is a
+next step in learning Lean. Continue with
+[*Theorem Proving in Lean 4*](https://lean-lang.org/theorem_proving_in_lean4/),
+especially its [chapter on tactics](https://lean-lang.org/theorem_proving_in_lean4/Tactics/).
+We have seen how inference rules become checked proofs; that gives us a basis
+for studying Lean's more powerful methods of finding them.
+
+## Further readings {.readings .nocount}
+
+- Russell and Norvig, [*Artificial Intelligence: A Modern Approach*, 4th edition](https://www.pearson.com/en-us/subject-catalog/p/Russell-Lecture-Power-Points-for-Artificial-Intelligence-A-Modern-Approach-4th-Edition/P200000003500/9780137505135), chapter 9, for unification, chaining, and first-order resolution.
+- Richard Zach, [*Sets, Logic, Computation* (PDF)](https://slc.openlogicproject.org/slc-screen.pdf), §§11.3 and 11.6 for quantifier derivations, and chapter 12 for completeness.
+- [*Theorem Proving in Lean 4*, Quantifiers and Equality](https://lean-lang.org/theorem_proving_in_lean4/Quantifiers-and-Equality/), for dependent functions, existential proofs, and equality in Lean.

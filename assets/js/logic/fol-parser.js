@@ -8,7 +8,7 @@ export const syntaxLanguage = {
 };
 export function validateLanguage(language) {
   const names = [...language.constants, ...Object.keys(language.functions), ...Object.keys(language.predicates)];
-  if (new Set(names).size !== names.length || names.some(n => !/^[A-Za-z][A-Za-z0-9_]*$/u.test(n) || isVariable(n))) throw Error('Use distinct nonlogical names, separate from variables.');
+  if (new Set(names).size !== names.length || names.some(n => !/^[A-Za-z][A-Za-z0-9_₀₁₂₃₄₅₆₇₈₉]*$/u.test(n) || isVariable(n))) throw Error('Use distinct nonlogical names, separate from variables.');
   if ([...Object.values(language.functions), ...Object.values(language.predicates)].some(n => !Number.isInteger(n) || n < 1 || n > 3)) throw Error('This app supports arities 1 to 3.');
 }
 export function printFOL(n) {

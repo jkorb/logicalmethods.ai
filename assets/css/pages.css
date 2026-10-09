@@ -324,8 +324,11 @@ a.chapter-card:hover { color: var(--ink); border-color: var(--rule-strong); tran
 }
 /* a nested inference becomes one premise of the inference around it */
 .inference__nested .inference { margin-block: 0; }
+/* An inference a side condition blocks: a red rule line and a cross. */
+.inference--invalid .inference__rule-line { background-color: var(--red-gfx); }
+.inference--invalid .inference__label { color: var(--red-ink); }
 @media (forced-colors: active) {
-  .inference__rule-line { background-color: CanvasText; -webkit-mask-image: none; mask-image: none; }
+  .inference__rule-line, .inference--invalid .inference__rule-line { background-color: CanvasText; -webkit-mask-image: none; mask-image: none; }
 }
 .mascot-bulb { inline-size: min(6rem, 22vw); }
 

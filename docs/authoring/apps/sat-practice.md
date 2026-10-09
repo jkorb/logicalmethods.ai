@@ -38,6 +38,18 @@ Written solutions remain on the sheet.
   is selected. Both check the student's reduction before starting. The field stays
   read-only until Edit is selected.
 
+## Tool workspaces
+
+Tool pages start with blank editable input and hide exercise levels. Resolution
+converts a custom formula collection or inference to CNF, then reuses the checked
+propositional session with direct selection of complementary literals. Resolve,
+Undo, Restart, and Saturated? operate on that session; fullscreen enlarges it.
+The tool uses the same 160-clause limit. Chapter exercise controls are unchanged.
+
+Table construction and normal-form checking also accept custom input on tool
+pages. Normal-form answers use the variables of the supplied formula. New input
+clears the previous attempt and completion state.
+
 ## Reuse
 
 `assets/js/logic/sat-practice.js` exports pure table validation, semantic answer

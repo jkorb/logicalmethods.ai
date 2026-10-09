@@ -11,7 +11,9 @@
 
      Lines above the --- are premises, one per line; the content below is the
      conclusion. Whitespace and blank lines around the separator are ignored.
-     Use layout="stacked" for premises underneath one another.
+     Use layout="stacked" for premises underneath one another, and
+     invalid=true for an inference a rule's side condition blocks: the rule
+     line turns red and a cross follows the rule name.
 
      The figure carries a text description, so a screen reader gets the
      inference as a sentence rather than three loose fragments. */}}
@@ -38,10 +40,12 @@
 {{- $conclusion := trim (index $parts 1) " \t\r\n" -}}
 
 {{- $plainPremises := apply $premises "replaceRE" "[`$]" "" "." -}}
+{{- $invalid := in (slice true "true") (.Get "invalid") -}}
 {{- $plain := printf
-      "From %s, infer %s"
+      "%s %s, infer %s"
+      (cond $invalid "Invalid: from" "From")
       (delimit $plainPremises ", " ", and ")
       ($conclusion | replaceRE "[`$]" "" | plainify)
 -}}
 
-{{- partial "figures/inference.html" (dict "premises" $premises "conclusion" $conclusion "plain" $plain "layout" (.Get "layout") "class" (.Get "class") "rule" (.Get "rule") "page" .Page) -}}
+{{- partial "figures/inference.html" (dict "premises" $premises "conclusion" $conclusion "plain" $plain "layout" (.Get "layout") "class" (.Get "class") "rule" (.Get "rule") "invalid" $invalid "page" .Page) -}}

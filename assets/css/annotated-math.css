@@ -19,6 +19,15 @@
 
 .annotated-math--wrap .annotated-math__row { flex-wrap:wrap; inline-size:auto; min-inline-size:0; }
 .annotated-math__item { display:inline-flex; align-items:center; gap:.25em; }
+/* stack=true sets a grammar as it is written by hand: one group per line, each
+   separator under the prefix's ::=, and each group's label at the line's end. */
+.annotated-math--stack .annotated-math__row { display:grid; grid-template-columns:repeat(3,max-content); justify-content:center; align-items:baseline; gap:.2em .4em; inline-size:auto; min-inline-size:0; }
+.annotated-math--stack :is(.annotated-math__item, .annotated-math__group) { display:contents; }
+.annotated-math--stack .annotated-math__edge { justify-self:end; }
+.annotated-math--stack :is(.annotated-math__symbols, .annotated-math__label) { grid-row:auto; }
+.annotated-math--stack .annotated-math__symbols { color:var(--annotation-ink, var(--ink)); justify-self:start; text-align:start; }
+.annotated-math--stack .annotated-math__brace { display:none; }
+.annotated-math--stack .annotated-math__label { justify-self:start; padding-inline-start:1em; }
 /* Eight alphabet roles, each with its own annotation ink. */
 .annotated-math__group--violet { --annotation-ink:#7544a3; }
 .annotated-math__group--orange { --annotation-ink:#a64c00; }

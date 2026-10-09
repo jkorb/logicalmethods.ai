@@ -8,6 +8,12 @@ only within that scope; completed planned steps pass through the same kernel.
 Hints inspect the selected goal and available conditionals. The strategies deck
 replays its authored proofs backwards through these plans.
 
+In FOL mode, ∀ introduction opens the quantified body with its arbitrary
+variable; ∃ introduction asks for a witness term. Backward ∀ elimination takes
+`universal formula; term`, and ∃ elimination takes `existential formula; fresh
+variable`. The latter opens a witness assumption only in its second subgoal.
+The kernel checks capture and freshness again when a plan becomes a proof.
+
 Save/Load includes plans and per-example drafts. Undo restores both proof and
 plans. Deleting a proof node clears the plans because their assumption IDs may
 change. Completed targets freeze inference controls until Restart or a different

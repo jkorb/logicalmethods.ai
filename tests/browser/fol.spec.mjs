@@ -109,6 +109,28 @@ test('syntax apps share the parser layout and check binding with shadowing',asyn
 
 });
 
+test('a lecturer draws the bindings on a slide, each arrow joining its quantifier to its occurrence at any zoom',async({page})=>{
+  await page.goto('/slides/fol/#slide-7');await expect(page.locator('[data-reveal-deck]')).toHaveAttribute('data-deck-ready','true');
+  const scope=page.locator('#slide-7 .fol-scope'),wires=scope.locator('.scope-wire');
+  const quantifier=name=>scope.getByRole('button',{name:new RegExp(`^Quantifier ${name} `)}),occurrence=name=>scope.getByRole('button',{name:new RegExp(`^Occurrence ${name} `)});
+  // Each arrow leaves the centre of one symbol's top edge and its head's tip ends on another's, in screen pixels.
+  const gaps=()=>scope.evaluate(app=>{const ctm=app.querySelector('.scope-wires').getScreenCTM(),tops=[...app.querySelectorAll('button[data-token]')].map(n=>{const r=n.getBoundingClientRect();return [r.left+r.width/2,r.top];});
+    const gap=(x,y)=>{const p=new DOMPoint(x,y).matrixTransform(ctm);return Math.min(...tops.map(([cx,cy])=>Math.hypot(cx-p.x,cy-p.y)));};
+    const at=(g,part)=>g.querySelector(part).getAttribute('d').match(/-?[\d.]+/g).map(Number);
+    return [...app.querySelectorAll('.scope-arrow')].flatMap(g=>{const w=at(g,'.scope-wire'),h=at(g,'.scope-head');return [gap(w[0],w[1]),gap(h[2],h[3])];});});
+  await expect(wires).toHaveCount(0);await expect(scope.locator('[data-free]')).toBeHidden();
+  await quantifier('∃y').click();await expect(quantifier('∃y')).toHaveAttribute('aria-pressed','true');await expect(scope.locator('.scope-in-scope').first()).toBeVisible();await expect(wires).toHaveCount(0);
+  await occurrence('y').first().click();await occurrence('y').last().click();await expect(wires).toHaveCount(2);
+  for(const d of await gaps())expect(d).toBeLessThan(1);
+  await occurrence('y').last().click();await expect(wires).toHaveCount(1);
+  await quantifier('∀x').click();await occurrence('x').first().click();await expect(wires).toHaveCount(2);
+  await scope.getByRole('button',{name:'Clear the arrows',exact:true}).click();await expect(wires).toHaveCount(0);await expect(scope.locator('.scope-in-scope')).toHaveCount(0);
+  await scope.getByRole('button',{name:'Open formula',exact:true}).click();await quantifier('∀x').click();await occurrence('x').last().click();await expect(wires).toHaveCount(1);
+  for(const d of await gaps())expect(d).toBeLessThan(1);
+  await expect(scope.locator('[data-practice-feedback]')).toBeHidden();
+  expect((await new AxeBuilder({page}).include('#slide-7 .fol-scope').analyze()).violations).toEqual([]);
+});
+
 test('add rows, in-canvas prompts, and overlapping unary sets reflect model edits',async({page},info)=>{
   await page.goto(chapter);const root=app(page,'Interpret predicates');await symbol(root,'Sibling');await root.getByRole('button',{name:'Add Sibling tuple',exact:true}).click();
   await expect(root.locator('[data-display] [data-edit-help]')).toContainText('first object');await object(root,'Little Jimmy').click();await expect(root.locator('[data-edit-help]')).toContainText('second object');await object(root,'Mr Sir').click();await expect(root.getByRole('table',{name:'⟦Sibling⟧',exact:true}).locator('tbody tr:not(.fol-add-row)')).toHaveCount(1);
@@ -305,7 +327,8 @@ test('model arrows keep their size and repeated reciprocal labels do not overlap
  for(let i=0;i<boxes.length;i++)for(let j=0;j<i;j++){const a=boxes[i],b=boxes[j];expect(a.x<b.x+b.w&&a.x+a.w>b.x&&a.y<b.y+b.h&&a.y+a.h>b.y).toBe(false);}
  const markers=await root.locator('.fol-graph marker').evaluateAll(ns=>ns.map(n=>[n.getAttribute('markerUnits'),n.getAttribute('markerWidth'),n.getAttribute('markerHeight')]));
  expect(new Set(markers.map(JSON.stringify)).size).toBe(1);expect(markers[0][0]).toBe('userSpaceOnUse');
- await expect(root.locator('.fol-graph [data-object="jimmy"]')).toContainText('⟦Human⟧, ⟦Mortal⟧');
+ await expect(root.getByRole('button',{name:'Select Human: Little Jimmy',exact:true})).toHaveText('⟦Human⟧');
+ await expect(root.getByRole('button',{name:'Select Mortal: Little Jimmy',exact:true})).toHaveText('⟦Mortal⟧');
  await reviewScreenshot(root,{path:`tmp/fol-review/revision-15/arrows-${info.project.name}.png`});
  // Hiding a duplicate label must not remove its arrow's keyboard access or deletion.
  const modify=root.getByRole('button',{name:'Modify',exact:true});if(await modify.getAttribute('aria-expanded')==='true')await modify.click();

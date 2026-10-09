@@ -1,10 +1,15 @@
-<section id="{{ .id }}" class="logic-app fol-scope" data-logic-app="fol-scope" data-mode="{{ .sc.Get "mode" | default "display" }}" data-formula="{{ .sc.Get "formula" | default "∃x (Human(x) ∧ ∀x Mortal(x))" }}" aria-label="{{ .sc.Get "title" | default "Scope and binding" }}">
-<div class="fol-practice-toolbar" {{ if ne (.sc.Get "mode") "practice" }}hidden{{ end }}>
+{{ $mode := .sc.Get "mode" | default "display" }}
+<section id="{{ .id }}" class="logic-app fol-scope" data-logic-app="fol-scope" data-mode="{{ $mode }}" data-formula="{{ .sc.Get "formula" | default "∃x (Human(x) ∧ ∀x Mortal(x))" }}" data-formulas="{{ .sc.Get "formulas" }}" data-labels="{{ .sc.Get "labels" }}" aria-label="{{ .sc.Get "title" | default "Scope and binding" }}">
+<div class="fol-practice-toolbar" {{ if ne $mode "practice" }}hidden{{ end }}>
   <div data-levels class="builder__levels" role="group" aria-label="Binding levels"></div>
   <button type="button" data-check aria-label="Check bindings">{{ partial "apps/icon.html" "check" }} Check</button>
 </div>
+<div class="scope-toolbar" {{ if ne $mode "explore" }}hidden{{ end }}>
+  <div data-examples class="sat-examples" role="group" aria-label="Formulas" hidden></div>
+  <button type="button" data-clear aria-label="Clear the arrows">{{ partial "apps/icon.html" "trash" }} Clear</button>
+</div>
 <div class="scope-canvas" role="region" aria-label="{{ .sc.Get "title" | default "Scope and binding" }}: binding arrows" tabindex="0"></div>
-<p data-practice-feedback {{ if ne (.sc.Get "mode") "practice" }}hidden{{ end }} role="status" aria-live="polite"></p>
+<p data-practice-feedback {{ if ne $mode "practice" }}hidden{{ end }} role="status" aria-live="polite"></p>
 <p data-free class="scope-free"></p>
 <p data-app-fallback>Enable JavaScript to explore variable binding.</p>
 </section>

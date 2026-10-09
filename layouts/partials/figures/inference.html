@@ -1,5 +1,5 @@
 <figure
-  class="inference{{ if eq .layout "stacked" }} inference--stacked{{ end }}{{ with .class }} {{ . }}{{ end }}"
+  class="inference{{ if eq .layout "stacked" }} inference--stacked{{ end }}{{ if .invalid }} inference--invalid{{ end }}{{ with .class }} {{ . }}{{ end }}"
   role="figure"
   aria-label="{{ .plain }}{{ with .rule }}, by {{ . }}{{ end }}"
 >
@@ -13,7 +13,7 @@
     <div class="inference__conclusion">{{ .page.RenderString .conclusion }}</div>
   </div>
 
-  {{- with .rule }}
-    <figcaption class="inference__label" aria-hidden="true">{{ . }}</figcaption>
+  {{- if or .rule .invalid }}
+    <figcaption class="inference__label" aria-hidden="true">{{ .rule }}{{ if .invalid }} <span class="inference__cross">✗</span>{{ end }}</figcaption>
   {{- end }}
 </figure>

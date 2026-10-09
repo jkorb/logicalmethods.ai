@@ -32,8 +32,8 @@ test('save and reload a schematic derived rule and instantiate a compound formul
   const choosing=page.waitForEvent('filechooser');await menu(a);await button(a,'Load lemmas').click();await (await choosing).setFiles(path);await expect(a.locator('[data-lemma]')).toHaveCount(2);
 });
 test('Lean output is highlighted, editable and linked to a populated playground',async({page})=>{
-  await page.goto('/tools/lean-correspondence/');const a=app(page,'lean');await expect(a.locator('code .k').first()).toHaveText('variable');await button(a,'Lean → ND').click();await expect(state(a)).toContainText('Translated and checked');
-  await button(a,'ND → Lean').click();await expect(a.locator('code')).toContainText('example');const href=await page.getByRole('link',{name:'Open in Lean (opens in a new tab)',exact:true}).getAttribute('href');expect(decodeURIComponent(href)).toContain('example');
+  await page.goto('/tools/lean-correspondence/');const a=app(page,'lean');await a.getByRole('textbox',{name:'Lean proof',exact:true}).fill('variable (A : Prop)\nexample (h : A) : A := by\n  exact h');await button(a,'Lean → ND').click();await expect(state(a)).toContainText('Translated and checked');
+  await button(a,'ND → Lean').click();await expect(a.locator('code')).toContainText('example');const href=await page.getByRole('link',{name:'Open in Lean (opens in a new tab)',exact:true}).first().getAttribute('href');expect(decodeURIComponent(href)).toContain('example');
   const count=await a.locator('[data-node]').count();await button(a,'Edit Lean').click();await a.getByRole('textbox',{name:'Lean proof',exact:true}).fill('example : False := by\n  sorry');await button(a,'Lean → ND').click();await expect(state(a)).toContainText('Holes');await expect(a.locator('[data-node]')).toHaveCount(count);
 });
 test('worked displays show only the relevant example, with controls above stepped proofs',async({page})=>{
@@ -67,7 +67,7 @@ test('canvas panels move, hints float, and right-click offers applicable rules',
   await page.goto('/tools/natural-deduction/');const a=app(page,'sandbox');await assume(a,'A ∧ B');
   await a.locator('[data-node="0"]').click({button:'right'});const context=a.getByRole('group',{name:'Applicable rules'});
   await expect(context).toBeVisible();expect(await button(context,'∧ Elim · left').locator('.nd-math').evaluate(n=>getComputedStyle(n).fontFamily)).toContain('Comic Shanns');await button(context,'∧ Elim · left').click();await expect(state(a)).toContainText('∧ Elim');
-  await menu(a);await expect(button(a,'Save lemma').locator('svg')).toHaveCount(1);await expect(button(a,'Save lemma')).toHaveText('');await expect(button(a,'Load lemmas')).toHaveText('');await expect(a.locator('.nd-rule-help')).toHaveCount(0);
+  await menu(a);await expect(button(a,'Save lemma').locator('svg')).toHaveCount(1);await expect(button(a,'Save lemma')).toHaveText('');expect(await button(a,'Save lemma').locator('svg').innerHTML()).not.toBe(await button(a,'Save').locator('svg').innerHTML());await expect(button(a,'Load lemmas')).toHaveText('');await expect(a.locator('.nd-rule-help')).toHaveCount(0);
   const save=await button(a,'Save lemma').boundingBox(),load=await button(a,'Load lemmas').boundingBox();expect(save.y).toBeCloseTo(load.y,0);const canvas=await a.locator('.nd-board').boundingBox(),toggle=await button(a,'Rules').boundingBox();expect(toggle.y).toBeGreaterThanOrEqual(canvas.y);expect(toggle.y+toggle.height).toBeLessThan(canvas.y+canvas.height);expect(toggle.x+toggle.width).toBeLessThanOrEqual(canvas.x+canvas.width);
   await button(a,'Hint').click();const prompt=a.getByRole('dialog');await expect(prompt).toContainText('Select formulas');await expect(button(prompt,'Apply')).not.toBeVisible();
   const handle=prompt.locator('.nd-drag-handle');const before=await prompt.boundingBox();await handle.focus();await page.keyboard.press('ArrowLeft');expect((await prompt.boundingBox()).x).toBeLessThan(before.x);await button(prompt,'Close').click();
@@ -81,7 +81,7 @@ test('arrow introduction accepts an unused antecedent and preserves existing ass
   await page.goto('/tools/natural-deduction/');const a=app(page,'sandbox');
   await assume(a,'RAIN');await rule(a,'→ Intro');await button(a.getByRole('dialog'),'Vacuous discharge').click();await modal(a,'Antecedent','RAIN');
   await expect(a.locator('.nd-board')).toContainText('(RAIN → RAIN)');await expect(state(a).locator('li')).toHaveCount(1);await expect(state(a)).toContainText('h0: RAIN');
-  await menu(a);await button(a,'↺ Restart').click();await rule(a,'⊤ Intro');
+  await menu(a);await button(a,'Reset derivation').click();await rule(a,'⊤ Intro');
   await a.locator('[data-node="0"]').click({button:'right'});await button(a.getByRole('group',{name:'Applicable rules'}),'→ Intro').click();
   await button(a.getByRole('dialog'),'Vacuous discharge').click();await modal(a,'Antecedent','SUN ∧ WIND');
   await expect(a.locator('.nd-board')).toContainText('((SUN ∧ WIND) → ⊤)');await expect(state(a)).toContainText('No open assumptions.');
@@ -105,7 +105,7 @@ test('Lean walkthrough links each command to its goal and derivation',async({pag
   }
   await button(a,'Next step').click();await expect(a.locator('.nd-goal')).toHaveText('No goals remain');await expect(a.locator('.nd-lean-line[aria-current="step"]')).toHaveText('  exact rain');await button(a,'Next step').click();await expect(button(a,'Next step')).toBeDisabled();
   expect(await a.locator('code').evaluate(n=>getComputedStyle(n).textAlign)).toBe('start');
-  await page.goto('/tools/lean-correspondence/');const lean=app(page,'lean');await expect(lean.locator('.code-block .lang-badge svg')).toHaveCount(1);expect(await lean.locator('code').evaluate(n=>getComputedStyle(n).textAlign)).toBe('start');await expect(lean.locator('.code-block').getByRole('button',{name:'Edit Lean',exact:true})).toBeVisible();await expect(page.getByRole('link',{name:'Open in Lean (opens in a new tab)'})).toHaveClass(/link-out/);await expect(app(page,'lean-walkthrough')).toBeVisible();
+  await page.goto('/tools/lean-correspondence/');const lean=app(page,'lean');await expect(lean.locator('.code-block .lang-badge svg')).toHaveCount(1);expect(await lean.locator('code').evaluate(n=>getComputedStyle(n).textAlign)).toBe('start');await expect(lean.locator('.code-block').getByRole('button',{name:'View code',exact:true})).toBeVisible();await expect(page.getByRole('link',{name:'Open in Lean (opens in a new tab)'}).first()).toHaveClass(/link-out/);await expect(app(page,'lean-walkthrough')).toHaveCount(0);
 });
 
 test('backward goals meet forward derivations and freeze a finished target',async({page})=>{
@@ -118,10 +118,10 @@ test('backward goals meet forward derivations and freeze a finished target',asyn
 });
 
 test('goal plans save, reload and export sorry only for unfinished branches',async({page})=>{
-  await page.goto('/tools/lean-correspondence/');const a=app(page,'lean');await button(a,'Temporary assumption').click();await button(a,'Goal mode').click();await a.locator('[data-goal="0:"]').click();await rule(a,'→ Intro');
+  await page.goto('/tools/lean-correspondence/');const a=app(page,'lean');await menu(a);await button(a,'+ Goal').click();await modal(a,'Formula','RAIN → (RAIN ∨ WIND)');await a.locator('[data-goal="0:"]').click();await rule(a,'→ Intro');
   await a.locator('[data-goal="0:0"]').click();await button(a,'ND → Lean').click();await expect(a.locator('code')).toContainText('sorry');await expect(a.locator('code')).toContainText('intro');
   const downloading=page.waitForEvent('download');await button(a,'Save').click();const path=await(await downloading).path();await page.reload();await expect(a).toHaveAttribute('data-mounted','true');await a.locator('input[type=file]').setInputFiles(path);await expect(a.locator('[data-goal="0:0"]')).toBeVisible();
-  await a.locator('[data-goal="0:0"]').click();await rule(a,'∨ Intro · left');await expect(state(a)).toContainText('Derivation complete');await button(a,'ND → Lean').click();await expect(a.locator('code')).not.toContainText('sorry');
+  await a.locator('[data-goal="0:0"]').click();await rule(a,'∨ Intro · left');await expect(a.locator('[data-goal="0:"]')).toHaveClass(/nd-solved/);await button(a,'ND → Lean').click();await expect(a.locator('code')).not.toContainText('sorry');
 });
 
 test('fullscreen supports the icon and F without capturing text input',async({page})=>{
@@ -151,7 +151,7 @@ test('right-click switches between backward goals and forward proof rules',async
 
 test('Lean playground links sit quietly below code and outside the translator',async({page})=>{
   await page.goto('/textbook/proofs/');const a=app(page,'lean');await expect(a.getByRole('link',{name:'Open in Lean (opens in a new tab)'})).toHaveCount(0);
-  const link=page.locator('[data-kind="lean"] + .lean-playground-link');await expect(link.getByRole('link')).toHaveAttribute('href',/#code=/);
+  const links=page.locator('[data-kind="lean"] + .lean-playground-link').getByRole('link');for(const link of await links.all())await expect(link).toHaveAttribute('href',/#code=/);
   const styles=await page.locator('.lean-playground-link').evaluateAll(ns=>ns.map(n=>({align:getComputedStyle(n).textAlign,size:parseFloat(getComputedStyle(n).fontSize),parentSize:parseFloat(getComputedStyle(n.parentElement).fontSize)})));
   for(const s of styles){expect(s.align).toBe('right');expect(s.size).toBeLessThan(s.parentSize);}
 });
@@ -187,4 +187,18 @@ test('walkthrough panes align and highlighting preserves code indentation',async
   if(page.viewportSize().width>720)expect(block.y).toBeCloseTo(board.y,0);
   const line=a.locator('.nd-lean-line').filter({hasText:'apply if_cold_then_heating'});
   const start=await line.boundingBox();await button(a,'Next step').click();await expect(line).toHaveAttribute('aria-current','step');const active=await line.boundingBox();expect(active.x).toBeCloseTo(start.x,1);expect(active.width).toBeCloseTo(start.width,1);expect(await line.evaluate(n=>getComputedStyle(n).borderInlineStartWidth)).toBe('0px');
+});
+
+test('chapter 7 completed derivations can be reset from the canvas controls',async({page})=>{
+  await page.goto('/textbook/proofs/');const a=app(page,'canvas');
+  await a.locator('[data-node="0"]').click();await rule(a,'∧ Elim · right');
+  await a.locator('[data-node="0"]').first().click();await rule(a,'∧ Elim · left');
+  await a.locator('[data-node="1"]').first().click();await a.locator('[data-node="2"]').first().click();await rule(a,'∧ Intro');
+  await expect(state(a)).toContainText('Derivation complete');
+  await expect(a.locator('[data-example="swap"]')).toHaveClass(/is-complete/);
+  await button(a,'Reset derivation').click();
+  await expect(a.locator('[data-node]')).toHaveCount(1);
+  await expect(a.locator('[data-example="swap"]')).not.toHaveClass(/is-complete/);
+  await a.locator('[data-node="0"]').click();await rule(a,'∧ Elim · right');
+  await expect(a.locator('[data-node="1"]')).toBeVisible();
 });

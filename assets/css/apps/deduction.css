@@ -164,3 +164,70 @@
 .nd-app .nd-walk-panes .code-block { margin-block:0; }
 .nd-app .nd-walk-panes code { display:block; }
 .nd-app .nd-walk-panes .nd-lean-line[aria-current="step"] { border-inline-start:0; box-shadow:inset 3px 0 var(--blue-ink); }
+
+/* First-order apps reuse SAT notebook layout and navigation. */
+.fol-inference-app [data-input-form] { flex-wrap: wrap; align-items: center; }
+.fol-inference-app [data-input-form] textarea { flex: 1 1 14rem; width: auto; }
+.fol-inference-app .nd-navigation { flex-wrap: wrap; gap: .3rem; margin: 0; }
+.fol-inference-app .nd-board { display: block; height: auto; min-height: 6rem; max-height: 50vh; resize: none; padding: .4rem; text-align: start; }
+/* Resolution needs the full width for its proof branches. */
+.fol-inference-app:is([data-kind="resolution"], [data-kind="practice"]) .sat-layout { grid-template-columns: minmax(0, 1fr); gap: .5rem; }
+.fol-inference-app .nd-text { display: block; }
+.fol-inference-app .nd-tree { margin: .5rem auto; width: max-content; }
+.fol-inference-app .nd-status { margin-block: .5rem; max-height: none; }
+.fol-inference-app .sat-examples { align-items: center; }
+.fol-inference-app .finf-count { font-size: var(--step--2); white-space: nowrap; }
+.fol-inference-app .finf-operations { display: flex; flex-wrap: wrap; gap: .3rem; }
+.fol-inference-app .finf-operations:empty { display: none; }
+.fol-inference-app .finf-operations button { font-family: var(--font-formal); padding: .25rem .45rem; }
+/* The board scrolls, so it clips anything left of it: the indent must hold
+   the whole marker, "1. ", in the formal font's own characters. */
+.fol-inference-app .finf-equations { display: block; padding-inline-start: 3.5ch; margin-block: .3rem; }
+.fol-inference-app .finf-equations li { padding: .15rem; }
+.fol-inference-app .finf-equations button { font: inherit; text-align: start; overflow-wrap: anywhere; }
+.fol-inference-app .finf-formula { width: max-content; padding: .7rem; white-space: nowrap; }
+.fol-inference-app .finf-token, .fol-inference-app .finf-literal { font: inherit; border: 1px solid transparent; padding: .1rem .2rem; background: transparent; box-shadow: none; }
+.fol-inference-app .finf-token:hover, .fol-inference-app .finf-literal:hover { background: var(--surf-blue); }
+.fol-inference-app .finf-subformula.is-selected { outline: 2px solid var(--blue-ink); outline-offset: 2px; border-radius: var(--radius); background: var(--surf-blue); }
+.fol-inference-app .finf-literal[aria-pressed="true"] { border: 1px dashed var(--blue-ink); background: var(--surf-blue); }
+.fol-inference-app .finf-literal[data-order]:not([data-order=""])::after { content: attr(data-order); vertical-align: super; font-size: var(--step--2); margin-inline-start: .2rem; }
+.fol-inference-app .finf-witness { display: flex; flex-wrap: wrap; gap: .3rem; align-items: end; margin-block: .5rem; }
+.fol-inference-app .finf-witness label { flex: 1 1 9rem; min-width: 0; font-size: var(--step--1); }
+.fol-inference-app .finf-witness input { box-sizing: border-box; }
+.fol-inference-app .finf-parents { font-size: var(--step--2); overflow-wrap: anywhere; }
+.fol-inference-app .finf-pivot { background: var(--surf-blue); color: var(--ink); box-shadow: inset 0 -2px var(--blue-ink); }
+.fol-inference-app .finf-quiz { margin-block: 1rem; }
+.fol-inference-app fieldset { min-width: 0; }
+.fol-inference-app legend { overflow-wrap: anywhere; }
+.fol-inference-app .finf-choice { display: block; margin-block: .4rem; text-align: start; overflow-wrap: anywhere; max-width: 100%; }
+
+.fol-inference-app[data-mode="demo"] .nd-board { border: 0; border-radius: 0; padding: 0; }
+.fol-inference-app .finf-equations button[aria-pressed="true"] { border: 1px dashed var(--blue-ink); background: var(--surf-blue); }
+.fol-inference-app [data-input-form] > .logic-app__input-wrap { flex:1 1 14rem; min-width:0; }
+.fol-inference-app .logic-app__input-wrap textarea { width:100%; }
+.fol-inference-app [data-input-form].finf-pair-form { display:grid; grid-template-columns:minmax(0,1fr) auto minmax(0,1fr); gap:.4rem; align-items:stretch; }
+.fol-inference-app .finf-pair-form > .logic-app__input-wrap { display:grid; }
+.fol-inference-app .finf-question { align-self:center; font:var(--step-1) var(--font-formal); }
+.fol-inference-app .finf-pair-form + .nd-navigation { justify-content:center; margin-block:.6rem; }
+.fol-inference-app .finf-equations [aria-current="step"] { background:var(--surf-blue); border-inline-start:2px solid var(--blue-ink); border-radius:var(--radius); }
+.fol-inference-app[data-kind="resolution-rule"] { text-align:center; }
+.fol-inference-app[data-kind="resolution-rule"] .nd-math { font-size:var(--step--1); }
+.fol-inference-app .finf-rules { display:flex; flex-wrap:wrap; justify-content:center; align-items:flex-end; gap:1rem 3rem; }
+
+.fol-inference-app .logic-app__input-wrap > .logic-app__input {
+  padding-inline: .6rem 2.8rem;
+}
+
+
+/* Canvas utilities use the reserved top margin, including in worked proofs. */
+.nd-app .nd-canvas-controls.logic-app__export-controls { margin: 0; }
+.nd-app .nd-layout > .logic-app__export-notice { display:block; }
+.nd-app .nd-layout > .logic-app__export-notice:empty { display:none; }
+.nd-app .nd-layout > .nd-board { padding-block-start:calc(var(--nd-tools-height, 2.2rem) + 1rem); }
+.fol-inference-app .finf-operations button { display:inline-flex; align-items:center; gap:.3rem; }
+.fol-inference-app .finf-operation-label { font-family:var(--font-prose); font-size:var(--step--2); }
+
+.finf-resolution-canvas { position:relative; min-width:0; }
+.finf-resolution-canvas > .nd-board { padding-top:3.5rem; }
+.finf-resolution-tools.logic-app__export-controls { position:absolute; top:.4rem; right:.4rem; display:flex; gap:.25rem; margin:0; }
+.finf-resolution-tools > button { width:2.4rem; height:2.4rem; padding:.3rem; }

@@ -1,0 +1,59 @@
+{
+  "language": {
+    "constants": [],
+    "functions": {
+      "S": 1
+    },
+    "predicates": {
+      "LessThan": 2
+    }
+  },
+  "objects": [],
+  "model": {
+    "domain": [],
+    "constants": {},
+    "functions": {},
+    "predicates": {
+      "LessThan": []
+    }
+  },
+  "premises": [
+    "∀x LessThan(x, S(x))"
+  ],
+  "goal": "∀x ∃y LessThan(x, y)",
+  "depiction": "successor",
+  "arbitrary": [
+    "d"
+  ],
+  "walkthrough": [
+    {
+      "formula": "Take any model M of ∀x LessThan(x, S(x)).",
+      "explanation": "We have not fixed the size of its domain or a numerical interpretation of its symbols."
+    },
+    {
+      "formula": "Let d be any object of D.",
+      "explanation": "There is no special assumption about d. The domain may contain other objects.",
+      "arbitrary": "d"
+    },
+    {
+      "formula": "LessThan(d, S(d))",
+      "explanation": "The universal premise applies to d. The total function interpreting S supplies S(d); the premise puts the pair in LessThan.",
+      "known": [
+        "LessThan(d, S(d))"
+      ]
+    },
+    {
+      "formula": "∃y LessThan(d, y)",
+      "explanation": "Choose S(d) as the witness. The preceding step established the required instance."
+    },
+    {
+      "formula": "∀x ∃y LessThan(x, y)",
+      "explanation": "The choice of d was arbitrary, so every object has a witness. That witness can depend on the object."
+    },
+    {
+      "formula": "∀x LessThan(x, S(x)) ⊨ ∀x ∃y LessThan(x, y)",
+      "explanation": "The argument works in every model of the premise, including infinite models. We did not enumerate its domain.",
+      "result": "true"
+    }
+  ]
+}

@@ -143,6 +143,7 @@ export function mountParser(root) {
     render();
   });
   root.querySelectorAll('button, input, textarea').forEach(el => { el.disabled = false; });
-  start();
+  if(root.dataset.tool==='true'){input.value='';input.readOnly=false;use.hidden=false;edit.hidden=true;edited();}
+  else start();
   root.querySelector('[data-app-fallback]')?.remove();
 }

@@ -97,7 +97,7 @@ function mountEvaluation(root) {
   }
   enableLatexInput(input,dirty);root.querySelector('form').addEventListener('submit',e=>{e.preventDefault();start();});
   const bank=root.querySelector('[data-evaluation-examples]');
-  if(bank){
+  if(bank && root.dataset.tool!=='true'){
     const examples=JSON.parse(bank.textContent);let custom='',selected=0;
     choices(root.querySelector('[data-toolbar]'),[...examples.map((e,i)=>[i,`Example ${i+1}`]),['custom','Your formula']],0,i=>{
       if(selected==='custom')custom=input.value;selected=i;
@@ -107,6 +107,6 @@ function mountEvaluation(root) {
     },'Evaluation example');
     input.value=examples[0].formula;input.readOnly=true;Object.assign(valuation,examples[0].valuation);
   }
-  start();
+  if(root.dataset.tool==='true'){input.value='';dirty();}else start();
 }
 function findNode(node,id) {return node.id===id ? node : node.children.map(c=>findNode(c,id)).find(Boolean);}

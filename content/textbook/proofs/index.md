@@ -953,6 +953,24 @@ Whether we construct the argument ourselves or ask an AI agent to do so, we
 can submit the resulting proof term to Lean. Its type states the claim; the
 kernel checks that the term proves it from the stated assumptions.
 
+### Looking ahead to quantifiers
+
+For a predicate $Human$, a proof of $∀x Human(x)$ takes an object $x$ and
+returns a proof of $Human(x)$. Its result type depends on the chosen object.
+This extends the function interpretation of conditional proofs to dependent
+functions. An existential proof supplies an object together with a proof of
+its property. The quantifier rules also require freshness and substitution
+checks, which we develop in
+{{< chapter_ref chapter="FOL-inference" id="natural-deduction-and-lean" >}}FOL Inference{{< /chapter_ref >}}.
+
+The correspondence app has a first-order deck too. In An arbitrary object,
+`intro x` introduces a domain object, while `intro hx` introduces a proof of
+`Human x`. The canvas records the resulting universal and conditional
+introductions as separate rules. Choose an example and translate its Lean
+code to inspect those steps.
+
+{{< logic-app name="deduction" language="fol" kind="lean" example="universal" title="Preview: Curry–Howard for quantifiers" >}}
+
 ## Automated theorem proving in Lean
 
 So far, we've told Lean which proof steps to take. But we've already

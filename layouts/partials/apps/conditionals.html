@@ -1,6 +1,6 @@
 {{ $kind := .sc.Get "kind" | default "chaining" }}
 {{ if not (in (slice "chaining" "comparison" "horn" "planning") $kind) }}{{ errorf "Unknown conditional app kind %q" $kind }}{{ end }}
-<section class="logic-app conditional-app" data-logic-app="conditionals" data-kind="{{ $kind }}" data-method="{{ .sc.Get "method" }}" data-frames="{{ .sc.Get "frames" }}" data-view="{{ .sc.Get "view" }}" data-autostart="{{ .sc.Get "autostart" }}" data-exercise="{{ .sc.Get "exercise" }}" data-example="{{ .sc.Get "example" }}" data-kb="{{ .sc.Get "kb" }}" data-goal="{{ .sc.Get "goal" }}" aria-label="{{ .sc.Get "title" | default (printf "%s example" $kind) }}">
+<section class="logic-app conditional-app" data-tool="{{ eq .sc.Page.Section "tools" }}" data-logic-app="conditionals" data-kind="{{ $kind }}" data-method="{{ .sc.Get "method" }}" data-frames="{{ .sc.Get "frames" }}" data-view="{{ .sc.Get "view" }}" data-autostart="{{ .sc.Get "autostart" }}" data-exercise="{{ .sc.Get "exercise" }}" data-example="{{ .sc.Get "example" }}" data-kb="{{ .sc.Get "kb" }}" data-goal="{{ .sc.Get "goal" }}" aria-label="{{ .sc.Get "title" | default (printf "%s example" $kind) }}">
   <template data-icon="accessibility">{{ partial "apps/icon.html" "accessibility" }}</template>
   <div data-examples class="sat-examples" role="group" aria-label="Examples"></div>
   <p data-description></p>

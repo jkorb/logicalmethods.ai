@@ -115,13 +115,13 @@ test('two instances retain independent inputs and histories', async ({ page }) =
   await expect(first).toHaveAttribute('data-mounted', 'true');
   const second = page.locator('[data-logic-app]').nth(1);
   await expect(second).toHaveAttribute('data-mounted', 'true');
-  await second.getByRole('button', { name: 'Edit formula', exact: true }).click();
+  await expect(second.getByLabel('Formula', { exact: true })).toBeEditable();
   await second.getByLabel('Formula', { exact: true }).fill('p ∧ q');
   await second.getByRole('button', { name: 'Start parsing', exact: true }).click();
   await second.getByRole('button', { name: 'Last step', exact: true }).click();
   await expect(second.getByRole('status')).toContainText('Parsing finished: (p ∧ q)');
-  await expect(first.getByRole('status')).toContainText('Start with the whole formula');
-  await expect(first.getByLabel('Formula', { exact: true })).toHaveValue('((p ∧ q) → ¬r)');
+  await expect(first.getByRole('status')).toContainText('Start parsing');
+  await expect(first.getByLabel('Formula', { exact: true })).toHaveValue('');
 });
 
 

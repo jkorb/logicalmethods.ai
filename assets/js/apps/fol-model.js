@@ -1,4 +1,6 @@
+import {signature} from '../logic/fol-inference.js';
 import { layoutGraphLabels } from './fol-graph-labels.js';
+import {consequenceWalkthrough} from './fol-consequence.js';
 import { renderTree } from './tree-renderer.js';
 import { svg } from './boolean-ui.js';
 import { mountSQLRunner } from './sql-runner.js';
@@ -13,17 +15,27 @@ import { el, modelViews } from './fol-views.js';
 import { databaseSQL } from '../logic/fol-database-export.js';
 import { downloadText } from './download-text.js';
 export function mountFOLModel(root) {
+  if(root.dataset.tool==='true'&&root.dataset.kind==='consequence')return mountConsequenceTool(root);
   const config = JSON.parse(root.querySelector('[data-fol-config]').textContent);
+  const tool=root.dataset.tool==='true';
+  if(tool)config.model={domain:[],constants:{},functions:Object.fromEntries(Object.keys(config.language.functions).map(n=>[n,{}])),predicates:Object.fromEntries(Object.keys(config.language.predicates).map(n=>[n,[]]))};
+  const consequenceMode=root.dataset.kind==='consequence';
+  let partial=consequenceMode||!!config.partial, negative={};
+  const reasoning=consequenceMode?consequenceWalkthrough(config):null;
+  if(consequenceMode)root.classList.add('fol-consequence-app');
   const language = config.language, objects = new Map(config.objects.map(o => [o.id, o]));
   root.dataset.objectStyle = config.objects.every(o=>o.emoji) ? 'emoji' : 'drawing';
   const databaseMode = root.dataset.kind === 'database', termMode = root.dataset.kind === 'term';
   const structureOnly = root.dataset.kind === 'model' || databaseMode;
-  const query = ['query', 'sql'].includes(root.dataset.kind), sqlMode = root.dataset.kind === 'sql', editable = root.dataset.editable !== 'false';
+  const query = ['query', 'sql'].includes(root.dataset.kind), sqlMode = root.dataset.kind === 'sql', editable = !consequenceMode && root.dataset.editable !== 'false';
   const find = selector => root.querySelector(selector), input = find('[data-formula]'), sqlInput = find('[data-sql-source]');
+  if(tool)input.value='';
+  if(consequenceMode)input.value=config.goal;
   const initialFormula = input.value;
   const display = find('[data-display]'), status = find('[data-calculation]'), answer = find('[data-answer]');
   let model = structuredClone(config.model), view = root.dataset.view, selected = [], symbol = '', assignment = {};
   let selectedRelation = null, setPredicate = Object.keys(language.predicates).find(n => language.predicates[n] === 1) || Object.keys(language.predicates)[0] || Object.keys(language.functions)[0], zoom = 1;
+  if(consequenceMode&&config.depiction==='socrates')setPredicate='@together';
   let highlightSymbol = '', showExtension = true;
   const tabs = find('[data-set-predicates]');
   let result = null, index = 0, projection = null;
@@ -56,7 +68,7 @@ export function mountFOLModel(root) {
       showSQL();
     }
   }) : null;
-  const views = () => modelViews({ language, objects, columns: config.columns || {}, model, editable, choose: chooseObject, selected, markerId: `${input.id}-arrow`, removeObject, chooseRelation, selectedRelation, removeRelation, setPredicate, highlightSymbol, symbol, beginTuple, chooseSymbol: selectSymbol });
+  const views = () => modelViews({ language, objects, columns: config.columns || {}, model, partial, negative, editable, choose: chooseObject, selected, markerId: `${input.id}-arrow`, removeObject, chooseRelation, selectedRelation, removeRelation, setPredicate, highlightSymbol, symbol, beginTuple, chooseSymbol: selectSymbol });
   function menu(name, open, focus = false) {
     for (const button of root.querySelectorAll('[data-menu]')) {
       const show = open && button.dataset.menu === name;
@@ -99,7 +111,13 @@ export function mountFOLModel(root) {
     }
     else if (view === 'sets') { if(symbol && (language.functions[setPredicate] || language.predicates[setPredicate] > 1)) scene.append(v.domain()); scene.append(v.sets()); }
     else scene.append(v.graph());
-    if (!model.domain.length) scene.prepend(el('p', 'D = ∅'));
+    if(partial){const absent=Object.entries(negative).flatMap(([name,rows])=>rows.map(row=>`${name}(${row.join(', ')})`));if(absent.length)scene.append(el('p','Known false: '+absent.join('; '),'fol-step-claim'));}
+    if (!model.domain.length) scene.prepend(el('p', partial?'No objects pictured yet.':'D = ∅'));
+    if(consequenceMode) {
+      const note=el('p','Only known information is shown. Missing memberships and function values remain unspecified.','fol-fragment-note');
+      if(config.depiction==='successor')note.append(' Different term labels may denote the same object.');
+      scene.append(note);
+    }
     root.querySelectorAll('button[data-view]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.view === view)));
     tabs.hidden = view !== 'sets' || !tabs.children.length;
     for (const b of tabs.children) b.setAttribute('aria-pressed', String(b.dataset.extension === setPredicate));
@@ -159,7 +177,7 @@ export function mountFOLModel(root) {
     }
   }
   function invalidate(message = 'Model changed. Check again.') {
-    result = null; index = 0; answer.replaceChildren(); status.textContent = message; renderStep(); renderExtension();
+    result = null; index = 0; delete status.dataset.result; answer.replaceChildren(); status.textContent = message; renderStep(); renderExtension();
   }
   function chooseObject(d) {
     if (!editable) return;
@@ -187,7 +205,8 @@ export function mountFOLModel(root) {
   }
   function chooseRelation(relation) { selectedRelation = JSON.stringify(selectedRelation) === JSON.stringify(relation) ? null : relation; selected = []; symbol = ''; renderDisplay(); }
   function removeRelation(relation) {
-    if (Object.hasOwn(language.functions, relation.name)) delete model.functions[relation.name][tupleKey(relation.args)];
+    if (language.constants.includes(relation.name)) delete model.constants[relation.name];
+    else if (Object.hasOwn(language.functions, relation.name)) delete model.functions[relation.name][tupleKey(relation.args)];
     else model.predicates[relation.name] = model.predicates[relation.name].filter(row => tupleKey(row) !== tupleKey(relation.args));
     selectedRelation = null; invalidate(); renderModel(); display.focus();
   }
@@ -204,8 +223,8 @@ export function mountFOLModel(root) {
       const b = el('button'); b.type = 'button'; b.append(views().picture(object.id, false), el('span', '+', 'fol-add-mark')); b.setAttribute('aria-label', `Add ${object.label}`); b.title = `Add ${object.label}`; b.disabled = model.domain.includes(object.id);
       b.addEventListener('click', () => { model.domain.push(object.id); selected = []; symbol = ''; selectedRelation = null; invalidate(); renderModel(); }); palette.append(b);
     }
-    const errors = validateModel(language, model);
-    find('[data-model-health]').textContent = errors.length ? `Incomplete model: ${errors.slice(0, 3).join(' ')}` : `Complete model · ${model.domain.length} objects`;
+    const errors = partial ? [] : validateModel(language, model);
+    find('[data-model-health]').textContent = partial ? 'Partial information about a model' : errors.length ? `Incomplete model: ${errors.slice(0, 3).join(' ')}` : `Complete model · ${model.domain.length} objects`;
     renderDisplay();
     root.dispatchEvent(new CustomEvent('fol-model-change'));
     if (!keepSQL) sqlRunner?.clear();
@@ -231,6 +250,12 @@ export function mountFOLModel(root) {
     if (!result) { markCurrent(); return; }
     renderExtension();
     const step = result.steps[index], v = views(); status.replaceChildren();
+    if(consequenceMode){
+      model=reasoning.modelAt(result,index,objects);
+      status.append(el('p',step.formula,'fol-step-claim'),el('p',step.explanation));
+      if(step.result)status.dataset.result=step.result;else delete status.dataset.result;
+      renderDisplay();return;
+    }
     if (!step) { status.append(el('p', 'No tuple can satisfy the required positive atoms. The extension is empty.')); return; }
     if (termMode) {
       const known = new Map(result.steps.slice(0, index + 1).map(s => [s.nodeId, s.value]));
@@ -313,7 +338,9 @@ export function mountFOLModel(root) {
   }
   function evaluate() {
     try {
-      convertInput(input); const ast = parseFOL(input.value, { mode: 'conventional', language, kind: termMode ? 'term' : 'formula' });
+      convertInput(input);
+      if(consequenceMode){result=reasoning.run(input.value);index=0;freezeFormula();renderStep();return result.ast;}
+      const ast = parseFOL(input.value, { mode: 'conventional', language, kind: termMode ? 'term' : 'formula' });
       if (query) result = { ...queryFOL(ast, language, model, { prune: true, ...(projection ? { variables: projection } : {}) }), ast };
       else {
         renderAssignments(ast);
@@ -349,8 +376,8 @@ export function mountFOLModel(root) {
     catch { find('[data-code-notice]').textContent = 'Copy unavailable. Use Download code.'; }
   });
   const unaryNames=Object.keys(language.predicates).filter(n=>language.predicates[n]===1);
-  for (const name of [...(unaryNames.length===2 ? ['@together'] : []), ...Object.keys(language.functions), ...Object.keys(language.predicates)]) {
-    const b = el('button', name==='@together' ? 'Together' : `⟦${name}⟧`); b.type='button'; b.dataset.extension=name; b.setAttribute('aria-pressed', String(name === setPredicate));
+  for (const name of ['@domain', ...(unaryNames.length===2 ? ['@together'] : []), ...Object.keys(language.functions), ...Object.keys(language.predicates)]) {
+    const b = el('button', name==='@domain' ? 'D' : name==='@together' ? 'Together' : `⟦${name}⟧`); b.type='button'; b.dataset.extension=name; b.setAttribute('aria-pressed', String(name === setPredicate));
     b.addEventListener('click', () => { setPredicate = name; for(const n of find('[data-set-predicates]').children) n.setAttribute('aria-pressed', String(n === b)); renderDisplay(); }); tabs.append(b);
   }
   root.querySelectorAll('[data-zoom-change]').forEach(b => b.addEventListener('click', () => { zoom = Math.max(.5, Math.min(1, zoom + Number(b.dataset.zoomChange))); renderDisplay(); }));
@@ -358,13 +385,13 @@ export function mountFOLModel(root) {
   function openContext(event) {
     const target = event.target.closest('[data-object]'), tuple = event.target.closest('[data-relation]');
     if (!editable || (!target && !tuple)) return;
-    if (!target) {
+    if (tuple) {
       event.preventDefault(); const relation=JSON.parse(tuple.dataset.relation); selectedRelation=relation; selected=[]; symbol=''; renderDisplay(); context.replaceChildren();
-      const remove=el('button',`Delete ${relation.name} tuple`); remove.type='button'; remove.addEventListener('click',()=>{context.hidden=true;removeRelation(relation);}); context.append(remove); context.hidden=false; remove.focus(); return;
+      const remove=el('button',language.constants.includes(relation.name)?`Clear ${relation.name} denotation`:`Delete ${relation.name} tuple`); remove.type='button'; remove.addEventListener('click',()=>{context.hidden=true;removeRelation(relation);}); context.append(remove); context.hidden=false; remove.focus(); return;
     }
     event.preventDefault(); selected = [target.dataset.object]; selectedRelation = null; symbol = ''; renderDisplay(); context.replaceChildren();
     const modify = el('button','Modify'); modify.type='button'; modify.addEventListener('click', () => { context.hidden=true; menu('model',true,true); });
-    const remove = el('button','Delete object'); remove.type='button'; remove.addEventListener('click', () => { context.hidden=true; removeObject(selected[0]); }); context.append(modify,remove);
+    const remove = el('button','Delete object'); remove.type='button'; remove.addEventListener('click', () => { context.hidden=true; removeObject(selected[0]); }); context.append(modify); if(target.dataset.domainDelete!=='false')context.append(remove);
     for(const [name,arity] of Object.entries(language.predicates)) if(arity===1) { const b=el('button',`${model.predicates[name].some(row=>row[0]===selected[0])?'Remove from':'Add to'} ${name}`); b.type='button'; b.addEventListener('click',()=>{ const id=selected[0]; selectSymbol(`predicate:${name}`); chooseObject(id); }); context.append(b); }
     context.hidden=false; modify.focus();
   }
@@ -380,7 +407,7 @@ export function mountFOLModel(root) {
   find('[data-reset]').addEventListener('click', () => { model = structuredClone(config.model); selected = []; selectedRelation = null; symbol = ''; highlightSymbol = ''; assignment = {}; zoom = 1; invalidate('Model reset.'); renderModel(); });
   find('[data-evaluate]').addEventListener('submit', event => { event.preventDefault(); if (modelDetails) modelDetails.hidden = false; evaluate(); });
   enableLatexInput(input, () => { assignment = {}; projection = null; find('[data-assignments]').replaceChildren(); invalidate('Formula edited. Check again.'); });
-  for (const { label, formula } of query ? config.queries || [] : []) {
+  for (const { label, formula } of query && !tool ? config.queries || [] : []) {
     const b = el('button', label); b.type = 'button'; b.addEventListener('click', () => { input.value = formula; projection = null; const ast = evaluate(); if (sqlMode && ast) { sqlRunner?.clear(); sqlInput.value = folToSQL(ast, language, model, config.columns); showSQL(); } }); find('[data-examples]').append(b);
   }
   find('[data-to-sql]').addEventListener('click', () => {
@@ -406,13 +433,22 @@ export function mountFOLModel(root) {
   });
   sqlInput.addEventListener('input', () => { sqlRunner?.clear(); find('[data-code-notice]').textContent = ''; if (!databaseMode) invalidate('SQL edited. Translate to calculate its answer.'); });
   find('[data-editor]').hidden = !editable; find('[data-sql]').hidden = !(sqlMode || databaseMode);
-  if (databaseMode) sqlInput.value = databaseSQL(language, model, config.columns);
-  root.querySelectorAll('button, textarea').forEach(n => { n.disabled = false; }); renderModel(); const ast = structureOnly ? null : evaluate();
+  if (databaseMode && !tool) sqlInput.value = databaseSQL(language, model, config.columns);
+  if(consequenceMode){
+    input.setAttribute('aria-label','Conclusion');find('[data-edit-formula]').setAttribute('aria-label','Edit conclusion');
+    const check=find('[data-evaluate] button[type="submit"]');check.setAttribute('aria-label','Check consequence');check.title='Check consequence';
+    const given=el('div',undefined,'fol-given');given.setAttribute('role','group');given.setAttribute('aria-label','Given information');given.append(el('span','Given:'));
+    for(const premise of config.premises){const b=el('button',premise);b.type='button';b.setAttribute('aria-label','Use premise '+premise);b.setAttribute('aria-pressed','true');b.onclick=()=>{reasoning.toggle(premise);b.setAttribute('aria-pressed',String(reasoning.selected.has(premise)));evaluate();};given.append(b);}
+    find('.fol-correspondence').prepend(given);
+  }
+  root.querySelectorAll('button, textarea').forEach(n => { n.disabled = false; }); renderModel(); const ast = structureOnly || tool ? null : evaluate();
+  if(tool){freezeFormula(false);invalidate(structureOnly?'Build a model using Modify.':'Build a model and enter a '+(termMode?'term':'formula')+'.');}
   if (sqlMode && ast) { sqlRunner?.clear(); sqlInput.value = folToSQL(ast, language, model, config.columns); showSQL(); }
   find('[data-reset-correspondence]').addEventListener('click', () => {
-    model = structuredClone(config.model); input.value = initialFormula; freezeFormula(); assignment = {}; projection = null; selected = []; selectedRelation = null; symbol = ''; highlightSymbol = ''; zoom = 1;
-    invalidate(''); renderModel(); const ast = databaseMode ? null : evaluate();
-    if (databaseMode) sqlInput.value = databaseSQL(language, model, config.columns);
+    model = structuredClone(config.model); input.value = initialFormula; freezeFormula(!tool); assignment = {}; projection = null; selected = []; selectedRelation = null; symbol = ''; highlightSymbol = ''; zoom = 1;
+    invalidate(''); renderModel(); const ast = databaseMode || tool ? null : evaluate();
+    if(tool)sqlInput.value='';
+    else if (databaseMode) sqlInput.value = databaseSQL(language, model, config.columns);
     else if (ast) sqlInput.value = folToSQL(ast, language, model, config.columns);
     if (modelDetails) modelDetails.hidden = true;
     find('[data-code-notice]').textContent = ''; showSQL();
@@ -423,9 +459,10 @@ export function mountFOLModel(root) {
   find('[data-domain-menu]').open = !language.constants.length && !Object.keys(language.functions).length && !Object.keys(language.predicates).length;
   find('[data-zoom-fit]').addEventListener('click', () => { zoom=1; renderDisplay(); });
   if (termMode) { input.setAttribute('aria-label', 'Term'); find('[data-edit-formula]').setAttribute('aria-label', 'Edit term'); }
+  const fullscreenRoot = root.closest('.fol-practice') || root;
   const full = find('[data-fullscreen]'); let previousOverflow = '', fullscreenDetails = null;
   function syncFullscreen() {
-    const expanded = document.fullscreenElement === root || root.classList.contains('fol-fullscreen');
+    const expanded = document.fullscreenElement === fullscreenRoot || fullscreenRoot.classList.contains('fol-fullscreen');
     const paired = expanded && matchMedia('(min-width:48rem)').matches;
     if (modelDetails && paired && fullscreenDetails === null) {
       fullscreenDetails = modelDetails.hidden;
@@ -434,20 +471,49 @@ export function mountFOLModel(root) {
       find('.fol-bridge').after(modelDetails); modelDetails.hidden = fullscreenDetails; fullscreenDetails = null;
     }
     full.setAttribute('aria-pressed', String(expanded)); full.setAttribute('aria-label', expanded ? 'Exit fullscreen' : 'Fullscreen'); full.title = expanded ? 'Exit fullscreen (Esc)' : 'Fullscreen (F)'; }
-  function fallbackFullscreen(on) { root.classList.toggle('fol-fullscreen', on); if(on) { previousOverflow=document.body.style.overflow; document.body.style.overflow='hidden'; root.focus(); } else { document.body.style.overflow=previousOverflow; full.focus(); } syncFullscreen(); }
-  async function toggleFullscreen() { try { if(document.fullscreenElement === root) await document.exitFullscreen(); else if(root.classList.contains('fol-fullscreen')) fallbackFullscreen(false); else if(root.requestFullscreen) await root.requestFullscreen(); else fallbackFullscreen(true); } catch { fallbackFullscreen(!root.classList.contains('fol-fullscreen')); } syncFullscreen(); }
-  full.addEventListener('click', toggleFullscreen); document.addEventListener('fullscreenchange', syncFullscreen); window.addEventListener('resize', syncFullscreen); root.tabIndex=0;
-  root.addEventListener('keydown', e => {
+  function fallbackFullscreen(on) { fullscreenRoot.classList.toggle('fol-fullscreen', on); if(on) { previousOverflow=document.body.style.overflow; document.body.style.overflow='hidden'; fullscreenRoot.focus(); } else { document.body.style.overflow=previousOverflow; full.focus(); } syncFullscreen(); }
+  async function toggleFullscreen() { try { if(document.fullscreenElement === fullscreenRoot) await document.exitFullscreen(); else if(fullscreenRoot.classList.contains('fol-fullscreen')) fallbackFullscreen(false); else if(fullscreenRoot.requestFullscreen) await fullscreenRoot.requestFullscreen(); else fallbackFullscreen(true); } catch { fallbackFullscreen(!fullscreenRoot.classList.contains('fol-fullscreen')); } syncFullscreen(); }
+  full.addEventListener('click', toggleFullscreen); document.addEventListener('fullscreenchange', syncFullscreen); window.addEventListener('resize', syncFullscreen); fullscreenRoot.tabIndex=0;
+  fullscreenRoot.addEventListener('keydown', e => {
     if(e.key.toLowerCase()==='f'&&!e.ctrlKey&&!e.metaKey&&!e.altKey&&!e.target.closest('input,textarea,[contenteditable]')) { e.preventDefault(); toggleFullscreen(); }
-    if(e.key==='Escape') { if(root.classList.contains('fol-fullscreen')) fallbackFullscreen(false); symbol=''; highlightSymbol=''; selected=[]; renderDisplay(); }
-    if(e.key==='Tab'&&root.classList.contains('fol-fullscreen')) { const stops=[...root.querySelectorAll('button,textarea,[tabindex="0"],summary')].filter(n=>!n.disabled&&n.getClientRects().length); const first=stops[0],last=stops.at(-1); if(e.shiftKey&&(document.activeElement===first||document.activeElement===root)){e.preventDefault();last?.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();} }
+    if(e.key==='Escape') { if(fullscreenRoot.classList.contains('fol-fullscreen')) fallbackFullscreen(false); symbol=''; highlightSymbol=''; selected=[]; renderDisplay(); }
+    if(e.key==='Tab'&&fullscreenRoot.classList.contains('fol-fullscreen')) { const stops=[...fullscreenRoot.querySelectorAll('button,textarea,[tabindex="0"],summary')].filter(n=>!n.disabled&&n.getClientRects().length); const first=stops[0],last=stops.at(-1); if(e.shiftKey&&(document.activeElement===first||document.activeElement===fullscreenRoot)){e.preventDefault();last?.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();} }
   });
   root.folModel = {
     config,
     get: () => structuredClone(model),
-    set: value => { model = structuredClone(value); selected = []; selectedRelation = null; symbol = ''; highlightSymbol = ''; invalidate(''); renderModel(); },
+    set: (value, options = {}) => { if(options.partial !== undefined)partial=options.partial; negative=options.negative||{}; model = structuredClone(value); selected = []; selectedRelation = null; symbol = ''; highlightSymbol = ''; invalidate(''); renderModel(); },
   };
   if (sqlMode || databaseMode) showSQL();
   document.fonts.ready.then(() => layoutGraphLabels(find('.fol-graph')));
   find('[data-app-fallback]')?.remove();
+}
+
+
+function mountConsequenceTool(root) {
+  const template=root.cloneNode(true);
+  const form=el('form'), field=el('textarea'), submit=el('button','Check consequence');
+  field.className='logic-app__input';field.rows=3;field.maxLength=4608;
+  field.setAttribute('aria-label','Premises and conclusion');field.spellcheck=false;
+  field.placeholder='Premises separated by semicolons; ∴ before the conclusion';
+  submit.type='submit';form.append(field,submit);
+  const status=el('p','Enter premises and a conclusion.');status.setAttribute('role','status');
+  const workspace=el('div');root.className='logic-app fol-tool';root.replaceChildren(form,status,workspace);
+  enableLatexInput(field,()=>{workspace.replaceChildren();status.textContent='Check the edited inference again.';});
+  form.addEventListener('submit',event=>{
+    event.preventDefault();workspace.replaceChildren();
+    try {
+      convertInput(field);
+      const parts=field.value.split(/∴|⊨|\|-|\|=/u);
+      if(parts.length!==2||!parts[1].trim())throw Error('Separate premises with semicolons and put ∴ before the conclusion.');
+      const premises=parts[0].split(/[;\n]/u).map(s=>s.trim()).filter(Boolean),goal=parts[1].trim();
+      const language=signature(field.value);
+      const config={language,objects:[],model:{domain:[],constants:{},functions:{},predicates:{}},premises,goal};
+      // Validate the problem before mounting its model and walkthrough controls.
+      consequenceWalkthrough(config).run(goal);
+      const canvas=template.cloneNode(true);canvas.dataset.tool='false';
+      canvas.querySelector('[data-fol-config]').textContent=JSON.stringify(config);
+      workspace.append(canvas);mountFOLModel(canvas);canvas.dataset.mounted='true';status.textContent='';
+    }catch(error){status.textContent=error.message;}
+  });
 }

@@ -12,21 +12,24 @@
   {{- with .label }}{{ $description = printf "%s (%s)" $description . }}{{ end -}}
   {{- $descriptions = $descriptions | append $description -}}
 {{- end -}}
-<figure class="annotated-math{{ if .Get "wrap" }} annotated-math--wrap{{ end }}" role="figure" tabindex="0" aria-label="{{ with .Get "title" }}{{ . }}: {{ end }}{{ $prefix }} {{ delimit $descriptions $separator }} {{ $suffix }}">
-  <div class="annotated-math__row" aria-hidden="true">
-    {{ with $prefix }}<span class="annotated-math__edge">{{ . }}</span>{{ end }}
-    {{ range $i, $group := $groups }}
-      {{ if $.Get "wrap" }}<span class="annotated-math__item">{{ end }}
-      {{ if $i }}<span class="annotated-math__edge">{{ $separator }}</span>{{ end }}
-      <span class="annotated-math__group annotated-math__group--{{ .position | default "below" }}{{ with .color }} annotated-math__group--{{ . }}{{ end }}">
-        <span class="annotated-math__symbols">{{ .symbols }}</span>
-        {{ with .label }}
-          <svg class="annotated-math__brace" viewBox="0 0 100 16" preserveAspectRatio="none" focusable="false" aria-hidden="true"><path d="M1 1 C1 9 5 9 12 9 H40 C47 9 49 10 50 15 C51 10 53 9 60 9 H88 C95 9 99 9 99 1" vector-effect="non-scaling-stroke"/></svg>
-          <span class="annotated-math__label">{{ . }}</span>
-        {{ end }}
-      </span>
-      {{ if $.Get "wrap" }}</span>{{ end }}
-    {{ end }}
-    {{ with $suffix }}<span class="annotated-math__edge">{{ . }}</span>{{ end }}
-  </div>
+{{- /* No indentation or blank lines: inside a callout, Markdown runs over this
+       HTML, and would turn an indented line into a code block. */ -}}
+{{- $items := or (.Get "wrap") (.Get "stack") -}}
+<figure class="annotated-math{{ if .Get "wrap" }} annotated-math--wrap{{ end }}{{ if .Get "stack" }} annotated-math--stack{{ end }}" role="figure" tabindex="0" aria-label="{{ with .Get "title" }}{{ . }}: {{ end }}{{ $prefix }} {{ delimit $descriptions $separator }} {{ $suffix }}">
+<div class="annotated-math__row" aria-hidden="true">
+{{- with $prefix }}<span class="annotated-math__edge">{{ . }}</span>{{ end -}}
+{{- range $i, $group := $groups -}}
+{{- if $items }}<span class="annotated-math__item">{{ end -}}
+{{- if $i }}<span class="annotated-math__edge">{{ $separator }}</span>{{ end -}}
+<span class="annotated-math__group annotated-math__group--{{ .position | default "below" }}{{ with .color }} annotated-math__group--{{ . }}{{ end }}">
+<span class="annotated-math__symbols">{{ .symbols }}</span>
+{{- with .label -}}
+<svg class="annotated-math__brace" viewBox="0 0 100 16" preserveAspectRatio="none" focusable="false" aria-hidden="true"><path d="M1 1 C1 9 5 9 12 9 H40 C47 9 49 10 50 15 C51 10 53 9 60 9 H88 C95 9 99 9 99 1" vector-effect="non-scaling-stroke"/></svg>
+<span class="annotated-math__label">{{ . }}</span>
+{{- end -}}
+</span>
+{{- if $items }}</span>{{ end -}}
+{{- end -}}
+{{- with $suffix }}<span class="annotated-math__edge">{{ . }}</span>{{ end -}}
+</div>
 </figure>

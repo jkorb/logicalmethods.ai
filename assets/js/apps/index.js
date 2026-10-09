@@ -1,3 +1,4 @@
+import {mountFOLInference} from './fol-inference.js';
 import { mountFormulaFields } from './formula-fields.js';
 import { mountFOLPractice } from './fol-practice.js';
 import { mountSQL } from './sql-app.js';
@@ -19,7 +20,7 @@ import { mountShuntingYard } from './shunting-yard.js';
 import { mountReasoningPractice } from './reasoning-practice.js';
 import { mountBoolean } from './boolean-app.js';
 import { mountFlashcards } from './flashcards.js';
-const apps = { 'fol-practice': mountFOLPractice, sql: mountSQL, 'fol-scope': mountFOLScope, 'fol-model': mountFOLModel, deduction: mountDeduction, 'conditional-practice': mountConditionalPractice, conditionals: mountConditionals, 'sat-practice': mountSATPractice, sat: mountSAT, 'pseudocode-practice': mountPseudocode, boolean: mountBoolean, parser: mountParser, 'latex-game': mountLatexGame, builder: mountFormulaBuilder, 'notation-practice': mountNotationPractice, 'shunting-yard': mountShuntingYard, 'reasoning-practice': mountReasoningPractice, flashcards: mountFlashcards };
+const apps = { 'fol-inference': mountFOLInference, 'fol-practice': mountFOLPractice, sql: mountSQL, 'fol-scope': mountFOLScope, 'fol-model': mountFOLModel, deduction: mountDeduction, 'conditional-practice': mountConditionalPractice, conditionals: mountConditionals, 'sat-practice': mountSATPractice, sat: mountSAT, 'pseudocode-practice': mountPseudocode, boolean: mountBoolean, parser: mountParser, 'latex-game': mountLatexGame, builder: mountFormulaBuilder, 'notation-practice': mountNotationPractice, 'shunting-yard': mountShuntingYard, 'reasoning-practice': mountReasoningPractice, flashcards: mountFlashcards };
 for (const root of document.querySelectorAll('[data-logic-app]')) {
   if (root.dataset.mounted) continue;
   const mount = apps[root.dataset.logicApp];

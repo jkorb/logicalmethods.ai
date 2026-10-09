@@ -40,42 +40,51 @@ Socrates is mortal
 In propositional logic, we could use $HUMAN$ for 'Socrates is human' and
 $MORTAL$ for 'Socrates is mortal'. Then $HUMAN → MORTAL$ says that if Socrates
 is human, he is mortal. But the first premise says something about *all*
-humans, including people we haven't named. Giving that premise its own
-propositional variable would leave its connection to Socrates unexpressed.
+humans, including people we haven't named. Giving the premise its own
+propositional variable would leave its connection to Socrates obscure.
 
 If we wanted to add a premise like 'Xanthippe is human', we couldn't reuse
-$HUMAN$: it already stands for a claim about Socrates. We'd need a new variable,
-say $HUMAN₂$, another for 'Xanthippe is mortal', and a separate conditional
-$HUMAN₂ → MORTAL₂$. The similar names don't tell propositional logic that
-these claims concern the same properties. We could list a conditional for
-each person in a fixed finite domain, but we'd have to extend the list whenever
-we added someone.
+$HUMAN$, as it already stands for a claim about Socrates. We'd need a _new_
+variable, say $HUMAN₂$, to say that Xanthippe is human, another one, $MORTAL₂$,
+for 'Xanthippe is mortal', and another conditional, $HUMAN₂ → MORTAL₂$, to say
+that if Xanthippe is human, she's mortal. The similar names don't tell
+propositional logic that these claims concern the same properties. Of course,
+we could list a conditional for each person in a fixed finite domain, but we'd
+have to extend the list whenever we added another person to our model.
 
-FOL makes the shared structure explicit: $Human(Socrates)$ and
-$Human(Xanthippe)$ apply the same predicate to different objects. We can
-represent the general claim once, as:
+FOL solves this problem by making the underlying structure explicit:
+$Human(Socrates)$ and $Human(Xanthippe)$ apply the same < gloss > predicate --
+$Human$ -- to different objects -- $Socrates$ and $Xanthippe$ . In this way, we
+can represent the general claim once, as:
 
 $$
 ∀x (Human(x) → Mortal(x))
 $$
 
-Here $∀x$ says that the condition applies to every object. We can also combine
-quantifiers to express dependencies, such as every number having a larger
-number. Mathematical concepts such as the
-[continuity of functions](https://en.wikipedia.org/wiki/Continuous_function)
-use this kind of nested quantification. Representing these claims precisely
-is part of the work required to check mathematical reasoning with AI.
+Here the so-called _universal quantifier_ $∀x$ says that the condition that
+follows applies to _every_ object. So, $∀x (Human(x) → Mortal(x))$ means that
+every object -- every*thing* -- is such that if it is human, then it is mortal.
+In other words, all humans are mortal.
 
-FOL also connects to a familiar way of storing knowledge in a computer:
+By combining the universal quantifier with the existential quantifier
+$\exists$, we can express complex mathematical claims in FOL, such as the fact
+that for every number there exists a larger one. As a formula, this becomes
+$$∀x∃y (x < y)$$ Mathematical concepts such as the [continuity of
+functions](https://en.wikipedia.org/wiki/Continuous_function) use this kind of
+_nested quantification_, and representing mathematical claims and concepts like
+this is precisely the work required to check mathematical reasoning with(in) AI.
+
+Additionally, FOL has a deep connection to knowledge representation and the way
+of storing knowledge in a computer:
 {{< term "relational-database" "relational databases" >}}. We will develop the
-language first, then models that record objects and their properties and
+language first, then models that represent objects and their properties and
 relations. Sets, tables, and knowledge graphs display this information;
-formulas express conditions we can check against it. Database queries bring
-the two together: [Codd's theorem](https://en.wikipedia.org/wiki/Codd%27s_theorem)
-connects conditions written as formulas to
-operations on stored tables. This chapter develops these ways of representing
-and querying knowledge. {{< chapter_ref chapter="FOL-inference" >}}FOL Inference{{< /chapter_ref >}} takes up
-reasoning: what follows from a knowledge base, and how we can prove it.
+formulas express conditions we can check against it. Database queries bring the
+two together: [Codd's theorem](https://en.wikipedia.org/wiki/Codd%27s_theorem)
+connects conditions written as formulas to operations on stored tables. This
+chapter develops these ways of representing and querying knowledge. {{<
+chapter_ref chapter="FOL-inference" >}}FOL Inference{{< /chapter_ref >}} takes
+up reasoning: what follows from a knowledge base, and how we can prove it.
 
 {{< callout type="objectives" >}}
 After studying this chapter, you will be able to:
@@ -597,8 +606,9 @@ memberships spatially; a one-column table lists the members.
 {{< callout type="note" title="Modeling assumptions: bivalence" >}}
 For each object, there are exactly two possibilities: it belongs to the
 extension or it does not. This is the
-{{< term "bivalence" "bivalence" >}} assumption from {{< chapter_ref chapter="boolean" >}}Boolean algebra{{< /chapter_ref >}}, now applied to claims about objects. An absent object is
-not an unknown entry. In this model, the predicate is false of it.
+{{< term "bivalence" "bivalence" >}} assumption from {{< chapter_ref
+chapter="boolean" >}}Boolean algebra{{< /chapter_ref >}}, now applied to claims
+about objects.
 {{< /callout >}}
 
 Relational information needs more than a set of individual objects. To record

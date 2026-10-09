@@ -1,10 +1,14 @@
 // Proof data are independent of the canvas. Only this kernel creates steps.
 // Formula ASTs follow the shared parser; later quantifier rules can extend the registry.
-import { parseBoolean, printFormula } from './boolean.js';
-export { printFormula };
+import { parseBoolean } from './boolean.js';
+import {parseInference,printFOL} from './fol-inference.js';
+import {isVariable} from './fol-parser.js';
+import {parseNDSource,printND,isFOL,freeND,substND} from './deduction-fol.js';
+export const printFormula=printND;
 export const ast = (label, ...children) => ({label, children});
 export function formula(source) {
   const text=source.replace(/<->/g,'↔').replace(/->/g,'→').replace(/[~!]/g,'¬').replace(/&/g,'∧').replace(/\|/g,'∨').replace(/\bFalse\b|⊥/g,'BOTTOM').replace(/\bTrue\b|⊤/g,'TOP');
+  if(isFOL(text))return parseNDSource(text);
   const tree=parseBoolean(text).tree;
   function clean(t){return ast(t.label==='BOTTOM'?'⊥':t.label==='TOP'?'⊤':t.label,...t.children.map(clean));}
   return clean(tree);
@@ -13,6 +17,8 @@ export const same=(a,b)=>printFormula(a)===printFormula(b);
 const insist=(ok,message)=>{if(!ok)throw Error(message);};
 export function emptyProof(){return {version:1,nodes:[]};}
 export const RULES={
+  eqI:['= Intro',0],eqE:['= Elim',2],
+  forallI:['∀ Intro',1],forallE:['∀ Elim',1],existsI:['∃ Intro',1],existsE:['∃ Elim',2],
   andI:['∧ Intro',2],andL:['∧ Elim · left',1],andR:['∧ Elim · right',1],
   orL:['∨ Intro · left',1],orR:['∨ Intro · right',1],orE:['∨ Elim',3],
   impI:['→ Intro',1],impE:['→ Elim',2],notI:['¬ Intro',1],notE:['¬ Elim',2],
@@ -42,6 +48,33 @@ export function infer(proof,rule,parents=[],options={}) {
   function hypothesis(i){const h=proof.nodes[dis[i]];insist(h?.rule==='assumption','Choose an assumption to discharge.');return h.formula;}
   function discharge(n){insist(dis.length===n,'Choose the required assumption(s) to discharge.');}
   switch(rule){
+    case 'eqI': {const t=parseInference(options.term||'','term');result=ast(`${printFOL(t)} = ${printFOL(t)}`);break;}
+    case 'eqE': {
+      const equality=parseInference(printFormula(fs[0]));insist(equality.kind==='identity','Select an identity first.');
+      const v=options.variable;insist(isVariable(v||''),'Choose the placeholder variable for the substitution formula.');
+      const template=extra();insist(same(fs[1],substND(template,v,equality.children[0])),'The second premise must be the substitution formula with the left-hand term.');
+      result=substND(template,v,equality.children[1]);break;
+    }
+    case 'forallE': {
+      insist(fs[0].label.startsWith('∀'),'Select a universally quantified formula.');
+      const t=parseInference(options.term||'','term');result=substND(fs[0].children[0],fs[0].label.slice(1),t);break;
+    }
+    case 'forallI': {
+      const v=options.variable;insist(isVariable(v||''),'Choose a variable x, y, z, u, v or w (optionally indexed).');
+      insist(open.every(i=>!freeND(proof.nodes[i].formula).includes(v)),'The generalized variable occurs free in an open assumption.');
+      result=ast('∀'+v,fs[0]);break;
+    }
+    case 'existsI': {
+      const target=extra();insist(target.label.startsWith('∃'),'Supply the existential conclusion.');
+      const t=parseInference(options.term||'','term');insist(same(fs[0],substND(target.children[0],target.label.slice(1),t)),'The selected proof must establish the witness instance.');result=target;break;
+    }
+    case 'existsE': {
+      discharge(1);insist(fs[0].label.startsWith('∃'),'Select the existential premise first and the subproof conclusion second.');
+      const v=options.variable;insist(isVariable(v||''),'Choose a fresh witness variable, such as z.');
+      const t=parseInference(v,'term');insist(same(hypothesis(0),substND(fs[0].children[0],fs[0].label.slice(1),t)),'The discharged assumption must be the witness instance.');
+      open=[...new Set([...ps[0].open,...ps[1].open.filter(i=>i!==dis[0])])];result=fs[1];
+      insist(!freeND(fs[0]).includes(v)&&!freeND(result).includes(v)&&open.every(i=>!freeND(proof.nodes[i].formula).includes(v)),'The witness must be fresh for the conclusion, existential premise, and remaining open assumptions.');break;
+    }
     case 'andI':result=ast('∧',...fs);break;
     case 'andL':case 'andR':op(0,'∧');result=fs[0].children[rule==='andL'?0:1];break;
     case 'orL':result=ast('∨',fs[0],extra());break;
@@ -64,9 +97,9 @@ export function infer(proof,rule,parents=[],options={}) {
     case 'iffL':case 'iffR':op(0,'↔');result=ast('→',... (rule==='iffL'?fs[0].children:[...fs[0].children].reverse()));break;
     default:throw Error('Unknown rule.');
   }
-  if(!['impI','notI','raa','orE'].includes(rule))insist(!dis.length,'This rule does not discharge assumptions.');
+  if(!['impI','notI','raa','orE','existsE'].includes(rule))insist(!dis.length,'This rule does not discharge assumptions.');
   const id=proof.nodes.length;
-  return {...proof,nodes:[...proof.nodes,{id,rule,formula:result,parents:[...parents],discharge:[...dis],extra:options.formula||'',open}]};
+  return {...proof,nodes:[...proof.nodes,{id,rule,formula:result,parents:[...parents],discharge:[...dis],extra:options.formula||'',...(options.term?{term:options.term}:{}),...(options.variable?{variable:options.variable}:{}),open}]};
 }
 // Imported data are replayed, never trusted. No stored dependencies or conclusions bypass checking.
 export function validateProof(data){
@@ -74,7 +107,7 @@ export function validateProof(data){
   let proof=emptyProof();
   for(const n of data.nodes){
     insist(n.id===proof.nodes.length,'Steps must be in dependency order.');
-    proof=n.rule==='assumption'?addAssumption(proof,printFormula(n.formula)):infer(proof,n.rule,n.parents,{formula:n.extra,discharge:n.discharge});
+    proof=n.rule==='assumption'?addAssumption(proof,printFormula(n.formula)):infer(proof,n.rule,n.parents,{term:n.term,variable:n.variable,formula:n.extra,discharge:n.discharge});
     insist(same(proof.nodes.at(-1).formula,n.formula),'A recorded conclusion does not follow by this rule.');
   }
   return proof;
@@ -86,11 +119,11 @@ export function reuseLemma(proof,lemma){
   const checked=validateProof(lemma.proof),root=checked.nodes[lemma.root];
   insist(root && root.open.length===0,'Save a closed derivation as a lemma. Discharge its assumptions first.');
   const offset=proof.nodes.length;let out=proof;
-  for(const n of checked.nodes)out=n.rule==='assumption'?addAssumption(out,printFormula(n.formula)):infer(out,n.rule,n.parents.map(id=>id+offset),{formula:n.extra,discharge:n.discharge.map(id=>id+offset)});
+  for(const n of checked.nodes)out=n.rule==='assumption'?addAssumption(out,printFormula(n.formula)):infer(out,n.rule,n.parents.map(id=>id+offset),{term:n.term,variable:n.variable,formula:n.extra,discharge:n.discharge.map(id=>id+offset)});
   return {proof:out,root:offset+root.id};
 }
 export function extractProof(proof,root){
   const needed=new Set();function visit(id){if(needed.has(id))return;needed.add(id);const n=proof.nodes[id];[...n.parents,...n.discharge].forEach(visit);}visit(root);
-  let out=emptyProof();const ids=new Map();for(const n of proof.nodes){if(!needed.has(n.id))continue;ids.set(n.id,out.nodes.length);out=n.rule==='assumption'?addAssumption(out,printFormula(n.formula)):infer(out,n.rule,n.parents.map(i=>ids.get(i)),{formula:n.extra,discharge:n.discharge.map(i=>ids.get(i))});}
+  let out=emptyProof();const ids=new Map();for(const n of proof.nodes){if(!needed.has(n.id))continue;ids.set(n.id,out.nodes.length);out=n.rule==='assumption'?addAssumption(out,printFormula(n.formula)):infer(out,n.rule,n.parents.map(i=>ids.get(i)),{term:n.term,variable:n.variable,formula:n.extra,discharge:n.discharge.map(i=>ids.get(i))});}
   return {proof:out,root:ids.get(root)};
 }

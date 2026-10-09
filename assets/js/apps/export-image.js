@@ -13,7 +13,14 @@ export function mountImageExport(root) {
   const notice = document.createElement('span');
   notice.className = 'logic-app__export-notice';
   notice.setAttribute('aria-live', 'polite');
-  controls.append(button, notice);
+  controls.append(button);
+  if (controls.classList.contains('nd-canvas-controls')) {
+    const frame = controls.parentElement;
+    frame.append(notice);
+    const reserveSpace = () => frame.style.setProperty('--nd-tools-height', `${controls.getBoundingClientRect().height}px`);
+    new ResizeObserver(reserveSpace).observe(controls);
+    reserveSpace();
+  } else controls.append(notice);
   button.addEventListener('click', async () => {
     button.disabled = true;
     notice.textContent = 'Preparing PNG…';

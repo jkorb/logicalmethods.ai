@@ -2,9 +2,22 @@
 <section class="logic-app fol-app fol-practice" data-logic-app="fol-practice" data-exercise="{{ $kind }}" aria-label="{{ .sc.Get "title" | default "FOL practice" }}">
   <div class="fol-practice-toolbar"><div data-levels class="builder__levels" role="group" aria-label="Exercise levels"></div></div>
   <div data-task class="fol-practice-task"></div>
-  {{ if eq $kind "model" }}
+  {{ if in (slice "model" "countermodel") $kind }}
     {{ partial "apps/fol-model.html" (dict "sc" .sc "id" .id "title" (printf "%s: model" (.sc.Get "title"))) }}
-    <div class="fol-toolbar"><button type="button" data-check>{{ partial "apps/icon.html" "check" }} Check</button><button type="button" data-impossible>Impossible</button></div>
+    <div class="fol-toolbar"><button type="button" data-check>{{ partial "apps/icon.html" "check" }} Check</button>{{ if eq $kind "model" }}<button type="button" data-impossible>Impossible</button>{{ end }}</div>
+  {{ else if eq $kind "validity" }}
+    {{ partial "apps/fol-model.html" (dict "sc" .sc "id" .id "title" "Reasoning in a model") }}
+    <div data-reasoning>
+      <div data-cases class="fol-toolbar" role="group" aria-label="Possible cases"></div>
+      <div data-requirements role="group" aria-label="Truth requirements"></div>
+      <p data-truth-condition role="status"></p>
+      <div data-unfold class="fol-toolbar" role="group" aria-label="Unfold selected formula"></div>
+    </div>
+    <div class="fol-toolbar">
+      <button type="button" data-check>{{ partial "apps/icon.html" "check" }} Check</button>
+      <button type="button" data-reasoning-undo aria-label="Undo" title="Undo">{{ partial "apps/icon.html" "undo" }}</button>
+      <button type="button" data-reasoning-reset aria-label="Restart" title="Restart">{{ partial "apps/icon.html" "replay" }}</button>
+    </div>
   {{ else if eq $kind "extensions" }}
     {{ $config := index hugo.Data.fol (.sc.Get "model") }}
     {{ $objects := slice }}

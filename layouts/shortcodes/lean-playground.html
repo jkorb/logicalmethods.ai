@@ -1,0 +1,7 @@
+{{/* A link to Lean code that the page does not show in full, such as a
+     proof a slide abbreviates. The inner text is the complete Lean code.
+
+     {{< lean-playground text="Open the full proof in" >}}
+     example : True := by trivial
+     {{< /lean-playground >}} */}}
+{{- partial "links/lean-playground.html" (dict "code" (trim .Inner "\n") "text" (.Get "text")) -}}

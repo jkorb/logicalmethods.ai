@@ -3,7 +3,7 @@
 {{- $mode := .sc.Get "mode" | default (cond (eq (.sc.Get "language") "fol") "conventional" "strict") -}}
 {{- if not (in (slice "strict" "conventional") $mode) }}{{ errorf "Unknown parser mode %q" $mode }}{{ end -}}
 {{- $id := .id -}}
-<section class="logic-app" data-logic-app="parser" data-mode="{{ $mode }}" data-language="{{ .sc.Get "language" | default "propositional" }}" data-kind="{{ .sc.Get "kind" | default "formula" }}" aria-label="{{ .sc.Get "title" | default "Abstract syntax trees" }}">
+<section class="logic-app" data-tool="{{ eq .sc.Page.Section "tools" }}" data-logic-app="parser" data-mode="{{ $mode }}" data-language="{{ .sc.Get "language" | default "propositional" }}" data-kind="{{ .sc.Get "kind" | default "formula" }}" aria-label="{{ .sc.Get "title" | default "Abstract syntax trees" }}">
 {{ with .sc.Get "signature" }}<script type="application/json" data-fol-language>{{ index hugo.Data.fol_languages . | jsonify | safeJS }}</script>{{ end }}
   <form class="logic-app__form">
     <div class="logic-app__input-wrap">

@@ -15,7 +15,7 @@
   {{- $objects = $objects | append $object -}}
 {{- end -}}
 {{- $config = merge $config (dict "objects" $objects) -}}
-<section class="logic-app fol-app" data-logic-app="fol-model" data-kind="{{ .sc.Get "kind" | default "model" }}" data-editable="{{ .sc.Get "editable" | default "true" }}" data-view="{{ .sc.Get "view" | default "graph" }}" aria-label="{{ $title | default "First-order model" }}">
+<section class="logic-app fol-app" data-tool="{{ eq .sc.Page.Section "tools" }}" data-logic-app="fol-model" data-kind="{{ .sc.Get "kind" | default "model" }}" data-editable="{{ .sc.Get "editable" | default "true" }}" data-view="{{ .sc.Get "view" | default "graph" }}" aria-label="{{ $title | default "First-order model" }}">
   <svg class="fol-artwork" width="0" height="0" aria-hidden="true" focusable="false"><defs>
   {{ range (index hugo.Data.fol $key).objects }}{{ $object := . }}{{ with .image }}
     {{ $asset := resources.Get . }}
@@ -117,7 +117,7 @@
       <button type="button" data-download-code aria-label="Download code" title="Download code">{{ partial "apps/icon.html" "save" }}</button>
       </div>
     </div>
-      <div class="highlight" data-sql-highlight><pre class="chroma"><code data-sql-code class="language-sql" tabindex="0" aria-label="SQL code"></code></pre></div>
+      <div class="highlight" data-sql-highlight><pre class="chroma" role="group" aria-label="SQL code"><code data-sql-code class="language-sql" tabindex="0"></code></pre></div>
       <label class="visually-hidden" for="{{ .id }}-sql">SQL</label>
       <textarea id="{{ .id }}-sql" data-sql-source rows="8" maxlength="12000" spellcheck="false" hidden></textarea>
     </div>

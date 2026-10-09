@@ -1,0 +1,6 @@
+{
+  "partial": true,
+  "language": {"constants": [], "functions": {}, "predicates": {"Human": 1, "Mortal": 1, "Sibling": 2}},
+  "objects": [],
+  "model": {"domain": [], "constants": {}, "functions": {}, "predicates": {"Human": [], "Mortal": [], "Sibling": []}}
+}

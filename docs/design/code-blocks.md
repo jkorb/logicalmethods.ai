@@ -27,4 +27,7 @@ Lean blocks in the proofs chapter, its exercises, and the Lean tool link to the
 playground below the code. These links use the formal-font L∃∀N wordmark, the external-link
 indicator, and an accessible new-tab notice. Links sit below the code, right
 aligned in smaller type; the translator places its link below the app. Mathlib imports select the
-playground’s mathlib project.
+playground’s mathlib project. The link is `partials/links/lean-playground.html`.
+Where a page shows only part of the code, as a slide does, the
+`lean-playground` shortcode gives the same link to the complete code, its inner
+text, without displaying it: `{{</* lean-playground text="Open the full proof in" */>}}`.

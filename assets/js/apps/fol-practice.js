@@ -1,3 +1,5 @@
+import {mountModelReasoning} from './fol-model-reasoning.js';
+import {COUNTERMODEL_LEVELS,checkCountermodel} from '../logic/fol-countermodels.js';
 import { parseFOL, printFOL, freeVariables } from '../logic/fol-parser.js';
 import { queryFOL, evaluateFOL, validateModel } from '../logic/fol-model.js';
 import { databaseSQL } from '../logic/fol-database-export.js';
@@ -10,23 +12,26 @@ import { builderLevels, modelLevels, queryLevels, initializationLevels } from '.
 
 export function mountFOLPractice(root) {
   const kind=root.dataset.exercise;
+  if (kind === 'validity') { mountModelReasoning(root); return; }
   if (kind === 'extensions') { mountExtensions(root); return; }
   if (kind === 'substitution') { mountSubstitution(root); return; }
   const find=s=>root.querySelector(s), task=find('[data-task]');
   let active, assessment, editor;
-  const items={builder:builderLevels,model:modelLevels,query:queryLevels,initialize:initializationLevels}[kind];
+  const items={builder:builderLevels,model:modelLevels,countermodel:COUNTERMODEL_LEVELS,query:queryLevels,initialize:initializationLevels}[kind];
   const progress=levels(root,items,load);
   let modelRoot, modelAPI, sqlRoot, config;
-  if(kind==='model') {
+  if(kind==='model'||kind==='countermodel') {
     modelRoot=find('[data-logic-app="fol-model"]');mountFOLModel(modelRoot);modelRoot.dataset.mounted='true'; modelAPI=modelRoot.folModel;
     modelRoot.addEventListener('fol-model-change', progress.clear);
     find('[data-check]').addEventListener('click',()=>{
-      const model=modelAPI.get(), errors=validateModel(modelAPI.config.language,model);
+      const model=modelAPI.get();
+      if(kind==='countermodel'){const result=checkCountermodel(active,modelAPI.config.language,model);progress.feedback(result.correct,result.message);return;}
+      const errors=validateModel(modelAPI.config.language,model);
       if(errors.length) { progress.feedback(false,errors[0]);return; }
       const value=evaluateFOL(parseFOL(active.formula,{language:modelAPI.config.language}),modelAPI.config.language,model,{}).value;
       progress.feedback(value===active.value, value===active.value?`Correct: the formula is ${value} in your model.`:`The formula is ${value} in this model. Change its interpretation or choose Impossible.`);
     });
-    find('[data-impossible]').addEventListener('click',()=>progress.feedback(Boolean(active.impossible),active.impossible?`Correct. ${active.reason}`:'There is a model with the requested truth value. Try changing the predicate extensions.'));
+    find('[data-impossible]')?.addEventListener('click',()=>progress.feedback(Boolean(active.impossible),active.impossible?`Correct. ${active.reason}`:'There is a model with the requested truth value. Try changing the predicate extensions.'));
   } else if(kind==='query'||kind==='initialize') {
     sqlRoot=find('[data-logic-app="sql"]');config=JSON.parse(sqlRoot.querySelector('[data-sql-config]').textContent);
     editor=mountSQL(sqlRoot,{
@@ -43,8 +48,9 @@ export function mountFOLPractice(root) {
   function load(item) {
     active=item;task.replaceChildren();
     if(kind==='builder') { task.append('Build ',el('span',item,'fol-formula'));builder.reset(item); }
-    else if(kind==='model') {
-      task.append('Make ',el('span',item.formula,'fol-formula'),` ${item.value?'true':'false'}.`);
+    else if(kind==='model'||kind==='countermodel') {
+      if(kind==='countermodel')task.append(el('span',item.premises.join('; ')+' ∴ '+item.goal,'fol-formula'));
+      else task.append('Make ',el('span',item.formula,'fol-formula'),` ${item.value?'true':'false'}.`);
       const start=structuredClone(modelAPI.config.model);
       start.domain=['jimmy','sir','socrates'];for(const name of Object.keys(start.predicates))start.predicates[name]=[];
       modelAPI.set(start);

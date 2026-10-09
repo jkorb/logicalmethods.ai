@@ -1,0 +1,5 @@
+{
+  "language":{"constants":["Socrates"],"functions":{},"predicates":{"Human":1,"Mortal":1}},
+  "objects":[{"id":"socrates","label":"Socrates","image":"img/drawings/fol_socrates.svg"}],
+  "model":{"domain":["socrates"],"constants":{"Socrates":"socrates"},"functions":{},"predicates":{"Human":[],"Mortal":[["socrates"]]}}
+}

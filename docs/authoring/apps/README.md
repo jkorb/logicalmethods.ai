@@ -19,10 +19,13 @@ Shortcode-driven components used in textbook pages and exercise solutions.
 - [Boolean chapter apps](boolean.md) — derivations, evaluation trees, model spaces.
 - [Boolean circuits and workbench](boolean-circuits.md) — relays, adders, circuit construction.
 
+- [First-order proof teaching](deduction-fol.md) — quantifier exercises, identity, and semantic Lean declarations.
 - [Natural deduction and Lean](deduction.md) — checked proof canvases, worked-out examples, and a bounded Lean translator.
 
 - [SQL correspondence](fol-sql.md) — translate formulas and relational queries in both directions.
 - [Model data](fol-data.md) — per-instance languages, object palettes, and interpretations.
+- [Partial model reasoning](fol-consequence.md) — chapter 9 proofs from incomplete model information.
+- [First-order inference](fol-inference.md) — unification, Skolemization, resolution, and factoring.
 - [First-order models and queries](fol.md) — pictured domains, interpretations, truth traces, and database queries.
 
 ## Standalone shortcodes

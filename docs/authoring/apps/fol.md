@@ -20,8 +20,13 @@ their value; repeating a predicate tuple removes it. A selected predicate table
 shows a plus row with pending argument slots, and each set has an add button.
 The canvas prompts for the next object. Escape cancels the pending
 selection. Reset restores the configured model. Selected objects and tuples
-have delete controls; right-click or Shift+F10 opens context actions. Removing
-an object clears its incident tuples and denotations.
+have delete controls; right-click or Shift+F10 opens context actions. Deletion
+inside an interpretation removes only that membership, tuple, or denotation.
+Graph predicate and constant labels are individually selectable. Set members
+use the same local deletion; in overlapping sets, selecting an object reveals
+separate membership labels. The D tab selects domain objects. Only domain
+deletion clears the object and its incident tuples and denotations. Clearing a
+constant or function value leaves an incomplete model until a value is supplied.
 
 The eye opens four compact presentation choices: semantic facts, ruled tables,
 knowledge graph, and sets. Set and function extensions have tabs on the canvas.
@@ -38,7 +43,8 @@ unary predicates. Objects occupy the intersection, one set only, or neither;
 binary relations retain their ordered-tuple views. Zoom ranges from 50% to 100%. Fullscreen uses the browser API with a fixed
 canvas fallback, the F shortcut, and Escape to leave the fallback.
 
-Evaluation requires a complete model. Satisfaction fields freeze after checking;
+Ordinary evaluation requires a complete model. Chapter 9 uses the separate
+[partial model mode](fol-consequence.md) to reason from selected premises. Satisfaction fields freeze after checking;
 the inline pencil unlocks editing. Check and Query sit beside their input
 fields. Query fields also freeze after running; the pencil clears the previous answer and enables editing. Open formulas have pictured assignment choices.
 The explanation sits beside the canvas on desktop and below it on phones.

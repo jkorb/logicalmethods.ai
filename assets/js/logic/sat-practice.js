@@ -69,10 +69,10 @@ export function applyResolutionChoice(state, first, second, pivot) {
   return next;
 }
 
-export function checkNormalForm(source, target, form) {
+export function checkNormalForm(source, target, form, names=['INPUT₁','INPUT₂']) {
   const tree=parseBoolean(source).tree;
   const outer=form==='DNF'?'∨':'∧', inner=form==='DNF'?'∧':'∨';
   const literal=t=>!t.children.length||t.label==='¬'&&!t.children[0].children.length;
   const normal=flatten(tree,outer).every(group=>flatten(group,inner).every(literal));
-  return {...checkMystery(source,target,['INPUT₁','INPUT₂']),normal};
+  return {...checkMystery(source,target,names),normal};
 }

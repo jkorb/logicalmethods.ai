@@ -1,514 +1,694 @@
 ---
-locked: true
 title: FOL inference
 author: Johannes Korbmacher
 weight: 90
 params:
-  legacy-notation: true
   id: exc-finf
 ---
 
+# Valid inference
+
+Decide whether each inference is valid. Use the definition of
+{{< chapter_ref chapter="FOL-inference" id="valid-inference" >}}first-order consequence{{< /chapter_ref >}}:
+could the premises all be true while the conclusion is false? Select a formula
+and unfold its truth conditions. The picture records the facts established so
+far. If a truth condition allows two possibilities, investigate each case.
+Look for conflicting requirements or a model that meets them all.
+
+{{< logic-app name="fol-practice" exercise="validity" model="finf-reasoning" kind="model" editable="false" view="graph" title="Reason about the inference in models" >}}
+
+<span id="valid-inferenceSolution"></span>
+
+# Countermodels {#countermodels}
+
+Show that the following FOL inferences are invalid by constructing a
+countermodel. Make every premise true and the conclusion false. The levels
+cover the converse fallacy, quantifier order, distribution, separate witnesses,
+generalization, and negation.
+
+Use Modify to change the domain and predicate interpretations. The predicate
+names impose no conditions beyond the premises. Check tests your model;
+change the interpretation and try again if a premise is false or the conclusion
+is still true.
+
+{{< logic-app name="fol-practice" exercise="countermodel" model="people-relations" kind="model" view="tables" title="Constructing countermodels" >}}
+
+# Reasoning in models {.solved #reasoning-in-models}
+
+These inferences are valid. Give a proof of each by reasoning in an arbitrary model of its
+premises. State which objects you choose, which facts follow from the premises,
+and why the conclusion holds. Your argument must apply to every domain size.
+
+1. $∀x (Human(x) → Mortal(x)), Human(Socrates) ∴ Mortal(Socrates)$.
+2. $∀x (Human(x) ∧ Mortal(x)) ∴ (∀x Human(x)) ∧ (∀x Mortal(x))$.
+3. $∃x∀y Sibling(x,y) ∴ ∀y∃x Sibling(x,y)$.
+
+## Solution {#reasoning-in-modelsSolution .solution}
+
+1. In any model of the premises, the object named $Socrates$ is human.
+   The universal premise makes that object mortal.
+
+   {{< logic-app name="fol-model" kind="consequence" model="finf-socrates" title="Model reasoning: Socrates" >}}
+
+2. Choose an arbitrary domain object. The premise makes it both human and
+   mortal. Since the choice was arbitrary, every object is human and every
+   object is mortal.
+
+   {{< logic-app name="fol-model" kind="consequence" model="finf-distribution" title="Model reasoning: universal distribution" >}}
+
+3. Choose a witness $a$ for the existential premise. Given any domain object
+   $d$, the premise makes $Sibling(a,d)$ true. Thus $a$ witnesses the
+   existential conclusion for every choice of $d$.
+
+   {{< logic-app name="fol-model" kind="consequence" model="finf-shared-witness" title="Model reasoning: a shared witness" >}}
+
 # Unification {.solved}
 
-For each of the following pairs of terms determine whether they can be unified. If so, provide the unifier:
+In each level, choose a most general unifier or the reason no unifier exists.
+Check your choice before moving to the next level. The symbols $Munich$, $Milan$,
+$Rome$, $Mary$, $Jane$, and $London$ are constants; $fatherOf$ and $motherOf$
+are unary function symbols. Functions and predicates use argument brackets.
 
-1. `LiesBetween Munich y z ` and `LiesBetween x Milan Rome `
-2. `SitsBetween Mary x x ` and `SitsBetween x Jane y`
-3. `Between x Rome Rome ` and `¬Between Rome y x `
-4. `¬BornIn fatherOf motherOf x London` and `¬BornIn fatherOf y x`
-5. `¬Human x` and `¬Human fatherOf x`
-6. `Human fatherOf y x` and `Human x fatherOf y`
+{{< logic-app name="fol-inference" kind="unify-quiz" title="Choose the most general unifier" >}}
 
 ## Solution {#unificationSolution .solution}
 
-1. Unifiable with `[x / Munich, y / Milan, z / Rome]`.
-2. Not unifiable since `x` would need to be both `Mary` and `Jane`, which is impossible.
-3. Not unifiable since one formula is a negation and the other isn't.
-4. Unifiable with `[x / London, y / motherOf London]`
-5. Not unifiable since whatever `x` would be it can't give you `fatherOf x`.
-6. Unifiable by `[x / fatherOf y]`
+1. $[x/Munich,y/Milan,z/Rome]$ matches the three argument positions.
+2. No unifier: the repeated $x$ would have to match both $Mary$ and $Jane$.
+3. No unifier of the literals: their signs differ. Resolution instead unifies
+   the atoms of opposite-sign literals.
+4. $[x/London,y/motherOf(London)]$. Substitution is simultaneous, so leaving
+   $x$ in the replacement for $y$ would not give a unifier.
+5. No unifier: $x$ occurs as a proper part of $fatherOf(x)$.
+6. $[x/fatherOf(y)]$. Fixing $y$ to a particular constant would give a less
+   general unifier.
 
 # Robinson's Algorithm {.solved}
 
-The first algorithm for unification is due to [John Alan Robinson](https://en.wikipedia.org/wiki/John_Alan_Robinson), the father of resolution.
+Use {{< chapter_ref chapter="FOL-inference" id="robinsons-algorithm" >}}Robinson's algorithm{{< /chapter_ref >}}
+to solve the levels below. Click an equation in the box, then apply an
+operation. The buttons follow the cases in the chapter: Delete, Occurs,
+Eliminate, Orient, Clash, and Decompose. Eliminate substitutes the right-hand
+term for the variable on the left and updates the accumulated substitution.
+Try another valid order using Undo.
+For literals, first check their signs; then compare their atoms.
 
-To check whether two FOL literals can be unified, the algorithm proceeds as follows:
+{{< logic-app name="fol-inference" kind="unify" mode="practice" title="Practise Robinson unification" >}}
 
-1. Check if either both formulas begin with a negation or neither does. If so, proceed. Otherwise, the formulas are not unifiable.
+As additional checks, explain the outcomes for $x ≐ y$, $f(x) ≐ f(y)$,
+$x ≐ f(x)$, and $f(x) ≐ g(x)$.
 
-2. Check if the predicate in both formulas is the same. If it is, continue. If it is not, the formulas are not unifiable.
-
-3. We can assume, at this point, that the form of the formulas is covered by one of the two cases:
-
-    + `Pⁿ s₁ ... sₙ` and `Pⁿ t₁ ... tₙ`
-
-    + `¬Pⁿ s₁ ... sₙ` and `¬Pⁿ t₁ ... tₙ`
-
-    In both cases, to unify the formulas, we need to find a substitution
-    `σ`, such that `s₁σ = t₁σ`, ..., `sₙσ = tₙσ`, that is the result of
-    substituting within these terms must make each pair identical. 
-
-    To express this requirement, we make a list of these pairs:
-
-    ```Eq = [ [s₁, t₁], ..., [sₙ, tₙ] ]```
-
-    The algorithm aims to step-wise construct the desired substitution `σ`. We
-    start with the empty substitution `σ = [ ]`, and go through each pair `[sᵢ,
-    tᵢ]` of our list. We distinguish the following cases:
-
-    - Case 1: `sᵢ = tᵢ`. The terms are already identical, we can remove them
-    from `Eq`.
-
-    - Case 2. `sᵢ ≠ tᵢ` and `sᵢ` is some variable, while `tᵢ` is not. First,
-    check if `sᵢ` occurs in `tᵢ`. If so, like when `sᵢ = x` and `tᵢ = fatherOf
-    x`, then we can stop the entire procedure since no unification is possible.
-    Otherwise, we apply the substitution `[sᵢ / tᵢ]` to all other pairs, add it to
-    `σ`, and remove the pair `[sᵢ, tᵢ]` from the set.
-
-    - Case 3. `sᵢ ≠ tᵢ` and `tᵢ` is some variable, while `sᵢ` is not. Again, we
-    first check if `tᵢ` occurs within `sᵢ` and terminate the entire algorithm
-    if it does. Otherwise, we apply the substitution `[tᵢ / sᵢ]` to all other
-    pairs, add it to `σ`, and remove the pair `[sᵢ, tᵢ]` from the set.
-
-    - Case 4. `sᵢ ≠ tᵢ` and neither  `sᵢ` nor `tᵢ` is a variable. Then we check
-    the form of `sᵢ` and `tᵢ`. Only if they are of the following forms do we
-    continue:
-
-    ```sᵢ = fᵐ s₁' … sₘ'  &emsp; and &emsp; tᵢ = fᵐ t₁' … tₘ'```
-
-    That is, both terms are the result of applying the same function term to a
-    sequence of terms. If they are not, unification is impossible and we can
-    terminate the algorithm. If they _are_ of this form, we add all the
-    following corresponding pairs to `Eq`:
-
-    ```[ [s₁', s₂'], ..., [sₙ', tₙ'] ]```
-
-4. By going through all the pairs, deleting pairs when substitutions are
-   possible or trivial (Cases 1—3), and recursively adding new pairs (Case 4),
-one of two things will happen:
-
-    - Either we hit a termination condition in one of the cases and conclude
-    that unification isn't possible.
-
-    - Or we end up with an empty list and a full list of substitutions `σ` to
-    apply. In that case, `σ` is a unifier and the terms and thus literals are
-    indeed unifiable.
-    
-Apply this algorithm to check your work in Exercise 1.
+Explain why deleting identical pairs before the occurs check is necessary.
 
 ## Solution {#robinsons-algorithmSolution .solution}
 
+1. **Socrates:** decompose the atoms and record $[x/Socrates]$.
+2. **Composition:** record $[y/f(x)]$, then $[x/a]$. Updating the earlier
+   replacement gives $[x/a,y/f(a)]$.
+3. **Occurs check:** $x ≐ f(x)$ fails because a finite term cannot contain
+   itself as a proper part.
+4. **Symbol clash:** $f$ and $g$ are different fixed symbols.
+5. **Cities:** orient $Munich ≐ x$, then eliminate the variables to obtain
+   $[x/Munich,y/Milan,z/Rome]$.
+6. **Repeated variable:** matching the first arguments forces $x/Mary$;
+   matching the second then requires $Mary ≐ Jane$, a symbol clash.
+7. **Nested functions:** decompose, orient $motherOf(x) ≐ y$, and record
+   $[y/motherOf(x)]$. The remaining pair gives $[x/London]$. Compose to obtain
+   $[x/London,y/motherOf(London)]$.
+8. **An identity:** record $[x/fatherOf(y)]$. The other pair becomes identical
+   and can be deleted.
 
-1. Steps 1. & 2. of the algorithm all succeed with no difficulty. So, we check the pairs:
-    ```E = {[Munich, y],[y, Milan], [z, Rome]```
-
-    Applying cases 2. and 3. gives us the substitution: 
-
-    ```[x / Munich, y / Milan, z / Rome]```
-
-2. Steps 1. & 2. of the algorithm all succeed with no difficulty. So, we check the pairs:
-    ```E = {[Mary, x], [x, Jane], [x, y]}```
-
-    Applying Case 3. with `[Mary, x]` gives us:
-
-    ```{[Mary, Jane], [Mary, y]}```
-
-    Case 4. tells us to stop when we reach `[Mary, Jane]`. There is no substitution possible.
-
-3. Check 1. already fails, the two aren't unifiable.
-
-4. Steps 1. & 2. of the algorithm all succeed with no difficulty. So, we check the pairs:
-
-    ```E = {[fatherOf motherOf x, fatherOf y], [London, x]}```
-
-    Step 4 gives us for `[fatherOf motherOf x, fatherOf y]`:
-
-    ```E = {[motherOf x, y], [London, x]}```
-
-    Applying rules 3. and 4. gives us the substitution:
-
-    ```[x / London, y / motherOf x]```
-
-    which unifies the two formulas.
-
-6. Steps 1. & 2. of the algorithm all succeed with no difficulty. So, we check the pairs:
-
-    ```E = { [fatherOf y, x], [x, fatherOf y]}```
-
-    which gives us by rule 3 the set
-
-    ```E = { [fatherOf y, fatherOf y] }```
-    
-    with substitution `[x / fatherOf y]`, which terminates the algorithm.
-
+Delete $x ≐ x$ before the occurs check: the expressions already agree, so
+no replacement is required.
 
 # Skolemization {.solved}
 
-Skolemize the following formulas:
+Skolemize each formula. Start with a constant witness, then
+work through dependencies, separate scopes, and nested negation. Choose each
+subformula by clicking its main connective or quantifier, then apply an
+operation to the highlighted scope. When replacing an existential, enter the
+whole witness term, such as `sk₁` or `sk₁(x)`. Explain why each argument is in scope.
 
-1. `(∃y₁ Human y₁ ∧ ∀x₁ Mortal x₁)`
+{{< logic-app name="fol-inference" kind="skolem" mode="practice" title="Skolemization exercises" >}}
 
-2. `∀x₁(∀x₂∃y₁(IsFriendOf x₁ y₁ ∧ IsFriendOf x₂ y₁) ∨ ∃y₂¬IsFriendOf x₁ y₂)`
-
-3. `∃y₁∃y₂ IsFriendOf y₁ y₂`
+For each result, explain why Skolemization preserves satisfiability. Give a
+model showing why it need not preserve equivalence.
 
 ## Solution {#skolemizationSolution .solution}
 
-1. `(Human skolem₁ ∧ ∀x₁ Mortal x₁)`
+For levels 8–10, one choice of fresh symbols gives:
 
-2. `∀x₁(∀x₂(IsFriendOf x₁ skolem₁ x₁ x₂ ∧ IsFriendOf x₂ skolem₁ x₁ x₂) ∨ ¬IsFriendOf x₁ skolem₂ x₁)`
+1. $Human(sk₁) ∧ ∀y Mortal(y)$, after renaming the second binder.
+2. $∀x(∀y(IsFriendOf(x,sk₁(x,y)) ∧ IsFriendOf(y,sk₁(x,y))) ∨ ¬IsFriendOf(x,sk₂(x)))$.
+   The second existential is outside the scope of $∀y$.
+3. $IsFriendOf(sk₁,sk₂)$, with two fresh constants. Their interpretations may coincide.
 
-3. `IsFriendOf skolem₁ skolem₂`
+If a model satisfies $∃x Human(x)$, we can interpret the fresh constant $sk₁$
+as one of its humans. Then it also satisfies $Human(sk₁)$. Conversely,
+$Human(sk₁)$ guarantees a human exists. But if we instead interpret $sk₁$ as
+a nonhuman, the original sentence stays true while the Skolemized one is false.
+
+# A library knowledge base {.solved #resolution-knowledge-base}
+
+A library uses these rules:
+
+- A member may borrow an item they have reserved.
+- A librarian may borrow an item they have approved.
+- Anyone who may borrow an item can collect it.
+
+Ada is a member and has reserved the Atlas. Emmy is a librarian and has
+approved the Atlas. Use resolution to establish that Ada can collect the Atlas.
+The first two levels use the following formalization, with Ada and Emmy as
+the respective subjects of the conclusion:
+
+| Premise | Formula |
+| --- | --- |
+| Members | $∀x∀y ((Member(x) ∧ Reserved(x,y)) → MayBorrow(x,y))$ |
+| Librarians | $∀x∀y ((Librarian(x) ∧ Approved(x,y)) → MayBorrow(x,y))$ |
+| Collection | $∀x∀y (MayBorrow(x,y) → CanCollect(x,y))$ |
+| Ada | $Member(Ada)$; $Reserved(Ada,Atlas)$ |
+| Emmy | $Librarian(Emmy)$; $Approved(Emmy,Atlas)$ |
+
+The remaining levels ask you to derive an ancestry relation, the existence of
+a research project, and access granted by either of two rules. Each inference
+is already formalized. Derive the empty clause from its prepared clauses.
+
+Select opposite-sign literals in two clauses and choose Resolve. Each
+substitution must apply to the entire resulting clause.
+
+{{< logic-app name="sat-practice" language="fol" kind="resolution" deck="exercises" formula="∀x ∀y ((Member(x) ∧ Reserved(x,y)) → MayBorrow(x,y)); ∀x ∀y ((Librarian(x) ∧ Approved(x,y)) → MayBorrow(x,y)); ∀x ∀y (MayBorrow(x,y) → CanCollect(x,y)); Member(Ada); Reserved(Ada,Atlas); Librarian(Emmy); Approved(Emmy,Atlas) ∴ CanCollect(Ada,Atlas)" title="Resolution: library permissions" >}}
+
+## Solution {#resolution-knowledge-baseSolution .solution}
+
+For Ada, resolve the membership rule with $Member(Ada)$, then with
+$Reserved(Ada,Atlas)$, to obtain $MayBorrow(Ada,Atlas)$. The collection rule
+gives $CanCollect(Ada,Atlas)$, which contradicts the negated conclusion.
+For Emmy, use the librarian rule with $Librarian(Emmy)$ and
+$Approved(Emmy,Atlas)$; the final two inferences are the same.
+
+{{< logic-app name="sat" language="fol" kind="resolution" formula="∀x ∀y ((Member(x) ∧ Reserved(x,y)) → MayBorrow(x,y)); ∀x ∀y ((Librarian(x) ∧ Approved(x,y)) → MayBorrow(x,y)); ∀x ∀y (MayBorrow(x,y) → CanCollect(x,y)); Member(Ada); Reserved(Ada,Atlas); Librarian(Emmy); Approved(Emmy,Atlas) ∴ CanCollect(Ada,Atlas)" title="Library permissions: refutation" >}}
 
 # Drinker Paradox {.solved}
 
 Consider the following inference:
 
-```∃x InPub x ∴∃x (InPub x ∧(IsDrinking x →∀x(InPub x→IsDrinking x)))```
+$$
+∃x InPub(x) ∴ ∃x(InPub(x) ∧ (IsDrinking(x) → ∀y(InPub(y) → IsDrinking(y)))).
+$$
 
-In natural language: There's somebody in the pub, so there's somebody in the
-pub, such that if they are drinking, then everybody in the pub is drinking.
-This is known as the [drinker
-paradox](https://en.wikipedia.org/wiki/Drinker_paradox).
+There is somebody in the pub. Does it follow that there is somebody in the
+pub such that, if they are drinking, everybody in the pub is drinking?
 
-Use the method of resolution to show that this inference is deductively valid
-in FOL. That is:
+Negate the conclusion, move negations inward, and Skolemize. Write the
+resulting clauses as disjunctions and derive $⊥$ using resolution. Compare your result
+with the starting clauses below.
 
-1. Form the set of the premise and negation of conclusion.
+Select two literals directly in the clause box, then resolve them. For factoring,
+select two same-sign literals in one clause. Undo takes back the last inference.
 
-2. Transform all formulas into
-   [equisatisfiable](https://en.wikipedia.org/wiki/Equisatisfiability) CNF.
-Note that the Skolemization of an existential that doesn't depend on any
-universals is just a constant `skolem`. It's important to document your work,
-which transformations you're applying, but you can apply several steps
-simultaneously.
-
-3. Apply resolution with unification to derive the empty clause `{ }`. And
-   conclude that the initial set is unsatisfiable and the inference thus
-valid.
+{{< logic-app name="sat-practice" language="fol" kind="resolution" formula="∃x InPub(x) ∴ ∃x (InPub(x) ∧ (IsDrinking(x) → ∀y (InPub(y) → IsDrinking(y))))" title="Refute the negation of the drinker conclusion" >}}
 
 ## Solution {#drinker-paradoxSolution .solution}
 
-1. The set is:
+Write $P$ for $InPub$ and $D$ for $IsDrinking$. Negating the conclusion gives:
 
-    ```{∃x InPub x, ¬∃x (InPub x ∧(IsDrinking x →∀x(InPub x→IsDrinking x)))}```
+$$
+∀x (¬P(x) ∨ (D(x) ∧ ∃y (P(y) ∧ ¬D(y)))).
+$$
 
-2. Here are the results of the procedure:
+The premise supplies a fresh constant $sk₁$. In the negated conclusion, use
+$sk₂(x)$ for the existential witness. After distribution, the clauses are:
 
-    - The transformation of `∃x InPub x` just involves one step (Skolemization), which immediately gives us: 
+1. $P(sk₁)$.
+2. $¬P(x) ∨ D(x)$.
+3. $¬P(x) ∨ P(sk₂(x))$.
+4. $¬P(x) ∨ ¬D(sk₂(x))$.
 
-        ```InPub skolem₁```
+Resolve the last two clauses with $P(sk₁)$ to obtain $P(sk₂(sk₁))$ and $¬D(sk₂(sk₁))$.
+A fresh use of the second clause gives $D(sk₂(sk₁))$, which completes the
+refutation. Follow the checked derivation on the canvas:
 
-    - The other formula requires some more steps:
+{{< logic-app name="sat" language="fol" kind="resolution" formula="∃x P(x) ∴ ∃x (P(x) ∧ (D(x) → ∀y (P(y) → D(y))))" title="Drinker refutation" >}}
 
-        - `¬∃x (InPub x ∧(IsDrinking x →∀x(InPub x→IsDrinking x)))}`
-
-
-        - Two applications of `r₀` give: 
-
-            ```¬∃x (InPub x ∧(¬ IsDrinking x ∨∀x(¬ InPub x∨IsDrinking x)))```
-
-        - Then we push negations inwards with `r₁-r₃` and `r₆`:
-
-
-            ```∀x (¬InPub x ∨(IsDrinking x ∧∃x (InPub x∧¬IsDrinking x)))```
-
-        - Next we make the variables unique:
-
-            ```∀x₁ (¬InPub x₁ ∨(IsDrinking x₁ ∧∃y₁ (InPub y₁∧¬IsDrinking y₁)))```
-
-        - Then we Skolemize:
-
-
-            ```∀x₁ (¬InPub x₁ ∨(IsDrinking x₁ ∧ (InPub skolem₂ x₁∧¬IsDrinking skolem₂ x₁)))```
-
-        - And drop the universal:
-
-            ```(¬InPub x₁ ∨(IsDrinking x₁ ∧ (InPub skolem₂ x₁∧¬IsDrinking skolem₂ x₁)))```
-
-         - Finally, repeated distribution gives us:
-
-            ```(¬InPub x₁ ∨IsDrinking x) ∧(¬InPub x∨InPub skolem₂ x)∧(¬InPub x∨¬IsDrinking skolem₂ x))```
-
-    - For the resolution, we therefore work with the sets:
-
-        ```{InPub skolem₁} &emsp; {¬InPub x₁ , IsDrinking x₁}```
-        ```{¬InPub x₁, InPub skolem₂ x} &emsp; {¬InPub x₁, ¬IsDrinking skolem₂ x₁}```
-
-        Here's a derivation of `{ }` from this using resolution:
-
-        {{< img src="img/resolution.png" class="mx-auto rounded d-block inert-img img-fluid" width="800px">}}
-
+The premise supplies the starting witness. If nobody is in the pub, the
+existential conclusion is false, even though our domain itself is nonempty.
 
 # Natural deduction {.solved}
 
-Find logical proofs in FOL natural deduction for the following logical
-laws. Note that some of these require `<span class="dark-blue">open</span> Classical`.
+Prove the laws below, as in
+{{< chapter_ref chapter="proofs" >}}Logical proofs{{< /chapter_ref >}}. The levels are grouped
+into duality, distribution, and interaction. Goals lets you plan backwards;
+the rules menu also supports forward construction. Use Hint when you need a
+suggested next move. The domain is nonempty throughout.
 
-## Duality Laws
+{{< logic-app name="deduction" language="fol" kind="practice" deck="exercises" title="First-order natural deduction exercises" >}}
 
-1. `¬∀xA(x)⊢∃x¬A(x)`
-2. `∃x¬A(x)⊢¬∀xA(x)`
-3. `¬∃xA(x)⊢∀x¬A(x)`
-4. `∀x¬A(x)⊢¬∃xA(x)`
+Identify every use of the classical rule and every witness freshness condition.
 
-## Distribution Laws
-
-1. `∀x(A(x) ∧ B(x)) ⊢∀xA(x) ∧ ∀xB(x)`
-2. `∀xA(x) ∧ ∀xB(x)⊢ ∀x (A(x) ∧ B(x))`
-3. `∃x(A(x) ∨ B(x)) ⊢∃xA(x) ∨ ∃xB(x)`
-4. `∃x A(x) ∨ ∃x B(x) ⊢∃x(A(x) ∨ B(x))`
-
-## Interaction Laws
-
-1. `∀xA(x)⊢∃xA(x)`
-2. `∃x∀yR(x,y)⊢∀y∃xR(x,y)`
-3. `∃xA(x)→C⊢∀x(A(x)→C)`, assuming that `x` is not free in `C`
-4. `∀xA(x)→C⊢∃x(A(x)→C)`, assuming that `x` is not free in `C`.
+<span id="duality-laws"></span>
+<span id="distribution-laws"></span>
+<span id="interaction-laws"></span>
 
 ## Solution {#natural-deductionSolution .solution}
 
-**Duality Laws**
+{{< logic-app name="deduction" language="fol" kind="worked" deck="exercises" title="First-order natural deduction solutions" >}}
 
-1. `¬∀xA(x)⊢∃x¬A(x)` (This one's a bit more difficult)
-
-    {{< img src="img/duality_1.png" class="mx-auto rounded d-block inert-img img-fluid" width="200px">}}
-
-2. `∃x¬A(x)⊢¬∀xA(x)`
-
-    {{< img src="img/duality_2.png" class="mx-auto rounded d-block inert-img img-fluid" width="200px">}}
-
-3. `¬∃xA(x)⊢∀x¬A(x)`
-
-    {{< img src="img/duality_3.png" class="mx-auto rounded d-block inert-img img-fluid" width="200px">}}
-
-4. `∀x¬A(x)⊢¬∃xA(x)`
-
-    {{< img src="img/duality_4.png" class="mx-auto rounded d-block inert-img img-fluid" width="200px">}}
-
-**Distribution Laws**
-
-1. `∀x(A(x) ∧ B(x)) ⊢∀xA(x) ∧ ∀xB(x)`
-
-    {{< img src="img/distribution_1.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
-
-2. `∀xA(x) ∧ ∀xB(x)⊢ ∀x (A(x) ∧ B(x))`
-
-    {{< img src="img/distribution_2.png" class="mx-auto rounded d-block inert-img img-fluid" width="300px">}}
-
-3. `∃x(A(x) ∨ B(x)) ⊢∃xA(x) ∨ ∃xB(x)`
-
-    {{< img src="img/distribution_3.png" class="mx-auto rounded d-block inert-img img-fluid" width="500px">}}
-
-4. `∃x A(x) ∨ ∃x B(x) ⊢∃x(A(x) ∨ B(x))`
-
-    {{< img src="img/distribution_4.png" class="mx-auto rounded d-block inert-img img-fluid" width="500px">}}
-
-**Interaction Laws**
-
-1. `∀xA(x)⊢∃xA(x)`
-
-    {{< img src="img/interaction_1.png" class="mx-auto rounded d-block inert-img img-fluid" width="150px">}}
-
-2. `∃x∀yR(x,y)⊢∀y∃xR(x,y)`
-
-    {{< img src="img/interaction_2.png" class="mx-auto rounded d-block inert-img img-fluid" width="250px">}}
-
-3. `∃xA(x)→C⊢∀x(A(x)→C)`, assuming that `x` is not free in `C`
-
-    {{< img src="img/interaction_3.png" class="mx-auto rounded d-block inert-img img-fluid" width="250px">}}
-
-4. `∀xA(x)→C⊢∃x(A(x)→C)`, assuming that `x` is not free in `C`.
-
-    {{< img src="img/interaction_4.png" class="mx-auto rounded d-block inert-img img-fluid" width="350px">}}
+Duality 1 and Interaction 4 use classical reasoning. Interaction 1 and 4 use
+nonemptiness to supply an object. In each existential elimination, check that
+the temporary witness is absent from the conclusion and remaining assumptions.
 
 # Lean {.solved}
-Verify your work from the previous exercise in Lean. Here's a template for the
-work. You can follow the link below to work in the interactive environment.
 
-{{< lean_logo >}}
-~~~lean4
-variable (Term : Type) (A B : Term → Prop) (R : Term → Term → Prop) (C : Prop)
+Verify all twelve natural deduction inferences in Lean. Each block contains
+its own declarations and can be copied or opened in Lean. Replace each
+`sorry` with a proof using the commands from the chapter.
 
-/-! Duality Laws -/
+`Domain` represents the domain of a structure; `A`, `B`, and `R` represent
+predicate interpretations. `[Inhabited Domain]` supplies
+`default : Domain`. Identify where your proof uses this object and where
+it uses `Classical.byContradiction`.
 
-theorem duality_one_ltr (h : ¬∀x, A x) : ∃x, ¬A x := by
+## Duality
+
+```lean
+variable (Domain : Type) [Inhabited Domain]
+variable (A B : Domain → Prop) (R : Domain → Domain → Prop) (C : Prop)
+
+-- Duality 1
+example (h : ¬∀ x, A x) : ∃ x, ¬A x := by
   sorry
 
-theorem duality_one_rtl (h : ∃x, ¬A x) : ¬∀x, A x := by
+-- Duality 2
+example (h : ∃ x, ¬A x) : ¬∀ x, A x := by
   sorry
 
-theorem duality_two_ltr (h : ¬∃x, A x) : ∀x, ¬A x := by
+-- Duality 3
+example (h : ¬∃ x, A x) : ∀ x, ¬A x := by
   sorry
 
-theorem duality_two_rtl (h : ∀x, ¬A x) : ¬∃x, A x := by
+-- Duality 4
+example (h : ∀ x, ¬A x) : ¬∃ x, A x := by
+  sorry
+```
+
+## Distribution
+
+```lean
+variable (Domain : Type) [Inhabited Domain]
+variable (A B : Domain → Prop) (R : Domain → Domain → Prop) (C : Prop)
+
+-- Distribution 5
+example (h : ∀ x, A x ∧ B x) : (∀ x, A x) ∧ (∀ x, B x) := by
   sorry
 
-/-! Duality Laws -/
-
-theorem all_over_and_rtl (h: ∀x, A x ∧ B x) : (∀x, A x) ∧ (∀x, B x) := by 
+-- Distribution 6
+example (h : (∀ x, A x) ∧ (∀ x, B x)) : ∀ x, A x ∧ B x := by
   sorry
 
-theorem all_over_and_ltr (h: (∀x, A x) ∧ (∀x, B x)) : ∀x, A x ∧  B x := by
+-- Distribution 7
+example (h : ∃ x, A x ∨ B x) : (∃ x, A x) ∨ (∃ x, B x) := by
   sorry
 
-theorem exists_over_or_rtl (h: ∃x, A x ∨ B x) : (∃x, A x) ∨ (∃x, B x) := by
+-- Distribution 8
+example (h : (∃ x, A x) ∨ (∃ x, B x)) : ∃ x, A x ∨ B x := by
+  sorry
+```
+
+## Interaction
+
+```lean
+variable (Domain : Type) [Inhabited Domain]
+variable (A B : Domain → Prop) (R : Domain → Domain → Prop) (C : Prop)
+
+-- Interaction 9
+example (h : ∀ x, A x) : ∃ x, A x := by
   sorry
 
-theorem exists_over_or_ltr (h: (∃x, A x) ∨ (∃x, B x)) : ∃x, A x ∨ B x := by
+-- Interaction 10
+example (h : ∃ x, ∀ y, R x y) : ∀ y, ∃ x, R x y := by
   sorry
 
-/-! Interaction Laws -/
-
-theorem existential_import (h: ∀x, A x) : ∃x, A x := by
+-- Interaction 11
+example (h : (∃ x, A x) → C) : ∀ x, A x → C := by
   sorry
 
-theorem switcheroo (h : ∃x, ∀y, R x y) : ∀y, ∃x, R x y := by
+-- Interaction 12
+example (h : (∀ x, A x) → C) : ∃ x, A x → C := by
   sorry
-
-theorem exists_to_forall (h: (∃x, A x) → C) : ∀x, A x → C := by
-  sorry
-
-theorem forall_to_exists (h: (∀x, A x) → C) : ∃x, A x → C := by
-  sorry
-~~~
-
-Follow this [link](https://live.lean-lang.org/#codez=G4QwTgliBGA2CmACAFAFXmAtogXI1AngA7wCUKAgogEK74baBJhIgApgD2R5yASnelkTMBTVhy4oAwnTadSAKHkB6ALQBCRABEAriFgQALgUQAZEAHcAzohVLFBgBbx2YeNgAmu/UYD67AHbwPrAGYCgOdAA1gABEAB4ANIhUseR4gMBECYiRybgAvIjQBPKIiJYuYEXyjs6uHl6GBH6BPmAGsOF0GYnZiClRcYk5OPmFxaXlldUuboieeg0+BubswaEdeJFdSb2piANZQyNFJWVgFfZO03Xzvksrre3IEXj7PX0bW4cFx+NnlaoaHQ3YxmKw2OxVS61RB6WB+YAYHwgfzuFptcIvTI5QDkRDQdnR9ji9plaLE8t8xqdzpCajNYfDEcjUSEwk9MYNeohcftSbtCZzcXiycMKScJhdadh4LEIJYDJYGWA/EqHhjEJ9OYAKIiFuw1ZO1W1J5NGYr+EquiGlsvliuVq1ZDnSWK16pJ+KdHP1NGFR0p4uU6kQAEl/AYMCAAMYGCABUwWay2c3Qq1y+ChqBwiCYIguAxq/nvV2e40/KmTKEzSzmQwRpwcdjrIt7AiJPhkgh8ltNtuIYwik2/alTZMyuUKgwrABmLlhar1QkQkj5zrJzGk/dL/uHM2nYHpE58Kfl+ZXC6XnVPa5Lfr+QA) to work in the digital playground.
+```
 
 ## Solution {.solution #leanSolution}
 
-Credit: Alexander Apers
+Quantifier laws adapted from the exercise solutions by Alexander Apers.
 
-{{<lean_logo>}}
-~~~~lean4
-variable (Term : Type) (A B : Term → Prop) (R : Term → Term → Prop) (C : Prop) 
+```lean
+variable (Domain : Type) [Inhabited Domain]
+variable (A B : Domain → Prop) (R : Domain → Domain → Prop) (C : Prop)
 
-open Classical
-
-/-! Duality Laws -/
-theorem duality_one_ltr (h : ¬∀x, A x) : ∃x, ¬A x := by
-  apply byContradiction
-  intro neg_concl
-  apply h 
-  intro x
-  apply byContradiction
-  intro neg_A_c
-  apply neg_concl
-  apply Exists.intro 
-  exact neg_A_c
-
-
-theorem duality_one_rtl (h : ∃x, ¬A x) : ¬∀x, A x := by
-  intro forallxAx
-  apply Exists.elim h
-  intro x negAc
-  apply negAc
-  apply forallxAx x
-
-
-theorem duality_two_ltr (h : ¬∃x, A x) : ∀x, ¬A x := by
-  intro x Ac
+-- Duality 1
+example (h : ¬∀ x, A x) : ∃ x, ¬A x := by
+  apply Classical.byContradiction
+  intro hn
   apply h
-  apply Exists.intro 
-  exact Ac
-
-
-theorem duality_two_rtl (h : ∀x, ¬A x) : ¬∃x, A x := by
-  intro existsxAx 
-  apply Exists.elim existsxAx
   intro x
-  apply h x
+  apply Classical.byContradiction
+  intro hx
+  apply hn
+  apply Exists.intro x
+  exact hx
 
+-- Duality 2
+example (h : ∃ x, ¬A x) : ¬∀ x, A x := by
+  intro all
+  apply Exists.elim h
+  intro x hx
+  exact hx (all x)
 
-/-! Duality Laws -/
-theorem all_over_and_rtl (h: ∀x, A x ∧ B x) : (∀x, A x) ∧ (∀x, B x) := by 
-  apply And.intro 
+-- Duality 3
+example (h : ¬∃ x, A x) : ∀ x, ¬A x := by
   intro x
-  apply And.left
-  apply h x
-  intro x
-  apply And.right
-  apply h x
+  intro hx
+  apply h
+  apply Exists.intro x
+  exact hx
 
+-- Duality 4
+example (h : ∀ x, ¬A x) : ¬∃ x, A x := by
+  intro ex
+  apply Exists.elim ex
+  intro x hx
+  exact (h x) hx
+```
 
-theorem all_over_and_ltr (h: (∀x, A x) ∧ (∀x, B x)) : ∀x, A x ∧  B x := by
+```lean
+variable (Domain : Type) [Inhabited Domain]
+variable (A B : Domain → Prop) (R : Domain → Domain → Prop) (C : Prop)
+
+-- Distribution 5
+example (h : ∀ x, A x ∧ B x) : (∀ x, A x) ∧ (∀ x, B x) := by
+  apply And.intro
+  · intro x
+    exact And.left (h x)
+  · intro x
+    exact And.right (h x)
+
+-- Distribution 6
+example (h : (∀ x, A x) ∧ (∀ x, B x)) : ∀ x, A x ∧ B x := by
   intro x
   apply And.intro
-  apply And.left h x
-  apply And.right h x
-  
+  · exact (And.left h) x
+  · exact (And.right h) x
 
-theorem exists_over_or_rtl (h: ∃x, A x ∨ B x) : (∃x, A x) ∨ (∃x, B x) := by
+-- Distribution 7
+example (h : ∃ x, A x ∨ B x) : (∃ x, A x) ∨ (∃ x, B x) := by
   apply Exists.elim h
-  intro x AcorBc
-  apply Or.elim AcorBc
-  intro Ac
-  apply Or.inl 
-  apply Exists.intro 
-  exact Ac
-  intro Bc
-  apply Or.inr
-  apply Exists.intro
-  exact Bc
+  intro x hx
+  apply Or.elim hx
+  · intro ha
+    apply Or.inl
+    apply Exists.intro x
+    exact ha
+  · intro hb
+    apply Or.inr
+    apply Exists.intro x
+    exact hb
 
-
-theorem exists_over_or_ltr (h: (∃x, A x) ∨ (∃x, B x)) : ∃x, A x ∨ B x := by
+-- Distribution 8
+example (h : (∃ x, A x) ∨ (∃ x, B x)) : ∃ x, A x ∨ B x := by
   apply Or.elim h
-  intro existsxAx
-  apply Exists.elim existsxAx
-  intro x Ac
-  apply Exists.intro
-  apply Or.inl Ac 
-  intro existsxBx
-  apply Exists.elim existsxBx
-  intro x Bc
-  apply Exists.intro
-  apply Or.inr Bc
+  · intro ha
+    apply Exists.elim ha
+    intro x hx
+    apply Exists.intro x
+    apply Or.inl
+    exact hx
+  · intro hb
+    apply Exists.elim hb
+    intro x hx
+    apply Exists.intro x
+    apply Or.inr
+    exact hx
+```
 
+```lean
+variable (Domain : Type) [Inhabited Domain]
+variable (A B : Domain → Prop) (R : Domain → Domain → Prop) (C : Prop)
 
-/-! Interaction Laws -/
--- note: This proof requires explicitly telling lean we are working with a non-empty domain. 
--- Since this was not discussed in the textbook it is not expected that you are able to do this.
--- solved by Johannes
-theorem existential_import [Inhabited Term] (h: ∀x, A x) : ∃x, A x := by
-  apply Exists.intro
-  apply h 
-  exact default
+-- Interaction 9
+example (h : ∀ x, A x) : ∃ x, A x := by
+  apply Exists.intro (default : Domain)
+  exact h default
 
-theorem switcheroo (h : ∃x, ∀y, R x y) : ∀y, ∃x, R x y := by
+-- Interaction 10
+example (h : ∃ x, ∀ y, R x y) : ∀ y, ∃ x, R x y := by
   intro y
   apply Exists.elim h
-  intro x Rcd
-  apply Exists.intro 
-  apply Rcd
+  intro x hx
+  apply Exists.intro x
+  exact hx y
 
-
-theorem exists_to_forall (h: (∃x, A x) → C) : ∀x, A x → C := by
-  intro x Ad
+-- Interaction 11
+example (h : (∃ x, A x) → C) : ∀ x, A x → C := by
+  intro x
+  intro hx
   apply h
-  apply Exists.intro
-  exact Ad
+  apply Exists.intro x
+  exact hx
 
--- note: this proof also required a non-empty domain
--- solved by Johannes
-theorem forall_to_exists [Inhabited Term] (h: (∀x, A x) → C) : ∃x, A x → C := by
-  apply byContradiction
-  intro neg_existsxAxtoC
-  apply neg_existsxAxtoC
-  · apply Exists.intro (default : Term)
-    intro Ad
-    apply h
-    apply byContradiction
-    intro neg_allxAx
-    apply neg_existsxAxtoC
-    apply Exists.elim
-    · apply duality_one_ltr 
-      exact neg_allxAx
-    · intro c neg_Ac
-      apply Exists.intro
-      · intro Ac
-        apply False.elim
-        apply neg_Ac Ac
-~~~~
+-- Interaction 12
+example (h : (∀ x, A x) → C) : ∃ x, A x → C := by
+  apply Classical.byContradiction
+  intro hn
+  apply hn
+  apply Exists.intro (default : Domain)
+  intro hd
+  apply h
+  intro x
+  apply Classical.byContradiction
+  intro hx
+  apply hn
+  apply Exists.intro x
+  intro ax
+  apply False.elim
+  exact hx ax
+```
 
-You can review the code in the Lean playground by following this [link](https://live.lean-lang.org/#codez=G4QwTgliBGA2CmACAFAFXmAtogXI1AngA7wCUKAgogEK74baBJhIgApgD2R5yASnelkTMBTVhy4oAwnTadyAKHmd4AO0STYIAM5aIAYxCxFAegC0AQkQARAK6GIAFwKIAMiADuWxKePyHAC3h2MHhsABM7WEcCAH12FXgY2AcwFH86ABrAACIADwAaRCoc8jxAYCJ8xAyi3ABeRGgCeUREECIiWGcGyXiUkDD9Bwh4psQIFRT2RASAcxi9eL0jZtb253SRsYnEHJGVjvqCbvGwPoGhlQ3jyZmYijndtv2b+ZVFh9XEAFEciC0HLQAdJsOIgRvAciA9A4pvBZnc9Io/IFgqFEBF7E44gkYmAHLA0nRygUqtsSpVcgVqjg6g1LlsAGbBQywHIUHbLR7Ob6/f4A+BRbD+OkgnIw6YUBEcj4zCXvfaMk6wFls7aIgJBELhSLRGIOdzsJIpAl4DJEwqkugUypUmmNZrAyai2VS/ZCl1cn5/QEO0HNcGQ6GyxTqlFajGxPUG3H45DpPBWknFTJmm0HYWTcE8rSs0Vyj1ZvkCxCZr059Oq92IdI7EwWazapyuDxeHxIjWo5lxYAYGIgFRhHF4tLxirVQDkRDQLXhkFaiuQJzOKrQk9SDr6WpzCv2gVd1z72RuPhRtwh6Q481WK6Ndwe9s5j2EAZBpv5z5Xq2rkZqWkquz2+wOySpLG06zhaC5WsupBkmBooTpOoqrrS9o3heD47hMaEnvAZ6Xrem7oc+r54SMwZfqiJb/H+YBxDR0bDogKbbIggAURAhZLIExSZsZxS5TraF7cl6hYQIK5ZOvMYDUJKh77AA8mAInYBKwTSeWzqyc4Ck7vigmeryPpghCUKFDJPpqZW2ljGAekFg6RkBjQCJke22CUVo1G0YawH+NOXHkDxZpQWSXGsQhtRppZin8qJVblu5ZaVkJvIxW5+nZmy4mmbZwn2VFOmmXuu4JdQ+EfMlgKpcW6U5KVWUWZpXzpRhHAXlZKipGptaWAAkuMGABucTaeN4vimKYUzsA48B4Kg/i/IgRAcOw9KICEACONgQCEXjgu0+iOPs01KmM0yIAgfaIO4SDgEg+pgAA1qdV2OOkICTSopihEQjZhOwmAgGMAKIAAymMehIAEC3uNok3Qv0Wh6DYOjwGE16IOqGPgg40DsOwD2jNCC0qFN1UkFCqMY/4IDQgQ7A2C0IQtHAkOTH9VO/AC8jjYgWjsLA3Zow0iAAFLsNTKgJFobahtVPKqIMhgxKJRDBNCADafXU9AjiUyIAC6DGwSFo7MUhdqNRVLXsBe6x+sZ8M4SANjJC5staO4jh6IEy3GoxFRZAQBR8KKBAwUH/vB8xzjm+WFt3k1BZVW615bKKPB6GEOUGbuF4Z1nbvfu5uoGgqzIMbxlIWswkgwaboo1xFyGpyKhRZ++2felcDkmRQBc8yT014FDXhLXjq2GHza3wJt22U+9JOfd9v3/YDFw83zAuU8LYsS1LMvfmXv4OAa7mIJrKja7raMGxXxtCOoJtVw36hN/Hm5dD0Jz9FC5zljcCU2Qn0kBeABNUgHsBAc0AA7ZbZqPpkBhCdi7aEs0GCkBGChLYfdMGNRTpWT+xxTi/2GM0LBIIbjMkSmQhOYCsw5mAbghOVtUq4NgQndEURMTxESEBdcZDqqOUoUqahMCW6TD0GKW4MkBHMPgd3ARYifQaUUY1AAYpPeASlcGyM3DcCUpkgA).
+# Identity {.solved #identity-exercises}
+
+From $a=b$ and $Human(a)$, derive $Human(b)$. Then try deriving $b=a$ from
+$a=b$: first use identity introduction to prove $a=a$, and choose a
+substitution formula that changes only its first occurrence of $a$.
+
+{{< logic-app name="deduction" language="fol" kind="canvas" example="equality" title="Practise identity substitution" >}}
+
+## Solution {.solution #identity-exercisesSolution}
+
+Use $Human(x)$ for the first substitution and $x=a$ for the second. In each
+case $x$ is the placeholder, $a$ is the left-hand term, and $b$ is the
+right-hand term of the identity. The second result is $b=a$.
+
+{{< logic-app name="deduction" language="fol" kind="worked" example="symmetry" title="Derive symmetry of identity" >}}
+
+# What did the prover tell us? {.solved}
+
+We ask whether a conclusion follows from some first-order premises. What can
+we conclude in each case?
+
+1. A prover returns a formal proof, and a sound proof checker accepts it.
+2. A model finder returns a structure; checking it confirms that all premises
+   are true and the conclusion is false.
+3. Both programs time out without returning either result.
+
+## Solution {#what-did-the-prover-tell-usSolution .solution}
+
+1. The conclusion follows in the formal system, subject to the checked
+   assumptions. We still need to check that the formalization fits our question.
+2. The inference is invalid: we have a countermodel.
+3. We don't yet know. A timeout is a fact about this search, not a proof of
+   validity or invalidity.
+
+# What if the type were empty? {.solved}
+
+Lean's type `Empty` has no objects. If a subproof nevertheless supplies
+`x : Empty`, `Empty.elim x` proves any proposition, just as `False.elim`
+uses an impossible assumption.
+
+Use this to show why the nonempty-domain assumption matters in the two
+interaction laws. The code below takes `Domain` to be `Empty`, replaces
+`A x` by `False`, and, in the second law, takes `C` to be `True`.
+Prove that each instance of the proposed law is false.
+
+```lean
+example : ¬ ((∀ x : Empty, False) → ∃ x : Empty, False) := by
+  sorry
+
+example : ¬ (((∀ x : Empty, False) → True) → ∃ x : Empty, False → True) := by
+  sorry
+```
+
+
+## Solution {#what-if-the-type-were-emptySolution .solution}
+
+In the first instance, the universal antecedent is true because there are
+no objects. The existential consequent is false. In the second, the
+antecedent is true because its conclusion is `True`, but the existential
+consequent still needs an object.
+
+```lean
+example : ¬ ((∀ x : Empty, False) → ∃ x : Empty, False) := by
+  intro h
+  have all : ∀ x : Empty, False := by
+    intro x
+    exact Empty.elim x
+  apply Exists.elim (h all)
+  intro x hx
+  exact hx
+
+example : ¬ (((∀ x : Empty, False) → True) → ∃ x : Empty, False → True) := by
+  intro h
+  have premise : (∀ x : Empty, False) → True := by
+    intro all
+    exact True.intro
+  apply Exists.elim (h premise)
+  intro x hx
+  exact Empty.elim x
+```
+
+
+# Verify the Boolean derivations (advanced) {.solved #verify-boolean-derivations}
+
+Return to the six tasks under [Boolean laws](/exercises/boolean/#boolean-laws).
+Translate your derivations into Lean using Boolean laws and equality substitution, as in
+the textbook's double-negation example. Keep the steps of your written
+arguments visible instead of replacing them with a single automated proof.
+
+1. Verify task 1 from the two absorption laws, supplied as premises.
+2. Derive OR and AND idempotence for tasks 2 and 3, without using
+   `Bool.or_self` or `Bool.and_self`. Again, take absorption as a premise.
+3. Verify task 4 by factoring out `x`, then using complementation and identity.
+4. Verify task 5 using distributivity, commutativity, complementation, and identity.
+5. Give the result of task 5 a name and use it inside negation to verify task 6.
+   Lean's `Bool.not_and` supplies the De Morgan law.
+
+Run each proof in Lean. Then make one incorrect substitution and inspect the error.
+
+Use these templates for the six tasks:
+
+```lean
+-- Task 1
+example (x y : Bool)
+    (andAbsorption : (x && (x || y)) = x)
+    (orAbsorption : (x || (x && y)) = x) :
+    (x && (x || y)) = (x || (x && y)) := by
+  sorry
+
+-- Task 2
+example (x : Bool) (orAbsorption : (x || (x && true)) = x) : (x || x) = x := by
+  sorry
+
+-- Task 3
+example (x : Bool) (andAbsorption : (x && (x || false)) = x) : (x && x) = x := by
+  sorry
+
+-- Task 4
+example (x y : Bool) : ((x && y) || (x && !y)) = x := by
+  sorry
+
+-- Task 5
+theorem booleanReduction (x y : Bool) : (x && (!x || y)) = (x && y) := by
+  sorry
+
+-- Task 6: use booleanReduction from task 5.
+example (x y : Bool) : (!(x && (!x || y))) = (!x || !y) := by
+  sorry
+```
+
+For reference, here are the notation and law tables from the chapter.
+The absorption names refer to the supplied premises; `Eq.symm` reverses
+an equality. Use only the laws permitted by each task.
+
+| Boolean notation | Lean expression |
+| --- | --- |
+| $0$ | `false` |
+| $1$ | `true` |
+| $X$ | `x : Bool` |
+| $!!NOT!! X$ | `!x` |
+| $X !!AND!! Y$ | `x && y` |
+| $X !!OR!! Y$ | `x ∣∣ y` |
+| $!!NOT!! !!NOT!! X = X$ | `(!!x) = x` |
+
+| Law | Boolean identity | Lean proof |
+| --- | --- | --- |
+| Associativity | $X !!OR!! (Y !!OR!! Z) = (X !!OR!! Y) !!OR!! Z$ | `Eq.symm (Bool.or_assoc x y z)` |
+| Associativity | $X !!AND!! (Y !!AND!! Z) = (X !!AND!! Y) !!AND!! Z$ | `Eq.symm (Bool.and_assoc x y z)` |
+| Commutativity | $X !!OR!! Y = Y !!OR!! X$ | `Bool.or_comm x y` |
+| Commutativity | $X !!AND!! Y = Y !!AND!! X$ | `Bool.and_comm x y` |
+| Absorption | $X !!OR!! (X !!AND!! Y) = X$ | `orAbsorption` |
+| Absorption | $X !!AND!! (X !!OR!! Y) = X$ | `andAbsorption` |
+| Distributivity | $X !!OR!! (Y !!AND!! Z) = (X !!OR!! Y) !!AND!! (X !!OR!! Z)$ | `Bool.or_and_distrib_left x y z` |
+| Distributivity | $X !!AND!! (Y !!OR!! Z) = (X !!AND!! Y) !!OR!! (X !!AND!! Z)$ | `Bool.and_or_distrib_left x y z` |
+| Complementation | $X !!OR!! !!NOT!! X = 1$ | `Bool.or_not_self x` |
+| Complementation | $X !!AND!! !!NOT!! X = 0$ | `Bool.and_not_self x` |
+| Identity | $X !!OR!! 0 = X$ | `Bool.or_false x` |
+| Identity | $X !!AND!! 1 = X$ | `Bool.and_true x` |
+| Domination | $X !!AND!! 0 = 0$ | `Bool.and_false x` |
+| Domination | $X !!OR!! 1 = 1$ | `Bool.or_true x` |
+| De Morgan | $!!NOT!! (X !!OR!! Y) = (!!NOT!! X) !!AND!! (!!NOT!! Y)$ | `Bool.not_or x y` |
+| De Morgan | $!!NOT!! (X !!AND!! Y) = (!!NOT!! X) !!OR!! (!!NOT!! Y)$ | `Bool.not_and x y` |
+| Double negation | $!!NOT!! !!NOT!! X = X$ | `Bool.not_not x` |
+
+## Solution {.solution #verify-boolean-derivationsSolution}
+
+For tasks 1–3, the absorption premises are instances of the laws from Boolean
+algebra. The proofs check that the requested equations follow from those
+premises. The remaining proofs use Lean's Boolean laws directly.
+For substitution inside a function, use the congruence result proved with
+`Eq.subst` and `rfl` in
+{{< chapter_ref chapter="FOL-inference" id="verifying-boolean-algebra" >}}Verifying a Boolean derivation{{< /chapter_ref >}}.
+Its library name is `congrArg`. In task 6, the function is `Bool.not`.
+
+```lean
+-- Task 1: both sides equal x, by the two absorption premises.
+example (x y : Bool)
+    (andAbsorption : (x && (x || y)) = x)
+    (orAbsorption : (x || (x && y)) = x) :
+    (x && (x || y)) = (x || (x && y)) := by
+  exact Eq.subst (Eq.symm orAbsorption) andAbsorption
+
+-- Tasks 2 and 3: identity, then absorption.
+example (x : Bool) (orAbsorption : (x || (x && true)) = x) :
+    (x || x) = x := by
+  have step_1 : (x || x) = (x || (x && true)) := by
+    exact Eq.symm (congrArg (Bool.or x) (Bool.and_true x))
+  exact Eq.subst orAbsorption step_1
+
+example (x : Bool) (andAbsorption : (x && (x || false)) = x) :
+    (x && x) = x := by
+  have step_1 : (x && x) = (x && (x || false)) := by
+    exact Eq.symm (congrArg (Bool.and x) (Bool.or_false x))
+  exact Eq.subst andAbsorption step_1
+
+-- Task 4: distribute backwards, then use complementation and identity.
+example (x y : Bool) : ((x && y) || (x && !y)) = x := by
+  have step_1 : ((x && y) || (x && !y)) = (x && (y || !y)) := by
+    exact Eq.symm (Bool.and_or_distrib_left x y (!y))
+  have step_2 : ((x && y) || (x && !y)) = (x && true) := by
+    exact Eq.subst (congrArg (Bool.and x) (Bool.or_not_self y)) step_1
+  exact Eq.subst (Bool.and_true x) step_2
+
+-- Task 5: distribute, put the complementary pair on the right, then cancel it.
+theorem booleanReduction (x y : Bool) : (x && (!x || y)) = (x && y) := by
+  have step_1 : (x && (!x || y)) = ((x && !x) || (x && y)) := by
+    exact Bool.and_or_distrib_left x (!x) y
+  have step_2 : (x && (!x || y)) = ((x && y) || (x && !x)) := by
+    exact Eq.subst (Bool.or_comm (x && !x) (x && y)) step_1
+  have step_3 : (x && (!x || y)) = ((x && y) || false) := by
+    exact Eq.subst (congrArg (Bool.or (x && y)) (Bool.and_not_self x)) step_2
+  exact Eq.subst (Bool.or_false (x && y)) step_3
+
+-- Task 6: reuse task 5 inside negation, then apply De Morgan.
+example (x y : Bool) : (!(x && (!x || y))) = (!x || !y) := by
+  have step_1 : (!(x && (!x || y))) = (!(x && y)) := by
+    exact congrArg Bool.not (booleanReduction x y)
+  exact Eq.subst (Bool.not_and x y) step_1
+```

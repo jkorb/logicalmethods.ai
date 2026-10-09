@@ -1,4 +1,4 @@
-<section class="logic-app shunting-yard" data-logic-app="shunting-yard" aria-label="Shunting-yard steps">
+<section class="logic-app shunting-yard" data-tool="{{ eq .sc.Page.Section "tools" }}" data-logic-app="shunting-yard" aria-label="Shunting-yard steps">
   <form class="logic-app__form">
     <label for="{{ .id }}-formula">Formula in conventional notation</label>
     <textarea data-submit-enter id="{{ .id }}-formula" class="logic-app__input" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="512" aria-describedby="{{ .id }}-help" disabled rows="1">{{ .sc.Get "formula" | default "p ∨ q ∧ r" }}</textarea>

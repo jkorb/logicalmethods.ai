@@ -27,3 +27,10 @@ retaining their separators, instead of requiring horizontal scrolling.
 Each group can set `color` to `blue`, `red`, `green`, `violet`, `orange`, `teal`,
 `olive`, or `pink`. The eight FOL alphabet categories use distinct colors;
 annotation inks adapt to the light and dark themes.
+
+Use `stack=true` for a grammar, as on the formula slide of Lecture 8: each
+group goes on its own line, in its colour, with the separator (say `∣`) under
+the prefix's `::=` and the label at the end of the line instead of a brace.
+
+The shortcode's HTML has no indentation or blank lines, so it also works
+inside a callout, whose body is rendered as Markdown.

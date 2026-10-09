@@ -25,7 +25,12 @@ the rule reference. Worked examples stay in the chapter and solutions.
 
 The Rules button sits over the upper-right corner of the vertically resizable
 canvas and opens its movable menu. Click a rule to apply it. Lemma save/load
-controls use icons with accessible names and tooltips. Selection badges show premise order for order-sensitive rules such as conjunction introduction. Conditional and negation elimination identify premise roles; case elimination matches the selected case assumptions. Applying a rule (including Assumption or a
+controls use icons with accessible names and tooltips: a book with a plus adds
+a lemma; the disk downloads a workspace. Reset sits beside the canvas controls,
+restores the given premises, clears the current level’s completion and goal
+plans, and remains available after completing a derivation. It preserves saved
+lemmas and other levels. Worked examples with stepping reset to their first
+frame; static full derivations have no reset control. Selection badges show premise order for order-sensitive rules such as conjunction introduction. Conditional and negation elimination identify premise roles; case elimination matches the selected case assumptions. Applying a rule (including Assumption or a
 saved lemma) clears the selection. Formula spans in menus and prompts use the
 formal font. Rule previews use top-layer popovers, positioned within the viewport
 so the scrollable rules menu cannot clip them. Positioning follows scrolling
@@ -58,22 +63,34 @@ or elimination steps are added around the saved proof.
 `logic/deduction.js` is the DOM-independent checker. Version 1 JSON records
 formula ASTs, rules, earlier parents and discharge IDs. Import replays every
 step and recomputes dependencies. Discharge is branch-local for cases; equal
-formulas with distinct labels remain distinct assumptions. Quantifier support
-will require substitution and freshness checks before UI controls are added.
+formulas with distinct labels remain distinct assumptions. With `language="fol"`, the canvas adds universal and existential introduction
+and elimination, with capture and eigenvariable checks. Witness terms and
+variables are stored and replayed on import, deletion, and lemma reuse.
+Quantifier rules also support backward planning. Identity introduction and
+substitution are checked in FOL mode; both substitution instances must be free
+for the placeholder variable.
 
-The camera uses the shared PNG exporter. LaTeX exports the selected derivation
+The camera uses the shared PNG exporter and sits in the upper-right canvas
+controls, including worked proofs and Lean walkthroughs. Reserved top padding
+keeps these controls clear of the derivation. LaTeX exports the selected derivation
 as a standalone document using `proof.sty`. Tests do not capture screenshots.
 
 ## Lean boundary
 
-`deduction-lean.js` emits Lean 4 and reads one propositional `example`, declared
+`deduction-lean.js` emits Lean 4 and reads one `example`, declared
 variables, named assumptions, `intro`, `apply`, `exact`, constructor terms,
-function applications and `fun h => term`. Unsupported syntax, axioms and holes
+function applications, typed `have` blocks, and legacy function terms.
+Exported proofs use tactics throughout, including nested subproofs. Unsupported syntax, axioms and holes
 are rejected. The browser runs the ND checker, not Lean's kernel. Generated code
 uses the standard Lean code box and badge; its floating pencil exposes the source. Open in Lean
 passes the current code in a URL fragment, only on explicit navigation.
 
 The chapter and exercises also link each Lean block to its populated playground.
+`language="fol"` supplies quantifier, identity, nonempty-domain, and classical
+examples. `deck="exercises"` selects the twelve chapter 9 laws in practice,
+worked, and Lean modes. See [First-order proof teaching](deduction-fol.md) for
+its declarations, witness convention, and supported Lean fragment.
+
 Arithmetic, Mathlib imports and general Lean elaboration remain outside the
 translator. The math example reproduces Mathlib's proof of Euclid's theorem.
 
