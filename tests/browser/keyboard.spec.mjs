@@ -65,8 +65,12 @@ test('fields and buttons use the same blue focus ring', async ({ page }) => {
     await page.goto(route);
     const input = page.locator(field);
     await input.scrollIntoViewIfNeeded();
-    if (await input.isDisabled()) await page.locator('.logic-app__edit').click();   // the parser's field
+    if (await input.evaluate(el => el.disabled || el.readOnly)) {
+      await page.locator('.logic-app__edit').click();
+    }
+    await expect(input).toBeEditable();
     await input.focus();
+    await expect(input).toBeFocused();
     blue.push({ field, ...await input.evaluate(ring) });
   }
   for (const got of blue) {
