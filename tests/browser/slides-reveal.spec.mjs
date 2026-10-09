@@ -206,7 +206,7 @@ test('the text of every slide can be read in order below the deck', async ({ pag
   await expect(page.locator('#slide-5')).toBeVisible();
 });
 
-test('full screen, accessible controls and themes, narrow layout', async ({ page }, info) => {
+test('full screen, accessible controls and themes, narrow layout', { tag: '@mobile' }, async ({ page }, info) => {
   for (const scheme of ['light', 'dark']) {
     // The theme is set before first paint, so each scheme needs a fresh load.
     await page.emulateMedia({ colorScheme: scheme });
@@ -274,7 +274,7 @@ const decks = readdirSync('content/slides', { withFileTypes: true })
   .filter(({ data }) => data.layout === 'reveal_slides' && data.build?.render !== 'never');
 
 for (const { slug } of decks) {
-  test(`${slug}: the deck loads locally, mounts its apps, and every slide fits`, async ({ page }, info) => {
+  test(`${slug}: the deck loads locally, mounts its apps, and every slide fits`, { tag: '@mobile' }, async ({ page }, info) => {
     const errors = []; const offsite = [];
     page.on('pageerror', error => errors.push(error.message));
     page.on('request', r => { if (!['127.0.0.1', 'logicalmethods.ai', 'www.logicalmethods.ai'].includes(new URL(r.url()).hostname)) offsite.push(r.url()); });
@@ -314,6 +314,18 @@ test('text slides refit when a displayed formula grows after navigation', async 
   await slide.locator('.math-display > *').first().evaluate(formula => {
     formula.style.lineHeight = '3';
   });
+  await expect.poll(() => slide.evaluate(fits)).toBe(true);
+  await expect.poll(() => slide.evaluate(scrollbars)).toEqual([]);
+});
+
+// Font swaps can change ordinary text after navigation, too.
+test('learning goals refit after text layout changes', { tag: '@mobile' }, async ({ page }) => {
+  await page.goto('/slides/fol-inference/#slide-2');
+  await expect(page.locator('[data-reveal-deck]')).toHaveAttribute('data-deck-ready', 'true');
+  await page.evaluate(() => document.fonts.ready);
+  const slide = page.locator('#slide-2');
+  await expect.poll(() => slide.evaluate(fits)).toBe(true);
+  await slide.locator('.callout__body').evaluate(body => { body.style.lineHeight = '2'; });
   await expect.poll(() => slide.evaluate(fits)).toBe(true);
   await expect.poll(() => slide.evaluate(scrollbars)).toEqual([]);
 });

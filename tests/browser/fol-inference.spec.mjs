@@ -31,7 +31,7 @@ test('chapter algorithms are stepped demonstrations with the SAT navigation',asy
  await button(r,'Socrates').click();await button(r,'Last step').click();await expect(r.getByRole('status')).toContainText('Empty clause derived');await button(r,'First step').click();await expect(r.locator('.sat-clauses > li')).toHaveCount(3);
  expect(errors).toEqual([]);
 });
-test('students perform Robinson steps directly on equations and retain their work',async({page})=>{
+test('students perform Robinson steps directly on equations and retain their work',{ tag: '@mobile' }, async({page})=>{
  await page.goto('/exercises/fol-inference/');const u=app(page,'unify');await button(u,'Composition').click();
  await expect(u.locator('select,input[type=checkbox]')).toHaveCount(0);
  await perform(u,'delete');await expect(u.getByRole('status')).toContainText('identical');await expect(u.locator('[data-select="0"]')).toHaveAttribute('aria-pressed','true');
@@ -43,7 +43,7 @@ test('students perform Robinson steps directly on equations and retain their wor
  await button(u,'Restart').click();await expect(u.locator('.nd-board')).toContainText('R(x, y)');
  await u.locator('[data-select="0"]').focus();await page.keyboard.press('Enter');await expect(u.locator('[data-select="0"]')).toHaveAttribute('aria-pressed','true');
 });
-test('Skolem exercises select formula scopes and check complete witness terms',async({page})=>{
+test('Skolem exercises select formula scopes and check complete witness terms',{ tag: '@mobile' }, async({page})=>{
  await page.goto('/exercises/fol-inference/');const a=app(page,'skolem');await button(a,'Dependent witnesses').click();
  await expect(a.locator('select,input[type=checkbox]')).toHaveCount(0);
  await a.locator('[data-select="[0]"]').click();await expect(a.locator('.finf-subformula.is-selected')).toContainText('∃y');
@@ -77,9 +77,13 @@ test('FOL Curry–Howard translates both ways and walkthroughs advance',async({p
  await page.goto('/textbook/proofs/');const a=page.locator('[data-logic-app="deduction"][data-language="fol"][data-kind="lean"]');await a.locator('[data-example="witness"]').click();await button(a,'Lean → ND').click();await expect(a.locator('.nd-status')).toContainText('Translated and checked');await button(a,'ND → Lean').click();await expect(a.locator('code')).toContainText('Exists.elim');
  await page.goto('/textbook/fol-inference/');const w=page.locator('[data-kind="lean-walkthrough"][data-example="witness"]');await button(w,'Next step').click();await expect(w.getByRole('status')).toContainText('Exists.elim');await button(w,'Reset walkthrough').click();await expect(button(w,'Previous step')).toBeDisabled();
 });
-test('chapter 9 stays within the viewport and has accessible app controls',async({page})=>{
+test('chapter 9 stays within the viewport and has accessible app controls',{ tag: '@mobile' }, async({page})=>{
  await page.goto('/textbook/fol-inference/');await page.evaluate(()=>document.fonts.ready);await expect(page.locator('[data-logic-app]:not([data-mounted])')).toHaveCount(0);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
+ // This pane is cloned after the static code blocks receive their scroll controls.
+ const code=page.locator('[data-kind="lean-walkthrough"][data-example="duality-one-ltr"] .highlight');
+ await code.evaluate(el=>{el.style.maxWidth='160px';});
+ await code.focus();await expect(code).toBeFocused();
  const {violations}=await new AxeBuilder({page}).include('[data-logic-app]').withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();expect(violations.map(v=>v.id+': '+v.help)).toEqual([]);
 });
 
@@ -95,7 +99,7 @@ test('identity and nonemptiness round-trip in the Curry–Howard app without lam
  await page.goto('/textbook/fol-inference/');const w=page.locator('[data-kind="lean-walkthrough"][data-example="nonempty"]');await button(w,'Next step').click();await expect(w.locator('.nd-lean-line[aria-current="step"]')).toContainText('default : Domain');
 });
 
-test('exercise selection and replacement controls fit the viewport and remain accessible',async({page})=>{
+test('exercise selection and replacement controls fit the viewport and remain accessible',{ tag: '@mobile' }, async({page})=>{
  await page.goto('/exercises/fol-inference/');const a=app(page,'skolem');await button(a,'Friends').click();await a.locator('[data-select="[0,0,0]"]').click();await button(a,'Replace existential').click();
  await page.evaluate(()=>document.fonts.ready);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
  const {violations}=await new AxeBuilder({page}).include('[data-logic-app="fol-inference"]').withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();expect(violations.map(v=>v.id+': '+v.help)).toEqual([]);

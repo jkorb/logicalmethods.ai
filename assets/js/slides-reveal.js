@@ -256,7 +256,7 @@ async function mount(deck) {
   // The work waits for the next frame: resizing what is observed inside the
   // callback is a ResizeObserver loop, which WebKit reports as an error.
   let growing = 0;
-  const apps = new ResizeObserver(entries => {
+  const content = new ResizeObserver(entries => {
     const slide = reveal.getCurrentSlide();
     if (!slide || !entries.some(entry => slide.contains(entry.target))) return;
     cancelAnimationFrame(growing);
@@ -265,9 +265,9 @@ async function mount(deck) {
       else settle(slide);
     });
   });
-  // Display formulas are refitted by display-math.js a frame after they
-  // appear, which can leave a rounding pixel to clip again.
-  for (const element of root.querySelectorAll('.logic-app, .math-display > *')) apps.observe(element);
+  // Text can change size after navigation as fonts arrive; display formulas
+  // also refit separately. Observe both, including ordinary learning goals.
+  for (const element of root.querySelectorAll('.slide__body > *, .slide__column > *, .logic-app, .math-display > *')) content.observe(element);
 
   const index = () => reveal.getIndices().h;
   function update(writeURL) {

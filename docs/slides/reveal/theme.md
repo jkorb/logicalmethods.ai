@@ -55,7 +55,8 @@ beside the title.
 ## Fitting
 
 `slides-reveal.js` fits each slide to the canvas when it is shown, when the
-window changes size, when fonts arrive, and when an app grows as you step
+window changes size, when text or formulas change size after navigation,
+and when an app grows as you step
 through it. On a slide with an app it zooms only the apps, from 40% to 150%, so
 the text keeps the deck's size and the app fills the room; on other slides it
 zooms what follows the title, down only. It tries two ways and keeps whichever

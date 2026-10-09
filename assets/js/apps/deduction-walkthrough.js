@@ -63,6 +63,9 @@ export function mountLeanWalkthrough(root,drawTree){
   }
   if(!code){const block=el('div',{class:'code-block has-lang-icon nd-lean'}),badge=el('span',{class:'lang-badge',role:'img','aria-label':'Lean'}),highlight=el('div',{class:'highlight'}),pre=el('pre',{class:'chroma'});badge.append(root.querySelector('[data-lean-icon]').content.cloneNode(true));code=el('code',{class:'language-lean'});pre.append(code);highlight.append(pre);block.append(badge,highlight);mount.append(block);code.textContent=example.code;}
   const block=code.closest('.code-block'),link=sourceLink||(block.nextElementSibling?.classList.contains('lean-playground-link')?block.nextElementSibling:null);const panes=el('div',{class:'nd-walk-panes'}),codePane=el('div');codePane.append(block);if(link)codePane.append(link);panes.append(codePane);
+  // Walkthrough panes are created after the static code-block accessibility pass.
+  const scroller=code.closest('.highlight');
+  scroller.setAttribute('tabindex','0');scroller.setAttribute('role','group');scroller.setAttribute('aria-label','Lean proof');
   const source=code.textContent.trimEnd(),lines=source.split('\n');code.replaceChildren(...lines.map(line=>{const span=el('span',{class:'nd-lean-line'});highlightLean(span,line+'\n');return span;}));
   const nav=el('div',{class:'nd-navigation'}),count=el('span'),goal=el('p',{class:'nd-goal'}),board=el('div',{class:'nd-board',tabindex:'0',role:'region','aria-label':example.label+' derivation','data-picture':''}),status=el('p',{class:'nd-status',role:'status'});let position=0;
   const makeButton=(name,icon,move)=>{const b=el('button',{type:'button','aria-label':name});b.append(root.querySelector(`[data-${icon}-icon]`).content.cloneNode(true));b.onclick=()=>{position+=move;render();};return b;};
