@@ -7,6 +7,7 @@ import {parseFOL} from '../../assets/js/logic/fol-parser.js';
 import {bindingTokens} from '../../assets/js/logic/fol-binding.js';
 import {folToSQL} from '../../assets/js/logic/fol-model.js';
 import {scopeLevels,builderLevels,queryLevels,initializationLevels} from '../../assets/js/apps/fol-practice-levels.js';
+import {fullCoverage} from './coverage.mjs';
 const path='/exercises/fol/';
 const app=(page,name)=>page.getByRole('region',{name,exact:true});
 const level=async(root,n)=>root.getByRole('button',{name:`Level ${n}`,exact:true}).click();
@@ -52,7 +53,7 @@ test('FOL builder enforces term/formula types and builds nested targets',async({
  await reviewScreenshot(root,{path:`tmp/fol-review/revision-11/builder-${info.project.name}.png`});
 });
 
-test('model practice checks edited interpretations and impossible targets',async({page},info)=>{
+test('model practice checks edited interpretations and impossible targets',{ tag: '@mobile' }, async({page},info)=>{
  await page.goto(path);const root=app(page,'Building FOL models'),model=root.locator('[data-logic-app="fol-model"]');
  await expect(root).toHaveAttribute('data-mounted','true');await root.getByRole('button',{name:'Check',exact:true}).last().click();await expect(feedback(root)).toContainText('formula is false');
  await model.getByRole('button',{name:'Modify',exact:true}).click();await model.locator('[data-panel="model"]').getByRole('button',{name:'Interpret Human',exact:true}).click();
@@ -84,10 +85,13 @@ test('SQL queries check recursive constructions and protect the exercise databas
  await editSQL(root,'SELECT 1;');await run(root);await expect(feedback(root)).toHaveAttribute('data-feedback','incorrect');
  await editSQL(root,'DELETE FROM LocatedIn;');await run(root);await expect(feedback(root)).toContainText('readonly');
  for(const [i,{formula}] of queryLevels.entries()) {
+  // Unit tests execute every SQL answer. Browser checks cover submission with
+  // one column, two columns, and nested quantifiers, plus errors above.
+  if(!fullCoverage&&![0,9,11].includes(i))continue;
   await level(root,i+1);await editSQL(root,folToSQL(parseFOL(formula,{language:world.language}),world.language,world.model,world.columns));await run(root);await expect(feedback(root)).toHaveAttribute('data-feedback','correct');
  }
  await reviewScreenshot(root,{path:`tmp/fol-review/revision-11/query-practice-${info.project.name}.png`});
- expect((await new AxeBuilder({page}).include('.fol-practice').analyze()).violations).toEqual([]);
+ expect((await new AxeBuilder({page}).include('.fol-practice[data-exercise="query"]').analyze()).violations).toEqual([]);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(page.viewportSize().width+1);
 });
 

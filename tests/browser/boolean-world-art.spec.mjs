@@ -2,6 +2,7 @@ import { reviewScreenshot } from './review-screenshot.mjs';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { test, expect } from './fixtures.mjs';
 import { budget } from './budget.mjs';
+import { fullCoverage } from './coverage.mjs';
 
 // Compare actual rendered pixels with the supplied artwork, not just selection
 // classes or element counts. Hide only our intentional overlays and lift.
@@ -37,7 +38,7 @@ async function expectIntactArtwork(app) {
 }
 
 for(const theme of ['light','dark'])for(const section of ['textbook','exercises']) {
-  test(`${section} world artwork survives every selection in ${theme}`,async({page},info)=>{
+  test(`${section} world artwork survives selection changes in ${theme}`,{ tag: '@mobile' }, async({page},info)=>{
     test.setTimeout(budget(120000));
     const errors=[];page.on('pageerror',e=>errors.push(e.message));
     // Regressions must not depend on a successful live SVG geometry measurement.
@@ -49,14 +50,19 @@ for(const theme of ['light','dark'])for(const section of ['textbook','exercises'
       const app=apps.nth(i);await expectIntactArtwork(app);
       if(section==='textbook') {
         const selectors=app.locator('[data-propositions] button');
-        for(let j=0;j<await selectors.count();j++){await selectors.nth(j).click();await expectIntactArtwork(app);}
+        const count=await selectors.count();
+        for(let j=0;j<count;j++){await selectors.nth(j).click();if(fullCoverage||j===0||j===count-1)await expectIntactArtwork(app);}
       }else {
         const worlds=app.locator('button[data-model]');
-        for(let j=0;j<await worlds.count();j++){await worlds.nth(j).click();await expectIntactArtwork(app);}
+        const count=await worlds.count();
+        // Keep all clicks, but compare pixels at one selection, all selected,
+        // and all cleared. Semantic tests check each world's membership.
+        for(let j=0;j<count;j++){await worlds.nth(j).click();if(fullCoverage||j===0||j===count-1)await expectIntactArtwork(app);}
         await reviewScreenshot(app, {path:`tmp/boolean-art-review/${info.project.name}-${theme}-${i}-all-selected.png`});
-        for(let j=0;j<await worlds.count();j++){await worlds.nth(j).click();await expectIntactArtwork(app);}
+        for(let j=0;j<count;j++){await worlds.nth(j).click();if(fullCoverage||j===count-1)await expectIntactArtwork(app);}
         const tasks=app.locator('[data-toolbar] button');
-        for(let j=0;j<await tasks.count();j++){await tasks.nth(j).click();await expectIntactArtwork(app);}
+        const taskCount=await tasks.count();
+        for(let j=0;j<taskCount;j++){await tasks.nth(j).click();if(fullCoverage||j===taskCount-1)await expectIntactArtwork(app);}
       }
       await reviewScreenshot(app, {path:`tmp/boolean-art-review/${info.project.name}-${theme}-${section}-${i}.png`});
     }

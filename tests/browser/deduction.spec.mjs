@@ -49,7 +49,7 @@ test('exercise tabs retain drafts and completion marks without a long level list
   await button(a,'2').click(); // A ⊢ ¬¬A
   await assume(a,'¬A');await a.locator('[data-node="0"]').first().click();await rule(a,'¬ Elim');await a.locator('[data-node="2"]').first().click();await rule(a,'¬ Intro');await a.locator('[data-node="1"]').first().click();await button(a.getByRole('dialog'),'Apply').click();await expect(state(a)).toContainText('Derivation complete');await expect(button(a,'2 ✓')).toBeVisible();
 });
-test('proof apps and rule dialogs have accessible controls and fit the page',async({page})=>{
+test('proof apps and rule dialogs have accessible controls and fit the page',{ tag: '@mobile' }, async({page})=>{
   await page.goto('/textbook/proofs/');const a=page.locator('[data-kind="worked"][data-example="conditional"]');await button(a,'Next step').focus();await page.keyboard.press('Enter');await expect(state(a)).toContainText('Assume');expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
   const result=await new AxeBuilder({page}).include('[data-logic-app="deduction"]').analyze();expect(result.violations).toEqual([]);
   const c=app(page,'canvas');await menu(c);await button(c,'+ Assumption').click();const modalAudit=await new AxeBuilder({page}).include('.nd-dialog:not([hidden])').analyze();expect(modalAudit.violations).toEqual([]);await page.keyboard.press('Escape');await expect(c.getByRole('dialog')).not.toBeVisible();
@@ -88,7 +88,7 @@ test('arrow introduction accepts an unused antecedent and preserves existing ass
   await menu(a);await button(a,'↶ Undo').click();await expect(a.locator('[data-node]')).toHaveCount(1);await expect(a.locator('.nd-board')).not.toContainText('SUN');
 });
 
-test('rule previews escape the menu clipping boundary and stay within the viewport',async({page})=>{
+test('rule previews escape the menu clipping boundary and stay within the viewport',{ tag: '@mobile' }, async({page})=>{
   await page.goto('/tools/natural-deduction/');const a=app(page,'sandbox');await menu(a);
   for(const [group,key] of [['¬','notI'],['⊥, ⊤','raa'],['∨','orE']]){
     await a.locator(`[data-rule-tab="${group}"]`).click();const choice=a.locator(`[data-rule="${key}"]`).locator('..');await choice.hover();const tip=choice.locator('.nd-rule-tooltip');await expect(tip).toBeVisible();await expect(tip.locator('.nd-formula').first()).not.toBeEmpty();expect(await tip.locator('.nd-formula').first().evaluate(n=>{const r=n.getBoundingClientRect();return r.width>0&&r.height>0&&getComputedStyle(n).color===getComputedStyle(n.closest('.nd-rule-tooltip')).color;})).toBe(true);expect(await tip.evaluate(n=>n.matches(':popover-open'))).toBe(true);
@@ -124,7 +124,7 @@ test('goal plans save, reload and export sorry only for unfinished branches',asy
   await a.locator('[data-goal="0:0"]').click();await rule(a,'∨ Intro · left');await expect(a.locator('[data-goal="0:"]')).toHaveClass(/nd-solved/);await button(a,'ND → Lean').click();await expect(a.locator('code')).not.toContainText('sorry');
 });
 
-test('fullscreen supports the icon and F without capturing text input',async({page})=>{
+test('fullscreen supports the icon and F without capturing text input',{ tag: '@mobile' }, async({page})=>{
   await page.goto('/tools/natural-deduction/');const a=app(page,'sandbox');await expect(button(a,'Fullscreen').locator('svg path')).toHaveCount(1);await expect(button(a,'Goal mode')).toHaveText('Goals');expect(await button(a,'Goal mode').evaluate(n=>n.nextElementSibling.getAttribute('aria-label'))).toBe('Fullscreen');await button(a,'Fullscreen').click();await expect.poll(()=>a.evaluate(n=>document.fullscreenElement===n||n.classList.contains('nd-fullscreen'))).toBe(true);
   await a.locator('.nd-board').focus();await page.keyboard.press('f');await expect.poll(()=>a.evaluate(n=>document.fullscreenElement===n||n.classList.contains('nd-fullscreen'))).toBe(false);
   await menu(a);await button(a,'+ Assumption').click();await a.getByRole('textbox',{name:'Formula',exact:true}).fill('F');await expect.poll(()=>a.evaluate(n=>document.fullscreenElement===n||n.classList.contains('nd-fullscreen'))).toBe(false);
@@ -136,7 +136,7 @@ test('equivalence introduction follows a goal regardless of premise selection or
   await a.locator('[data-node="1"]').first().click();await a.locator('[data-node="0"]').first().click();await rule(a,'↔ Intro');await expect(a.locator('[data-goal="0:"]')).toHaveClass(/nd-solved/);
 });
 
-test('wide worked proofs remain scrollable and their branches can be folded',async({page})=>{
+test('wide worked proofs remain scrollable and their branches can be folded',{ tag: '@mobile' }, async({page})=>{
   await page.goto('/textbook/proofs/');const a=page.locator('[data-kind="worked"][data-deck="strategies"]');await button(a,'An indirect proof').click();
   while(await button(a,'Next step').isEnabled())await button(a,'Next step').click();
   await expect(state(a)).toContainText('All goals have derivations');const board=a.locator('.nd-board');expect(await board.evaluate(n=>getComputedStyle(n).overflowX)).toBe('auto');expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
@@ -189,7 +189,7 @@ test('walkthrough panes align and highlighting preserves code indentation',async
   const start=await line.boundingBox();await button(a,'Next step').click();await expect(line).toHaveAttribute('aria-current','step');const active=await line.boundingBox();expect(active.x).toBeCloseTo(start.x,1);expect(active.width).toBeCloseTo(start.width,1);expect(await line.evaluate(n=>getComputedStyle(n).borderInlineStartWidth)).toBe('0px');
 });
 
-test('chapter 7 completed derivations can be reset from the canvas controls',async({page})=>{
+test('chapter 7 completed derivations can be reset from the canvas controls',{ tag: '@mobile' }, async({page})=>{
   await page.goto('/textbook/proofs/');const a=app(page,'canvas');
   await a.locator('[data-node="0"]').click();await rule(a,'∧ Elim · right');
   await a.locator('[data-node="0"]').first().click();await rule(a,'∧ Elim · left');

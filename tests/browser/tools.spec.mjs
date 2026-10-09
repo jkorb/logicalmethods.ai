@@ -73,7 +73,7 @@ test('conditional and SQL tools run custom inputs',async({page})=>{
  await page.goto('/tools/first-order-sql/');const sql=page.locator('[data-kind="sql"]');await sql.evaluate(root=>{const language=root.folModel.config.language;root.folModel.set({domain:['France','Europe'],constants:Object.fromEntries(language.constants.map(n=>[n,n==='Europe'?'Europe':'France'])),functions:{},predicates:{CapitalOf:[],CityIn:[],LanguageOf:[],LocatedIn:[['France','Europe']]}});});await sql.getByLabel('Formula',{exact:true}).fill('LocatedIn(x,Europe)');await button(sql,'Formula → SQL').click();await expect(sql.locator('[data-sql-code]')).toContainText('SELECT DISTINCT');await button(sql,'Run').click();await expect(sql.locator('[data-sql-status]')).toHaveAttribute('data-state','success');await expect(sql.locator('[data-sql-results]')).toContainText('France');
 });
 
-test('propositional resolution practice checks selected literals and supports undo',async({page})=>{
+test('propositional resolution practice checks selected literals and supports undo',{ tag: '@mobile' }, async({page})=>{
  await page.goto('/tools/resolution/');const root=page.locator('[data-logic-app="sat-practice"]');
  await root.getByRole('textbox',{name:'Propositional input',exact:true}).fill('p ∨ q; ¬p ∴ q');await button(root,'Use input').click();
  await root.getByRole('button',{name:'Clause 1: p',exact:true}).click();await root.getByRole('button',{name:'Clause 2: ¬p',exact:true}).click();await button(root,'Resolve selected literals').click();
@@ -83,7 +83,7 @@ test('propositional resolution practice checks selected literals and supports un
  await button(root,'Edit input').click();await root.getByRole('textbox',{name:'Propositional input',exact:true}).fill('p');await button(root,'Use input').click();await button(root,'Check saturation').click();await expect(root.getByRole('status')).toContainText('input is satisfiable');
  await button(root,'Fullscreen').click();await expect(button(root,'Exit fullscreen')).toHaveAttribute('aria-pressed','true');await button(root,'Exit fullscreen').click();
 });
-test('unification and Skolemization tools let readers perform the operations',async({page})=>{
+test('unification and Skolemization tools let readers perform the operations',{ tag: '@mobile' }, async({page})=>{
  await page.goto('/tools/unification/');const unify=page.locator('[data-kind="unify"][data-mode="practice"]');
  await unify.getByRole('textbox',{name:'First expression',exact:true}).fill('f(x)');await unify.getByRole('textbox',{name:'Second expression',exact:true}).fill('f(a)');await button(unify,'Check unifiability').click();
  await unify.locator('[data-select="0"]').click();await button(unify,'Decompose').click();await unify.locator('[data-select="0"]').click();await button(unify,'Eliminate variable').click();await button(unify,'Declare success').click();await expect(unify.getByRole('status')).toContainText('unifier');

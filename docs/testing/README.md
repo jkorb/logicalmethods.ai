@@ -21,6 +21,7 @@ output of every check is kept in `tmp/logs/`. See [Test output](output.md).
 - [While editing](while-editing.md) — `npm run check`, reading a failure, individual commands.
 - [Running only what your change affects](targeted-runs.md) — the change-to-suite map.
 - [Browser suites](browser-suites.md) — what each spec guards.
+- [Browser coverage](browser-coverage.md) — desktop scenarios, mobile checks, and the full matrix.
 - [Spelling and style](prose.md) — Vale setup and the course vocabulary.
 - [External links](external-links.md) — the weekly network check.
 - [Maintaining the tests](maintaining.md) — fixtures, exceptions, tool versions.

@@ -5,6 +5,11 @@ The test code is in [`tests/`](../../tests/) and the supporting commands are in
 checking the changed pages yourself, especially at narrow widths: the automated
 tests do not cover every layout, browser, or accessibility requirement.
 
+Every scenario runs on desktop. Tag the checks that need phone layout or touch
+coverage with `@mobile`; see [Browser coverage](browser-coverage.md). Use unit
+tests for exhaustive answer sets and browser tests for the controls that submit
+and display those answers.
+
 A browser spec imports `test` and `expect` from
 [`tests/browser/fixtures.mjs`](../../tests/browser/fixtures.mjs), not from
 `@playwright/test`. That fixture points production absolute URLs at the local

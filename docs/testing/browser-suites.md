@@ -1,6 +1,9 @@
 # Accessibility, keyboard and reflow suites
 
 Three browser suites guard the redesign. They run as part of `npm test`.
+Accessibility and keyboard checks run on desktop and mobile. Reflow checks set
+their own 320-pixel viewport and run once. Other suites repeat their `@mobile`
+checks on phones; see [Browser coverage](browser-coverage.md).
 
 | File | Guards |
 | --- | --- |
@@ -40,8 +43,8 @@ deck in that format; see [Testing the framework](../slides/reveal/testing.md).
 `tests/unit/reveal-deck.test.mjs` builds an isolated Hugo fixture to check how
 the deck is cut into slides and what the build refuses.
 
-The glossary's persistent-hover test intentionally skips the mobile project:
-touch has no persistent hover. The other glossary checks run on both projects.
+The glossary's keyboard-preview check also runs on mobile. Persistent hover
+runs on desktop; the full matrix intentionally skips that check on touch.
 
 `tests/browser/display-math.spec.mjs` checks trimmed display boundaries, fitting
 at desktop and mobile widths, restoration after widening, unchanged formula

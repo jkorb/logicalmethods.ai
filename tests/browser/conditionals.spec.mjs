@@ -51,7 +51,7 @@ test('conditional worlds and rewrite examples remain scoped to this chapter',asy
   await button(rewrite,'Conjunctive antecedent').click();await button(rewrite,'Last step').click();await expect(rewrite.locator('.sat-rewrites')).toContainText('¬SUN');
   const refs=page.locator('a.chapter-reference');expect(await refs.count()).toBeGreaterThan(5);
 });
-test('apps have accessible controls and keep overflow inside their panels',async({page})=>{
+test('apps have accessible controls and keep overflow inside their panels',{ tag: '@mobile' }, async({page})=>{
   await page.goto('/textbook/conditionals/');await expect(app(page,'horn')).toHaveAttribute('data-mounted','true');await button(app(page,'planning'),'Plan!').click();
   const result=await new AxeBuilder({page}).include('.conditional-app').analyze();expect(result.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target)}))).toEqual([]);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
@@ -72,7 +72,7 @@ test('laptop planning fits without internal image scrolling in dark mode',async(
   const contrast=await new AxeBuilder({page}).include('.conditional-app').withRules(['color-contrast']).analyze();expect(contrast.violations.map(v=>v.nodes.map(n=>n.target))).toEqual([]);
 });
 
-test('long chaining proofs and frozen knowledge bases fit their available width',async({page})=>{
+test('long chaining proofs and frozen knowledge bases fit their available width',{ tag: '@mobile' }, async({page})=>{
   await page.goto('/textbook/conditionals/');
   for(const method of ['forward','backward']) {
     const a=page.locator(`[data-kind="chaining"][data-method="${method}"]`);

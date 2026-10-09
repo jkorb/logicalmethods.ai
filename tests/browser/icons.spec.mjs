@@ -25,7 +25,7 @@ for (const route of ['/', '/about/', '/textbook/', '/textbook/boolean/', '/exerc
    the theme toggle rendered an empty box as soon as it was clicked. */
 const ORDER = ['system', 'light', 'dark'];
 
-test('the theme toggle keeps a visible icon in every state', async ({ page }) => {
+test('the theme toggle keeps a visible icon in every state', { tag: '@mobile' }, async ({ page }) => {
   await page.goto('/');
   await page.evaluate(() => document.fonts.ready);
   const toggle = page.locator('#theme-toggle');

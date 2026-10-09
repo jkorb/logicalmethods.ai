@@ -40,7 +40,7 @@ test('parser walkthrough, backwards steps, changed input, and errors', async ({ 
   await expect(app.getByRole('status')).toContainText('Unrecognized symbol');
   expect(errors).toEqual([]);
 });
-test('LaTeX conversion, keyboard controls, and frozen input', async ({ page }) => {
+test('LaTeX conversion, keyboard controls, and frozen input', { tag: '@mobile' }, async ({ page }) => {
   await page.goto(chapter);
   const app = page.locator('[data-logic-app="parser"]');
   const input = app.getByLabel('Formula', { exact: true });
@@ -86,7 +86,7 @@ test('conventional parser works inside the exercise solution', async ({ page }) 
   await expect(app.getByRole('status')).toContainText('(p → (q → r))');
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(page.viewportSize().width + 1);
 });
-test('tree layout and accessibility in light and dark themes', async ({ page }) => {
+test('tree layout and accessibility in light and dark themes', { tag: '@mobile' }, async ({ page }) => {
   await page.goto(chapter);
   const app = page.locator('[data-logic-app="parser"]');
   await app.getByRole('button', { name: 'Last step', exact: true }).click();
@@ -171,7 +171,7 @@ test('immediate conversion preserves longer commands and numeric subscripts', as
   await expect(input).toHaveValue('⊭');
 });
 
-test('formula labels preserve history and controls remain above the growing tree', async ({ page }, info) => {
+test('formula labels preserve history and controls remain above the growing tree', { tag: '@mobile' }, async ({ page }, info) => {
   await page.goto(chapter);
   const app = page.locator('[data-logic-app="parser"]');
   await app.scrollIntoViewIfNeeded();
@@ -210,7 +210,7 @@ test('parser keeps tree and explanation side by side on smaller desktops', async
   }
 });
 
-test('tree tools float together and export the current labels as LaTeX',async({page},info)=>{
+test('tree tools float together and export the current labels as LaTeX',{ tag: '@mobile' }, async({page},info)=>{
   await page.goto('/textbook/fol/');const app=page.getByRole('region',{name:'Parsing a first-order formula',exact:true});
   await expect(app.locator('[data-tree-fit], input[type="checkbox"]')).toHaveCount(0);
   await app.getByRole('button',{name:'Last step',exact:true}).click();await app.getByRole('button',{name:'Show formulas at nodes',exact:true}).click();

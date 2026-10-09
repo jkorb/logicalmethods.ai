@@ -74,7 +74,7 @@ test('resolution checks chosen parents and pivots, supports undo, and requires s
     if(state.history.length) {await button(a,'Undo').click();await expect(a.getByRole('status')).toContainText('undone');}
   }
 });
-test('practice fits laptop width and has accessible states without screenshots',async({page},info)=>{
+test('practice fits laptop width and has accessible states without screenshots',{ tag: '@mobile' }, async({page},info)=>{
   if(info.project.name==='desktop')await page.setViewportSize({width:1366,height:768});
   await button(app(page,'table'),'Level 6').click();await prepare(app(page,'table'),levels.table[5].formula);
   await button(app(page,'circuit'),'Level 5').click();await button(app(page,'resolution'),'Level 8').click();
@@ -116,7 +116,7 @@ test('SAT pseudocode deck checks new notation and retains completed entries',asy
   const result=await new AxeBuilder({page}).include('.pseudocode-practice').analyze();expect(result.violations.map(v=>v.id)).toEqual([]);
 });
 
-test('tree matching gives feedback and keeps keyboard focus; table inputs use paper colours',async({page})=>{
+test('tree matching gives feedback and keeps keyboard focus; table inputs use paper colours',{ tag: '@mobile' }, async({page})=>{
   const a=app(page,'table');
   await a.getByLabel('Variables (comma-separated)').fill('SUN, RAIN');await a.getByLabel('Number of rows').fill('4');await button(a,'Start').click();
   const root=a.locator('[data-tree-node="1"]');await root.focus();await root.press('Enter');

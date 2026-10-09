@@ -8,7 +8,7 @@ for (const [path, selector] of [
   ['/exercises/formal-languages/', '[data-logic-app="shunting-yard"]'],
   ['/exercises/boolean/', '[data-preset="relays"]'],
   ['/exercises/boolean/', '[data-kind="model-exercise"][data-variables="3"]'],
-]) test(`PNG captures current app state: ${selector}`, async ({ page }, info) => {
+]) test(`PNG captures current app state: ${selector}`, { tag: selector.includes('model-exercise') ? '@mobile' : [] }, async ({ page }, info) => {
   await page.goto(path);
   const app = page.locator(selector).first();
   await app.evaluate(n => { for (let p = n.parentElement; p; p = p.parentElement) if (p.tagName === 'DETAILS') p.open = true; });

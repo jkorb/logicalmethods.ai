@@ -19,7 +19,7 @@ test('SQL loads locally on demand and runs the chapter examples',async({page},in
  expect((await new AxeBuilder({page}).include('.sql-app').analyze()).violations).toEqual([]);
 });
 
-test('SQL editors handle general SQLite, empty results, errors, and independent runs',async({page})=>{
+test('SQL editors handle general SQLite, empty results, errors, and independent runs',{ tag: '@mobile' }, async({page})=>{
  await page.goto(chapter);const root=app(page,'Querying European countries');
  await edit(root,"DELETE FROM LocatedIn WHERE country = 'France'; SELECT COUNT(*) AS remaining FROM LocatedIn; SELECT NULL AS missing, '<img src=x>' AS literal;");await run(root);
  await expect(root.locator('[data-sql-results] table')).toHaveCount(2);await expect(root.locator('tbody').first()).toHaveText('4');await expect(root.locator('tbody').last()).toContainText('NULL<img src=x>');await expect(root.locator('[data-sql-results] img')).toHaveCount(0);

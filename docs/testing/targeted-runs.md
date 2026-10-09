@@ -1,6 +1,6 @@
 # Running only what your change affects
 
-The browser suite is the slow and noisy part: over 200 tests across two viewports.
+The browser suite runs every scenario on desktop and selected checks on mobile.
 Everything after `--` goes to Playwright, so a targeted run is one command:
 
 ```sh
@@ -28,8 +28,12 @@ before pushing:
 | Release state: unlocking a chapter | `release`, `keyboard` |
 | The route stub or a shared fixture | the whole browser suite |
 
+For shared input, touch, or browser-fixture changes, also use
+`npm run test:browser:full`. See [Browser coverage](browser-coverage.md) for the
+selection rules and the optional full matrix.
+
 The reporter prints one character per passing test and the full failure block
-for each failure, locally and on CI alike; `CI=1` adds the traces, failure
+for each failure, locally and on CI alike; `CI=1` adds retry traces, failure
 screenshots and GitHub annotations that the workflow uploads. The test server is
 reused between local runs, so leaving one up costs nothing.
 

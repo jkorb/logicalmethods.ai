@@ -2,7 +2,7 @@ import { reviewScreenshot } from './review-screenshot.mjs';
 import { test, expect } from './fixtures.mjs';
 import AxeBuilder from '@axe-core/playwright';
 
-test('tree definitions support click, focus, hover, and clearing', async ({ page }, testInfo) => {
+test('tree definitions support click, focus, hover, and clearing', { tag: '@mobile' }, async ({ page }, testInfo) => {
   await page.goto('/textbook/formal-languages/');
   const guide = page.locator('[data-tree-guide]');
   const highlighted = guide.locator('[data-node].is-highlighted');
@@ -34,7 +34,7 @@ test('tree definitions support click, focus, hover, and clearing', async ({ page
   await expect(highlighted).toHaveCount(0);
 });
 
-test('tree fits narrow screens and is accessible in both themes', async ({ page }, testInfo) => {
+test('tree fits narrow screens and is accessible in both themes', { tag: '@mobile' }, async ({ page }, testInfo) => {
   await page.goto('/textbook/formal-languages/');
   const guide = page.locator('[data-tree-guide]');
   for (const theme of ['light', 'dark']) {

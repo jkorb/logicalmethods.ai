@@ -9,7 +9,7 @@ const ROUTES = ['/', '/about/', '/textbook/', '/textbook/boolean/', '/textbook/f
 const TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'];
 
 for (const route of ROUTES) {
-  test(`no WCAG violations: ${route}`, async ({ page }) => {
+  test(`no WCAG violations: ${route}`, { tag: '@mobile' }, async ({ page }) => {
     expect((await page.goto(route)).status(), `Missing test page: ${route}`).toBe(200);
     await page.evaluate(() => document.fonts.ready);
     const { violations } = await new AxeBuilder({ page }).withTags(TAGS).analyze();
@@ -21,7 +21,7 @@ for (const route of ROUTES) {
 
 // Both themes are shipped, so both are audited. Contrast is theme-dependent.
 for (const scheme of ['light', 'dark']) {
-  test(`no WCAG violations in ${scheme} mode: /textbook/boolean/`, async ({ page }) => {
+  test(`no WCAG violations in ${scheme} mode: /textbook/boolean/`, { tag: '@mobile' }, async ({ page }) => {
     await page.emulateMedia({ colorScheme: scheme });
     await page.goto('/textbook/boolean/');
     await page.evaluate(() => document.fonts.ready);

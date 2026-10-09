@@ -1,9 +1,9 @@
 # Matching CI locally
 
-**Machine speed is not under test.** A check that passes on a developer laptop
-and fails on a shared GitHub runner has reported on the runner, not on the site.
-Everything below exists so that the suite answers "is the site correct", never
-"how fast was the machine today".
+A local pass does not establish that Linux CI will pass. Font layout, scrolling,
+resource loading, and timing can expose real defects on one platform. Read the
+CI diagnostics and reproduce the failing condition before changing a timeout.
+Use condition-based waits so the checks tolerate differences in machine speed.
 
 Use the published URL spelling in browser tests: Hugo emits `/textbook/fol/`
 even though the source bundle is named `FOL`. The test server and link checker
@@ -88,6 +88,10 @@ rendering.
 
 CI retries a failed browser test once; local runs never retry. A runner that
 stalls once should not block a deploy.
+
+CI captures failure screenshots on each attempt and records a trace on the
+retry. Successful first attempts avoid the cost of tracing each action and DOM
+snapshot. [Browser coverage](browser-coverage.md) explains the viewport selection.
 
 A test that passes only on the second attempt is still a defect, so it is not
 allowed to pass quietly. Playwright records it as **flaky**,

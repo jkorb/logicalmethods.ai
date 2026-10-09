@@ -1,7 +1,7 @@
 import { reviewScreenshot } from './review-screenshot.mjs';
 import { test, expect } from './fixtures.mjs';
 import AxeBuilder from '@axe-core/playwright';
-test('annotated alphabet has readable symbol groups and responsive over/underbraces', async ({ page }, testInfo) => {
+test('annotated alphabet has readable symbol groups and responsive over/underbraces', { tag: '@mobile' }, async ({ page }, testInfo) => {
   await page.goto('/textbook/formal-languages/');
   const figure = page.locator('.annotated-math');
   await expect(figure).toHaveAttribute('aria-label', /p₁, p₂, p₃, … \(variables \(atoms\)\)/);

@@ -11,7 +11,7 @@ async function last(root) { const b=root.getByRole('button',{name:'Last step',ex
 async function check(root, formula) { if(formula){await root.getByRole('button',{name:'Edit formula',exact:true}).click();await root.getByLabel('Formula',{exact:true}).fill(formula);}await root.getByRole('button',{name:'Check',exact:true}).click();await last(root); }
 async function palette(root) { await menu(root,'Modify'); const d=root.locator('[data-domain-menu]');if(!(await d.getAttribute('open')!==null))await d.locator('summary').click(); }
 
-test('FOL trees fit without upscaling and the alphabet has eight colors', async ({page},info)=>{
+test('FOL trees fit without upscaling and the alphabet has eight colors', { tag: '@mobile' }, async ({page},info)=>{
   await page.goto(chapter);
   for(const parser of await page.locator('[data-logic-app="parser"]').all()) {
     await parser.getByRole('button',{name:'Last step',exact:true}).click(); await expect(parser.getByRole('status')).toContainText('Parsing finished');
@@ -48,7 +48,7 @@ test('function and predicate interpretations are editable with keyboard and tabl
   await view(predicates,'Tables');await expect(predicates.getByRole('table',{name:'⟦Mortal⟧',exact:true}).locator('[data-object="jimmy"]')).toHaveCount(1);
 });
 
-test('fullscreen and zoom work for all presentations, including keyboard fallback',async({page})=>{
+test('fullscreen and zoom work for all presentations, including keyboard fallback',{ tag: '@mobile' }, async({page})=>{
   await page.goto(chapter);const root=app(page,'A model as a knowledge base');
   await root.getByRole('button',{name:'Fullscreen',exact:true}).click();await expect(root.getByRole('button',{name:'Exit fullscreen',exact:true})).toHaveAttribute('aria-pressed','true');
   await menu(root,'Zoom');await expect(root.getByRole('button',{name:'Zoom in',exact:true})).toBeDisabled();await root.getByRole('button',{name:'Zoom out',exact:true}).click();await expect(root.locator('.fol-scene')).toHaveCSS('zoom','0.75');
@@ -86,15 +86,15 @@ test('SQL translation has subscripted variables and preserves projected query an
   await root.getByRole('button',{name:'Edit formula',exact:true}).click();await root.getByLabel('Formula',{exact:true}).fill('∃y (CapitalOf(y, x) ∧ LocatedIn(y, Europe))');await root.getByRole('button',{name:'Formula → SQL',exact:true}).click();await reviewScreenshot(root,{path:`tmp/fol-review/revision-8/sql-${info.project.name}.png`});
 });
 
-test('menus, selections, and transparent set drawings are accessible in both themes',async({page},info)=>{
+test('menus, selections, and transparent set drawings are accessible in both themes',{ tag: '@mobile' }, async({page},info)=>{
   const errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto(chapter);const root=app(page,'A model as a knowledge base');
   for(const name of ['Knowledge graph','Tables','Semantic facts','Set diagram']) {
-    await view(root,name);expect((await new AxeBuilder({page}).include('.fol-app').analyze()).violations).toEqual([]);
+    await view(root,name);expect((await new AxeBuilder({page}).include('.fol-app[aria-label="A model as a knowledge base"]').analyze()).violations).toEqual([]);
     await reviewScreenshot(root,{path:`tmp/fol-review/revision-8/${name.replaceAll(' ','-')}-${info.project.name}.png`});
   }
   await expect(root.locator('.fol-sets .fol-image-paper').first()).toHaveCSS('fill','rgba(0, 0, 0, 0)');
-  await menu(root,'Modify');expect((await new AxeBuilder({page}).include('.fol-app').analyze()).violations).toEqual([]);await reviewScreenshot(root,{path:`tmp/fol-review/revision-8/menu-${info.project.name}.png`});
-  await root.getByRole('button',{name:'Modify',exact:true}).click();await page.evaluate(()=>document.documentElement.setAttribute('data-theme','dark'));await reviewScreenshot(root,{path:`tmp/fol-review/revision-8/dark-${info.project.name}.png`});
+  await menu(root,'Modify');expect((await new AxeBuilder({page}).include('.fol-app[aria-label="A model as a knowledge base"]').analyze()).violations).toEqual([]);await reviewScreenshot(root,{path:`tmp/fol-review/revision-8/menu-${info.project.name}.png`});
+  await root.getByRole('button',{name:'Modify',exact:true}).click();await page.evaluate(()=>document.documentElement.setAttribute('data-theme','dark'));expect((await new AxeBuilder({page}).include('.fol-app[aria-label="A model as a knowledge base"]').analyze()).violations).toEqual([]);await reviewScreenshot(root,{path:`tmp/fol-review/revision-8/dark-${info.project.name}.png`});
   expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(page.viewportSize().width+1);expect(errors).toEqual([]);
 });
 
@@ -131,7 +131,7 @@ test('a lecturer draws the bindings on a slide, each arrow joining its quantifie
   expect((await new AxeBuilder({page}).include('#slide-7 .fol-scope').analyze()).violations).toEqual([]);
 });
 
-test('add rows, in-canvas prompts, and overlapping unary sets reflect model edits',async({page},info)=>{
+test('add rows, in-canvas prompts, and overlapping unary sets reflect model edits',{ tag: '@mobile' }, async({page},info)=>{
   await page.goto(chapter);const root=app(page,'Interpret predicates');await symbol(root,'Sibling');await root.getByRole('button',{name:'Add Sibling tuple',exact:true}).click();
   await expect(root.locator('[data-display] [data-edit-help]')).toContainText('first object');await object(root,'Little Jimmy').click();await expect(root.locator('[data-edit-help]')).toContainText('second object');await object(root,'Mr Sir').click();await expect(root.getByRole('table',{name:'⟦Sibling⟧',exact:true}).locator('tbody tr:not(.fol-add-row)')).toHaveCount(1);
   await view(root,'Set diagram');await root.getByRole('button',{name:'Together',exact:true}).click();await expect(root.locator('.fol-sets [data-object]')).toHaveCount(5);await expect(root.locator('.fol-overlap-0')).toHaveCount(1);await expect(root.locator('.fol-overlap-1')).toHaveCount(1);
@@ -156,7 +156,7 @@ test('query fields freeze after running and answers unfold over tuples without c
 });
 
 
-test('formula pencils sit inside their fields across chapters',async({page},info)=>{
+test('formula pencils sit inside their fields across chapters',{ tag: '@mobile' }, async({page},info)=>{
   for(const [path,selector,field,edit] of [
     ['/textbook/formal-languages/','[data-logic-app="parser"]','.logic-app__input','.logic-app__edit'],
     ['/textbook/sat/','[data-logic-app="sat"]','[data-input]','[data-edit]'],
@@ -174,7 +174,7 @@ test('query domains skip impossible tuples and accumulate visited answers',async
   await root.getByRole('button',{name:'First step',exact:true}).click();await expect(root.locator('[data-query-extension] .fol-tuple')).toHaveCount(1);
   const unary=app(page,'Query a relational database');await expect(unary.locator('[data-query-index]')).toHaveCount(3);
   await reviewScreenshot(root,{path:`tmp/fol-review/revision-13/pruned-${info.project.name}.png`});
-  for(const theme of ['light','dark']) {await page.evaluate(t=>document.documentElement.setAttribute('data-theme',t),theme);expect((await new AxeBuilder({page}).include('.fol-app').analyze()).violations).toEqual([]);}
+  for(const theme of ['light','dark']) {await page.evaluate(t=>document.documentElement.setAttribute('data-theme',t),theme);expect((await new AxeBuilder({page}).include('.fol-app[aria-label="The extension of an open formula"]').include('.fol-app[aria-label="Query a relational database"]').analyze()).violations).toEqual([]);}
 });
 
 test('large product domains follow navigation without revealing future candidates',async({page},info)=>{
@@ -269,7 +269,7 @@ test('query pruning retains negation and handles an empty positive relation',asy
  await root.getByRole('button',{name:'Edit formula',exact:true}).click();await root.getByLabel('Formula',{exact:true}).fill('¬Sibling(x, y)');await root.getByRole('button',{name:'Run query',exact:true}).click();await last(root);await expect(root.locator('[data-query-extension] .fol-tuple')).toHaveCount(25);
 });
 
-test('formula fields stay frozen until edited and grow and shrink with their contents',async({page},info)=>{
+test('formula fields stay frozen until edited and grow and shrink with their contents',{ tag: '@mobile' }, async({page},info)=>{
  for(const [path,selector] of [['/textbook/fol/','[data-kind="sql"]'],['/textbook/formal-languages/','[data-logic-app="parser"]'],['/textbook/sat/','[data-logic-app="sat"][data-kind="rewrite"]']]) {
   await page.goto(path);const root=page.locator(selector).first(),input=root.locator('.logic-app__input').first(),edit=root.locator('.logic-app__edit').first();
   await expect(input).toHaveAttribute('readonly','');await input.scrollIntoViewIfNeeded();
@@ -311,7 +311,7 @@ test('chapter references share the chapter badge inside and outside callouts',as
  await expect(content.locator('a[href*="webdam"],a[href*="abiteboul-vianu"]')).toHaveCount(0);
 });
 
-test('model arrows keep their size and repeated reciprocal labels do not overlap',async({page},info)=>{
+test('model arrows keep their size and repeated reciprocal labels do not overlap',{ tag: '@mobile' }, async({page},info)=>{
  await page.goto(chapter);const root=app(page,'Interpret predicates');await view(root,'Knowledge graph');
  const before=await root.locator('.fol-edge > path:not(.fol-edge-hit)').first().evaluate(n=>getComputedStyle(n).strokeWidth);
  await symbol(root,'Sibling');await object(root,'Little Jimmy').click();await object(root,'Granny Smith').click();

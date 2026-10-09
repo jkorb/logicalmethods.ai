@@ -27,7 +27,7 @@ async function combine(parts, operator, labels) {
   await parts.op(operator).click();
 }
 
-test('the chapter builder constructs its formula and refuses anything else', async ({ page }) => {
+test('the chapter builder constructs its formula and refuses anything else', { tag: '@mobile' }, async ({ page }) => {
   await page.goto('/textbook/formal-languages/');
   const parts = builder(page);
   await parts.app.scrollIntoViewIfNeeded();

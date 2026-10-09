@@ -1,5 +1,6 @@
 import { defineConfig } from '@playwright/test';
 import { ci, budget } from './tests/browser/budget.mjs';
+import { fullCoverage } from './tests/browser/coverage.mjs';
 
 /* Reporting: CI reads the log as a record and keeps the diagnostics as
    artifacts; a local or agent run reads it as feedback and pays for every line.
@@ -38,12 +39,16 @@ export default defineConfig({
     baseURL: 'http://127.0.0.1:4173',
     actionTimeout: budget(10_000),
     navigationTimeout: budget(30_000),
-    trace: ci ? 'retain-on-failure' : 'off',
+    // Record the retry, when diagnostics are needed; avoid tracing every click
+    // and DOM snapshot in successful exercise walkthroughs.
+    trace: ci ? 'on-first-retry' : 'off',
     screenshot: ci ? 'only-on-failure' : 'off'
   },
   projects: [
     { name: 'desktop', use: { browserName: 'chromium', viewport: { width: 1440, height: 1000 } } },
-    { name: 'mobile', use: { browserName: 'chromium', viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true } }
+    // Logic, persistence and content assertions run on desktop. Repeat checks
+    // that exercise narrow layouts, touch controls and accessibility on mobile.
+    { name: 'mobile', grep: fullCoverage ? undefined : /@mobile/, use: { browserName: 'chromium', viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true } }
   ],
   // serve.mjs reads from disk per request, so a server left running from an
   // earlier run is never stale and saves a startup on each local iteration.

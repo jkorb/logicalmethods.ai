@@ -1,7 +1,7 @@
 import { test, expect } from './fixtures.mjs';
 import AxeBuilder from '@axe-core/playwright';
 
-test('set buttons preview, select and restore regions independently', async ({ page }) => {
+test('set buttons preview, select and restore regions independently', { tag: '@mobile' }, async ({ page }) => {
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
   await page.goto('/textbook/valid-inference/');
@@ -59,7 +59,7 @@ test('authored paths agree with membership and nested diagrams have no escaping 
   expect(errors).toEqual([]);
 });
 for (const theme of ['light', 'dark']) {
-  test(`chapter 3 accessibility and reflow in ${theme}`, async ({ page }) => {
+  test(`chapter 3 accessibility and reflow in ${theme}`, { tag: '@mobile' }, async ({ page }) => {
     await page.emulateMedia({ colorScheme: theme });
     await page.goto('/textbook/valid-inference/');
     await page.evaluate(() => document.fonts.ready);

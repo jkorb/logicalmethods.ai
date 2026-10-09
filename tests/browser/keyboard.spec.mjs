@@ -19,7 +19,7 @@ async function walk(page, limit = 400) {
   return stops;
 }
 
-test('the first stop is the skip link, and it targets main', async ({ page }) => {
+test('the first stop is the skip link, and it targets main', { tag: '@mobile' }, async ({ page }) => {
   await page.goto('/textbook/formal-languages/');
   await page.keyboard.press('Tab');
   const link = page.locator(':focus');
@@ -28,14 +28,14 @@ test('the first stop is the skip link, and it targets main', async ({ page }) =>
   await expect(page.locator('#main')).toHaveCount(1);
 });
 
-test('chapter navigation is reachable by keyboard', async ({ page }) => {
+test('chapter navigation is reachable by keyboard', { tag: '@mobile' }, async ({ page }) => {
   await page.goto('/textbook/formal-languages/');
   const names = (await walk(page)).map(s => s.name.toLowerCase()).join(' | ');
   expect(names, 'previous-chapter link never received focus').toContain('previous');
   expect(names, 'next-chapter link never received focus').toContain('next');
 });
 
-test('every tab stop has a name and a visible focus indicator', async ({ page }) => {
+test('every tab stop has a name and a visible focus indicator', { tag: '@mobile' }, async ({ page }) => {
   await page.goto('/textbook/formal-languages/');
   const stops = await walk(page);
   expect(stops.length).toBeGreaterThan(10);
@@ -43,7 +43,7 @@ test('every tab stop has a name and a visible focus indicator', async ({ page })
   expect(stops.filter(s => !s.ring)).toEqual([]);
 });
 
-test('prev and next point at the neighboring chapters, in order', async ({ page }) => {
+test('prev and next point at the neighboring chapters, in order', { tag: '@mobile' }, async ({ page }) => {
   // Chapter navigation skips what is still locked, so take the neighbours from
   // the released chapters in weight order rather than naming three of them.
   const [previous, current, next] = (await chapters('textbook')).filter(chapter => !chapter.locked);
@@ -52,7 +52,7 @@ test('prev and next point at the neighboring chapters, in order', async ({ page 
   await expect(page.locator('.page-nav__link--next')).toHaveAttribute('href', `/textbook/${next.slug}/`);
 });
 
-test('fields and buttons use the same blue focus ring', async ({ page }) => {
+test('fields and buttons use the same blue focus ring', { tag: '@mobile' }, async ({ page }) => {
   const ring = el => {
     const style = getComputedStyle(el);
     return { colour: style.outlineColor, width: parseFloat(style.outlineWidth), halo: style.boxShadow };

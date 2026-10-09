@@ -35,6 +35,7 @@ function* walk(suites, file = '') {
           project: test.projectName ?? '',
           status: test.status,                       // expected | unexpected | flaky | skipped
           attempts: test.results?.length ?? 0,
+          duration: (test.results ?? []).reduce((total, result) => total + (result.duration ?? 0), 0),
           error: test.results?.at(-1)?.error?.message ?? test.results?.find(r => r.error)?.error?.message ?? ''
         };
       }
@@ -96,6 +97,14 @@ if (failed.length || flaky.length) {
   lines.push('');
 }
 
+// Total worker time locates expensive suites even when tests run in parallel.
+const suiteTimes = new Map();
+for (const test of tests) suiteTimes.set(test.file, (suiteTimes.get(test.file) ?? 0) + test.duration);
+lines.push('### Most browser time', '', '| Suite | Worker time |', '| --- | ---: |');
+for (const [file, duration] of [...suiteTimes].sort((a, b) => b[1] - a[1]).slice(0, 5)) {
+  lines.push(`| ${file} | ${seconds(duration)} |`);
+}
+lines.push('', 'Worker time includes retries and adds across parallel tests.', '');
 const summary = lines.join('\n');
 
 if (process.env.GITHUB_STEP_SUMMARY) await appendFile(process.env.GITHUB_STEP_SUMMARY, `${summary}\n`);

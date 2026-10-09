@@ -119,7 +119,7 @@ test('the drill is inert and explains itself without JavaScript', async ({ brows
 
 /* The page-wide audit only ever sees the idle app, but everything interesting
    about this one appears after Start. */
-test('a round in progress has no WCAG violations', async ({ page }) => {
+test('a round in progress has no WCAG violations', { tag: '@mobile' }, async ({ page }) => {
   await page.goto('/exercises/preamble/');
   const { start, answer, symbol } = drill(page);
   await start.click();
@@ -201,7 +201,7 @@ test('every character in every prompt has a glyph', async ({ page }) => {
 
 /* The keys sit next to the one already in use, and Tab is deliberately not one
    of them: it is how a keyboard user leaves the field. */
-test('Shift+Enter skips, Escape ends the round, and Tab still moves on', async ({ page }) => {
+test('Shift+Enter skips, Escape ends the round, and Tab still moves on', { tag: '@mobile' }, async ({ page }) => {
   await page.clock.install();
   await page.goto('/exercises/preamble/');
   const { start, answer, symbol, score, status, skip, end } = drill(page);

@@ -19,7 +19,7 @@ for(const presentation of ['Semantic facts','Tables','Knowledge graph','Set diag
     await expect(root.getByRole('button',{name:'Delete Little Jimmy',exact:true})).toHaveCount(0);
     await expect(root.getByRole('button',{name:'Delete Human tuple',exact:true})).toBeVisible();
     if(presentation==='Knowledge graph') {
-      expect((await new AxeBuilder({page}).include('.fol-app').analyze()).violations).toEqual([]);
+      expect((await new AxeBuilder({page}).include('.fol-app[aria-label="Interpret predicates"]').analyze()).violations).toEqual([]);
       await reviewScreenshot(root,{path:`tmp/fol-removal/graph-${info.project.name}.png`});
     }
     await root.getByRole('button',{name:'Delete Human tuple',exact:true}).click();

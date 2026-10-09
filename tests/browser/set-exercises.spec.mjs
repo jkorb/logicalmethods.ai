@@ -70,7 +70,7 @@ test('true/false levels change diagrams and intersection selection stays separat
 });
 
 for (const route of ['formal-languages','valid-inference']) {
-  test(`set levels are accessible and fit small screens: ${route}`, async ({page}, testInfo) => {
+  test(`set levels are accessible and fit small screens: ${route}`, { tag: '@mobile' }, async ({page}, testInfo) => {
     await page.goto(`/exercises/${route}/`);
     for(const theme of ['light','dark']) {
       await page.emulateMedia({colorScheme:theme});

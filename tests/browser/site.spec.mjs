@@ -24,7 +24,7 @@ for (const route of ['/', '/textbook/', '/textbook/boolean/', '/exercises/logic-
   });
 }
 
-test('the section links in the header reach a chapter', async ({ page }) => {
+test('the section links in the header reach a chapter', { tag: '@mobile' }, async ({ page }) => {
   await page.goto('/');
   const nav = page.locator('nav[aria-label="Main"]');
   await expect(nav.getByRole('link', { name: 'Textbook' })).toBeVisible();
@@ -35,7 +35,7 @@ test('the section links in the header reach a chapter', async ({ page }) => {
   await expect(page.locator('main h1')).toBeVisible();
 });
 
-test('exercise solution rejects wrong password, opens with Enter, and closes', async ({ page }) => {
+test('exercise solution rejects wrong password, opens with Enter, and closes', { tag: '@mobile' }, async ({ page }) => {
   await useTestPassword(page);
   await page.goto('/exercises/logic-and-ai/');
   // A local preview must never use the live site's (possibly older) passwords.
@@ -88,7 +88,7 @@ test('preamble and chapters use Unicode math without KaTeX', async ({ page }) =>
 
 /* The boxed chapter contents is only useful while it is on screen, so a square
    in the corner carries the same list down the page. */
-test('the chapter contents follows the reader once its box scrolls away', async ({ page }) => {
+test('the chapter contents follows the reader once its box scrolls away', { tag: '@mobile' }, async ({ page }) => {
   await page.goto('/textbook/boolean/');
   const box = page.locator('.chapter .on-this-page');
   const mini = page.locator('.toc-mini');
@@ -132,7 +132,7 @@ test('the chapter contents follows the reader once its box scrolls away', async 
    badge in the corner must not push them there. This caught a real regression:
    un-nesting the wrapper stopped .highlight's font-size applying twice, and the
    longest line stopped fitting. */
-test('code blocks fit their column, and the language badge is clear of them', async ({ page }) => {
+test('code blocks fit their column, and the language badge is clear of them', { tag: '@mobile' }, async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
   // Revised sources obey the current code layout convention; legacy chapters
   // retain their existing code and are covered by the page reflow checks.
@@ -177,7 +177,7 @@ test('code blocks fit their column, and the language badge is clear of them', as
 
 /* The margin rail says which section you are in. The bar under the header says
    how much chapter is left, and it is the only such indicator on a phone. */
-test('the reading bar tracks how far through the chapter the reader is', async ({ page }) => {
+test('the reading bar tracks how far through the chapter the reader is', { tag: '@mobile' }, async ({ page }) => {
   await page.goto('/textbook/boolean/');
   await page.evaluate(() => document.fonts.ready);
   const filled = () => page.locator('.reading-bar__fill').evaluate(el =>

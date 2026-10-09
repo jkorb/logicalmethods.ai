@@ -87,7 +87,7 @@ test('reviewed content has a working gloss, plain promise and no duplicate app s
   await expect(page.locator('#what-follows .btn-solution')).toHaveCount(0);
   await expect(page.locator('#recognizing-indicators > ol > li')).toHaveCount(4);
 });
-test('exercise formulas use Shanns and pages fit a phone width',async({page})=>{
+test('exercise formulas use Shanns and pages fit a phone width',{ tag: '@mobile' }, async({page})=>{
   await page.setViewportSize({width:390,height:844});
   for(const route of ['preamble','logic-and-ai','formal-languages']) {
     await page.goto(`/exercises/${route}/`);

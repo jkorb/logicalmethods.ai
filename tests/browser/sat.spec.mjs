@@ -86,7 +86,7 @@ test('NAND relays match the table for each input', async ({page}, testInfo) => {
   await reviewScreenshot(a, {path:'tmp/sat-review/nand-' + testInfo.project.name + '.png'});
 });
 
-test('SAT apps fit a laptop, contain mobile overflow, and pass accessibility checks', async ({page}, testInfo) => {
+test('SAT apps fit a laptop, contain mobile overflow, and pass accessibility checks', { tag: '@mobile' }, async ({page}, testInfo) => {
   if (testInfo.project.name === 'desktop') await page.setViewportSize({width:1366,height:768});
   for (const kind of ['truth-table','rewrite','resolution','tseytin']) {
     const a = app(page,kind);
@@ -100,7 +100,7 @@ test('SAT apps fit a laptop, contain mobile overflow, and pass accessibility che
   expect(results.violations.map(v => v.id + ": " + v.help)).toEqual([]);
 });
 
-test('SAT controls work with keyboard and dark reduced-motion styles', async ({page}) => {
+test('SAT controls work with keyboard and dark reduced-motion styles', { tag: '@mobile' }, async ({page}) => {
   await page.emulateMedia({colorScheme:'dark',reducedMotion:'reduce'});
   const a = app(page,'truth-table');
   await button(a,'Next step').focus();
@@ -142,7 +142,7 @@ test('resolution prepares a single conjunction and handles the larger inference'
   await expect(a.locator('.sat-proof')).toContainText('⊥');
 });
 
-test('textareas grow and shrink with content and rewriting uses a wrapping field', async ({page}) => {
+test('textareas grow and shrink with content and rewriting uses a wrapping field', { tag: '@mobile' }, async ({page}) => {
   const a = app(page,'truth-table');
   await button(a,'Edit input').click();
   const field = a.locator('textarea');

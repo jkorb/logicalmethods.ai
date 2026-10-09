@@ -29,7 +29,7 @@ test('Horn answers are checked semantically and equivalent repeats are rejected'
   await button(a,'Check').click();await expect(a.getByRole('status')).toContainText('Correct');
   await button(a,'Restart').click();for(const input of await inputs.all())await expect(input).toHaveValue('');
 });
-test('both card tasks accept exactly the potential counterexamples, including keyboard selection',async({page})=>{
+test('both card tasks accept exactly the potential counterexamples, including keyboard selection',{ tag: '@mobile' }, async({page})=>{
   const a=app(page,'wason');await button(a,'3').click();await button(a,'Check').click();await expect(a.getByRole('status')).toContainText('Not yet');
   await button(a,'Restart').click();await button(a,'8').focus();await page.keyboard.press('Space');await button(a,'Red').click();await button(a,'Check').click();await expect(a.getByRole('status')).toContainText('Correct');
   await button(a,'A social rule').click();for(const card of ['Beer','16'])await button(a,card).click();await button(a,'Check').click();await expect(a.getByRole('status')).toContainText('Correct');
@@ -43,7 +43,7 @@ test('conditional circuits, resolution preparation, and planning export controls
   // Presence and capture scope only: never generate an image in this suite.
   const monkey=page.locator('[data-example="monkey"]');await monkey.locator('[data-language]').fill('BoxUnderBanana; OnBox; HasBanana');await button(monkey,'Check language').click();await monkey.locator('[data-initial]').fill('none');await monkey.locator('[data-goal]').fill('HasBanana');await button(monkey,'Plan!').click();await expect(monkey.locator('[data-picture] .monkey-box svg')).toHaveCount(1);await expect(monkey.locator('[data-picture] .monkey-banana svg')).toHaveCount(1);
 });
-test('new activities are accessible and do not widen the page',async({page})=>{
+test('new activities are accessible and do not widen the page',{ tag: '@mobile' }, async({page})=>{
   await expect(app(page,'wason')).toHaveAttribute('data-mounted','true');
   const result=await new AxeBuilder({page}).include('.conditional-practice').analyze();expect(result.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target)}))).toEqual([]);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);

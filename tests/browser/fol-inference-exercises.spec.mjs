@@ -87,7 +87,7 @@ test('all ND exercises have independent Lean templates and Boolean tasks include
  await expect(page.locator('#what-if-the-type-were-emptySolution code.language-lean')).toContainText('Empty.elim');
 });
 
-test('ND screenshot controls occupy a clear canvas corner in proofs and walkthroughs',async({page})=>{
+test('ND screenshot controls occupy a clear canvas corner in proofs and walkthroughs',{ tag: '@mobile' }, async({page})=>{
  for(const [path,selector] of [['/textbook/fol-inference/','[data-logic-app="deduction"][data-kind="worked"]'],['/textbook/fol-inference/','[data-kind="lean-walkthrough"]'],[route,'[data-logic-app="deduction"][data-kind="practice"]'],['/textbook/proofs/','[data-logic-app="deduction"][data-kind="worked"]']]){
   await page.goto(path);const root=page.locator(selector).first(),camera=button(root,'Download PNG');await expect(camera).toBeVisible();await page.evaluate(()=>document.fonts.ready);
   const rects=await root.evaluate(el=>{
@@ -129,7 +129,7 @@ test('students unfold truth conditions in models rather than choose a verdict',a
  expect((await new AxeBuilder({page}).include('[data-exercise="validity"]').withTags(['wcag2a','wcag2aa','wcag21aa']).analyze()).violations).toEqual([]);
 });
 
-test('countermodel canvas fills its container and fullscreen retains the exercise controls',async({page})=>{
+test('countermodel canvas fills its container and fullscreen retains the exercise controls',{ tag: '@mobile' }, async({page})=>{
  await page.goto(route);const root=page.locator('[data-exercise="countermodel"]'),model=root.locator('[data-logic-app="fol-model"]');
  const fits=()=>root.evaluate(r=>{const m=r.querySelector('[data-logic-app="fol-model"]'),canvas=m.querySelector('[data-display]');return {root:r.clientWidth,canvas:canvas.getBoundingClientRect().width,model:m.getBoundingClientRect().width,font:getComputedStyle(m).fontSize,parentFont:getComputedStyle(r).fontSize};});
  let sizes=await fits();expect(sizes.canvas/sizes.root).toBeGreaterThan(.95);expect(sizes.font).toBe(sizes.parentFont);
@@ -142,7 +142,7 @@ test('countermodel canvas fills its container and fullscreen retains the exercis
  await button(root,'Exit fullscreen').click();await expect(button(root,'Fullscreen')).toHaveAttribute('aria-pressed','false');
 });
 
-test('Skolem formula and witness inputs convert typed and pasted LaTeX',async({page})=>{
+test('Skolem formula and witness inputs convert typed and pasted LaTeX',{ tag: '@mobile' }, async({page})=>{
  await page.goto(route);const root=page.locator('[data-logic-app="fol-inference"][data-kind="skolem"]');
  await button(root,'Edit input').click();const formula=root.getByRole('textbox',{name:'First-order input',exact:true});
  await formula.fill(String.raw`\forall x \exists y R(x,y)`);await expect(formula).toHaveValue('∀ x ∃ y R(x,y)');await button(root,'Use input').click();
@@ -152,7 +152,7 @@ test('Skolem formula and witness inputs convert typed and pasted LaTeX',async({p
 });
 
 
-test('resolution fullscreen preserves the derivation in demonstration and practice',async({page})=>{
+test('resolution fullscreen preserves the derivation in demonstration and practice',{ tag: '@mobile' }, async({page})=>{
  for(const [path,selector] of [['/textbook/fol-inference/','[data-kind="resolution"]'],[route,'[data-kind="practice"][data-logic-app="fol-inference"]']]){
   await page.goto(path);const root=page.locator(selector).first();
   if(path.includes('textbook'))await button(root,'Next step').click();

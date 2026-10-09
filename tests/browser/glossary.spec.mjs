@@ -26,7 +26,7 @@ test('glossary search matches terms, not definitions, and a fragment reveals a f
   expect(errors).toEqual([]);
 });
 
-test('term preview is keyboard accessible and opens the matching glossary entry', async ({ page, context }) => {
+test('term preview is keyboard accessible and opens the matching glossary entry', { tag: '@mobile' }, async ({ page, context }) => {
   await page.goto('/textbook/formal-languages/');
   const term = page.locator('main .glossary-term[href="/textbook/glossary/#algorithm"]').first();
   await term.scrollIntoViewIfNeeded();

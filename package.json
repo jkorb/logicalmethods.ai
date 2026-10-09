@@ -15,6 +15,7 @@
     "check": "node scripts/verify.mjs",
     "test": "node scripts/verify.mjs --browser",
     "test:browser": "node scripts/playwright.mjs test",
+    "test:browser:full": "node scripts/playwright.mjs test --full",
     "test:browser:desktop": "node scripts/playwright.mjs test --project=desktop",
     "report:ci": "node scripts/ci-summary.mjs",
     "serve:test": "node scripts/serve.mjs",

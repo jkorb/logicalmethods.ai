@@ -27,7 +27,7 @@ test('complex propositions explain set operations and preserve component outline
  expect(await page.locator('[data-variables="3"]').first().locator('.boolean-model-label').allTextContents()).toEqual(['M₁','M₂','M₃','M₄','M₅','M₆','M₇','M₈']);
 });
 
-test('pseudocode checks gaps, preserves answers, and honours reduced motion',async({page},info)=>{
+test('pseudocode checks gaps, preserves answers, and honours reduced motion',{ tag: '@mobile' }, async({page},info)=>{
  await page.goto('/exercises/formal-languages/');const a=page.locator('[data-logic-app="pseudocode-practice"]');
  await a.getByRole('button',{name:'Check',exact:true}).click();await expect(a.locator('input')).toHaveAttribute('aria-invalid','true');
  await a.locator('input').fill('def');await a.getByRole('button',{name:'Check',exact:true}).click();await expect(a.getByRole('status')).toContainText('Correct.');

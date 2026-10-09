@@ -39,7 +39,7 @@ test('locked chapters cannot be chosen, and "all" takes the rest', async ({ page
   await expect(a.locator('[data-deck-line]')).toContainText('chapters');
 });
 
-test('a round draws a card, checks an answer and files it in a box', async ({ page }) => {
+test('a round draws a card, checks an answer and files it in a box', { tag: '@mobile' }, async ({ page }) => {
   const a = app(page);
   await button(a, 'Settings').click();
   await a.getByLabel('4. Boolean algebra').check();
@@ -96,7 +96,7 @@ test('a file the app did not write is refused by name, not by silence', async ({
   await expect(a.locator('[data-status]')).toContainText('not saved by the flashcards app');
 });
 
-test('a time limit shows a countdown, and F stays out of the answer field', async ({ page }) => {
+test('a time limit shows a countdown, and F stays out of the answer field', { tag: '@mobile' }, async ({ page }) => {
   const a = app(page);
   await button(a, 'Settings').click();
   await a.getByLabel('4. Boolean algebra').check();

@@ -40,7 +40,7 @@ for (const [slug, count] of [['logic-and-ai', 20], ['formal-languages', 20], ['v
     expect(errors).toEqual([]); expect(offsite).toEqual([]);
   });
 }
-test('fullscreen, accessible controls, and narrow layout', async ({ page }, info) => {
+test('fullscreen, accessible controls, and narrow layout', { tag: '@mobile' }, async ({ page }, info) => {
   await page.goto('/slides/logic-and-ai/#slide-8');
   const deck = page.locator('[data-slide-deck]');
   await expect(deck.locator('[data-slide="8"]')).toBeVisible();

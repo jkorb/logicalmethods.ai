@@ -123,7 +123,7 @@ test('binary figures and operation tables retain their teaching layout',async({p
 });
 
 
-test('focus rings fit inside adders and arithmetic stays alongside the table',async({page},info)=>{
+test('focus rings fit inside adders and arithmetic stays alongside the table',{ tag: '@mobile' }, async({page},info)=>{
  await page.evaluate(()=>document.fonts.ready);
  for(const kind of ['half','full']){
   const a=app(page,'circuit',kind);const toggle=button(a,'Toggle X');await toggle.focus();await page.keyboard.press('Space');
@@ -158,7 +158,7 @@ test('union includes the overlap once; difference and complement remove the righ
 });
 
 
-test('switch redraws preserve scroll and group bits by operand',async({page})=>{
+test('switch redraws preserve scroll and group bits by operand',{ tag: '@mobile' }, async({page})=>{
  await page.evaluate(()=>document.fonts.ready);
  for(const [kind,preset]of [['circuit','full'],['two-bit','']]){
   const a=app(page,kind,preset),toggle=button(a,kind==='two-bit'?'Toggle X₁':'Toggle X');
@@ -220,7 +220,7 @@ test('parallel relay branches implement XOR and model controls expose formulas',
  const custom=app(page,'model-exercise','custom');await expect(custom.getByLabel('Inference',{exact:true})).toHaveAttribute('readonly','');await expect(custom.locator('[data-inspector]')).not.toContainText('SUN ∨ RAIN');await reviewScreenshot(custom, {path:`tmp/boolean-final-tweaks/${info.project.name}-inference.png`});
 });
 
-test('switch and wiring targets are separated, and success respects reduced motion',async({page})=>{
+test('switch and wiring targets are separated, and success respects reduced motion',{ tag: '@mobile' }, async({page})=>{
  await page.goto('/exercises/boolean/');
  for(const preset of ['relays','definitions','nand-circuits']){
   const a=app(page,'workbench',preset),pin=button(a,'Connect from X'),toggle=button(a,'Toggle X');await pin.scrollIntoViewIfNeeded();
@@ -249,7 +249,7 @@ test('the sandbox opens with every component, no task, and a live circuit table'
 });
 
 
-test('the lamp keeps one source through canvas and inspector connections',async({page})=>{
+test('the lamp keeps one source through canvas and inspector connections',{ tag: '@mobile' }, async({page})=>{
  for(const [path,preset] of [['/exercises/boolean/','relays'],['/exercises/boolean/','definitions'],['/tools/circuit-sandbox/','sandbox']]){
   await page.goto(path);const a=app(page,'workbench',preset);
   for(const id of ['X','Y']){await button(a,`Connect from ${id}`).click();await button(a,'Connect to out input 1').click();}

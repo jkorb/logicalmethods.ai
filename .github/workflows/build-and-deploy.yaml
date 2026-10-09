@@ -8,6 +8,12 @@ on:
     branches: [main]
   pull_request:
   workflow_dispatch:
+    inputs:
+      browser_coverage:
+        description: Browser coverage
+        type: choice
+        default: standard
+        options: [standard, full]
 
 permissions:
   contents: read
@@ -24,6 +30,8 @@ jobs:
     # Headroom for a slow runner and for the one retry the browser suites get.
     # A genuine hang is caught by the per-test budget long before this fires.
     timeout-minutes: 30
+    env:
+      BROWSER_COVERAGE: ${{ inputs.browser_coverage || 'standard' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
