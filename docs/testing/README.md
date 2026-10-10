@@ -26,5 +26,7 @@ output of every check is kept in `tmp/logs/`. See [Test output](output.md).
 - [External links](external-links.md) — the weekly network check.
 - [Maintaining the tests](maintaining.md) — fixtures, exceptions, tool versions.
 - [GitHub Actions](github-actions.md) — the workflows and their artifacts.
+- [CI failure diagnosis](ci-failures.md) — evidence, portable regressions, release reporting.
+- [October 2026 slide regression](incidents/README.md) — the failed release checks and their limits.
 - [Matching CI locally](ci-parity.md) — timing budgets, never waiting for a duration, retries.
 - [Temporary files](temporary-files.md) — what `npm run clean` reclaims.

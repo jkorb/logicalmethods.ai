@@ -318,14 +318,26 @@ test('text slides refit when a displayed formula grows after navigation', async 
   await expect.poll(() => slide.evaluate(scrollbars)).toEqual([]);
 });
 
-// Font swaps can change ordinary text after navigation, too.
+// Isolate refitting from cold-load deep-link navigation. The deck traversal
+// above covers ordinary navigation; this check changes text after it settles.
 test('learning goals refit after text layout changes', { tag: '@mobile' }, async ({ page }) => {
-  await page.goto('/slides/fol-inference/#slide-2');
+  await page.goto('/slides/fol-inference/');
   await expect(page.locator('[data-reveal-deck]')).toHaveAttribute('data-deck-ready', 'true');
   await page.evaluate(() => document.fonts.ready);
+  await page.evaluate(() => { location.hash = '#slide-2'; });
   const slide = page.locator('#slide-2');
-  await expect.poll(() => slide.evaluate(fits)).toBe(true);
+  await expect(slide).toHaveClass(/present/);
+  await expect(slide).toBeVisible();
+  // Report the actual excess in canvas pixels, instead of an unexplained false.
+  const overflow = el => ({
+    horizontal: Math.max(0, el.scrollWidth - el.clientWidth),
+    vertical: Math.max(0, el.scrollHeight - el.clientHeight)
+  });
+  await expect.poll(() => slide.evaluate(overflow), 'initial slide overflow').toEqual({ horizontal: 0, vertical: 0 });
+  const zoom = await slide.evaluate(el => Number(el.style.getPropertyValue('--deck-zoom')) || 1);
   await slide.locator('.callout__body').evaluate(body => { body.style.lineHeight = '2'; });
-  await expect.poll(() => slide.evaluate(fits)).toBe(true);
+  await expect.poll(() => slide.evaluate(el => Number(el.style.getPropertyValue('--deck-zoom')) || 1),
+    'growing text should reduce the fitted zoom').toBeLessThan(zoom);
+  await expect.poll(() => slide.evaluate(overflow), 'overflow after refitting').toEqual({ horizontal: 0, vertical: 0 });
   await expect.poll(() => slide.evaluate(scrollbars)).toEqual([]);
 });

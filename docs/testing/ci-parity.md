@@ -4,6 +4,7 @@ A local pass does not establish that Linux CI will pass. Font layout, scrolling,
 resource loading, and timing can expose real defects on one platform. Read the
 CI diagnostics and reproduce the failing condition before changing a timeout.
 Use condition-based waits so the checks tolerate differences in machine speed.
+Follow [CI failure diagnosis](ci-failures.md) before changing a failing check.
 
 Use the published URL spelling in browser tests: Hugo emits `/textbook/fol/`
 even though the source bundle is named `FOL`. The test server and link checker

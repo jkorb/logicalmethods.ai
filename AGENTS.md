@@ -37,6 +37,9 @@ passwords do not provide access control.
   pages. For interaction changes, run the relevant browser specs.
 - `npm run check` includes the `hugo -D` build; `npm test` includes `check`.
   Avoid duplicate runs on unchanged source. Run the full `npm test` before pushing.
+- For a CI-only failure, follow [CI failure diagnosis](docs/testing/ci-failures.md).
+  A local pass is not evidence of Linux success. Isolate regression setup from
+  the behavior under test; report geometry, not just a failed boolean.
 - After required checks pass, finish. Repeat or broaden validation only because
   of further edits, a failure, or a named unresolved concern.
 - Both commands print one line per check and stay under about twenty lines, even
