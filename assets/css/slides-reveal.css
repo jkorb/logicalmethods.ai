@@ -162,7 +162,7 @@
    them all, and the deck's text view names every app. */
 .deck-canvas .logic-app :is(.logic-app__help, .sat-help, .sat-example-description, .boolean-circuit__instruction,
   .conditional-help, .conditional-app [data-description],
-  .boolean-app__utilities, .logic-app__export-controls, [data-alternative], [data-text], [data-text-toggle]),
+  .boolean-app__utilities, .logic-app__export-controls:not(.nd-canvas-controls), [data-export-image], [data-alternative], [data-text], [data-text-toggle]),
 .deck-canvas .sat-app table > caption { display: none !important; }
 /* Without its instructions, a circuit's side panel holds only its status line,
    so the status goes under the drawing and the circuit takes the full width. */

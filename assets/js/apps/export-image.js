@@ -17,7 +17,7 @@ export function mountImageExport(root) {
   if (controls.classList.contains('nd-canvas-controls')) {
     const frame = controls.parentElement;
     frame.append(notice);
-    const reserveSpace = () => frame.style.setProperty('--nd-tools-height', `${controls.getBoundingClientRect().height}px`);
+    const reserveSpace = () => frame.style.setProperty('--nd-tools-height', `${controls.offsetHeight}px`);
     new ResizeObserver(reserveSpace).observe(controls);
     reserveSpace();
   } else controls.append(notice);
