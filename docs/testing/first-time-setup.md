@@ -6,7 +6,10 @@ edition to match GitHub Actions. The Node version is listed in
 [`.nvmrc`](../../.nvmrc); with nvm installed, run `nvm install` to select it.
 
 The build checks the exact Hugo release number, accepting both official builds
-with a commit hash and packaged builds such as Homebrew's.
+with a commit hash and packaged builds such as Homebrew's. On macOS, if Homebrew
+has upgraded the default executable, the test build also looks for the pinned
+release in its Cellar and verifies that executable's version. This does not
+change the system-wide Hugo selection or download a missing release.
 
 Then, from the repository root:
 

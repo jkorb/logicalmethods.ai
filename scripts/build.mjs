@@ -1,12 +1,9 @@
 import { readFileSync, rmSync, mkdirSync } from 'node:fs';
-import { execFileSync, spawnSync } from 'node:child_process';
-import { matchesHugoVersion } from './hugo-version.mjs';
+import { spawnSync } from 'node:child_process';
+import { resolveHugoVersion } from './hugo-version.mjs';
 
 const version = readFileSync('.hugo-version', 'utf8').trim();
-const installed = execFileSync('hugo', ['version'], { encoding: 'utf8' });
-if (!matchesHugoVersion(installed, version)) {
-  throw new Error(`Use Hugo ${version} (see .hugo-version). Found: ${installed.trim()}`);
-}
+const hugoExecutable = resolveHugoVersion(version);
 // Only these dedicated, ignored output directories are removed.
 for (const dir of ['tmp/site', 'tmp/fixture-site']) {
   rmSync(dir, { recursive: true, force: true });
@@ -19,7 +16,7 @@ for (const dir of ['tmp/site', 'tmp/fixture-site']) {
    warning already exits non-zero, so nothing diagnostic is being swallowed. */
 const verbose = process.argv.includes('--verbose') || process.env.VERBOSE === '1';
 const hugo = args => {
-  const result = spawnSync('hugo', ['-D', '--panicOnWarning', ...args], {
+  const result = spawnSync(hugoExecutable, ['-D', '--panicOnWarning', ...args], {
     encoding: 'utf8',
     stdio: verbose ? 'inherit' : ['ignore', 'pipe', 'pipe']
   });
