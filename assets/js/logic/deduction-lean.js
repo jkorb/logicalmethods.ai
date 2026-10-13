@@ -1,5 +1,5 @@
 // A deliberately bounded Lean teaching language, not a Lean evaluator.
-import {ast,formula,same,printFormula,emptyProof,addAssumption,infer,validateProof,extractProof} from './deduction.js';
+import {ast,formula,same,printFormula,emptyProof,addAssumption,infer,validateProof,extractProof,proofLogic} from './deduction.js';
 import {leanPrint,folDeclarations,parseLeanFOL} from './fol-lean.js';
 import {isFOL,freeND,substND,equalityTemplate} from './deduction-fol.js';
 import {parseInference,freeVariables,printFOL} from './fol-inference.js';
@@ -9,6 +9,7 @@ export function toLean(data,root=data.nodes.length-1){return renderLean(validate
 // Drafts contain explicit holes and never enter the checked-proof import path.
 export function renderLeanDraft(data,root){return '-- Unfinished derivation: sorry marks an open goal.\n'+renderLean(data,root);}
 function renderLean(p,root){
+  if(proofLogic(p)==='k3')throw Error('K₃ proofs require a separate formalization in Lean.');
   const n=p.nodes[root];if(!n)throw Error('Select a conclusion.');
   const fol=p.nodes.some(n=>isFOL(printFormula(n.formula)));
   const names=new Set();const scan=t=>{if(!t.children.length&&!['⊥','⊤'].includes(t.label))names.add(t.label);t.children.forEach(scan);};

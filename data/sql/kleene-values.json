@@ -1,0 +1,3 @@
+{
+  "setup": "CREATE TABLE TruthValues (value INTEGER);\nINSERT INTO TruthValues VALUES (0), (NULL), (1);\n\nCREATE TABLE ValuePairs (X INTEGER, Y INTEGER);\nINSERT INTO ValuePairs VALUES\n  (0, 0),    (0, NULL),    (0, 1),\n  (NULL, 0), (NULL, NULL), (NULL, 1),\n  (1, 0),    (1, NULL),    (1, 1);\n\nCREATE TABLE Valuations (SUN INTEGER, RAIN INTEGER);\nINSERT INTO Valuations SELECT X, Y FROM ValuePairs;"
+}

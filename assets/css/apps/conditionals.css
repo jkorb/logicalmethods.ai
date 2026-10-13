@@ -1,4 +1,6 @@
 .logic-app.conditional-app { border: 0; box-shadow: none; background: transparent; padding: 0; text-align: start; }
+/* In fullscreen it needs the paper back, or the browser's black backdrop shows. */
+.logic-app.conditional-app:fullscreen { background: var(--paper); padding: 1.5rem; }
 .conditional-app :is(input,textarea,select) { width: 100%; font-family: var(--font-formal); font-size: var(--step--1); background: var(--paper); color: var(--ink); border: 1px solid var(--rule-strong); border-radius: var(--radius); padding: .4rem; }
 .conditional-app :is(input,textarea)[readonly] { background: var(--paper-sunken); color: var(--ink-muted); }
 .conditional-app label { display: block; font-size: var(--step--1); }

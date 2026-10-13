@@ -28,6 +28,6 @@
   {{- $rendered | safeHTML -}}
 </div>
 
-{{- if and (eq $family "lean") (in (slice "txt-proof" "exc-proof" "txt-finf" "exc-finf" "tls-lean-correspondence") .Page.Params.id) -}}
+{{- if and (eq $family "lean") (in (slice "txt-proof" "exc-proof" "txt-finf" "exc-finf" "txt-mv" "exc-mv" "tls-lean-correspondence") .Page.Params.id) -}}
   {{- partial "links/lean-playground.html" (dict "code" .Inner) -}}
 {{- end -}}

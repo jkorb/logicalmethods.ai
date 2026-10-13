@@ -44,7 +44,8 @@ chapter's whole algorithm at once.
 ## Enforcement
 
 `tests/unit/pseudocode.test.mjs`, included in `npm run check`, checks fenced
-procedure definitions across textbook chapters and exercises, including
+procedure definitions across textbook chapters and exercises, excluding
+executable `lean` fences and including
 completed gap-exercise decks. It catches wrong fence languages,
 assignment arrows, tuple unpacking, non-Python declarations, object-method calls, single `=` in
 conditions, and indentation or block-header mistakes. It also exercises the

@@ -32,18 +32,22 @@ export const OPERATIONS = {
   OUTPUT: { arity: 1, run: a => a }
 };
 const connectives = { '¬': 'NOT', '∧': 'AND', '∨': 'OR' };
-export function evaluateTrace(tree, valuation) {
+export function evaluateTrace(tree, valuation, logic = 'boolean') {
+  const show = n => logic === 'k3' && n === .5 ? 'ω' : String(n);
   const steps = [];
   function visit(node) {
     const args = node.children.map(visit);
     let value;
     if (!args.length) {
       value = valuation[node.label];
-      if (value !== 0 && value !== 1) throw new Error(`Assign 0 or 1 to ${node.label}.`);
+      if (value !== 0 && value !== 1 && !(logic === 'k3' && value === .5)) throw new Error(`Assign ${logic === 'k3' ? '0, ω, or 1' : '0 or 1'} to ${node.label}.`);
+    } else if (logic === 'k3') {
+      const [a,b] = args;
+      value = { '¬': () => 1-a, '∧': () => Math.min(a,b), '∨': () => Math.max(a,b), '→': () => Math.max(1-a,b), '↔': () => Math.min(Math.max(1-a,b),Math.max(1-b,a)) }[node.label]();
     } else if (node.label === '→') value = (1 - args[0]) | args[1];
     else if (node.label === '↔') value = Number(args[0] === args[1]);
     else value = OPERATIONS[connectives[node.label]].run(...args);
-    const calculation = !args.length ? `v(${node.label}) = ${value}` : `${node.label === '¬' ? `NOT ${args[0]}` : `${args[0]} ${connectives[node.label] || node.label} ${args[1]}`} = ${value}`;
+    const calculation = !args.length ? `v(${node.label}) = ${show(value)}` : `${node.label === '¬' ? `NOT ${show(args[0])}` : `${show(args[0])} ${connectives[node.label] || node.label} ${show(args[1])}`} = ${show(value)}`;
     steps.push({ id: node.id, formula: printFormula(node), value, calculation,
       explanation: !args.length ? 'This is a leaf. Read its value from the valuation: this is the base case.' : 'The children have returned their values. Apply the truth-function at this node, then return the result to its parent.' });
     return value;
@@ -57,16 +61,22 @@ export const WORLDS = [
   { id: 'M₃', SUN: 0, RAIN: 1, image: 'world_no_sun_rain' },
   { id: 'M₄', SUN: 0, RAIN: 0, image: 'world_no_sun_no_rain' }
 ];
-export function worldsFor(variables = 2) {
+export function worldsFor(variables = 2, logic = 'boolean') {
+  if (logic === 'k3') {
+    if (![2,3].includes(variables)) throw new Error('Use a two- or three-variable space.');
+    let worlds = [{}];
+    for (const name of ['SUN','RAIN','WIND'].slice(0,variables)) worlds = worlds.flatMap(w => [1,0,.5].map(v => ({...w,[name]:v})));
+    return worlds.map((w,i) => ({...w,id:`M${subs(i+1)}`}));
+  }
   if (variables === 2) return WORLDS;
   if (variables !== 3) throw new Error('Use a two- or three-variable space.');
   return [1,0].flatMap(SUN => [1,0].flatMap(RAIN => [1,0].map(WIND => ({SUN,RAIN,WIND})))).map((w,i)=>({...w,id:`M${subs(i+1)}`}));
 }
-export function proposition(source, variables = 2) {
+export function proposition(source, variables = 2, logic = 'boolean') {
   const { tree, names } = parseBoolean(source);
   const allowed = variables === 3 ? ['SUN', 'RAIN', 'WIND'] : ['SUN', 'RAIN'];
   if (names.some(name => !allowed.includes(name))) throw new Error(`Use only ${allowed.join(', ')} in this space.`);
-  return worldsFor(variables).filter(w => evaluateTrace(tree, w).at(-1).value === 1).map(w => w.id);
+  return worldsFor(variables, logic).filter(w => evaluateTrace(tree, w, logic).at(-1).value === 1).map(w => w.id);
 }
 // Acyclic, combinational circuits. Missing inputs remain unknown, never zero.
 export function evaluateCircuit(nodes, inputs = {}) {
@@ -121,12 +131,12 @@ export function circuitPreset(kind) {
 }
 
 // Adapt semantic propositions to the same finite-set queries as chapter 3.
-export function inferenceScene(premises, conclusion, variables = 2) {
+export function inferenceScene(premises, conclusion, variables = 2, logic = 'boolean') {
   const sources = [...premises, conclusion];
-  const sets = sources.map((formula, i) => ({ id: `P${i}`, formula, members: proposition(formula, variables) }));
+  const sets = sources.map((formula, i) => ({ id: `P${i}`, formula, members: proposition(formula, variables, logic) }));
   return {
     sets,
-    points: worldsFor(variables).map(world => ({ ...world, sets: sets.filter(s => s.members.includes(world.id)).map(s => s.id) })),
+    points: worldsFor(variables, logic).map(world => ({ ...world, sets: sets.filter(s => s.members.includes(world.id)).map(s => s.id) })),
     premises: sets.slice(0, -1).map(s => s.id),
     conclusion: sets.at(-1).id
   };

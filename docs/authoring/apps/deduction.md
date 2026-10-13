@@ -25,6 +25,8 @@ worked-out derivation advice. Data live in `deduction-examples.js` and
 The reusable tools have pages under `/tools/`; the canvas page also includes
 the rule reference. Worked examples stay in the chapter and solutions.
 
+Use `logic="k3"` for [Priest’s K₃ rules and examples](deduction-k3.md).
+
 ## Controls and data
 
 The Rules button sits over the upper-right corner of the vertically resizable

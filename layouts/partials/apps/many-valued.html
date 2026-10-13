@@ -1,0 +1,17 @@
+{{ $kind := .sc.Get "kind" | default "models" }}
+{{ if not (in (slice "models" "memberships" "predicates" "policy" "rules" "controller" "aircon" "defuzzify") $kind) }}{{ errorf "Unknown many-valued app %s" $kind }}{{ end }}
+<section class="logic-app boolean-app mv-app" data-logic-app="many-valued" data-kind="{{ $kind }}" aria-label="{{ .sc.Get "title" | default "Many-valued logic" }}">
+  {{ range slice "edit" "check" "replay" "fullscreen" }}<template data-icon="{{ . }}">{{ partial "apps/icon.html" . }}</template>{{ end }}
+  <div data-toolbar class="mv-toolbar"></div>
+  {{ if eq $kind "aircon" }}<div data-aircon></div>{{ else }}
+  {{ if ne $kind "defuzzify" }}<form class="mv-form">
+    <textarea class="logic-app__input" data-formula data-submit-enter rows="1" aria-label="{{ if eq $kind "models" }}Inference{{ else if eq $kind "predicates" }}Formula{{ else }}Rules{{ end }}" maxlength="512" readonly spellcheck="false">{{ .sc.Get "formula" }}</textarea>
+  </form>{{ end }}
+  <div class="mv-layout">
+    <div data-picture class="mv-picture"></div>
+    <div class="mv-aside"><div data-controls></div><div data-inspector></div><div role="status" aria-live="polite" aria-atomic="true"></div></div>
+  </div>
+  {{ end }}
+  {{ if eq $kind "models" }}<template data-world-space>{{ partial "figures/image.html" (dict "page" .sc.Page "src" "/img/drawings/mv_kleene-space.svg" "id" .id "themed" true "class" "book-figure--themed") }}</template>{{ end }}
+  <p data-app-fallback>The examples in the text give the initial values. Enable JavaScript to change them.</p>
+</section>

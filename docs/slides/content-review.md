@@ -237,6 +237,33 @@ Curry–Howard table and the hybrid-AI drawing. The old deck's Lean Game Server
 screenshot and its drawings in the superseded notation are gone. The
 Excalidraw scene, manifest and staged exports remain.
 
+**Lecture 10 was then written in Reveal.js** against the revised chapter 10, in
+20 slides, replacing the review notice, in the same condensed style. It follows
+the chapter's sections, with the weight on fuzzy logic and its controllers.
+Bivalence: missing information and vagueness, beside the chapter's database and
+the mascot with a thermometer. Kleene algebra: the `NULL` comparison queries,
+and the Kleene operations, with $ω = 1/2$, above their function tables. K₃:
+models and consequence beside the chapter's nine information states, the
+model-space app on a slide of its own, excluded middle and explosion beside
+the panicking mascot, the classical rules that fail in K₃ drawn as blocked
+inferences, disjunctive syllogism in the worked-proof app, and the SQL
+countermodel search for affirming the consequent.
+Fuzzy predicates: the membership app, then the predicate app. Fuzzy logic: degree-preserving consequence above explosion and
+disjunctive syllogism drawn as blocked inferences. Fuzzy rules: rule
+satisfaction above the rule-checking app; Sugeno controllers, defined beside
+the mascot at the heater, then the heating-controller app, whose examples are
+now rule sets; Mamdani controllers in one definition; defuzzification in a new
+app, written for the deck, that clips and combines the output sets and
+balances their samples on a fulcrum; and,
+as the worked-out example, the air conditioner's Sugeno and Mamdani
+controllers. Cut: the SQL table setup and truth-function queries,
+`NOT EXISTS` and the open- and closed-world assumptions, the Zadeh operations,
+soundness and completeness for K₃, the Kleene laws and
+their derivation app, SQL identity checking, the K₃ rules app, material modus
+ponens and Lean in K₃, crisp predicates, Łukasiewicz implication and the strong
+conjunction, fuzzy satisfiability, the simple heating policy and its app, and
+both modeling notes.
+
 Lectures 7–12 were copied byte-for-byte, without automatic font or notation
 replacement. Review them against the book, including historical
 staff/attendance information, terminology, proof examples, screenshots and

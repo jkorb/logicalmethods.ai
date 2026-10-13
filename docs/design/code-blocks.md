@@ -23,8 +23,8 @@ text. Code inside `pre` keeps its block sizing.
 
 - [The notation font](notation-font.md) — why code is not in the hand.
 
-Lean blocks in the proofs chapter, its exercises, and the Lean tool link to the
-playground below the code. These links use the formal-font L∃∀N wordmark, the external-link
+Lean blocks in the proofs, first-order inference, and many-valued chapters,
+their exercises, and the Lean tool link to the playground below the code. These links use the formal-font L∃∀N wordmark, the external-link
 indicator, and an accessible new-tab notice. Links sit below the code, right
 aligned in smaller type; the translator places its link below the app. Mathlib imports select the
 playground’s mathlib project. The link is `partials/links/lean-playground.html`.

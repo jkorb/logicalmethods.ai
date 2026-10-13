@@ -6,7 +6,7 @@ export function mountSQL(root, options = {}) {
   const find = s => root.querySelector(s), input = find('[data-sql-source]'), code = find('[data-sql-code]');
   let original = code.textContent;
   const config = JSON.parse(find('[data-sql-config]').textContent);
-  const setup = root.dataset.empty === 'true' ? '' : databaseSQL(config.language, config.model, config.columns);
+  const setup = root.dataset.empty === 'true' ? '' : (config.setup ?? databaseSQL(config.language, config.model, config.columns));
   input.value = original;
   function freeze() {
     highlightSQL(code, input.value); input.hidden = true;

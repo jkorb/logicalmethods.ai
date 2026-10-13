@@ -3,19 +3,23 @@ import { el, svg } from './boolean-ui.js';
 let drawingId=0;
 // The artwork supplies the worlds; membership and highlighting remain semantic.
 export function drawWorlds(root,worlds,{selected=[],onSelect,formula='',countermodels=false}={}) {
-  const picture=root.querySelector('[data-picture]'),three=worlds.length===8;
+  const picture=root.querySelector('[data-picture]'),three=worlds.length===8,kleene=worlds.length===9;
   const space=el('div',{class:`boolean-space${three?' boolean-space--eight':''}`});
   const drawing=root.querySelector('[data-world-space]').content.cloneNode(true),canvas=drawing.querySelector('svg');
   space.append(drawing);picture.replaceChildren(space);
   const background=canvas.querySelector('g');
   for(const n of background.querySelectorAll('[fill]'))if(n.getAttribute('fill')!=='none')n.setAttribute('fill','var(--set-universe)');
-  const positions=three ? [
+  const positions=kleene ? worlds.map((w,i)=>({...w,...[
+    {x:210,y:177.1,rx:101.6,ry:101.6},{x:533.8,y:177.1,rx:101.6,ry:101.6},{x:857.6,y:177.1,rx:101.6,ry:101.6},
+    {x:209.1,y:447.1,rx:101.6,ry:101.6},{x:533.3,y:447.1,rx:107.2,ry:101.6},{x:863.2,y:447.1,rx:107.2,ry:101.6},
+    {x:205.8,y:722.3,rx:101.6,ry:101.6},{x:538.2,y:722.3,rx:107.2,ry:101.6},{x:876.2,y:722.3,rx:107.2,ry:101.6}
+  ][i]})) : three ? [
     {SUN:1,RAIN:1,WIND:1,x:312,y:286},{SUN:1,RAIN:1,WIND:0,x:865,y:286},
     {SUN:1,RAIN:0,WIND:1,x:1420,y:286},{SUN:1,RAIN:0,WIND:0,x:1975,y:286},
     {SUN:0,RAIN:1,WIND:1,x:312,y:722},{SUN:0,RAIN:1,WIND:0,x:865,y:722},
     {SUN:0,RAIN:0,WIND:1,x:1420,y:722},{SUN:0,RAIN:0,WIND:0,x:1975,y:722}
   ] : [{SUN:1,RAIN:1,x:248,y:195},{SUN:1,RAIN:0,x:645,y:188},{SUN:0,RAIN:1,x:230,y:512},{SUN:0,RAIN:0,x:636,y:525}];
-  const W=three?2301:902.7,H=three?1042.4:711.3,radius=three?178:111;
+  const W=kleene?1058.2:three?2301:902.7,H=kleene?895:three?1042.4:711.3,radius=kleene?111:three?178:111;
   // Keep the source drawing intact. Each world shows a fixed cell of the same
   // artwork, rather than guessing which individual strokes belong to it using
   // live SVG bounding boxes. This also works before layout or inside disclosures.
@@ -25,12 +29,13 @@ export function drawWorlds(root,worlds,{selected=[],onSelect,formula='',counterm
     if(node!==background && !['title','defs'].includes(node.tagName.toLowerCase()))original.append(node);
   }
   definitions.append(original);canvas.append(definitions);
-  const art=new Map(),columns=three?4:2;
-  const xs=three?[0,588,1142,1698,W]:[0,445,W],ys=three?[0,504,H]:[0,355,H];
+  const art=new Map(),columns=kleene?3:three?4:2;
+  const xs=kleene?[0,355,686,W]:three?[0,588,1142,1698,W]:[0,445,W],ys=kleene?[0,325,594,H]:three?[0,504,H]:[0,355,H];
   for(const [index,position] of positions.entries()) {
     const world=worlds.find(w=>['SUN','RAIN',...(three?['WIND']:[])].every(k=>w[k]===position[k]));
     const group=svg('g',{'data-world-art':world.id});
-    group.append(svg('ellipse',{cx:position.x,cy:position.y,rx:radius+9,ry:radius+8,class:'boolean-world-halo'}));
+    const rx=position.rx??radius,ry=position.ry??radius;
+    group.append(svg('ellipse',{cx:position.x,cy:position.y,rx:rx+9,ry:ry+8,class:'boolean-world-halo'}));
     const col=index%columns,row=Math.floor(index/columns),clipId=`${id}-cell-${index}`;
     const clip=svg('clipPath',{id:clipId,clipPathUnits:'userSpaceOnUse'});
     clip.append(svg('rect',{x:xs[col],y:ys[row],width:xs[col+1]-xs[col],height:ys[row+1]-ys[row]}));
@@ -39,12 +44,12 @@ export function drawWorlds(root,worlds,{selected=[],onSelect,formula='',counterm
     cell.append(svg('use',{href:`#${id}`}));group.append(cell);
     if(three)group.append(svg('text',{x:position.x,y:position.y+220,'text-anchor':'middle',class:'boolean-model-label'},world.id));
     canvas.append(group);art.set(world.id,group);
-    const label=['SUN','RAIN',...(three?['WIND']:[])].map(n=>`v(${n}) = ${world[n]}`).join(', ');
+    const label=['SUN','RAIN',...(three?['WIND']:[])].map(n=>`v(${n}) = ${world[n]===.5?'ω':world[n]}`).join(', ');
     const button=el('button',{type:'button',class:'boolean-world','data-model':world.id,'aria-label':`${world.id}: ${label}`,'aria-pressed':String(selected.includes(world.id))});
-    button.style.cssText=`left:${(position.x-radius)/W*100}%;top:${(position.y-radius)/H*100}%;width:${radius*2/W*100}%;height:${radius*2/H*100}%;`;
+    button.style.cssText=`left:${(position.x-rx)/W*100}%;top:${(position.y-ry)/H*100}%;width:${rx*2/W*100}%;height:${ry*2/H*100}%;`;
     button.addEventListener('click',()=>onSelect?.(world));space.append(button);
   }
-  if(!three) {
+  if(!three&&!kleene) {
     const contours=svg('g',{'aria-hidden':'true'});
     for(const [name,x,y,w,h,lx,ly]of [['SUN',80,40,735,315,750,65],['RAIN',80,40,365,635,120,655],['¬SUN',80,355,735,320,735,655],['¬RAIN',445,40,370,635,745,65]]) {
       const negative=name.startsWith('¬'),active=formula===name;

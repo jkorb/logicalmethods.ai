@@ -1,0 +1,13 @@
+{{ $kind := .sc.Get "exercise" }}
+<section class="logic-app fol-app fol-practice mv-practice" data-logic-app="mv-practice" data-exercise="{{ $kind }}" aria-label="{{ .sc.Get "title" }}">
+  {{ range slice "check" "replay" "fullscreen" }}<template data-icon="{{ . }}">{{ partial "apps/icon.html" . }}</template>{{ end }}
+  <div class="fol-toolbar"><div data-levels class="builder__levels" role="group" aria-label="Exercise levels"></div><div data-practice-tools></div></div>
+  <div data-task class="fol-practice-task"></div>
+  <div data-workspace></div>
+  {{ if in (slice "inference" "laws") $kind }}
+  {{ partial "apps/sql.html" (dict "sc" .sc "id" .id "code" "-- Write your query here." "title" (printf "%s: SQL editor" (.sc.Get "title"))) }}
+  {{ end }}
+  <div data-actions class="fol-toolbar"></div>
+  <p data-practice-feedback role="status" aria-live="polite"></p>
+  <p data-app-fallback>Enable JavaScript to work through these levels.</p>
+</section>

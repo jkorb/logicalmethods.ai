@@ -1,5 +1,5 @@
 // A proof plan is separate from a checked proof. Holes never enter the kernel.
-import {formula,ast,same,printFormula,addAssumption,infer,validateProof,RULES} from './deduction.js';
+import {formula,ast,same,printFormula,addAssumption,infer,validateProof,RULES,proofLogic} from './deduction.js';
 import {substND,freeND} from './deduction-fol.js';
 import {parseInference} from './fol-inference.js';
 import {isVariable} from './fol-parser.js';
@@ -9,13 +9,26 @@ const requireThat=(ok,message)=>{if(!ok)throw Error(message);};
 export function newGoal(source,context=[]){return {formula:typeof source==='string'?formula(source):formula(printFormula(source)),context:[...context],rule:null,children:[],discharge:[],extra:''};}
 export function goalAt(plan,path){return path.reduce((g,i)=>g.children[i],plan);}
 export function matchingProof(proof,goal){return proof.nodes.find(n=>same(n.formula,goal.formula)&&n.open.every(id=>goal.context.includes(id)))?.id;}
-export function backwardRules(goal){const op=goal.formula.label;return [...(op.startsWith('∀')?['forallI']:op.startsWith('∃')?['existsI']:[]),'forallE','existsE',...({ '∧':['andI'],'∨':['orL','orR'],'→':['impI'],'¬':['notI'],'↔':['iffI'],'⊤':['trueI'],'⊥':['notE']}[op]||[]),'impE','andL','andR','orE','iffL','iffR','falseE','raa'];}
+export function backwardRules(goal,logic='classical'){
+ const f=goal.formula,op=f.label;
+ if(logic==='k3')return [
+  ...(op==='∧'?['andI']:op==='∨'?['orL','orR']:[]),
+  ...(op==='¬'&&f.children[0].label==='¬'?['dnI']:[]),'dnE',
+  ...(['∧','∨'].includes(op)&&f.children.every(c=>c.label==='¬')?[op==='∧'?'dmOr':'dmAnd']:[]),
+  ...(op==='¬'&&['∧','∨'].includes(f.children[0].label)?[f.children[0].label==='∧'?'dmAndBack':'dmOrBack']:[]),
+  'andL','andR','orE','k3Explosion'];return [...(op.startsWith('∀')?['forallI']:op.startsWith('∃')?['existsI']:[]),'forallE','existsE',...({ '∧':['andI'],'∨':['orL','orR'],'→':['impI'],'¬':['notI'],'↔':['iffI'],'⊤':['trueI'],'⊥':['notE']}[op]||[]),'impE','andL','andR','orE','iffL','iffR','falseE','raa'];}
 export function expandGoal(data,plan,path,rule,extra=''){
   let proof=data;const out=structuredClone(plan),g=goalAt(out,path),f=g.formula;
-  requireThat(!g.rule,'This goal already has a proposed rule.');requireThat(backwardRules(g).includes(rule),'This rule cannot produce the selected goal.');
+  requireThat(!g.rule,'This goal already has a proposed rule.');requireThat(backwardRules(g,proofLogic(proof)).includes(rule),'This rule cannot produce the selected goal.');
   const sub=(f,context=g.context)=>newGoal(f,context),other=()=>formula(extra),assume=f=>{const id=proof.nodes.length;proof=addAssumption(proof,f);g.discharge.push(id);return id;};
   g.rule=rule;g.parameter=extra;g.extra='';
   switch(rule){
+    case 'dnI':g.children=[sub(f.children[0].children[0])];break;
+    case 'dnE':g.children=[sub(ast('¬',ast('¬',f)))];break;
+    case 'dmAnd':case 'dmOr':g.children=[sub(ast('¬',ast(rule==='dmAnd'?'∧':'∨',...f.children.map(c=>c.children[0]))))];break;
+    case 'dmAndBack':case 'dmOrBack':g.children=[sub(ast(rule==='dmAndBack'?'∨':'∧',...f.children[0].children.map(c=>ast('¬',c))))];break;
+    case 'k3Explosion':{const a=other();g.children=[sub(a),sub(ast('¬',a))];g.extra=printFormula(f);break;}
+
     case 'forallI':{const v=f.label.slice(1);requireThat(g.context.every(id=>!freeND(proof.nodes[id].formula).includes(v)),'The arbitrary variable is free in an available assumption. Rename the goal binder first.');g.variable=v;g.children=[sub(f.children[0])];break;}
     case 'existsI':g.term=extra;g.extra=printFormula(f);g.children=[sub(substND(f.children[0],f.label.slice(1),parseInference(extra,'term')))];break;
     case 'forallE':{const [source,witness]=extra.split(';').map(s=>s.trim());const universal=formula(source);requireThat(universal.label.startsWith('∀'),'Supply a universal formula, then a semicolon and its instance term.');requireThat(same(substND(universal.children[0],universal.label.slice(1),parseInference(witness,'term')),f),'That instance does not match the goal.');g.term=witness;g.children=[sub(universal)];break;}
@@ -70,6 +83,7 @@ export function validateGoals(proof,plans){
 }
 export function goalHint(proof,g){
   if(matchingProof(proof,g)!==undefined)return 'This goal already has a derivation from the assumptions available here.';
+  if(proofLogic(proof)==='k3')return 'Use conjunction or disjunction rules, DN, or De Morgan. Explosion needs a derivation of A ∧ ¬A.';
   if(g.rule)return 'Select an unfinished subgoal above this proposed inference.';
   if(g.formula.label.startsWith('∀'))return '∀ Intro: prove the body for its arbitrary variable. Check that it is absent from open assumptions.';
   if(g.formula.label.startsWith('∃'))return '∃ Intro: choose a witness term, then prove the formula for that witness. An existential premise can supply an unknown witness through ∃ Elim.';
@@ -78,6 +92,7 @@ export function goalHint(proof,g){
   return conditional?'Use → Elim backwards with '+printFormula(conditional.formula)+'. The remaining goal is '+printFormula(conditional.formula.children[0])+'.':names[g.formula.label]||'Look for a conditional with this conclusion, or a conjunction containing it. You can also try proof by contradiction.';
 }
 export function goalToLean(data,plan){
+  requireThat(proofLogic(data)!=='k3','K₃ proofs require a separate formalization in Lean.');
   const proof=validateProof(data),checked=validateGoals(proof,[plan])[0];let holes=false;
   // Keep partial plans separate from checked proof data. In particular, an open
   // quantified body is a hole, not an assumption eligible for generalization.

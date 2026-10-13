@@ -51,3 +51,7 @@ test('indented exercise code fences are checked relative to their list indentati
   assert.deepEqual(pseudocodeIssues(good),[]);
   assert.ok(pseudocodeIssues(good.replace('def example','procedure example')).length);
 });
+
+test('Lean function definitions keep their own syntax',()=>{
+  assert.deepEqual(pseudocodeIssues(fence('def AND (x y : Fin 3) : Fin 3 := if x ≤ y then x else y','lean')),[]);
+});

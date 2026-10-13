@@ -295,7 +295,7 @@
 .fol-app [data-sql-status] { font-size:var(--step--1); margin:.4rem 0; overflow-wrap:anywhere; }
 .fol-app [data-sql-status]:empty { display:none; }
 .fol-app [data-sql-status][data-state="error"] { color:var(--red-ink); }
-.fol-app .sql-result-table { max-width:100%; max-height:14rem; overflow:auto; margin:.5rem 0; }
+.fol-app .sql-result-table { max-width:100%; overflow-x:auto; margin:.5rem 0; }
 .fol-app .sql-result-table table { border-collapse:collapse; font-size:var(--step--1); width:100%; }
 .fol-app .sql-result-table :is(td,th) { border:0; padding:.25rem .5rem; text-align:start; overflow-wrap:anywhere; max-width:24rem; }
 .fol-app .sql-result-table th { background:none; }
@@ -497,3 +497,11 @@
   .fol-app.fol-reasoning-model .fol-walkthrough,
   .fol-practice:is(:fullscreen,.fol-fullscreen) > .fol-reasoning-model .fol-walkthrough { grid-template-columns:minmax(0,1fr); }
 }
+
+/* Small query results use their natural width and share a row when they fit. */
+.fol-app [data-sql-results] { display:flex; flex-wrap:wrap; align-items:start; gap:.6rem 1.1rem; }
+.fol-app .sql-result { flex:1 1 max-content; min-width:0; max-width:100%; }
+.fol-app .sql-result-table { margin:0; max-height:none; }
+.fol-app .sql-result-table table { min-width:0; margin:.3rem auto; font-size:.875rem; }
+.fol-app .sql-result-table :is(td,th) { white-space:normal; padding:.3rem .4rem; }
+.fol-app .sql-result>p { margin:.4rem; font-size:var(--step--1); }

@@ -45,7 +45,7 @@ Classes, given with the slide's `class`, adjust a layout:
 
 | `class` | Does |
 | --- | --- |
-| `slide--centred` | On a `center` slide: keeps the title at the top and centres the blocks below it, with a list set well below what precedes it. |
+| `slide--centred` | On a `center` slide: keeps the title at the top and centres the blocks below it, with a list set well below what precedes it. On a `split` slide with only a title and columns: centres each column across and down the room below the title. |
 | `slide--snug` | On an `app` slide: drops the chapter's margins around the app, for an app under a callout or holding a square drawing. |
 | `slide--wide-right` | On a `split` slide: a one-third column, then a two-thirds one, say a definition beside its app. |
 
@@ -110,6 +110,20 @@ its 3.5ch for its numbered equations, which the slide's narrower list indent
 would clip. An inference overview (`inference-rules`) sets its explanations at
 20px in the body ink, where the chapter prints them small and muted. A Lean
 playground link is set at 20px.
+
+An SQL example sets its results beside its code, where the chapter puts them
+below: there they would shrink the whole app once it runs. A world space's
+drawing is not capped like a book drawing, because its clickable worlds are
+placed in percentages of its frame; capped, it would sit narrower than the
+frame, and the inspected world's ring would miss its world. The many-valued
+apps set their controls, readouts and tables in `rem`, below an app's text on
+a slide; there they follow the app's size. Their examples span the app; below
+them the input sits over the drawing and the operations and readouts beside it,
+where the chapter stacks them all above it. Their drawings are capped at 400px
+wide, since they would otherwise grow with their column as the app zooms out,
+and the model space's square drawing at 340px, to match its readouts. The air conditioner puts its mode tabs
+beside its rules, its two input charts side by side with larger labels, and
+each rule's recommendation beside its weight.
 
 ## Collisions it guards against
 

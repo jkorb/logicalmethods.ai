@@ -188,6 +188,51 @@
 /* The chapter caps generated SQL and lets it scroll; on a slide the whole
    query shows, and fitting zooms the app instead. */
 .deck-canvas.reveal .fol-app[data-kind="sql"] .fol-code .chroma { max-height: none; overflow: visible; }
+/* An SQL example sets its results beside its code, where the slide has room
+   to spare: under the code they would shrink the whole app once it runs. */
+.deck-canvas.reveal .sql-app { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); column-gap: 16px; align-items: start; }
+.deck-canvas.reveal .sql-app > .code-block { margin: 0; }
+.deck-canvas.reveal .sql-app .sql-output { margin-block-start: 0; }
+/* A world space places its clickable worlds in percentages of its frame, so
+   its drawing fills the frame: capped like a book drawing, it would sit
+   narrower inside it, and the inspected world's ring would miss its world. */
+.deck-canvas.reveal .boolean-space .figure-svg { max-height: none; }
+/* The many-valued apps set their controls, readouts and tables in rem, below
+   an app's text on a slide, so the room could not read them; there they
+   follow the app's own size. */
+.deck-canvas.reveal .mv-app :is(button, table, [role="status"], .mv-legend, .mv-point-editor, .mv-measurement, .mv-other-predicate, .mv-flow h3, .mv-flow-rule p, .mv-calculation) { font-size: var(--step--1); }
+/* A many-valued app's examples span its width; under them, the input sits
+   over the drawing and the operations and readouts beside it, so neither
+   column grows much taller than the drawing. Stacked, they would zoom the
+   whole app down to fit the slide's height. A drawing is capped, since it
+   would otherwise grow with its column as the app zooms out; the model
+   space's square drawing more tightly, to match its readouts. */
+.deck-canvas.reveal .mv-app:has(> .mv-layout) {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 16px; align-content: start;
+  grid-template-areas: "tools tools" "form aside" "picture aside"; grid-template-rows: auto auto 1fr;
+}
+.deck-canvas.reveal .mv-app:has(> .mv-operation-tools) { grid-template-areas: "tools tools" "form ops" "picture aside"; }
+.deck-canvas.reveal .mv-app:has(> .mv-layout) > .mv-toolbar { grid-area: tools; }
+.deck-canvas.reveal .mv-app:has(> .mv-layout) > .mv-form { grid-area: form; min-width: 0; }
+.deck-canvas.reveal .mv-app > .mv-operation-tools { grid-area: ops; }
+.deck-canvas.reveal .mv-app > .mv-layout { display: contents; }
+.deck-canvas.reveal .mv-app > .mv-layout > .mv-picture { grid-area: picture; align-self: center; justify-self: center; inline-size: 100%; max-inline-size: 400px; }
+.deck-canvas.reveal .mv-app[data-kind="models"] > .mv-layout > .mv-picture { max-inline-size: 340px; }
+.deck-canvas.reveal .mv-app > .mv-layout > .mv-aside { grid-area: aside; min-width: 0; }
+/* The air conditioner's two input charts sit side by side, rather than one
+   above the other: the diagram is then wider than tall, like the slide. */
+.deck-canvas.reveal .mv-app .mv-flow { grid-template-columns: minmax(0, 1.7fr) auto minmax(0, 1.4fr) auto minmax(0, 1fr); }
+.deck-canvas.reveal .mv-app .mv-flow > .mv-flow-stage:first-child .mv-flow-body { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto auto; grid-auto-flow: column; column-gap: 12px; }
+/* Its mode tabs sit beside its rules, and each rule's recommendation beside
+   its weight, to keep the diagram low. */
+.deck-canvas.reveal .mv-app[data-kind="aircon"] { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 16px; align-items: center; }
+.deck-canvas.reveal .mv-app[data-kind="aircon"] > [data-aircon] { grid-column: 1 / -1; }
+.deck-canvas.reveal .mv-app[data-kind="aircon"] > .mv-toolbar { margin: 0; }
+.deck-canvas.reveal .mv-app .mv-flow-rule { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 8px; }
+.deck-canvas.reveal .mv-app .mv-flow-rule > :is(.boolean-app__formula, meter) { grid-column: 1 / -1; }
+.deck-canvas.reveal .mv-app .mv-flow-rule > meter { grid-row: 3; }
+/* Its charts are narrower side by side, so their labels are set larger. */
+.deck-canvas.reveal .mv-app .mv-flow-plot text { font-size: 18px; }
 /* The parser sets its tree beside the step's explanation only in a window at
    least 60rem wide. A slide is always 960px wide, so there they sit side by
    side whatever the window, as in the chapter on a desktop. */
@@ -251,6 +296,11 @@
 .deck-canvas.reveal .slide--split .slide__body > :not(.slide__column) { grid-column: 1 / -1; }
 /* slide--wide-right: a narrow first column, say a definition beside its app. */
 .deck-canvas.reveal .slide--split.slide--wide-right .slide__body { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); column-gap: 32px; }
+/* slide--centred on a split slide with only a title and its columns: each
+   column is centred, across and down the room under the title, without the
+   centre layout's margins. */
+.deck-canvas.reveal .slide--split.slide--centred .slide__body { grid-template-rows: auto minmax(0, 1fr); }
+.deck-canvas.reveal .slide--split.slide--centred .slide__body > .slide__column { align-self: center; margin-block: 0; text-align: center; }
 /* An inference overview: the room reads the explanations, so they keep the
    body size and ink rather than the chapter's small muted print. */
 .deck-canvas.reveal .inference-rules { margin-block: 0; }

@@ -1,0 +1,22 @@
+{{ $kind := .Get "kind" | default "inputs" }}
+{{ if ne $kind "inputs" }}{{ errorf "Unknown fuzzy diagram %s" $kind }}{{ end }}
+{{ $panels := slice (dict "key" "inputs" "label" "Slow, Moderate, and Fast" "description" "Fast rises linearly from 0 at 0 km/h to 1 at 120 km/h. Slow falls from 1 to 0. Both have degree 0.5 at 60 km/h. Moderate rises from 0 to 1 between 0 and 60 km/h, then falls to 0 at 120 km/h.") }}
+<div class="fuzzy-diagrams" data-fuzzy-diagrams="{{ $kind }}">
+{{ range $panels }}
+<figure>
+  <figcaption>{{ .label }}</figcaption>
+  <svg viewBox="0 0 360 240" role="img" aria-label="{{ .description }}">
+    <g class="fuzzy-plot-grid"><path d="M38 20H338 M38 110H338 M38 200H338"/></g>
+    <g class="fuzzy-plot-labels">
+      <text x="38" y="13">Degree</text>
+      <text x="28" y="205" text-anchor="end">0</text><text x="28" y="115" text-anchor="end">0.5</text><text x="28" y="25" text-anchor="end">1</text>
+      <text x="38" y="218" text-anchor="middle">0</text><text x="138" y="218" text-anchor="middle">40</text><text x="188" y="218" text-anchor="middle">60</text><text x="238" y="218" text-anchor="middle">80</text><text x="338" y="218" text-anchor="middle">120</text>
+      <text x="338" y="237" text-anchor="end">Speed (km/h)</text>
+    </g>
+      <path class="fuzzy-plot-fast" d="M38 200L338 20"/><path class="fuzzy-plot-slow" d="M38 20L338 200"/>
+      <path class="fuzzy-plot-moderate" d="M38 200L188 20L338 200"/>
+      <g class="fuzzy-plot-labels"><text class="fuzzy-plot-moderate-label" x="188" y="13" text-anchor="middle">⟦Moderate⟧</text><text class="fuzzy-plot-fast-label" x="240" y="43">⟦Fast⟧</text><text class="fuzzy-plot-slow-label" x="240" y="193">⟦Slow⟧</text></g>
+  </svg>
+</figure>
+{{ end }}
+</div>

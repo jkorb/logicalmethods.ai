@@ -1,5 +1,6 @@
 {{- $title := .title | default (.sc.Get "title") -}}
 {{- $config := index hugo.Data.fol (.sc.Get "model" | default "world") -}}
+{{- with .sc.Get "setup" }}{{ $config = index hugo.Data.sql . }}{{ end -}}
 {{- if not $config }}{{ errorf "Unknown SQL example model" }}{{ end -}}
 <section class="logic-app fol-app sql-app" data-logic-app="sql" data-empty="{{ .sc.Get "empty" | default "false" }}" aria-label="{{ $title | default "SQL example" }}">
   <script type="application/json" data-sql-config>{{ $config | jsonify | safeJS }}</script>
@@ -11,7 +12,7 @@
       <button type="button" data-reset-sql aria-label="Reset SQL" title="Reset SQL" disabled>{{ partial "apps/icon.html" "replay" }}</button>
     </div>
     </div>
-    <div class="highlight" data-sql-highlight><pre class="chroma" tabindex="0" aria-label="SQL source"><code data-sql-code>{{ .code | strings.TrimSpace }}</code></pre></div>
+    <div class="highlight" data-sql-highlight><pre class="chroma" tabindex="0" aria-label="SQL source"><code data-sql-code>{{ if eq (.sc.Get "initialize") "true" }}{{ $config.setup }}{{ else }}{{ .code | strings.TrimSpace }}{{ end }}</code></pre></div>
     <label class="visually-hidden" for="{{ .id }}-sql">SQL</label>
     <textarea id="{{ .id }}-sql" data-sql-source rows="8" maxlength="100000" spellcheck="false" hidden></textarea>
   </div>

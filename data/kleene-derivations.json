@@ -1,0 +1,16 @@
+{
+  "absorption": [
+    [
+      "NOT (X AND (X OR Y)) =\nNOT X OR NOT (X OR Y)",
+      "De Morgan’s law for AND."
+    ],
+    [
+      "NOT (X AND (X OR Y)) =\nNOT X OR (NOT X AND NOT Y)",
+      "Apply De Morgan’s law for OR to NOT (X OR Y) on the right of line 1."
+    ],
+    [
+      "NOT (X AND (X OR Y)) = NOT X",
+      "Absorption on the right of line 2, with U = NOT X and V = NOT Y."
+    ]
+  ]
+}

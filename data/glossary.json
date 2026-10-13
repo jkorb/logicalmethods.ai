@@ -123,7 +123,7 @@
   "designated-value": {
     "term": "Designated value",
     "definition": "A truth value counted as acceptable in defining a consequence relation; in K3, only 1 is designated.",
-    "chapter": "notation"
+    "chapter": "many-valued"
   },
   "discharge": {
     "term": "Discharge",
@@ -231,7 +231,7 @@
   "fuzzy-predicate": {
     "term": "Fuzzy predicate",
     "definition": "A predicate whose extension assigns degrees in [0,1] rather than just membership or nonmembership.",
-    "chapter": "notation"
+    "chapter": "many-valued"
   },
   "grammar": {
     "term": "Grammar",
@@ -1621,5 +1621,107 @@
     "definition": "A set of first-order sentences is satisfiable if some first-order model makes all of them true.",
     "chapter": "FOL-inference",
     "anchor": "fol-resolution"
+  },
+  "open-world-assumption": {
+    "term": "Open-world assumption",
+    "definition": "The assumption that a missing fact is not automatically false.",
+    "chapter": "many-valued"
+  },
+  "many-valued-logic": {
+    "term": "Many-valued logic",
+    "definition": "A logic whose semantics uses more than two truth-values.",
+    "chapter": "many-valued"
+  },
+  "kleene-values": {
+    "term": "Kleene values",
+    "definition": "The three values 0, ω, and 1, interpreted as false, unknown, and true.",
+    "chapter": "many-valued"
+  },
+  "kleene-operations": {
+    "term": "Strong Kleene operations",
+    "definition": "Negation swaps 0 and 1 and leaves ω unchanged; conjunction takes the minimum and disjunction the maximum in the order 0 < ω < 1.",
+    "chapter": "many-valued"
+  },
+  "kleene-model": {
+    "term": "K₃ model",
+    "definition": "An assignment of 0, ω, or 1 to each propositional variable, extended to formulas by the strong Kleene operations.",
+    "chapter": "many-valued"
+  },
+  "fuzzy-model": {
+    "term": "Fuzzy model",
+    "definition": "A nonempty domain with denotations for constants and predicate interpretations assigning degrees in [0,1] to tuples of objects.",
+    "chapter": "many-valued"
+  },
+  "membership-function": {
+    "term": "Membership function",
+    "definition": "A function assigning each object, or tuple of objects, a degree in [0,1] of belonging to a fuzzy set or relation.",
+    "chapter": "many-valued"
+  },
+  "zadeh-operations": {
+    "term": "Zadeh operations",
+    "definition": "The fuzzy operations 1 − x for negation, min for conjunction, and max for disjunction.",
+    "chapter": "many-valued"
+  },
+  "degree-preserving-consequence": {
+    "term": "Degree-preserving consequence",
+    "definition": "A consequence relation requiring the conclusion’s truth degree to be at least the minimum degree of the finitely many premises in every model; with no premises it must be 1.",
+    "chapter": "many-valued"
+  },
+  "fuzzy-rule": {
+    "term": "Fuzzy rule",
+    "definition": "Here, a constraint A(x) ⟹ B(x) requiring the degree of A(x) not to exceed that of B(x) for any value of x in a model.",
+    "chapter": "many-valued"
+  },
+  "control-policy": {
+    "term": "Control policy",
+    "definition": "A rule or procedure for choosing an action from the available measurements or state information.",
+    "chapter": "many-valued"
+  },
+  "fuzzy-controller": {
+    "term": "Fuzzy controller",
+    "definition": "A controller that uses degrees of membership in fuzzy predicates to determine its output.",
+    "chapter": "many-valued"
+  },
+  "weighted-average": {
+    "term": "Weighted average",
+    "definition": "The sum of values multiplied by their nonnegative weights, divided by the sum of the weights, when that sum is positive.",
+    "chapter": "many-valued"
+  },
+  "crisp-predicate": {
+    "term": "Crisp predicate",
+    "definition": "A predicate for which each tuple either belongs or does not belong to its extension, with no intermediate membership degrees.",
+    "chapter": "many-valued"
+  },
+  "fuzzy-satisfiability": {
+    "term": "Fuzzy satisfiability",
+    "definition": "The existence of an assignment of degrees in [0,1] that gives every formula in a specified set value 1, using the chosen fuzzy operations.",
+    "chapter": "many-valued"
+  },
+  "defuzzification": {
+    "term": "Defuzzification",
+    "definition": "The conversion of a fuzzy output interpretation into a numerical output, for example by taking the centroid of its membership curve.",
+    "chapter": "many-valued"
+  },
+  "closed-world-assumption": {
+    "term": "Closed-world assumption",
+    "definition": "The assumption that facts not recorded in a knowledge base are false.",
+    "chapter": "many-valued"
+  },
+  "centroid": {
+    "term": "Centroid",
+    "definition": "The balance point of a region with uniform density. Centroid defuzzification uses its horizontal coordinate to select a numerical output.",
+    "chapter": "many-valued"
+  },
+  "minimum": {
+    "term": "Minimum (min)",
+    "definition": "The smallest of the inputs. For two inputs, min(x,y) returns whichever is smaller, or their common value if they are equal.",
+    "chapter": "many-valued",
+    "anchor": "the-kleene-functions"
+  },
+  "maximum": {
+    "term": "Maximum (max)",
+    "definition": "The largest of the inputs. For two inputs, max(x,y) returns whichever is larger, or their common value if they are equal.",
+    "chapter": "many-valued",
+    "anchor": "the-kleene-functions"
   }
 }

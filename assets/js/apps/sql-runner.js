@@ -18,6 +18,7 @@ export function mountSQLRunner(root, { source, setup = () => '', onSuccess = () 
     finish(); output.replaceChildren(); status.dataset.state = 'success';
     status.textContent = results.length ? (results[0].schema ? 'Database initialized.' : `${results.length === 1 ? 'Query complete.' : `${results.length} results.`}`) : `${statements} statement${statements === 1 ? '' : 's'} completed.`;
     for (const [index, result] of (showResults ? results : []).entries()) {
+      const card = el('div', undefined, 'sql-result');
       const wrap = el('div', undefined, 'sql-result-table table-scroll'); wrap.tabIndex = 0; wrap.setAttribute('role', 'region'); wrap.setAttribute('aria-label', `${title}: SQL result ${index + 1}`);
       const table = el('table'), caption = el('caption', result.schema ? 'Database tables' : `Query result ${index + 1}`);
       if (!result.schema && results.length === 1) caption.className = 'visually-hidden';
@@ -25,9 +26,9 @@ export function mountSQLRunner(root, { source, setup = () => '', onSuccess = () 
       result.columns.forEach(name => { const th = el('th', name); th.scope = 'col'; row.append(th); }); head.append(row);
       const body = el('tbody');
       for (const values of result.values) { const tr = el('tr'); values.forEach(value => { const td = el('td', value === null ? 'NULL' : String(value)); if (value === null) td.className = 'sql-null'; tr.append(td); }); body.append(tr); }
-      table.append(caption, head, body); wrap.append(table); output.append(wrap);
-      if (!result.values.length) output.append(el('p', 'No rows.'));
-      if (result.truncated) output.append(el('p', 'Showing the first 200 rows. Use LIMIT to request fewer rows.'));
+      table.append(caption, head, body); wrap.append(table); card.append(wrap); output.append(card);
+      if (!result.values.length) card.append(el('p', 'No rows.'));
+      if (result.truncated) card.append(el('p', 'Showing the first 200 rows. Use LIMIT to request fewer rows.'));
     }
     onSuccess(verdict, model);
   }

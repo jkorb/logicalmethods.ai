@@ -16,10 +16,14 @@ Shortcode-driven components used in textbook pages and exercise solutions.
 - [Conditional planning](conditional-planning.md) — bounded models, frame conditions, and block drawings.
 - [SAT exercises](sat-practice.md) — table construction, gaps, mystery formulas, and student-controlled resolution.
 - [SAT apps](sat.md) — truth-tables, normal-form rewriting, formula-based resolution, Tseytin conversion.
+- [Fuzzy controllers](fuzzy-controllers.md) — two-input Sugeno and Mamdani calculation diagrams.
+- [Many-valued exercises](many-valued-practice.md) — SQL, fuzzy interpretations, counterexamples, and braking controllers.
+- [Many-valued chapter apps](many-valued.md) — K₃ models, fuzzy predicates, rules, and controllers.
 - [Boolean chapter apps](boolean.md) — derivations, evaluation trees, model spaces.
 - [Boolean circuits and workbench](boolean-circuits.md) — relays, adders, circuit construction.
 
 - [First-order proof teaching](deduction-fol.md) — quantifier exercises, identity, and semantic Lean declarations.
+- [K₃ natural deduction](deduction-k3.md) — Priest’s rules, examples, and checked workspaces.
 - [Natural deduction and Lean](deduction.md) — checked proof canvases, worked-out examples, and a bounded Lean translator.
 
 - [SQL correspondence](fol-sql.md) — translate formulas and relational queries in both directions.
@@ -29,6 +33,8 @@ Shortcode-driven components used in textbook pages and exercise solutions.
 - [First-order models and queries](fol.md) — pictured domains, interpretations, truth traces, and database queries.
 
 ## Standalone shortcodes
+
+- [Fuzzy diagrams](many-valued-practice.md#static-diagram) — supplied controller memberships.
 
 - [Executable SQL](sql.md) — local SQLite editors for queries and initialization.
 

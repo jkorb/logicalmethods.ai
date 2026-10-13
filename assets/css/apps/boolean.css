@@ -1,5 +1,7 @@
 /* Open chapter demonstrations; shared tokens match trees and finite sets. */
 .logic-app.boolean-app { border: 0; border-radius: 0; background: transparent; padding: 0; box-shadow: none; margin-block: 2rem; }
+/* In fullscreen it needs the paper back, or the browser's black backdrop shows. */
+.logic-app.boolean-app:fullscreen { background: var(--paper); padding: 1.5rem; }
 .boolean-app .boolean-app__layout { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 1.5rem; align-items: center; margin-block: 1rem; }
 .boolean-app__picture { min-width: 0; overflow: auto; }
 .boolean-app__picture > svg { display: block; width: 100%; height: auto; }

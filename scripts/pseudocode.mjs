@@ -3,6 +3,8 @@ export function pseudocodeIssues(markdown) {
   const issues=[];
   for(const match of markdown.matchAll(/^( *)```([^\n]*)\n([\s\S]*?)^\1```[ \t]*$/gm)) {
     const [,indent,info,rawBody]=match;
+    // Lean definitions are executable proof-assistant code, not pseudocode.
+    if(info.trim().split(/\s/)[0]==='lean')continue;
     const body=rawBody.split('\n').map(line=>line.startsWith(indent)?line.slice(indent.length):line).join('\n');
     if(!/^\s*(?:def|procedure|function|algorithm)\s+\w+\s*\(/m.test(body))continue;
     const start=markdown.slice(0,match.index).split('\n').length;

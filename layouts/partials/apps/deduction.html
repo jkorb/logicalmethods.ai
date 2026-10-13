@@ -1,4 +1,7 @@
-<section class="logic-app nd-app" data-tool="{{ eq .sc.Page.Section "tools" }}" data-logic-app="deduction" data-language="{{ .sc.Get "language" | default "propositional" }}" data-kind="{{ .sc.Get "kind" | default "canvas" }}" data-display="{{ .sc.Get "display" }}" data-code="{{ .sc.Get "code" }}" data-deck="{{ .sc.Get "deck" }}" data-example="{{ .sc.Get "example" | default "heating" }}" aria-label="{{ .sc.Get "title" | default "Natural deduction" }}">
+{{ $logic := .sc.Get "logic" | default "classical" }}
+{{ if not (in (slice "classical" "k3") $logic) }}{{ errorf "Unknown ND logic %s" $logic }}{{ end }}
+{{ if and (eq $logic "k3") (or (in (slice "lean" "lean-walkthrough") (.sc.Get "kind")) (eq (.sc.Get "language") "fol")) }}{{ errorf "K₃ ND uses propositional formulas and has no Lean translation" }}{{ end }}
+<section class="logic-app nd-app" data-tool="{{ eq .sc.Page.Section "tools" }}" data-logic-app="deduction" data-proof-logic="{{ $logic }}" data-language="{{ .sc.Get "language" | default "propositional" }}" data-kind="{{ .sc.Get "kind" | default "canvas" }}" data-display="{{ .sc.Get "display" }}" data-code="{{ .sc.Get "code" }}" data-deck="{{ .sc.Get "deck" }}" data-example="{{ .sc.Get "example" | default "heating" }}" aria-label="{{ .sc.Get "title" | default "Natural deduction" }}">
   <template data-check-icon>{{ partial "apps/icon.html" "check" }}</template>
   <template data-reset-icon>{{ partial "apps/icon.html" "replay" }}</template>
   <template data-access-icon>{{ partial "apps/icon.html" "accessibility" }}</template>

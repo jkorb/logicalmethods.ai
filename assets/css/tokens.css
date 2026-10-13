@@ -318,3 +318,8 @@ textarea { field-sizing: content; min-block-size: 0; block-size: auto; box-sizin
   ::-webkit-scrollbar-thumb { background:var(--ink-muted); border:2px solid var(--paper-sunken); border-radius:.5rem; }
 }
 @media (forced-colors:active) { * { scrollbar-color:auto; scrollbar-width:auto; } }
+
+/* Native controls must follow the chosen course theme, including when it
+   overrides the operating system's preference. */
+:root[data-theme="light"] { color-scheme:light; }
+:root[data-theme="dark"] { color-scheme:dark; }

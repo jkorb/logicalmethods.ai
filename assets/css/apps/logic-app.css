@@ -11,6 +11,9 @@
   min-inline-size: 0;
   text-align: center;
 }
+/* In fullscreen an app keeps the page's paper and ink: with no background of
+   its own, the browser's black backdrop would show through. */
+.logic-app:fullscreen { background: var(--paper); color: var(--ink); overflow: auto; }
 .logic-app__title { font-family: var(--font-hand); font-size: var(--step-1); }
 .logic-app__form { display: grid; gap: .5rem; }
 .logic-app__input { inline-size: 100%; min-inline-size: 0; font-family: var(--font-formal); font-size: var(--step-1); padding: .6rem 3rem; text-align: center; color: var(--ink); background: var(--paper-raised); border: 1px solid var(--rule-strong); border-radius: var(--radius); }

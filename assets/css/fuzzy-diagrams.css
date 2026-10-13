@@ -1,0 +1,13 @@
+.fuzzy-diagrams { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.7rem; margin:1rem 0; }
+.fuzzy-diagrams[data-fuzzy-diagrams="inputs"] { display:block; max-width:25rem; margin-inline:auto; }
+.fuzzy-diagrams figure { margin:0; min-width:0; }
+.fuzzy-diagrams figcaption { text-align:center; font-family:var(--font-formal); font-size:var(--step--1); }
+.fuzzy-diagrams svg { display:block; width:100%; }
+.fuzzy-plot-grid path { fill:none; stroke:var(--rule); stroke-width:1; }
+.fuzzy-plot-labels { fill:var(--ink); font:13px var(--font-formal); }
+.fuzzy-plot-fast,.fuzzy-plot-moderate { fill:none; stroke:var(--red-ink); stroke-width:2.5; }
+.fuzzy-plot-slow { fill:none; stroke:var(--blue-ink); stroke-width:2.5; }
+.fuzzy-plot-moderate { stroke:var(--green-ink); }
+.fuzzy-plot-moderate-label { fill:var(--green-ink); }
+.fuzzy-plot-fast-label { fill:var(--red-ink); }
+.fuzzy-plot-slow-label { fill:var(--blue-ink); }

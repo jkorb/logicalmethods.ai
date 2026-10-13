@@ -1,8 +1,8 @@
-import {ast,formula,same,printFormula,emptyProof,addAssumption,infer,validateProof,extractProof} from './deduction.js';
+import {ast,formula,same,printFormula,emptyProof,addAssumption,infer,validateProof,extractProof,proofLogic} from './deduction.js';
 const requireThat=(ok,message)=>{if(!ok)throw Error(message);};
 // Delete the selected step and every step depending on it, including discharge references.
 export function deleteStep(data,id){
-  const proof=validateProof(data),removed=new Set([id]),mapping=new Map();let result=emptyProof();
+  const proof=validateProof(data),removed=new Set([id]),mapping=new Map();let result=emptyProof(proofLogic(proof));
   for(const n of proof.nodes){if(removed.has(n.id)||[...n.parents,...n.discharge].some(i=>removed.has(i))){removed.add(n.id);continue;}
     mapping.set(n.id,result.nodes.length);result=n.rule==='assumption'?addAssumption(result,n.formula):infer(result,n.rule,n.parents.map(i=>mapping.get(i)),{term:n.term,variable:n.variable,formula:n.extra,discharge:n.discharge.map(i=>mapping.get(i))});}
   return result;
@@ -14,6 +14,7 @@ export function makeLemma(data,root,name='Lemma'){
   return {...out,name:String(name).slice(0,60)||'Lemma',metas:[...metas].sort()};
 }
 export function lemmaMatch(data,lemma,selected,provided={}){
+  requireThat(proofLogic(data)===proofLogic(lemma.proof),'Use a proved rule from the same logic.');
   const saved=makeLemma(lemma.proof,lemma.root,lemma.name),node=saved.proof.nodes[saved.root],bindings={};
   requireThat(selected.length===node.open.length,`Select ${node.open.length} premise(s) for ${saved.name}, in the displayed order.`);
   for(const [k,v] of Object.entries(provided))if(saved.metas.includes(k))bindings[k]=typeof v==='string'?formula(v):formula(printFormula(v));
@@ -49,10 +50,11 @@ export function applyLemma(data,lemma,selected,provided={}){
   const root=replay(saved.root);
   return {proof,root};
 }
-export function loadWorkspace(data){
+export function loadWorkspace(data,expectedLogic){
   requireThat(data?.format==='logicalmethods-nd'&&data.version===1,'Choose a saved natural deduction workspace.');
   requireThat(Array.isArray(data.lemmas)&&data.lemmas.length<=30,'Use at most 30 saved rules.');
-  return {proof:validateProof(data.proof),lemmas:data.lemmas.map(l=>makeLemma(l.proof,l.root,l.name))};
+  const proof=validateProof(data.proof,expectedLogic);
+  return {proof,lemmas:data.lemmas.map(l=>{validateProof(l.proof,proofLogic(proof));return makeLemma(l.proof,l.root,l.name);})};
 }
 const texOps={'∧':'\\land','∨':'\\lor','→':'\\to','↔':'\\leftrightarrow','¬':'\\neg','⊥':'\\bot','⊤':'\\top'};
 export function formulaTeX(t){
@@ -62,7 +64,7 @@ export function formulaTeX(t){
 }
 export function toProofSty(data,root=data.nodes.length-1){
   const proof=validateProof(data);requireThat(proof.nodes[root],'Select a conclusion to export.');let visits=0;
-  const labels={eqI:'=I',eqE:'=E',forallI:'\\forall I',forallE:'\\forall E',existsI:'\\exists I',existsE:'\\exists E',andI:'\\land I',andL:'\\land E',andR:'\\land E',orL:'\\lor I',orR:'\\lor I',orE:'\\lor E',impI:'\\to I',impE:'\\to E',notI:'\\neg I',notE:'\\neg E',falseE:'\\bot E',raa:'\\mathrm{RAA}',trueI:'\\top I',iffI:'\\leftrightarrow I',iffL:'\\leftrightarrow E',iffR:'\\leftrightarrow E'};
+  const labels={dnI:'\\mathrm{DN}',dnE:'\\mathrm{DN}',dmAnd:'\\mathrm{DeM}',dmAndBack:'\\mathrm{DeM}',dmOr:'\\mathrm{DeM}',dmOrBack:'\\mathrm{DeM}',k3Explosion:'\\mathrm{Explosion}',eqI:'=I',eqE:'=E',forallI:'\\forall I',forallE:'\\forall E',existsI:'\\exists I',existsE:'\\exists E',andI:'\\land I',andL:'\\land E',andR:'\\land E',orL:'\\lor I',orR:'\\lor I',orE:'\\lor E',impI:'\\to I',impE:'\\to E',notI:'\\neg I',notE:'\\neg E',falseE:'\\bot E',raa:'\\mathrm{RAA}',trueI:'\\top I',iffI:'\\leftrightarrow I',iffL:'\\leftrightarrow E',iffR:'\\leftrightarrow E'};
   function tree(id,bound=new Set()){
     requireThat(++visits<4000,'Export a smaller derivation.');const n=proof.nodes[id],f=formulaTeX(n.formula);
     if(n.rule==='assumption')return (bound.has(id)?'['+f+']':f)+`^{h_{${id}}}`;

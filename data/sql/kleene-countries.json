@@ -1,0 +1,3 @@
+{
+  "setup": "CREATE TABLE CapitalOf (country TEXT, capital TEXT);\nCREATE TABLE LocatedIn (country TEXT, continent TEXT);\nCREATE TABLE LanguageOf (country TEXT, language TEXT);\nINSERT INTO CapitalOf VALUES\n  ('US', 'Washington D.C.'), ('Netherlands', 'Amsterdam'),\n  ('Germany', 'Berlin'), ('Italy', 'Rome'),\n  ('Japan', 'Tokyo'), ('Zimbabwe', 'Harare');\nINSERT INTO LocatedIn VALUES\n  ('US', 'North America'), ('Netherlands', 'Europe'),\n  ('Germany', 'Europe'), ('Italy', 'Europe'),\n  ('Japan', 'Asia'), ('Zimbabwe', 'Africa');\nINSERT INTO LanguageOf VALUES\n  ('US', 'English'), ('Netherlands', 'Dutch'),\n  ('Germany', 'German'), ('Italy', 'Italian'),\n  ('Japan', 'Japanese'), ('Zimbabwe', NULL);"
+}

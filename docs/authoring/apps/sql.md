@@ -6,7 +6,9 @@ editor tools at the upper left in a fixed header outside the scrolling source,
 and Run/Stop at the lower right of the code box.
 Results use the course’s hand-ruled table style in a paper output box, with
 green success and red error notices. Single results omit the visible count
-caption; empty results say No rows. Its body is SQL text, without a Markdown code fence:
+caption; empty results say No rows. Result tables sit beside each other when
+they fit and wrap otherwise. Rows use their natural height; horizontal scrolling
+is reserved for tables wider than the available output box. Its body is SQL text, without a Markdown code fence:
 
 ```go-html-template
 {{</* sql-app model="world" title="European countries" */>}}
@@ -53,3 +55,6 @@ not an executable SQL function.
 ## Related
 
 - [FOL exercises](fol-practice.md), [SQL correspondence](fol-sql.md), [model data](fol-data.md), [chapter apps](README.md).
+
+NULL-containing SQL presets are documented with the
+[many-valued apps](many-valued.md#sql-presets).
