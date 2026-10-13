@@ -6,6 +6,7 @@
    that act while the deck is in view, and a #slide-N address per slide.
    Without JavaScript the slides stay a readable sequence. */
 import Reveal from 'reveal.js';
+import { mountSlideProofZoom, fitSlideProofs } from './slides-deduction.js';
 
 // Focus inside these belongs to the app: its arrows, Space and letters are its
 // own. Page Up / Page Down, which is all a presentation clicker sends, still
@@ -64,6 +65,7 @@ function attempt(slide, ceiling) {
    end up a pixel or two short of its content: a scrollbar with nothing to
    scroll. Such a region is clipped until its content really grows. */
 function settle(slide) {
+  fitSlideProofs(slide);
   for (const element of [slide, ...slide.querySelectorAll('*')]) {
     const excess = { x: element.scrollWidth - element.clientWidth, y: element.scrollHeight - element.clientHeight };
     for (const axis of ['x', 'y']) {
@@ -169,6 +171,7 @@ function buildText(deck, slides, titles) {
 
 async function mount(deck) {
   const root = deck.querySelector('[data-reveal-root]');
+  mountSlideProofZoom(root);
   const slides = [...root.querySelectorAll(':scope > .slides > section')];
   const previous = deck.querySelector('[data-deck-prev]');
   const next = deck.querySelector('[data-deck-next]');

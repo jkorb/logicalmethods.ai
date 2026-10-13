@@ -90,9 +90,10 @@ An app on a slide is centred, and keeps what a lecture walks through: its
 input, examples, steps, results and status. It drops what serves a reader
 working alone: input help, example descriptions, table captions, the text
 alternative, the PNG export and the animation switch. The chapter keeps them
-all. Natural deduction keeps its canvas toolbar, including Rules and Goals;
-only the PNG button is hidden. Its pointer positions and panel dragging account
-for both slide scaling and app zoom. A relay circuit's side panel holds only its status there, so it goes under
+all. Natural deduction keeps its canvas toolbar, including Rules and Goals,
+and has [larger proofs and bounded zoom](proof-canvases.md); only the PNG button
+is hidden. Its pointer positions and panel dragging account for both slide
+scaling and app zoom. A relay circuit's side panel holds only its status there, so it goes under
 the drawing, which is capped at 300px tall like a book drawing and centred.
 The formula–SQL app shows its whole query, where the chapter caps the SQL pane
 and lets it scroll; fitting zooms the app instead. A first-order model's set

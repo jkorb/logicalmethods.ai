@@ -3,6 +3,72 @@ import { reviewScreenshot } from './review-screenshot.mjs';
 
 const button = (scope, name) => scope.getByRole('button', { name, exact: true });
 
+for (const kind of ['canvas', 'lean-walkthrough', 'worked']) {
+  test(`slide ${kind} proofs are readable and zoom within their canvas`, { tag: '@mobile' }, async ({ page }, info) => {
+    await page.goto('/slides/proof/');
+    await expect(page.locator('[data-reveal-deck]')).toHaveAttribute('data-deck-ready', 'true');
+    await page.evaluate(() => document.fonts.ready);
+    const app = page.locator(`.deck-canvas [data-kind="${kind}"]`).first();
+    await app.evaluate(el => { location.hash = el.closest('.slide').id; });
+    await button(page, 'Full screen').click();
+    await expect.poll(() => page.evaluate(() => !!document.fullscreenElement)).toBe(true);
+    const board = app.locator('.nd-board'), formula = board.locator('.nd-formula').first();
+    const overflow = el => ({ x: Math.max(0, el.scrollWidth - el.clientWidth), y: Math.max(0, el.scrollHeight - el.clientHeight) });
+    await expect.poll(() => board.evaluate(overflow)).toEqual({ x: 0, y: 0 });
+    await expect.poll(() => formula.evaluate(el => {
+      const slide = el.closest('.slide');
+      // Effective font size in the 960px slide, including both app and tree
+      // fitting, but independent of the screen's projection scale.
+      return parseFloat(getComputedStyle(el).fontSize) * el.getBoundingClientRect().width / el.offsetWidth
+        / (slide.getBoundingClientRect().width / slide.offsetWidth);
+    }), 'proof text size after fitting in slide pixels').toBeGreaterThanOrEqual(kind === 'canvas' ? 18 : 12);
+    await reviewScreenshot(page.locator('.reveal-deck'), { path: info.outputPath(`proof-${kind}-fit.png`) });
+    const initial = await formula.boundingBox(), frame = await board.boundingBox();
+    const zoom = app.getByRole('group', { name: 'Proof zoom', exact: true });
+    await button(zoom, 'Zoom in proof').click();
+    await expect(board).toHaveAttribute('data-proof-zoom', '1.25');
+    await expect.poll(async () => (await formula.boundingBox()).width / initial.width).toBeCloseTo(1.25, 1);
+    expect((await board.boundingBox()).height).toBeCloseTo(frame.height, 0);
+    await button(zoom, 'Zoom in proof').click();
+    await expect(button(zoom, 'Zoom in proof')).toBeDisabled();
+    await expect(board).toHaveAttribute('data-proof-zoom', '1.5');
+    await expect(board).toHaveCSS('overflow-x', 'auto');
+    await expect(board).toHaveCSS('overflow-y', 'auto');
+    if (kind === 'lean-walkthrough') {
+      await button(app, 'Next step').click();
+      await expect(app.locator('.nd-rule.is-current')).toHaveText('→ Elim');
+      await expect(board).toHaveAttribute('data-proof-zoom', '1.5');
+    }
+    await reviewScreenshot(page.locator('.reveal-deck'), { path: info.outputPath(`proof-${kind}-zoom.png`) });
+    await expect.poll(() => app.evaluate(el => {
+      const slide = el.closest('.slide');
+      return { x: Math.max(0, slide.scrollWidth - slide.clientWidth), y: Math.max(0, slide.scrollHeight - slide.clientHeight) };
+    })).toEqual({ x: 0, y: 0 });
+    await page.evaluate(() => { location.hash = '#slide-2'; });
+    await expect(page.locator('#slide-2')).toHaveClass(/present/);
+    await app.evaluate(el => { location.hash = el.closest('.slide').id; });
+    await expect(app).toBeVisible();
+    await expect(board).toHaveAttribute('data-proof-zoom', '1.5');
+    await button(zoom, 'Fit proof').click();
+    await expect.poll(() => board.evaluate(overflow)).toEqual({ x: 0, y: 0 });
+    await button(zoom, 'Zoom out proof').click();
+    await expect(button(zoom, 'Zoom out proof')).toBeDisabled();
+    await expect(board).toHaveAttribute('data-proof-zoom', '0.75');
+    await button(zoom, 'Fit proof').focus();
+    await page.keyboard.press('Enter');
+    await expect(board).toHaveAttribute('data-proof-zoom', '1');
+  });
+}
+
+test('chapter proof sizes and controls remain unchanged', async ({ page }) => {
+  await page.goto('/textbook/proofs/');
+  await expect(page.locator('.nd-proof-zoom')).toHaveCount(0);
+  await expect(page.locator('[data-proof-zoom]')).toHaveCount(0);
+  const walkthrough = page.locator('[data-kind="lean-walkthrough"] .nd-board .nd-tree').first();
+  await expect(walkthrough).toHaveCSS('font-size', '12px');
+  expect(await page.locator('[data-kind="canvas"] .nd-tree').first().evaluate(el => parseFloat(getComputedStyle(el).fontSize))).toBeLessThan(20);
+});
+
 for (const fullscreen of [false, true]) {
   test(`lecture 7 canvas supports proof search ${fullscreen ? 'in fullscreen' : 'on the page'}`, { tag: '@mobile' }, async ({ page }, info) => {
     const errors = [];
@@ -42,11 +108,14 @@ for (const fullscreen of [false, true]) {
           return Math.max(Math.abs(c.left - point.x - 12 * r.width / area.offsetWidth),
             Math.abs(c.top - point.y - 8 * r.height / area.offsetHeight));
         }, point);
-      }, 'cursor distance from the mouse, allowing its 12 × 8 canvas-pixel offset').toBeLessThan(1.5);
+      // WebKit rounds pointer and layout coordinates at separate zoom levels.
+      }, 'cursor distance from the mouse, allowing its 12 × 8 canvas-pixel offset').toBeLessThan(2);
     }
 
     await button(app, 'Rules').click();
     const panel = app.locator('.nd-sidebar');
+    const boardBounds = await board.boundingBox(), panelBounds = await panel.boundingBox();
+    expect(panelBounds.y + panelBounds.height).toBeLessThanOrEqual(boardBounds.y + boardBounds.height + 1);
     const handle = panel.locator('.nd-drag-handle');
     const before = await panel.boundingBox(), grip = await handle.boundingBox();
     const dx = -before.width * .4;

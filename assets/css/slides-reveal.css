@@ -164,6 +164,20 @@
   .conditional-help, .conditional-app [data-description],
   .boolean-app__utilities, .logic-app__export-controls:not(.nd-canvas-controls), [data-export-image], [data-alternative], [data-text], [data-text-toggle]),
 .deck-canvas .sat-app table > caption { display: none !important; }
+/* Proofs need projection-sized text, independently of the surrounding app.
+   A fixed canvas keeps manual zoom from shrinking the whole slide in response.
+   slides-deduction.js fits each tree, then applies the lecturer's zoom choice. */
+.deck-canvas.reveal .nd-app .nd-board { height: 260px; min-height: 200px; max-height: none; }
+.deck-canvas.reveal .nd-app .nd-sidebar { max-height: calc(100% - 3.5rem); }
+.deck-canvas.reveal .nd-app .nd-dialog { max-height: calc(100% - 4.5rem); }
+.deck-canvas.reveal .nd-app .nd-board .nd-tree { font-size: 28px; }
+.deck-canvas.reveal .nd-app .nd-board .nd-rule { font-size: .65em; max-width: none; white-space: nowrap; }
+.deck-canvas.reveal .nd-app .nd-board .nd-fold { font-size: .7em; }
+.deck-canvas.reveal .nd-app .nd-board[data-proof-zoom] > :is(.nd-tree, .nd-derivation) { zoom: var(--nd-proof-scale, 1) !important; }
+.deck-canvas.reveal .nd-app .nd-walk-panes { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); }
+.deck-canvas.reveal .nd-proof-zoom { display: flex; gap: .2rem; align-items: center; }
+.deck-canvas.reveal .nd-proof-zoom button { min-width: 2rem; }
+.deck-canvas.reveal .nd-proof-zoom button:nth-child(2) { min-width: 3rem; font-variant-numeric: tabular-nums; }
 /* Without its instructions, a circuit's side panel holds only its status line,
    so the status goes under the drawing and the circuit takes the full width. */
 .deck-canvas .boolean-app[data-kind="circuit"] .boolean-app__layout { grid-template-columns: minmax(0, 1fr); }

@@ -48,6 +48,7 @@ migrated, its Excalidraw version stays in place and published. See
 
 - [Writing a deck](authoring.md) — the shortcodes, layouts and rules.
 - [The Excalidraw theme](theme.md) — canvas, faces, layouts, app sizing.
+- [Proof canvases](proof-canvases.md) — larger ND proofs and presentation zoom.
 - [Teaching with a deck](teaching.md) — keys, full screen, known limits.
 - [Migrating a deck](migrating.md) — from Excalidraw, one lecture at a time.
 - [Testing the framework](testing.md) — the fixture deck and what to run.
