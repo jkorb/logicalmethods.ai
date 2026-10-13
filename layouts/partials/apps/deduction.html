@@ -1,4 +1,4 @@
-<section class="logic-app nd-app" data-tool="{{ eq .sc.Page.Section "tools" }}" data-logic-app="deduction" data-language="{{ .sc.Get "language" }}" data-kind="{{ .sc.Get "kind" | default "canvas" }}" data-display="{{ .sc.Get "display" }}" data-code="{{ .sc.Get "code" }}" data-deck="{{ .sc.Get "deck" }}" data-example="{{ .sc.Get "example" | default "heating" }}" aria-label="{{ .sc.Get "title" | default "Natural deduction" }}">
+<section class="logic-app nd-app" data-tool="{{ eq .sc.Page.Section "tools" }}" data-logic-app="deduction" data-language="{{ .sc.Get "language" | default "propositional" }}" data-kind="{{ .sc.Get "kind" | default "canvas" }}" data-display="{{ .sc.Get "display" }}" data-code="{{ .sc.Get "code" }}" data-deck="{{ .sc.Get "deck" }}" data-example="{{ .sc.Get "example" | default "heating" }}" aria-label="{{ .sc.Get "title" | default "Natural deduction" }}">
   <template data-check-icon>{{ partial "apps/icon.html" "check" }}</template>
   <template data-reset-icon>{{ partial "apps/icon.html" "replay" }}</template>
   <template data-access-icon>{{ partial "apps/icon.html" "accessibility" }}</template>

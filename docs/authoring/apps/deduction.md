@@ -14,6 +14,10 @@
   the copy, leaving the original code and its link in the text;
   otherwise the app supplies its code. Also available on the Lean tool page.
 
+`language="propositional"` is the default: the rule panel and right-click menus
+offer only propositional rules, for both forward proofs and backward goals.
+Use `language="fol"` to add quantifier and identity rules.
+
 `example` selects a starting example. `deck="exercises"` uses the fifteen
 exercise targets, grouped into tabs; `deck="strategies"` uses the author's
 worked-out derivation advice. Data live in `deduction-examples.js` and

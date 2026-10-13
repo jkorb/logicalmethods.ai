@@ -15,6 +15,41 @@ test('direct rule buttons construct conjunction and keep assumptions off the can
   await expect(state(a)).toContainText('Derivation complete');await expect(a.locator('[data-node][aria-pressed="true"]')).toHaveCount(0);await expect(a.locator('.nd-board')).not.toContainText('Open assumptions');
   await button(a,'Text alternative').click();await expect(a.locator('ol')).toContainText('Open: h0');expect(errors).toEqual([]);
 });
+test('propositional canvases restrict both forward and backward rule menus',async({page})=>{
+  await page.goto('/textbook/proofs/');
+  for(const kind of ['canvas','lean']){
+    const a=app(page,kind);await button(a,'Swap conjuncts').click();await menu(a);
+    await expect(a.locator('[data-rule-tab]')).toHaveText(['∧','∨','→','¬','⊥, ⊤','↔']);
+    await expect(a.locator('[data-rule^="forall"],[data-rule^="exists"],[data-rule^="eq"]')).toHaveCount(0);
+    await button(a,'Close rules').click();
+    const context=a.getByRole('group',{name:'Applicable rules',exact:true});
+    await a.locator('[data-node="0"]').first().click({button:'right'});
+    await expect(button(context,'∧ Elim · left')).toBeVisible();
+    await expect(context.getByRole('button',{name:/[∀∃]|^= /})).toHaveCount(0);
+    await a.locator('.nd-board').press('Escape');
+    await button(a,'Goal mode').click();await a.locator('[data-goal="0:"]').click({button:'right'});
+    await expect(button(context,'∧ Intro')).toBeVisible();
+    await expect(context.getByRole('button',{name:/[∀∃]|^= /})).toHaveCount(0);
+    await button(context,'∧ Intro').click();await expect(a.locator('.nd-hole')).toHaveCount(3);
+    await expect(a).toHaveAttribute('data-language','propositional');
+  }
+});
+
+test('FOL canvases retain quantifier rules in forward and backward menus',async({page})=>{
+  await page.goto('/tools/natural-deduction/');const a=page.locator('[data-language="fol"][data-kind="sandbox"]');
+  await assume(a,'∀x Human(x)');await menu(a);
+  await expect(a.locator('[data-rule-tab]')).toHaveText(['∀','∃','=','∧','∨','→','¬','⊥, ⊤','↔']);
+  await button(a,'Close rules').click();await a.locator('[data-node="0"]').click({button:'right'});
+  const context=a.getByRole('group',{name:'Applicable rules',exact:true});
+  await button(context,'∀ Elim').click();await modal(a,'Witness term','Socrates');
+  await expect(a.locator('[data-node="1"]')).toHaveText('Human(Socrates)');
+  await menu(a);await button(a,'+ Goal').click();await modal(a,'Formula','Human(Plato)');
+  await a.locator('[data-goal="0:"]').click({button:'right'});
+  await expect(button(context,'∀ Elim')).toBeVisible();await expect(button(context,'∃ Elim')).toBeVisible();
+  await button(context,'∀ Elim').click();await modal(a,'Universal formula; witness term','∀x Human(x); Plato');
+  await expect(a.locator('[data-goal="0:"]')).toHaveClass(/nd-solved/);
+});
+
 test('dialogs discharge assumptions and deletion removes dependent steps',async({page})=>{
   await page.goto('/textbook/proofs/');const a=app(page,'canvas');await button(a,'Temporary assumption').click();await assume(a,'RAIN');
   await rule(a,'∨ Intro · left');await modal(a,'Additional formula','WIND');await a.locator('[data-node="1"]').first().click();await rule(a,'→ Intro');await a.locator('[data-node="0"]').first().click();await button(a.getByRole('dialog'),'Apply').click();

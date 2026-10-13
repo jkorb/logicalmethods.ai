@@ -75,6 +75,7 @@ for (const fullscreen of [false, true]) {
     await page.mouse.click(point.x, point.y, { button: 'right' });
     const context = app.getByRole('group', { name: 'Applicable rules', exact: true });
     await expect(context).toBeVisible();
+    await expect(context.getByRole('button', { name: /[∀∃]|^= / })).toHaveCount(0);
     const placement = await context.evaluate((el, point) => {
       const r = el.getBoundingClientRect(), area = el.parentElement.getBoundingClientRect();
       return { actual: { x: r.left, y: r.top }, expected: {
