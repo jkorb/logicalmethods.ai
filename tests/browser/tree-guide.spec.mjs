@@ -23,6 +23,11 @@ test('tree definitions support click, focus, hover, and clearing', { tag: '@mobi
   await branch.press('Escape');
   await expect(guide.locator('dd:visible')).toHaveCount(0);
   await expect(highlighted).toHaveCount(0);
+  // Closing the description can move Internal node under the old pointer
+  // position. This boundary event is not a request to preview that definition.
+  await guide.getByRole('button', { name: 'Internal node', exact: true })
+    .dispatchEvent('pointerenter', { pointerType: 'mouse' });
+  await expect(highlighted).toHaveCount(0);
   if (testInfo.project.name === 'desktop') {
     await guide.getByRole('button', { name: 'Root', exact: true }).hover();
     await expect(highlighted).toHaveCount(1);

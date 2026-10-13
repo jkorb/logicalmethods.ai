@@ -11,10 +11,12 @@ The shared shell loads `css/tree-guide.css` and `js/tree-guide.js` only where
 this shortcode occurs. The gadget has no visible title. Definitions start
 collapsed; clicking a term or pressing Enter/Space expands it and highlights
 the tree, closing any other definition. Clicking again or pressing Escape
-collapses it. Hover or keyboard focus previews highlights without expanding
+collapses it. Pointer movement on a hover-capable device or keyboard focus previews highlights without expanding
 definitions. Highlights use dashed strokes as well as color. Definitions and an
 SVG text alternative remain available without JavaScript; buttons are added only
 when the script runs. The diagram stays visible while scrolling definitions.
+Pointer-entry events caused by collapsing content do not restore a cleared
+highlight. Touch interactions use selection rather than hover previews.
 
 ## Related
 

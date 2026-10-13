@@ -21,7 +21,8 @@
   color: var(--ink); background: var(--paper-raised);
   border: 1px solid var(--rule-strong); border-radius: var(--radius);
   padding: .5rem .7rem; min-block-size: 44px; cursor: pointer;
-  transition: border-color .12s ease, background .12s ease;
+  /* Keep text and its background in the same theme on every frame. */
+  transition: border-color .12s ease;
 }
 .logic-app button:disabled { color: var(--ink-muted); border-color: var(--rule); border-style: dashed; background: none; cursor: default; }
 .logic-app button:not(:disabled):hover { border-color: var(--ink-muted); background: var(--paper-sunken); }

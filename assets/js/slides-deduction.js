@@ -54,13 +54,33 @@ export function mountSlideProofZoom(root) {
       // Leave two layout pixels for rounding across nested CSS zoom levels.
       const width = board.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight) - 2;
       const height = board.clientHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom) - 2;
-      for (const tree of board.querySelectorAll(':scope > .nd-derivation, :scope > .nd-tree')) {
+      const trees = [...board.querySelectorAll(':scope > .nd-derivation, :scope > .nd-tree')];
+      for (const tree of trees) {
         tree.style.setProperty('--nd-proof-scale', '1');
         const margin = getComputedStyle(tree);
         const availableWidth = width - parseFloat(margin.marginLeft) - parseFloat(margin.marginRight);
         const availableHeight = height - parseFloat(margin.marginTop) - parseFloat(margin.marginBottom);
         const fitted = Math.min(1, availableWidth / Math.max(1, tree.scrollWidth), availableHeight / Math.max(1, tree.scrollHeight));
-        tree.style.setProperty('--nd-proof-scale', String(Math.max(.1, fitted) * zoom));
+        tree.style.setProperty('--nd-proof-scale', String(Math.max(.1, fitted)));
+      }
+      // Nested flex layout and CSS zoom do not scale scroll sizes exactly.
+      // Measure the fitted canvas too: Linux Chromium can retain several
+      // pixels of overflow after the estimate above. Correct the actual
+      // layout before applying the lecturer's deliberate magnification.
+      for (let pass = 0; pass < 8; pass++) {
+        if (board.scrollWidth <= board.clientWidth && board.scrollHeight <= board.clientHeight) break;
+        const correction = Math.min(
+          (board.clientWidth - 2) / board.scrollWidth,
+          (board.clientHeight - 2) / board.scrollHeight
+        );
+        for (const tree of trees) {
+          const scale = Number(tree.style.getPropertyValue('--nd-proof-scale'));
+          tree.style.setProperty('--nd-proof-scale', String(scale * correction));
+        }
+      }
+      for (const tree of trees) {
+        const scale = Number(tree.style.getPropertyValue('--nd-proof-scale'));
+        tree.style.setProperty('--nd-proof-scale', String(scale * zoom));
       }
     }
     function schedule() {

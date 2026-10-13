@@ -3,6 +3,30 @@ import { reviewScreenshot } from './review-screenshot.mjs';
 
 const button = (scope, name) => scope.getByRole('button', { name, exact: true });
 
+test('proof fitting checks the rendered bounds after scaling', { tag: '@mobile' }, async ({ page }) => {
+  await page.goto('/slides/proof/');
+  await expect(page.locator('[data-reveal-deck]')).toHaveAttribute('data-deck-ready', 'true');
+  await page.evaluate(() => document.fonts.ready);
+  const app = page.locator('.deck-canvas [data-kind="lean-walkthrough"]').first();
+  await app.evaluate(el => { location.hash = el.closest('.slide').id; });
+  await expect(app).toBeVisible();
+  const board = app.locator('.nd-board');
+  // A border contributes to the rendered bounds but not scrollWidth. This
+  // gives a portable case where the first proportional estimate is too big;
+  // the Ubuntu failure instead came from its nested zoom/flex layout.
+  await board.locator(':scope > .nd-tree').evaluate(tree => { tree.style.border = '12px solid transparent'; });
+  await button(app, 'Fit proof').click();
+  await expect.poll(() => board.evaluate(el => ({
+    horizontal: Math.max(0, el.scrollWidth - el.clientWidth),
+    vertical: Math.max(0, el.scrollHeight - el.clientHeight)
+  })), 'the complete scaled proof must fit, including its rendered border').toEqual({ horizontal: 0, vertical: 0 });
+  await button(app, 'Zoom in proof').click();
+  await expect(board).toHaveAttribute('data-proof-zoom', '1.25');
+  await expect.poll(() => board.evaluate(el => el.scrollWidth > el.clientWidth)).toBe(true);
+  await button(app, 'Fit proof').click();
+  await expect.poll(() => board.evaluate(el => el.scrollWidth <= el.clientWidth && el.scrollHeight <= el.clientHeight)).toBe(true);
+});
+
 for (const kind of ['canvas', 'lean-walkthrough', 'worked']) {
   test(`slide ${kind} proofs are readable and zoom within their canvas`, { tag: '@mobile' }, async ({ page }, info) => {
     await page.goto('/slides/proof/');

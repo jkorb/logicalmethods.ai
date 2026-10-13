@@ -15,6 +15,9 @@ walkthrough steps, and navigation away from and back to the slide.
 `assets/js/slides-deduction.js` installs the controls and refits after a canvas
 resize, a proof redraw, or font loading. The slide theme overrides the chapter
 app's inline tree zoom so it cannot undo the presentation setting.
+After estimating the scale, the fitter remeasures the canvas and corrects any
+remaining overflow in a bounded loop. Manual magnification is applied afterward,
+so **+** still permits scrolling and **Fit** restores the complete proof.
 
 `tests/browser/slides-deduction.spec.mjs` checks readable default sizes, zoom
 bounds, fitting, persistence, and the chapter boundary. It also checks proof

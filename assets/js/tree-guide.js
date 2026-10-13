@@ -37,8 +37,10 @@ for (const guide of document.querySelectorAll('[data-tree-guide]')) {
     description.id = `${guide.id}-${definition.dataset.concept}`;
     button.setAttribute('aria-controls', description.id);
     term.replaceChildren(button);
-    button.addEventListener('pointerenter', event => {
-      if (event.pointerType !== 'touch') { hovered = definition; render(); }
+    // Collapsing a definition can move another button under a stationary
+    // pointer. Boundary events from that layout change must not undo Escape.
+    button.addEventListener('pointermove', event => {
+      if (event.pointerType !== 'touch' && matchMedia('(any-hover: hover)').matches) { hovered = definition; render(); }
     });
     button.addEventListener('pointerleave', () => { hovered = null; render(); });
     button.addEventListener('focus', () => { focused = definition; render(); });

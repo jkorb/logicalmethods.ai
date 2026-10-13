@@ -174,7 +174,19 @@ test('query domains skip impossible tuples and accumulate visited answers',async
   await root.getByRole('button',{name:'First step',exact:true}).click();await expect(root.locator('[data-query-extension] .fol-tuple')).toHaveCount(1);
   const unary=app(page,'Query a relational database');await expect(unary.locator('[data-query-index]')).toHaveCount(3);
   await reviewScreenshot(root,{path:`tmp/fol-review/revision-13/pruned-${info.project.name}.png`});
-  for(const theme of ['light','dark']) {await page.evaluate(t=>document.documentElement.setAttribute('data-theme',t),theme);expect((await new AxeBuilder({page}).include('.fol-app[aria-label="The extension of an open formula"]').include('.fol-app[aria-label="Query a relational database"]').analyze()).violations).toEqual([]);}
+  for(const theme of ['light','dark']) {
+    // The selected candidate's text and background must switch together,
+    // including the first frame, rather than passing only after an animation.
+    const colors=await root.locator('[data-query-index="0"]').evaluate((button,theme)=>{
+      getComputedStyle(button).backgroundColor;
+      document.documentElement.setAttribute('data-theme',theme);
+      const probe=document.createElement('span');probe.style.backgroundColor='var(--set-green)';button.append(probe);
+      const expected=getComputedStyle(probe).backgroundColor,actual=getComputedStyle(button).backgroundColor;
+      probe.remove();return {expected,actual};
+    },theme);
+    expect(colors.actual).toBe(colors.expected);
+    expect((await new AxeBuilder({page}).include('.fol-app[aria-label="The extension of an open formula"]').include('.fol-app[aria-label="Query a relational database"]').analyze()).violations).toEqual([]);
+  }
 });
 
 test('large product domains follow navigation without revealing future candidates',async({page},info)=>{

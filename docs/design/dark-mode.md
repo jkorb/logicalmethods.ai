@@ -8,6 +8,10 @@ chosen theme even when it differs from the operating system. An inline script in
 **Never define a color only inside a media or `[data-theme]` block** — it will not
 apply in the un-stamped state.
 
+App buttons switch text and background colors together. Their border may animate,
+but the background must not transition independently: intermediate colors can
+lose contrast against text that has already switched themes.
+
 ## Related
 
 - [Color](color.md) — the light and dark values for every token.
