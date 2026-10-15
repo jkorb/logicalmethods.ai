@@ -430,6 +430,7 @@
 .fol-app .fol-term-tree foreignObject .fol-object { display:flex; width:56px; height:46px; justify-content:center; align-items:center; }
 .fol-app .fol-term-tree foreignObject svg { width:38px; height:38px; }
 .fol-app .fol-verdict { padding:.5rem .75rem; border:1px solid var(--green-ink); border-inline-start-width:4px; border-radius:.3rem; background:var(--surf-green); color:var(--green-ink); }
+.fol-app:is([data-kind="query"],[data-kind="sql"]) [data-answer] > .fol-verdict { margin-block:0; }
 .fol-app .fol-verdict[data-value="false"] { color:var(--red-ink); border-color:var(--red-ink); background:var(--surf-red); }
 .fol-level-label { align-self:center; color:var(--ink-muted); font-size:var(--step--2); margin-inline-end:.3rem; }
 

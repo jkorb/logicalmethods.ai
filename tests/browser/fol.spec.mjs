@@ -246,10 +246,12 @@ test('correspondence pairs export editable SQL and open fullscreen',async({page}
 test('laptop queries, completed trees, and model graphs fit their content',async({page},info)=>{
   for(const width of [1280,1024]) {
     await page.setViewportSize({width,height:720});await page.goto(chapter);
+    await page.evaluate(()=>document.fonts.ready);
     for(const title of ['The extension of an open formula','Query a relational database']) {
-      const root=app(page,title);await last(root);
+      const root=app(page,title);await expect(root.getByRole('button',{name:'Last step',exact:true})).toBeEnabled();await last(root);
+      await expect(root.locator('[data-answer]')).toContainText('Query complete:');
       await reviewScreenshot(root,{path:`tmp/fol-review/revision-9/query-${width}-${title.startsWith('The')?'binary':'unary'}-${info.project.name}.png`});
-      const bounds=await root.boundingBox();expect(bounds.height).toBeLessThan(660);
+      const bounds=await root.boundingBox();expect(bounds.height,`${title} at ${width}×720: ${JSON.stringify(bounds)}`).toBeLessThan(660);
       const canvas=await root.locator('[data-display]').boundingBox(),answer=await root.locator('[data-query-result]').boundingBox();expect(answer.x).toBeGreaterThan(canvas.x+canvas.width);
     }
     const graph=app(page,'A model as a knowledge base').locator('[data-display]');
