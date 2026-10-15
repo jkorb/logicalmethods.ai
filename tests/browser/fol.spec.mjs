@@ -70,7 +70,8 @@ test('queries highlight extensions inside the unchanged model in every presentat
     for(const country of ['France','United Kingdom','Greece'])await expect(extension.locator(`[data-object="${country}"]`)).toHaveCount(1);
     await expect(root.locator('.fol-in-extension')).not.toHaveCount(0);
   }
-  await root.getByRole('button',{name:'Show query extension',exact:true}).click();await expect(root.locator('[data-query-extension]')).toHaveCount(0);await expect(root.locator('.fol-in-extension')).toHaveCount(0);
+  await root.getByRole('button',{name:'Show query extension',exact:true}).click();await expect(root.locator('[data-query-extension] .fol-tuple')).toHaveCount(3);await expect(root.locator('.fol-in-extension')).toHaveCount(0);
+  await root.getByRole('button',{name:'First step',exact:true}).click();await expect(root.locator('[data-query-extension]')).toHaveCount(0);
   await root.getByRole('button',{name:'Show query extension',exact:true}).click();await view(root,'Knowledge graph');
   await expect(root.locator('.fol-emoji')).not.toHaveCount(0);await expect(root.locator('[data-display]')).toContainText('New York');
   await reviewScreenshot(root,{path:`tmp/fol-review/revision-8/world-${info.project.name}.png`});
@@ -279,6 +280,9 @@ test('query pruning retains negation and handles an empty positive relation',asy
  await root.getByRole('button',{name:'Edit formula',exact:true}).click();await root.getByLabel('Formula',{exact:true}).fill('Sibling(x, y)');await root.getByRole('button',{name:'Run query',exact:true}).click();
  await expect(root.locator('[data-query-index]')).toHaveCount(0);await expect(root.locator('[data-calculation]')).toContainText('extension is empty');await expect(root.getByRole('button',{name:'Next step',exact:true})).toBeDisabled();
  await root.getByRole('button',{name:'Edit formula',exact:true}).click();await root.getByLabel('Formula',{exact:true}).fill('¬Sibling(x, y)');await root.getByRole('button',{name:'Run query',exact:true}).click();await last(root);await expect(root.locator('[data-query-extension] .fol-tuple')).toHaveCount(25);
+ await expect(root.locator('[data-answer]')).toHaveText('Query complete: 25 matching tuples.');
+ await root.getByRole('button',{name:'Edit formula',exact:true}).click();await root.getByLabel('Formula',{exact:true}).fill('Sibling(x, y)');await root.getByRole('button',{name:'Run query',exact:true}).click();
+ await expect(root.locator('[data-answer]')).toHaveText('Query complete: 0 matching tuples.');
 });
 
 test('formula fields stay frozen until edited and grow and shrink with their contents',{ tag: '@mobile' }, async({page},info)=>{

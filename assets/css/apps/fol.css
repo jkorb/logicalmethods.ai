@@ -1,5 +1,17 @@
 .logic-app.fol-app { --fol-object-size:2.5rem; text-align:start; padding-block-end:0; }
 .fol-app .fol-toolbar:empty { display:none; }
+/* Optional query/SQL switch keeps the same model and example choices. */
+.fol-app.fol-query-switch { position:relative; }
+.fol-app .fol-sql-view { position:absolute; top:.4rem; right:.4rem; z-index:3; }
+.fol-app .fol-sql-view .lang-badge { --paper-sunken:transparent; position:static; display:block; inline-size:3.5rem; block-size:1.5rem; margin:0; padding:0; }
+.fol-app [data-formula-view-icon] { display:block; width:3.5rem; font:1.25rem/1 var(--font-formal); }
+.fol-app.fol-query-switch > [data-examples] { min-height:2.4rem; margin-right:5rem; }
+.fol-app.fol-query-switch [data-sql] > :is(.fol-code-tabs, [data-reset-correspondence]) { display:none; }
+.fol-app.fol-sql-view-active > :is(.fol-correspondence, .fol-walkthrough, .fol-navigation) { display:none; }
+.fol-app.fol-sql-view-active > [data-sql] { display:grid; grid-template-columns:minmax(0,3fr) minmax(0,2fr); gap:1rem; align-items:start; }
+.fol-app.fol-sql-view-active > [data-sql] > * { min-width:0; }
+.fol-app.fol-sql-view-active .fol-code, .fol-app.fol-sql-view-active .sql-output { margin:0; }
+@media(max-width:48rem) { .fol-app.fol-sql-view-active > [data-sql] { grid-template-columns:minmax(0,1fr); } }
 .fol-app [hidden] { display:none !important; }
 .fol-app .fol-toolbar, .fol-app .fol-palette { display:flex; flex-wrap:wrap; align-items:center; gap:.4rem; margin-block:.4rem; }
 .fol-app button { min-height:2.4rem; max-width:100%; }

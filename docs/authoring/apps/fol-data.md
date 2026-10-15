@@ -13,7 +13,7 @@ palettes without changing the app. The signature remains fixed within an instanc
 | `model.functions` | Symbol-to-table maps, keyed by JSON-encoded input tuples |
 | `model.predicates` | Symbol-to-array-of-tuples maps |
 | `columns` | Optional predicate column names for tables and SQL |
-| `queries` | Optional `label`/`formula` examples |
+| `queries` | Optional `label`/`formula` examples, with optional equivalent `sql` for the [switchable query view](fol-sql.md#switchable-query-view) |
 
 Objects can have `group` for graph columns and `badge` for a short emoji label.
 Emoji decorations never replace the underlying object IDs in query evaluation

@@ -193,6 +193,16 @@
 .deck-canvas.reveal .sql-app { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); column-gap: 16px; align-items: start; }
 .deck-canvas.reveal .sql-app > .code-block { margin: 0; }
 .deck-canvas.reveal .sql-app .sql-output { margin-block-start: 0; }
+/* Initialization needs only a status line below its full-width code. */
+.deck-canvas.reveal .sql-app[data-output="status"] { display:block; }
+.deck-canvas.reveal .sql-app[data-output="status"] .sql-runtime { min-height:3rem; padding-top:.5rem; }
+.deck-canvas.reveal .sql-app[data-output="status"] .fol-code :is(.chroma, code) { font-size:20px; }
+/* Switching a query replaces the walkthrough with code and tabular results. */
+.deck-canvas.reveal .fol-sql-view-active > [data-sql] { grid-template-columns:minmax(0,3fr) minmax(0,2fr); }
+.deck-canvas.reveal .fol-query-switch .fol-code .chroma { max-height:320px; overflow:auto; font-size:20px; }
+.deck-canvas.reveal .fol-query-switch .fol-code code { font-size:inherit; }
+.deck-canvas.reveal .fol-query-switch .sql-result-table { max-height:320px; overflow:auto; }
+.deck-canvas.reveal .fol-query-switch .sql-result-table table { font-size:18px; }
 /* A world space places its clickable worlds in percentages of its frame, so
    its drawing fills the frame: capped like a book drawing, it would sit
    narrower inside it, and the inspected world's ring would miss its world. */

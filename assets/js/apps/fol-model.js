@@ -29,6 +29,21 @@ export function mountFOLModel(root) {
   const structureOnly = root.dataset.kind === 'model' || databaseMode;
   const query = ['query', 'sql'].includes(root.dataset.kind), sqlMode = root.dataset.kind === 'sql', editable = !consequenceMode && root.dataset.editable !== 'false';
   const find = selector => root.querySelector(selector), input = find('[data-formula]'), sqlInput = find('[data-sql-source]');
+  const sqlView = find('[data-sql-view]');
+  const hasSQL = sqlMode || databaseMode || !!sqlView;
+  if (sqlView) {
+    root.classList.add('fol-query-switch');
+    sqlView.after(find('[data-examples]'));
+    sqlView.addEventListener('click', () => {
+      const active = sqlView.getAttribute('aria-pressed') !== 'true';
+      sqlView.setAttribute('aria-pressed', String(active));
+      find('[data-sql-view-icon]').hidden = active;
+      find('[data-formula-view-icon]').hidden = !active;
+      sqlView.title = active ? 'Show formula and model' : 'Show SQL code and results';
+      root.classList.toggle('fol-sql-view-active', active);
+      showSQL();
+    });
+  }
   if(tool)input.value='';
   if(consequenceMode)input.value=config.goal;
   const initialFormula = input.value;
@@ -55,7 +70,7 @@ export function mountFOLModel(root) {
     pair.append(logic, find('[data-sql]'));
     if (modelDetails) pair.after(modelDetails);
   }
-  const sqlRunner = sqlMode || databaseMode ? mountSQLRunner(find('[data-sql-runtime]'), {
+  const sqlRunner = hasSQL ? mountSQLRunner(find('[data-sql-runtime]'), {
     source: () => codeSource(),
     setup: () => databaseMode ? '' : databaseSQL(language, model, config.columns),
     interpretation: () => databaseMode ? { language, constants: model.constants, columns: config.columns } : null,
@@ -163,9 +178,12 @@ export function mountFOLModel(root) {
     find('[data-query-result]').replaceChildren();
     scene?.querySelectorAll('.fol-in-extension').forEach(n => n.classList.remove('fol-in-extension'));
     const q = result;
-    if (!query || !q?.rows || !showExtension || !scene) return;
+    // The extension toggle controls the running preview; a completed query
+    // must still print its answer, including when it is empty or negated.
+    if (!query || !q?.rows || (!showExtension && index < q.steps.length - 1) || !scene) return;
     const rows=q.steps.slice(0,index+1).filter(step=>step.value).map(step=>step.tuple);
     find('[data-query-result]').append(el('strong',index>=q.steps.length-1?'Query answer':'Query answer so far'), views().extension(rows, q.variables, printFOL(q.ast)));
+    if (!showExtension) return;
     if (view === 'domain') {
       scene.querySelectorAll('[data-query-index]').forEach(n => { const i=Number(n.dataset.queryIndex); n.classList.toggle('fol-in-extension', i<=index && q.steps[i].value); });
     } else if (q.variables.length === 1) {
@@ -228,7 +246,7 @@ export function mountFOLModel(root) {
     renderDisplay();
     root.dispatchEvent(new CustomEvent('fol-model-change'));
     if (!keepSQL) sqlRunner?.clear();
-    if (sqlMode || databaseMode) showSQL();
+    if (hasSQL) showSQL();
   }
   function renderAssignments(ast) {
     const container = find('[data-assignments]'); container.replaceChildren();
@@ -244,12 +262,14 @@ export function mountFOLModel(root) {
   }
   function renderStep() {
     const queryStep = query;
+    answer.replaceChildren();
     for (const b of root.querySelectorAll('[data-step]')) b.disabled = !result || !result.steps.length || (['first', 'previous'].includes(b.dataset.step) ? index === 0 : index === result.steps.length - 1);
     find('[data-count]').textContent = result?.steps.length ? `${index + 1} / ${result.steps.length}` : '';
     if (view === 'domain') renderCandidateDomain();
     if (!result) { markCurrent(); return; }
     renderExtension();
     const step = result.steps[index], v = views(); status.replaceChildren();
+    if (queryStep && index >= result.steps.length - 1) answer.append(el('p', `Query complete: ${result.rows.length} matching ${result.variables.length === 1 ? 'value' : 'tuple'}${result.rows.length === 1 ? '' : 's'}.`, 'fol-verdict'));
     if(consequenceMode){
       model=reasoning.modelAt(result,index,objects);
       status.append(el('p',step.formula,'fol-step-claim'),el('p',step.explanation));
@@ -293,7 +313,6 @@ export function mountFOLModel(root) {
       } else appendDetails(step.details, status);
     }
     markCurrent();
-    answer.replaceChildren();
     if (!queryStep && index === result.steps.length - 1) { const verdict = el('p', `${result.value ? 'True' : 'False'} in this model${freeVariables(result.ast).length ? ' under this assignment' : ''}.`, 'fol-verdict'); verdict.dataset.value = String(result.value); answer.append(verdict); }
   }
   function appendDetails(details, container) {
@@ -329,7 +348,7 @@ export function mountFOLModel(root) {
   }
   function codeSource() { return sqlInput.value; }
   function showSQL(edit = false) {
-    find('[data-sql]').hidden = false;
+    find('[data-sql]').hidden = !!sqlView && sqlView.getAttribute('aria-pressed') !== 'true';
     find('[data-sql-runtime]').hidden = false;
     sqlInput.hidden = !edit; find('[data-sql-highlight]').hidden = edit;
     find('[data-edit-sql]').setAttribute('aria-label', edit ? 'View SQL' : 'Edit SQL');
@@ -347,7 +366,16 @@ export function mountFOLModel(root) {
         const evaluated = evaluateFOL(ast, language, model, assignment);
         result = termMode ? { ...evaluated, ast } : explainEvaluation(ast, evaluated);
       }
-      index = 0; freezeFormula(); renderStep(); renderDisplay(); return ast;
+      index = 0; freezeFormula(); renderStep(); renderDisplay();
+      if (sqlView) {
+        sqlRunner.clear();
+        const preset = config.queries?.find(example => example.formula === input.value)?.sql;
+        // Presets spell out constant values; regenerate if their denotations changed.
+        sqlInput.value = preset && language.constants.every(name => model.constants[name] === config.model.constants[name])
+          ? preset : folToSQL(ast, language, model, config.columns);
+        showSQL();
+      }
+      return ast;
     } catch (error) { invalidate(error.message); return null; }
   }
   for (const [kind, names] of [['constant', language.constants], ['function', Object.keys(language.functions)], ['predicate', Object.keys(language.predicates)]]) {

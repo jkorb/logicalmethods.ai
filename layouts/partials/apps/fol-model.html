@@ -27,6 +27,9 @@
   {{ end }}{{ end }}
   </defs></svg>
   <script type="application/json" data-fol-config>{{ $config | jsonify | safeJS }}</script>
+  {{ if and (eq (.sc.Get "kind") "query") (eq (.sc.Get "sql-view") "true") }}
+  <button type="button" class="fol-sql-view" data-sql-view aria-label="SQL view" aria-pressed="false" title="Show SQL code and results" disabled><span data-sql-view-icon aria-hidden="true">{{ partial "apps/sql-badge.html" . }}</span><span data-formula-view-icon aria-hidden="true" hidden>∀x∃y</span></button>
+  {{ end }}
   <template data-edit-icon>{{ partial "apps/icon.html" "edit" }}</template>
   <div class="fol-correspondence" {{ if $structureOnly }}hidden{{ end }}>
     <form data-evaluate>

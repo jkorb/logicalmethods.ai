@@ -12,7 +12,7 @@ export function mountSQL(root, options = {}) {
     highlightSQL(code, input.value); input.hidden = true;
     find('[data-sql-highlight]').hidden = false; find('[data-edit-sql]').hidden = false;
   }
-  const runner = mountSQLRunner(find('[data-sql-runtime]'), { source: () => input.value, setup: options.setup || (() => setup), assessment: options.assessment, onFailure: options.onFailure, onSuccess: verdict => { freeze(); options.onSuccess?.(verdict); } });
+  const runner = mountSQLRunner(find('[data-sql-runtime]'), { source: () => input.value, setup: options.setup || (() => setup), showResults: root.dataset.output !== 'status', assessment: options.assessment, onFailure: options.onFailure, onSuccess: verdict => { freeze(); options.onSuccess?.(verdict); } });
   find('[data-edit-sql]').addEventListener('click', () => {
     runner.clear(); input.hidden = false; find('[data-sql-highlight]').hidden = true;
     find('[data-edit-sql]').hidden = true; input.focus();

@@ -2,7 +2,7 @@
 {{- $config := index hugo.Data.fol (.sc.Get "model" | default "world") -}}
 {{- with .sc.Get "setup" }}{{ $config = index hugo.Data.sql . }}{{ end -}}
 {{- if not $config }}{{ errorf "Unknown SQL example model" }}{{ end -}}
-<section class="logic-app fol-app sql-app" data-logic-app="sql" data-empty="{{ .sc.Get "empty" | default "false" }}" aria-label="{{ $title | default "SQL example" }}">
+<section class="logic-app fol-app sql-app" data-logic-app="sql" data-empty="{{ .sc.Get "empty" | default "false" }}" data-output="{{ .sc.Get "output" | default "tables" }}" aria-label="{{ $title | default "SQL example" }}">
   <script type="application/json" data-sql-config>{{ $config | jsonify | safeJS }}</script>
   <div class="code-block fol-code has-lang-icon">
     <div class="fol-code-header">

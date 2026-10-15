@@ -19,6 +19,10 @@ SELECT country FROM LocatedIn WHERE continent = 'Europe';
 `model` names a relational configuration in `data/fol/` (default `world`). Each
 run creates a fresh database from that model. Use `empty="true"` for an
 initialization example that supplies its own CREATE TABLE and INSERT statements.
+For a compact initialization, `output="status"` prints only the completion or
+error notice. On slides this places the code above the output and reserves a
+status line, keeping initialization from changing the layout.
+
 Instances do not share databases or save student data. Reset restores the
 original SQL text. The pencil unlocks the editor; a successful Run freezes it.
 Ctrl/Command+Enter runs the editor too.

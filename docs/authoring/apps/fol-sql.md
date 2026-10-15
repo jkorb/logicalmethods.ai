@@ -27,6 +27,16 @@ translation includes queries outside Codd's domain-independent fragment.
 Unit tests compare both translation directions with SQLite and vary relation
 extensions to check that the result is preserved beyond the example database.
 
+## Switchable query view
+
+For a query walkthrough with an optional SQL-only view, use `kind="query"`
+with `sql-view="true"`. The floating SQL logo/quantifier button switches between the model
+walkthrough and executable SQL, keeping the example choices available. SQL
+code appears on the left and its result tables on the right on slides and
+wide screens. Example changes load the configured concise SQL (or translate
+the formula when none is configured) and clear previous results.
+This is used on Lecture 8's “Queries as open formulas” slide.
+
 ## Database initialization
 
 `kind="database"` pairs the editable model canvas with its SQL initialization,

@@ -54,7 +54,9 @@ model/explanation pair. Each candidate is
 numbered and shows the candidate objects in free-variable order. The walkthrough
 ranges over domain tuples; stepping backward also rolls back the answer. Quantified queries offer an inline
 Why this tuple? disclosure with the evaluation details. The ⟦A⟧ button hides or
-shows the extension found so far. `view="domain"` shows constant denotations and tables for the functions and predicates in
+shows the extension found so far; the completed answer is always printed,
+even when the running preview is hidden. A completed walkthrough also
+prints the number of matching values or tuples. `view="domain"` shows constant denotations and tables for the functions and predicates in
 the query above the candidate domain
 D, D², or a higher product, in free-variable order. The current objects are marked in those tables, and the current tuple has a blue
 border; checks and crosses mark visited tuples, and kept tuples are green.

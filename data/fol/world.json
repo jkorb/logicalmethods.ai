@@ -314,15 +314,18 @@
   "queries": [
     {
       "label": "European countries",
-      "formula": "LocatedIn(x, Europe)"
+      "formula": "LocatedIn(x, Europe)",
+      "sql": "SELECT DISTINCT country AS x\nFROM LocatedIn\nWHERE continent = 'Europe';"
     },
     {
       "label": "European capitals",
-      "formula": "∃y (CapitalOf(y, x) ∧ LocatedIn(y, Europe))"
+      "formula": "∃y (CapitalOf(y, x) ∧ LocatedIn(y, Europe))",
+      "sql": "SELECT DISTINCT c.capital AS x\nFROM CapitalOf AS c\nJOIN LocatedIn AS l\n  ON c.country = l.country\nWHERE l.continent = 'Europe';"
     },
     {
       "label": "Negated query",
-      "formula": "¬LocatedIn(Japan, x)"
+      "formula": "¬LocatedIn(Japan, x)",
+      "sql": "SELECT DISTINCT d.value AS x\nFROM Domain AS d\nWHERE NOT EXISTS (\n  SELECT 1 FROM LocatedIn AS l\n  WHERE l.country = 'Japan'\n    AND l.continent = d.value\n);"
     }
   ]
 }

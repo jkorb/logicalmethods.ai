@@ -217,7 +217,7 @@ $⟦A(x₁, …, xₙ)⟧ᴹ = {[d₁, …, dₙ] ∈ Dⁿ | M ⊨ A(d₁, …, 
 
 {{< column >}}
 
-```sql
+{{< sql-app empty="true" output="status" title="Initialize the BiggerThan table" >}}
 CREATE TABLE BiggerThan (
   bigger TEXT NOT NULL,
   smaller TEXT NOT NULL,
@@ -227,14 +227,12 @@ INSERT INTO BiggerThan VALUES
   ('sir', 'jimmy'),
   ('jimmy', 'box'),
   ('sir', 'box');
-```
-
-An extension becomes a table; a tuple, a row.
+{{< /sql-app >}}
 
 {{< slide layout="app" title="Queries as open formulas" >}}
 ## Queries as open formulas
 
-{{< logic-app name="fol-model" model="world" kind="query" editable="false" view="domain" formula="LocatedIn(x, Europe)" title="Querying LocatedIn(x, Europe)" >}}
+{{< logic-app name="fol-model" model="world" kind="query" sql-view="true" editable="false" view="domain" formula="LocatedIn(x, Europe)" title="Querying LocatedIn(x, Europe)" >}}
 
 {{< slide title="Formulas to SQL" >}}
 ## Formulas to SQL
