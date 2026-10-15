@@ -243,6 +243,50 @@
 .deck-canvas.reveal .mv-app .mv-flow-rule > meter { grid-row: 3; }
 /* Its charts are narrower side by side, so their labels are set larger. */
 .deck-canvas.reveal .mv-app .mv-flow-plot text { font-size: 18px; }
+/* The probability apps set field labels, measure names and notes below an
+   app's text; on a slide they follow the app's own size. */
+.deck-canvas.reveal .probability-app :is(.prob-form > label, .prob-normalize, .prob-measure, .prob-note, .prob-legend) { font-size: var(--step--1); }
+/* Its tables and formula fields are what the room reads: at the app's text size. */
+.deck-canvas.reveal .probability-app :is(table.prob-table, .prob-form .logic-app__input) { font-size: var(--step-0); }
+/* A probability app's table, drawing and calculation sit side by side, and
+   a finished calculation's answer beside its last step; the measure
+   comparison's graph joins them as a third column. Stacked, they would zoom
+   the app below what the room can read. The examples share a row with the
+   formula fields once a condition fills the second field: its placeholder
+   would wrap there. Table rows keep to their text. */
+.deck-canvas.reveal .probability-app .prob-toolbar { margin-block-end: .4rem; }
+.deck-canvas.reveal .probability-app .prob-form { flex-wrap: nowrap; margin-block-end: .6rem; }
+.deck-canvas.reveal .probability-app .prob-layout { align-items: center; }
+.deck-canvas.reveal .probability-app:is([data-kind="dice"], [data-kind="table"]:not([data-condition=""]), [data-kind="bayes"]) { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 16px; align-items: center; }
+.deck-canvas.reveal .probability-app:is([data-kind="dice"], [data-kind="table"]:not([data-condition=""]), [data-kind="bayes"]) > :is(.prob-layout, [role="status"], [data-app-fallback]) { grid-column: 1 / -1; }
+.deck-canvas.reveal .probability-app:is([data-kind="dice"], [data-kind="table"]:not([data-condition=""]), [data-kind="bayes"]) :is(.prob-toolbar, .prob-form, .prob-settings) { margin: 0; }
+.deck-canvas.reveal .probability-app:is([data-kind="dice"], [data-kind="table"]:not([data-condition=""]), [data-kind="bayes"]) > .prob-layout { margin-block-start: .6rem; }
+.deck-canvas.reveal .probability-app[data-kind="table"] .prob-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); }
+.deck-canvas.reveal .probability-app[data-kind="table"] [data-aside] { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); grid-template-areas: "picture calculation" "picture navigation"; column-gap: 12px; align-items: center; }
+.deck-canvas.reveal .probability-app[data-kind="table"] [data-picture] { grid-area: picture; }
+.deck-canvas.reveal .probability-app[data-kind="table"] [data-calculation] { grid-area: calculation; }
+.deck-canvas.reveal .probability-app[data-kind="table"] [data-navigation] { grid-area: navigation; margin: 0; }
+.deck-canvas.reveal .probability-app[data-kind="dice"] .prob-layout { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); }
+.deck-canvas.reveal .probability-app:is([data-kind="table"], [data-kind="dice"]) [data-calculation]:has(> .prob-answer) { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 10px; align-items: center; }
+.deck-canvas.reveal .probability-app:is([data-kind="table"], [data-kind="dice"]) [data-calculation] > .prob-answer { grid-column: 2; grid-row: 1 / span 2; margin: 0; }
+.deck-canvas.reveal .probability-app[data-kind="support"] { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .95fr) minmax(0, 1.15fr); column-gap: 16px; align-items: center; }
+/* Its graph is narrower than in the chapter, so its labels are set larger,
+   and each slider's label keeps to one line. */
+.deck-canvas.reveal .probability-app .prob-plot { max-height: none; }
+.deck-canvas.reveal .probability-app .prob-plot text { font-size: 20px; }
+.deck-canvas.reveal .probability-app .prob-sliders label { grid-template-columns: auto minmax(0, 1fr) auto; }
+.deck-canvas.reveal .probability-app[data-kind="support"] > :is(.prob-toolbar:empty, [data-app-fallback]) { display: none; }
+.deck-canvas.reveal .probability-app[data-kind="support"] > :is([data-entry], [role="status"]) { grid-column: 1 / -1; }
+.deck-canvas.reveal .probability-app[data-kind="support"] > .prob-layout { display: contents; }
+.deck-canvas.reveal .probability-app[data-kind="support"] > [data-graph] { margin: 0; }
+.deck-canvas.reveal .probability-app[data-kind="bayes"] .prob-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); }
+.deck-canvas.reveal .probability-app[data-kind="bayes"] [data-calculation] { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 12px; align-items: center; }
+.deck-canvas.reveal .probability-app[data-kind="bayes"] [data-calculation] > table { grid-row: 1 / span 4; }
+.deck-canvas.reveal .probability-app .prob-table { table-layout: auto; }
+.deck-canvas.reveal .probability-app .prob-table :is(th, td) { padding-block: .1rem; }
+.deck-canvas.reveal .probability-app .prob-table thead th { padding-block-end: .3rem; }
+.deck-canvas.reveal .probability-app .prob-table :is(input, button) { min-height: 1.8rem; padding-block: 0; }
+.deck-canvas.reveal .probability-app .prob-model-icon { inline-size: 1.8rem; block-size: 1.8rem; }
 /* The parser sets its tree beside the step's explanation only in a window at
    least 60rem wide. A slide is always 960px wide, so there they sit side by
    side whatever the window, as in the chapter on a desktop. */

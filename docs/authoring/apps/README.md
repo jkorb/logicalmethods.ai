@@ -4,6 +4,9 @@ Shortcode-driven components used in textbook pages and exercise solutions.
 
 ## The `logic-app` family
 
+- [Probability exercises](probability-practice.md) — weights, row selection, independence, and classifier challenges.
+- [Probability](probability.md) — weighted truth-tables, support curves, and an editable naive Bayes classifier.
+
 - [Scope and binding](fol-scope.md) — quantifier arrows and checked binding practice.
 - [The parser](parser.md) — `name="parser"`, strict and conventional grammars.
 - [The LaTeX drill](latex-game.md) — `name="latex-game"`.

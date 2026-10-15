@@ -49,7 +49,7 @@ test('released slides stay local and deferred slides expose no embed', async ({ 
     await page.getByLabel('Next slide', { exact: true }).click();
     await expect(page).toHaveURL(/#slide-2$/);
   }
-  expect((await page.goto('/slides/probability/')).status()).toBe(200);
+  expect((await page.goto('/slides/anns/')).status()).toBe(200);
   await expect(page.locator('iframe, [data-embed], [data-slide-deck]')).toHaveCount(0);
   await expect(page.locator('main')).toContainText('awaiting content and image review');
   expect(offsite).toEqual([]);

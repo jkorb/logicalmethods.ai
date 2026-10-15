@@ -1,0 +1,20 @@
+{{ $kind := .sc.Get "kind" | default "table" }}
+{{ if not (in (slice "table" "dice" "support" "bayes" "practice") $kind) }}{{ errorf "Unknown probability app %s" $kind }}{{ end }}
+{{ if eq $kind "practice" }}
+{{ partial "apps/probability-practice.html" . }}
+{{ else }}
+<section class="logic-app probability-app" data-logic-app="probability" data-kind="{{ $kind }}" data-exercise="{{ .sc.Get "exercise" }}" data-preset="{{ .sc.Get "preset" | default "uniform" }}" data-formula="{{ .sc.Get "formula" }}" data-condition="{{ .sc.Get "condition" }}" aria-label="{{ .sc.Get "title" | default "Probability table" }}">
+  {{ range slice "edit" "check" "replay" "fullscreen" "first" "previous" "next" "last" "settings" }}<template data-icon="{{ . }}">{{ partial "apps/icon.html" . }}</template>{{ end }}
+  {{ if eq $kind "dice" }}{{ range seq 6 }}
+  <template data-outcome="{{ . }}">{{ partial "figures/image.html" (dict "page" $.sc.Page "src" (printf "/img/drawings/d6_%d.svg" .) "id" (printf "%s-die-%d" $.id .) "themed" true "class" "book-figure--themed") }}</template>
+  {{ end }}{{ end }}
+  <template data-world-space>{{ partial "figures/image.html" (dict "page" .sc.Page "src" "/img/drawings/bool_logical_space.svg" "id" (printf "%s-space" .id) "themed" true "class" "book-figure--themed") }}</template>
+  <div class="prob-toolbar" data-toolbar></div>
+  <div data-entry></div>
+  <div class="prob-layout"><div data-table></div><div data-aside><div data-picture></div><div data-calculation aria-live="polite" aria-atomic="true"></div><div data-navigation></div></div></div>
+  <div data-graph></div>
+  <p role="status" aria-live="polite" aria-atomic="true"></p>
+  <p data-app-fallback>Enable JavaScript to edit the probabilities and calculate with this table.</p>
+</section>
+
+{{ end }}

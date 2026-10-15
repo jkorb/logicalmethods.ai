@@ -264,6 +264,33 @@ ponens and Lean in K₃, crisp predicates, Łukasiewicz implication and the stro
 conjunction, fuzzy satisfiability, the simple heating policy and its app, and
 both modeling notes.
 
+**Lecture 11 was then written in Reveal.js** against the revised chapter 11, in
+20 slides, replacing the review notice, in the same condensed style. Next-token
+prediction opens it, beside the chapter's token diagram. Probabilities: the
+weighted truth-table app, mass functions and sentence probabilities over the
+weather models with the uniform and sun-certain examples, conditioning in the
+dice app, conditional probability beside the mascot with its die, and
+independence with the uniform and dependent weather tables beside the cycling
+mascot. Probability laws: the Kolmogorov axioms beside the mascot's scales,
+with the converse for finitely many variables, the derivation apps for
+negation and disjunction, and Bayes' rule, its terms and total probability
+beside the mascot as a doctor. Measures of support: positive support and the
+three measures, with the logarithm's graph and signs, then the measure
+comparison app.
+Naive Bayes: the spam markers beside Jim's birthday email, the naive
+assumption with the normalized scores, and the spam filter app. Inductive
+logic: weak logical inductive consequence with deduction implying support,
+confirmation by deductive consequence beside the detective mascot, and the
+enumerative induction theorem with the marble jar as its example. Cut: sample spaces and
+events, the interpretations of probability, the die modeling note, the loaded
+die's own app, the independence app (the table app's Dependent example and
+condition field show it), the product rule, equivalence and monotonicity,
+odds, the high-prior problem and $log(ab) = log(a) + log(b)$, the single-marker
+support app and its calculation, the product-rule chain for combined markers,
+the estimation remarks, Bernoulli naive Bayes, the email modeling note, the
+laws of weak inductive support, FOL probabilities over infinite model spaces,
+and the sampling caveats.
+
 Lectures 7–12 were copied byte-for-byte, without automatic font or notation
 replacement. Review them against the book, including historical
 staff/attendance information, terminology, proof examples, screenshots and

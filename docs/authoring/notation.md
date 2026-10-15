@@ -39,6 +39,10 @@ readable in the source. The older symbol shortcodes still emit the same Unicode
 characters. If a glyph is missing, add it to the patched font rather than use
 an image; see [The notation font](../design/notation-font.md).
 
+For a stacked fraction inside dollar math, use `{{< frac "Pr(A ∧ B)" "Pr(B)" >}}`.
+The numerator and denominator are Unicode notation, rendered in the same face
+as the surrounding expression. This shortcode does not require TeX.
+
 ## TeX pages
 
 The exception is `params.latex: true`, available for pages that explicitly request

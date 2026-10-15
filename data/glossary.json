@@ -256,8 +256,8 @@
   },
   "inductive-support": {
     "term": "Inductive support",
-    "definition": "Support that premises give a conclusion without guaranteeing it. In probability models, evidence positively supports a conclusion when learning the evidence raises its probability.",
-    "chapter": "logic-and-ai"
+    "definition": "Evidence E positively supports a conclusion C under Pr when Pr(C given E)>Pr(C), provided Pr(E)>0.",
+    "chapter": "probability"
   },
   "inference": {
     "term": "Inference",
@@ -1723,5 +1723,111 @@
     "definition": "The largest of the inputs. For two inputs, max(x,y) returns whichever is larger, or their common value if they are equal.",
     "chapter": "many-valued",
     "anchor": "the-kleene-functions"
+  },
+  "independence": {
+    "term": "Probabilistic independence",
+    "definition": "A and B are independent when Pr(A∧B)=Pr(A)Pr(B).",
+    "chapter": "probability"
+  },
+  "likelihood": {
+    "term": "Likelihood",
+    "definition": "The probability of the observed evidence given a hypothesis, viewed as a function of that hypothesis.",
+    "chapter": "probability"
+  },
+  "naive-bayes": {
+    "term": "Naive Bayes",
+    "definition": "A classifier that combines class priors with feature likelihoods, assuming joint independence of the features conditional on each class.",
+    "chapter": "probability"
+  },
+  "posterior": {
+    "term": "Posterior probability",
+    "definition": "The probability of a hypothesis after conditionalizing on the evidence.",
+    "chapter": "probability"
+  },
+  "prior": {
+    "term": "Prior probability",
+    "definition": "The probability assigned to a hypothesis before the evidence used in an update.",
+    "chapter": "probability"
+  },
+  "probability-mass": {
+    "term": "Probability mass",
+    "definition": "The probability assigned to a single outcome in a discrete model. All masses are nonnegative and sum to 1.",
+    "chapter": "probability",
+    "anchor": "probabilities"
+  },
+  "probability-mass-function": {
+    "term": "Probability mass function",
+    "definition": "A function assigning nonnegative weights to models in a model space, with total weight 1.",
+    "chapter": "probability"
+  },
+  "probabilistic-truth-table": {
+    "term": "Probabilistic truth-table",
+    "definition": "A truth-table with a separate column assigning probability masses to its Boolean models.",
+    "chapter": "probability"
+  },
+  "formula-probability": {
+    "term": "Probability of a formula",
+    "definition": "The sum of the probability masses of the models satisfying a sentence, in a finite weighted model space.",
+    "chapter": "probability"
+  },
+  "probability-measure": {
+    "term": "Probability measure",
+    "definition": "An assignment of real numbers to sentences satisfying nonnegativity, normalization on logical truths, and additivity for logically incompatible sentences.",
+    "chapter": "probability"
+  },
+  "kolmogorov-axioms": {
+    "term": "Kolmogorov axioms",
+    "definition": "The probability axioms of nonnegativity, normalization, and additivity; the general measure-theoretic formulation uses countable additivity.",
+    "chapter": "probability"
+  },
+  "mutually-exclusive": {
+    "term": "Mutually exclusive events",
+    "definition": "Events with empty intersection: no outcome belongs to both.",
+    "chapter": "probability"
+  },
+  "marginal-likelihood": {
+    "term": "Marginal probability of evidence",
+    "definition": "The probability of the evidence obtained by summing its joint probabilities with the alternative hypotheses.",
+    "chapter": "probability"
+  },
+  "law-total-probability": {
+    "term": "Law of total probability",
+    "definition": "The probability of an event is the sum of its joint probabilities with the members of a partition of the sample space.",
+    "chapter": "probability"
+  },
+  "increase-of-firmness": {
+    "term": "Increase of firmness",
+    "definition": "The difference Pr(C given E) − Pr(C), defined when Pr(E)>0; also called the probability-raising measure of support.",
+    "chapter": "probability"
+  },
+  "probability-ratio": {
+    "term": "Probability ratio",
+    "definition": "The posterior probability of a conclusion divided by its prior probability, provided the prior and the evidence have positive probability.",
+    "chapter": "probability"
+  },
+  "log-probability-ratio": {
+    "term": "Log probability ratio",
+    "definition": "The logarithm of Pr(C given E)/Pr(C), defined for positive prior, posterior and evidence probabilities.",
+    "chapter": "probability"
+  },
+  "odds": {
+    "term": "Odds",
+    "definition": "The ratio of the probability of an event to the probability of its complement, provided the latter is positive.",
+    "chapter": "probability"
+  },
+  "classification-threshold": {
+    "term": "Classification threshold",
+    "definition": "A cutoff on a predicted class probability used to decide whether to assign an item to that class.",
+    "chapter": "probability"
+  },
+  "conditional-independence": {
+    "term": "Conditional independence",
+    "definition": "Independence within each specified conditioning case; joint conditional independence means the conditional joint distribution factors into the conditional distributions of its features.",
+    "chapter": "probability"
+  },
+  "normalization": {
+    "term": "Normalization",
+    "definition": "Rescaling nonnegative weights by their positive total so that the resulting weights sum to 1.",
+    "chapter": "probability"
   }
 }

@@ -125,6 +125,16 @@ and the model space's square drawing at 340px, to match its readouts. The air co
 beside its rules, its two input charts side by side with larger labels, and
 each rule's recommendation beside its weight.
 
+The probability apps set their tables and formula fields at the app's text
+size, and their labels, measure names and notes no smaller than `--step--1`;
+table rows drop the chapter's touch-sized height and keep to their text. A
+table sits beside its drawing and calculation, and a finished calculation's
+answer beside its last step. The examples share a row with the formula fields
+once a condition fills the second field, as on the dice and the spam filter;
+without one, the field's placeholder would wrap there. The measure comparison
+sets its table, measures and graph in three columns, with larger graph labels,
+and the spam filter its email, likelihood table and scores.
+
 ## Collisions it guards against
 
 - Reveal.js puts its transition's name on the deck as a class, and Bootstrap's

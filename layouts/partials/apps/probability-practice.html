@@ -1,0 +1,13 @@
+{{ $exercise := .sc.Get "exercise" }}
+{{ if not (in (slice "weights" "calculate" "independence") $exercise) }}{{ errorf "Unknown probability exercise %s" $exercise }}{{ end }}
+<section class="logic-app probability-app prob-practice" data-logic-app="probability" data-kind="practice" data-exercise="{{ $exercise }}" aria-label="{{ .sc.Get "title" }}">
+  {{ range slice "check" "replay" "fullscreen" }}<template data-icon="{{ . }}">{{ partial "apps/icon.html" . }}</template>{{ end }}
+  {{ $space := cond (eq $exercise "calculate") "/img/drawings/bool_three_valued_models.svg" "/img/drawings/bool_logical_space.svg" }}
+  <template data-world-space>{{ partial "figures/image.html" (dict "page" .sc.Page "src" $space "id" .id "themed" true "class" "book-figure--themed") }}</template>
+  <div class="prob-toolbar"><div data-levels class="builder__levels" role="group" aria-label="Exercise levels"></div><div data-practice-tools class="prob-tools"></div></div>
+  <div data-task class="prob-task"></div>
+  <div class="prob-layout"><div data-table></div><div data-aside><div data-picture></div><div data-working></div></div></div>
+  <form data-actions class="prob-actions"></form>
+  <p data-practice-feedback role="status" aria-live="polite"></p>
+  <p data-app-fallback>Enable JavaScript to work through the probability exercises.</p>
+</section>
