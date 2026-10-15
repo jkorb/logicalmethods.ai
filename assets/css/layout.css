@@ -449,3 +449,8 @@ pre code { background: none; border: 0; padding: 0; font-size: 1.02em; }
 .math-display { text-align: center; }
 .math-inline { font-size: 1.02em; }
 .math-display > .math-content { display: inline-block; white-space: pre; tab-size: 24; text-align: start; font-size: 1em; font-weight: 400; vertical-align: middle; }
+
+/* Stacked fractions preserve the book's notation face without a TeX engine. */
+.math-frac { display:inline-grid; grid-template-rows:auto auto; vertical-align:middle; text-align:center; line-height:1.15; font-family:var(--font-formal); font-size:.92em; margin-inline:.15em; white-space:nowrap; }
+.math-frac__top { border-bottom:1px solid currentColor; padding:0 .18em .12em; }
+.math-frac__bottom { padding:.12em .18em 0; }

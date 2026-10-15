@@ -1,0 +1,134 @@
+.probability-app { font-size:var(--step--1); padding-block-end:1rem; }
+.probability-app .prob-toolbar, .probability-app .prob-tools, .probability-app .prob-navigation { display:flex; align-items:center; flex-wrap:wrap; gap:.4rem; }
+.probability-app .prob-toolbar { justify-content:space-between; margin-bottom:.7rem; }
+.probability-app .prob-tools { margin-left:auto; }
+.probability-app button[aria-pressed="true"] { border-color:var(--blue-ink); background:var(--surf-blue); box-shadow:inset 0 -2px var(--blue-ink); }
+.probability-app .prob-form { display:flex; align-items:end; flex-wrap:wrap; gap:.5rem; margin-bottom:1.2rem; }
+.probability-app .prob-form > .logic-app__input-wrap, .probability-app .prob-form > label { flex:1 1 12rem; min-width:0; }
+.probability-app .prob-form > label { text-align:start; color:var(--ink-muted); font-size:var(--step--2); }
+.probability-app .prob-form > label .logic-app__input-wrap { margin-top:.2rem; }
+.probability-app .logic-app__input { font-size:var(--step--1); }
+.probability-app .prob-form > button { display:inline-flex; align-items:center; gap:.3rem; }
+.probability-app .prob-layout { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:1.4rem; align-items:start; }
+.probability-app .prob-layout > *, .probability-app [data-aside] { min-width:0; }
+.probability-app table.prob-table { width:100%; border-collapse:collapse; table-layout:fixed; font-family:var(--font-formal); font-size:var(--step--1); margin:.4rem 0 .7rem; }
+.probability-app .prob-table :is(th,td) { position:relative; font-weight:normal; padding:.3rem .2rem; line-height:1.35; text-align:center; overflow-wrap:anywhere; }
+.probability-app .prob-table :is(th,td):not(:last-child) { border-right:1px solid var(--table-rule); }
+.probability-app .prob-truth-table th:first-child { width:2.8rem; }
+.probability-app .prob-table thead th { border-bottom:1px solid var(--table-rule); padding-bottom:.6rem; }
+.probability-app .prob-table .prob-weight { border-left:3px double var(--blue-ink); width:4.2rem; }
+.probability-app .prob-table tr.is-current { background:var(--surf-blue); }
+.probability-app .prob-table .is-counted .prob-weight { color:var(--blue-ink); }
+.probability-app .prob-table .is-counted .prob-weight input { border-color:var(--blue-ink); }
+.probability-app .prob-table .is-excluded { color:var(--ink-muted); }
+.probability-app .prob-table input { width:100%; min-width:0; padding:.15rem; min-height:2.75rem; text-align:center; font:inherit; color:inherit; background:var(--paper-raised); border:1px solid var(--rule); border-radius:var(--radius); }
+.probability-app .prob-table button { display:flex; margin-inline:auto; align-items:center; justify-content:center; padding:0; border:0; background:transparent; min-width:2.5rem; }
+.prob-model-icon { display:inline-flex; align-items:center; justify-content:center; vertical-align:middle; width:2.4rem; height:2.4rem; flex-shrink:0; }
+.prob-model-icon .book-figure { margin:0; padding:0; width:100%; }
+.prob-model-icon svg { width:100%; height:auto; max-height:2.4rem; display:block; }
+.probability-app .prob-normalize { font-size:var(--step--2); padding:.2rem .6rem; }
+.probability-app .prob-step { border-inline-start:3px solid var(--blue-ink); background:var(--surf-blue); border-radius:var(--radius); padding:.65rem; margin-bottom:.7rem; }
+.probability-app .prob-step p { margin:.3rem 0; line-height:1.45; }
+.probability-app .prob-equation { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:.25rem; font-family:var(--font-formal); margin:.65rem 0; overflow-wrap:anywhere; }
+.probability-app .prob-summand { display:inline-flex; flex-direction:column; align-items:center; gap:.15rem; padding:.2rem; }
+.probability-app .prob-summand.is-current { outline:1px dashed var(--blue-ink); border-radius:var(--radius); }
+.probability-app .prob-metric { display:flex; justify-content:space-between; align-items:center; gap:.6rem; font-family:var(--font-formal); padding:.3rem 0; }
+.probability-app .prob-metric output { color:var(--blue-ink); }
+.probability-app .prob-answer { background:var(--surf-blue); border:1px solid var(--blue-ink); border-radius:var(--radius); padding:.6rem .8rem; margin:.8rem 0; }
+.probability-app .prob-answer .prob-equation { margin:.2rem 0 .6rem; }
+.probability-app .prob-navigation { justify-content:center; margin-top:1rem; }
+.probability-app [hidden] { display:none!important; }
+.probability-app .prob-note { color:var(--ink-muted); font-size:var(--step--2); margin:.5rem 0; }
+.probability-app .boolean-world { position:absolute; border:0; background:transparent!important; padding:0; border-radius:50%; box-shadow:none!important; }
+.probability-app .boolean-space { margin:0 auto .6rem; max-width:17rem; }
+.probability-app .boolean-space .book-figure { margin:0; }
+.probability-app .prob-measures { display:grid; gap:.35rem; }
+.probability-app .prob-measure { display:flex; justify-content:space-between; align-items:center; text-align:start; gap:.5rem; border-inline-start:3px solid var(--measure-color); padding:.5rem; font-size:var(--step--2); }
+.probability-app .prob-measure output { font-family:var(--font-formal); color:var(--measure-color); font-size:var(--step--1); }
+.probability-app .prob-measure[aria-pressed="true"] { border-color:var(--measure-color); box-shadow:inset 0 -2px var(--measure-color); background:var(--paper-sunken); }
+.probability-app .prob-sliders { display:grid; gap:.45rem; margin-top:.75rem; }
+.probability-app .prob-sliders label { display:grid; grid-template-columns:5.8rem minmax(0,1fr) 2.8rem; gap:.4rem; align-items:center; text-align:start; font-family:var(--font-formal); min-height:2.7rem; }
+.probability-app .prob-sliders input { width:100%; min-width:0; min-height:1.5rem; accent-color:var(--blue-ink); }
+.probability-app .prob-sliders output { color:var(--blue-ink); }
+.probability-app .prob-table .is-true { color:var(--blue-ink); text-decoration:underline; text-underline-offset:.25em; }
+.probability-app [data-graph] { margin-top:.6rem; }
+.probability-app .prob-legend { display:inline-block; margin:0 .6rem; font-size:var(--step--2); }
+.probability-app .prob-plot { width:100%; height:auto; max-height:13rem; display:block; }
+.probability-app .prob-plot text { fill:var(--ink); font:14px var(--font-formal); }
+.probability-app .prob-grid { stroke:var(--rule-strong); stroke-width:1; }
+.probability-app .prob-curve { fill:none; stroke-width:2.5; }
+.probability-app .prob-point { stroke:var(--paper); stroke-width:1.5; }
+.probability-app .prob-email { display:flex; flex-direction:column; gap:.65rem; }
+.probability-app .prob-email > button { align-self:center; display:flex; align-items:center; gap:.4rem; }
+.probability-app .prob-letter { text-align:start; border:1px solid var(--ink-muted); border-radius:var(--radius); padding:.8rem; background:var(--paper-raised); font-family:var(--font-hand); }
+.probability-app .prob-letter__heading { display:flex; align-items:center; justify-content:space-between; min-height:2.75rem; }
+.probability-app .prob-letter__heading button { border:0; background:transparent; }
+.probability-app .prob-letter textarea { width:100%; display:block; resize:vertical; background:transparent; color:var(--ink); border:0; border-bottom:1px dashed var(--rule-strong); padding:.4rem 0; font:inherit; line-height:1.6; }
+.probability-app .prob-letter > label { display:block; margin:.4rem 0; }
+.probability-app .prob-sender { color:var(--orange-ink); }
+.probability-app .prob-letter__subject { color:var(--blue-ink); }
+.probability-app .prob-letter__preview p { white-space:pre-wrap; overflow-wrap:anywhere; margin:.6rem 0; }
+.probability-app mark { color:var(--ink); border-radius:.15rem; padding:0 .08rem; }
+.probability-app .prob-marker--urgent { background:var(--surf-blue); text-decoration:underline; text-decoration-color:var(--blue-ink); }
+.probability-app .prob-marker--bang { background:var(--surf-green); text-decoration:underline; text-decoration-color:var(--green-ink); }
+.probability-app .prob-marker--money { background:var(--surf-amber); text-decoration:underline; text-decoration-color:var(--orange-ink); }
+.probability-app .prob-settings { text-align:start; margin:0 0 1rem; border-bottom:1px solid var(--rule); padding-bottom:.5rem; }
+.probability-app .prob-settings > div { padding:.5rem 0; }
+.probability-app .prob-parameters { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:.7rem; }
+.probability-app .prob-parameters label { display:flex; gap:.4rem; align-items:center; }
+.probability-app .prob-parameters input { width:4.5rem; padding:.4rem; background:var(--paper-raised); color:var(--ink); border:1px solid var(--rule-strong); }
+.probability-app[data-kind="bayes"] .prob-table th:first-child { width:48%; }
+.probability-app .prob-verdict { border:1px solid var(--green-ink); background:var(--surf-green); padding:.65rem; border-radius:var(--radius); }
+.probability-app .prob-verdict[data-state="spam"] { border-color:var(--red-ink); background:var(--surf-red); }
+.probability-app .prob-verdict[data-state="undefined"] { border-color:var(--ink-muted); background:var(--paper-sunken); }
+.probability-app [role="status"][data-state="error"] { border-left:3px solid var(--red-ink); padding:.5rem; }
+.probability-app:fullscreen { background:var(--paper); color:var(--ink); padding:2rem; overflow:auto; width:100%; max-width:none; }
+.probability-app:fullscreen .prob-layout { max-width:70rem; margin:auto; gap:3rem; }
+.probability-app:fullscreen [data-entry], .probability-app:fullscreen [data-graph] { max-width:70rem; margin-inline:auto; }
+.probability-app:fullscreen .prob-plot { max-height:35vh; }
+@media(max-width:600px) {
+ .probability-app .prob-layout { grid-template-columns:minmax(0,1fr); }
+ .probability-app .prob-plot text { font-size:19px; }
+ .probability-app .prob-table .prob-weight { width:3.7rem; }
+ .probability-app .prob-form > label { flex-basis:100%; }
+}
+
+.probability-app .prob-excluded-range{fill:var(--ink-muted);opacity:.1}
+.probability-app .prob-boundary{stroke:var(--ink-muted);stroke-dasharray:3 4;opacity:.7}
+.probability-app .prob-endpoint{stroke-width:1.7}
+.probability-app .prob-graph-note{margin:.1rem 0 0;font-size:.78rem}
+.probability-app .prob-spam-icon{color:var(--red-ink);width:1.5em;height:1.5em;flex-shrink:0;vertical-align:middle;margin-right:.4em}
+
+.probability-app .prob-task { border-inline-start:3px solid var(--blue-ink); background:var(--surf-blue); padding:.6rem .85rem; margin:.7rem 0 1rem; text-align:start; border-radius:var(--radius); }
+.probability-app .prob-task p { margin:.3rem 0; }
+.probability-app .prob-target { font-family:var(--font-formal); overflow-wrap:anywhere; }
+.probability-app .builder__levels { display:flex; align-items:center; flex-wrap:wrap; gap:.3rem; }
+.probability-app .builder__level[aria-current="true"] { background:var(--surf-blue); border-color:var(--blue-ink); }
+.probability-app .builder__level[data-done="true"] { box-shadow:inset 0 -3px var(--green-ink); }
+.probability-app .fol-level-label { font-size:var(--step--2); margin-right:.25rem; }
+.probability-app .prob-actions { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:.65rem; margin:.8rem 0; }
+.probability-app .prob-actions label { display:flex; align-items:center; flex-wrap:wrap; justify-content:center; gap:.5rem; font-family:var(--font-formal); }
+.probability-app .prob-actions input { width:10rem; max-width:100%; padding:.5rem; color:var(--ink); background:var(--paper-raised); border:1px solid var(--rule-strong); border-radius:var(--radius); }
+.probability-app .prob-actions button { display:inline-flex; align-items:center; gap:.3rem; }
+.probability-app .prob-selected-sum { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:.3rem; padding:.6rem; font-family:var(--font-formal); }
+.probability-app .prob-weight-total { font-family:var(--font-formal); text-align:center; }
+.probability-app [data-practice-feedback][data-feedback] { padding:.6rem; border:1px solid var(--red-ink); background:var(--surf-red); border-radius:var(--radius); }
+.probability-app [data-practice-feedback][data-feedback="correct"] { border-color:var(--green-ink); background:var(--surf-green); }
+.prob-practice .boolean-space { max-width:none; }
+.prob-practice .prob-table :is(th,td) { padding:.2rem; }
+.prob-practice .prob-table button { min-height:2.75rem; }
+.prob-practice[data-exercise="calculate"] .prob-layout { grid-template-columns:minmax(0,1fr) minmax(0,1.1fr); }
+.prob-practice .prob-table .prob-weight { width:3.8rem; }
+@media(max-width:600px) { .prob-practice[data-exercise="calculate"] .prob-layout { grid-template-columns:minmax(0,1fr); } }
+.prob-spam-practice .prob-settings summary { font-size:var(--step--2); }
+.prob-spam-practice .prob-table input:disabled { border-color:transparent; background:transparent; color:var(--ink-muted); }
+.prob-spam-practice .prob-parameters { gap:.5rem; }
+.prob-spam-practice .prob-parameters .prob-note { margin:0; }
+.prob-spam-practice .prob-letter textarea[readonly] { pointer-events:none; }
+.prob-practice [data-world-art].is-selected .boolean-world-halo { stroke-width:10; }
+@media (prefers-reduced-motion:no-preference) { .probability-app.is-shaking { animation:latex-game-shake .4s ease; } }
+
+.prob-spam-practice .prob-table :is(th,td) { padding:.2rem; }
+.prob-spam-practice .prob-table input { min-height:2rem; }
+.prob-spam-practice .prob-settings { margin-bottom:.4rem; padding-bottom:.25rem; }
+.prob-spam-practice .prob-settings > div { padding:.25rem 0; }

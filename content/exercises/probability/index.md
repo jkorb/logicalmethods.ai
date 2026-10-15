@@ -1,303 +1,407 @@
 ---
-locked: true
-title: Logic and probability
+title: Probability and inductive logic
 author: Johannes Korbmacher
 weight: 110
 params:
-  legacy-notation: true
   id: exc-prob
+  last_edited: "15/10/2026"
 ---
 
 # Coin flips {.solved}
 
-Suppose you're flipping two coins consecutively. You may assume that the outcomes of the two coin-flips are independent of each other.
+We flip two coins. Let $Heads₁$ say that the first coin lands heads and
+$Heads₂$ that the second does. Assume the two outcomes are independent.
 
-1. Describe the outcome space `Ω` of the random experiment.
-
-2. Assign probability mass distributions over `Ω` which correspond to a) a fair
-   coin-flip, where all outcomes are equally likely, and b) an unfair coin-flip
-where the outcome heads on either flip (the first or second) is twice as likely
-as tails. 
-
-3. Calculate the probabilities of the following events under each of the two distributions:
-
-    - at least one flip is heads
-
-    - both flips are tails
-
-    - the first flip is heads or the second is tails
-
-    - none of the two flips is heads.
+1. Write down the four Boolean models of this language.
+2. Assign weights to the models for each of these scenarios:
+   - Both coins are fair.
+   - Each coin is twice as likely to land heads as tails.
+3. Translate the following descriptions into formulas and calculate their
+   probabilities under both distributions:
+   - At least one coin lands heads.
+   - Both coins land tails.
+   - The first coin lands heads or the second lands tails.
+   - Neither coin lands heads.
+4. Given that at least one coin landed heads, how probable is it that both
+   did? Calculate this under both distributions.
 
 ## Solution {#coin-flipsSolution .solution}
 
-1. There are different ways of setting this up, but a straightforward way is
-   to model the basic outcomes as pairs `[x,y]`, where `x,y∈{H,T}` are
-the outcomes of the first and second flip respectively (`H` being heads, and
-`T` being tails). That is:
+The models and their weights are:
 
-    ```Ω = { [H,H], [H,T], [T,H], [T,T]}```
+| Model | $Heads₁$ | $Heads₂$ | Fair | Biased |
+| --- | --- | --- | --- | --- |
+| $M₁$ | $1$ | $1$ | ${{< frac "1" "4" >}}$ | ${{< frac "4" "9" >}}$ |
+| $M₂$ | $1$ | $0$ | ${{< frac "1" "4" >}}$ | ${{< frac "2" "9" >}}$ |
+| $M₃$ | $0$ | $1$ | ${{< frac "1" "4" >}}$ | ${{< frac "2" "9" >}}$ |
+| $M₄$ | $0$ | $0$ | ${{< frac "1" "4" >}}$ | ${{< frac "1" "9" >}}$ |
 
-2. Here are the two distributions, which I call `p₁` and `p₂`:
+For either biased coin, the two probabilities add up to $1$, and heads has
+twice the probability of tails. Hence
 
-    - `p₁([H,H]) = p₁([H,T]) = p₁([T,H]) = p₁([T,T]) = 1/4`
+$$
+Pr(Headsᵢ) = {{< frac "2" "3" >}},    Pr(¬Headsᵢ) = {{< frac "1" "3" >}}.
+$$
 
-    - `p₂([H,H]) = 4/9`, `p₂([H,T]) = 2/9`, `p₂([T,H]) = 2/9`, `p₂([T,T]) = 1/9`
+Independence gives each model's weight by multiplying the probabilities of
+its two outcomes. For example,
 
+$$
+p(M₂) = Pr(Heads₁ ∧ ¬Heads₂)
+= {{< frac "2" "3" >}} × {{< frac "1" "3" >}} = {{< frac "2" "9" >}}.
+$$
 
-    For `p₁`, it should be pretty clear how to arrive at these values: each
-    outcome is equally likely and there are four outcomes, so they must all
-    have probability `1/4`.
+For part 3, add the weights of the models satisfying each formula:
 
-    For `p₂`, one way you can arrive at the values is to treat heads and tails
-    as independent events and the pair as their conjunction. That is we assign
-    `H = 2/3` and `T = 1/3` to satisfy the constraint, and then calculate `[H,T]
-    = 2/3 x 1/3 = 2/9`, etc.
+| Formula | Fair | Biased |
+| --- | --- | --- |
+| $Heads₁ ∨ Heads₂$ | ${{< frac "3" "4" >}}$ | ${{< frac "8" "9" >}}$ |
+| $¬Heads₁ ∧ ¬Heads₂$ | ${{< frac "1" "4" >}}$ | ${{< frac "1" "9" >}}$ |
+| $Heads₁ ∨ ¬Heads₂$ | ${{< frac "3" "4" >}}$ | ${{< frac "7" "9" >}}$ |
+| $¬(Heads₁ ∨ Heads₂)$ | ${{< frac "1" "4" >}}$ | ${{< frac "1" "9" >}}$ |
 
-3. First, let's translate the events into set representations:
+The second and fourth descriptions express the same proposition. For part 4,
+only the heads–heads model satisfies the conjunction. Conditioning on at
+least one head gives
 
-    - "At least one flip is heads" becomes `{[H,H], [H,T], [T,H]}`
+$$
+Pr<sub>fair</sub>(Heads₁ ∧ Heads₂ | Heads₁ ∨ Heads₂)
+= {{< frac "1/4" "3/4" >}} = {{< frac "1" "3" >}},
+Pr<sub>biased</sub>(Heads₁ ∧ Heads₂ | Heads₁ ∨ Heads₂)
+= {{< frac "4/9" "8/9" >}} = {{< frac "1" "2" >}}.
+$$
 
-    - "Both flips are tails" becomes `{[T,T]}`
+# Assigning probabilities
 
-    - "The first flip is heads or the second is tails" becomes `{[H,T], [H,H], [T,T]}`
+Choose weights for the weather models to satisfy the conditions in each
+level. Every weight must lie between $0$ and $1$, and together they must
+sum to $1$. You can enter fractions such as $1/4$.
 
-    - "None of the two flips is heads" becomes `{[T,T]}`.
+{{< logic-app name="probability" kind="practice" exercise="weights" title="Assigning probabilities" >}}
 
-   For the probabilities of these events under the distributions, we simply add
-   up the weights of the events:
+# Calculating probabilities
 
-    - `Pr₁({[H,H], [H,T], [T,H]}) = p₁([H,H]) + p₁([H,T]) + p₁([T,H]) = 1/4 +
-    1/4 + 1/4 = 3/4`
-    - `Pr₂({[H,H], [H,T], [T,H]}) = p₂([H,H]) + p₂([H,T]) + p₂([T,H]) = 4/9 +
-    2/9 + 2/9 = 8/9`
+Our language now has three atoms: $SUN$, $RAIN$, and $WIND$. There are eight
+Boolean models. For each formula, select its models in the table or the
+picture, then add their weights. A model can satisfy the formula even when
+its weight is $0$.
 
-    - `Pr₁({[T,T]}) = p₁([T,T]) = 1/4`
-    - `Pr₂({[T,T]}) = p₂([T,T]) = 1/9`
+{{< logic-app name="probability" kind="practice" exercise="calculate" title="Calculating weather probabilities" >}}
 
-    - `Pr₁({[H,T], [H,H], [T,T]}) = p₁([H,T]) + p₁([H,H]) + p₁([T,T]) = 1/4 +
-    1/4 + 1/4 = 3/4`
-    - `Pr₂({[H,T], [H,H], [T,T]}) = p₂([H,T]) + p₂([H,H]) + p₂([T,T]) = 2/9 +
-    4/9 + 1/9 = 7/9`
+# Independence {.solved}
+
+Two formulas are independent under $Pr$ when
+
+$$
+Pr(A ∧ B) = Pr(A) × Pr(B).
+$$
+
+Some levels ask you to identify independence; others ask you to change the
+weights to obtain it or to break it.
+
+{{< logic-app name="probability" kind="practice" exercise="independence" title="Independence practice" >}}
+
+Explain what happens in the last two levels. Can a conjunction be independent
+of the corresponding disjunction? Can a formula be independent of its own
+negation?
+
+## Solution {#independenceSolution .solution}
+
+Write $A = SUN ∧ RAIN$ and $B = SUN ∨ RAIN$. Since $A ⊨ B$, their
+conjunction is equivalent to $A$. Independence therefore requires
+
+$$
+Pr(A) = Pr(A) × Pr(B).
+$$
+
+In level 5, $Pr(A) = {{< frac "1" "4" >}} > 0$, so we need $Pr(B) = 1$.
+One solution assigns weights ${{< frac "1" "4" >}}, {{< frac "3" "8" >}},
+{{< frac "3" "8" >}}, 0$ in table order. Logical dependence between formulas
+can coexist with probabilistic independence under a particular distribution.
+
+For a formula and its negation, their conjunction has probability $0$.
+Independence requires
+
+$$
+0 = Pr(A) × (1 − Pr(A)).
+$$
+
+This holds exactly when $Pr(A)$ is $0$ or $1$. In the last level it is
+${{< frac "1" "2" >}}$, so the formulas are dependent.
+
+# Probability laws {.solved}
+
+Derive the following laws from the Kolmogorov axioms and the laws proved in
+{{< chapter_ref chapter="probability" id="probability-laws" >}}Probability and inductive logic{{< /chapter_ref >}}.
+Give a reason for each step, as in the chapter's derivations.
+
+1. $Pr(A ∧ ¬B) = Pr(A) − Pr(A ∧ B)$.
+2. $Pr(A ∧ B) ≤ Pr(A)$.
+3. $Pr(A ∨ B) ≤ Pr(A) + Pr(B)$.
+4. If $Pr(B) > 0$, then $Pr(¬A | B) = 1 − Pr(A | B)$.
+5. If $A$ and $B$ are independent, then $¬A$ and $B$ are independent.
+
+## Solution {#probability-lawsSolution .solution}
+
+1. Decompose $A$ into two incompatible cases:
+
+   $$
+   Pr(A) = Pr((A ∧ B) ∨ (A ∧ ¬B))
+   = Pr(A ∧ B) + Pr(A ∧ ¬B).
+   $$
+
+   Subtract $Pr(A ∧ B)$ from both sides.
+
+2. The preceding decomposition and nonnegativity give
+
+   $$
+   Pr(A) = Pr(A ∧ B) + Pr(A ∧ ¬B) ≥ Pr(A ∧ B).
+   $$
+
+3. Apply the disjunction law and nonnegativity:
+
+   $$
+   Pr(A ∨ B) = Pr(A) + Pr(B) − Pr(A ∧ B)
+   ≤ Pr(A) + Pr(B).
+   $$
+
+4. Use part 1 with $B$ in place of $A$:
+
+   $$
+   Pr(¬A | B) = {{< frac "Pr(B ∧ ¬A)" "Pr(B)" >}}
+   = {{< frac "Pr(B) − Pr(A ∧ B)" "Pr(B)" >}}
+   = 1 − Pr(A | B).
+   $$
+
+5. Again using part 1, now substitute independence:
+
+   $$
+   Pr(¬A ∧ B) = Pr(B) − Pr(A ∧ B)
+   = Pr(B) − Pr(A) × Pr(B)
+   = (1 − Pr(A)) × Pr(B)
+   = Pr(¬A) × Pr(B).
+   $$
 
 # Law of total probability {.solved}
 
-The [law of total
-probability](https://en.wikipedia.org/wiki/Law_of_total_probability) states
-that for every `A,B` and every probability `Pr`, we have:
+For $0 < Pr(B) < 1$, derive
 
-```Pr(A) = Pr(A | B)Pr(B) + Pr(A | ¬B)Pr(¬B)```
+$$
+Pr(A) = Pr(A | B) × Pr(B) + Pr(A | ¬B) × Pr(¬B).
+$$
 
-Derive this law from the Kolmogorov axioms. You may use the following facts without further proof:
-
-1. If two formulas are logically equivalent, then they have the same probability. That is, if `⟦A⟧ = ⟦B⟧`, then `Pr(A) = Pr(B)`.
-
-2. `A` is logically equivalent to `(A∧B)∨(A∧¬B)`
-
-3. The conjunction rule `Pr(A ∧ B) = Pr(A | B)Pr(B)`
+Use the equivalence of $A$ and $(A ∧ B) ∨ (A ∧ ¬B)$, additivity for
+incompatible formulas, and the product rule. Why do we require both $Pr(B)$
+and $Pr(¬B)$ to be positive?
 
 ## Solution {#law-of-total-probabilitySolution .solution}
 
-We start with the trivial identity:
+The two disjuncts cannot both be true. Hence
 
-```Pr(A) = Pr(A)```
+$$
+Pr(A) = Pr((A ∧ B) ∨ (A ∧ ¬B))
+= Pr(A ∧ B) + Pr(A ∧ ¬B)
+= Pr(A | B) × Pr(B) + Pr(A | ¬B) × Pr(¬B).
+$$
 
-Since `A` is equivalent to `(A∧B)∨(A∧¬B)`,
-we can infer: 
+The first step uses logical equivalence, the second additivity, and the
+third the product rule. Both conditional probabilities must be defined.
+A zero-probability condition would put $0$ in the denominator of the
+corresponding conditional probability.
 
-```Pr(A) = Pr((A∧B)∨(A∧¬B))```
+# Tricking a spam filter {.solved}
 
-We observe that `A∧B)` and `A∧¬B` are logically
-incompatible, that is `⊨¬(Pr((A∧B)∧(A∧¬B)))`. Thus:
+The email below is an obvious spam attempt. Change the permitted probabilities
+so our naive Bayes classifier sends it to the inbox. The email, its four
+markers, and the threshold stay fixed.
 
-```Pr((A∧B)∨(A∧¬B)) = Pr((A∧B) + (A∧¬B))```
+{{< logic-app name="probability" kind="bayes" exercise="trick" title="Tricking the spam filter" >}}
 
-So, we arrive at: 
+How did your changes affect the classification? What does the filter's mistake
+tell us about the role of its probability estimates?
 
-```Pr(A) = Pr((A∧B) + (A∧¬B))```
+## Solution {#tricking-a-spam-filterSolution .solution}
 
-Replacing the conjunctive probabilities using the conjunction rule, we get:
+In level 1, lowering the prior to $0.1$ is enough. The two scores become
+$0.01008$ and approximately $0.0112071$, giving a spam posterior of about
+$0.4735$, below the threshold $0.5$.
 
-```Pr(A) = Pr(A | B)Pr(B) + Pr(A | ¬B)Pr(¬B)```
+In level 2, one solution gives every marker likelihood $0.2$ in spam and
+$0.8$ in nonspam. The filter then treats all four markers as evidence against
+spam. Its posterior is
+
+$$
+{{< frac "0.2 × 0.2⁴" "0.2 × 0.2⁴ + 0.8 × 0.8⁴" >}}
+= {{< frac "1" "1025" >}} ≈ 0.000976.
+$$
+
+The classifier follows the supplied probabilities. Changing them changes
+what the markers count as evidence for. To use the filter on incoming mail,
+we would need estimates from representative labeled emails and an evaluation
+on further messages.
+
+# Comparing support {.solved}
+
+For each row, calculate increase of firmness $d$, log probability ratio $r$,
+and log-likelihood ratio $l$. Use natural logarithms, as in the chapter.
+
+| Distribution | $Pr(C)$ | $Pr(E)$ | $Pr(C ∣ E)$ |
+| --- | --- | --- | --- |
+| $Pr₁$ | $0.2$ | $0.4$ | $0.3$ |
+| $Pr₂$ | $0.8$ | $0.4$ | $0.9$ |
+
+1. Recover $Pr(C ∧ E)$, $Pr(E | C)$, and $Pr(E | ¬C)$ first.
+2. Which distribution gives the stronger support under each measure?
+3. If $Pr(C) = 0.99$, what is the largest possible increase of firmness?
+   What is the largest possible probability ratio?
+
+## Solution {#comparing-supportSolution .solution}
+
+Use $Pr(C ∧ E) = Pr(C | E) × Pr(E)$ and the product rule:
+
+| Distribution | $Pr(C ∧ E)$ | $Pr(E ∣ C)$ | $Pr(E ∣ ¬C)$ |
+| --- | --- | --- | --- |
+| $Pr₁$ | $0.12$ | $0.6$ | $0.35$ |
+| $Pr₂$ | $0.36$ | $0.45$ | $0.2$ |
+
+The support scores are:
+
+| Distribution | $d$ | $r$ | $l$ |
+| --- | --- | --- | --- |
+| $Pr₁$ | $0.1$ | $log(1.5) ≈ 0.4055$ | $log({{< frac "12" "7" >}}) ≈ 0.5390$ |
+| $Pr₂$ | $0.1$ | $log(1.125) ≈ 0.1178$ | $log(2.25) ≈ 0.8109$ |
+
+Increase of firmness ties the two cases. The log probability ratio ranks
+the first higher, while the log-likelihood ratio ranks the second higher.
+For prior $0.99$, the largest increase is $0.01$ and the largest probability
+ratio is ${{< frac "1" "0.99" >}} ≈ 1.0101$.
 
 # Deductive and inductive inference {.solved}
 
-Show that if `A⊨B`, then `A{{< approx >}}B`. That is: every
-deductively valid inference is also inductively valid. You may use the fact
-that if `A⊨B`, then `A∧B` is logically equivalent to
-`A`.
+Derive these laws of inductive support. Assume that every conditional
+probability you use is defined.
+
+1. If $A ⊨ B$, then $A$ {{< approx >}} $B$.
+2. If $C ⊨ E$, then $E$ {{< approx >}} $C$. When is the increase strict?
+3. Repeating a premise leaves the posterior unchanged:
+   $Pr(C | E ∧ E) = Pr(C | E)$.
+4. If $Pr(C) > 0$ and $Pr(E) > 0$, then $E$ positively supports $C$ iff
+   $C$ positively supports $E$.
+5. If $E$ positively supports $C$, it lowers the probability of $¬C$.
+
+Finally, test the following claim: adding another premise always preserves
+positive support. Find a counterexample using the weather language.
 
 ## Solution {#deductive-and-inductive-inferenceSolution .solution}
 
-Suppose that `A⊨B`. For `A{{< approx >}}B` to be the case, we need
-that `Pr(B | A) ≥ Pr(B)`. Unfolding the definition of conditional probability,
-we get:
+1. Since $A ⊨ B$, $A ∧ B$ is equivalent to $A$. Thus
 
-```Pr(B | A) = Pr(B ∧ A)/Pr(A)```
+   $$
+   Pr(B | A) = {{< frac "Pr(B ∧ A)" "Pr(A)" >}}
+   = {{< frac "Pr(A)" "Pr(A)" >}} = 1 ≥ Pr(B).
+   $$
 
-But since `A⊨B`, we have that `Pr(B ∧ A) = Pr(A)`. But that
-means that:
+   This establishes weak inductive support. If $Pr(B) = 1$, equality holds.
 
-```Pr(B | A) = Pr(A)/Pr(A) = 1```
+2. Since $C ⊨ E$, $C ∧ E$ is equivalent to $C$. Hence
 
-But since _all_ probabilities are less than 1, it follows that `Pr(B | A) ≥ Pr(A)`.
+   $$
+   Pr(C | E) = {{< frac "Pr(C)" "Pr(E)" >}} ≥ Pr(C).
+   $$
+
+   The denominator lies in $(0, 1]$. The increase is strict exactly when
+   $Pr(C) > 0$ and $Pr(E) < 1$.
+
+3. $E ∧ E$ and $E$ are logically equivalent, so both the numerator and the
+   denominator of the conditional probability remain unchanged.
+
+4. Multiplying by the positive denominators gives
+
+   $$
+   Pr(C | E) > Pr(C)
+   ⇔ Pr(C ∧ E) > Pr(C) × Pr(E)
+   ⇔ Pr(E | C) > Pr(E).
+   $$
+
+   Positive support is symmetric. The two conditional probabilities and
+   numerical support scores can still differ.
+
+5. By the conditional negation law,
+
+   $$
+   Pr(¬C | E) = 1 − Pr(C | E)
+   < 1 − Pr(C) = Pr(¬C).
+   $$
+
+For the final claim, give the four weather models weights $0.4, 0.1, 0.1, 0.4$
+in their usual order. Then $Pr(RAIN) = 0.5$ and $Pr(RAIN | SUN) = 0.8$.
+Adding $¬RAIN$ to the premise gives $Pr(RAIN | SUN ∧ ¬RAIN) = 0$.
+The new condition has positive probability $0.1$, so the counterexample
+uses a defined conditional probability.
 
 # Base-rate fallacy {.solved}
 
-The [base-rate fallacy](https://en.wikipedia.org/wiki/Base_rate_fallacy) is
-about a common probabilistic fallacy involving conditional probabilities, which
-has to do with common overestimation of probabilities given information about conditional probabilities.
+A fictional disease occurs in $0.01$ of a population. A test has sensitivity
+$0.9$: it returns a positive result with probability $0.9$ when the person has
+the disease. Its specificity is also $0.9$: it returns a negative result with
+probability $0.9$ when the person does not have the disease.
 
-A simple example concerns diagnostic tests for rare diseases. Suppose
-that a certain disease has a prevalence of 1% in the population. This is
-already quite high, most "serious" infectious diseases have a way lower
-prevalence in the general population.
+1. Express this information using $HasDisease$ and $TestPositive$.
+2. A randomly selected person tests positive. Calculate
+   $Pr(HasDisease | TestPositive)$. Compare it with $0.9$.
+3. Suppose successive test results are independent conditional on having the
+   disease and conditional on not having it. Each test has the stated
+   sensitivity and specificity. How many positive results are needed to
+   exceed $0.5$? How many to exceed $0.9$?
+4. Would three copies of the same positive report have the same effect?
 
-Now suppose that we have a test for the disease, which is 90% accurate in the
-following sense:
-
-+ If you have the disease, the test is positive with 0.90 probability. This is
-called the [test sensitivity](https://en.wikipedia.org/wiki/Sensitivity_and_specificity).
-
-+ If you don't have the disease, the test is negative with 0.90 probability. This is
-called the [test specificity](https://en.wikipedia.org/wiki/Sensitivity_and_specificity).
-
-Note that test sensitivity and specificity can differ, but we assume both are
-the same for simplicity.
-
-1. Express the above information as a probability assignment for the
-   propositional variables `HasDisease` and `TestPositive`.  
-
-    _Hint_: You can estimate the unconditional probability of the person having
-    the disease as the prevalence of the disease in the population.
-
-2. Suppose we're administering the test to a randomly selected person from the
-   population. The test result is positive. What is the probability that the
-person has the disease given this outcome? What do you notice?
-
-    _Hints_: 
-
-    - Use Bayes rule applied to determine `Pr(HasDisease | TestPositive)`
-
-    - You can calculate the marginal probability `Pr(TestPositive)` using the law of total probability from information you already have. 
-
-    - You need to use that `Pr(¬HasDisease) = 1 - Pr(HasDisease)` and `Pr(¬HasDisease | ¬TestPositive) = 1 - Pr(HasDisease | ¬TestPositive)`
-
-3. When you have a positive result, you can re-set the probability of
-   `P(HasDisease)` to `Pr(HasDisease | TestPositive)`. This is called [Bayesian
-updating](https://en.wikipedia.org/wiki/Bayesian_inference). Suppose that
-there's a treatment for the rare disease, which has adverse side-effects if you
-give it to somebody who doesn't have the disease. So we only want to give the
-medicine to a patient where we're more certain than not that they have the
-disease. How many times do you need to get a positive result before you should
-administer the medicine if you apply Bayesian updating after each positive result?
+For part 2, use the version of Bayes' rule whose denominator is given by the
+law of total probability. The thresholds here are stipulated for the exercise.
 
 ## Solution {#base-rate-fallacySolution .solution}
 
-1. Here are the relevant probabilities:
+The supplied probabilities are
 
-    - `Pr(HasDisease) = 0.01`
-    - `Pr(TestPositive | HasDisease) = 0.9`
-    - `Pr(¬TestPositive | ¬HasDisease) = 0.9`
+$$
+Pr(HasDisease) = 0.01,
+Pr(TestPositive | HasDisease) = 0.9,
+Pr(¬TestPositive | ¬HasDisease) = 0.9.
+$$
 
-2. According to Bayes formula
+Taking complements gives
 
-    ```Pr(HasDisease | TestPositive)```
-    ```=```
-    ```[Pr(HasDisease) x Pr(TestPositive | HasDisease) ] / Pr(TestPositive)```
+$$
+Pr(¬HasDisease) = 0.99,
+Pr(TestPositive | ¬HasDisease) = 0.1.
+$$
 
-    We have `Pr(HasDisease)` and `Pr(TestPositive | HasDisease)`, but we need to figure out `Pr(TestPositive)`.
+The law of total probability yields
 
-    For this, we use the law of total probability. Applying it to `TestPositive` as `A` and `HasDisease` as `B` gives us:
+$$
+Pr(TestPositive) = 0.9 × 0.01 + 0.1 × 0.99 = 0.108.
+$$
 
-    ```Pr(TestPositive)```
-    ```=```
-    ```Pr(TestPositive| HasDisease)Pr(HasDisease)```
-    ```+```
-    ```Pr(TestPositive | ¬HasDisease)Pr(¬HasDisease)```
+Bayes' rule then gives
 
-    We have `Pr(TestPositive| HasDisease)` and `Pr(HasDisease)` given. To obtain
-    `Pr(TestPositive | ¬HasDisease)` and `Pr(¬HasDisease)`, we apply the negation laws:
-    ```Pr(TestPositive | ¬HasDisease) = 1 - Pr(¬TestPositive | ¬HasDisease)```
-    ```Pr(¬HasDisease) = 1 - Pr(HasDisease)```
+$$
+Pr(HasDisease | TestPositive)
+= {{< frac "0.9 × 0.01" "0.108" >}} = {{< frac "1" "12" >}} ≈ 0.0833.
+$$
 
-    Now we have all the relevant values and can calculate:
+The disease is rare: the non-diseased population contributes $0.099$ to the
+positive results, while the diseased population contributes $0.009$. Treating
+the test's sensitivity as the posterior would ignore this base rate.
 
-    ```Pr(¬HasDisease) = 1 - Pr(HasDisease) = 1 - 0.01 = 0.99```
-    ```Pr(TestPositive | ¬HasDisease) = 1 - Pr(¬TestPositive | ¬HasDisease)```
-    ```= 1 - 0.9 = 0.1```
-    ```Pr(TestPositive | ¬HasDisease)Pr(¬HasDisease) = 0.99 x 0.1 = 0.099```
+Under the stated conditional-independence assumptions, each new positive
+result multiplies the odds by ${{< frac "0.9" "0.1" >}} = 9$. The prior odds are
+${{< frac "1" "99" >}}$. After $k$ positive results, the posterior is therefore
 
-    So:
+$$
+{{< frac "9ᵏ" "99 + 9ᵏ" >}}.
+$$
 
-    ```Pr(TestPositive)```
-    ```=```
-    ```Pr(TestPositive| HasDisease)Pr(HasDisease)```
-    ```+```
-    ```Pr(TestPositive | ¬HasDisease)Pr(¬HasDisease)```
-    ```=```
-    ```(0.9 x 0.01) + 0.099 = 0.108```
+For $k = 1, 2, 3, 4$, this gives approximately $0.0833$, $0.45$, $0.8804$,
+and $0.9851$. We exceed $0.5$ after three positives and $0.9$ after four.
 
-    Now for the final probabilities:
-
-    ```Pr(HasDisease | TestPositive)```
-    ```=```
-    ```[Pr(HasDisease) x Pr(TestPositive | HasDisease) ] / Pr(TestPositive)```
-    ```=```
-    ```(0.01 x 0.9) / 0.108 = 0.009 / 0.108 = 0.083...```
-
-    In other words, a random person testing positive, given this setup, gives
-    us a probability of around 8% of them having the disease—even if the test
-    is 90% reliable. This is because the prior probability of the person having
-    the disease—the so-called base-rate—is very low.
-
-    Note that it's important here that the person was chosen randomly. If there
-    is additional information, such as them showing symptoms, the prior of them
-    having the disease would be different.
-
-3. If we re-set the probabilities using Bayesian updating, we now have:
-
-    ```Pr(Disease) = 0.083...```
-
-    This affects the value of `Pr(TestPositive)`, which we've calculated using `Pr(Disease)`.
-
-    We now get:
-
-    ```Pr(¬HasDisease) = 1 - Pr(HasDisease) = 1 - 0.083.. = 0.916...```
-    ```Pr(TestPositive | ¬HasDisease)Pr(¬HasDisease) = 0.1 x 0.916... = 0.0916...```
-
-    Similarly, we get for the other summand:
-
-    ```Pr(TestPositive | HasDisease)Pr(HasDisease) = 0.9 x 0.083.. = 0.0749...```
-
-    So, we now have for `Pr(TestPositive)` that:
-
-    ```Pr(TestPositive) = 0.0749... + 0.0916... = 0.16...```
-
-
-
-    ```Pr(HasDisease | TestPositive)```
-    ```=```
-    ```[Pr(HasDisease) x Pr(TestPositive | HasDisease) ] / Pr(TestPositive)```
-    ```=```
-    ```(0.083 x 0.9) / 0.16... = 0.0747 / 0.16... ≈ 0.47```
-
-    So, we need to do another test. Now we go somewhat quicker:
-
-    ```Pr(Disease) = 0.47```
-
-    ```Pr(TestPositive | ¬HasDisease)Pr(¬HasDisease) = 0.1 x 0.53 = 0.053```
-
-    ```Pr(TestPositive | HasDisease)Pr(HasDisease) = 0.9 x 0.46 = 0.414```
-
-
-    So:
-    ```Pr(TestPositive) = 0.467```
-
-    ```Pr(HasDisease | TestPositive)```
-    ```=```
-    ```[Pr(HasDisease) x Pr(TestPositive | HasDisease) ] / Pr(TestPositive)```
-    ```=```
-    ```(0.47 x 0.9) / 0.467... ≈ 0.9```
-
-    So only after the third positive test in a row, we can infer with 90% confidence that the patient has a disease.
+Three copies of a report supply the same evidence $E$: the conjunction
+$E ∧ E ∧ E$ is equivalent to $E$. The posterior stays at ${{< frac "1" "12" >}}$.

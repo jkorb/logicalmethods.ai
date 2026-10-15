@@ -1,0 +1,34 @@
+{
+  "negation": [
+    [
+      "Pr(A) + Pr(¬A) = Pr(A ∨ ¬A)",
+      "Additivity (axiom 3), read right to left: A and ¬A are logically incompatible."
+    ],
+    [
+      "Pr(A) + Pr(¬A) = 1",
+      "Normalization (axiom 2): A ∨ ¬A is a tautology."
+    ],
+    [
+      "Pr(¬A) = 1 − Pr(A)",
+      "Subtract Pr(A) from both sides of line 2."
+    ]
+  ],
+  "disjunction": [
+    [
+      "Pr(B) = Pr(A ∧ B) + Pr(¬A ∧ B)",
+      "B is equivalent to (A ∧ B) ∨ (¬A ∧ B). Its two cases are incompatible, so apply axiom 3."
+    ],
+    [
+      "Pr(¬A ∧ B) = Pr(B) − Pr(A ∧ B)",
+      "Subtract Pr(A ∧ B) from both sides of line 1."
+    ],
+    [
+      "Pr(A ∨ B) = Pr(A) + Pr(¬A ∧ B)",
+      "A ∨ B is equivalent to A ∨ (¬A ∧ B). These two disjuncts are incompatible, so apply axiom 3."
+    ],
+    [
+      "Pr(A ∨ B) = Pr(A) + Pr(B) − Pr(A ∧ B)",
+      "Substitute the expression from line 2 into line 3."
+    ]
+  ]
+}

@@ -20,6 +20,9 @@ corresponding union, intersection or complement calculation. World membership us
 static dashed blue rings; countermodels use red rings. Intersections of premises
 have their own outline and set-notation selector.
 
+`logic="probability"` with `preset="negation"` or `preset="disjunction"` uses the same derivation display for
+the probability axioms, with steps in `data/probability-derivations.json`.
+
 Derivations use formula/justification pairs in `data/boolean-derivations.json`;
 the complete derivation also renders without JavaScript. Evaluation shares the
 parser's grammar and `tree-renderer.js`: node labels remain syntactic symbols,
