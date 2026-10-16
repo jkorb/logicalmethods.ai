@@ -23,6 +23,12 @@ For a compact initialization, `output="status"` prints only the completion or
 error notice. On slides this places the code above the output and reserves a
 status line, keeping initialization from changing the layout.
 
+With a SQL `setup` preset, `setup-toggle="true"` adds Initialization / Query
+buttons, initially showing the setup. `preview="SELECT * FROM LanguageOf;"`
+appends a query to the initialization so its rows are visible. Switching views
+clears results and restores that view's original SQL; queries use a fresh seeded
+database. Slides keep SQL on the left and results on the right in both views.
+
 Instances do not share databases or save student data. Reset restores the
 original SQL text. The pencil unlocks the editor; a successful Run freezes it.
 Ctrl/Command+Enter runs the editor too.

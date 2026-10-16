@@ -2,7 +2,8 @@
 
 `logic-app name="deduction"` uses these modes:
 
-- `kind="rules"`: compact rule reference, grouped by connective.
+- `kind="rules"`: compact rule reference, grouped by connective. Add
+  `display="single"` to browse one rule variant at a time with Previous / Next.
 - `kind="worked"`: centered, read-only derivations with stepping above the tree. Without a deck, only the selected example
   is shown; `display="full"` opens the entire proof without step controls.
 - `kind="canvas"` (default), `kind="practice"`: checked construction for examples
@@ -22,6 +23,9 @@ Use `language="fol"` to add quantifier and identity rules.
 exercise targets, grouped into tabs; `deck="strategies"` uses the author's
 worked-out derivation advice. Data live in `deduction-examples.js` and
 `deduction-exercises.js`. `title` supplies the accessible region name.
+`deck="examples"` shows the example buttons; `examples="switcheroo,universal,witness"`
+selects and orders a subset by ID. `deck="groups"` keeps named example buttons
+within group tabs when the example data has groups, as in K₃.
 The reusable tools have pages under `/tools/`; the canvas page also includes
 the rule reference. Worked examples stay in the chapter and solutions.
 

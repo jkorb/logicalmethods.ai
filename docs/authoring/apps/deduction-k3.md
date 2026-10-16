@@ -16,8 +16,12 @@ disjunctive syllogism (`k3-ds`), negated disjunction (`k3-negative`), double
 negation (`k3-dn`), reverse De Morgan (`k3-demorgan`), nested negation
 (`k3-swap`), material modus ponens (`k3-mp`), and negated conjunction
 (`k3-negative-cases`), material contraposition (`k3-contraposition`), and
-negated negative conjunction (`k3-negative-disjunction`). `example` selects one; `deck="examples"` or
-`deck="exercises"` exposes the grouped picker. Practice uses the usual checked
+negated negative conjunction (`k3-negative-disjunction`). `example` selects one;
+`deck="examples"` shows all named examples, and `deck="exercises"` groups numbered
+buttons. `deck="groups"` shows the named
+examples under Cases and Negation tabs, as on Lecture 10's derivations slide.
+The lecture's rule reference uses `display="single"` to keep each rule large
+beside the invalid classical rules. Practice uses the usual checked
 completion, draft retention, and feedback.
 
 The shared proof checker enforces the selected logic, including on imported

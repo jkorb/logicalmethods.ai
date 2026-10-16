@@ -43,7 +43,7 @@ Vagueness: is 20°C warm? And 19.999°C?
 {{< slide layout="app" title="Missing values" >}}
 ## Missing values
 
-{{< sql-app title="Comparing a missing value" setup="kleene-countries" >}}
+{{< sql-app title="Comparing a missing value" setup="kleene-languages" setup-toggle="true" preview="SELECT * FROM LanguageOf;" >}}
 SELECT country FROM LanguageOf
 WHERE (language = 'Dutch');
 
@@ -128,21 +128,29 @@ No model gives $A$ and $¬A$ both value $1$.
 
 {{< img src="/img/drawings/ai_paniek.svg" width="110px" alt="The course mascot clutches its head and says: Panik???" >}}
 
-{{< slide title="Natural deduction for K₃" >}}
+{{< slide layout="split" class="slide--k3-rules" title="Natural deduction for K₃" >}}
 ## Natural deduction for K₃
+
+{{< column >}}
 
 {{< inference-rules caption="Classical rules that fail in K₃" >}}
 [
- {"name":"Conditional introduction","premises":["$[A]$","$⋮$","$B$"],"conclusion":"$A → B$","invalid":true,"explanation":"$A → A$ has value $ω$ when $A$ does."},
- {"name":"Negation introduction","premises":["$[A]$","$⋮$","$B ∧ ¬B$"],"conclusion":"$¬A$","invalid":true,"explanation":"$¬(B ∧ ¬B)$ has value $ω$ when $B$ does."},
- {"name":"Classical reductio","premises":["$[¬A]$","$⋮$","$B ∧ ¬B$"],"conclusion":"$A$","invalid":true,"explanation":"It would prove $C ∨ ¬C$, even when $C$ is unknown."}
+ {"name":"$→$ Intro","premises":["$[A] ⋯ B$"],"conclusion":"$A → B$","invalid":true,"explanation":"$v(A → A) = ω$ if $v(A) = ω$."},
+ {"name":"$¬$ Intro","premises":["$[A] ⋯ B ∧ ¬B$"],"conclusion":"$¬A$","invalid":true,"explanation":"$v(¬(B ∧ ¬B)) = ω$ if $v(B) = ω$."},
+ {"name":"Classical reductio","premises":["$[¬A] ⋯ B ∧ ¬B$"],"conclusion":"$A$","invalid":true,"explanation":"Would prove $C ∨ ¬C$ when $v(C) = ω$."}
 ]
 {{< /inference-rules >}}
 
-{{< slide layout="app" title="K₃ derivations" >}}
+{{< column >}}
+
+### K₃ rules
+
+{{< logic-app name="deduction" kind="rules" logic="k3" display="single" title="K₃ rules" >}}
+
+{{< slide layout="app" class="slide--proof-examples" title="K₃ derivations" >}}
 ## K₃ derivations
 
-{{< logic-app name="deduction" kind="worked" logic="k3" example="k3-ds" title="Disjunctive syllogism in K₃, by cases and explosion" >}}
+{{< logic-app name="deduction" kind="worked" logic="k3" example="k3-ds" deck="groups" title="K₃ derivations from the chapter" >}}
 
 {{< slide layout="app" title="Countermodels in SQL" >}}
 ## Countermodels in SQL

@@ -6,6 +6,14 @@ canvas. The Lean walkthrough gives the derivation slightly more width than its
 code pane. These overrides apply only inside a Reveal.js deck; chapters and
 standalone tools keep their existing sizes and controls.
 
+`class="slide--proof-examples"` puts K₃ example buttons beside a 310px canvas;
+the four FOL examples sit above a full-width canvas. Step navigation
+moves into the toolbar, and proof rows use tighter spacing. The goal and
+current step remain visible; the repeated list of open
+assumptions is omitted. Lectures 9 and 10 use this layout for their chapter
+examples. Rule references can use `display="single"` to show one large rule
+variant at a time, with Previous / Next below the diagram.
+
 The canvas toolbar includes **− / Fit / +**. Zoom runs from 75% to 150% of the
 fitted proof size in 25% steps. **Fit** restores the initial scale. Zoom changes
 the proof inside the canvas, leaving the slide and toolbar sizes stable; an

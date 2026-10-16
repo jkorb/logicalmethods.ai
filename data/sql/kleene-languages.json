@@ -1,0 +1,3 @@
+{
+  "setup": "CREATE TABLE LanguageOf\n  (country TEXT, language TEXT);\nINSERT INTO LanguageOf VALUES\n  ('US', 'English'),\n  ('Netherlands', 'Dutch'),\n  ('Germany', 'German'),\n  ('Italy', 'Italian'),\n  ('Japan', 'Japanese'),\n  ('Zimbabwe', NULL);"
+}

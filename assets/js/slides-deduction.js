@@ -9,6 +9,11 @@ export function mountSlideProofZoom(root) {
   for (const board of root.querySelectorAll('.nd-app .nd-board')) {
     const controls = board.parentElement.querySelector('.nd-canvas-controls');
     if (!controls) continue;
+    const app = board.closest('.nd-app');
+    if (app.closest('.slide--proof-examples')) {
+      const navigation = app.querySelector('[data-nd-mount] > .nd-navigation');
+      if (navigation) controls.prepend(navigation);
+    }
     board.dataset.proofZoom = '1';
     const group = document.createElement('div');
     group.className = 'nd-proof-zoom';

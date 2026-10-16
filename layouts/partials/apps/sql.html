@@ -2,8 +2,18 @@
 {{- $config := index hugo.Data.fol (.sc.Get "model" | default "world") -}}
 {{- with .sc.Get "setup" }}{{ $config = index hugo.Data.sql . }}{{ end -}}
 {{- if not $config }}{{ errorf "Unknown SQL example model" }}{{ end -}}
+{{- $toggle := eq (.sc.Get "setup-toggle") "true" -}}
+{{- $initialization := $config.setup -}}
+{{- with .sc.Get "preview" }}{{ $initialization = printf "%s\n\n%s" $initialization . }}{{ end -}}
 <section class="logic-app fol-app sql-app" data-logic-app="sql" data-empty="{{ .sc.Get "empty" | default "false" }}" data-output="{{ .sc.Get "output" | default "tables" }}" aria-label="{{ $title | default "SQL example" }}">
   <script type="application/json" data-sql-config>{{ $config | jsonify | safeJS }}</script>
+  {{ if $toggle }}
+  <div class="fol-toolbar sql-view-picker" role="group" aria-label="SQL view">
+    <button type="button" data-sql-view="initialization" aria-pressed="true" disabled>Initialization</button>
+    <button type="button" data-sql-view="query" aria-pressed="false" disabled>Query</button>
+  </div>
+  <template data-sql-query>{{ .code | strings.TrimSpace }}</template>
+  {{ end }}
   <div class="code-block fol-code has-lang-icon">
     <div class="fol-code-header">
     {{ partial "apps/sql-badge.html" . }}
@@ -12,10 +22,10 @@
       <button type="button" data-reset-sql aria-label="Reset SQL" title="Reset SQL" disabled>{{ partial "apps/icon.html" "replay" }}</button>
     </div>
     </div>
-    <div class="highlight" data-sql-highlight><pre class="chroma" tabindex="0" aria-label="SQL source"><code data-sql-code>{{ if eq (.sc.Get "initialize") "true" }}{{ $config.setup }}{{ else }}{{ .code | strings.TrimSpace }}{{ end }}</code></pre></div>
+    <div class="highlight" data-sql-highlight><pre class="chroma" tabindex="0" aria-label="SQL source"><code data-sql-code>{{ if or $toggle (eq (.sc.Get "initialize") "true") }}{{ $initialization }}{{ else }}{{ .code | strings.TrimSpace }}{{ end }}</code></pre></div>
     <label class="visually-hidden" for="{{ .id }}-sql">SQL</label>
     <textarea id="{{ .id }}-sql" data-sql-source rows="8" maxlength="100000" spellcheck="false" hidden></textarea>
   </div>
-  {{ partial "apps/sql-runtime.html" (dict "note" (cond (eq (.sc.Get "empty") "true") "Each run starts with an empty database." "Each run starts with the example database.")) }}
+  {{ partial "apps/sql-runtime.html" (dict "note" (cond (or $toggle (eq (.sc.Get "empty") "true")) "Each run starts with an empty database." "Each run starts with the example database.")) }}
   <p data-app-fallback>Enable JavaScript to edit and run this SQL.</p>
 </section>

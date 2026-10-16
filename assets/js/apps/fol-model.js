@@ -304,6 +304,16 @@ export function mountFOLModel(root) {
       else appendDetails(final.details, status);
       status.append(el('strong', step.value ? 'Keep this tuple.' : 'Discard this tuple.'));
       if(result.ast.kind === 'quantifier') { const detail=el('details');detail.append(el('summary','Why this tuple?'));for(const part of checked.steps){const line=el('div');for(const [name,id] of Object.entries(part.assignment))line.append(`v(${name}) = `,v.picture(id,false),' ');appendDetails(part.details,line);if(part.summary)line.append(el('p',part.value?'The quantified condition holds.':'The quantified condition fails.'));detail.append(line);}status.append(detail); }
+    } else if (root.dataset.explanation === 'compact') {
+      const details = new Map((step.details || []).map(detail => [detail.nodeId, detail]));
+      const conjuncts = node => node.kind === 'connective' && node.name === '∧' ? node.children.flatMap(conjuncts) : [node];
+      for (const node of step.summary ? [step.node] : conjuncts(step.node)) {
+        const detail = node.id === step.node.id ? step : details.get(node.id);
+        if (!detail) continue;
+        const line = el('p', undefined, 'fol-step-claim');
+        line.append(el('span', printFOL(node)), ': ', el('strong', detail.value ? 'True' : 'False'));
+        status.append(line);
+      }
     } else {
       status.append(el('p', `${step.expression} is ${step.value ? 'true' : 'false'}${entries.length ? ' for this assignment' : ' in this model'}.`, 'fol-step-claim'));
       if (step.summary && step.node.kind !== 'quantifier') status.append(el('p', 'Evaluation complete; the detailed explanation reached its display limit.'));

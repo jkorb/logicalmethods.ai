@@ -48,6 +48,9 @@ Ordinary evaluation requires a complete model. Chapter 9 uses the separate
 the inline pencil unlocks editing. Check and Query sit beside their input
 fields. Query fields also freeze after running; the pencil clears the previous answer and enables editing. Open formulas have pictured assignment choices.
 The explanation sits beside the canvas on desktop and below it on phones.
+`explanation="compact"` keeps the evaluator and controls but replaces detailed
+prose with truth-value lines for the current step's conjuncts. Lecture 9 uses it
+on the countermodel slide; chapter instances retain the full explanation.
 `fol-trace.js` groups a quantified scope's checks by domain object. Query mode
 highlights the tuples found so far and lists the growing answer in the explanation column. Navigation sits below the
 model/explanation pair. Each candidate is

@@ -178,6 +178,52 @@
 .deck-canvas.reveal .nd-proof-zoom { display: flex; gap: .2rem; align-items: center; }
 .deck-canvas.reveal .nd-proof-zoom button { min-width: 2rem; }
 .deck-canvas.reveal .nd-proof-zoom button:nth-child(2) { min-width: 3rem; font-variant-numeric: tabular-nums; }
+/* Example choices use the side of the slide, leaving the proof its height. */
+.deck-canvas.reveal .slide--proof-examples .nd-app { margin-block:8px 0; padding-bottom:0; }
+.deck-canvas.reveal .slide--proof-examples [data-nd-mount] { display:grid; grid-template-columns:200px minmax(0,1fr); column-gap:16px; align-items:start; }
+.deck-canvas.reveal .slide--proof-examples [data-nd-mount] > :not(.nd-picker) { grid-column:2; }
+.deck-canvas.reveal .slide--proof-examples .nd-picker[aria-label="Exercise groups"] { grid-column:1; grid-row:1; margin:0 0 8px; gap:6px; }
+.deck-canvas.reveal .slide--proof-examples .nd-picker[aria-label="Examples"] { grid-column:1; grid-row:2 / span 4; display:flex; flex-direction:column; align-items:stretch; gap:6px; margin:0; }
+.deck-canvas.reveal .slide--proof-examples .nd-goal { grid-row:1; }
+.deck-canvas.reveal .slide--proof-examples .nd-layout { grid-row:2; }
+.deck-canvas.reveal .slide--proof-examples .nd-status { grid-row:3; }
+.deck-canvas.reveal .slide--proof-examples .nd-picker[aria-label="Examples"] > span { display:none; }
+.deck-canvas.reveal .slide--proof-examples .nd-picker button { font-size:20px; padding:6px 8px; line-height:1.2; text-align:start; }
+.deck-canvas.reveal .slide--proof-examples .nd-goal { font-size:20px; padding:6px; }
+.deck-canvas.reveal .slide--proof-examples .nd-navigation { margin:0; gap:6px; }
+.deck-canvas.reveal .slide--proof-examples .nd-board { height:310px; padding-bottom:8px; }
+.deck-canvas.reveal .slide--proof-examples .nd-tree { line-height:1.15; --nd-gap:.4rem; }
+.deck-canvas.reveal .slide--proof-examples .nd-inference { gap:.2rem; padding:.08rem .15rem; }
+.deck-canvas.reveal .slide--proof-examples .nd-formula { padding:.08rem .15rem; }
+.deck-canvas.reveal .slide--proof-examples .nd-board .nd-rule { max-width:4em; white-space:normal; line-height:1.05; }
+.deck-canvas.reveal .slide--proof-examples .nd-status { font-size:18px; }
+.deck-canvas.reveal .slide--proof-examples .nd-open-label, .deck-canvas.reveal .slide--proof-examples .nd-status ul { display:none; }
+.deck-canvas.reveal .slide--proof-examples .nd-app[data-language="fol"] [data-nd-mount] { grid-template-columns:minmax(0,1fr); }
+.deck-canvas.reveal .slide--proof-examples .nd-app[data-language="fol"] [data-nd-mount] > * { grid-column:1; }
+.deck-canvas.reveal .slide--proof-examples .nd-app[data-language="fol"] .nd-picker[aria-label="Examples"] { grid-row:1; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); }
+.deck-canvas.reveal .slide--proof-examples .nd-app[data-language="fol"] .nd-goal { grid-row:2; }
+.deck-canvas.reveal .slide--proof-examples .nd-app[data-language="fol"] .nd-layout { grid-row:3; }
+.deck-canvas.reveal .slide--proof-examples .nd-app[data-language="fol"] .nd-status { grid-row:4; }
+.deck-canvas.reveal .slide--proof-examples .nd-app[data-language="fol"] .nd-board .nd-rule { max-width:none; white-space:nowrap; }
+/* The K3 reference presents one rule variant at a time beside the failures. */
+.deck-canvas.reveal .slide--k3-rules .nd-app { margin-block:12px 0; padding-bottom:0; }
+.deck-canvas.reveal .slide--k3-rules .inference-rules > figcaption { font-size:24px; }
+.deck-canvas.reveal .slide--k3-rules .inference-rules__item { grid-template-columns:minmax(0,1fr) minmax(0,1.2fr); gap:12px; }
+.deck-canvas.reveal .slide--k3-rules .inference-rules__schema .inference { font-size:22px; }
+.deck-canvas.reveal .slide--k3-rules .inference-rules__name { font-size:22px; }
+.deck-canvas.reveal .slide--k3-rules .inference-rules__list { gap:12px; }
+.deck-canvas.reveal .nd-app[data-kind="rules"][data-display="single"] .nd-picker { gap:6px; }
+.deck-canvas.reveal .nd-app[data-kind="rules"][data-display="single"] .nd-picker > span { display:none; }
+.deck-canvas.reveal .nd-app[data-kind="rules"][data-display="single"] .nd-picker button { font-size:20px; padding:6px 10px; }
+.deck-canvas.reveal .nd-app[data-kind="rules"][data-display="single"] .nd-rules { min-height:180px; padding:12px; }
+.deck-canvas.reveal .nd-app[data-kind="rules"][data-display="single"] .nd-navigation { margin-block:4px 0; }
+.deck-canvas.reveal .nd-app[data-kind="rules"][data-display="single"] .nd-tree { font-size:28px; }
+.deck-canvas.reveal .nd-app[data-kind="rules"][data-display="single"] .nd-rule { font-size:.65em; max-width:none; white-space:nowrap; }
+.deck-canvas.reveal .slide--countermodel .fol-app { padding-bottom:0; }
+.deck-canvas.reveal .slide--countermodel .fol-app .fol-sets { max-block-size:200px; }
+.deck-canvas.reveal .slide--countermodel .fol-app [data-formula] { font-size:22px; }
+.deck-canvas.reveal .slide--countermodel .fol-explanation .fol-step-claim { font-size:30px; margin-block:0 .6em; }
+.deck-canvas.reveal .slide--countermodel .fol-explanation .fol-verdict { font-size:24px; }
 /* Without its instructions, a circuit's side panel holds only its status line,
    so the status goes under the drawing and the circuit takes the full width. */
 .deck-canvas .boolean-app[data-kind="circuit"] .boolean-app__layout { grid-template-columns: minmax(0, 1fr); }
@@ -192,6 +238,12 @@
    to spare: under the code they would shrink the whole app once it runs. */
 .deck-canvas.reveal .sql-app { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); column-gap: 16px; align-items: start; }
 .deck-canvas.reveal .sql-app > .code-block { margin: 0; }
+.deck-canvas.reveal .sql-app > .sql-view-picker { grid-column:1 / -1; margin:0 0 12px; }
+.deck-canvas.reveal .sql-app:has(.sql-view-picker) { margin-block:12px 0; padding-bottom:0; }
+.deck-canvas.reveal .sql-view-picker button { font-size:22px; }
+.deck-canvas.reveal .sql-app:has(.sql-view-picker) .fol-code :is(.chroma, code) { font-size:22px; line-height:1.2; }
+.deck-canvas.reveal .sql-app:has(.sql-view-picker) .fol-code .chroma { max-height:none; }
+.deck-canvas.reveal .sql-app:has(.sql-view-picker) :is(.sql-result-table table, [data-sql-status]) { font-size:24px; }
 .deck-canvas.reveal .sql-app .sql-output { margin-block-start: 0; }
 /* Initialization needs only a status line below its full-width code. */
 .deck-canvas.reveal .sql-app[data-output="status"] { display:block; }

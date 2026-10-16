@@ -52,10 +52,12 @@ the inequalities checked by the rule app.
 
 ## SQL presets
 
-[Executable SQL](sql.md) accepts `setup="kleene-countries"` or
+[Executable SQL](sql.md) accepts `setup="kleene-countries"`, `setup="kleene-languages"`, or
 `setup="kleene-pairs"` / `setup="kleene-values"` to load SQL from `data/sql/<name>.json`. These presets
 use ordinary tables and inserts, including all nine pairs of truth-values.
 They contain actual SQL NULLs, which are not FOL objects. `initialize="true"`
 displays the setup as the editable source; pair it with `empty="true"` to run
 initialization. Otherwise the shortcode body supplies the editable query.
 Every run starts afresh.
+The languages preset is the countries preset's `LanguageOf` table alone, for
+lecture 10's initialization/query switch; Zimbabwe has a NULL language.

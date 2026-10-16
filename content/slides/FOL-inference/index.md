@@ -63,14 +63,14 @@ $M, v ⊨ A$.
 
 {{< logic-app name="fol-model" kind="consequence" model="finf-socrates" title="Socrates in an arbitrary model" >}}
 
-{{< slide layout="app" class="slide--snug" title="Countermodels" >}}
+{{< slide layout="app" class="slide--snug slide--countermodel" title="Countermodels" >}}
 ## Countermodels
 
-A {{< term "countermodel" "countermodel" >}} makes the premises true and the
-conclusion false:
+A {{< term "countermodel" "countermodel" >}}: premises true, conclusion false.
+
 $∀x (Human(x) → Mortal(x)), Mortal(Socrates) ⊭ Human(Socrates)$
 
-{{< logic-app name="fol-model" model="finf-countermodel" kind="evaluate" editable="false" view="sets" formula="((∀x (Human(x) → Mortal(x)) ∧ Mortal(Socrates)) ∧ ¬Human(Socrates))" title="A countermodel to the reversed Socrates inference" >}}
+{{< logic-app name="fol-model" model="finf-countermodel" kind="evaluate" editable="false" view="sets" explanation="compact" formula="((∀x (Human(x) → Mortal(x)) ∧ Mortal(Socrates)) ∧ ¬Human(Socrates))" title="A countermodel to the reversed Socrates inference" >}}
 
 {{< slide layout="split" title="Deciding consequence" >}}
 
@@ -235,10 +235,10 @@ $Γ ⊢ A$ iff $Γ ⊨ A$.
 ]
 {{< /inference-rules >}}
 
-{{< slide layout="app" title="Two quantifiers" >}}
+{{< slide layout="app" class="slide--proof-examples" title="Two quantifiers" >}}
 ## Two quantifiers
 
-{{< logic-app name="deduction" language="fol" kind="worked" example="switcheroo" title="Plan a proof with two quantifiers" >}}
+{{< logic-app name="deduction" language="fol" kind="worked" example="switcheroo" deck="examples" examples="switcheroo,universal,distribution,witness" title="Quantifier proofs from the chapter" >}}
 
 {{< slide layout="app" title="Quantifiers in Lean" >}}
 ## Quantifiers in Lean
