@@ -171,36 +171,36 @@ section. Please take note of where you're needed and when.
 
 tbd
 
-<!-- | Time            | Event                | Room           | -->
-<!-- | --------------- | -------------------- | ------         | -->
-<!-- | 13:15–14:00     | Plenair welkom       | Drift 13 - 004 | -->
-<!-- | 14:15–15:00     | Tutor Meeting 2      | D25            | -->
-<!-- | 15:15–16:00     | GitHub Workshop      | KNG80          | -->
-<!-- | 16:15–16:45     | GenAI Voorlichting   | Drift 13 - 004 | -->
-<!---->
-<!-- **Plenary Welcome** -->
-<!---->
-<!-- | Time            | Person                      | -->
-<!-- | --------------- | --------------------------  | -->
-<!-- | 13:15–13:30     | Algemeen welkom (Johannes)  | -->
-<!-- | 13:30–13:45     | Bachelorcoordinator (Niels) | -->
-<!-- | 13:45–14:00     | Studieadviseur (Ruben)      | -->
-<!---->
-<!-- **Tutor meetings** -->
-<!---->
-<!-- | Group  | Time          | Room        | -->
-<!-- | ------ | ------------- | ----------- | -->
-<!-- | 1      | 14:15 - 15:00 | D25 - 001   | -->
-<!-- | 2      | 14:15 - 15:00 | D25 - 005   | -->
-<!-- | 3      | 14:15 - 15:00 | D25 - 101   | -->
-<!---->
-<!-- **Git workshop** -->
-<!---->
-<!-- | Group  | Time          | Room         | -->
-<!-- | ------ | ------------- | -----------  | -->
-<!-- | 1      | 15:15 - 16:00 | KNG 80 - 012 | -->
-<!-- | 2      | 15:15 - 16:00 | KNG 80 - 113 | -->
-<!-- | 3      | 15:15 - 16:00 | KNG 80 - 114 | -->
+| Time            | Event                | Room            |
+| --------------- | -------------------- | ------          |
+| 11:0-–12:45     | Plenair welkom       | KNG80 13 - 0.06 |
+| 13:15–14:00     | Tutor Meeting 2      | KNG80           |
+| 14:15–15:00     | GitHub Workshop      | KNG80           |
+| 15:15–16:00     | GenAI Voorlichting   | KNG80 13 - 0.06 |
+
+**Plenary Welcome**
+
+| Time            | Person                        |
+| --------------- | --------------------------    |
+| 13:15–13:30     | Algemeen welkom (Dominik)     |
+| 13:30–13:45     | Bachelorcoordinator (Dominik) |
+| 13:45–14:00     | Studieadviseur (Ruben)        |
+
+**Tutor meetings**
+
+| Group  | Time          | Room          |
+| ------ | ------------- | -----------   |
+| 1      | 14:15 - 15:00 | KNG80 - 0.17  |
+| 2      | 14:15 - 15:00 | KNG80 - 0.18  |
+| 3      | 14:15 - 15:00 | KNG80 - 0.19  |
+
+**Git workshop**
+
+| Group  | Time          | Room          |
+| ------ | ------------- | -----------   |
+| 1      | 15:15 - 16:00 | KNG 80 - 0.13 |
+| 2      | 15:15 - 16:00 | KNG 80 - 1.13 |
+| 3      | 15:15 - 16:00 | KNG 80 - 1.14 |
 
 # 4. Meetings
 
