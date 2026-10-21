@@ -291,6 +291,29 @@ the estimation remarks, Bernoulli naive Bayes, the email modeling note, the
 laws of weak inductive support, FOL probabilities over infinite model spaces,
 and the sampling caveats.
 
+**Lecture 12 was then written in Reveal.js** against the new chapter 12,
+`neural-networks`, in 16 slides, replacing the review notice; the chapter is
+shorter, and the lecture leaves room for remarks without slides. The mascot
+thinking of a network opens it with the two directions: from formulas to
+networks, and back. Perceptrons: the definition with weights, bias and
+threshold beside the step function, then the unit and gate apps. Linear
+separability: the definition and decision boundary beside the conjunction
+plot, then XOR in the separation app under the one-line proof that no
+perceptron computes it. Hidden layers: the OR/AND network for XOR, the
+universal representation theorem with the row-detector construction, and the
+truth-table app. Knowledge bases: `{R → W, S → W}` in the knowledge-base app.
+Learning: the perceptron learning rule beside the mascot learning, Sutton's
+bitter lesson beside the mascot with its tools, and universal approximation
+with the sigmoid. As the worked-out example, the
+Boolean black box above the rule-extraction app. Cut: McCulloch and Pitts,
+the neuron modeling note, feedforward networks as a definition, the material
+conditional's own derivation (the gate app's IF preset shows it), the XOR
+inequality table, hyperplanes and the constant functions, the two-layer
+network definition, network size, consequence and countermodels for the
+knowledge base, the learning rate, generalization, rules read off single
+queries (the app lists them), the rule-extraction definition, explainable AI,
+surrogate decision trees and fidelity.
+
 Lectures 7–12 were copied byte-for-byte, without automatic font or notation
 replacement. Review them against the book, including historical
 staff/attendance information, terminology, proof examples, screenshots and
@@ -316,7 +339,8 @@ Logic for revised formulas, and inspect each affected frame. Preserve the
 AST/grammar-tree distinction and the book's definitions and grouping conventions.
 
 Chapter mappings differ for Lecture 7 (`proof` slides, `proofs` textbook) and
-Lecture 12 (`anns` slides, `learning` textbook). Keep existing paths and IDs.
+Lecture 12 (`anns` slides, `neural-networks` textbook; its staged Excalidraw
+copy names `learning`). Keep existing paths and IDs.
 
 ## Related
 

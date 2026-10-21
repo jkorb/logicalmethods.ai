@@ -74,16 +74,6 @@ test('no JavaScript leaves every slide and its text available', async ({ browser
 });
 
 
-test('unreviewed lecture decks remain outside the normal build', async ({ page, request }) => {
-  for (const slug of ['anns']) {
-    expect((await page.goto(`/slides/${slug}/`)).status()).toBe(200);
-    await expect(page.locator('[data-slide-deck], iframe, [data-embed]')).toHaveCount(0);
-    await expect(page.locator('main')).toContainText('awaiting content and image review');
-    expect((await request.get(`/slides/${slug}/deck/slide-01.svg`)).status()).toBe(404);
-  }
-});
-
-
 for (const [slug, numbers, [drawn, text]] of [
   ['logic-and-ai', [1, 12, 20], [['#slide-text-6', 'circle'], ['#slide-text-15', 'timeline']]],
   ['formal-languages', [1, 11, 20], [['#slide-text-5', 'mushrooms'], ['#slide-text-17', 'signals']]],

@@ -135,6 +135,14 @@ without one, the field's placeholder would wrap there. The measure comparison
 sets its table, measures and graph in three columns, with larger graph labels,
 and the spam filter its email, likelihood table and scores.
 
+A perceptron app sets its network beside its truth-table, with the calculation
+and boundary plot under the table, where the chapter puts the calculation under
+the network: the network fixes the app's height. The network's column may
+narrow, and the app then scales the network to it, so its fixed width never
+overflows the slide. The table is set at the app's text size, with rows kept
+to their text, the plot at 190px, and the toolbar buttons at 2rem. A score and
+its step stay on one line each; a truth-table's DNF wraps at about 17em.
+
 ## Collisions it guards against
 
 - Reveal.js puts its transition's name on the deck as a class, and Bootstrap's
