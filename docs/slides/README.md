@@ -19,11 +19,10 @@ Lectures 1 to 6 (120 frames) are reviewed and released. Lectures 1 to 4 use
 the Excalidraw viewer; Lectures 5 and 6 have since moved to Reveal.js, and their
 Excalidraw scenes and exports are kept until the format is retired. Lectures
 7–12 (102 frames) are staged locally outside Hugo's
-published content in ignored `slides/unpublished/`. Lectures 7 to 11 have
-since been written in Reveal.js; their staged Excalidraw copies are kept. Lecture 12 awaits
-content and image review: its normal website path shows a short review
-notice, and no Excalidraw Pro embed remains. `locked` and `draft` are not publication barriers because CI
-builds with `-D`.
+published content in ignored `slides/unpublished/`. Lectures 7 to 12 have
+since been written in Reveal.js; their staged Excalidraw copies are kept.
+Lecture 12's Reveal.js deck follows the new neural-networks chapter. `locked`
+and `draft` are not publication barriers because CI builds with `-D`.
 
 With the ignored local sources and staged exports present, use
 `npm run slides:preview` to review **all twelve** decks at

@@ -38,6 +38,13 @@ Section front matter supplies presentation metadata such as `emoji`, `icon`,
 section from the usual navigation, and `locked` disables a page's section-list
 link. Neither makes content private.
 
+For an unlisted draft, use `draft: true` together with `build.list: never`.
+The learning chapter and its exercises use this setting and weight 150;
+Logic and neural networks occupies chapter 12 (weight 120). Unlisted pages
+retain their direct URLs and glossary return links under the `-D` build, but
+do not appear in section lists or chapter navigation. `draft: true` alone
+still lists a page in that build.
+
 ## `last_edited`
 
 For textbook pages with `params.last_edited`, use a quoted `DD/MM/YYYY` string

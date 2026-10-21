@@ -339,6 +339,26 @@
 .deck-canvas.reveal .probability-app .prob-table thead th { padding-block-end: .3rem; }
 .deck-canvas.reveal .probability-app .prob-table :is(input, button) { min-height: 1.8rem; padding-block: 0; }
 .deck-canvas.reveal .probability-app .prob-model-icon { inline-size: 1.8rem; block-size: 1.8rem; }
+/* A perceptron app sets its network beside the truth-table, with the calculation and any plot
+   under the table rather than under the network: the network is what fixes the app's height. */
+.deck-canvas.reveal .perceptron-app .perceptron-layout { grid-template-columns: minmax(0, auto) auto auto; grid-template-areas: "network table detail" "network calculation calculation"; justify-content: safe center; align-items: center; column-gap: 24px; row-gap: 8px; min-width: 0; }
+.deck-canvas.reveal .perceptron-app .perceptron-layout:has([data-detail]:empty) { grid-template-columns: minmax(0, auto) auto; grid-template-areas: "network table" "network calculation"; }
+.deck-canvas.reveal .perceptron-app :is(.perceptron-work, .perceptron-aside) { display: contents; }
+.deck-canvas.reveal .perceptron-app [data-network] { grid-area: network; }
+.deck-canvas.reveal .perceptron-app [data-table] { grid-area: table; }
+.deck-canvas.reveal .perceptron-app [data-detail] { grid-area: detail; }
+.deck-canvas.reveal .perceptron-app [data-detail]:empty { display: none; }
+.deck-canvas.reveal .perceptron-app [data-calculation] { grid-area: calculation; margin: 0; }
+.deck-canvas.reveal .perceptron-app .perceptron-toolbar { margin-block-end: 0; }
+.deck-canvas.reveal .perceptron-app .perceptron-toolbar button { min-height: 2rem; }
+/* Its table, calculation and boundary plot are what the room reads: the table at the app's text
+   size, with rows kept to their text, and the plot wide enough for its labels. */
+.deck-canvas.reveal .perceptron-app table { font-size: var(--step-0); }
+.deck-canvas.reveal .perceptron-app :is(th, td) { padding-block: .1rem; }
+.deck-canvas.reveal .perceptron-app [data-calculation] .perceptron-formula { margin: .3rem 0; overflow-wrap: normal; }
+.deck-canvas.reveal .perceptron-app :is([data-score], [data-verdict]) { white-space: nowrap; }
+.deck-canvas.reveal .perceptron-app [data-dnf] { max-inline-size: 17em; margin-inline: auto; }
+.deck-canvas.reveal .perceptron-app .perceptron-plot { width: 190px; max-height: none; }
 /* The parser sets its tree beside the step's explanation only in a window at
    least 60rem wide. A slide is always 960px wide, so there they sit side by
    side whatever the window, as in the chapter on a desktop. */
