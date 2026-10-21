@@ -4,6 +4,7 @@ Shortcode-driven components used in textbook pages and exercise solutions.
 
 ## The `logic-app` family
 
+- [Perceptrons](perceptron.md) — Boolean gates, separability, hidden layers, knowledge bases, and rule extraction.
 - [Probability exercises](probability-practice.md) — weights, row selection, independence, and classifier challenges.
 - [Probability](probability.md) — weighted truth-tables, support curves, and an editable naive Bayes classifier.
 

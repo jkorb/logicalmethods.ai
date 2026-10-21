@@ -1,4 +1,6 @@
 import { test, expect, chapters } from './fixtures.mjs';
+import { readFile, readdir } from 'node:fs/promises';
+import { parse } from 'yaml';
 
 /* Staged publication is a temporary development state, not a permanent feature:
    a chapter carries `locked: true` in its front matter until it is released.
@@ -8,7 +10,15 @@ import { test, expect, chapters } from './fixtures.mjs';
 
 for (const section of ['textbook', 'exercises', 'slides']) {
   test(`${section}: locked chapters are listed but not linked`, async ({ page }) => {
-    const all = await chapters(section);
+    const all = [];
+    const directories = await readdir(`content/${section}`);
+    for (const chapter of await chapters(section)) {
+      // Unlisted drafts keep direct URLs, but are absent even from locked cards.
+      const directory = directories.find(name => name.toLowerCase() === chapter.slug);
+      const source = await readFile(`content/${section}/${directory}/index.md`, 'utf8');
+      const frontMatter = parse(source.match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] || '');
+      if (frontMatter.build?.list !== 'never') all.push(chapter);
+    }
     const locked = all.filter(chapter => chapter.locked);
 
     await page.goto(`/${section}/`);

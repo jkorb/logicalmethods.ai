@@ -1829,5 +1829,120 @@
     "term": "Normalization",
     "definition": "Rescaling nonnegative weights by their positive total so that the resulting weights sum to 1.",
     "chapter": "probability"
+  },
+  "artificial-neural-network": {
+    "term": "Artificial neural network",
+    "definition": "A network of connected computational units, each calculating an output from its inputs.",
+    "chapter": "neural-networks"
+  },
+  "feedforward-network": {
+    "term": "Feedforward network",
+    "definition": "A neural network whose directed connections contain no cycles, so signals pass from inputs towards outputs without feedback.",
+    "chapter": "neural-networks"
+  },
+  "network-weight": {
+    "term": "Network weight",
+    "definition": "A numerical parameter multiplying an input or an incoming signal in a neural unit.",
+    "chapter": "neural-networks"
+  },
+  "network-bias": {
+    "term": "Network bias",
+    "definition": "An additive parameter in the weighted input sum of a neural unit.",
+    "chapter": "neural-networks"
+  },
+  "weighted-input-sum": {
+    "term": "Weighted input sum",
+    "definition": "The score z = w₁x₁ + … + wₙxₙ + b formed from inputs, their weights, and a bias before activation.",
+    "chapter": "neural-networks"
+  },
+  "activation-function": {
+    "term": "Activation function",
+    "definition": "The function applied to a neural unit’s weighted input sum to produce its output.",
+    "chapter": "neural-networks"
+  },
+  "step-function": {
+    "term": "Step function",
+    "definition": "A function that is constant on each of a sequence of intervals. The Boolean activation here is step(z) = 1 for z > 0 and 0 for z ≤ 0.",
+    "chapter": "neural-networks"
+  },
+  "perceptron": {
+    "term": "Perceptron",
+    "definition": "A unit computing y = step(w₁x₁ + … + wₙxₙ + b), with real weights and bias and the convention step(0) = 0.",
+    "chapter": "neural-networks"
+  },
+  "perceptron-threshold": {
+    "term": "Perceptron threshold",
+    "definition": "The value that a perceptron’s weighted inputs must exceed for output 1; with bias b and strict step activation, the threshold is −b.",
+    "chapter": "neural-networks"
+  },
+  "decision-boundary": {
+    "term": "Decision boundary",
+    "definition": "A boundary between input regions with different classifications. For a nonconstant perceptron, it is the hyperplane w₁x₁ + … + wₙxₙ + b = 0.",
+    "chapter": "neural-networks"
+  },
+  "linear-separability": {
+    "term": "Linear separability",
+    "definition": "A Boolean truth-function is linearly separable if some real weights and bias make its output 1 exactly when the weighted input sum plus bias is positive.",
+    "chapter": "neural-networks"
+  },
+  "hidden-layer": {
+    "term": "Hidden layer",
+    "definition": "A layer of computational units whose outputs are intermediate values passed to later units in a network.",
+    "chapter": "neural-networks"
+  },
+  "two-layer-perceptron-network": {
+    "term": "Two-layer perceptron network",
+    "definition": "A feedforward network with one hidden layer of perceptrons and an output layer of perceptrons. The inputs themselves are not counted as a computational layer.",
+    "chapter": "neural-networks"
+  },
+  "supervised-learning": {
+    "term": "Supervised learning",
+    "definition": "Learning a model from training examples that pair inputs with target outputs.",
+    "chapter": "neural-networks"
+  },
+  "network-parameter": {
+    "term": "Network parameter",
+    "definition": "A value specifying a neural network’s computation, such as a weight or bias, that can be chosen directly or adjusted during training.",
+    "chapter": "neural-networks"
+  },
+  "learning-rate": {
+    "term": "Learning rate",
+    "definition": "A positive parameter controlling the size of parameter updates during training.",
+    "chapter": "neural-networks"
+  },
+  "sigmoid-function": {
+    "term": "Sigmoid function",
+    "definition": "The activation σ(z) = 1/(1 + e⁻ᶻ), which varies smoothly between 0 and 1.",
+    "chapter": "neural-networks"
+  },
+  "universal-approximation": {
+    "term": "Universal approximation theorem",
+    "definition": "Neural networks with suitable activation functions and enough units can approximate any continuous function as closely as desired on fixed input intervals including their endpoints.",
+    "chapter": "neural-networks"
+  },
+  "generalization": {
+    "term": "Generalization in learning",
+    "definition": "A learned model’s performance on new examples beyond those used for training.",
+    "chapter": "neural-networks"
+  },
+  "boolean-black-box": {
+    "term": "Boolean black box",
+    "definition": "A system treated as a fixed function from finitely many Boolean inputs to a Boolean output, investigated through input-output queries without using its internal structure.",
+    "chapter": "neural-networks"
+  },
+  "rule-extraction": {
+    "term": "Rule extraction",
+    "definition": "Deriving symbolic rules describing a model’s input-output behavior, exactly on a specified domain or approximately under a stated evaluation criterion.",
+    "chapter": "neural-networks"
+  },
+  "surrogate-model": {
+    "term": "Surrogate model",
+    "definition": "A separate model used to describe the behavior of another model.",
+    "chapter": "neural-networks"
+  },
+  "explanation-fidelity": {
+    "term": "Explanation fidelity",
+    "definition": "The agreement between an extracted account and the model it describes, evaluated on a specified domain or distribution.",
+    "chapter": "neural-networks"
   }
 }

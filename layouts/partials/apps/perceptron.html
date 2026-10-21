@@ -1,0 +1,68 @@
+{{ $kind := .sc.Get "kind" | default "unit" }}
+{{ if not (in (slice "step" "sigmoid" "probability" "separating-line" "unit" "gates" "separation" "layers" "table" "kb" "blackbox") $kind) }}{{ errorf "Unknown perceptron app %s" $kind }}{{ end }}
+{{ if eq $kind "step" }}
+<figure class="perceptron-step perceptron-function">
+  <svg viewBox="0 0 450 215" role="img" aria-label="Step function: zero for z less than or equal to zero, and one for z greater than zero. The filled point at the origin includes zero; the open point at height one excludes it.">
+    <path class="perceptron-axis" d="M35 160H420m-8-5 8 5-8 5 M225 190V20m-5 8 5-8 5 8" />
+    <path class="perceptron-guide" d="M45 65H225" />
+    <path class="perceptron-step-line" d="M45 160H225 M225 65H405" />
+    <circle class="perceptron-step-open" cx="225" cy="65" r="6" />
+    <circle class="perceptron-step-closed" cx="225" cy="160" r="6" />
+    <text x="207" y="184">0</text><text x="204" y="71">1</text>
+    <text x="422" y="184">z</text><text x="239" y="31">step(z)</text>
+  </svg>
+</figure>
+{{ else if eq $kind "sigmoid" }}
+<figure class="perceptron-sigmoid perceptron-function">
+  <svg viewBox="0 0 450 260" role="img" aria-label="Sigmoid function: an S-shaped curve approaching zero for negative inputs and one for positive inputs, passing through 0.5 at z equals zero.">
+    <path class="perceptron-guide" d="M50 50H410 M50 130H230" />
+    <path class="perceptron-axis" d="M35 210H430m-8-5 8 5-8 5 M230 220V20m-5 8 5-8 5 8" />
+    {{- $points := slice -}}
+    {{- range seq 0 120 -}}
+      {{- $z := sub (div (float .) 10.0) 6.0 -}}
+      {{- $value := div 1.0 (add 1.0 (math.Pow 2.718281828459045 (mul -1.0 $z))) -}}
+      {{- $points = $points | append (printf "%.2f,%.2f" (add 50.0 (mul 3.0 .)) (sub 210.0 (mul 160.0 $value))) -}}
+    {{- end }}
+    <polyline class="perceptron-step-line" points="{{ delimit $points " " }}" />
+    <circle class="perceptron-step-closed" cx="230" cy="130" r="4" />
+    <text x="216" y="56" text-anchor="end">1</text><text x="216" y="125" text-anchor="end">0.5</text>
+    <text x="50" y="237" text-anchor="middle">−6</text><text x="230" y="237" text-anchor="middle">0</text><text x="410" y="237" text-anchor="middle">6</text>
+    <text x="432" y="229">z</text><text x="244" y="28">sigmoid(z)</text>
+  </svg>
+</figure>
+{{ else if eq $kind "separating-line" }}
+<figure class="perceptron-separation perceptron-function">
+  <svg viewBox="0 0 340 290" role="img" aria-label="Conjunction is linearly separable. The line x₁ plus x₂ equals 1.5 separates the input (1, 1), with output 1, from (0, 0), (0, 1), and (1, 0), with output 0.">
+    <path class="perceptron-axis" d="M35 230H285m-8-5 8 5-8 5 M70 260V25m-5 8 5-8 5 8" />
+    <path class="perceptron-guide" d="M70 70H230V230" />
+    <path class="perceptron-boundary" d="M118 38L262 182" />
+    <circle class="perceptron-node" cx="70" cy="230" r="15"/><circle class="perceptron-node" cx="70" cy="70" r="15"/><circle class="perceptron-node" cx="230" cy="230" r="15"/>
+    <circle class="perceptron-node is-active" cx="230" cy="70" r="15"/>
+    <g text-anchor="middle"><text x="70" y="236">0</text><text x="70" y="76">0</text><text x="230" y="236">0</text><text x="230" y="76">1</text></g>
+    <text x="36" y="255">0</text><text x="224" y="258">1</text><text x="42" y="76">1</text>
+    <text x="293" y="237">x₁</text><text x="36" y="27">x₂</text>
+  </svg>
+</figure>
+{{ else }}
+<section class="logic-app perceptron-app" data-logic-app="perceptron" data-kind="{{ $kind }}" aria-label="{{ .sc.Get "title" | default "Perceptron" }}">
+  <div class="perceptron-toolbar">
+    <div class="perceptron-presets" data-toolbar></div>
+    <div class="perceptron-tools" data-tools>
+      <button type="button" data-motion aria-label="Pause animation" title="Pause animation" aria-pressed="false"><span data-motion-pause>{{ partial "apps/icon.html" "pause" }}</span><span data-motion-play hidden>{{ partial "apps/icon.html" "play" }}</span></button>
+      <button type="button" data-zoom aria-label="Enlarge network" title="Enlarge network" aria-pressed="false">{{ partial "apps/icon.html" "zoom" }}</button>
+      <button type="button" data-fullscreen aria-label="Fullscreen" title="Fullscreen" aria-pressed="false">{{ partial "apps/icon.html" "fullscreen" }}</button>
+    </div>
+  </div>
+  <div class="perceptron-canvas" role="region" tabindex="0" aria-label="{{ .sc.Get "title" | default "Perceptron" }}: {{ if eq $kind "probability" }}Network and probability curve{{ else }}Network and truth-table{{ end }}">
+  <div class="perceptron-layout">
+    <div class="perceptron-work">
+      <div data-network></div>
+      <div data-calculation aria-live="polite" aria-atomic="true"></div>
+    </div>
+    <div class="perceptron-aside"><div data-table></div><div data-detail></div></div>
+  </div>
+  </div>
+  <p role="status" aria-live="polite" aria-atomic="true"></p>
+  <p data-app-fallback>Enable JavaScript to change the inputs and inspect the network. The formulas and worked examples in the chapter describe its calculation.</p>
+</section>
+{{ end }}

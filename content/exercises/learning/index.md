@@ -1,8 +1,11 @@
 ---
-title: Logic and neural networks
+title: Logic-based learning
 author: Johannes Korbmacher
 locked: true
-weight: 120
+draft: true
+build:
+  list: never
+weight: 150
 params:
   legacy-notation: true
   id: exc-learn
