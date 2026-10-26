@@ -18,6 +18,8 @@ Every interactive Boolean unit uses `step(z) = 1` for `z > 0`, and `0` otherwise
 | `kb` | Check `{R → W, S → W}`, equivalently `(R ∨ S) → W`, with one perceptron. |
 | `blackbox` | Query a fixed XOR network; extract row rules and a complete DNF. |
 
+For the exercise sheet, use [perceptron practice](perceptron-practice.md).
+
 Use `title` for the accessible name; apps have no visible title. Each app has
 its own inputs and reset. Native buttons and number fields share the SVG
 diagram’s coordinate space. Weight fields have a blue fill and border and sit

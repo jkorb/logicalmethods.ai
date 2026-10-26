@@ -1,6 +1,20 @@
 {{ $kind := .sc.Get "kind" | default "unit" }}
-{{ if not (in (slice "step" "sigmoid" "probability" "separating-line" "unit" "gates" "separation" "layers" "table" "kb" "blackbox") $kind) }}{{ errorf "Unknown perceptron app %s" $kind }}{{ end }}
-{{ if eq $kind "step" }}
+{{ if not (in (slice "practice" "step" "sigmoid" "probability" "separating-line" "unit" "gates" "separation" "layers" "table" "kb" "blackbox") $kind) }}{{ errorf "Unknown perceptron app %s" $kind }}{{ end }}
+{{ if and (eq $kind "practice") (not (in (slice "implement" "blackbox" "separate") (.sc.Get "exercise"))) }}{{ errorf "Unknown perceptron exercise %s" (.sc.Get "exercise") }}{{ end }}
+{{ if and (eq $kind "practice") (eq (.sc.Get "exercise") "separate") }}
+<section class="logic-app perceptron-app" data-logic-app="perceptron" data-kind="practice" data-exercise="separate" aria-label="{{ .sc.Get "title" }}">
+  <div class="perceptron-toolbar"><div data-presets></div><button type="button" data-reset>Reset</button></div>
+  <div class="separation-layout"><div data-coordinate-plot></div><div data-table></div></div>
+  <div class="separation-sliders" data-rotation></div>
+  <button type="button" data-check-points>Check points</button>
+  <div data-separator-controls hidden>
+    <div class="separation-sliders" data-coefficients></div>
+    <div class="perceptron-answer"><button type="button" data-check-separator>Check separator</button><button type="button" data-not-separable>Not separable</button></div>
+  </div>
+  <p role="status" aria-live="polite" aria-atomic="true"></p>
+  <p data-app-fallback>Enable JavaScript to label the points and move the separator. You can also draw the points from the truth-tables in the solution.</p>
+</section>
+{{ else if eq $kind "step" }}
 <figure class="perceptron-step perceptron-function">
   <svg viewBox="0 0 450 215" role="img" aria-label="Step function: zero for z less than or equal to zero, and one for z greater than zero. The filled point at the origin includes zero; the open point at height one excludes it.">
     <path class="perceptron-axis" d="M35 160H420m-8-5 8 5-8 5 M225 190V20m-5 8 5-8 5 8" />
@@ -44,7 +58,7 @@
   </svg>
 </figure>
 {{ else }}
-<section class="logic-app perceptron-app" data-logic-app="perceptron" data-kind="{{ $kind }}" aria-label="{{ .sc.Get "title" | default "Perceptron" }}">
+<section class="logic-app perceptron-app" data-logic-app="perceptron" data-kind="{{ $kind }}" data-exercise="{{ .sc.Get "exercise" }}" aria-label="{{ .sc.Get "title" | default "Perceptron" }}">
   <div class="perceptron-toolbar">
     <div class="perceptron-presets" data-toolbar></div>
     <div class="perceptron-tools" data-tools>

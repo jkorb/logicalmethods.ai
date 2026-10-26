@@ -1,3 +1,6 @@
+import {implementationLevels, blackBoxLevels, emptyPracticeNetwork, checkRecordedTable, checkBlackBoxFormula} from '../logic/perceptron-practice.js';
+import {enableLatexInput, convertInput} from './latex-input.js';
+import {mountSeparationPractice} from './perceptron-separation.js';
 import {el, svg, choices} from './boolean-ui.js';
 import {booleanRows, evaluateUnit, gates, xorNetwork, compileTruthTable, evaluateNetwork, rowFormula, tableDNF, kbNames, kbNetwork, kbValues, queryBlackBox, sigmoid, evaluateSigmoid, rainProbabilities} from '../logic/perceptron.js';
 
@@ -292,11 +295,20 @@ function probabilityPlot(network, input) {
 }
 
 export function mountPerceptron(root) {
+  if (root.dataset.kind === 'practice' && root.dataset.exercise === 'separate') {mountSeparationPractice(root); return;}
   const q = selector => root.querySelector(selector), kind = root.dataset.kind;
-  const basic = ['unit', 'gates', 'separation'].includes(kind), blackbox = kind === 'blackbox';
+  const practice = kind === 'practice';
+  const basic = ['unit', 'gates', 'separation'].includes(kind), blackbox = kind === 'blackbox' || practice && root.dataset.exercise === 'blackbox';
+  const levels = practice ? (blackbox ? blackBoxLevels : implementationLevels) : [];
+  let levelIndex = 0, completed = new Set(), feedback = '', feedbackKind = '';
+  let rebuilding = false, identified = false, builtObserved = [], constructionHidden = 0;
+  const practiceStates = new Map();
+  let architectures = new Map();
+  const viewingBox = () => blackbox && !rebuilding;
+  const currentLevel = () => levels[levelIndex];
   const probability = kind === 'probability';
-  const names = probability ? ['x'] : kind === 'kb' ? kbNames : ['x₁', 'x₂'];
-  const rows = booleanRows(names.length);
+  let names = probability ? ['x'] : kind === 'kb' ? kbNames : ['x₁', 'x₂'];
+  let rows = booleanRows(names.length);
   let inputs, network, diagram, target, values, observed, preset;
   const toolbar = q('[data-toolbar]');
   const tools = q('[data-tools]');
@@ -332,13 +344,14 @@ export function mountPerceptron(root) {
   root.addEventListener('keydown', event => {
     if (event.key === 'Escape' && document.fullscreenElement === root) {event.preventDefault(); document.exitFullscreen();}
   });
-  zoom.addEventListener('click', () => {
-    const enlarged = root.dataset.zoom !== '1.5';
+  function setZoom(enlarged) {
     root.dataset.zoom = enlarged ? '1.5' : '1';
     zoom.setAttribute('aria-pressed', String(enlarged));
     zoom.setAttribute('aria-label', enlarged ? 'Fit network' : 'Enlarge network');
     zoom.title = enlarged ? 'Fit network' : 'Enlarge network';
-    diagram.resize();
+  }
+  zoom.addEventListener('click', () => {
+    setZoom(root.dataset.zoom !== '1.5'); diagram.resize();
   });
   const motion = q('[data-motion]'), preference = matchMedia('(prefers-reduced-motion: reduce)');
   let paused = false;
@@ -358,7 +371,14 @@ export function mountPerceptron(root) {
   function rebuildDiagram() {
     diagram?.destroy();
     diagram = networkDiagram(q('[data-network]'), names, network, {
-      blackbox, probability, change: render,
+      blackbox: viewingBox(), probability, change() {
+        if (practice) {
+          if (rebuilding) builtObserved = rows.map(() => null);
+          else observed = rows.map(() => null);
+          invalidatePractice();
+        }
+        render();
+      },
       toggle(i) {inputs[i] = 1 - inputs[i]; render();}
     });
     const region = q('[data-network] [role=region]');
@@ -366,6 +386,10 @@ export function mountPerceptron(root) {
   }
   function compile() { network = compileTruthTable(values); rebuildDiagram(); }
   function presetControls() {
+    if (practice) {
+      choices(q('[data-presets]'), levels.map((level, i) => [String(i), level.label]), String(levelIndex), key => switchLevel(Number(key)), blackbox ? 'Black-box levels' : 'Functions to implement');
+      markCompleted(); return;
+    }
     if (kind === 'table') {
       choices(q('[data-presets]'), Object.entries(tablePresets).map(([key, gate]) => [key, gate.label]), 'xor', key => {
         values = [...tablePresets[key].values]; compile(); render();
@@ -378,12 +402,109 @@ export function mountPerceptron(root) {
       rebuildDiagram(); render();
     }, 'Truth-function to implement');
   }
-  if (kind === 'gates' || kind === 'table') toolbar.append(el('div', {'data-presets': ''}));
-  if (blackbox) {
-    toolbar.append(button('Test input', () => {
-      observed[rowIndex()] = queryBlackBox(inputs); render();
-    }));
-    toolbar.append(button('Test all inputs', () => {observed = rows.map(queryBlackBox); render();}));
+  if (kind === 'gates' || kind === 'table' || practice) toolbar.append(el('div', {'data-presets': ''}));
+  if (blackbox || practice) {
+    const testInput = button('Test input', () => {
+      if (practice && !viewingBox() && !validParameters()) {render(); return;}
+      const record = rebuilding ? builtObserved : observed;
+      record[rowIndex()] = viewingBox() ? (practice ? evaluateNetwork(inputs, oracle).output : queryBlackBox(inputs)) : evaluate(inputs).output;
+      if (practice) {feedback = ''; feedbackKind = '';}
+      render();
+    });
+    if (practice && blackbox) {
+      const actions = el('div', {class: 'perceptron-network-actions'});
+      actions.append(testInput); q('[data-network]').after(actions);
+    } else toolbar.append(testInput);
+    if (!practice) toolbar.append(button('Test all inputs', () => {observed = rows.map(queryBlackBox); render();}));
+  }
+  let formulaInput, oracle;
+  function markCompleted() {
+    if (!practice) return;
+    q('[data-presets]').querySelectorAll('[data-choice]').forEach(control => {
+      const i = Number(control.dataset.choice);
+      control.textContent = `${levels[i].label}${completed.has(i) ? ' ✓' : ''}`;
+    });
+  }
+  function invalidatePractice() {
+    feedback = ''; feedbackKind = ''; completed.delete(levelIndex); markCompleted();
+  }
+  function validParameters() {
+    const units = network.hidden ? [...network.hidden, network.output] : [network];
+    return units.every(unit => [...unit.weights, unit.bias].every(Number.isFinite));
+  }
+  function checkPractice() {
+    const recorded = checkRecordedTable(rebuilding ? builtObserved : observed, currentLevel().values);
+    feedbackKind = 'incorrect';
+    if (!recorded.complete) feedback = `Test all ${rows.length} inputs first.`;
+    else if (blackbox && !rebuilding) {
+      try {
+        convertInput(formulaInput);
+        const result = checkBlackBoxFormula(formulaInput.value, currentLevel());
+        if (result.correct) {identified = true; feedback = 'Correct: your formula agrees with every input.'; feedbackKind = 'correct'; updateTaskViews();}
+        else feedback = `For ${Object.entries(result.valuation).map(([name, value]) => `${name} = ${value}`).join(', ')}, your formula gives ${result.actual}; the network gives ${result.expected}.`;
+      } catch (error) {feedback = error.message;}
+    } else if (recorded.correct) {feedback = 'Correct: every output matches.'; feedbackKind = 'correct';}
+    else feedback = `For ${names.map((name, i) => `${name} = ${rows[recorded.mismatch][i]}`).join(', ')}, the network gives ${(rebuilding ? builtObserved : observed)[recorded.mismatch]}; ${rebuilding ? 'the black box' : 'f'} requires ${currentLevel().values[recorded.mismatch]}.`;
+    if (feedbackKind === 'correct') {if (!blackbox || rebuilding) completed.add(levelIndex);}
+    else completed.delete(levelIndex);
+    markCompleted(); render();
+  }
+  if (practice) {
+    const form = el('form', {class: 'perceptron-answer'});
+    if (blackbox) {
+      formulaInput = el('textarea', {class: 'logic-app__input', rows: '1', 'data-submit-enter': '', maxlength: '512', spellcheck: 'false', 'aria-label': 'Your formula', placeholder: 'Your formula'});
+      form.append(formulaInput);
+      const changed = () => {identified = false; invalidatePractice(); updateTaskViews(); render();};
+      enableLatexInput(formulaInput, changed);
+      formulaInput.addEventListener('input', changed);
+    }
+    form.append(el('button', {type: 'submit'}, 'Check'));
+    form.addEventListener('submit', event => {event.preventDefault(); checkPractice();});
+    root.querySelector('.perceptron-canvas').after(form);
+  }
+  let taskViews, architecture;
+  function switchLevel(next) {
+    if (next === levelIndex) return;
+    practiceStates.set(levelIndex, {inputs, network, observed, builtObserved, rebuilding, identified,
+      constructionHidden, architectures, feedback, feedbackKind, formula: formulaInput?.value,
+      enlarged: root.dataset.zoom === '1.5'});
+    levelIndex = next;
+    const saved = practiceStates.get(levelIndex);
+    if (!saved) {reset(); return;}
+    ({inputs, network, observed, builtObserved, rebuilding, identified, constructionHidden,
+      architectures, feedback, feedbackKind} = saved);
+    names = ['P', 'Q', 'R'].slice(0, currentLevel().arity); rows = booleanRows(names.length);
+    values = [...currentLevel().values];
+    if (blackbox) {oracle = compileTruthTable(values); formulaInput.value = saved.formula;}
+    setZoom(saved.enlarged);
+    presetControls(); updateTaskViews(); rebuildDiagram(); render();
+  }
+  function updateTaskViews() {
+    if (!taskViews) return;
+    choices(taskViews, [['box', 'Black box'], ['build', 'Your network']], rebuilding ? 'build' : 'box', key => {
+      if ((key === 'build') === rebuilding) return;
+      rebuilding = key === 'build'; feedback = ''; feedbackKind = '';
+      updateTaskViews(); rebuildDiagram(); render();
+    }, 'Black-box task');
+    taskViews.querySelector('[data-choice="build"]').disabled = !identified;
+    formulaInput.hidden = rebuilding;
+    architecture.hidden = !rebuilding;
+    choices(architecture, [['0', 'One perceptron'], ['2', 'Hidden layer']], String(constructionHidden), key => {
+      if (Number(key) === constructionHidden) return;
+      architectures.set(constructionHidden, {network, builtObserved, complete: completed.has(levelIndex)});
+      constructionHidden = Number(key);
+      const saved = architectures.get(constructionHidden);
+      network = saved?.network ?? emptyPracticeNetwork({...currentLevel(), hidden: constructionHidden});
+      builtObserved = saved?.builtObserved ?? rows.map(() => null);
+      invalidatePractice();
+      if (saved?.complete) {completed.add(levelIndex); markCompleted();}
+      updateTaskViews(); rebuildDiagram(); render();
+    }, 'Network structure');
+  }
+  if (practice && blackbox) {
+    const modes = el('div', {class: 'perceptron-task-views'});
+    taskViews = el('div', {class: 'perceptron-task-tabs'}); architecture = el('div', {class: 'perceptron-architecture'}); modes.append(taskViews, architecture);
+    toolbar.parentElement.after(modes);
   }
   let cloudInput, cloudValue;
   if (probability) {
@@ -395,41 +516,54 @@ export function mountPerceptron(root) {
   }
   tools.prepend(button('Reset', reset));
   function reset() {
+    if (practice) {
+      names = ['P', 'Q', 'R'].slice(0, currentLevel().arity); rows = booleanRows(names.length);
+      rebuilding = false; identified = false; constructionHidden = 0; builtObserved = rows.map(() => null);
+      practiceStates.delete(levelIndex); architectures = new Map();
+    }
     inputs = names.map(() => 0); preset = 'and';
-    root.dataset.zoom = '1'; zoom.setAttribute('aria-pressed', 'false'); zoom.setAttribute('aria-label', 'Enlarge network'); zoom.title = 'Enlarge network';
+    setZoom(false);
     const gate = gates[kind === 'separation' ? 'xor' : 'and'];
     target = gate.values;
     values = kind === 'kb' ? [...kbValues] : [...gates.xor.values];
     observed = rows.map(() => null);
     network = blackbox ? null : basic ? {weights: [...gate.weights], bias: gate.bias} : kind === 'layers' ? structuredClone(xorNetwork) : kind === 'kb' ? structuredClone(kbNetwork) : compileTruthTable(values);
+    if (practice) {
+      values = [...currentLevel().values];
+      network = emptyPracticeNetwork(blackbox ? {...currentLevel(), hidden: constructionHidden} : currentLevel());
+      if (blackbox) oracle = compileTruthTable(values);
+      if (formulaInput) formulaInput.value = '';
+      invalidatePractice();
+    }
     if (probability) {inputs = [0.75]; network = {weights: [5], bias: -2.5}; cloudInput.value = '0.75';}
-    presetControls(); rebuildDiagram(); render();
+    presetControls(); updateTaskViews(); rebuildDiagram(); render();
   }
   function rowIndex() { return rows.findIndex(row => row.every((value, i) => value === inputs[i])); }
   function evaluate(row) { if (probability) return evaluateSigmoid(row, network.weights, network.bias); return network.hidden ? evaluateNetwork(row, network) : evaluateUnit(row, network.weights, network.bias); }
   function desired() { return basic ? target : values; }
   function drawTable() {
-    const headers = [...names, ...(!blackbox ? [kind === 'kb' ? 'KB' : 'f'] : []), ...(kind === 'layers' ? ['h₁', 'h₂'] : []), 'y'];
-    const {node, body} = table(headers, blackbox ? 'Observed truth-table' : kind === 'kb' ? 'Models of the knowledge base' : 'Truth-table');
+    const boxed = viewingBox();
+    const headers = [...names, ...(!boxed ? [rebuilding ? 'Box' : kind === 'kb' ? 'KB' : 'f'] : []), ...(kind === 'layers' ? ['h₁', 'h₂'] : []), 'y'];
+    const {node, body} = table(headers, boxed ? 'Observed truth-table' : kind === 'kb' ? 'Models of the knowledge base' : 'Truth-table');
     node.classList.add('perceptron-truth-table');
     node.tHead.rows[0].cells[names.length].classList.add('perceptron-divider');
     rows.forEach((row, i) => {
       const selected = row.every((value, j) => value === inputs[j]);
       const tr = el('tr', {'data-row': i, class: selected ? 'is-selected' : ''});
       row.forEach(value => tr.append(el('td', {}, String(value))));
-      if (!blackbox) {
+      if (!boxed) {
         const td = el('td', {class: 'perceptron-divider'});
         if (kind === 'table') td.append(button(String(values[i]), () => {
           values[i] = 1 - values[i]; compile(); render();
         }, {class: 'perceptron-target', 'aria-label': `Toggle target for ${row.join('')}`, 'aria-pressed': String(Boolean(values[i])), 'data-focus': `target-${i}`}));
-        else td.textContent = desired()[i];
+        else td.textContent = rebuilding ? observed[i] ?? '?' : desired()[i];
         tr.append(td);
       }
-      const result = blackbox ? null : evaluate(row);
+      const result = boxed ? null : evaluate(row);
       if (kind === 'layers') result.hidden.forEach(unit => tr.append(el('td', {}, String(unit.output))));
-      const output = blackbox ? observed[i] : result.output;
-      const mismatch = !blackbox && output !== desired()[i];
-      tr.append(el('td', {'data-output': '', class: `${blackbox ? 'perceptron-divider ' : ''}${mismatch ? 'is-mismatch' : ''}`, ...(mismatch ? {'aria-label': `${output}, differs from target ${desired()[i]}`} : {})}, output === null ? '?' : String(output)));
+      const output = rebuilding ? builtObserved[i] : boxed || practice ? observed[i] : result.output;
+      const mismatch = !boxed && output !== null && output !== desired()[i];
+      tr.append(el('td', {'data-output': '', class: `${boxed ? 'perceptron-divider ' : ''}${mismatch ? 'is-mismatch' : ''}`, ...(mismatch ? {'aria-label': `${output}, differs from target ${desired()[i]}`} : {})}, output === null ? '?' : String(output)));
       body.append(tr);
     });
     q('[data-table]').replaceChildren(scrollTable(node));
@@ -438,6 +572,7 @@ export function mountPerceptron(root) {
     const known = observed.filter(value => value !== null).length;
     diagram.update(inputs, {output: observed[rowIndex()]});
     drawTable();
+    if (practice) return;
     const rules = el('ul', {class: 'perceptron-formula', 'data-rules': ''});
     observed.forEach((value, i) => {
       if (value !== null) rules.append(el('li', {}, `(${rowFormula(rows[i], ['P', 'Q'])}) → ${value ? 'Y' : '¬Y'}`));
@@ -451,12 +586,13 @@ export function mountPerceptron(root) {
     const focused = root.contains(document.activeElement) ? document.activeElement.dataset.focus : null;
     for (const name of ['calculation', 'table', 'detail']) q(`[data-${name}]`).replaceChildren();
     q('[role=status]').textContent = '';
+    if (practice) root.dataset.feedback = feedbackKind;
     if (probability) cloudValue.textContent = `Cloud cover x = ${fmt(inputs[0])}`;
     if (kind === 'table') q('[data-presets]').querySelectorAll('[data-choice]').forEach(control => {
       control.setAttribute('aria-pressed', String(tablePresets[control.dataset.choice].values.every((value, i) => value === values[i])));
     });
-    const units = blackbox ? [] : network.hidden ? [...network.hidden, network.output] : [network];
-    if (blackbox) renderBlackBox();
+    const units = viewingBox() ? [] : network.hidden ? [...network.hidden, network.output] : [network];
+    if (viewingBox()) renderBlackBox();
     else if (!units.every(unit => [...unit.weights, unit.bias].every(Number.isFinite))) {
       diagram.update(inputs, null);
       q('[role=status]').textContent = 'Enter a finite number for each weight and the bias.';
@@ -487,6 +623,7 @@ export function mountPerceptron(root) {
     root.querySelectorAll('[data-table] .perceptron-scroll, [data-detail] .perceptron-scroll').forEach(region => {
       region.setAttribute('aria-label', `${root.getAttribute('aria-label')}: ${region.getAttribute('aria-label')}`);
     });
+    if (practice && feedback) q('[role=status]').textContent = feedback;
     if (focused) root.querySelector(`[data-focus="${focused}"]`)?.focus({preventScroll: true});
   }
   reset(); q('[data-app-fallback]').remove();
