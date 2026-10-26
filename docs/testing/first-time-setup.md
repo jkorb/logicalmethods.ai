@@ -5,11 +5,26 @@ Install the Hugo version listed in [`.hugo-version`](../../.hugo-version) from
 edition to match GitHub Actions. The Node version is listed in
 [`.nvmrc`](../../.nvmrc); with nvm installed, run `nvm install` to select it.
 
-The build checks the exact Hugo release number, accepting both official builds
-with a commit hash and packaged builds such as Homebrew's. On macOS, if Homebrew
-has upgraded the default executable, the test build also looks for the pinned
-release in its Cellar and verifies that executable's version. This does not
-change the system-wide Hugo selection or download a missing release.
+The npm setup commands below install Node dependencies and Chromium. They do
+not install Hugo. A newer Hugo release, including Homebrew's current version,
+does not satisfy the version pin.
+
+To keep the required Hugo alongside a different system version, copy the
+downloaded extended executable into this worktree (macOS/Linux):
+
+```sh
+hugo_dir="tmp/bin/hugo/$(cat .hugo-version)"
+mkdir -p "$hugo_dir"
+cp /path/to/extracted/hugo "$hugo_dir/hugo"
+chmod +x "$hugo_dir/hugo"
+```
+
+On Windows, put `hugo.exe` in the corresponding version directory.
+The test build checks PATH, this local copy, then retained Homebrew releases
+on macOS. Every candidate must match `.hugo-version`. No PATH changes are
+needed for `npm test` or `npm run build:test`. Repeat the local installation
+in each worktree. `npm ci` and `npm run clean` preserve it; `npm run clean:all`
+removes it along with the other downloaded tools.
 
 Then, from the repository root:
 

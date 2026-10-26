@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { resolve } from 'node:path';
 import { matchesHugoVersion, resolveHugoVersion } from '../../scripts/hugo-version.mjs';
 
 test('Hugo version guard accepts official and packaged releases', () => {
@@ -23,6 +24,7 @@ test('Hugo version guard rejects other versions, prereleases and malformed outpu
 });
 
 const release = version => ({ status: 0, stdout: `hugo v${version}+extended darwin/arm64` });
+const local = (platform = process.platform) => resolve('tmp', 'bin', 'hugo', '0.167.0', platform === 'win32' ? 'hugo.exe' : 'hugo');
 
 test('Hugo selection uses the matching PATH binary without consulting Homebrew', () => {
   assert.equal(resolveHugoVersion('0.167.0', {
@@ -36,6 +38,7 @@ test('Hugo selection finds and verifies a retained Homebrew release after an upg
     list: () => ['0.168.0', '0.167.0_1'],
     run(command) {
       if (command === 'hugo') return release('0.168.0');
+      if (command === local('darwin')) return { status: null, error: new Error('ENOENT') };
       if (command === 'brew') return { status: 0, stdout: '/opt/homebrew/Cellar/hugo\n' };
       assert.equal(command, '/opt/homebrew/Cellar/hugo/0.167.0_1/bin/hugo');
       return release('0.167.0');
@@ -43,7 +46,38 @@ test('Hugo selection finds and verifies a retained Homebrew release after an upg
   }), '/opt/homebrew/Cellar/hugo/0.167.0_1/bin/hugo');
 });
 
-test('Hugo selection never accepts a wrong version or changes Linux tool selection', () => {
+test('Hugo selection uses a verified local release when PATH is missing or newer', () => {
+  for (const platform of ['darwin', 'linux', 'win32']) {
+    for (const installed of [release('0.168.0'), { status: null, error: new Error('ENOENT') }]) {
+      assert.equal(resolveHugoVersion('0.167.0', {
+        platform,
+        run(command) {
+          if (command === 'hugo') return installed;
+          assert.equal(command, local(platform));
+          return release('0.167.0');
+        }
+      }), local(platform));
+    }
+  }
+});
+
+test('Hugo selection rejects an unusable local binary and explains how to install one', () => {
+  assert.throws(() => resolveHugoVersion('0.167.0', {
+    platform: 'linux',
+    run(command) {
+      if (command === 'hugo') return release('0.168.0');
+      assert.equal(command, local('linux'));
+      return { status: 1, stdout: release('0.167.0').stdout };
+    }
+  }), error => {
+    assert.match(error.message, /Use Hugo 0\.167\.0/);
+    assert.ok(error.message.includes(local('linux')));
+    assert.match(error.message, /docs\/testing\/first-time-setup\.md/);
+    return true;
+  });
+});
+
+test('Hugo selection rejects wrong versions in PATH, the local cache, and Homebrew', () => {
   for (const platform of ['darwin', 'linux']) {
     assert.throws(() => resolveHugoVersion('0.167.0', {
       platform, list: () => ['0.167.0'],

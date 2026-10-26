@@ -1,6 +1,6 @@
 import { spawnSync } from 'node:child_process';
 import { readdirSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, resolve } from 'node:path';
 
 export function matchesHugoVersion(output, expected) {
   // Official releases include a commit hash; packaged builds may omit it.
@@ -8,14 +8,17 @@ export function matchesHugoVersion(output, expected) {
   return match?.[1] === expected;
 }
 
-// Homebrew upgrades can change PATH while leaving the pinned release installed.
-// Select an existing binary without relinking or changing the required version.
+// Keep a pinned executable in the worktree when the system version differs.
+// Homebrew may also retain the required release after upgrading PATH's binary.
 export function resolveHugoVersion(expected, {
   run = spawnSync, list = readdirSync, platform = process.platform
 } = {}) {
   const inspect = command => run(command, ['version'], { encoding: 'utf8' });
   const installed = inspect('hugo');
   if (installed.status === 0 && matchesHugoVersion(installed.stdout, expected)) return 'hugo';
+  const local = resolve('tmp', 'bin', 'hugo', expected, platform === 'win32' ? 'hugo.exe' : 'hugo');
+  const cached = inspect(local);
+  if (cached.status === 0 && matchesHugoVersion(cached.stdout, expected)) return local;
   if (platform === 'darwin') {
     const cellar = run('brew', ['--cellar', 'hugo'], { encoding: 'utf8' });
     if (cellar.status === 0) {
@@ -29,5 +32,5 @@ export function resolveHugoVersion(expected, {
       }
     }
   }
-  throw new Error(`Use Hugo ${expected} (see .hugo-version). Found: ${installed.stdout?.trim() || installed.error?.message || 'no usable Hugo executable'}`);
+  throw new Error(`Use Hugo ${expected} (see .hugo-version). Found: ${installed.stdout?.trim() || installed.error?.message || 'no usable Hugo executable'}\nInstall the matching extended executable at ${local} or on PATH; see docs/testing/first-time-setup.md.`);
 }

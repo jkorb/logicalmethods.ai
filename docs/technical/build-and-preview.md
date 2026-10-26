@@ -21,6 +21,10 @@ Use the preview URL printed by Hugo (normally `http://localhost:1313/`). Run
 `hugo` build excludes drafts and therefore does not reproduce the current
 deployment behavior.
 
+If you installed Hugo locally using the [setup instructions](../testing/first-time-setup.md),
+preview with `"tmp/bin/hugo/$(cat .hugo-version)/hugo" server -D`.
+The bare `hugo` command still uses the system installation.
+
 ## Related
 
 - [First-time setup](../testing/first-time-setup.md) — Node and Chromium for tests.
