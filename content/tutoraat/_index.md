@@ -169,11 +169,9 @@ section. Please take note of where you're needed and when.
 
 ## Break Day 
 
-tbd
-
 | Time            | Event                | Room            |
 | --------------- | -------------------- | ------          |
-| 11:0-–12:45     | Plenair welkom       | KNG80 13 - 0.06 |
+| 12:00-–12:45     | Plenair welkom      | KNG80 13 - 0.06 |
 | 13:15–14:00     | Tutor Meeting 2      | KNG80           |
 | 14:15–15:00     | GitHub Workshop      | KNG80           |
 | 15:15–16:00     | GenAI Voorlichting   | KNG80 13 - 0.06 |
@@ -182,25 +180,25 @@ tbd
 
 | Time            | Person                        |
 | --------------- | --------------------------    |
-| 13:15–13:30     | Algemeen welkom (Dominik)     |
-| 13:30–13:45     | Bachelorcoordinator (Dominik) |
-| 13:45–14:00     | Studieadviseur (Ruben)        |
+| 12:00–12:15     | Algemeen welkom (Dominik)     |
+| 12:15–12:30     | Bachelorcoordinator (Dominik) |
+| 12:30–12:45     | Studieadviseur (Ruben)        |
 
 **Tutor meetings**
 
 | Group  | Time          | Room          |
 | ------ | ------------- | -----------   |
-| 1      | 14:15 - 15:00 | KNG80 - 0.17  |
-| 2      | 14:15 - 15:00 | KNG80 - 0.18  |
-| 3      | 14:15 - 15:00 | KNG80 - 0.19  |
+| 1      | 13:15 - 14:00 | KNG80 - 0.17  |
+| 2      | 13:15 - 14:00 | KNG80 - 0.18  |
+| 3      | 13:15 - 14:00 | KNG80 - 0.19  |
 
 **Git workshop**
 
 | Group  | Time          | Room          |
 | ------ | ------------- | -----------   |
-| 1      | 15:15 - 16:00 | KNG 80 - 0.13 |
-| 2      | 15:15 - 16:00 | KNG 80 - 1.13 |
-| 3      | 15:15 - 16:00 | KNG 80 - 1.14 |
+| 1      | 14:15 - 15:00 | KNG 80 - 0.13 |
+| 2      | 14:15 - 15:00 | KNG 80 - 1.13 |
+| 3      | 14:15 - 15:00 | KNG 80 - 1.14 |
 
 # 4. Meetings
 
